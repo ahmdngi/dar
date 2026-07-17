@@ -3,8 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DAR — Arabic Research Archive</title>
+<title data-i18n="site_title">DAR — Arabic Research Archive</title>
 <link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم",
+    site_title: "دار — أرشيف الأبحاث العربية",
+    badge: "✦ مفتوح المصدر · وصول مفتوح · العربية",
+    hero_desc: "دار يترجم الأبحاث الأكاديمية مفتوحة الوصول إلى العربية مع الحفاظ على الاستشهادات والمراجع والمعادلات والتنسيق.",
+    browse_btn: "تصفح الأبحاث",
+    submit_btn: "تقديم بحث",
+    featured: "الأبحاث المميزة",
+    papers_translated: "الأبحاث المترجمة",
+    open_access: "وصول مفتوح",
+    papers_count: "2",
+    no_papers: "لم يتم العثور على أبحاث",
+    latest: "أحدث الترجمات",
+    footer: "جميع الأبحاث منشورة تحت رخص الوصول المفتوح. الترجمة © دار"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit",
+    site_title: "DAR — Arabic Research Archive",
+    badge: "✦ Open Access · Open Source · Arabic",
+    hero_desc: "DAR translates open-access research papers to Arabic while preserving references, citations, equations, and formatting.",
+    browse_btn: "Browse Papers",
+    submit_btn: "Submit a Paper",
+    featured: "Featured Papers",
+    papers_translated: "Papers Translated",
+    open_access: "Open Access",
+    papers_count: "2",
+    no_papers: "No papers found",
+    latest: "Latest Translations",
+    footer: "All papers published under open-access licenses. Translation © DAR"
+  }
+};
+</script>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -14,20 +53,20 @@
     <small>Arabic Research Archive</small>
   </a>
   <div class="nav-links">
-    <a href="/">Browse</a>
-    <a href="search.html">Search</a>
-    <a href="submit.html">Submit</a>
+    <a href="/" data-i18n="nav_browse">Browse</a>
+    <a href="search.html" data-i18n="nav_search">Search</a>
+    <a href="submit.html" data-i18n="nav_submit">Submit</a>
     <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
   </div>
 </nav>
 
 <div class="hero">
-  <div class="badge">✦ Open Access · Open Source · Arabic</div>
+  <div class="badge" data-i18n="badge">✦ Open Access · Open Source · Arabic</div>
   <img src="assets/logo-hero.png" alt="DAR" style="max-width:180px;width:100%;height:auto;margin:0 auto 1rem;display:block">
-  <p>DAR translates open-access research papers to Arabic while preserving references, citations, equations, and formatting.</p>
+  <p data-i18n="hero_desc">DAR translates open-access research papers to Arabic while preserving references, citations, equations, and formatting.</p>
   <div class="btn-group">
-    <a href="browse.html" class="btn btn-primary">Browse Papers</a>
-    <a href="submit.html" class="btn btn-outline">Submit a Paper</a>
+    <a href="browse.html" class="btn btn-primary" data-i18n="browse_btn">Browse Papers</a>
+    <a href="submit.html" class="btn btn-outline" data-i18n="submit_btn">Submit a Paper</a>
   </div>
 </div>
 
@@ -39,7 +78,7 @@
 
 <div class="container">
   <div class="section-header">
-    <h2>Latest Translations</h2>
+    <h2 data-i18n="latest">Latest Translations</h2>
     <span class="count" id="paper-count-label">1 paper</span>
   </div>
   <div class="paper-grid" id="paper-grid">
@@ -49,9 +88,10 @@
 
 <footer>
   DAR — Arabic Research Archive. Open source on <a href="https://github.com/ahmdngi/dar">GitHub</a>.
-  Papers hosted under their original licenses.
+  <p data-i18n="footer">All papers published under open-access licenses. Translation © DAR</p>
 </footer>
 
+<script src="assets/js/i18n.js"></script>
 <script>
 const papers = [
   {

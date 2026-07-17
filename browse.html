@@ -3,9 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Browse — DAR</title>
+<title data-i18n="title">Browse — DAR</title>
 <link rel="icon" type="image/png" href="assets/logo.png">
 <link rel="stylesheet" href="assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    title: "تصفح — دار",
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم",
+    all_papers: "جميع الأبحاث",
+    footer: "دار — أرشيف الأبحاث العربية. مفتوح المصدر على جيتهاب."
+  },
+  en: {
+    title: "Browse — DAR",
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit",
+    all_papers: "All Papers",
+    footer: "DAR — Arabic Research Archive. Open source on GitHub."
+  }
+};
+</script>
 </head>
 <body>
 <nav>
@@ -14,25 +34,26 @@
     <small>Arabic Research Archive</small>
   </a>
   <div class="nav-links">
-    <a href="/">Browse</a>
-    <a href="search.html">Search</a>
-    <a href="submit.html">Submit</a>
+    <a href="/" data-i18n="nav_browse">Browse</a>
+    <a href="search.html" data-i18n="nav_search">Search</a>
+    <a href="submit.html" data-i18n="nav_submit">Submit</a>
     <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
   </div>
 </nav>
 
 <div class="container">
   <div class="section-header">
-    <h2>All Papers</h2>
-    <span class="count" id="paper-count-label">1 paper</span>
+    <h2 data-i18n="all_papers">All Papers</h2>
+    <span class="count" id="paper-count-label">2 papers</span>
   </div>
   <div class="paper-grid" id="paper-grid"></div>
 </div>
 
-<footer>
+<footer data-i18n="footer">
   DAR — Arabic Research Archive. Open source on <a href="https://github.com/ahmdngi/dar">GitHub</a>.
 </footer>
 
+<script src="assets/js/i18n.js"></script>
 <script>
 const papers = [
   {
@@ -70,14 +91,12 @@ if (grid) {
         <span class="tag">${p.license}</span>
         ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
       </div>
-      <h3><a href="papers/${p.slug}/">${p.title}</a></h3>
-      <div style="font-size:0.8rem;color:var(--accent-2);margin-bottom:0.3rem" dir="rtl">${p.title_ar}</div>
-      <div class="authors">${p.authors}</div>
-      <div class="abstract">${p.abstract}</div>
-      <div class="actions">
-        <a href="papers/${p.slug}/">Read in Arabic →</a>
-        <a href="https://doi.org/${p.doi}" target="_blank">Original</a>
-      </div>
+      <a href="papers/${p.slug}/">
+        <h3>${p.title}</h3>
+      </a>
+      <p class="authors">${p.authors}</p>
+      <p class="abstract">${p.abstract.slice(0, 200)}${p.abstract.length > 200 ? '...' : ''}</p>
+      <a href="papers/${p.slug}/" class="read-more">Read →</a>
     </div>
   `).join('');
 }

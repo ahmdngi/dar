@@ -3,9 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Search — DAR</title>
+<title data-i18n="title">Search — DAR</title>
 <link rel="icon" type="image/png" href="assets/logo.png">
 <link rel="stylesheet" href="assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    title: "بحث — دار",
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم",
+    search_title: "البحث في الأبحاث",
+    search_desc: "ابحث في العناوين والملخصات والمؤلفين بالعربية والإنجليزية",
+    search_placeholder: "ابحث عن أبحاث...",
+    no_results: "لم يتم العثور على أبحاث.",
+    footer: "دار — أرشيف الأبحاث العربية. مفتوح المصدر على جيتهاب."
+  },
+  en: {
+    title: "Search — DAR",
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit",
+    search_title: "Search Papers",
+    search_desc: "Search English and Arabic titles, abstracts, and authors",
+    search_placeholder: "Search papers...",
+    no_results: "No papers found.",
+    footer: "DAR — Arabic Research Archive. Open source on GitHub."
+  }
+};
+</script>
 </head>
 <body>
 <nav>
@@ -14,31 +40,32 @@
     <small>Arabic Research Archive</small>
   </a>
   <div class="nav-links">
-    <a href="/">Browse</a>
-    <a href="search.html">Search</a>
-    <a href="submit.html">Submit</a>
+    <a href="/" data-i18n="nav_browse">Browse</a>
+    <a href="search.html" data-i18n="nav_search">Search</a>
+    <a href="submit.html" data-i18n="nav_submit">Submit</a>
     <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
   </div>
 </nav>
 
 <div class="container">
   <div style="text-align:center;margin-bottom:2rem">
-    <h1>Search Papers</h1>
-    <p style="color:var(--text-2);margin-top:0.5rem">Search English and Arabic titles, abstracts, and authors</p>
+    <h1 data-i18n="search_title">Search Papers</h1>
+    <p style="color:var(--text-2);margin-top:0.5rem" data-i18n="search_desc">Search English and Arabic titles, abstracts, and authors</p>
   </div>
 
   <div style="max-width:600px;margin:0 auto 2rem">
-    <input type="text" id="search-input" placeholder="Search papers..." style="width:100%;padding:0.8rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:1rem">
+    <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="Search papers..." style="width:100%;padding:0.8rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:1rem">
   </div>
 
   <div id="search-results" class="paper-grid"></div>
-  <div id="search-empty" style="text-align:center;color:var(--text-2);padding:3rem;display:none">No papers found.</div>
+  <div id="search-empty" style="text-align:center;color:var(--text-2);padding:3rem;display:none" data-i18n="no_results">No papers found.</div>
 </div>
 
-<footer>
+<footer data-i18n="footer">
   DAR — Arabic Research Archive. Open source on <a href="https://github.com/ahmdngi/dar">GitHub</a>.
 </footer>
 
+<script src="assets/js/i18n.js"></script>
 <script>
 const papers = [
   {
@@ -65,51 +92,38 @@ const papers = [
   }
 ];
 
-function search(q) {
-  const results = document.getElementById('search-results');
-  const empty = document.getElementById('search-empty');
-  if (!q.trim()) {
-    results.innerHTML = papers.map(p => renderCard(p)).join('');
-    empty.style.display = 'none';
-    return;
-  }
-  const t = q.toLowerCase();
+const searchInput = document.getElementById('search-input');
+const results = document.getElementById('search-results');
+const empty = document.getElementById('search-empty');
+
+function renderResults(query) {
+  const q = query.toLowerCase();
   const filtered = papers.filter(p =>
-    p.title.toLowerCase().includes(t) ||
-    p.title_ar.toLowerCase().includes(t) ||
-    p.authors.toLowerCase().includes(t) ||
-    p.abstract.toLowerCase().includes(t) ||
-    p.tags.some(tag => tag.toLowerCase().includes(t))
+    p.title.toLowerCase().includes(q) ||
+    p.title_ar.includes(q) ||
+    p.abstract.toLowerCase().includes(q) ||
+    p.authors.toLowerCase().includes(q)
   );
-  if (filtered.length === 0) {
-    results.innerHTML = '';
-    empty.style.display = 'block';
-  } else {
-    results.innerHTML = filtered.map(p => renderCard(p)).join('');
-    empty.style.display = 'none';
-  }
+  empty.style.display = filtered.length === 0 ? 'block' : 'none';
+  results.innerHTML = filtered.map(p => `
+    <div class="paper-card">
+      <div class="meta">
+        <span>${p.venue}</span>
+        <span class="tag">${p.license}</span>
+        ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+      </div>
+      <a href="papers/${p.slug}/">
+        <h3>${p.title}</h3>
+      </a>
+      <p class="authors">${p.authors}</p>
+      <p class="abstract">${p.abstract.slice(0, 200)}${p.abstract.length > 200 ? '...' : ''}</p>
+      <a href="papers/${p.slug}/" class="read-more">Read →</a>
+    </div>
+  `).join('');
 }
 
-function renderCard(p) {
-  return `<div class="paper-card">
-    <div class="meta">
-      <span>${p.venue}</span>
-      <span class="tag">${p.license}</span>
-      ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
-    </div>
-    <h3><a href="papers/${p.slug}/">${p.title}</a></h3>
-    <div style="font-size:0.8rem;color:var(--accent-2);margin-bottom:0.3rem" dir="rtl">${p.title_ar}</div>
-    <div class="authors">${p.authors}</div>
-    <div class="abstract">${p.abstract}</div>
-    <div class="actions">
-      <a href="papers/${p.slug}/">Read in Arabic →</a>
-      <a href="https://doi.org/${p.doi}" target="_blank">Original</a>
-    </div>
-  </div>`;
-}
-
-document.getElementById('search-input').addEventListener('input', e => search(e.target.value));
-search('');
+searchInput.addEventListener('input', (e) => renderResults(e.target.value));
+if (!searchInput.value) renderResults('');
 </script>
 </body>
 </html>

@@ -3,9 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Submit — DAR</title>
+<title data-i18n="title">Submit — DAR</title>
 <link rel="icon" type="image/png" href="assets/logo.png">
 <link rel="stylesheet" href="assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    title: "تقديم — دار",
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم",
+    submit_title: "تقديم بحث",
+    submit_desc: "قدّم بحثًا مفتوح الوصول للترجمة إلى العربية. يجب أن يكون مرخصًا برخصة CC أو وصول مفتوح.",
+    url_label: "رابط البحث أو DOI",
+    url_placeholder: "https://doi.org/10.1109/ACCESS.2026.3673557",
+    url_hint: "arXiv, IEEE Access, PubMed Central, أو أي بحث برخصة CC",
+    reason_label: "لماذا يجب ترجمة هذا البحث؟",
+    reason_placeholder: "شرح مختصر...",
+    submit_btn: "فتح مشكلة في جيتهاب ←",
+    how_title: "كيف يعمل",
+    step1: "تقديم — افتح مشكلة في GitHub مع رابط البحث",
+    step2: "مراجعة — يتم التحقق من أهلية الوصول المفتوح للبحث",
+    step3: "ترجمة — ترجمة النص الكامل إلى العربية عبر الذكاء الاصطناعي",
+    step4: "نشر — النسخة العربية تُنشر على دار مع الإسناد",
+    footer: "دار — أرشيف الأبحاث العربية. مفتوح المصدر على جيتهاب."
+  },
+  en: {
+    title: "Submit — DAR",
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit",
+    submit_title: "Submit a Paper",
+    submit_desc: "Submit an open-access paper for Arabic translation. Must be CC-licensed or OA.",
+    url_label: "Paper URL or DOI",
+    url_placeholder: "https://doi.org/10.1109/ACCESS.2026.3673557",
+    url_hint: "arXiv, IEEE Access, PubMed Central, or any CC-licensed paper",
+    reason_label: "Why should this paper be translated?",
+    reason_placeholder: "Brief explanation...",
+    submit_btn: "Open GitHub Issue →",
+    how_title: "How it works",
+    step1: "Submit — Open a GitHub Issue with the paper URL",
+    step2: "Review — The paper is checked for open-access eligibility",
+    step3: "Translate — Full-text translation to Arabic via AI pipeline",
+    step4: "Publish — Arabic version goes live on DAR with attribution",
+    footer: "DAR — Arabic Research Archive. Open source on GitHub."
+  }
+};
+</script>
 </head>
 <body>
 <nav>
@@ -14,55 +58,57 @@
     <small>Arabic Research Archive</small>
   </a>
   <div class="nav-links">
-    <a href="/">Browse</a>
-    <a href="search.html">Search</a>
-    <a href="submit.html">Submit</a>
+    <a href="/" data-i18n="nav_browse">Browse</a>
+    <a href="search.html" data-i18n="nav_search">Search</a>
+    <a href="submit.html" data-i18n="nav_submit">Submit</a>
     <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
   </div>
 </nav>
 
 <div class="container">
   <div style="text-align:center;margin-bottom:2rem">
-    <h1>Submit a Paper</h1>
-    <p style="color:var(--text-2);margin-top:0.5rem">Submit an open-access paper for Arabic translation. Must be CC-licensed or OA.</p>
+    <h1 data-i18n="submit_title">Submit a Paper</h1>
+    <p style="color:var(--text-2);margin-top:0.5rem" data-i18n="submit_desc">Submit an open-access paper for Arabic translation. Must be CC-licensed or OA.</p>
   </div>
 
   <div class="submit-form">
-    <label for="url">Paper URL or DOI</label>
-    <input type="url" id="url" placeholder="https://doi.org/10.1109/ACCESS.2026.3673557">
-    <p class="hint">arXiv, IEEE Access, PubMed Central, or any CC-licensed paper</p>
+    <label for="url" data-i18n="url_label">Paper URL or DOI</label>
+    <input type="url" id="url" data-i18n-placeholder="url_placeholder" placeholder="https://doi.org/10.1109/ACCESS.2026.3673557">
+    <p class="hint" data-i18n="url_hint">arXiv, IEEE Access, PubMed Central, or any CC-licensed paper</p>
 
-    <label for="reason">Why should this paper be translated?</label>
-    <textarea id="reason" placeholder="Brief explanation..."></textarea>
+    <label for="reason" data-i18n="reason_label">Why should this paper be translated?</label>
+    <textarea id="reason" data-i18n-placeholder="reason_placeholder" placeholder="Brief explanation..."></textarea>
 
-    <a href="https://github.com/ahmdngi/dar/issues/new?template=paper-submission.yml" class="btn btn-primary" target="_blank">Open GitHub Issue →</a>
+    <a href="https://github.com/ahmdngi/dar/issues/new?template=paper-submission.yml" class="btn btn-primary" target="_blank" data-i18n="submit_btn">Open GitHub Issue →</a>
   </div>
 
   <div style="margin-top:3rem;max-width:600px;margin-left:auto;margin-right:auto">
-    <h3 style="margin-bottom:1rem">How it works</h3>
+    <h3 style="margin-bottom:1rem" data-i18n="how_title">How it works</h3>
     <div style="display:flex;flex-direction:column;gap:1rem">
       <div style="display:flex;gap:0.8rem;align-items:flex-start">
         <span style="background:var(--accent);color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0">1</span>
-        <div><strong>Submit</strong> — Open a GitHub Issue with the paper URL</div>
+        <div data-i18n="step1"><strong>Submit</strong> — Open a GitHub Issue with the paper URL</div>
       </div>
       <div style="display:flex;gap:0.8rem;align-items:flex-start">
         <span style="background:var(--accent);color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0">2</span>
-        <div><strong>Review</strong> — The paper is checked for open-access eligibility</div>
+        <div data-i18n="step2"><strong>Review</strong> — The paper is checked for open-access eligibility</div>
       </div>
       <div style="display:flex;gap:0.8rem;align-items:flex-start">
         <span style="background:var(--accent);color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0">3</span>
-        <div><strong>Translate</strong> — Full-text translation to Arabic via AI pipeline</div>
+        <div data-i18n="step3"><strong>Translate</strong> — Full-text translation to Arabic via AI pipeline</div>
       </div>
       <div style="display:flex;gap:0.8rem;align-items:flex-start">
         <span style="background:var(--accent);color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0">4</span>
-        <div><strong>Publish</strong> — Arabic version goes live on DAR with attribution</div>
+        <div data-i18n="step4"><strong>Publish</strong> — Arabic version goes live on DAR with attribution</div>
       </div>
     </div>
   </div>
 </div>
 
-<footer>
+<footer data-i18n="footer">
   DAR — Arabic Research Archive. Open source on <a href="https://github.com/ahmdngi/dar">GitHub</a>.
 </footer>
+
+<script src="assets/js/i18n.js"></script>
 </body>
 </html>
