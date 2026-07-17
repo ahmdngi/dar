@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search — DAR</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">DAR<span>.</span> <small>Arabic Research Archive</small></a>
+  <div class="nav-links">
+    <a href="/">Browse</a>
+    <a href="search.html">Search</a>
+    <a href="submit.html">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div style="text-align:center;margin-bottom:2rem">
+    <h1>Search Papers</h1>
+    <p style="color:var(--text-2);margin-top:0.5rem">Search English and Arabic titles, abstracts, and authors</p>
+  </div>
+
+  <div style="max-width:600px;margin:0 auto 2rem">
+    <input type="text" id="search-input" placeholder="Search papers..." style="width:100%;padding:0.8rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:1rem">
+  </div>
+
+  <div id="search-results" class="paper-grid"></div>
+  <div id="search-empty" style="text-align:center;color:var(--text-2);padding:3rem;display:none">No papers found.</div>
+</div>
+
+<footer>
+  DAR — Arabic Research Archive. Open source on <a href="https://github.com/ahmdngi/dar">GitHub</a>.
+</footer>
+
+<script>
+const papers = [
+  {
+    slug: "shipcrawler-ieee-access",
+    title: "A Proactive Defense: An Open-Source Intelligence (OSINT) Framework for Maritime Cybersecurity",
+    title_ar: "دفاع استباقي: إطار استخباراتي مفتوح المصدر للأمن السيبراني البحري",
+    authors: "Ahmed Nagi Nasr, Aybars Oruç, Ricardo Lugo, Inga Zaitseva-Pärnaste, Pentti Kujala",
+    venue: "IEEE Access, 2026",
+    doi: "10.1109/ACCESS.2026.3673557",
+    license: "CC BY 4.0",
+    abstract: "The accelerating digital transformation of the maritime industry has significantly expanded its cyber-attack surface. This paper presents a specialized maritime OSINT framework with a five-phase workflow, supported by a comprehensive taxonomy of maritime cyber threats and a curated toolkit of over 100 OSINT resources.",
+    tags: ["Maritime", "OSINT", "Cybersecurity"]
+  }
+];
+
+function search(q) {
+  const results = document.getElementById('search-results');
+  const empty = document.getElementById('search-empty');
+  if (!q.trim()) {
+    results.innerHTML = papers.map(p => renderCard(p)).join('');
+    empty.style.display = 'none';
+    return;
+  }
+  const t = q.toLowerCase();
+  const filtered = papers.filter(p =>
+    p.title.toLowerCase().includes(t) ||
+    p.title_ar.toLowerCase().includes(t) ||
+    p.authors.toLowerCase().includes(t) ||
+    p.abstract.toLowerCase().includes(t) ||
+    p.tags.some(tag => tag.toLowerCase().includes(t))
+  );
+  if (filtered.length === 0) {
+    results.innerHTML = '';
+    empty.style.display = 'block';
+  } else {
+    results.innerHTML = filtered.map(p => renderCard(p)).join('');
+    empty.style.display = 'none';
+  }
+}
+
+function renderCard(p) {
+  return `<div class="paper-card">
+    <div class="meta">
+      <span>${p.venue}</span>
+      <span class="tag">${p.license}</span>
+      ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+    </div>
+    <h3><a href="papers/${p.slug}/">${p.title}</a></h3>
+    <div style="font-size:0.8rem;color:var(--accent-2);margin-bottom:0.3rem" dir="rtl">${p.title_ar}</div>
+    <div class="authors">${p.authors}</div>
+    <div class="abstract">${p.abstract}</div>
+    <div class="actions">
+      <a href="papers/${p.slug}/">Read in Arabic →</a>
+      <a href="https://doi.org/${p.doi}" target="_blank">Original</a>
+    </div>
+  </div>`;
+}
+
+document.getElementById('search-input').addEventListener('input', e => search(e.target.value));
+search('');
+</script>
+</body>
+</html>

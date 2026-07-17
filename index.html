@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAR — Arabic Research Archive</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">DAR<span>.</span> <small>Arabic Research Archive</small></a>
+  <div class="nav-links">
+    <a href="/">Browse</a>
+    <a href="search.html">Search</a>
+    <a href="submit.html">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="badge">✦ Open Access · Open Source · Arabic</div>
+  <h1>Research Papers<br>in <span>Arabic</span></h1>
+  <p>DAR translates open-access research papers to Arabic while preserving references, citations, equations, and formatting.</p>
+  <div class="btn-group">
+    <a href="browse.html" class="btn btn-primary">Browse Papers</a>
+    <a href="submit.html" class="btn btn-outline">Submit a Paper</a>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="num" id="paper-count">1</div><div class="label">Papers</div></div>
+  <div class="stat"><div class="num">CC-BY</div><div class="label">License</div></div>
+  <div class="stat"><div class="num">GitHub</div><div class="label">Hosted</div></div>
+</div>
+
+<div class="container">
+  <div class="section-header">
+    <h2>Latest Translations</h2>
+    <span class="count" id="paper-count-label">1 paper</span>
+  </div>
+  <div class="paper-grid" id="paper-grid">
+    <!-- Papers loaded by JS -->
+  </div>
+</div>
+
+<footer>
+  DAR — Arabic Research Archive. Open source on <a href="https://github.com/ahmdngi/dar">GitHub</a>.
+  Papers hosted under their original licenses.
+</footer>
+
+<script>
+const papers = [
+  {
+    slug: "shipcrawler-ieee-access",
+    title: "A Proactive Defense: An Open-Source Intelligence (OSINT) Framework for Maritime Cybersecurity",
+    title_ar: "دفاع استباقي: إطار استخباراتي مفتوح المصدر للأمن السيبراني البحري",
+    authors: "Ahmed Nagi Nasr, Aybars Oruç, Ricardo Lugo, Inga Zaitseva-Pärnaste, Pentti Kujala",
+    venue: "IEEE Access, 2026",
+    doi: "10.1109/ACCESS.2026.3673557",
+    license: "CC BY 4.0",
+    abstract: "The accelerating digital transformation of the maritime industry has significantly expanded its cyber-attack surface. This paper presents a specialized maritime OSINT framework with a five-phase workflow, supported by a comprehensive taxonomy of maritime cyber threats and a curated toolkit of over 100 OSINT resources.",
+    tags: ["Maritime", "OSINT", "Cybersecurity"]
+  }
+];
+
+const grid = document.getElementById('paper-grid');
+const countLabel = document.getElementById('paper-count-label');
+const countNum = document.getElementById('paper-count');
+
+if (grid) {
+  grid.innerHTML = papers.map(p => `
+    <div class="paper-card">
+      <div class="meta">
+        <span>${p.venue}</span>
+        <span class="tag">${p.license}</span>
+        ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+      </div>
+      <h3><a href="papers/${p.slug}/">${p.title}</a></h3>
+      <div class="authors">${p.authors}</div>
+      <div class="abstract">${p.abstract}</div>
+      <div class="actions">
+        <a href="papers/${p.slug}/">Read in Arabic →</a>
+        <a href="https://doi.org/${p.doi}" target="_blank">Original</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+if (countLabel) countLabel.textContent = papers.length + ' papers';
+if (countNum) countNum.textContent = papers.length;
+</script>
+</body>
+</html>
