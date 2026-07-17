@@ -65,6 +65,7 @@ const papers = [
     doi: "10.12716/1001.19.04.11",
     license: "CC BY 4.0",
     abstract: "A systematic literature review of Maritime Security Operations Centers (M-SOC) using the SALSA framework. Identifies key trends, challenges, and opportunities in maritime cybersecurity operations.",
+    abstract_ar: "تشهد الصناعة البحرية تحولًا رقميًا سريعًا، حيث تدمج التقنيات المتقدمة لتعزيز الكفاءة التشغيلية والاتصال. ومع ذلك، يُحدث هذا التحول ثغرات أمنية سيبرانية كبيرة. يهدف إطار مراكز العمليات الأمنية البحرية (M-SOC) إلى توفير نهج موحد لمراقبة التهديدات واكتشافها والاستجابة لها. تعالج هذه الورقة هذه الفجوة من خلال إجراء مراجعة منهجية للأدبيات (SLR) باستخدام إطار SALSA. تسلط النتائج الضوء على الحاجة إلى نماذج SOC مخصصة تراعي القيود التشغيلية والتكنولوجية والبشرية المميزة للقطاع البحري.",
     tags: ["Maritime", "M-SOC", "Cybersecurity", "SLR"]
   },
   {
@@ -76,6 +77,7 @@ const papers = [
     doi: "10.1109/ACCESS.2026.3673557",
     license: "CC BY 4.0",
     abstract: "The accelerating digital transformation of the maritime industry has significantly expanded its cyber-attack surface. This paper presents a specialized maritime OSINT framework with a five-phase workflow, supported by a comprehensive taxonomy of maritime cyber threats and a curated toolkit of over 100 OSINT resources.",
+    abstract_ar: "أدى التحول الرقمي المتسارع في الصناعة البحرية إلى توسيع كبير في سطح الهجمات السيبرانية. تقدم هذه الورقة إطارًا متخصصًا للاستخبارات مفتوحة المصدر البحرية (OSINT) مع سير عمل من خمس مراحل، مدعومًا بتصنيف شامل للتهديدات السيبرانية البحرية ومجموعة أدوات منتقاة تضم أكثر من 100 مصدر استخباراتي مفتوح.",
     tags: ["Maritime", "OSINT", "Cybersecurity"]
   }
 ];
@@ -83,23 +85,33 @@ const papers = [
 const grid = document.getElementById('paper-grid');
 const countLabel = document.getElementById('paper-count-label');
 if (countLabel) countLabel.textContent = papers.length + ' paper' + (papers.length !== 1 ? 's' : '');
-if (grid) {
-  grid.innerHTML = papers.map(p => `
-    <div class="paper-card">
-      <div class="meta">
-        <span>${p.venue}</span>
-        <span class="tag">${p.license}</span>
-        ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+const lang = localStorage.getItem('dar-lang') === 'ar' ? 'ar' : 'en';
+
+function renderCards() {
+  const currentLang = localStorage.getItem('dar-lang') === 'ar' ? 'ar' : 'en';
+  if (grid) {
+    grid.innerHTML = papers.map(p => {
+      const title = currentLang === 'ar' && p.title_ar ? p.title_ar : p.title;
+      const abstract = currentLang === 'ar' && p.abstract_ar ? p.abstract_ar : p.abstract;
+      return `
+      <div class="paper-card">
+        <div class="meta">
+          <span>${p.venue}</span>
+          <span class="tag">${p.license}</span>
+          ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+        </div>
+        <a href="papers/${p.slug}/">
+          <h3>${title}</h3>
+        </a>
+        <p class="authors">${p.authors}</p>
+        <p class="abstract">${abstract.slice(0, 200)}${abstract.length > 200 ? '...' : ''}</p>
+        <a href="papers/${p.slug}/" class="read-more">${currentLang === 'ar' ? 'اقرأ ←' : 'Read →'}</a>
       </div>
-      <a href="papers/${p.slug}/">
-        <h3>${p.title}</h3>
-      </a>
-      <p class="authors">${p.authors}</p>
-      <p class="abstract">${p.abstract.slice(0, 200)}${p.abstract.length > 200 ? '...' : ''}</p>
-      <a href="papers/${p.slug}/" class="read-more">Read →</a>
-    </div>
-  `).join('');
+    `}).join('');
+  }
 }
+renderCards();
+document.addEventListener('langchange', renderCards);
 </script>
 </body>
 </html>

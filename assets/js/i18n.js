@@ -29,6 +29,8 @@
         el.placeholder = window.i18n[l][key];
       }
     });
+    // Dispatch event for dynamic content (paper cards, etc.)
+    document.dispatchEvent(new CustomEvent('langchange', { detail: { lang: l } }));
   }
 
   document.addEventListener('DOMContentLoaded', function() {

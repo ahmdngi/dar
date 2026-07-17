@@ -77,6 +77,7 @@ const papers = [
     doi: "10.12716/1001.19.04.11",
     license: "CC BY 4.0",
     abstract: "A systematic literature review of Maritime Security Operations Centers (M-SOC) using the SALSA framework. Identifies key trends, challenges, and opportunities in maritime cybersecurity operations.",
+    abstract_ar: "تشهد الصناعة البحرية تحولًا رقميًا سريعًا، حيث تدمج التقنيات المتقدمة لتعزيز الكفاءة التشغيلية والاتصال. ومع ذلك، يُحدث هذا التحول ثغرات أمنية سيبرانية كبيرة. يهدف إطار مراكز العمليات الأمنية البحرية (M-SOC) إلى توفير نهج موحد لمراقبة التهديدات واكتشافها والاستجابة لها. تعالج هذه الورقة هذه الفجوة من خلال إجراء مراجعة منهجية للأدبيات (SLR) باستخدام إطار SALSA.",
     tags: ["Maritime", "M-SOC", "Cybersecurity", "SLR"]
   },
   {
@@ -88,6 +89,7 @@ const papers = [
     doi: "10.1109/ACCESS.2026.3673557",
     license: "CC BY 4.0",
     abstract: "The accelerating digital transformation of the maritime industry has significantly expanded its cyber-attack surface. This paper presents a specialized maritime OSINT framework with a five-phase workflow, supported by a comprehensive taxonomy of maritime cyber threats and a curated toolkit of over 100 OSINT resources.",
+    abstract_ar: "أدى التحول الرقمي المتسارع في الصناعة البحرية إلى توسيع كبير في سطح الهجمات السيبرانية. تقدم هذه الورقة إطارًا متخصصًا للاستخبارات مفتوحة المصدر البحرية (OSINT) مع سير عمل من خمس مراحل، مدعومًا بتصنيف شامل للتهديدات السيبرانية البحرية ومجموعة أدوات منتقاة تضم أكثر من 100 مصدر استخباراتي مفتوح.",
     tags: ["Maritime", "OSINT", "Cybersecurity"]
   }
 ];
@@ -96,16 +98,23 @@ const searchInput = document.getElementById('search-input');
 const results = document.getElementById('search-results');
 const empty = document.getElementById('search-empty');
 
+const lang = localStorage.getItem('dar-lang') === 'ar' ? 'ar' : 'en';
+
 function renderResults(query) {
   const q = query.toLowerCase();
+  const currentLang = localStorage.getItem('dar-lang') === 'ar' ? 'ar' : 'en';
   const filtered = papers.filter(p =>
     p.title.toLowerCase().includes(q) ||
     p.title_ar.includes(q) ||
     p.abstract.toLowerCase().includes(q) ||
+    (p.abstract_ar && p.abstract_ar.includes(q)) ||
     p.authors.toLowerCase().includes(q)
   );
   empty.style.display = filtered.length === 0 ? 'block' : 'none';
-  results.innerHTML = filtered.map(p => `
+  results.innerHTML = filtered.map(p => {
+    const title = currentLang === 'ar' && p.title_ar ? p.title_ar : p.title;
+    const abstract = currentLang === 'ar' && p.abstract_ar ? p.abstract_ar : p.abstract;
+    return `
     <div class="paper-card">
       <div class="meta">
         <span>${p.venue}</span>
@@ -113,17 +122,21 @@ function renderResults(query) {
         ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
       </div>
       <a href="papers/${p.slug}/">
-        <h3>${p.title}</h3>
+        <h3>${title}</h3>
       </a>
       <p class="authors">${p.authors}</p>
-      <p class="abstract">${p.abstract.slice(0, 200)}${p.abstract.length > 200 ? '...' : ''}</p>
-      <a href="papers/${p.slug}/" class="read-more">Read →</a>
+      <p class="abstract">${abstract.slice(0, 200)}${abstract.length > 200 ? '...' : ''}</p>
+      <a href="papers/${p.slug}/" class="read-more">${currentLang === 'ar' ? 'اقرأ ←' : 'Read →'}</a>
     </div>
-  `).join('');
+  `}).join('');
 }
 
 searchInput.addEventListener('input', (e) => renderResults(e.target.value));
 if (!searchInput.value) renderResults('');
+document.addEventListener('langchange', function() {
+  if (searchInput.value) renderResults(searchInput.value);
+  else renderResults('');
+});
 </script>
 </body>
 </html>
