@@ -14,6 +14,7 @@
 - Custom DAR logo (designed by Ahmed)
 - Favicon across all pages
 - Automated paragraph parity verification (skill: `arabic-academic-translation`)
+- CI/CD: GitHub Actions workflow with paragraph parity check + Pages deploy
 
 ### Changed
 - Nav now uses logo image instead of text

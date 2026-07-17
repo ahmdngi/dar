@@ -6,6 +6,8 @@ Translate open-access research papers to Arabic while preserving references, cit
 
 **Website:** [dar.oversight.ee](https://dar.oversight.ee)
 
+![Deploy](https://github.com/ahmdngi/dar/actions/workflows/deploy.yml/badge.svg)
+
 ## Mission
 
 DAR bridges the language gap in academic research by translating open-access scientific papers into Modern Standard Arabic (MSA). Every paper maintains full section structure, bibliographic references, citation markers, equations, and figures — preserving academic integrity across both languages.
