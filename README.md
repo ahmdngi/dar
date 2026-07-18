@@ -6,7 +6,12 @@ Translate open-access research papers to Arabic while preserving references, cit
 
 **Website:** [dar.oversight.ee](https://dar.oversight.ee)
 
+![Release](https://img.shields.io/github/v/release/ahmdngi/dar?style=flat-square&label=release)
+![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
+![Language](https://img.shields.io/badge/language-HTML-orange?style=flat-square)
 ![Deploy](https://github.com/ahmdngi/dar/actions/workflows/deploy.yml/badge.svg)
+![Pages](https://img.shields.io/badge/hosted-GitHub%20Pages-222?style=flat-square&logo=github)
+![Stars](https://img.shields.io/github/stars/ahmdngi/dar?style=flat-square)
 
 ## Mission
 
