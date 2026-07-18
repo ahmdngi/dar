@@ -78,8 +78,8 @@ window.i18n = {
   <div class="lang-toggle" dir="ltr">
     <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
     <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
-    <button onclick="setLang('both')" id="toggle-both">⇄ Side by Side</button>
-    <button onclick="setLang('compare')" id="toggle-compare">⇌ Compare Sections</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
   </div>
 </div>
 
@@ -262,6 +262,12 @@ function setLang(lang) {
     document.documentElement.dir = 'ltr';
     document.documentElement.lang = 'en';
   }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
 }
 </script>
 <script src="../../assets/js/i18n.js"></script>
