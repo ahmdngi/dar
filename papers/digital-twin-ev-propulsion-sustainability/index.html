@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نظرة عامة على التوأم الرقمي لنظام الدفع للمركبات الكهربائية ذاتية القيادة — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Overview on Digital Twin for Autonomous Electrical Vehicles Propulsion Drive System</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نظرة عامة على التوأم الرقمي لنظام الدفع للمركبات الكهربائية ذاتية القيادة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Mahmoud Ibrahim, Anton Rassõlkin, Toomas Vaimann, Ants Kallaste</span>
+    <span>📄 Sustainability, 14(2), 601, 2022</span>
+    <span>🔗 <a href="https://doi.org/10.3390/su14020601">10.3390/su14020601</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">جنباً إلى جنب</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">مقارنة</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ARABIC -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يقدم هذه الورقة نظرة عامة على تقنية التوأم الرقمي (DT) وتطبيقها في أنظمة الدفع للمركبات الكهربائية (EV). يمثل التوأم الرقمي أحد أهم اتجاهات الثورة الصناعية الرابعة، حيث يتيح تمثيل الأصول المادية تحت ظروف تشغيل مختلفة في بيئة منخفضة التكلفة وخالية من المخاطر. يستخدم التوأم الرقمي في العديد من المجالات من الطيران إلى الرعاية الصحية. ومع ذلك، فإن أحد التطبيقات الواعدة لهذه التقنية هو صناعة السيارات. تستعرض هذه الورقة تنفيذ تقنية DT في أنظمة دفع المركبات الكهربائية، مع استعراض عام لتقنية DT وتحليل للتطبيقات الرئيسية ومقارنة بين تقنيات المحاكاة المختلفة. يتم إعطاء الاهتمام الأساسي لتكييف تقنية DT لأنظمة دفع المركبات الكهربائية.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>جلبت العقود الأخيرة قيماً كبيرة للصناعة بأكملها بفضل التصنيع الرقمي. من خلال المصانع والموارد والقوى العاملة والمهارات الممثلة افتراضياً، يبني التصنيع الرقمي نماذج ويحاكي تطوير المنتجات والعمليات. أدى التقدم الملحوظ في تقنيات الاتصالات والمعلومات إلى تطوير التصنيع على نطاق واسع [1]. تتطور التقنيات المدعومة بالحاسوب، بما في ذلك التصميم بمساعدة الحاسوب (CAD) والهندسة بمساعدة الحاسوب (CAE) والتصنيع بمساعدة الحاسوب (CAM) وتحليل العناصر المحدودة (FEA) وإدارة بيانات المنتج (PDM)، بسرعة وتلعب دوراً حيوياً في الصناعة الحديثة [2،3]. أدت تحليلات البيانات المتقدمة والاتصال بإنترنت الأشياء (IoT) إلى زيادة حجم البيانات القابلة للاستخدام من التصنيع والرعاية الصحية والمدن الذكية [4]. توفر بيئة إنترنت الأشياء، إلى جانب تحليلات البيانات، مورداً أساسياً للصيانة التنبؤية واكتشاف الأعطال [5]. يمكن للتوأم الرقمي تجاوز التكامل بين IoT وتحليلات البيانات من خلال قدرته على إنشاء نماذج مادية وافتراضية متصلة [6].</p>
+    <p>يسلط هذا الاستعراض الضوء على التقنيات الحديثة للمحاكاة بدءاً من المحاكاة الحاسوبية التقليدية وصولاً إلى التوأم الرقمي. يناقش القسم 1.1 الخلفية التاريخية للمحاكاة الحاسوبية والمحاكاة في الحلقة (HIL) والتوأم الرقمي. يعرض القسم 1.2 تطبيقات DT المختلفة. يناقش القسم 1.3 برامج ومنصات DT. يركز القسم 2 على DT لأنظمة دفع المركبات الكهربائية ذاتية القيادة (AEV). يقدم الشكل 1 مخططاً توضيحياً لمحتوى قسم المقدمة.</p>
+  </section>
+
+  <section>
+    <h2>1.1. الخلفية</h2>
+    <p>يعود تاريخ المحاكاة إلى الحرب العالمية الثانية عندما تساءل عالما الرياضيات جون فون نيومان وستانيسلاف أولام عن سلوك النيوترونات. اقترحا طريقة عجلة الروليت في ذلك الوقت. حققت تقنيتهم نجاحاً ملحوظاً في مشكلة النيوترونات، وسرعان ما أصبحت أكثر شعبية [7]. وصف شانون المحاكاة بأنها "عملية تصميم نموذج لنظام حقيقي وإجراء تجارب مع هذا النموذج بهدف فهم سلوك النظام أو تقييم الاستراتيجيات المختلفة لتشغيل النظام" [8].</p>
+  </section>
+
+  <section>
+    <h2>1.1.1. المحاكاة الحاسوبية</h2>
+    <p>يستخدم الحاسوب لتمثيل الاستجابات الديناميكية للنظام من خلال سلوك نظام آخر تمت نمذجته على شاكلته. تستخدم المحاكاة وصفاً رياضياً أو نموذجاً لنظام حقيقي في شكل برنامج حاسوبي. يتكون هذا النموذج من معادلات تكرر العلاقات الوظيفية داخل النظام الحقيقي. على سبيل المثال، يمكن وصف الآلة الكهربائية بنموذج رياضي يدمج متغيرات مثل التيار والجهد والتدفق المغناطيسي. يمكن استخدام معادلات إضافية لضبط النموذج للتغيرات في متغيرات معينة. ومع ذلك، تعاني هذه التقنية من بعض العيوب [9]: أخطاء في البرمجة، الحاجة للوقت لفهم النتائج، عدم تبادل البيانات بين النماذج الحقيقية والمحاكاة، وردود فعل الناس غير الواقعية أو الموثوقة للنموذج.</p>
+  </section>
+
+  <section>
+    <h2>1.1.2. المحاكاة في الحلقة (HIL)</h2>
+    <p>في مرحلة ما، تكون الاختبارات الشاملة والموثوقة ضرورية للتحقق من التصميم والتحقق من صحته. ومع ذلك، مع زيادة تعقيد الأنظمة الحديثة، أصبحت هذه الخطوة أكثر صعوبة [10]. أصبحت أدوات المحاكاة في الوقت الحقيقي ضرورية للتغلب على مشاكل المحاكاة الحاسوبية التقليدية. المحاكاة في الحلقة (HIL) هي تقنية حيث يتم توصيل الإشارات المادية من وحدة التحكم بنظام اختبار يحاكي الموقف فعلياً. يساعد HIL في اختبار سلوك خوارزميات التحكم دون نماذج أولية مادية. يستخدم HIL على نطاق واسع في صناعات السيارات والفضاء والدفاع والأتمتة الصناعية. مثال بسيط على HIL هو وحدة التحكم في محرك EV (MCU). يستبدل اختبار HIL المحرك بمحاكاة تشمل أجهزة وبرامج تتفاعل مع I/O الحقيقي كما لو كان المحرك الفعلي موجوداً. من العيوب الرئيسية لأنظمة HIL التكلفة العالية نسبياً للمحاكيات في الوقت الحقيقي وتعقيد التطوير والتحقق. يوضح الشكل 2 المكونات الأساسية لنظام HIL.</p>
+  </section>
+
+  <section>
+    <h2>1.1.3. التوأم الرقمي</h2>
+    <p>ظهرت الأفكار الرسمية حول التوأم الرقمي منذ أوائل العقد الأول من القرن الحادي والعشرين [2]. تم تقديم مفهوم أول نموذج DT علناً في عام 2002 بواسطة Grieves [12]. في أوائل عام 2012، تم إصدار أول ورقة تحدد تعريفاً رئيسياً لـ DT من قبل ناسا [13]. عرّفته ناسا على أنه محاكاة متكاملة متعددة الفيزياء ومتعددة المقاييس واحتمالية للنظام تستخدم أفضل النماذج المادية وأجهزة الاستشعار وتاريخ الأسطول لمحاكاة عمر نظيره المادي.</p>
+    <p>عرّف Chen [14] DT على أنه نموذج حاسوبي لنظام مادي يعكس خصائصه الوظيفية. قال Zheng et al. [15] أن DT هو مجموعة معلومات افتراضية تصف الأصول المادية الفعلية. عرّف Mandi [16] DT على أنه مثيل افتراضي لنظام مادي يتم تحديثه باستمرار ببيانات الأداء والصيانة والحالة الصحية طوال دورة حياة النظام المادي. يُعرف DT أيضاً باسم النماذج الكلية الحاسوبية التي تعكس الأنظمة أو الصور الرمزية، ويمكن تعريفه كتمثيل رقمي لجسم مادي أو عملية أو خدمة.</p>
+    <p>التوأم الرقمي هو في الأساس برنامج حاسوبي يستخدم بيانات العالم الحقيقي لإنشاء محاكاة يمكنها التنبؤ بأداء المنتج أو العملية. يمكن لهذه البرامج دمج IoT والذكاء الاصطناعي وتحليلات البرامج لتعزيز المخرجات. مع التقدم في التعلم الآلي والبيانات الضخمة، أصبحت هذه النماذج الافتراضية عنصراً أساسياً في الهندسة الحديثة لدفع الابتكار وتحسين الأداء [17].</p>
+    <p>مثال بسيط يشرح DT هو توربينة رياح مزودة بأجهزة استشعار. تنتج هذه المستشعرات بيانات حول جوانب مختلفة من أداء التوربينة. يتم نقل هذه البيانات إلى نظام معالجة وتطبيقها على النسخة الرقمية. يمكن بعد ذلك استخدام النموذج الافتراضي لإجراء محاكاة ودراسة مشكلات الأداء وتوليد تحسينات محتملة. يوضح الشكل 3 المفهوم الرئيسي لنظام DT.</p>
+    <p>للوهلة الأولى، نجد أرضية مشتركة بين DT و HIL حيث يقع كلاهما تحت المحاكاة في الوقت الحقيقي، لكن الفرق الأساسي هو أن HIL يبني نموذجاً برمجياً للنواة ويتصل بأجهزة حقيقية، بينما ينشئ DT بيئة افتراضية فقط. على الرغم من أن المحاكاة و DT يستخدمان كليهما نماذج رقمية لتكرار عمليات النظام، فإن DT هو في الواقع بيئة افتراضية، مما يجعله أكثر ثراءً للدراسة. الفرق بين المحاكاة و DT هو مسألة نطاق: بينما تدرس المحاكاة عادة عملية واحدة، يمكن لـ DT تشغيل أي عدد من المحاكاة المفيدة لدراسة عمليات متعددة. يصمم DT حول تدفق معلومات ثنائي الاتجاه [22]. يوضح الجدول 1 مقارنة موجزة بين تقنيات المحاكاة التي تمت مناقشتها.</p>
+  </section>
+
+  <section>
+    <h2>1.1.4. أنواع التوأم الرقمي</h2>
+    <p>هناك أنواع مختلفة من التوأم الرقمي اعتماداً على مستوى تكبير المنتج. الفرق الأكبر بين هذه الأنواع هو مجال التطبيق [18].</p>
+    <p>توائم المكونات/الأجزاء: الوحدة الأساسية لـ DT وأصغر مثال لمكون يعمل.</p>
+    <p>توائم الأصول: عندما يعمل مكونان أو أكثر معاً، يشكلان ما يُعرف بالأصل. تتيح توائم الأصول دراسة تفاعل تلك المكونات.</p>
+    <p>توائم النظام أو الوحدة: المستوى التالي من التكبير يشمل توائم النظام أو الوحدة، والتي تمكن من مراقبة كيفية تجميع الأصول المختلفة لتشكيل نظام كامل.</p>
+    <p>توائم العملية: المستوى الكلي للتكبير يكشف كيف تعمل الأنظمة معاً لإنشاء منشأة إنتاج كاملة.</p>
+  </section>
+
+  <section>
+    <h2>1.1.5. اتجاهات التطوير في المحاكاة</h2>
+    <p>لعقود، كانت أدوات المحاكاة الحاسوبية فعالة بما يكفي للإجابة على معادلات التصميم والنمذجة المحددة، لكنها أصبحت محدودة بسبب تعقيد الأنظمة وكمية البيانات الكبيرة [19]. يمكن للمحاكاة في الحلقة توفير الوقت والمال والجهد من خلال المساعدة في تحديد الأخطاء قبل حدوثها. هناك أشكال مختلفة: محاكاة النموذج في الحلقة (MIL)، والبرنامج في الحلقة (SIL)، والمعالج في الحلقة (PIL)، والأجهزة في الحلقة (HIL). هناك مؤيدون لـ DT يقولون إن محاكاة HIL "قد عفا عليها الزمن" ومؤيدون لـ HIL يدّعون أن DT مبالغ في تقديره [18]. يرى آخرون أن الحل الأفضل قد يكون مزيجاً من DT و HIL. يوضح الشكل 4 الجدول الزمني لتطور تقنيات المحاكاة.</p>
+  </section>
+
+  <section>
+    <h2>1.2. تطبيقات التوأم الرقمي</h2>
+    <p>ظهر DT لأول مرة في صناعات التصميم والتصنيع، ثم ظهر في صناعات مثل الطيران والأتمتة وبناء السفن والرعاية الصحية والمدن الذكية [20].</p>
+    <p>التصنيع: يعتمد على معدات عالية التكلفة تولد كمية كبيرة من البيانات، مما يسهل إنشاء DTs. يتماشى النمو الحالي مع مفهوم الصناعة 4.0 [21-23].</p>
+    <p>تطوير المنتجات: عملية طويلة ومعقدة. على سبيل المثال، يستغرق تصميم وإطلاق نموذج سيارة جديد ما يصل إلى 6 سنوات [24]. يساعد DT في دمج البيانات بين الأجيال السابقة والمفاهيم الجديدة [25].</p>
+    <p>الصيانة التنبؤية: يوفر DT للشركة المصنعة القدرة على التنبؤ بالمشكلات مبكراً. يمكن لخوارزميات AI المقترنة بـ DT تحقيق دقة أكبر [26،27].</p>
+    <p>الفضاء: قبل DTs، كانت التوائم المادية تستخدم في هندسة الفضاء. مثال على ذلك برنامج أبولو 13. في عام 2002، قدم John Vickers من ناسا مفهوم DT [28]. يستخدم DT التحليلات التنبؤية للتنبؤ بأي مشكلة مستقبلية [29].</p>
+    <p>صناعة السيارات: تطوير السيارة هو عملية طويلة ومعقدة قد تستغرق 5-6 سنوات [22]. مع تقنية DT، أصبح من الأسهل تغطية جميع مراحل صناعة السيارات بدءاً من التصميم إلى الصيانة [30،31].</p>
+    <p>المدن الذكية: مع زيادة عدد المدن الذكية، زادت الحاجة إلى DTs. يمكن استخدامها في تخطيط المدن الذكية الجديدة [32]. تجمع تقنيات مثل 5G البيانات لتوصيلها إلى السحابة لمراقبتها ومعالجتها [33].</p>
+    <p>الرعاية الصحية: يوفر DT للباحثين والأطباء القدرة على محاكاة بيئات محددة [34]. يمكن استخدام DT مع AI لاتخاذ قرارات أكثر ذكاءً. يمكن لـ DT في البيئة الطبية أن يساعد في اتخاذ قرارات منقذة للحياة [35].</p>
+    <p>المحيطات: تمثل ملاحظات المحيطات المستدامة جزءاً أساسياً من الجهود العالمية لفهم وحماية النظم البيئية البحرية. كان DT للمحيطات نقطة تحول [36]. كان الاتحاد الأوروبي أول من أخذ زمام المبادرة في الاستثمار في تقنية DT للمحيط من خلال إطلاق مشاريع مثل Blue-Cloud.</p>
+    <p>البناء: مع تزايد انتشار التكنولوجيا، استخدمت شركات العقارات الرقمنة. يمكن لـ DTs تحسين العمليات وتحسين تجربة العملاء. يمكن تخطيط عملية البناء الكاملة قبل البدء فيها [37،38].</p>
+    <p>يلخص الشكل 5 التطبيقات التي تمت مناقشتها. باختصار، على الرغم من أن DTs غزت العديد من القطاعات، إلا أنها لا تزال جديدة وغير مغطاة بشكل كافٍ لتطبيقات أخرى، كما هو الحال في أنظمة دفع المركبات الكهربائية.</p>
+  </section>
+
+  <section>
+    <h2>1.3. برامج ومنصات التوأم الرقمي</h2>
+    <p>يتطلب DT برامج متقدمة قادرة على توليد محاكاة رقمية لكيان مادي. هناك العديد من البرامج والمنصات من شركات مختلفة تدعم محاكاة DT:</p>
+    <p>Azure Digital Twin: منصة Microsoft تتيح إنشاء رسوم بيانية توأمية استناداً إلى نماذج رقمية لبيئات كاملة. AWS IoT: منصة Amazon تستخدم بشكل رئيسي للمراقبة عن بُعد. Giraffe: أداة DT تُستخدم لتطبيقات البناء. Perdix Platform: منصة GE لحلول المراقبة الصناعية وإدارة الأحداث. ETAP ADMS: نظام إدارة توزيع متقدم للشبكات الكهربائية. Ansys Twin Builder: منصة لإنشاء توائم رقمية قائمة على المحاكاة. Digital-Twin-Distiller: منصة قائمة على Python لمحاكاة DT مناسبة لتطبيقات التصنيع [39].</p>
+  </section>
+
+  <section>
+    <h2>1.4. نتائج الاستعراض</h2>
+    <p>من السياق السابق، تم تناول تقنية DT من جوانب مختلفة. أبرزت المقارنة بين المحاكاة الحاسوبية و HIL و DT مزايا التقنية الأخيرة. تتلقى DTs تحديثات في الوقت الحقيقي من الأصل المادي، وبالتالي فإن أعمال التحليل التي يجريها المهندسون تستند إلى ظروف العالم الحقيقي. يمكن لـ DTs تزويد المهندسين بأدوات افتراضية لتقييم الأصول المادية والعمليات والأنظمة، مما يتيح رؤية دقيقة لما يحدث الآن وفي المستقبل. العديد من التطبيقات تمت تغطيتها جيداً بواسطة DT، لكن بعضها لا يزال في مراحله المبكرة. طورت العديد من الشركات برامج ومنصات لمواكبة تقنية DT بما يتماشى مع منتجاتها.</p>
+  </section>
+
+  <section>
+    <h2>2. نظرة عامة على الاتجاهات الحديثة في أنظمة دفع المركبات الكهربائية</h2>
+    <p>كما يمكن ملاحظته من استعراض الأدبيات في القسم السابق، صناعة السيارات هي واحدة من أفضل التطبيقات الحالية لـ DT، لكن الدراسات البحثية المتعلقة بأنظمة دفع المركبات الكهربائية لا تزال محدودة وتحتاج إلى دراسة متعمقة. تشهد المركبات الكهربائية نمواً مستمراً، وفي عام 2020 زادت بنسبة 43٪ عن عام 2019 [40]. تتوقع IHS Markit أن تستحوذ EVs على 45٪ من سوق السيارات الجديدة بحلول عام 2040 وحوالي 80٪ بحلول عام 2050. يوضح الشكل 6 مقارنة بين EVs و ICE و FCV [41].</p>
+    <p>يعتبر نظام دفع EV العنصر الأساسي للمركبة. يحتاج إلى أن يكون فعالاً وموثوقاً واقتصادياً [42]. يتكون نظام دفع EV من أجزاء ميكانيكية وكهربائية، كما هو موضح في الشكل 7.</p>
+    <p>البطارية: تعتبر العديد من الدراسات البطارية كمكون من نظام دفع EV [43]. غالباً ما يتم تحديد أقصى مسافة قيادة من خلال سعة البطارية. تهيمن بطاريات الليثيوم أيون على صناعة بطاريات EV بحصة سوقية تقارب 96٪ في عام 2019 [44،45].</p>
+    <p>العاكس/المحول: المكون الإلكتروني للطاقة في نظام الدفع. يشمل ثلاثة مكونات فرعية: محول DC-DC وعاكس ووحدة التحكم في المحرك MCU. العاكس مسؤول عن تنفيذ التسارع والتباطؤ [46،47]. يستخدم IGBT على نطاق واسع منذ 1980، لكن SiC و GaN يوفران بدائل أفضل [48].</p>
+    <p>المحرك الكهربائي: هو حجر الأساس لـ EV. يحول الطاقة الكهربائية من البطارية إلى طاقة حركية. هناك خمسة أنواع من المحركات الأكثر استخداماً: PMSM و BLDC و IM و PMSynRM و SRM [49-52].</p>
+  </section>
+
+  <section>
+    <h2>2.1. تعريف المشكلة</h2>
+    <p>تطوير تصاميم مثلى لأنظمة دفع EV يمثل تحدياً كبيراً للباحثين والمصنعين على حد سواء. تبدأ معظم الدراسات من المحاكاة الحاسوبية، ثم الانتقال إلى بناء واختبار الأجهزة الحقيقية. بعد بناء واختبار منصة الاختبار، يتم اختبار تحسين مكونات نظام الدفع والأعطال المختلفة. عند القيام بذلك، يتم استهلاك الكثير من الطاقة الكهربائية بتأثير مباشر على سعر تطوير النظام. بالإضافة إلى ذلك، يمكن أن يؤدي اختبار مكون واحد إلى تعطل مكون آخر. ستناقش الأقسام الفرعية التالية حلولاً للتغلب على هذه المشكلات.</p>
+  </section>
+
+  <section>
+    <h2>2.2. محاكاة HIL لأنظمة دفع EV</h2>
+    <p>تصميم وتثبيت نظام دفع EV مكلف ويستغرق وقتاً طويلاً. توفر المحاكيات في الوقت الحقيقي حلاً فعالاً لهذه المشكلات. قدم Mudrov et al. [54] دراسة استنتاجية حول استخدام أنظمة Power HIL لأنظمة دفع EV. Poon et al. [55] اقترحوا منصة HIL لتطبيقات دفع EV. Berry و Gu [56] قدما نموذج HIL في الوقت الحقيقي لنظام عاكس ثلاثي الطور. Collin et al. [57] قدما نموذجاً أولياً لـ HIL لنظام دفع SiC من PMSM. Mishra et al. [58] اقترحوا نموذج محاكاة HIL لنظام دفع PMSM. Amitkumar et al. [59] اقترحوا نظام محاكاة HIL لدراسة تأثير أعطال عاكس PMSM. من الواضح أن محاكاة HIL حل مثالي لاختبار مكونات نظام الدفع الكهربائي، لكن هناك جوانب قصور تتمثل في عدم القدرة على محاكاة نظام دفع EV بأكمله كنظام واحد، فضلاً عن محدودية التعامل مع أدوات الذكاء الاصطناعي.</p>
+  </section>
+
+  <section>
+    <h2>2.3. التوأم الرقمي لنظام دفع EV</h2>
+    <p>تُستخدم DTs لأنظمة دفع EV بشكل متكرر لمراقبة صحة النظام والتشخيص والتنبؤ والتحسين وتقييم المخاطر [2]. Wunderlich و Santi [60] اقترحا نهجاً لنموذج DT في الوقت الحقيقي لمحول إلكترونيات الطاقة. Rjabtšikov et al. [61] اقترحوا نموذج DT للكشف عن الأعطال لمحرك تحريضي ثلاثي الطور. Toso et al. [62] طبقوا DT على محرك EV بهدف تحسين أداء المحرك. Katukula et al. [63] قدموا نظام DT لمراقبة وتحليل ظروف المحرك التحريضي. Rassõlkin et al. [64] قدموا منهجية لجمع البيانات من نظام دفع محرك AEV. Brandtstaedter et al. [65] قدموا نموذج DT للكشف عن الأعطال. Jitong et al. [66] قدموا نموذج DT لمحرك تحريضي ثلاثي الطور. Venkatesan et al. [67] قدموا نظام DT لنظام دفع PMSM للمراقبة الصحية والتنبؤ. من التحليل أعلاه، يمكن ملاحظة أن DTs تقدم حلولاً متقدمة في تطوير أنظمة دفع EV بسبب قدرتها على تبادل كميات هائلة من البيانات مع النموذج الحقيقي. يقدم الجدول 2 مقارنة بين HIL و DT لأنظمة دفع AEV.</p>
+  </section>
+
+  <section>
+    <h2>3. الاستنتاجات والعمل المستقبلي</h2>
+    <p>تم تقديم نظرة عامة واسعة النطاق على تقنية DT. مقارنة بتقنيات المحاكاة السابقة، فهي بديل قوي وتطور رئيسي في موضوع المحاكاة الرقمية والاتصال بين العالمين الافتراضي والمادي. يتم تطبيق DT بالفعل في العديد من التطبيقات المختلفة مثل الصناعة والفضاء والسيارات والرعاية الصحية والمحيطات. تقدم العديد من الوظائف مثل مراقبة الصحة واكتشاف الأعطال والتحسين والتنبؤ. على الرغم من أن السيارات هي أحد تطبيقات DT الحالية، فإن معظم الباحثين يهتمون بتصميم المركبات وحركتها وتصورها. بالنسبة لنظام دفع EV، لا يزال الموضوع جديداً جداً. أسفرت المقارنة التحليلية بين استخدام HIL و DT لأنظمة دفع EV عن الآتي: HIL مناسب لاختبار مكون نظام الدفع، بينما DT أكثر فعالية بعد الحصول على نموذج نظام الدفع المادي.</p>
+    <p>مزيج من HIL و DT هو الحل الأفضل اعتماداً على مرحلة العمل: أولاً بناء نماذج محاكاة لمكونات النظام المختلفة، ثم التحقق من النماذج باستخدام اختبارات HIL، ثم بناء نماذج مادية لنظام دفع EV، وأخيراً بناء نماذج DT بدءاً بالمكونات ثم الأصول وأخيراً نموذج النظام بالكامل. يمكن الحصول على مجموعات بيانات مختلفة من نظام دفع EV المادي من خلال تنفيذ أجهزة استشعار مختلفة.</p>
+  </section>
+</div>
+
+<!-- ENGLISH -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>This paper presents an overview of Digital Twin (DT) technology and its application in electric vehicle (EV) propulsion drive systems. DT is one of the hottest trends of the fourth industrial revolution, allowing the representation of physical assets under various operating conditions in a low-cost and zero-risk environment. DTs are used in many different fields from aerospace to healthcare. However, one of the most promising applications of such technology is the automotive industry. This paper reviews the implementation of DT technology in EV propulsion drive systems, supplemented with a general review of DT technology, main applications analysis, and comparison between different simulation technologies. Primary attention is given to the adaptation of DT technology for EV propulsion drive systems.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Considerable values have been brought to the entire industry over the last decades due to digital manufacturing. Through virtually represented factories, resources, workforces, and skills, digital manufacturing builds models and simulates product and process development. The remarkable progress in communication and information technologies has advanced the development of manufacturing widely [1]. Computer-aided technologies, including CAD, CAE, CAM, FEA, PDM, etc., are quickly developing and playing a vitally critical role in modern industry [2,3]. Advanced data analytics and IoT connectivity have increased the volume of usable data from manufacturing, healthcare, and smart city environments [4]. IoT environment, coupled with data analytics, provides an essential resource for predictive maintenance and fault detection [5]. DT can overcome integration between IoT and data analytics through its ability to create connected physical and virtual models [6].</p>
+    <p>This review highlights modern simulation technologies from conventional computer simulation to DT. Section 1.1 discusses the historical background of computer simulation, HIL, and DT. Section 1.2 presents different DT applications. Section 1.3 discusses DT software and platforms. Section 2 focuses on DT for AEV propulsion drive systems. Figure 1 provides an illustrative diagram of the Introduction section's content.</p>
+  </section>
+
+  <section>
+    <h2>1.1. Background</h2>
+    <p>Simulation history dates back to World War II when two mathematicians Jon Von Neumann and Stanislaw Ulam were puzzled by the behavior of neutrons. They suggested the roulette wheel method. Their technique had remarkable success on the neutron problem, and soon it became more popular and applicable in many business and industry applications [7]. Shannon described simulation as "the process of designing a model of a real system and conducting experiments with this model for the purpose either of understanding the behavior of the system or of evaluating various strategies for the operation of the system" [8].</p>
+  </section>
+
+  <section>
+    <h2>1.1.1. Computer Simulation</h2>
+    <p>The use of a computer is to represent the dynamic responses of a system by the behavior of another system modeled after it. A simulation uses a mathematical description, or model, of a real system in the form of a computer program. This model is composed of equations that duplicate the functional relationships within the real system. For example, an electric machine can be described by a mathematical model that incorporates variables such as current, voltage, and magnetic flux. However, some drawbacks pervade this technology [9]: mistakes may be made in programming, time may be needed to make sense of results, no data exchange occurs between real and simulation models, and people's reactions might not be realistic or reliable.</p>
+  </section>
+
+  <section>
+    <h2>1.1.2. Hardware-in-the-Loop (HIL)</h2>
+    <p>At some point, thorough and reliable tests are necessary to verify and validate the design. However, as modern systems grow in complexity, this critical step is more easily said than performed [10]. Real-time simulation tools were necessary to overcome problems concerning conventional computer simulations. HIL simulation is a technique where physical signals from a controller are connected to a test system that physically simulates the situation. HIL helps to test the behavior of control algorithms without physical prototypes. HIL is widely used in the automotive, aerospace and defense, and industrial automation industries. A simple example of a HIL simulation system is an EV motor control unit MCU. A HIL test replaces the motor with a simulation comprising hardware and software that interacts with real I/O as though the physical motor was present. The main drawbacks of HIL systems are the high cost of real-time simulators and the complexity of development and verification. Figure 2 shows the basic components of a HIL system.</p>
+  </section>
+
+  <section>
+    <h2>1.1.3. Digital Twins</h2>
+    <p>Formal ideas around DT have been around since the early 2000s [2]. The concept of the first DT model was publicly introduced in 2002 by Grieves [12]. In early 2012, the first paper setting a key definition for DT was released by NASA [13]. They defined it as an integrated multiphysics, multiscale, and probabilistic simulation of a system that uses the best physical models, sensors, fleet history, etc., to simulate the life of its corresponding physical twin.</p>
+    <p>Chen [14] defined DT as a computerized model of a physical system that mirrors its functional features. Zheng et al. [15] said that DT is a virtual information set that describes actual physical assets. Mandi [16] defined DT as a virtual instance of a physical system continually updated with performance, maintenance, and health status data throughout the system's life cycle. DTs, also known as computational mega models, mirror systems or avatars and can be defined as a digital representation of a physical object, process, or service.</p>
+    <p>A digital twin is, in essence, a computer program that uses real-world data to create simulations that can predict how a product or process will perform. These programs can integrate IoT, artificial intelligence, and software analytics to enhance output. With the advancement of machine learning and Big Data, these virtual models have become a staple in modern engineering to drive innovation and improve performance [17].</p>
+    <p>A simple example explaining the DT of an object is a wind turbine outfitted with various sensors. These sensors produce data about different aspects of wind turbine performance. These data are then relayed to a processing system and applied to the digital copy. Once informed with such data, the virtual model can be used to run simulations, study performance issues, and generate possible improvements. Figure 3 shows the main concept of the DT system.</p>
+    <p>At first glance, we can find common ground between DT and HIL simulations as they both fall under real-time simulations, but the essential difference is that HIL builds a software model of the core but interfaces with real hardware, whereas DT creates a software-only virtual environment. Although simulations and DTs both utilize digital models to replicate a system's processes, a digital twin is actually a virtual environment, which makes it considerably richer for study. The difference between digital twin and simulation is largely a matter of scale: while a simulation typically studies one particular process, a digital twin can run any number of useful simulations to study multiple processes. DTs are designed around a two-way flow of information [22]. Table 1 shows a brief comparison between discussed simulation technologies.</p>
+  </section>
+
+  <section>
+    <h2>1.1.4. Types of Digital Twins</h2>
+    <p>There are various types of digital twins depending on the level of product magnification. The biggest difference between these twins is the area of application [18].</p>
+    <p>Component twins/Parts twins: The basic unit of the DT and the smallest example of a functioning component.</p>
+    <p>Asset twins: When two or more components work together, they form what is known as an asset. Asset twins allow you to study the interaction of those components.</p>
+    <p>System or Unit twins: The next level of magnification involves system or unit twins, which enable you to observe how different assets come together to form an entire functioning system.</p>
+    <p>Process twins: The macro-level of magnification reveals how systems work together to create an entire production facility.</p>
+  </section>
+
+  <section>
+    <h2>1.1.5. Development Trends in Simulations</h2>
+    <p>For decades, computer simulation tools were effective enough to answer specific design and modeling equations; however, they became limited due to system complexity and high data volumes [19]. In-the-loop simulations can save time, money, and effort by helping to identify errors before they occur. Various forms exist: Model-in-the-Loop (MIL), Software-in-the-Loop (SIL), Processor-in-the-Loop (PIL), and HIL simulations. There are proponents of DT who say HIL simulation is "so yesterday" and proponents of HIL who claim DTs are overhyped [18]. Others believe the best solution might be a hybrid of both DT and HIL. Figure 4 shows the timeline of the evolution of simulation technologies.</p>
+  </section>
+
+  <section>
+    <h2>1.2. Applications of Digital Twins</h2>
+    <p>DTs' first appearance was in industries of product and manufacturing design, then emerged in industries such as aerospace, automation, shipbuilding, healthcare, and smart cities [20].</p>
+    <p>Manufacturing: relies on high-cost equipment that generates a high volume of data, which facilitates creating DTs. The current growth aligns with Industry 4.0 [21-23].</p>
+    <p>Product development: a long and intricate process. For instance, it takes up to 6 years to design and launch a new car model [24]. DT helps integrate data between previous and new models [25].</p>
+    <p>Predictive maintenance: DT provides the manufacturer the ability to predict issues sooner. AI algorithms coupled with DTs have potential for greater accuracy [26,27].</p>
+    <p>Aerospace: Before DTs, physical twins were used. An example is the Apollo 13 program. In 2002, John Vickers from NASA introduced the DT concept [28]. DTs enable predictive analytics for future problems [29].</p>
+    <p>Automotive: Car development is a long and complex process taking 5-6 years [22]. With DT technology, it became easier to cover all phases from design to maintenance [30,31].</p>
+    <p>Smart cities: With the increased number of smart cities, the need for DTs has grown. They can be used in planning new smart cities [32]. Technologies like 5G deliver data to the cloud for monitoring and processing [33].</p>
+    <p>Healthcare: DT provides researchers and doctors the ability to simulate specific environments [34]. DT can be used with AI to make smarter decisions. DT in medical environments can make life-saving decisions [35].</p>
+    <p>Ocean: Sustained ocean observations are essential for understanding marine ecosystems. DT for oceans was a turning point [36]. The EU was first to invest in DT technology for the ocean, launching projects such as Blue-Cloud.</p>
+    <p>Construction: As technology becomes more pervasive, real estate companies have turned to digitalization. DTs can optimize operations and improve customer experience. The full construction process can be planned before breaking ground [37,38].</p>
+    <p>Figure 5 summarizes the applications discussed. In short, although DTs have invaded many sectors, they are still new and not sufficiently covered for other applications, as is the case for EV propulsion drive systems.</p>
+  </section>
+
+  <section>
+    <h2>1.3. Digital Twins Software and Platforms</h2>
+    <p>DT requires advanced software able to generate a digital simulation of a physical entity. There are many software and platforms from different companies that support DT simulation:</p>
+    <p>Azure Digital Twin: Microsoft's platform enables creating twin graphs based on digital models of entire environments. AWS IoT: Amazon's platform mainly used for remote monitoring. Giraffe: A DT tool used for construction applications. Perdix Platform: GE's platform for industrial monitoring solutions. ETAP ADMS: Advanced Distribution Management System for electrical networks. Ansys Twin Builder: Platform for creating simulation-based digital twins. Digital-Twin-Distiller: A Python-based platform for DT simulation suitable for manufacturing applications [39].</p>
+  </section>
+
+  <section>
+    <h2>1.4. Review Outcomes</h2>
+    <p>From the previous context, DT technology was addressed from different sides. The comparison between computer simulations, HIL, and DT highlighted the advantages of DT. DTs receive real-time updates from the physical asset, therefore the analysis work conducted by engineers is based on real-world conditions. DTs can provide engineers with virtual tools to assess physical assets, processes, and systems, enabling an accurate view of what is happening now and what will happen in the future. Many applications have been well covered by DT technology but some still in early stages. Many companies have developed software and platforms to keep pace with DT technology in line with their products.</p>
+  </section>
+
+  <section>
+    <h2>2. Overview of Recent Trends in EV Drive Systems</h2>
+    <p>As observed from the literature review in the previous section, the automotive industry is one of the top existing applications of DT; however, research studies concerning EV propulsion drive systems are limited and need to be studied deeply. EVs are in continuous growth, and in 2020 they increased by 43% more than in 2019 [40]. IHS Markit predicts EVs could capture 45% of the new car market by 2040 and nearly 80% by 2050. Figure 6 shows a comparison between EVs, ICE, and FCV [41].</p>
+    <p>EV propulsion drive system is considered the core element of the vehicle. It needs to be efficient, reliable, and economically sufficient [42]. EV propulsion drive system comprises both mechanical and electrical parts, as shown in Figure 7.</p>
+    <p>Battery: Many studies consider the battery as a component of the EV drive system [43]. The maximum driving distance is often determined by the battery's capacity. Lithium-ion batteries dominate the EV battery industry with nearly 96% market share in 2019 [44,45].</p>
+    <p>Inverter/Converter: The power electronics component of the drive system. It comprises three sub-components: DC-DC converter, inverter, and MCU. The inverter is responsible for executing acceleration and deceleration [46,47]. IGBT has been widely used since 1980, but SiC and GaN provide better alternatives [48].</p>
+    <p>Electric motor: The base stone of the EV. It converts electric energy into kinetic energy. There are five types of motors most often used: PMSM, BLDC, IM, PMSynRM, and SRM [49-52].</p>
+  </section>
+
+  <section>
+    <h2>2.1. Problem Definition</h2>
+    <p>Developing optimal designs for EV drive systems is very challenging for researchers and manufacturers. Most studies start from computer simulation, then transition to building and testing real hardware. After building the test bench, optimization and faulty operations are tested. In doing so, a lot of electrical energy is consumed with a direct impact on development cost. Moreover, testing one component can sometimes result in faulting another. The following subsections will discuss solutions to overcome these issues.</p>
+  </section>
+
+  <section>
+    <h2>2.2. Hardware in the Loop Simulation for EV Drive Systems</h2>
+    <p>EV drive system design and installation are expensive and time-consuming. Real-time simulators provide an efficient solution. Mudrov et al. [54] presented a deductive study on using Power HIL systems for EV drive systems. Poon et al. [55] proposed a HIL platform for EV drive applications. Berry and Gu [56] proposed a real-time HIL model of a three-phase power inverter. Collin et al. [57] provided a HIL prototype model of SiC-based PMSM drive. Mishra et al. [58] proposed a HIL simulation model of a PMSM drive system. Amitkumar et al. [59] proposed a HIL simulation system to study PMSM inverter faults. From the above, HIL simulation is an ideal solution to test electric propulsion system components, but shortcomings include the inability to simulate the entire EV drive as one system and limited handling of AI tools.</p>
+  </section>
+
+  <section>
+    <h2>2.3. Digital Twin (DT) for EV Drive System</h2>
+    <p>DTs for EV drive systems are frequently used for health monitoring, diagnostics, prognostics, optimization, and risk assessment [2]. Wunderlich and Santi [60] proposed a real-time DT model of a power electronic converter. Rjabtšikov et al. [61] proposed a fault detection DT model for a 3-phase IM. Toso et al. [62] applied DT to EV motor for performance optimization. Katukula et al. [63] provided a DT system to monitor and analyze IM conditions. Rassõlkin et al. [64] provided a methodology for collecting data from an AEV loading motor drive system. Brandtstaedter et al. [65] presented a DT model for fault detection. Jitong et al. [66] presented a DT model of a three-phase IM. Venkatesan et al. [67] provided a DT system of an EV-PMSM drive system for health monitoring and prognosis. From the above analysis, DTs offer advanced solutions in developing EV drive systems due to their ability to exchange huge data with the real model. Table 2 provides a comparison between HIL and DT for AEV drive systems.</p>
+  </section>
+
+  <section>
+    <h2>3. Conclusions and Future Work</h2>
+    <p>An extensive overview of DT technology has been provided. Compared to previous simulation technology, it is a powerful alternative and a major development in digital simulation and the connection between virtual and physical worlds. DT is already applied in many different applications such as industry, aerospace, automotive, healthcare, and oceans. They offer many functions such as health monitoring, fault detection, optimization, and prognosis. Although automotive is one of the current DT applications, most researchers care about vehicle design, motion, and visualization. Concerning EV propulsion drive systems, it is still too new of a topic. The analytical comparison between HIL and DT for EV drive systems resulted in: HIL is suitable for testing a drive system component, while DT is more effective after obtaining the physical drive system model.</p>
+    <p>A combination of HIL and DT is the best solution depending on the work stage: first build simulation models of different system components, then verify models using HIL tests, then build physical EV drive system models, and finally build DT models starting with components, then assets, and finally the entire system model. Various datasets from the physical EV drive system can be obtained through implementation of different sensors.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/su14020601">10.3390/su14020601</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('toggle-' + (lang === 'both' ? 'both' : lang)).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side'); el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    for (var i = 0; i < Math.min(arSections.length, enSections.length); i++) {
+      var pair = document.createElement('div'); pair.className = 'compare-section';
+      var enCol = document.createElement('div'); enCol.className = 'compare-en';
+      var enLabel = document.createElement('div'); enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH'; enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div'); arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div'); arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية'; arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol); pair.appendChild(arCol); container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  // Update toggle button labels based on language
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare';
+  // Update AR/EN buttons
+  document.getElementById('toggle-ar').textContent = isAr ? '🇸🇦 العربية' : '🇸🇦 العربية';
+  document.getElementById('toggle-en').textContent = isAr ? '🇬🇧 الإنجليزيّة' : '🇬🇧 English';
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
+}
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

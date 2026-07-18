@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التوأم الرقمي كمستشعر افتراضي لتطبيقات توربينات الرياح — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Digital Twin as a Virtual Sensor for Wind Turbine Applications</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التوأم الرقمي كمستشعر افتراضي لتطبيقات توربينات الرياح</h2>
+
+  <div class="paper-meta">
+    <span>👤 Mahmoud Ibrahim, Anton Rassõlkin, Toomas Vaimann, Ants Kallaste, Janis Zakis, Van Khang Hyunh, Raimondas Pomarnacki</span>
+    <span>📄 Energies 16(17), 6246, 2023</span>
+    <span>🔗 <a href="https://doi.org/10.3390/en16176246">10.3390/en16176246</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ARABIC -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>طُبقت التوائم الرقمية (DTs) في تطبيقات متنوعة، بما في ذلك مولدات توربينات الرياح (WTGs). تُستخدم لإنشاء نسخ افتراضية مكررة من التوربينات المادية، والتي يمكن استخدامها لمراقبة وتحسين أدائها. من خلال محاكاة سلوك التوربينات المادية في الوقت الفعلي، تمكن التوائم الرقمية المشغلين من التنبؤ بالأعطال المحتملة وتحسين جداول الصيانة، مما يؤدي إلى زيادة الموثوقية والسلامة والكفاءة. تعتمد مولدات توربينات الرياح على قياسات دقيقة لسرعة الرياح للتشغيل الآمن والفعال. ومع ذلك، فإن أجهزة استشعار سرعة الرياح المادية عرضة لعدم الدقة والأعطال بسبب العوامل البيئية أو المشاكل المتأصلة، مما يؤدي إلى قياسات جزئية أو مفقودة يمكن أن تؤثر على أداء التوربين. تقترح هذه الورقة منهجية استشعار قائمة على التوأم الرقمي لتجاوز هذه القيود من خلال تعزيز منصة الاستشعار المادية بمصفوفات استشعار افتراضية. تم تحضير منصة اختبار لمولد توربين رياح ذي دفع مباشر يعتمد على مولد متزامن ذي مغناطيس دائم (PMSG)، واشتقاق نموذجه الرياضي. استُخدم MATLAB/Simulink لتطوير النموذج الافتراضي لمولد توربين الرياح استنادًا إلى نموذجه الرياضي. استُخدم نظام اكتساب بيانات (DAS) مزود بخادم ActiveX لتسهيل تبادل البيانات في الوقت الفعلي بين النموذجين الافتراضي والمادي. ثم تم التحقق من صحة المستشعر الافتراضي وضبطه باستخدام بيانات استشعار حقيقية من نموذج التوربين المادي. أظهرت نتائج نموذج التوأم الرقمي المطور قوة التوأم الرقمي كمستشعر افتراضي في تقدير سرعة الرياح وفقًا للطاقة المولدة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>أدخلت الثورة الصناعية الرابعة تقنية التوأم الرقمي (DT) لتحسين عملية التطوير. التوأم الرقمي هو نسخة افتراضية مكررة من كائن مادي تسهل محاكاة وتحليل أدائه في الوقت الفعلي [1]. التوائم الرقمية ذات قيمة في التطبيقات التي تشمل توربينات الرياح (WTs) حيث يمكن استخدامها لمراقبة أداء التوربين في الوقت الفعلي. وهذا يمكن المهندسين من اكتشاف وحل أي مشاكل قد تنشأ على الفور، مما يعزز كفاءة وموثوقية مولد توربين الرياح مع خفض تكلفة الصيانة والإصلاح [2]. يمكن أيضًا استخدام التوائم الرقمية لتحسين تشغيل توربينات الرياح من خلال التنبؤ بإنتاج الطاقة بناءً على ظروف الرياح. باستخدام التوأم الرقمي لنمذجة سلوك التوربين في ظروف رياح مختلفة، يمكن للمهندسين تحسين تشغيل التوربين لتعظيم إنتاجه من الطاقة [3].</p>
+    <p>في سياق ذي صلة، تُعد أجهزة استشعار سرعة الرياح مكونًا حاسمًا في مزارع الرياح وتُستخدم على نطاق واسع لتمكين مراقبة الطاقة الريحية والتحكم ودعم القرار لتوربينات الرياح [4]. تقيس هذه المستشعرات سرعة الرياح، وتلعب دورًا محوريًا في تحديد الأداء التشغيلي لتوربينات الرياح. تؤثر دقة هذه القياسات بشكل كبير على معدل التقاط الطاقة الريحية وحمل الإجهاد وعمر الخدمة. من المعروف أن أجهزة استشعار سرعة الرياح عرضة للأخطاء، والتي يمكن أن يكون لها آثار سلبية على الوظائف الأساسية والمتقدمة لتوربينات الرياح. وهذا بدوره يمكن أن يؤدي إلى انخفاض في الأداء العام لمزارع الرياح وزيادة مستوى المخاطر على النظام [5]. لذلك، من الضروري إجراء بحث حول طرق المراقبة عبر الإنترنت وتحديد الأعطال والتكيف معها لضمان موثوقيتها ودقتها.</p>
+    <p>المستشعر الافتراضي هو آلية قائمة على البرمجيات تعالج البيانات التي يمكن الحصول عليها من المستشعرات المادية بناءً على المعلومات المتاحة [6]. من خلال مراقبة القراءات من أجهزة مختلفة وتعلم تفسير العلاقات بين المتغيرات المختلفة، يعمل المستشعر الافتراضي بطريقة مشابهة للمستشعر المادي. المحاكاة مصممة لتقليد سلوك المنتجات الواقعية ويمكن استخدامها لالتقاط القياسات في مواقع مختلفة. يمكن للقراءات التي تم الحصول عليها من المستشعر الافتراضي أن تكمل البيانات التي تم جمعها من المستشعرات المادية. تظهر الأدبيات اهتمامًا متزايدًا بالمستشعرات الافتراضية لتطبيقات توربينات الرياح [4], [8]–[11]. تسلط هذه الورقة الضوء على استخدام التوأم الرقمي كمستشعر افتراضي لمولد توربين الرياح. الهدف الأساسي هو تقديم نهج رائد يستفيد من التوأم الرقمي لتعزيز قدرات الاستشعار ومعالجة القيود المتأصلة للمستشعرات المادية التقليدية.</p>
+  </section>
+
+  <section>
+    <h2>2. مبادئ مولد توربين الرياح الأساسية</h2>
+    <p>يتكون مولد توربين الرياح (WTG) من نموذجين متميزين: نموذج التوربين الميكانيكي ونموذج المولد المتزامن ذي المغناطيس الدائم (PMSG) الكهربائي. يهدف النموذج الرياضي للتوربين إلى نمذجة الجوانب الديناميكية الهوائية، مع التركيز على ملف الرياح ونماذج التوربينات. يمكن التعبير عن طاقة الرياح (Pwind) بالمعادلة Pwind = ½ · ρ · A · V³ · Xc، حيث ρ كثافة الهواء، A المساحة العمودية على اتجاه الرياح، V سرعة الرياح، وXc معامل أداء التوربين. يستخدم نموذج d–q لتحليل المولد المتزامن ذي المغناطيس الدائم بشكل منفصل في محورين، حيث يتم محاذاة المحور d مع المجال المغناطيسي للدوار والمحور q عمودي عليه. تربط المعادلة المدمجة بين سرعة الرياح وعزم الدوران الكهرومغناطيسي والقدرة المولدة: Pe = ½ · ρ · A · V³ · Xc · ηg · (λ − λmin)/(λrated − λmin)، مما يظهر أن القدرة المولدة تتناسب مع مكعب سرعة الرياح.</p>
+  </section>
+
+  <section>
+    <h2>3. إجراءات تطوير التوأم الرقمي لمولد توربين الرياح</h2>
+    <p>يتكون التوأم الرقمي من ثلاثة عناصر أساسية: النموذج المادي، والنموذج الافتراضي، وواجهة الربط بينهما. النموذج المادي هو تمثيل للكيان المادي، مثل منصة الاختبار. النموذج الافتراضي هو تصوير رقمي للكائن المادي. تقوم واجهة الربط بإنشاء اتصال بين كلا النموذجين لتمكين تبادل البيانات. النموذج المادي لمنصة اختبار مولد توربين الرياح ذي الدفع المباشر هو إعداد شامل يعتمد على مولد متزامن ذي مغناطيس دائم بقدرة 600 واط و8 أقطاب، متصل بمحرك سيرفو يعمل كمحاكي للحمل. تم إنشاء النموذج الافتراضي باستخدام MATLAB Simulink لتمثيل سلوك التوربين والمولد معًا. يستخدم النظام خادم ActiveX لجلب البيانات المقاسة من قنوات نظام اكتساب البيانات ونقلها إلى مساحة عمل MATLAB لتغذية نموذج Simulink في الوقت الفعلي.</p>
+  </section>
+
+  <section>
+    <h2>4. التحقق من نموذج التوأم الرقمي لمولد توربين الرياح</h2>
+    <p>يعد التحقق من صحة نموذج المحاكاة وضبطه مع النموذج المادي خطوة حاسمة في عملية تطوير التوأم الرقمي، لضمان تمثيله الدقيق لسلوك مولد توربين الرياح الحقيقي. تم استخدام بيانات حقيقية من منصة الاختبار كمدخلات لنموذج المحاكاة. قاد محرك السيرفو مولد توربين الرياح تحت ظروف سرعة مختلفة لمحاكاة سرعات رياح متنوعة. تم قياس سرعة الرياح في الوقت الفعلي باستخدام مقياس شدة الرياح (anemometer) ومقارنتها بالتقديرات من النموذج. لوحظ أن سرعات الرياح المقدرة من نموذج المحاكاة تقترب من حوالي 83% من القيم المقابلة التي تم الحصول عليها من مستشعر سرعة الرياح. تشير قيم متوسط الخطأ المطلق (MAE) الصغيرة نسبيًا عبر نقاط البيانات (التي تتراوح من حوالي 0.26 إلى 0.57) إلى أن نموذج تقدير سرعة الرياح يؤدي بدقة جيدة.</p>
+  </section>
+
+  <section>
+    <h2>5. النقاش</h2>
+    <p>أظهر تطبيق تقنية التوأم الرقمي كمستشعر افتراضي لمولد توربين الرياح نتائج واعدة في هذه الدراسة. استُخدم نموذج التوأم الرقمي، القائم على مواصفات توربين الرياح وطريقة تقدير، لتقدير سرعات الرياح بناءً على الطاقة المولدة. أظهرت المقارنة بين سرعات الرياح المقدرة والحقيقية توافقًا وثيقًا ضمن 80% لقيم الطاقة المولدة المعطاة. ومع ذلك، من المهم الاعتراف بالقيود والشكوك المتأصلة المرتبطة بطريقة التقدير المستخدمة. تعتمد دقة سرعات الرياح المقدرة على عوامل مختلفة، بما في ذلك تصميم توربين الرياح وكفاءته والظروف البيئية، والتي قد لا تكون موثقة بالكامل في نموذج التوأم الرقمي.</p>
+  </section>
+
+  <section>
+    <h2>6. الاستنتاجات</h2>
+    <p>يؤكد هذا البحث على أهمية التوائم الرقمية كأداة قيمة لتطبيقات توربينات الرياح. تقدم منهجية الاستشعار القائمة على التوأم الرقمي حلاً واعدًا للقيود المفروضة على أجهزة استشعار سرعة الرياح المادية، مما يساهم في الكفاءة والأداء العامين لمولدات توربينات الرياح. خدمت منصة اختبار مولد توربين الرياح ذي الدفع المباشر القائم على المولد المتزامن ذي المغناطيس الدائم كمنصة مادية لتطوير والتحقق من صحة نموذج التوأم الرقمي. أظهرت النتائج التي تم الحصول عليها من نموذج التوأم الرقمي المطور قدرته على تقدير سرعة الرياح بناءً على الطاقة المولدة، مما يعرض إمكاناته كبديل موثوق به لأجهزة استشعار سرعة الرياح المادية التقليدية. تشمل التوجهات المستقبلية إجراء اختبارات تحت ظروف تحميل متنوعة، ودمج عوامل إضافية، والاستفادة من تقنيات الذكاء الاصطناعي والتعلم الآلي للتحليل المتقدم.</p>
+  </section>
+
+  <section>
+    <h2>المراجع</h2>
+    <p>قائمة المراجع الكاملة (14 مصدرًا) متاحة في <a href="https://www.mdpi.com/1996-1073/16/17/6246/pdf?version=1693221991" target="_blank">الملف الأصلي للPDF</a>.</p>
+  </section>
+</div>
+
+<!-- ENGLISH -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Digital twins (DTs) have been implemented in various applications, including wind turbine generators (WTGs). They are used to create virtual replicas of physical turbines, which can be used to monitor and optimize their performance. By simulating the behavior of physical turbines in real time, DTs enable operators to predict potential failures and optimize maintenance schedules, resulting in increased reliability, safety, and efficiency. WTGs rely on accurate wind speed measurements for safe and efficient operation. However, physical wind speed sensors are prone to inaccuracies and failures due to environmental factors or inherent issues, resulting in partial or missing measurements that can affect the turbine's performance. This paper proposes a DT-based sensing methodology to overcome these limitations by augmenting the physical sensor platform with virtual sensor arrays. A test bench of a direct drive WTG based on a permanent magnet synchronous generator (PMSG) was prepared, and its mathematical model was derived. MATLAB/Simulink was used to develop the WTG virtual model based on its mathematical model. A data acquisition system (DAS) equipped with an ActiveX server was used to facilitate real-time data exchange between the virtual and physical models. The virtual sensor was then validated and tuned using real sensory data from the physical turbine model. The results from the developed DT model showed the power of the DT as a virtual sensor in estimating wind speed according to the generated power.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>The advent of the fourth industrial revolution introduced DT technology to improve the development process. A digital twin (DT) is a virtual replica of a physical object that facilitates real-time simulation and analysis of its performance [1]. DTs are valuable in applications involving wind turbines (WTs) where they can be utilized to monitor the real-time performance of the turbine. This enables engineers to promptly detect and resolve any issues that may arise, thereby enhancing the efficiency and reliability of the WTG while lowering the cost of maintenance and repair [2]. DTs can also be used to optimize the operation of wind turbines by predicting the energy output of the turbine based on the wind conditions. By using the DT to model the turbine's behavior in different wind conditions, engineers can optimize the operation of the turbine to maximize its energy output [3].</p>
+    <p>Wind speed sensors are a critical component of wind farms and are extensively utilized to enable wind energy monitoring, control, and decision support for wind turbines [4]. These sensors measure wind speed, thereby playing a pivotal role in determining the operational performance of wind turbines. The accuracy of these measurements significantly impacts the wind energy capture rate, fatigue load, and service life. Wind speed sensors are known to be susceptible to errors, which can have adverse effects on the basic as well as advanced functionalities of wind turbines. This can lead to a decrease in the overall performance of wind farms and an increased risk level for the system [5]. Therefore, it is imperative to conduct research on online monitoring, identification, and accommodation methods for the sensors to ensure their reliability and accuracy.</p>
+    <p>A virtual sensor is a software-based mechanism that processes data that would otherwise be obtained from physical sensors based on the available information [6]. By observing the readings from different instruments and learning to interpret the relationships between various variables, the virtual sensor functions in a manner that is like a physical sensor. The simulation is designed to imitate the behavior of real-world products and can be used to capture measurements at various locations. The readings obtained from the virtual sensor can supplement the data collected from physical sensors. The literature showed increased interest in virtual sensors for wind turbine applications [4], [8]–[11]. This paper highlights the usage of DT as a virtual sensor for WTG. The primary objective is to present a pioneering approach that leverages DT to enhance sensor capabilities and address the inherent limitations of conventional physical sensors.</p>
+  </section>
+
+  <section>
+    <h2>2. Wind Turbine Generator Basic Principles</h2>
+    <p>The WTG comprises two distinct models: the mechanical turbine model and the electric PMSG model. The wind turbine mathematical model aims to model the aerodynamic aspects, focusing on the wind profile and turbine models. Wind power (Pwind) can be expressed as Pwind = ½ · ρ · A · V³ · Xc, where ρ is air density, A is area perpendicular to wind direction, V is wind speed, and Xc is the turbine's performance coefficient. The d–q model is used to analyze the PMSG separately in two axes, where the d-axis is aligned with the rotor magnetic field and the q-axis is perpendicular to it. The combined equation relates wind speed to electromagnetic torque and generated power: Pe = ½ · ρ · A · V³ · Xc · ηg · (λ − λmin)/(λrated − λmin), demonstrating that generated power is proportional to the cube of wind speed.</p>
+  </section>
+
+  <section>
+    <h2>3. WTG—Digital Twin Development Procedures</h2>
+    <p>DT consists of three primary elements: physical model, virtual model, and interconnecting interface. The physical model represents the physical entity, such as a test bench. The virtual model is a digital portrayal of the physical object. The interconnecting interface establishes a connection between both models, enabling data exchange. The physical model of the direct drive WTG test bench is a comprehensive setup centered on a 600 W, eight-pole surface-mounted PMSG connected to a servo motor acting as a load emulator. The virtual model was created using MATLAB Simulink to simulate the combined turbine-generator behavior. The system uses an ActiveX server to fetch measured data from DAS channels and transfer it to the MATLAB workspace for real-time Simulink feeding.</p>
+  </section>
+
+  <section>
+    <h2>4. WTG-DT Model Validation</h2>
+    <p>Validation and tuning of the simulation model with the physical model are crucial steps in the DT development process, ensuring it accurately represents the real-world WTG behavior. Real data from the test bench were used as inputs to the simulation model. The servo motor drove the WTG under different speed conditions to emulate various wind speeds. Real-time wind speed was precisely measured using an anemometer and compared with the model's estimates. It was observed that the estimated wind speeds from the simulation model closely approximated around 83% of the corresponding values from the wind speed sensor. The relatively small MAE values across data points (ranging from approximately 0.26 to 0.57) suggest that the wind speed estimation model is performing with good accuracy.</p>
+  </section>
+
+  <section>
+    <h2>5. Discussion</h2>
+    <p>The application of DT technology as a virtual sensor for WTG has shown promising results in this study. The DT model, based on the provided wind turbine specifications and an estimation method, was used to estimate wind speeds based on generated power. The comparison between the estimated wind speeds and the real wind speeds demonstrated close agreement within 80% for the given generated power values. However, it is important to acknowledge the limitations and inherent uncertainties associated with the estimation method used. The accuracy of the estimated wind speeds depends on various factors, including the wind turbine's design, efficiency, and environmental conditions, which may not be fully captured in the DT model.</p>
+  </section>
+
+  <section>
+    <h2>6. Conclusions</h2>
+    <p>This research underscores the significance of digital twins as a valuable tool for wind turbine applications. The proposed DT-based sensing methodology offers a promising solution to the limitations of physical wind speed sensors, contributing to the overall efficiency and performance of wind turbine generators. The test bench of a direct drive WTG based on a PMSG served as a physical platform for developing and validating the DT model. The results from the developed DT model demonstrated its capability to estimate wind speed based on the generated power, showcasing its potential as a reliable alternative to traditional physical wind speed sensors. Future directions include conducting tests under varied loading conditions, incorporating additional factors, and leveraging AI and machine learning techniques for advanced analysis.</p>
+  </section>
+
+  <section>
+    <h2>References</h2>
+    <p>Full reference list (14 sources) available in the <a href="https://www.mdpi.com/1996-1073/16/17/6246/pdf?version=1693221991" target="_blank">original PDF</a>.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/en16176246">10.3390/en16176246</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('toggle-' + (lang === 'both' ? 'both' : lang)).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side'); el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    for (var i = 0; i < Math.min(arSections.length, enSections.length); i++) {
+      var pair = document.createElement('div'); pair.className = 'compare-section';
+      var enCol = document.createElement('div'); enCol.className = 'compare-en';
+      var enLabel = document.createElement('div'); enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH'; enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div'); arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div'); arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية'; arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol); pair.appendChild(arCol); container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  // Update toggle button labels based on language
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare';
+  // Update AR/EN buttons
+  document.getElementById('toggle-ar').textContent = isAr ? '🇸🇦 العربية' : '🇸🇦 العربية';
+  document.getElementById('toggle-en').textContent = isAr ? '🇬🇧 الإنجليزيّة' : '🇬🇧 English';
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
+}
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

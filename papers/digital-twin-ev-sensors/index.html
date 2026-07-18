@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نظرة عامة على منصات التوأم الرقمي لتطبيقات المركبات الكهربائية — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Overview of Digital Twin Platforms for EV Applications</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نظرة عامة على منصات التوأم الرقمي لتطبيقات المركبات الكهربائية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Mahmoud Ibrahim, Viktor Rjabtšikov, Rolando Gilbert</span>
+    <span>📄 Sensors 23(3), 1414, 2023</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s23031414">10.3390/s23031414</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ARABIC -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>استُخدمت تقنية التوأم الرقمي (DT) في مجموعة واسعة من التطبيقات، بما في ذلك المركبات الكهربائية. توفر منصة التوأم الرقمي تمثيلاً افتراضياً أو محاكاة متقدمة لجسم مادي في الوقت الفعلي. وقد ظهر تطبيق التوأم الرقمي على جوانب مختلفة من المركبات الكهربائية مؤخراً في دراسات بحثية مختلفة. بشكل عام، يمكن للتوأم الرقمي محاكاة المركبة الفعلية على الطريق للتنبؤ/تحسين أدائها وتحسين سلامة المركبة. بالإضافة إلى ذلك، يمكن استخدام التوأم الرقمي لتحسين عمليات التصنيع، والمراقبة الآنية للحالة (على جميع المستويات وفي جميع مكونات مجموعة نقل الحركة)، وتحسين إدارة الطاقة، وإعادة استخدام المكونات، وحتى عمليات إعادة التدوير. تقدم هذه الورقة نظرة عامة على منصات التوأم الرقمي المختلفة التي يمكن استخدامها في تطبيقات المركبات الكهربائية. تم إجراء مقارنة استنتاجية بين التوأم الرقمي القائم على النماذج والقائم على البيانات. تمت مناقشة الأنظمة الرئيسية للمركبات الكهربائية فيما يتعلق بمنصة التوأم الرقمي القابلة للاستخدام. كما تناولت الورقة منصات التوأم الرقمي المستخدمة في صناعة المركبات الكهربائية. أخيراً، أظهرت المراجعة تفوق التوأم الرقمي القائم على البيانات على التوأم الرقمي القائم على النماذج بسبب قدرته على التعامل مع الأنظمة عالية التعقيد.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>في العقود الأخيرة، ساهم التصنيع الرقمي بشكل كبير في جميع الصناعات. لقد قطعت التطورات الملحوظة في تكنولوجيا الاتصالات والمعلومات شوطاً طويلاً نحو تطوير التصنيع [1]. التقنيات المدعومة بالحاسوب مثل التصميم بمساعدة الحاسوب (CAD)، والهندسة بمساعدة الحاسوب (CAE)، والتصنيع بمساعدة الحاسوب (CAM)، وتحليل العناصر المحدودة (FEA)، وإدارة بيانات المنتج (PDM) وغيرها، تتطور بسرعة وتلعب دوراً حاسماً في الصناعة الحديثة [2]. أصبحت بيئات التصنيع والرعاية الصحية والمدن الذكية أكثر قدرة على تسخير البيانات من خلال التحليلات المتقدمة والاتصال بإنترنت الأشياء (IoT) [3]. يمكن استخدام بيئات إنترنت الأشياء، إلى جانب تحليلات البيانات، للصيانة التنبؤية، واكتشاف الأعطال، وعمليات تحسين التصميم [4].</p>
+    <p>بعد أن استضاف "تشالينج أدڤايزوري" عرض مايكل غريفز حول التكنولوجيا في جامعة ميشيغان عام 2002، حظي مفهوم التوأم الرقمي باعتراف أوسع [8]. يشير مصطلح التوأم الرقمي إلى التمثيل الرقمي لجسم مادي أو عملية أو خدمة تدعم اتخاذ القرار طوال دورة حياتها. يتم تحديثه من البيانات في الوقت الفعلي ويستخدم المحاكاة والتعلم الآلي والاستدلال [10]. تتكون ثلاثة أركان أساسية من التوأم الرقمي: الكيان المادي، والكيان الافتراضي، ونظام تبادل البيانات والاتصالات بينهما [11]. عرّفت الأعمال الحديثة تقنية التوأم الرقمي كهيكل خماسي الأبعاد مع كيانات منفصلة للخدمات والاتصالات [8]. إنشاء توأم رقمي يمكن أن يعزز الاتجاهات التكنولوجية، ويمنع الأعطال المكلفة في الأجسام المادية، ويحسن عمليات الاختبار باستخدام التحليلات المتقدمة والمراقبة والقدرات التنبؤية.</p>
+    <p>تاريخياً، تم تطوير أنظمة السيارات والفضاء باستخدام الممارسات الهندسية التجريبية [13]، لكن الآن مع متطلبات الأداء المتزايدة، هناك حاجة لإجراءات هندسية جديدة. مع ظهور التوأم الرقمي، أصبحت تقنيات النمذجة الجديدة للاختبار والتطوير متاحة لتلبية المتطلبات الجديدة. تشهد صناعة المركبات الكهربائية اهتماماً متزايداً هذه الأيام. يشكل التسعير وسعة البطارية تحديات كبيرة لإدخال المركبات الكهربائية على الطريق. لمواجهة هذه التحديات، إحدى الطرق هي تحسين استهلاك الطاقة الكهربائية للمركبة وتصميم بنية داعمة لتسهيل ذلك. تقدم هذه الورقة نظرة عامة شاملة على المنصات المختلفة المستخدمة لتطوير التوأم الرقمي لتطبيقات المركبات الكهربائية. الهدف العام من هذه الدراسة هو توفير مرجع للباحثين حول هذا الموضوع.</p>
+  </section>
+
+  <section>
+    <h2>2. تصنيفات بنية التوأم الرقمي</h2>
+    <p>يمكن تقسيم بنية التوأم الرقمي إلى فئتين رئيسيتين كما توضح الأقسام الفرعية التالية. يشير مفهوم نهج المحاكاة القائم على النماذج (MBS) إلى منهجية رسمية لإعداد المتطلبات وتصميم وتحليل والتحقق من الأنظمة المعقدة [14]. يضع MBS النماذج في مركز تصميم النظام.</p>
+    <p>التوأم الرقمي القائم على النماذج هو شكل متقدم من MBS مع زيادة البيانات الحسابية وأدوات الذكاء الاصطناعي المساعدة. من الواضح أن إنشاء توأم رقمي قائم على النماذج يرتبط ارتباطاً وثيقاً بالأنظمة المادية القابلة للنمذجة ويعتمد في الغالب على منصات النمذجة والمحاكاة التقليدية. العيب الرئيسي للتوأم الرقمي القائم على النماذج هو أن النماذج لا يمكنها التعامل مع التعقيد اللامتناهي وعادة ما تحتاج إلى التبسيط. علاوة على ذلك، تواجه صعوبة في النظر في المتغيرات غير المعروفة والبيانات المزعجة.</p>
+    <p>مع الزيادة الكبيرة في بيانات العمليات، أصبحت طرق النمذجة التقليدية القائمة على النماذج غير قادرة على وصف فضاء حالة الأنظمة المعقدة. وبهذه الطريقة، أصبحت تكنولوجيا النمذجة القائمة على البيانات حالاً محتملاً لنمذجة التوأم الرقمي. يعتمد مفهوم النمذجة القائمة على البيانات على تحليل البيانات حول النظام لإيجاد روابط بين المتغيرات دون معرفة سلوكه الفيزيائي صراحة. من الواضح أن هناك اتصالاً مباشراً بين التوأم الرقمي القائم على البيانات والأنظمة المعقدة التي تحتوي على كمية هائلة من البيانات. غالباً ما تكون المنصات المستخدمة لإنشاء التوأم الرقمي القائم على البيانات هي أدوات الذكاء الاصطناعي والبيانات الضخمة.</p>
+  </section>
+
+  <section>
+    <h2>3. منصات التوأم الرقمي لتطبيقات المركبات الكهربائية</h2>
+    <p>تُعرف المركبات الكهربائية أيضاً بمركبات البطارية الكهربائية (BEV)، حيث تستخدم حزمة بطارية لتخزين الطاقة الكهربائية التي تشغل المحرك الكهربائي. تنقسم المجالات الرئيسية للمركبات الكهربائية إلى فئتين: نظام المركبة الذكية ونظام الدفع الكهربائي للمركبة.</p>
+    <p>شجعت التقنيات الناشئة في مجال أنظمة المركبات الذكية التطوير المستمر للنقل المستدام. يشمل نظام المركبة الذكية أنظمة مساعدة السائق المتقدمة وأنظمة إدارة صحة المركبة. تم تطوير توأم رقمي لحافلة ركاب كهربائية لمحاكاة أداء المركبة باستخدام منصة MATLAB/Simulink على معالج NVIDIA عبر CUDA. كما استُخدمت منصة Unity game engine كمحاكي للأنظمة الفيزيائية لتطوير توأم رقمي لأنظمة مساعدة السائق المتقدمة للمركبات المتصلة والآلية.</p>
+    <p>بالنسبة لنظام بطارية المركبة الكهربائية، تم استخدام PyBaMM و MATLAB لاقتراح نماذج هجينة تجمع بين النماذج الفيزيائية والمناهج القائمة على البيانات. تم تنفيذ نظام إدارة بطارية سحابي باستخدام برامج Python. تم تطوير نموذج الانحدار القائم على التحلل المعمم المتناثر (s-PGD) المدمج في توأم رقمي لتحقيق محاكاة في الوقت الفعلي وتقييم البطارية. تم استخدام LIONSIMBA في MATLAB للتحقق من النتائج. تم أيضاً إنشاء نموذج توأم رقمي شبه تحليلي لالتقاط السلوك الحراري باستخدام ANSYS.</p>
+    <p>بالنسبة للمحرك الكهربائي للمركبة الكهربائية، تم اقتراح نموذج توأم رقمي ذكي لمحرك PMSM للمراقبة الصحية والتشخيص باستخدام MATLAB/Simulink مع الشبكات العصبية الاصطناعية والمنطق الضبابي. تم استخدام MATLAB/Simulink و Unity 3D لبناء توأم رقمي لمحرك حثي لمراقبة الحالة. تم استخدام Siemens PLM لبناء توأم رقمي لمحرك طائرة كهربائي لتحليل التنبؤ بعمر التعب. تم تقديم توأم رقمي لنظام دفع المركبات الكهربائية قائم على التمثيل العياني النشط (EMR) باستخدام منصة LabVIEW.</p>
+    <p>بالنسبة لعاكس الجر، تم اقتراح توأم رقمي لمحول طاقة يعمل على FPGA للتحليل التشخيصي عبر الإنترنت باستخدام MATLAB. تم تطوير نموذج توأم رقمي قائم على البيانات لمحول إلكترونيات القدرة استناداً إلى شبكة عصبية ديناميكية لمراقبة الحالة باستخدام MATLAB. تم اقتراح توأم رقمي قائم على النماذج لمحول إلكترونيات القدرة لمراقبة الحالة باستخدام MATLAB/Simulink.</p>
+    <p>يستخدم العديد من منتجي المركبات الكهربائية وأنظمتها المساندة منصة التوأم الرقمي لأغراض البحث والتطوير. بعض شركات تصنيع المركبات الكهربائية أنشأت منصات التوأم الرقمي الخاصة بها، بينما البعض الآخر في تعاون مع مطوري المنصات العالمية مثل Nvidia Omniverse (BMW)، و Microsoft Azure (Hyundai)، و Siemens Xcelerator، و Bosch IoT Suite.</p>
+  </section>
+
+  <section>
+    <h2>4. النقاش</h2>
+    <p>الخطوة الأولى الأساسية لإنشاء توأم رقمي لنظام ما هي النمذجة. من الضروري الاختيار بين بنيتي النمذجة الرئيسيتين: القائمة على البيانات والقائمة على النماذج. يعتمد الاختيار على عدة عوامل، بما في ذلك الوظيفة التي يؤديها التوأم الرقمي، وتوفر معلمات النظام، وبساطة أو تعقيد النظام. الخطوة التالية هي اختيار بيئة التطوير المناسبة (المنصة). من منظور تطبيقات المركبات الكهربائية، تم تقسيم المركبات إلى مجالين رئيسيين: نظام المركبة الذكية ونظام الدفع الكهربائي للمركبة. إنشاء توأم رقمي لنظام المركبة الذكية أكثر قابلية للتحقيق بناءً على تقنيات تعتمد على البيانات. بينما بالنسبة لأنظمة دفع المركبات الكهربائية، تم تطبيق مزيج من بنيات التوأم الرقمي القائمة على البيانات والقائمة على النماذج أو الهجينة.</p>
+    <p>كان استخدام منصات مثل MATLAB/Simulink و Ansys و LabView و Unity 3D فعالاً في إنشاء التوأم الرقمي القائم على النماذج. بينما في حالة التوأم الرقمي القائم على البيانات، كان الاعتماد أكثر على المنصات السحابية مثل Microsoft Azure و AWS و IBM-ELM، أو منصات الأغراض الخاصة التي بناها مطورو التوأم الرقمي استناداً إلى بيئات تطوير برمجيات مثل Python و C++ و R وغيرها.</p>
+  </section>
+
+  <section>
+    <h2>5. الاستنتاجات</h2>
+    <p>في الآونة الأخيرة، أصبح التوأم الرقمي نموذجاً ناشئاً للتمثيلات الافتراضية للأنظمة المعقدة إلى جانب مكوناتها الأساسية. يتكون التوأم الرقمي من ثلاثة أجزاء رئيسية: الأجسام المادية، والتمثيلات الافتراضية، والاتصالات بينهما. يجب تطوير الجزء الافتراضي من التوأم الرقمي من خلال بيئة محددة تسمى منصة التوأم الرقمي. القائم على النماذج والقائم على البيانات هما الفئتان الرئيسيتان للتوأم الرقمي. أوضحت المقارنة بين الفئتين نقاط القوة والضعف وكذلك التطبيقات المحتملة لكليهما.</p>
+    <p>تناولت هذه المراجعة بشكل خاص التوأم الرقمي لتطبيقات المركبات الكهربائية. تم تقسيم أنظمة المركبات الكهربائية إلى أنظمة المركبات الذكية وأنظمة الدفع الكهربائي للمركبة. تناولت الأدبيات مزايا استخدام التوأم الرقمي القائم على البيانات مع أنظمة المركبات الذكية بسبب تعقيد نمذجة هذه الأنظمة وكمية البيانات الكبيرة المرتبطة بها. بينما في حالة نظام الدفع الكهربائي، كان هناك مزيج بين استخدام التوأم الرقمي القائم على النماذج أو القائم على البيانات أو مزيج منهما. تمثل هذه الورقة مرجعاً للباحثين في موضوع التوأم الرقمي لتطبيقات المركبات الكهربائية من أجل تحديد منصة التوأم الرقمي المناسبة وفقاً لمتطلبات العمل.</p>
+  </section>
+
+  <section>
+    <h2>مساهمات المؤلفين والتمويل</h2>
+    <p>المفاهيم: M.I. و V.R.؛ المنهجية: M.I.؛ التحقق: M.I. و R.G.؛ التحليل الرسمي: M.I.؛ التحقيق: R.G.؛ الموارد: M.I.؛ تنظيم البيانات: V.R.؛ الكتابة – المسودة الأصلية: M.I.؛ الكتابة – المراجعة والتحرير: M.I.؛ التصور: V.R.؛ الإشراف: M.I.؛ إدارة المشروع: M.I.؛ اكتساب التمويل: M.I. جميع الكتاب قرأوا ووافقوا على النسخة المنشورة من المخطوطة. تم دعم البحث من قبل مجلس البحوث الإستوني بموجب المنحة PSG453 "التوأم الرقمي لنظام الدفع لمركبة كهربائية ذاتية القيادة". المؤلفون يعلنون عدم وجود تضارب في المصالح.</p>
+  </section>
+</div>
+
+<!-- ENGLISH -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Digital twin (DT) technology has been used in a wide range of applications, including electric vehicles. The DT platform provides a virtual representation or advanced simulation of a physical object in real-time. The implementation of DT on various aspects of EVs has recently transpired in different research studies. Generally, DT can emulate the actual vehicle on the road to predict/optimize its performance and improve vehicle safety. Additionally, DT can be used for the optimization of manufacturing processes, real-time condition monitoring (at all levels and in all powertrain components), energy management optimization, repurposing of the components, and even recycling processes. This paper presents an overview of different DT platforms that can be used in EV applications. A deductive comparison between model-based and data-driven DT was performed. EV main systems have been discussed regarding the usable DT platform. DT platforms used in the EV industry were addressed. Finally, the review showed the superiority of data-driven DTs over model-based DTs due to their ability to handle systems with high complexity.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>In recent decades, digital manufacturing has contributed significantly to all industries. The remarkable advances in communication and information technology have gone a long way towards the development of manufacturing [1]. Computer-aided technologies such as computer-aided design (CAD), computer-aided engineering (CAE), computer-aided manufacturing (CAM), finite element analysis (FEA), product data management (PDM), etc., are developing rapidly and play a crucial role in modern industry [2]. Manufacturing, healthcare, and smart city environments have become more able to harness data through advanced analytics and the Internet of Things (IoT) connectivity [3]. In conjunction with data analytics, IoT environments can be used for predictive maintenance, fault detection, and design optimization processes [4].</p>
+    <p>After Challenge Advisory hosted Michael Grieves' presentation on technology at the University of Michigan in 2002, the concept of the DT gained wider recognition [8]. The term DT refers to the digital representation of a physical object, process, or service that supports decision-making throughout its lifecycle. It is updated from real-time data and uses simulation, machine learning, and reasoning [10]. Three basic pillars make up the DT: the physical entity, the virtual entity, and the data exchange and communication system between them [11]. Recent works have defined DT technology as a five-dimensional structure with separate entities for services and connections [8]. Creating a DT can enhance technology trends, prevent costly failures in physical objects, and improve test processes by using advanced analytics, monitoring, and predictive capabilities.</p>
+    <p>Historically, automotive and aerospace systems have been developed using empirical engineering practices [13], but now with growing performance requirements, new engineering procedures are required. With the emergence of DT, new testing and development modeling techniques have become available to fulfil new requirements. The EV industry is gaining increased attention nowadays. Pricing and battery capacity pose major challenges to the introduction of EVs on the road. To address these challenges, one way is to optimize the electrical energy consumption of the vehicle and design a supporting architecture to facilitate it. This paper presents a comprehensive overview of different platforms used to develop DTs for EV applications. The general objective of this study is to provide a reference for researchers on this topic.</p>
+  </section>
+
+  <section>
+    <h2>2. DT Architecture Categorizations</h2>
+    <p>The DT architecture can be divided into two main categories as the following subsections illustrate. The concept of a model-based simulation approach (MBS) refers to a formalized methodology for preparing requirements and designing, analyzing, and verifying complex systems [14]. MBS places models at the center of the system design.</p>
+    <p>Model-based DT is an advanced form of MBS with increased sensory data and AI supplementary tools. It is clear that the creation of a model-based DT of a system is closely related to modellable physical systems and mostly depends on conventional modeling and simulation platforms. The major drawback of model-based DT is that models cannot handle infinite complexity and typically need to be simplified. Moreover, it has difficulty considering unknown variables and noisy data.</p>
+    <p>With the substantial increase in process data, conventional model-based methods are unable to describe complex systems' state space. In this way, data-driven modeling technology has become a potential solution for modeling DTs. The data-driven modeling concept is based on analyzing data about a system to find connections between variables (input, internal, and output variables) without explicitly knowing its physical behavior. It is obvious that there is a direct connection between the data-driven DT and the complex systems that contain a huge amount of data. The platforms used for data-driven DT creation are often artificial intelligence and Big Data tools.</p>
+  </section>
+
+  <section>
+    <h2>3. DT Platforms for EV Applications</h2>
+    <p>EVs are also referred to as battery electric vehicles (BEV), as they use a battery pack to store the electrical energy that powers the electric motor. EV main domains are divided into two categories as follows: a smart vehicle system and a vehicle propulsion drive system.</p>
+    <p>Emerging technologies in the field of smart vehicle systems have promoted the continuous development of sustainable transport. The smart vehicle system includes advanced driver assistance systems and vehicle health management systems. A DT of an electric passenger bus was developed to emulate the vehicle's performance using the MATLAB/Simulink platform deployed on an NVIDIA processor through CUDA. The Unity game engine was leveraged as a physical system emulator to build a DT of an advanced driver assistance system for connected and automated vehicles.</p>
+    <p>For the EV battery system, PyBaMM and MATLAB were used to propose hybrid models combining physics-based and data-driven approaches. A cloud BMS was implemented using software programs in Python. A regression model based on sparse-proper generalized decomposition (s-PGD) was incorporated into a DT for real-time simulation and battery evaluation. LIONSIMBA in MATLAB was used for results validation. A semi-analytical DT model was generated to capture thermal behavior using ANSYS.</p>
+    <p>For the EV electric motor, an intelligent DT model of an EV PMSM was proposed for health monitoring and prognosis using the MATLAB/Simulink platform with ANN and Fuzzy logic tools. MATLAB/Simulink and Unity 3D platforms were used to build a DT of an induction motor for condition monitoring. Siemens' PLM platform was used to build a DT of an airplane electric motor for lifetime fatigue prediction. A DT for an EV propulsion system based on energetic macroscopic representation (EMR) was presented using the LabVIEW platform.</p>
+    <p>For the traction inverter, a DT of a power converter running on an FPGA was proposed for online diagnostic analysis using the MATLAB platform. A data-driven DT model of a power electronic converter based on a dynamic neural network was developed for condition monitoring using the MATLAB platform. A model-based DT of a power electronic converter was proposed for condition monitoring using the MATLAB/Simulink platform.</p>
+    <p>Many producers of EVs and their co-systems are using the DT platform for research and development purposes. Some EV manufacturers have established their own DT platforms, while others are in collaboration with global platform developers such as Nvidia Omniverse (BMW), Microsoft Azure (Hyundai), Siemens Xcelerator, and Bosch IoT Suite.</p>
+  </section>
+
+  <section>
+    <h2>4. Discussion</h2>
+    <p>The first key step of creating a DT for a system is modeling. It is necessary to choose between the two main DT modeling architectures: data-driven and model-based. The selection relies on several factors, including the function performed by the DT, the system parameter availability, and the simplicity or the complexity of the system. The next step of the DT development process is to choose the right development environment (platform). From the perspective of EV applications, EV vehicles were divided into two main domains: the smart vehicle system and the vehicle propulsion drive system. Creating a DT of a smart vehicle system is more achievable based on data-driven techniques. Whilst for EV propulsion systems, a mixture of data-driven, model-based, or hybrid DT architectures have been applied.</p>
+    <p>The use of platforms such as MATLAB/Simulink, Ansys, LabView, Unity 3D, and other modeling platforms has been effective in creating model-based DTs. While in the case of data-driven DTs, more reliance has been on cloud-based platforms such as Microsoft Azure, AWS, IBM-ELM, or special purposes platforms built by the DT developers based on one of the software development environments, such as Python, C++, R, and others.</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>Recently, DTs have become an emerging paradigm for virtual representations of complex systems along with their underlying components. DTs are composed of three main parts: physical objects, virtual representations, and the communications between them. The virtual part of DT must be developed through a specific environment called the DT platform. Model-based and data-driven are the main categories of DTs. A comparison between the two categories clarified their strengths and weaknesses as well as the prospective applications for both.</p>
+    <p>This review dealt specifically with DTs for EV applications. EV systems were divided into smart vehicle systems and vehicle propulsion drive systems. The literature addressed the advantages of using data-driven DTs with smart vehicle systems due to the complexity of modeling such systems and also the significant amount of data concerned with it. While in the case of the electric propulsion drive system, there was mixture between the use of model-based DT, data driven DT, or a combination of them both. This paper represents a reference for researchers on the topic of DT for EV applications in order to determine the appropriate DT platform according to the work requirements.</p>
+  </section>
+
+  <section>
+    <h2>Author Contributions &amp; Funding</h2>
+    <p>Conceptualization, M.I. and V.R.; methodology, M.I.; validation, M.I. and R.G.; formal analysis, M.I.; investigation, R.G.; resources, M.I.; data curation, V.R.; writing—original draft preparation, M.I.; writing—review and editing, M.I.; visualization, V.R.; supervision, M.I.; project administration, M.I.; funding acquisition, M.I. The research has been supported by the Estonian Research Council under grant PSG453 "Digital twin for propulsion drive of an autonomous electric vehicle". The authors declare no conflict of interest.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s23031414">10.3390/s23031414</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('toggle-' + (lang === 'both' ? 'both' : lang)).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side'); el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    for (var i = 0; i < Math.min(arSections.length, enSections.length); i++) {
+      var pair = document.createElement('div'); pair.className = 'compare-section';
+      var enCol = document.createElement('div'); enCol.className = 'compare-en';
+      var enLabel = document.createElement('div'); enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH'; enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div'); arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div'); arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية'; arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol); pair.appendChild(arCol); container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  // Update toggle button labels based on language
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare';
+  // Update AR/EN buttons
+  document.getElementById('toggle-ar').textContent = isAr ? '🇸🇦 العربية' : '🇸🇦 العربية';
+  document.getElementById('toggle-en').textContent = isAr ? '🇬🇧 الإنجليزيّة' : '🇬🇧 English';
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
+}
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
