@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محاولة للتنبؤ بحركات الهياكل الانزلاقية باستخدام التعلم الآلي — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">An attempt to predict planing hull motions using machine learning methods</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">محاولة للتنبؤ بحركات الهياكل الانزلاقية باستخدام أساليب التعلم الآلي</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ahmed Shehata, Abbas Dashtimanesh</span>
+    <span>📄 IOP Conf. Ser.: Mater. Sci. Eng. 1288, 2023</span>
+    <span>🔗 <a href="https://doi.org/10.1088/1757-899X/1288/1/012026">10.1088/1757-899X/1288/1/012026</a></span>
+    <span class="license-badge">✓ CC BY 3.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ Side by Side</button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ Compare</button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ARABIC -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يمكن أن يساهم تصميم مركبة عالية السرعة لتحسين الإبحار في الأمواج بشكل كبير في زيادة السلامة والراحة البشرية. في المراحل المبكرة من التصميم، تُستخدم نماذج رياضية مثل طريقة 2D+T بشكل شائع، بينما تُستخدم نماذج ديناميكا الموائع الحاسوبية عالية الدقة (CFD) والنماذج التجريبية في المراحل اللاحقة. من limitations هذه النماذج أنها ليست سريعة بما يكفي لاستخدامها في نظام السفينة للمراقبة الآنية أو لتطوير توأم رقمي. في الآونة الأخيرة، أظهرت أساليب التعلم الآلي وعدًا كبيرًا في بناء نماذج بديلة من البيانات. تشمل هذه الأساليب التعلم العميق والشبكات العصبية المتكررة (RNN). في هذه الورقة، يُقدم تحقيق منهجي لهياكل الشبكات والمُحسّنات المستخدمة لتدريب الشبكة. تم التحقيق في Adam و Adagrad و RMSprop و SGD لتدريب الشبكة. لتدريب النموذج، تم جمع ما يقرب من 35000 نقطة بيانات لهيكل Fridsma يعمل في 18 موجة منتظمة باستخدام نموذج 2D+T. أظهرت النتيجة أن الوحدة المتكررة المُبوّبة (GRU) تفوقت على الذاكرة الطويلة قصيرة المدى (LSTM) و RNN في التنبؤ بحركة الارتفاع. أيضًا، كانت طبقة مخفية واحدة مع 5 عصبونات كافية لتحقيق متوسط خطأ مطلق قدره 0.000298 وللتنبؤ بموجات غير مرئية عند التدريب بأكثر من 24000 نقطة بيانات.</p>
+  </section>
+</div>
+
+<!-- ENGLISH -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Designing a high-speed craft for better seakeeping in waves can contribute significantly to higher safety and human comfort. Early in the design process, mathematical models such as the 2D+T method are commonly used, while high-fidelity computational fluid dynamics (CFD) and experimental models are used later in the process. Some of the limitations of such models are that they are not fast enough to be used in the ship's system for real-time monitoring or to develop a digital twin. Recently, machine learning methods have demonstrated great promise in building surrogate models from data. These methods include deep learning and recurrent neural network (RNN). In this paper, a systematic investigation of the network architectures and the used optimizers to train the network is presented. Adam, Adagrad, RMSprob and SGD are investigated in training the network. To train the model almost 35000 data points were collected for Fridsma hull operating in 18 regular waves using a 2D+T model. The result showed that gated recurrent unit (GRU) outperformed long short-term memory (LSTM) and RNN in predicting the heave motion. Also, one hidden layer with 5 neurons was enough to achieve mean absolute error of 0.000298 and to predict unseen waves when trained with more than 24000 data points.</p>
+  </section>
+
+  <section>
+    <h2>Full Paper</h2>
+    <p><a href="https://iopscience.iop.org/article/10.1088/1757-899X/1288/1/012026/pdf" target="_blank">Download original PDF →</a> (Open Access, CC BY 3.0)</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.1088/1757-899X/1288/1/012026">10.1088/1757-899X/1288/1/012026</a> · License: CC BY 3.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('toggle-' + (lang === 'both' ? 'both' : lang)).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side'); el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    for (var i = 0; i < Math.min(arSections.length, enSections.length); i++) {
+      var pair = document.createElement('div'); pair.className = 'compare-section';
+      var enCol = document.createElement('div'); enCol.className = 'compare-en';
+      var enLabel = document.createElement('div'); enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH'; enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div'); arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div'); arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية'; arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol); pair.appendChild(arCol); container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
+}
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
