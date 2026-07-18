@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>وجهات نظر حول الأمن السيبراني لنظام الملاحة المتكامل — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Perspectives on the Cybersecurity of the Integrated Navigation System</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">وجهات نظر حول الأمن السيبراني لنظام الملاحة المتكامل</h2>
+
+  <div class="paper-meta">
+    <span>👤 Aybars Oruc, Georgios Kavallieratos, Vasileios Gkioulos, Sokratis Katsikas</span>
+    <span>📄 J. Mar. Sci. Eng. 13(6), 1087, 2025</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse13061087">10.3390/jmse13061087</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ARABIC -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>مع تزايد اعتماد العمليات البحرية على أنظمة تكنولوجيا المعلومات وأنظمة التكنولوجيا التشغيلية المترابطة، أصبح ضمان الأمن السيبراني على السفن أكثر أهمية من أي وقت مضى. أحد هذه الأنظمة هو نظام الملاحة المتكامل (INS)، الذي يساعد ضابط المراقبة (OOW) على الجسر في ضمان الملاحة الآمنة. يتكون INS من عدة مكونات قد تكون عرضة للهجمات السيبرانية، وبالتالي يواجه مخاطر سيبرانية تحتاج إلى التخفيف. تختلف فهم المخاطر السيبرانية حسب المنظور. في هذه الورقة، نحدد المنظور الذي يتبناه المجتمع البحثي تجاه المخاطر السيبرانية، مع التركيز على INS، ومنظور المحترفين الممثلين للصناعة البحرية، ونحلل أوجه التشابه والاختلاف. لتحقيق هذه الغاية، نجري مراجعة منهجية للأدبيات ومقابلات مع محترفين بحريين. تقدم هذه الدراسة رؤى مفيدة للباحثين والمحترفين الساعين لفهم المخاطر السيبرانية لنظام INS.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>لقد تعرض النظام البيئي البحري للهجمات السيبرانية. على حد علمنا، يتوفر حاليًا قاعدتا بيانات للحوادث السيبرانية مخصصتان للمجال البحري. إحداهما تسمى قاعدة بيانات الهجمات السيبرانية البحرية (MCAD)، وتتكون من 295 حادثة سيبرانية [7]. والأخرى تسمى مشروع ADMIRAL [8]، الذي تديره منظمة فرنسا السيبرانية البحرية غير الربحية [9]. تسرد قاعدة البيانات هذه الحوادث السيبرانية من 1980 إلى 2024 في النظام البيئي البحري [10]. وفقًا لـ ADMIRAL، اعتبارًا من 10 أكتوبر 2024، شهدت الصناعة البحرية 473 حادثة سيبرانية تم الكشف عنها علنًا [10]. تشمل هذه الحوادث مجموعة متنوعة من التهديدات، بما في ذلك هجمات GNSS وهجمات AIS وتسريبات البيانات واختراقات المواقع الإلكترونية وانتهاكات أنظمة الوصول عن بعد [11].</p>
+    <p>في فبراير 2017، تمكنت جهات خبيثة من السيطرة الكاملة على نظام الملاحة لسفينة حاويات لمدة 10 ساعات بينما كانت في طريقها من قبرص إلى جيبوتي [12]. بعد عامين، في 2019، تعرضت ناقلة بالقرب من ميناء نانتالي في فنلندا لهجوم فدية حيث أصيب خادم الإدارة بالعدوى بسبب محرك أقراص فلاش [13]. في نفس العام، تعرضت محطة AIS في إيطاليا لحادثة انتحال لسفن AIS بالقرب من جزيرة إلبا. كشف التحقيق عن إنشاء 3742 سفينة وهمية [14]. استمرت الحوادث السيبرانية في القطاع البحري في 2020 أيضًا. أصيبت ثلاث سفن بفدية Sodinokibi في أنظمتها الإدارية [13]. في نفس العام، عطل هجوم سيبراني متقدم الموقع الإلكتروني والعديد من الخدمات عبر الإنترنت للمنظمة البحرية الدولية (IMO) [15]. في 2021، لوحظت هجمات سيبرانية تستهدف السفن العسكرية. تعرضت السفينة الحربية البريطانية HMS Defender لهجوم انتحال AIS بالقرب من روسيا [16]. كما تعرضت السفينة الحربية الهولندية HNLMS Evertsen لتشويش GPS في البحر الأسود [16].</p>
+    <p>إن تصور المخاطر السيبرانية وتدابير التخفيف منها ليس موحدًا ويعتمد على عوامل مختلفة، مثل الخبرة المهنية والمعرفة المتخصصة. لذلك، غالبًا ما يُلاحظ التنوع بين وجهات نظر المجتمعين الأكاديمي والمهني. الهدف من هذه الورقة هو فهم وجهات نظر المجتمعات البحثية والمهنية حول الأمن السيبراني لـ INS، لا سيما فيما يتعلق بالتهديدات ونقاط الضعف وتدابير التخفيف والفعالية العملية لهذه التدابير. تحلل الورقة كلا المنظورين وتحدد أوجه التشابه والاختلاف من خلال مقارنتهما. تم استخدام مساعدي الكتابة بالذكاء الاصطناعي ProWritingAid [20] و Grammarly Pro [21] لتعزيز وضوح المقالة وقابليتها للقراءة الأكاديمية. كشفت هذه الدراسة أن كلا المجتمعين لديهما مخاوف بشأن نقاط الضعف السيبرانية لمكونات INS، مثل AIS و GNSS وأنظمة التشغيل القديمة لمكونات OT. ومع ذلك، تم تحديد اختلافات ملحوظة بين تدابير التخفيف المطبقة. على حد علمنا، هذا هو أول تحليل من نوعه.</p>
+  </section>
+
+  <section>
+    <h2>2. الأعمال ذات الصلة</h2>
+    <p>يلخص قسم الأعمال ذات الصلة العديد من المنشورات الأكاديمية والصناعية حول الأمن السيبراني البحري. أجرى بن فرح وآخرون [22] مراجعة منهجية للأدبيات للأمن السيبراني في الصناعة البحرية، بما في ذلك الموانئ الذكية والسفن المستقلة. أجرى بولبوت وآخرون [23] مراجعة منهجية وتحليلًا بيبليومتريًا للدراسات السيبرانية البحرية. تمت مراجعة 144 ورقة بحثية مفهرسة في Scopus باستخدام منهجية PRISMA. أجرى أرباس وآخرون [24] مراجعة منهجية حول تقييم المخاطر السيبرانية ونمذجة التهديدات للسفن. حقق كلافيجو ميسا وآخرون [25] في تأثيرات الهجمات السيبرانية وتدابير التخفيف لسلاسل التوريد البحرية. حللت ديموكوبولو ورانتوس [26] الأمن السيبراني البحري من منظور إطار الأمن السيبراني للمعهد الوطني للمعايير والتقنية (NIST CSF) الإصدار 2.0.</p>
+    <p>توفر المنشورات العلمية التي نشرها الباحثون رؤى نظرية ومساهمات منهجية حول الأمن السيبراني البحري. من ناحية أخرى، تقدم التقارير المنشورة من قبل المنظمات المرموقة منظورًا عمليًا للتحديات الواقعية في القطاع. يقدم تقرير الأولوية السيبرانية البحرية 2024/2025 [27]، المنشور من قبل DNV، مسحًا عالميًا بمشاركة 489 محترفًا بحريًا. يسلط تقرير نظرة عامة على التهديدات السيبرانية البحرية 2023 [28]، المنشور من قبل فريق الاستجابة للطوارئ الحاسوبية البحرية (M-CERT)، الضوء على تأثير الهجمات السيبرانية المدعومة من الدول. يقدم تقييم التهديدات السنوي 2025 [29]، المنشور من قبل NORMA Cyber، تحليلاً لمشهد التهديدات السيبرانية للصناعة البحرية. تقدم دراستنا توليفة جديدة من خلال مقارنة وجهات نظر كل من العلماء والمحترفين البحريين حول الأمن السيبراني لـ INS. على حد علمنا، هذا هو أول عمل يقارن ويجمع بشكل صريح بين هذين المنظورين في مجال الأمن السيبراني البحري.</p>
+  </section>
+
+  <section>
+    <h2>3. منظور المجتمع البحثي</h2>
+    <p>تم تحديد منظور المجتمع البحثي تجاه المخاطر السيبرانية المحتملة في INS من خلال مراجعة منهجية للأدبيات (SLR). تم استخدام طريقة أوكولي وشابرام [31] لإجراء SLR، وتتكون من ثماني خطوات: تحديد غرض المراجعة، والفحص العملي، وصياغة البروتوكول، والبحث في الأدبيات، وتقييم الجودة، واستخراج البيانات، وتجميع الدراسات، وكتابة المراجعة. تم تحديد الكلمات المفتاحية المناسبة "ماريتايم" و"شيب" و"سايبرسكيوريتي" مع مرادفاتها. تم تحديد 4520 منشورًا في المرحلة الأولية. بعد الفحص وتقييم الجودة، تم اختيار 57 منشورًا تركز على الأمن السيبراني لـ INS و/أو مكوناته. كان IEEE الناشر الأبرز بـ 20 منشورًا، يليه Springer Link بـ 8 منشورات، و MDPI و TransNav بـ 6 منشورات لكل منهما. كان GNSS و AIS أكثر المكونات دراسة، بينما حظيت RADAR وشبكات الجسر باهتمام متزايد في السنوات الأخيرة.</p>
+    <p>فيما يتعلق بالأجهزة، يمكن استخدام المكونات الموجودة على السفن العاملة مثل الناقلات وسفن الأبحاث وسفن الركاب كبيئات اختبار. ومع ذلك، قد يكون العثور على سفينة عاملة أمرًا صعبًا للأغراض البحثية. لذلك، يمكن اختبار المكونات الفردية مثل AIS و GPS و RADAR و MFD و ECDIS في بيئة خاضعة للرقابة. أما بالنسبة للبرمجيات، فيمكن استخدام ماسحات الثغرات الأمنية مثل Nessus Professional للكشف عن نقاط الضعف. يمكن استخدام أدوات مثل hping3 لاختبار هجمات DoS، و Scapy لهجمات MITM. يمكن استخدام برامج مثل OpenCPN و Marine Traffic لفهم تأثير الهجوم المحتمل. يمكن استخدام Wireshark لالتقاط رسائل NMEA من الشبكة. يمكن استخدام VMWare ESXi لإنشاء آلات افتراضية تحاكي بيئة شبكة السفينة.</p>
+  </section>
+
+  <section>
+    <h2>4. التهديدات ونقاط الضعف السيبرانية</h2>
+    <p>تم تحليل العديد من التهديدات ونقاط الضعف السيبرانية لـ INS في الأدبيات. يفتقر نظام AIS إلى أي آلية مصادقة للبيانات المرسلة [75]. هذا الضعف يجعل AIS عرضة لتهديدات قائمة على البرمجيات والترددات الراديوية، مصنفة في ثلاث فئات: الانتحال والاختطاف وتعطيل التوفر [4]. تم الإبلاغ عن تهديدات مثل انتحال السفن وانتحال AIS-SART وانتحال توقعات الطقس واختطاف AIS وهجمات تعطيل التوفر (جوع الفتحات والقفز الترددي وهجوم التوقيت) [4]. يمكن تزوير رقم MMSI [77]. من الممكن أيضًا الإشارة إلى سفن وهمية في خدمات تتبع AIS [4].</p>
+    <p>يوفر ECDIS تمثيلاً لموقع سفينته عن طريق استقبال البيانات من نظام تحديد الموقع الإلكتروني مثل GNSS. تم اقتراح عملية تقييم المخاطر السيبرانية لـ ECDIS في [35،43]. قد يتلاعب البرنامج الضار بموقع السفينة على ECDIS [6]. يمكن إدخال برامج ضارة خاصة بالمهمة من خلال واجهة USB لـ ECDIS تستخدم للتلاعب بزاوية الدفة [79]. يرث ECDIS نقاط الضعف من الوسيطة مثل خادم Apache Web Server [39،43]. شبكة السفينة معرضة لهجمات الشخص-على-الجانب وهجمات الرجل-في-الوسط [61].</p>
+    <p>يوفر GNSS للسفن معلومات حيوية متعلقة بتحديد المواقع والسرعة والوقت [80]. قوة إشارة GNSS للتطبيقات المدنية حوالي -160 ديسيبل واط عند مستوى سطح البحر [80]، مما يجعلها عرضة بطبيعتها للتهديدات السيبرانية. consequently، أجهزة استقبال GNSS معرضة لهجمات التشويش والانتحال على حد سواء [5،40،45،48،51]. تعتبر هجمات الانتحال بشكل عام أكثر خطورة من هجمات التشويش بسبب طبيعتها الخفية والتحديات المرتبطة باكتشافها [83]. تشمل تقنية GNSS أنظمة إقليمية مختلفة، بما في ذلك GPS الأمريكي و GLONASS الروسي و BeiDou الصيني و Galileo الأوروبي [84]. وفقًا للبيانات التجريبية التي تم جمعها في شمال النرويج، يُظهر نطاق التردد G1 لـ GLONASS مقاومة أكبر للتشويش مقارنة بنطاق L1 لـ GPS [40].</p>
+    <p>تم تقديم عملية تقييم المخاطر السيبرانية ونتائجها لمجموعتي RADAR في [36]. يسلط Longo وآخرون [69] الضوء على نقاط الضعف السيبرانية الحرجة في أنظمة RADAR البحرية من خلال إظهار استغلال بروتوكولات الاتصال غير المشفرة مثل NMEA و ASTERIX. تسمح نقاط الضعف هذه للمهاجمين بحقن أصداء RADAR زائفة أو التلاعب بالأصداء الموجودة. كشفت Wolsing وآخرون [62] عن نقاط ضعف مماثلة مع التركيز على إرساليات UDP غير المحمية في بروتوكول Navico BR24.</p>
+    <p>تعمل العديد من الأنظمة بما في ذلك ECDIS و RADAR و MFD على أنظمة تشغيل مختلفة مثل Microsoft Windows 7 Professional و Windows XP و Windows Embedded Standard 7 و Linux [35،36،52،85]. يزيد تنوع أنظمة التشغيل من نقاط الضعف وسطح الهجوم. بعض أنظمة التشغيل لم تعد مدعومة من قبل البائع [35]. علاوة على ذلك، حتى إذا كان نظام التشغيل مدعومًا من قبل البائع، فقد لا يتم تثبيت التحديثات في الوقت المناسب من قبل مشغل السفينة. على سبيل المثال، قد لا تكون خدمة SMBv1 في نظام التشغيل محدثة، لذا يمكن مهاجمة النظام البحري بفدية NotPetya [36].</p>
+  </section>
+
+  <section>
+    <h2>5. تدابير تخفيف المخاطر</h2>
+    <p>تم اقتراح عدة طرق تشفير لتعزيز أمان رسائل AIS [46،65،75،90–92]. يقدم Su وآخرون [77] نظام مصادقة قائم على الشهادات الرقمية (IAS). يقترح Shyshkin [66] استخدام رموز مصادقة الرسائل (MACs) والعلامات المائية الرقمية. يقترح Silonosov و Henesey [93] استخدام التشفير القائم على السمات (ABE) لضمان سرية بيانات AIS. يمكن تعزيز موثوقية معلومات AIS من خلال ربط صور RADAR ببيانات AIS [87].</p>
+    <p>بالنسبة لهجمات انتحال GNSS، يمكن استخدام نموذج Nomoto لديناميكيات توجيه السفينة وأدوات نظرية التحكم الخطي [94]. تم اقتراح طريقة لبناء رمز PRN بناءً على الخريطة اللوجستية الفوضوية [95]. تم تقديم مجموعة من خوارزميات التخفيف ضد انتحال GNSS والمسارات المتعددة والتداخل الراديوي [49]. يسهل دمج GNSS مع نظام الملاحة بالقصور الذاتي اكتشاف تشوهات الموقع [96،97]. يمكن استخدام تقنيات التعلم الآلي للكشف عن تشوهات GPS [41]. تم اقتراح إطار MANA للكشف عن انتحال GPS منخفض التكلفة [98].</p>
+    <p>من الضروري تأمين بروتوكولات الاتصال المستخدمة في INS مثل NMEA و ASTERIX من خلال تطبيق حماية تشفيرية [69]. يمكن استخدام أدوات الكشف عن الشذوذ القائمة على الشبكة [103]. يمكن استخدام أنظمة كشف التسلل مثل Kitsune و SteadyTime و Snort [104]. يوفر تحديث أنظمة التشغيل وتصحيح الثغرات الأمنية حماية كبيرة للأنظمة الموجودة على متن السفينة [36،37]. يستخدم برنامج القفل (lockdown software) لتقييد الوظائف الحساسة لأنظمة التشغيل [36،59]. تم اقتراح عدة تقنيات مصادقة لحماية شبكات السفن [70،110]. العزل المادي للشبكة مهم كحل استباقي [37]. تم اقتراح إنشاء شبكات محددة بالبرمجيات (SDN) كحل أكثر أمانًا [111].</p>
+  </section>
+
+  <section>
+    <h2>6. منظور المجتمع المهني</h2>
+    <p>تم إنشاء منظور المجتمع المهني من خلال مقابلات مع محترفين بحريين. اتصلنا بـ 20 مشغل سفن مختلف لجمع المعلومات حول ممارسات الأمن السيبراني لديهم. أجرينا مقابلات عبر الإنترنت مع ما مجموعه 10 أفراد، بما في ذلك 8 مشغلي سفن وزميلي أبحاث. ركزت المناقشات على الوعي بالأمن السيبراني للطواقم على متن السفن، والتدابير التقنية والإجرائية المنفذة لتخفيف المخاطر السيبرانية، والملاحظات العامة حول الأمن السيبراني في القطاع البحري. تم توظيف منهج مقابلة شبه منهجي لاستكشاف وجهات نظر المحترفين داخل المجتمع البحري.</p>
+    <p>ضابط الأمن السيبراني للسفينة (SCySO) وضابط الأمن السيبراني للشركة (CCySO) هما الدوران الرئيسيان للأمن السيبراني المعتمدان من قبل الصناعة البحرية. بشكل عام، يتم تعيين الضباط الأوائل أو الضباط الثانيين أو الضباط الثالثين كـ SCySOs. عادة ما يتم تعيين الشخص المحدد على الشاطئ (DPA) في مشغل السفينة كـ CCySO. تحدد العديد من شركات الشحن التدريب كعامل أساسي في منع التهديدات السيبرانية. يمكن تقديم التدريب شخصيًا أو من خلال تدريب بالفيديو. تشمل التدابير التقنية تثبيت برامج مكافحة الفيروسات وجدران الحماية، واستخدام أجهزة ذاكرة مخصصة لتحديثات ENC، والقفل المادي لمنافذ USB والإيثرنت، وقفل علب أجهزة الكمبيوتر لأنظمة OT. تشمل التدابير الإجرائية وضع خطط وسياسات وتقييمات للمخاطر السيبرانية.</p>
+  </section>
+
+  <section>
+    <h2>7. النقاش</h2>
+    <p>على الرغم من أن العديد من المقالات تناقش المخاطر السيبرانية المحتملة التي تواجهها الصناعة البحرية، إلا أن الدراسات القائمة على النتائج التجريبية لا تزال محدودة. يبدو أن هناك تركيزًا أقوى على أنظمة AIS و GNSS مقارنة بالمكونات الأخرى لـ INS. ومع ذلك، في السنوات الأخيرة، تزايد البحث في شبكة INS وأنظمة RADAR أيضًا. باستخدام الأساليب التجريبية، تم تحديد نقاط الضعف السيبرانية في AIS و ECDIS و GNSS و RADAR و MFD وشبكات INS. ومع ذلك، لا يقتصر INS على هذه المكونات فقط—فهو يتكون من 25 مكونًا مختلفًا. كشفت دراسة تقييم المخاطر السيبرانية لـ INS أن 22 من أصل 25 من هذه المكونات معرضة للمخاطر السيبرانية [121].</p>
+    <p>من منظور المجتمع المهني، نظرًا لأن كل سفينة لا تملك وصولاً مستمرًا إلى الإنترنت عريض النطاق مثل VSAT، لا يتم تحديث أنظمة التشغيل وبرامج مكافحة الفيروسات بانتظام. مكونات OT التي تعمل على أنظمة تشغيل قديمة مثل Windows XP لا تزال موجودة على متن السفن. يتم تقديم التدريب إما من قبل موظفي المكتب أو ضابط على متن السفينة، لكن الجودة ومستوى المعرفة قابلين للتساؤل. يبدو أن خطط الأمن السيبراني لخمسة من أصل ستة مشغلي سفن تم تطويرها عن طريق النسخ من المبادئ التوجيهية الموصى بها من IMO. من خلال مقارنة ودمج المنظورين، يبدو أن مشغلي السفن لا يستطيعون تنفيذ العديد من التدابير التقنية الموصى بها في الأدبيات بسبب عدم توفر المنتجات النهائية في السوق، أو الحاجة إلى بنية تحتية طرف ثالث، أو متطلبات تغيير معايير الأداء.</p>
+  </section>
+
+  <section>
+    <h2>8. الاستنتاجات</h2>
+    <p>تنظر هذه المقالة إلى المخاطر السيبرانية لـ INS من منظورين علمي ومهني. تقدم تحليلاً شاملاً للمخاطر السيبرانية المحتملة وتدابير التخفيف لـ INS من خلال إجراء منهجية SLR. كما تتحقق هذه الدراسة من ممارسات الأمن السيبراني للصناعة البحرية من خلال مقابلة محترفين بحريين. بفضل هذا النهج المشترك، تم التحقق من العديد من التوصيات الواردة في الأوراق العلمية من خلال الممارسات الصناعية. تساهم هذه الدراسة في سد الفجوة بين الأدبيات والممارسات الصناعية. تساعد الدراسة الباحثين على التعرف على الممارسات الصناعية التي لم يتم التحقق من صحتها علميًا بعد، وتمكن الشركات المصنعة من تقييم جدوى الحلول العلمية المقترحة.</p>
+    <p>الأمن السيبراني ليس مهمًا فقط لحماية أنظمة السفن ولكنه يدعم أيضًا التنمية المستدامة. ترتبط جهود الأمن السيبراني البحري بأهداف التنمية المستدامة المحددة (SDGs) [143]. يجب على مؤسسات التعليم والتدريب البحري (MET) إدراج دورات الأمن السيبراني البحري في مناهجها التعليمية بشكل عاجل. يجب تعزيز التواصل بين العلماء والمحترفين. وفقًا لملاحظاتنا، فإن التفاعل بين هذين المجتمعين ضعيف جدًا. لسد هذه الفجوة، يجب على معاهد MET والجمعيات البحرية تنظيم فعاليات تجمع الباحثين والمحترفين معًا. حاليًا، هناك العديد من المبادرات التي تسرد الحوادث السيبرانية البحرية بناءً على المصادر المفتوحة [8،146]. يمكن إنشاء قاعدة بيانات تعاونية لاستخبارات التهديدات لمشاركة تفاصيل الحوادث وتدابير التخفيف المحتملة من قبل أصحاب المصلحة البحريين البارزين.</p>
+  </section>
+</div>
+
+<!-- ENGLISH -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>As maritime operations become increasingly reliant on interconnected information technology (IT) and operational technology (OT) systems, ensuring cybersecurity on vessels has become more critical than ever. One of these systems is the Integrated Navigation System (INS), which assists the Officer of Watch (OOW) on the bridge in ensuring safe navigation. The INS comprises several components that may be susceptible to cyber attacks, hence it faces cyber risks that need to be mitigated. Cyber risks are understood differently, depending on perspective. In this paper, we determine the perspective that the research community has of cyber risk, focusing on the INS, and that of professionals representing the maritime industry, and analyze similarities and differences. To this end, we conduct a systematic literature review and interviews with maritime professionals. This study provides useful insights for researchers and professionals seeking to understand the cyber risks of the INS.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>The maritime ecosystem has been exposed to cyber attacks. To the best of our knowledge, currently, two cyber incident databases are available specifically for the maritime field. One of them is called the Maritime Cyber Attack Database (MCAD), consisting of 295 cyber incidents [7]. The other one is called the Advanced Dataset of Maritime Cyber Incidents Released for Literature (ADMIRAL) project [8], managed by the non-profit organization France Cyber Maritime [9]. This database lists cyber incidents from 1980 to 2024 in the maritime ecosystem [10]. According to ADMIRAL, as of 10 October 2024, the maritime industry had experienced 473 publicly disclosed cyber incidents [10]. These incidents include a variety of threats, including GNSS attacks, AIS attacks, data leaks, website compromises, and breaches of remote access systems [11].</p>
+    <p>In February 2017, for 10 hours, malicious actors successfully assumed complete control over the navigation system of an 8250 TEU container vessel while en route from Cyprus to Djibouti [12]. Two years later, in 2019, a tanker near the Naantali Port in Finland fell victim to ransomware [13]. In the same year, an AIS base station in Italy was exposed to an AIS ship-spoofing incident near Elba Island, revealing the creation of 3742 ghost ships [14]. In 2020, three ships experienced their administrative systems being infected by the ransomware Sodinokibi [13]. In the same year, an advanced cyber attack disrupted the public website and several online services of the International Maritime Organization (IMO) [15]. In 2021, cyber attacks targeting military vessels were observed, including AIS spoofing against HMS Defender [16] and GPS jamming against HNLMS Evertsen [16]. The increasing number of cyber incidents has led to rising cybersecurity concerns in the industry [19].</p>
+    <p>The perception of cyber risks and their mitigation measures is not uniform and depends on various factors, such as professional experience and domain-specific knowledge. Therefore, diversity between the perspectives of the academic and professional communities is frequently observed. The objective of this paper is to understand the perspectives of the research and professional communities on INS cybersecurity, particularly regarding threats, vulnerabilities, mitigation measures, and the practical effectiveness of these measures. The paper analyzes both perspectives and identifies similarities and differences by comparing them. Artificial intelligence writing assistants ProWritingAid [20] and Grammarly Pro [21] were used to enhance clarity and academic readability. This study unveiled that both communities have concerns about the cyber vulnerabilities of INS components, such as AIS, GNSS, and outdated operating systems of OT components. However, notable differences were identified between the mitigation measures applied. To the best of our knowledge, this is the first analysis of this kind.</p>
+  </section>
+
+  <section>
+    <h2>2. Related Work</h2>
+    <p>The Related Work section summarizes various academic and industrial publications about maritime cybersecurity. Ben Farah et al. [22] conducted an SLR for cybersecurity in the maritime industry, including smart ports and autonomous ships. Bolbot et al. [23] performed an SLR and bibliometric analysis of maritime cyber studies, reviewing 144 Scopus-indexed papers using the PRISMA methodology. Erbas et al. [24] conducted an SLR on cyber risk assessment and threat modeling for ships. Clavijo Mesa et al. [25] investigated the impacts of cyber attacks and mitigation measures for maritime supply chains. Dimakopoulou and Rantos [26] analyzed maritime cybersecurity from the perspective of the NIST Cybersecurity Framework (CSF) v2.0.</p>
+    <p>Scientific studies published by researchers provide theoretical insights and methodological contributions about maritime cybersecurity. On the other hand, reports published by renowned organizations offer a practical perspective on real-world challenges in the sector. Maritime Cyber Priority 2024/2025 [27], published by DNV, offers a global survey with 489 maritime professionals. Maritime Cyber Threat Overview 2023 [28], published by M-CERT, highlights the impact of state-sponsored cyber attacks. Annual Threat Assessment 2025 [29], published by NORMA Cyber, presents an analysis of the maritime cyber threat landscape. Our study presents a novel synthesis by comparing the perspectives of both scientists and maritime professionals on INS cybersecurity. To the best of our knowledge, this is the first work to explicitly contrast and integrate these two perspectives in the field of maritime cybersecurity.</p>
+  </section>
+
+  <section>
+    <h2>3. Research Community Perspective</h2>
+    <p>The perspective of the research community on potential cyber risks in the INS was identified through an SLR. The method described by Okoli and Schabram [31] was used to conduct the SLR, consisting of eight steps: identifying the purpose of the review, practical screening, drafting the protocol, searching the literature, quality appraisal, data extraction, synthesizing studies, and writing the review. The appropriate keywords "maritime", "ship", and "cybersecurity" with their synonyms were identified. A total of 4520 publications were identified in the initial stage. After screening and quality appraisal, 57 publications focusing on the cybersecurity of the INS and/or its components were selected. IEEE became the most prominent publisher with 20 publications, followed by Springer Link with 8, and MDPI and TransNav with 6 each. GNSS and AIS were the most frequently studied components, while RADAR and bridge network systems gained attention in recent years.</p>
+    <p>Regarding hardware, components onboard ships in service such as tankers, research vessels, and passenger ships may be used as test environments. However, finding a vessel in service could be difficult for research purposes. Accordingly, individual components such as AIS, GPS, RADAR, MFD, or ECDIS may be tested in a controlled environment. For software, vulnerability scanners such as Nessus Professional can detect vulnerabilities. Tools like hping3 can be utilized to test DoS attacks, and Scapy for MITM attack simulations. Software such as OpenCPN and Marine Traffic can help understand the effect of a potential attack. Wireshark can capture NMEA messages from the network. VMWare ESXi can create virtual machines simulating a ship's network environment.</p>
+  </section>
+
+  <section>
+    <h2>4. Cyber Threats and Vulnerabilities</h2>
+    <p>Several cyber threats and vulnerabilities of the INS have been analyzed in the literature. The AIS lacks any authentication mechanism for the transmitted data [75]. This weakness makes AIS vulnerable to software-based and RF-based threats, classified in three classes: spoofing, hijacking, and availability disruption [4]. Threats such as ship spoofing, AIS-SART spoofing, weather forecasting spoofing, AIS hijacking, and availability disruption threats (slot starvation, frequency hopping, and timing attack) have been reported [4]. The MMSI number could be forged and tampered with [77]. It is also possible to indicate fake vessels in AIS ship tracking services [4].</p>
+    <p>The ECDIS can represent the position of its own vessel by receiving data from an EPFS such as GNSS. A cyber risk assessment process for ECDIS is proposed in [35,43]. Malware may manipulate the ship position on the ECDIS [6]. Mission-specific malware introduced through the USB interface of ECDIS could manipulate rudder angle [79]. The ECDIS inherits vulnerabilities from middleware such as Apache Web Server [39,43]. The onboard network is vulnerable to person-on-the-side and man-in-the-middle attacks [61].</p>
+    <p>GNSS provides vessels with critical positioning, speed, and time information [80]. The signal strength of GNSS for civilian applications is approximately −160 dBW at sea level [80], making it inherently vulnerable to cyber threats. Consequently, GNSS receivers are susceptible to both jamming and spoofing attacks [5,40,45,48,51]. Spoofing attacks are generally considered more dangerous than jamming attacks due to their stealthy nature and detection challenges [83]. GNSS technology encompasses various regional systems including the U.S.'s GPS, Russia's GLONASS, China's BeiDou, and the EU's Galileo [84]. According to experimental data from northern Norway, the GLONASS G1 frequency band demonstrates greater resistance to jamming compared to the GPS L1 band [40].</p>
+    <p>The cyber risk assessment process and results for two RADAR sets are presented in [36]. Longo et al. [69] highlight critical cyber vulnerabilities in maritime RADAR systems by demonstrating the exploitation of unencrypted communication protocols such as NMEA and ASTERIX. These vulnerabilities allow attackers to inject false RADAR echoes or manipulate existing ones. Wolsing et al. [62] reveal similar vulnerabilities focusing on unprotected UDP transmissions in the Navico BR24 protocol.</p>
+    <p>Several systems including ECDIS, RADAR, and MFD are supported by various operating systems such as Microsoft Windows 7 Professional, Windows XP, Windows Embedded Standard 7, and Linux [35,36,52,85]. The diversity of operating systems increases the vulnerabilities and attack surface. Some operating systems are no longer supported by the vendor [35]. Moreover, even if supported, updates may not be timely installed by the ship operator. For instance, SMBv1 in the OS might not be up-to-date, so a marine system could be attacked by NotPetya ransomware [36].</p>
+  </section>
+
+  <section>
+    <h2>5. Risk Mitigation Measures</h2>
+    <p>Several encryption methods have been proposed to enhance AIS message security [46,65,75,90–92]. A digital certificate-based identity authentication scheme (IAS) is introduced by Su et al. [77]. Shyshkin [66] presents methods using message authentication codes (MACs) and digital watermarking. Silonosov and Henesey [93] propose attribute-based encryption (ABE) for AIS data confidentiality. AIS information reliability can be enhanced by correlating RADAR imagery with AIS data [87].</p>
+    <p>For GNSS spoofing attacks, the Nomoto model for steering dynamics and linear control theory tools is proposed in [94]. A PRN code construction method based on a chaotic-form logistic map is proposed in [95]. A set of mitigation algorithms against GNSS spoofing, multipath, and RFI are introduced in [49]. Integration of GNSS with inertial navigation facilitates position anomaly detection [96,97]. Machine learning techniques can detect GPS anomalies [41]. A low-cost GPS spoofing detection framework called MANA has been proposed [98].</p>
+    <p>It is crucial to secure communication protocols used within the INS such as NMEA and ASTERIX by implementing cryptographic protections [69]. Network-based anomaly detection tools can be utilized [103]. Intrusion detection systems such as Kitsune, SteadyTime, and Snort can be employed [104]. Updating operating systems and patching security vulnerabilities provides significant protection [36,37]. Lockdown software is used to restrict sensitive functions [36,59]. Several authentication techniques have been proposed to protect ship networks [70,110]. Physical network isolation is important as a proactive solution [37]. A software-defined network (SDN) has been proposed for more secure onboard networks [111].</p>
+  </section>
+
+  <section>
+    <h2>6. Professional Community Perspective</h2>
+    <p>The professional community perspective was established through interviews with maritime professionals. We contacted 20 different ship operators to gather information about their cybersecurity practices. We conducted online interviews with a total of 10 individuals, including 8 ship operators and 2 research fellows. The discussions focused on cybersecurity awareness of personnel onboard, technical and procedural measures implemented to mitigate cyber risks, and general observations regarding cybersecurity in the maritime sector. A semi-systematic interview approach was employed to explore the perspectives of professionals.</p>
+    <p>Ship Cybersecurity Officer (SCySO) and Company Cybersecurity Officer (CCySO) are the main cybersecurity roles adopted by the maritime industry. Chief mates, second officers, or third officers are generally assigned as SCySOs. A DPA in the ship operator is typically nominated as CCySO. Many shipping companies have identified training as a core factor in preventing cyber threats. Training can be delivered in person or through video training. Technical measures include installing antivirus and firewall software, using dedicated memory sticks for ENC updates, physically blocking USB and ethernet ports, and locking computer cases of OT systems. Procedural measures include establishing plans, policies, and risk assessments for cybersecurity.</p>
+  </section>
+
+  <section>
+    <h2>7. Discussion</h2>
+    <p>Although numerous articles discuss the potential cyber risks faced by the maritime industry, studies based on experimental results remain limited. There seems to be a stronger focus on the AIS and GNSS systems compared to other INS components. However, in recent years, research on the INS network and RADAR systems has also been increasing. By employing empirical methods, cyber vulnerabilities have been identified in the AIS, ECDIS, GNSS, RADAR, MFD, and INS networks. However, an INS is not limited to only these components—it consists of 25 different components. A cyber risk assessment of the INS revealed that 22 out of 25 of these components are subject to cyber risks [121].</p>
+    <p>From the professional community perspective, given that each vessel does not have continuous broadband internet access such as VSAT, operating systems and antivirus software are not updated regularly. OT components running on outdated operating systems such as Windows XP are still available onboard ships. Training is provided either by office staff or an officer onboard, but the quality and level of knowledge are questionable. Cybersecurity plans of five out of six ship operators were developed by copying information from IMO-recommended guidelines. Comparing and merging perspectives reveals that ship operators may not be able to implement many technical measures recommended in the literature due to unavailability of end products, need for third-party infrastructure, or requirements for changing performance standards.</p>
+  </section>
+
+  <section>
+    <h2>8. Conclusions</h2>
+    <p>This article looked at cyber risks to the INS from both scientific and professional perspectives. It provides a comprehensive analysis of the potential cyber risks and mitigation measures of the INS by performing the SLR methodology. Moreover, this study investigates cybersecurity practices of the maritime industry by interviewing maritime professionals. With the support of this combined approach, various recommendations in scientific papers were verified by industry practices. This study contributes to closing the gap between the literature and industry practices. It helps researchers recognize industry practices that have not yet been scientifically validated, and enables manufacturers to assess the practicality of proposed scientific solutions.</p>
+    <p>Cybersecurity is not only substantial for protecting ship systems but also supports sustainable development. Maritime cybersecurity efforts are linked to specific Sustainable Development Goals (SDGs) [143]. Maritime education and training (MET) institutions should urgently incorporate maritime cybersecurity courses into their educational curricula. Communication between scientists and professionals should be strengthened; according to our observations, the interaction between these two communities is quite weak. To bridge this gap, MET institutes and maritime associations should organize events to bring researchers and professionals together. Currently, several initiatives list maritime cyber incidents based on open sources [8,146]. A collaborative threat intelligence database for sharing incident details and potential mitigation measures could be established by renowned maritime stakeholders.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse13061087">10.3390/jmse13061087</a> · License: CC BY 4.0</p>
+  <p>Oruc, A.; Kavallieratos, G.; Gkioulos, V.; Katsikas, S. <em>J. Mar. Sci. Eng.</em> 2025, <em>13</em>(6), 1087.</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('toggle-' + (lang === 'both' ? 'both' : lang)).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side'); el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    for (var i = 0; i < Math.min(arSections.length, enSections.length); i++) {
+      var pair = document.createElement('div'); pair.className = 'compare-section';
+      var enCol = document.createElement('div'); enCol.className = 'compare-en';
+      var enLabel = document.createElement('div'); enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH'; enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div'); arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div'); arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية'; arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol); pair.appendChild(arCol); container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  // Update toggle button labels based on language
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare';
+  // Update AR/EN buttons
+  document.getElementById('toggle-ar').textContent = isAr ? '🇸🇦 العربية' : '🇸🇦 العربية';
+  document.getElementById('toggle-en').textContent = isAr ? '🇬🇧 الإنجليزيّة' : '🇬🇧 English';
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تقييم المخاطر السيبرانية للسفن — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Cyber Risk Assessment for SHips (CRASH)</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تقييم المخاطر السيبرانية للسفن (CRASH)</h2>
+
+  <div class="paper-meta">
+    <span>👤 A. Oruc, G. Kavallieratos, V. Gkioulos & S. Katsikas</span>
+    <span>📄 TransNav, vol. 18, no. 1, 2024</span>
+    <span>🔗 <a href="https://doi.org/10.12716/1001.18.01.10">10.12716/1001.18.01.10</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ARABIC -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تشهد الصناعة البحرية تحولاً رقمياً مع تزايد دمج أنظمة تكنولوجيا المعلومات (IT) وأنظمة التكنولوجيا التشغيلية (OT) على السفن الحديثة. وعلى الرغم من فوائدها المتعددة، فإن هذا التحول يجلب معه مخاطر سيبرانية متزايدة يجب تحديدها وتقييمها وإدارتها. على الرغم من توفر العديد من منهجيات تقييم المخاطر السيبرانية في الأدبيات، إلا أنها قد تشكل تحدياً للخبراء ذوي الخلفية البحرية في استخدامها. في هذه الورقة، نقترح منهجية بسيطة وفعالة لتقييم المخاطر السيبرانية، تُسمى تقييم المخاطر السيبرانية للسفن (CRASH)، ويمكن تنفيذها بسهولة من قبل المتخصصين البحريين. ولإظهار طريقة عملها، قمنا بتقييم 24 خطراً سيبرانياً لنظام الملاحة المتكامل (INS) باستخدام CRASH، وتم التحقق من صحة الطريقة بمقارنة نتائجها بنتائج طريقة أخرى ومن خلال مقابلات مع خبراء في القطاع البحري. يمكن لـ CRASH مساعدة شركات الشحن في تقييم المخاطر السيبرانية بشكل فعال كخطوة نحو اختيار وتنفيذ التدابير اللازمة لتعزيز الأمن السيبراني للأنظمة السيبرانية-الفيزيائية على متن سفنهم.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>نظراً لأن حوالي 80% من التجارة العالمية من حيث الحجم تتم عن طريق السفن، فإن النقل البحري يحتل مكانة متميزة مقارنة بوسائل النقل الأخرى [48]. لبعض الوقت، كان القطاع البحري منخرطاً بنشاط في رقمنة الأنظمة والعمليات البرية وعلى متن السفن، مما أدى إلى صناعة الشحن المتحولة رقمياً، والتي تُسمى أيضاً "الشحن 4.0" [25].</p>
+    <p>وعلى الرغم من فوائدها المتعددة، فإن هذا التحول يجلب معه مخاطر سيبرانية متزايدة. وقعت عدة هجمات سيبرانية في الصناعة البحرية، ويُشتبه في أن بعضها كان مدعوماً من دول [37]. على سبيل المثال، في عام 2019، تم الإبلاغ عن تضرر 1,311 سفينة مدنية من هجمات انتحال النظام العالمي للملاحة عبر الأقمار الصناعية (GNSS) بين عامي 2016 و2018 [10]. في أبريل 2016، أثر هجوم تشويش على نظام تحديد المواقع العالمي (GPS) على حوالي 280 سفينة قبالة سواحل كوريا الجنوبية [14]. في يونيو 2017، تعرضت أكثر من 20 سفينة لهجوم تشويش على GPS في البحر الأسود [13]. في فبراير 2017، سيطرت جهات خبيثة على نظام الملاحة لسفينة حاويات بسعة 8,250 حاوية نمطية في طريقها من قبرص إلى جيبوتي لمدة 10 ساعات [8]. في أبريل 2017، تم تعطيل جميع أنظمة الرادار (RADAR) لمدمرة أمريكية حديثة بواسطة طائرة نفاثة روسية (Su-24) [34]. بالإضافة إلى ذلك، أصيب نظام عرض الخرائط الإلكترونية والمعلومات (ECDIS) على سفينة شحن جاف ببرامج ضارة، مما أدى إلى خسائر مالية بسبب التأخير في الإبحار وتكاليف إصلاح ECDIS [7]. في حالة أخرى، أصيب نظام إدارة الطاقة والشبكة الإدارية لسفينتين مختلفتين ببرامج ضارة عبر محرك أقراص USB [7]. يقدم ميلاند وآخرون سرداً أكثر شمولاً، حيث يناقشون 46 حادثة سيبرانية بحرية وقعت بين عامي 2010 و2020 [32].</p>
+    <p>في ضوء هذه النتائج، وزيادة القيمة المالية للقطاع [27]، وتعدد المهاجمين المحتملين، بما في ذلك أولئك ذوي القدرات المتقدمة، يصبح تعزيز الأمن السيبراني والسلامة في النظام البيئي البحري أمراً بالغ الأهمية. البحرية هي قطاع شديد التقييس، وتخضع الوظائف والعمليات البحرية للمعايير واللوائح المقابلة. في عام 2017، نشرت المنظمة البحرية الدولية (IMO) نشرة لتعزيز الشحن الآمن والمأمون ضد المخاطر السيبرانية [23]. وفقاً للنشرة، يجب على الشركات البحرية معالجة المخاطر السيبرانية في نظام إدارة السلامة (SMS) الخاص بها بحلول 1 يناير 2021. اعتباراً من 2 يناير 2021، بدأ التحقق من هذا المطلب في عمليات تدقيق وثيقة الامتثال (DOC) للشركات البحرية. نشرت اللجنة الكهروتقنية الدولية (IEC) معياراً في عام 2021 لتحديد المتطلبات وطرق الاختبار ونتائج الاختبار المطلوبة ضد الحوادث السيبرانية لمكونات الملاحة على متن السفن [19].</p>
+    <p>الخطوة الأولى نحو تعزيز الأمن السيبراني والمرونة في النظام البيئي هي فهم وتحليل وإدارة المخاطر السيبرانية التي يواجهها. تتوفر العديد من منهجيات تقييم المخاطر السيبرانية في الأدبيات، بعضها مُكيَّف خصيصاً لتناسب احتياجات تقييمات المخاطر في الأنظمة السيبرانية-الفيزيائية (CPS)، مثل تلك الموجودة على متن السفن. ومع ذلك، قد يكون استخدامها صعباً للخبراء ذوي الخلفية البحرية بدلاً من الخلفية السيبرانية. تجدر الإشارة إلى أن مشاركة خبراء القطاع في تقييم المخاطر السيبرانية أمر بالغ الأهمية للحصول على نتائج دقيقة. لاحظ أيضاً أن البيانات الإحصائية المتعلقة بالحوادث السيبرانية في البحرية غير متوفرة في الأدبيات، وتقوم طرق تقييم المخاطر المختلفة بوضع افتراضات معينة بشأن احتمالية الحدوث والتكلفة والجهات الفاعلة الخبيثة. لذلك، تعتمد نتائجها بشكل كبير على حكم الخبراء. على حد علمنا، لم يُقترح بعد طريقة سهلة لخبراء المجال البحري مع تقليل الذاتية.</p>
+  </section>
+
+  <section>
+    <h2>2. الأعمال ذات الصلة</h2>
+    <p>في هذه الورقة، نقترح طريقة بسيطة وفعالة لتقييم المخاطر السيبرانية، تُسمى تقييم المخاطر السيبرانية للسفن (CRASH)، ويمكن تطبيقها بسهولة من قبل المتخصصين البحريين. صُممت CRASH لتقليل الحاجة إلى الأحكام الخبيرة في عملية تقييم المخاطر السيبرانية للأنظمة البحرية. تستخدم CRASH التهديدات والثغرات السيبرانية المكشوفة في الأدبيات، والحوادث السيبرانية السابقة، وهياكل أنظمة السفن، لتقييم المخاطر السيبرانية.</p>
+    <p>تم تنظيم باقي الورقة على النحو التالي: يقدم القسم 2 مراجعة للأدبيات ذات الصلة. يتم تقديم طريقة CRASH في القسم 3. يعرض القسم 4 طريقة عمل CRASH من خلال تطبيقها لتقييم المخاطر السيبرانية لنظام INS. في القسم 5، نقدم منهجية التحقق من CRASH ونتائج تطبيقها. أخيراً، يقدم القسم 6 ملخصاً ويوصي ببعض اتجاهات البحث المستقبلية الممكنة.</p>
+    <p>تم اقتراح عدة طرق لتقييم المخاطر في الأدبيات، بما في ذلك [47, 2, 28, 1, 17, 4, 31] وتم إجراء عدة تقييمات للمخاطر السيبرانية باستخدام طرق متنوعة، بما في ذلك Fine-Kinney وشجرة الهجوم وSTRIDE وDREAD، لكل من السفن التقليدية والمسيرة [24, 25, 26, 38, 42, 44]. علاوة على ذلك، ظهرت أعمال تقترح طرقاً جديدة لتقييم المخاطر ضد الهجمات السيبرانية على متن السفن في الأدبيات [9, 33, 46]. ينشر iTrust دليلاً إرشادياً [24] يقدم المخاطر السيبرانية المحتملة وتدابير التخفيف لأنظمة الاتصالات والملاحة وإدارة البضائع وآلات الدفع وأنظمة التحكم في الطاقة. يقدم سفيلسيتش وآخرون [44] تقييماً للمخاطر لنظام ECDIS على سفينة تدريب. قدم شانغ وآخرون [42] طريقة لتقييم المخاطر السيبرانية وطبقوها على سيناريو خطر سيبراني لنظام التحكم في السفن. قام كافاليراتوس وآخرون [25, 26] بتكييف وتطبيق طرق راسخة، وهي STRIDE وDREAD، لتقييم المخاطر السيبرانية لأنظمة CPS على متن السفن المسيرة. طريقة أخرى لتقييم المخاطر السيبرانية في البحر هي CYber-Risk Assessment for Marine Systems (CYRA-MS)، التي اقترحها بولبوت وآخرون [9].</p>
+    <p>يرتبط خطر الأمن السيبراني بإمكانية استغلال التهديدات لنقاط الضعف في أصل أو مجموعة أصول والتسبب في ضرر لمؤسسة ما. يتم تقييم الخطر السيبراني من حيث احتمالية حدوث تهديد، ومدى نقاط الضعف تجاه التهديد، وحجم التأثير في حال تحقق التهديد؛ تشكل هذه عناصر الخطر السيبراني. ومع ذلك، هناك خيارات أخرى لعناصر الخطر ممكنة. تأخذ طريقة SEP [47] في الاعتبار الشدة (Severity) والتعرض (Exposure) والاحتمال (Probability) كعناصر للخطر. تصف الشدة العواقب المحتملة، مثل المرض المهني والإصابة والوفاة. يعكس التعرض الموارد المطلوبة لعاقبة ما. يُعرَّف الاحتمال بأنه احتمالية حدوث عاقبة. تفترض طريقة تحليل أنماط الفشل وتأثيراته (FMEA) [2] أيضاً ثلاثة عناصر للخطر، وهي الشدة والحدوث والكشف. درجة الخطر الإجمالية - المسماة رقم أولوية الخطر (RPN) - تُحسب بضرب درجات العناصر الثلاثة. تستخدم جميع هذه الطرق مزيجاً خطياً من قيم عناصر الخطر لحساب درجة الخطر الإجمالية.</p>
+  </section>
+
+  <section>
+    <h2>3. CRASH: تقييم المخاطر السيبرانية للسفن</h2>
+    <p>تقدر العديد من الدراسات في الأدبيات مستويات الخطر من خلال النظر في مزيج من التأثير على السلامة أو المالية أو البيئة أو السمعة. ومع ذلك، قد يؤدي كل نوع تأثير إلى مستوى خطر مختلف. لذلك، فإن تقييم التأثيرات بشكل فردي من شأنه أن يؤدي إلى تقييم أكثر دقة للمخاطر، كما هو موضح في [16]. يركز نهج CRASH فقط على تأثير السلامة للهجمات السيبرانية ضد المكونات والأنظمة على متن السفن. في هذه الدراسة، يشير تأثير السلامة إلى حدوث موقف قد يؤدي إلى حادث بحري يسبب ضرراً للأشخاص أو البيئة [36]. العواقب المحتملة الأخرى غير السلامة، مثل المالية أو البيئية أو السمعة، تقع خارج نطاق الطريقة. إدارة المخاطر، بما في ذلك تدابير تخفيف المخاطر وإعادة تقييم المخاطر، هي أيضاً خارج النطاق.</p>
+
+    <h3>3.1 عناصر الخطر</h3>
+    <p>تفترض CRASH ثلاثة عناصر للخطر، وهي الشدة (Severity) والاحتمال (Probability) والأهمية (Criticality). يتم حساب الخطر السيبراني الإجمالي وفقاً للمعادلة 1. يوضح الجدول 1 المراسلات بين درجات الخطر الرقمية ومستويات الخطر النوعية في CRASH.</p>
+    <p style="direction:ltr;text-align:center;font-family:monospace;padding:0.5rem;background:var(--bg-2);border-radius:4px">Risk = Severity (S) × Probability (P) × Criticality (C)</p>
+
+    <h3>3.1.1 الشدة</h3>
+    <p>الشدة هي مقياس للتأثير الناجم عن هجوم سيبراني ضد الأنظمة على متن السفينة. يتم تمييز تدفقين متميزين في الأنظمة البحرية، وهما تدفقات المعلومات وتدفقات التحكم. قد تعاني كل من إشارات المعلومات والتحكم من الفقدان أو التلاعب. يشير الفقدان إلى الأضرار المحتملة للتوافر، ويشير التلاعب إلى الأضرار المحتملة للنزاهة. في تقييم قيمة الشدة، يجب النظر في عدة جوانب.</p>
+    <p>تعتمد أهمية كل إشارة معلومات وتحكم على الوظائف والعمليات التي تستخدم الإشارة. على سبيل المثال، موقع السفينة الخاصة أكثر أهمية مقارنة بالتحكم في مستوى الصوت أو معلومات حجم جهاز استقبال GPS. علاوة على ذلك، يختلف مستوى الأهمية في ظل سيناريوهات تهديد مختلفة. وفقاً لذلك، يجب مراعاة العديد من العوامل مثل نوع السفينة والموقع والظروف الجوية والبحرية أثناء تقييم المخاطر السيبرانية. في نهج CRASH، يجب على الخبير تحديد ما إذا كان فقدان/التلاعب بالتحكم أو المعلومات أمراً بالغ الأهمية لعمليات السفينة أم لا. التلاعب بالتحكم/المعلومات أكثر خطورة من فقدان التحكم/المعلومات عند نفس مستوى الأهمية لأنه أصعب في الكشف من قبل البحارة أو الأنظمة على متن السفن. على سبيل المثال، انتحال GPS (التلاعب بالمعلومات) [6] أكثر خطورة من تشويش GPS (فقدان المعلومات) [15] لأنه أصعب في الكشف من قبل ضابط المراقبة (OOW) [18].</p>
+    <p>وفقاً لمدونة الإدارة الدولية للسلامة (ISM)، "يجب على الشركة تحديد المعدات والأنظمة التقنية التي قد يؤدي فشلها التشغيلي المفاجئ إلى حالات خطرة" [20]. صنف المنتدى الدولي لشركات النفط (OCIMF) الحالات الخطرة على النحو التالي [36]: فقدان التوجيه، فقدان الدفع، فقدان الطاقة، فقدان نظام الغاز الخامل، فقدان نظام مراقبة الغاز، فقدان معدات مراقبة البضائع/الصابورة، فقدان الإرساء. وفقاً لـ OCIMF، قد يتسبب فقدان الوظائف المذكورة في حادث بحري قد يضر بالأشخاص و/أو البيئة [36]. وفقاً لذلك، يعتبر الهجوم السيبراني المحتمل الذي قد يسبب فقدان هذه الوظائف حالة خطرة ويتم تقييمه على أنه أعلى مستوى شدة.</p>
+
+    <h3>3.1.2 الاحتمال</h3>
+    <p>يقيس الاحتمال احتمالية استغلال تهديد لنقطة ضعف أو مجموعة نقاط ضعف [41]. نظراً لوجود إحصائيات محدودة جداً للحوادث السيبرانية في الصناعة البحرية، فإن النهج الكمي البحت لتحديد الاحتمال غير ممكن. بدلاً من ذلك، تفترض CRASH أربعة مستويات من هذا الاحتمال: لا شيء (None)، الذي يشير إلى هجوم مستحيل افتراضياً؛ غير محتمل (Unlikely)، الذي يشير إلى وجود سيناريوهات محتملة؛ ممكن (Possible)، الذي يعكس الحالات التي تم التحقق من إمكانية حدوثها من خلال البحث التجريبي؛ ومحتمل (Likely) الذي يعكس حالات الحوادث السيبرانية التي حدثت بالفعل في العالم الحقيقي. إذا كان هناك أكثر من خيار واحد موجود (على سبيل المثال كل من "حادثة سيبرانية وقعت" و"نتيجة بحث تجريبي")، يتم تعيين القيمة الأعلى.</p>
+
+    <h3>3.1.3 الأهمية</h3>
+    <p>تقيس الأهمية الاعتماد على المعلومات أو الأنظمة لتحقيق الوظائف والعمليات الضرورية [35]. تعتمد قيمة الأهمية على عاملين: التكرار والتبعية. يشير التكرار إلى وجود نظام أو مكون احتياطي، بينما تشير التبعية إلى أن المكون يتطلب مكوناً آخر ليعمل بشكل موثوق. بالإضافة إلى ذلك، قد تكون بعض المكونات مطلوبة لتكون متصلة بمكون آخر بسبب متطلبات IMO. في حالة وقوع هجوم سيبراني ضد مكون ما، فإن المكونات التابعة ستتأثر سلباً. وفقاً لذلك، تعتبر التبعية مهمة من حيث تأثير السلسلة. التكرار هو إجراء تخفيف أساسي ضد الهجمات السيبرانية وكذلك ضد الأعطال. يجب أن تكون الأنظمة الحيوية على متن السفن مجهزة بمكونات متكررة. يتم تحديد قيمة عنصر الأهمية في CRASH من خلال النظر في مصفوفة الأهمية. قد يتخذ التكرار واحدة من ثلاث قيم: متاح، جزئي، أو غير متاح. ثلاث قيم للتبعية هي: لا يوجد مكون تابع، مكون تابع واحد، أو أكثر من مكون تابع واحد للحالات الخطرة.</p>
+  </section>
+
+  <section>
+    <h2>4. تطبيق CRASH على نظام الملاحة المتكامل</h2>
+    <p>السفن الحديثة مجهزة بأنظمة حاسوبية متنوعة تخدم أغراضاً مختلفة، بما في ذلك الملاحة والدفع والاتصالات ومناولة البضائع والسلامة والأمن. مما لا شك فيه أن نظام الملاحة المتكامل (INS) هو أحد أكثر الأنظمة حيوية على متن السفن. يدعم INS ضابط المراقبة (OOW) للملاحة الآمنة، من خلال استقبال البيانات من عدة مكونات، ودمجها، وتوفير تنبيهات في الوقت المناسب بشأن المواقف الخطرة في البحر [22]. يتكون INS من عدة مكونات إلزامية واختيارية، بما في ذلك نظام التعريف التلقائي (AIS) ونظام GNSS وشاشة العرض متعددة الوظائف (MFD) والرادار ونظام ECDIS. كشفت العديد من الدراسات عن التهديدات والثغرات السيبرانية لهذه المكونات وكذلك لنظام INS ككل [5, 6, 29]. تم تحليل العديد من الحوادث السيبرانية التي استهدفت INS ونقاط ضعفها على نطاق واسع في الأدبيات [39, 43, 30, 29]. وفقاً لذلك، تم اختيار INS لتوضيح طريقة عمل CRASH.</p>
+    <p>تم التطبيق في تسع خطوات: (1) تحديد النظام والمكونات؛ (2) تحديد المخاطر السيبرانية؛ (3) تحديد التكرارات؛ (4) تحديد التبعيات؛ (5) تحديد الشدة؛ (6) تحديد الاحتمال؛ (7) تحديد الأهمية؛ (8) حساب درجة الخطر؛ (9) تحليل المخاطر.</p>
+    <p>يتكون INS من 25 مكوناً مختلفاً لأغراض مختلفة، مثل تحديد الاتجاه أو الموقع أو السرعة [40]. تم تحديد المخاطر السيبرانية للمكونات من خلال مراجعة الأدبيات. تم مسح ليس فقط الأوراق الأكاديمية ولكن أيضاً مصادر أخرى مثل المواقع الإلكترونية والمجلات والتقارير التقنية والإرشادات للعثور على تهديدات وثغرات وحوادث سيبرانية إضافية. تم تحديد 24 خطراً مرتبطاً بنظام INS. ثمانية مكونات من INS معرضة للمخاطر السيبرانية، وهي AIS وBNWAS والتحكم في المحرك الرئيسي (M/E) وECDIS وGPS والمؤشر (Indicator) وMFD والرادار.</p>
+    <p>تم تحديد حالة التكرار لكل مكون. على سبيل المثال، تحتوي وحدة الرادار على وحدة رادار احتياطية، ولكن أثناء هجوم تشويش على الرادار، سيتأثر كلا الرادارين [34]. تم تحليل جميع التبعيات الممكنة بين مكونات INS وفقاً لمتطلبات IMO [40]. تم تحديد قيم الشدة والاحتمال والأهمية وفقاً للأقسام 3.1.1-3.1.3. تم حساب درجات الخطر الرقمية باستخدام المعادلة 1. من بين 24 خطراً، تم تصنيف 14 على أنها منخفضة، و8 متوسطة، و2 عالية.</p>
+  </section>
+
+  <section>
+    <h2>5. التحقق من الصحة</h2>
+    <p>يتكون التحقق من صحة الطريقة في هذه الحالة من مرحلتين، وهما التحقق من النتائج والتحقق من سهولة استخدام الطريقة. من أجل التحقق من النتائج، قمنا بمقارنة نتائجنا مع الإرشادات التطوعية المقدمة من [24]. برزت هذه الإرشادات في IMO في عام 2022 [21]. بالإضافة إلى iTrust، ساهمت هيئة الموانئ البحرية في سنغافورة (MPA) في تطوير الإرشادات [24]. تم استخدام صيغة تقييم المخاطر التقليدية، Risk = Severity × Likelihood، في الدراسة لتقييم المخاطر على ثلاثة مستويات: عالية ومتوسطة ومنخفضة. قارنا مستويات الخطر في [24] بتلك المستمدة من CRASH ووجدنا أن سبعة منها كانت متطابقة، كما هو موضح في الجدول 14. علاوة على ذلك، تم تقييم خمسة من هذه المخاطر في نفس مستوى الخطر.</p>
+    <p>في المرحلة الثانية من عملية التحقق، اختبرنا سهولة استخدام طريقتنا من خلال مقابلات مع 10 مهنيين بحريين. يوضح الجدول 15 قائمة بالمقابلات وأسباب اختيار كل فرد لضمان مجموعة واسعة من الخبرات. أعددنا عرضاً تقديمياً من جزأين: الجزء الأول وصف الطريقة، والجزء الثاني قدم مثالاً على تقييم المخاطر لهجمات تشويش GPS وانتحال GPS. خلال المقابلات، تم استخدام مثال مختلف لم يره المشاركون من قبل. تم دعوة المشاركين لتقييم خطر انتحال سفن AIS بأنفسهم باستخدام CRASH.</p>
+    <p>لم يكن المشاركون، باستثناء مرشحي الدكتوراه، على دراية بالجوانب التقنية للهجمات السيبرانية مثل انتحال GPS وتشويش GPS وانتحال سفن AIS. ومع ذلك، فقد عانوا من هجمات تشويش GPS أثناء خدمتهم البحرية وكانوا على دراية بالمواقف الخطرة مثل فقدان التوجيه والدفع ونظام الغاز الخامل. تم بنجاح تحديد شدة هجوم انتحال سفن AIS بسرعة وسهولة وثبات من قبل جميع المقابلات على أنها "التلاعب بالمعلومات الحيوية". أظهرت المقابلات أن CRASH سهلة الاستخدام ولا تتطلب استخدام برامج، وتقلل الحاجة إلى الأحكام الخبيرة، وهي مشابهة لصيغة تقييم المخاطر البحرية التقليدية.</p>
+  </section>
+
+  <section>
+    <h2>6. الملخص والبحوث المستقبلية</h2>
+    <p>تمشياً مع جهود IMO في تعزيز الأمن السيبراني في القطاع البحري، تم اقتراح CRASH، وهي طريقة لتقييم المخاطر السيبرانية للسفن. تتكون CRASH من ثلاثة عناصر خطر: الشدة والاحتمال والأهمية، ويتم حساب الخطر الإجمالي كحاصل ضرب هذه العناصر الثلاثة. يهدف CRASH إلى تقليل دور الذاتية الذي قد يكون موجوداً في طرق تقييم المخاطر التقليدية حيث يكون احتمال واحتمالية التأثير ذاتيين إلى حد ما.</p>
+    <p>لـ CRASH مزايا كبيرة: تطبيقها سهل ولا يتطلب استخدام برامج. علاوة على ذلك، تقلل الطريقة من الحاجة إلى الأحكام الخبيرة. أخيراً، إنها مشابهة لصيغة تقييم المخاطر البحرية التقليدية، مما يسهل على المهنيين ذوي الخبرة في المجال البحري التعرف عليها وتطبيقها. يشير إلى ذلك حقيقة أنه على الرغم من أن المقابِل رقم 5 لم يكن على دراية كاملة بالمخاطر السيبرانية، إلا أنه نجح في تطبيق الطريقة. وبالتالي، يمكن استخدام CRASH من قبل مشغلي السفن لإجراء تقييمات فعالة للمخاطر السيبرانية بدلاً من الاعتماد على قيم الاحتمال والشدة المختارة بشكل شخصي في طرق تقييم المخاطر التقليدية.</p>
+    <p>ومع ذلك، فإن لـ CRASH بعض العيوب: فهي تتطلب تقييماً شاملاً للمخاطر السيبرانية، بما في ذلك نقاط الضعف المعروفة والحوادث السيبرانية السابقة، والتي يجب الحصول عليها من الأدبيات والخبرة. بالإضافة إلى ذلك، فإن التفاصيل التقنية والتشغيلية للسفينة ضرورية، والخبرة البحرية حاسمة لتحديد التبعيات والتكرارات للمكونات المخترقة. تم تقييم 24 خطراً مرتبطاً بنظام INS في هذه الورقة. من خلال تطبيق CRASH، قيمت الدراسة 14 خطراً على أنها منخفضة، و8 مخاطر على أنها متوسطة، وخطرين على أنها عالية، مما يسلط الضوء على أهمية وجود تدابير مناسبة لتخفيف المخاطر. يمكن للدراسات المستقبلية استخدام CRASH لتقييم المخاطر السيبرانية للأنظمة في مواقع أخرى على متن السفينة، مثل غرفة المحركات أو غرفة التحكم في البضائع.</p>
+  </section>
+
+  <section>
+    <h2>شكر وتقدير</h2>
+    <p>نود أن نعرب عن خالص امتناننا للخبراء على تعليقاتهم التي ساهمت في تحسين دراستنا.</p>
+    <p>تلقت هذه الورقة تمويلاً من مجلس البحوث النرويجي من خلال مشروع المرونة السيبرانية البحرية (MarCy، رقم المشروع 295077) ومركز SFI النرويجي للأمن السيبراني في القطاعات الحيوية (NORCICS، رقم المشروع 310105). يعكس المحتوى آراء المؤلفين فقط، ولا يتحمل مجلس البحوث النرويجي ولا شركاء المشروع المسؤولية عن أي استخدام قد يتم للمعلومات التي يحتويها.</p>
+  </section>
+
+  <section>
+    <h2>المراجع</h2>
+    <p>قائمة المراجع الكاملة (48 مصدراً) متاحة في <a href="https://doi.org/10.12716/1001.18.01.10" target="_blank">الملف الأصلي للPDF</a>.</p>
+  </section>
+</div>
+
+<!-- ENGLISH -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>The maritime industry is undergoing a digital transformation, with an increasing integration of Information Technology (IT) and Operational Technology (OT) systems on modern vessels. Its multiple benefits notwithstanding, this transformation brings with it increased cybersecurity risks, that need to be identified, assessed, and managed. Although several cyber risk assessment methodologies are available in the literature, they may be challenging for experts with a maritime background to use. In this paper we propose a simple and effective cyber risk assessment methodology, named Cyber Risk Assessment for SHips (CRASH), that can be easily implemented by maritime professionals. To showcase its workings, we assessed 24 cyber risks of the Integrated Navigation System (INS) using CRASH and we validated the method by comparing its results to those of another method and by means of interviews with experts in the maritime sector. CRASH can aid shipping companies in effectively assessing cyber risks as a step towards selecting and implementing necessary measures to enhance the cyber security of cyber-physical systems onboard their vessels.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Given that approximately 80% of world trade by volume is carried out by vessels, sea transportation has a privileged place compared to other transportation modes [48]. The maritime sector has for some time been actively engaged with the digitalization of both shore and onboard systems and operations, leading to the digitally transformed shipping industry, also called "Shipping 4.0" [25].</p>
+    <p>Its multiple benefits notwithstanding, this transformation brings with it increased cybersecurity risks. Several cyber attacks have occurred in the maritime industry, and some of them have been suspected to be state-sponsored [37]. For example, in 2019, it was reported that 1,311 civilian ships were affected by Global Navigation Satellite System (GNSS) spoofing attacks between 2016 and 2018 [10]. In April 2016, a Global Positioning System (GPS) jamming attack impacted around 280 vessels off the coast of South Korea [14]. In June 2017, more than 20 vessels were exposed to a GPS jamming attack in the Black Sea [13]. In February 2017, malicious actors took control of the navigation system of an 8,250 TEU container vessel en route from Cyprus to Djibouti for 10 hours [8]. In April 2017, a modern U.S. destroyer had all its RADAR sets disabled by a Russian jet (Su-24) [34]. Additionally, the Electronic Chart Display and Information System (ECDIS) on a dry bulk vessel was infected with malware, resulting in financial losses due to delays in sailing and in ECDIS repair costs [7]. In another case, the power management system and administrative network of two different ships were infected with malware via a USB flash drive [7]. A more comprehensive account is given by Meland et al., who discuss 46 maritime cyber incidents that occurred between 2010 and 2020 [32].</p>
+    <p>In light of these findings, of the increased financial value of the sector [27], and of the multitude of potential attackers, including such with advanced capabilities, the promotion of cyber security and safety of the maritime ecosystem becomes very important. Maritime is a highly standardized sector, and maritime functions and operations are governed by corresponding standards and regulations. In 2017, the IMO published a circular to promote safe and secure shipping against cyber risks [23]. According to the circular, maritime companies must address cyber risks in their Safety Management System (SMS) by 01 January 2021. As of 02 January 2021, this requirement started to be verified in the Document of Compliance (DOC) audits of maritime companies. The International Electrotechnical Commission (IEC) published a standard in 2021 to specify requirements, testing methods, and required test results against cyber incidents for shipborne navigational components [19].</p>
+    <p>The first step towards strengthening the cyber security and resilience of an ecosystem is to understand, analyze, and manage the cyber risks that it faces. Several cyber risk assessment methodologies are available in the literature, some of them specifically adapted to fit the needs of risk assessments in Cyber Physical Systems (CPS), such as those found onboard vessels. However, they may be challenging to use for experts with a maritime rather than a cybersecurity background. It must be noted that the involvement of sector experts in and their engagement with the assessment of cyber risks is paramount to obtaining accurate results. Note also that statistical data regarding cyber incidents in maritime is not available in the literature and various risk assessment methods make certain assumptions, regarding likelihood of occurrence, cost, and malicious actors. Therefore, their results depend heavily on expert judgement. To the best of our knowledge, a method that is easy for maritime domain experts to employ whilst also minimizing subjectivity, is yet to be proposed.</p>
+  </section>
+
+  <section>
+    <h2>2. Related Work</h2>
+    <p>In this paper we propose such a simple and effective cyber risk assessment method, named Cyber Risk Assessment for SHips (CRASH), that can be easily applied by maritime professionals. CRASH was designed to reduce the need for expert judgements in the cyber risk assessment process for marine systems. CRASH employs unveiled cyber threats and vulnerabilities in the literature, previous cyber incidents and shipborne system architectures, to assess cyber risks.</p>
+    <p>The remaining of the paper is organized as follows: Section 2 presents a review of the related literature. The CRASH method is presented in section 3. Section 4 showcases the workings of CRASH by applying it to assess cyber risks of the INS. In section 5, we present the methodology for verifying CRASH and the results of applying it. Finally, section 6 offers a summary and recommends some possible future research directions.</p>
+    <p>Several risk assessment methods have been proposed in the literature, including [47, 2, 28, 1, 17, 4, 31] and several cyber risk assessments by using diverse methods, including Fine-Kinney, Attack Tree, STRIDE, and DREAD, have been carried out both for conventional vessels and autonomous ships [24, 25, 26, 38, 42, 44]. Moreover, works proposing novel risk assessment methods against cyber risks onboard ships have also appeared in the literature [9, 33, 46]. A guideline [24] published by iTrust presents potential cyber risks and mitigation measures for communication, navigation, cargo management, propulsion machinery, and power control systems. Svilicic et al. [44] present a risk assessment for the ECDIS on a training vessel. Shang et al. [42] offered a cyber risk assessment method and applied it to a cyber risk scenario of the ship control system. Kavallieratos et al. [25, 26] adapted and applied well-established methods, namely STRIDE and DREAD, to assess the cyber risks of CPSs onboard autonomous ships. Another method for assessing cyber risks at sea is CYber-Risk Assessment for Marine Systems (CYRA-MS), proposed by Bolbot et al. [9].</p>
+    <p>Cyber security risk is associated with the potential that threats will exploit vulnerabilities of an asset or group of assets and thereby cause harm to an organization. Cyber risk is assessed in terms of the likelihood of a threat occurring, the extent of the vulnerabilities to the threat, and the magnitude of the impact should the threat materialize; these constitute the elements of cyber risk. However, other choices for the elements of risk are possible. The SEP method [47] considers Severity, Exposure, and Probability as elements of risk. The Failure Modes and Effects Analysis (FMEA) method [2] assesses the failure risk of a component or system. Like SEP, it also assumes three elements of risk, namely Severity, Occurrence, and Detection. The overall risk score — called Risk Priority Number (RPN) — is calculated by multiplying the three element scores. The Fine-Kinney method [28] also assumes three risk elements, namely Consequence, Likelihood, and Exposure. All these methods are quantitative and use a linear combination of the values of the risk elements to calculate the overall risk score.</p>
+  </section>
+
+  <section>
+    <h2>3. CRASH: Cyber Risk Assessment for Ships</h2>
+    <p>Several studies in the literature estimate risk levels by considering a combination of safety, financial, environmental, or reputation impact. However, each impact type may result in a different risk level. Therefore, assessing impacts individually would result in a more accurate risk assessment, as shown in [16]. The CRASH approach focuses only on the safety impact of cyber attacks against components and systems onboard ships. In this study, safety impact refers to the occurrence of a situation that may lead to a marine accident causing harm to people or the environment [36]. Potential consequences other than safety, such as financial, environmental, or reputation, are beyond the scope of the method. Risk management, including risk mitigation measures and reassessing risks, is also outside the scope.</p>
+
+    <h3>3.1 Elements of risk</h3>
+    <p>CRASH assumes three elements of risk, namely Severity, Probability, and Criticality. The overall cyber risk is calculated according to equation 1. The correspondence between numerical risk scores and qualitative risk levels in CRASH is depicted in Table 1.</p>
+    <p style="direction:ltr;text-align:center;font-family:monospace;padding:0.5rem;background:var(--bg-2);border-radius:4px">Risk = Severity (S) × Probability (P) × Criticality (C)</p>
+
+    <h3>3.1.1 Severity</h3>
+    <p>Severity is a measure of the impact caused by a cyber attack against systems onboard a ship. Two distinct flows are distinguished in marine systems, namely information flows and control flows. Both information and control signals may suffer from loss or manipulation. Loss refers to potential damages to availability and manipulation refers to potential damages to integrity. In assessing the severity value, several aspects should be considered.</p>
+    <p>The criticality of each information and control signal depends on the functions and operations that the signal is being used by. For instance, the position of own ship is more critical compared to the volume control or volume information of a GPS receiver. Further, the importance level varies under different threat scenarios. Accordingly, many factors such as ship type, position, weather and sea conditions, etc. should be considered during a cyber risk assessment. In the CRASH approach, the expert should determine whether the loss/manipulation of control or information is critical or not for ship operations. Manipulation of control/information is more dangerous than the loss of control/information at the same criticality level because it is more difficult to detect by seafarers or systems onboard ships. For instance, GPS spoofing (manipulation of information) [6] is riskier than GPS jamming (loss of information) [15] because it is harder to detect by the Officer On Watch (OOW) [18].</p>
+    <p>According to the International Safety Management (ISM) Code, "The Company should identify equipment and technical systems, the sudden operational failure of which may result in hazardous situations" [20]. The Oil Companies International Marine Forum (OCIMF) has classified hazardous situations as follows [36]: loss of steering; loss of propulsion; loss of power; loss of inert gas system; loss of gas monitoring system; loss of cargo/ballasting monitoring equipment; loss of mooring. According to the OCIMF, loss of the stated functions may cause a marine casualty, which may harm people and/or the environment [36]. Accordingly, a potential cyber attack which may cause loss of such functions is considered to be a hazardous situation and it is assessed as having the highest severity level.</p>
+
+    <h3>3.1.2 Probability</h3>
+    <p>Probability measures the likelihood that a threat exploits a vulnerability or a set of vulnerabilities [41]. As there is very limited statistics of cyber incidents in the maritime industry, a purely quantitative approach to determining the likelihood is not possible. Instead, CRASH assumes four levels of such likelihood, namely None, that denotes a virtually impossible attack; Unlikely, that denotes the existence of possible scenarios; Possible, that reflects cases whose possibility of occurrence has been verified by experimental research; and Likely that reflects cases of cyber incidents that have actually occurred in the real world. If more than one option exists (e.g. both "occurred cyber incident" and "experimental research result"), the higher value is assigned.</p>
+
+    <h3>3.1.3 Criticality</h3>
+    <p>Criticality measures the dependence on information or systems to achieve necessary functions and operations [35]. The value of criticality depends on two factors: redundancy and dependency. Redundancy denotes the existence of a backup system or component, while dependency denotes that a component requires another component to run reliably. Additionally, some components may be required to be connected to another component due to IMO requirements. In case of a cyber attack against a component, the dependent components would be affected negatively. Accordingly, dependency is significant in terms of chain impact. Redundancy is an essential mitigation measure against cyber attacks as well as against failures. Critical systems on board ships must be equipped with redundant components. The value of the criticality component in CRASH is determined by considering the Criticality Matrix. Redundancy may take on one of three values: available, partly, or unavailable. Three values for dependency are assumed: No dependent component, One dependent component or More than one dependent components for the hazardous situations.</p>
+  </section>
+
+  <section>
+    <h2>4. Application of CRASH to the INS</h2>
+    <p>Modern vessels are equipped with various computerized systems serving different purposes, including navigation, propulsion, communication, cargo handling, safety, and security. Undoubtedly, the Integrated Navigation System (INS) is one of the most critical systems onboard ships. The INS supports the OOW for safe navigation, by receiving data from several components, combining them, and providing timely alerts regarding dangerous situations at sea [22]. The INS consists of several compulsory and elective components, including the Automatic Identification System (AIS), the GNSS, the Multifunctional Display (MFD), the RADAR, and the ECDIS. Several studies revealed the cyber threats and vulnerabilities of such components as well as of the INS as a whole [5, 6, 29]. Several cyber incidents targeted INS and its vulnerabilities have been extensively analyzed in the literature [39, 43, 30, 29]. Accordingly, the INS was selected to illustrate the workings of CRASH.</p>
+    <p>The application was performed in nine steps: (1) identification of the system and components; (2) identification of cyber risks; (3) identification of the redundancies; (4) identification of the dependencies; (5) determination of the severity; (6) determination of the probability; (7) determination of the criticality; (8) calculation of the risk score; (9) analysis of risks.</p>
+    <p>The INS comprises 25 different components for different purposes, such as determining the heading, position, or speed [40]. The cyber risks of components were identified by means of a literature review. Not only academic papers but also other sources, such as websites, magazines, white papers, and guidelines, were scanned to find additional cyber threats, vulnerabilities, and incidents. A total of 24 risks associated with the INS were identified. Eight INS components are exposed to cyber risks: the AIS, the BNWAS, the control for the main engine (M/E), the ECDIS, the GPS, the indicator, the MFD, and the RADAR.</p>
+    <p>The redundancy status of each component was analyzed. For example, a RADAR unit has a redundant RADAR unit, but during a RADAR jamming attack, both RADARs would be affected [34]. All possible dependencies between the components of an INS as per the IMO requirements were analyzed [40]. Severity, probability, and criticality values were determined as described in Sections 3.1.1–3.1.3. Numerical risk scores were calculated using equation 1. Of the 24 risks, 14 were classified as low, eight as medium, and two as high.</p>
+  </section>
+
+  <section>
+    <h2>5. Validation</h2>
+    <p>Method validation in this case consists of two phases, namely validating the results and validating the user-friendliness of the method. In order to validate the results, we compared our findings with the voluntary guidelines provided by [24]. These guidelines came to the fore in the IMO in 2022 [21]. In addition to iTrust, the Maritime and Port Authority of Singapore (MPA) contributed to the development of the guidelines [24]. The traditional risk assessment formula, Risk = Severity × Likelihood, was used in the study to assess risks at three levels: high, medium, and low. We compared the risk levels in [24] to those derived by CRASH and found that seven of them were the same, as shown in Table 14. Moreover, five of these risks were assessed at the same risk level.</p>
+    <p>In the second phase of the validation process we tested the user-friendliness of our method by means of interviews with 10 marine professionals. Table 15 depicts the list of interviewees and the reason for selecting each individual, so as to ensure a broad spectrum of expertise and experience. We prepared a presentation in two parts. The first part described the method. The second part presented an example risk assessment for GPS jamming and GPS spoofing attacks. During the interviews a different example, not seen by the interviewees before the interview, was used. The interviewees were invited to assess the risk of AIS ship spoofing by applying CRASH on their own.</p>
+    <p>The interviewees, except for those among them that are Ph.D. candidates, were not familiar with technical aspects of cybersecurity attacks such as GPS spoofing, GPS jamming, and AIS ship spoofing. However, they had experienced GPS jamming attacks during their sea services and were aware of hazardous situations, such as loss of steering, propulsion, and inert gas system. The severity of the AIS ship spoofing attack was successfully, quickly, easily, and consistently by all interviewees identified as Manipulation of Critical Information. The interviews demonstrated that CRASH is easy to use, does not require software, reduces the need for expert judgements, and is similar to the traditional maritime risk assessment formula.</p>
+  </section>
+
+  <section>
+    <h2>6. Summary and Future Research</h2>
+    <p>In line with IMO efforts in promoting cyber security in the maritime sector, CRASH, a cyber risk assessment method for ships, has been proposed. CRASH consists of three risk elements: Severity, Probability, and Criticality, and the total risk is calculated as the product of these three elements. CRASH aims to reduce the role of subjectivity that may be present in traditional risk assessment methods where probability and impact likelihood are somewhat subjective.</p>
+    <p>CRASH has significant advantages: its application is easy and does not require the use of software. Furthermore, the method reduces the need for expert judgements. Lastly, it is similar to the traditional maritime risk assessment formula, making it easy for experienced professionals with a maritime background to familiarize themselves with and apply. Indicative of this is the fact that even though interviewee #5 was not fully aware of cyber risks, he successfully applied the method. Thus, CRASH can be used by ship operators to perform effective cyber risk assessments instead of relying on subjectively selected likelihood and severity values in traditional risk assessment methods.</p>
+    <p>However, CRASH also has some drawbacks: it requires a thorough assessment of cyber risks, including known vulnerabilities and past cyber incidents, which must be obtained from the literature and experience. Additionally, technical and operational details of the vessel are necessary, and sea experience is crucial to identifying dependencies and redundancies of compromised components. 24 risks associated with the INS were assessed in this paper. By applying CRASH, the study assessed 14 risks as low, 8 risks as medium, and 2 risks as high, highlighting the importance of having appropriate risk mitigation measures in place. Future studies could use CRASH to assess the cyber risks of systems in other locations onboard, such as the engine room or the cargo control room.</p>
+  </section>
+
+  <section>
+    <h2>Acknowledgments</h2>
+    <p>We would like to express our sincere gratitude to experts for their comments towards improving our study.</p>
+    <p>This paper has received funding from the Research Council of Norway through the Maritime Cyber Resilience (MarCy, project number 295077) project and the SFI Norwegian Centre for Cybersecurity in Critical Sectors (NORCICS, project number 310105). The content reflects only the authors' views, and neither the Research Council of Norway nor the project partners are responsible for any use that may be made of the information it contains.</p>
+  </section>
+
+  <section>
+    <h2>References</h2>
+    <p>Full reference list (48 sources) available in the <a href="https://doi.org/10.12716/1001.18.01.10" target="_blank">original PDF</a>.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.12716/1001.18.01.10">10.12716/1001.18.01.10</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('toggle-' + (lang === 'both' ? 'both' : lang)).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side'); el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    for (var i = 0; i < Math.min(arSections.length, enSections.length); i++) {
+      var pair = document.createElement('div'); pair.className = 'compare-section';
+      var enCol = document.createElement('div'); enCol.className = 'compare-en';
+      var enLabel = document.createElement('div'); enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH'; enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div'); arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div'); arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية'; arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol); pair.appendChild(arCol); container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  // Update toggle button labels based on language
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare';
+  // Update AR/EN buttons
+  document.getElementById('toggle-ar').textContent = isAr ? '🇸🇦 العربية' : '🇸🇦 العربية';
+  document.getElementById('toggle-en').textContent = isAr ? '🇬🇧 الإنجليزيّة' : '🇬🇧 English';
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

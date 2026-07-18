@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نحو نطاق سيبراني-فيزيائي لنظام الملاحة المتكامل — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Towards a Cyber-Physical Range for the Integrated Navigation System (INS)</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نحو نطاق سيبراني-فيزيائي لنظام الملاحة المتكامل (INS)</h2>
+
+  <div class="paper-meta">
+    <span>👤 Aybars Oruc, Vasileios Gkioulos, Sokratis Katsikas</span>
+    <span>📄 J. Mar. Sci. Eng. 2022, 10(1), 107</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse10010107">10.3390/jmse10010107</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ARABIC -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>طُرح مفهوم الملاحة الإلكترونية (e-navigation) من قبل المنظمة البحرية الدولية (IMO) لتعزيز الملاحة من الرصيف إلى الرصيف نحو تحسين حماية البيئة والسلامة والأمن في البحر من خلال الاستفادة من التقدم التكنولوجي. على الرغم من وجود عدد من منصات اختبار الملاحة الإلكترونية بما في ذلك بعض تلك المعترف بها من قبل الرابطة الدولية لمساعدات الملاحة والمنارات (IALA)، إلا أنها تتعلق بأجزاء فقط من مفهوم نظام الملاحة المتكامل (INS). علاوة على ذلك، لا تمتلك منصات اختبار الملاحة الإلكترونية والجسر الحالية وظيفة اختبار الأمن السيبراني، وبالتالي لا يمكن استخدامها لتقييم الوضع الأمني السيبراني لنظام الملاحة المتكامل. مع تزايد مخاوف الأمن السيبراني في المجال البحري، من المهم توفير هذه القدرة. في هذه الورقة، نستعرض منصات اختبار الجسر الحالية، ولوائح المنظمة البحرية الدولية، والمعايير الدولية، أولاً لتحديد بنية مرجعية لنظام الملاحة المتكامل ثم لتطوير مواصفات تصميم لنطاق سيبراني-فيزيائي لنظام الملاحة المتكامل، أي منصة اختبار لنظام الملاحة المتكامل مع وظيفة اختبار الأمن السيبراني.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>لا تزال الحوادث البحرية تحدث على الرغم من التقدم التكنولوجي واللوائح الصادرة. في الواقع، 54٪ من إجمالي 1801 حادث بحري وقع بين عامي 2014 و 2019 كان بسبب الخطأ البشري، بينما 28٪ كان بسبب فشل النظام أو المعدات [1]. نظراً لاعتماد السفن الحديثة على المعلومات للملاحة الآمنة [2]، قدمت المنظمة البحرية الدولية مفهوم "الملاحة الإلكترونية" لتوفير المعلومات والبنية التحتية الرقمية لتعزيز السلامة والأمن والكفاءة في المجال البحري [3]. وفقاً للمنظمة البحرية الدولية، الملاحة الإلكترونية هي "مجموعة منسقة ودمج وتبادل وعرض وتحليل المعلومات البحرية على متن السفينة وعلى الشاطئ بوسائل إلكترونية لتعزيز الملاحة من الرصيف إلى الرصيف والخدمات ذات الصلة للسلامة والأمن في البحر وحماية البيئة البحرية" [3].</p>
+    <p>أحد العناصر المهمة للملاحة الإلكترونية هو نظام الملاحة المتكامل (INS)، المُعرف بأنه "نظام يتم فيه دمج المعلومات من وسيلتين ملاحيتين أو أكثر بطريقة تكافلية لتوفير مخرجات تتفوق على أي من الوسائل المكونة" [4]. يجمع نظام الملاحة المتكامل المعلومات الواردة من الأجهزة المختلفة على متن السفينة لتحسين سلامة الملاحة من خلال مساعدة ضابط المناوبة (OOW) في تخطيط ومراقبة ملاحة السفينة [5]. يتم توفير البيانات للمشغل في الوقت الفعلي وبدقة. علاوة على ذلك، ينبه نظام الملاحة المتكامل المشغل فوراً حول المواقف الخطرة أو أعطال المعدات [5]. يعزز نظام الملاحة المتكامل الوعي الظرفي للمشغل على الجسر، ويتألف من ست مهام ملاحية: مراقبة المسار، تخطيط المسار، تجنب الاصطدام، بيانات التحكم في الملاحة، عرض الحالة والبيانات الملاحية، وإدارة التنبيهات.</p>
+    <p>على الرغم من تحديد الغرض والوظائف التي يؤديها نظام الملاحة المتكامل، لا توجد قائمة عامة بالأجهزة التي تشكل نظام الملاحة المتكامل. هذا يعود إلى حد كبير إلى عدة عوامل مثل الحمولة الإجمالية للسفينة، نوع السفينة، منطقة الملاحة، وتاريخ بناء السفينة، والتي تؤثر بشكل مباشر على المعدات التي يتم تركيبها على متن السفينة. يؤدي اختبار التقنيات المطورة على جسور السفن الحقيقية إلى تكاليف عالية ومخاطر سلامة؛ ولهذا السبب قد يتم تقسيم عملية التطوير إلى مراحل مختلفة [8]. يمكن استخدام أجهزة المحاكاة في مراحل التطوير المبكرة. ومع ذلك، لا يمكن لأجهزة المحاكاة التقاط جميع جوانب التكنولوجيا المطورة، لذلك قد لا يزال نقل هذه التقنيات إلى السفن الحقيقية يخلق مشاكل [8]، يمكن تجنبها باستخدام منصة اختبار بدلاً من ذلك.</p>
+    <p>تعاني أنظمة الملاحة المتكاملة، مثل غيرها من الأنظمة البحرية على متن السفن وعلى الشاطئ، من عدد من الثغرات الأمنية السيبرانية [10–12]. علاوة على ذلك، تم تطوير عدة منتجات للتخفيف من التهديدات السيبرانية ضد السفن [13،14]. نظراً لأن هذه التقنيات الناشئة قد تنطوي بطبيعتها على مخاطر سيبرانية، يجب التحقق منها في بيئة آمنة قبل تثبيتها في شبكة السفينة. وبالتالي، بالإضافة إلى استخدام منصة اختبار لأغراض التحقق والتحقق من صحة نظام الملاحة المتكامل، يمكن استخدام نفس المنصة، المعززة بوظيفة اختبار الأمن السيبراني، لتحليل الأمن السيبراني لنظام الملاحة المتكامل.</p>
+    <p>في هذه الورقة، نقوم أولاً بالتحقيق في مكونات نظام الملاحة المتكامل من حيث المكونات الفرعية والخدمات والبيانات وتدفق البيانات وبروتوكولات الاتصال والواجهات والاتصالات والتبعيات، لتحديد بنية مرجعية لنظام الملاحة المتكامل. ثم نستعرض ونحلل منصات اختبار الجسر الحالية من حيث الأدوات والنماذج المعمارية والقدرات والوظائف وبروتوكولات الاتصال وأمثلة البحث والمعايير والأطر، نحو تحديد بنية منصة اختبار نظام الملاحة المتكامل القادرة أيضاً على تحليل الوضع الأمني السيبراني لنظام الملاحة المتكامل قيد الدراسة. مساهمتنا ثلاثية: (1) نقدم قائمة كاملة بمكونات نظام الملاحة المتكامل مع جميع المكونات وتفاعلاتها، إلى جانب القواعد واللوائح والمعايير الدولية المرتبطة بها؛ (2) نقدم مراجعة منهجية للأدبيات للمنشورات حول منصات اختبار الجسر؛ (3) نقترح بنية لنطاق سيبراني-فيزيائي، أي منصة اختبار متمكنة أمنياً لنظام الملاحة المتكامل.</p>
+  </section>
+
+  <section>
+    <h2>2. الأعمال ذات الصلة</h2>
+    <h3>2.1. نظام الملاحة المتكامل ومكوناته</h3>
+    <p>يبدو أن الأدبيات الأكاديمية فقيرة في المصادر المتعلقة بتكوين ووظائف نظام الملاحة المتكامل. في [11]، تُعرض نتائج مسح لأنظمة الملاحة المتكامل المقدمة من 35 بائعاً. تم استخدام النتائج لتطوير نموذج مبسط لنظام الملاحة المتكامل النموذجي الذي يُستخدم لاحقاً كأساس لمناقشة التدابير التشفيرية لتحسين حماية سلامة بيانات الملاحة في أنظمة الملاحة المتكامل. تحدد قراران معايير أداء نظام الملاحة المتكامل، وهما القرار MSC.252(83) "اعتماد معايير الأداء المنقحة لأنظمة الملاحة المتكاملة" [5–7]، والقرار MSC.86(70) الملحق 3 "توصية بشأن معايير الأداء لنظام الملاحة المتكامل" [16].</p>
+    <p>يشير القرار MSC.252(83) مباشرة إلى بعض مكونات نظام الملاحة المتكامل. كما يشير إلى وثيقتين مرتبطتين بالمنظمة البحرية الدولية: الفصل الخامس من اتفاقية SOLAS "سلامة الملاحة"، اللائحة 19 "متطلبات النقل لأنظمة ومعدات الملاحة على متن السفن"، و MSC/Circ.982 "المبادئ التوجيهية بشأن المعايير الهندسية البشرية لمعدات وتخطيط الجسر". لا يتوفر نموذج لأنظمة الملاحة المتكامل مع معلومات مفصلة عن المكونات وتفاعلاتها.</p>
+
+    <h3>2.2. الشبكات</h3>
+    <p>تُستخدم شبكات IEC 61162-3 (أي NMEA 2000) و 61162-450 عادة على متن السفن. كما يمكن استخدام شبكة IEC 61162-460 للحصول على شبكة أكثر أمناً. شبكة NMEA 2000 منظمة في خمس طبقات: الطبقة المادية، طبقة ارتباط البيانات، طبقة الشبكة، طبقة التطبيق، وإدارة الشبكة. توجد أدوات (مثل Sail Soft NMEA Studio، Maretron N2K Analyzer، NMEA Reader) يمكن استخدامها لتصميم وتحليل شبكة NMEA [18].</p>
+    <p>بالإضافة إلى ذلك، يصدر الاتحاد الدولي للاتصالات (ITU) معايير فنية للترابط بين الشبكات والتقنيات، ويخصص الطيف الراديوي العالمي والمدارات الفضائية [19]. توفر التوصية ITU-R M.1371-5 [20] مواصفات متعلقة بنظام التعريف الآلي (AIS)، وتحدد ITU-R M.823 [21] الترددات لنظام تحديد المواقع العالمي التفاضلي (DGPS) حسب المنطقة.</p>
+
+    <h3>2.3. منصات الاختبار</h3>
+    <p>من أجل تحديد المنشورات ذات الصلة، تم إجراء مراجعة منهجية للأدبيات (SLR) باتباع المنهجية في [22]. كان الهدف من هذه المراجعة دراسة بيئات منصات اختبار الجسر الحديثة مع التركيز الصريح على السفن السطحية، لتحديد وتصنيف النماذج المعمارية الحالية، والأدوات البرمجية والعتادية المستخدمة في بيئات منصات اختبار الجسر المعاصرة.</p>
+    <p>أجريت مراجعة الأدبيات في المكتبة الرقمية ACM، IEEE Xplore، ScienceDirect، Springer Link، و Wiley Online Library. تم استخدام سلسلة البحث "(("maritime") OR ("marine")) AND (("ship") OR ("vessel")) AND (("testbed") OR ("test-bed") OR ("test bed"))". تم النظر فقط في التقارير الفنية والمقالات العلمية المنشورة في المؤتمرات وورش العمل والمجلات باللغة الإنجليزية، بين يناير 2010 وديسمبر 2020. أسفر البحث الأولي عن 9437 مقالة يحتمل أن تكون ذات صلة، تم تقليصها إلى 16 مقالة بعد ثلاث مراحل من التقييم.</p>
+    <p>حددت المراجعة منهجتي اختبار للجسر: منصة eMaritime Integrated Reference (eMIR) [38]، التي طورتها الأوساط الأكاديمية، ومنصة اختبار نظام دعم تجنب الاصطدام الذكي من هيونداي (HiCASS) [24]، التي طورتها الصناعة. من بين الاثنتين، منصة eMIR هي من بين تلك المعترف بها من قبل الرابطة الدولية لمساعدات الملاحة والمنارات (IALA)، بينما منصة HiCASS ليست كذلك. لم يتم العثور على منصات اختبار تستهدف نظام الملاحة المتكامل بشكل صريح.</p>
+    <p>تتكون eMIR من منصة متنقلة، حقل اختبار، مختبر تحقق وتحقق من الصحة (V&V)، وما إلى ذلك. LABSKAUS هو الجزء المادي من منصة eMIR، و HAGGIS هو جزء المحاكاة. يعتمد LABSKAUS على ثلاث طبقات: السفينة والبيئة والنظام. تسمح eMIR بالاتصال بأجهزة استشعار مختلفة مثل GPS والبوصلة ونظام التعريف الآلي عبر صندوق استشعار يسمى NaviBox.</p>
+    <p>بالمقارنة، لم يتم تطوير eMIR لأي تطبيقات بحرية محددة، بينما تم تطوير HiCASS خصيصاً لاختبار نظام HiCASS. منصة eMIR مرنة للغاية من حيث القدرات، والتي تشمل تقييم المخاطر واختبارات أداء المكونات. على الجانب الآخر، يتم نشر HiCASS على سفينة حقيقية ولا يمكن تشغيله إلا ببيانات استشعار حقيقية. تتضمن eMIR أدوات لأغراض المحاكاة والتحليل المتنوعة، مثل تحليل السلوك البشري والبيئة الواقعية والحركة البحرية.</p>
+    <p>بينما تعد إمكانية التنقل ميزة لكلتا المنصتين، تتوفر أيضاً منصة ثابتة لـ eMIR. تم اختبار كلا المنصتين على متن السفن. علاوة على ذلك، تم تطوير صندوق استشعار لتوصيل أجهزة الاستشعار في كليهما. يتمتع صندوق استشعار eMIR بالقدرة على نقل البيانات إلى مواقع بعيدة عبر LTE؛ ولا تتمتع منصة هيونداي بهذه الوظيفة.</p>
+
+    <h3>2.4. الأمن السيبراني لنظام الملاحة المتكامل</h3>
+    <p>أصبح الأمن السيبراني على متن السفن مصدر قلق كبير في الآونة الأخيرة، حيث تقدم المنظمة البحرية الدولية والعديد من المنظمات الأخرى إرشادات حول كيفية معالجته. تم إجراء مسح متعلق بالأمن السيبراني على نظام الملاحة المتكامل في [11]، حيث تم التحقيق في جوانب مختلفة مثل أنظمة التشغيل (مثل Windows و Linux)، والشبكات (مثل الإيثرنت، ناقل CAN)، وإمكانية الاتصال بالإنترنت، وتكامل أجهزة الاستشعار، والطيار الآلي المتحكم به بواسطة نظام عرض الخرائط الإلكترونية ومعلوماتها (ECDIS) لـ 22 نظام ملاحة متكامل في السوق.</p>
+    <p>كشف مؤلفو [10] عن الثغرات السيبرانية لنظام الملاحة المتكامل على سفينة من نوع الدحرجة (RO-RO). تم إجراء تحليل الثغرات باستخدام الماسح الضوئي للثغرات Nessus Professional [39]. بعد مسح نظام الملاحة المتكامل، أنتج الماسح الضوئي تقريراً يتألف من 27 معلومة، صُنفت أربع منها كثغرات في النظام. تم تقديم التهديدات والثغرات السيبرانية في نظام الجسر المتكامل (IBS) في [40].</p>
+    <p>تُستخدم محاكيات الجسر لتدريب الطلاب والبحارة لتحسين مهاراتهم الملاحية. استخدم باحثون من جامعة تالين للتكنولوجيا محاكيات الجسر للتدريب على الأمن السيبراني البحري [42]، وناقش باحثون من جامعة بليموث الجمع بين نطاق سيبراني ومحاكي جسر كامل المهام للجوانب الفنية لأبحاث الأمن السيبراني [43]. ومع ذلك، على الرغم من استخدام منصات اختبار الجسر الحالية لبعض الأغراض المتعلقة بالأمن السيبراني، إلا أنها لم تُستخدم لتقييم الوضع الأمني السيبراني لنظام الملاحة المتكامل.</p>
+  </section>
+
+  <section>
+    <h2>3. تكوين نظام الملاحة المتكامل</h2>
+    <p>تؤثر متطلبات دولة العلم ومتطلبات الفئة وخصائص منتجات الشركات المصنعة وقرارات المالك بشكل مباشر على المعدات في نظام الملاحة المتكامل. نظراً لأن المنظمة البحرية الدولية تحدد الحد الأدنى من المتطلبات الدولية للدول الأعضاء، فإن قواعد ولوائح المنظمة البحرية الدولية تشكل خط الأساس لهذه الدراسة. تم تحديد قائمة مكونات نظام الملاحة المتكامل وفقاً للوثائق المذكورة في القسم 2.1.</p>
+
+    <h3>3.1. مكونات نظام الملاحة المتكامل</h3>
+    <p>يقدم الجدول 2 مكونات نظام الملاحة المتكامل مع أسمائها البديلة، حيثما ينطبق، والوثيقة ذات الصلة من المنظمة البحرية الدولية. تشمل المكونات: مقياس شدة الريح (Anemometer)، نظام التعريف الآلي (AIS)، نظام مراقبة مناوبة الجسر (BNWAS)، واجهة إدارة التنبيهات المركزية البشرية الآلية (HMI)، عناصر التحكم في المحرك الرئيسي والدفة والمُعزز، مقياس العمق الصدى (Echo-sounder)، نظام عرض الخرائط الإلكترونية ومعلوماتها (ECDIS)، نظام تحديد المواقع العالمي (GPS)، البوصلة الجيروسكوبية (Gyro compass)، نظام التحكم في الاتجاه (HCS)، المؤشرات، البوصلة المغناطيسية، شاشة العرض متعددة الوظائف (MFD)، NAVTEX، الرادار (RADAR)، مؤشر معدل الدوران (ROTI)، مفتاح اختيار مضخة الدفة، نظام استقبال الصوت، مفتاح اختيار وضع التوجيه، مفتاح اختيار موضع التوجيه، نظام التحكم في المسار (TCS)، وجهاز إرسال الاتجاه (THD).</p>
+    <p>يساعد نظام التعريف الآلي (AIS) ضابط المناوبة في الملاحة الآمنة. ينقل ثلاثة أنواع من البيانات (ثابتة وديناميكية ومتعلقة بالرحلة) ورسائل متعلقة بالسلامة إلى السفن الأخرى والمحطات على الشاطئ [47]. يؤدي AIS أربع وظائف أساسية: تحديد السفن، المساعدة في تتبع الأهداف، تبادل المعلومات، وتوفير معلومات إضافية للمساعدة في الوعي الظرفي. مقياس شدة الريح ليس مجرد مؤشر، بل هو أيضاً مستشعر لقياس سرعة الرياح وتحديد اتجاهها وعرض البيانات التي تم الحصول عليها لضابط المناوبة.</p>
+    <p>نظام عرض الخرائط الإلكترونية ومعلوماتها (ECDIS) هو مكون أساسي للملاحة الرقمية في العصر البحري المعاصر، حيث يقلل استخدامه من عبء العمل على ضابط المناوبة ويعزز سلامة الملاحة. يوفر ECDIS معلومات ملاحية في الوقت الفعلي مثل موقف السفينة وجميع معلومات الخرائط. يتم نشر ECDIS على جسور السفن الحديثة كأساسي واحتياطي.</p>
+
+    <h3>3.2. بروتوكولات الاتصال والواجهات</h3>
+    <p>يعرف معيار IEC 61162 "المعدات البحرية للملاحة والاتصالات الراديوية—الواجهات الرقمية" الواجهات الرقمية للملاحة والاتصالات الراديوية وتكامل الأنظمة في المركبات البحرية. يتكون المعيار من خمسة أقسام: IEC 61162-1 (متحدث واحد ومستمعون متعددون، المعروف أيضاً باسم NMEA 0183)، IEC 61162-2 (نقل عالي السرعة)، IEC 61162-3 (متحدثون ومستمعون متعددون—شبكة أدوات البيانات التسلسلية، المعروف أيضاً باسم NMEA 2000)، IEC 61162-450 (اتصال إيثرنت)، و IEC 61162-460 (سلامة وأمن إيثرنت).</p>
+    <p>يعد IVEF (تنسيق تبادل البيانات بين مرافق خدمة حركة السفن) إطاراً قياسياً لتبادل البيانات بين مراكز التحكم البحرية. تم تطويره بواسطة IALA. لا توجد وثيقة رسمية تحتوي على قائمة بالواجهات؛ بدلاً من ذلك، تم استخدام النشرات الإعلانية للشركات المصنعة لمعدات الجسر لتحديد الواجهات المستخدمة، مثل DVI و RJ-45 و RS-422 و USB و RS-232 و RS-485 و M12.</p>
+
+    <h3>3.3. البيانات</h3>
+    <p>قد تنتج المكونات في نظام الملاحة المتكامل وتقدم البيانات لفريق الجسر، مثل الموقع الجغرافي والاتجاه فوق الأرض والسرعة فوق الأرض والاتجاه. يمكن تقديم البيانات بشكل تمثيلي أو رقمي. بالإضافة إلى ذلك، ينقل المكون البيانات المنتجة إلى مكونات أخرى باستخدام بروتوكولات الاتصال المذكورة في القسم 3.2.</p>
+
+    <h3>3.4. المكونات الفرعية</h3>
+    <p>لمكونات نظام الملاحة المتكامل مكونات فرعية للأجهزة أو البرامج. على الرغم من أن المنظمة البحرية الدولية تحدد الحد الأدنى من معايير الأداء للمكونات، إلا أن المكونات الفرعية غير محددة. يعمل AIS بالاتصال بهوائي GPS واحد وهوائي VHF واحد. يتطلب نظام ECDIS خرائط إلكترونية للعمل (خرائط الملاحة النقطية ENC أو RNC). تحتاج بعض معدات الجسر مثل ECDIS والرادار إلى أنظمة تشغيل للعمل، مثل Linux أو Microsoft Windows.</p>
+
+    <h3>3.5. الاتصالات والتبعيات</h3>
+    <p>يعتمد نظام الملاحة المتكامل على عرض المعلومات على شاشة العرض متعددة الوظائف (MFD)، وتختلف الاتصالات الإلزامية لـ MFD وفقاً للمهام الملاحية المخصصة. لا تقلل متطلبات نظام الملاحة المتكامل من التبعيات الفردية بين المعدات، ولكنها قد تزيد من عدد الاتصالات. يوضح الجدول 3 التبعيات بين المكونات الفردية وفقاً لمتطلبات المنظمة البحرية الدولية. إدارة التنبيهات ضرورية لنظام الملاحة المتكامل؛ يجب أن تكون جميع المعدات المتصلة بنظام الملاحة المتكامل جزءاً من إدارة التنبيهات.</p>
+  </section>
+
+  <section>
+    <h2>4. نطاق سيبراني-فيزيائي لنظام الملاحة المتكامل</h2>
+    <p>وفقاً لـ [110]، "النطاقات السيبرانية هي تمثيلات تفاعلية ومحاكاة لشبكة المنظمة المحلية، وأنظمتها، وأدواتها، وتطبيقاتها المتصلة ببيئة إنترنت محاكاة. إنها توفر بيئة آمنة وقانونية لاكتساب المهارات السيبرانية العملية وبيئة آمنة لتطوير المنتجات واختبار الوضع الأمني." وفقاً لذلك، فإن منصة الاختبار ذات الوظيفة التي تسمح باختبار الوضع الأمني للأنظمة السيبرانية-الفيزيائية، مثل نظام الملاحة المتكامل، ستشكل "نطاقاً سيبرانياً-فيزيائياً".</p>
+    <p>يمكن استخدام النطاق السيبراني-الفيزيائي للتدريب، حيث يوفر بيئة تكنولوجية خاضعة للرقابة وتفاعلية حيث يمكن للمتدربين تعلم كيفية اكتشاف الهجمات السيبرانية والتخفيف منها باستخدام نفس نوع المعدات الموجودة في العالم الحقيقي. يسمح النطاق بمحاكاة الهجمات ضد نظام الملاحة المتكامل ومراقبة تقدم المتدرب وأدائه في الاستجابة لها. إلى جانب التدريب، يمكن استخدام النطاق السيبراني-الفيزيائي للتجربة مع تقنيات الدفاع السيبراني الجديدة، حيث يوفر بيئة آمنة لحل مشاكل الأمن السيبراني المعقدة.</p>
+
+    <h3>4.1. القدرات والوظائف</h3>
+    <p>يمكن تطوير نطاق سيبراني-فيزيائي للاختبار السريع لمكونات الأجهزة والبرامج لكل من مفهوم نظام الملاحة المتكامل والجسور التقليدية [27]. يمكن اختبار أداء المكونات وفقاً لمتطلبات اللوائح البحرية. يمكن استخدام النطاق لتقييم المخاطر [31،33]. يجب أن يوفر ميزة اتصال مباشر لمعدات التحقق والتحقق من الصحة (V&V). يجب أن يكون النطاق قابلاً للاستخدام كبيئة اختبار متنقلة [8]، وبالتالي يمكن استخدامه للاختبار المبكر للتقنيات البحرية الناشئة [26].</p>
+
+    <h3>4.2. المعايير والأطر</h3>
+    <p>تم تطوير نموذج البيانات الهيدروغرافية العالمية S-100 (UHDM) بواسطة المنظمة الهيدروغرافية الدولية (IHO). يُستخدم S-100 في منتجات مختلفة مثل خرائط الملاحة الإلكترونية (ENC) لـ ECDIS [34]. بنية المستوى العالي (HLA) هي بنية للمحاكاة المتكاملة والموزعة، محددة في معيار IEEE 1516. يوفر معيار "ISO 17894: السفن والتكنولوجيا البحرية—التطبيقات الحاسوبية" 20 مبدأ لتطوير واختبار الأنظمة الإلكترونية القابلة للبرمجة في التطبيقات البحرية [116].</p>
+
+    <h3>4.3. مكونات الأجهزة</h3>
+    <p>يمكن أيضاً تطوير منصة اختبار افتراضية لنظام الملاحة المتكامل. يمكن استخدام أجهزة الكمبيوتر الصناعية وليس فقط أجهزة الكمبيوتر المحمولة. يمكن تصنيف أجهزة الاستشعار على متن السفن إلى ثلاث مجموعات: أجهزة استشعار الحركة، وأجهزة استشعار البيئة، وأجهزة استشعار السفينة الداخلية [36]. يمكن استخدام أجهزة استشعار حقيقية مثل نظام التعريف الآلي ومستشعر الرياح والرادار ونظام تحديد المواقع العالمي ومقياس سرعة الدوران في منصة الاختبار [25،30]. يمكن تطوير صندوق استشعار متنقل قابل للتوصيل مزود بمعدات بحرية ومراقبة متنوعة. يمكن استخدام حاويات الشحن مقاس 10 أو 20 قدماً للنقل [25].</p>
+
+    <h3>4.4. أدوات المراقبة والإدارة</h3>
+    <p>OpenCPN هو برنامج مخطط ملاحي وملاحي مجاني يمكن استخدامه لوظيفة تتبع AIS في منصة الاختبار [26،35]. يمكن استخدام برنامج تتبع الرادار لتحديد مسارات الرادار ومعالجة الفيديو [36]. يمكن التحكم في تدفقات البيانات بين المكونات بواسطة برنامج وسيط للرسائل مثل RabbitMQ. قد يتطلب صندوق الاستشعار برنامج تتبع الرادار و RabbitMQ [35].</p>
+
+    <h3>4.5. أدوات المحاكاة والمضاهاة والتحليل</h3>
+    <p>يُستخدم Bridge Command، وهو برنامج محاكاة سفن مفتوح المصدر لأنظمة Windows و Linux و macOS، في eMIR [8،131]. يسمح MATLAB Simulink بالمحاكاة والاختبار المستمر وتوليد الكود التلقائي والتحقق من الأنظمة المضمنة [135]. يمكن تطوير عناصر جسر افتراضية مختلفة للتحكم في وحدة التحكم في الجسر ومراقبتها [8]. يمكن استخدام Unreal Engine لتوضيح حركات السفن في الوقت الفعلي في بيئة المحاكاة [140].</p>
+
+    <h3>4.6. المكونات الخاصة بالأمن السيبراني</h3>
+    <p>يمكن استخدام المعدات الحقيقية المذكورة في القسم 3.1 لأبحاث الأمن السيبراني. إلى جانب المعدات الحقيقية، يمكن استخدام بعض البرامج مثل Bridge Command [131] أو NMEA Simulator [141] لنقل رسائل IEC 61162-1 المحاكاة. لأبحاث AIS، تتضمن AIS BlackToolkit عدة ميزات مثل مشفر رسائل AIVDM [143]. يمكن استخدام ماسحات الثغرات (مثل Nessus Professional [39]) للكشف عن ثغرات المكونات والشبكة. Kali Linux هو نظام تشغيل Linux مشتق من Debian ويأتي مع أكثر من 300 أداة متعلقة بأمن المعلومات واختبار الاختراق [148].</p>
+  </section>
+
+  <section>
+    <h2>5. الاستنتاجات</h2>
+    <p>يعتبر التقدم التكنولوجي حاسماً في تعزيز السلامة البحرية. بالإضافة إلى السلامة، تساهم البنية التحتية الرقمية والبيانات التي تم الحصول عليها في حماية البيئة البحرية وزيادة كفاءة الاقتصاد البحري. تم الاعتراف بضرورة وجود منصات اختبار الملاحة الإلكترونية من قبل المنظمة البحرية الدولية، وتم الاعتراف ببعض منصات الاختبار المطورة من قبل IALA. تسمح منصة الاختبار باختبار وتطوير الأنظمة البحرية في بيئة آمنة واقتصادية. مع تزايد مخاوف الأمن السيبراني في القطاع البحري، من المهم أيضاً أن نكون قادرين على تقييم الوضع الأمني السيبراني لنظام الملاحة المتكامل في البيئة الخاضعة للرقابة التي توفرها منصة الاختبار؛ يجب أن تحتوي منصة الاختبار هذه على وظيفة اختبار الأمن السيبراني التي تؤهلها كنطاق سيبراني-فيزيائي. في هذه الورقة، استعرضنا المنشورات حول منصات اختبار الجسر لتحديد الأدوات والقدرات والوظائف والمعايير والأطر والنماذج المعمارية المستخدمة. علاوة على ذلك، حددنا الجوانب الفنية لنظام الملاحة المتكامل، بما في ذلك الأجهزة والمكونات الفرعية والواجهات وبروتوكولات الاتصال والبيانات والتبعيات والاتصالات، من خلال النظر في قواعد ولوائح المنظمة البحرية الدولية السارية والمعايير الدولية. تم العثور على ما مجموعه 25 مكوناً لنظام الملاحة المتكامل، بما في ذلك ECDIS و AIS و RADAR و MFD وما إلى ذلك. استخدمنا هذه النتائج لتحديد مواصفات التصميم لنطاق سيبراني-فيزيائي لنظام الملاحة المتكامل.</p>
+  </section>
+
+  <section>
+    <h2>المراجع</h2>
+    <p>قائمة المراجع الكاملة (151 مصدراً) متاحة في <a href="https://www.mdpi.com/2077-1312/10/1/107/pdf" target="_blank">الملف الأصلي للPDF</a>.</p>
+  </section>
+</div>
+
+<!-- ENGLISH -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>The e-navigation concept was introduced by the IMO to enhance berth-to-berth navigation towards enhancing environmental protection, and safety and security at sea by leveraging technological advancements. Even though a number of e-navigation testbeds including some recognized by the IALA exist, they pertain to parts only of the Integrated Navigation System (INS) concept. Moreover, existing e-navigation and bridge testbeds do not have a cybersecurity testing functionality, therefore they cannot be used for assessing the cybersecurity posture of the INS. With cybersecurity concerns on the rise in the maritime domain, it is important to provide such capability. In this paper we review existing bridge testbeds, IMO regulations, and international standards, to first define a reference architecture for the INS and then to develop design specifications for an INS Cyber-Physical Range, i.e., an INS testbed with cybersecurity testing functionality.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Marine accidents still occur in spite of technological advancements and issued regulations. Indeed, 54% of a total of 1801 marine accidents that occurred between 2014 and 2019 were caused by human error, while 28% were caused by system or equipment failure [1]. As modern vessels rely on information for safe navigation [2], the International Maritime Organization (IMO) introduced the concept of "e-navigation" to provide digital information and infrastructure for enhancing safety, security, and efficiency in the maritime domain [3]. According to the IMO, e-navigation is a "harmonized collection, integration, exchange, presentation and analysis of marine information on board and ashore by electronic means to enhance berth-to-berth navigation and related services for safety and security at sea and protection of the marine environment" [3].</p>
+    <p>An important element of e-navigation is the Integrated Navigation System (INS), defined as "A system in which the information from two or more navigation aids is combined in a symbiotic manner to provide an output that is superior to any one of the component aids" [4]. The INS combines information received from various devices onboard to improve navigation safety by assisting the Officer of the Watch (OOW) in planning and monitoring the navigation of a ship [5]. The data are provided to the operator in real time and accurately. Moreover, the INS alerts the operator instantly about dangerous situations, or equipment failures [5]. The INS enhances the situational awareness of the operator on the bridge, comprising six navigational tasks: route monitoring, route planning, collision avoidance, navigation control data, navigational status and data display, and alert management.</p>
+    <p>Even though the purpose and the functions performed by the INS are defined, a generic list of the devices that constitute an INS does not exist. This is largely because several parameters, such as the vessel's gross tonnage, vessel type, navigation zone, and ship construction date, directly affect the equipment to be fitted onboard. The testing of developed technologies on real ship bridges causes high costs and safety risks; this is why the development process may be divided into different stages [8]. Simulators can be used in the early development stages. However, not all aspects of a developed technology can be captured by a simulator, therefore porting such technologies to real vessels may still create problems [8], which can be avoided by the use of a testbed instead.</p>
+    <p>The INS, similarly to other marine systems on board and ashore, suffers from a number of cybersecurity vulnerabilities [10–12]. Further, several products have been developed to mitigate cyber threats against vessels [13,14]. Given that such developing technologies might inherently entail cyber risks, they must be verified in a safe environment before being installed in the network of a ship. Thus, in addition to using a testbed for verification and validation purposes of the INS, the same testbed, augmented with cybersecurity testing functionality, can be used to analyze the cybersecurity of the INS.</p>
+    <p>In this paper we first investigate the constituents of the INS in terms of sub-components, services, data, data flow, communication protocols, interfaces, connections, and dependencies, to define an INS reference architecture. Then we review and analyze existing bridge testbeds in terms of tools, architectural models, capabilities, functionalities, communication protocols, research instances, standards, and frameworks, towards defining the architecture of an INS testbed capable also to be used for analysing the cybersecurity posture of the INS under study. Our contribution is threefold: (1) We provide a complete list of INS constituents, with all components and their interactions presented, along with associated international rules, regulations and standards; (2) We provide a systematic literature review of publications on bridge testbeds; (3) We propose an architecture for a Cyber-Physical Range, i.e., a cybersecurity-enabled testbed for the INS.</p>
+  </section>
+
+  <section>
+    <h2>2. Related Work</h2>
+    <h3>2.1. INS and Its Components</h3>
+    <p>The academic literature appears to be poor in sources on the composition and functionality of the INS. In [11] the results of a survey of INSs provided by 35 vendors is presented. The findings have been used to develop a simplified model of a prototypical INS that is subsequently used as a basis for discussing cryptographical measures to improve the protection of the integrity of navigation data in INSs. Two resolutions define the performance standards of the INS, namely Resolution MSC.252(83) "Adoption of the Revised Performance Standards for Integrated Navigation Systems (INS)" [5–7], and Resolution MSC.86(70) Annex 3 "Recommendation on Performance Standards for an Integrated Navigation System (INS)" [16].</p>
+    <p>Resolution MSC.252(83) directly indicates some components of the INS. It also points to two IMO-related documents: SOLAS Chapter V "Safety of Navigation", Regulation 19 "Carriage requirements for shipborne navigational systems and equipment", and MSC/Circ.982 "Guidelines on Ergonomic Criteria for Bridge Equipment and Layout". A model of INSs with detailed information on components and their interactions is not available.</p>
+
+    <h3>2.2. Networking</h3>
+    <p>The International Electrotechnical Commission (IEC) 61162-3 (i.e., NMEA 2000) and 61162-450 networks are typically used onboard. The IEC 61162-460 network is also possible to procure a more secure network. The NMEA 2000 network is structured in five layers: the physical layer, data link layer, network layer, application layer, and network management. Tools (e.g., Sail Soft NMEA Studio, Maretron N2K Analyzer, NMEA Reader) that can be used to design and analyze a NMEA network exist [18].</p>
+    <p>Also, the International Telecommunication Union (ITU) issues technical standards for the interconnection of networks and technologies, and allocates global radio spectrum and satellite orbits [19]. The Recommendation ITU-R M.1371-5 [20] provides AIS-related specifications, and ITU-R M.823 [21] defines frequencies for the Differential Global Positioning System (DGPS) by region.</p>
+
+    <h3>2.3. Testbeds</h3>
+    <p>In order to identify relevant publications, a Systematic Literature Review (SLR) was conducted, following the methodology in [22]. The objective was to study modern bridge testbed environments with an explicit focus on surface vessels, so as to identify and classify existing architectural models, hardware and software tools that are utilized within contemporary bridge testbed environments.</p>
+    <p>The literature review was carried out in the ACM Digital Library, IEEE Xplore, ScienceDirect, Springer Link, and Wiley Online Library. The search string "((maritime) OR (marine)) AND ((ship) OR (vessel)) AND ((testbed) OR (test-bed) OR (test bed))" was used. Only technical reports and scientific articles published in conferences, workshops, and journals in English, between January 2010–December 2020 were considered. The initial search resulted in 9437 potentially relevant articles, reduced to 16 after three stages of assessment.</p>
+    <p>The SLR identified two bridge testbeds: the eMaritime Integrated Reference (eMIR) platform [38], developed by academia, and the Hyundai intelligent Collision Avoidance Support System (HiCASS) testbed [24], developed by industry. Of the two, the eMIR platform is among those recognized by IALA, whereas the HiCASS testbed is not. No testbeds targeting explicitly the INS were found.</p>
+    <p>eMIR consists of a mobile platform, a test field, a Verification and Validation (V&V) lab, and so on. LABSKAUS is the physical part of the eMIR platform, and HAGGIS is its simulation part. LABSKAUS is based on three layers: vessel, environment, and system. eMIR allows connection to different sensors such as GPS, compass, AIS etc. via a sensor box called NaviBox.</p>
+    <p>When comparing the two, eMIR was not developed for any specific marine applications, while HiCASS was specifically developed for testing the HiCASS system. The eMIR platform is quite flexible in terms of capabilities, which include risk assessment and performance tests of the components. On the other hand, the HiCASS testbed is deployed on a real vessel and can run only with real sensor data. The eMIR includes tools for various simulation and analysis purposes, e.g., human behavior, realistic environment, marine traffic analyses.</p>
+    <p>Even though mobility is a feature of both testbeds, a fixed platform of the eMIR is available as well. Both platforms were tested onboard ships. Moreover, a sensor box to connect sensors was developed in both. The eMIR's sensor box has the ability to transfer data to distant locations via LTE; Hyundai's testbed does not have such a function.</p>
+
+    <h3>2.4. Cybersecurity of the INS</h3>
+    <p>Shipboard cybersecurity has become a significant concern lately, with the IMO and several other organizations providing guidelines on how to address it. A cybersecurity-related survey on the INS was conducted in [11], where different aspects such as operating systems (e.g., Windows and Linux), networking (e.g., ethernet, CAN bus), internet connection possibility, sensor integration, and ECDIS controlled autopilot of a total of 22 INSs in the market were investigated.</p>
+    <p>The authors of [10] revealed cyber vulnerabilities of the INS on a roll-on/roll-off (RO-RO) type of vessel. The vulnerability analysis was carried out using the Nessus Professional vulnerability scanner [39]. After scanning the INS, the scanner produced a report consisting of 27 pieces of information, four of which were classified as vulnerabilities. Cyber threats and vulnerabilities in the Integrated Bridge System (IBS) are presented in [40].</p>
+    <p>Bridge simulators are used for the training of cadets and seafarers. Researchers from Tallinn University of Technology used bridge simulators for maritime cybersecurity training [42], and researchers from Plymouth University discussed combining a cyber range and a full mission bridge simulator for cybersecurity research [43]. However, although existing bridge testbeds have been used for some cybersecurity-related purposes, they have not been used for assessing the cybersecurity posture of an INS.</p>
+  </section>
+
+  <section>
+    <h2>3. The Composition of the INS</h2>
+    <p>Flag state requirements, class requirements, features of manufacturer products, and owner decisions directly affect the equipment in the INS. Since the IMO identifies minimum international requirements for member states, the IMO rules and regulations constitute a baseline for this study. The INS component list was determined according to the documents mentioned in Section 2.1.</p>
+
+    <h3>3.1. INS Components</h3>
+    <p>Table 2 presents the INS components together with their alternative names, where applicable, and the relevant IMO document. Components include: Anemometer, Automatic Identification System (AIS), Bridge Navigational Watch Alarm System (BNWAS), Central Alert Management Human Machine Interface (HMI), Controls for Main Engine, Main Rudder and Thruster, Echo-sounder, Electronic Chart Display and Information System (ECDIS), Global Positioning System (GPS), Gyro compass, Heading Control System (HCS), Indicators, Magnetic compass, Multifunctional Display (MFD), NAVTEX, RADAR, Rate of Turn Indicator (ROTI), Rudder pump selector switch, Sound reception system, Steering mode selector switch, Steering position selector switch, Track Control System (TCS), and Transmitting Heading Device (THD).</p>
+    <p>The AIS assists the OOW in navigating safely. It transmits three types of data (static, dynamic, and voyage-related) and safety-related messages to other vessels and shore stations [47]. The AIS performs four key functions: identifying ships, assisting in target tracking, exchanging information, and providing additional information for situation awareness. The anemometer is not only an indicator, but also a sensor to measure wind speed and direction.</p>
+    <p>The ECDIS is an essential component for digital navigation in contemporary maritime, as its use reduces the OOW's workload and enhances navigation safety. It provides real-time navigation information such as own ship's position and all chart information. Two ECDISs are deployed on modern vessel bridges, as primary and back-up.</p>
+
+    <h3>3.2. Communication Protocols and Interfaces</h3>
+    <p>The IEC 61162 "Maritime navigation and radio communication equipment and systems—Digital interfaces" standard defines digital interfaces for navigation, radio communication, and system integration in marine vehicles. It consists of five parts: IEC 61162-1 (Single talker and multiple listeners, also called NMEA 0183), IEC 61162-2 (High speed transmission), IEC 61162-3 (Multiple talkers and multiple listeners—Serial data instrument network, also called NMEA 2000), IEC 61162-450 (Ethernet interconnection), and IEC 61162-460 (Ethernet interconnection—Safety and security).</p>
+    <p>The Inter-VTS Data Exchange Format (IVEF) is a standard framework for data exchange between maritime control centers, developed by IALA. No official document containing a list of interfaces exists; instead, manufacturer brochures for bridge equipment were used to determine interfaces in use, such as DVI, RJ-45, RS-422, USB, RS-232, RS-485, and M12.</p>
+
+    <h3>3.3. Data</h3>
+    <p>The components in an INS may produce and/or present data to the bridge team, such as geographic location, COG, SOG, and heading. The data may be presented in analog or digital form. Moreover, a component transmits produced data to other components using communication protocols as mentioned in Section 3.2.</p>
+
+    <h3>3.4. Sub-Components</h3>
+    <p>INS components have hardware and/or software sub-components. Although the IMO defines minimum performance standards for the components, sub-components are not defined. The AIS works in connection with one GPS antenna and one VHF antenna. The ECDIS requires electronic charts (ENC or RNC) to work. Some bridge equipment such as ECDIS and RADAR require operating systems to work, such as Linux or Microsoft Windows.</p>
+
+    <h3>3.5. Connections and Dependencies</h3>
+    <p>The INS is based on showing information on the MFD, and the compulsory connections to the MFD vary according to allocated navigational tasks. The INS requirements do not strip down the individual dependencies among the equipment, but may increase the number of connections. Table 3 depicts the dependencies between individual components as per the IMO requirements. Alert management is essential for the INS; all connected equipment to the INS should be part of the alert management.</p>
+  </section>
+
+  <section>
+    <h2>4. An INS Cyber-Physical Range</h2>
+    <p>According to [110], "Cyber ranges are interactive, simulated representations of an organization's local network, system, tools, and applications that are connected to a simulated Internet level environment. They provide a safe, legal environment to gain hands-on cyber skills and a secure environment for product development and security posture testing." Accordingly, a testbed with functionality allowing the testing of the security posture of cyber-physical systems, such as the INS, would constitute a "cyber-physical range".</p>
+    <p>A cyber-physical range can be used for training, as it provides a controlled, interactive technology environment where trainees can learn how to detect and mitigate cyber attacks using the same kind of equipment that exists in the real world. The range allows attacks against the INS to be simulated, and to monitor a trainee's progress and performance. Beyond training, a cyber-physical range can be used to experiment with new cyber defense technologies, as it provides a safe environment to solve complex cybersecurity problems.</p>
+
+    <h3>4.1. Capabilities and Functionalities</h3>
+    <p>A cyber-physical range can be developed for the rapid test of hardware and software components both for INS concept and conventional bridges [27]. The performance of the components can be tested as per the requirements in maritime regulations. The range can be used for risk assessment [31,33]. It should provide a direct connectivity feature for V&V-related equipment. The range should be possible to be used as a mobile test environment [8], therefore it should be possible to be used for early testing of developing maritime technologies [26].</p>
+
+    <h3>4.2. Standards and Frameworks</h3>
+    <p>The S-100 Universal Hydrographic Data Model (UHDM) was developed by the IHO. S-100 is used in various products such as the ENC of the ECDIS [34]. The High-Level Architecture (HLA) is an architecture for integrated and distributed simulation, defined in IEEE Standard 1516. The "ISO 17894: Ships and marine technology—Computer applications" standard provides 20 principles for developing and testing Programmable Electronic Systems in marine applications [116].</p>
+
+    <h3>4.3. Hardware Components</h3>
+    <p>A virtual INS testbed can also be developed. Not only laptops, but also industrial computers can be used. The onboard sensors can be classified into three groups: movement sensors, environmental sensors, and internal ship sensors [36]. Real sensors such as AIS, wind sensor, RADAR, GPS, speed log can be used in the testbed [25,30]. A mobile connectable sensor box with several marine and surveillance equipment can be developed. For transportation, 10-foot or 20-foot containers may be used [25].</p>
+
+    <h3>4.4. Monitoring and Management Tools</h3>
+    <p>OpenCPN is a free chart plotter and navigational software that can be used for the AIS tracking function in the testbed [26,35]. RADAR tracking software can be used to identify RADAR tracks and process video [36]. Data flows among components can be controlled by a message broker software like RabbitMQ. The sensor box may require RADAR tracking software and RabbitMQ [35].</p>
+
+    <h3>4.5. Simulation, Emulation, and Analysis Tools</h3>
+    <p>Bridge Command, an open-source ship simulator software for Windows, Linux, and macOS, is used in eMIR [8,131]. MATLAB Simulink allows simulation, continuous test, automatic code generation, and verification of embedded systems [135]. Various virtual bridge elements for controlling and monitoring the bridge console can be developed [8]. Unreal Engine can be used to illustrate real-time ship motions in the simulation environment [140].</p>
+
+    <h3>4.6. Cybersecurity-Specific Components</h3>
+    <p>Real equipment mentioned in Section 3.1 may be used for cybersecurity research. Other than real equipment, software such as Bridge Command [131] or NMEA Simulator [141] could be utilized to transmit mimic IEC 61162-1 messages. For AIS research, the AIS BlackToolkit includes features such as an AIVDM message encoder [143]. Vulnerability scanners (e.g., Nessus Professional [39]) may be utilized to detect vulnerabilities of components and network. Kali Linux comes with more than 300 tools related to information security and penetration testing [148].</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>Technological advancements are crucial in enhancing marine safety. In addition to safety, digital infrastructure and obtained data contribute to the protection of the marine environment and increase the efficiency of the maritime economy. The need for e-navigation testbeds has been acknowledged by the IMO, and some developed testbeds have been recognized by IALA. A testbed allows the testing and development of maritime systems in a safe and economic environment. As cybersecurity concerns in the maritime sector are rising, it is also important to be able to assess the cybersecurity posture of the INS in the controlled environment that a testbed provides; such a testbed should have cybersecurity testing functionality that qualifies it as a cyber-physical range. In this paper we reviewed publications on bridge testbeds to identify tools, capabilities and functions, standards and frameworks, and architectural models used. Moreover, we identified technical aspects of the INS, including devices, sub-components, interfaces, communication protocols, data, dependencies, and connections, by considering in-force IMO rules and regulations and international standards. A total of 25 INS components were found, including ECDIS, AIS, RADAR, MFD, etc. We used these results to define design specifications for an INS Cyber-Physical Range.</p>
+  </section>
+
+  <section>
+    <h2>References</h2>
+    <p>Full reference list (151 sources) available in the <a href="https://www.mdpi.com/2077-1312/10/1/107/pdf" target="_blank">original PDF</a>.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse10010107">10.3390/jmse10010107</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('toggle-' + (lang === 'both' ? 'both' : lang)).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side'); el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    for (var i = 0; i < Math.min(arSections.length, enSections.length); i++) {
+      var pair = document.createElement('div'); pair.className = 'compare-section';
+      var enCol = document.createElement('div'); enCol.className = 'compare-en';
+      var enLabel = document.createElement('div'); enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH'; enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div'); arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div'); arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية'; arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol); pair.appendChild(arCol); container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare';
+  document.getElementById('toggle-ar').textContent = isAr ? '🇸🇦 العربية' : '🇸🇦 العربية';
+  document.getElementById('toggle-en').textContent = isAr ? '🇬🇧 الإنجليزيّة' : '🇬🇧 English';
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

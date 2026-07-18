@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تقييم المخاطر السيبرانية لنظام ملاحة متكامل باستخدام إطار MITRE ATTACK — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Assessing Cyber Risks of an INS Using the MITRE ATT&CK Framework</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تقييم المخاطر السيبرانية لنظام ملاحة متكامل باستخدام إطار MITRE ATTACK</h2>
+
+  <div class="paper-meta">
+    <span>👤 Aybars Oruc, Ahmed Amro, Vasileios Gkioulos</span>
+    <span>📄 Sensors 22(22), 8745, 2022</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s22228745">10.3390/s22228745</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ARABIC -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>الشحن الذي تقوم به السفن المعاصرة هو العمود الفقري للتجارة العالمية. السفن الحديثة مجهزة بالعديد من الأنظمة المحوسبة لتعزيز السلامة والكفاءة التشغيلية. أحد هذه الأنظمة المطورة هو نظام الملاحة المتكامل (INS)، الذي يجمع المعلومات والوظائف لفريق الجسر على متن السفينة. يتكون INS من العديد من المكونات البحرية التي تنطوي على تهديدات سيبرانية ونقاط ضعف. تهدف هذه الدراسة إلى تقييم المخاطر السيبرانية لهذه المكونات. لتحقيق هذه الغاية، تم تطبيق منهجية تأخذ في الاعتبار إطار MITRE ATT&CK، الذي يوفر تكتيكات وتقنيات وتدابير تخفيف للخصوم، مع تعديلها للمخاطر السيبرانية في البحر. قمنا بتقييم المخاطر السيبرانية لـ 25 مكونًا على الجسر من خلال تطبيق المنهجية الموسعة في هذه الدراسة. نتيجة للتقييم، وجدنا 1850 خطرًا. صنفنا نتائجنا إلى 1805 منخفضة و32 متوسطة و9 عالية و4 حرجة لـ 22 مكونًا. ثلاثة مكونات لم تتضمن أي مخاطر سيبرانية. يمكن للعلماء ومشغلي السفن ومطوري المنتجات استخدام النتائج لحماية أنظمة الملاحة على متن السفن من التهديدات السيبرانية المحتملة ونقاط الضعف.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>أكثر من 80% من البضائع في التجارة الدولية تُنقل عن طريق السفن [1]. أحد العناصر الأكثر جوهرية في النقل البحري هو السفن نفسها. في عام 2020، نما الأسطول التجاري العالمي بنسبة 3% ووصل إلى 99,800 سفينة بحمولة 100 طن إجمالي فأكثر [1]. السفن المعاصرة مجهزة بأنظمة محوسبة لأغراض مختلفة، مثل الملاحة والاتصالات والدفع ومناولة البضائع. تحسنت السلامة والكفاءة التشغيلية للسفن بسبب هذه الأنظمة. ومع ذلك، ترافق هذه الأنظمة مخاوف متزايدة تتعلق بالأمن السيبراني في الصناعة البحرية نتيجة للحوادث السيبرانية ونتائج الأبحاث المكشوفة.</p>
+    <p>المنظمة البحرية الدولية (IMO) هي الوكالة المسؤولة في الأمم المتحدة عن سلامة وأمن الشحن ومنع التلوث البيئي من السفن [2]. تُعرف المخاطر السيبرانية البحرية من قبل IMO بأنها "مقياس لمدى تعرض أصل تكنولوجي لظرف أو حدث محتمل، قد يؤدي إلى فشل تشغيلي أو سلامة أو أمني متعلق بالشحن نتيجة تلف أو فقدان أو اختراق المعلومات أو الأنظمة" [3]. في عام 2017، أصدرت IMO قرارًا لمنع المخاطر السيبرانية البحرية [4]. وفقًا للقرار النافذ، يجب تقييم المخاطر السيبرانية من قبل مشغلي السفن ومعالجتها في أنظمة إدارة السلامة المعتمدة لديهم (SMS). علاوة على ذلك، يجب أن يشيروا إلى خطة أمن السفينة (SSP) وفقًا لمدونة ISPS [5،6]. تم التحقق من هذا المطلب في تدقيقات وثيقة الامتثال (DOC) لمشغلي السفن منذ 2 يناير 2021.</p>
+    <p>تكشف هذه الورقة أهمية المخاطر السيبرانية على متن السفن. ساهمنا في الأدبيات من خلال توسيع منهجية تستخدم إطار MITRE ATT&CK لتقييم المخاطر السيبرانية للأنظمة على متن السفن. علاوة على ذلك، تم تنفيذ الطريقة لتقييم المخاطر السيبرانية لـ INS بشكل خاص في هذه الدراسة. تم تصنيف إجمالي 1850 خطرًا إلى 1805 منخفضة و32 متوسطة و9 عالية و4 حرجة. نظرًا لعدم وجود حادث بحري (مثل الاصطدام والانفجار والإصابة وتسرب النفط) ناتج عن هجمات سيبرانية في الأدبيات، فإن تأثيرات السلامة والبيئة للمخاطر السيبرانية خارج نطاق هذه الدراسة.</p>
+    <p>نظمنا بقية الورقة على النحو التالي. يقدم القسم 2 مراجعة للأدبيات ذات الصلة. في القسم 3، تتم مناقشة المنهجية وتنفيذها للمخاطر السيبرانية لـ INS. يقدم القسم 4 ملخصًا ويقترح مواضيع بحثية إضافية للتحقيق. في الملحق أ، يتم سرد المخاطر السيبرانية من المستويات المتوسطة والعالية والحرجة.</p>
+  </section>
+
+  <section>
+    <h2>2. الخلفية</h2>
+    <h3>2.1. مفهوم نظام الملاحة المتكامل (INS)</h3>
+    <p>تعرف IMO نظام INS بأنه "نظام يتم فيه دمج المعلومات من وسيلتين ملاحيتين أو أكثر بطريقة تكافلية لتوفير مخرجات تفوق أيًا من وسائل المكونات الفردية" [7]. يهدف INS إلى تحسين الملاحة الآمنة من خلال دمج ودمج المعلومات والوظائف لضابط المراقبة (OOW) في تخطيط ومراقبة والتحكم في ملاحة السفينة [8]. يشكل INS ست مهام ملاحية إلزامية واختيارية، على النحو التالي:</p>
+    <p><strong>مراقبة المسار:</strong> "المهمة الملاحية للمراقبة المستمرة لموقع السفينة بالنسبة للمسار المخطط مسبقًا والمياه" [9].</p>
+    <p><strong>تخطيط المسار:</strong> المهمة التي توفر إجراءات تخطيط الرحلة ووظائف تخطيط المسار والبيانات لنظام ECDIS، وإدارة خطة المسار، والتحقق من خطة المسار ضد المخاطر، وقيود المناورة (مثل معدل الدوران (ROT))، وصياغة وتحسين خطة المسار ضد المعلومات الجوية [8].</p>
+    <p><strong>تجنب الاصطدام:</strong> "المهمة الملاحية لكشف ورسم السفن والأشياء الأخرى لتجنب الاصطدامات" [9].</p>
+    <p><strong>بيانات التحكم في الملاحة:</strong> "المهمة التي توفر معلومات للتحكم اليدوي والآلي في حركة السفينة في محطة المهام" [9].</p>
+    <p><strong>عرض الحالة الملاحية والبيانات:</strong> المهمة التي تعرض بيانات للتحكم اليدوي والآلي في الحركة الأولية للسفينة [8].</p>
+    <p><strong>إدارة التنبيهات:</strong> "مفهوم للتنظيم المنسق لمراقبة ومعالجة وتوزيع وعرض التنبيهات على الجسر" [9].</p>
+  </section>
+
+  <section>
+    <h3>2.2. إطار MITRE ATT&CK</h3>
+    <p>تم تطوير إطار ATT&CK (الذي يرمز إلى التكتيكات والتقنيات والمعرفة المشتركة للخصوم) من قبل MITRE منذ عام 2013 [10]. إنها قاعدة بيانات يمكن الوصول إليها عالميًا تتضمن تكتيكات الهجوم وتقنياته وتدابير التخفيف للمصفوفات الخاصة بالمؤسسات والأجهزة المحمولة وأنظمة التحكم الصناعية (ICS). تغطي مصفوفة المؤسسات المعلومات الهجومية (أي التكتيكات والتقنيات) لشبكات تكنولوجيا المعلومات (IT) وخدمات السحابة، مثل أنظمة التشغيل (Windows و Linux و macOS) ومكونات الشبكة و Office 365 و Google Workspace [11،12]. تتضمن مصفوفة الأجهزة المحمولة المعرفة الهجومية لمنصتي iOS و Android [13]. توفر مصفوفة ICS معلومات هجومية لـ ICS [14]. تمثل التكتيكات هدف الهجوم، مثل الوصول الأولي والوصول إلى بيانات الاعتماد والحركة الجانبية [15]. تعبر التقنيات عن الأساليب لتحقيق هدف الهجوم [16]. يوفر إطار ATT&CK أيضًا تدابير تخفيف لتجنب تنفيذ تقنية بنجاح [17]. علاوة على ذلك، يتم وصف البرامج الضارة والأدوات التي يمكن استخدامها لأغراض ضارة تحت اسم البرمجيات [18]. بعد مهم آخر لـ ATT&CK هو تقديم استخبارات التهديدات السيبرانية. تشير المجموعات إلى الجهات الخصمة وتعطي التقنيات المنفذة والبرامج المستخدمة من قبلهم لهجوم في الماضي [19]. توفر مصادر البيانات معلومات حول مواضيع ومفاهيم مختلفة [20].</p>
+  </section>
+
+  <section>
+    <h3>2.3. مراجعة الأدبيات</h3>
+    <p>في الأدبيات، قامت أوراق بحثية تنفذ طرقًا مختلفة بتقييم المخاطر السيبرانية للسفن المستقلة والتقليدية. قام كافاليراتوس وكاتسيكاس [21] بتنفيذ طريقتَي STRIDE و DREAD لتقييم المخاطر السيبرانية للعديد من الأنظمة على السفينة المستقلة، مثل نظام تجنب الاصطدام و RADAR وكاميرات المراقبة (CCTV) ومسجل بيانات الرحلة (VDR) ونظام إدارة البضائع والطيار الآلي. قام كافاليراتوس وآخرون في [22] أيضًا بتنفيذ STRIDE لـ AIS ونظام أتمتة المحرك ونظام أتمتة الجسر ومركز التحكم الشاطئي ونظام كفاءة المحرك وأنظمة الملاحة ووحدة التحكم في السفينة المستقلة وغيرها. لدى توشير وآخرون [23] عمل تقييم للمخاطر السيبرانية للسفن المستقلة أيضًا. في دراستهم، تم تنفيذ طريقة بايزيان للنمذجة، وكشف المؤلفون أن أنظمة الملاحة هي العنصر الأكثر ضعفًا في سياق عمليات الشحن المستقلة المستقبلية. نفذ شانغ وآخرون [24] مزيجًا من نظرية المجموعات الضبابية وطريقة شجرة الهجوم لتقييم المخاطر السيبرانية لنظام التحكم لتوربين غازي على متن سفينة. قام أوروك [25] أيضًا بدمج نظرية المجموعات الضبابية مع طريقة تقييم مخاطر أخرى، Fine-Kinney. في الدراسة، تم تقييم 31 خطرًا سيبرانيًا في الجسر وغرفة المحرك وغرفة التحكم في البضائع على متن ناقلة. علاوة على ذلك، تم إظهار كفاءة تدابير التخفيف المقترحة من خلال تنفيذ الطريقة مرة ثانية بعد اتخاذ الاحتياطات.</p>
+    <p>ركز كيسلر وآخرون [26] على 16 خطرًا سيبرانيًا مختلفًا لـ AIS. تكشف دراستهم أن تعطيل رسالة AIS فردية أهم من عدم قابلية استخدام AIS بأكمله. قام سفيلتشيتش وآخرون [27] أيضًا بتقييم المخاطر لمكون محدد. أجرى المؤلفون تقييمًا للمخاطر السيبرانية لـ ECDIS على سفينة تدريب باستخدام ماسح الثغرات الأمنية Nessus Professional ومقابلة طاقم السفينة. تم تحديد العديد من التهديدات السيبرانية المتعلقة بنظام التشغيل والإجراءات والوعي وغيرها. نشرت iTrust دليلاً إرشاديًا [28] لكشف المخاطر السيبرانية لأنظمة التكنولوجيا التشغيلية (OT) على السفن التقليدية، بما في ذلك أنظمة الملاحة والآلات والاتصالات وإدارة البضائع. تم تنفيذ معادلة حساب المخاطر التقليدية (الخطر = الشدة × الاحتمالية) لتقييم المخاطر السيبرانية. تقترح الدراسة أيضًا تدابير تخفيف قابلة للتنفيذ. ركز يو وآخرون [29] على طرق تقييم المخاطر في المجالات الأخرى وناقشوا تكييفها مع الصناعة البحرية. وفقًا للدراسة، يمكن تنفيذ شجرة الهجوم والمحاكاة والنماذج لتقييم المخاطر السيبرانية للأنظمة البحرية.</p>
+    <p>طرق جديدة غير الطرق الراسخة متاحة أيضًا في الأدبيات للمخاطر السيبرانية على متن السفن. طور تام وجونز [30] إطارًا قائمًا على النماذج لتقييم المخاطر السيبرانية البحرية، بعنوان تقييم المخاطر السيبرانية البحرية (MaCRA). قام المؤلفون أيضًا بتنفيذ الطريقة لتقييم المخاطر السيبرانية لثلاثة مشاريع سفن مستقلة في ورقة منفصلة [31]. اقترح بولبوت وآخرون [32] طريقة جديدة، باسم تقييم المخاطر السيبرانية للأنظمة البحرية (CYRA-MS)، من خلال النظر في طريقة تحليل المخاطر الأولية (CPHA) لتقييم المخاطر السيبرانية لأنظمة السفن. نفذ المؤلفون الطريقة على أنظمة الملاحة والتحكم في الدفع لسفينة داخلية مستقلة بالكامل. قدم ميلاند وآخرون [33] طريقة بديلة لتقييم المخاطر السيبرانية. احتمال وجود تهديد في أنظمة التصميم الجديدة هو تحدٍ. يقترح المؤلفون نهج احتمالية التهديد لدعم اتخاذ القرارات الأمنية للأنظمة الجديدة التصميم بشكل خاص. طريقتهم هي مزيج من المفاهيم الحالية والتقنيات وأحكام الخبراء والمعلومات الخاصة بالمجال.</p>
+    <p>ISO 31000 هو المعيار الأساسي ويشمل المبادئ والإطار والعملية لإدارة المخاطر [34]. يقدم المعيار نهجًا مشتركًا لأي حجم من المؤسسات لإدارة أي نوع من المخاطر، بما في ذلك عملية اتخاذ القرار [34]. يشرح ISO/TR 31004 التنفيذ الفعال لـ ISO 31000 بالتفصيل [35]. يوضح IEC 31010 اختيار وتطبيق تقنيات تقييم المخاطر في مواقف مختلفة [36]. ISO 27000 هو معيار أساسي آخر يعطي نهجًا عامًا لأنظمة إدارة أمن المعلومات [37]. يحدد IEC 63154 المتطلبات وطرق الاختبار ونتائج الاختبار المطلوبة ضد الحوادث السيبرانية لوسائل المساعدة الملاحية البحرية والراديو ومعدات الملاحة [38]. تقييم السلامة الرسمي (FSA) [39] المنشور من قبل IMO هو منهجية منهجية لتعزيز السلامة في الصناعة البحرية، بما في ذلك حياة الإنسان والصحة والبيئة البحرية والممتلكات باستخدام تحليل المخاطر.</p>
+    <p>كما ذكرنا سابقًا، أصدرت IMO لائحة لتقييم المخاطر السيبرانية [4]. بعد هذه اللائحة بشكل خاص، تم نشر عدة إرشادات من قبل هيئات التصنيف ومنظمات أخرى معترف بها من IMO لدعم الصناعة البحرية ضد المخاطر السيبرانية [40–42]. الإرشادات حول إدارة المخاطر السيبرانية البحرية [42] التي طورتها بالاشتراك عدة جمعيات صناعية موصى بها رسميًا من قبل IMO [3،43]. توفر الإرشادات شروحات مفصلة في أبعاد مختلفة من الأمن السيبراني، مثل التهديدات السيبرانية وإدارة المخاطر وتدابير الحماية التقنية والإجرائية وخطط الطوارئ بما في ذلك إجراءات الاستجابة والتعافي للصناعة البحرية.</p>
+    <p>توجد مقارنات مختلفة بين النماذج عالية المستوى، مثل إطار ATT&CK وسلسلة القتل السيبراني و OWASP top 10 و STRIDE والنموذج الماسي [44–47]. على الرغم من فعالية هذه النماذج في فهم العمليات وأهداف الخصم، إلا أن النماذج الأخرى غير إطار ATT&CK ليست مفيدة لشرح تأثير إجراء على آخر [48]. علاوة على ذلك، يصور إطار ATT&CK ارتباطات الإجراءات بمصادر البيانات والدفاعات والتكوينات والتدابير المضادة الأخرى المستخدمة لأمن المنصة [48].</p>
+    <p>على الرغم من أن إطار ATT&CK ليس طريقة لتقييم المخاطر، إلا أن الأوراق التي تستخدم إطار ATT&CK متاحة لأغراض مختلفة في مجالات أخرى، مثل تقييم المخاطر وتحديد المخاطر [49،50]. في دراستنا، نكشف أنه يمكن استخدام إطار ATT&CK لتقييم المخاطر السيبرانية لأنظمة السفن أيضًا. علاوة على ذلك، في الأدبيات، لم يتم العثور على أي تقييم للمخاطر يركز على INS. الأوراق في الأدبيات قيمت عادة المخاطر السيبرانية لعدد قليل من المكونات. في دراستنا، قمنا بتقييم المخاطر السيبرانية لـ 25 مكونًا بحريًا.</p>
+  </section>
+
+  <section>
+    <h2>3. المنهجية الموسعة والتنفيذ</h2>
+    <p>اشتقت منهجيتنا من [51] لتخصص المخاطر السيبرانية للسفن. تعتمد الطريقة على تحليل أوضاع الفشل وتأثيراتها وتحليل الحرجية (FMECA) وإطار MITRE ATT&CK. الميزة الأساسية للطريقة الأصلية هي تقليل الحاجة إلى أحكام الخبراء. وبالتالي، يقل تأثير التحيز في تقييم المخاطر. علاوة على ذلك، فإن الطريقة شاملة وشبه آلية. يتم تضمين تدابير التخفيف للمخاطر السيبرانية. تتم منهجيتنا المعدلة للأنظمة البحرية على النحو التالي:</p>
+    <p>1. تحديد المكونات وتصنيفها.<br>
+2. تحديد وظائف المكونات وتدفق البيانات بين المكونات.<br>
+3. تحديد أوضاع الفشل للمكونات.<br>
+4. ربط أوضاع الفشل بالعواقب والتأثيرات.<br>
+5. تحديد معايير التقدير للحرجية.<br>
+6. تحديد طرق الكشف والضوابط الحالية.<br>
+7. تحديد درجات تأثير المكونات.<br>
+8. حساب درجات المخاطر وتحديد مستويات المخاطر.</p>
+    <h3>3.1. تحديد المكونات وتصنيفها</h3>
+    <p>تبدأ منهجيتنا بتحديد وتصنيف المكونات البحرية. قمنا بتنفيذ منهجية تقييم المخاطر لدينا على INS في هذه الدراسة. يتكون INS من مكونات بحرية مختلفة. وجدنا 25 مكونًا لـ INS في دراستنا السابقة [52]. تم تصنيف هذه المكونات حسب تعريفات IMO وتعريفات الطريقة، على التوالي. تعريفات الطريقة لتصنيف المكونات معطاة في الجدول 1 (مثل IT و OT واللاسلكي). التصنيف حسب تعريفات الطريقة مطلوب لعملية تقييم المخاطر. ومع ذلك، يتم تقديم التصنيف حسب تعريفات IMO لتقديم مساهمة إضافية وفهم الاختلافات بين التصنيفات في الجدول 2.</p>
+    <p>وفقًا لـ IMO، تنقسم المكونات إلى مجموعتين، مثل تكنولوجيا المعلومات (IT) والتكنولوجيا التشغيلية (OT)، ويُعرف الفرق بين أنظمة IT و OT بأنه "يمكن اعتبار أنظمة تكنولوجيا المعلومات على أنها تركز على استخدام البيانات كمعلومات"، و"يمكن اعتبار أنظمة التكنولوجيا التشغيلية على أنها تركز على استخدام البيانات للتحكم أو مراقبة العمليات الفيزيائية" [3]. علاوة على ذلك، يعبر المستند الموصى به من IMO، الإرشادات حول إدارة المخاطر السيبرانية البحرية، أن "IT تغطي طيف التقنيات لتخزين ومعالجة البيانات، بما في ذلك البرمجيات والأجهزة وتقنيات الاتصالات"، و"OT تشمل الأجهزة والبرامج التي تراقب/تتحكم مباشرة في الأجهزة والعمليات الفيزيائية، عادة على متن السفينة" [42]. تم مراجعة إرشادات مختلفة متعلقة بالأمن السيبراني البحري للعثور على قائمة تصنيف موثوقة للمكونات البحرية بهذه التعريفات. ومع ذلك، فإن بعض المكونات البحرية، مثل ECDIS و RADAR والبوصلة الجيروسكوبية و AIS ونظام تحديد المواقع العالمي (GPS) ونظام مراقبة إنذار الملاحة الجسرية (BNWAS) يتم تصنيفها كـ OT من قبل العديد من المنظمات [40–42]. لم يتم العثور على قائمة كاملة لمكونات INS. قمنا بتصنيف مكونات INS مع مراعاة تعريفات IMO كما هو موضح في الجدول 2. يتضمن الجدول أيضًا أعمدة لـ النوع والمنصة والتقنية. تم تحديد نوع المكونات، مثل المستشعرات وواجهة الإنسان-الآلة (HMI) وخادم التحكم ومحطة العمل الهندسية. بالنسبة للمفاتيح (مثل مفتاح اختيار مضخة الدفة)، تجاهلنا النوع. إذا كان المكون يحتاج إلى نظام تشغيل للعمل، فقد تم ذكره في المنصة. تشير التقنية إلى التقنيات المرتبطة مثل Wi-Fi والشبكة الخلوية و Bluetooth.</p>
+  </section>
+
+  <section>
+    <h3>3.2. وظائف المكونات وتدفق البيانات بين المكونات</h3>
+    <p>في الخطوة الثانية من الطريقة، يتم التحقيق في وظائف المكونات وتدفق البيانات بين المكونات. تم أخذ هذه المعرفة لـ INS من مقالتنا السابقة، كما هو موضح في الجدول 3 [52]. تم تحديد تدفق البيانات في الجدول وفقًا للمتطلبات الدنيا لـ IMO. ومع ذلك، يُسمح باتصالات إضافية بين المكونات.</p>
+    <p>ORA هي أداة شبكية لتحليل وتصور ودمج والتنبؤ بالسلوك من بيانات الشبكة [53]. يمكن تحديد نقاط الضعف ونمذجة تغيرات الشبكة بمرور الوقت واللاعبين الرئيسيين ويمكن استلام تقارير منسقة [54]. علاوة على ذلك، تتكون من أدوات لتحسين هيكل تصميم الشبكة [54]. في دراستنا، تم استخدام ORA لحساب مقاييس المركزية المختلفة، مثل السلطة والمركزية البينية ودرجة الدخول. ثم، تم رسم الرسم البياني للاعتماد، استنادًا إلى الجدول 3. الرسم البياني للاعتماد بين المكونات موضح في الشكل 1. في هذا الرسم البياني، تمثل العقد المكونات المدروسة في INS بينما تمثل الحواف تدفق البيانات المحدد بين المكونات.</p>
+  </section>
+
+  <section>
+    <h3>3.3. تحديد أوضاع الفشل</h3>
+    <p>تمت مراجعة الأدبيات لفهم الحوادث السيبرانية التي حدثت على متن السفن والتهديدات ونقاط الضعف للمكونات البحرية الموجودة في الأنشطة البحثية. علاوة على ذلك، تمت مراجعة إرشادات المنتجات لفهم حالات الفشل المحتملة للمكونات. تم تجاهل الأضرار المادية للمكونات وأخطاء التركيب. بهذه الطريقة، تم تحديد حالات الفشل المحتملة الناتجة عن هجوم سيبراني. ثم، تم تحديد أوضاع الفشل. في هذه الدراسة، يشير وضع الفشل إلى التكتيكات [15] في إطار ATT&CK ويتم تقديمها في ثلاث فئات: الأجهزة المحمولة والمؤسسات و ICS. تم تقديم عينات من النتائج في الجدول A2.</p>
+    <p>ثم، تم تحديد الأسباب المحتملة لأوضاع الفشل أو تقنيات الهجوم وتم تقدير احتمالية حدوثها. تم إجراء التحديد مكونًا بمكون من خلال اكتشاف العلاقات بين المكونات والتقنيات بناءً على مطابقة السمات. يوفر إطار ATT&CK سمات لأنواع الأصول والمنصات ذات الصلة لكل تقنية. هذا يسمح بتحديد التقنيات ذات الصلة لكل مكون في النظام بناءً على فئة النظام. على سبيل المثال، "قمع الإنذار" هي تقنية هجوم ضد عدة فئات من مكونات ICS مثل "وحدة RTU"؛ لذلك، سيتم تعيين تقنية "قمع الإنذار" ضمن التهديدات المحددة لأي مكون نظام يمكن تصنيفه كـ "RTU". بعد ذلك، تم حساب احتمالية كل تقنية بناءً على درجة قابلية الاستغلال في نظام تسجيل الثغرات الأمنية المشترك (CVSS). يستلزم ذلك تقدير احتمالية التقنيات بناءً على شبكة بايزية من أربعة عناصر، وهي تعقيد الهجوم (AC) والامتياز المطلوب (PR) وناقل الهجوم (AV) وتفاعل المستخدم (UI) باستخدام المعادلة (1).</p>
+  </section>
+
+  <section>
+    <h3>3.4. ربط أوضاع الفشل بالعواقب والتأثيرات</h3>
+    <p>العاقبة هي نتيجة حادث [39]. في الطريقة الأصلية، يتم تحديد العواقب على أنها تشغيلية وسلامة ومعلوماتية ومالية وتمهيدية. توصي IMO بتقييم المخاطر البيئية في FSA [39]. علاوة على ذلك، قمنا بالتحقيق في عدة مصفوفات تقييم مخاطر مستخدمة في الصناعة البحرية ولاحظنا أن عاقبة السمعة يتم تقييمها أيضًا من قبل مشغلي الناقلات، بشكل خاص. لهذه الأسباب، قمنا بتوسيع الطريقة بعواقب السمعة والبيئة.</p>
+    <p>تصف العاقبة السلامة potential to cause harm to persons (e.g., crew and passengers). تصف العاقبة التشغيلية الاضطرابات المحتملة، مثل الأخطاء في الأنظمة أثناء مناولة البضائع. تشير العاقبة المالية إلى الخسائر الاقتصادية مثل أضرار المكونات أو الخسائر التجارية. تشرح العاقبة المعلوماتية انتهاكات الخصوصية و/أو السرية المحتملة. تصف العاقبة التمهيدية تأثير وضع الفشل الذي يسهل تمهيد الهجمات المستقبلية. تصف العاقبة البيئية potential to cause harm to the environment. تصف عاقبة السمعة الضرر الذي يلحق بمكانة الشركة وحياتها التجارية.</p>
+    <p>تم تقسيم العواقب التشغيلية والمعلوماتية والتمهيدية إلى تأثيرات. ثلاثة مقاييس متاحة لتقدير التأثير على العاقبة التشغيلية، وهي التأثير التشغيلي الإجمالي (OOI) والتأثير على وظائف التحكم (I2CF) والتأثير على وظائف المراقبة (I2MF). إذا كان وضع الفشل يؤثر على التحكم، يتم تقديره باستخدام I2CF. إذا كان وضع الفشل يؤثر على المراقبة، يتم تقديره باستخدام I2MF. يتم تقدير الباقي باستخدام مقياس OOI. تم تقدير التمهيد باستخدام حرجية المكون الإجمالية (OCC) ومركزية درجة الخروج (ODC). تم تقدير أوضاع فشل الثبات والدفاع عن التهرب والامتياز باستخدام OCC. تم تقدير الباقي باستخدام مقياس ODC. ثلاثة أنواع من المقاييس موجودة للعاقبة المعلوماتية: حرجية البيانات (DC) وحرجية الملكية الفكرية (IPC) وحرجية معلومات الموقع (LIC).</p>
+    <p>أي مكونات في سياق INS لا تعالج أو تستضيف بيانات شخصية وسرية. إحدى ميزات AIS هي نقل معلومات الموقع بشكل متكرر. عندما يكون AIS مزودًا إلزاميًا، يجب أن يكون نشطًا دائمًا أثناء الرسو والإبحار إلا إذا قرر القبطان إيقاف تشغيله لأسباب تتعلق بالسلامة والأمن [56]. علاوة على ذلك، يقوم نظام التحديد والتتبع بعيد المدى (LRIT) الموجود على متن السفينة أيضًا بنقل معلومات الموقع [57]. بسبب هذه اللوائح، لا يمكن أن تكون معلومات موقع السفينة سرية. مكونات INS يمكن العثور عليها بسهولة في السوق. علاوة على ذلك، يتم تحديد معايير المكونات من قبل IMO. هذا هو السبب في عدم وجود ملكية فكرية لـ INS. لهذه الأسباب، لا يخضع INS لعواقب معلوماتية. تم ربط أوضاع الفشل بالعواقب والتأثيرات المحتملة الأخرى لـ INS، كما هو موضح في الجدول 4.</p>
+  </section>
+
+  <section>
+    <h3>3.5. معايير التقدير المحددة للحرجية</h3>
+    <p>تم تحديد معايير التقدير لحرجية السلامة والمالية والبيئة والسمعة. اقترحنا معايير تقدير لهذه الحرجيات. تم تحديد الدرجات في جداول معايير التقدير بين 0 و 1 باستخدام درجات تأثيرها. تم استخدام الجدول 5 لتقدير تأثير وضع الفشل على عاقبة السلامة. تم استخدام الجدول 6 للتنبؤ بالحرجية المالية. معايير التقدير للحرجية البيئية موضحة في الجدول 7. تم اشتقاق الجدولين 5 و 7 من الملحق 4 — التصنيف الأولي لسيناريوهات الحوادث في FSA المنشور من قبل IMO [39].</p>
+    <p>بسبب الحوادث السيبرانية، قد يتم فقدان صلاحية السفينة للإبحار أو صلاحية البضائع أو قد تتأخر السفينة إلى ميناء وجهتها. في مثل هذه الحالات، قد يحتاج القبطان إلى إبلاغ المستأجرين أو الجهات التنظيمية البحرية، مثل دولة الميناء ودولة العلم وهيئة التصنيف. هذا من شأنه أن يضر بسمعة مشغل السفينة بشكل واضح. هذا هو السبب في أننا حددنا معيارين لحرجية السمعة، كما هو موضح في الجدول 8.</p>
+  </section>
+
+  <section>
+    <h3>3.6. تحديد طرق الكشف والضوابط الحالية</h3>
+    <p>تم تقديم تدابير التخفيف التقنية والإجرائية لمصفوفات المؤسسات [17] والأجهزة المحمولة [58] و ICS [59] في إطار ATT&CK. تم تقييم أكثر من 70 إجراء تخفيف لكل مكون في سياق INS. في الجدول 9، تم توضيح عينات من تدابير التخفيف للمكونات. يشير الرقم "1" في الجدول إلى أنه يمكن تنفيذ إجراء التخفيف للمكون. من ناحية أخرى، يشير "0" في الجدول إلى أنه لا يمكن تنفيذ إجراء التخفيف للمكون. يساعد هذا الجدول في حساب قابلية اكتشاف التقنيات التي يمكن معالجتها بتدابير تخفيف معينة. قابلية الاكتشاف هو مصطلح مستخدم في المنهجية الأصلية [51] يشير إلى درجة تقليل المخاطر بسبب توفر تدابير تخفيف المخاطر. يتم حساب قابلية اكتشاف تقنية عند استهداف مكون معين بناءً على المعادلة (2).</p>
+  </section>
+
+  <section>
+    <h3>3.7. تحديد درجات تأثير المكونات</h3>
+    <p>لم تكن التأثيرات المعلوماتية (IPC و DC و LIC) متاحة لـ INS كما ذكر في القسم 3.4. أثناء مراجعة الأدبيات، لم يتم العثور على حوادث تضر بالبشر أو البيئة ناتجة عن هجمات سيبرانية ضد سفينة. لهذا السبب، تم افتراض أن حرجية السلامة والحرجية البيئية في فئة لا شيء — لا إصابة أو بيانات غير كافية. تؤثر جوانب مختلفة على الخسائر المالية، بما في ذلك انتهاك اتفاقية استئجار السفينة والنفقات التشغيلية اليومية وتكاليف الإصلاح وما إلى ذلك. من الصعب تقدير الخسارة المحتملة؛ ومع ذلك، من المحتمل جدًا أن تكون أكثر من 10,000 دولار. هذا هو السبب في افتراض الحرجية المالية على أنها كبيرة — 10,001–100,000 دولار. قد يتسبب فقدان مكونات مختلفة في تأخير السفينة أو الحاجة إلى إبلاغ الجهات التنظيمية البحرية، مثل AIS أو GPS أو RADAR. تم افتراض أن هذه المكونات كبيرة لحرجية السمعة. OOI هو المتوسط المعياري لجميع مقاييس المركزية لمكون محسوب باستخدام ORA. يشير ODC إلى مركزية درجة الخروج لمكون محسوب باستخدام ORA. OCC هي حرجية المكون الإجمالية، والتي يتم حسابها باستخدام معادلة في [51]. وهي أساسًا متوسط جميع التأثيرات (مثل السلامة والمالية والمعلومات). جميع هذه الافتراضات والحسابات ممثلة في الجدول 10.</p>
+  </section>
+
+  <section>
+    <h3>3.8. حساب درجات المخاطر وتحديد مستويات المخاطر</h3>
+    <p>العنصر الأخير المطلوب لحساب المخاطر هو تأثير التقنيات التي تستهدف المكونات. يتم تحقيق ذلك باستخدام المعلومات الموجودة في الجداول 4 و 10 و A2. يحدد الجدول A2 أوضاع الفشل ذات الصلة لمكون. يحدد الجدول 4 المقياس الذي سيتم استخدامه لتقدير تأثير وضع الفشل، ويحدد الجدول 10 قياس كل عنصر تأثير. تم حساب القيمة النهائية لتأثير وضع الفشل (F) للمكون (C) باستخدام المعادلة (3).</p>
+    <p>تم إعداد نتائجنا في جداول Excel كما هو موضح في [51]. ثم، تم حساب درجات المخاطر بواسطة البرنامج النصي، الذي تم برمجته خصيصًا للمنهجية. في الطريقة الأصلية، يتم تصنيف المخاطر لمستويات منخفضة (0–4.86) ومتوسطة (4.87–9.72) وعالية (9.73–14.58) وحرجة (14.59–19.44). ومع ذلك، في هذه الدراسة، تجاهلنا عدة عواقب، كما هو موضح في القسم 3.7. لهذا السبب، أعدنا تعريف مستويات المخاطر بالدرجات. وفقًا لنتائجنا، تتراوح المخاطر بين 0.041624847 و 8.68820705893103. تم تقسيم النطاق إلى أربع فئات لتحديد أولويات المخاطر، كما هو موضح في الجدول 11.</p>
+    <p>في هذه الدراسة، تم التحقيق في المخاطر السيبرانية لـ 25 مكونًا في INS. ثلاثة مكونات، مثل مفتاح اختيار مضخة الدفة ومفتاح اختيار وضع التوجيه ومفتاح اختيار وضعية التوجيه، لا تتضمن أي مخاطر سيبرانية. تم العثور على إجمالي 1850 خطرًا ينتمي إلى بقية المكونات الـ 22. صنفت نتائجنا 1805 خطرًا على أنها منخفضة و32 متوسطة و9 عالية و4 حرجة. تم تمثيل أعداد المخاطر لكل مكون ومستويات المخاطر بالطريقة الأصلية وتعريفات دراستنا في الجدول 12.</p>
+    <p>تسعة مخاطر عالية كانت مرتبطة بـ AIS و ECDIS و MFD و NAVTEX و RADAR. تضمن RADAR بمفرده أربعة من تسعة مخاطر عالية. في المجموع، 1502 خطرًا من 1850 إجمالي كانت مرتبطة بـ ECDIS (499 خطرًا) و MFD (499 خطرًا) و RADAR (504 مخاطر). كانت المخاطر المتبقية مرتبطة بـ 19 مكونًا. علاوة على ذلك، أربعة مخاطر حرجة تتعلق بـ ECDIS و RADAR. إجمالي 1497 خطرًا للمؤسسات و342 خطرًا لـ ICS و11 خطرًا تتعلق بمصفوفة الأجهزة المحمولة؛ في المجموع، أدى 443 تقنية مختلفة إلى 1850 خطرًا، 13 منها قد تعرض أكثر من 9 مخاطر كما هو ممثل في الجدول 13.</p>
+  </section>
+
+  <section>
+    <h2>4. الاستنتاجات</h2>
+    <p>اقترحنا طريقة مشتقة لتقييم المخاطر السيبرانية للسفن. تم تطوير الطريقة الأصلية لتقييم المخاطر السيبرانية للأنظمة الفيزيائية السيبرانية باتباع FMECA وإطار MITRE ATT&CK. قمنا بتكييف الطريقة للأنظمة البحرية بشكل خاص. ثم، قمنا بتنفيذ الطريقة لتقييم المخاطر السيبرانية لـ INS، وتم العثور على 1850 خطرًا متعلقًا بـ 22 مكونًا. لم تكن أي مخاطر لثلاثة مكونات (أي المفاتيح) متاحة. تم تصنيف المخاطر إلى 1805 منخفضة و32 متوسطة و9 عالية و4 حرجة.</p>
+    <p>تعكس المخاطر العالية والحرجة الأهداف الخصمية لإحداث تأثير على وظائف INS. يشمل هذا مجموعة واسعة من التهديدات، مثل عدة أشكال من هجمات رفض الخدمة ورفض معالجة بيانات الاستشعار وهجمات التشويش واختطاف موارد المكونات الحساسة.</p>
+    <p>ECDIS و MFD و RADAR هي المكونات الوحيدة التي تحتاج إلى نظام تشغيل للعمل. وفقًا لنتائجنا، يزيد نظام التشغيل من التهديدات السيبرانية ونقاط ضعف المكون بشكل كبير. المكونات الأخرى التي تعمل بنظام تشغيل على متن السفينة، مثل نظام إدارة مياه الصابورة وأي أنظمة نقل (مثل التموين)، ستتضمن العديد من المخاطر السيبرانية المشابهة لـ ECDIS و MFD و RADAR.</p>
+    <p>في الطريقة الأصلية، يتم تحديد العواقب على أنها تشغيلية وسلامة ومعلوماتية ومالية وتمهيدية. بسبب احتياجات الصناعة، أخذنا أيضًا في الاعتبار العواقب البيئية وعواقب السمعة. تم تكييف معايير تقدير التأثير لكل عاقبة من خلال النظر في FSA. لم تكن العاقبة المعلوماتية متاحة لـ INS. عواقب السلامة والبيئة يمكن أن تكون ممكنة؛ ومع ذلك، لا توجد أي حادث بحري (مثل الاصطدام والإصابة والانفجار) ناتج عن حوادث سيبرانية في الأدبيات حتى الآن. لهذا السبب، يمكن افتراض أو تجاهل حرجية السلامة والبيئة. قررنا تجاهل كليهما. لهذا السبب، قمنا أيضًا بإعادة تصنيف مستويات المخاطر حسب درجات المخاطر. إذا لم نكن قد أعدنا تصنيف مستويات المخاطر، لكانت المخاطر قد قُدرت بأقل من قيمتها. بمجرد إثراء الأدبيات، يجب أيضًا النظر في عواقب أخرى.</p>
+    <p>تحدد IMO فقط الحد الأدنى من المعايير للمكونات البحرية. كل مصنع عادة ما يكون حرًا في جوانب مختلفة، مثل تصميم المنتج ومبدأ العمل والبرمجيات والأجهزة ونظام التشغيل. قد يتم إرفاق ميزات، أكثر من المتطلبات، بالمنتجات من قبل الصانعين لخلق قيمة مضافة. لهذا السبب، يمكن أن تكون أوضاع الفشل وتدابير التخفيف قابلة للتغيير حسب المنتجات. في هذه الدراسة، يتم تقديم تنفيذ لطريقتنا المقترحة وتم إجراء تقييم المخاطر لـ INS نموذجي. ومع ذلك، فإن الطريقة مناسبة ليتم تنفيذها في تقييم المخاطر السيبرانية للأنظمة البحرية غير INS. في دراسات أخرى، يمكن تقييم المخاطر السيبرانية لأنظمة أخرى في الجسر، مثل أنظمة السلامة والأمن والاتصالات. علاوة على ذلك، يمكن تقييم المخاطر السيبرانية للمعدات في مواقع أخرى، مثل غرفة المحرك وغرفة التحكم في البضائع.</p>
+    <p>دراستنا مبنية على عدة افتراضات، كما أجريت العديد من تقييمات المخاطر. تتوفر سجلات قليلة للحوادث السيبرانية والدراسات التجريبية ضد الأنظمة البحرية في الأدبيات. لهذا السبب، قمنا أيضًا بالتحقيق في أقسام استكشاف الأخطاء وإصلاحها في كتيبات المنتجات لافتراض تأثير هجوم محتمل. ربط أوضاع الفشل وعواقبها هو أمر شخصي وقد يتغير تحت حكم الخبراء. تم اعتبار الحرجية المالية على أنها كبيرة (10,001–100,000 دولار). ومع ذلك، فإن الخسائر التجارية (مثل مطالبات البضائع وانتهاكات عقد الاستئجار وفقدان المستأجر المحتمل) وتكاليف المكونات والخدمة والرسو وما إلى ذلك يمكن أن تؤثر بشكل مباشر على الخسائر المالية لحادث سيبراني. لهذا السبب، التأثير المالي مبني على افتراضات أيضًا. على الرغم من عدة افتراضات، فإن الطريقة شاملة ومفصلة. يمكن تنفيذها بشكل مثالي لتقييم المخاطر السيبرانية للأنظمة البحرية المحددة جيدًا تحت سيناريو معين.</p>
+    <p>تقدم الدراسة تصنيفين لمكونات INS. تصنف IMO المكونات كـ IT و OT. ومع ذلك، يمكن لطريقتنا تصنيف IT و OT واللاسلكي ومجموعات منها. طريقتنا و IMO تعرفان مفاهيم IT و OT بشكل مختلف. لطريقة تقييم المخاطر، تعريفات IMO غير مطلوبة. نظرًا لعدم العثور على أي قائمة كاملة في الأدبيات، تم أيضًا تقديم تصنيف مكونات INS حسب تعريف IMO في دراستنا كمساهمة إضافية.</p>
+  </section>
+
+  <section>
+    <h2>الملحق أ</h2>
+    <p>المخاطر المتوسطة والعالية والحرجة لـ INS معطاة في الجدول A1. يمكن العثور على القائمة الكاملة في الورقة الأصلية.</p>
+  </section>
+
+  <section>
+    <h2>المراجع</h2>
+    <p>قائمة المراجع الكاملة (59 مصدرًا) متاحة في <a href="https://www.mdpi.com/1424-8220/22/22/8745/pdf" target="_blank">الملف الأصلي للPDF</a>.</p>
+  </section>
+</div>
+
+<!-- ENGLISH -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Shipping performed by contemporary vessels is the backbone of global trade. Modern vessels are equipped with many computerized systems to enhance safety and operational efficiency. One such system developed is the integrated navigation system (INS), which combines information and functions for the bridge team onboard. An INS comprises many marine components involving cyber threats and vulnerabilities. This study aims to assess the cyber risks of such components. To this end, a methodology considering the MITRE ATT&CK framework, which provides adversarial tactics, techniques, and mitigation measures, was applied by modifying for cyber risks at sea. We assessed cyber risks of 25 components on the bridge by implementing the extended methodology in this study. As a result of the assessment, we found 1850 risks. We classified our results as 1805 low, 32 medium, 9 high, and 4 critical levels for 22 components. Three components did not include any cyber risks. Scientists, ship operators, and product developers could use the findings to protect navigation systems onboard from potential cyber threats and vulnerabilities.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Over 80% of goods in international trade are carried by ships [1]. One of the most essential elements of maritime transportation is explicitly ships. In 2020, the worldwide merchant fleet grew by 3% and reached 99,800 ships of 100 gross tons and above [1]. Contemporary ships are equipped with computerized systems for different purposes, such as navigation, communication, propulsion, and cargo handling. The safety and operational efficiency of vessels are improved because of such systems. However, these systems are accompanied by growing cyber security concerns in the maritime industry because of experiencing cyber incidents and revealing research results.</p>
+    <p>The International Maritime Organization (IMO) is the responsible agency in the United Nations for the safety and security of shipping and the prevention of environmental pollution by ships [2]. Maritime cyber risk is defined by the IMO as "a measure of the extent to which a technology asset is threatened by a potential circumstance or event, which may result in shipping-related operational, safety or security failures as a consequence of information or systems being corrupted, lost or compromised" [3]. In 2017, the IMO issued a resolution to prevent maritime cyber risks [4]. As per the resolution in force, cyber risks must be assessed by ship operators and addressed in their approved Safety Management Systems (SMS). Moreover, they should make reference to the Ship Security Plan (SSP) as per the International Ship and Port Facility Security (ISPS) Code [5,6]. This requirement has been verified in the Document of Compliance (DOC) audits of ship operators since 2 January 2021.</p>
+    <p>This paper reveals the significance of cyber risks onboard vessels. We contributed to the literature by extending a methodology using the MITRE ATT&CK framework to assess the cyber risks of systems onboard ships. Moreover, the method was implemented to specifically assess the cyber risks of an INS in this study. A total of 1850 risks were classified as 1805 low, 32 medium, 9 high, and 4 critical levels. Given that no marine casualty (e.g., collision, explosion, injury, and oil spill) caused by cyber attacks was found in the literature, safety and environmental impacts of cyber risks are outside of the scope of this study.</p>
+    <p>We organised the remainder of the paper as follows. Section 2 gives a review of the related literature. In Section 3, the methodology is discussed and implemented for the cyber risks of an INS. Section 4 offers a summary and suggests additional research topics for further investigation. Consequently, in Appendix A, cyber risks of medium, high, and critical levels are listed.</p>
+  </section>
+
+  <section>
+    <h2>2. Background</h2>
+    <h3>2.1. INS Concept</h3>
+    <p>The IMO defines an INS as "A system in which the information from two or more navigation aids is combined in a symbiotic manner to provide an output that is superior to any one of the component aids" [7]. The INS aims to improve safe navigation by combining and integrating information and functions for the Officer of the Watch (OOW) in planning, monitoring, and controlling ship navigation [8]. An INS constitutes six navigational tasks as mandatory and optional, as follows:</p>
+    <p><strong>Route Monitoring:</strong> "The navigational task of continuous surveillance of own ships position in relation to the pre-planned route and the waters" [9].</p>
+    <p><strong>Route Planning:</strong> The task that provides procedures for voyage planning, route planning functions and data for the Electronic Chart Display and Information System (ECDIS), administering the route plan, checking route plan against hazards, manoeuvring limitation (e.g., rate of turn (ROT)), drafting and refining the route plan against meteorological information [8].</p>
+    <p><strong>Collision Avoidance:</strong> "The navigational task of detecting and plotting other ships and objects to avoid collisions" [9].</p>
+    <p><strong>Navigation Control Data:</strong> "Task that provides information for the manual and automatic control of the ship's movement on a task station" [9].</p>
+    <p><strong>Navigational Status and Data Display:</strong> The task that displays data for the manual and automatic control of the ship's primary movement [8].</p>
+    <p><strong>Alert Management:</strong> "Concept for the harmonized regulation of the monitoring, handling, distribution and presentation of alerts on the bridge" [9].</p>
+  </section>
+
+  <section>
+    <h3>2.2. MITRE ATT&CK Framework</h3>
+    <p>The ATT&CK framework (which stands for Adversarial Tactics, Techniques, and Common Knowledge) has been developed by MITRE since 2013 [10]. It is a globally accessible database including attack tactics, techniques, and mitigation measures for the matrices of enterprise, mobile, and industrial control systems (ICS). The Enterprise Matrix covers offensive information (i.e., tactics and techniques) for information technology (IT) networks and cloud services, such as operating systems (i.e., Windows, Linux, and macOS), network components, Office 365, and Google Workspace [11,12]. The Mobile Matrix includes offensive knowledge for iOS and Android platforms [13]. The ICS Matrix provides offensive information for the ICS [14]. The Tactics represents the attack objective, such as initial access, credential access, and lateral movement [15]. Techniques expresses methods to achieve an attack objective [16]. The ATT&CK framework also provides mitigation measures to avoid a technique from being successfully executed [17]. Moreover, malware and tools which can be used for malicious purposes are described under the name of Software [18]. Another important dimension of ATT&CK is to offer cyber-threat intelligence. Groups refers to adversary actor and give techniques implemented and software used by them for an attack in the past [19]. Data Sources provides information about various subjects and notions [20].</p>
+  </section>
+
+  <section>
+    <h3>2.3. Literature Review</h3>
+    <p>In the literature, papers implementing various methods have assessed the cyber risks of autonomous ships and conventional ships. Kavallieratos and Katsikas [21] implemented STRIDE and DREAD methods for the cyber risk assessment of several systems on the autonomous ship, such as a collision avoidance system, RADAR, closed-circuit television (CCTV), Voyage Data Recorder (VDR), cargo management system, and autopilot. Kavallieratos et al. in [22] also implemented STRIDE for an AIS, engine automation system, bridge automation system, shore control center, engine efficiency system, navigation systems, autonomous ship controller, and so on. Tusher et al. [23] have a cyber risk assessment work for autonomous ships, as well. In their study, the Bayesian best–worst method was implemented, and the authors revealed navigation systems as the most vulnerable element in the context of future autonomous shipping operations. Shang et al. [24] implemented the combination of fuzzy set theory and the Attack Tree method to assess cyber risks of the control system for a gas turbine onboard ship. Oruc [25] also combined fuzzy set theory with another risk assessment method, Fine–Kinney. In the study, 31 cyber risks in the bridge, engine room, and cargo control room onboard a tanker were assessed. Moreover, the efficiency of proposed mitigation measures is shown by implementing the method a second time after taking precautions.</p>
+    <p>Kessler et al. [26] focused on 16 different cyber risks of an AIS. Their study reveals that the disruption of an individual AIS message is more crucial than being unusable of an entire AIS. Svilicic et al. [27] also performed a risk assessment for a specific component. The authors made a cyber risk assessment for the ECDIS on a training vessel by using a vulnerability scanner, named Nessus Professional, and interviewing the ship crew. Several cyber threats were determined regarding the operating system, procedures, awareness, and so on. iTrust published a guideline [28] to uncover cyber risks of operational technology (OT) systems on conventional vessels, including navigation, machinery, communication, and cargo management systems. The traditional risk calculation formula (risk = severity × likelihood) was implemented to assess cyber risks. The study also proposes actionable mitigation measures. You et al. [29] focused on risk assessment methods in other fields and discussed their adaptation to the maritime industry. According to the study, Attack Tree, simulations, and models can be implemented for the cyber risk assessment of marine systems.</p>
+    <p>Novel methods other than well-established methods are also available in the literature for cyber risks onboard ships. Tam and Jones [30] developed a model-based framework for maritime cyber-risk assessment, entitled Maritime Cyber-Risk Assessment (MaCRA). The authors also implemented the method to assess the cyber risks of three autonomous ship projects in a separate paper [31]. Bolbot et al. [32] proposed a novel method, named CYber-Risk Assessment for Marine Systems (CYRA-MS), by considering the Preliminary Hazard Analysis (CPHA) method to assess cyber risks of ship systems. The authors implemented the method on navigation and propulsion control systems of a fully autonomous inland ship. Meland et al. [33] offered an alternative method for cyber risk assessment. The likelihood of a threat in new design systems is a challenge. The authors propose the threat likelihood approach to support security decision-making for new design systems in particular. Their method is the combination of current concepts, techniques, expert judgements, and domain-specific information.</p>
+    <p>The ISO 31000 is the root standard and comprises principles, a framework, and a process for risk management [34]. The standard offers a common approach for any size of organization to manage any kind of risk, including the decision-making process [34]. The ISO/TR 31004 explains the effective implementation of ISO 31000 in detail [35]. The IEC 31010 clarifies the selection and application of risk assessment techniques in different situations [36]. The ISO 27000 is another root standard and gives a general approach to information security management systems [37]. The IEC 63154 identifies requirements, test methods, and required test results against cyber incidents for shipborne navigational aids, radio, and navigational equipment [38]. The Formal Safety Assessment (FSA) [39] published by the IMO is a systematic methodology to enhance safety in the maritime industry, including the protection of human life, health, the marine environment and property by using risk analysis.</p>
+    <p>As mentioned before, IMO issued a regulation for the assessment of cyber risks [4]. After this regulation particularly, several guidelines were published by class societies and other IMO-recognized organizations to support the maritime industry against cyber risks [40–42]. The Guidelines on Maritime Cyber Risk Management [42] jointly developed by several industry associations are officially recommended by the IMO [3,43]. The guidelines provide detailed explanations in different dimensions of cyber security, such as cyber threats, risk management, technical and procedural protection measures, and contingency plans, including response and recovery procedures for the maritime industry.</p>
+    <p>Various comparisons among high-level models, such as the ATT&CK framework, Cyber Kill Chain, OWASP top 10, STRIDE, and the Diamond Model exist [44–47]. Even though such models are effective in understanding processes and adversary goals, models other than the ATT&CK framework are not useful for explaining the impact of an action to another [48]. Furthermore, the ATT&CK framework depicts correlations of actions with data sources, defenses, configurations, and other countermeasures used for the security of a platform [48].</p>
+    <p>Even though ATT&CK framework is not a risk assessment method, papers using ATT&CK framework are available for different purposes in other domains, such as risk assessment and risk identification [49,50]. In our study, we reveal that the ATT&CK framework can be used for cyber risk assessment of ship systems as well. Moreover, in the literature, any risk assessment focusing on an INS was not found. Papers in the literature typically assessed the cyber risks of a few components. In our study, we assessed cyber risks for 25 marine components.</p>
+  </section>
+
+  <section>
+    <h2>3. The Extended Methodology and Implementation</h2>
+    <p>Our methodology was derived from [51] to specialize cyber risks of vessels. The method is based on a Failure Mode Effects and Criticality Analysis (FMECA) and the MITRE ATT&CK framework. The core advantage of the original method is to reduce the need for expert judgement. Thus, the impact of bias in a risk assessment reduces. Moreover, the method is comprehensive and semi-automated. Mitigation measures for cyber risks are included. Our adapted methodology for marine systems is performed as follows:</p>
+    <p>1. Components are specified and classified.<br>
+2. Functions of components and data flow among components are identified.<br>
+3. The failure modes for components are determined.<br>
+4. Failure modes are mapped with consequences and impacts.<br>
+5. Estimation criteria for criticalities are identified.<br>
+6. Detection methods and existing controls are identified.<br>
+7. The impact scores of components are identified.<br>
+8. Risk scores are calculated and risk levels are identified.</p>
+    <h3>3.1. Component Specification and Classification</h3>
+    <p>Our methodology starts with the specification and classification of marine components. We implemented our risk assessment methodology on an INS in this study. An INS consists of various marine components. We found 25 components for an INS in our previous study [52]. Such components were classified by IMO and method definitions, respectively. The method definitions for the classification of components are given in Table 1 (e.g., IT, OT, Wireless). Classification by the method definitions is required for the risk assessment process. However, the classification by the IMO definitions is given to provide an additional contribution and to understand the differences between classifications in Table 2.</p>
+    <p>According to the IMO, components are divided into two groups, such as information technology (IT) and operational technology (OT), and the difference between IT and OT systems is defined as "Information technology systems may be thought of as focusing on the use of data as information", and "Operational technology systems may be thought of as focusing on the use of data to control or monitor physical processes" [3]. Moreover, the IMO-recommended document, Guidelines on Maritime Cyber Risk Management, expresses that "IT covers the spectrum of technologies for data storing and processing, including software, hardware, and communication technologies", and "OT includes hardware and software that directly monitors/controls physical devices and processes, typically on board." [42]. Various maritime cyber security-related guidelines were reviewed to find a reliable classification list for marine components by such definitions. However, some marine components, such as ECDIS, RADAR, gyro compass, AIS, GPS, and BNWAS are classified as OT by several organizations [40–42]. A full list for INS components has not been found. We classified INS components considering IMO definitions as shown in Table 2. The table also includes columns for Type, Platform, and Technology. The Type of the components, such as sensors, Human–Machine Interface (HMI), control server, and engineering workstation was determined. For switches (e.g., the Rudder pump selector switch), we ignored the Type. If a component needs an operating system to run, it was stated in the Platform. The Technology refers to attached technologies such as Wi-Fi, cellular, and Bluetooth.</p>
+  </section>
+
+  <section>
+    <h3>3.2. Functions of Components and Data Flow among Components</h3>
+    <p>In the second step of the method, the functions of the components and data flow among the components are investigated. Such knowledge for an INS was taken from our previous article, as shown in Table 3 [52]. Data flow in the table was identified as per the minimum requirements of the IMO. However, additional connections among the components are allowed.</p>
+    <p>The ORA is a network tool to analyze, visualize, fuse, and forecast behaviour given network data [53]. Vulnerabilities, model network changes over time, and key players can be identified and formatted reports can be received [54]. Moreover, it consists of tools for optimizing a network's design structure [54]. In our study, the ORA was employed to calculate various centrality metrics, such as authority, betweenness, and in-degree. Then, the dependency graph was drawn, based on Table 3. The dependency graph among the components is illustrated in Figure 1. In this graph, the nodes represent the investigated component in the INS while the edges represent the identified data flow between components.</p>
+  </section>
+
+  <section>
+    <h3>3.3. Identifying Failure Modes</h3>
+    <p>The literature was reviewed to understand occurred cyber incidents onboard ships and threats and vulnerabilities of the marine components found in research activities. Moreover, the guidelines of products were reviewed to understand potential failures of components. Component damages and installation mistakes were ignored. In this way, potential failures caused by a cyber attack were determined. Then, failure modes were determined. In this study, failure mode refers to Tactics [15] in the ATT&CK framework and is given in three categories, such as Mobile, Enterprise, and ICS. Samples of findings are represented in Table A2.</p>
+    <p>Then, the possible causes of failure modes or attack techniques were identified and their likelihood was estimated. The identification was performed component-by-component by detecting relationships between components and techniques based on matching attributes. The ATT&CK framework provides attributes of relevant asset types and platforms for each technique. This allows for the identification of the relevant techniques for each component in the system based on the system category. For instance, "Alarm Suppression" is an attack technique against several categories of ICS components such as "RTU"; therefore, "Alarm Suppression" technique would be assigned among the threats identified for any system component that can be categorized as an "RTU". Afterwards, the likelihood of each technique was calculated based on the exploitability score in the Common Vulnerability Scoring System (CVSS). This entails the estimation of the techniques likelihood based on a Bayesian network of four elements, namely, Attack Complexity (AC), Privilege Required (PR), Attack Vector (AV) and User Interaction (UI) using Equation (1).</p>
+  </section>
+
+  <section>
+    <h3>3.4. Mapping Failure Modes with Consequences and Impacts</h3>
+    <p>The consequence is an outcome of an accident [39]. In the original method, consequences are identified as operational, safety, information, financial, and staging. The IMO recommends assessing environmental risks in the FSA [39]. Moreover, we investigated several risk assessment matrices used in the maritime industry and noticed that reputation consequence is also assessed by tanker operators, in particular. Because of such reasons, we extended the method with reputation and environmental consequences.</p>
+    <p>Safety Consequence depicts the potential to cause harm to persons (e.g., crew and passengers). Operational Consequence describes potential disruptions, such as errors in the systems during cargo handling. Financial Consequence refers to economic losses such as component damages, or commercial losses. Information Consequence explains possible privacy or/and confidentiality violations. Staging Consequence describes the effect of a failure mode which facilitates the staging of future attacks. Environmental Consequence describes the potential to cause harm to the environment. Reputation Consequence describes harm to company prestige and business life.</p>
+    <p>Operational, Information, and Staging consequences were broken into impacts. Three metrics are available for estimating the impact on operational consequence, namely the Overall Operational Impact (OOI), Impact to the Control Functions (I2CF), and Impact to the Monitoring Functions (I2MF). If a failure mode impacts the control, it is estimated using the I2CF. If a failure mode impacts monitoring, it is estimated using the I2MF. Others are estimated using the OOI metric. Staging was estimated using Overall Component Criticality (OCC) and Outbound Degree Centrality (ODC). The failure modes of persistence, defense evasion, and privilege were estimated using the OCC. Others are estimated using the ODC metric. Three types of metrics exist for the information consequence. These are Data Criticality (DC), Intellectual Property Criticality (IPC), and Location Information Criticality (LIC).</p>
+    <p>Any components in the context of an INS do not process or host personal and confidential data. One feature of an AIS is to transmit location information frequently. When an AIS is equipped mandatorily, it must be always active at anchor and underway unless the master decides to switch it off due to safety and security concerns [56]. Moreover, LRIT onboard also transmit position information [57]. Because of such regulations, the position information of a vessel can not be confidential. Components of an INS are easily found in the market. Furthermore, component standards are identified by the IMO. This is why intellectual property does not existing for an INS. Because of such reasons, an INS is not subject to information consequences. Failure modes were mapped with other consequences and potential impacts for an INS, as illustrated in Table 4.</p>
+  </section>
+
+  <section>
+    <h3>3.5. Identified Estimation Criteria for Criticalities</h3>
+    <p>The estimation criteria were identified for safety, financial, environmental, and reputational criticalities. We proposed estimation criteria for such criticalities. The scores in the estimation criteria tables were identified between 0 and 1 using their impact degrees. Table 5 was used to estimate the impact of a failure mode on the safety consequence. Table 6 was used to forecast financial criticality. The estimation criteria for environmental criticality are depicted in Table 7. Tables 5 and 7 were derived from the Appendix 4—Initial Ranking of Accident Scenarios in the FSA published by the IMO [39].</p>
+    <p>Because of cyber incidents, the seaworthiness and cargo worthiness of a ship may be lost or the ship might be delayed to its destination port. In such cases, the master may need to inform charterers or maritime regulators, such as the port state, flag state, and class society. This would explicitly damage the reputation of the ship operator. This is why we identified two criteria for reputation criticality, as shown in Table 8.</p>
+  </section>
+
+  <section>
+    <h3>3.6. Identifying Detection Methods and Existing Controls</h3>
+    <p>Technical and procedural mitigation measures for enterprise [17], mobile [58], and ICS [59] matrices are given in the ATT&CK framework. Over 70 mitigation measures were assessed for each component in the context of an INS. In Table 9, samples of mitigation measures for components are illustrated. The number "1" in the table refers to that the mitigation measure can be implemented for the component. On the other hand, "0" in the table denotes that the mitigation measure cannot be implemented for the component. This table assists in calculating the detectability of techniques that can be addressed by certain mitigation measures. Detectability is a term utilized in the original methodology [51] that refers to the degree of risk reduction due to the availability of risk mitigation measures. The detectability of a technique when targeting a specific component is calculated based on Equation (2).</p>
+  </section>
+
+  <section>
+    <h3>3.7. Identifying Impact Scores of Components</h3>
+    <p>Information impacts (i.e., IPC, DC, LIC) were not available for an INS as mentioned in Section 3.4. During the literature review, no incidents harming humans or the environment were found to be caused by cyber attacks against a vessel. This is why safety criticality and environmental criticality were assumed to be in the category None—No injury or insufficient data. Various aspects affect financial losses, including violation of the charter party agreement, daily operational expenses, repair costs, and so on. It is difficult to estimate a potential loss; however, it is highly possible for this to be over $10,000. This is why financial criticality was assumed as Significant—$10,001–$100,000. The loss of various components may cause the delay of a vessel or the need to inform maritime regulators, such as AIS, GPS, or RADAR. Such components are assumed as Significant for reputational criticality. The OOI is the normalized average of all centrality metrics of a component calculated using ORA. ODC denotes the out-degree centrality of a component calculated using ORA. OCC is the overall component criticality, which is calculated using an equation in [51]. It is basically the average of all impacts (e.g., safety, financial, and information). All such assumptions and calculations are represented in Table 10.</p>
+  </section>
+
+  <section>
+    <h3>3.8. Calculating Risk Scores and Identifying Risk Levels</h3>
+    <p>The last element that is required for calculating the risk is the impact of techniques targeting components. This is achieved by utilizing the information in Tables 4, 10 and A2. Table A2 specifies the relevant failure modes for a component. Table 4 specifies the metric to be utilized for estimating the impact of failure mode, and Table 10 specifies the quantification of the impact for each impact element. The final value of the impact of failure mode (F) for component (C) was calculated using Equation (3).</p>
+    <p>Our findings were prepared in Excel tables as described in [51]. Then, risk scores were calculated by the script, which was specifically coded for the methodology. In the original method, the risks are classified for levels of low risk rating (0–4.86), medium risk rating (4.87–9.72), high risk rating (9.73–14.58), and critical risk rating (14.59–19.44). However, in this study, we ignored several consequences, as described in Section 3.7. This is why we re-defined the risk levels by scores. According to our findings, risks are in the range of 0.041624847 and 8.68820705893103. The range was divided into four classes to prioritize the risks, as shown in Table 11.</p>
+    <p>In this study, cyber risks for 25 components in an INS were investigated. Three components, such as rudder pump selector switch, steering mode selector switch, and steering position selector switch do not include any cyber risks. A total of 1850 risks belonging to the rest of 22 components were found. Our results classified 1805 risks as low, 32 as medium, 9 as high, and 4 as critical. Risk numbers for each component and risk levels by the original method and our study definitions are represented in Table 12.</p>
+    <p>Nine high risks were related to AIS, ECDIS, MFD, NAVTEX, and RADAR. RADAR solitarily included four of nine high risks. In total, 1502 risks of 1850 total were related to ECDIS (499 risks), MFD (499 risks), and RADAR (504 risks). The remaining risks related to 19 components. Moreover, four critical risks related to ECDIS and RADAR. A total of 1497 risks for enterprise, 342 risks for ICS, and 11 risks related to the mobile matrix; in total, 443 different techniques led to 1850 risks, 13 of which might compromise over 9 risks as represented in Table 13.</p>
+  </section>
+
+  <section>
+    <h2>4. Conclusions</h2>
+    <p>We proposed a derived method to assess the cyber risks of ships. The original method was developed to assess cyber risks of cyber-physical systems by following the FMECA and MITRE ATT&CK framework. We adapted the method for marine systems in particular. Then, we implemented the method to assess the cyber risks of an INS, and 1850 risks related to 22 components were found. Any risks for three components (i.e., switches) were not available. The risks were classified as 1805 low, 32 medium, 9 high, and 4 critical.</p>
+    <p>The high and critical risks reflect adversarial objectives to cause an impact on the INS functions. This includes a wide range of threats, such as several variations of denial of service attacks, denial of the processing of sensor data, jamming attacks, and hijacking the resources of sensitive components.</p>
+    <p>The ECDIS, MFD, and RADAR are the only components that need an operating system to run. According to our results, the operating system increases the cyber threats to and vulnerabilities of a component dramatically. Other components underlying the operating system onboard, such as the ballast water management system and any transfer systems (e.g., bunker), would involve many cyber risks similar to the ECDIS, MFD, and RADAR.</p>
+    <p>In the original method, consequences are identified as operational, safety, information, financial, and staging. Because of the industry's necessities, we also took into environmental and reputational consequences. The impact estimation criteria for each consequence were adapted by considering FSA. Information consequence was not available for an INS. Safety and environmental consequences could be possible; however, any marine casualty (e.g., collision, injury, and explosion) caused by cyber incidents does not exist in the literature to date. This is why safety and environmental criticalities could be assumed or ignored. We decided to ignore both. For this reason, we also re-classified risk levels by risk scores. If we had not re-classified the risk levels, the risks would have been underestimated. Once the literature is enriched, other consequences must be considered as well.</p>
+    <p>The IMO only defines the minimum standards for marine components. Each manufacturer is usually free in various aspects, such as product design, working principle, software, hardware, and operating system. Features, more than requirements, may be attached to products by makers to create added value. This is why failure modes and mitigation measures could be changeable by products. In this study, an implementation of our proposed method is represented and the risk assessment was performed for a typical INS. However, the method is convenient to be implemented in the cyber risk assessment of marine systems other than INS. In further studies, cyber risks of other systems in the bridge, such as safety, security, and communication systems, can be assessed. Moreover, cyber risks of equipment in other locations, such as the engine room and cargo control room, may be assessed.</p>
+    <p>Our study is based on several assumptions, as many risk assessments were conducted. A few records of cyber incidents and experimental studies against marine systems are available in the literature. This is why we also investigated troubleshooting sections of product brochures to assume the impact of a potential attack. The mapping of failure modes and their consequences are subjective and might change under expert judgement. Financial criticality was considered as significant (USD 10,001–100,000). However, commercial losses (e.g., cargo claims, charter party violations, and loss of potential charterer) and costs for components, service, mooring and so on could directly affect the financial losses of a cyber incident. This is why financial impact is based on assumptions, as well. Despite several assumptions, the method is comprehensive and detailed. It can be perfectly implemented to assess the cyber risks of well-defined marine systems under a specific scenario.</p>
+    <p>The study offers two classifications for components of an INS. The IMO classifies the components as IT and OT. However, our method can classify IT, OT, wireless, and combinations of these. Our method and IMO differently define IT and OT notions. For the risk assessment method, IMO definitions are not required. Given that any complete list could not be found in the literature, component classification for an INS by the IMO definition was also given in our study as an additional contribution.</p>
+  </section>
+
+  <section>
+    <h2>Appendix A</h2>
+    <p>Medium, high, and critical risks of an INS are given in Table A1. The full list can be found in the original paper.</p>
+  </section>
+
+  <section>
+    <h2>References</h2>
+    <p>Full reference list (59 sources) available in the <a href="https://www.mdpi.com/1424-8220/22/22/8745/pdf" target="_blank">original PDF</a>.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s22228745">10.3390/s22228745</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('toggle-' + (lang === 'both' ? 'both' : lang)).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side'); el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    for (var i = 0; i < Math.min(arSections.length, enSections.length); i++) {
+      var pair = document.createElement('div'); pair.className = 'compare-section';
+      var enCol = document.createElement('div'); enCol.className = 'compare-en';
+      var enLabel = document.createElement('div'); enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH'; enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div'); arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div'); arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية'; arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol); pair.appendChild(arCol); container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  // Update toggle button labels based on language
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare';
+  // Update AR/EN buttons
+  document.getElementById('toggle-ar').textContent = isAr ? '🇸🇦 العربية' : '🇸🇦 العربية';
+  document.getElementById('toggle-en').textContent = isAr ? '🇬🇧 الإنجليزيّة' : '🇬🇧 English';
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
