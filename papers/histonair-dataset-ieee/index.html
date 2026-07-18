@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>هيستونير: مجموعة بيانات الغطاء الأرضي للصور الجوية التاريخية النرويجية — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+
+/* Specs table */
+.specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+.specs-table th, .specs-table td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.specs-table th {
+  font-weight: 700;
+  color: var(--accent-2);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  width: 30%;
+}
+body[dir="rtl"] .specs-table th,
+body[dir="rtl"] .specs-table td {
+  text-align: right;
+}
+.specs-table td {
+  color: var(--text-1);
+}
+.dataset-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  background: var(--accent-1);
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: opacity 0.2s;
+}
+.dataset-link:hover {
+  opacity: 0.85;
+}
+.class-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+.class-list li {
+  background: var(--bg-2);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  border: 1px solid var(--border);
+}
+body[dir="rtl"] .class-list { justify-content: flex-start; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">HISTonAIR: Historical Norwegian Aerial Imagery Land-Cover Dataset</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">هيستونير: مجموعة بيانات الغطاء الأرضي للصور الجوية التاريخية النرويجية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Mahmoud Kenawi, Fabian Vakhidi, S. L. Ullo, Knut Alfredsen, Tor Haakon Bakken</span>
+    <span>📄 IEEE DataPort, 2025</span>
+    <span>🔗 <a href="https://doi.org/10.21227/CHSP-7K25">10.21227/CHSP-7K25</a></span>
+    <span class="license-badge">✓ Open Access</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>ملخص المجموعة</h2>
+    <p>مجموعة بيانات HISTonAIR هي معيار واسع النطاق للتجزئة الدلالية للصور الجوية التاريخية. بُنيت من أرشيف Norge i Bilder وخرائط الغطاء الأرضي المُعتمدة سابقًا، وتحتوي على ما يقرب من 3.46 مليون صورة مقطعية (باتش) مطابقة جيولوجيًا بحجم 512×512 بكسل بتدرج الرمادي مع تعليقات توضيحية على مستوى البكسل. يتم توزيع كل عينة كزوج من tensors بايثون (الصورة وقناع التسمية)، مما يتيح الاستخدام المباشر في سير عمل التعلم العميق. تغطي المجموعة ست فئات للغطاء الأرضي: المناطق الحضرية، الغطاء النباتي، المسطحات المائية، الأراضي الرطبة، الأراضي الزراعية، والأراضي الجرداء.</p>
+  </section>
+
+  <section>
+    <h2>المواصفات الرئيسية</h2>
+    <table class="specs-table">
+      <tr><th>الحجم</th><td>~3.46 مليون صورة مقطعية</td></tr>
+      <tr><th>أبعاد الصورة</th><td>512×512 بكسل، تدرج رمادي (3 قنوات)</td></tr>
+      <tr><th>التنسيق</th><td>PyTorch tensors (.pt)</td></tr>
+      <tr><th>مستوى التعليق</th><td>بكسل (6 فئات)</td></tr>
+      <tr><th>المصدر</th><td>أرشيف Norge i Bilder</td></tr>
+      <tr><th>الترخيص</th><td>وصول مفتوح — IEEE DataPort</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>فئات الغطاء الأرضي</h2>
+    <ul class="class-list">
+      <li>0 — مناطق حضرية</li>
+      <li>1 — غطاء نباتي</li>
+      <li>2 — مسطحات مائية</li>
+      <li>3 — أراضٍ رطبة</li>
+      <li>4 — أراضٍ زراعية</li>
+      <li>5 — أراضٍ جرداء</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>الوصول إلى المجموعة</h2>
+    <p>المجموعة متاحة للتحميل على IEEE DataPort. تتضمن التعليمات الكاملة لتحميل واستخدام البيانات في PyTorch.</p>
+    <a href="https://ieee-dataport.org/documents/histonair-historical-norwegian-aerial-imagery-land-cover-dataset" class="dataset-link" target="_blank">📥 تحميل من IEEE DataPort</a>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Dataset Summary</h2>
+    <p>HISTonAIR is a large-scale benchmark for semantic segmentation of archival aerial photographs. Built from the Norge i Bilder archive and previously validated land-cover rasters, it contains approximately 3.46 million orthorectified 512×512 grayscale image patches with pixel-level annotations. Each sample is distributed as a PyTorch tensor pair (image and label mask), enabling direct use in deep learning workflows. The dataset covers six land-cover classes: Urban, Vegetation, Water, Wetland, Agriculture, and Bare Land.</p>
+  </section>
+
+  <section>
+    <h2>Key Specifications</h2>
+    <table class="specs-table">
+      <tr><th>Size</th><td>~3.46 million image patches</td></tr>
+      <tr><th>Image Dimensions</th><td>512×512 px, grayscale (3 channels)</td></tr>
+      <tr><th>Format</th><td>PyTorch tensors (.pt)</td></tr>
+      <tr><th>Annotation Level</th><td>Pixel-level (6 classes)</td></tr>
+      <tr><th>Source</th><td>Norge i Bilder archive</td></tr>
+      <tr><th>License</th><td>Open Access — IEEE DataPort</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Land-Cover Classes</h2>
+    <ul class="class-list">
+      <li>0 — Urban</li>
+      <li>1 — Vegetation</li>
+      <li>2 — Water</li>
+      <li>3 — Wetland</li>
+      <li>4 — Agriculture</li>
+      <li>5 — Bare Land</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Access the Dataset</h2>
+    <p>The dataset is available for download on IEEE DataPort. Full instructions for loading and using the data in PyTorch are included.</p>
+    <a href="https://ieee-dataport.org/documents/histonair-historical-norwegian-aerial-imagery-land-cover-dataset" class="dataset-link" target="_blank">📥 Download from IEEE DataPort</a>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<footer>
+  <p>Original dataset: <a href="https://doi.org/10.21227/CHSP-7K25">10.21227/CHSP-7K25</a> · Open Access — IEEE DataPort</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
