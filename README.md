@@ -4,7 +4,7 @@
 
 Translate open-access research papers to Arabic while preserving references, citations, equations, and formatting.
 
-**Website:** [dararchive.com](https://dararchive.com)
+**Website:** [dar.oversight.ee](https://dar.oversight.ee)
 
 ![Release](https://img.shields.io/github/v/release/ahmdngi/dar?style=flat-square&label=release)
 ![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
