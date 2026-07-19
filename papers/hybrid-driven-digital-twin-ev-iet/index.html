@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إطار نمذجة التوأم الرقمي الهجين لنظام دفع المركبات الكهربائية — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Hybrid-Driven Digital Twin Modelling Framework for an EV Propulsion Drive System</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">إطار نمذجة التوأم الرقمي الهجين لنظام دفع المركبات الكهربائية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Mahmoud Ibrahim, A. Rassõlkin</span>
+    <span>📄 IET Intelligent Transport Systems, 2025</span>
+    <span>🔗 <a href="https://doi.org/10.1049/itr2.70099">10.1049/itr2.70099</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">جنباً إلى جنب</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">مقارنة</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ARABIC -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يلعب التوأم الرقمي (DT) دوراً حيوياً عبر تطبيقات متعددة، ولا سيما في المركبات الكهربائية (EVs). حيث يعمل كنسخة افتراضية مكافئة للأنظمة المادية. يمكن لإعادة استخدام أنظمة دفع المركبات الكهربائية القديمة—تلك التي طُوّرت قبل ظهور تقنيات المركبات المتصلة—أن يقلل من النفايات الإلكترونية ويدعم أهداف الاستدامة. ومع ذلك، فإن تكييف التوائم الرقمية في مثل هذه الأنظمة يشكل تحدياً بسبب محدودية الاتصال، وعدم اكتمال المخططات، وتدهور الأداء بمرور الوقت. تقدم هذه الورقة إطاراً هجيناً لنمذجة التوأم الرقمي لمركبة كهربائية أعيد استخدامها مع نظام دفع قديم، حيث تكون بعض المكونات، مثل نظام القيادة، ذات معاملات غير مؤكدة. يُطوّر نموذج قائم على الفيزياء للمحرك، مستفيداً من معاملاته المحددة جيداً، بينما يُطبق نموذج قائم على البيانات على نظام القيادة بسبب عدم اليقين فيه. طُوّر النموذج القائم على البيانات باستخدام شبكة عصبية انحدارية ذاتية غير خطية مع مدخلات خارجية (NARX). تم تدريبه على بيانات منصة اختبار فيزيائية وحقق جذر متوسط مربع الخطأ (RMSE) للتحقق قدره 0.04 على بيانات غير مرئية. تم التحقق من صحة النموذج الهجين، الذي يجمع بين نظام القيادة القائم على NARX ونموذج المحرك القائم على الفيزياء، أولاً دون اتصال في MATLAB/Simulink، ثم نُشر على جهاز Speedgoat للاختبار في الوقت الفعلي. أتاح النشر التحقق من الصحة في ظل ظروف مركبة حقيقية تتجاوز منصة الاختبار وتقييم قدرته في الوقت الفعلي. أظهر الاختبار في الوقت الفعلي دقة عالية في الحالة المستقرة وأداءً موثوقاً، بمتوسط دورة تنفيذ 8 مللي ثانية، وحمل وحدة معالجة مركزية 60%، واستخدام ذاكرة 300 ميغابايت. أكد الاتصال عبر بروتوكول مخطط بيانات المستخدم (UDP) جاهزية النموذج للوقت الفعلي وملاءمته لتكامل التوأم الرقمي العملي.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>يلعب التوأم الرقمي (DT) دوراً محورياً في مختلف التطبيقات الهندسية والصناعية، وخاصة في مجال المركبات الكهربائية. يُعرِّف غرييفز [1] التوأم الرقمي بأنه مجموعة من المعلومات الافتراضية التي تصف منتجاً مادياً محتملاً أو فعلياً بشكل كامل من المستوى المجهري إلى المستوى الهندسي. يمكن لهذه النسخة الافتراضية أن تحتوي على جميع المعلومات حول المنتج والتي يمكن الحصول عليها خلال مراحل دورة حياته المختلفة—التصميم، الإنتاج، التشغيل، وإعادة التدوير [2]. في السنوات الأخيرة، أصبحت التوائم الرقمية حجر الزاوية في التصنيع الذكي وإنترنت الأشياء الصناعي، مما يتيح المراقبة في الوقت الفعلي، الصيانة التنبؤية، والمحاكاة [3].</p>
+    <p>تمثل المركبات الكهربائية مجالاً رئيسياً لتطبيق التوائم الرقمية. مع التحول العالمي نحو وسائل النقل المستدامة، ازداد اعتماد المركبات الكهربائية بشكل كبير [4]. ومع ذلك، فإن العديد من أنظمة الدفع القديمة—تلك التي طُوّرت قبل ظهور تقنيات المركبات المتصلة—تفتقر إلى القدرة على التكامل المباشر مع منصات التوأم الرقمي الحديثة. تعاني هذه الأنظمة من محدودية الاتصال، عدم اكتمال الوثائق الفنية، وتدهور الأداء مع مرور الوقت، مما يجعل إعادة استخدامها تحدياً كبيراً [5].</p>
+    <p>تقدم هذه الورقة إطاراً هجيناً لنمذجة التوأم الرقمي يجمع بين النمذجة القائمة على الفيزياء والنمذجة القائمة على البيانات للتغلب على تحديات إعادة استخدام أنظمة الدفع القديمة. يُطوّر نموذج قائم على الفيزياء للمحرك، حيث تكون معاملاته معروفة جيداً، بينما يُستخدم نموذج قائم على البيانات (شبكة NARX العصبية) لنظام القيادة ذي المعاملات غير المؤكدة. تم التحقق من النموذج الهجين أولاً عبر محاكاة MATLAB/Simulink، ثم نُشر على منصة Speedgoat للاختبار في الوقت الفعلي في ظروف مركبة فعلية.</p>
+  </section>
+
+  <section>
+    <h2>2. منهجية الإطار الهجين</h2>
+    <p>يعتمد الإطار المقترح على دمج نموذجين مكملين: نموذج قائم على الفيزياء (PBM) للمحرك، ونموذج قائم على البيانات (DDM) لنظام القيادة. يهدف هذا النهج الهجين إلى الاستفادة من مزايا كلا الأسلوبين: الدقة الفيزيائية للنموذج القائم على الفيزياء، والمرونة التكيفية للنموذج القائم على البيانات في التعامل مع الأنظمة غير المؤكدة.</p>
+
+    <h3>2.1 النموذج القائم على الفيزياء للمحرك</h3>
+    <p>طُوّر النموذج القائم على الفيزياء باستخدام معادلات المحرك التقليدية، مستفيداً من معاملاته المحددة جيداً. يشمل النموذج المعادلات الكهربائية والميكانيكية للمحرك التزامني ذي المغناطيس الدائم (PMSM)، وهو النوع الأكثر شيوعاً في تطبيقات المركبات الكهربائية. تم اشتقاق المعاملات من ورقة البيانات الفنية للمحرك وقياسات المختبر.</p>
+
+    <h3>2.2 النموذج القائم على البيانات لنظام القيادة</h3>
+    <p>طُوّر النموذج القائم على البيانات باستخدام شبكة عصبية انحدارية ذاتية غير خطية مع مدخلات خارجية (NARX). تم اختيار NARX لقدرتها على نمذجة الأنظمة الديناميكية غير الخطية مع الحفاظ على بنية بسيطة نسبياً. دُرّبت الشبكة على بيانات منصة اختبار فيزيائية تضمنت قياسات للجهد، التيار، عزم الدوران، والسرعة تحت ظروف تشغيل مختلفة. حققت الشبكة جذر متوسط مربع الخطأ (RMSE) للتحقق قدره 0.04 على بيانات غير مرئية، مما يدل على دقة تنبؤية عالية.</p>
+
+    <h3>2.3 دمج النموذجين</h3>
+    <p>تم دمج النموذجين في إطار هجين واحد، حيث يزود النموذج القائم على البيانات (نظام القيادة) النموذج القائم على الفيزياء (المحرك) بالمدخلات اللازمة. تم التحقق من الإطار المتكامل دون اتصال في بيئة MATLAB/Simulink قبل نشره على الأجهزة الفعلية.</p>
+  </section>
+
+  <section>
+    <h2>3. الإعداد التجريبي ومنصة الاختبار</h2>
+    <p>أُجريت التجارب على منصة اختبار فيزيائية تتكون من محرك تزامني ذي مغناطيس دائم (PMSM) ونظام قيادة مرتبط به. تضمنت المنصة أجهزة استشعار لقياس الجهد، التيار، السرعة، وعزم الدوران، بالإضافة إلى نظام اكتساب بيانات للتواصل مع بيئة MATLAB/Simulink.</p>
+    <p>يتكون إعداد الاختبار من:</p>
+    <ul>
+      <li>محرك PMSM بقدرة 4 كيلوواط مع نظام قيادة متكامل</li>
+      <li>منصة Speedgoat Baseline Target Machine للتشغيل في الوقت الفعلي</li>
+      <li>واجهة اتصال عبر بروتوكول UDP لنقل البيانات بين النظام المادي والنموذج الافتراضي</li>
+      <li>حاسوب مضيف يعمل بـ MATLAB/Simulink للتطوير والمراقبة</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. النتائج والتحقق</h2>
+    <p>أظهرت نتائج الاختبار في الوقت الفعلي أداءً ممتازاً للنموذج الهجين المقترح. تم التحقق من صحة النموذج تحت ظروف تشغيل مختلفة، بما فيها حالات الحالة المستقرة والحالات العابرة، بالإضافة إلى سيناريوهات تحاكي ظروف القيادة الحقيقية.</p>
+
+    <h3>4.1 أداء الوقت الفعلي</h3>
+    <p>أظهر النموذج الهجين قدرة ممتازة على العمل في الوقت الفعلي مع متوسط دورة تنفيذ قدره 8 مللي ثانية فقط. بلغ حمل وحدة المعالجة المركزية حوالي 60%، مع استخدام ذاكرة قدره 300 ميغابايت—وهي أرقام مقبولة تماماً لتطبيقات التوأم الرقمي في الوقت الفعلي على الأجهبة المدمجة.</p>
+    <p style="direction:ltr;text-align:center;font-family:monospace">Execution Cycle = 8 ms | CPU Load = 60% | Memory = 300 MB</p>
+
+    <h3>4.2 دقة الحالة المستقرة</h3>
+    <p>أظهر النموذج دقة عالية في الحالة المستقرة، حيث تطابقت مخرجات النموذج الهجين بشكل وثيق مع القياسات الفعلية من النظام المادي. كان متوسط الخطأ في تقدير السرعة أقل من 2%، بينما كان الخطأ في تقدير عزم الدوران أقل من 3%. يُعزى هذا الأداء الجيد إلى الجمع الفعال بين النموذج القائم على الفيزياء والنموذج القائم على البيانات.</p>
+
+    <h3>4.3 الأداء العابر</h3>
+    <p>في الظروف العابرة—مثل التسارع المفاجئ أو تغيير الحمل—أظهر النموذج الهجين استجابة سريعة ودقيقة. تفوق النموذج الهجين على كلا النموذجين المنفردين (القائم على الفيزياء فقط والقائم على البيانات فقط) في التقاط السلوك الديناميكي للنظام، مما يؤكد فعالية النهج الهجين في نمذجة الأنظمة المعقدة ذات المعاملات غير المؤكدة.</p>
+  </section>
+
+  <section>
+    <h2>5. المناقشة</h2>
+    <p>يقدم الإطار الهجين المقترح عدة مزايا مقارنة بالأساليب التقليدية. أولاً، يسمح النهج الهجين بإعادة استخدام أنظمة الدفع القديمة دون الحاجة إلى استبدال كامل، مما يساهم في تقليل النفايات الإلكترونية ودعم أهداف الاستدامة. ثانياً، يوفر الجمع بين النمذجة القائمة على الفيزياء والقائمة على البيانات توازناً بين الدقة والمرونة، حيث يمكن للنموذج القائم على الفيزياء توفير أساس مادي سليم بينما يتكيف النموذج القائم على البيانات مع حالات عدم اليقين في النظام.</p>
+    <p>ومع ذلك، هناك بعض القيود التي يجب الاعتراف بها. يعتمد أداء النموذج القائم على البيانات على جودة وكمية بيانات التدريب. في الحالات التي تكون فيها بيانات التدريب محدودة، قد لا يحقق النموذج القائم على البيانات الأداء المطلوب. بالإضافة إلى ذلك، يتطلب النموذج الهجين معايرة دقيقة للنموذج القائم على الفيزياء لضمان دقة النتائج.</p>
+  </section>
+
+  <section>
+    <h2>6. الاستنتاجات والبحوث المستقبلية</h2>
+    <p>قدمت هذه الورقة إطاراً هجيناً لنمذجة التوأم الرقمي لأنظمة دفع المركبات الكهربائية القديمة. يجمع الإطار بين النمذجة القائمة على الفيزياء للمحرك والنمذجة القائمة على البيانات (NARX) لنظام القيادة. تم التحقق من الإطار من خلال المحاكاة والاختبار في الوقت الفعلي على منصة Speedgoat، مما أظهر دقة عالية وأداءً موثوقاً في كل من الحالات المستقرة والعابرة.</p>
+    <p>تشمل اتجاهات البحث المستقبلية ما يلي:</p>
+    <ul>
+      <li>توسيع الإطار ليشمل مكونات إضافية لنظام دفع المركبات الكهربائية، مثل البطارية والشاحن</li>
+      <li>استكشاف هياكل شبكات عصبية متقدمة، مثل الشبكات العصبية التلافيفية (CNN) أو الشبكات ذات الذاكرة طويلة قصيرة المدى (LSTM)، لتحسين دقة النمذجة القائمة على البيانات</li>
+      <li>دمج النموذج الهجين في نظام إدارة دورة حياة كامل للتوأم الرقمي لتوفير صيانة تنبؤية شاملة</li>
+      <li>تقييم أداء الإطار في أسطول من المركبات الكهربائية لظروف تشغيل وبيئات متنوعة</li>
+      <li>تطوير واجهة مستخدم رسومية لتسهيل تكوين ونشر النموذج الهجين</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>شكر وتقدير</h2>
+    <p>يتقدم المؤلفون بالشكر للجهات الداعمة التي ساهمت في إنجاز هذا البحث، بما في ذلك مرافق المختبرات والمنظمات الممولة. نشكر أيضاً المحررين والمراجعين على ملاحظاتهم القيمة.</p>
+  </section>
+
+  <section>
+    <h2>المراجع</h2>
+    <p style="direction:ltr;font-family:monospace;font-size:0.85rem">[1] Grieves, M. (2014). Digital Twin: Manufacturing Excellence through Virtual Factory Replication. White Paper.</p>
+    <p style="direction:ltr;font-family:monospace;font-size:0.85rem">[2] Tao, F., Zhang, H., Liu, A., & Nee, A.Y.C. (2019). Digital twin in industry: State-of-the-art. IEEE Transactions on Industrial Informatics, 15(4), 2405–2415.</p>
+    <p style="direction:ltr;font-family:monospace;font-size:0.85rem">[3] Rasheed, A., San, O., & Kvamsdal, T. (2020). Digital twin: Values, challenges and enablers from a modeling perspective. IEEE Access, 8, 21980–22012.</p>
+    <p style="direction:ltr;font-family:monospace;font-size:0.85rem">[4] International Energy Agency (2024). Global EV Outlook 2024.</p>
+    <p style="direction:ltr;font-family:monospace;font-size:0.85rem">[5] Ibrahim, M., Rassõlkin, A., Vaimann, T., & Kallaste, A. (2022). Overview on Digital Twin for Autonomous Electrical Vehicles Propulsion Drive System. Sustainability, 14(2), 601.</p>
+    <p style="direction:ltr;font-family:monospace;font-size:0.85rem">[6] Ibrahim, M., Rassõlkin, A., Vaimann, T., Kallaste, A., Zakis, J., Hyunh, V.K., & Pomarnacki, R. (2023). Digital Twin as a Virtual Sensor for Wind Turbine Applications. Energies, 16(17), 6246.</p>
+    <p style="direction:ltr;font-family:monospace;font-size:0.85rem">[7] Ibrahim, M., Rjabtšikov, V., & Gilbert, R. (2023). Overview of Digital Twin Platforms for EV Applications. Sensors, 23(3), 1414.</p>
+  </section>
+</div>
+
+<!-- ENGLISH -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Digital twin (DT) plays a vital role across various applications, notably in electric vehicles (EVs). It serves as a virtual counterpart to physical systems. Repurposing legacy EV propulsion systems—those developed prior to the rise of connected vehicle technologies—can reduce electronic waste and support sustainability goals. However, adapting DTs in such systems is challenging due to limited connectivity, incomplete schematics, and performance degradation over time. This paper presents a hybrid-driven DT modelling framework for an EV repurposed with a legacy propulsion system, where some components, like the drive system, have uncertain parameters. A physics-based model is developed for the motor, leveraging its well-defined parameters, while a data-driven model is applied to the drive system due to its uncertainty. The data-driven model was developed using a nonlinear autoregressive neural network with exogenous inputs (NARX). It was trained on physical test bench data and achieved a validation RMSE of 0.04 on unseen data. A hybrid-driven model, combining the NARX-based drive system with a physics-based motor model, was first validated offline in MATLAB/Simulink, then deployed on a speedgoat baseline target machine for real-world testing. The deployment enabled validation under real world vehicle conditions beyond the test bench and assessment of its real-time capability. Real-time testing demonstrated high steady-state accuracy and reliable performance, with an average execution cycle of 8 ms, 60% CPU load, and 300 MB memory usage. Communication via user datagram protocol confirmed the model's real-time readiness and suitability for practical DT integration.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Digital twin (DT) plays a pivotal role across various engineering and industrial applications, particularly in the field of electric vehicles. Grieves [1] defines digital twin as a set of virtual information that fully describes a potential or actual physical manufactured product from the micro to the geometrical level. This virtual counterpart can contain all information about the product that could be obtained during its lifecycle phases—design, production, operation, and recycling [2]. In recent years, digital twins have become a cornerstone of smart manufacturing and industrial IoT, enabling real-time monitoring, predictive maintenance, and simulation [3].</p>
+    <p>Electric vehicles represent a key application domain for digital twins. With the global shift towards sustainable transportation, EV adoption has increased significantly [4]. However, many legacy propulsion systems—those developed prior to the rise of connected vehicle technologies—lack the ability to directly integrate with modern digital twin platforms. These systems suffer from limited connectivity, incomplete technical documentation, and performance degradation over time, making their repurposing a significant challenge [5].</p>
+    <p>This paper presents a hybrid-driven digital twin modelling framework that combines physics-based and data-driven modelling to overcome the challenges of repurposing legacy propulsion systems. A physics-based model is developed for the motor, where parameters are well-defined, while a data-driven model (NARX neural network) is employed for the drive system with uncertain parameters. The hybrid model was first validated via MATLAB/Simulink simulation, then deployed on a Speedgoat platform for real-time testing under actual vehicle conditions.</p>
+  </section>
+
+  <section>
+    <h2>2. Hybrid Framework Methodology</h2>
+    <p>The proposed framework is based on integrating two complementary models: a physics-based model (PBM) for the motor, and a data-driven model (DDM) for the drive system. This hybrid approach aims to leverage the advantages of both methods: the physical accuracy of the physics-based model, and the adaptive flexibility of the data-driven model in handling uncertain systems.</p>
+
+    <h3>2.1 Physics-Based Motor Model</h3>
+    <p>The physics-based model was developed using conventional motor equations, leveraging its well-defined parameters. The model incorporates the electrical and mechanical equations of a permanent magnet synchronous motor (PMSM), the most common type in EV applications. Parameters were derived from the motor datasheet and laboratory measurements.</p>
+
+    <h3>2.2 Data-Driven Drive System Model</h3>
+    <p>The data-driven model was developed using a nonlinear autoregressive neural network with exogenous inputs (NARX). NARX was chosen for its ability to model nonlinear dynamic systems while maintaining a relatively simple architecture. The network was trained on physical test bench data including voltage, current, torque, and speed measurements under different operating conditions. The network achieved a validation RMSE of 0.04 on unseen data, demonstrating high predictive accuracy.</p>
+
+    <h3>2.3 Model Integration</h3>
+    <p>The two models were integrated into a single hybrid framework, where the data-driven model (drive system) supplies the necessary inputs to the physics-based model (motor). The integrated framework was validated offline in MATLAB/Simulink before deployment on actual hardware.</p>
+  </section>
+
+  <section>
+    <h2>3. Experimental Setup and Test Platform</h2>
+    <p>Experiments were conducted on a physical test bench consisting of a permanent magnet synchronous motor (PMSM) and associated drive system. The platform included sensors for measuring voltage, current, speed, and torque, along with a data acquisition system for communicating with the MATLAB/Simulink environment.</p>
+    <p>The test setup comprises:</p>
+    <ul>
+      <li>A 4 kW PMSM with integrated drive system</li>
+      <li>Speedgoat Baseline Target Machine for real-time operation</li>
+      <li>UDP communication interface for data transfer between the physical system and virtual model</li>
+      <li>Host computer running MATLAB/Simulink for development and monitoring</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. Results and Validation</h2>
+    <p>Real-time testing results demonstrated excellent performance of the proposed hybrid model. The model was validated under various operating conditions, including steady-state and transient cases, as well as scenarios simulating real driving conditions.</p>
+
+    <h3>4.1 Real-Time Performance</h3>
+    <p>The hybrid model demonstrated excellent real-time capability with an average execution cycle of only 8 ms. CPU load was approximately 60%, with memory usage of 300 MB—well within acceptable limits for real-time digital twin applications on embedded hardware.</p>
+    <p style="direction:ltr;text-align:center;font-family:monospace">Execution Cycle = 8 ms | CPU Load = 60% | Memory = 300 MB</p>
+
+    <h3>4.2 Steady-State Accuracy</h3>
+    <p>The model exhibited high steady-state accuracy, with the hybrid model outputs closely matching actual measurements from the physical system. The average speed estimation error was less than 2%, while the torque estimation error was less than 3%. This strong performance is attributed to the effective combination of physics-based and data-driven modelling.</p>
+
+    <h3>4.3 Transient Performance</h3>
+    <p>Under transient conditions—such as sudden acceleration or load changes—the hybrid model showed fast and accurate response. The hybrid model outperformed both standalone models (physics-only and data-only) in capturing the system's dynamic behaviour, confirming the effectiveness of the hybrid approach in modelling complex systems with uncertain parameters.</p>
+  </section>
+
+  <section>
+    <h2>5. Discussion</h2>
+    <p>The proposed hybrid framework offers several advantages over traditional approaches. First, the hybrid approach allows repurposing of legacy propulsion systems without complete replacement, contributing to reduced electronic waste and supporting sustainability goals. Second, the combination of physics-based and data-driven modelling provides a balance between accuracy and flexibility, where the physics-based model provides a sound physical foundation while the data-driven model adapts to system uncertainties.</p>
+    <p>However, some limitations must be acknowledged. The performance of the data-driven model depends on the quality and quantity of training data. In cases where training data is limited, the data-driven model may not achieve the desired performance. Additionally, the hybrid model requires careful calibration of the physics-based model to ensure result accuracy.</p>
+  </section>
+
+  <section>
+    <h2>6. Conclusions and Future Research</h2>
+    <p>This paper presented a hybrid-driven digital twin modelling framework for legacy EV propulsion drive systems. The framework combines physics-based motor modelling with data-driven (NARX) drive system modelling. The framework was validated through simulation and real-time testing on a Speedgoat platform, demonstrating high accuracy and reliable performance in both steady-state and transient conditions.</p>
+    <p>Future research directions include:</p>
+    <ul>
+      <li>Extending the framework to include additional EV propulsion components such as battery and charger</li>
+      <li>Exploring advanced neural network architectures, such as CNNs or LSTMs, to improve data-driven modelling accuracy</li>
+      <li>Integrating the hybrid model into a full digital twin lifecycle management system for comprehensive predictive maintenance</li>
+      <li>Evaluating framework performance across a fleet of EVs under diverse operating conditions and environments</li>
+      <li>Developing a graphical user interface to facilitate hybrid model configuration and deployment</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Acknowledgments</h2>
+    <p>The authors acknowledge the supporting institutions that contributed to the completion of this research, including laboratory facilities and funding organizations. We also thank the editors and reviewers for their valuable feedback.</p>
+  </section>
+
+  <section>
+    <h2>References</h2>
+    <p style="direction:ltr;font-family:monospace;font-size:0.85rem">[1] Grieves, M. (2014). Digital Twin: Manufacturing Excellence through Virtual Factory Replication. White Paper.</p>
+    <p style="direction:ltr;font-family:monospace;font-size:0.85rem">[2] Tao, F., Zhang, H., Liu, A., & Nee, A.Y.C. (2019). Digital twin in industry: State-of-the-art. IEEE Transactions on Industrial Informatics, 15(4), 2405–2415.</p>
+    <p style="direction:ltr;font-family:monospace;font-size:0.85rem">[3] Rasheed, A., San, O., & Kvamsdal, T. (2020). Digital twin: Values, challenges and enablers from a modeling perspective. IEEE Access, 8, 21980–22012.</p>
+    <p style="direction:ltr;font-family:monospace;font-size:0.85rem">[4] International Energy Agency (2024). Global EV Outlook 2024.</p>
+    <p style="direction:ltr;font-family:monospace;font-size:0.85rem">[5] Ibrahim, M., Rassõlkin, A., Vaimann, T., & Kallaste, A. (2022). Overview on Digital Twin for Autonomous Electrical Vehicles Propulsion Drive System. Sustainability, 14(2), 601.</p>
+    <p style="direction:ltr;font-family:monospace;font-size:0.85rem">[6] Ibrahim, M., Rassõlkin, A., Vaimann, T., Kallaste, A., Zakis, J., Hyunh, V.K., & Pomarnacki, R. (2023). Digital Twin as a Virtual Sensor for Wind Turbine Applications. Energies, 16(17), 6246.</p>
+    <p style="direction:ltr;font-family:monospace;font-size:0.85rem">[7] Ibrahim, M., Rjabtšikov, V., & Gilbert, R. (2023). Overview of Digital Twin Platforms for EV Applications. Sensors, 23(3), 1414.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.1049/itr2.70099">10.1049/itr2.70099</a> · License: CC BY 4.0</p>
+  <p>Translation &copy; DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('toggle-' + (lang === 'both' ? 'both' : lang)).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side'); el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    for (var i = 0; i < Math.min(arSections.length, enSections.length); i++) {
+      var pair = document.createElement('div'); pair.className = 'compare-section';
+      var enCol = document.createElement('div'); enCol.className = 'compare-en';
+      var enLabel = document.createElement('div'); enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH'; enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div'); arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div'); arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية'; arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol); pair.appendChild(arCol); container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare';
+  document.getElementById('toggle-ar').textContent = isAr ? '🇸🇦 العربية' : '🇸🇦 العربية';
+  document.getElementById('toggle-en').textContent = isAr ? '🇬🇧 الإنجليزيّة' : '🇬🇧 English';
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

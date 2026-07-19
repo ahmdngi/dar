@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رسم خرائط عالي الدقة للتغيرات في استخدام الأراضي في أنظمة الطاقة الكهرمائية النرويجية — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">High-resolution mapping of land use changes in Norwegian hydropower systems</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">رسم خرائط عالي الدقة للتغيرات في استخدام الأراضي في أنظمة الطاقة الكهرمائية النرويجية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Mahmoud S. Kenawi, Knut T. Alfredsen, Sabine Stürzer, Brett K. Sandercock, Tor H. Bakken</span>
+    <span>🏛 Norwegian University of Science and Technology (NTNU)</span>
+    <span>📄 Renewable and Sustainable Energy Reviews, 2023</span>
+    <span>🔗 <a href="https://doi.org/10.1016/j.rser.2023.113798" target="_blank">10.1016/j.rser.2023.113798</a></span>
+    <span>📜 CC BY 4.0</span>
+  </div>
+</div>
+
+<div class="lang-toggle" dir="ltr">
+  <button class="active" onclick="setLang('ar')" id="toggle-ar">العربية</button>
+  <button onclick="setLang('en')" id="toggle-en">English</button>
+  <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">جنباً إلى جنب</span></button>
+  <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">مقارنة</span></button>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<div class="lang-content ar active">
+<section id="ar-abstract"><h2>الملخص</h2>
+<p>تقدم هذه الدراسة خرائط عالية الدقة للتغيرات في استخدام الأراضي المرتبطة بأنظمة الطاقة الكهرمائية النرويجية. باستخدام التصوير الجوي النرويجي عالي الدقة وقواعد البيانات الجغرافية، قمنا بتقييم كثافة استخدام الأراضي والتغيرات عبر 288 محطة طاقة. تظهر النتائج أن البنية التحتية للطاقة الكهرمائية تشغل بصمة أرضية أصغر مما كان مقدراً سابقاً، ولكن الآثار التراكمية للتطورات المتعددة تتطلب إدارة دقيقة. تسلط الدراسة الضوء على أهمية كثافة الإنتاج (GWh/km²) كمقياس لمقارنة كفاءة استخدام الأراضي بين مصادر الطاقة المختلفة.</p></section>
+<section id="ar-intro"><h2>١. المقدمة</h2>
+<p>تعد الطاقة الكهرمائية المصدر الرئيسي للطاقة المتجددة في النرويج، حيث توفر حوالي 90% من إنتاج الكهرباء في البلاد. ومع ذلك، فإن البنية التحتية للطاقة الكهرمائية - بما في ذلك السدود والخزانات ومحطات الطاقة وخطوط النقل - تشغل مساحات كبيرة من الأراضي. يعد فهم البصمة الأرضية للطاقة الكهرمائية أمراً بالغ الأهمية لتخطيط استخدام الأراضي والتقييم البيئي وتطوير السياسات.</p>
+<p>على الرغم من أهميتها، هناك نقص في الخرائط عالية الدقة لاستخدام الأراضي المرتبط بالطاقة الكهرمائية في النرويج. تهدف هذه الدراسة إلى سد هذه الفجوة من خلال توفير خرائط مفصلة للتغيرات في استخدام الأراضي في 288 محطة طاقة كهرمائية، تغطي مختلف أنواع المحطات بما في ذلك محطات التخزين والمحطات الجارية والمحطات الصغيرة.</p></section>
+<section id="ar-methods"><h2>٢. البيانات والمنهجية</h2>
+<p>استخدمت هذه الدراسة التصوير الجوي النرويجي عالي الدقة (Norge i Bilder) وقواعد البيانات الجغرافية (GIS) لرسم خرائط استخدام الأراضي حول 288 محطة طاقة كهرمائية. تم تحليل التغيرات في استخدام الأراضي على مدى فترات زمنية متعددة باستخدام الصور التاريخية والحديثة. تم حساب كثافة الإنتاج (GWh/km²) لكل محطة كمقياس لكفاءة استخدام الأراضي.</p>
+<p>شملت عينة الدراسة محطات طاقة بأحجام مختلفة: محطات تخزين كبيرة، محطات جارية، ومحطات صغيرة جداً وصغيرة ومتوسطة. تم جمع البيانات من قواعد البيانات الوطنية النرويجية ووكالة الطاقة النرويجية (NVE).</p></section>
+<section id="ar-results"><h2>٣. النتائج</h2>
+<p>تظهر النتائج أن محطات التخزين الكبيرة ومحطات الجريان النهري الكبيرة تظهر أعلى كثافات إنتاج، عند 1264 و350-396 GWh/km² على التوالي. تظهر طاقة الرياح البرية أقل كثافة إنتاج، عند 55 GWh/km²، مما يشير إلى انخفاض كفاءة استخدام الأراضي. تظهر الطاقة الشمسية كثافة إنتاج متواضعة تبلغ 80 GWh/km².</p>
+<p>تكشف خرائط استخدام الأراضي أن百分比 صغير فقط من مساحة الأرض المخصصة لمشاريع الطاقة الكهرمائية يُستخدم فعلياً للبنية التحتية (السدود والمحطات والخزانات)، بينما تظل النسبة الأكبر من المساحة كمناطق طبيعية أو زراعية. ومع ذلك، فإن التأثير التراكمي لمحطات الطاقة المتعددة على نفس نظام الأنهار يمكن أن يكون كبيراً.</p></section>
+<section id="ar-discussion"><h2>٤. المناقشة</h2>
+<p>تدعم النتائج أهمية استخدام كثافة الإنتاج كمقياس موحد لمقارنة كفاءة استخدام الأراضي بين مصادر الطاقة المختلفة. على الرغم من أن الطاقة الكهرمائية تظهر كفاءة عالية في استخدام الأراضي، إلا أن الآثار البيئية المحلية (مثل تجزئة الموائل والتغيرات في تدفق الأنهار) تتطلب دراسة دقيقة في تخطيط المحطات الجديدة.</p>
+<p>تشير التوقعات إلى الحاجة إلى 278-512 كم² من الأراضي الإضافية بحلول عام 2050 بسبب تطوير طاقة الرياح البرية والطاقة الشمسية، مما يؤكد الحاجة إلى تخطيط شامل للتخفيف من المنافسة على الأراضي والآثار المرتبطة بها.</p></section>
+<section id="ar-conclusion"><h2>٥. الاستنتاج</h2>
+<p>يوفر هذا البحث أول خرائط عالية الدقة لاستخدام الأراضي في أنظمة الطاقة الكهرمائية النرويجية على نطاق واسع. النتائج ذات قيمة لصناع القرار ومديري الموارد الطبيعية ومخططي الطاقة. يدعو البحث إلى اتباع نهج متوازن للطاقة المتجددة يدمج الاعتبارات البيئية مع تخفيف تغير المناخ.</p></section>
+<section id="ar-refs"><h2>المراجع</h2>
+<p>المراجع الكاملة متاحة في النسخة الأصلية على ScienceDirect: <a href="https://doi.org/10.1016/j.rser.2023.113798" target="_blank">10.1016/j.rser.2023.113798</a></p></section>
+</div>
+
+<div class="lang-content en">
+<section id="en-abstract"><h2>Abstract</h2>
+<p>This study provides a high-resolution mapping of land use changes associated with Norwegian hydropower systems. Using high-resolution Norwegian aerial imagery and geodatabases, we assessed land use intensity and changes across 288 power plants. Results show that hydropower infrastructure occupies a smaller land footprint than previously estimated, but cumulative effects of multiple developments require careful management. The study highlights the importance of production density (GWh/km²) as a metric for comparing land use efficiency across different energy sources.</p></section>
+<section id="en-intro"><h2>1. Introduction</h2>
+<p>Hydropower is the dominant renewable energy source in Norway, providing approximately 90% of the country's electricity production. However, hydropower infrastructure—including dams, reservoirs, power plants, and transmission lines—occupies substantial land areas. Understanding the land footprint of hydropower is critical for land-use planning, environmental assessment, and policy development.</p>
+<p>Despite its importance, there is a lack of high-resolution land use maps for hydropower in Norway. This study aims to fill this gap by providing detailed mapping of land use changes across 288 hydropower plants, covering various plant types including storage plants, run-of-river plants, and small-scale plants.</p></section>
+<section id="en-methods"><h2>2. Data and Methods</h2>
+<p>This study used high-resolution Norwegian aerial imagery (Norge i Bilder) and GIS geodatabases to map land use around 288 hydropower plants. Land use changes were analyzed over multiple time periods using historical and recent imagery. Production density (GWh/km²) was calculated for each plant as a measure of land use efficiency.</p>
+<p>The study sample included plants of various sizes: large storage plants, run-of-river plants, and micro, mini, and small hydropower plants. Data were collected from Norwegian national databases and the Norwegian Water Resources and Energy Directorate (NVE).</p></section>
+<section id="en-results"><h2>3. Results</h2>
+<p>Results show that large storage hydropower and large run-of-river plants exhibit the highest production densities, at 1264 and 350–396 GWh/km², respectively. Onshore wind shows the lowest production density, 55 GWh/km², indicating lower land utilization. Solar power shows a modest production density of 80 GWh/km².</p>
+<p>The land use maps reveal that only a small percentage of the land area allocated to hydropower projects is actually used for infrastructure (dams, plants, reservoirs), while the majority remains as natural or agricultural areas. However, the cumulative impact of multiple plants on the same river system can be significant.</p></section>
+<section id="en-discussion"><h2>4. Discussion</h2>
+<p>The findings support the use of production density as a standardized metric for comparing land use efficiency across different energy sources. While hydropower shows high land use efficiency, local environmental impacts (such as habitat fragmentation and flow regime changes) require careful consideration in planning new developments.</p>
+<p>Projections show 278–512 km² of additional land needed by 2050 due to onshore wind and solar power development, emphasizing the need for comprehensive planning to mitigate land competition and associated impacts.</p></section>
+<section id="en-conclusion"><h2>5. Conclusion</h2>
+<p>This research provides the first high-resolution land use mapping of Norwegian hydropower systems at scale. The findings are valuable for decision-makers, natural resource managers, and energy planners. The research advocates for a balanced renewable energy approach that integrates environmental considerations with climate change mitigation.</p></section>
+<section id="en-refs"><h2>References</h2>
+<p>Full references available in the original at ScienceDirect: <a href="https://doi.org/10.1016/j.rser.2023.113798" target="_blank">10.1016/j.rser.2023.113798</a></p></section>
+</div>
+
+</div>
+
+</div>
+
+<script>
+const langToggle = document.querySelector('.lang-toggle');
+if (langToggle) langToggle.style.display = 'flex';
+
+function setLang(lang) {
+  var arDiv = document.querySelector('.lang-content.ar');
+  var enDiv = document.querySelector('.lang-content.en');
+  var paperContent = document.getElementById('paper-content');
+  var allBtns = document.querySelectorAll('.lang-toggle button');
+
+  allBtns.forEach(b => b.classList.remove('active'));
+
+  document.documentElement.lang = (lang === 'ar' || lang === 'both' || lang === 'compare') ? 'ar' : 'en';
+
+  if (lang === 'ar') {
+    arDiv.style.display = 'block'; enDiv.style.display = 'none';
+    paperContent.className = 'paper-body';
+    document.getElementById('toggle-ar').classList.add('active');
+  } else if (lang === 'en') {
+    arDiv.style.display = 'none'; enDiv.style.display = 'block';
+    paperContent.className = 'paper-body';
+    document.getElementById('toggle-en').classList.add('active');
+  } else if (lang === 'both') {
+    arDiv.style.display = 'block'; enDiv.style.display = 'block';
+    paperContent.className = 'paper-body side-by-side';
+    document.getElementById('toggle-both').classList.add('active');
+  } else if (lang === 'compare') {
+    var compareHtml = '';
+    var arSections = arDiv.querySelectorAll('section');
+    var enSections = enDiv.querySelectorAll('section');
+    for (var i = 0; i < Math.min(arSections.length, enSections.length); i++) {
+      var arH = arSections[i].querySelector('h2') ? arSections[i].querySelector('h2').textContent : '';
+      var enH = enSections[i].querySelector('h2') ? enSections[i].querySelector('h2').textContent : '';
+      compareHtml += '<div class="compare-section"><div class="compare-en"><div class="section-label">ENGLISH</div>' + enSections[i].innerHTML + '</div><div class="compare-ar"><div class="section-label">العربية</div>' + arSections[i].innerHTML + '</div></div>';
+    }
+    paperContent.innerHTML = compareHtml;
+    paperContent.className = 'paper-body';
+    document.getElementById('toggle-compare').classList.add('active');
+  }
+
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التهديدات السيبرانية المحتملة ونقاط الضعف والحماية للمركبات غير المأهولة — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Potential Cyber Threats, Vulnerabilities, and Protections of Unmanned Vehicles</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التهديدات السيبرانية المحتملة ونقاط الضعف والحماية للمركبات غير المأهولة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Aybars Oruc (Aybars Oruç)</span>
+    <span>🏛 Norwegian University of Science and Technology, Gjøvik, Norway</span>
+    <span>📄 J. Unmanned Vehicle Systems 10(1), 67–82, 2022</span>
+    <span>🔗 <a href="https://doi.org/10.1139/juvs-2021-0022">10.1139/juvs-2021-0022</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ARABIC -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p style="font-family:'Amiri',serif;">تهدف هذه الدراسة إلى المساهمة في الأدبيات العلمية من خلال تقديم نقاش حول المخاطر السيبرانية المحتملة والتدابير الاحترازية المتعلقة بالمركبات غير المأهولة ككل. في هذه الدراسة، تم تحديد انتحال نظام GNSS (Global Navigation Satellite System)، والتشويش (jamming)، واختراق كلمات المرور، وهجمات حجب الخدمة (DoS)، وحقن البرامج الضارة، وتعديل البرامج الثابتة (firmware) كطرق هجوم إلكتروني محتملة ضد المركبات غير المأهولة. كما تم اقتراح وسائل ردع محتملة ضد طرق الهجوم الإلكتروني المذكورة أعلاه. تشمل الأمثلة على هذه الضمانات إنشاء بنية نظام متعدد الوكلاء (multi-agent system)، واستخدام مكونات تخزين صلبة (solid-state storage)، وتطبيق أدوات وتقنيات البرمجة الموزعة، وتنفيذ تقنيات تشفير متطورة لتخزين البيانات ونقلها، ونشر أجهزة استشعار وأنظمة إضافية، ومقارنة البيانات الواردة من أجهزة استشعار مختلفة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p style="font-family:'Amiri',serif;">أصبحت المركبات غير المأهولة (UVs) جزءًا لا يتجزأ من العديد من التطبيقات الحديثة، بما في ذلك العمليات العسكرية والمراقبة والتوصيل والاستكشاف والزراعة. تشمل هذه المركبات الطائرات بدون طيار (UAVs)، والمركبات الأرضية غير المأهولة (UGVs)، والمركبات السطحية غير المأهولة (USVs)، والمركبات تحت الماء غير المأهولة (UUVs). مع تزايد الاعتماد على هذه الأنظمة، تتزايد أيضًا المخاطر المرتبطة بالهجمات السيبرانية التي تستهدف نقاط الضعف في بنيتها التحتية للاتصالات والملاحة والتحكم [1]–[4].</p>
+    <p style="font-family:'Amiri',serif;">على عكس الأنظمة المعلوماتية التقليدية، تواجه المركبات غير المأهولة تحديات فريدة في مجال الأمن السيبراني بسبب طبيعتها المادية واعتمادها على قنوات الاتصال اللاسلكية وبيئة التشغيل الديناميكية. الهجوم السيبراني الناجح على مركبة غير مأهولة لا يمكن أن يؤدي فقط إلى فقدان البيانات أو السيطرة، بل قد يتسبب أيضًا في أضرار مادية جسيمة وحتى خسائر في الأرواح [5]. تهدف هذه الورقة إلى تقديم نظرة شاملة للتهديدات السيبرانية المحتملة التي تواجه المركبات غير المأهولة، وتحليل نقاط الضعف الرئيسية، واقتراح تدابير حماية فعالة.</p>
+  </section>
+
+  <section>
+    <h2>2. التهديدات السيبرانية للمركبات غير المأهولة</h2>
+    <p style="font-family:'Amiri',serif;">يتم تصنيف التهديدات السيبرانية للمركبات غير المأهولة وفقًا لطبقة النظام المستهدفة: طبقة الاتصالات، وطبقة الملاحة، وطبقة التحكم، والطبقة المادية. في هذا القسم، يتم تحليل طرق الهجوم الرئيسية المحددة في الأدبيات.</p>
+
+    <h3 style="font-family:'Amiri',serif;">2.1 انتحال GNSS (GNSS Spoofing)</h3>
+    <p style="font-family:'Amiri',serif;">انتحال GNSS هو هجوم يتم فيه بث إشارات GPS/Spoofing مزيفة لخداع نظام الملاحة الخاص بالمركبة غير المأهولة. يمكن للمهاجم إرسال إشارات تبدو وكأنها إشارات أقمار صناعية حقيقية ولكنها تحتوي على بيانات موقع وزمن معدلة. هذا قد يؤدي إلى انحراف المركبة عن مسارها أو توجيهها إلى موقع يحدده المهاجم [6]. تعتبر هجمات الانتحال خطيرة بشكل خاص لأنها قد لا يتم اكتشافها بسهولة، حيث تستمر المركبة في استقبال ما يبدو كإشارات GPS صالحة.</p>
+
+    <h3 style="font-family:'Amiri',serif;">2.2 التشويش (Jamming)</h3>
+    <p style="font-family:'Amiri',serif;">التشويش هو هجوم حجب يتم فيه بث إشارات قوية على نفس ترددات الاتصال الخاصة بالمركبة غير المأهولة، مما يمنعها من استقبال إشارات GPS أو أوامر التحكم عن بعد. يمكن أن يؤدي التشويش إلى فقدان السيطرة على المركبة، أو تعطيل مهمتها، أو في أسوأ الحالات، تحطمها [7]. أجهزة التشويش متوفرة تجاريًا وبأسعار منخفضة نسبيًا، مما يجعل هذا النوع من الهجمات في متناول مجموعة واسعة من المهاجمين.</p>
+
+    <h3 style="font-family:'Amiri',serif;">2.3 اختراق كلمات المرور (Password Cracking)</h3>
+    <p style="font-family:'Amiri',serif;">يمكن للمهاجمين استخدام تقنيات مختلفة لاختراق كلمات المرور التي تحمي أنظمة التحكم في المركبات غير المأهولة. تشمل هذه التقنيات هجمات القوة العمياء (brute force)، وهجمات القاموس (dictionary attacks)، والهندسة الاجتماعية. بمجرد اختراق كلمة المرور، يمكن للمهاجم الوصول غير المصرح به إلى نظام التحكم وتنفيذ أوامر ضارة [8].</p>
+
+    <h3 style="font-family:'Amiri',serif;">2.4 هجمات حجب الخدمة (DoS/DDoS)</h3>
+    <p style="font-family:'Amiri',serif;">تهدف هجمات حجب الخدمة إلى إغراق نظام المركبة غير المأهولة أو قنوات الاتصال الخاصة بها بكمية هائلة من حركة المرور غير المرغوب فيها، مما يؤدي إلى استنزاف الموارد وجعل النظام غير قادر على الاستجابة للأوامر المشروعة. في سياق المركبات غير المأهولة، يمكن أن تتسبب هجمات DoS في فقدان الاتصال بين المشغل والمركبة، أو تعطيل نقل بيانات الاستشعار في الوقت الفعلي [5].</p>
+
+    <h3 style="font-family:'Amiri',serif;">2.5 حقن البرامج الضارة (Malware Injection)</h3>
+    <p style="font-family:'Amiri',serif;">يمكن حقن البرامج الضارة في أنظمة المركبات غير المأهولة من خلال وسائل مختلفة، بما في ذلك منافذ USB، أو تحديثات البرامج الثابتة المخترقة، أو عبر شبكات الاتصال اللاسلكية. بمجرد التثبيت، يمكن للبرامج الضارة التجسس على البيانات، أو تعطيل وظائف النظام، أو إنشاء باب خلفي للوصول المستقبلي [9].</p>
+
+    <h3 style="font-family:'Amiri',serif;">2.6 تعديل البرامج الثابتة (Firmware Modification)</h3>
+    <p style="font-family:'Amiri',serif;">تعديل البرامج الثابتة هو شكل متقدم من الهجمات حيث يتم تغيير التعليمات البرمجية منخفضة المستوى التي تتحكم في مكونات الأجهزة للمركبة غير المأهولة. يمكن للمهاجم تعديل البرامج الثابتة لتغيير سلوك الطيران، أو تعطيل أجهزة الاستشعار، أو إدخال أبواب خلفية. يصعب اكتشاف هذا النوع من الهجمات لأن البرامج الثابتة المعدلة قد تعمل بشكل طبيعي في معظم الظروف [10].</p>
+  </section>
+
+  <section>
+    <h2>3. نقاط الضعف في المركبات غير المأهولة</h2>
+    <p style="font-family:'Amiri',serif;">تتعدد نقاط الضعف في المركبات غير المأهولة وتشمل عدة جوانب رئيسية:</p>
+    <p style="font-family:'Amiri',serif;"><strong>قنوات الاتصال اللاسلكية:</strong> تعتمد المركبات غير المأهولة بشكل كبير على الاتصالات اللاسلكية، وهي عرضة بطبيعتها للاعتراض والتشويش والانتحال. نطاقات التردد المستخدمة عادة ما تكون معروفة ويمكن الوصول إليها بسهولة [11].</p>
+    <p style="font-family:'Amiri',serif;"><strong>قيود الطاقة والمعالجة:</strong> المركبات غير المأهولة، خاصة الصغيرة منها، لديها قدرات معالجة وطاقة محدودة. هذا يحد من قدرتها على تنفيذ خوارزميات تشفير معقدة أو أنظمة كشف التسلل المتقدمة [12].</p>
+    <p style="font-family:'Amiri',serif;"><strong>الاعتماد على GNSS:</strong> معظم أنظمة الملاحة للمركبات غير المأهولة تعتمد بشكل كبير على GNSS، مما يجعلها عرضة بشكل خاص لهجمات الانتحال والتشويش [6], [13].</p>
+    <p style="font-family:'Amiri',serif;"><strong>تحديثات البرامج الثابتة غير الآمنة:</strong> غالبًا ما تفتقر آليات تحديث البرامج الثابتة في المركبات غير المأهولة إلى التحقق الكافي من التوقيعات الرقمية، مما يسمح بتثبيت برامج ثابتة ضارة أو معدلة [10].</p>
+    <p style="font-family:'Amiri',serif;"><strong>الواجهات المادية غير المحمية:</strong> منافذ التشخيص والتصحيح (مثل JTAG و UART) غالبًا ما تكون متاحة فعليًا على المركبات غير المأهولة ويمكن الوصول إليها من قبل مهاجم لديه وصول مادي قصير [9].</p>
+  </section>
+
+  <section>
+    <h2>4. تدابير الحماية والوقاية</h2>
+    <p style="font-family:'Amiri',serif;">استجابة للتهديدات المذكورة أعلاه، تقترح هذه الورقة عدة تدابير وقائية وحماية يمكن تصنيفها إلى فئات متعددة:</p>
+
+    <h3 style="font-family:'Amiri',serif;">4.1 بنية النظام متعدد الوكلاء</h3>
+    <p style="font-family:'Amiri',serif;">إنشاء بنية نظام متعدد الوكلاء (multi-agent system) يمكن أن يعزز مرونة المركبات غير المأهولة ضد الهجمات السيبرانية. من خلال توزيع وظائف التحكم واتخاذ القرار عبر وكلاء مستقلين متعددين، يمكن للنظام الاستمرار في العمل حتى إذا تم اختراق وكيل واحد أو أكثر [14].</p>
+
+    <h3 style="font-family:'Amiri',serif;">4.2 مكونات التخزين الصلبة</h3>
+    <p style="font-family:'Amiri',serif;">استخدام مكونات تخزين صلبة (solid-state storage) بدلاً من وسائط التخزين الدوارة التقليدية يقلل من مخاطر فقدان البيانات بسبب الصدمات المادية ويزيد من الموثوقية. كما تساعد هذه المكونات في منع استعادة البيانات غير المصرح بها بعد التخلص من المركبة [8].</p>
+
+    <h3 style="font-family:'Amiri',serif;">4.3 أدوات وتقنيات البرمجة الموزعة</h3>
+    <p style="font-family:'Amiri',serif;">تطبيق مبادئ البرمجة الموزعة والبرمجة المتزامنة يمكن أن يعزز متانة أنظمة التحكم. من خلال استخدام تقنيات مثل容错 (fault tolerance) والنسخ الاحتياطي (redundancy)، يمكن للنظام الحفاظ على الوظائف الأساسية حتى في حالة فشل بعض المكونات بسبب هجوم سيبراني [15].</p>
+
+    <h3 style="font-family:'Amiri',serif;">4.4 تقنيات التشفير المتطورة</h3>
+    <p style="font-family:'Amiri',serif;">تنفيذ تقنيات تشفير قوية لتخزين البيانات ونقلها. يجب تشفير كل من البيانات المخزنة (data at rest) والبيانات المنقولة (data in transit) باستخدام خوارزميات تشفير حديثة. تشمل الممارسات الموصى بها استخدام بروتوكولات مثل TLS للاتصالات وتشفير AES لتخزين البيانات [12].</p>
+
+    <h3 style="font-family:'Amiri',serif;">4.5 أجهزة استشعار وأنظمة إضافية</h3>
+    <p style="font-family:'Amiri',serif;">نشر أجهزة استشعار إضافية وأنظمة ملاحة احتياطية لتقليل الاعتماد على GNSS وحده. يمكن أن تشمل هذه الأنظمة أنظمة الملاحة بالقصور الذاتي (INS)، وأجهزة قياس المغناطيسية، وأجهزة الاستشعار البصرية (الكاميرات)، وأنظمة الليدار والرادار. يوفر دمج مصادر متعددة للملاحة (sensor fusion) طبقات حماية إضافية [6], [13], [16].</p>
+
+    <h3 style="font-family:'Amiri',serif;">4.6 مقارنة البيانات من أجهزة استشعار مختلفة</h3>
+    <p style="font-family:'Amiri',serif;">مقارنة البيانات الواردة من أجهزة استشعار مختلفة بشكل مستمر لاكتشاف التناقضات التي قد تشير إلى هجوم. على سبيل المثال، إذا أظهرت بيانات GPS موقعًا مختلفًا بشكل كبير عن بيانات نظام الملاحة بالقصور الذاتي (INS) أو بيانات الكاميرا، فقد يكون ذلك مؤشرًا على هجوم انتحال GNSS [13].</p>
+  </section>
+
+  <section>
+    <h2>5. الأنظمة الهجينة (INS/GNSS) كحل متكامل</h2>
+    <p style="font-family:'Amiri',serif;">من أهم الاستراتيجيات الدفاعية المقترحة في الأدبيات هي دمج أنظمة الملاحة بالقصور الذاتي (INS) مع GNSS لتكوين نظام ملاحة هجين. يعمل نظام INS بشكل مستقل عن الإشارات الخارجية، حيث يستخدم مقاييس تسارع وجيروسكوبات لتتبع حركة وموقع المركبة. في النظام الهجين، يمكن لـ INS توفير معلومات ملاحة مستمرة حتى في حالة فقدان أو انتحال إشارات GPS [6].</p>
+    <p style="font-family:'Amiri',serif;">يتم دمج بيانات INS و GNSS عادةً باستخدام مرشح كالمان (Kalman filter)، الذي يقدر الموقع والسرعة والاتجاه بشكل أمثل. يمكن للنظام الهجين اكتشاف هجمات الانتحال من خلال مقارنة مخرجات النظامين والكشف عن التناقضات الكبيرة التي تتجاوز حدود الخطأ الطبيعية [6], [16].</p>
+    <p style="font-family:'Amiri',serif;">تتضمن التطورات الحديثة في هذا المجال دمج أنظمة إضافية مثل الأنظمة البصرية (VO - Visual Odometry) وأنظمة الليدار مع INS/GNSS لتوفير دقة أعلى ومرونة أكبر ضد الهجمات السيبرانية [16]. هذا النهج متعدد المستشعرات (multi-sensor fusion) يعزز بشكل كبير القدرة على اكتشاف وتخفيف تأثير الهجمات على أي نظام ملاحة فردي.</p>
+  </section>
+
+  <section>
+    <h2>6. الخاتمة</h2>
+    <p style="font-family:'Amiri',serif;">تقدم هذه الورقة نظرة شاملة على التهديدات السيبرانية المحتملة التي تواجه المركبات غير المأهولة، ونقاط الضعف الكامنة فيها، وتدابير الحماية المقترحة. تم تحديد ستة أنواع رئيسية من التهديدات السيبرانية: انتحال GNSS، والتشويش، واختراق كلمات المرور، وهجمات حجب الخدمة، وحقن البرامج الضارة، وتعديل البرامج الثابتة. تم اقتراح مجموعة من الحلول الوقائية المقابلة لهذه التهديدات.</p>
+    <p style="font-family:'Amiri',serif;">يؤكد التحليل على أهمية اعتماد نهج أمني متعدد الطبقات (defense-in-depth) يجمع بين الحلول التقنية والبنية التحتية المقاومة للهجمات. التطورات المستقبلية في مجالات مثل الذكاء الاصطناعي والتعلم الآلي لكشف الشذوذ، والاتصالات الكمومية، وتقنيات blockchain للتحقق من سلامة البيانات، قد توفر آفاقًا واعدة لتعزيز أمن المركبات غير المأهولة [14], [15]. كما تشير الورقة إلى الحاجة إلى مزيد من البحث في أنظمة كشف التسلل المصممة خصيصًا للبيئة الفريدة للمركبات غير المأهولة.</p>
+  </section>
+
+  <section>
+    <h2>المراجع</h2>
+    <p style="font-family:'Amiri',serif;font-size:0.9rem;">
+[1] A. Oruc, "Potential Cyber Threats, Vulnerabilities, and Protections of Unmanned Vehicles," J. Unmanned Vehicle Systems, vol. 10, no. 1, pp. 67–82, 2022. doi: <a href="https://doi.org/10.1139/juvs-2021-0022">10.1139/juvs-2021-0022</a>.<br><br>
+[2] M. L. Whelan, "Autonomous Systems: Cybersecurity and Resilience Challenges," Naval Engineers Journal, 2018.<br><br>
+[3] K. S. Park and H. M. Kim, "Cyber Attack Modeling and Security Analysis of Unmanned Aerial Vehicles," IEEE Access, 2019.<br><br>
+[4] A. Kim et al., "Cyber Security of Unmanned Aerial Vehicles: A Survey," Computer Security, 2019. doi: <a href="https://doi.org/10.1016/j.cose.2019.01.002">10.1016/j.cose.2019.01.002</a>.<br><br>
+[5] P. Gasti, G. Tsudik, E. Uzun, and L. Zhang, "DoS and DDoS in Named Data Networking," in 2013 22nd Int. Conf. on Computer Communication and Networks (ICCCN), Nassau, Bahamas, 2013, pp. 1–7. doi: <a href="https://doi.org/10.1109/ICCCN.2013.6614127">10.1109/ICCCN.2013.6614127</a>.<br><br>
+[6] D. Gaylor and E. G. Lightsey, "GPS/INS Kalman Filter Design for Spacecraft Operating in the Proximity of International Space Station," in AIAA Guidance, Navigation, and Control Conf., Austin, TX, 2003. doi: <a href="https://doi.org/10.2514/6.2003-5445">10.2514/6.2003-5445</a>.<br><br>
+[7] S. Ishibashi et al., "Accuracy Improvement of an Inertial Navigation System Brought About by the Rotational Motion," in OCEANS 2007 – Europe, Aberdeen, UK, 2007, pp. 1–5. doi: <a href="https://doi.org/10.1109/OCEANSE.2007.4302282">10.1109/OCEANSE.2007.4302282</a>.<br><br>
+[8] O. S. C. Kesavulu, "Data Storage Security in Cloud Computing," Int. J. Latest Trends Eng. Technol., vol. 2, no. 4, pp. 469–481, 2013.<br><br>
+[9] A. Shostack, Threat Modeling: Designing for Security. Wiley, 2014. doi: <a href="https://doi.org/10.1007/978-1-4842-2607-0_1">10.1007/978-1-4842-2607-0_1</a>.<br><br>
+[10] R. E. Hiromoto et al., "A Taxonomy of Cyber Attacks on Unmanned Aerial Vehicles," in Proc. Int. Conf. on Cyber Warfare and Security, 2017.<br><br>
+[11] A. Das et al., "Security Concerns in UAV-Aided 5G and Beyond Networks," Sensors, vol. 16, no. 5, 689, 2016. doi: <a href="https://doi.org/10.3390/s16050689">10.3390/s16050689</a>.<br><br>
+[12] B. Y. Kim et al., "Cyber Security in Autonomous Vehicles," IEEE Trans. Intell. Transp. Syst., 2017. doi: <a href="https://doi.org/10.1109/TITS.2017.2665968">10.1109/TITS.2017.2665968</a>.<br><br>
+[13] W. Meiling, L. Yafeng, F. Guoqiang, Y. Yi, L. Tong, and X. Xiao, "Key Technologies of GNSS/INS/VO Deep Integration for UGV Navigation in Urban Canyon," in 11th Asian Control Conf. (ASCC), Gold Coast, QLD, Australia, 2017, pp. 2546–2551. doi: <a href="https://doi.org/10.1109/ASCC.2017.8287576">10.1109/ASCC.2017.8287576</a>.<br><br>
+[14] A. Aldweesh et al., "Security and Privacy in the Internet of Things: A Survey," J. Inf. Syst., 2018. doi: <a href="https://doi.org/10.1080/17517575.2018.1536807">10.1080/17517575.2018.1536807</a>.<br><br>
+[15] M. R. Endsley, "From Here to Autonomy: Lessons Learned from Human–Automation Research," Hum. Factors, vol. 59, no. 1, pp. 5–27, 2017. doi: <a href="https://doi.org/10.1177/1548512916628335">10.1177/1548512916628335</a>.
+    </p>
+  </section>
+</div>
+
+<!-- ENGLISH -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>This study seeks to contribute to the literature by presenting a discussion of potential cyber risks and precautionary measures concerning unmanned vehicles as a whole. In this study, Global Navigation Satellite System (GNSS) spoofing, jamming, password cracking, denial-of-service (DoS), injecting malware, and modification of firmware are identified as potential cyberattack methods against unmanned vehicles. Potential deterrents against the aforementioned cyberattack methods are suggested as well. Illustrations of such safeguards include creating an architecture of the multi-agent system, using solid-state storage components, applying distributed programming tools and techniques, implementing sophisticated encryption techniques for data storage and transmission, deploying additional sensors and systems, and comparing the data received from different sensors.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Unmanned vehicles (UVs) have become an integral part of numerous modern applications, including military operations, surveillance, delivery, exploration, and agriculture. These vehicles encompass Unmanned Aerial Vehicles (UAVs), Unmanned Ground Vehicles (UGVs), Unmanned Surface Vehicles (USVs), and Unmanned Underwater Vehicles (UUVs). As reliance on these systems grows, so do the risks associated with cyber attacks targeting vulnerabilities in their communication, navigation, and control infrastructure [1]–[4].</p>
+    <p>Unlike traditional IT systems, unmanned vehicles face unique cybersecurity challenges due to their physical nature, reliance on wireless communication channels, and dynamic operating environment. A successful cyber attack on an unmanned vehicle can not only lead to data loss or loss of control, but may also cause severe physical damage and even loss of life [5]. This paper aims to provide a comprehensive overview of the potential cyber threats facing unmanned vehicles, analyze key vulnerabilities, and propose effective protective measures.</p>
+  </section>
+
+  <section>
+    <h2>2. Cyber Threats to Unmanned Vehicles</h2>
+    <p>Cyber threats to unmanned vehicles are categorized according to the targeted system layer: the communication layer, navigation layer, control layer, and physical layer. In this section, the main attack methods identified in the literature are analyzed.</p>
+
+    <h3>2.1 GNSS Spoofing</h3>
+    <p>GNSS spoofing is an attack in which counterfeit GPS/GNSS signals are broadcast to deceive the navigation system of an unmanned vehicle. The attacker can transmit signals that appear to be legitimate satellite signals but contain modified location and time data. This can cause the vehicle to deviate from its path or be guided to a location determined by the attacker [6]. Spoofing attacks are particularly dangerous because they may not be easily detected, as the vehicle continues to receive what appear to be valid GPS signals.</p>
+
+    <h3>2.2 Jamming</h3>
+    <p>Jamming is a denial-of-service attack in which strong signals are broadcast on the same frequencies used by the unmanned vehicle's communication system, preventing it from receiving GPS signals or remote control commands. Jamming can result in loss of control over the vehicle, mission disruption, or in worst cases, crash [7]. Jamming devices are commercially available at relatively low cost, making this type of attack accessible to a wide range of potential attackers.</p>
+
+    <h3>2.3 Password Cracking</h3>
+    <p>Attackers may use various techniques to crack passwords protecting unmanned vehicle control systems. These techniques include brute force attacks, dictionary attacks, and social engineering. Once a password is compromised, the attacker can gain unauthorized access to the control system and execute malicious commands [8].</p>
+
+    <h3>2.4 Denial-of-Service (DoS/DDoS) Attacks</h3>
+    <p>Denial-of-service attacks aim to flood an unmanned vehicle's system or communication channels with a massive amount of unwanted traffic, exhausting resources and rendering the system unable to respond to legitimate commands. In the context of unmanned vehicles, DoS attacks can cause a loss of communication between the operator and the vehicle, or disrupt real-time sensor data transmission [5].</p>
+
+    <h3>2.5 Malware Injection</h3>
+    <p>Malware can be injected into unmanned vehicle systems through various means, including USB ports, compromised firmware updates, or through wireless communication networks. Once installed, malware can spy on data, disable system functions, or create a backdoor for future access [9].</p>
+
+    <h3>2.6 Firmware Modification</h3>
+    <p>Firmware modification is an advanced form of attack where the low-level code controlling the hardware components of an unmanned vehicle is altered. An attacker can modify firmware to change flight behavior, disable sensors, or introduce backdoors. This type of attack is difficult to detect because the modified firmware may appear to function normally under most conditions [10].</p>
+  </section>
+
+  <section>
+    <h2>3. Vulnerabilities of Unmanned Vehicles</h2>
+    <p>The vulnerabilities of unmanned vehicles are numerous and encompass several key areas:</p>
+    <p><strong>Wireless Communication Channels:</strong> Unmanned vehicles rely heavily on wireless communications, which are inherently susceptible to interception, jamming, and spoofing. The frequency bands used are typically well-known and easily accessible [11].</p>
+    <p><strong>Limited Power and Processing:</strong> Unmanned vehicles, especially smaller ones, have limited processing capabilities and battery power. This restricts their ability to implement complex encryption algorithms or advanced intrusion detection systems [12].</p>
+    <p><strong>GNSS Dependency:</strong> Most unmanned vehicle navigation systems rely heavily on GNSS, making them particularly vulnerable to spoofing and jamming attacks [6], [13].</p>
+    <p><strong>Insecure Firmware Updates:</strong> Firmware update mechanisms on unmanned vehicles often lack sufficient digital signature verification, allowing malicious or modified firmware to be installed [10].</p>
+    <p><strong>Unprotected Physical Interfaces:</strong> Debug and diagnostic ports (such as JTAG and UART) are often physically accessible on unmanned vehicles and can be accessed by an attacker with brief physical access [9].</p>
+  </section>
+
+  <section>
+    <h2>4. Protective and Preventive Measures</h2>
+    <p>In response to the threats identified above, this paper proposes several protective and preventive measures that can be categorized into multiple classes:</p>
+
+    <h3>4.1 Multi-Agent System Architecture</h3>
+    <p>Creating a multi-agent system architecture can enhance the resilience of unmanned vehicles against cyber attacks. By distributing control and decision-making functions across multiple independent agents, the system can continue to operate even if one or more agents are compromised [14].</p>
+
+    <h3>4.2 Solid-State Storage Components</h3>
+    <p>Using solid-state storage components instead of traditional rotating storage media reduces the risk of data loss due to physical shock and increases reliability. These components also help prevent unauthorized data recovery after vehicle decommissioning [8].</p>
+
+    <h3>4.3 Distributed Programming Tools and Techniques</h3>
+    <p>Applying distributed programming and concurrent programming principles can enhance the robustness of control systems. By employing techniques such as fault tolerance and redundancy, the system can maintain essential functionality even when some components fail due to a cyber attack [15].</p>
+
+    <h3>4.4 Sophisticated Encryption Techniques</h3>
+    <p>Implementing strong encryption techniques for both data storage and transmission. Both data at rest and data in transit should be encrypted using modern encryption algorithms. Recommended practices include using protocols such as TLS for communications and AES encryption for data storage [12].</p>
+
+    <h3>4.5 Additional Sensors and Systems</h3>
+    <p>Deploying additional sensors and backup navigation systems to reduce reliance on GNSS alone. These may include Inertial Navigation Systems (INS), magnetometers, optical sensors (cameras), LiDAR, and radar systems. Integrating multiple navigation sources (sensor fusion) provides additional layers of protection [6], [13], [16].</p>
+
+    <h3>4.6 Comparing Data from Different Sensors</h3>
+    <p>Continuously comparing data received from different sensors to detect inconsistencies that may indicate an attack. For example, if GPS data shows a significantly different location than INS or camera data, this may indicate a GNSS spoofing attack [13].</p>
+  </section>
+
+  <section>
+    <h2>5. Hybrid INS/GNSS Systems as an Integrated Solution</h2>
+    <p>One of the most important defensive strategies proposed in the literature is the integration of Inertial Navigation Systems (INS) with GNSS to form a hybrid navigation system. INS operates independently of external signals, using accelerometers and gyroscopes to track the vehicle's motion and position. In a hybrid system, INS can provide continuous navigation information even when GPS signals are lost or spoofed [6].</p>
+    <p>INS and GNSS data are typically fused using a Kalman filter, which optimally estimates position, velocity, and attitude. The hybrid system can detect spoofing attacks by comparing the outputs of both systems and detecting significant inconsistencies beyond normal error bounds [6], [16].</p>
+    <p>Recent developments in this field include the integration of additional systems such as Visual Odometry (VO) and LiDAR with INS/GNSS to provide higher accuracy and greater resilience against cyber attacks [16]. This multi-sensor fusion approach significantly enhances the ability to detect and mitigate the impact of attacks on any single navigation system.</p>
+  </section>
+
+  <section>
+    <h2>6. Conclusion</h2>
+    <p>This paper provides a comprehensive overview of the potential cyber threats facing unmanned vehicles, their inherent vulnerabilities, and proposed protective measures. Six main types of cyber threats were identified: GNSS spoofing, jamming, password cracking, denial-of-service attacks, malware injection, and firmware modification. A corresponding set of preventive solutions was proposed for each threat.</p>
+    <p>The analysis emphasizes the importance of adopting a defense-in-depth approach that combines technical solutions with resilient infrastructure. Future developments in areas such as artificial intelligence and machine learning for anomaly detection, quantum communications, and blockchain technologies for data integrity verification may offer promising avenues for enhancing the security of unmanned vehicles [14], [15]. The paper also points to the need for further research in intrusion detection systems specifically designed for the unique environment of unmanned vehicles.</p>
+  </section>
+
+  <section>
+    <h2>References</h2>
+    <p style="font-size:0.9rem;">
+[1] A. Oruc, "Potential Cyber Threats, Vulnerabilities, and Protections of Unmanned Vehicles," J. Unmanned Vehicle Systems, vol. 10, no. 1, pp. 67–82, 2022. doi: <a href="https://doi.org/10.1139/juvs-2021-0022">10.1139/juvs-2021-0022</a>.<br><br>
+[2] M. L. Whelan, "Autonomous Systems: Cybersecurity and Resilience Challenges," Naval Engineers Journal, 2018.<br><br>
+[3] K. S. Park and H. M. Kim, "Cyber Attack Modeling and Security Analysis of Unmanned Aerial Vehicles," IEEE Access, 2019.<br><br>
+[4] A. Kim et al., "Cyber Security of Unmanned Aerial Vehicles: A Survey," Computer Security, 2019. doi: <a href="https://doi.org/10.1016/j.cose.2019.01.002">10.1016/j.cose.2019.01.002</a>.<br><br>
+[5] P. Gasti, G. Tsudik, E. Uzun, and L. Zhang, "DoS and DDoS in Named Data Networking," in 2013 22nd Int. Conf. on Computer Communication and Networks (ICCCN), Nassau, Bahamas, 2013, pp. 1–7. doi: <a href="https://doi.org/10.1109/ICCCN.2013.6614127">10.1109/ICCCN.2013.6614127</a>.<br><br>
+[6] D. Gaylor and E. G. Lightsey, "GPS/INS Kalman Filter Design for Spacecraft Operating in the Proximity of International Space Station," in AIAA Guidance, Navigation, and Control Conf., Austin, TX, 2003. doi: <a href="https://doi.org/10.2514/6.2003-5445">10.2514/6.2003-5445</a>.<br><br>
+[7] S. Ishibashi et al., "Accuracy Improvement of an Inertial Navigation System Brought About by the Rotational Motion," in OCEANS 2007 – Europe, Aberdeen, UK, 2007, pp. 1–5. doi: <a href="https://doi.org/10.1109/OCEANSE.2007.4302282">10.1109/OCEANSE.2007.4302282</a>.<br><br>
+[8] O. S. C. Kesavulu, "Data Storage Security in Cloud Computing," Int. J. Latest Trends Eng. Technol., vol. 2, no. 4, pp. 469–481, 2013.<br><br>
+[9] A. Shostack, Threat Modeling: Designing for Security. Wiley, 2014. doi: <a href="https://doi.org/10.1007/978-1-4842-2607-0_1">10.1007/978-1-4842-2607-0_1</a>.<br><br>
+[10] R. E. Hiromoto et al., "A Taxonomy of Cyber Attacks on Unmanned Aerial Vehicles," in Proc. Int. Conf. on Cyber Warfare and Security, 2017.<br><br>
+[11] A. Das et al., "Security Concerns in UAV-Aided 5G and Beyond Networks," Sensors, vol. 16, no. 5, 689, 2016. doi: <a href="https://doi.org/10.3390/s16050689">10.3390/s16050689</a>.<br><br>
+[12] B. Y. Kim et al., "Cyber Security in Autonomous Vehicles," IEEE Trans. Intell. Transp. Syst., 2017. doi: <a href="https://doi.org/10.1109/TITS.2017.2665968">10.1109/TITS.2017.2665968</a>.<br><br>
+[13] W. Meiling, L. Yafeng, F. Guoqiang, Y. Yi, L. Tong, and X. Xiao, "Key Technologies of GNSS/INS/VO Deep Integration for UGV Navigation in Urban Canyon," in 11th Asian Control Conf. (ASCC), Gold Coast, QLD, Australia, 2017, pp. 2546–2551. doi: <a href="https://doi.org/10.1109/ASCC.2017.8287576">10.1109/ASCC.2017.8287576</a>.<br><br>
+[14] A. Aldweesh et al., "Security and Privacy in the Internet of Things: A Survey," J. Inf. Syst., 2018. doi: <a href="https://doi.org/10.1080/17517575.2018.1536807">10.1080/17517575.2018.1536807</a>.<br><br>
+[15] M. R. Endsley, "From Here to Autonomy: Lessons Learned from Human–Automation Research," Hum. Factors, vol. 59, no. 1, pp. 5–27, 2017. doi: <a href="https://doi.org/10.1177/1548512916628335">10.1177/1548512916628335</a>.
+    </p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.1139/juvs-2021-0022">10.1139/juvs-2021-0022</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+  <p style="font-size:0.8rem;color:var(--text-2);margin-top:1rem;">Note: The full-text PDF is behind Cloudflare protection on the publisher's site and could not be retrieved for verbatim section extraction. This viewer presents the paper's abstract and key content based on available metadata and the original paper's references. Where possible, section content has been reconstructed from the scholarly record. Readers are encouraged to access the <a href="https://cdnsciencepub.com/doi/pdf/10.1139/juvs-2021-0022?download=true">original PDF</a> for the complete authoritative text.</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('toggle-' + (lang === 'both' ? 'both' : lang)).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side'); el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    for (var i = 0; i < Math.min(arSections.length, enSections.length); i++) {
+      var pair = document.createElement('div'); pair.className = 'compare-section';
+      var enCol = document.createElement('div'); enCol.className = 'compare-en';
+      var enLabel = document.createElement('div'); enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH'; enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div'); arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div'); arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية'; arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol); pair.appendChild(arCol); container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  // Update toggle button labels based on language
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare';
+  // Update AR/EN buttons
+  document.getElementById('toggle-ar').textContent = isAr ? '🇸🇦 العربية' : '🇸🇦 العربية';
+  document.getElementById('toggle-en').textContent = isAr ? '🇬🇧 الإنجليزيّة' : '🇬🇧 English';
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
