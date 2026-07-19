@@ -403,18 +403,33 @@ const countLabel = document.getElementById('paper-count-label');
 if (countLabel) countLabel.textContent = papers.length + ' paper' + (papers.length !== 1 ? 's' : '');
 const lang = localStorage.getItem('dar-lang') === 'ar' ? 'ar' : 'en';
 
+let filterTag = null;
+
+function setFilter(tag) {
+  filterTag = filterTag === tag ? null : tag;
+  renderCards();
+}
+
+function matchesFilter(p, currentLang) {
+  if (!filterTag) return true;
+  const tags = currentLang === 'ar' && p.tags_ar ? p.tags_ar : p.tags;
+  return tags.some(t => t.toLowerCase() === filterTag.toLowerCase());
+}
+
 function renderCards() {
   const currentLang = localStorage.getItem('dar-lang') === 'ar' ? 'ar' : 'en';
   if (grid) {
-    grid.innerHTML = papers.map(p => {
+    const filtered = filterTag ? papers.filter(p => matchesFilter(p, currentLang)) : papers;
+    grid.innerHTML = filtered.map(p => {
       const title = currentLang === 'ar' && p.title_ar ? p.title_ar : p.title;
       const abstract = currentLang === 'ar' && p.abstract_ar ? p.abstract_ar : p.abstract;
+      const tags = currentLang === 'ar' && p.tags_ar ? p.tags_ar : p.tags;
       return `
       <div class="paper-card">
         <div class="meta">
           <span>${p.venue}</span>
           <span class="tag">${p.license}</span>
-          ${(currentLang === 'ar' && p.tags_ar ? p.tags_ar : p.tags).map(t => `<span class="tag">${t}</span>`).join('')}
+          ${tags.map(t => `<span class="tag${filterTag && filterTag.toLowerCase() === t.toLowerCase() ? ' active' : ''}" onclick="setFilter('${t.replace(/'/g, "\\'")}')">${t}</span>`).join('')}
         </div>
         <a href="papers/${p.slug}/">
           <h3>${title}</h3>
@@ -424,6 +439,10 @@ function renderCards() {
         <a href="papers/${p.slug}/" class="read-more">${currentLang === 'ar' ? 'اقرأ ←' : 'Read →'}</a>
       </div>
     `}).join('');
+    if (filterTag) {
+      const msg = currentLang === 'ar' ? `تم التصفية: ${filterTag} — <a href="#" onclick="setFilter('${filterTag.replace(/'/g, "\\'")}');return false">إزالة التصفية</a>` : `Filtered: ${filterTag} — <a href="#" onclick="setFilter('${filterTag.replace(/'/g, "\\'")}');return false">clear</a>`;
+      grid.innerHTML += `<div style="text-align:center;margin-top:1rem;color:var(--text-2);font-size:0.9rem">${msg}</div>`;
+    }
   }
 }
 renderCards();
