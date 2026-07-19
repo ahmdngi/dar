@@ -14,8 +14,8 @@ for path in glob.glob('papers/*/index.html'):
             errors.append(f'{slug}: section count AR={len(ar)-1} EN={len(en)-1}')
             continue
         for i in range(1, len(ar)):
-            ap = ar[i].count('<p>')
-            ep = en[i].count('<p>')
+            ap = ar[i].count('<p>') + ar[i].count('<p ')
+            ep = en[i].count('<p>') + en[i].count('<p ')
             if ap != ep:
                 errors.append(f'{slug}: Section {i} AR={ap} EN={ep}')
         print(f'  OK: {slug} ({len(ar)-1} sections)')
