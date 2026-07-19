@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.5.0 — 2025-07-19
+
+### Added
+- 8 new OA papers from license investigation batch: IET ITS, IET D&T, Renewable Energy, J. Env. Management, RSER, Int. J. InfoSec ×2, J. Unmanned Vehicle Systems
+- DAR now hosts 26 bilingual AR/EN papers
+
+### Fixed
+- Paragraph parity script now counts `<p>` tags with attributes (fixes false failures on Arabic sections with inline styles)
+
+### Changed
+- Domain migrated: `dar.oversight.ee` → `dararchive.com`
+- CNAME, OG tags, README updated for new domain
+
 ## v1.0.0 — 2025-07-17
 
 ### Added
