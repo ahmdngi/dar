@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة لكشف انتحال إشارات GNSS بالدمج متعدد المصادر — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Review of GNSS Spoofing Detection Based on Multi-Source Fusion</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مراجعة لكشف انتحال إشارات GNSS بالدمج متعدد المصادر</h2>
+
+  <div class="paper-meta">
+    <span>👤 Shiyao Zhao, Jun Fu, Bao Li</span>
+    <span>📄 Electronics, 2026 · Vol. 15(15), 3326</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics15153326">10.3390/electronics15153326</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>نظرًا لضعف قدرة الإشارة وعلنية بنية الإشارات المدنية، تواجه أنظمة الملاحة عبر الأقمار الصناعية (GNSS) تهديدًا متفاقمًا من تداخل الانتحال. وتعجز أساليب الكشف أحادية المصدر، المقيّدة بحدود فيزيائية وافتقارها إلى التحقق الذاتي، عن التصدي الفعال لهجمات الانتحال المعقدة، ومن هنا برزت مزايا الكشف بالدمج متعدد المصادر. فبدمج حساسات متغايرة مثل نظام الملاحة بالقصور الذاتي (INS) والرؤية وإشارات الاتصالات، توفر تقنية الدمج متعدد المصادر مراجع مستقلة للتحقق المتبادل، مقدّمةً حلًا فعالًا لاختناقات الكشف أحادي المصدر. تستعرض هذه الورقة 67 منشورًا تمثيليًا في مجال كشف انتحال GNSS بالدمج متعدد المصادر بين 2021 و2026، وتصنف الأساليب القائمة في ثلاث فئات رئيسية: الكشف القائم على خوارزميات الترشيح، والكشف القائم على اتساق البيانات متعددة المصادر، والكشف القائم على الذكاء الاصطناعي، مع مقارنة منهجية لمزايا كل فئة وقيودها وتلخيص الوضع البحثي الراهن واتجاهات التطوير المستقبلية.</p>
+  </section>
+
+  <section>
+    <h2>I. المقدمة</h2>
+    <p>اندمجت أنظمة GNSS بعمق في البنية التشغيلية للمجتمع الحديث، إذ تمثل المرجع الأساسي للنقل والطاقة وشبكات الاتصالات والمعدات العسكرية للحصول على معلومات الموقع والسرعة والزمن (PVT) عالية الدقة. لكن ضعف الإشارات الناتج عن الارتفاعات المدارية العالية وعلنية بنية الإشارات المدنية يجعل هذه الأنظمة منفتحة وضعيفة فيزيائيًا وعرضة للتداخل، ويُعد تهديد الانتحال الأشد خطورة، إذ يبث إشارات مزيفة شديدة الشبه بالإشارات الحقيقية فيقود المستقبل خفيةً إلى نتائج PVT خاطئة ويستولي على التحكم الملاحي دون علم المستخدم، مما قد يؤدي إلى عواقب وخيمة.</p>
+    <p>تنقسم أساليب الكشف أحادية المصدر السائدة إلى أربع فئات: الأولى تعتمد الخصائص الهندسية المكانية مثل تقدير اتجاه الوصول (DOA) بمصفوفات الهوائيات المتعددة؛ والثانية تعتمد الخصائص الفيزيائية للتردد الراديوي والنطاق الأساسي مثل مراقبة قوة الإشارة (القدرة والتحكم التلقائي في الكسب ونسبة الحامل إلى الضوضاء) ومراقبة جودة الإشارة (SQM)؛ والثالثة تعتمد مصادقة رسائل الملاحة وطبقة الشيفرة مثل نظام OSNMA في Galileo ومصادقة إشارة BeiDou؛ والرابعة تعتمد المراقبة الداخلية الزائدة للقياسات مثل RAIM ومراقبة اتساق الساعة الداخلية.</p>
+    <p>وتعاني هذه الأساليب من قيدين واضحين: قيد الحدود الفيزيائية، إذ يمكن للانتحال التوليدي المتقن والمتزامن بدقة محاكاة الخصائص الفيزيائية للإشارات الحقيقية عبر مطابقة القدرة ومحاذاة طور الشيفرة بمستوى النانوثانية والهجمات التعاونية الموزعة، فتتدهور حساسية أساليب DOA وSQM ومراقبة القدرة أو تفشل تمامًا؛ وقيد التحقق الذاتي، إذ تفتقر الأنظمة أحادية المصدر إلى مراجع خارجية مستقلة فتعجز عن كشف بيانات الرصد الزائفة المتسقة منطقيًا ويصعب عليها التصدي لهجمات إعادة البث، كما أن الانتحال التعاوني لجميع الأقمار المرئية يُفشل خوارزمية RAIM ويعجزها عن تمييز سبب أثر سحب الزمن. لذلك برزت تقنية الكشف بالدمج متعدد المصادر التي تمتلك مصادر مرجعية مستقلة تتجاوز قيود الكشف أحادي المصدر عبر إدخال معلومات غير فضائية مثل INS وعداد المسافات البصري والليدار والراديو الأرضي والتحقق المتبادل للبيانات المتغايرة.</p>
+  </section>
+
+  <section>
+    <h2>II. اختيار الأدبيات والأعمال السابقة</h2>
+    <p>حددت الدراسة الإطار الزمني للأدبيات المختارة بين 2021 و2026، واعتمدت قواعد بيانات إنجليزية (IEEE Xplore وScopus وScienceDirect وSpringerLink) وصينية (CNKI) بتسعة مصطلحات بحثية متقاطعة مع قواعد توسعة للمرادفات، فاسترجعت 512 منشورًا أوليًا، ثم أزالت 126 مكررًا بأداة Zotero فبقي 386، ثم استبعدت 198 ورقة خارج الموضوع بناءً على العناوين فبقي 188، ثم فحصت النصوص الكاملة فاستبعدت 122 ورقة أحادية الحساس، لتستقر على 66 ورقة صالحة عالية القيمة، منها 38 تحدد الدمج صراحةً في عناوينها و28 ثبت دمجها الفعلي بعد فحص المحتوى.</p>
+    <p>وتُظهر مراجعات الكشف السابقة أنها تؤسس تصنيفاتها على سلاسل معالجة الإشارة وأنواع الخوارزميات، فيُذكر الدمج متعدد الحساسات عرضًا كقسم تكميلي موجز دون تصنيف منهجي أو تحليل تقني معمّق. وتتمثل إسهامات هذه المراجعة في نطاق ريادي مركّز وآني (2021–2026)، وإطار تصنيف ثلاثي جديد مبتكر (الترشيح، وفحص الاتساق، والذكاء الاصطناعي)، واستكشاف معمّق لفرع الذكاء الاصطناعي بفروعه الثلاثة، بما يسد الفجوات النظرية في المراجعات القائمة حول دمج الذكاء الاصطناعي مع البيانات المتغايرة متعددة المصادر.</p>
+  </section>
+
+  <section>
+    <h2>III. الكشف القائم على خوارزميات الترشيح</h2>
+    <p>يعتمد المسار الأول، وهو الدمج فضفاض الاقتران (LC)، على مقارنة حلول الملاحة بين GNSS والمصادر الأخرى عبر إحصاءات البواقي في مرشح كالمان، فيتميز ببساطة البنية وانخفاض التعقيد الحسابي، لكنه يعاني ضعف متانة الكشف في سيناريوهات الانتحال المعقدة وانخفاض الحساسية تجاه الانتحال بطيء التغير الذي يسحب نتائج الموضع بخطوات صغيرة على مدى طويل متجاوزًا خوارزميات الكشف المعتمدة على الطفرات. أما المسار الثاني، وهو الدمج محكم الاقتران (TC)، فيستخدم القياسات الخام (المدى الزائف ومعدله) مباشرةً في محرك الترشيح، فيتيح كشف الشذوذ على مستوى طبقة الإشارة مبكرًا، ويحقق — مع تحسينات التقدير المتين — مقاومة لأثر تتبع المرشح وتقصير زمن الكشف والوصول إلى تحديد القنوات الملوثة وعزلها على مستوى القمر الفردي.</p>
+    <p>وتكمن قيود هذا الصنف في اعتماده على نماذج إحصائية دقيقة لضوضاء النظام والقياس، وفي أن الخوارزميات المحسّنة ترفع التعقيد الحسابي وتصعّب النشر المدمج. ومع ذلك يبقى هذا المسار الأكثر نضجًا هندسيًا لأنه مشتق من نظام الحساب الملاحي نفسه، ويوفر — عبر الخاصية قصيرة الأمد عالية الدقة للحساسات الذاتية مثل INS — القدرة على كشف الانتحال الخفي بطيء التغير من خلال الانحرافات النسبية المتراكمة على المدى الطويل، وهو ما تعجز عنه الأساليب أحادية المصدر المعتمدة على الخصائص الإحصائية اللحظية أو قصيرة الأمد.</p>
+  </section>
+
+  <section>
+    <h2>IV. الكشف القائم على اتساق البيانات متعددة المصادر</h2>
+    <p>ينفصل هذا الصنف عن عملية الحساب الترشيحية ويعتمد التحقق المتبادل المباشر بين معلومات الرصد متعددة المصادر. فعلى مستوى الوحدات القصورية (IMU/INS)، تُستغل الاستقلالية العالية والدقة قصيرة الأمد للحساسات الذاتية وقدرتها القوية على مقاومة التزوير لكشف الانتحال عبر الانحراف المتراكم طويل الأمد، لكنها تعتمد بشدة على الحالة الحركية وتتأثر بضوضاء الحساسات والاهتزازات فيرتفع معدل الإنذار الكاذب في البيئات المعقدة. وعلى مستوى إشارات الاتصالات (شبكات الجيل الخامس والأقمار منخفضة المدار وشبكات المركبات)، تُستخدم الوظائف الاتصالية للتحقق التعاوني الجماعي بين العقد بتكلفة منخفضة، لكنها تعتمد على انتشار البنية التحتية الاتصالية أو حجم العنقود وقد تتعرض روابطها نفسها للتداخل أو الانتحال.</p>
+    <p>وعلى مستوى المعلومات البصرية (عداد المسافات البصري VO والكاميرات والليدار)، تُستخدم الكاميرات منخفضة التكلفة المنتشرة على منصات الطائرات المسيرة والقيادة الذاتية، وهي لا تتأثر ببيئة الإشارات الراديوية لـ GNSS، لكنها تتأثر بشدة بالعوامل البيئية كالإضاءة والطقس وغنى المشهد. وتُظهر الدراسات التطبيقية أن هذا الصنف يحقق توازنًا عمليًا جيدًا: فالكشف القائم على IMU مناسب للمنصات سريعة المناورة، والتحقق التعاوني الاتصالي مناسب لأساطيل المركبات والبنية الذكية، بينما يصلح الدمج البصري للملاحة في البيئات المحرومة من GNSS بشرط توفر ظروف رؤية مواتية.</p>
+    <p>والقيمة الجوهرية لهذا الصنف أنه يقلل الاعتماد على الخصائص الذاتية لإشارات الانتحال عبر إدخال التكرار المتغاير على المستوى الفيزيائي، فيمتلك قدرة تعميم أقوى وقابلية أوسع للتكيف مع مختلف السيناريوهات من الخوارزميات أحادية المصدر المصممة لأنماط انتحال محددة والتي ينهار أداؤها عند انحراف خصائص الانتحال عن افتراضات التصميم (كالتزامن العالي بين الإشارات المزيفة والحقيقية أو انتحال الأقمار المتعددة المتزامن). كما يوفر مرجع موضع مستقلًا عند تعرض GNSS للانتحال الكامل، ويحقق التعرف السريع على الانتحال وعزل القياسات الملوثة عبر التحقق المتبادل، وهو وسيلة أساسية لتعزيز مرونة النظام الكلية في أنظمة الطائرات المسيرة والقيادة الذاتية والبنى التحتية الحرجة.</p>
+  </section>
+
+  <section>
+    <h2>V. الكشف القائم على الذكاء الاصطناعي</h2>
+    <p>يتخلى هذا الصنف عن قواعد القرار اليدوية ويستخدم الخوارزميات الذكية لاستخراج سمات البيانات وكشف الشذوذ عبر ثلاثة فروع. الفرع الأول هو المقارنة القائمة على التنبؤ، حيث تتنبأ نماذج مثل LSTM وGRU بالمسار الطبيعي من البيانات الملاحية التاريخية وتقارن التنبؤ بمخرجات GNSS، فلا يحتاج نماذج فيزيائية دقيقة ويستخرج السمات الزمنية ويمكن أن يوفر ملاحة قصيرة الأمد عند حرمان GNSS، لكنه يعتمد على بيانات طبيعية عالية الجودة للتدريب وتتراكم أخطاء تنبؤه مع الزمن ومعظم عتباته موروثة من الأساليب الإحصائية التقليدية. والفرع الثاني هو التعرف القائم على التصنيف، حيث تؤدي نماذج مثل XGBoost والغابات العشوائية وMLP والمحولات (Transformer) والشبكات التلافيفية قرارات سريعة من الطرف إلى الطرف بهندسة سمات مرنة تدمج معلومات متغايرة، محققةً دقة متوسطة 97.644% لنموذج XGBoost على مجموعة AV-GPS ودقة 99.99% لطريقة DARTS، لكنها تعتمد بشدة على عينات انتحال موسومة يصعب الحصول عليها وتعاني ضعف التعميم عبر السيناريوهات وخطر فرط التخصيص وضعف قابلية التفسير.</p>
+    <p>أما الفرع الثالث فهو كشف الشذوذ غير الخاضع للإشراف (الغابات المعزولة والمشفرات الذاتية مع الانتباه متعدد الرؤوس وشبكات TimesNet والأطر ذاتية الإشراف القائمة على LSTM)، فلا يحتاج عينات انتحال موسومة ويتكيف جيدًا مع هجمات مجهولة الأنماط، محققًا معدل كشف 100% بمعدل إنذار كاذب 0.57% للمشفر الذاتي مع الانتباه ودقة 99.57% لشبكة TimesNet وقيم AUC بين 85.8% و99.3% لمتغيرات LSTM-VAE، لكنه يعتمد على بيانات طبيعية عالية الجودة للتدريب ويعاني ضعف قابلية التفسير. ويُعد هذا الفرع — مع التنبؤ المقارن — الاتجاه الأسرع نموًا لأنه يعالج أصعب معضلتين عمليتين: ندرة عينات الانتحال الحقيقية الموسومة، والحاجة إلى التعميم على هجمات مجهولة لم تُرَ أثناء التصميم.</p>
+  </section>
+
+  <section>
+    <h2>VI. الوضع البحثي والاتجاهات والخاتمة</h2>
+    <p>يلخص الوضع الراهن أن الكشف بخوارزميات الترشيح هو الأكثر نضجًا هندسيًا، والكشف باتساق البيانات هو الأكثر عملية للنشر على الطائرات المسيرة والمركبات والسفن، والكشف بالذكاء الاصطناعي هو الأسرع نموًا لكنه الأقل نضجًا للنشر المدمج بسبب تعقيد النماذج واعتمادها على البيانات. وتشمل الاتجاهات المستقبلية: تعميق التكرار المتغاير على المستوى الفيزيائي، والدمج مع مصادقة طبقة الإشارة (OSNMA ومصادقة BeiDou)، وبناء مجموعات بيانات مفتوحة متعددة الحساسات موسومة بهجمات حقيقية (على غرار AV-GPS وMarine Cadastre وApollo)، وتطوير نماذج خفيفة قابلة للنشر المدمج، ورفع القدرة على التعميم تجاه الانتحال المجهول والبطيء التغير والتعاوني متعدد المصادر.</p>
+    <p>وخلاصة الورقة أن الدمج متعدد المصادر — عبر امتلاك مصادر مرجعية مستقلة والتحقق المتبادل للبيانات المتغايرة — يتجاوز بفعالية مأزقي الكشف أحادي المصدر (حدود الفيزياء وغياب التحقق الذاتي)، ويوفر مسارًا فعالًا لاختراق النقاط العمياء للكشف أحادي المصدر. فالكشف الترشيحي يقدم المتانة الهندسية، وفحص الاتساق يقدم العملية الميدانية، والذكاء الاصطناعي يقدم القدرة على التعميم، ويكمن مستقبل المجال في منظومات دفاعية مرنة تجمع بين هذه المسارات الثلاثة بدل الاعتماد على أي منها منفردًا.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Due to the weak signal power and the publicly known structure of civil signals, Global Navigation Satellite Systems (GNSSs) face an increasingly severe threat from spoofing interference. Constrained by inherent limitations such as physical boundaries and the inability of self-validation, single-source detection methods struggle to effectively counter complex spoofing attacks. Consequently, the advantages of multi-source fusion detection have become increasingly prominent. By incorporating heterogeneous sensors such as Inertial Navigation System (INS), vision, and communication signals, multi-source fusion technology leverages independent reference sources for cross-validation, providing an effective approach to overcome the bottlenecks of single-source detection. This paper systematically reviews 67 representative publications in the field of multi-source fusion GNSS spoofing detection from 2021 to 2026. Existing methods are categorized into three main classes: filtering algorithm-based detection, multi-source data consistency-based detection, and Artificial Intelligence (AI)-based detection. The advantages and limitations of each category are systematically compared, and the current research status along with future development trends are summarized.</p>
+  </section>
+
+  <section>
+    <h2>I. Introduction</h2>
+    <p>GNSSs have deeply integrated into the operational framework of modern society, serving as the core reference for transportation, power and energy, communication networks, and military equipment to acquire high-precision Position, Velocity, and Time (PVT) information. However, the weak signals caused by high satellite orbit altitudes and the openly known structure of civil signals render these systems inherently open and physically vulnerable to interference, with spoofing interference posing a particularly severe threat: it broadcasts forged signals closely resembling authentic satellite signals, covertly inducing the receiver to produce erroneous PVT results and seizing navigation control without the user's awareness, which can lead to catastrophic consequences.</p>
+    <p>Mainstream single-source spoofing detection methods fall into four categories: the first relies on spatial geometric features such as multi-antenna array Direction of Arrival (DOA) estimation; the second relies on radio frequency (RF)/baseband physical characteristics such as signal strength monitoring (power, Automatic Gain Control, carrier-to-noise ratio) and Signal Quality Monitoring (SQM); the third relies on navigation message and code-layer authentication such as Galileo OSNMA and BeiDou Signal Authentication; and the fourth relies on internal measurement redundancy monitoring such as Receiver Autonomous Integrity Monitoring (RAIM) and internal crystal-oscillator clock-consistency monitoring.</p>
+    <p>These methods suffer from two clear constraints: the physical-limits constraint, whereby sophisticated, precisely synchronized generative spoofing can faithfully mimic the physical attributes of authentic signals through power matching, nanosecond-level code-phase alignment, and distributed collaborative array attacks, so that the sensitivity of DOA, SQM, and power monitoring degrades significantly or fails entirely; and the self-validation constraint, whereby single-source systems lack external independent reference benchmarks, cannot identify logically consistent false observation data, struggle against meaconing attacks, and — under collaborative spoofing of all visible satellites — see the RAIM algorithm fail, unable to distinguish the cause of the time-pulling effect. Multi-source fusion detection technology, possessing independent reference sources, effectively circumvents these single-source limitations by introducing non-satellite information such as INS, Visual Odometry, LiDAR, and land-based radio with cross-validation of heterogeneous data.</p>
+  </section>
+
+  <section>
+    <h2>II. Literature Selection and Previous Work</h2>
+    <p>This study defines the publication window of the selected literature as 2021 to 2026, using English databases (IEEE Xplore, Scopus, ScienceDirect, SpringerLink) and the Chinese CNKI database with nine cross-combined search terms plus synonym-expansion rules. The preliminary query retrieved 512 publications; Zotero-based deduplication removed 126 duplicates leaving 386; title-based screening excluded 198 off-topic papers leaving 188; full-text rescreening excluded 122 single-sensor papers, yielding 66 valid high-value papers — 38 explicitly specifying fusion in their titles and 28 confirmed as genuine fusion after content verification.</p>
+    <p>Previous detection reviews mostly build their classification frameworks on signal-processing chains and algorithm types, so multi-sensor fusion detection appears only sporadically as a brief supplementary subsection without systematic classification or in-depth technical analysis. This review contributes a focused and timely frontier scope (2021–2026), a novel tri-categorical classification framework (filtering, consistency checking, and AI-based), and an in-depth exploration of the AI branch with its three sub-branches, addressing the theoretical gaps in existing reviews regarding the integration of AI with multi-source heterogeneous data.</p>
+  </section>
+
+  <section>
+    <h2>III. Filtering-Algorithm-Based Detection</h2>
+    <p>The first pathway, loosely coupled (LC) integration, compares GNSS navigation solutions against other sources through Kalman-filter residual statistics. It features a simple structure and low computational complexity, but suffers poor detection robustness in complex spoofing scenarios and low sensitivity to slowly varying spoofing that drags positioning results in small steps over long periods, evading mutation-based detectors. The second pathway, tightly coupled (TC) integration, feeds raw measurements (pseudorange and pseudorange rate) directly into the filtering engine, enabling earlier signal-layer anomaly detection and — combined with robust-estimation improvements — resistance to filter tracking effects, shorter detection delays, and channel-level identification and isolation of contaminated satellites.</p>
+    <p>The limitations of this class lie in its dependence on accurate system/measurement noise statistical models, and in improved algorithms raising computational complexity and complicating embedded deployment. Nevertheless, this pathway remains the most engineering-mature because it derives from the navigation computation system itself, and — through the short-term high-precision characteristics of autonomous sensors such as INS — provides the ability to detect covert slowly varying spoofing via long-term accumulated relative deviations, which single-source methods relying on instantaneous or short-term statistical features cannot achieve.</p>
+  </section>
+
+  <section>
+    <h2>IV. Consistency-Based Detection</h2>
+    <p>This class detaches from the filtering computation process and relies on direct mutual verification of multi-source observation information. At the inertial-unit (IMU/INS) level, the high autonomy, short-term precision, and strong anti-forgery capability of self-contained sensors detect spoofing through long-term accumulated deviation, but depend strongly on the motion state and are affected by sensor noise and vibration, raising false-alarm rates in complex environments. At the communication-signal level (5G networks, LEO satellites, vehicular networks), communication functions enable low-cost collaborative cluster cross-validation, but depend on communication-infrastructure deployment or cluster scale, and the communication links themselves may be interfered with or spoofed.</p>
+    <p>At the visual-information level (Visual Odometry, cameras, LiDAR), low-cost cameras widely mounted on UAV and autonomous-driving platforms are unaffected by the GNSS radio-signal environment, but are strongly affected by environmental factors such as lighting, weather, and scene texture. Applied studies show this class achieves a good practical balance: IMU-based detection suits highly maneuvering platforms, communication-based collaborative verification suits vehicle fleets and intelligent infrastructure, while visual fusion suits GNSS-denied navigation provided favorable visibility conditions hold.</p>
+    <p>The core value of this class is that it reduces reliance on the inherent features of spoofing signals by introducing physical-level heterogeneous redundancy, possessing stronger generalization capability and scenario adaptability than single-source algorithms designed for specific spoofing patterns whose performance collapses when spoofing features deviate from design assumptions (such as high synchronization between spoofing and authentic signals, or simultaneous multi-satellite spoofing). It further provides an independent positioning reference when GNSS is fully spoofed, and achieves rapid spoofing identification and contaminated-observation isolation through multi-source cross-validation — a key means of enhancing overall system resilience for UAVs, autonomous driving, and critical infrastructure.</p>
+  </section>
+
+  <section>
+    <h2>V. AI-Based Detection</h2>
+    <p>This class discards manually defined decision rules and employs intelligent algorithms to mine data features for anomaly identification across three branches. The first branch is prediction-based comparison, where models such as LSTM and GRU predict the nominal trajectory from historical navigation data and compare predictions against GNSS outputs: it needs no precise physical models, mines temporal features, and can provide short-term navigation under GNSS denial, but depends on high-quality nominal training data, accumulates prediction errors over time, and mostly inherits thresholds from traditional statistical methods. The second branch is classification-based recognition, where models such as XGBoost, Random Forests, MLP, Transformers, and CNNs deliver fast end-to-end decisions with flexible feature engineering fusing heterogeneous information — achieving 97.644% mean accuracy for XGBoost on the AV-GPS dataset and 99.99% accuracy for the DARTS method — but depend heavily on hard-to-obtain labeled spoofing samples and suffer weak cross-scenario generalization, overfitting risk, and poor interpretability.</p>
+    <p>The third branch is unsupervised anomaly detection (Isolation Forest, autoencoders with multi-head attention, TimesNet, LSTM-based self-supervised frameworks): it needs no labeled spoofing samples and adapts well to unknown attack patterns, achieving 100% detection at 0.57% false-alarm rate for the attention-augmented autoencoder, 99.57% accuracy for TimesNet, and 85.8–99.3% AUC for LSTM-VAE variants, but depends on high-quality nominal training data and suffers poor interpretability. Together with prediction-based comparison, this branch is the fastest-growing direction because it addresses the two hardest practical dilemmas: the scarcity of real labeled spoofing samples, and the need to generalize to unseen attacks never observed during design.</p>
+  </section>
+
+  <section>
+    <h2>VI. Research Status, Trends, and Conclusion</h2>
+    <p>The current status can be summarized as follows: filtering-algorithm detection is the most engineering-mature, data-consistency detection is the most deployment-practical for UAVs, vehicles, and ships, and AI-based detection is the fastest-growing but least mature for embedded deployment due to model complexity and data dependence. Future trends include: deepening physical-level heterogeneous redundancy, fusion with signal-layer authentication (OSNMA and BeiDou authentication), building labeled real-attack open multi-sensor datasets (in the spirit of AV-GPS, Marine Cadastre, and Apollo), developing lightweight embeddable models, and improving generalization toward unknown, slowly varying, and collaborative multi-source spoofing.</p>
+    <p>In conclusion, multi-source fusion — by possessing independent reference sources and cross-validating heterogeneous data — effectively overcomes the two dilemmas of single-source detection (physical limits and the absence of self-validation) and provides an effective path through the blind spots of single-source detection. Filtering-based detection offers engineering robustness, consistency checking offers field practicality, and AI offers generalization capability; the future of the field lies in resilient defense systems combining all three pathways rather than relying on any single one.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>Zhao, S.; Fu, J.; Li, B. A Review of GNSS Spoofing Detection Based on Multi-Source Fusion. <em>Electronics</em>, 2026, 15(15), 3326. <a href="https://doi.org/10.3390/electronics15153326">https://doi.org/10.3390/electronics15153326</a></li>
+      <li>Multi-antenna array DOA estimation for single-source spoofing identification [1–4]; RF/baseband physical fingerprints: power/AGC/C/N0 monitoring [5–9], SQM multi-correlator distortion detection [10–13].</li>
+      <li>Navigation message/code-layer authentication: Galileo OSNMA, BeiDou SCA [14–21]; internal redundancy: RAIM [22–24], crystal-oscillator clock-consistency monitoring [25, 26].</li>
+      <li>Spoofing classification by generation mechanism, complexity, strategy, and source count [27, 28]; filtering-based LC/TC detection pathways [Section 3 refs].</li>
+      <li>Consistency-check detection: inertial units, 5G/LEO communication signals, VO/vision/LiDAR cross-validation [Section 4 refs].</li>
+      <li>AI-based detection: LSTM/GRU prediction comparison; XGBoost/RF/CNN/Transformer/DARTS classification (AV-GPS, Marine Cadastre, Apollo, BDD datasets); Isolation Forest/autoencoder/TimesNet/LSTM-VAE unsupervised detection [80–101].</li>
+      <li>... [full reference list available in original paper — 37 pages, CC BY 4.0]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics15153326">10.3390/electronics15153326</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
