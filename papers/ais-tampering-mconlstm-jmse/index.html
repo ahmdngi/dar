@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نهج التعلم العميق لتحديد العبث المتعمد بإشارات AIS في المسارات البحرية — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Deep Learning Approach for Identifying Intentional AIS Signal Tampering in Maritime Trajectories</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نهج التعلم العميق لتحديد العبث المتعمد بإشارات نظام التعريف الآلي (AIS) في المسارات البحرية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Xiangdong Lv, Ruhao Jiang, Chao Chang, Nina Shu, Tao Wu</span>
+    <span>📄 J. Mar. Sci. Eng. 2025, Vol. 13, 660</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse13040660">10.3390/jmse13040660</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>في أبحاث السلامة البحرية، يعتمد تحليل سلوك السفن عادة على البيانات المقدمة من أنظمة التعريف الآلي (AIS). تركز الدراسات السائدة في الغالب على كشف سلوكيات السفن التي قد تؤثر على السلامة البحرية، ولا سيما الاختفاء الشاذ لإشارات AIS الخاصة بالسفن، متجاهلةً التدابير اللاحقة لتتبع هذه السفن غير القانونية. لسد هذه الفجوة، نقترح نموذج تعلم عميق يُسمى ذاكرة الشبكة الالتفافية متعددة الأبعاد قصيرة المدى (MConLSTM) لمعالجة تحدي التعرف على مسارات السفن في الحالات التي تُغيَّر فيها إشارات AIS عمدًا. وباستخدام نهج التعلم الذاتي الإشراف (self-supervised)، يُدرَّب النموذج باستخدام بيانات واقعية تاريخية. تُظهر التجارب الموسعة أن MConLSTM يتمتع بقدرات تحليلية متفوقة في معالجة بيانات AIS وتحليلها. والجدير بالذكر أنه حتى في سيناريوهات ندرة بيانات التدريب، يُظهر النموذج أداءً استثنائيًا، بمتوسط دقة أعلى بنسبة 22.74% من النموذج العام. وأخيرًا، تحققنا من الأهمية العملية والجدوى المنهجية للطريقة المقترحة من خلال محاكاة سيناريوهات واقعية.</p>
+  </section>
+
+  <section>
+    <h2>I. المقدمة</h2>
+    <p>يُسهِّل النقل البحري حاليًا 90% من التجارة العالمية، وتتصاعد أهميته باستمرار [1]. وقد أدى التوسع السريع لصناعة الشحن العالمية إلى زيادة كبيرة في حركة السفن، مما يفرض تحديات عديدة على السلامة والكفاءة. ولإدارة ومراقبة السلوك الديناميكي للسفن بفعالية، أصبح نظام التعريف الآلي (AIS) أداة لا غنى عنها تدريجيًا. يبث نظام AIS البيانات الديناميكية والساكنة والملاحية للسفينة بتنسيق موحد [2]، وتستقبلها السفن الأخرى والأنظمة الشاطئية. ولا توفر بيانات AIS معلومات أساسية عن السفن مثل الموقع والمسار والسرعة فحسب، بل تشمل أيضًا بيانات الاتصال بين السفن [3]، مما يسهل جمعها ويوفر مجموعة بيانات غنية لتحليل سلوك السفن. وتتمتع بيانات AIS بخصائص زمانية-مكانية نموذجية: إذ يتغير موقع السفينة وسرعتها ومسارها ومعلومات أخرى مع الزمن، وترتبط ارتباطًا وثيقًا بالأنماط السلوكية وأغراض الملاحة. ومع ذلك، يبث نظام AIS مئات الملايين من الرسائل يوميًا على مستوى العالم [4]، مما يؤدي حتمًا إلى توليد ضوضاء في البيانات بسبب عدم استقرار الإرسال اللاسلكي وعوامل موضوعية أخرى. وبالتالي، لطالما شكّل استخراج المعلومات القيمة من بيانات AIS الواسعة والمعقدة واستخدامها بحكمة تحديًا كبيرًا.</p>
+    <p>للتهرب من المراقبة البحرية، يُعد تغيير إشارات AIS عمدًا سلوكًا شائعًا للسفن غير القانونية، لا سيما في المناطق التي تنعدم فيها إشارة AIS تمامًا، وهو ما ينبع من عوامل بيئية. إضافة إلى ذلك، تقوم بعض السفن غير القانونية بإطفاء إشارات AIS واتباع سفن أخرى، مما قد يؤدي أيضًا إلى حدوث مسارات غير مكتملة. وفيما يتعلق بهذه المسألة، تركز الدراسات السائدة في الغالب على كشف المسارات ذات الانقطاع الشاذ، متجاهلةً التدابير اللاحقة لتتبع هذه السفن غير القانونية.</p>
+    <p>نظرًا لتعقيد بيانات AIS، يصعب تحديد المسارات التي عُبث بها عمدًا من خلال التحليل اليدوي [5]. وفي السنوات الأخيرة، أصبح التعلم الآلي نهجًا مهمًا لتحليل بيانات AIS. ففي الممارسة الفعلية للسفر البحري، تميل السفن ذات الأهداف المتماثلة إلى اتباع مسارات متشابهة تقريبًا، مما لا يوفر الوقود فحسب بل يعزز أيضًا سلامة الملاحة. لذلك، ترتبط المسارات التاريخية للسفن في منطقة ما حتمًا بالسلوك الحالي للسفن، مما يوفر أساسًا بيانيًا لأساليب التعلم الآلي لحل مسألة التعرف على المسارات.</p>
+    <p>لسد الفجوة البحثية، تقترح هذه الورقة نهج تعلم عميق لتحديد المسار اللاحق للسفن التي تعبث بإشارات AIS. وتحديدًا، حوّلنا المسألة إلى مشكلة تصنيف من خلال التحليل. ثم صممنا نموذج تعلم عميق يُسمى MConLSTM، قادر على التقاط الخصائص الشاملة والزمنية لبيانات AIS بالكامل. وأخيرًا، استخدمنا نهج التعلم الذاتي الإشراف لتدريب نموذج التعلم العميق لحل مشكلة التصنيف هذه.</p>
+  </section>
+
+  <section>
+    <h2>II. مراجعة الأدبيات</h2>
+    <p>ينصب التركيز البحثي الأساسي لتحليل بيانات AIS حاليًا على تحديد سلوك السفن الشاذ والتنبؤ به. إضافة إلى ذلك، توجد نقاط بحثية أخرى، مثل تحليل رسو السفن. فقد حلل Fang وYin [6] خصائص سلوك رسو السفن باستخدام بيانات AIS وأنشآ نموذج تقييم. ويتزايد دور التعلم الآلي التقليدي والتعلم العميق في تحليل سلوك السفن وكشف الشذوذ [7].</p>
+    <h3>2.1. التعلم الآلي التقليدي في الإشراف البحري</h3>
+    <p>بناءً على التحليل القائم، يمكن تصنيف أساليب التعلم الآلي التقليدية في الإشراف البحري إلى نوعين رئيسيين: النماذج الاحتمالية وأساليب التجميع (clustering). وتُعد النماذج الاحتمالية أساسية لتحليل سلوك السفن، لا سيما عند الاعتماد على بيانات AIS التاريخية. فقد اقترح Dalsnes وآخرون [8] نهجًا قائمًا على البيانات للتنبؤ بمواقع السفن، تُمثَّل فيه التنبؤات كنموذج خليط غاوسي (GMM) يوفر مقياسًا لعدم اليقين. واستكشف Mascaro وآخرون [9] كشف الشذوذ باستخدام شبكات بايزية مُستخرجة من بيانات AIS واقعية وبيانات تكميلية، مطورين نماذج بايزية ديناميكية وساكنة. واستخدم Zhou وآخرون [10] شبكات بتري الملونة الهرمية المؤقتة (HTCPN) وسلاسل ماركوف لتقييم عملية الاستجابة الطارئة لحرائق السفن. وقدّم Fridman وآخرون [11] خوارزمية لاختيار نافذة المراقبة الساتلية المثلى لكشف السفن المتحركة، وهي مدمجة في نظام KINGFISHER للاستخبارات البحرية.</p>
+    <p>تُستخدم أساليب التجميع على نطاق واسع في الإشراف البحري لتجميع مسارات السفن وكشف السلوك الشاذ، وهي قابلة للتفسير بدرجة عالية وقابلة للتطبيق في سيناريوهات متنوعة. فقد اقترح Kumar وRamanarayanan وآخرون [12] مخطط تعلم آلي قائم على HDBSCAN+ لتحديد سلوك السفن الشاذ من خلال التجميع. وقدّم Liu وآخرون [13] نموذج تجميع هجينًا للتوصيف الاحتمالي لحركة السفن وكشف الشذوذ، بُني على الخصائص الساكنة والديناميكية للمسارات مع خوارزمية Hausdorff وK-means وDBSCAN. إضافة إلى ذلك، مثّل Komol وآخرون [14] نظام تجنب الاصطدام في حالات الطوارئ، واقترح Louart وآخرون [15] طريقة للتعرف على إشارات AIS المزيفة من خلال دمج النفاذ المتعدد بتقسيم الزمن (TDMA) ومرشح Kalman، ودمج Bloisi [16] بيانات AIS مع بيانات الفيديو لتمكين المراقبة الفعالة للسفن في المناطق التي لا يتوفر فيها الرادار. والجدير بالذكر أن Dogancay وآخرين [17] أجروا مراجعة شاملة لتطبيق التعلم الآلي في معالجة بيانات AIS، بينما أشار Daneshfar وآخرون [18] إلى أن التعلم العميق فعال للغاية في استخراج الميزات من البيانات غير الخطية والمعقدة.</p>
+    <h3>2.2. أساليب التعلم العميق القائمة على بيانات AIS</h3>
+    <p>يُعد التعلم الموجَّه (supervised) الأسلوب الأكثر استخدامًا في التعلم العميق، وهو مناسب بشكل خاص لاستخراج الميزات من البيانات المعقدة غير الخطية. ويمكن تصنيف الأبحاث القائمة على التعلم العميق في الإشراف على السفن البحرية إلى مجالين: تحليل سلوك السفن وكشف الشذوذ، والتنبؤ بالمسارات وتقييم المخاطر. فقد اقترح Liu وآخرون [19] آلية مراقبة وكشف للسلوك الشاذ للسفن قائمة على التنبؤ بالانتباه البياني (graph attention) وشبكة إعادة البناء. وطوّر Nguyen وآخرون [20] طريقة ترميز جديدة (متجه رباعي ساخن) أكثر ملاءمة لتعلم الخصائص المكانية والزمنية لبيانات AIS. وطوّر Nguyen وآخرون [24] إطار تعلم عميق متعدد المهام وشاملًا قائمًا على الشبكة العصبية المتكررة التباينية (VRNN) يمكنه معالجة مهام متعددة في آن واحد مثل إعادة بناء المسارات وكشف السلوك الشاذ. وبالمثل، اعتمدت نماذج أخرى على التمثيلات الاحتمالية لمسارات AIS [21]، [22]، [23] لمعالجة ضوضاء البيانات ومشكلات أخذ العينات.</p>
+    <p>وعلى الرغم من الدور المهم للتعلم العميق في كشف شذوذ السفن، لا تزال هناك قيود. فقد صمم Bernabé وآخرون [25] نموذج تعلم عميق متمحورًا حول بنية المحوّل (transformer) يمكنه تحديد السفن غير القانونية التي تعطّل إشارات AIS عمدًا. وبالمثل، نفّذ Song [26] وMa [27] كشف المسارات الشاذة باستخدام الشبكات العصبية المتكررة (RNN) [28]، محققين دقة عالية على مجموعات بيانات مُعلَّمة يدويًا، مع أن الاعتماد على التعليق اليدوي قد يُدخل تحيزًا ويحد من قابلية التكيف. وفي مجال التنبؤ بالمسارات وتقييم المخاطر، حقق التعلم العميق أيضًا تقدمًا كبيرًا: فقد طوّر Gao وZhu وآخرون [29] نموذجًا للتنبؤ بمخاطر الاصطدام بين السفن، واقترح Xiao وآخرون [30] طريقة تنبؤ ثنائية الاتجاه قائمة على البيانات، وصمم Kim [31] شبكة عصبية طبقية للتنبؤ بسلوك السفن في مناطق الموانئ. وختامًا، طُبّق التعلم العميق على نطاق واسع في الإشراف على السفن البحرية، لكن تحديات مثل الاعتماد على مجموعات بيانات ضخمة وتحيزات التعليق المحتملة تبقى قائمة [32]، [33]، [34]، وهي فجوة يعالجها التعلم الذاتي الإشراف الذي يستخرج تلقائيًا معلومات إشرافية من مجموعات بيانات غير مُعلَّمة. وتُستخدم في هذا العمل الشبكة الالتفافية (CNN) [35] وذاكرة المدى الطويل قصيرة المدى (LSTM) [36] والمحوّل [37] ومُحسِّن Adam [38]، مع مقارنة متغيرات مثل CNN+Transformer [39] وBi-LSTM+Transformer [40].</p>
+  </section>
+  <section>
+    <h2>III. نظرة عامة على المنهجية</h2>
+    <p>كما هو موضح في الشكل 1، تستخدم هذه الورقة التعلم الذاتي الإشراف لبناء مجموعة بيانات التدريب من بيانات AIS الخام. ثم نصمم نموذج تعلم عميق، MConLSTM، بناءً على خصائص بيانات AIS. يقبل هذا النموذج مسارين كمدخلين ويخرج احتمال انتماء المسارين إلى الرحلة نفسها. وبذلك نكون قد حوّلنا المشكلة الأصلية إلى مشكلة تصنيف ثنائي، وبنينا عددًا كبيرًا من مجموعات البيانات باستخدام بيانات AIS لتدريب النموذج وحل المشكلة.</p>
+    <h3>3.1. معالجة البيانات</h3>
+    <p>لتعكس الحالة السلوكية للسفن بدقة مع تقليل كمية البيانات، من الضروري أخذ عينات من بيانات AIS وترشيحها. وبما أن الفاصل الزمني لإشارة AIS الأصلية يتراوح عادة بين 3 و10 ثوانٍ، ونظرًا لبطء سرعة إبحار السفن نسبيًا، فإن بيانات AIS الكثيفة هذه ليست ضرورية لوصف سلوك السفن. لذلك نرشّح النقاط المكررة من البيانات الأصلية ونأخذ عينات من مسار السفينة بفاصل 10 دقائق. وتركز هذه الورقة فقط على السمات المرتبطة مباشرة بالحالة السلوكية للسفن (خط الطول، وخط العرض، وسرعة السفينة، واتجاه السير)، مع تجاهل المعلومات المتعلقة بهوية السفينة. ولتعزيز فهم البيانات وتحسين أداء النموذج، تُوسَّع ميزات معينة بناءً على بيانات AIS القائمة، كما في المعادلة (1): حيث m_i هي بيانات AIS المعالجة للسفينة في لحظة معينة، و[lon, lat] هما خط الطول وخط العرض لنقطة المسار، وspeed هي سرعة إبحار السفينة، وhead هو اتجاه السير أي الزاوية بين المقدمة والشمال الجيومغناطيسي. وتشكّل نقاط المسار المتتالية m_i مسارًا كاملًا [m_1, m_2, ...] يمثل سلسلة زمنية متعددة الأبعاد.</p>
+    <h3>3.2. بناء مجموعة البيانات</h3>
+    <p>كما هو موضح في الشكل 3، تُختار عشوائيًا مسارات كاملة من سفينتين مختلفتين، ويُختار مقطع بمدة ساعة واحدة من كل مسار. ويجب أن تستوفي المسارات المختارة المعايير التالية: أن يكون الفاصل الزمني بين نهاية المسار السابق وبداية المسار اللاحق أقل من ساعة واحدة، وألا تتجاوز المسافة بينهما d_max (حيث تمثل d_max أقصى مسافة يمكن أن تقطعها السفينة خلال ساعة). ثم تُدمج هاتان المسارتان، وتُكرر هذه العملية لتوليد مليون مجموعة بيانات بالعلامة 0 (عينات سالبة). ولضمان توازن بيانات التدريب، تُنفَّذ عمليات مستمرة كما في الشكل 4: يُختار عشوائيًا مسار كامل، ثم يُختار عشوائيًا مقطعان بفاصل لا يتجاوز ساعة واحدة من المسار نفسه، ويُدمجان للحصول على مجموعة تدريب تمثل سفينة طبيعية بالعلامة 1 (عينات موجبة)، ويُكرر ذلك لتوليد العدد نفسه من مجموعات التدريب المعاكسة. وهكذا حوّلنا المشكلة الأصلية إلى مشكلة تصنيف ثنائي وجهّزنا بيانات AIS أوليًا كمجموعة تدريب للتعلم العميق.</p>
+    <h3>3.3. تصميم النموذج</h3>
+    <p>نظرًا لتعقيد بيانات AIS، من الضروري أن يلتقط نموذج التعلم العميق الخصائص المتسلسلة زمنيًا الكامنة في بيانات AIS عمومًا. وكما هو موضح في الشكل 5، نطوّر نموذج تعلم عميق يُسمى MConLSTM باستخدام الشبكة العصبية الالتفافية (CNN) [35] وذاكرة المدى الطويل قصيرة المدى (LSTM) [36]، ويتكون من ثلاثة أجزاء: فصل السمات ومعالجتها، وتحليل أهمية البيانات، واستخراج الميزات الزمنية.</p>
+    <p><strong>3.3.1. فصل السمات ومعالجتها.</strong> لضمان شمول بيانات التدريب للخصائص السلوكية لجميع السفن وإيجازها قدر الإمكان، اخترنا عزل أربع سمات من بيانات AIS تشمل lon وlat وhead وspeed. وبما أن فاصل بيانات AIS أُخذ كقيمة ثابتة، فالزمن ليس ضروريًا للتدريب. ونظرًا لاختلاف مقاييس القياس المحتملة عبر السمات المختلفة، فإن إدخال بيانات AIS مباشرة إلى النموذج قد يسبب فرط التخصيص وعدم استقرار التدرج ومشكلات التقارب. لذلك، يُعدّ التطبيع (normalization) ضروريًا قبل التدريب: نطبّع خطوط الطول والعرض باستخدام المعادلة (2) نظرًا لحدودهما العليا والدنيا الثابتة وبهدف تمكين النموذج من اكتساب المعرفة الجغرافية، بينما نطبّع السرعة والاتجاه باستخدام المعادلة (3) المعتمدة على القيم الدنيا والقصوى، لنحصل على مدخل نموذج التعلم العميق.</p>
+    <p><strong>3.3.2. تحليل أهمية البيانات.</strong> لتعلم ميزات المسارات بدقة أكبر، نحتاج إلى تحليل أهمية البيانات، إذ إن بيانات AIS بيانات زمنية عالية الأبعاد تحتوي على العديد من نقاط الضوضاء والقيم المفقودة، وتتفاوت أهمية البيانات من مواضع مختلفة داخل المسار الكلي. وبما أن المسارات لها تنسيق بيانات مشابه للصور، يمكننا استخدام CNN للحصول على أهمية البيانات المحلية في المسار. ولحساب أهمية كل موضع في السمات المختلفة بشكل مستقل، نصمم شبكة التفافية متعددة الأبعاد (M-CNN) كما في الشكل 6: تُستخدم نوى التفاف أحادية البعد مختلفة لتحديد أهمية المواضع المختلفة في المتجهات الأربعة، وفق المعادلتين (4)–(6)، حيث يُعاد تشكيل ناتج الالتفاف τ إلى مصفوفة ثنائية الأبعاد f_M ذات بُعد أعلى لكل نقطة بيانات، مما يعزز البيانات المهمة تلقائيًا ويُضعف البيانات غير المهمة، على غرار تضمين المتجهات الكلمية في معالجة اللغة الطبيعية.</p>
+    <p><strong>3.3.3. استخراج الميزات الزمنية.</strong> الاعتماد على CNN وحدها غير كافٍ لالتقاط خصائص بيانات AIS بشكل شامل، فالاعتماد الزمني داخل بيانات AIS بالغ الأهمية أيضًا. وقد تطورت الشبكات العصبية المتكررة إلى متغيرات مثل LSTM التي تُظهر أداءً متميزًا في معالجة البيانات المتسلسلة بفضل آليات البوابات الفريدة (بوابات الإدخال والنسيان والإخراج)، مما يخفف مشكلتي تلاشي التدرج وانفجاره الشائعتين في RNN التقليدية. لذلك اخترنا LSTM الأقل استهلاكًا للموارد لاستخراج الميزات الزمنية. نستخدم بنية LSTM ثنائية الاتجاه (كما في الشكل 7) لاستخراج الميزات الزمنية من المسار f_M وفق المعادلات (7)–(15)، حيث تعالج طبقا LSTM المتوازيتان البيانات في اتجاهين مختلفين. وبعد إدخال جميع نقاط السلسلة الزمنية، تُدمج الميزات الزمنية المستخرجة H_T مع f_M وفق المعادلة (16)، ثم تُعاد صياغتها في متجه أحادي البعد، وأخيرًا تُطبق طبقة إدراك متعدد الطبقات (MLP) مع دالة التفعيل Sigmoid للحصول على الاحتمال P بأن المسار اللاحق مولّد من السفينة نفسها وفق المعادلة (17). وبالمقارنة مع النموذج التقليدي، يكتسب MConLSTM الخصائص الزمانية-المكانية لبيانات AIS ذاتيًا من السمات الفردية: تضمن M-CNN منظورًا شاملًا يمنع التقارب نحو الحلول المثلى المحلية، وتضمن LSTM ثنائية الاتجاه استخراج الخصائص الزمنية، بينما ينعكس عمق النموذج أساسًا في طبقة الالتفاف العميقة التي تحتوي على معاملات أقل بكثير من LSTM والمحوّل، مما يقلل الموارد الحاسوبية اللازمة للتدريب.</p>
+  </section>
+
+  <section>
+    <h2>IV. تقييم النتائج</h2>
+    <h3>4.1. بيئة التدريب</h3>
+    <p>في هذا الفصل، سنستخدم مجموعة البيانات المبنية لتدريب النموذج المقترح. فبعد عرض بيئة التجربة وضبط المعاملات الرئيسية، سنحوّل انتباهنا نحو تحليل النتائج التجريبية، ونقيّم فعالية النموذج من خلال سلسلة من المقارنات. وتتكون مجموعة البيانات المبنية من مجموعتي بيانات متعاكستين تضمان مليوني عنصر تدريب، يُخصص ثلاثة أرباعها عشوائيًا لمجموعة التدريب والباقي لمجموعة الاختبار. وتُوضح المعاملات في الجدول 1 (نواة 3×3، 32 مرشحًا، ReLU في M-CNN؛ وحدتان 64، طبقتان، Tanh في Bi-LSTM؛ طبقتان، GeLU مع Sigmoid للخرج في MLP؛ معدل إسقاط 0.5، حجم دفعة 512، مُحسِّن Adam [38]، دالة خسارة الإنتروبيا الثنائية المتقاطعة، معدل تعلم 0.0001، 300 حقبة)، مع استخدام دالتي استدعاء: واحدة لضبط معدل التعلم تلقائيًا والأخرى لحفظ النموذج الأمثل. وتُنفَّذ الحسابات على معالج NVIDIA GeForce RTX 4070 Ti ومعالج Intel Core i7-13700KF، ويستغرق كل تكرار دقيقة واحدة تقريبًا مع مراقبة مستمرة لدالة الخسارة ومقاييس الدقة.</p>
+    <h3>4.2. نتائج التدريب</h3>
+    <p>هناك نوعان من الأخطاء المحتملة أثناء التجربة: أحدهما تحديد مسار السفينة نفسها على أنه مولّد من سفينتين، والآخر الخلط بين مسار مولّد من سفينتين على أنه مولّد من سفينة واحدة. ومن تحليل الجدول 2، عند الاختبار بمجموعتي بيانات متعاكستين تمامًا، يمكن أن تصل دقة التعرف في كلتا المجموعتين إلى 99% تقريبًا (دقة 99.12% و98.62%)، مما يثبت فعالية النموذج على بيانات AIS ويؤكد أن النموذج المدرَّب يُظهر تعميمًا ممتازًا وأن التعرف على مسارات المنطقة البحرية المستهدفة له قيمة شاملة. ويوضح الشكل 8 العملية الكاملة لتدريب MConLSTM، ومن الواضح أن دقة MConLSTM قريبة جدًا من القيمة المثلى بعد 40 تكرارًا دون فرط تخصيص واضح.</p>
+    <h3>4.3. تحسين المعاملات الفائقة</h3>
+    <p>من بين جميع المعاملات الفائقة، يُخفَّض معدل التعلم تلقائيًا، ويُختار المُحسِّن ودالة الخسارة وفق مشكلة التصنيف الثنائي، وهذه المعاملات لا تحتاج إلى تحسين. وبما أن عمق النموذج يتفاوت مع تعقيد المشكلة، نحتاج فقط إلى تحسين قيمة حجم الدفعة. فقد جرّبنا أحجام دفعات مختلفة من 512 تنازليًا إلى النصف حتى 16، كما في الشكل 9، ولاحظنا أن حجم الدفعة 64 حقق النتائج المثلى بأعلى دقة وأقصر زمن تقارب. ويكمن السبب في التوازن: أحجام الدفعات الصغيرة (مثل 16) تعني ضوضاء أكبر في تحديثات التدرج بسبب التباين الأعلى، مما يعيق التقارب نحو الحل الأمثل، بينما أحجام الدفعات الكبيرة (مثل 512) تقلل الضوضاء لكنها قد تُضعف قدرة التعميم بتجاهل التفاصيل المحلية. ويوضح الشكل 10 تأثير أحجام الدفعات المختلفة على الدقة وزمن التدريب، حيث يحقق حجم الدفعة 64 أعلى دقة وأقل زمن تدريب، ويتوافق جيدًا مع قدرات المعالجة المتوازية للعتاد.</p>
+    <h3>4.4. دراسة الاستئصال (Ablation)</h3>
+    <p>كما هو موضح في الشكل 11، فإن معاملات MConLSTM (444,417) أصغر بكثير من المحوّل (794,112) وLSTM (657,408)، وهي قريبة من MLP (418,176)، مما يمثل استهلاكًا أقل للموارد الحاسوبية وزمن التدريب، وهذا سبب مهم لتخلينا عن استخدام المحوّل. وفي هذه المقارنة، نضمن تساوي معاملات كل نموذج قدر الإمكان (عدد قنوات LSTM وCNN وبُعد MLP). ثم نقيّم قدرته على تحليل بيانات AIS.</p>
+    <p>لإظهار قابلية تكيف النموذج المصمم مع مجموعة بيانات AIS بوضوح أكبر، أجرينا سلسلة من التجارب المقارنة. أولًا، مع ثبات حجم مجموعة الاختبار والنموذج، غيّرنا فقط حجم مجموعة التدريب كما في الشكل 12 (1,000,000 و500,000 و100,000 و50,000 عينة): فمع تناقص حجم مجموعة التدريب، بالكاد تنخفض الدقة، وتبقى كلها فوق 95% دون ظاهرة فرط تخصيص واضحة. ثانيًا، قارنا دقة MConLSTM مع نماذج متعددة قائمة على CNN وLSTM والمحوّل (باستخدام متغيريه CNN+Transformer [39] وBi-LSTM+Transformer [40] لعدم ملاءمة المحوّل المباشرة لبيانات AIS) بالتدريب في ظروف متماثلة وأعماق متكافئة. وكما في الشكل 13، حقق MConLSTM أعلى دقة على مجموعة الاختبار متفوقًا على النماذج الأخرى، وأظهر أسرع سرعة تقارب أثناء التدريب. وفي الواقع، عدد السلوكيات الشاذة صغير نسبيًا مقارنة بالكمية الهائلة من بيانات AIS، وللتحقق من أداء نموذجنا في غياب بيانات تدريب كافية، قارنا MConLSTM مع CNN+LSTM (الذي يستخدم المسارات مباشرة كمدخل وبنفس العمق). وكما في الشكل 14، مع تناقص حجم مجموعة التدريب باستمرار، ينخفض أداء نموذج CNN+LSTM انخفاضًا كبيرًا، بينما متوسط دقة MConLSTM أعلى بنسبة 22.74% من CNN+LSTM عندما تكون مجموعة التدريب صغيرة، مما يُظهر أن MConLSTM يمكنه تعلم خصائص بيانات AIS جيدًا حتى عند ندرة البيانات.</p>
+    <h3>4.5. محاكاة دراسة الحالة</h3>
+    <p>نبدأ الآن بالنظر في قضايا التطبيق العملي في الوضع الواقعي. ففي البحر، تبث السفن المبحرة بشكل طبيعي وقانوني إشارات AIS باستمرار. وإذا توقفت سفينة فجأة عن بث إشارات AIS، تُعد مشبوهة. ومع مراعاة حالات الطوارئ المختلفة أو التأثيرات الموضوعية، وكما في الشكل 15، يُنص على أن السفينة التي تفشل في بث إشارات AIS في المياه غير التنفسية لأكثر من عشر دقائق تُعد مشبوهة. ثم تُسجَّل جميع المسارات اللاحقة الممكنة قرب نقطة الاختفاء خلال ساعتين، وتُدمج المسارات الأمامية والخلفية وتُدخل إلى النموذج للحصول على قيمة احتمال انتماء المسارين للسفينة نفسها، ويُختار المسار ذو الاحتمال الأعلى كأرجح مسار جديد للسفينة. ولضمان فعالية النموذج في التطبيقات العملية، اختيرت منطقة محددة كما في الشكل 16a للتجارب المحاكية: فإذا اختفت إشارة AIS كاملة في منطقة معينة في وسط الشكل 16a، ستتولد مسارات شاذة متعددة ومسارات لاحقة ممكنة كما في الشكل 16b. واخترنا مسارًا شاذًا معينًا ومساراته اللاحقة الممكنة للتحليل كما في الشكل 16c، ودُمجت مع المسار الشاذ وأُدخلت إلى النموذج المدرَّب للحصول على احتمال المطابقة للمسارات الأمامية والخلفية كما في الشكل 16d. ومن بين جميع المسارات اللاحقة المحتملة، استوفى المساران 3 و4 معايير المطابقة، حيث بلغ المسار 4 احتمال 95.77%، وهو الأعلى متجاوزًا 95%، فكان الاستنتاج الطبيعي أن المسار 4 هو الأرجح كمسار لاحق للسفينة الشاذة المختارة، يليه المسار 3. ثم رجعنا إلى الشكل 16a للتحقق فوجدنا أن المسار 4 كان فعلًا المسار اللاحق الحقيقي للسفينة. وهكذا حاكينا سيناريو التعرف على المسار الواقعي لوصف عملية تطبيق طريقتنا في معالجة التحديات العملية، وأظهرت النتائج فعالية طريقتنا في حل المشكلات العملية وأهميتها التطبيقية.</p>
+  </section>
+
+  <section>
+    <h2>V. الخاتمة</h2>
+    <p>لمعالجة تحدي تحديد المسار اللاحق الناجم عن التغييرات المتعمدة لمعلومات تعريف السفن البحرية أثناء الملاحة، أجرت هذه الورقة أولًا تحليلًا مفصلًا للمسألة، ثم استخدمت أسلوب التعلم الذاتي الإشراف لإعادة صياغة المشكلة كمشكلة تصنيف ثنائي. وباستغلال بيانات AIS الواقعية التاريخية لبناء مجموعة بيانات مُعلَّمة، طوّرنا نموذجًا (MConLSTM) لتمييز خصائص بيانات AIS وحللنا مشكلة التصنيف الثنائي هذه. وأظهر النموذج قدرة هائلة على معالجة بيانات AIS. ثم صُممت سلسلة من التجارب المقارنة للتحقق من قدرات التعلم للنموذج مع بيانات AIS. وحقق نموذجنا أعلى دقة تعرف في هذا العمل، متفوقًا على النماذج القائمة على المحوّل. وعلى وجه الخصوص، عند مواجهة عدد صغير من مجموعات التدريب، حقق MConLSTM متوسط دقة أعلى بنسبة 22.74% من CNN+LSTM. وأظهر الاختبار النهائي الذي يحاكي سيناريوهات واقعية فعالية الطريقة المقترحة في معالجة التحديات الواقعية.</p>
+    <p>ومع ذلك، لا تزال هناك بعض القضايا. فبسبب تنوع الظروف الجغرافية وكثافات السفن والمناخات عبر المناطق البحرية المختلفة حول العالم، تستخدم هذه الورقة البيانات التاريخية من منطقة بحرية محددة للتدريب فقط، وبالتالي يفتقر النموذج المدرَّب إلى القابلية العالمية للتطبيق، وإن أظهر تدريبه تعميمًا إيجابيًا فيما يتعلق ببيانات AIS، وسيعزز توسيع نطاق بيانات AIS المستخدمة للتدريب شمولية النموذج. ولا تعالج هذه الورقة سيناريو تعطيل السفن غير المشروعة إرسال AIS عمدًا والاعتماد فقط على الملاحة البصرية، إذ يتطلب ذلك مجموعة بيانات ضخمة من سجلات AIS لتحليل السلوك الفعلي للسفن غير المشروعة بدقة. وقد يشكّل هذا الجانب مسارًا واعدًا للأبحاث المستقبلية إسهامًا كبيرًا في السلامة البحرية.</p>
+  </section>
+</div>
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>In the field of maritime safety research, ship behavior analysis is usually based on data provided by automatic identification systems (AISs). Prevailing studies predominantly focus on detecting the behaviors of vessels that may affect maritime safety, especially the abnormal disappearance of ship AIS signals, neglecting subsequent measures to trace these illegal ships. To fill this gap, we propose a deep learning model named multi-dimensional convolutional long short-term memory (MConLSTM) to tackle the challenge of recognizing ship trajectories in cases where AIS signals are intentionally altered. By employing a self-supervised approach, the model is trained using historical real-world data. Extensive experiments show that MConLSTM exhibits superior analytical capabilities when it comes to processing and analyzing AIS data. Notably, even in scenarios with scant training data, the model exhibits exceptional performance, with an average accuracy 22.74% higher than the general model. Finally, we validated the practical significance and feasibility of the proposed method by simulating real-world scenarios.</p>
+  </section>
+
+  <section>
+    <h2>I. Introduction</h2>
+    <p>Currently, maritime transport facilitates 90% of global trade, with its prominence continuing to escalate [1]. The rapid expansion of the global shipping industry has led to a surge in ship traffic, posing numerous safety and efficiency challenges. To effectively manage and monitor ships' dynamic behavior, the automatic identification system (AIS) has progressively become indispensable. The AIS system broadcasts a ship's dynamic, static, and navigation-related data in a standardized format [2], which is received by both other vessels and shore-based systems. AIS data not only furnish basic ship information like position, course, and speed but also encompass inter-ship communication data [3], facilitating easy collection and offering a robust dataset for analyzing ship behavior. AIS data have typical spatiotemporal characteristics: a ship's position, speed, course, and other information change with time, closely related to behavioral patterns and navigation purposes. Nonetheless, AIS transmits hundreds of millions of messages globally daily [4], leading to inevitable noise generation in the data due to wireless transmission instabilities and other objective factors. Consequently, extracting valuable information from vast and intricate AIS data and utilizing it judiciously have always been huge challenges.</p>
+    <p>To evade maritime supervision, deliberately altering AIS signals is a common behavior of illegal ships, especially in areas where the AIS signal is completely absent, which stems from environmental factors. In addition, some illegal ships will turn off AIS signals and follow other ships, which can also lead to the occurrence of incomplete trajectories. For this issue, prevailing studies predominantly focus on detecting trajectories with abnormal interruption, neglecting subsequent measures to trace these illegal ships.</p>
+    <p>Given the complexity of AIS data, it is difficult to identify trajectories that have been deliberately tampered with through manual analysis [5]. In recent years, rapidly developing machine learning has become an important approach for analyzing AIS data. In the actual process of maritime travel, ships with similar objectives tend to exhibit roughly similar trajectories, which can not only conserve fuel but also enhance navigation safety. Therefore, the historical trajectories of ships in an area inevitably correlate with the current behavior of ships, which provides a data foundation for machine learning methods to solve trajectory recognition.</p>
+    <p>To fill the gap in research, this paper proposes a deep learning approach to identify the subsequent trajectory of ships that tamper with AIS signals. Specifically, we transformed the issue into a classification problem through analysis. Subsequently, we designed a deep learning model, termed MConLSTM, that is capable of fully capturing the global and temporal characteristics of AIS data. Finally, we employed a self-supervised learning approach to train the deep learning model to address this classification problem.</p>
+  </section>
+
+  <section>
+    <h2>II. Literature Review</h2>
+    <p>Currently, the primary research focus of AIS data analysis lies in identifying and predicting abnormal ship behavior. In addition, there are also some other research points, such as the analysis of ship berthing. Fang and Yin [6] analyzed the behavior characteristics of ships berthing ashore using AIS data and established an evaluation model. Traditional machine learning and deep learning are increasingly pivotal in ship behavior analysis and anomaly detection [7].</p>
+    <h3>2.1. Traditional Machine Learning in Maritime Supervision</h3>
+    <p>Based on the existing analysis, traditional machine learning methods in maritime supervision can be categorized into two main types: probability-based models and clustering methods. Probability models are fundamental for analyzing ship behavior, particularly when based on historical AIS data. Dalsnes et al. [8] proposed a data-driven approach to predict vessel positions, where predictions are represented as Gaussian mixture models (GMMs) providing a measure of uncertainty. Mascaro et al. [9] explored anomaly detection using data-mined Bayesian networks learned from real-world AIS data and supplementary data, developing both dynamic and static Bayesian network models. Zhou et al. [10] employed hierarchical timed colored Petri nets (HTCPN) and Markov chains to evaluate the emergency response process to ship fires. Fridman et al. [11] presented an algorithm for selecting the optimal satellite observation window to detect moving vessels, integrated into the KINGFISHER maritime intelligence system.</p>
+    <p>Clustering methods are widely used in maritime supervision to group ship trajectories and detect abnormal behavior, being highly interpretable and applicable to a wide range of scenarios. Kumar, Ramanarayanan et al. [12] proposed a machine learning scheme based on HDBSCAN+ to identify abnormal ship behavior through clustering. Liu et al. [13] presented a hybrid clustering model for the probabilistic characterization of ship traffic and anomaly detection, built on static and dynamic trajectory features with the Hausdorff algorithm, K-means, and DBSCAN. Additionally, Komol et al. [14] represented an emergency clash avoidance control system, Louart et al. [15] proposed a method for recognizing false AIS signals by incorporating time division multiple access (TDMA) and the Kalman filter, and Bloisi [16] combined AIS data with video data to enable effective ship monitoring in areas where radar was unavailable. Notably, Dogancay et al. [17] conducted a comprehensive review of machine learning in AIS data processing, while Daneshfar et al. [18] indicated that deep learning is highly effective in extracting features from nonlinear and complex data.</p>
+    <h3>2.2. Deep Learning Methods Based on AIS Data</h3>
+    <p>Supervised learning is the most widely used method in deep learning, and it is especially suitable for mining features from complex nonlinear data. Existing deep learning research in maritime vessel supervision can be broadly categorized into two areas: vessel behavior analysis and anomaly detection, and vessel trajectory prediction and risk assessment. Liu et al. [19] proposed a monitoring and detection mechanism for vessel abnormal behavior based on a graph attention prediction and reconstruction network. Nguyen et al. [20] developed a new encoding method (four-hot vector) more conducive to learning the spatial and temporal characteristics of AIS data. Nguyen et al. [24] developed a multitasking, universal deep learning framework based on a variational recurrent neural network (VRNN) that can simultaneously handle tasks such as trajectory reconstruction, abnormal behavior detection, and track type recognition. Similarly, other models relied on probabilistic representations of AIS tracks [21], [22], [23] to handle data noise and sampling issues.</p>
+    <p>Despite the significant role of deep learning in vessel anomaly detection, certain limitations remain. Bernab&eacute; et al. [25] designed a deep learning model centered on the transformer architecture that can identify illegal vessels deliberately disabling their AIS signals. Similarly, Song [26] and Ma [27] implemented anomalous trajectory detection using recurrent neural networks (RNNs) [28], achieving high accuracy on manually annotated datasets, although reliance on manual annotation may introduce bias and limit adaptability. In vessel trajectory prediction and risk assessment, deep learning has also made significant strides: Gao, Zhu et al. [29] developed a model for predicting collision risks among vessels, Xiao et al. [30] proposed a bidirectional data-driven trajectory prediction method, and Kim [31] designed a layered neural network to predict vessel behavior in port areas. In summary, deep learning has been extensively applied in maritime vessel supervision, but challenges such as reliance on large datasets and potential labeling biases remain [32], [33], [34] &mdash; a gap addressed by self-supervised learning, which automatically extracts supervisory information from unlabeled datasets. This work employs the convolutional neural network (CNN) [35], long short-term memory (LSTM) [36], the transformer [37], and the Adam optimizer [38], with comparisons against variants such as CNN+Transformer [39] and Bi-LSTM+Transformer [40].</p>
+  </section>
+  <section>
+    <h2>III. Method Overview</h2>
+    <p>As depicted in Figure 1, this paper employs self-supervised learning to construct the training dataset from raw AIS data. Then, we design a deep learning model, MConLSTM, based on the characteristics of AIS data. This model accepts two trajectories as inputs and outputs the probability that the two trajectories come from the same voyage. We have thus converted the original problem into a binary classification problem, constructed a large number of datasets using AIS data to train the model, and solved the problem.</p>
+    <h3>3.1. Data Processing</h3>
+    <p>In order to accurately reflect the behavioral status of ships while minimizing the amount of data, it is necessary to sample and filter AIS data. Given that the interval of the original AIS signal typically ranges between 3 and 10 s, and considering the relatively slow navigation speed of ships, such dense AIS data are unnecessary for describing ship behavior. We therefore filter out duplicate points from the original data and sample the ship's trajectory at 10 min intervals. This paper focuses only on attributes directly related to ships' behavioral status (longitude, latitude, ship speed, direction of travel), disregarding identity information. To enhance data understanding and model performance, certain features are expanded upon based on existing AIS data, as discussed in Equation (1): m_i is the processed AIS data of a ship at a given time, [lon, lat] are the trajectory point coordinates, speed is the running speed, and head is the travel direction (the angle between the heading and geomagnetic north). Consecutive trajectory points m_i form a complete trajectory [m_1, m_2, ...] representing a multidimensional time series.</p>
+    <h3>3.2. Dataset Construction</h3>
+    <p>As depicted in Figure 3, complete tracks are randomly selected from two different ships, choosing one-hour segments. The selected tracks must meet the following criteria: the time interval between the end of the preceding track and the start of the subsequent track must be under one hour, and the distance between them must not exceed d_max (the maximum distance a ship can travel within an hour). These two tracks are then concatenated, and the procedure is repeated to generate 1 million datasets with label 0 (negative samples). To ensure balanced training data, further operations are performed as in Figure 4: a complete track is randomly chosen, then two segments with an interval not exceeding one hour are randomly selected from the same track and combined to obtain a training set representing a normal ship with label 1 (positive samples), repeating the process to generate an equal number of opposite training sets. Here we have converted the original problem into a binary classification problem and preliminarily processed AIS data into a deep learning training dataset.</p>
+    <h3>3.3. Model Design</h3>
+    <p>Due to the complexity of AIS data, the deep learning model must capture the inherent time-series characteristics within AIS data overall. As shown in Figure 5, we develop a deep learning model called MConLSTM using a convolutional neural network (CNN) [35] and long short-term memory (LSTM) [36], consisting of three parts: separation and processing of attributes, data importance analysis, and temporal feature extraction.</p>
+    <p><strong>3.3.1. Separation and processing of attributes.</strong> To ensure training data cover all ships' behavioral characteristics concisely, we isolated four attributes from AIS data: lon, lat, head, and speed. Since the AIS data interval is sampled as a fixed value, time is unnecessary for training. Given potential variance in measurement scales across attributes, directly inputting AIS data may cause overfitting, gradient instability, and convergence issues. Normalization is therefore essential before training: we normalize lon and lat with Equation (2), given their fixed upper/lower bounds and our goal of letting the model acquire geographical knowledge, while speed and head are normalized with the min-max-based Equation (3), yielding the deep learning model input.</p>
+    <p><strong>3.3.2. Data importance analysis.</strong> To learn trajectory features more accurately, data importance analysis is needed: AIS data are high-dimensional temporal data containing noise points and missing values, and data from different positions vary in importance. Since trajectories share a similar data format with images, we can employ CNN to obtain local data importance within a trajectory. To independently calculate each position's importance across attributes, we design a multidimensional convolutional network (M-CNN) as in Figure 6: different one-dimensional convolution kernels determine the importance of positions in the four vectors per Equations (4)&ndash;(6), where the convolution output &tau; is reshaped into a two-dimensional matrix f_M of higher per-point dimensionality, automatically enhancing important data while weakening unimportant data &mdash; similar to word vector embedding in natural language processing.</p>
+    <p><strong>3.3.3. Temporal feature extraction.</strong> Relying solely on CNN is insufficient to comprehensively capture AIS characteristics; temporal dependency within AIS data is also crucial. RNNs have evolved into variants such as LSTM, which demonstrate outstanding sequential-data performance thanks to unique gating mechanisms (input, forget, and output gates), alleviating the gradient vanishing/exploding issues common in traditional RNNs. We therefore chose the lower-resource LSTM for temporal feature extraction. A bidirectional LSTM architecture (Figure 7) extracts temporal features from the importance-weighted trajectory f_M per Equations (7)&ndash;(15), with two parallel LSTM layers processing in different directions. After all T time-series points are input, the extracted temporal features H_T are concatenated with f_M per Equation (16), reshaped into a one-dimensional vector, and finally a multilayer perceptron (MLP) layer with Sigmoid activation yields the probability P that the subsequent trajectory was generated by the same ship, per Equation (17). Compared with traditional models, MConLSTM autonomously acquires AIS spatiotemporal characteristics from individual attributes: M-CNN ensures a global perspective preventing convergence to local optima, bidirectional LSTM ensures temporal feature extraction, and the model's depth lies mainly in the deep convolutional layer with far fewer parameters than LSTM and transformer, reducing training compute.</p>
+  </section>
+
+  <section>
+    <h2>IV. Result Evaluation</h2>
+    <h3>4.1. Training Environment</h3>
+    <p>In this chapter, we use the constructed dataset to train the proposed model. After introducing the experimental environment and key parameter settings, we analyze the experimental results and evaluate the model's effectiveness through a series of comparisons. The constructed dataset comprises two opposite datasets with 2 million training items; three-quarters are randomly allocated to the training set and the rest to the test set. Parameters are shown in Table 1 (M-CNN: 3&times;3 kernel, 32 filters, ReLU; Bi-LSTM: 64 units, 2 layers, Tanh; MLP: 2 layers, GeLU with Sigmoid output; dropout 0.5; batch size 512; Adam optimizer [38]; binary cross-entropy loss; learning rate 0.0001; 300 epochs), with two callbacks: one auto-adjusting the learning rate and one saving the optimal model. Computations run on an NVIDIA GeForce RTX 4070 Ti and a 13th Gen Intel Core i7-13700KF at 3.40 GHz; each iteration takes about one minute with continuous monitoring of loss and accuracy metrics.</p>
+    <h3>4.2. Training Results</h3>
+    <p>Two types of errors may occur: identifying one ship's trajectory as generated by two ships, and mistaking two ships' trajectories as one ship's. From Table 2, testing on two completely opposite datasets, recognition accuracy on both datasets reaches almost 99% (99.12% and 98.62%), demonstrating the model's effectiveness on AIS data, excellent generalization, and the universal value of target-sea-area trajectory recognition. Figure 8 shows the full MConLSTM training process; accuracy is very close to optimal after 40 iterations with no obvious overfitting.</p>
+    <h3>4.3. Hyperparameter Optimization</h3>
+    <p>Among all hyperparameters, the learning rate is auto-attenuated and the optimizer and loss function follow from the binary classification problem &mdash; these need no optimization. Since model depth varies with problem complexity, we only optimize the batch size value. We experimented with batch sizes from 512 progressively halved down to 16 (Figure 9), observing that batch size 64 yielded optimal results with the highest accuracy and shortest convergence time. The reason is balance: smaller batches (e.g., 16) inject more gradient-update noise from higher data variance, hindering convergence to the optimum, while larger batches (e.g., 512) reduce noise but may compromise generalization by overlooking local details. Figure 10 shows the impact of batch sizes on accuracy and training time: batch size 64 achieves the highest accuracy with the least training time and aligns well with hardware parallel processing capabilities.</p>
+    <h3>4.4. Ablation Study</h3>
+    <p>As shown in Figure 11, MConLSTM's parameters (444,417) are much smaller than transformer (794,112) and LSTM (657,408) and close to MLP (418,176), representing less compute consumption and training time &mdash; a key reason we gave up the transformer. We keep each model's parameters as similar as possible (LSTM/CNN channel counts, MLP dimension), then evaluate AIS analysis capability.</p>
+    <p>To demonstrate our model's adaptability to the AIS dataset, we ran comparative experiments. First, holding test set and model size constant, we varied only training dataset size (Figure 12: 1,000,000, 500,000, 100,000, and 50,000 samples): as training size decreases, accuracy hardly drops, staying above 95% with no obvious overfitting. Second, we compared MConLSTM's accuracy against CNN-, LSTM-, and transformer-based models (using its AIS-compatible variants CNN+Transformer [39] and Bi-LSTM+Transformer [40]) trained under identical conditions and equivalent depths. As Figure 13 shows, MConLSTM achieved the highest test-set accuracy with the fastest convergence. Since anomalous behaviors are rare relative to total AIS volume, we further compared MConLSTM against CNN+LSTM (same depth, raw trajectories as input). As Figure 14 shows, CNN+LSTM performance declines significantly as training size shrinks, while MConLSTM's average accuracy is 22.74% higher than CNN+LSTM on small training sets &mdash; showing MConLSTM learns AIS characteristics well even with scarce data.</p>
+    <h3>4.5. Case Study Simulation</h3>
+    <p>We now consider practical application. At sea, normally and legally sailing ships continuously broadcast AIS signals; a ship suddenly ceasing AIS broadcasts is deemed suspicious. Allowing for emergencies or objective effects, as in Figure 15, a ship failing to broadcast AIS signals in non-breathable waters for over ten minutes is deemed suspicious. All possible subsequent tracks near the vanishing point within two hours are then recorded, front and rear tracks spliced and input to the model to obtain the same-ship probability, and the highest-probability track selected as the most likely new track. For a realistic simulation, a specific area (Figure 16a) was selected: with the full AIS signal disappearing in a central area, multiple abnormal tracks and possible subsequent tracks arise (Figure 16b). One abnormal track and its candidate follow-ups were analyzed (Figure 16c); combined with the abnormal track, processed, and input to the trained model, the front-rear matching probabilities were annotated (Figure 16d). Among all candidates, trajectories 3 and 4 met the matching criteria, with trajectory 4 reaching 95.77% &mdash; the highest, surpassing 95% &mdash; so trajectory 4 was naturally concluded the most probable subsequent trajectory, followed by trajectory 3. Checking back against Figure 16a confirmed trajectory 4 was indeed the vessel's real follow-up track. The experiment demonstrates our method's effectiveness and practical significance for real-world problems.</p>
+  </section>
+
+  <section>
+    <h2>V. Conclusions</h2>
+    <p>To address the subsequent-track identification challenge posed by intentional alterations to marine vessel identification information during navigation, this paper first analyzed the issue in detail, then employed self-supervised learning to reframe it as a binary classification problem. Leveraging historical real AIS data to build a labeled dataset, we developed a model (MConLSTM) to discern AIS data characteristics and solved this binary classification problem. The model demonstrated a mighty ability to process AIS data. A series of comparative experiments validated the model's AIS learning capabilities. Our model achieves the highest recognition accuracy in this work, outperforming transformer-based models. In particular, with small training datasets, MConLSTM achieved an average accuracy 22.74% higher than CNN+LSTM. The final real-world-scenario simulation demonstrated the proposed method's efficacy for real-world challenges.</p>
+    <p>However, some issues remain. Owing to diverse geographical conditions, ship densities, and climates across sea regions worldwide, this paper uses historical data from a specific sea area for training only; the trained model therefore lacks global applicability, although its training shows positive generalizability for AIS data &mdash; expanding the AIS training scope will enhance universality. This paper does not address the scenario where illicit vessels deliberately disable AIS transmission and rely solely on visual navigation, as that would require a massive AIS record dataset to accurately analyze actual illicit vessel behavior. This could be a promising avenue for future research, contributing significantly to maritime safety.</p>
+  </section>
+</div>
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Z. Wan, J. Chen, A. E. Makhloufi, D. Sperling and Y. Chen, &quot;Four routes to better maritime governance,&quot; <em>Nature</em>, vol. 540, pp. 27&ndash;29, 2016.</li>
+      <li>[2] International Maritime Organization (IMO), &quot;Revised Guidelines for the Onboard Operational Use of Ship-Borne Automatic Identification Systems (AIS),&quot; Resolution A.1106(29), London, UK, 2015.</li>
+      <li>[3] H. Rong, A. P. Teixeira, C. Guedes Soares and T. A. Santos, &quot;Spatial-temporal analysis of ship traffic in Azores based on AIS data,&quot; in <em>Maritime Technology and Engineering 5</em>, vol. 1, CRC Press, Boca Raton, FL, USA, 2021, pp. 185&ndash;191.</li>
+      <li>[4] N. Perobelli, &quot;MarineTraffic A Day in Numbers,&quot; MarineTraffic Blog, 2016. [Online]. Available: <a href="https://www.marinetraffic.com/blog/a-day-in-numbers/">marinetraffic.com/blog/a-day-in-numbers</a></li>
+      <li>[5] R. Zhen, M. Riveiro and Y. Jin, &quot;A novel analytic framework of real-time multi-vessel collision risk assessment for maritime traffic surveillance,&quot; <em>Ocean Eng.</em>, vol. 145, pp. 492&ndash;501, 2017.</li>
+      <li>[6] C. Fang, J. Yin and H. Ren, &quot;Evaluation Model of Ship Berthing Behavior Based on AIS Data,&quot; <em>IEEE Open J. Intell. Transp. Syst.</em>, vol. 3, pp. 104&ndash;110, 2022.</li>
+      <li>[7] Y. Le Cun, Y. Bengio and G. Hinton, &quot;Deep learning,&quot; <em>Nature</em>, vol. 521, pp. 436&ndash;444, 2015.</li>
+      <li>[8] B. R. Dalsnes, S. Hexeberg, A. L. Flaten, B. H. Eriksen and E. F. Brekke, &quot;The neighbor course distribution method with Gaussian mixture models for AIS-based vessel trajectory prediction,&quot; in <em>Proc. 21st Int. Conf. Information Fusion (FUSION)</em>, Cambridge, UK, 2018, pp. 580&ndash;587.</li>
+      <li>[9] S. Mascaro, A. Nicholson and K. Korb, &quot;Anomaly detection in vessel tracks using Bayesian networks,&quot; <em>Int. J. Approx. Reason.</em>, vol. 55, pp. 84&ndash;98, 2014.</li>
+      <li>[10] C. Zhou, S. Qin, J. Zhang, L. Du and F. Zhang, &quot;Modeling and analysis of external emergency response to ship fire using HTCPN and Markov chain,&quot; <em>Ocean Eng.</em>, vol. 297, 117089, 2024.</li>
+      <li>[11] N. Fridman, D. Amir, Y. Douchan and N. Agmon, &quot;Satellite detection of moving vessels in marine environments,&quot; in <em>Proc. AAAI Conf. Artificial Intelligence</em>, vol. 33, Honolulu, HI, USA, 2019, pp. 9452&ndash;9459.</li>
+      <li>[12] R. H. Kumar, C. P. Ramanarayanan and K. S. Murthy, &quot;Detection of Abnormal Vessel Behaviours Based on AIS Data Features Using HDBSCAN+,&quot; <em>Def. Sci. J.</em>, vol. 73, pp. 445&ndash;456, 2023.</li>
+      <li>[13] L. Liu, Y. Zhang, Y. Hu, Y. Wang, J. Sun and X. Dong, &quot;A Hybrid-Clustering Model of Ship Trajectories for Maritime Traffic Patterns Analysis in Port Area,&quot; <em>J. Mar. Sci. Eng.</em>, vol. 10, 342, 2022.</li>
+      <li>[14] M. M. R. Komol, M. S. I. Sagar, N. Mohammad, J. Pinnow, M. Elhenawy, M. Masoud, S. Glaser and S. Q. Liu, &quot;Simulation Study on an ICT-Based Maritime Management and Safety Framework for Movable Bridges,&quot; <em>Appl. Sci.</em>, vol. 11, 7198, 2021.</li>
+      <li>[15] M. Louart, J. J. Szkolnik, A. O. Boudraa, J. C. Le Lann and F. Le Roy, &quot;Detection of AIS messages falsifications and spoofing by checking messages compliance with TDMA protocol,&quot; <em>Digit. Signal Process.</em>, vol. 136, 103983, 2023.</li>
+      <li>[16] D. Bloisi, F. Previtali, A. Pennisi, D. Nardi and M. Fiorini, &quot;Enhancing Automatic Maritime Surveillance Systems With Visual Information,&quot; <em>IEEE Trans. Intell. Transp. Syst.</em>, vol. 18, pp. 824&ndash;833, 2017.</li>
+      <li>[17] K. Dogancay, Z. Tu and G. Ibal, &quot;Research into vessel behaviour pattern recognition in the maritime domain: Past, present and future,&quot; <em>Digit. Signal Process.</em>, vol. 119, 103191, 2021.</li>
+      <li>[18] F. Daneshfar, B. S. Saifee, S. Soleymanbaigi and M. Aeini, &quot;Elastic deep multi-view autoencoder with diversity embedding,&quot; <em>Inf. Sci.</em>, vol. 689, 121482, 2025.</li>
+      <li>[19] H. Liu, Z. Jia, L. Li, Y. Liu and Z. Qi, &quot;The model of vessel trajectory abnormal behavior detection based on graph attention prediction and reconstruction network,&quot; <em>Ocean Eng.</em>, vol. 290, 116316, 2023.</li>
+      <li>[20] D. Nguyen, R. Vadaine, G. Hajduch, R. Garello and R. Fablet, &quot;GeoTrackNet&mdash;A Maritime Anomaly Detector Using Probabilistic Neural Network Representation of AIS Tracks and A Contrario Detection,&quot; <em>IEEE Trans. Intell. Transp. Syst.</em>, vol. 23, pp. 5655&ndash;5667, 2022.</li>
+      <li>[21] N. Forti, L. M. Millefiori, P. Braca and P. Willett, &quot;Anomaly detection and tracking based on Mean-Reverting processes with unknown parameters,&quot; in <em>Proc. ICASSP 2019</em>, Brighton, UK, 2019, pp. 8449&ndash;8453.</li>
+      <li>[22] E. d&apos;Afflisio, P. Braca, L. M. Millefiori and P. Willett, &quot;Maritime anomaly detection based on mean-reverting stochastic processes applied to a real-world scenario,&quot; in <em>Proc. 21st Int. Conf. Information Fusion (FUSION)</em>, Cambridge, UK, 2018, pp. 1171&ndash;1177.</li>
+      <li>[23] M. Uney, L. M. Millefiori and P. Braca, &quot;Data driven vessel trajectory forecasting using stochastic generative models,&quot; in <em>Proc. ICASSP 2019</em>, Brighton, UK, 2019, pp. 8459&ndash;8463.</li>
+      <li>[24] D. Nguyen, R. Vadaine, G. Hajduch, R. Garello and R. Fablet, &quot;A Multi-task Deep Learning Architecture for Maritime Surveillance using AIS Data Streams,&quot; in <em>Proc. IEEE Int. Conf. Data Science and Advanced Analytics (DSAA)</em>, Turin, Italy, 2018.</li>
+      <li>[25] P. Bernab&eacute;, A. Gotlieb, B. Legeard, D. Marijan, F. O. Sem-Jacobsen and H. Spieker, &quot;Detecting Intentional AIS Shutdown in Open Sea Maritime Surveillance Using Self-Supervised Deep Learning,&quot; <em>IEEE Trans. Intell. Transp. Syst.</em>, vol. 25, pp. 1166&ndash;1177, 2024.</li>
+      <li>[26] L. Song, R. Wang, D. Xiao, X. Han, Y. Cai and C. Shi, &quot;Anomalous Trajectory Detection Using Recurrent Neural Network,&quot; in <em>Proc. 14th Int. Conf. ADMA 2018</em>, Nanjing, China, Springer, 2018, pp. 263&ndash;277.</li>
+      <li>[27] C. Ma, Z. Miao, M. Li, S. Song and M. H. Yang, &quot;Detecting Anomalous Trajectories via Recurrent Neural Networks,&quot; in <em>Proc. 14th Asian Conf. Computer Vision (ACCV)</em>, Perth, Australia, Springer, 2019, pp. 370&ndash;382.</li>
+      <li>[28] W. Zaremba, I. Sutskever and O. Vinyals, &quot;Recurrent Neural Network Regularization,&quot; <em>arXiv:1409.2329</em>, 2014.</li>
+      <li>[29] D. Gao, Y. Zhu, K. Yan and C. Guedes Soares, &quot;Deep learning-based framework for regional risk assessment in a multi-ship encounter situation based on the transformer network,&quot; <em>Reliab. Eng. Syst. Saf.</em>, vol. 241, 109636, 2024.</li>
+      <li>[30] Y. Xiao, X. Li, W. Yao, J. Chen and Y. Hu, &quot;Bidirectional Data-Driven Trajectory Prediction for Intelligent Maritime Traffic,&quot; <em>IEEE Trans. Intell. Transp. Syst.</em>, vol. 24, pp. 1773&ndash;1785, 2023.</li>
+      <li>[31] K. I. Kim and K. M. Lee, &quot;Deep Learning-Based Caution Area Traffic Prediction with Automatic Identification System Sensor Data,&quot; <em>Sensors</em>, vol. 18, 3172, 2018.</li>
+      <li>[32] Y. Yu, Q. Wang, X. Wang, X. Wang, H. He, &quot;Online clustering for trajectory data stream of moving objects,&quot; <em>Comput. Sci. Inf. Syst.</em>, vol. 10, pp. 1293&ndash;1317, 2013.</li>
+      <li>[33] G. Pallotta, M. Vespe and K. Bryan, &quot;Vessel Pattern Knowledge Discovery from AIS Data: A Framework for Anomaly Detection and Route Prediction,&quot; <em>Entropy</em>, vol. 13, pp. 2218&ndash;2245, 2013.</li>
+      <li>[34] A. Ryabova, V. Novikov, E. Choinzonov, O. Gribova, Z. Startseva, E. Bober, I. Frolova and I. Baranova, &quot;Maritime Traffic Networks: From Historical Positioning Data to Unsupervised Maritime Traffic Monitoring,&quot; <em>IEEE Trans. Intell. Transp. Syst.</em>, vol. 19, pp. 722&ndash;732, 2018.</li>
+      <li>[35] Y. Le Cun, L. Bottou, Y. Bengio and P. Haffner, &quot;Gradient-based learning applied to document recognition,&quot; <em>Proc. IEEE</em>, vol. 86, pp. 2278&ndash;2324, 1998.</li>
+      <li>[36] H. Sak, A. Senior and F. Beaufays, &quot;Long Short-Term Memory Based Recurrent Neural Network Architectures for Large Vocabulary Speech Recognition,&quot; <em>Statistics</em>, 2014.</li>
+      <li>[37] A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez, L. Kaiser and I. Polosukhin, &quot;Attention Is All You Need,&quot; in <em>Proc. 31st Conf. Neural Information Processing Systems (NeurIPS)</em>, Long Beach, CA, USA, 2017.</li>
+      <li>[38] D. P. Kingma and J. Ba, &quot;Adam: A Method for Stochastic Optimization,&quot; <em>arXiv:1412.6980</em>, 2014.</li>
+      <li>[39] J. Guo, K. Han, Y. Wu, H. Tang, X. Chen, Y. Wang and C. Xu, &quot;CMT: Convolutional Neural Networks Meet Vision Transformers,&quot; in <em>Proc. IEEE/CVF Conf. Computer Vision and Pattern Recognition (CVPR)</em>, New Orleans, LA, USA, 2022.</li>
+      <li>[40] Y. Liu, M. He, M. Shi and S. Jeon, &quot;A Novel Model Combining Transformer and Bi-LSTM for News Categorization,&quot; <em>IEEE Trans. Comput. Soc. Syst.</em>, vol. 11, pp. 4862&ndash;4869, 2024.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse13040660">10.3390/jmse13040660</a> &middot; License: CC BY 4.0</p>
+  <p>Translation &copy; DAR &mdash; Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
