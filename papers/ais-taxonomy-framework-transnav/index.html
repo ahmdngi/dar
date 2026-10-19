@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إطار تصنيفي للأمن السيبراني البحري: توضيح باستخدام نظام التعريف الآلي — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+.tax-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 1rem 0; }
+.tax-table th, .tax-table td { border: 1px solid var(--border); padding: 0.4rem 0.6rem; text-align: left; }
+.tax-table th { background: var(--bg-2); }
+.ar .tax-table th, .ar .tax-table td { text-align: right; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Taxonomy Framework for Maritime Cybersecurity: A Demonstration Using the Automatic Identification System</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">إطار تصنيفي للأمن السيبراني البحري: توضيح باستخدام نظام التعريف الآلي</h2>
+
+  <div class="paper-meta">
+    <span>👤 G.C. Kessler, J.P. Craiger, J.C. Haass</span>
+    <span>📄 TransNav, Vol. 12, No. 3, 2018 · pp. 429–437</span>
+    <span>🔗 <a href="https://doi.org/10.12716/1001.12.03.01">10.12716/1001.12.03.01</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ARABIC -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يتعرض نظام النقل البحري بشكل متزايد لكونه هدفًا للهجمات السيبرانية. تصف هذه الورقة تصنيفًا يدعم إنشاء نماذج الخصوم السيبرانيين وخطط تخفيف المخاطر والمرونة كما تُطبق على الصناعة البحرية، مستخدمةً نظام التعريف الآلي (AIS) كمثال توضيحي محدد للمنهج. وقد طُبقت هذه الطريقة سابقًا على قطاع الطيران؛ وإعادة توظيفها لمثال بحري يُظهر قابليتها الواسعة للتطبيق على قطاع النقل بشكل عام.</p>
+    <p><strong>الكلمات المفتاحية:</strong> نظام التعريف الآلي (AIS)، التصنيف، إطار التصنيف، الهجوم السيبراني، نظام النقل البحري، تخفيف المخاطر، الأمن السيبراني، الأمن السيبراني البحري.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تتزايد الثغرات السيبرانية والاستغلالات والتهديدات في جميع قطاعات البنية التحتية الحيوية، ولا سيما النقل. في عمل سابق، اقترح المؤلفون إطارًا وعملًا تصنيفيًا قائمًا على الرسوم البيانية وموجهًا للاتصالات، يمكن من خلاله إنشاء نماذج الخصوم وخطط تخفيف المخاطر والمرونة لقطاع الطيران (Haass وCraiger وKessler، 2018). ونقترح تطبيق هذا الإطار والتصنيف على الأنظمة البحرية لإظهار قابلية التطبيق العامة للمنهجية.</p>
+    <p>توجد تشابهات كثيرة بين قطاعي النقل الجوي والبحري؛ فبينما يشمل الطيران عمليات المطارات ومراقبة الحركة الجوية وعمليات شركات الطيران وعمليات الطائرات وأنظمة الطائرات غير المأهولة، يقابلها في القطاع البحري عمليات الموانئ وخدمات حركة السفن (VTS) وعمليات خطوط الشحن وعمليات السفن والأنظمة البحرية غير المأهولة. ويشترك القطاعان في التصنيع ونقل البضائع والركاب وتسليمهم إلى وسائط نقل أخرى، وفي تنوع واسع من المستخدمين (تجاريين وعسكريين وأفراد وشركات وقطاع عام)، كما يتعرضان للهجوم من جهات سيبرانية متنوعة من المجرمين والناشطين إلى الجواسيس والإرهابيين ومحاربي المعلومات.</p>
+    <p>تُستخدم أنظمة اتصالات بحرية متخصصة عديدة للملاحة وتبادل المعلومات بين السفن وبين السفن والشاطئ وإدارة السفن والتحكم بها وجدولة الشحن وإدارته وترفيه الركاب والسلامة. وقد صُمم معظم هذه الأنظمة دون مراعاة الأمن السيبراني، وقبل وقت طويل من الهجمات السيبرانية واسعة الانتشار الشائعة اليوم على الإنترنت. فمن أنظمة الملاحة الآلية البحرية ونظام التعريف الآلي (AIS) إلى أنظمة الأقمار الصناعية للملاحة العالمية (GNSS) وشبكة التعريف والتتبع بعيد المدى (LRIT)، من الواضح أهمية تصميم ونشر وصيانة الأنظمة البحرية الحيوية بنماذج خصوم وأطر مخاطر وخطط مرونة مناسبة (Kessler، 2019).</p>
+    <p>باستخدام منهج عام لنظام الأنظمة كما ورد في ورقة مراجعة Haass وSampigethaya وCapezzuto (2016) وتطبيق خاص بالطيران وصفه Haass وآخرون (2018)، تقدم هذه الورقة إطارًا لمعالجة تحديات الأمن السيبراني البحري بطريقة منهجية، بدلًا من المعالجة المعزولة المخصصة لكل نظام أو بروتوكول على حدة (Mansouri وGorod وWakeman وSauser، 2009). وحيثما أمكن، سيُعزل النظام ويُعكس في شجرة قرارات تصنيفية، ويمكن التعبير عن التبعيات والافتراضات المشتركة بلغة مفيدة للعديد من الأطراف في البيئة البحرية. ومن خلال تطبيق هذا الإطار، يمكن معالجة العديد من قضايا الأمن السيبراني، بما في ذلك تحديات الاتصالات التي ستكون مهمة بشكل خاص مع دمج الأنظمة غير المأهولة وذاتية التشغيل في الفضاء البحري المشترك (MarEx، 2018؛ Ridden، 2018).</p>
+  </section>
+
+  <section>
+    <h2>2. النظام البحري</h2>
+    <p>لا يمكن المبالغة في أهمية نظام النقل البحري (MTS) للاقتصاد العالمي والوطني. فعلى الصعيد العالمي، تنقل نحو 94,000 سفينة بقيمة أصول تقارب 1.5 تريليون دولار أكثر من 19 تريليون دولار من البضائع سنويًا، مع نمو سنوي في قيمة التجارة بنحو 3٪ (Barki وDélèze-Black، 2017). وفي الولايات المتحدة وحدها، يتم 53٪ من الواردات و38٪ من الصادرات عن طريق السفن، ويمثل النقل البحري أكبر وسيلة لنقل الواردات والصادرات، ويساهم الشحن البحري بما لا يقل عن 649 مليار دولار سنويًا في الناتج المحلي الإجمالي ويدعم أكثر من 13 مليون وظيفة. ويشمل نظام النقل البحري الأمريكي أيضًا 25,000 ميل من القنوات الصالحة للملاحة وأكثر من 360 ميناء و3,700 محطة بحرية على الأقل وأكثر من 12 مليون قارب ترفيهي (DOT، بدون تاريخ).</p>
+    <p>إن النظام البحري العالمي — بما يشمل كل حركة السفن المدنية والتجارية والعسكرية — هو في الواقع نظام أنظمة. ويمكن وصف كل نظام بأنه مجموعة من المكونات ومسارات الاتصال بينها، وقد يكون لأي نظام تبعيات على أنظمة أخرى إذ تتواصل جميع الأنظمة فيما بينها (الشكل 1). وتوجد أنظمة اتصالات عديدة داخل نظام النقل البحري تشمل كل شبكات البيانات في الموانئ وعلى متن السفن وداخل خطوط الشحن وبين شركاء سلسلة التوريد وغيرها. وتعتمد الاتصالات داخل الأنظمة وبينها على بروتوكولات يتحدد سلوكها وفق النظام المحدد. ويتطلب تحليل الثغرات إدراك فرادة كل نظام وتطبيق، ويشمل فحص جميع أنواع التعطيل من الطقس إلى الأعمال العدائية؛ وهو ما يُعرف بمنهج جميع المخاطر. ويميز هذا التصنيف بين الثغرات التي تؤثر على الأنظمة السيبرانية فقط (مثل البيانات والمعلومات والاتصالات) وتلك التي تشمل تهديدات سيبرانية-فيزيائية (مثل التحكم أو الملاحة أو الأنظمة الأخرى) (Roberts، 2015؛ Serpanos، 2018). كما يسمح بالتمييز بين الثغرات التي يمكننا التحكم بها أو تخفيفها (مثل هجمات البشر) وتلك الخارجة عن سيطرتنا (مثل الطبيعة والطقس والأعطال العشوائية).</p>
+    <p>السفينة الواحدة هي نفسها عقدة شبكية سيبرانية-فيزيائية معقدة تضم تنوعًا كبيرًا من أنظمة الاتصالات للطاقم والركاب والمصادر الخارجية والعمليات الداخلية، وتشمل: أنظمة الملاحة على الجسر (مثل GPS ونظام عرض الخرائط الإلكترونية ومعلوماتها ECDIS وAIS وLRIT)؛ وأنظمة الاتصالات الخارجية (مثل الاتصالات عبر الأقمار الصناعية وFleetBroadband والإنترنت)؛ والأنظمة الميكانيكية (مثل المحرك الرئيسي والمساعد والتحكم في التوجيه وإدارة الصابورة)؛ وأنظمة مراقبة السفن وأمنها (مثل الدوائر التلفزيونية المغلقة ونظام الإنذار الأمني للسفن SSAS وأنظمة التحكم في الدخول والحساسات)؛ وأنظمة مناولة البضائع (مثل أنظمة التحكم عن بعد في الصمامات وأنظمة مراقبة المستوى/الضغط)؛ وشبكات متخصصة أخرى (مثل أنظمة القيادة والسيطرة القتالية في السفن الحربية وأنظمة الترفيه ونقاط البيع في سفن الركاب وأنظمة إدارة السفن في سفن الصيد التجاري). وتتكامل إلكترونيات السفن وحساساتها ومشغلاتها ضمن أنظمة الاتصالات المذكورة، وستزداد أجهزة إنترنت الأشياء (IoT) انتشارًا مع تطور السفن والموانئ الذكية. ويُظهر الكم الهائل من المعلومات التي تجمعها مسجلات بيانات الرحلة (VDR) تعقيد وعدد المكونات الحيوية التي يجب أن يعالجها التصنيف السيبراني عند النظر في تسجيل الأحداث أو الحوادث السيبرانية.</p>
+    <p>يدعم الإطار المقترح إسناد أنواع الثغرات والهجمات والاستغلالات إلى آثارها التعطيلية المحتملة، من الحرجة (مثل استقرار السفينة وسلامتها) إلى الطفيفة (مثل انخفاض جودة الترفيه أو الخدمة). وتشمل المكونات السيبرانية البرمجيات الأساسية والبنية الحاسوبية والشبكية للسفينة نفسها، إلى جانب أنظمة برمجية إضافية خاصة بخطوط الشحن. كما تشمل أنظمة GPS وECDIS وAIS وغيرها تحديثات فورية أثناء الإبحار وقد تشمل عقدًا مختلفة مع عبور السفينة للحدود العالمية. ويمكن النظر إلى الخصم كجزء آخر — وإن كان خبيثًا — من نظام الأنظمة؛ فالفاعل خبيث إذا حاول تعديل النظام السيبراني أو السيبراني-الفيزيائي أو تخريبه أو دفعه بأي طريقة للسلوك خارج حدود تشغيله المقصود. ولأغراض بقية هذه الورقة، سنستكشف نظام AIS بشيء من التفصيل كمثال على تطبيق هذا التحليل.</p>
+  </section>
+
+  <section>
+    <h2>3. خلفية نظام التعريف الآلي (AIS)</h2>
+    <p>نظام التعريف الآلي هو نظام تتبع يتيح للسفينة رؤية حركة المرور البحرية المحلية (ضمن 10–20 ميلًا بحريًا) وأن تُرى من السفن القريبة الأخرى أو منشآت AIS. وقد صُمم أصلًا بحيث تتمكن السفينة المجهزة بجهاز رسم خرائط مناسب من رؤية الحركة المحلية وتحديد اسم أي سفينة ورقم تسجيلها لدى المنظمة البحرية الدولية (IMO) وحجمها (الطول والعرض والغاطس والحمولة الإجمالية) وموقعها (خطوط العرض والطول) ومسارها واتجاهها ووجهتها وحالتها (مثل راسية أو ملتحمة أو مبحرة بقوتها) وغيرها من المعلومات (الشكل 2). ومؤخرًا، جمعت مواقع ويب عديدة معلومات AIS وأنشأت قواعد بيانات تتيح لأي شخص البحث عن أي سفينة مجهزة بـ AIS في زمن شبه فوري (الشكل 3). وقد أُدخل AIS في الاتفاقية الدولية لسلامة الأرواح في البحر (SOLAS) لعام 2002، حيث يُلزم الفصل الخامس بعنوان «سلامة الملاحة» السفن ذات الحجم أو الوظيفة المعينة بحمل أجهزة إرسال واستقبال AIS كإجراء سلامة إضافي (IMO، 2002). وتخضع السفن في المياه الأمريكية عمومًا للوائح خفر السواحل الأمريكي، إذ يحدد 33 CFR 164.46 متطلبات AIS التي تشمل جميع السفن ذات الحمولة الإجمالية 1600 طن فأكثر وسفن القدرة التجارية بطول 65 قدمًا (19.8 مترًا) فأكثر وسفن القدرة المرخصة لحمل أكثر من 150 راكبًا؛ وتُعفى السفن الحربية من متطلبات AIS رغم أن جميع السفن الحربية الحديثة تحمله (USCG، 2018).</p>
+    <p>من المكونات الأساسية لنظام AIS استخدام تقنية تحديد المواقع الدقيقة. ولا يحدد AIS نظام GNSS المستخدم ولا يعتمد على نظام بعينه؛ بل يبث الموقع فقط باستخدام تغذية من نظام الملاحة وتحديد المواقع في السفينة. ومع ذلك، فإن أي ثغرات في GNSS الخاص بالسفينة ستؤثر على دقة بث AIS للموقع. وتُعد ثغرات GNSS، ولا سيما المتعلقة بـ GPS، جزءًا لا يتجزأ من ثغرات AIS لكن لن تُعالج تحديدًا في هذه الورقة إلا بقدر تأثيرها على AIS (Czaplewski وGoward، 2016).</p>
+    <p>تُوصف بروتوكولات اتصالات AIS في توصيتي قطاع الاتصالات الراديوية بالاتحاد الدولي للاتصالات (ITU-R) رقم M.585-7 وM.1371-5 (ITU، 2014، 2015). ويستخدم AIS قناة اتصال راديوي مشتركة بصيغة النفاذ المتعدد بتقسيم الوقت (TDMA)، حيث يُقسم زمن القناة الراديوية إلى 2,250 خانة في الدقيقة بمدة 26.67 مللي ثانية للخانة. ويحدد البروتوكول كيفية بقاء محطات AIS متزامنة لتجنب تداخل البث والإعلان عن موعد بثها التالي، ويمكن إضافة محطات AIS جديدة (كالسفن الداخلة في النطاق الراديوي قرب سفن أخرى) إلى قائمة المرسلين على القناة (Wikipedia، 2018).</p>
+    <p>تستخدم أجهزة الإرسال والاستقبال من الفئة A المتوافقة مع SOLAS نمط البث ذاتي التنظيم SOTDMA، مرسلةً المعلومات كل 2 إلى 10 ثوانٍ أثناء الإبحار (حسب السرعة والمناورة) وكل ثلاث دقائق أثناء الرسو، ويمكنها أيضًا إرسال واستقبال رسائل نصية متعلقة بالسلامة. أما الأجهزة الأرخص من الفئة B فتستخدم نمط CSTDMA، مرسلةً المعلومات الديناميكية (الموقع والمسار والسرعة) كل 30–180 ثانية والبيانات الثابتة (اسم السفينة ورقم IMO) كل ست دقائق، واختياريًا رسائل نصية للسلامة (Shine Micro، بدون تاريخ؛ Wikipedia، 2018). وتُنسق رسائل AIS وفق معيار NMEA 0183 للاتصالات التسلسلية وتُعرف بالجُمل، وأشهر جملتي AIS هما !AIVDM (بيانات مستلمة من سفن أخرى) و!AIVDO (معلومات السفينة المرسلة). وتوجد أكثر من عشرين نوعًا من رسائل AIS بقليل، وبمعدل بيانات 9600 بت/ثانية تقتصر الرسائل على 256 بت من المعلومات لكل خانة زمنية، ويستخدم AIS قناتي VHF البحريتين 87B (161.975 ميغاهرتز) و88B (162.025 ميغاهرتز) (Raymond، 2016؛ Wikipedia، 2018).</p>
+  </section>
+
+  <section>
+    <h2>4. المخاوف الأمنية</h2>
+    <p>يُحسن AIS إدارة حركة السفن والسلامة من خلال زيادة الوعي الظرفي. لكن رسائل AIS تُبث بنص صريح (plaintext)، مما يُدخل مخاطرة أمنية محتملة إذ يمكن لأي شخص لديه مستقبِل قراءة هذه الرسائل غير المشفرة. أضف إلى ذلك مواقع الويب التي تقدم تعليمات لبناء مستقبلات AIS باستخدام عتاد رخيص وبرمجيات مفتوحة المصدر، فيتضح أن AIS عرضة لمجموعة متنوعة من الاستغلالات.</p>
+    <p>يمكن أن تؤثر الهجمات على AIS — وعلى المعلومات عمومًا — في سرية المعلومات وسلامتها وتوافرها (ما يُسمى ثالوث CIA) إضافة إلى ثلاث خصائص أخرى هي الحيازة والأصالة والمنفعة؛ وتُسمى هذه الست معًا السداسي الباركري (Parkerian Hexad) (Parker، 2015):</p>
+    <ul>
+      <li>السرية: حماية المعلومات من الوصول أو الكشف غير المصرح به.</li>
+      <li>السلامة: كون المعلومات خالية من التلاعب العرضي أو المتعمد.</li>
+      <li>التوافر: قدرة المستخدمين على الوصول إلى المعلومات عند الحاجة.</li>
+      <li>الحيازة (أو السيطرة): فقدان المستخدم المصرح له للبيانات (حتى لو لم يتمكن «السارق» من الوصول إليها).</li>
+      <li>الأصالة (التوثيق): القدرة على إثبات هوية مرسل المعلومات.</li>
+      <li>المنفعة: فائدة البيانات للمستخدم (كحيازة بيانات مشفرة دون مفتاح فك التشفير، أو استلام رسالة لفعل شيء بعد انقضاء موعده).</li>
+    </ul>
+    <p>لطالما كانت الرسائل الصريحة ثغرة أمنية في تخزين البيانات على الحواسيب ونقلها عبر الشبكات. وطُبقت أنواع حماية متنوعة لحماية المعلومات وأنظمة المعلومات من الهجمات على جميع عناصر السداسي الباركري. ويلعب التشفير دورًا أساسيًا في حماية سرية المعلومات وسلامتها وأصالتها: فإنشاء النص المشفر يتطلب الرسالة الصريحة وخوارزمية التشفير والمفتاح (أو مفتاحين أحيانًا)؛ وتحمي بروتوكولات التشفير بالمفتاح السري سرية البيانات ما بقي المفتاح سريًا؛ وتُستخدم البصمات التشفيرية أحادية الاتجاه (hashes) للتحقق من سلامة الرسالة باستخدام خوارزمية رياضية توفر بصمة رقمية للرسالة، فتغيير بت واحد فيها يغيّر قيمة البصمة مما يدل على تغير محتوى الرسالة؛ وتستخدم رموز توثيق الرسائل (MAC) مفتاحًا سريًا مشتركًا للتحقق من السلامة والأصالة معًا؛ كما يمكن توفير التوثيق بطرق المفتاح العام (Kessler، 2018).</p>
+    <p>لا توفر بروتوكولات AIS أي آلية داخلية لسلامة الرسائل والتشفير. ورغم أن بعض منتجات AIS لديها القدرة على الإرسال والاستقبال بنمط مشفر، إلا أن الطرق مملوكة وتهدف للسماح «لأسطول» من السفن برؤية بعضها دون أن يُرى خارج المجموعة المشفرة. وقد وصف خفر السواحل الأمريكي نظام AIS المشفر (EAIS) للأغراض العسكرية وإنفاذ القانون، رغم أن المنتجات المطبقة لتلك المواصفة ليست متاحة عمومًا للسفن المدنية (USCG، 2014).</p>
+    <p>صُمم AIS لمساعدة السفن على الوعي الظرفي بتوفير معرفة بالحركة البحرية تتجاوز قدرتها على الرؤية المباشرة وقدرة الرادار التقليدي. وبطبيعة بث AIS، يمكن لأي شخص يريد معرفة ما يجري في جواره استقبال كم كبير من المعلومات، بمن فيهم أصحاب النوايا الخبيثة كالقراصنة والإرهابيين والمجرمين. لكن مستوى تسرب المعلومات هذا لا يُقارن بمواقع التجميع التي تبث على الويب مواقع آلاف السفن حول العالم مثل FindShip وMarineTraffic وVesselFinder وVesseltracker وغيرها. وقد حذرت لجنة السلامة البحرية بالمنظمة البحرية الدولية من مخاطر تسرب المعلومات هذا منذ عام 2004، مشيرة إلى أن نشر بيانات AIS المرسلة من السفن على الشبكة العالمية قد يضر بسلامة وأمن السفن والمرافق المينائية ويقوض جهود المنظمة ودولها الأعضاء لتعزيز سلامة الملاحة والأمن في النقل البحري الدولي (IMO، 2018، الفقرة 1).</p>
+  </section>
+
+  <section>
+    <h2>5. تقييم التهديدات</h2>
+    <p>توجد مناهج متنوعة لفحص مشهد التهديدات الأمنية في أي نظام. سنفحص عدة مناهج هنا ونطبقها على AIS. ويقدم الشكل 4 نظرة رسومية عامة على مكونات AIS ومسارات الاتصال ومتجهات التهديد، حيث يُعرض كل مكون — بما فيه الفاعلون السيئون — مع روابط اتصال تتألف من رسائل صحيحة وتهديدات برمجية وتهديدات راديوية. وهو منهج مشابه لما تتبعه نظرية الرسوم البيانية بتحديد العناصر المتواصلة وروابط الاتصال (Boukhtouta وMouheb وDebbabi وAlfandi وIqbal وEl Barachi، 2015).</p>
+    <p>كما ذُكر سابقًا، ثمة دروس يمكن لقطاعات النقل المختلفة تعلمها من بعضها في الأمن السيبراني. فقد بُذل جهد كبير في دراسة ثغرات نظام البث الآلي المعتمد على المراقبة (ADS-B)، وهو نظام يمنح الطائرات أثناء الطيران الوعي الظرفي نفسه الذي يمنحه AIS للسفن في البحر. وكان من المفيد رؤية كيفية انطباق أدبيات أمن ADS-B على المجال البحري. وبناءً على نموذج تقييم تهديدات ADS-B الذي وصفه Gauthier وSeker (2018)، يمكن تحديد ثلاثة أنواع رئيسية من الهجمات السيبرانية المتعمدة البشرية على AIS:</p>
+    <ul>
+      <li>تعطيل إشارات GPS (وينطبق على أي GNSS).</li>
+      <li>التشويش على الاتصالات اللاسلكية.</li>
+      <li>التلاعب ببث AIS (ويُقسم بدوره إلى: حقن الرسائل/الانتحال، وحذف الرسائل/الحرمان من الخدمة، وتعديل الرسائل/العبث بالبيانات).</li>
+    </ul>
+    <p>يتوافق هذا المنظور تمامًا مع منهج نظام الأنظمة؛ فكل فئة من الفئات الثلاث الرئيسية تمثل نظامًا مختلفًا يجب تأمينه لتأمين AIS: أنظمة GNSS أو تحديد المواقع، ومسارات انتشار الاتصالات الراديوية، وأجهزة الإرسال والاستقبال AIS. وقد حدد Strohmeier وآخرون (2015) خمس فئات تهديد رئيسية لـ ADS-B تنطبق أيضًا على AIS، أولها هجوم سلبي والبقية هجمات نشطة:</p>
+    <ul>
+      <li>التنصت: هجوم سلبي بسيط سهل التنفيذ لأن AIS نظام بث راديوي ورسائله غير مشفرة عمومًا.</li>
+      <li>التشويش: قد يحدث على مستوى المحطة الأرضية أو السفينة، بتشويش الإشارات الراديوية أو هجوم حرمان من الخدمة يجعل خانات بث AIS غير متاحة.</li>
+      <li>حقن الرسائل: إدخال رسائل زائفة في نظام اتصالات حركة السفن، وهو ممكن لأن رسائل AIS غير مشفرة ومصدرها غير موثق.</li>
+      <li>حذف الرسائل: عبر التداخل الهدام أو البناء، والأخير بإنتاج عدد كبير من أخطاء البتات فيُسقط الطرف المستلم الرسالة لتلف البيانات.</li>
+      <li>تعديل الرسائل: بتغيير تيار بتات الرسالة عبر قلب البتات أو التغطية (overshadowing) ببث عالي القدرة لكتابة جزء من الرسالة المستهدفة أو كلها.</li>
+    </ul>
+    <p>وفي محاولة لتطبيق هذين المنهجين إضافة إلى السداسي الباركري، نحتاج إلى تحديد بعض الثغرات الأمنية المعلوماتية المحتملة في AIS. وبجمع أوصاف الهجمات من مصادر متنوعة (منها Balduzzi وآخرون، 2014؛ وGauthier وSeker، 2018؛ وPurton وAbbass وAlam، 2010؛ وStrohmeier وLenders وMartinovic، 2015)، يمكن تحديد التهديدات السيبرانية التالية لنظام AIS: (1) تشويش إشارة GPS، (2) عطل جهاز GPS أو رداءة البث، (3) إطفاء جهاز AIS، (4) عطل جهاز AIS، (5) خطأ برمجة AIS، (6) تشويش قناة AIS الراديوية، (7) أخطاء بتات بث AIS الراديوي، (8) انتحال السفن عبر AIS، (9) التنصت على حركة AIS، (10) إغراق نظام AIS، (11) السفينة الشبح، (12) انتحال أقرب نقطة اقتراب/جهاز الإرسال للبحث والإنقاذ (CPA/AIS-SART)، (13) اختفاء السفن، (14) انتحال المساعدات الملاحية (AtoN)، (15) العبث بالبيانات، (16) انتحال توقعات الطقس.</p>
+    <table class="tax-table">
+      <caption>الجدول 1. ملخص المخاطر السيبرانية لنظام AIS باستخدام واصفات السداسي الباركري (Parker، 2015) ومنهج الأنظمة (Gauthier وSeker، 2018) وفئات التهديد (Strohmeier وآخرون، 2015).</caption>
+      <tr><th>الهجوم</th><th>السداسي الباركري</th><th>الأنظمة</th><th>فئة التهديد</th></tr>
+      <tr><td>تشويش GPS</td><td>التوافر</td><td>GPS/تشويش</td><td>تشويش</td></tr>
+      <tr><td>عطل GPS/رداءة البث</td><td>التوافر</td><td>GPS (طبيعي، تركيب)</td><td>(طبيعي، تركيب)</td></tr>
+      <tr><td>إطفاء جهاز AIS</td><td>التوافر</td><td>(خطأ بشري)</td><td>(خطأ بشري)</td></tr>
+      <tr><td>عطل جهاز AIS</td><td>التوافر</td><td>(طبيعي)</td><td>(طبيعي)</td></tr>
+      <tr><td>بيانات AIS خاطئة</td><td>السلامة، التوافر، المنفعة</td><td>(خطأ بشري)</td><td>(خطأ بشري)</td></tr>
+      <tr><td>تشويش AIS</td><td>التوافر</td><td>تشويش</td><td>تشويش</td></tr>
+      <tr><td>أخطاء بتات AIS</td><td>التوافر</td><td>(طبيعي)</td><td>(طبيعي)</td></tr>
+      <tr><td>انتحال السفن</td><td>السلامة، الأصالة</td><td>حقن الرسائل</td><td>حقن الرسائل</td></tr>
+      <tr><td>التنصت</td><td>السرية، الأصالة</td><td>لا ينطبق</td><td>التنصت</td></tr>
+      <tr><td>الإغراق</td><td>التوافر</td><td>حقن الرسائل</td><td>حقن الرسائل</td></tr>
+      <tr><td>السفينة الشبح</td><td>السلامة، الأصالة، المنفعة</td><td>حقن الرسائل</td><td>حقن الرسائل</td></tr>
+      <tr><td>انتحال CPA/AIS-SART</td><td>السلامة، الأصالة، المنفعة</td><td>حقن الرسائل</td><td>حقن الرسائل</td></tr>
+      <tr><td>الاختفاء</td><td>السلامة، التوافر</td><td>حذف الرسائل</td><td>حذف الرسائل</td></tr>
+      <tr><td>انتحال AtoN</td><td>السلامة، الأصالة، المنفعة</td><td>حقن الرسائل</td><td>حقن الرسائل</td></tr>
+      <tr><td>العبث بالبيانات</td><td>السلامة، التوافر، الأصالة، المنفعة</td><td>تعديل الرسائل</td><td>تعديل الرسائل</td></tr>
+      <tr><td>انتحال الطقس</td><td>السلامة، الأصالة، المنفعة</td><td>حقن الرسائل</td><td>حقن الرسائل</td></tr>
+    </table>
+    <p>يلخص الجدول 1 هذه التهديدات السيبرانية لنظام AIS ويصنفها وفق السداسي الباركري ومنهج الأنظمة وفئات التهديد الموصوفة أعلاه. ويوحي الجدول بأنه رغم فائدة السداسي الباركري في التصنيف العام لأثر الثغرات، إلا أنه غير مفيد في وصف متجهات التهديد والثغرات المحددة في الأنظمة السيبرانية المعينة. كما يوحي بوجود تهديدات للسلامة والأصالة أكثر من التهديدات للتوافر، وهو غير مفاجئ نظرًا لغياب فحوص السلامة والتوثيق في AIS. ونرى أيضًا أن النماذج التي تركز فقط على الهجمات البشرية غير كافية لوصف مجموعة التهديدات على المعلومات في نظام معين. ويوحي الجدول 1 أيضًا بأنه رغم أن منهج «الأنظمة كنظام» جذاب لفهم الثغرات في النظام المعني — هنا AIS — فهو لا يساعد بالضرورة في الدفاع عنه؛ فعلى وجه الخصوص، يجب أن يكون بائع أجهزة AIS أو مصمم البرمجيات على دراية بتبعيات AIS على ثغرات GPS والترددات الراديوية (RF)، لكنه في الواقع لا يستطيع فعل شيء للسيطرة عليها. فعلى سبيل المثال، سيتعطل AIS إذا أطفأ شخص ما مستقبل GPS، ومع ذلك لا يمكن لأي حماية في AIS الدفاع ضد هذا الاحتمال. بل لو حللنا كل ثغرات GPS والإرسال الراديوي لفهم AIS، لوجب أن نأخذ في الحسبان ثغرات أنظمة إضافية قد تؤثر في GPS والراديو. وفي النهاية، على من يصمم معدات AIS أن يكون واعيًا بالتبعية على GPS مثلًا، وقد يضع آليات لاختبار سلامة تغذية GPS، لكنه لا يستطيع حماية AIS من كل مشكلات GPS المحتملة.</p>
+  </section>
+
+  <section>
+    <h2>6. تقييم المخاطر وإدارتها</h2>
+    <p>تشمل التهديدات المحددة أعلاه هجمات متعمدة من فاعلين بشر إضافة إلى أخطاء لأسباب طبيعية. ولإعداد خطط مناسبة لإدارة المخاطر، يجب إجراء تقييم صحيح للمخاطر. ويشمل تحليل إدارة المخاطر الشائع لأنظمة المعلومات احتساب التهديدات أو الأخطار الطبيعية (كالأعاصير والفيضانات والعواصف الثلجية) إضافة إلى عطل المعدات. ويعكس منهج جميع المخاطر حقيقة أن الكارثة الطبيعية مدمرة كالهجوم المتعمد، وأنه من منظور الاستجابة الأولية لا يهم سوى الأثر الفوري للحدث لا متجه الهجوم الفعلي. وتحديد الثغرات هو الخطوة الأولى فقط في بناء الدفاع السيبراني وفهم الأثر الحقيقي المحتمل لها؛ فليست كل الثغرات قابلة للاستغلال أو مرجحة بنفس الدرجة، لذا يجب إجراء تقييم مخاطر لكل ثغرة لتحديد كيفية إدارة هذه المخاطر. وما لم تتوفر مقاييس كمية واضحة، يُستخدم عادة منهج نوعي لوصف خصائص مثل احتمالية الاستغلال والشدة عند تحققه وسهولة الهجوم وما إذا كان هجومًا بشريًا (بما فيه الخطأ البشري) أم خطرًا طبيعيًا (الجدول 2). لاحظ أن هذه التصنيفات نسبية لنظام AIS لا للسفينة نفسها؛ أي أن ثغرة حرجة لنظام AIS خبر سيئ للسفينة لكنها ليست حرجة بذاتها لتشغيلها.</p>
+    <table class="tax-table">
+      <caption>الجدول 2. منهج إدارة المخاطر. المصدر: A=هجوم بشري، H=خطر طبيعي. الاحتمالية: 1=متكرر، 2=مرجح، 3=أحيانًا، 4=بعيد، 5=غير مرجح. الشدة: 1=كارثي، 2=حرج، 3=هامشي، 4=ضئيل. السهولة: 1=بديهي، 2=سهل، 3=صعب، 4=صعب جدًا.</caption>
+      <tr><th>الهجوم</th><th>المصدر</th><th>الاحتمالية</th><th>الشدة</th><th>السهولة</th></tr>
+      <tr><td>تشويش GPS</td><td>A</td><td>4</td><td>2</td><td>3</td></tr>
+      <tr><td>عطل GPS/رداءة البث</td><td>H</td><td>3</td><td>3</td><td>لا ينطبق</td></tr>
+      <tr><td>إطفاء جهاز AIS</td><td>A</td><td>4</td><td>1</td><td>1</td></tr>
+      <tr><td>عطل جهاز AIS</td><td>H</td><td>5</td><td>1</td><td>لا ينطبق</td></tr>
+      <tr><td>بيانات AIS خاطئة</td><td>A</td><td>3</td><td>3</td><td>1</td></tr>
+      <tr><td>تشويش AIS</td><td>A</td><td>5</td><td>2</td><td>3</td></tr>
+      <tr><td>أخطاء بتات AIS</td><td>H</td><td>3</td><td>3</td><td>لا ينطبق</td></tr>
+      <tr><td>انتحال السفن</td><td>A</td><td>4</td><td>2</td><td>2</td></tr>
+      <tr><td>التنصت</td><td>A</td><td>1</td><td>4</td><td>1</td></tr>
+      <tr><td>الإغراق</td><td>A</td><td>4</td><td>3</td><td>3</td></tr>
+      <tr><td>السفينة الشبح</td><td>A</td><td>4</td><td>3</td><td>3</td></tr>
+      <tr><td>انتحال CPA/AIS-SART</td><td>A</td><td>5</td><td>2</td><td>3</td></tr>
+      <tr><td>الاختفاء</td><td>A</td><td>4</td><td>2</td><td>3</td></tr>
+      <tr><td>انتحال AtoN</td><td>A</td><td>4</td><td>2</td><td>3</td></tr>
+      <tr><td>العبث بالبيانات</td><td>A</td><td>3</td><td>2</td><td>3</td></tr>
+      <tr><td>انتحال الطقس</td><td>A</td><td>4</td><td>3</td><td>3</td></tr>
+    </table>
+    <p>يمكن استخلاص عدد من الاستنتاجات من الجدول 2. أولًا، رغم أن التهديدات المتعمدة المحتملة أكثر عددًا من الأخطار الطبيعية، إلا أن احتماليتها متقاربة تقريبًا (الأخطار: المتوسط 3.67 والانحراف 1.15؛ والتهديدات المتعمدة: المتوسط 3.77 والانحراف 1.01). ثانيًا، إن أكثر متجهات الهجوم ضعفًا في AIS هي تلك التي يمكن عبرها إدخال البيانات في النظام؛ ويمكن تحقيق العديد من هذه الهجمات ببث مولّد برمجيًا بدل مهاجمة الترددات الراديوية نفسها. ثالثًا، إن أشد هجوم على AIS هو عندما يكون مستقبل AIS مطفأً؛ فعندها تبحر السفينة عمياءً فيما يتعلق بمعلومات AIS. رابعًا، إن أهم الثغرات في AIS تؤثر على رسائل AIS الفردية لا على نظام AIS ككل. وأخيرًا، فإن معظم التهديدات المتعمدة ناتجة مباشرة عن كون رسائل AIS غير مشفرة وغير موثقة، مقترنًا بغياب فحص السلامة وآليات تصحيح أخطاء البتات.</p>
+    <p>أخيرًا، تُعد سهولة الهجوم — بمعنى ما — الأصعب قياسًا لأن جدوى الهجوم تعتمد غالبًا على الخصم؛ فهجوم يتجاوز قدرات مخترق عادي قد يكون ضمن ترسانة دولة. وعلى أي حال، يوحي الجدول بأن أيًا من الثغرات المحددة في AIS ليس «صعبًا جدًا» الاستغلال.</p>
+  </section>
+
+  <section>
+    <h2>7. الأبحاث المستقبلية</h2>
+    <p>يوفر فهم ثغرات AIS عددًا من الأفكار حول مواضع تحصين النظام. وتوجد اتجاهات متنوعة قد تؤدي إلى مزيد من الأمن في AIS، وبعضها مستعار من صناعة الطيران:</p>
+    <ul>
+      <li>نوع من التوثيق على طبقة الإرسال الراديوي الفيزيائية. وتتفاوت هذه المنهجية في صعوبتها وتكلفتها وقابليتها للتوسع، وتتطلب برمجيات و/أو عتاد AIS إضافيًا دون تغيير بروتوكول AIS نفسه (Strohmeier وآخرون، 2015).</li>
+      <li>استخدام مرشح كالمان أو تقنيات أخرى لتتبع القوة النسبية لإشارة بث السفن الفردية لاكتشاف الانتحال المحتمل لتلك السفينة. وتكلفة وصعوبة هذا المنهج منخفضتان رغم صعوبة التوسع، ولا يتطلب رسائل AIS جديدة (Strohmeier وآخرون، 2015).</li>
+      <li>نظام AIS المشفر (EAIS) المقترح سابقًا (USCG، 2014) وبعض نسخه قيد الاستخدام المحدود لأساطيل خاصة؛ لكن فائدته محدودة لأي سفينة خارج المجموعة «الموثوقة». ويمكن لاستخدام بنية مفتاح عام خفيفة (PKI) لأمن اتصالات AIS — لا تختلف كثيرًا عن استخدام الشهادات في SSL واسع الاستخدام على الويب — أن يمنع أنواعًا معينة من الهجمات كانتحال الرجل في المنتصف، لكن عيب هذا المنهج صعوبة التصميم والتنفيذ العالية والتكلفة المرجحة العالية للنشر الواسع (Strohmeier وآخرون، 2015).</li>
+      <li>AIS التنبؤي: تحتوي رسالة موقع AIS على خط العرض وخط الطول والمسار ومعدل واتجاه الدوران والسرعة، ولا تتغير السفينة موقعها بأكثر من 230 قدمًا (69 مترًا) تقريبًا بين التقارير المتتالية، فيكون من السهل نسبيًا على المستقبل التنبؤ بالموقع التقريبي للمرسل عند البث التالي. وقد وُصف AIS التنبؤي في مصادر عديدة كطريقة لاستخدام معلومات AIS التاريخية للتنبؤ بمسار السفن الأخرى (Hexeberg وFlåten وEriksen وBrekke، 2017؛ وLast وBahlke وHering-Bertram وLinsen، 2014؛ وMazzarella وArguedas وVespe، 2015)، وتُستخدم هذه الطرق في البحث والتطبيق لتقنيات إضافية لتجنب الاصطدام وفهم أفضل لأنماط الحركة. وإذا خزنت المحطة الموقع عند آخر بث فقط، أمكنها التنبؤ بالنطاق الذي يجب أن يكون فيه المرسل عند البث التالي؛ فإذا اختلف الموقع المعلن التالي — أو أي من معلمات الرسالة المرتبطة — اختلافًا كبيرًا عن التنبؤ، فقد يشير ذلك إلى مشكلة سلامة. ويتطلب هذا النوع من القدرات برمجيات إضافية لكنه بسيط وغير مكلف النشر نسبيًا، ويمكن أن يكون إضافة بسيطة للمعدات الحالية دون أي تغيير في بروتوكول AIS.</li>
+    </ul>
+    <p>إن فهم ثغرات AIS هو الخطوة الأولى نحو تحصينه؛ وتُظهر الاتجاهات أعلاه أن الحلول تتراوح بين إضافات برمجية بسيطة غير مكلفة وتحسينات بنيوية كالتشفير والبنى التحتية للمفاتيح العامة تتطلب استثمارًا وتنسيقًا دوليًا واسعين.</p>
+  </section>
+
+  <section>
+    <h2>8. الخاتمة</h2>
+    <p>أصبحنا جميعًا أكثر اعتمادًا على التكنولوجيا. فكثير من البحارة الشباب لا يذكرون يومًا في البحر دون رادار وGPS وAIS وECDIS وغيرها من أنظمة البيانات والاتصالات والملاحة العديدة على متن السفن الكبيرة اليوم. بل إن البحرية الأمريكية توقفت عن تدريس الملاحة الفلكية عام 1996 بسبب انتشار GPS، ثم أعادتها بعد 20 عامًا على الأرجح بسبب قابلية التهديدات السيبرانية ضد GPS (Hrala، 2016). ويجب على مهندسي العتاد ومطوري البرمجيات ومصممي البروتوكولات والباحثين الحفاظ على الوعي بالتهديدات والثغرات السيبرانية المحتملة في جميع الأنظمة التي يبنونها، ويجب أن يُبنى هذا الوعي الأمني منذ بداية المشروع. إن الإطار والتصنيف المقترحين هنا خطوتان صغيرتان تُظهران إمكانية توظيف هذه الطرق في قطاع النقل كله، وربما تطبيقها على بنى تحتية حيوية أخرى.</p>
+    <p>يركز النموذج الموصوف هنا على تحديد الثغرات في أنظمتنا بدل تحديد الفاعلين المهددين. وتنص حكمة أمنية معروفة: «إذا عرفت الثغرات (نقاط الضعف) فلديك فرصة لفهم التهديدات (احتمال استغلال نقاط الضعف وكيف وبواسطة من)... أما إذا ركزت على التهديدات فقط فأنت في ورطة على الأرجح» (Johnston، 2018، ص 10). والعبرة أنه إذا ركزت على من يحاول مهاجمتك فستخطئ على الأرجح لصعوبة التنبؤ الصحيح بالتهديدات، وهي على أي حال خارج سيطرتك. أما الثغرات فأسهل تحديدًا، خصوصًا إذا فكرت كمهاجم.</p>
+    <p>وفيما يتعلق بالوعي الظرفي المحسّن الذي يعد به AIS، من المهم إدراك أنه رغم أن فقدان AIS يقلل السلامة في المنطقة المباشرة، إلا أن هناك آليات أخرى عديدة للتعويض عن فقدانه كالرادار والراديو وزيادة المراقبة البشرية وغيرها. فـ AIS إذن جزء مهم من سلامة السفن لكن غيابه لا يؤدي إلى انهيار السلامة في البحر. أما الأثر المدمر المحتمل لثغرات AIS فسيأتي إذا استغل المهاجمون بلا هوادة غياب فحص السلامة والتوثيق، وقصفوا النظام برسائل زائفة كافية لتهديد صدقية النظام ذاته. بل في هذه الحالة الأخيرة، يمكن النظر إلى AIS كأنه يضر أكثر مما ينفع، وإذا كانت نسبة ضئيلة فقط من رسائل AIS مزيفة، فسيفقد المستخدمون الثقة في النظام بأكمله.</p>
+  </section>
+
+  <section>
+    <h2>المراجع</h2>
+    <p>القائمة المرجعية الكاملة (33 مصدرًا) متاحة في <a href="https://doi.org/10.12716/1001.12.03.01" target="_blank">ملف PDF الأصلي</a>.</p>
+  </section>
+</div>
+
+<!-- ENGLISH -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>The maritime transportation system is increasingly a target of cyber attacks. This paper describes a taxonomy that supports the creation of adversarial cyber models, risk mitigation, and resiliency plans as applied to the maritime industry, using the Automatic Identification System as a specific illustration of the approach. This method has already been applied to the aviation sector; retooling it for a maritime example demonstrates its broad applicability to the transportation sector, in general.</p>
+    <p><strong>Keywords:</strong> Automatic Identification System (AIS), Taxonomy, Taxonomy Framework, Cyber Attack, Maritime Transportation System, Risk Mitigation, Cyber Security, Maritime Cyber Security.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Cybersecurity vulnerabilities, exploits, and threats are on the rise across all critical infrastructure sectors, particularly transportation. In previous work, the authors proposed a graph-based, communications-oriented framework and taxonomy with which to create adversarial models, risk mitigation, and resiliency plans for the aviation sector (Haass, Craiger, &amp; Kessler, 2018). We propose to apply this framework and taxonomy to maritime systems in order to demonstrate the general applicability of the methodology.</p>
+    <p>There are many analogues between the aviation and maritime transportation sectors; whereas aviation has airport operations, air traffic control, airline operations, aircraft operations, and unmanned aircraft systems, maritime has port operations, vessel traffic services (VTS), shipping line operations, vessel operations, and unmanned maritime systems, respectively. Both sectors have manufacturing, cargo and passenger transport, and handoffs of passengers and cargo to other modes of transportation. Both have a broad variety of users, including commercial, military, individual, corporate, and public sector craft. And both are subject to attack by a variety of cyber actors, ranging from criminals and hacktivists, to spies, terrorists, and information warriors.</p>
+    <p>Numerous maritime-specific communications systems are used for navigation, ship-to-ship and ship-to-shore information exchange, vessel management and control, cargo scheduling and management, passenger entertainment, and safety. Most of these systems were created without cybersecurity in mind and well before the widespread cyberattacks that are now so common on the Internet. From maritime automated navigation systems and the Automatic Identification System (AIS) to Global Navigation Satellite Systems (GNSS) and the Long-Range Identification and Tracking (LRIT) network, it is clear that it is important to design, deploy, and maintain critical maritime systems with appropriate adversarial models, risk frameworks, and resiliency plans (Kessler, 2019).</p>
+    <p>Using a general system-of-systems approach outlined in a review paper by Haass, Sampigethaya, and Capezzuto (2016) and an aviation-specific application of the approach described by Haass et al. (2018), this paper provides a framework for addressing maritime cybersecurity challenges in a systematic fashion, rather than on an isolated and ad hoc system-by-system or protocol-by-protocol basis (Mansouri, Gorod, Wakeman, &amp; Sauser, 2009). Where possible, a system will be isolated and reflected in the decision tree taxonomy. Dependencies and shared assumptions can be expressed with a language useful for the many constituents within the maritime environment. Through the application of this framework, many cybersecurity issues can be addressed, including communication challenges that will be particularly important as unmanned and autonomous systems are incorporated into the shared maritime space (MarEx, 2018; Ridden, 2018).</p>
+  </section>
+
+  <section>
+    <h2>2. The Maritime System</h2>
+    <p>The importance of the maritime transportation system (MTS) to the global and national economy cannot be over-stated. Globally, roughly 94,000 ships, with an asset value of nearly $1.5 trillion, transport more than $19 trillion of cargo each year, with an annual trade value increase of about 3% (Barki &amp; D&#232;l&#232;ze-Black, 2017). In the U.S. alone, 53% of imports and 38% of exports are by ship, and maritime represents the largest import/export transportation modality. Furthermore, maritime cargo contributes at least $649 billion annually to the U.S. gross domestic product and supports more than 13 million jobs. The U.S. MTS also includes 25,000 miles of navigable channels, more than 360 ports, at least 3700 marine terminals, and more than 12 million recreational boats (DOT, n.d.).</p>
+    <p>The global maritime system — including all civilian, commercial, and military ship traffic — is actually a system of systems. Each system can be described as a set of components and the communication pathways between those components. Of course, one system can also be seen as having dependencies upon other systems as all of the systems intercommunicate (Figure 1). There are many communications systems used within the MTS including all of the data networking at ports, on board ships, within a shipping line, between supply chain partners, and more. Communications within and between systems are dependent upon protocols whose behavior will be dictated by the specific system. Vulnerability analysis requires recognition of the uniqueness of each system and application, and needs to include the examination of all types of disruption ranging from weather to hostile actions; this is known as the all-hazards approach. This categorization distinguishes between vulnerabilities that impact only cyber systems (e.g., data, information, and communication) from those that include cyber-physical threats (e.g., control, navigation, or other systems) (Roberts, 2015; Serpanos, 2018). Indeed, this categorization also allows us to distinguish between vulnerabilities that we can control or mitigate (e.g., attacks by people) and those that we cannot control (e.g., nature, weather, stochastic failure).</p>
+    <p>An individual ship is itself a complex cyber-physical network node with a large variety of communication systems for crew, passengers, external sources, and internal operations, including: Bridge Navigation Systems (e.g., GPS, Electronic Chart Display and Information System [ECDIS], AIS, LRIT); External Communication Systems (e.g., satellite communications, FleetBroadband, Internet); Mechanical Systems (e.g., main engine, auxiliary engine, steering control, ballast management); Ship Monitoring and Security Systems (e.g., closed-circuit television, Ship Security Alert System [SSAS], access control systems, sensors); Cargo Handling Systems (e.g., valve remote control systems, level/pressure monitoring systems); and other specialized networks (e.g., Combat Command &amp; Control Systems on warships, Entertainment Systems and Point-Of-Sale terminals on passenger vessels, Vessel Management Systems on commercial fishing vessels). Ship electronics, sensors, and actuators are all integrated within the communication systems listed above. Internet-of-Things (IoT) devices will become increasingly ubiquitous as smart ships and smart ports evolve. The huge amount of information gathered by Vessel Data Recorders (VDR) demonstrate the complexity and number of critical components that a cybersecurity taxonomy must address when considering event logging or cybersecurity incidents.</p>
+    <p>The proposed framework supports the assignment of types of vulnerabilities, attacks, and exploits with their potential disruptive effects, ranging from critical (e.g., vessel stability and safety) to minor (e.g., reduction in entertainment or service quality). Cyber components include the core software, computing, and network infrastructure of the ship itself, together with additional shipping line-specific software systems. Additionally, GPS, ECDIS, AIS, and other systems include real-time updates while underway, and can include different nodes as the vessel crosses global boundaries. An adversary can be thought of as another part — albeit a malicious one — of the system of systems. An actor is malicious if they attempt to modify, subvert, or in any other way cause the cyber or cyber-physical system to behave beyond the limits of its intended operation. For purposes of the remainder of this paper, we will explore AIS in some detail as an example of the application of this analysis.</p>
+  </section>
+
+  <section>
+    <h2>3. AIS Background</h2>
+    <p>The Automatic Identification System is a tracking system that allows a vessel to view local marine traffic (i.e., within 10–20 nautical miles) and to be seen by other nearby ships or AIS equipment installations. AIS was originally designed so that a ship fitted with an appropriate chartplotter could view the local traffic and quickly determine any given ship's name, unique International Maritime Organization (IMO) registration number, size (i.e., length, beam, draft, and gross tonnage), position (latitude and longitude), course, bearing, destination, status (e.g., anchored, docked, underway under power, etc.), and other information (Figure 2). More recently, many Web sites collect and aggregate AIS information and have created a database so that anyone can look up information about any AIS-equipped vessel in near-real-time (Figure 3). AIS was introduced in the 2002 International Convention for the Safety of Life at Sea (SOLAS). Chapter V of the SOLAS agreement, titled "Safety of Navigation," mandates that ships of a certain size and/or function carry AIS transceivers as an additional safety measure (IMO, 2002). Ships in U.S. waters generally fall under U.S. Coast Guard (USCG) regulations; 33 CFR 164.46 defines AIS requirements, which include all vessels of 1600 or more gross tons, commercial power vessels 65 or more feet (19.8 meters) in length, and a power vessel certified to carry more than 150 passengers; warships are exempted from AIS requirements although all modern warships carry AIS (USCG, 2018).</p>
+    <p>A key component of AIS is the use of precise positioning technology. AIS does not specify — nor does it depend upon — which GNSS is employed; AIS merely broadcasts a position using a feed from the ship's navigation and positioning system. That said, any cybersecurity vulnerabilities in the vessel's GNSS will affect the precision of the AIS transmissions regarding location. GNSS vulnerabilities, particularly those related to GPS, are integral to AIS vulnerabilities but will not be specifically addressed in this paper (except as they affect AIS) (Czaplewski &amp; Goward, 2016).</p>
+    <p>AIS communications protocols are described in International Telecommunication Union Radiocommunication sector (ITU-R) Recommendations M.585-7 and M.1371-5 (ITU, 2014, 2015). AIS employs a shared radio-communication channel using a form of time-division multiple access (TDMA). Time on the radio channel is divided into 2,250 slots per minute so that each slot has a duration of 26.67 milliseconds. The protocol defines how AIS stations stay in synchronization so that they do not overlap their transmissions and advertise when they will be transmitting next. New AIS stations, such as those on a ship coming within radio range close to other ships, can also be added to the lineup of transmitters on the channel (Wikipedia, 2018).</p>
+    <p>SOLAS-compliant Class A AIS transponders employ a Self-Organizing TDMA (SOTDMA) broadcast mode, transmitting information every 2 to 10 seconds while underway (depending on the ship's speed and whether it is maneuvering) and every three minutes while at anchor; these transponders can also transmit and receive safety-related text messages. Less expensive Class B AIS transponders employ a Carrier-Sense TDMA (CSTDMA) broadcast mode, transmitting dynamic information (e.g., position, course, and speed) every 30–180 seconds, static data (e.g., vessel name and IMO number) every six minutes, and, optionally, safety-related text messages (Shine Micro, n.d.; Wikipedia, 2018). AIS messages are formatted according to the National Marine Electronics Association (NMEA) 0183 serial communications protocol standard and are referred to as sentences. The two common AIS sentences are !AIVDM (data received from other vessels) and !AIVDO (the vessel's transmitted information). There are just over two dozen AIS message types. At a data rate of 9600 bits/sec, messages are limited to 256 bits of information per time slot. AIS employs maritime very high frequency (VHF) channels 87B (161.975 MHz) and 88B (162.025 MHz) (Raymond, 2016; Wikipedia, 2018).</p>
+  </section>
+
+  <section>
+    <h2>4. Security Concerns</h2>
+    <p>AIS improves vessel traffic management and safety through increased situational awareness. AIS messages, however, are transmitted in plaintext, which introduces a potential security risk since these unencrypted AIS messages can be read by anyone with a receiver. Add to this the Web sites with instructions for building AIS receivers using inexpensive hardware and open source software, and it is clear that AIS is vulnerable to a variety of exploits.</p>
+    <p>Attacks on AIS, and information in general, can affect the information's confidentiality, integrity, and availability (the so-called CIA Triad) as well as three other characteristics, namely, possession, authenticity, and utility; these six together are sometimes called the Parkerian Hexad (Parker, 2015):</p>
+    <ul>
+      <li>Confidentiality refers to protecting information from unauthorized access or disclosure.</li>
+      <li>Integrity refers to the state of information being free from inadvertent or deliberate manipulation.</li>
+      <li>Availability refers to the users' ability to access information when needed.</li>
+      <li>Possession (or control) refers to the loss of data by the authorized user (even if the "thief" cannot access the data).</li>
+      <li>Authenticity (aka authentication) refers to being able to prove the identity of the sender of information.</li>
+      <li>Utility refers to the usefulness of the data to the user (e.g., possessing encrypted data without a decryption key or receiving a message to do something after the date when the action is required are examples of low utility).</li>
+    </ul>
+    <p>Plaintext messages have long been a security vulnerability in the storage of data on computers and transmission of data on networks. Various types of protections have been implemented in order to protect information and information systems from attacks on all elements of the Parkerian hexad. Cryptography plays a particularly key role in protecting the confidentiality, integrity, and authenticity of information. In its most simple form, the process of creating encrypted ciphertext requires the original unencrypted plaintext message, an encryption algorithm, and a key (or, sometimes, two keys). Secret key cryptographic protocols protect data confidentiality because ciphertext is unreadable as long as the key required to decrypt the message remains secret. One-way cryptographic hashes are used to verify the integrity of a message, using a mathematical algorithm that provides a digital fingerprint of the message; changing even one bit in a message will cause the hash value to change, indicating that the content of the message has changed. Message authentication codes (MAC) use a shared secret key and can be used to verify the integrity of a message, as well as providing authentication, verifying the identity of the message sender. Authentication can also be provided using public key cryptographic methods (Kessler, 2018).</p>
+    <p>The AIS protocols provide no internal mechanism for message integrity and encryption. While some AIS products have the ability to transmit and receive using an encryption mode, the methods are proprietary and are designed to allow a "fleet" of ships to see each other but not be seen outside of the encrypted group. Indeed, the U.S. Coast Guard has described Encrypted AIS (EAIS) for military and law enforcement purposes, although products implementing that specification are not generally available to civilian classes of vessels (USCG, 2014).</p>
+    <p>AIS was designed to assist vessels in situational awareness by providing them knowledge of maritime traffic beyond their ability to visualize it and beyond the capability of traditional radar. By the nature of AIS broadcasts, then, a lot of information can be received by anyone who just wants to know what is going on in their proximity, which might include individuals with nefarious intent such as pirates, terrorists, or other criminal actors. But this level of information leakage is nothing compared to aggregation sites that broadcast on the Web the location of thousands of ships around the globe, such as FindShip, MarineTraffic, VesselFinder, Vesseltracker, and many more. The IMO Maritime Safety Committee warned about the dangers of this information leakage as far back as 2004, noting that "the publication on the world-wide web... of AIS data transmitted by ships could be detrimental to the safety and security of ships and port facilities and was undermining the efforts of the Organization and its Member States to enhance the safety of navigation and security in the international maritime transport sector" (IMO, 2018, para. 1).</p>
+  </section>
+
+  <section>
+    <h2>5. Threat Assessments</h2>
+    <p>There are a variety of approaches to examining the security threat landscape in any system. We will examine several here and apply them to AIS. Figure 4 provides a graphical overview of AIS components, communication pathways, and threat vectors. In this description, each component — including bad actors — is shown along with communication links composed of valid messages, software-based threats, and radio frequency-based threats. This is a similar approach taken by graph theory, by identifying the communicating elements and the communication links (Boukhtouta, Mouheb, Debbabi, Alfandi, Iqbal, &amp; El Barachi, 2015).</p>
+    <p>As mentioned earlier in the paper, there are lessons that the various transportation sectors can learn from each other in terms of cybersecurity. A great deal of work has gone into studying security vulnerabilities of Automatic Dependent Surveillance-Broadcast (ADS-B), a system for providing aircraft in flight with the same situational awareness as AIS provides ships at sea. It has been instructive to see how some of the ADS-B security literature applies to the maritime domain. Based upon a threat assessment model for ADS-B described by Gauthier and Seker (2018), we can identify three primary types of intentional, human-initiated cyberattacks on AIS:</p>
+    <ul>
+      <li>Disruption of GPS signals (any references to GPS also apply to any GNSS).</li>
+      <li>Jamming of the wireless communications.</li>
+      <li>Manipulation of AIS transmissions — further subdivided into: message injection (spoofing); message deletion (denial-of-service); message modification (alteration of message contents, i.e., data diddling).</li>
+    </ul>
+    <p>This perspective is very much in line with the system of systems approach; each of the three main categories actually represents a different system that must be secured in order to secure AIS; namely, GNSS or other positioning systems, radiocommunication propagation paths, and AIS transceivers. Strohmeier et al. (2015) identified five primary threat categories to ADS-B that can also apply to AIS; the first is a passive attack and the remaining are active attacks:</p>
+    <ul>
+      <li>Eavesdropping: a simple, passive attack easily accomplished since AIS is, by definition, a broadcast radio system, and messages are generally transmitted unencrypted.</li>
+      <li>Jamming: can occur at both the ground station level or at the vessel level, via radio signal jamming or a denial-of-service attack making AIS transmission slots unavailable.</li>
+      <li>Message injection: inserting spurious messages into the vessel traffic communication system, possible because AIS messages are unencrypted and unauthenticated.</li>
+      <li>Message deletion: through destructive or constructive interference, the latter by producing many bit errors so the receiver drops the message due to data corruption.</li>
+      <li>Message modification: altering a message's bit stream, generally by bit-flipping or overshadowing (using a high-power source to overwrite part of, or an entire, target message).</li>
+    </ul>
+    <p>Combining attack descriptions from a variety of sources (including Balduzzi et al., 2014; Gauthier &amp; Seker, 2018; Purton, Abbass, &amp; Alam, 2010; and Strohmeier, Lenders, &amp; Martinovic, 2015), we can identify the following cyber threats to AIS: (1) GPS signal jamming, (2) GPS device failure or poor quality transmissions, (3) AIS device powered down, (4) AIS device malfunction, (5) AIS programming error, (6) AIS radio channel jamming, (7) AIS radio transmission bit errors, (8) AIS vessel spoofing, (9) AIS traffic eavesdropping, (10) AIS system flooding, (11) ghost vessel, (12) Closest Point-of-Approach / AIS Search-and-Rescue Transponder (CPA/AIS-SART) spoofing, (13) vessel disappearance, (14) Aids-to-Navigation (AtoN) spoofing, (15) data diddling, (16) weather forecast spoofing.</p>
+    <table class="tax-table" dir="ltr">
+      <caption>Table 1. AIS Cyber Risk Summary Using Descriptors from the Parkerian Hexad (Parker, 2015), Systems Approach (Gauthier &amp; Seker, 2018), and Threat Category Approach (Strohmeier et al., 2015).</caption>
+      <tr><th>Attack</th><th>Parkerian Hexad</th><th>Systems</th><th>Threat Category</th></tr>
+      <tr><td>GPS jamming</td><td>Availability</td><td>GPS/Jamming</td><td>Jamming</td></tr>
+      <tr><td>GPS failure/poor transmission</td><td>Availability</td><td>GPS (nature, installation)</td><td>(nature, installation)</td></tr>
+      <tr><td>AIS device off</td><td>Availability</td><td>(human error)</td><td>(human error)</td></tr>
+      <tr><td>AIS malfunction</td><td>Availability</td><td>(nature)</td><td>(nature)</td></tr>
+      <tr><td>AIS bad data</td><td>Integrity, Availability, Utility</td><td>(human error)</td><td>(human error)</td></tr>
+      <tr><td>AIS jamming</td><td>Availability</td><td>Jamming</td><td>Jamming</td></tr>
+      <tr><td>AIS bit errors</td><td>Availability</td><td>(nature)</td><td>(nature)</td></tr>
+      <tr><td>Vessel spoofing</td><td>Integrity, Authenticity</td><td>Msg. injection</td><td>Msg. injection</td></tr>
+      <tr><td>Eavesdropping</td><td>Confidentiality, Authenticity</td><td>n/a</td><td>Eavesdropping</td></tr>
+      <tr><td>Flooding</td><td>Availability</td><td>Msg. injection</td><td>Msg. injection</td></tr>
+      <tr><td>Ghost vessel</td><td>Integrity, Authenticity, Utility</td><td>Msg. injection</td><td>Msg. injection</td></tr>
+      <tr><td>CPA/AIS-SART spoofing</td><td>Integrity, Authenticity, Utility</td><td>Msg. injection</td><td>Msg. injection</td></tr>
+      <tr><td>Disappearance</td><td>Integrity, Availability</td><td>Msg. deletion</td><td>Msg. deletion</td></tr>
+      <tr><td>AtoN spoofing</td><td>Integrity, Authenticity, Utility</td><td>Msg. injection</td><td>Msg. injection</td></tr>
+      <tr><td>Data diddling</td><td>Integrity, Availability, Authenticity, Utility</td><td>Msg. modification</td><td>Msg. modification</td></tr>
+      <tr><td>Weather spoofing</td><td>Integrity, Authenticity, Utility</td><td>Msg. injection</td><td>Msg. injection</td></tr>
+    </table>
+    <p>Table 1 summarizes these cyber threats to AIS and classifies them according to the Parkerian Hexad vulnerability, and using the systems approach and categories described above. Table 1 suggests that while the Parkerian Hexad provides a useful way to generally categorize the impact of vulnerabilities, it is not useful in describing specific threat vectors and vulnerabilities in given cyber systems. This said, this table does seem to suggest that there are more threats to integrity and authenticity than to availability, which is not surprising given the lack of integrity and authentication checks in AIS. We also see that models that focus only on human-initiated attacks are not sufficient to describe the suite of threats to information within a given system. Table 1 also suggests that while the "systems of systems" method is an inviting approach to understanding the vulnerabilities in the system in question — here, AIS — it does not necessarily help in the defense of that system. In particular, an AIS device vendor or software designer must be aware of AIS dependencies on GPS and radio frequency (RF) vulnerabilities but, in fact, cannot do anything to control them. As an example, AIS will fail if someone turns off the GPS receiver yet no AIS protections can defend against that eventuality. Indeed, if we were to analyze every GPS and radio transmission vulnerability in order to understand AIS, we would have to consider additional systems' vulnerabilities as they might impact GPS and radio. Ultimately, someone designing AIS equipment has to be aware of the dependency on GPS, for example, and may even put in some mechanisms to test the integrity of the GPS feed, but cannot protect AIS from all of the problems that GPS might have.</p>
+  </section>
+
+  <section>
+    <h2>6. Risk Assessment and Management</h2>
+    <p>The threats identified above include intentional attacks from human bad actors as well as errors due to natural causes. In order to prepare appropriate risk management plans, a proper risk assessment must be performed. Common risk management analysis for information systems includes accounting for natural threats or hazards (e.g., hurricanes, floods, and blizzards) as well as equipment failure. This all-hazards approach speaks to the fact that a natural disaster is as devastating as a deliberate attack but, from the perspective of initial response, all that matters is the immediate impact of an event rather than the actual attack vector. Identifying vulnerabilities is only the first step in building a cyber defense and understanding the true potential impact of these vulnerabilities. Not all vulnerabilities are equally exploitable or likely; therefore, a risk assessment must be conducted on each vulnerability so that one can determine how to manage these risks. Unless clear quantitative measures are available, a qualitative approach is commonly employed to describe such characteristics as a vulnerability's likelihood of exploit, severity should the exploit be realized, ease of attack, and whether it is a human-initiated attack (including human error) or a natural hazard (Table 2). Note that these categorizations are relative to the AIS system rather than the vessel itself; i.e., a vulnerability that is critical to AIS is bad news for the ship but, by itself, not critical to its operation.</p>
+    <table class="tax-table" dir="ltr">
+      <caption>Table 2. Risk Management Approach. Source: A=human-initiated attack, H=natural hazard.</caption>
+      <tr><th>Attack</th><th>Source</th><th>Likelihood</th><th>Severity</th><th>Ease</th></tr>
+      <tr><td>GPS jamming</td><td>A</td><td>4</td><td>2</td><td>3</td></tr>
+      <tr><td>GPS failure/poor transmission</td><td>H</td><td>3</td><td>3</td><td>n/a</td></tr>
+      <tr><td>AIS device off</td><td>A</td><td>4</td><td>1</td><td>1</td></tr>
+      <tr><td>AIS malfunction</td><td>H</td><td>5</td><td>1</td><td>n/a</td></tr>
+      <tr><td>AIS bad data</td><td>A</td><td>3</td><td>3</td><td>1</td></tr>
+      <tr><td>AIS jamming</td><td>A</td><td>5</td><td>2</td><td>3</td></tr>
+      <tr><td>AIS bit errors</td><td>H</td><td>3</td><td>3</td><td>n/a</td></tr>
+      <tr><td>Vessel spoofing</td><td>A</td><td>4</td><td>2</td><td>2</td></tr>
+      <tr><td>Eavesdropping</td><td>A</td><td>1</td><td>4</td><td>1</td></tr>
+      <tr><td>Flooding</td><td>A</td><td>4</td><td>3</td><td>3</td></tr>
+      <tr><td>Ghost vessel</td><td>A</td><td>4</td><td>3</td><td>3</td></tr>
+      <tr><td>CPA/AIS-SART spoofing</td><td>A</td><td>5</td><td>2</td><td>3</td></tr>
+      <tr><td>Disappearance</td><td>A</td><td>4</td><td>2</td><td>3</td></tr>
+      <tr><td>AtoN spoofing</td><td>A</td><td>4</td><td>2</td><td>3</td></tr>
+      <tr><td>Data diddling</td><td>A</td><td>3</td><td>2</td><td>3</td></tr>
+      <tr><td>Weather spoofing</td><td>A</td><td>4</td><td>3</td><td>3</td></tr>
+    </table>
+    <p>There are a number of conclusions that can be drawn from Table 2. First, while there are more potential intentional threats than natural hazards, they tend to have about the same likelihood (hazards: mean 3.67, std 1.15; intentional threats: mean 3.77, std 1.01). Second, the most vulnerable attack vectors on AIS are those where data can be inserted into the system; many of these attacks can be realized in software-generated transmissions rather than by attacking the radio frequencies themselves. Third, the most severe attack on AIS is when the AIS receiver is off; at that point, a vessel is driving blind with respect to AIS information. Fourth, the most significant vulnerabilities in AIS affect individual AIS messages rather than the entire AIS system itself. Finally, most of the intentional threats result directly from the fact that AIS messages are neither encrypted nor authenticated, coupled with the lack of integrity checking and bit-error correction mechanisms.</p>
+    <p>Finally, ease of attack is, in some sense, the most difficult to quantify because the feasibility of an attack often depends upon the adversary. An attack that is beyond the means of a "pedestrian" hacker might be well within the cyberattack toolkit of a nation-state. In any case, this table seems to suggest that none of the identified vulnerabilities in AIS are "very difficult" to exploit.</p>
+  </section>
+
+  <section>
+    <h2>7. Future Research</h2>
+    <p>Understanding the vulnerabilities of AIS provides a number of ideas about where to shore up the system. There are a variety of directions that might lead to added security in AIS; some of these ideas are borrowed from the aviation industry:</p>
+    <ul>
+      <li>Some form of physical (radio transmission) layer authentication. This methodology varies in its difficulty, cost, and scalability, and would require additional AIS software and/or hardware, but would not change the AIS protocol itself (Strohmeier et al., 2015).</li>
+      <li>Use of Kalman filtering or other techniques to track relative signal strength of individual ship transmissions in order to detect possible spoofing of that ship by an attacker. The cost and difficulty for such an approach would be low although scalability might be difficult. As above, no new AIS messages would be required (Strohmeier et al., 2015).</li>
+      <li>Encrypted AIS (EAIS) has already been proposed (USCG, 2014) and some variants are in limited use for special-purpose fleets. EAIS, however, has limited utility for any vessel outside of the "trusted" group. Using some form of lightweight public-key infrastructure (PKI) for AIS communication security, not terribly unlike the use of certificates in the Secure Sockets Layer (SSL) already in widespread use on the Web, could prevent certain types of attacks, such as man-in-the-middle spoofing. The downside to this approach is the high degree-of-difficulty to design and implement, and likely high cost to deploy widely (Strohmeier et al., 2015).</li>
+      <li>Predictive AIS: an AIS position message contains a ship's latitude, longitude, course (bearing), rate and direction of turn, and speed. The rate at which these messages are transmitted is based upon the vessel's speed and whether it is maneuvering; in any case, a ship will change position by no more than about 230 feet (69 meters) between sequential reports. It should be relatively simple, therefore, for a receiver to predict the sender's approximate location at the next transmission. Predictive AIS has been described by a number of sources as a way to use historic AIS information to predict the path of other vessels (Hexeberg, Fl&#229;ten, Eriksen, &amp; Brekke, 2017; Last, Bahlke, Hering-Bertram, &amp; Linsen, 2014; Mazzarella, Arguedas, &amp; Vespe, 2015), and these methods are already used for research and practice for additional collision avoidance techniques and better understanding of traffic patterns. But if a station stores the position at just the last transmission, it can predict a range where the sender should be at the next transmission. If the next announced position, or any of the associated message parameters, vary greatly from the prediction, that could indicate an integrity problem. This type of capability would require additional software, but would be relatively simple and inexpensive to deploy, and could be a simple add-on to existing equipment without requiring any change to the AIS protocol.</li>
+    </ul>
+    <p>Understanding AIS vulnerabilities is the first step toward hardening it; the directions above show solutions ranging from simple, inexpensive software add-ons to structural improvements such as encryption and public-key infrastructures that require broad international investment and coordination.</p>
+  </section>
+
+  <section>
+    <h2>8. Conclusions</h2>
+    <p>We have all become more and more dependent upon technology. Many younger mariners do not recall a day at sea without radar, GPS, AIS, ECDIS, and the other myriad data, communication, and navigation systems aboard today's large ships. Indeed, the U.S. Navy stopped teaching celestial navigation in 1996 due to the prevalence of GPS; they brought it back 20 years later most likely due to the susceptibility of cyber threats against GPS (Hrala, 2016). Hardware engineers, software developers, protocol designers, and researchers must maintain awareness of the potential cyber threats and vulnerabilities in all systems that they build and this security awareness must be built-in from the beginning of a project. The framework and taxonomy proposed here are small steps that demonstrate that these methods can be employed throughout the transportation sector and, presumably, applied to other critical infrastructures.</p>
+    <p>The model described here focuses on identifying vulnerabilities in our systems rather than identifying threat actors. A well-known cybersecurity maxim states, "If you know the vulnerabilities (weaknesses), you've got a shot at understanding the threats (the probability that the weaknesses will be exploited, how, and by whom)... But if you focus only on the threats, you're likely to be in trouble" (Johnston, 2018, p. 10). The object lesson is that if you concentrate on who is trying to attack you, you will mostly likely get it wrong because it is hard to correctly predict threats and, in any case, as suggested above, threats are beyond your control. Vulnerabilities, on the other hand, are easier to identify, particularly if you think like an attacker.</p>
+    <p>In terms of the improved situational awareness promised by AIS, it is important to realize that while loss of AIS decreases safety in the immediate area, there are many other mechanisms to compensate for its loss, such as radar, radio, increased human lookouts, etc. AIS, then, is an important part of vessel safety but its absence does not cause safety at sea to fall apart. The potential devastating impact of AIS vulnerabilities would come about if attackers relentlessly exploited the lack of integrity and authentication checking, and bombarded the system with enough bogus messages so as to threaten the very veracity of the system. Indeed, in this latter case, AIS could be viewed as doing more harm than good, and if only a tiny fraction of AIS messages are fake, users will lose confidence in the entire system.</p>
+  </section>
+
+  <section>
+    <h2>References</h2>
+    <p>Full reference list (33 sources) available in the <a href="https://doi.org/10.12716/1001.12.03.01" target="_blank">original PDF</a>.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.12716/1001.12.03.01">10.12716/1001.12.03.01</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('toggle-' + (lang === 'both' ? 'both' : lang)).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side'); el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    for (var i = 0; i < Math.min(arSections.length, enSections.length); i++) {
+      var pair = document.createElement('div'); pair.className = 'compare-section';
+      var enCol = document.createElement('div'); enCol.className = 'compare-en';
+      var enLabel = document.createElement('div'); enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH'; enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div'); arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div'); arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية'; arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol); pair.appendChild(arCol); container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  // Update toggle button labels based on language
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare';
+  // Update AR/EN buttons
+  document.getElementById('toggle-ar').textContent = isAr ? '🇸🇦 العربية' : '🇸🇦 العربية';
+  document.getElementById('toggle-en').textContent = isAr ? '🇬🇧 الإنجليزيّة' : '🇬🇧 English';
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
