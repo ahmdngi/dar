@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كشف المشهد الأمني لأجهزة الراديو البرمجية البحرية — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Uncovering the Security Landscape of Maritime Software-Defined Radios: A Threat Modeling Perspective</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">كشف المشهد الأمني لأجهزة الراديو البرمجية البحرية: منظور نمذجة التهديدات</h2>
+
+  <div class="paper-meta">
+    <span>👤 Erasmus Mfodwo, Phani Lanka, Ahmet Furkan Aydogan, Cihan Varol</span>
+    <span>📄 Appl. Sci., 2026 · Vol. 16, No. 2, 813</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app16020813">10.3390/app16020813</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تُعد النقل البحري حجر الزاوية في التجارة العالمية، إذ ينقل نحو 80% من حجم التجارة الدولية، وتعتمد السفن الحديثة بشكل متزايد على تقنيات الراديو البرمجي (SDR) للاتصالات والملاحة. غير أن المرونة نفسها وقابلية إعادة التشكيل التي تجعل أجهزة الراديو البرمجية جذابة تُدخل أيضًا ثغرات معقدة على مستوى الترددات الراديوية تُعرّض السفن لتهديدات تُقوّض أمنها وتُربك سلاسل الإمداد العالمية. تفحص هذه الورقة المسحية المشهد الأمني لأنظمة الراديو البرمجي البحرية من منظور نمذجة التهديدات، متبعةً إرشادات PRISMA للمراجعات المنهجية، حيث حلّل المؤلفون 84 منشورًا محكمًا (2002–2025) وطبّقوا إطار STRIDE لتحديد التهديدات البحرية وتصنيفها. حُدد 44 نوعًا مميزًا من التهديدات، كان العبث الأكثر انتشارًا (36 حالة)، يليه الحرمان من الخدمة (33 حالة)، ثم الإنكار (30 حالة)، فالانتحال (23 حالة)، وكشف المعلومات (24 حالة)، وتصعيد الصلاحيات (28 حالة). تستغل هذه التهديدات الثغرات عبر طبقات الأجهزة والبرمجيات والشبكات والرسائل والمستخدمين، مستهدفةً أنظمة حرجة تشمل أنظمة الملاحة عبر الأقمار الصناعية (GNSS)، ونظام التعريف الآلي (AIS)، وأنظمة التردد العالي جدًا والنداء الرقمي الانتقائي (VHF/DSC)، وأنظمة عرض الخرائط الإلكترونية (ECDIS)، وشبكات NMEA 2000. وتكشف الدراسة أن التهديدات متعددة الأبعاد ومترابطة، إذ يمكن لاختراق أي طبقة أن يمتد عبر العمليات البحرية بأكملها، مع فجوات كبيرة في المصادقة لبروتوكولات أساسية، وضمان سلسلة التوريد، والأطر التنظيمية، والتطبيقات الأمنية متعددة الطبقات، والتدريب التوعوي، وإجراءات الطب الشرعي الرقمي الموحدة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>يُشكّل النقل البحري عصب التجارة العالمية، إذ يتجاوز الأسطول التجاري العالمي 109,000 سفينة منذ مطلع 2024. ومع تزايد الترابط والاستقلالية في السفن الحديثة، تمتد عواقب استغلال أجهزة الراديو البرمجية إلى ما هو أبعد من السفن الفردية لتطال سلاسل الإمداد العالمية وعمليات الموانئ ومصالح الأمن القومي. ويتطلب التصدي لهذه المخاطر منهجيات منظمة قادرة على تحديد التهديدات الخاصة بالمجال البحري وتصنيفها والتخفيف منها.</p>
+    <p>تعتمد هذه الدراسة إطار STRIDE أساسًا مرجعيًا، وتستعرض هجمات الراديو البرمجي الموثقة في الأدبيات وتصنفها، وتربطها بالبروتوكولات والأنظمة البحرية الأكثر استهدافًا، وتحلل الاستراتيجيات الدفاعية القائمة. وبذلك توحّد المعرفة الحالية وتُبرز التهديدات القائمة والفجوات البحثية اللازم معالجتها لبناء منظومات راديو برمجي بحرية مرنة وآمنة. وتنظم بقية الورقة كالتالي: القسم الثاني يعرض الخلفية حول السياسات والأطر؛ والثالث المنهجية؛ والرابع تحليل التهديدات بإطار STRIDE؛ والخامس النتائج والنقاش؛ والسادس تحديات البحث؛ والسابع الفجوات والاتجاهات المستقبلية؛ والثامن الخاتمة.</p>
+  </section>
+
+  <section>
+    <h2>2. الخلفية</h2>
+    <p>إدراكًا لتعرض الأنظمة البحرية المتزايد للتهديدات السيبرانية، أدخلت هيئات دولية ووطنية متعددة سياسات ولوائح لتعزيز الأمن السيبراني للسفن. على المستوى الاستراتيجي، يُلزم قرار المنظمة البحرية الدولية MSC.428(98) بدمج المخاطر السيبرانية في نظام إدارة السلامة، بينما تُهيكل إرشادات MSC-FAL.1/Circ.3 التوقعات حول التحديد والحماية والكشف والاستجابة والتعافي. وتترجم إرشادات BIMCO لعام 2024 هذه المبادئ إلى تدابير عملية على متن السفن، بينما تعزز التوجيهات الأمريكية (NVIC 01-20 الصادر عن خفر السواحل، والنشرة الاستشارية MSCI 2023-013) المرونة السيبرانية البحرية محليًا، مع إبراز تهديدات مثل تعطيل GPS وانتحال AIS.</p>
+    <p>على المستوى التقني، يوسّع المعيار NIST SP 800-82 (مراجعة 3) إرشادات أمن التكنولوجيا التشغيلية لتشمل السلامة والاعتمادية، ويضيف معيار ISA/IEC 62443 نموذج دورة حياة لتأمين أنظمة التحكم الصناعي، بينما تقدم الممارسة الموصى بها DNV-RP-0496 نهجًا قائمًا على الحواجز يربط السلامة بالسيبرانية. وعلى طبقة الترددات الراديوية، تُعرّف التوصية ITU-R M.1371 وإرشادات IALA المعايير التقنية والتشغيلية لنظام AIS لضمان اتصالات قابلة للتشغيل البيني وموثوقة.</p>
+    <p>لتقييم التهديدات السيبرانية في بيئات الراديو البرمجي البحرية، تقارن الورقة أربعة أطر: STRIDE (تصنيف التهديدات)، وMITRE ATT&CK للأنظمة الصناعية (السلوك العدائي)، وSPARTA (تهديدات الترددات الراديوية المتمحورة حول المهمة)، وPASTA (مواءمة المخاطر مع الأعمال). وقد اختير STRIDE لبساطته وقابليته للتكيف وقابليته للتطبيق على طبقتي البرمجيات والأجهزة، مما يجعله فعالًا في تحليل ثغرات الراديو البرمجي على السفن القياسية.</p>
+  </section>
+
+  <section>
+    <h2>3. المنهجية</h2>
+    <p>تتبع الدراسة أساليب المراجعة المنهجية للأدبيات وفق إرشادات PRISMA عبر ست خطوات: تحديد الأهداف، وصياغة الأسئلة البحثية، ووضع معايير الإدراج والاستبعاد، وتنفيذ خطة البحث والتصنيف، واستخلاص البيانات وتحليلها، وعرض النتائج وتفسيرها. والهدف الرئيس هو استكشاف الهجمات الموثقة ضد أنظمة الراديو البرمجي البحرية وتحديد الأكثر انتشارًا، وتصنيفها بإطار STRIDE، وتحديد المنهجيات الأنسب، والأنظمة الأكثر استهدافًا، والفجوات البحثية، والهجمات الناشئة المتوقعة، وسبل الحماية.</p>
+    <p>شمل البحث أربع قواعد بيانات رئيسية (IEEE Xplore وScienceDirect وACM وSpringer) بمصطلحات حول هجمات الراديو البرمجي على المجال البحري وتهديدات شبكات NMEA 2000، لمنشورات العقدين الأخيرين (2002–2025) وغالبيتها بين 2022 و2025. وبعد تطبيق معايير الإدراج والاستبعاد والبحث المرجعي الرجعي، بلغ إجمالي المقالات المُراجعة 106 مقالات، خُصص 84 منها للتحليل الكمي. واستُخلصت من كل ورقة بيانات حول نوع التهديد وعمليته التقنية، والنظام أو البروتوكول المستهدف (AIS وGPS وVHF والرادار وECDIS والحساسات)، وآليات الدفاع المقترحة. كما صُنفت الدراسات إلى تجريبية ومحاكاة وتحليلية لتقييم موثوقية الأدلة.</p>
+  </section>
+
+  <section>
+    <h2>4. تحليل STRIDE للهجمات البحرية الموثقة</h2>
+    <p><strong>الانتحال (S):</strong> يشمل انتحال GPS وAIS (السفن الشبح) وVHF/DSC والرادار والحساسات واستنساخ الأجهزة، ويُنفَّذ بعتاد راديو برمجي منخفض التكلفة (مثل USRP وHackRF) لبث إشارات مزيفة تُضلل الملاحة وتُخفي السفن أو تُنشئ أهدافًا وهمية، مما يؤثر مباشرة على تحديد المواقع وتفادي التصادم وإشارات الاستغاثة والتنسيق بين السفن والشاطئ.</p>
+    <p><strong>العبث (T):</strong> الفئة الأكثر انتشارًا (36 حالة)، وتشمل تعديل البرمجيات الثابتة وإعادة التشكيل الخبيثة ورفع الموجات المارقة وحقن الأجهزة واستغلال البروتوكولات، مستغلةً غياب التوقيع والتحقق من السلامة في المكونات البحرية. وحتى التعديلات الطفيفة على ملفات التهيئة أو الشيفرة قد تؤدي إلى اضطرابات تشغيلية جسيمة أو سيطرة عدائية مستمرة.</p>
+    <p><strong>الإنكار وكشف المعلومات (R, I):</strong> يشمل الإنكار (30 حالة) هجمات الإعادة وحذف الرسائل وإخفاء AIS التي تُنكر الأفعال وتُعيق الإسناد، بينما يشمل كشف المعلومات (24 حالة) التنصت وتحليل الحركة واستراق حزم البيانات وإزالة التضمين غير المصرح بها، مستغلًا الطبيعة المفتوحة وغير المشفرة لبثوث AIS وVHF.</p>
+    <p><strong>الحرمان من الخدمة وتصعيد الصلاحيات (D, E):</strong> يشمل الحرمان (33 حالة) التشويش وهجمات الإغراق وهجمات إلغاء المصادقة التي تُسكت قنوات الملاحة والسلامة الحرجة، بينما يشمل تصعيد الصلاحيات (28 حالة) تجاوز المصادقة والحركة الجانبية والبرمجيات الخبيثة والتهديدات الداخلية، حيث تُصبح وحدات الراديو البرمجي المخترقة نقاط انطلاق نحو شبكات التكنولوجيا التشغيلية وتكنولوجيا المعلومات الأوسع.</p>
+  </section>
+
+  <section>
+    <h2>5. النتائج والنقاش</h2>
+    <p>أسفرت المراجعة المنهجية عن تحديد 44 تهديدًا مميزًا لأنظمة الراديو البرمجي البحرية، بتوزيع كمي: انتحال 23، عبث 36، إنكار 30، كشف معلومات 24، حرمان من الخدمة 33، تصعيد صلاحيات 28. وبرز العبث كالفئة المهيمنة، مستهدفًا سلامة مكونات الراديو والبرمجيات الثابتة وخطوط معالجة الإشارات، مما يؤكد أهمية التحقق من سلامة الإشارات والتحديثات الموثقة وضوابط الوصول وفحوصات سلامة البرمجيات والامتثال لإرشادات المنظمة البحرية الدولية (IMO) والمراقبة المتقاطعة الآنية.</p>
+    <p>أظهرت الدراسة أيضًا أن معظم التهديدات التقنية (انتحال GPS وAIS والتشويش واستغلال البروتوكولات) مدعومة بمزيج من الدراسات التجريبية والمحاكاة، بينما تُدعم تهديدات مثل التنصت والهندسة الاجتماعية بأدلة من حوادث حقيقية، في حين تبقى تهديدات ناشئة (تسميم بيانات الطيف، وهجمات تغيير التردد، وإخفاء AIS، ورفع الموجات المارقة، والمساعدات الملاحية الافتراضية الزائفة) في بيئات المحاكاة غالبًا وتحتاج إلى تحقق ميداني. والخلاصة أن التهديدات متعددة الأبعاد ومترابطة، فاختراق أي طبقة قد يمتد عبر العمليات البحرية بأكملها.</p>
+  </section>
+
+  <section>
+    <h2>6. تحديات أبحاث الراديو البرمجي</h2>
+    <p>تواجه أبحاث الراديو البرمجي تحديات تقنية وأمنية وتشغيلية وتنظيمية، منها محدودية القدرة الحاسوبية، وضعف أمن البرمجيات والبرمجيات الثابتة، وعدم استقرار الواجهة الأمامية للترددات، وفشل الاختبارات المختبرية في عكس البيئات الواقعية، ومخاطر تشارك الطيف والتداخل، وحوكمة البيانات والخصوصية، وغياب المعايير والقياسات المرجعية، والقيود القانونية والأخلاقية على التجارب البحرية المفتوحة، ومحدودية دمج الذكاء الاصطناعي، وقضايا التشغيل البيني ومنظومة المورّدين. ويتطلب حلها تعاونًا عبر الهندسة والأمن السيبراني والسياسات، مع التركيز على البنى الآمنة والتصاميم العتادية الموثوقة وبيئات الاختبار الواقعية.</p>
+  </section>
+
+  <section>
+    <h2>7. الفجوات البحثية والاتجاهات المستقبلية</h2>
+    <p>رغم التقدم الكبير، تكشف الأدبيات عن نقاط عمياء في الضمانات التقنية والجاهزية التشغيلية: إذ تُقيَّم معظم الدفاعات المقترحة لأنظمة GNSS والاتصالات الفضائية والشبكات الخلوية (4G/5G) بمعزل عن بعضها، دون نمذجة الهجمات المنسقة متعددة النواقل التي تستغل هذه الروابط معًا. كما توجد فجوات في أمن معدات NMEA 2000 وشبكاتها وتطبيقاتها — المصممة لبيئات مغلقة موثوقة وتفتقر إلى الإقلاع الآمن وتوقيع البرمجيات — وفي كشف التسلل المخصص لحركة PGN البحرية، وفي التدقيق المنهجي لحزم البرمجيات.</p>
+    <p>كذلك لا توجد إجراءات تحليل جنائي رقمي موحدة لحوادث الراديو البرمجي البحرية (ما الذي يُلتقط من الآثار الترددية، وكيفية توقيت عينات IQ (المركبتين المتزامنة والمترابطة) وتخزينها، وربطها بسجلات الجسر والشبكات)، إضافة إلى فجوات في متطلبات المرونة القابلة للقياس، وإرشادات التشغيل للحراس والفرق الشاطئية، والعوامل البشرية والتنظيمية. وتدعو الورقة إلى منصات اختبار متعددة الطبقات، ومؤشرات مرونة قابلة للقياس، وكتيبات إجراءات متكاملة، وأطر جاهزية جنائية خاصة بالراديو البرمجي يمكن الاسترشاد بها في توجيهات المنظمة البحرية الدولية وقواعد دول العلم وهيئات التصنيف.</p>
+  </section>
+
+  <section>
+    <h2>8. الخاتمة</h2>
+    <p>توثّق المراجعة 44 نوعًا مميزًا من التهديدات تُظهر أن الهجمات نادرًا ما تؤثر على طبقة واحدة بمعزل، بل تنتشر عبر الأجهزة والبروتوكولات والبرمجيات والمشغّلين. وتنشأ ثغرات منهجية من بروتوكولات بحرية قديمة غير موثقة وغير مشفرة، وتوافر منصات راديو برمجي رخيصة وقادرة، وغياب التزامات أمنية خاصة بالراديو البرمجي في اللوائح البحرية السيبرانية والطيفية الحالية. وتدعم النتائج الكمية إعطاء الأولوية لدفاعات: (i) تقسية العتاد والبرمجيات الثابتة (الإقلاع الآمن وتوقيع الشيفرات والتوثيق عن بُعد)؛ (ii) إدخال المصادقة التشفيرية وحماية السلامة وعدم الإنكار في اتصالات GNSS وAIS/DSC/NMEA 2000؛ (iii) نشر الدمج متعدد الحساسات والمراقبة الطيفية المستمرة؛ (iv) وترسيخ التدريب والاستجابة للحوادث ضمن أنظمة إدارة السلامة.</p>
+    <p>وعمليًا، تقع على عاتق السلطات البحرية والجمعيات وملاك السفن والمشغّلين مسؤولية دمج هذه الضوابط التقنية في أنظمة إدارة السلامة عبر خطوط التهيئة الأساسية وتجزئة الشبكات وكشف الشذوذ وأدلة الاستجابة للحوادث التي تغطي صراحة تهديدات الراديو البرمجي، مع الاستثمار في تدريب الأطقم وتمارين المحاكاة. أما مجتمع البحث فعليه التركيز على تقنيات كشف مُتحقق منها ميدانيًا، ومجموعات بيانات طولية، وأساليب جنائية واعية بالراديو البرمجي، ودراسات متمحورة حول الإنسان قابلة للترجمة إلى إرشادات عملية — للانتقال من الاستجابات التفاعلية إلى مرونة استباقية شاملة للراديو البرمجي.</p>
+  </section>
+
+  <section>
+    <h2>المراجع (مختارة)</h2>
+    <ol dir="ltr" style="text-align:left">
+      <li>H. Sims, "Software Defined Radios—Architectures, Systems and Functions," <em>Sci. Ballooning Technol. Workshop</em>.</li>
+      <li>N. Niknami et al., "Maritime Communications–Current State and the Future Potential with SDN."</li>
+      <li>UNCTAD, "Review of Maritime Transport 2024."</li>
+      <li>IMO, "Resolution MSC.428(98) – Maritime Cyber Risk Management in Safety Management Systems," 2017.</li>
+      <li>IMO, "MSC-FAL.1/Circ.3/Rev.3: Guidelines on Maritime Cyber Risk Management," 2025.</li>
+      <li>BIMCO et al., "Guidelines on Cyber Security Onboard Ships," Version 5, 2024.</li>
+      <li>USCG, "NVIC 01-20: Guidelines for Addressing Cyber Risks at MTSA-Regulated Facilities."</li>
+      <li>NIST, "SP 800-82 Rev.3: Guide to Operational Technology (OT) Security."</li>
+      <li>ISA/IEC 62443, "Security of Industrial Automation and Control Systems."</li>
+      <li>DNV, "DNV-RP-0496: Cyber Security Resilience Management for Ships and Mobile Offshore Units."</li>
+      <li>... [قائمة المراجع الكاملة متوفرة في الورقة الأصلية]</li>
+    </ol>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Maritime transportation accounts for approximately 80 percent of global trade volume, with modern vessels increasingly reliant on Software-Defined Radio (SDR) technologies for communication and navigation. However, the very flexibility and reconfigurability that make SDRs advantageous also introduce complex radio frequency vulnerabilities exposing ships to threats that jeopardize vessel security, and this disrupts global supply chains. This survey paper systematically examines the security landscape of maritime SDR systems through a threat modeling lens. Following Preferred Reporting Items for Systematic Reviews and Meta-Analyses guidelines, we analyzed 84 peer-reviewed publications (from 2002 to 2025) and applied the STRIDE framework to identify and categorize maritime SDR threats. We identified 44 distinct threat types, with tampering attacks being most prevalent (36 instances), followed by Denial of Service (33 instances), Repudiation (30 instances), Spoofing (23 instances), Information Disclosure (24 instances), and Elevation of Privilege (28 instances). These threats exploit vulnerabilities across device, software, network, message, and user layers, targeting critical systems including Global Navigation Satellite Systems, Automatic Identification Systems, Very High Frequency or Digital Selective Calling systems, Electronic Chart Display and Information Systems, and National Marine Electronics Association 2000 networks. Our analysis reveals that maritime SDR threats are multidimensional and interdependent, with compromises at any layer potentially cascading through entire maritime operations. Significant gaps remain in authentication mechanisms for core protocols, supply chain assurance, regulatory frameworks, multi-layer security implementations, awareness training, and standardized forensic procedures.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Maritime transportation constitutes the cornerstone of global trade, with the world merchant fleet exceeding 109,000 vessels as of early 2024. As modern vessels grow increasingly interconnected and autonomous, the consequences of SDR exploitation extend beyond individual ships to affect global supply chains, port operations, and national security interests. Addressing these risks demands systematic methodologies capable of identifying, categorizing, and mitigating threats specific to the maritime SDR domain.</p>
+    <p>In this survey, the authors use the STRIDE framework as a baseline, review and categorize SDR-related attacks documented in the literature, map them to the most-targeted maritime protocols and systems, and analyze existing defensive strategies — consolidating current knowledge while highlighting threats and research gaps that must be addressed to build resilient maritime SDR ecosystems. The paper is organized as follows: Section 2 provides background on policies and frameworks; Section 3 outlines the methodology; Section 4 discusses threats within the STRIDE framework; Section 5 presents results and discussion; Section 6 summarizes SDR research challenges; Section 7 highlights gaps and future directions; and Section 8 concludes.</p>
+  </section>
+
+  <section>
+    <h2>2. Background</h2>
+    <p>Recognizing growing maritime cyber exposure, multiple international and national bodies have introduced regulations to strengthen vessel cybersecurity. Strategically, IMO Resolution MSC.428(98) mandates integrating cyber risk into the Safety Management System, while MSC-FAL.1/Circ.3 guidelines structure expectations around identify, protect, detect, respond, and recover. BIMCO's 2024 Guidelines on Cyber Security Onboard Ships translate these principles into practical shipboard measures, and U.S. directives (USCG NVIC 01-20, MSCI Advisory 2023-013) reinforce domestic maritime cyber resilience, flagging threats such as GPS disruption and AIS spoofing.</p>
+    <p>Technically, NIST SP 800-82 Rev.3 extends OT security guidance to safety and dependability aspects relevant to maritime operations; ISA/IEC 62443 adds a lifecycle model for securing industrial automation and control systems; and DNV-RP-0496 defines a barrier-based approach tying safety and cyber together. At the RF layer, ITU-R M.1371 and IALA guidance define AIS technical and operational parameters in the VHF maritime band, ensuring interoperable, reliable communications.</p>
+    <p>To evaluate threats, the paper compares four frameworks: STRIDE (threat categorization), MITRE ATT&CK for ICS (adversarial behavior), SPARTA (mission-centric RF threats), and PASTA (risk-business alignment). STRIDE was selected for its simplicity, adaptability, and applicability to both software and hardware layers, making it effective for analyzing SDR vulnerabilities on standard vessels.</p>
+  </section>
+
+  <section>
+    <h2>3. Methodology</h2>
+    <p>The study follows systematic literature review methods based on PRISMA guidelines across six steps: defining objectives, formulating research questions, setting inclusion/exclusion criteria, executing a search and categorization plan, extracting and analyzing data, and presenting and interpreting findings. The primary objective is to explore, identify, and categorize documented attacks against maritime SDR systems, determine the most prevalent ones, assess the most applicable threat modeling methodologies and most-attacked systems, and surface research gaps, emerging attacks, and safeguards.</p>
+    <p>Four major databases were searched (IEEE Xplore, ScienceDirect, ACM Digital Library, Springer) for publications from the last two decades (2002–2025, predominantly 2022–2025). After applying inclusion/exclusion criteria and a backward reference search, 106 articles were reviewed, 84 of which fed the quantitative analysis. For each paper, the threat type and technical process, the targeted maritime SDR protocol or system (AIS, GPS, VHF, radar, ECDIS, sensors), and proposed defenses were extracted. Studies were further classified as empirical/testbed, simulation/emulation, or analytical/conceptual to assess evidence reliability.</p>
+  </section>
+
+  <section>
+    <h2>4. STRIDE Analysis of Maritime SDR Attacks</h2>
+    <p><strong>Spoofing (S):</strong> covers GPS and AIS (ghost vessel) spoofing, VHF/DSC, radar and sensor spoofing, and device cloning, executed with low-cost SDR hardware (e.g., USRP, HackRF) broadcasting fake signals that mislead navigation, hide vessels, or fabricate targets — directly affecting positioning, collision avoidance, distress signaling, and ship-to-shore coordination.</p>
+    <p><strong>Tampering (T):</strong> the most prevalent category (36 instances), including firmware modification, malicious reconfiguration, rogue waveform upload, hardware injection, and protocol exploitation, enabled by missing signing and integrity verification in maritime components. Even minor configuration or code changes can cause severe operational disruption or persistent adversarial control.</p>
+    <p><strong>Repudiation and Information Disclosure (R, I):</strong> repudiation (30 instances) covers replay attacks, message deletion, and AIS cloaking that deny actions and hinder attribution, while information disclosure (24 instances) covers eavesdropping, traffic analysis, sniffing, and unauthorized demodulation exploiting the open, unencrypted nature of AIS and VHF broadcasts.</p>
+    <p><strong>Denial of Service and Elevation of Privilege (D, E):</strong> DoS (33 instances) covers jamming, flooding, and de-authentication attacks silencing safety-critical navigation channels, while elevation of privilege (28 instances) covers authentication bypass, lateral movement, malware insertion, and insider threats, where compromised SDR units become footholds into broader OT and IT networks.</p>
+  </section>
+
+  <section>
+    <h2>5. Results and Discussion</h2>
+    <p>The systematic review identified 44 distinct threats to maritime SDR systems, quantitatively mapped as: spoofing 23, tampering 36, repudiation 30, information disclosure 24, denial of service 33, and elevation of privilege 28. Tampering emerged as the dominant category, targeting the integrity of SDR components, firmware, and signal processing pipelines — reinforcing the importance of signal integrity verification, authenticated updates, access controls, firmware integrity checks, IMO-guideline compliance, and real-time cross-instrument monitoring.</p>
+    <p>Most technical threats (GPS/AIS spoofing, jamming, protocol exploitation) are supported by a mix of empirical and simulation studies, while threats such as eavesdropping and social engineering draw on real-incident evidence, and emerging threats (spectrum data poisoning, frequency change attacks, AIS cloaking, rogue waveform upload, bogus virtual aids-to-navigation) remain largely simulation-bound and need operational validation. The key finding: maritime SDR threats are multidimensional and interdependent — a compromise at any layer can cascade through entire maritime operations.</p>
+  </section>
+
+  <section>
+    <h2>6. SDR Research Challenges</h2>
+    <p>SDR research faces technical, security, operational, regulatory, interoperability, hardware, and spectrum-interference challenges in open real-world experiments: limited computing resources, software/firmware security weaknesses, RF front-end instability, lab tests failing to reflect real signal environments, shared-spectrum interference risks, sensitive signal-data governance and privacy, lack of evaluation frameworks and benchmarks, legal/safety barriers to maritime SDR deployment, limited AI/ML data and model reliability, and device compatibility and software-update issues. Addressing them requires cross-disciplinary collaboration across engineering, cybersecurity, and policy, focused on secure architectures, trustworthy hardware designs, and realistic test environments.</p>
+  </section>
+
+  <section>
+    <h2>7. Research Gaps and Future Directions</h2>
+    <p>Despite significant progress, blind spots persist in both technical safeguards and operational preparedness: most proposed GNSS, satcom, and cellular (4G/5G) defenses are evaluated in isolation, without modeling coordinated multi-vector attacks that exploit these links jointly. Gaps also exist in NMEA 2000 equipment, network, and software security — devices designed for closed trusted environments lacking secure boot and firmware signing — in intrusion detection tailored to maritime PGN traffic, and in systematic audits of NMEA 2000 software stacks.</p>
+    <p>Likewise, there are no standardized forensic procedures for maritime SDR incidents (which RF artifacts to capture, how to timestamp and store IQ samples, how to correlate them with bridge and network logs), alongside gaps in measurable resilience requirements, operational guidance for watchstanders and shore teams, and human/organizational factors. The paper calls for cross-layer testbeds, measurable resilience indicators, integrated playbooks, and SDR-specific forensic readiness frameworks referenceable by IMO guidance, flag-state regulations, and class rules.</p>
+  </section>
+
+  <section>
+    <h2>8. Conclusions</h2>
+    <p>The review documents 44 distinct threat types showing that attacks rarely affect a single layer in isolation but propagate across devices, protocols, software, and operators. Systemic vulnerabilities stem from unauthenticated, unencrypted legacy maritime protocols, the widespread availability of capable yet inexpensive SDR platforms, and the absence of SDR-specific security obligations in current maritime cyber and spectrum regulations. Quantitatively, this supports prioritizing defenses that (i) harden SDR hardware and firmware through secure boot, code signing, and remote attestation; (ii) introduce cryptographic authentication, integrity protection, and non-repudiation into GNSS-dependent and AIS/DSC/NMEA 2000 communications; (iii) deploy multi-sensor fusion and continuous spectrum monitoring for early spoofing/jamming detection; and (iv) institutionalize SDR-focused training and incident response within safety management systems.</p>
+    <p>Operationally, maritime authorities, associations, shipowners, and operators must integrate these technical controls into safety management systems through configuration baselines, network segmentation, anomaly detection, and incident response playbooks explicitly covering SDR-enabled threats, while investing in crew training and simulator-based exercises. The research community should focus on field-validated detection, longitudinal datasets, SDR-aware forensic methods, and human-centered studies translatable into practical guidance — moving the sector from reactive responses to proactive, system-wide SDR resilience.</p>
+  </section>
+
+  <section>
+    <h2>References (selected)</h2>
+    <ol>
+      <li>H. Sims, "Software Defined Radios—Architectures, Systems and Functions," <em>Sci. Ballooning Technol. Workshop</em>.</li>
+      <li>N. Niknami et al., "Maritime Communications–Current State and the Future Potential with SDN."</li>
+      <li>UNCTAD, "Review of Maritime Transport 2024."</li>
+      <li>IMO, "Resolution MSC.428(98) – Maritime Cyber Risk Management in Safety Management Systems," 2017.</li>
+      <li>IMO, "MSC-FAL.1/Circ.3/Rev.3: Guidelines on Maritime Cyber Risk Management," 2025.</li>
+      <li>BIMCO et al., "Guidelines on Cyber Security Onboard Ships," Version 5, 2024.</li>
+      <li>USCG, "NVIC 01-20: Guidelines for Addressing Cyber Risks at MTSA-Regulated Facilities."</li>
+      <li>NIST, "SP 800-82 Rev.3: Guide to Operational Technology (OT) Security."</li>
+      <li>ISA/IEC 62443, "Security of Industrial Automation and Control Systems."</li>
+      <li>DNV, "DNV-RP-0496: Cyber Security Resilience Management for Ships and Mobile Offshore Units."</li>
+      <li>... [full reference list available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app16020813">10.3390/app16020813</a> · <a href="paper.pdf">PDF</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
