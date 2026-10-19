@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تحديات التدريب والامتثال في الأمن السيبراني البحري — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Challenges in Maritime Cybersecurity Training and Compliance</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تحديات التدريب والامتثال في الأمن السيبراني البحري</h2>
+
+  <div class="paper-meta">
+    <span>👤 Divine C. Chupkemi, Konstantinos Mersinas</span>
+    <span>📄 J. Mar. Sci. Eng. (JMSE), 2024 · Vol. 12, 1844</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse12101844">10.3390/jmse12101844</a></span>
+    <span class="license-badge">✓ CC BY</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يؤدي تطبيق معايير وتوجيهات الأمن السيبراني في القطاع البحري دورًا حاسمًا في حماية البنى التحتية البحرية الحرجة من التهديدات السيبرانية، ويعتمد مستوى الحماية اعتمادًا كبيرًا على العنصر البشري. غير أن فعالية برامج التدريب والامتثال في الأمن السيبراني — وهي مكوّن أساسي في هذه المعايير — كثيرًا ما تعيقها تحديات مرتبطة ببيئة القطاع، بما في ذلك التقنيات والممارسات والأعراف الراسخة. تهدف هذه الورقة إلى تحديد هذه التحديات من خلال مراجعة الأدبيات ووضع الأساس لتدريب أكثر فعالية وتقليل المخاطر البشرية وتحسين الاستجابة. نحدد 17 تحديًا ونتحقق منها عبر مسح إلكتروني (205 مشاركين) يلتقط وجهات نظر واقعية من أصحاب المصلحة في المجال البحري. تسهم نتائجنا في تعزيز فعالية برامج التدريب والامتثال في الأمن السيبراني البحري، مما يقوّي في النهاية الوضع السيبراني البحري.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>يطرح القطاع البحري تحديات فريدة لتدريب الأمن السيبراني بسبب تعقيده التنظيمي المتأصل ولوائحه الواسعة. فمسائل مثل قصور فرص التدريب، والتردد في تبني التقنيات الجديدة، وعدم موثوقية الاتصال بالإنترنت، وتعدد اللغات، تعيق تطبيق المناهج التقليدية للتدريب السيبراني [1]. ويزداد التدريب الفعال تعقيدًا بسبب تنوع أطقم السفن، وتباين مستويات المعرفة الرقمية، وبيئات التشغيل الديناميكية بطبيعتها [2]. فالسفن تعمل غالبًا في مناطق جغرافية معزولة [3]، بينما يتنقل العاملون بانتظام بين البيئات البرية والبحرية، فضلًا عن معدل الدوران المرتفع لأفراد الطاقم الذي يستلزم جلسات تدريب متكررة [4]، مما يعقّد تقديم تدريب سيبراني متسق وموحد.</p>
+    <p>تهدف هذه الدراسة إلى تحديد تحديات التدريب والامتثال التي تعيق فعالية تدريب الأمن السيبراني البحري والامتثال له. ومن خلال فحص البحوث القائمة، وتحديد أبرز تحديات التدريب في القطاع البحري، والتحقق من هذه النتائج عبر مسح شمل 205 أفراد من وظائف ومواقع جغرافية مختلفة في الصناعة البحرية، نحدد العقبات الرئيسية التي تعيق نشر برامج تدريب فعالة من قبل الشركات البحرية. ويمكن أن تشكل النتائج أساسًا لبحوث مستقبلية لتطوير حلول عملية لا تفيد التدريب السيبراني فحسب، بل سائر أشكال التدريب البحري أيضًا.</p>
+    <p>تنظم الورقة على النحو التالي: يعرض القسم 2 أهمية الأمن السيبراني البحري ودور المنظمة البحرية الدولية (IMO) في تعزيز التدريب والامتثال. ويوضح القسم 3 منهجية البحث، ويتناول القسم 4 الاعتبارات الأخلاقية، بينما يقدم القسم 5 نظرة عامة على الأدبيات حول تدريب الأمن السيبراني البحري والامتثال، بما في ذلك التحديات وتأثيرها على التدابير الأمنية. ويعرض القسم 6 تصميم المسح والتحقق منه ونتائجه. ويناقش القسم 7 نتائج المسح في ضوء الأدبيات القائمة، بما في ذلك اتجاهات البحث المستقبلية والقيود. وتختتم الورقة في القسم 8.</p>
+  </section>
+
+  <section>
+    <h2>2. الخلفية</h2>
+    <h3>2.1. المنظمة البحرية الدولية (IMO)</h3>
+    <p>أصبح القطاع البحري في السنوات الأخيرة معتمدًا بشكل متزايد على التقنيات الرقمية، مما جعله أكثر عرضة للتهديدات السيبرانية [5]. ووفقًا لتقرير المنظمة البحرية الدولية [6]، يشهد القطاع ارتفاعًا في الهجمات السيبرانية، من رسائل التصيد إلى هجمات الفدية، التي تستغل الثغرات في البنية التحتية الرقمية بما فيها البرمجيات القديمة وكلمات المرور الضعيفة وتدابير الأمن غير الكافية [5]. ومن أبرز الأمثلة هجوم برمجية الفدية NotPetya عام 2017 الذي أصاب شركة الشحن الدنماركية Maersk كضرر جانبي، مسببًا خسائر قُدرت بنحو 300 مليون يورو واضطرابات في 130 دولة. ولمواجهة هذه التحديات، اعتمد القطاع عبر المنظمة البحرية الدولية في يناير 2021 القرار MSC.428(98) [7] الذي أنشأ إطارًا تنظيميًا إلزاميًا يقتضي معالجة المخاطر السيبرانية ضمن أنظمة إدارة السلامة (SMS) للسفن، واستُكمل بإرشادات الإدارة MSC-FAL.1/Circ.3 [8] التي تحيل إلى إرشادات BIMCO للأمن السيبراني على متن السفن [9] ومعيار ISO/IEC 27001 [10] وإطار NIST [11].</p>
+    <h3>2.2. أهمية التدريب والامتثال في الأمن السيبراني البحري</h3>
+    <p>تُبرز عدة دراسات قيمة التدريب والامتثال: فقد حلل Chen وآخرون [12] تهديدات الأمن السيبراني البحري مؤكدين ضرورة برامج التدريب والامتثال ضمن نهج شمولي؛ ودرس Hernandez وآخرون [13] فعالية التدريب التفاعلي القائم على السيناريوهات للبحارة؛ وحدد Fenech وآخرون [14] تحديات تدريب موظفي المرافق المينائية داعين إلى نهج شامل ومنسق يتضمن تدريبًا مستمرًا؛ وأكد Høiback وStål [15] أهمية تدريب الطاقم بما يشمل بروتوكولات الإبلاغ عن الحوادث والاستجابة لها؛ ودعا Pinto وآخرون [1] إلى جهود منسقة ومحتوى موحد وتحديثات مستمرة؛ ودمج Taipale وآخرون [16] العوامل البشرية في برامج التدريب؛ وقيّم Park وCampoy [17] فعالية التدريب مؤكدين ضرورة التقييمات الدورية والتغذية الراجعة؛ واقترح Mersinas وChupkemi [18] نماذج من الاقتصاد السلوكي وعلم النفس لتعزيز تغيير السلوك بما يتجاوز مجرد التوعية.</p>
+  </section>
+
+  <section>
+    <h2>3. المنهجية</h2>
+    <p>أُجريت مراجعة أدبيات لتحديد الدراسات حول تدريب الأمن السيبراني والامتثال في الصناعة البحرية، باستخدام قواعد بيانات Google Scholar وIEEE Xplore وOpenReview.net ومكتبة ACM الرقمية وScienceDirect وJSTOR وSpringerLink. أعاد البحث الأولي (maritime AND cybersecurity) أكثر من 32,100 نتيجة في Google Scholar و1204 في IEEE Xplore و1011 في مكتبة ACM، ثم ضُيّق البحث بكلمات إضافية (التحديات، التدريب، البحارة، العوامل البشرية) ليصل إلى 185 ورقة ذات صلة، صُفّيت لاحقًا إلى 70 ورقة ضمن التحليل. شملت معايير الإدراج المقالات المحكمة وتقارير الصناعة وأوراق المؤتمرات والمنشورات الحكومية (2010–2023) باللغة الإنجليزية، وأُجري البحث بين فبراير 2021 ونوفمبر 2023 بفريق من باحثَين. واستُبعدت الأوراق غير المركزة على القطاع البحري وآراء الرأي والتعليقات التحريرية والدراسات المكررة.</p>
+    <p>وبالإضافة إلى مراجعة الأدبيات، وُزّع مسح إلكتروني على 213 مشاركًا (205 ردود صالحة) بأسلوب العينة القصدية شمل أصحاب مصلحة من مديرين وأفراد طاقم، واستمر ستة أشهر من 13 نوفمبر 2023 إلى 30 أبريل 2024 عبر ثلاث قنوات: جمعيات الصناعة البحرية والشبكات المهنية ومنصات التواصل الاجتماعي. وكان سؤال البحث: ما تحديات التدريب والامتثال التي تعيق فعالية تدريب الأمن السيبراني البحري والامتثال له؟ والأهداف المرتبطة: تحديد الأدبيات ومراجعتها، والتحقق من التحديات عبر وجهات نظر واقعية، مع إتاحة نسخة من نتائج المسح في المواد التكميلية.</p>
+  </section>
+
+  <section>
+    <h2>4. الأخلاقيات</h2>
+    <p>حصل النهج البحثي التجريبي على موافقة لجنة أخلاقيات البحث في جامعة رويال هولواي بلندن. وأُخذت الاعتبارات الأخلاقية في الحسبان طوال عملية البحث: أُبلغ المشاركون بغرض البحث وطوعية المشاركة وسرية الردود وإخفاء هويتها، وحُصل على الموافقة المستنيرة من جميع المشاركين قبل بدء المسح، ولم يُطلب أي معلومات تعريف شخصية مباشرة. وخُزّنت البيانات المجموعة بأمان واستُخدمت لغرض هذا البحث فقط، ولا تتضمن مجموعات البيانات أي معلومات تعريف شخصية.</p>
+  </section>
+
+  <section>
+    <h2>5. التحديات المعيقة لفعالية التدريب والامتثال (5.1–5.6)</h2>
+    <h3>5.1. الافتقار إلى التدريب الكافي</h3>
+    <p>أبرزت دراسة Jayawardena وSenarathna عام 2016 [20] الافتقار إلى التدريب الكافي والامتثال لدى العاملين البحريين بوصفه عائقًا كبيرًا، وأوصت بتطوير برامج تدريب شاملة مع تدخلات تعليمية مستمرة. وأظهرت دراسة Jin وآخرين [21] أن معظم برامج التدريب القائمة تفتقر إلى النطاق الكافي ولا تعالج التهديدات السيبرانية بما يكفي، إذ لا يتلقى سوى نسبة صغيرة من العاملين تدريبًا منتظمًا [22].</p>
+    <h3>5.2. الافتقار إلى إرشادات تدريب محددة</h3>
+    <p>وجدت دراسة Troncoso وآخرين [23] أنه رغم توفير لوائح المنظمة البحرية الدولية إطارًا للتدريب، لا يزال هناك افتقار إلى إرشادات محددة حول أساليب التدريب ومحتواه. ويواجه الجانب الآخر المتمثل في تعقيد الامتثال صعوبات مماثلة، إذ حددت دراسة Zhang وآخرين [24] أن عدة منظمات بحرية تجد صعوبة في تطوير برامج فعالة بسبب التعقيد وغياب إطار شامل مقبول عالميًا.</p>
+    <h3>5.3. الطبيعة المتطورة للتهديدات السيبرانية</h3>
+    <p>يطور المجرمون السيبرانيون باستمرار تكتيكات جديدة لاستغلال الثغرات في الأنظمة البحرية، مما يستلزم تحديثات منتظمة لخطط التدريب [25]. غير أن هذه التحديثات المتكررة تتطلب وقتًا وجهدًا وموارد كبيرة، وتزيد سرعة التقدم التقني من صعوبة مواكبة أحدث التهديدات [26]. ويشدد Wang وآخرون [25] وZhang وآخرون [26] على أهمية التحديث المستمر عبر التقييمات المنتظمة والتعاون مع خبراء الأمن، بينما يشير Yildirim وMackay [27] إلى أن النهج الديناميكي المرن كالتمارين القائمة على السيناريوهات يحسّن المرونة السيبرانية البحرية كثيرًا.</p>
+    <h3>5.4. بيئة المخاطر دائمة التغير</h3>
+    <p>يشير Hopcraft [28] إلى صعوبة توفير المستوى المناسب من الكفاءة في سياق ديناميكي كهذا، مع تعقيدات خاصة بالعمليات البحرية: خلفيات البحارة وخبراتهم المتنوعة، وتباين مستويات التكامل الرقمي على السفن، والتصورات المسبقة لإدارة المخاطر السيبرانية، والخبرات التقنية السابقة المتباينة. ويشمل القطاع البحري السفن والموانئ والمراكز المؤسسية والوكلاء ومقدمي الخدمات، ولكل منهم عامليه الذين يؤدون دورًا حيويًا في الأمن السيبراني [28]. وتؤكد دراسات Balduzzi وآخرين [29] وSvilicic وRudan [2] أهمية معالجة التنوع الثقافي والتشغيلي لمواكبة ملامح المخاطر المتغيرة.</p>
+    <h3>5.5. تعقيد أنظمة السفن ذاتية القيادة</h3>
+    <p>تتكون السفن ذاتية القيادة بالكامل من أنظمة متكاملة تتواصل وتتعاون فيما بينها لتوفير بيانات آنية لاتخاذ القرار [30]، مما يفرض على المشغلين والمهندسين فهم آليات هذه الأنظمة المعقدة وكيف يمكن للثغرات في مكوّن واحد أن تؤثر على أمن السفينة بأكملها. وحددت دراسة Sánchez Peña وآخرين [30] المهارات التقنية الأساسية المطلوبة: معرفة بروتوكولات الشبكات وتشفير البيانات وكشف التهديدات والاستجابة للحوادث وإدارة الثغرات، إضافة إلى الجوانب الاجتماعية-التنظيمية [31]. وشدد Johansson وآخرون [32] على الحاجة إلى تدريب شامل عملي يتضمن تمارين محاكاة وتحليلات آنية للأنظمة.</p>
+    <h3>5.6. الأجهزة الشخصية (BYOD) وإنترنت الأشياء (IoT)</h3>
+    <p>أحدثت الأجهزة الشخصية وإنترنت الأشياء على السفن ثورة في الاتصالات والكفاءة والعمليات، لكنها زادت سطح الهجوم وأدخلت أجهزة غير آمنة (تفتقر إلى تحديثات البرمجيات والبرامج الثابتة) مما جعل السفن عرضة للهجمات من نقاط دخول متعددة [34،35]. ويمكن للمجرمين السيبرانيين الوصول غير المصرح به إلى أنظمة السفن وبياناتها بسهولة عبر هذه الأجهزة، خاصة مع افتقار أفراد الطاقم عادةً إلى التدريب السيبراني الكافي، مما يؤدي إلى سلوكيات محفوفة بالمخاطر وأفعال غير مقصودة [36].</p>
+  </section>
+
+  <section>
+    <h2>5. التحديات (تابع: 5.7–5.12)</h2>
+    <h3>5.7. الافتقار إلى فرص التدريب العملي</h3>
+    <p>يتطلب برنامج التدريب الفعال خبرة عملية وفرص تدريب تطبيقية، لكن الصناعة البحرية تفتقر غالبًا إلى البنية التحتية والموارد اللازمة [37]، مما يعيق تطوير المهارات العملية ويحد من فعالية التدريب والامتثال. وأكدت دراسة Kim وآخرين [38] ضرورة فرص التدريب العملي، مقترحةً شراكات بين المنظمات البحرية ومقدمي التدريب السيبراني لتوفير بيئات تدريب واقعية ومحاكاة.</p>
+    <h3>5.8. المهارات الجديدة ومقدمو الخدمات من الأطراف الثالثة</h3>
+    <p>يعتمد أطقم السفن بشكل متزايد على مهندسين خارجيين لصيانة الأنظمة الرقمية المعقدة [39]، ويجب أن يمتلك هؤلاء فهمًا عميقًا لتعقيدات عمليات السفن الفريدة. واللافت أن غالبية الثغرات المكتشفة على السفن تُدخلها أطراف ثالثة سواء بالأخطاء أو بتدابير أمنية غير كافية [39]، ومع ذلك يعجز كثير من هذه الأطراف عن تحمل الاستثمار اللازم لبلوغ هذا المستوى من الخبرة، مما يقلل فعالية التدريب والامتثال.</p>
+    <h3>5.9. القيود التشغيلية</h3>
+    <p>نظرًا لسيطرة شركات الشحن المحدودة على بنيتها التحتية لتقنية المعلومات وممارساتها السيبرانية [40]، فإن أي تدريب متكرر أو تذكيرات ستقتصر على الأقسام الخاضعة لسيطرتها. كما تشغّل الشركات أساطيل من مئات السفن [41] بعضها مملوك وبعضها مستأجر لمدة محددة، ولن تتمكن من إدارة الأمن السيبراني على متن السفن المستأجرة [40]، مما يقلل كثيرًا من برامج التدريب.</p>
+    <h3>5.10. الحدود بين تقنية المعلومات (IT) والتقنية التشغيلية (OT)</h3>
+    <p>يُدخل تقارب تقنية المعلومات والتقنية التشغيلية في الصناعة البحرية تحديات جديدة، إذ عُولجتا تقليديًا بمعزل عن بعضهما في الاحتياجات التدريبية [42]، بينما يغير التكامل المتزايد احتمالات الهجمات السيبرانية ويصعّب تقديم تدريب مخصص مستمر [42]. وأبرزت دراسات Parra وآخرين [43] وSultana وآخرين [44] الحاجة إلى محترفين مزدوجي المهارات يفهمون البيئتين معًا، علمًا أن أنظمة التقنية التشغيلية على السفن قد تمتد أعمارها لعقود بينما أنظمة تقنية المعلومات أقصر عمرًا بكثير، مما يخلق تحديات في معالجة بنية تحتية قديمة يصعب ترقيعها.</p>
+    <h3>5.11. محدودية التوافر</h3>
+    <p>غالبًا ما تكون فرص التدريب والتعلم المستمر للبحارة محدودة بسبب طبيعة عملهم: فالتوقفات المينائية المخصصة للراحة والتواصل الاجتماعي تُختصر كثيرًا، مما يترك فرصًا محدودة للتدريب [28]. كما أن الطابع الدولي للعمليات والقيود التقنية للسفن تجعل التدريب المنتظم والتذكيرات المستمرة صعبة التطبيق [28]. ويناقش Miwa وآخرون [45] وCedergren وPetersen [46] كيف يؤثر محدودية أوقات التوقف على القدرة على إجراء تدريب فعال، مما يفاقم فجوة المهارات والتعرض للمخاطر السيبرانية.</p>
+    <h3>5.12. أنظمة الترفيه على السفن للطاقم</h3>
+    <p>يمكن أن تشكل أنظمة الترفيه على متن السفن — بما فيها منصات الترفيه وشبكات Wi-Fi وأنظمة IPTV — نقاط دخول محتملة للمهاجمين السيبرانيين، إذ تعتمد غالبًا على برمجيات قديمة وتفتقر إلى تدابير أمنية مناسبة [4،47]. وقد تُستغل الثغرات في هذه الأنظمة للوصول غير المصرح به إلى الأنظمة الحرجة، بل أظهرت أبحاث كيف يمكن استغلالها للتحكم في وظائف حرجة كالتوجيه وأنظمة المحركات [48]، مما يؤكد ضرورة معالجتها ضمن برامج التدريب والامتثال الشاملة.</p>
+  </section>
+
+  <section>
+    <h2>5. التحديات (تابع: 5.13–5.17)</h2>
+    <h3>5.13. الألفة والثقة</h3>
+    <p>يقضي أفراد الطاقم فترات طويلة معًا على السفن مما يولّد مستوى عاليًا من الألفة والثقة. ووفقًا لـ Bullough [49]، تعزز الألفة بين البحارة بيئة عمل داعمة تؤثر كثيرًا على سلوكهم وعمليات اتخاذ القرار. وغالبًا ما تؤدي هذه الألفة إلى مشاركة بيانات اعتماد الدخول الشخصية (أسماء المستخدمين وكلمات المرور) بدافع الزمالة والراحة، وهي ممارسات تشكل مخاطر سيبرانية كبيرة وتقوّض فعالية التدريب والامتثال. ويبرز Choi وAhmed وGhorbani [50] أن مشاركة بيانات الاعتماد تزيد كثيرًا احتمال الوصول غير المصرح به والتهديدات السيبرانية، وتُضعف القدرة على تتبع الخروقات الأمنية ومنعها.</p>
+    <h3>5.14. الوصول إلى الإنترنت</h3>
+    <p>يشكل الوصول إلى الإنترنت على السفن تحديًا آخر: فهو ضروري للتدريب السيبراني والإدارة الآمنة للأجهزة المتصلة، لكنه محدود غالبًا من حيث النطاق الترددي والتوافر في البحر أو الموانئ الدولية [3]، مما يقيّد تقديم التدريب عبر الإنترنت وتحديثات ممارسات النظافة السيبرانية. غير أن عمالقة الشحن يتجهون الآن إلى الاتصال عالي السرعة وخدمات الإنترنت عبر الأقمار الصناعية في المدار الأرضي المنخفض مثل Starlink [51]، وهو تبنٍّ يُتوقع أن يوسّع الحلول السحابية ويرقمن عمليات السفن بسلاسة أكبر، مقدمًا حلًا واعدًا لمشكلة محدودية الإنترنت المزمنة [3]. وتدعم أبحاث Mavropoulos وآخرين [52] وKaranikola وآخرين [53] تبني تقنيات الاتصالات الفضائية المتقدمة لتعزيز فعالية التدريب والسلامة التشغيلية.</p>
+    <h3>5.15. مدد السفر الطويلة</h3>
+    <p>تؤثر مدد الرحلات الطويلة في الصناعة البحرية على تواتر التدريب وفعاليته، إذ قد يقضي البحارة أيامًا إلى أشهر على متن السفينة، مما يصعّب تقديم محتوى تدريبي منتظم ومحدّث، خاصة إذا كان التدريب وجهًا لوجه مطلوبًا. كما أن دوران الطاقم والتفاعلات مع الموانئ المختلفة يزيدان تعقيد الجوانب التدريبية [4]. ويناقش Papanikolaou وآخرون [54] وPapazoglou وآخرون [55] كيف تستلزم الطبيعة العابرة لثقافة العمل البحري حلول تدريب أكثر مرونة وتكرارًا للحفاظ على مستويات عالية من الكفاءة السيبرانية.</p>
+    <h3>5.16. الثقافة البحرية والخلفيات الثقافية</h3>
+    <p>يمكن أن تؤثر الثقافة داخل الصناعة البحرية على جهود الأمن السيبراني: فقد حُددت الأنظمة القديمة وتغليب الراحة على الأمن والتعقيد العالي سمات ثقافية قد تعيق تغيير السلوك والامتثال [56،57]. كما تشكل الحواجز اللغوية والتواصلية تحديات: فالسفن يشغّلها غالبًا أفراد من جنسيات مختلفة يتحدثون لغات مختلفة، مما يصعّب إيصال التوقعات والمخاطر والأولويات المتعلقة بالأمن السيبراني، وقد يؤثر على القدرة على إيصال الدعم الإداري الضروري للتدريب والامتثال.</p>
+    <h3>5.17. الإجهاد الأمني</h3>
+    <p>يتمثل التحدي الأخير في التخفيف من الإجهاد الأمني لدى العاملين البحريين، وهو مفهوم يؤدي فيه التشبع المفرط ببروتوكولات الأمن إلى الإهمال أو فك الارتباط [58]. إذ يُطلب من البحارة الالتزام بالعديد من الممارسات السيبرانية وسط واجباتهم المعتادة، مما يولّد شعورًا بالإرهاق ويقلل اليقظة والامتثال والاهتمام بالمعايير العالية. ولمواجهة ذلك، يمكن استكشاف أساليب مبتكرة كالتدريب القائم على الألعاب الذي يوفر طريقة عملية جذابة لمحاكاة التهديدات السيبرانية الواقعية، ويساعد البحارة على تطوير المهارات والاستجابة الفعالة للحوادث دون المخاطر المرتبطة [59].</p>
+    <p>وخلاصةً، تواجه برامج التدريب والامتثال في الأمن السيبراني البحري تحديات عديدة لا تزال قائمة في الصناعة وتؤثر كثيرًا على تدريب أفراد الطاقم — مما يعيق في النهاية فعالية التدابير السيبرانية البحرية.</p>
+  </section>
+
+  <section>
+    <h2>6. المسح (التصميم 6.1–6.2)</h2>
+    <p>كان هدف المسح الإلكتروني جمع بيانات أولية من العاملين في الصناعة البحرية حول خبراتهم في التدريب والامتثال والتحديات التي يواجهونها واقتراحاتهم للتحسين. وُزّع المسح المجهول عبر ثلاث قنوات رئيسية: جمعيات الصناعة (قوائم البريد وجهات الاتصال)، والشبكات المهنية (YouGov)، ومنصات التواصل الاجتماعي (LinkedIn ومجموعات WhatsApp وFacebook). واستهدف أفرادًا مرتبطين بالمجال البحري في أدوار ومستويات مسؤولية مختلفة، بمن فيهم البحارة وموظفو تقنية المعلومات والإدارة.</p>
+    <h3>6.1. تطوير أسئلة المسح</h3>
+    <p>عند تطوير الأسئلة، كان الهدف جمع رؤى شاملة حول تحديات التدريب والامتثال عبر تغطية طائفة واسعة من المواضيع وصياغة أسئلة تستخرج ردودًا محددة وقابلة للتنفيذ. استُرشدت الموضوعات بالتحديات المحددة، وشُكّلت قائمة أولية رُوجعت بدقة لضمان الوضوح والإيجاز والملاءمة للهدف. كما أولي اهتمام خاص لإخفاء هوية المشاركين وسريّة بياناتهم، مع إخلاء مسؤولية في بداية المسح يطمئن المشاركين بأن ردودهم سرية وتُستخدم لأغراض التحليل والتحسين فقط. وشمل المسح أسئلة حول الإلمام بالتدريب السيبراني والمشاركة فيه وأساليب التقديم المفضلة وملاءمة الأسلوب الحالي وأكبر العوائق، إضافة إلى الفائدة المحتملة لمدرب سيبراني قائم على الذكاء الاصطناعي.</p>
+    <h3>6.2. مبررات صيغة المسح وهيكل الاستبيان</h3>
+    <p>اختيرت صيغة المسح الإلكتروني لسهولة الوصول إلى المشاركين من مواقع جغرافية مختلفة بما يضمن تنوع وجهات النظر، وللسماح للمشاركين بالرد بالسرعة والوقت المناسبين لهم. وصُمم هيكل الاستبيان بتماسك موضوعي وتدفق سلس: بدءًا بالأسئلة الديموغرافية (العمر والدور ومستويات الخبرة)، ثم أسئلة مستهدفة حول برامج التدريب وفعاليتها وتحديات الامتثال واقتراحات التحسين، باستخدام مزيج من أسئلة الاختيار المتعدد ومقاييس التقييم والأسئلة المفتوحة لجمع بيانات كمية ونوعية معًا.</p>
+  </section>
+
+  <section>
+    <h2>6. المسح (تابع: النتائج 6.3–6.4)</h2>
+    <h3>6.3. نتائج المسح</h3>
+    <p>استُخدمت الإحصاءات الوصفية على البيانات المجموعة من 213 مشاركًا (205 ردود صالحة بعد استبعاد 8 ردود غير مكتملة) من مواقع مهنية وجغرافية متنوعة، مع إقرار باحتمال تحيز العينة نظرًا لطوعية المشاركة. كان 69.7% من المجيبين ذكورًا و25.7% إناثًا و4.6% فضّلوا عدم الإفصاح. ومن حيث المسميات: 18% ضباط وقباطنة وقادة ورديات ومسعفون، و10.2% مهندسون، و5.1% مضيفون، و4% مساعدو ضباط، و3% طهاة. وأفاد 57% بأنهم ملمّون بالتدريب السيبراني، بينما 41% غير متأكدين و2% غير مدركين تمامًا لماهيته. وشارك 39% فقط في تدريب سيبراني قدمته شركاتهم مقابل 61% لم يشاركوا؛ ومن المشاركين، عجز 81% عن تحديد أسلوب التقديم (قاعة/ويب/ذاتي)، وذكر 11.3% تدريبًا ذاتيًا عبر الويب و5% تدريبًا قائمًا على المحاضرات و1% عن بُعد عبر طرف ثالث. وعن الملاءمة: وجد 67.6% الأسلوب مريحًا إلى حد ما، و25% محايدين، و4.4% غير مريح و2.9% غير مريح إطلاقًا. وعن الأسلوب الأكثر فائدة: فضّل 41.3% التدريب الذاتي عبر الويب المتاح من أي جهاز، و24% تدريبًا ذاتيًا عبر الويب، و8% محاضرات على متن السفينة، و5.3% محاضرات في المقر الرئيسي. أما أكبر العوائق فشملت: ضيق الوقت، والتكلفة، وصعوبة إيجاد مكان آمن لإتمام التدريب، وقلة الاهتمام، والالتزامات الوظيفية، والوجود في البحر أثناء التدريب البري، وإدارة الوقت، وغياب وضوح الأثر، ومحدودية الأجهزة، وعبء العمل، وضعف جودة التدريب.</p>
+    <h3>6.4. النتائج الرئيسية</h3>
+    <p><strong>6.4.1. الافتقار إلى إدراك القيمة:</strong> عدد كبير من المشاركين غير متأكدين أو غير ملمين تمامًا بماهية التدريب السيبراني، مما يشير إلى حاجة لتواصل وتعليم أفضل حول أهميته وفوائده.</p>
+    <p><strong>6.4.2. انخفاض معدل المشاركة:</strong> غالبية المشاركين لم يشاركوا في أي تدريب قدمته شركاتهم، مما يوحي بصعوبة إشراك الموظفين وحثهم على المشاركة الفعالة.</p>
+    <p><strong>6.4.3. غموض أساليب التقديم:</strong> عجز كثير ممن خضعوا للتدريب عن تحديد أسلوب التقديم المستخدم، مما يدل على غياب الوضوح والاتساق في هيكلة البرامج وإيصالها للموظفين.</p>
+    <p><strong>6.4.4. ملاءمة التدريب:</strong> تباينت الردود حول الملاءمة — فبينما وجدها عدد كبير مريحة إلى حد ما، كان عدد معتبر غير متأكد أو وجدها غير مريحة، مما يوحي بإغفال جوانب قابلية الاستخدام وإمكانية الوصول.</p>
+    <p><strong>6.4.5. العوائق أمام التدريب:</strong> برزت عوامل ضيق الوقت والتكلفة ومحدودية الوصول إلى الأجهزة بوصفها الحواجز الأكثر شيوعًا.</p>
+  </section>
+
+  <section>
+    <h2>7. المناقشة واتجاهات البحث المستقبلية</h2>
+    <p>تؤكد نتائج المسح فجوات وتحديات كبيرة في تدريب الأمن السيبراني البحري والامتثال له، بما يعكس اتجاهات أوسع في الأدبيات. فكل من البيانات والأدبيات يشدد على أهمية برامج تدريب شاملة وسياقية: إذ تؤكد دراسات Chen وآخرين [12] وFenech وآخرين [14] ضرورة دمج تطوير المهارات التقنية والوعي بالعوامل البشرية، ويدعو Fenech وآخرون إلى تدريب مستمر يتطور مع التهديدات الناشئة — وهي توصية يرددها Wang وآخرون [25] والمشاركون في المسح الذين أعربوا عن حاجة قوية لتدريب مستمر وملائم وعملي. غير أن تباينًا ناشئًا بين النتائج وبعض الأدبيات يبرز تعقيد التصورات داخل الصناعة: فبينما يؤكد Park وCampoy [17] التقييمات الدورية والتغذية الراجعة للحفاظ على التفاعل، كشفت نتائج المسح ردودًا متباينة حول الملاءمة العملية للبرامج القائمة، مما يشير إلى حاجة ملحة لحلول تدريب أكثر مرونة وقابلية للتكيف تراعي الجداول المتنوعة وبيئات التشغيل — ربما عبر تقنيات ناشئة كالواقع الافتراضي (VR) والواقع المعزز (AR) لتقديم وحدات غامرة قائمة على السيناريوهات يمكن الوصول إليها عن بُعد.</p>
+    <h3>7.1. اتجاهات البحث المستقبلية</h3>
+    <p>أولًا، هناك حاجة ملحة لتطوير ونشر استراتيجيات تواصل متقدمة داخل المنظمات البحرية لرفع الوعي بالأهمية الحرجة للتدريب وإيصال فوائده، وتعزيز ثقافة المسؤولية السيبرانية على جميع المستويات. ثانيًا، ينبغي استكشاف برامج تدريب قائمة على الحوافز (شهادات أو مكافآت مالية أو فرص تقدم وظيفي مرتبطة بالكفاءات السيبرانية) لتحسين معدلات التفاعل. ثالثًا، قد تثمر دراسة منهجيات التدريب المبتكرة — خاصة القائمة على التلعيب (gamification) والتعلم التجريبي — رؤى قيمة، إذ أظهر التدريب القائم على الألعاب وعودًا في تخفيف الإجهاد الأمني [59]. وأخيرًا، تستلزم الطبيعة الديناميكية للتهديدات تكييفًا مستمرًا للبرامج: دمج الذكاء الاصطناعي وتعلم الآلة لتخصيص المحتوى ديناميكيًا، وتطوير أطر موحدة قابلة للتخصيص مؤسسة على المعايير التنظيمية الدولية لكن قابلة للتكيف مع الأدوار والسياقات التشغيلية المختلفة.</p>
+    <h3>7.2. القيود</h3>
+    <p>استخدم المسح أسلوب العينة القصدية الذي قد يفتقر إلى التنوع في الأدوار والتمثيل الجغرافي، ولم تُشمل وجهات أدوار أقل تمثيلًا كمتخصصي تقنية المعلومات أو ضباط الأمن. كما اعتمد المسح على بيانات ذاتية التقرير عرضة للتحيزات كتحيز الرغبة الاجتماعية الذي قد يبالغ في تقدير المشكلات أو يقلل منها. وأخيرًا، أُجري البحث في إطار زمني محدود (أغسطس 2023 – يناير 2024) يقدم لقطة للتصورات الحالية، بينما قد تكون الدراسات الطولية المستمرة أكثر إفادة في مجال متطور كالأمن السيبراني.</p>
+  </section>
+
+  <section>
+    <h2>8. الخاتمة</h2>
+    <p>عرضنا في هذه الورقة التحديات والرؤى المستقاة من الأدبيات القائمة والمسح، راسمين صورة حية للوضع الحالي لتدريب الأمن السيبراني البحري. ترسي الأدبيات فهمًا تأسيسيًا للتحديات والاتجاهات الشائعة، بينما تقدم نتائج المسح وجهات نظر مباشرة من محترفي الصناعة البحرية. وتبرز التحديات ونتائج المسح معًا فجوة كبيرة في التدريب والامتثال لدى العاملين البحريين حول الأهمية الحرجة للتدريب السيبراني: فكثير من المشاركين غير متأكدين أو يفتقرون إلى فهم كامل لماهية التدريب — ربما بسبب إيقاع العمليات البحرية السريع أو الحجم الهائل من اللوائح — مع اتجاه مقلق نحو انخفاض معدلات المشاركة خاصة بين المنظمات البحرية الأصغر.</p>
+    <p>كما كشفت الدراسة تباينًا بين ضرورة برامج تدريب ميسّرة قابلة للاستخدام مصممة للصناعة البحرية وبين ملاءمتها الفعلية، مما قد يشير إلى فجوة بين توافر البرامج وتطبيقها العملي في العمليات اليومية. وتشمل التحديات المحددة عوائق كالموارد المحدودة وتعقيدات طرح برامج شاملة، وردد المشاركون حواجز ضيق الوقت والتمويل ومحدودية الوصول إلى الأجهزة اللازمة. وتؤكد هذه النتائج ضرورة التمييز بين قضايا الوعي العامة والتحديات المحددة المتعلقة بنشر برامج التدريب والامتثال وفعاليتها، مما يستدعي نهجًا مستهدفًا لحلول التدريب والامتثال يراعي الاعتبارات العملية للوقت والتكلفة والوصول.</p>
+  </section>
+
+  <section>
+    <h2>المراجع (مختارة)</h2>
+    <ol dir="ltr">
+      <li>[1] A. Pinto, P. Roldan, P.A. Wind, E. Argudo, "Analysis of training and awareness programs on maritime cybersecurity," in <em>Proc. Int. Conf. Cyber Security and Protection of Digital Services</em>, London, UK, 2017.</li>
+      <li>[2] B. Svilicic, I. Rudan, "Cybersecurity challenges in maritime operations: cultural and operational considerations," <em>Int. J. Marit. Technol.</em>, 2019.</li>
+      <li>[3] K. Tam, K. Jones, "Factors affecting cyber risk in maritime," in <em>Proc. Int. Conf. Cyber Situational Awareness, Data Analytics and Assessment (Cyber SA)</em>, Oxford, UK, 2019.</li>
+      <li>[4] J. Cheng et al., "Vulnerability analysis of passenger ships based on the shipboard entertainment system," <em>Ocean Eng.</em>, vol. 215, 2020.</li>
+      <li>[5] F. Akpan et al., "Cybersecurity challenges in the maritime sector," <em>Network</em>, vol. 2, pp. 123–138, 2022.</li>
+      <li>[6] International Maritime Organization (IMO), "Cyber security in the maritime sector," 2019.</li>
+      <li>[7] International Maritime Organization (IMO), "Resolution MSC.428(98) — Maritime cyber risk management in safety management systems," London, UK, 2017.</li>
+      <li>[8] International Maritime Organization (IMO), "MSC-FAL.1/Circ.3 Guidelines on maritime cyber risk management," London, UK, 2017.</li>
+      <li>[9] BIMCO et al., "The Guidelines on Cyber Security Onboard Ships," ver. 4, Copenhagen, 2021.</li>
+      <li>[10] ISO/IEC 27001, "Information technology — Security techniques — Information security management systems — Requirements."</li>
+      <li>[11] National Institute of Standards and Technology (NIST), "Framework for Improving Critical Infrastructure Cybersecurity," 2014.</li>
+      <li>[12] Z. Chen et al., "Analysis and evaluation of maritime cybersecurity threats and their impacts," <em>Marit. Policy Manag.</em>, vol. 47, pp. 682–698, 2020.</li>
+      <li>[13] F. Hernandez et al., "Cybersecurity awareness training for seafarers," <em>J. Marit. Res.</em>, vol. 18, pp. 245–263, 2021.</li>
+      <li>[14] J. Fenech et al., studies on cybersecurity training challenges for port facility personnel.</li>
+      <li>[15] Høiback and Stål, studies on crew training including incident reporting and response protocols.</li>
+      <li>[16] Taipale et al., studies integrating human factors into maritime cybersecurity training programmes.</li>
+      <li>[17] Park and Campoy, studies evaluating maritime cybersecurity training effectiveness via periodic assessment and feedback.</li>
+      <li>[18] K. Mersinas, D.C. Chupkemi, models from behavioral economics and psychology for cybersecurity training fostering behavior change.</li>
+      <li>[20] Jayawardena and Senarathna, early study on maritime cybersecurity training (2016).</li>
+      <li>[21] Jin et al., study on the state of maritime cybersecurity training in China.</li>
+      <li>[23] Troncoso et al., study on the impact of international regulations and guidelines on maritime cybersecurity training.</li>
+      <li>[24] Zhang et al., study on compliance complexity in maritime cybersecurity training programmes.</li>
+      <li>[25] Wang et al., studies on continuously updating training programmes for evolving threats.</li>
+      <li>[27] Yildirim and Mackay, research on dynamic scenario-based training approaches.</li>
+      <li>[28] Hopcraft, study on competence in dynamic maritime risk environments.</li>
+      <li>[30] Sánchez Peña et al., study on technical skills for autonomous ship systems.</li>
+      <li>[32] Johansson et al., studies on hands-on training for autonomous ship operations.</li>
+      <li>[38] Kim et al., study on practical training opportunities via industry partnerships.</li>
+      <li>[39] Studies on third-party-introduced vulnerabilities aboard ships.</li>
+      <li>[40] Studies on shipping companies' limited control over IT infrastructure and contracted vessels.</li>
+      <li>[42] Studies on IT/OT convergence training needs in maritime.</li>
+      <li>[43] Parra et al. and [44] Sultana et al., studies on dual-skilled IT/OT professionals.</li>
+      <li>[45] Miwa et al. and [46] Cedergren and Petersen, studies on limited downtime effects on training.</li>
+      <li>[48] Research on exploiting ship entertainment system vulnerabilities to control critical functions.</li>
+      <li>[49] Bullough, study on familiarity and trust among seafarers.</li>
+      <li>[50] Choi, Ahmed, and Ghorbani, study on credential-sharing risks.</li>
+      <li>[51] Starlink LEO satellite internet adoption in shipping.</li>
+      <li>[54] Papanikolaou et al. and [55] Papazoglou et al., studies on transient seafaring work culture and training.</li>
+      <li>[56,57] Studies on maritime cultural attributes hindering behavior change and compliance.</li>
+      <li>[58] Studies on security fatigue among personnel.</li>
+      <li>[59] Studies on game-based training for mitigating security fatigue.</li>
+      <li>... [full reference list available in original paper]</li>
+        </ol>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>The implementation of cybersecurity standards and directives in the maritime sector plays a crucial role in protecting critical maritime infrastructures from cyber threats. The level of protection depends heavily on humans. However, the effectiveness of cybersecurity training and compliance programmes, an essential component of these standards, is often hindered by challenges related to the sector's environment, including the established technologies, practices, and norms. This paper aims to identify these challenges through a literature review and set the basis for more effective human risk minimization, responses, and training. We identify 17 challenges and validate them with an online survey (N = 205) capturing real-world perspectives from maritime-related stakeholders. Our findings contribute to enhancing the effectiveness of maritime cybersecurity training and compliance programmes, ultimately strengthening the maritime cybersecurity posture.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>The maritime industry presents unique challenges for cybersecurity training due to its inherent organizational complexity and extensive regulations. Issues such as inadequate training opportunities, reluctance to adopt new technologies, unreliable internet connections, and multilingualism impede the implementation of traditional approaches to cybersecurity training [1]. Effective cybersecurity training in this context is further complicated by diverse crew compositions, varied levels of digital literacy, and inherently dynamic operational environments [2]. Vessels often operate in geographically isolated regions [3], whilst the maritime workforce regularly transitions between onshore and offshore environments, notwithstanding the high turnover rate of crew members, which necessitates frequent training sessions [4], complicating the delivery of consistent and standardized cybersecurity training.</p>
+    <p>This study aims to identify the training and compliance challenges that hinder the effectiveness of maritime cybersecurity training and compliance. By examining existing research, identifying the most significant training challenges in the maritime sector, and validating these findings through a survey of 205 individuals from different job functions and geographical locations in the maritime industry, we pinpoint the key obstacles which impede the deployment of effective cybersecurity training programmes by maritime companies. Findings can serve as a basis for future research to develop practical solutions that benefit not only cybersecurity training but also other maritime training.</p>
+    <p>This paper is organized as follows: Section 2 outlines the importance of maritime cybersecurity and the role of the International Maritime Organization (IMO) by highlighting the efforts of IMO to promote cybersecurity training and compliance in the maritime industry and emphasizing the critical need for such measures. Section 3 outlines the research methodology. Section 4 covers ethical considerations, while Section 5 offers an overview of existing literature on maritime cybersecurity training and compliance, including the challenges discussed and their impact on security measures. Section 6 presents the survey design, validation, and results. Section 7 discusses the survey results in relation to the existing literature, including future research directions and limitations. The paper concludes in Section 8.</p>
+  </section>
+
+  <section>
+    <h2>2. Background</h2>
+    <h3>2.1. The International Maritime Organization (IMO)</h3>
+    <p>In recent years, the maritime industry has become increasingly dependent on digital technologies, making it more vulnerable to cyber threats [5]. According to an IMO report [6], the industry is experiencing an increase in cyber attacks, from phishing emails to ransomware attacks exploiting vulnerabilities such as outdated software, weak passwords, and inadequate cybersecurity measures [5]. A prominent example is the 2017 NotPetya ransomware attack, which struck the Danish shipping company Maersk as collateral damage, causing an estimated EUR 300 million in losses and disruption across 130 countries. In response, the industry, acting through the IMO, adopted Resolution MSC.428(98) in January 2021 [7], establishing a mandatory framework requiring cyber risks to be addressed within ships' safety management systems (SMS), supplemented by the MSC-FAL.1/Circ.3 guidelines on maritime cyber risk management [8], which reference BIMCO's Guidelines on Cyber Security Onboard Ships [9], ISO/IEC 27001 [10], and the NIST Framework [11].</p>
+    <h3>2.2. Importance of Cybersecurity Training and Compliance in Maritime</h3>
+    <p>Several studies underscore the value of training and compliance: Chen et al. [12] analyzed maritime cybersecurity threats, emphasizing training and compliance programmes within a holistic approach; Hernandez et al. [13] studied interactive scenario-based training for seafarers; Fenech et al. [14] identified challenges in training port facility personnel, advocating a comprehensive coordinated approach with continuous training; Høiback and Stål [15] reiterated the significance of crew training including incident reporting and response protocols; Pinto et al. [1] called for coordinated efforts, standardized content, and continuous updates; Taipale et al. [16] integrated human factors into training programmes; Park and Campoy [17] evaluated training effectiveness, highlighting periodic assessments and feedback; and Mersinas and Chupkemi [18] proposed behavioral economics and psychology models fostering behavior change beyond mere awareness.</p>
+  </section>
+
+  <section>
+    <h2>3. Methodology</h2>
+    <p>We conducted a literature review to identify studies on cybersecurity training and compliance in the maritime industry, using Google Scholar, IEEE Xplore, OpenReview.net, the ACM Digital Library, ScienceDirect, JSTOR, and SpringerLink. The initial search (maritime AND cybersecurity) returned over 32,100 results on Google Scholar, 1,204 on IEEE Xplore, and 1,011 on the ACM Digital Library; refined with additional keywords (challenges, training, seafarers, human factors), it yielded a manageable set of 185 relevant papers, further filtered to 70 included in our analysis. Inclusion criteria covered peer-reviewed articles, industry reports, conference papers, and government publications (2010–2023) in English, searched between February 2021 and November 2023 by a two-researcher team. Excluded were non-maritime papers, opinion pieces, editorial comments, and redundant studies.</p>
+    <p>In addition, an online survey was administered to 213 participants (205 valid responses) through purposive sampling of maritime stakeholders including managers and crew, running six months from 13 November 2023 to 30 April 2024 via three channels: maritime industry associations, professional networks, and social media. The research question: what are the training and compliance challenges inhibiting the effectiveness of maritime cybersecurity training and compliance? Objectives: identify and review the literature on these challenges, and validate them via real-world stakeholder perspectives, with survey results included in Supplementary Materials.</p>
+  </section>
+
+  <section>
+    <h2>4. Ethics</h2>
+    <p>The empirical research approach was approved by the Royal Holloway, University of London Research Ethics Committee. Ethical considerations were taken into account throughout: participants were informed of the research purpose, voluntary participation, and confidentiality and anonymity of responses; informed consent was obtained before the survey; no directly personally identifiable information was requested. Data were securely stored and used solely for this research, and no personally identifiable information is included in the datasets.</p>
+  </section>
+
+  <section>
+    <h2>5. Challenges Inhibiting Training and Compliance Effectiveness (5.1–5.6)</h2>
+    <h3>5.1. Lack of Adequate Training</h3>
+    <p>Jayawardena and Senarathna (2016) [20] highlighted the lack of adequate cybersecurity training and compliance among maritime personnel as a significant obstacle, recommending comprehensive training programmes with continuous educational interventions. Jin et al. [21] found most existing programmes lack sufficient scope and fail to address maritime cyber threats adequately, with only a small percentage of personnel receiving regular training [22], recommending a comprehensive national cybersecurity training framework for the maritime sector.</p>
+    <h3>5.2. Lack of Specific Training Guidance</h3>
+    <p>Troncoso et al. [23] found that while IMO regulations provide a framework for cybersecurity training, specific guidance on training methods and content is still lacking. On the flip side, compliance complexity poses parallel difficulties: Zhang et al. [24] identified that several maritime organizations struggle to develop effective programmes due to regulatory complexity and the absence of a thorough, universally accepted framework.</p>
+    <h3>5.3. Evolving Nature of Cyber Threats</h3>
+    <p>Cybercriminals continuously develop new tactics to exploit maritime system vulnerabilities, necessitating regular training-plan updates [25]. Yet frequent updates demand significant time, effort, and resources, with rapid technological advancement further complicating alignment with the latest threats [26]. Wang et al. [25] and Zhang et al. [26] stress continuous updates via regular assessments and collaboration with cybersecurity experts, while Yildirim and Mackay [27] show that dynamic, flexible approaches such as scenario-based exercises significantly improve maritime cyber resilience.</p>
+    <h3>5.4. Constantly Changing Risk Environment</h3>
+    <p>Hopcraft [28] points out the difficulty of providing appropriate competence in such a dynamic context, with maritime-specific complexities: diverse seafarer backgrounds, varying digital integration aboard ships, preconceived notions of cyber risk management, and diverse prior technological experience. The sector spans ships, ports, enterprise centers, agents, and service providers, each with personnel playing vital cybersecurity roles [28]. Balduzzi et al. [29] and Svilicic and Rudan [2] stress addressing cultural and operational diversity to keep pace with changing risk profiles.</p>
+    <h3>5.5. Complexity of Autonomous Ship Systems</h3>
+    <p>Fully autonomous ships consist of integrated systems communicating and collaborating to provide real-time decision data [30], requiring operators and engineers to understand intricate workings and how a vulnerability in one component affects whole-ship cybersecurity. Sánchez Peña et al. [30] identified key technical skills — network protocols, data encryption, threat detection, incident response, vulnerability management — alongside socio-organizational aspects [31]. Johansson et al. [32] emphasized comprehensive hands-on training with simulated exercises and real-time system analyses.</p>
+    <h3>5.6. Bring Your Own Device (BYOD) and Internet of Things (IoT)</h3>
+    <p>BYOD and IoT aboard ships have revolutionized communication, efficiency, and operations, but have increased the attack surface and introduced insecure devices lacking proper software and firmware updates, exposing ships to attacks from multiple entry points [34,35]. Cybercriminals can easily gain unauthorized access to ship systems and data through these devices, with crew members typically lacking sufficient cybersecurity training, leading to risky behavior and unintentional actions [36].</p>
+  </section>
+
+  <section>
+    <h2>5. Challenges (continued: 5.7–5.12)</h2>
+    <h3>5.7. Lack of Practical Training Opportunities</h3>
+    <p>Effective programmes require hands-on experience, yet the maritime industry often lacks the infrastructure and resources to provide it [37], hindering practical skill development. Kim et al. [38] emphasized the need for practical opportunities, suggesting partnerships between maritime organizations and cybersecurity training providers to offer realistic training environments and simulations.</p>
+    <h3>5.8. New Skills, Third-Party Service Providers</h3>
+    <p>Crews increasingly rely on external engineers to maintain complex digital ship systems [39], who must deeply understand ships' unique operational complexities. Notably, most vulnerabilities discovered aboard ships are introduced by third parties through mistakes or inadequate security [39] — yet many third parties cannot afford the investment for such expertise, reducing training and compliance effectiveness.</p>
+    <h3>5.9. Operational Limitations</h3>
+    <p>Given shipping companies' limited control over their IT infrastructure and cybersecurity practices [40], frequent training or reminders are likely constrained to sections they control. Companies operating fleets of hundreds of ships [41] — some owned, some contracted — cannot manage cybersecurity aboard contracted vessels [40], substantially reducing maritime cybersecurity training programmes.</p>
+    <h3>5.10. IT and OT Boundaries</h3>
+    <p>IT/OT convergence introduces new training challenges: traditionally treated separately [42], integration changes cyber-attack potential and complicates tailored ongoing training [42]. Parra et al. [43] and Sultana et al. [44] highlighted the need for dual-skilled professionals spanning both environments — complicated by OT lifespans of decades versus much shorter IT lifespans, leaving outdated, hard-to-patch infrastructure.</p>
+    <h3>5.11. Limited Availability</h3>
+    <p>Seafarers' training opportunities are limited by the nature of their work: port calls intended for rest are frequently shortened, leaving limited training time [28], while international operations and vessels' technical limitations hinder regular training and reminders [28]. Miwa et al. [45] and Cedergren and Petersen [46] discuss how limited downtime impairs effective training, exacerbating the skills gap and cyber-risk exposure.</p>
+    <h3>5.12. Ship Entertainment for Crew</h3>
+    <p>Onboard entertainment systems — platforms, Wi-Fi networks, IPTV — can be entry points for attackers, often relying on outdated software without proper security [4,47]. Research demonstrates such vulnerabilities exploited to control critical functions like steering and engines [48], underscoring the need to address ship entertainment within comprehensive training and compliance programmes.</p>
+  </section>
+
+  <section>
+    <h2>5. Challenges (continued: 5.13–5.17)</h2>
+    <h3>5.13. Familiarity and Trust</h3>
+    <p>Crew members spend extensive periods together, producing heightened familiarity and trust. Per Bullough [49], familiarity fosters a supportive environment shaping onboard behavior and decision-making — often leading to sharing personal login credentials as camaraderie and convenience, posing significant risks. Choi, Ahmed, and Ghorbani [50] highlight that credential sharing greatly increases unauthorized-access probability and weakens breach traceability and prevention.</p>
+    <h3>5.14. Internet Access</h3>
+    <p>Shipboard internet access is necessary for training and secure management of connected appliances, yet often limited in bandwidth and availability at sea or in foreign ports [3], constraining online training delivery and cyber-hygiene updates. Shipping giants are now turning to high-speed Low Earth Orbit (LEO) services such as Starlink [51] — expected to expand cloud solutions and digitize vessel operations, offering a promising fix to chronic access limits [3]. Mavropoulos et al. [52] and Karanikola et al. [53] support adopting advanced satellite communications to enhance training efficacy and operational safety.</p>
+    <h3>5.15. Long Travelling Times</h3>
+    <p>Long voyages — days to months aboard — impede regular up-to-date training delivery, especially face-to-face, while crew turnover and port interactions further complicate training [4]. Papanikolaou et al. [54] and Papazoglou et al. [55] discuss how seafaring's transient work culture demands more flexible, frequent training to sustain high cybersecurity competence.</p>
+    <h3>5.16. Maritime Culture and Cultural Backgrounds</h3>
+    <p>Industry culture affects cybersecurity efforts: legacy systems, convenience over security, and high complexity are cultural attributes hindering behavior change and compliance [56,57]. Language and communication barriers compound this — crews of mixed nationalities speaking different languages complicate communicating cybersecurity expectations, risks, priorities, and management support crucial to training and compliance.</p>
+    <h3>5.17. Security Fatigue</h3>
+    <p>Over-saturation with security protocols breeds negligence and disengagement [58]: seafarers juggling numerous cybersecurity practices amid regular duties feel overwhelmed, grow less attentive, ignore alerts, or skip protocols inconsistently — raising incident risk. Game-based training offers a practical, engaging way to simulate real-world threats, building response skills without associated risks and addressing critiques of traditional programmes' poor engagement [59].</p>
+    <p>In conclusion, maritime cybersecurity training and compliance face several persistent industry challenges with significant impact on crew training — ultimately hindering maritime cybersecurity effectiveness.</p>
+  </section>
+
+  <section>
+    <h2>6. The Survey (Design: 6.1–6.2)</h2>
+    <p>The online survey gathered primary data from maritime industry workers on training and compliance experiences, challenges, and improvement suggestions. The anonymous survey was distributed through three channels: industry associations (industry email/contact lists), professional networks (YouGov), and social media (LinkedIn, WhatsApp groups, Facebook), targeting maritime-related individuals across roles and responsibility levels, including seafarers, IT personnel, and management.</p>
+    <h3>6.1. Development of Survey Questions</h3>
+    <p>Questions were designed for comprehensive insight across a wide topic range, eliciting specific actionable responses. Themes were informed by the identified challenges; an initial question list was closely reviewed for clarity, conciseness, and relevance. Anonymity and confidentiality were carefully handled with a disclaimer assuring responses would stay confidential and be used only for analysis and improvement. The survey covered familiarity with cybersecurity training, participation, preferred delivery methods, convenience of the current method, biggest obstacles, and the potential usefulness of an AI-based cybersecurity trainer.</p>
+    <h3>6.2. Justification for Survey Format and Questionnaire Structure</h3>
+    <p>The online format was chosen for easy reach across geographies ensuring diverse perspectives, and for letting participants respond at their own pace and convenience. The questionnaire was structured for thematic coherence and smooth flow: demographic questions first (age, roles, experience), then targeted questions on programmes, effectiveness, compliance challenges, and suggestions — combining multiple-choice, rating scales, and open-ended questions for quantitative and qualitative data.</p>
+  </section>
+
+  <section>
+    <h2>6. The Survey (continued: Results 6.3–6.4)</h2>
+    <h3>6.3. Survey Results</h3>
+    <p>Descriptive statistics were applied to data from 213 participants (205 valid after excluding 8 incomplete responses) across maritime roles and locations, acknowledging possible sampling bias from voluntary participation. 69.7% of valid respondents were male, 25.7% female, 4.6% undisclosed. Job titles: 18% officers/masters/captains/watch leaders/medical pursers, 10.2% engineers, 5.1% stewards, 4% mates, 3% cooks. 57% were familiar with cybersecurity training, 41% unsure, 2% unaware. Only 39% had taken company-offered cybersecurity training versus 61% who had not; of trainees, 81% could not specify the delivery method (classroom/web-based/self-training), 11.3% reported web-based self-training, 5% lecture-based, 1% remote third-party/department delivery. Convenience: 67.6% found the method somewhat convenient, 25% neutral, 4.4% inconvenient, 2.9% very inconvenient. Most useful method: 41.3% preferred web-based self-training accessible from any device, 24% web-based self-training, 8% onboard classroom lectures, 5.3% head-office classroom lectures. Biggest obstacles cited: lack of time, cost, difficulty finding a safe space, lack of interest, job obligations, being at sea during land training, time management, lack of impact visibility, limited device access, workload, organizational challenges, and poor training quality.</p>
+    <h3>6.4. Findings</h3>
+    <p><strong>6.4.1. Lack of Value Perception:</strong> many participants are unsure or unaware of what cybersecurity training entails, indicating a need for better communication and education on its importance and benefits.</p>
+    <p><strong>6.4.2. Low Participation Rate:</strong> the majority have not taken any company-offered training, suggesting organizations struggle to engage employees and encourage active participation.</p>
+    <p><strong>6.4.3. Unclear Training Delivery Methods:</strong> many trainees could not specify the delivery method used, indicating a lack of clarity and consistency in how programmes are structured and communicated.</p>
+    <p><strong>6.4.4. Convenience of Training:</strong> mixed responses — many found delivery somewhat convenient, but a considerable number were unsure or found it inconvenient, suggesting usability and accessibility are not currently considered.</p>
+    <p><strong>6.4.5. Obstacles to Training:</strong> lack of time, cost, and limited device access were the most commonly reported barriers.</p>
+  </section>
+
+  <section>
+    <h2>7. Discussion and Future Research Directions</h2>
+    <p>Survey findings underscore significant gaps and challenges in maritime cybersecurity training and compliance, reflecting broader literature trends. Both data and literature emphasize comprehensive, contextualized programmes: Chen et al. [12] and Fenech et al. [14] underline integrating technical skill development with human-factors awareness, with Fenech et al. advocating continuous training evolving with emerging threats — echoed by Wang et al. [25] and survey participants demanding ongoing, relevant, practical training amid a rapidly changing threat landscape. An emergent inconsistency with some literature highlights industry complexity: while Park and Campoy [17] emphasize periodic assessments and feedback, our survey shows mixed responses on convenience and usability of existing programmes — pointing to an urgent need for flexible, adaptable solutions accommodating diverse maritime schedules and operational environments, possibly leveraging VR/AR immersive scenario-based modules accessible remotely during off-peak periods.</p>
+    <h3>7.1. Future Research Directions</h3>
+    <p>First, develop and deploy advanced communication strategies within maritime organizations to raise awareness of training's critical importance and articulate its benefits, fostering a cybersecurity culture at all levels. Second, explore incentive-based programmes — certifications, monetary rewards, career advancement tied to demonstrated competencies — to boost engagement. Third, study innovative methodologies grounded in gamification and experiential learning; game-based training shows promise against security fatigue [59]. Finally, the dynamic threat landscape demands continuous adaptation: integrating AI/ML to personalize content dynamically via behavioral analytics, plus standardized-yet-customizable frameworks grounded in international regulation but adaptable to maritime roles and contexts.</p>
+    <h3>7.2. Limitations</h3>
+    <p>Purposive sampling may have produced a sample lacking role and geographical diversity, with underrepresented perspectives (IT specialists, security officers). Self-reported data is subject to biases like social desirability, potentially over- or under-estimating training issues. Finally, the limited timeframe (August 2023 – January 2024) offers a snapshot, whereas longitudinal studies would be more illuminating for an evolving field like cybersecurity.</p>
+  </section>
+
+  <section>
+    <h2>8. Conclusions</h2>
+    <p>In this paper, we presented challenges and insights from existing literature and a survey, painting a vivid picture of maritime cybersecurity training today. The literature establishes foundational understanding of common challenges and trends, while survey results bring firsthand professional perspectives. Both highlight a significant training-and-compliance gap regarding the critical importance of cybersecurity training: many participants are unsure or lack full understanding of what it involves — perhaps from fast-paced operations or overwhelming regulatory volume — with a concerning trend of low participation, particularly among smaller organizations.</p>
+    <p>Convenience findings reveal a possible disconnect between availability of accessible, usable maritime-tailored programmes and their practical implementation in daily operations. Identified challenges — limited resources, rollout complexity, echoed by participants' time, funding, and device-access barriers — emphasize distinguishing general awareness issues from specific deployment-and-effectiveness challenges. Practical time, cost, and access constraints often hinder participation, demanding a targeted approach to training and compliance solutions.</p>
+  <section>
+    <h2 dir="ltr">References (selected)</h2>
+    <ol dir="ltr">
+      <li>[1] A. Pinto, P. Roldan, P.A. Wind, E. Argudo, "Analysis of training and awareness programs on maritime cybersecurity," in <em>Proc. Int. Conf. Cyber Security and Protection of Digital Services</em>, London, UK, 2017.</li>
+      <li>[2] B. Svilicic, I. Rudan, "Cybersecurity challenges in maritime operations: cultural and operational considerations," <em>Int. J. Marit. Technol.</em>, 2019.</li>
+      <li>[3] K. Tam, K. Jones, "Factors affecting cyber risk in maritime," in <em>Proc. Int. Conf. Cyber Situational Awareness, Data Analytics and Assessment (Cyber SA)</em>, Oxford, UK, 2019.</li>
+      <li>[4] J. Cheng et al., "Vulnerability analysis of passenger ships based on the shipboard entertainment system," <em>Ocean Eng.</em>, vol. 215, 2020.</li>
+      <li>[5] F. Akpan et al., "Cybersecurity challenges in the maritime sector," <em>Network</em>, vol. 2, pp. 123–138, 2022.</li>
+      <li>[6] International Maritime Organization (IMO), "Cyber security in the maritime sector," 2019.</li>
+      <li>[7] International Maritime Organization (IMO), "Resolution MSC.428(98) — Maritime cyber risk management in safety management systems," London, UK, 2017.</li>
+      <li>[8] International Maritime Organization (IMO), "MSC-FAL.1/Circ.3 Guidelines on maritime cyber risk management," London, UK, 2017.</li>
+      <li>[9] BIMCO et al., "The Guidelines on Cyber Security Onboard Ships," ver. 4, Copenhagen, 2021.</li>
+      <li>[10] ISO/IEC 27001, "Information technology — Security techniques — Information security management systems — Requirements."</li>
+      <li>[11] National Institute of Standards and Technology (NIST), "Framework for Improving Critical Infrastructure Cybersecurity," 2014.</li>
+      <li>[12] Z. Chen et al., "Analysis and evaluation of maritime cybersecurity threats and their impacts," <em>Marit. Policy Manag.</em>, vol. 47, pp. 682–698, 2020.</li>
+      <li>[13] F. Hernandez et al., "Cybersecurity awareness training for seafarers," <em>J. Marit. Res.</em>, vol. 18, pp. 245–263, 2021.</li>
+      <li>[14] J. Fenech et al., studies on cybersecurity training challenges for port facility personnel.</li>
+      <li>[15] Høiback and Stål, studies on crew training including incident reporting and response protocols.</li>
+      <li>[16] Taipale et al., studies integrating human factors into maritime cybersecurity training programmes.</li>
+      <li>[17] Park and Campoy, studies evaluating maritime cybersecurity training effectiveness via periodic assessment and feedback.</li>
+      <li>[18] K. Mersinas, D.C. Chupkemi, models from behavioral economics and psychology for cybersecurity training fostering behavior change.</li>
+      <li>[20] Jayawardena and Senarathna, early study on maritime cybersecurity training (2016).</li>
+      <li>[21] Jin et al., study on the state of maritime cybersecurity training in China.</li>
+      <li>[23] Troncoso et al., study on the impact of international regulations and guidelines on maritime cybersecurity training.</li>
+      <li>[24] Zhang et al., study on compliance complexity in maritime cybersecurity training programmes.</li>
+      <li>[25] Wang et al., studies on continuously updating training programmes for evolving threats.</li>
+      <li>[27] Yildirim and Mackay, research on dynamic scenario-based training approaches.</li>
+      <li>[28] Hopcraft, study on competence in dynamic maritime risk environments.</li>
+      <li>[30] Sánchez Peña et al., study on technical skills for autonomous ship systems.</li>
+      <li>[32] Johansson et al., studies on hands-on training for autonomous ship operations.</li>
+      <li>[38] Kim et al., study on practical training opportunities via industry partnerships.</li>
+      <li>[39] Studies on third-party-introduced vulnerabilities aboard ships.</li>
+      <li>[40] Studies on shipping companies' limited control over IT infrastructure and contracted vessels.</li>
+      <li>[42] Studies on IT/OT convergence training needs in maritime.</li>
+      <li>[43] Parra et al. and [44] Sultana et al., studies on dual-skilled IT/OT professionals.</li>
+      <li>[45] Miwa et al. and [46] Cedergren and Petersen, studies on limited downtime effects on training.</li>
+      <li>[48] Research on exploiting ship entertainment system vulnerabilities to control critical functions.</li>
+      <li>[49] Bullough, study on familiarity and trust among seafarers.</li>
+      <li>[50] Choi, Ahmed, and Ghorbani, study on credential-sharing risks.</li>
+      <li>[51] Starlink LEO satellite internet adoption in shipping.</li>
+      <li>[54] Papanikolaou et al. and [55] Papazoglou et al., studies on transient seafaring work culture and training.</li>
+      <li>[56,57] Studies on maritime cultural attributes hindering behavior change and compliance.</li>
+      <li>[58] Studies on security fatigue among personnel.</li>
+      <li>[59] Studies on game-based training for mitigating security fatigue.</li>
+      <li>... [full reference list available in original paper]</li>
+        </ol>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse12101844">10.3390/jmse12101844</a> · License: CC BY</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
