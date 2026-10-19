@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تعزيز الأمن السيبراني البحري عبر دمج بيانات مستشعرات التكنولوجيا التشغيلية — DAR</title>
+<meta name="description" content="Potamos et al. (2024): whether fusion of maritime OT sensor data (AIS, radar, SIGINT) used for situational awareness can also detect cyberincidents in real time. Arabic translation.">
+<link rel="canonical" href="https://dararchive.com/papers/ot-sensor-fusion-sensors/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Enhancing Maritime Cybersecurity through Operational Technology Sensor Data Fusion: A Comprehensive Survey and Analysis</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تعزيز الأمن السيبراني البحري عبر دمج بيانات مستشعرات التكنولوجيا التشغيلية: مسح وتحليل شامل</h2>
+
+  <div class="paper-meta">
+    <span>👤 Georgios Potamos, Eliana Stavrou, Stavros Stavrou — Open University of Cyprus</span>
+    <span>📄 Sensors, 2024 · Vol. 24(11), 3458 · 28 pages</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s24113458">10.3390/s24113458</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يكتسب الأمن السيبراني أهمية متزايدة في ضمان حماية البيانات البحرية واستمرارية العمليات. تسهم السفن والموانئ وأنظمة المراقبة والملاحة والتكنولوجيا الصناعية وأنظمة الشحن واللوجستيات في بيئة بحرية معقدة ذات سطح هجوم سيبراني واسع. ولهذه الغاية، يمكن أن تستهدف المجال البحري طائفة واسعة من الهجمات السيبرانية التي قد تصيب أنظمة المعلومات والاتصالات الضعيفة، مما يقوض السلامة والأمن. ويمكن أن يحسّن استخدام أنظمة الملاحة والمراقبة، التي تُعد جزءًا من مستشعرات التكنولوجيا التشغيلية البحرية، الوعي السيبراني الظرفي البحري. يبحث هذا المسح بشكل نقدي فيما إذا كان دمج بيانات التكنولوجيا التشغيلية، المستخدمة لتوفير الوعي الظرفي البحري، يمكن أن يحسّن أيضًا القدرة على كشف الحوادث السيبرانية في الوقت الحقيقي أو شبه الحقيقي. ويتضمن تحليلًا معمقًا للأدبيات ذات الصلة، مع التركيز على مستشعرات الترددات الراديوية وغيرها من المستشعرات، ومناهج دمج البيانات التي يمكن أن تساعد في تحسين الأمن السيبراني البحري.</p>
+  </section>
+
+  <section>
+    <h2>I. المقدمة</h2>
+    <p>أصبحت التقنيات السيبرانية عاملًا أساسيًا في الإدارة التشغيلية للعديد من الأنظمة، وفي سلامة وأمن القطاعات الحيوية مثل الصناعة البحرية [1]. وتُركّب أنظمة تكنولوجيا المعلومات (IT) وتكنولوجيا التشغيل (OT)، البحرية أو الصناعية، على متن السفن أو في البنى التحتية البحرية الشاطئية، أو قد تُربط بين السفينة والشاطئ موسعةً روابط الإنترنت أو الإنترانت إلى المحيطات [2]. كما أدى عصر الرقمنة إلى ظهور السفن ذاتية القيادة وغير المأهولة، مما خلق متطلبات جديدة للتشغيل البيني والاتصال الآمن [3, 4].</p>
+    <p>لقد حسّنت الروابط الساتلية الاتصال بشكل كبير، مما أتاح تبادل البيانات بكفاءة بين السفينة والشاطئ، وهو تقدم ضروري للاتصالات والملاحة والكفاءة التشغيلية عمومًا [6]. غير أن زيادة الاتصال ودمج المستشعرات والمشغلات في أنظمة القيادة والسيطرة أو واجهات الإنسان والآلة يوسّع أيضًا سطح الهجوم السيبراني المحتمل، إذ قد يستغل المهاجمون الثغرات في الأنظمة للقيام بأعمال خبيثة. وتشمل المخاطر المرتبطة بالتهديدات السيبرانية في الصناعة البحرية الوصول غير المصرح به، وخروقات البيانات، والتلاعب بالأنظمة، بل وحتى اختراق الأنظمة ذاتية القيادة.</p>
+    <p>يمثل كشف التهديدات السيبرانية أو الشذوذ في البيئة البحرية المعقدة والغنية بالتكنولوجيا مهمة صعبة. فعندما تؤثر الحوادث في أنظمة الملاحة أو المراقبة، يصبح من المهم تحديد أسبابها، التي قد تتراوح بين العوامل البيئية وأعطال الأنظمة والمناورات أو العمليات الحركية. لذلك يجب أن تكون أنظمة القيادة والسيطرة، أو أنظمة إدارة المعلومات والأحداث، قادرة على تمييز ما إذا كان الحادث ناجمًا عن استغلال سيبراني لأصل بحري ضعيف أم أنه يمثل شذوذًا بحريًا غير سيبراني. وتعزز هذه الأنظمة الوعي الظرفي البحري عبر دمج وتحليل البيانات من مستشعرات المراقبة ومصادر أخرى، مما يمكّن من كشف الشذوذ البحري.</p>
+    <p>يتمثل نطاق هذه الورقة في تحديد مستشعرات الترددات الراديوية التي يمكن استخدامها لتكوين الوعي الظرفي البحري، ثم التحقيق في إمكاناتها للوعي السيبراني الظرفي البحري. وتدرس الورقة ما إذا كان دمج بيانات هذه المستشعرات المستخدمة لإنشاء الوعي الظرفي البحري يمكن أن يساعد أيضًا في كشف التهديدات السيبرانية والاستجابة لها داخل المجال البحري، مما يسهم في الأمن العام ومرونة العمليات البحرية. ويعرض القسم الثاني المنهجية المتبعة، ويلخص القسم الثالث مشهد التهديدات السيبرانية البحرية ذات الصلة، ويستقصي القسم الرابع ما إذا كان دمج البيانات قد يحسّن كشف التهديدات السيبرانية، ويناقش القسم الخامس الاتجاهات المستقبلية، ويلخص القسم السادس النتائج.</p>
+  </section>
+
+  <section>
+    <h2>II. المنهجية</h2>
+    <h3>أ. منهج من ثلاث خطوات</h3>
+    <p>لدعم أهداف الأمن السيبراني لهذا البحث في المجال البحري، تم توظيف منهج منهجي من ثلاث خطوات. تضمنت الخطوة الأولى تحديد سطح الهجوم في المجال البحري ومشهد التهديدات السيبرانية فيه، استنادًا إلى الإطار التشريعي واللوائح الحالية والمبادئ التوجيهية والأدبيات ذات الصلة بالأمن السيبراني البحري، وشمل ذلك المستشعرات والأنظمة والترابط المحتمل بينها والبروتوكولات والشبكات التي تشكل مجتمعة سطح الهجوم. ثم قدم تحليل وتصنيف للحوادث السيبرانية الموثقة ضد شبكات وأنظمة الملاحة والمراقبة رؤى حول الثغرات والتداعيات المحتملة لاستغلالها.</p>
+    <p>ركزت المرحلة الثانية على تحديد وفهرسة الدراسات المتعلقة بدمج بيانات الرادار ونظام التعريف الآلي (AIS)، للتحقيق في إمكانية استخدامها لكشف التهديدات السيبرانية. وقد أُدخل مفهوم دمج بيانات الرادار ونظام التعريف الآلي لأول مرة في عام 2008 [16]، وشكّل تطورًا مهمًا في تكنولوجيا الأمن البحري. وتهتم هذه الورقة بشكل خاص بتطبيق دمج البيانات لكشف الحوادث السيبرانية جنبًا إلى جنب مع تشكيل الصورة البحرية المعترف بها، مع التركيز على القدرة المزدوجة لتحديد الشذوذ البحري والحوادث السيبرانية عبر دمج بيانات الرادار ونظام التعريف الآلي.</p>
+    <p>لتحديد الأعمال البحثية ذات الصلة، استُخدمت الكلمات المفتاحية التالية: (أ) «دمج البيانات» لنظام التعريف الآلي والرادار، فنتج عنها 1630 مخطوطة بحثية؛ (ب) «دمج البيانات» للأمن السيبراني البحري، فنتج عنها 133 مخطوطة؛ (ج) إشارة نظام التعريف الآلي و«زاوية الوصول» (عبارة دقيقة في أي مكان من المقال)، فنتج عنها 363 مخطوطة. وطُبقت بعد ذلك معايير انتقاء — مقال منشور في مجلة أو مؤتمر محكّم دولي، مكتوب بالإنجليزية، ويعرض بيانات تجريبية، مع إجراء دمج البيانات بواسطة مستشعرات على متن سفينة أو في بنية تحتية بحرية — فتم اختيار 227 ورقة للمعالجة التفصيلية، وحُللت وفق العناصر الأساسية لدمج البيانات: مصادر البيانات، والعمليات القائمة على الخوارزمية المطبقة، والغرض من الحل [20].</p>
+  </section>
+
+  <section>
+    <h2>III. مشهد التهديدات السيبرانية في السياق البحري</h2>
+    <h3>أ. الإطار القانوني والتنظيمي</h3>
+    <p>يُعد فهم المبادئ التوجيهية والمسؤوليات ذات الصلة خطوة حاسمة في تحديد مشهد التهديدات السيبرانية في المجال البحري. فقد نشرت رابطة BIMCO بالتعاون مع العديد من مالكي السفن [2] مبادئ توجيهية لإدارة المخاطر على متن السفن بالاستناد إلى إطار الأمن السيبراني للمعهد الوطني للمعايير والتكنولوجيا (NIST). واعتمدت المنظمة البحرية الدولية (IMO) القرار MSC.428(98) لمعالجة المخاطر السيبرانية في أنظمة الإدارة القائمة، وأوصت في التعميم MSC-FAL.1/Circ.3 بتدابير رفيعة المستوى لحماية السفن من التهديدات السيبرانية والثغرات. كما نشرت وكالة ENISA مبادئ توجيهية لإدارة المخاطر السيبرانية للموانئ [21]، وأصدرت الرابطة الدولية لهيئات التصنيف توصيات بشأن المرونة السيبرانية (IACS UR E-26 وE-27 ورقم 166).</p>
+    <h3>ب. الأصول البحرية</h3>
+    <p>يشهد القطاع البحري تحولًا عميقًا بفعل التقدم التكنولوجي، متطورًا نحو مجال يتسم بالاتصال الرقمي والذكاء والاستقلالية. وقد دُمجت الأنظمة والبروتوكولات القديمة في بروتوكول الإنترنت (IP)، مما أتاح فرصًا شبكية عديدة لم تكن متاحة من قبل. غير أن هذا التحول الرقمي يجعل السفن والبنى التحتية البحرية الحيوية — كالموانئ وأنظمة نقل الطاقة ومنشآت سلاسل الإمداد ومراكز العمليات — أكثر عرضة للتهديدات السيبرانية. وتشمل البيئة منصات متنقلة كالسفن والمركبات ذاتية القيادة، وبنى تحتية ساحلية، وجميعها قادرة على الاتصال الرقمي الداخلي والخارجي عبر الروابط الراديوية أو الاتصالات الساتلية.</p>
+    <h3>ج. العمليات البحرية والحوادث السيبرانية</h3>
+    <p>تُظهر الحوادث البحرية الموثقة قدرات المهاجمين فيما يتعلق باستغلال ثغرات أنظمة الملاحة والمراقبة. وتشمل الأمثلة اختراق نظام ECDIS لسفينة حربية غيّر الخرائط الملاحية الرقمية، وثغرة وجدتها McAfee سمحت بالسيطرة الكاملة على الدفع والملاحة عبر اتصال شبكي غير آمن، وفقدان نظام الملاحة لسفينة شحن لساعات بين قبرص وجيبوتي، وحادثة الانتحال لنظام GPS في البحر الأسود التي أثرت في سفن عديدة، وهجوم برمجية خبيثة على نظام ECDIS عبر ذاكرة USB، وهجوم أغلق المقر الرئيسي لشركة MSC في جنيف لخمسة أيام.</p>
+    <h3>د. الأنظمة المصابة وأنواع الهجمات</h3>
+    <p>تشمل الأنظمة التي قد تتأثر بالهجوم السيبراني أنظمة الملاحة والمراقبة مثل ECDIS وGNSS، إضافة إلى المستشعرات وأنظمة الاتصالات والإدارة والتحكم. وباستخدام إطار MITRE ATT&CK، صُنفت الهجمات على هذه الفئة من المستشعرات والمشغلات إلى: البرمجيات الخبيثة (بما فيها الفدية)، والقوة العمياء لتخمين بيانات الاعتماد، والحرمان من الخدمة (DoS)، والرجل في المنتصف لاعتراض الاتصالات أو تعديلها، والانتحال (كبث إشارة زائفة لنظام التعريف الآلي أو GPS)، والهجمات المتطورة على شبكات الملاحة، وهجمات سلاسل الإمداد. ولا بد من إنشاء صورة للوعي السيبراني الظرفي البحري لكشف التهديدات السيبرانية الفعال ضد أنظمة الملاحة والمراقبة الضعيفة.</p>
+  </section>
+
+  <section>
+    <h2>IV. نتائج مراجعة الأدبيات حول دمج البيانات البحرية</h2>
+    <h3>أ. الغرض</h3>
+    <p>يمكن أن يحسّن «دمج الرادار ونظام التعريف الآلي» الوعي الظرفي عبر تقليل الأخطاء الناجمة عن دقة مستشعر معين، كما يوفر ترابط البيانات استخبارات إضافية قادرة على تحسين أمن وسلامة الوسائل البحرية. وحدد المؤلفون عشر فئات تتعلق بغرض دمج البيانات، قُسمت إلى ثلاث مجموعات: تتبع الأهداف، والاستخبارات، والأمن والسلامة. وفي مجال الأمن والسلامة، يمكن لدمج بيانات الرادار ونظام التعريف الآلي أن يضمن السلامة على متن السفن والملاحة الآمنة ودقة التموضع، وهي من أهم عوامل تحقيق السلوك الآمن في البحر، إلى جانب تجنب الاصطدام والتتبع على شاشة ECDIS.</p>
+    <h3>ب. كشف شذوذ نظام التعريف الآلي</h3>
+    <p>يُستخدم لكشف شذوذ نظام التعريف الآلي بيانات الوقت الحقيقي أو شبه الحقيقي والبيانات التاريخية. ففي المعالجة الآنية، يُصنف انتحال نظام التعريف الآلي حادثًا قد يرتبط بأنشطة سيبرانية خبيثة، ويشمل ذلك انتحال هوية الخدمة المتنقلة البحرية (MMSI)، وإرسال رسائل خاطئة، وتزييف رسائل النظام، وكشف التبديل المتعمد لتشغيل جهاز الإرسال أو إطفائه. أما تحليل البيانات التاريخية فيُستخدم غالبًا لتحسين دقة معلومات تموضع السفن، وقد يكون جزءًا من آلية كشف سيبراني خبيث عبر إعادة بناء المسار أو التعلم أو كشف الأنشطة المشبوهة للسفن وفهم سلوكها.</p>
+    <h3>ج. مصادر البيانات</h3>
+    <p>في معظم الحالات، يُعد نظام التعريف الآلي المستشعر الأساسي للمراقبة البحرية، لأنه يُستخدم لأغراض الكشف السلبي وتحديد الأهداف المجهولة التي يكشفها الرادار، ويوفر استخدام معلومات الرادار ونظام التعريف الآلي معًا تكوين الصورة البحرية. ووُضع نظام التعريف الآلي في مركز الخريطة متصلًا بجميع المستشعرات الموجودة في الأدبيات، بنوعيه البري والساتلي — وهو تمييز ضروري لاختلاف الاتصالات الممكنة مع المستشعرات الأخرى. ومن أكثر المستشعرات استخدامًا رادارات الموجات السطحية عالية التردد (HFSWR) ورادارات الفتحة الاصطناعية (SAR) خاصة للعمليات فوق الأفق، بينما تُستخدم رادارات الليدار في السنوات الأخيرة على متن المركبات السطحية غير المأهولة. كما تشير الحلول إلى استخدام معدات استخبارات الإشارات (SIGINT) لتحليل إشارة نظام التعريف الآلي، مثل أجهزة تحديد الاتجاه (DF) للتخفيف من انتحال نظام التعريف الآلي أو GNSS ولأغراض التموضع.</p>
+    <h3>د. العمليات: الخوارزميات</h3>
+    <p>صُنفت الخوارزميات المطبقة في ثلاثة أنواع رئيسية: الأساليب الإحصائية، والشبكات العصبية، والمنطق الضبابي. يُنفذ دمج البيانات باستخدام الخوارزميات الإحصائية للتتبع (الدمج البايزي، ومرشح برنولي، وربط البيانات الاحتمالي المشترك JPDA)، والتحليل الحركي (مرشحات كالمان، ونموذج الحركة أورنشتاين-أولنبيك، ونموذج الخليط الغاوسي، وتحليل المسار)، والحسابات الاحتمالية. وتُستخدم النماذج العصبية لأغراض التنبؤ ودعم القرار والحسابات الدقيقة، بما فيها خوارزميات نشر الاعتقاد والشبكات العصبية المتكررة، بينما يُستخدم المنطق الضبابي متعدد العوامل لأغراض الترابط. ويمكن توظيف الخوارزميات الإحصائية لكشف الحوادث السيبرانية عبر تحديد الشذوذ في حالة المستشعر أو تدفق البيانات، مثل الدمج البايزي، أو التعرف على هجمات الشبكة، إضافة إلى حساب القيم الحدية لتحديد ما إذا كان الشذوذ ناجمًا عن حادث سيبراني.</p>
+    <h3>هـ. التحليل العام</h3>
+    <p>خلص التحليل إلى أن العناصر المشتركة المستخدمة للوعي الظرفي البحري — كالرادار ونظام التعريف الآلي وبيانات استخبارات الإشارات — يمكن دمجها لتعزيز قدرات كشف التهديدات السيبرانية، أي أن المستشعرات المستخدمة للوعي الظرفي البحري يمكن استخدامها أيضًا للوعي السيبراني الظرفي البحري. وبحسب المستشعر البحري المستخدم، تختلف البيانات المتوقعة (السرعة والموقع والمسار وغيرها)، ويمكن استخدام ترابط البيانات البحرية المتاحة للتحقيق في استغلال ثغرات أي مستشعر معني. فعندما يتعذر كشف الهدف بالرادار — المستشعر الأساسي النشط — ينبغي أن توضح الخوارزميات ما إذا كان نظام التعريف الآلي قد حدده، وعند تعذر الكشف بأي منهما يُقترح استخدام تحديد الاتجاه لتوفير بيانات استخبارات الإشارات لفحص موقع المسار المجهول. وتشمل حالات الاستخدام الممكنة: كشف انتحال نظام التعريف الآلي واختطافه والتلاعب ببياناته والحرمان من الخدمة؛ وكشف هجمات البرمجيات الخبيثة ضد ECDIS المسببة لتخريب بيانات المستشعرات وانتحال التموضع؛ وكشف الحرمان من الخدمة وهجمات التشويش والحرب الإلكترونية ضد الرادار.</p>
+  </section>
+
+  <section>
+    <h2>V. الاتجاهات المستقبلية</h2>
+    <p>كان هدف هذه الورقة المسحية دراسة التوليفة القائمة من المستشعرات والأنظمة — بما فيها نظام التعريف الآلي والرادار — العاملة على السفن والمراكز البحرية الشاطئية والتي يمكن استخدامها لكشف الهجمات السيبرانية. كما قُدم نهج لدمج البيانات يمكنه الاستفادة من معلومات المستشعرات البحرية المتاحة لغرض كشف التهديدات السيبرانية. ويمكن للمعرفة المكتسبة أن توجه تصميم جهود جديدة لكشف التهديدات، مع التركيز على الكشف في الوقت المناسب لتعزيز مرونة المؤسسة وقدرتها على الاستجابة واستعادة توافر العمليات المتأثرة والإسهام في اتخاذ قرارات موثوقة [262].</p>
+    <p>ستشمل التحقيقات المستقبلية العرض التفصيلي لتنفيذ الخوارزمية وتقييمها في الوقت الحقيقي أو شبه الحقيقي لكشف الهجمات السيبرانية في أنظمة الجسر المتكاملة (التكنولوجيا التشغيلية البحرية)، بدعم من ميدان سيبراني بحري يوفر بيئة محاكاة واقعية يمكن استخدامها أيضًا لأغراض التدريب. ويُعد تعزيز معارف ومهارات موظفي تكنولوجيا المعلومات وغيرهم وصناع القرار بشأن التهديدات السيبرانية البحرية الناشئة أمرًا حاسمًا [263]، ويمكن تحقيقه عبر تصميم مناهج للأمن السيبراني بمواد وأنشطة تعليمية جذابة [264] تُطوَّر فوق الميدان السيبراني البحري، مما يعزز الكفاءات المتعلقة بكشف التهديدات والاستجابة لها [265].</p>
+  </section>
+
+  <section>
+    <h2>VI. الخاتمة</h2>
+    <p>قد تُحدث الهجمات السيبرانية في المجال البحري أثرًا خطيرًا على أمن الأصل البحري، بل قد تغيّر أيضًا حالة سلامته، خاصة السفن. ففي حال نجاح هجوم سيبراني ضد نظام أو أصل بحري، قد يعرض الحادث الأرواح البشرية للخطر أو يؤثر في سلسلة الإمداد العالمية والاقتصاد. وقد بحث هذا العمل في دمج بيانات الرادار ونظام التعريف الآلي واستخبارات الإشارات، وقدم رؤى حول كيفية تحويل هذه البيانات واستخدامها لكشف الحوادث السيبرانية بفعالية في الوقت الحقيقي أو شبه الحقيقي، وتحقيق الوعي الظرفي البحري والوعي السيبراني الظرفي البحري معًا. وأخيرًا، حُددت القدرات المحتملة لخوارزميات دمج البيانات لغرض كشف الحوادث السيبرانية ضد أنظمة المراقبة والملاحة البحرية.</p>
+    <p>تتمثل المساهمات الرئيسية لهذا المسح في: (1) تحديد سطح الهجوم ومشهد التهديدات السيبرانية البحرية استنادًا إلى الأطر التشريعية والحوادث الموثقة؛ (2) مراجعة منهجية لأدبيات دمج بيانات الرادار ونظام التعريف الآلي (227 ورقة منتقاة من 2126)؛ (3) تصنيف ثلاثي الأبعاد للغرض ومصادر البيانات والعمليات الخوارزمية؛ (4) إثبات أن مستشعرات الوعي الظرفي البحري — الرادار ونظام التعريف الآلي وتحديد الاتجاه — يمكن أن تخدم أيضًا كشف الحوادث السيبرانية في الوقت الحقيقي؛ و(5) خارطة طريق نحو التنفيذ الآني في أنظمة الجسر المتكاملة عبر ميدان سيبراني بحري. وستركز الأعمال المستقبلية على التقييم التجريبي لخوارزمية الدمج المقترحة في بيئات تشغيلية واقعية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Cybersecurity is becoming an increasingly important aspect in ensuring maritime data protection and operational continuity. Ships, ports, surveillance and navigation systems, industrial technology, cargo, and logistics systems all contribute to a complex maritime environment with a significant cyberattack surface. To that aim, a wide range of cyberattacks in the maritime domain are possible, with the potential to infect vulnerable information and communication systems, compromising safety and security. The use of navigation and surveillance systems, which are considered as part of the maritime OT sensors, can improve maritime cyber situational awareness. This survey critically investigates whether the fusion of OT data, which are used to provide maritime situational awareness, may also improve the ability to detect cyberincidents in real time or near-real time. It includes a thorough analysis of the relevant literature, emphasizing RF but also other sensors, and data fusion approaches that can help improve maritime cybersecurity.</p>
+  </section>
+
+  <section>
+    <h2>I. Introduction</h2>
+    <p>Cybertechnologies have become key factors for the operational management of numerous systems, as well as the safety and security of critical sectors such as the maritime industry [1]. Information technology (IT) and operational technology (OT) systems, either maritime or industrial, are installed on board ships or in ashore maritime infrastructures or can be interlinked between ship and shore extending the internet or intranet links to the oceans [2]. Furthermore, the digitization era has resulted in the emergence of autonomous/unmanned ships, which has created new requirements for interoperability and secure connectivity [3,4].</p>
+    <p>The use of satellite links has significantly improved connectivity, allowing for efficient ship-to-shore data exchange — an advancement essential for communication, navigation, and overall operational efficiency [6]. However, the increased connectivity and integration of sensors/actuators into command-and-control (C2) systems or human–machine interfaces (HMIs) also expand the potential cyberattack surface, as attackers may exploit vulnerabilities in the systems, leading to malicious acts. The risks include unauthorized access, data breaches, system manipulation, or even the compromise of autonomous systems.</p>
+    <p>Detecting cyberthreats or anomalies in the complex and technology-rich maritime environment presents a challenging task. When incidents affect navigational or surveillance systems, it is important to determine their causes, which could range from environmental factors and system malfunctions to maneuvers or kinematic operations. Therefore, command and control, or information and event management systems, must adeptly identify whether an incident stems from cyberexploitation of a vulnerable maritime asset/system or represents a non-cyber-related maritime anomaly. These systems enhance maritime situational awareness (MSA) by integrating and analyzing data from surveillance sensors and other sources, enabling the detection of maritime anomalies.</p>
+    <p>The scope of this paper is to identify the radio frequency (RF) sensors that can be utilized for the composition of the maritime situational awareness (MSA) and then investigate their potential for maritime cyber situational awareness (MCSA). The paper examines if data fusion of such sensors used for the MSA establishment can also assist the detection and response to cyberthreats within the maritime domain, thereby contributing to the overall security and resilience of maritime operations. Section 2 presents the methodology, Section 3 summarizes the relevant maritime cyberthreat landscape, Section 4 investigates whether data fusion may improve the detection of cyberthreats, Section 5 discusses future directions, and Section 6 summarizes the findings.</p>
+  </section>
+
+  <section>
+    <h2>II. Methodology</h2>
+    <h3>A. Three-Step Approach</h3>
+    <p>To support the cybersecurity objectives of this research in the maritime domain, a three-step methodological approach was employed. The initial step involved the identification of the maritime domain's attack surface and its cyberthreat landscape, informed by the legislative framework, current regulations, guidelines, and relevant maritime cybersecurity literature — encompassing sensors and systems, potential interconnections among them, protocols, and networks, collectively constituting the attack surface. Subsequently, an analysis and taxonomy of documented cyberincidents against navigational and surveillance networks and systems offered insights into vulnerabilities and the potential repercussions of their exploitation.</p>
+    <p>The second phase of this work focused on identifying and cataloging studies related to the data fusion of radar and AIS, to investigate their potential to be used for detecting cyberthreats. The concept of AIS and radar data fusion was first introduced in 2008 [16], marking a significant development in maritime security technology. This paper is particularly interested in the application of data fusion for detecting cyberincidents alongside the formation of the Recognized Maritime Picture (RMP), emphasizing the dual capability of identifying maritime anomalies and cyberincidents through the integration of AIS and radar data.</p>
+    <p>To identify the relevant research work, the following keywords were considered: (a) AIS and radar "data fusion" (1630 manuscripts); (b) "data fusion" for maritime cybersecurity (133 manuscripts); and (c) AIS signal and "angle of arrival" (363 manuscripts). Selection criteria were then applied — peer-reviewed journal/conference article, written in English, reporting empirical data, with data fusion performed by sensors on board a ship and/or in a maritime infrastructure — yielding 227 papers for detailed review, analyzed along the key data fusion elements of data sources, algorithm-based operation, and solution purpose [20].</p>
+  </section>
+
+  <section>
+    <h2>III. Cyberthreat Landscape in the Maritime Context</h2>
+    <h3>A. Legal and Regulatory Framework</h3>
+    <p>Understanding the relative guidelines and responsibilities is a critical step in defining the cyberthreat landscape in the maritime domain. BIMCO, in cooperation with many shipowners [2], published guidelines to manage risks on board ships, considering the NIST Cybersecurity Framework. The International Maritime Organization (IMO) adopted resolution MSC.428(98) to address cyber risks in existing management systems, and recommended high-level measures in circular MSC-FAL.1/Circ.3 to safeguard ships from cyberthreats and vulnerabilities. ENISA published guidelines for cyber risk management for ports [21], and the International Association of Classification Societies issued recommendations on cyber resilience (IACS UR E-26, E-27, and No. 166).</p>
+    <h3>B. Maritime Assets</h3>
+    <p>The maritime sector is undergoing a profound transformation due to technological advancements, evolving into a realm characterized by digital connectivity, intelligence, and autonomy. Legacy systems and protocols have been integrated into the Internet Protocol (IP), unlocking numerous networking opportunities previously unattainable. However, this digital shift renders ships and critical maritime infrastructures — such as ports, energy transport systems, supply chain facilities, and operational centers — increasingly susceptible to cyberthreats. The environment includes mobile platforms such as ships and autonomous vessels as well as coastal infrastructures, all capable of internal and external digital communication via RF links or satellite communications (SATCOM).</p>
+    <h3>C. Maritime Operations and Cyberincidents</h3>
+    <p>Documented maritime incidents illustrate attacker capabilities in exploiting navigational and surveillance system vulnerabilities. Examples include the compromised ECDIS of a warship displaying altered nautical charts, a McAfee-found vulnerability permitting total control over propulsion and navigation via an unsecured network connection, a cargo ship's navigation system lost for hours between Cyprus and Djibouti, Black Sea GPS spoofing affecting many ships, an ECDIS malware infection via USB stick, and a malware attack that shut down shipowner MSC's Geneva HQ for five days.</p>
+    <h3>D. Infected Systems and Attack Types</h3>
+    <p>Systems that can be affected by cyberattack include navigational and surveillance systems such as ECDIS and GNSS, alongside sensors and communication or management/control systems. Using the MITRE ATT&CK framework, attacks on this sensor/actuator category were classified as: malware (including ransomware), brute force credential guessing, denial of service (DoS), man-in-the-middle interception or modification of data communications, spoofing (e.g., false AIS or GPS signals), sophisticated attacks on integrated navigation and surveillance networks, and supply chain attacks. A maritime cyber situational awareness (MCSA) picture must be established for effective cyberthreat detection against vulnerable navigational and surveillance systems.</p>
+  </section>
+
+  <section>
+    <h2>IV. Findings of the Literature Review Related to Maritime Data Fusion</h2>
+    <h3>A. Purpose</h3>
+    <p>"Radar and AIS fusion" can improve situational awareness by minimizing errors introduced by specific sensor accuracy, and data correlation provides additional intelligence capable of improving the security and safety of maritime means. The authors identified ten categories related to the purpose of data fusion, divided into three groups: target tracking, intelligence, and security and safety. For security and safety, AIS/radar data fusion can ensure on-board safety, safe navigation, and accurate positioning — among the most essential factors for secure behavior at sea — along with collision avoidance and ECDIS-view tracking.</p>
+    <h3>B. AIS Anomaly Detection</h3>
+    <p>Both real-/near-real-time and historical data are used for AIS anomaly detection. In real-time processing, AIS spoofing is classified as an incident potentially related to malicious cyberactivities, including MMSI spoofing, erroneous message transmission, message falsification, and detection of intentional AIS on/off switching. Historical AIS data analysis has mostly been used to improve vessel positioning accuracy, and it can also form part of a malicious cyberdetection mechanism through trajectory reconstruction, learning, detection of suspicious vessel activities, and ship behavior understanding.</p>
+    <h3>C. Data Sources</h3>
+    <p>In most cases, AIS is considered the primary sensor for maritime surveillance, used for passive detection and identification of unknown radar tracks; using both radar and AIS information provides the composition of the maritime picture. AIS sits at the center of the map, connected with all sensors found in the literature, split into land and satellite AIS — an essential distinction given different possible connections with other sensors. High-frequency surface wave radar (HFSWR) and synthetic aperture radars (SARs) are the most commonly used sensors, especially for over-the-horizon operations, while lidar radars are increasingly used on board USVs. The analysis also indicates solutions using SIGINT equipment such as direction finders (DF) for AIS/GNSS spoofing mitigation and localization purposes.</p>
+    <h3>D. Operations: Algorithms</h3>
+    <p>The applied algorithms were categorized into three main types: statistical methods, neural networks, and fuzzy logic. Data fusion is implemented using statistical algorithms for tracking (Bayesian fusion, Bernoulli filter, joint probabilistic data association — JPDA), kinematic analysis (Kalman filters, the Ornstein–Uhlenbeck motion model, Gaussian mixture models, trajectory analysis), and probability calculations. Neural models serve prediction, decision making, and accurate calculations, including belief propagation algorithms and recurrent neural networks, while multi-factor fuzzy logic serves correlation purposes. Statistical algorithms can be employed to detect cyberincidents by identifying anomalies in sensor status or data flow, such as through Bayesian fusion, or to recognize network attacks, and by computing thresholds to determine whether anomalies stem from a cyberincident.</p>
+    <h3>E. Overall Analysis</h3>
+    <p>The analysis concludes that common elements used for MSA — such as radar, AIS, and SIGINT data — could be fused to enhance cyberthreat detection capabilities; sensors used for MSA can also be used for MCSA. Depending on the maritime sensor used, the expected data vary (speed, location, course, and other parameters), and correlation of the available maritime data can be used to investigate vulnerability exploitation of any involved sensor. When a target cannot be detected by radar — the primary/active sensor — algorithms should clarify whether AIS identifies it; when neither detects it, direction finding (DF) is suggested to provide SIGINT data for further examination of the unknown track. Representative use cases include: detection of AIS spoofing, hijacking, data manipulation, and DoS; detection of ECDIS malware attacks causing sensor-data subversion and positioning spoofing; and detection of radar DoS, obfuscation, jamming, and other electronic warfare attacks.</p>
+  </section>
+
+  <section>
+    <h2>V. Future Directions</h2>
+    <p>The aim of this survey paper was to examine the existing combination of sensors/systems, including AIS and radar, operating on ships and onshore maritime centers that can be used for detecting cyberattacks. Furthermore, a data fusion approach was presented that can make use of the available maritime sensor information for the purpose of cyberthreat detection. The knowledge gained can drive the design of new threat detection endeavors, focusing on the timely detection of cyberthreats to enhance an organization's resilience and responsiveness to restore the availability of affected operations and contribute to reliable decision-making [262].</p>
+    <p>Future investigations will include the detailed presentation of the implementation and evaluation of the algorithm in real/near-real time for the detection of cyberattacks in the integrated bridge systems (maritime OT), supported through a maritime cyber range providing a realistic simulation environment that can further be utilized for training purposes. Enhancing the knowledge and skills of IT/non-IT personnel and decision-makers on emerging maritime cyberthreats is crucial [263], achievable by designing cybersecurity curricula with engaging learning material and activities [264] developed over a maritime cyber range, effectively enhancing threat detection and response competencies [265].</p>
+  </section>
+
+  <section>
+    <h2>VI. Conclusions</h2>
+    <p>Cyberattacks in the maritime domain may cause a serious impact on the security of a maritime asset but also may change the safety situation of the maritime asset, especially the ships. In the case of a successful cyberattack against a maritime system/asset, the incident may endanger human lives or impact the global supply chain and economy. This work investigated the fusion of radar, AIS, and SIGINT data and provided insights as to how these data could be transformed and utilized to effectively detect cyberincidents in real/near-real time and achieve not only MSA but also MCSA. Finally, the potential capabilities of data fusion algorithms are determined, for the purpose of detecting cyberincidents, against maritime surveillance and navigation systems.</p>
+    <p>The key contributions of this survey are: (1) identification of the maritime attack surface and cyberthreat landscape grounded in legislative frameworks and documented incidents; (2) a systematic review of radar/AIS data fusion literature (227 papers selected from 2126); (3) a three-dimensional taxonomy of purpose, data sources, and algorithmic operations; (4) demonstration that MSA sensors — radar, AIS, and direction finding — can also serve real-time cyberincident detection; and (5) a roadmap toward real-time implementation in integrated bridge systems via a maritime cyber range. Future work will focus on experimental evaluation of the proposed fusion algorithm in realistic operational environments.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected)</h2>
+    <ol dir="ltr">
+      <li>IMO, "Guidelines on Maritime Cyber Risk Management," MSC-FAL.1/Circ.3, 2017.</li>
+      <li>BIMCO et al., "The Guidelines on Cyber Security Onboard Ships," v4, 2021.</li>
+      <li>IMO, "Resolution MSC.428(98) — Maritime Cyber Risk Management in Safety Management Systems," 2017.</li>
+      <li>ENISA, "Port Cybersecurity: Good Practices for Cyber Risk Management," 2019.</li>
+      <li>NIST, "Framework for Improving Critical Infrastructure Cybersecurity," v1.1, 2018.</li>
+      <li>MITRE Corporation, "MITRE ATT&CK Framework." [Online]. Available: <a href="https://attack.mitre.org">https://attack.mitre.org</a></li>
+      <li>SOLAS, "International Convention for the Safety of Life at Sea," Ch. V — Safety of Navigation.</li>
+      <li>G. Potamos, E. Stavrou and S. Stavrou, "Enhancing Maritime Cybersecurity through Operational Technology Sensor Data Fusion," <em>Sensors</em>, vol. 24, no. 11, 3458, 2024. <a href="https://doi.org/10.3390/s24113458">doi:10.3390/s24113458</a></li>
+      <li>... [full reference list — 265 refs — available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s24113458">10.3390/s24113458</a> · License: CC BY 4.0 · Funded by the EU (SecAwarenessTruss, GA No. 101128049)</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
