@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نظام AIS المحمي: عرض قدرة لتوفير المصادقة وسلامة الرسائل — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Protected AIS: A Demonstration of Capability Scheme to Provide Authentication and Message Integrity</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نظام AIS المحمي: عرض قدرة لتوفير المصادقة وسلامة الرسائل</h2>
+
+  <div class="paper-meta">
+    <span>👤 Gary C. Kessler</span>
+    <span>📄 TransNav, vol. 14, no. 2, pp. 279–286, 2020</span>
+    <span>🔗 <a href="https://doi.org/10.12716/1001.14.02.02">10.12716/1001.14.02.02</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ARABIC -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يوفر نظام التعريف الآلي (AIS) الوعي الظرفي للسفن في البحر. يعاني نظام AIS من عدد من الثغرات الأمنية المعروفة التي قد تؤدي إلى عدة أنواع من الهجمات، بما في ذلك القدرة على إنشاء سفن شبحية، أو رسائل تحذير أو أرصاد جوية كاذبة، أو مساعدات ملاحية افتراضية (AtoN) زائفة. وقد اقتُرح عدد من الأساليب، بمستويات متفاوتة من التعقيد، لتأمين نظام AIS بشكل أفضل، بل إن بروتوكولات AIS الناشئة ستطبق بعض هذه الآليات. ومع ذلك، لم يُبذل إلا القليل لتأمين المعايير الحالية التي ستظل مستخدمة لبعض الوقت. تقدم هذه الورقة نظام AIS المحمي (pAIS)، وهو تطبيق لعرض القدرة يستخدم أساليب التشفير بالمفتاح العام لمعالجة عدة ثغرات أمنية في AIS، مع الحفاظ على التوافق مع الإصدارات السابقة والقدرة على التشغيل البيني مع الأجهزة غير الداعمة لـ pAIS.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تناقش هذه الورقة نظام التعريف الآلي (AIS)، وبعض ثغراته الأمنية، ومشروعًا برمجيًا لإثبات المفهوم يُسمى نظام AIS المحمي (pAIS) يعالج بعض الثغرات المحددة. يقدم القسمان الثاني والثالث من هذه الورقة نظرة عامة رفيعة المستوى على نظام AIS وتعرضاته الأمنية على التوالي. يصف القسم الرابع التشفير بالمفتاح العام، وهو الأساس للحماية التي يوفرها pAIS. ويقدم القسمان الخامس والسادس على التوالي نظرة عامة ومثالًا تفصيليًا على تشغيل pAIS. ويعرض القسم السابع بعض قيود pAIS كحل ويقترح مزيدًا من التطوير، يليه ملخص واستنتاجات في القسم الثامن.</p>
+    <p>نظام AIS هو نظام تتبع يتيح للسفن في البحر أن تكون على علم بوجود بعضها البعض (ضمن نطاق 10–20 ميلًا بحريًا تقريبًا)، وللسلطات تحديد السفن ومراقبتها في منطقة مسؤوليتها، وللسفن والمحطات الشاطئية تبادل معلومات الملاحة والأرصاد الجوية والسلامة وغيرها من المعلومات. وعقب التسرب النفطي الذي تسببت فيه ناقلة النفط إكسون فالديز عندما جنحت في ألاسكا عام 1989، صُمم نظام AIS كنظام للوعي الظرفي البحري في التسعينيات واعتُمد دوليًا في الاتفاقية الدولية لسلامة الأرواح في البحر (SOLAS) لعام 2002.</p>
+    <p>يُلزم الفصل الخامس من اتفاقية SOLAS، المعنون «سلامة الملاحة»، السفن ذات الحجم و/أو الوظيفة المعينة بحمل أجهزة إرسال واستقبال AIS كإجراء سلامة إضافي؛ ويوجد هذا الإلزام نفسه في المادة 33 CFR 164.46 من مدونة اللوائح الفيدرالية الأمريكية. وتُسمى السفن المطلوب منها تشغيل AIS بالفئة A وتشمل السفن ذات 300 طن إجمالي أو أكثر التي تسافر دوليًا، وسفن القوة التجارية التي يبلغ طولها 65 قدمًا (19.8 مترًا) أو أكثر، وسفن القوة المرخصة لحمل أكثر من 150 راكبًا؛ وتُعفى السفن الحربية من هذه المتطلبات رغم أن جميع السفن الحربية الحديثة تمتلك قدرات AIS. أما الفئة B فتشير إلى السفن التي تحمل AIS باختيار القبطان أو التي لا يلزمها حمل معدات الفئة A. وتبث أجهزة AIS عمومًا معلومات الموقع كل 2–180 ثانية، حسب فئة السفينة وسرعتها ومعدل دورانها.</p>
+  </section>
+
+  <section>
+    <h2>2. نظرة عامة على نظام التعريف الآلي (AIS)</h2>
+    <p>يُستخدم نظام AIS اليوم أساسًا للوعي الظرفي وتجنب الاصطدام، وإدارة حركة السفن، والمراقبة الساحلية. وقد صُمم النظام بحيث يمكن للسفينة المجهزة بأجهزة استقبال مناسبة أن ترى حركة المرور المحلية وتحدد بسرعة اسم سفينة أخرى، ورقم تسجيلها لدى المنظمة البحرية الدولية (IMO)، وحجمها (مثل الطول والعرض والغاطس)، وموقعها (خط العرض وخط الطول)، ومسارها، واتجاهها، ووجهتها، وحالتها (مثل راسية أو مربوطة أو جارية بقوة المحرك أو الشراع)، وغيرها من المعلومات.</p>
+    <p>توفر الرابطة الوطنية للإلكترونيات البحرية (NMEA) عائلة من المعايير التي تصف الاتصالات الكهربائية والمتسلسلة لربط الإلكترونيات البحرية. يحدد معيار NMEA 0183 رسائل AIS القائمة على المحارف والاتصال منخفض السرعة عبر الناقل المتسلسل لشبكة منطقة المتحكم (CAN). ويصف معيار NMEA 2000 مخطط رسائل AIS ثنائيًا عالي السرعة يعمل أيضًا عبر ناقل CAN. أما معيار OneNet الناشئ فسيصف بروتوكول رسائل ثنائية عالية السرعة عبر بروتوكول الإنترنت (IP) وEthernet، وسيُدخل أيضًا آليات أمنية للإرسال.</p>
+    <p>ليست السفن والقوارب المكونات النشطة الوحيدة في شبكة AIS. تشمل المحطات المتنقلة داخل شبكة AIS أيضًا أجهزة الإرسال والاستقبال للبحث والإنقاذ (AIS-SART)، ومرسلات AIS الخاصة بالأشخاص الساقطين في البحر (MOB)، وأجهزة منارات تحديد المواقع في حالات الطوارئ (EPIRB) المجهزة بـ AIS، والأقمار الصناعية المجهزة بـ AIS، وطائرات البحث والإنقاذ المجهزة بـ AIS. وتشمل محطات AIS الثابتة المحطات الأساسية وأجهزة إعادة الإرسال والمساعدات الملاحية (AtoNs) المجهزة خصيصًا. وليست أنظمة الملاحة العالمية عبر الأقمار الصناعية (GNSS) مكونًا مباشرًا في AIS، لكنها توفر معلومات التموضع الجغرافي الأساسية لجميع المكونات المتنقلة.</p>
+  </section>
+
+  <section>
+    <h2>3. الثغرات الأمنية السيبرانية في نظام AIS</h2>
+    <p>صُمم نظام AIS في حقبة لم يكن فيها الأمن ضرورة ملحة كما هو اليوم؛ بل صُمم في الأيام الأولى للإنترنت التجاري. ناقش العديد من الباحثين الثغرات الأمنية في AIS، ومنهم بالدوزي وآخرون، وغودوسيس وكاتسيكاس، وكيسلر وكرايغر وهاس، وTrend Micro. سيستعرض هذا القسم بعض قضايا أمن AIS، ولا سيما تلك التي يعالجها برنامج pAIS.</p>
+    <p>كما ذُكر أعلاه، يبث نظام AIS الرسائل على ترددات الراديو البحرية العامة ذات التردد العالي جدًا (VHF). فلا يقتصر الأمر على أن أي مستمع يمكنه سماع كل الحركة فحسب، بل يمكن لأي شخص أن يرسل الرسائل أيضًا. ففي السنوات الماضية، كانت هناك حاجة إلى أجهزة AIS باهظة الثمن نسبيًا من أجل الإرسال؛ أما اليوم فتوجد طرق عديدة لبناء أنظمة غير مكلفة لاستقبال رسائل AIS وإرسالها معًا.</p>
+    <p>إن استخدام تردد بث مشترك لنظام AIS فعال جدًا من حيث موارد الاتصالات، لكنه ينذر بثغرة أمنية محتملة أخرى، وهي اغتصاب المهاجم لعرض النطاق الترددي لمنع الأجهزة الأخرى من الإرسال، أو التأثير سلبًا على عملية مزامنة الحصص الزمنية المشتركة، أو تغيير معلومات حجز/تعيين الحصص. ويمكن لأي من هذه الهجمات أن يُخرج فعليًا محطات AIS الأخرى من الخدمة. وقد وصف بالدوزي وآخرون في الأصل أنواعًا عديدة من الهجمات على AIS بسبب بعض نقاط الضعف الخاصة ببروتوكول AIS، ومنها: غياب فحوص الصلاحية، إذ لا تتضمن رسائل AIS أي معلومات تحقق جغرافية، ما يعني إمكانية إرسال رسالة AIS من أي موقع مع الادعاء بأنها من موقع آخر؛ وغياب فحوص التوقيت، إذ لا تحتوي رسائل AIS على معلومات تحقق من الطابع الزمني، ما يعني أن المهاجم السيبراني يمكنه إعادة تشغيل معلومات AIS صالحة في وقت لاحق من اختياره؛ وغياب المصادقة، إذ لا يوفر بروتوكول AIS أي آلية لمصادقة المرسل، وبالتالي يمكن لأي شخص قادر على صياغة حزمة AIS أو إرسالها أن ينتحل صفة أي جهاز AIS آخر؛ وغياب فحوص السلامة، إذ تُرسل رسائل AIS بصورة غير مشفرة وغير موقعة، ما يسهل على الدخيل اعتراض الإرسال و/أو تعديله.</p>
+    <p>انطلاقًا من هذه الثغرات، يمكن لفاعل خبيث انتحال سفينة أو مساعدة ملاحية غير موجودة، وإعادة تشغيل أحداث AIS سابقة، وإطلاق تنبيهات استغاثة أو اصطدام كاذبة، وإرسال معلومات جوية أو أرصاد جوية زائفة، وشن هجوم حجب الخدمة على نظام بث AIS، أو تعديل معلومات السفن المبثوثة على الهواء. وتظهر الأمثلة العملية سفنًا شبحية قبالة ساحل دايتونا بيتش بولاية فلوريدا، ومساعدات ملاحية افتراضية مزيفة في مدخل بونس دي ليون توجه رواد القوارب إلى الجانب الضحل من المدخل — دون وجود أي آلية لمصادقة مرسل هذه المعلومات رغم أن لخفر السواحل الأمريكي وحده صلاحية بث معلومات المساعدات الملاحية الافتراضية في الولايات المتحدة.</p>
+  </section>
+
+  <section>
+    <h2>4. التشفير بالمفتاح العام</h2>
+    <p>العنصر الأمني الأساسي في pAIS — بل في جميع الأساليب التي توفر الأمن لإرسال AIS — هو استخدام التشفير. يستخدم نظام AIS المحمي أساليب التشفير بالمفتاح العام (PKC). وُصف مفهوم التشفير بالمفتاح العام لأول مرة عام 1976؛ وكان أول تطبيق له عام 1977 هو مخطط ريفست وشامير وأدلمان (RSA)، الذي لا يزال خوارزمية التشفير بالمفتاح العام الأكثر شيوعًا. وعلى عكس تشفير المفتاح السري الذي يستخدم مفتاحًا سريًا مشتركًا للتشفير وفك التشفير معًا، تستخدم أساليب التشفير بالمفتاح العام مفتاحين لهما الخصائص التالية: يُشتق المفتاحان كزوج ويرتبطان رياضيًا؛ ومعرفة أحد المفتاحين لا تؤدي إلى معرفة المفتاح الآخر؛ ويمكن استخدام أي من المفتاحين لتشفير البيانات ثم يُستخدم المفتاح الآخر لفك تشفيرها (ولهذا السبب يُسمى التشفير بالمفتاح العام أيضًا بالتشفير غير المتماثل).</p>
+    <p>يوضح نموذج التشفير بالمفتاح العام طرفين متواصلين، أليس وبوب. يمتلك كل منهما ملف مفتاح خاص (PVT) يخزن مفتاحه الخاص محليًا (أي على جهازه الخاص). كما يمكن لكليهما الوصول إلى عدد كبير من المفاتيح العامة (PUB) عبر قاعدة بيانات مشتركة قد تكون على الإنترنت أو شبكة الشركة، أو قد تُتقاسم بين جميع المستخدمين. فإذا أرادت أليس إرسال رسالة خاصة إلى بوب، فإنها تشفرها بمفتاح بوب العام؛ ولا يملك المفتاح الخاص سواه، فلا يستطيع فك تشفير الرسالة إلا هو. وإذا أرادت أليس توثيق رسالة ترسلها — أي إثبات أنها المرسلة — فإنها تشفر الرسالة بمفتاحها الخاص؛ ويمكن قراءة هذه الرسالة من قبل أي شخص يمكنه الوصول إلى مفتاحها العام، ويثبت نجاح فك التشفير أنها كانت المرسلة لأنها وحدها تمتلك مفتاحها الخاص.</p>
+    <p>إن القدرة على توثيق مرسل رسائل AIS هي ما يجعل التشفير بالمفتاح العام قابلًا للتطبيق على نظام pAIS.</p>
+  </section>
+
+  <section>
+    <h2>5. نظرة عامة تشغيلية على نظام AIS المحمي</h2>
+    <p>اقتُرح عدد من الحلول لنقاط الضعف الأمنية في نظام AIS. فقد شهد نظام AIS المشفر (EAIS) ومتغيرات أخرى قائمة على التشفير استخدامًا لأساطيل خاصة الأغراض أو محدودة. وحتى عند استخدام مفتاح مشترك، يحل نظام EAIS المشكلات المذكورة أعلاه عبر إدخال السفن بعناية في مجموعة «موثوقة»، لكن فائدته محدودة بالنسبة للسفن الأخرى والوعي الظرفي لحركة الملاحة البحرية «العامة». ويقدم غودوسيس وكاتسيكاس نظرة عامة ونقدًا لعدة حلول أخرى لأمن AIS، وهي حلول قائمة على التشفير تعالج القضايا المذكورة أعلاه لكنها تتطلب تغييرات كبيرة في بروتوكول AIS و/أو تضيف عدة طبقات من التعقيد إلى شبكة الاتصالات.</p>
+    <p>مشروع pAIS هو جهد لإثبات المفهوم يهدف إلى معالجة القضايا الأمنية لنظام AIS بحل بسيط حسابيًا، لا يضيف تأخيرًا ملحوظًا في الإرسال، ومتوافق مع البروتوكولات الحالية، ويمكن تنفيذه عبر ترقية برمجية بسيطة، وقادر على التواصل مع القاعدة المثبتة من المعدات. ورغم أنه أُنشئ بشكل مستقل، فإن نظام pAIS هو في الأساس تحقيق للوضع 2 (المصادقة والسلامة) من الأمن الذي وصفه غودوسيس وكاتسيكاس في اقتراحهما لبروتوكول AIS آمن. نظام AIS المحمي هو وضع تشغيل مصمم لمعالجة ثلاث ثغرات أمنية محددة: غياب سلامة الرسائل، وغياب سلامة التوقيت، وغياب مصادقة المرسل.</p>
+    <p>تُعالج هذه الثغرات على النحو التالي: أولًا، لتوفير سلامة الرسائل، يحسب نظام pAIS مجموعًا تحققيًا (checksum) من 8 بتات على رسالة AIS الكاملة وليس مجرد أجزاء الجمل الفردية. الرسالة عبارة عن سلسلة ثنائية مكونة من بايتات سداسية البتات؛ ويُحسب المجموع التحققي لـ pAIS كعملية XOR على مستوى البايت للسلسلة الثنائية الكاملة. ثانيًا، لتوفير سلامة التوقيت، تُضاف سلسلة طابع زمني (مثل 20191014103714). ثالثًا، لتوفير مصادقة المرسل، يُجمع المجموع التحققي والطابع الزمني لإنشاء سلسلة من 16 محرفًا تُشفر بالمفتاح الخاص المرتبط برقم MMSI لجهاز AIS المرسل، ما يُنشئ ما يُسمى سلسلة الحماية (protect string).</p>
+  </section>
+
+  <section>
+    <h2>6. نظرة عامة على برمجيات نظام AIS المحمي</h2>
+    <p>تُستخدم وحدة Crypt::OpenSSL::RSA البرمجية في لغة Perl لتوليد أزواج مفاتيح التشفير بالمفتاح العام (العامة والخاصة)، والتشفير وفك التشفير. تستخدم برمجيات pAIS مفاتيح RSA بطول 256 بت، مولدةً سلسلة حماية بطول 258 بت (ما يضيف عبئًا بنسبة 25–350% على رسائل AIS القياسية). اختير نموذج التشفير هذا لأنه يوفر خياري التشفير أو فك التشفير باستخدام المفتاح العام أو الخاص. ورغم أن تشفير رسالة بالمفتاح الخاص مشابه منطقيًا لوظيفة توقيع الرسالة في معظم مكتبات التشفير، فإن التجارب على توقيعات الرسائل وجدت أن أقصر مفتاح RSA قابل للاستخدام كان بطول 512 بت، وأنتج هذا المفتاح الكبير ووظيفة التوقيع سلسلة حماية بطول 540 بت اعتُبرت عبئًا كبيرًا حتى بالنسبة لنظام النموذج الأولي.</p>
+    <p>كُتبت برمجيات النموذج الأولي لـ pAIS بلغة Perl وتركز على الرسائل المنسقة وفق NMEA 0183. تتألف البرمجيات من مجموعة برامج يمكن استخدامها لتوليد رسائل AIS قياسية ومحمية، وكذلك فك تشفيرها. يوضح المثال التالي كيفية مقارنة رسائل AIS القياسية والمحمية باستخدام رسالة من النوع 1 (تقرير الموقع للفئة A) بالمعطيات التالية: MMSI ‏يساوي 369121053، وخط الطول ‏‑080.92 درجة، والسرعة 17.2 عقدة، والمسار فوق الأرض 260 درجة، والاتجاه 272 درجة. تُبث رسالة NMEA 0183 القياسية بهذه المعلومات على الهواء، وتُظهر الأشكال في الورقة الأصلية جملة AIS والسلسلة الثنائية الممثلة لحمولة الرسالة والرسالة المفكوكة.</p>
+    <p>في وضع الحماية لـ pAIS، تُلحق سلسلة الحماية بطول 258 بت بالبيانات القياسية، مولدةً رسالة AIS من جملتين (تمثل البتات المظللة سلسلة الحماية). وعندما تُقرأ الرسالة بواسطة جهاز pAIS يعمل في وضع الحماية، تُفسَّر المعلومات كما هو موضح في الشكل 10 من الورقة الأصلية.</p>
+    <p>ستُفك شفرة رسالة pAIS أيضًا بصورة صحيحة بواسطة أجهزة وبرمجيات AIS حسنة السلوك غير القادرة على العمل في وضع الحماية، لأن الأجهزة القياسية ينبغي أن تتجاهل البيانات غير المتوقعة في نهاية الإرسال. وهكذا يتحقق التوافق مع الإصدارات السابقة في هذا المخطط: جهاز إرسال AIS يعمل في وضع الحماية يلحق سلسلة الحماية — المشفرة بمفتاحه الخاص — بإرسال AIS الصادر القياسي، وجهاز الاستقبال الذي يعمل في وضع الحماية يفك تشفير سلسلة الحماية باستخدام المفتاح المرتبط برقم MMSI لمحطة الإرسال، بينما يتجاهلها الجهاز غير الداعم للحماية.</p>
+  </section>
+
+  <section>
+    <h2>7. القيود ومجالات التطوير المستقبلي</h2>
+    <p>قُصد بمشروع pAIS أن يكون مجرد عرض قدرة، وهو بذلك نموذج أولي بقيود تشغيلية. فالأسلوب الموصوف هنا لا يستخدم أقوى الخوارزميات الممكنة لأسباب بسيطة؛ إذ كان القصد من النموذج الأولي إظهار البساطة والتوافق مع الإصدارات السابقة وسهولة الدمج في البرمجيات الحالية. ومن قيود pAIS: استخدام عملية XOR على مستوى البايت ليس أقوى مجموع تحققي متاح، لكنه يضيف بساطة للنظام عبر إعادة استخدام الشيفرة، إذ إن خوارزمية المجموع التحققي لـ NMEA جزء من برمجيات AIS أصلًا، وهذا المجموع كافٍ لاحتياجاتنا، فرغم أن المهاجم قد يتمكن من توليد رسالة زائفة بالقوة الغاشمة بنفس المجموع التحققي لرسالة صالحة، فمن غير المرجح استخدام ذلك في هجوم فعلي، وعلى أي حال يمكن استخدام عدد من خوارزميات فحص التكرار الدوري القوية من 8 بتات (CRC-8) دون إضافة حجم إضافي لسلسلة الحماية؛ كما أن الطابع الزمني الحالي يستخدم سلسلة من 14 محرفًا مقروءة بشريًا تتضمن الشهر واليوم والسنة والساعة والدقيقة والثانية، وكان يمكن الحصول على المعلومات نفسها باستخدام زمن Unix من 10 بايتات ما يقلل البيانات المراد تشفيرها بأربعة بايتات، لكن الاختبار أظهر أن طول سلسلة الحماية بقي عند 258 بايتًا؛ وقد يتكرر طابع زمني معين إذا أرسل جهاز AIS أكثر من رسالة خلال ثانية واحدة أو إذا أرسل جهازان مختلفان رسالة خلال الثانية نفسها، وهذا التكرار ليس مشكلة لأن الطابع الزمني مقصود به توفير سلامة التوقيت على أساس كل رسالة، ولا يُشترط تفرده لأنه غير مرتبط بتحديد الرسالة.</p>
+    <p>لا يحل نظام AIS المحمي جميع المشكلات الأمنية لنظام AIS. فهو لا يتصدى على وجه الخصوص لتهديد المطلعين، عندما يُستخدم جهاز مرخص موجود أصلًا في النظام لإرسال رسائل زائفة. بل لا يمكن فعل الكثير للحماية من فاعل خبيث يُدخل يدويًا معلومات زائفة أو غير صحيحة في جهاز AIS موثق أو يضبطه على نحو مغلوط. كما لا يوفر مخطط pAIS أي تحقق جغرافي. ويرتبط كل جهاز AIS وكل رسالة AIS برقم MMSI بحيث يمكن ربط المفاتيح العامة والخاصة برقم MMSI، لكن الأسلوب الموصوف هنا لا يحدد كيفية توزيع المفاتيح العامة؛ ففي النموذج الأولي لـ pAIS يُستخدم برنامج Pretty Good Privacy (PGP) لسلاسل المفاتيح المشتركة وشبكة الثقة، رغم أن هذا الحل غير قابل للتوسع إلى شبكة عالمية تضم عشرات الآلاف من أجهزة AIS. ويصف غودوسيس وكاتسيكاس آلية بديلة قائمة على إنشاء بنية تحتية عالمية للمفاتيح العامة البحرية (PKI) على غرار X.509، حيث تُدار سلطات التسجيل والتصديق وتُشغَّل تحت رعاية المنظمة البحرية الدولية (IMO) والسلطات البحرية الوطنية.</p>
+    <p>أخيرًا، صُمم نظام pAIS للعمل مع الرسائل المنسقة وفق NMEA 0183. ومن الناحية المفاهيمية، لا يوجد سبب يمنع توسيعه لحماية رسائل NMEA 2000 الثنائية.</p>
+  </section>
+
+  <section>
+    <h2>8. الملخص والخاتمة</h2>
+    <p>وصفت هذه الورقة نظام pAIS، وهو برنامج لإثبات المفهوم يضيف سلامة البتات وسلامة الطابع الزمني ومصادقة المرسل إلى رسائل AIS وفق NMEA 0183. صُمم المخطط ليكون بسيطًا ومتوافقًا مع الإصدارات السابقة وقادرًا على التعايش مع التطبيقات غير الداعمة لـ pAIS. طُوّر هذا البرنامج النموذجي لأغراض بحثية لإثبات أن مثل هذا المخطط ممكن وقابل للتطبيق.</p>
+    <p>تزداد أهمية نظام AIS مع إلحاق تطبيقات جديدة بالنظام؛ فالسفن ذاتية القيادة العابرة للمحيطات والقريبة من السواحل ليست سوى الأحدث في سلسلة طويلة من الاستخدامات الحرجة للمهمة لنظام AIS. وكل استخدام جديد لنظام AIS يضيف إلى الأسباب التي تدعو الصناعة إلى إيجاد طرق لتأمين النظام بشكل أفضل.</p>
+  </section>
+
+  <section>
+    <h2>المراجع</h2>
+    <p>القائمة المرجعية الكاملة (20 مصدرًا) متاحة في <a href="https://www.transnav.eu/files/Protected_AIS_A_Demonstration_of_Capability_Scheme_to_Provide_Authentication_and_Message_Integrity,1002.pdf" target="_blank">ملف PDF الأصلي</a>، وتشمل: Balduzzi وآخرون (2014) حول تقييم أمن AIS؛ وGoudossis وKatsikas (2019) نحو نظام AIS آمن؛ وKessler وآخرون (2018) إطار تصنيف للأمن السيبراني البحري؛ وHall وآخرون (2015) حول AIS المتأثر بمعيار IEEE 1609؛ ومعايير IALA وIMO وITU وNMEA؛ وتقرير خفر السواحل الأمريكي حول نظام AIS المشفر (EAIS).</p>
+  </section>
+</div>
+
+<!-- ENGLISH -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>The Automatic Identification System (AIS) provides situational awareness for vessels at sea. AIS has a number of known security vulnerabilities that can lead to several types of attacks on AIS, including the ability to create ghost vessels, false warning or meteorological messages, or bogus virtual aids-to-navigation (AtoN). A number of methods, with varying levels of complexity, have been proposed to better secure AIS and, indeed, emerging AIS protocols will implement some of these mechanisms. Nevertheless, little has been done to secure the current standards, which will remain in use for some time. This paper presents Protected AIS (pAIS), a demonstration of capability implementation using public-key cryptography methods to address several AIS security vulnerabilities, maintain backward compatibility, and be able to interoperate with non-pAIS devices.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>This paper discusses the Automatic Identification System (AIS), some of its security vulnerabilities, and a proof-of-concept software project called Protected AIS (pAIS) that addresses some of the identified vulnerabilities. Sections II and III of this paper provide a high-level overview of AIS and its security exposures, respectively. Section IV describes public-key cryptography, the basis for the protections provided by pAIS. Sections V and VI, respectively, provide an overview and detailed example of the operation of pAIS. Section VII offers some of the limitations of pAIS as a solution and suggests further development, followed by Summary and Conclusions in Section VIII.</p>
+    <p>AIS is a tracking system that allows vessels at sea to be aware of each other's presence (within 10–20 nautical miles or so), authorities to identify and monitor vessels in their area of responsibility, and ships and shore stations to exchange navigation, meteorological, safety, and other items of information. Following the oil spill caused when the oil tanker Exxon Valdez ran aground in Alaska in 1989, AIS was designed as a maritime situational awareness system in the 1990s and adopted internationally in the 2002 International Convention for the Safety of Life at Sea (SOLAS).</p>
+    <p>Chapter V of the SOLAS agreement, titled "Safety of Navigation," mandates that ships of a certain size and/or function carry AIS transceivers as an additional safety measure; this same mandate is found in 33 CFR 164.46 in the United States Code of Federal Regulations. Vessels required to operate AIS are referred to as Class A and include ships of 300 or more gross tons traveling internationally, commercial power vessels of 65 or more feet (19.8 or more meters) in length, and power vessels certified to carry more than 150 passengers; warships are exempted from these requirements although all modern warships have AIS capability. Class B refers to those vessels carrying AIS at the option of the captain or that do not have a requirement to carry Class A equipment. AIS devices generally transmit position information messages every 2–180 seconds, depending upon the ship's class, speed, and rate-of-turn.</p>
+  </section>
+
+  <section>
+    <h2>2. AIS Overview</h2>
+    <p>AIS is used today primarily for situational awareness and collision avoidance, vessel traffic management, and coastal surveillance. The system is designed so that a ship fitted with appropriate receivers can view the local traffic and quickly determine another ship's name, its International Maritime Organization (IMO) registration number, size (e.g., length, beam, and draft), position (latitude and longitude), course, bearing, destination, status (e.g., anchored, moored, underway under power or sail, etc.), and other information.</p>
+    <p>The National Marine Electronics Association (NMEA) provides a family of standards describing electrical and serial communications for the interconnection of marine electronics. NMEA 0183 defines character-based AIS messages and low-speed communication over the Controller Area Network (CAN) serial bus. NMEA 2000 describes a higher speed, binary-based AIS message scheme, also running over the CAN bus. The emerging OneNet standard will describe a protocol of high-speed, binary messages over the Internet Protocol (IP) and Ethernet; OneNet will also introduce security mechanisms for transmissions.</p>
+    <p>Ships and boats are not the only active components in the AIS network. Mobile stations within the AIS network also include AIS search-and-rescue transponders (AIS-SART), man-overboard (MOB) AIS transmitters, Emergency Position Indicating Radio Beacon (EPIRB) AIS devices, AIS-equipped satellites, and AIS-equipped search-and-rescue aircraft. Fixed AIS stations include AIS base stations, repeaters, and specially equipped aids to navigation (AtoNs). Global Navigation Satellite Systems (GNSS) are not a direct component of AIS, but they provide essential geographic positioning information to all of the mobile components.</p>
+  </section>
+
+  <section>
+    <h2>3. Cybersecurity Vulnerabilities in AIS</h2>
+    <p>AIS was designed during an era when security was not the imperative that it is today; indeed, it was designed during the very earliest days of the commercial Internet. Many researchers have discussed security vulnerabilities in AIS, including Balduzzi et al., Goudossis and Katsikas, Kessler, Craiger, and Haass, and Trend Micro. This section will review some of the AIS security issues, particularly those addressed by the pAIS software.</p>
+    <p>As stated above, AIS broadcasts messages on public maritime VHF radio frequencies. Not only can any listener hear all of the traffic, but anyone can transmit messages. In years past, relatively expensive AIS hardware was required in order to transmit; today, there are many ways to build inexpensive systems to both receive and transmit AIS messages.</p>
+    <p>The use of a shared broadcast frequency for AIS is very efficient in terms of communications resources but foreshadows another potential AIS security vulnerability, namely, an attacker usurping the bandwidth in order to block other devices from transmitting, negatively impacting the shared time slot synchronization process, or changing slot reservation/assignment information. Any of these attacks can effectively knock other AIS stations off of the air. Balduzzi et al. originally described many types of attack on AIS due to some specific AIS protocol weaknesses, including: lack of validity checks, as AIS messages include no geographic validation information, meaning that it is possible for a bad actor to send an AIS message from any location while purporting to be in another location; lack of timing checks, as AIS messages contain no timestamp verification information, meaning that a cyberattacker can replay valid AIS information at a later time of their choosing; lack of authentication, as the AIS protocol provides no mechanism to authenticate the sender, thus anyone with the ability to craft or otherwise transmit an AIS packet can impersonate any other AIS device; and lack of integrity checks, as AIS messages are transmitted in an unencrypted and unsigned form, making it simple for an interloper to intercept and/or modify transmissions.</p>
+    <p>From these vulnerabilities, a bad actor can spoof a non-existent vessel or AtoN, replay past AIS events, trigger false SOS or collision alerts, send bogus weather or other meteorological information, launch a denial-of-service attack on the AIS broadcast system, or modify vessel information being broadcast on the air. Practical examples include ghost vessels off the coast of Daytona Beach, Florida, and spoofed virtual AtoNs at Ponce De Leon Inlet directing boaters toward the shallow side of the inlet — with no mechanism to authenticate the sender of this information even though the U.S. Coast Guard has sole authority in the U.S. for transmitting virtual AtoN information.</p>
+  </section>
+
+  <section>
+    <h2>4. Public-Key Cryptography</h2>
+    <p>The primary security element of pAIS — and, indeed, all methods that provide security to AIS transmissions — is the use of cryptography. Protected AIS employs public-key cryptography (PKC) methods. The PKC concept was first described in 1976; the first implementation, in 1977, was the Rivest, Shamir, and Adleman (RSA) scheme, which remains the most common PKC algorithm in use. Unlike secret-key cryptography that uses a shared secret key for both encryption and decryption, PKC methods use two keys with the following properties: the two keys are mathematically related and derived as a pair; knowledge of one key does not yield knowledge of the other key; and either key can be used to encrypt data while the other key is then used to decrypt the data (for this reason, PKC is also referred to as asymmetric cryptography).</p>
+    <p>The PKC model shows two communicating parties, Alice and Bob. Each has a private (PVT) key file that stores their private key locally (i.e., on their own device). They both also have access to a large number of public (PUB) keys through a shared database which could be on the Internet or corporate network, or could just be shared amongst all of the users. If Alice wishes to send a private message to Bob, she encrypts it with Bob's public key; only he possesses the private key so only he can decrypt the message. If Alice wants to authenticate a message that she sends — i.e., prove that she is the sender — she will encrypt the message with her own private key; this message can be read by anyone who can access her public key and successful decryption proves that she was the sender since only she possesses her private key.</p>
+    <p>It is the ability to authenticate the sender of AIS messages that makes PKC applicable to pAIS.</p>
+  </section>
+
+  <section>
+    <h2>5. Protected AIS Operational Overview</h2>
+    <p>A number of solutions to the security weaknesses of AIS have been proposed. Encrypted AIS (EAIS) and other cryptography-based variants have seen use for special-purpose or limited fleets. Even when using a shared key, EAIS solves the problems described above by carefully introducing vessels into the "trusted" group. It has limited utility, however, for other vessels and the situational awareness of "public" maritime traffic. Goudossis and Katsikas provide an overview and critique of several other solutions to AIS security; these solutions are encryption-based and address the issues mentioned above but require significant changes to the AIS protocol and/or add several layers of complexity to the communication network.</p>
+    <p>The pAIS project is a proof-of-concept effort to address security issues of AIS with a solution that is computationally simple, does not add a noticeable delay time in transmission, is backward compatible with existing protocols, could be implemented by a simple software upgrade, and would be able to communicate with the embedded base of equipment. While created independently, pAIS is essentially a realization of Mode 2 (authentication and integrity) security described by Goudossis and Katsikas in their proposal for a Secure AIS protocol. Protected AIS is a mode of operation designed to address three specific security vulnerabilities: lack of message integrity, lack of timing integrity, and lack of sender authentication.</p>
+    <p>These vulnerabilities are addressed as follows: first, to provide message integrity, pAIS calculates an 8-bit checksum over the entire AIS message rather than merely the individual sentence fragments. The message is a binary string composed of 6-bit bytes; the pAIS checksum is computed as a byte-by-byte exclusive OR (XOR) of the entire binary string. Second, to provide timing integrity, a timestamp string is appended (e.g., 20191014103714). Third, to provide sender authentication, the checksum and timestamp are combined to create a 16-character string, which is encrypted with the private key associated with the sending AIS device's MMSI. This creates the so-called protect string.</p>
+  </section>
+
+  <section>
+    <h2>6. Protected AIS Software Overview</h2>
+    <p>Perl's Crypt::OpenSSL::RSA module is employed for generation of PKC public-private key pairs, encryption, and decryption. The pAIS software employs 256-bit RSA keys, generating a 258-bit protect string (which adds 25–350% overhead to standard AIS messages). This particular encryption module was selected because it offers the options of encrypting or decrypting with either the public or private key. While encrypting a message with the private key is logically similar to the message signature function in most encryption libraries, experiments with message signatures found that the shortest usable RSA key was 512 bits in length. This large key and the signature function produced a 540-bit protect string which was deemed too much overhead even for the prototype system.</p>
+    <p>The prototype pAIS software is written in Perl and focuses on NMEA 0183 formatted messages. The software comprises a suite of programs that can be used to generate standard and protected AIS messages, as well as decode them. The following example shows how standard and protected AIS messages compare, using a Type 1 (Position Report Class A) message with the following parameters: MMSI = 369121053, longitude = −080.92°, speed = 17.2 knots, course over ground = 260°, and heading = 272°. A standard NMEA 0183 message with this information would be transmitted over the air, and the figures in the original paper show the AIS sentence, the binary string representing the message payload, and the decoded message.</p>
+    <p>In pAIS protected mode, the 258-bit protect string is appended to the standard data, generating a two-sentence AIS message (the highlighted bits represent the protect string). When the message is read by a pAIS device using protect mode, the information is interpreted as shown in Figure 10 of the original paper.</p>
+    <p>The pAIS message will also be decoded properly by well-behaving AIS devices and software unable to operate in protect mode because standard devices should ignore the unexpected data at the end of the transmission. Backward compatibility is thus realized in this scheme: an AIS transmitter operating in protect mode appends the protect string — encrypted with its private key — to its standard outgoing AIS transmission, a receiving station operating in protect mode decrypts the protect string using the key associated with the sending station's MMSI, while a non-protect-capable device simply ignores it.</p>
+  </section>
+
+  <section>
+    <h2>7. Limitations and Areas for Further Development</h2>
+    <p>The pAIS project was intended only as a demonstration of capability and, as such, is a prototype with operational limitations. The method described here does not use the strongest possible algorithms for some simple reasons; the intent of the prototype was to demonstrate simplicity, backward compatibility, and ease of integration into existing software. Some of pAIS's limitations include: the use of byte-wise XOR is not the strongest checksum available, but it adds simplicity to the system by re-using code, since the NMEA checksum algorithm is already part of AIS software, and this checksum is sufficient for our needs — while an attacker might be able to brute-force a bogus message with the same checksum as a valid message, this is unlikely to be used in a real-time attack, and in any case a number of strong eight-bit cyclic redundancy check (CRC-8) algorithms could be employed without adding additional size to the protect string; the current timestamp uses a 14-character, human-readable string containing month, day, year, hour, minute, and second, whereas the same information could be obtained using 10-byte Unix epoch time, which would shorten the amount of data to encrypt by four bytes, although upon testing the length of the protect string remained at 258 bytes; and a given timestamp might be duplicated if an AIS device transmits more than one message within a second or if two different AIS devices transmit a message within the same second, though this duplication is not a problem because the timestamp is only intended to provide timing integrity on a per-message basis and uniqueness is not required since it is not tied to message identification.</p>
+    <p>Protected AIS does not solve all of AIS's security problems. In particular, it does not counter an insider threat, when an authorized device already in the system is used to send bogus messages. Indeed, little can be done to protect against a bad actor who manually enters or otherwise configures bogus or incorrect information into an authenticated AIS device. The pAIS scheme also provides no geographic verification. Every AIS device and AIS message has an MMSI associated with it so that public and private keys could be tied to the MMSI, but the method described here does not specify how the public keys are distributed; for the pAIS prototype, the Pretty Good Privacy (PGP) model of shared keychains and a web of trust is used although that solution is not scalable to a world-wide network of tens of thousands of AIS devices. Goudossis and Katsikas describe an alternative mechanism based upon the creation of a global, X.509-like Maritime Public Key Infrastructure (PKI), where the registration and Certification Authorities would be managed and operated under the auspices of the International Maritime Organization (IMO) and national maritime authorities.</p>
+    <p>Finally, pAIS was designed to work with NMEA 0183 formatted messages. Conceptually, there is no reason why it could not be extended to protect NMEA 2000 binary messages.</p>
+  </section>
+
+  <section>
+    <h2>8. Summary and Conclusion</h2>
+    <p>This paper has described pAIS, proof-of-concept software that adds bit integrity, timestamp integrity, and sender authentication to NMEA 0183 AIS messages. The scheme is designed to be simple, backward compatible, and able to co-exist with non-pAIS implementations. This prototype software was developed for research applications to demonstrate that such a scheme was viable and feasible.</p>
+    <p>AIS is increasing in importance as new applications get attached to the system; autonomous ocean-going and near-coastal vessels are merely the latest in a long line of mission-critical uses for AIS. Every new use of AIS adds to the reasons that the industry has to find ways to better secure the system.</p>
+  </section>
+
+  <section>
+    <h2>References</h2>
+    <p>Full reference list (20 sources) available in the <a href="https://www.transnav.eu/files/Protected_AIS_A_Demonstration_of_Capability_Scheme_to_Provide_Authentication_and_Message_Integrity,1002.pdf" target="_blank">original PDF</a>, including: Balduzzi et al. (2014) on AIS security evaluation; Goudossis &amp; Katsikas (2019) towards a secure AIS; Kessler et al. (2018) maritime cybersecurity taxonomy framework; Hall et al. (2015) on IEEE 1609-influenced AIS; IALA, IMO, ITU and NMEA standards; and the U.S. Coast Guard Encrypted AIS (EAIS) interface design description.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.12716/1001.14.02.02">10.12716/1001.14.02.02</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('toggle-' + (lang === 'both' ? 'both' : lang)).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side'); el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    for (var i = 0; i < Math.min(arSections.length, enSections.length); i++) {
+      var pair = document.createElement('div'); pair.className = 'compare-section';
+      var enCol = document.createElement('div'); enCol.className = 'compare-en';
+      var enLabel = document.createElement('div'); enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH'; enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div'); arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div'); arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية'; arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol); pair.appendChild(arCol); container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare';
+  document.getElementById('toggle-ar').textContent = '🇸🇦 العربية';
+  document.getElementById('toggle-en').textContent = isAr ? '🇬🇧 الإنجليزيّة' : '🇬🇧 English';
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
