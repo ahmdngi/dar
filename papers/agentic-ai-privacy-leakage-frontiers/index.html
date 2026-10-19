@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الجانب المظلم للذكاء المستقل: تسرب البيانات وإخفاقات الخصوصية في الذكاء الاصطناعي الوكيل — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">The Dark Side of Autonomous Intelligence: A Survey on Data Leakage and Privacy Failures in Agentic AI</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">الجانب المظلم للذكاء المستقل: مسح لتسرب البيانات وإخفاقات الخصوصية في الذكاء الاصطناعي الوكيل</h2>
+
+  <div class="paper-meta">
+    <span>👤 Rohini Bhosale, Pankaj Chandre, Sushma Mehetre, Swati Powar, Shubhra Mathur, Arun Ghandat</span>
+    <span>📄 Front. Comput. Sci., 2026 · Vol. 8, 1802727</span>
+    <span>🔗 <a href="https://doi.org/10.3389/fcomp.2026.1802727">10.3389/fcomp.2026.1802727</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p><strong>المقدمة:</strong> أدى التطور السريع للذكاء الاصطناعي من النماذج اللغوية الكبيرة الثابتة إلى أنظمة الذكاء الوكيل المستقلة إلى قدرات جديدة مثل الذاكرة الدائمة والاستدلال المعزز بالأدوات والتعاون متعدد الوكلاء. ورغم أن هذه التطورات تعزز قابلية التطبيق الواقعي إلى حد كبير، فإنها تخلق فئة جديدة غير مستكشفة بما يكفي من مخاطر الخصوصية، تشمل الاحتفاظ غير المقصود بالمعلومات الحساسة ونشرها وتضخيمها عبر المهام والمستخدمين ودورات التنفيذ. وتركز الأبحاث القائمة في الغالب على النماذج عديمة الحالة أو أحادية الاستدلال، تاركةً الآثار الخصوصية للأنظمة الوكيلة غير مفهومة بما يكفي.</p>
+    <p><strong>المنهج:</strong> تقدم هذه الدراسة تحليلًا معماريًا شاملًا لتسرب البيانات في أنظمة الذكاء الوكيل. يصوغ الإطار المقترح سير عمل الوكيل من النهاية إلى النهاية ويفحص منهجيًا كيف يمكن للمعلومات الحساسة أن تعبر المكونات الرئيسة، بما فيها وحدات الذاكرة الدائمة وعمليات التخطيط والاستدلال وطبقات استدعاء الأدوات وقنوات التواصل بين الوكلاء وحلقات الاستقلالية المعتمدة على التغذية الراجعة. وبناءً على هذه البنية، طُوّر تصنيف منظم لمسارات التسرب ورُبط بنماذج تهديد واقعية ومتجهات هجوم مرصودة في الانتشارات العملية.</p>
+    <p><strong>النتائج:</strong> حدد التحليل مسارات تسرب متعددة فريدة بأنظمة الذكاء الوكيل، مُظهرًا كيف يمكن للبيانات أن تبقى وتنتشر وتُكشف دون قصد عبر مكونات النظام ودوراته التشغيلية. وتكشف النتائج أن آليات التسرب هذه أكثر تعقيدًا وانتشارًا من تلك المرصودة في سياقات النماذج اللغوية التقليدية، لا سيما بسبب تكامل الذاكرة والأدوات والتفاعلات متعددة الوكلاء.</p>
+    <p><strong>المناقشة:</strong> تسلط الدراسة الضوء على محدودية دفاعات الخصوصية والأمن المتمحورة حول النماذج اللغوية عند تطبيقها على الأنظمة الوكيلة المستقلة. وتؤكد الحاجة إلى استراتيجيات تخفيف واعية بدورة الحياة وعلى مستوى المكونات تعالج مخاطر الخصوصية عبر سير عمل الوكيل بأكمله. ويوفر المنظور المعماري المقترح أساسًا لتصميم أنظمة ذكاء وكيل مراعية للخصوصية بالتصميم، ويدعم النشر الأكثر أمانًا في المجالات الحساسة والمنظمة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>شهدت التطورات الحديثة في الذكاء الاصطناعي تحولًا نموذجيًا من النماذج اللغوية الكبيرة الثابتة القائمة على التوجيه إلى أنظمة الذكاء الوكيل القادرة على التخطيط المستقل واستخدام الأدوات والاحتفاظ بالذاكرة واتخاذ القرارات الموجهة بالأهداف. وتتفاعل أنظمة الذكاء الوكيل باستمرار مع محيطها الخارجي، وتستخدم أدوات خارجية، وتتعاون مع وكلاء آخرين، وتحافظ على حالات داخلية دائمة، خلافًا للنماذج اللغوية التقليدية التي تعمل في تفاعلات معزولة أحادية الدور أو محدودة الأدوار. ورغم أن هذه المزايا تحسّن قابلية الاستخدام وأتمتة سير العمل إلى حد كبير، فإنها تُدخل مخاطر ناشئة في الخصوصية وتسرب البيانات ما تزال غير مستكشفة بما يكفي في الأبحاث الحديثة.</p>
+    <p>تركزت المجالات البحثية الرئيسة حول تسرب البيانات في تعلم الآلة التقليدي والأنظمة القائمة على النماذج اللغوية على حفظ بيانات التدريب، وهجمات عكس النماذج، واستدلال العضوية، وكشف المعلومات عبر التوجيه. لكن الذكاء الوكيل يغيّر مشهد التهديد جذريًا عبر إطالة دورة حياة البيانات الحساسة إلى ما بعد الاستدلال الواحد. فقد تحفظ الأنظمة الوكيلة دون قصد المعلومات الخاصة أو السرية وتنشرها وتعيد كشفها بين المهام والمستخدمين والجلسات عبر وحدات الذاكرة طويلة الأمد وقواعد البيانات المتجهة وسجلات التنفيذ وحلقات التغذية الراجعة. وتُفاقم هذه السلوكيات الدائمة والمستقلة آثار حتى أصغر الانتهاكات الخصوصية.</p>
+    <p>ويزيد الاستدلال المعزز بالأدوات — حيث يستخدم الوكلاء قواعد البيانات وخدمات الويب وبرمجيات المؤسسات ومفسّرات الشيفرة وواجهات البرمجة لإنجاز الأهداف — من المخاطر، إذ قد تمر بيانات الاعتماد ومدخلات المستخدم الحساسة والوثائق المملوكة والبيانات المنظمة عبر عدة مكونات غير موثوقة، كلٌّ منها نقطة تسرب محتملة. علاوة على ذلك، يمكن التلاعب بسلوك الوكيل عبر هجمات حقن التوجيه غير المباشرة المضمّنة في الوثائق المسترجعة أو محتوى الويب أو مخرجات الأدوات، مما قد يدفع الوكيل إلى كشف السياق الداخلي أو محتويات الذاكرة أو بيانات تشغيلية حساسة دون قصد صريح من المستخدم.</p>
+    <p>ومن السمات المميزة الأخرى التعاون متعدد الوكلاء، حيث يتحادث الوكلاء المستقلون ويوزعون الأدوار ويتقاسمون المخرجات الوسيطة لإنجاز المهام الصعبة. ورغم أن هذا التنسيق يزيد قابلية التوسع والأداء، فإنه يخلق قضايا خصوصية تتعلق بمشاركة المعلومات الطارئة والتباس الأدوار وحدود الثقة. وقد تُنتهك مبادئ تقليل البيانات وتحديد الغرض التي تشترطها تشريعات الخصوصية المعاصرة إذا نُشرت معلومات قُدّمت لوكيل واحد لغرض معين إلى آخرين دون ضبط وصول كافٍ.</p>
+    <p>يقدم هذا المسح تحقيقًا شاملًا ومنظمًا لمخاطر تسرب البيانات الخاصة بأنظمة الذكاء الوكيل: تصنيف جديد لمصادر التسرب يغطي الذاكرة والأدوات والتخطيط والتواصل بين الوكلاء وحلقات التغذية الراجعة، ثم تقييم نقدي لتقنيات التخفيف الحالية، وفحص أدق لمسارات الهجوم الواقعية ونماذج التهديد وإخفاقات الخصوصية عبر مجالات التطبيق، تأكيدًا على العقبات المفتوحة ومجالات البحث المستقبلية.</p>
+  </section>
+
+  <section>
+    <h2>2. الخلفية والأعمال ذات الصلة</h2>
+    <p>يمكن تصنيف الأبحاث القائمة حول خصوصية الذكاء الاصطناعي وأمنه على نطاق واسع في أربعة منظورات رئيسة: (1) مخاطر الخصوصية على مستوى النموذج مثل حفظ بيانات التدريب وهجمات الاستدلال، (2) التلاعب العدائي بما فيه حقن التوجيه وتسميم السياق، (3) الثغرات على مستوى النظام في البنى متعددة الوكلاء والمتكاملة مع الأدوات، (4) تحليلات الحوكمة والتنظيم التي تعالج الامتثال والمساءلة. ورغم أن هذه الدراسات تقدم رؤى قيمة حول مكونات معزولة لأمن الذكاء، فإن التصنيف الموحد الذي يعالج تحديدًا مسارات تسرب البيانات في أنظمة الذكاء الوكيل المستقلة ما يزال محدودًا، وهذه هي الفجوة التي تحفّز الإطار المنظم المقترح في هذا العمل.</p>
+    <p>قدّم معيار AgentLeak تقييمًا شاملًا لنحو 5000 أثر تنفيذي في أنظمة النماذج اللغوية متعددة الوكلاء، مقيسًا تسرب الخصوصية كميًا دون تقديم تصنيف معماري على مستوى المكونات يفسر سبب انتشار التسرب عبر الذاكرة والأدوات وحلقات التغذية الراجعة. ويقترح إطار PrivAgent اختبارًا أحمر وكيليًا منهجيًا لكشف الثغرات الخصوصية المنهجية، لكن تركيزه على اكتشاف الهجمات لا على النمذجة الهيكلية لمسارات التسرب. وتقدم دراسات المسح الأمني الواسعة مثل مبادئ انعدام الثقة في الأنظمة الوكيلة الموزعة حوكمة للثقة ونشرًا طرفيًا دون تصنيف مفصل للتسرب قائم على دورة الحياة. أما معيار MAGPIE فيوفر قياسًا سياقيًا للخصوصية في الأنظمة متعددة الوكلاء دون تحليل التخطيط واستمرارية الذاكرة واستدعاء الأدوات كمصادر مخاطر معمارية موحدة.</p>
+    <h3>2.1. النماذج اللغوية الكبيرة وتسرب البيانات (خط الأساس)</h3>
+    <p>رغم أن النماذج اللغوية الكبيرة أظهرت قدرة مذهلة في توليد اللغة الطبيعية ومعالجتها، فهي عرضة جوهريًا لأنواع كثيرة من تسرب البيانات: فقد تحفظ بيانات التدريب الخاصة دون قصد، مما يخلق مشاكل خصوصية مثل هجمات عكس النماذج واستدلال العضوية، وقد تُجبَر عبر الاستغلال القائم على التوجيه على إفشاء معلومات حساسة أو سرية. ورغم اقتراح استراتيجيات تخفيف مثل ترشيح المخرجات وتنقية البيانات والخصوصية التفاضلية، فإنها تعالج غالبًا سيناريوهات الاستدلال الأحادي أو التفاعلات عديمة الحالة، ومن ثم لا تراعي بما يكفي قضايا الخصوصية الناشئة عن الذاكرة الدائمة واتخاذ القرار المستقل وتفاعلات الأدوات في أنظمة الذكاء الوكيل.</p>
+    <h3>2.2. ما هو الذكاء الاصطناعي الوكيل؟</h3>
+    <p>الذكاء الوكيل عائلة من أنظمة الذكاء الاصطناعي مصممة للعمل باستقلالية عبر تحديد الأهداف وتنظيم الأنشطة وتنفيذ المهام باستخدام موارد خارجية وتعديل السلوك استجابةً للتغذية الراجعة. وخلافًا للنماذج اللغوية النمطية، تستطيع الأنظمة الوكيلة تنفيذ مهام معقدة متعددة الخطوات لفترات أطول عبر الحفاظ على حالات داخلية، مستخدمةً غالبًا وحدات ذاكرة قصيرة وطويلة الأمد. وتشمل المكونات الجوهرية وحدة الاستدلال أو التخطيط وطبقة استدعاء الأدوات وأنظمة إدارة الذاكرة وحلقات التأمل الذاتي. وتمكّن هذه الاستقلالية الوكلاء من العمل بأدنى إشراف بشري، لكنها تخلق أيضًا قضايا أمن وخصوصية جديدة بسبب التفاعلات الديناميكية مع المحيط الخارجي والاحتفاظ المستمر بالبيانات.</p>
+    <h3>2.3. أطر الذكاء الوكيل وحالات الاستخدام</h3>
+    <p>تُظهر الأطر الوكيلة الحديثة مثل Auto-GPT وLangGraph وCrewAI وBabyAGI الاستخدام العملي للذكاء المستقل: إذ تمكّن الوكلاء من تفكيك الأهداف إلى مهام أصغر واستخدام موارد متنوعة مثل قواعد البيانات والبحث عبر الإنترنت وبيئات تنفيذ الشيفرة والتفاعل مع وكلاء آخرين. ويتزايد توظيف الذكاء الوكيل في مساعدي المؤسسات وأتمتة العمليات الروبوتية وعمليات الأمن السيبراني ودعم القرار الصحي وأنظمة الحوكمة الذكية. وتدير هذه التطبيقات بيانات حساسة شخصية وتنظيمية وخاضعة للتنظيم، مما يجعلها عرضةً بشكل خاص لتسرب البيانات وانتهاكات الخصوصية إذا لم تُبنَ مسارات عمل الوكلاء وآليات الذاكرة بعناية.</p>
+  </section>
+
+  <section>
+    <h2>3. تصنيف تسرب البيانات في الذكاء الوكيل</h2>
+    <p>تقدم أنظمة الذكاء الوكيل قنوات تسرب بيانات جديدة ومعقدة تتجاوز قيود التصاميم التقليدية القائمة على النماذج اللغوية، إذ يوسّع سلوكها التعاوني واستقلاليتها وذاكرتها الدائمة وتكاملها مع الأدوات سطح الهجوم. يقدم هذا القسم تصنيفًا متمحورًا حول المكونات، مصنفًا مصادر التسرب وفق المكونات المعمارية الجوهرية لفحص هذه المخاطر منهجيًا، وموفرًا إطارًا متسقًا لفهم الكيفيات التي قد يكشف بها تشغيل الوكيل المعلومات الحساسة أو ينشرها أو يضخمها دون قصد.</p>
+    <h3>3.1. منهجية اشتقاق التصنيف والتحقق منه</h3>
+    <p>اشتُق التصنيف الخماسي عبر تحليل معماري منظم وتوليف عبر الأدبيات: أولًا، حُللت 18 دراسة حديثة محكمة ومسودات أولية تركز على أمن الذكاء الوكيل ومخاطر الخصوصية والاختبار الأحمر، واستُخرج كل سيناريو تسرب موثق أو إخفاق معياري أو متجه هجوم وصُنّف. ثانيًا، رُبط كل حدث تسرب بالمكونات المعمارية المتكررة عبر أطر الوكلاء الرئيسة — وحدات الذاكرة ومحركات الاستدلال والتخطيط وطبقات استدعاء الأدوات وواجهات التواصل وحلقات التغذية الراجعة — فكشف التجميع خمس عناقيد تسرب مهيمنة. ثالثًا، أُجري تحليل تجميعي عبر الأوراق لضمان الاتساق المفاهيمي: فإذا وصفت دراسات مستقلة متعددة آليات تسرب تنطوي على الحد المعماري نفسه (مثل إعادة استخدام الذاكرة أو استدعاء الأدوات)، جُمعت في فئة تسرب موحدة. وأخيرًا، تحقق عبر معيارين: اختبار الاكتمال (كل متجه هجوم موثق في الأدبيات المستعرَضة يمكن ربطه بفئة واحدة على الأقل) واختبار عدم التداخل (كل فئة تقابل حدًا معماريًا متميزًا، مما يقلل التكرار المفاهيمي). ويظل التصنيف قابلًا للتوسع لاستيعاب متجهات الهجوم الناشئة.</p>
+    <h3>3.2. تسرب البيانات الناجم عن الذاكرة</h3>
+    <p>تتميز أنظمة الذكاء الوكيل بذاكرتها الدائمة التي تتيح الاحتفاظ بالبيانات واسترجاعها عبر المهام والجلسات. ورغم فائدتها للتفكير طويل الأمد والتخصيص، فإنها تطرح مشاكل خصوصية جسيمة: فقد تُحفظ معلومات حساسة — بيانات اعتماد وسجلات طبية ووثائق مملوكة ومعرفات شخصية — في مخازن الذاكرة طويلة الأمد أو قواعد البيانات المتجهة دون ضبط وصول صارم أو سياسات انتهاء صلاحية. وقد ينتج عن استمرارية الذاكرة تلوث بيانات عبر المهام أو عبر المستخدمين، حيث تظهر معلومات قدمها مستخدم في ردود لمستخدم آخر دون قصد. علاوة على ذلك، يمكن إدخال محتوى ضار أو حساس عمدًا في ذاكرة الوكيل عبر هجمات تسميم الذاكرة، مما يؤدي إلى تسربات متكررة ومتضخمة بمرور الوقت. وتسرب الذاكرة خطير بشكل خاص بسبب ديمومته وإعادة استخدامه المستقلة، خلافًا لسياقات النماذج اللغوية المؤقتة.</p>
+    <h3>3.3. تسرب البيانات عبر الأدوات</h3>
+    <p>تعتمد الأنظمة الوكيلة غالبًا على موارد خارجية مثل قواعد البيانات وخدمات الويب وبرمجيات المؤسسات وواجهات البرمجة لإنجاز المهام. وقد تُسجَّل المدخلات الحساسة والمخرجات الوسيطة لأغراض التصحيح أو تُحفظ مؤقتًا لتحسين السرعة أو تُرسَل إلى خدمات خارجية عند تفعيل الأدوات. وتنتج عن هذه التفاعلات مسارات تسرب غير مباشرة عديدة، لا سيما عندما تتطلب الأدوات جمع بيانات واسعة أو تفتقر إلى واجهات واعية بالخصوصية. كما يمكن لهجمات حقن التوجيه غير المباشرة المضمّنة في مخرجات الأدوات — كالوثائق المسترجعة أو محتوى الويب — أن تعدّل سلوك الوكيل، مما يؤدي إلى كشف غير مصرح به للسياق الداخلي أو محتويات الذاكرة أو تعليمات النظام. وهكذا يمثل التسرب عبر الأدوات ملتقىً حرجًا بين استقلالية الوكيل والثقة بالأنظمة الخارجية.</p>
+    <h3>3.4. التسرب القائم على التخطيط والاستدلال</h3>
+    <p>تستخدم الأنظمة الوكيلة تقنيات تخطيط واستدلال صريحة لتفكيك الأهداف إلى خطوات قابلة للإدارة، منتجةً غالبًا تمثيلات داخلية للأهداف وأولويات المهام وآثار الاستدلال الوسيطة. وقد يكشف كشف هذه المعلومات — عمدًا أو عرضًا — نية المستخدم الحساسة أو منطق الأعمال أو عمليات صنع القرار الاستراتيجية. وتزيد حلقات التأمل والتقييم الذاتي هذا الخطر بدفع الوكلاء إلى تلخيص الأفعال السابقة أو تبرير الخيارات، مما قد يعيد إدخال بيانات خاصة إلى المخرجات. والتسرب المرتبط بالتخطيط ضار بشكل خاص في تطبيقات المؤسسات والجيش والحوكمة، إذ يكشف — خلافًا لردود النماذج اللغوية العادية — ذكاءً تشغيليًا.</p>
+    <h3>3.5. تسرب التواصل بين الوكلاء</h3>
+    <p>في الأنظمة متعددة الوكلاء يتعاون الوكلاء عبر تبادل المخرجات الوسيطة وتوزيع المهام وتبادل الرسائل. ورغم أن هذا التعاون يزيد الإنتاجية وقابلية التوسع، فإنه يخلق مشاكل في ضبط تدفق المعلومات وحدود الثقة: فالمعلومات المشتركة مع وكيل لغرض معين قد تنتشر إلى آخرين دون تفويض أو ترشيح كافٍ. ويمكن استخراج معلومات حساسة عبر قنوات التواصل هذه بسبب سوء فهم الأدوار أو عدم محاذاة الأهداف أو الوكلاء المخترَقين. بالإضافة إلى ذلك، قد تنتج عن السلوكيات الطارئة في البيئات متعددة الوكلاء تبادلات معلومات غير متوقعة يصعب التنبؤ بها أو تدقيقها، مما يصعّب الالتزام بمبادئ تقليل البيانات وتحديد الغرض.</p>
+    <h3>3.6. حلقة التغذية الراجعة وتضخيم التسرب المرتبط بالاستقلالية</h3>
+    <p>تضمّن الأنظمة الوكيلة غالبًا آليات تغذية راجعة للتعلم من النتائج السابقة وتصحيح الأخطاء وتحسين التكتيكات. ورغم أن هذه الحلقات تحسّن الأداء، فقد تزيد دون قصد من تسرب البيانات: فالمعلومات المشتركة خلال تكرار واحد قد تُعزَّز ويُعاد استخدامها في دورات لاحقة، مما يزيد تواتر الكشف ومداه. ويمكن لمثل هذا التسرب أن يمر دون ملاحظة لفترة طويلة في البيئات المستقلة ذات الإشراف البشري المحدود. وما يميز الذكاء الوكيل عن النماذج القياسية هو أن انتهاكات الخصوصية عادة ما تقتصر على مواجهات معزولة في الأخيرة، بينما يضخّمها أثر التضخيم هنا.</p>
+    <h3>3.7. انتشار التسرب الملموس عبر حدود الوكيل</h3>
+    <p>يُفعّل النموذج المعماري التصنيفَ بتتبع حركة البيانات الحساسة عبر واجهات نظام صريحة: مدخلات المستخدم (حمولات JSON) إلى المخطط، والمخطط إلى الذاكرة (تضمينات متجهة)، والوكيل إلى واجهات البرمجة الخارجية (REST/JSON)، والوكيل إلى أدوات الويب (HTML/نص مسترجع)، والوكيل إلى الوكيل (رسائل منظمة)، وحلقة التغذية الراجعة (تحديثات الحالة الداخلية). وتتوضع مسارات التسرب الستة (L1–L6) عند هذه الحدود: إعادة استخدام الذاكرة عبر الجلسات، وتسميم قاعدة البيانات المتجهة، وكشف سجلات واجهات البرمجة، وحقن التوجيه غير المباشر، والانتشار غير المصرح به الناجم عن التباس الأدوار، والتضخيم التكراري عبر حلقات التغذية الراجعة.</p>
+  </section>
+
+  <section>
+    <h2>4. نماذج التهديد ومتجهات الهجوم</h2>
+    <p>تتطلب الطبيعة المستقلة والدائمة لأنظمة الذكاء الوكيل نماذج تهديد تتجاوز الافتراضات العدائية التقليدية المستخدمة للنماذج اللغوية الثابتة. فقد يعمل الخصوم داخليًا كمطلعين بوصول محدود إلى النظام، أو خارجيًا كمستخدمين خبثاء، أو بشكل غير مباشر عبر أدوات أو مصادر بيانات مخترَقة. ويمكن لهؤلاء الفاعلين التسبب في كشف غير مرغوب للبيانات باستغلال استقلالية الوكيل واستمرارية ذاكرته وتنسيق أدواته. ومن متجهات الهجوم الشائعة تسميم الذاكرة والتلاعب بنافذة السياق وحقن التوجيه المباشر وغير المباشر. ويشكل حقن التوجيه غير المباشر — المضمّن في مخرجات الأدوات أو الوثائق أو المحتوى عبر الإنترنت — خطرًا جسيمًا لأنه يؤثر بمهارة في سلوك الوكيل دون انخراط مباشر من المستخدم.</p>
+    <p>بالإضافة إلى ذلك، قد يستغل المهاجمون قنوات التواصل بين الوكلاء لنشر المعلومات الحساسة بين الوكلاء أو الحصول على معلومات خاصة عبر التباس الأدوار وانتهاكات حدود الثقة. وتزيد الاستقلالية المدفوعة بالتغذية الراجعة هذه المخاطر بتشجيع السلوك المخترَق عبر دورات تنفيذ متعددة. وتتطور هجمات الأنظمة الوكيلة غالبًا بمرور الوقت، مما يصعّب الكشف والإسناد مقارنةً بالهجمات الكلاسيكية التي تركز على أحداث استدلال فردية. ولأن هجمات الأنظمة الوكيلة ذات آثار تراكمية ودائمة وربما على مستوى النظام، فإن فهم نماذج التهديد هذه ضروري لتطوير تدابير مضادة فعالة.</p>
+    <p>تتبادل الأنظمة الوكيلة البيانات عادةً عبر حمولات واجهات برمجة قائمة على JSON وتضمينات متجهة مخزنة في قواعد بحث بالتشابه واستدعاءات أدوات RESTful أو RPC. وتوجد حدود أمنية عند واجهات تخزين الذاكرة وواجهات استدعاء الأدوات ووسطاء رسائل الوكلاء وطبقات عرض المخرجات — ويمثل كل حد نقطة فحص تسرب محتملة تتطلب التشفير والتوثيق وإنفاذ ضبط الوصول. وقد تحقق من التصنيف المقترح مقابل 27 سيناريو تسرب موثقًا مستخرجًا من الأدبيات المحكمة والتقارير التقنية الحديثة، فرُبط كل سيناريو بفئة أو أكثر من فئات التسرب (L1–L6) محققًا تغطية فئوية كاملة، دون وقوع أي حالة موثقة خارج بنية التصنيف.</p>
+  </section>
+
+  <section>
+    <h2>5. إخفاقات الخصوصية في الأنظمة الوكيلة الواقعية والمقيَّمة</h2>
+    <p>يوضح هذا القسم كيف يتجلى تصنيف التسرب المقترح في أنظمة وكيلة واقعية ومقيَّمة تجريبيًا. وبدل عرض خروقات بيانات عامة، يركز على إخفاقات الخصوصية الممكَّنة بالاستقلالية: انتشار البيانات عبر الوكلاء، وتسرب الاحتفاظ بالذاكرة، واستغلال حقن التوجيه، والكشف غير المقصود للبيانات عبر الأدوات. ورُبطت كل حالة صراحةً بمسار التسرب المقابل (L1–L6)، مُظهرةً الصلة العملية والتغطية التحليلية للإطار المقترح. واختيرت دراسات الحالة الخمس بناءً على ثلاثة معايير: (1) سياق نشر واقعي موثق، (2) تمثيل فئات تسرب متميزة ضمن التصنيف، (3) توافر تفاصيل تقنية كافية للتحليل.</p>
+    <p><strong>الحالة 1: تسميم الذاكرة في الوكلاء اللغويين (AgentPoison).</strong> أظهر الباحثون أن إدخال محتوى خبيث في الذاكرة طويلة الأمد للوكيل أو قاعدة بياناته المتجهة يؤدي إلى تلاعب سلوكي دائم وتسرب بيانات متكرر، بمعدلات نجاح عالية عبر مهام متعددة، مؤكدًا أن الذاكرة الدائمة تزيد متانة التسرب زيادة كبيرة. وتكشف الحادثة عبر ثلاث مراحل: بدء الهجوم عبر التلاعب بالتوجيه أو التفعيل الذاتي للمهام، ثم الانتشار عبر المكونات بتمكين من استمرارية الذاكرة أو التواصل بين الوكلاء، ثم كشف البيانات عبر استجابات الواجهات أو آليات التسجيل أو توليد المخرجات غير المقصودة. وتوضح الحالة كيف تضخّم استقلالية الوكيل متجهات الهجوم التقليدية بتمكين الاستدلال متعدد الخطوات والتنفيذ المتسلسل دون إشراف بشري مستمر.</p>
+    <p><strong>الحالة 2: تسرب الخصوصية عبر الجلسات.</strong> أظهرت الدراسات أن الوكلاء المدعومين بالنماذج اللغوية يعيدون استخدام معلومات حساسة عبر الجلسات في الانتشارات المشتركة: فبيانات حساسة أُدخلت في مهمة أُعيد إنتاجها لاحقًا في سياقات غير ذات صلة، مبرزةً مخاطر التلوث عبر المهام. وتسلط الحالة الضوء على الطبيعة المنهجية للتسرب في أنظمة الذكاء الوكيل، حيث لا تنشأ الثغرة عن مكون واحد بل عن آثار تفاعلية بين وحدات التخطيط ومخازن الذاكرة وتكاملات الأدوات الخارجية.</p>
+    <p><strong>الحالة 3: إخفاقات الخصوصية السياقية متعددة الوكلاء (معيار MAGPIE).</strong> كشف المعيار أن الوكلاء المتعاونين دون عزل صارم ينشرون المعلومات الخاصة بين الأدوار بشكل متكرر، ويحدث التسرب حتى عندما يملك وكيل واحد فقط الوصول الأولي إلى المدخلات الحساسة. وتقابل هذه الحادثة مسار التسرب L5 (التواصل بين الوكلاء).</p>
+    <p><strong>الحالة 4: التسرب المنسَّق بالأدوات.</strong> أظهر الباحثون أن استدعاء الوكلاء لواجهات برمجة خارجية وأدوات SaaS يزيد مخاطر الكشف بسبب التسجيل والقياس عن بُعد وحقن التوجيه غير المباشر المضمّن في مخرجات الأدوات. وتقابل هذه الحادثة مسار التسرب L3 (التفاعل عبر الأدوات).</p>
+    <p><strong>الحالة 5: استغلال وكلاء استخدام الويب.</strong> تبين أن وكلاء أتمتة الويب ينفذون تعليمات خبيثة مضمّنة في محتوى الويب، مما يؤدي إلى كشف غير مقصود للسياق الداخلي والذاكرة. وتقابل هذه الحادثة مسار التسرب L4 (حقن التوجيه). وتُظهر هذه الحالات مجتمعة أن إخفاقات الخصوصية في الذكاء الوكيل ليست نظرية بل مثبتة تجريبيًا عبر استمرارية الذاكرة واستدعاء الأدوات وتنسيق الوكلاء المتعددين.</p>
+  </section>
+
+  <section>
+    <h2>6. استراتيجيات حفظ الخصوصية والتخفيف</h2>
+    <p>يتطلب تخفيف تسرب البيانات في أنظمة الذكاء الوكيل استراتيجية متعددة الطبقات تعالج المخاطر على المستويات المعمارية والتشغيلية والحوكمية. فعلى المستوى المعماري، يمكن لعزل الذاكرة والاستمرارية المنظمة وإدارة السياق الآمنة أن تقلل إلى حد كبير من إعادة استخدام البيانات غير المقصودة. ويمكن لتصميم أساليب ذاكرة سريعة الزوال أو محددة بنطاق المهمة أن يقلل التسرب عبر الجلسات وعبر المستخدمين. وينبغي أن تتبع تفاعلات الأدوات قواعد الامتياز الأدنى لضمان مشاركة المعلومات الضرورية فقط مع الخدمات الخارجية وأن تكون أنظمة التسجيل واعية بالخصوصية.</p>
+    <p>ومن منظور النموذج والنظام، يمكن لقمع الاستدلال الواعي بالخصوصية وترشيح المخرجات وتنقيح السياق أن يساعد في منع تسرب الحالات الداخلية الخاصة. كما تعزز أدوات الحوكمة — بما فيها مسارات التدقيق وطبقات إنفاذ السياسات والإشراف البشري في الحلقة — المساءلة. لكن استراتيجيات التخفيف الحالية تؤدي غالبًا إلى مفاضلات بين الخصوصية والأداء والاستقلالية، ومن ثم تتزايد الحاجة إلى بنيات وكيلة مراعية للخصوصية بالتصميم تدمج الحماية من التسرب كهدف منهجي أولي لا كفكرة لاحقة.</p>
+    <p>تُظهر التقييمات التجريبية أن عزل الذاكرة وإدارة السياق المحددة النطاق تقلل التسرب عبر الجلسات بنسبة تصل إلى 60٪ في التجارب المضبوطة، وأن وضع الأدوات في بيئات معزولة وتحديد نطاق الأذونات يخفض معدلات نجاح حقن التوجيه غير المباشر بدرجة كبيرة. لكن لا يوجد تخفيف واحد يقضي على التسرب تمامًا، مما يعزز الحاجة إلى دفاعات متعددة الطبقات.</p>
+    <h3>6.1. تقييم الإطار والفعالية القابلة للقياس</h3>
+    <p>رغم أن هذا العمل مسح وتحليل معماري في المقام الأول، يمكن تقييم الإطار المقترح باستخدام مقاييس تجريبية مُبلغ عنها في معايير خصوصية الذكاء الوكيل الحديثة مثل AgentPoison وMAGPIE وPrivAgent وAgentLeak، التي تقيس تسرب الخصوصية عبر معدل نجاح الهجوم ومعدل التلوث عبر الجلسات ومدة استمرارية التسرب وتواتر الكشف عبر الأدوات. وعند الربط بالتصنيف الخماسي، تُظهر المعايير أن التسرب المرتبط بالذاكرة يحمل أعلى مخاطر الاستمرارية والتضخيم، وأن التسرب عبر الأدوات يوسّع سطح الكشف بدرجة كبيرة، وأن التسرب متعدد الوكلاء يوضح الانتشار حتى في ظل العزل الجزئي. وهكذا يعمل الإطار المقترح كنموذج هيكلي يفسر الإخفاقات المرصودة تجريبيًا ويوفر عدسة منهجية لتقييم استراتيجيات التخفيف عبر الحدود المعمارية. ومن منظور تنظيمي، تُدخل الأنظمة الوكيلة تحديات امتثال جديدة بموجب أطر مثل اللائحة الأوروبية العامة لحماية البيانات وقانون خصوصية المستهلك في كاليفورنيا: فتفويض المهام المستقل يعقّد تحديد مراقب البيانات، وقد يتعارض الاحتفاظ الديناميكي بالذاكرة مع مبدأي تقليل البيانات وتحديد الغرض، وقد يصعب الوفاء بالتزامات القابلية للتفسير عندما ينتج التنسيق متعدد الوكلاء سلوكيات طارئة.</p>
+  </section>
+
+  <section>
+    <h2>7. تحليل مقارن: النماذج اللغوية مقابل الذكاء الوكيل</h2>
+    <p>رغم أن أنظمة الذكاء الوكيل والنماذج اللغوية الكلاسيكية تشترك في قدرات النمذجة اللغوية الجوهرية، فإن ملفي مخاطر الخصوصية فيهما مختلفان جدًا. فتسرب البيانات يقتصر غالبًا على مواجهات فردية في سياقات عديمة الحالة أو محدودة السياق حيث تعمل النماذج اللغوية عادةً. في المقابل، تخلق أنظمة الذكاء الوكيل مخاوف تسرب ديناميكية وتراكمية لأنها تحافظ على ذاكرة دائمة وتستخدم الأدوات باستقلالية وتتعاون مع وكلاء آخرين. وما يميز الذكاء الوكيل further هو دمج حلقات التغذية الراجعة والسياق طويل الأمد، إذ قد تُضخَّم إخفاقات الخصوصية بمرور الوقت بدل أن تبقى معزولة.</p>
+    <p>وتقنيات التخفيف الفعالة للنماذج اللغوية — مثل قيود المخرجات أحادية الدور أو ترشيح التوجيه السريع — غير كافية غالبًا للتصاميم الوكيلة. فالذكاء الوكيل يتطلب إدارة خصوصية واعية بدورة الحياة وضبط وصول على مستوى المكونات ومراقبة مستمرة. وتشجع هذه المقارنة على تطوير معايير أمن ومقاييس تقييم خاصة بالوكلاء، وتسلط الضوء على الحاجة إلى إعادة النظر في أطر الخصوصية للأنظمة المستقلة. وتواجه الخصوصية التفاضلية صعوبة في الذكاء الوكيل بسبب: مشكلة التركيب التسلسلي (تراكم ميزانية الخصوصية عبر الاستدلال متعدد الخطوات واستدعاءات الأدوات)، والذاكرة الدائمة (إعادة استخدام الذاكرة وتحديثها ديناميكيًا خلافًا لافتراض بيانات التدريب الثابتة)، واستخدام الأدوات التفاعلي (تدفقات بيانات غير خاضعة للسيطرة خارج حدود الحماية)، والتضخيم متعدد الوكلاء (تدهور ضمانات الخصوصية عند مشاركة المخرجات الوسيطة).</p>
+  </section>
+
+  <section>
+    <h2>8. التحديات المفتوحة وفرص البحث</h2>
+    <p>رغم تزايد الاعتراف الواسع بمخاوف تسرب البيانات في أنظمة الذكاء الوكيل، ما تزال هناك قضايا عدة دون حل. ومن المشاكل الرئيسة غياب نماذج خصوصية رسمية مصممة تحديدًا للوكلاء المستقلين: فتعريفات الخصوصية وضماناتها الحالية مستمدة غالبًا من سياقات النماذج اللغوية الثابتة ولا تلتقط بما يكفي السلوك الزمني والدائم والموجه ذاتيًا للأنظمة الوكيلة. ويظل تطوير نماذج تهديد ومقاييس خصوصية واعية بالوكيل تراعي تنسيق الوكلاء المتعددين وتفاعلات الأدوات واستمرارية الذاكرة تحديًا بحثيًا مفتوحًا.</p>
+    <p>وتمثل إدارة الذاكرة الآمنة عقبة رئيسة أخرى: فثمة حاجة إلى مزيد من البحث لتصميم بنيات ذاكرة توازن بين المنفعة طويلة الأمد والقيود الخصوصية الصارمة، مثل العزل السياقي والمحو القابل للتحقق والنسيان الانتقائي. وبالمثل، فإن غياب الشفافية والسيطرة على خدمات الأطراف الخارجية يجعل حماية الخصوصية في الاستدلال المعزز بالأدوات صعبًا، وطبقات التنفيذ الواعية بالسياسات وواجهات الأدوات الحافظة للخصوصية ما تزال في مراحلها المبكرة.</p>
+    <p>وتضيف الأنظمة متعددة الوكلاء تعقيدًا إضافيًا لصعوبة إنفاذ حدود الثقة وتحديد الغرض بين الكيانات المستقلة. كما يجب أن تعالج الأبحاث المستقبلية المفاضلة بين القابلية للتفسير والخصوصية، لأن كشف عمليات الاستدلال قد يفشي دون قصد معلومات خاصة. وأخيرًا، ثمة حاجة ملحة إلى قواعد تنظيمية وأطر تقييم ومعايير موحدة مصممة خصيصًا للذكاء الوكيل. فغياب معايير خصوصية خاصة بالوكلاء ومجموعات بياناتها فجوة بحثية كبيرة، إذ تستخدم التقييمات الحالية دراسات مخصصة أو مقاييس متمحورة حول النماذج اللغوية لا تراعي تفاعلات الوكلاء المتعددين أو الكشف عبر الأدوات أو استخدام الذاكرة الدائمة.</p>
+    <p>وتركز المسوحات القائمة أساسًا على حفظ النماذج اللغوية وحقن التوجيه (النماذج عديمة الحالة) وأمن الأنظمة متعددة الوكلاء الكلاسيكية (بيئات غير لغوية). في المقابل، يدمج هذا العمل بشكل فريد: بنيات الذاكرة الدائمة، وخطوط الاستدلال المعززة بالأدوات، وتعاون النماذج اللغوية متعددة الوكلاء، والنمذجة الواعية بدورة الحياة للتسرب، والتصنيف المعماري عبر المكونات. وبقدر ما يعلم المؤلفون، لا يوجد مسح سابق يوحّد هذه الأبعاد منهجيًا في تصنيف خصوصية على مستوى المكونات خاص بالذكاء الوكيل.</p>
+  </section>
+
+  <section>
+    <h2>9. الخاتمة</h2>
+    <p>تطور الذكاء الاصطناعي من نماذج لغوية سلبية إلى أنظمة وكيلة مستقلة قادرة على الاستدلال الموجه بالأهداف والذاكرة الدائمة وتكامل الأدوات والتعاون متعدد الوكلاء. ورغم أن هذه القدرات تمكّن تطبيقات قوية، فإنها تُدخل مخاطر معقدة على الخصوصية وتسرب البيانات ما تزال غير مستكشفة بما يكفي. فحص هذا المسح تحديات الخصوصية في الذكاء الوكيل وأظهر أن التسرب ينشأ غالبًا عن تفاعلات بين مكونات وكيلة متعددة تعمل بمرور الوقت لا عن سلوك نموذجي معزول. واقتُرح تصنيف يصنف مصادر التسرب عبر استمرارية الذاكرة وعمليات الاستدلال والتفاعلات عبر الأدوات والتواصل بين الوكلاء والاستقلالية المدفوعة بالتغذية الراجعة. كما حللت الدراسة نماذج التهديد وسيناريوهات النشر لتوضيح كيفية ظهور هذه المخاطر في مجالات مثل أنظمة المؤسسات والرعاية الصحية والأمن السيبراني وتطبيقات القطاع العام. وأظهر التقييم المقارن أن دفاعات الخصوصية التقليدية المتمحورة حول النماذج اللغوية غير كافية للبيئات الوكيلة، مؤكدًا الحاجة إلى استراتيجيات تخفيف واعية بالمكونات. وحددت الورقة أيضًا فجوات بحثية رئيسة وأبرزت أهمية أطر الخصوصية بالتصميم والمعايير الموحدة ومنهجيات التقييم الخاصة بالوكلاء. ويهدف هذا المسح إلى دعم الباحثين والمطورين وصناع السياسات في تصميم أنظمة ذكاء وكيل آمنة وحافظة للخصوصية للتطبيقات الحساسة والحرجة للسلامة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p><strong>Introduction:</strong> The rapid evolution of artificial intelligence from static large language models to autonomous, agentic AI systems has introduced capabilities such as persistent memory, tool-augmented reasoning, and multi-agent collaboration. While these advancements significantly enhance real-world applicability, they also create a new and underexplored class of privacy risks, including unintended retention, propagation, and amplification of sensitive information across tasks, users, and execution cycles. Existing research predominantly focuses on stateless or single-inference models, leaving the privacy implications of agentic systems insufficiently understood.</p>
+    <p><strong>Methods:</strong> This study presents a comprehensive architectural analysis of data leakage in agentic AI systems. The proposed framework models the end-to-end agent workflow and systematically examines how sensitive information can traverse key components, including persistent memory modules, planning and reasoning processes, tool invocation layers, inter-agent communication channels, and feedback-driven autonomy loops. Based on this architecture, a structured taxonomy of leakage pathways is developed and mapped to realistic threat models and attack vectors observed in practical deployments.</p>
+    <p><strong>Results:</strong> The analysis identifies multiple leakage pathways unique to agentic AI systems, demonstrating how data can persist, propagate, and be unintentionally exposed across system components and operational cycles. The findings reveal that these leakage mechanisms are more complex and pervasive than those observed in traditional large language model settings, particularly due to the integration of memory, tools, and multi-agent interactions.</p>
+    <p><strong>Discussion:</strong> The study highlights the limitations of existing LLM-centric privacy and security defenses when applied to autonomous agentic systems. It emphasizes the need for lifecycle-aware, component-level mitigation strategies that address privacy risks across the entire agent workflow. The proposed architectural perspective provides a foundation for designing privacy-by-design agentic AI systems and supports safer deployment in sensitive and regulated domains.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Recent advances in artificial intelligence have witnessed a paradigm shift from static, prompt-driven large language models (LLMs) to agentic AI systems capable of autonomous planning, tool usage, memory retention, and goal-oriented decision-making. Agentic AI systems constantly interact with external surroundings, use third-party tools, cooperate with other agents, and maintain lasting internal states, in contrast to traditional LLMs that function in isolated, single-turn or limited multi-turn interactions. While these features significantly improve usability and workflow automation, they also introduce emerging privacy and data leakage risks that remain insufficiently explored in recent research.</p>
+    <p>The main areas of research on data leaking in conventional machine learning and LLM-based systems have been training data memorization, model inversion, membership inference, and prompt-based information disclosure. However, by prolonging the lifecycle of sensitive data beyond a single inference, agentic AI radically changes the threat landscape. Agentic systems may inadvertently preserve, spread, and re-expose private or secret information between tasks, users, and sessions through long-term memory modules, vector databases, execution logs, and feedback loops. The effects of even small privacy violations are exacerbated by this persistent and independent conduct.</p>
+    <p>The use of tool-augmented reasoning, in which agents use databases, web services, enterprise software, code interpreters, and APIs to accomplish goals, increases the risk. Credentials, sensitive user input, proprietary documents, or regulated data may pass through several untrusted components, each of which could be a point of leakage. Furthermore, agent behavior can be manipulated via indirect prompt injection attacks, which are embedded within retrieved documents, web content, or tool outputs. This can result in the agent disclosing internal context, memory contents, or sensitive operational data without the express purpose of the user.</p>
+    <p>Multi-agent collaboration, in which autonomous agents converse, assign roles, and share intermediate outputs to complete challenging tasks, is another characteristic that distinguishes agentic AI. Although this kind of coordination increases scalability and performance, it also creates privacy issues with regard to emergent information sharing, role confusion, and trust boundaries. Data reduction and purpose limitation principles required by contemporary privacy legislation may be violated if information supplied to one agent for a particular purpose is disseminated to others without sufficient access control.</p>
+    <p>This survey offers a thorough and organized investigation of data leakage risks specific to agentic AI systems: a new taxonomy of leakage sources covering memory, tools, planning, inter-agent communication, and feedback loops; a critical assessment of current mitigation techniques; and a closer look at real-world attack pathways, threat models, and privacy failures across application domains, emphasizing open obstacles and future research areas.</p>
+  </section>
+
+  <section>
+    <h2>2. Background and Related Work</h2>
+    <p>Existing research on AI privacy and security can be broadly classified into four major perspectives: (1) model-level privacy risks such as training data memorization and inference attacks, (2) adversarial manipulation including prompt injection and context poisoning, (3) system-level vulnerabilities in multi-agent and tool-integrated architectures, and (4) governance and regulatory analyses addressing compliance and accountability. While these studies provide valuable insights into isolated components of AI security, a consolidated taxonomy specifically addressing data leakage pathways in autonomous agentic AI systems remains limited. This gap motivates the structured framework proposed in this work.</p>
+    <p>AgentLeak introduced a full-stack benchmark evaluating nearly 5,000 execution traces in multi-agent LLM systems. Their study quantitatively measures privacy leakage but does not provide a component-level architectural taxonomy explaining why leakage propagates across memory, tools, and feedback loops. PrivAgent proposes an agentic red-teaming framework for detecting systemic privacy vulnerabilities; its focus is attack discovery rather than structural modeling of leakage pathways. Broad security surveys emphasizing zero-trust principles in distributed agent systems center on trust governance and edge deployment, without detailed lifecycle-based leakage categorization. MAGPIE provides a contextual privacy benchmark for multi-agent systems but does not analyze planning, memory persistence, and tool invocation as unified architectural risk sources.</p>
+    <h3>2.1. Large Language Models and Data Leakage (Baseline)</h3>
+    <p>Although Large Language Models (LLMs) have shown impressive ability in natural language synthesis and processing, they are intrinsically susceptible to many types of data leakage. Previous studies have demonstrated that LLMs may unintentionally commit private training data to memory, creating privacy problems such as model inversion attacks and membership inference. Furthermore, models may be forced to divulge sensitive or secret information contained in their learnt representations through prompt-based exploitation. Although mitigation strategies like output filtering, data sanitization, and differential privacy (DP) have been put forth, they mostly deal with situations involving single-inference or stateless interactions. As a result, they do not adequately take into consideration the privacy problems that arise from agentic AI systems' persistent memory, autonomous decision-making, and tool interactions.</p>
+    <h3>2.2. What Is Agentic AI?</h3>
+    <p>A family of artificial intelligence systems known as "agentic AI" is made to function independently by establishing objectives, organizing activities, carrying out tasks using outside resources, and changing behavior in response to feedback. Agentic systems, in contrast to typical LLMs, are able to carry out intricate, multi-step tasks for longer periods of time by maintaining internal states, frequently using short-term and long-term memory modules. A reasoning or planning module, a tool invocation layer, memory management systems, and self-reflection loops are essential elements of agentic AI. Agents can operate with little human oversight thanks to their autonomy, but it also creates new security and privacy issues because of the agents' dynamic interactions with external surroundings and ongoing data retention.</p>
+    <h3>2.3. Agentic AI Frameworks and Use Cases</h3>
+    <p>The practical use of autonomous intelligence is demonstrated by recent agentic AI frameworks such as Auto-GPT, LangGraph, CrewAI, and BabyAGI. These frameworks allow agents to interact with other agents, break down objectives into smaller tasks, and utilize a variety of resources like databases, online search, and code execution environments. Enterprise copilots, robotic process automation, cybersecurity operations, healthcare decision support, and smart governance systems are all increasingly utilizing agentic AI. These applications manage sensitive personal, organizational, and regulatory data, which makes them especially vulnerable to data leaks and privacy violations if agent workflows and memory mechanisms are not carefully built.</p>
+  </section>
+
+  <section>
+    <h2>3. Taxonomy of Data Leakage in Agentic AI</h2>
+    <p>Beyond the constraints of conventional LLM-based designs, agentic AI systems present novel and intricate data leakage channels. Their cooperative behavior, autonomy, persistent memory, and tool integration increase the attack surface. This section offers a component-centric taxonomy of data leakage in agentic AI, classifying leakage sources according to fundamental architectural components in order to methodically examine these risks. This taxonomy offers a consistent framework for comprehending the ways in which agent operation may inadvertently reveal, disseminate, or amplify sensitive information.</p>
+    <h3>3.1. Taxonomy Derivation and Validation Methodology</h3>
+    <p>The proposed five-category taxonomy was derived using a structured architectural decomposition and cross-literature synthesis methodology. First, 18 recent peer-reviewed and preprint studies focusing on agentic AI security, privacy risks, and red-teaming were analyzed; each documented leakage scenario, benchmark failure, or attack vector was extracted and categorized. Second, each leakage event was mapped to recurring architectural components present across major agent frameworks, including memory modules, reasoning/planning engines, tool invocation layers, communication interfaces, and feedback loops — revealing five dominant leakage clusters. Third, cross-paper clustering analysis ensured conceptual consistency: if multiple independent studies described leakage mechanisms involving the same architectural boundary (e.g., memory reuse or tool invocation), they were grouped into a unified leakage category. Finally, validation used two criteria: a completeness test (every documented attack vector from surveyed literature could be mapped to at least one taxonomy category) and a non-overlap test (each category corresponds to a distinct architectural boundary, reducing conceptual redundancy). The taxonomy remains extensible: emerging attack vectors can be incorporated under modular extension categories.</p>
+    <h3>3.2. Memory-Induced Data Leakage</h3>
+    <p>Agentic AI systems are distinguished by their persistent memory, which allows them to retain and retrieve data across tasks and sessions. This feature poses serious privacy problems even though it is advantageous for long-term thinking and customization. Sensitive information, including credentials, medical records, proprietary papers, and personal identifiers, may be kept in long-term memory stores or vector databases without stringent access control or expiration guidelines. Cross-task or cross-user data contamination, in which information supplied by one user unintentionally appears in responses to another, might result from such memory persistence. Furthermore, dangerous or sensitive content can be purposefully inserted into an agent's memory through memory poisoning attacks, resulting in recurrent and magnified leaks over time. Memory-induced leakage is especially serious because of its permanence and autonomous reuse, in contrast to temporary LLM situations.</p>
+    <h3>3.3. Tool-Mediated Data Leakage</h3>
+    <p>To complete tasks, agentic AI systems often rely on external resources such as databases, web services, enterprise software, and APIs. Sensitive inputs and intermediate outputs may be logged for debugging, cached for speed optimization, or sent to third-party services upon tool activation. These interactions result in numerous indirect leakage pathways, particularly when tools require extensive data collection or lack privacy-aware interfaces. Furthermore, agent behavior can be altered by indirect prompt injection attacks incorporated into tool outputs, such as retrieved documents or web material, which can result in the unauthorized exposure of internal context, memory contents, or system instructions. Thus, tool-mediated leaking is a crucial junction between agent autonomy and external system confidence.</p>
+    <h3>3.4. Planning and Reasoning-Based Leakage</h3>
+    <p>Explicit planning and reasoning techniques are used by agentic AI systems to break down objectives into manageable steps. Internal representations of objectives, task priorities, and intermediate reasoning traces are frequently produced throughout these processes. Such information may disclose sensitive user intent, business logic, or strategic decision-making processes when it is exposed, whether on purpose or by accident. By pushing agents to summarize previous acts or defend choices, reflection and self-evaluation loops increase this risk by possibly reintroducing private data into the output. Planning-related leakage is especially harmful in enterprise, military, or governance applications since, in contrast to normal LLM replies, it discloses operational intelligence.</p>
+    <h3>3.5. Inter-Agent Communication Leakage</h3>
+    <p>Agents work together in multi-agent systems by sharing intermediate outcomes, assigning tasks, and exchanging messages. Although this collaboration increases productivity and scalability, it also creates issues with information flow control and trust limits. Without proper authorization or filtering, information shared with one agent for a particular purpose could spread to others. Sensitive information can be extracted through these communication channels due to role misunderstanding, misaligned aims, or compromised agents. Additionally, unexpected information exchange that is hard to anticipate or audit may result from emergent behaviors in multi-agent settings, making it challenging to adhere to the concepts of data minimization and purpose limitation.</p>
+    <h3>3.6. Feedback Loop and Autonomy Amplification Leakage</h3>
+    <p>In order to learn from previous results, fix mistakes, and improve tactics, agentic AI systems frequently include feedback mechanisms. Although these loops improve performance, they may inadvertently increase data leakage. The frequency and extent of exposure may increase if information shared during one iteration is reinforced and used again in later cycles. Such leakage can go unnoticed for a long time in autonomous environments with little human supervision. Agentic AI differs from standard models in that privacy violations are usually limited to isolated encounters due to this amplification effect.</p>
+    <h3>3.7. Concrete Leakage Propagation Across Agent Boundaries</h3>
+    <p>The architectural model operationalizes the taxonomy by tracing how sensitive data moves through explicit system interfaces: user input (JSON payloads) to the planner, planner to memory (vector embeddings), agent to external APIs (REST/JSON), agent to web tools (HTML/retrieved text), agent to agent (structured messages), and the feedback loop (internal state updates). Six leakage pathways (L1–L6) sit at these boundaries: cross-session memory reuse, vector database poisoning, API logging exposure, indirect prompt injection, role-confusion-driven unauthorized propagation, and recursive amplification through feedback loops.</p>
+  </section>
+
+  <section>
+    <h2>4. Threat Models and Attack Vectors</h2>
+    <p>Threat models that go beyond the traditional adversarial assumptions used for static LLMs are required due to the autonomous and persistent nature of agentic AI systems. Adversaries can function internally as insiders with limited system access, outwardly as malevolent users, or indirectly through hacked tools or data sources. These actors can cause unwanted data disclosure by taking advantage of the agent's autonomy, memory persistence, and tool orchestration. Memory poisoning, context window manipulation, and direct and indirect prompt injection are common attack vectors. Because it can subtly affect agent behavior without direct user engagement, indirect prompt injection — incorporated into tool outputs, documents, or online content — poses a serious risk.</p>
+    <p>Additionally, through role confusion and breaches of trust boundaries, attackers may use inter-agent communication channels to spread sensitive information among agents or obtain private information. By encouraging compromised conduct over several execution cycles, feedback-driven autonomy increases these hazards even more. Agentic AI attacks frequently develop over time, making detection and attribution more difficult than classical assaults that focus on individual inference events. Because attacks in agentic systems have cumulative, persistent, and possibly system-wide effects, it is essential to comprehend these threat models in order to create effective countermeasures.</p>
+    <p>Agentic systems typically exchange data via JSON-based API payloads, vector embeddings stored in similarity search databases, and RESTful or RPC tool calls. Security boundaries exist at memory storage interfaces, tool invocation APIs, inter-agent message brokers, and output rendering layers — each a potential leakage checkpoint requiring encryption, authentication, and access control enforcement. The proposed taxonomy was validated against 27 documented leakage scenarios extracted from recent peer-reviewed literature and technical reports. Each scenario was systematically mapped to one or more defined leakage categories (L1–L6), resulting in complete categorical coverage, and no documented case fell outside the defined taxonomy structure.</p>
+  </section>
+
+  <section>
+    <h2>5. Privacy Failures in Real-World and Evaluated Agentic AI Systems</h2>
+    <p>This section illustrates how the proposed leakage taxonomy manifests in real-world and experimentally evaluated agentic AI systems. Rather than presenting generic data breaches, it focuses specifically on autonomy-enabled privacy failures, including cross-agent data propagation, memory retention leakage, prompt injection exploitation, and unintended tool-based data exposure. Each case is explicitly mapped to the corresponding leakage pathway (L1–L6), thereby demonstrating the practical relevance and analytical coverage of the proposed framework. The five case studies were selected based on three criteria: (1) documented real-world deployment context, (2) representation of distinct leakage categories within the taxonomy, and (3) availability of sufficient technical detail for analysis.</p>
+    <p><strong>Case 1: Memory Poisoning in LLM Agents (AgentPoison).</strong> Researchers demonstrated that inserting malicious content into an agent's long-term memory or vector database results in persistent behavioral manipulation and repeated data exfiltration, with high success rates across multiple tasks — confirming that persistent memory significantly increases leakage durability. The incident unfolded across three primary stages: (1) attack initiation through prompt manipulation or autonomous task triggering, (2) cross-component propagation enabled by memory persistence or inter-agent communication, and (3) data exposure via API responses, logging mechanisms, or unintended output generation. The case illustrates how agent autonomy amplifies traditional attack vectors by enabling multi-step reasoning and chained execution without continuous human oversight.</p>
+    <p><strong>Case 2: Cross-Session Privacy Leakage.</strong> Studies showed that LLM-powered agents reused sensitive information across sessions in shared deployments: sensitive data introduced in one task was later reproduced in unrelated contexts, highlighting cross-task contamination risks. The case highlights the systemic nature of leakage in agentic AI systems, where vulnerability arises not from a single component but from interaction effects between planning modules, memory stores, and external tool integrations.</p>
+    <p><strong>Case 3: Multi-Agent Contextual Privacy Failures (MAGPIE Benchmark).</strong> The benchmark revealed that agents collaborating without strict isolation frequently propagated private information between roles; leakage occurred even when only one agent had initial access to sensitive inputs. This incident corresponds to leakage pathway L5 (inter-agent communication).</p>
+    <p><strong>Case 4: Tool-Orchestrated Leakage.</strong> Researchers demonstrated that agents invoking external APIs and SaaS tools increased exposure risk due to logging, telemetry, and indirect prompt injection embedded in tool outputs. This incident corresponds to leakage pathway L3 (tool-mediated interaction).</p>
+    <p><strong>Case 5: Web-Use Agent Exploitation.</strong> Web-automating agents were shown to execute malicious instructions embedded in web content, leading to unintended disclosure of internal context and memory. This incident corresponds to leakage pathway L4 (prompt injection). Together, these cases demonstrate that privacy failures in agentic AI are not theoretical but empirically validated across memory persistence, tool invocation, and multi-agent coordination settings.</p>
+  </section>
+
+  <section>
+    <h2>6. Privacy Preserving and Mitigation Strategies</h2>
+    <p>A multi-layered strategy that tackles risks at the architectural, operational, and governance levels is necessary to mitigate data leakage in agentic AI systems. At the architectural level, memory segregation, regulated persistence, and safe context management can greatly decrease unintentional data reuse. Cross-session and cross-user leakage can be reduced by designing ephemeral or task-scoped memory methods. Tool interactions should follow least-privilege rules to ensure that only necessary information is shared with external services and that logging systems are privacy-conscious.</p>
+    <p>From the model and system standpoint, privacy-aware reasoning suppression, output filtering, and context redaction can all aid in preventing the leakage of private internal states. Governance tools including audit trails, policy enforcement layers, and human-in-the-loop oversight further improve accountability. However, current mitigation strategies frequently result in trade-offs between privacy, performance, and autonomy. As a result, privacy-by-design agent architectures that incorporate leakage protection as a primary system goal rather than an afterthought are becoming more and more necessary.</p>
+    <p>Empirical evaluations show that memory isolation and scoped context management reduce cross-session leakage by up to 60% in controlled experiments, and that tool sandboxing and permission scoping significantly lower indirect prompt injection success rates. However, no single mitigation eliminates leakage completely, reinforcing the need for layered defenses.</p>
+    <h3>6.1. Framework Evaluation and Measurable Effectiveness</h3>
+    <p>Although this work is primarily a survey and architectural analysis, the proposed framework can be evaluated using empirical metrics reported in recent agentic AI privacy benchmarks such as AgentPoison, MAGPIE, PrivAgent, and AgentLeak, which measure privacy leakage using attack success rate, cross-session contamination rate, leakage persistence duration, and tool-mediated exposure frequency. When mapped against the five-category taxonomy, these benchmarks show that memory-related leakage exhibits the highest persistence and amplification risk, tool-mediated leakage significantly increases the exposure surface, and multi-agent leakage demonstrates propagation even under partial isolation. The proposed framework thus serves as a structural model explaining empirically observed failures and a systematic lens for evaluating mitigation strategies across architectural boundaries. From a regulatory perspective, agentic AI systems introduce novel compliance challenges under frameworks such as the EU GDPR and CCPA: autonomous task delegation complicates data controller identification, dynamic memory retention may conflict with data minimization and purpose limitation principles, and explainability obligations (e.g., GDPR Article 22) may be difficult to satisfy when multi-agent orchestration produces emergent behaviors.</p>
+  </section>
+
+  <section>
+    <h2>7. Comparative Analysis: LLM vs. Agentic AI</h2>
+    <p>Although agentic AI systems and classical LLMs share fundamental language modeling capabilities, their privacy risk profiles are very different. Data leaking is frequently limited to individual encounters in stateless or limited-context situations, where LLMs usually function. On the other hand, agentic AI systems create dynamic and cumulative leakage concerns since they maintain persistent memory, use tools on their own, and collaborate with other agents. Agentic AI is further distinguished by the incorporation of feedback loops and long-term context, as privacy failings may be amplified over time rather than staying isolated.</p>
+    <p>Effective mitigation techniques for LLMs, like single-turn output restrictions or prompt filtering, are frequently insufficient for agentic designs. Lifecycle-aware privacy management, component-level access restriction, and ongoing monitoring are necessary for agentic AI. This comparison encourages the creation of agent-specific security benchmarks and evaluation measures and highlights the need to reconsider privacy frameworks for autonomous systems. Differential privacy is challenging in agentic AI due to: the sequential composition problem (privacy budget accumulation across multi-step reasoning and tool calls); persistent memory (dynamic memory reuse and updates versus static training data assumptions); interactive tool use (uncontrolled data flows outside DP-protected boundaries); and multi-agent amplification (privacy guarantees degrading when multiple agents share intermediate outputs).</p>
+  </section>
+
+  <section>
+    <h2>8. Open Challenges and Research Opportunities</h2>
+    <p>Even while the concerns of data leaking in agentic AI systems are becoming more widely recognized, there are still a number of unsolved issues. The absence of formal privacy models specifically designed for autonomous agents is one of the main problems. Current privacy definitions and guarantees, mostly derived from static LLM settings, do not adequately capture the temporal, persistent, and self-directed behavior of agentic systems. Developing agent-aware threat models and privacy metrics that take multi-agent coordination, tool interactions, and memory persistence into account remains an open research challenge.</p>
+    <p>Secure memory management is another major obstacle: more research is needed to design memory architectures balancing long-term utility with stringent privacy restrictions, such as contextual isolation, verifiable erasure, and selective forgetting. Similarly, the lack of transparency and control over third-party services makes protecting privacy in tool-augmented reasoning challenging; policy-aware execution layers and privacy-preserving tool interfaces are still in early development.</p>
+    <p>Multi-agent systems add extra complexity because trust boundaries and purpose limitation are difficult to enforce among autonomous entities. Future study must also address the trade-off between explainability and privacy, since revealing reasoning processes may unintentionally divulge private information. Lastly, there is an urgent need for regulatory rules, evaluation frameworks, and standardized benchmarks created especially for agentic AI. The lack of agent-specific privacy benchmarks and datasets is a significant research gap: current evaluations use ad hoc studies or LLM-centric measures that do not account for multi-agent interactions, tool-mediated exposure, or permanent memory utilization.</p>
+    <p>Existing surveys primarily focus on LLM memorization and prompt injection (stateless models) and classical multi-agent system security (non-LLM environments). In contrast, this work uniquely integrates persistent memory architectures, tool-augmented reasoning pipelines, multi-agent LLM collaboration, lifecycle-aware leakage modeling, and cross-component architectural taxonomy. To the authors' knowledge, no prior survey systematically unifies these dimensions into a component-level privacy taxonomy specific to agentic AI systems.</p>
+  </section>
+
+  <section>
+    <h2>9. Conclusion</h2>
+    <p>Artificial intelligence has evolved from passive language models to autonomous agentic systems capable of goal-driven reasoning, persistent memory, tool integration, and multi-agent collaboration. While these capabilities enable powerful applications, they also introduce complex privacy and data leakage risks that remain insufficiently explored. This survey examined privacy challenges in agentic AI and showed that leakage often arises from interactions among multiple agentic components operating over time rather than from isolated model behavior. A taxonomy was proposed to categorize leakage sources across memory persistence, reasoning processes, tool-mediated interactions, inter-agent communication, and feedback-driven autonomy. The study further analyzed threat models and deployment scenarios to illustrate how these risks appear in domains such as enterprise systems, healthcare, cybersecurity, and public-sector applications. Comparative evaluation showed that traditional LLM-focused privacy defenses are inadequate for agentic environments, emphasizing the need for component-aware mitigation strategies. The paper also identified key research gaps and highlighted the importance of privacy-by-design frameworks, standardized benchmarks, and agent-specific evaluation methodologies. This survey aims to support researchers, developers, and policymakers in designing secure and privacy-preserving agentic AI systems for sensitive and safety-critical applications.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected)</h2>
+    <ol dir="ltr">
+      <li>AgentLeak: a full-stack benchmark for privacy leakage in multi-agent LLM systems (Yagoubi et al., 2026).</li>
+      <li>PrivAgent: agentic red-teaming framework for systemic privacy vulnerabilities (Nie et al., 2024).</li>
+      <li>Secure Multi-LLM Agentic AI and Agentification for Edge General Intelligence by Zero-Trust (Liu et al., 2025).</li>
+      <li>MAGPIE: contextual privacy benchmark for multi-agent systems (Juneja et al., 2025).</li>
+      <li>AgentPoison / MemoryGraft: persistent compromise of LLM agents via poisoned experience retrieval (2024–2025).</li>
+      <li>Privacy in Action: realistic privacy mitigation and evaluation for LLM-powered agents (Wang et al., 2025).</li>
+      <li>Security and privacy challenges in LLM-based autonomous agents: attacks and defenses, <em>IEEE Access</em> (Wang et al., 2025).</li>
+      <li>Data observed by LLM agents during task execution (Alizadeh et al., 2025).</li>
+      <li>Securing agentic AI systems — a multilayer security framework, <em>Proc. IEEE RAAI</em> (Arora &amp; Hastings, 2024).</li>
+      <li>... [full reference list available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3389/fcomp.2026.1802727">10.3389/fcomp.2026.1802727</a> · License: CC BY 4.0</p>
+  <p>PDF: <a href="https://www.frontiersin.org/journals/computer-science/articles/10.3389/fcomp.2026.1802727/pdf">frontiersin.org …/pdf</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

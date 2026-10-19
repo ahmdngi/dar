@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسح شامل لوكلاء الذكاء الاصطناعي ذاتية التطور — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Comprehensive Survey of Self-Evolving AI Agents: A New Paradigm Bridging Foundation Models and Lifelong Agentic Systems</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مسح شامل لوكلاء الذكاء الاصطناعي ذاتية التطور: نموذج جديد يربط النماذج التأسيسية بالأنظمة الوكيلة الدائمة التطور</h2>
+
+  <div class="paper-meta">
+    <span>👤 Jinyuan Fang, Yanwen Peng, Xi Zhang, Yingxu Wang, Xinhao Yi, Guibin Zhang, Yi Xu, Bin Wu, Siwei Liu, Zihao Li, Zhaochun Ren, Nikos Aletras, Xi Wang, Han Zhou, Zaiqiao Meng</span>
+    <span>📄 arXiv, 2025 · arXiv:2508.07407</span>
+    <span>🔗 <a href="https://doi.org/10.48550/arXiv.2508.07407">10.48550/arXiv.2508.07407</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>أثارت التطورات الأخيرة في النماذج اللغوية الكبيرة اهتمامًا متزايدًا بوكلاء الذكاء الاصطناعي القادرين على حل مهام واقعية معقدة. غير أن معظم أنظمة الوكلاء الحالية تعتمد على تهيئات مصنوعة يدويًا تبقى ثابتة بعد النشر، مما يحد من قدرتها على التكيف مع البيئات الديناميكية والمتطورة. استكشفت أبحاث حديثة تقنيات تطور الوكلاء التي تهدف إلى تحسين أنظمة الوكلاء تلقائيًا استنادًا إلى بيانات التفاعل والتغذية الراجعة البيئية. يرسي هذا الاتجاه الناشئ الأساس لوكلاء الذكاء الاصطناعي ذاتية التطور، التي تربط القدرات الثابتة للنماذج التأسيسية بالتكيف المستمر الذي تتطلبه الأنظمة الوكيلة الدائمة التعلّم. يقدم هذا المسح مراجعة شاملة للتقنيات الحالية للأنظمة الوكيلة ذاتية التطور: نطرح أولًا إطارًا مفاهيميًا موحدًا يجرّد حلقة التغذية الراجعة الكامنة وراء تصميم الأنظمة الوكيلة ذاتية التطور، ويسلط الضوء على أربعة مكونات رئيسية هي مدخلات النظام ونظام الوكلاء والبيئة والمُحسِّنات، ثم نستعرض منهجيًا طيفًا واسعًا من تقنيات التطور الذاتي التي تستهدف مكونات مختلفة من نظام الوكيل، وندرس استراتيجيات التطور الخاصة بالمجالات كالطب الحيوي والبرمجة والتمويل، ونناقش التقييم والسلامة والاعتبارات الأخلاقية، واضعين بذلك أساسًا لتطوير أنظمة وكيلة أكثر تكيفًا واستقلالية وديمومة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>أدى التقدم في التدريب المسبق واسع النطاق والضبط الدقيق بالإشراف والتعلم المعزز إلى قدرات ملحوظة للنماذج اللغوية الكبيرة في التخطيط والاستدلال وفهم اللغة، مما أشعل الاهتمام بالوكلاء المؤسَّسين على هذه النماذج — وهي أنظمة مستقلة تستخدم النموذج اللغوي وحدةً للقرار والسياسة لفهم المدخلات وتخطيط الإجراءات وتوليد المخرجات في بيئات واقعية مفتوحة. يتكون الوكيل النموذجي من نموذج تأسيسي في المركز يفسر الأهداف ويضع الخطط وينفذ الإجراءات، تدعمه وحدات للإدراك والتخطيط والذاكرة والأدوات تساعده على إدراك المدخلات وتفكيك المهام والاحتفاظ بالسياق والتفاعل مع الأدوات. وقد طُبقت هذه الأنظمة بنجاح على توليد الشيفرات والبحث العلمي والتصفح الوبائي وتطبيقات متخصصة في الطب الحيوي والتمويل.</p>
+    <p>ورغم هذا التقدم، تبقى معظم الأنظمة — أحادية كانت أم متعددة الوكلاء — ثابتة بعد النشر: سير عمل مصنوعة يدويًا، وبروتوكولات تواصل ثابتة، وسلاسل أدوات منتقاة بشريًا، تعجز عن مواكبة البيئات المفتوحة التي تتغير فيها المتطلبات والموارد والأهداف باستمرار. يعالج نموذج الأنظمة متعددة الوكلاء ذاتية التطور هذا القصور بإغلاق الحلقة بين النشر والتحسين المستمر: يجهَّز مجتمع من الوكلاء لصقل موجهاته وذاكرته واستراتيجيات استخدام الأدوات وحتى طوبولوجيا تفاعله ذاتيًا، مسترشدًا بتغذية البيئة الراجعة ومكافآت فوقية، فيتطور عبر عمره التشغيلي بدل أن يتكيف مرة واحدة.</p>
+    <p>يسترشد هذا التصور بالقوانين الثلاثة لوكلاء الذكاء الاصطناعي ذاتية التطور — الصمود (تكيف آمن)، والتفوق (الحفاظ على الأداء)، والتطور (تحسين مستقل) — وهي تقضي بأن يراقب النظام أداءه وسلامته أثناء التشغيل، ويحافظ على قدراته أو يعززها بتحديثات تدريجية مضبوطة، ويكيّف مكوناته ذاتيًا استجابة للمهام والبيئات المتغيرة. وتتمثل مساهمات المسح في إطار مفاهيمي موحد يلخص حلقة التطور، ومراجعة منهجية لتقنيات تحسين الوكيل الواحد والمتعدد الوكلاء والتقنيات الخاصة بالمجالات، ومناقشة مخصصة للتقييم والسلامة والأخلاقيات، وخارطة طريق للتحول من التدريب المسبق غير المتصل إلى التكيف المتصل فتنسيق الوكلاء المتعددين فالتطور الذاتي، مدعومة بإطار EvoAgentX المفتوح المصدر ومستودع Awesome-Self-Evolving-Agents.</p>
+  </section>
+
+  <section>
+    <h2>2. أسس أنظمة الوكلاء</h2>
+    <p>الوكيل الذكي نظام مستقل يدرك مدخلاته ويستدل حول الأهداف ويتفاعل مع البيئة لإنجاز المهام. في صميمه نموذج تأسيسي — غالبًا نموذج لغوي كبير، مع قابلية تعميم المبادئ على نماذج الرؤية واللغة وغيرها — يعمل محركًا مركزيًا للاستدلال، تحيط به وحدات داعمة: وحدة إدراك تبني تمثيلًا صالحًا للاستدلال من النص والصوت والفيديو؛ ووحدة تخطيط تفكك المهام المعقدة، من التفكيك الخطي البسيط كالتسلسل الاستدلالي (سلسلة الفكر) إلى الأساليب الديناميكية التي تشابك التخطيط مع التنفيذ كإطار ReAct، فالاستراتيجيات المتفرعة كشجرة الفكر ومخطط الفكر التي تستكشف مسارات استدلالية متعددة؛ ووحدة ذاكرة قصيرة المدى للسياق الجاري وطويلة المدى للخبرات المتراكمة؛ وسياسات استخدام الأدوات للتفاعل مع العالم الخارجي.</p>
+    <p>نشأت الأنظمة متعددة الوكلاء لمعالجة قصور الوكيل الواحد في تخصص المهام والتنسيق داخل البيئات المعقدة: يتخصص كل وكيل في مهمة فرعية أو مجال خبرة، ويتبادل الوكلاء المعلومات وينسقون سلوكهم لتحقيق أهداف مشتركة، فينجز النظام ما يعجز عنه وكيل واحد مع محاكاة بيئات أكثر واقعية وديناميكية. غير أن أطر العمل الأكثر تقدمًا ما تزال تعتمد على سير عمل مصنوعة يدويًا وبروتوكولات ثابتة، مما يقيد القدرة على الحفاظ على الأداء في البيئات المفتوحة طويلة الأمد.</p>
+    <p>يرسم المسح مسارًا تطوريًا من التدريب المسبق غير المتصل بالنموذج، إلى التكيف المتصل به، إلى تنسيق الوكلاء المتعددين، وصولًا إلى الأنظمة ذاتية التطور التي تضمّن حلقة تحسين مستمر في صميم البنية. فبدل أن يصمم البشر كل نمط تفاعل، يولّد النظام ذاتي التطور تهيئاته الوكيلة ويقيّمها ويصقلها بنفسه، متحولًا من منفِّذ ثابت إلى مشارك دائم التعلّم ومتشارك التطور — بآثار بعيدة المدى على الاكتشاف العلمي وهندسة البرمجيات والتعاون البشري-الآلي، وتمتد إلى العالم الفيزيائي عبر الروبوتات وإنترنت الأشياء والبنى السيبرانية-الفيزيائية، في طريق أنظمة ذكاء اصطناعي قابلة للتوسع ومستدامة وجديرة بالثقة تعيش وتتعلم وتدوم.</p>
+  </section>
+
+  <section>
+    <h2>3. إطار مفاهيمي لأنظمة التطور الذاتي</h2>
+    <p>يقترح المسح إطارًا مفاهيميًا عالي المستوى يجرّد العناصر الأساسية الكامنة وراء تصميم أساليب تطور الوكلاء وتحسينها، بما يتيح فهمًا شاملًا للمجال ومقارنة منهجية بين المقاربات. تبدأ عملية التطور الذاتي بتحديد المهمة — وصف عالي المستوى أو بيانات مدخلة أو سياق أو أمثلة — تشكل مدخلات النظام، ثم يُنشر نظام الوكلاء (أحاديًا أو متعددًا) لأداء المهمة داخل بيئة تولّد إشارات تغذية راجعة مشتقة من مقاييس تقييم محددة مسبقًا، فيطبّق المُحسِّن خوارزميات واستراتيجيات محددة لتحديث النظام — كضبط معاملات النموذج أو تعديل الموجهات أو صقل البنية — وقد يصطنع أمثلة تدريبية توسّع البيانات المتاحة، ثم يُعاد نشر النظام المحدّث لتبدأ دورة جديدة. تتكرر هذه الحلقة المغلقة حتى بلوغ عتبة أداء أو تحقق معايير التقارب، وكان إطار EvoAgentX أول إطار مفتوح المصدر يؤتمت توليد الأنظمة الوكيلة وتنفيذها وتقييمها وتحسينها وفق هذه العملية.</p>
+    <p>تأخذ مدخلات النظام صورتين: تحسين على مستوى المهمة، وهو الإعداد الأشيع حيث تُحسَّن المنظومة على مهمة محددة بوصف للمهمة ومجموعة تدريب، مع إمكانية توليد بيانات بديلة ديناميكيًا عبر النماذج اللغوية عند غياب البيانات الموسومة؛ وتحسين على مستوى المفردة، وهو إعداد أدق يستهدف تحسين الأداء على مثال بعينه بزوج مدخل-مخرج وسياق اختياري. أما نظام الوكلاء فهو جوهر الحلقة الخاضع للتحسين، قابل للتفكيك إلى النموذج اللغوي واستراتيجية التوجيه ووحدة الذاكرة وسياسة استخدام الأدوات والطوبولوجيا في حالة تعدد الوكلاء.</p>
+    <p>توفر البيئة السياق التشغيلي وتولّد إشارات التغذية الراجعة عبر مقاييس بديلة — كالدقة ودرجة F1 ومعدل النجاح — أو عبر مقيّمين مؤسَّسين على النماذج اللغوية في المجالات المتخصصة كالبرمجة والقانون والطب والبحث. ويحدَّد المُحسِّن بفضاء بحث (قوالب الموجهات، اختيار الأدوات، معاملات النموذج، البنى) وخوارزمية تحسين تمتد من القواعد الإرشادية والنزول الاشتقاقي إلى الطرق البايزية وبحث مونتي كارلو الشجري والتعلم المعزز والسياسات المتعلمة، بما يرسم خريطة يعلَّق عليها كل عمل في الأدبيات: ماذا يُحسَّن، وكيف، وبأي إشارة تغذية راجعة.</p>
+  </section>
+
+  <section>
+    <h2>4. تحسين الوكيل الواحد</h2>
+    <p>يبدأ التطور الذاتي من الوكيل الواحد عبر تحسين سلوك النموذج اللغوي نفسه بمسارين: التحسين القائم على التدريب الذي يحدّث الأوزان ببيانات التفاعل — كالضبط الدقيق بالإشراف والتعلم المعزز على مسارات الاستدلال وملاحظات البيئة — فيرسّخ قدرات جديدة لكنه مكلف حاسوبيًا؛ والتحسين في زمن الاختبار الذي يصقل الاستدلال دون تحديث الأوزان، كإعادة توليد المسارات وانتقائها والتحقق الذاتي والنقد الذاتي، فيتكيف مع كل مفردة بكلفة أقل لكنه محدود بسقف قدرات النموذج الثابتة.</p>
+    <p>يشكل تحسين الموجهات عائلة واسعة بلا تحديث للأوزان: التحرير المباشر القائم على القواعد والتغذية الراجعة؛ والتوليد حيث يعيد نموذج لغوي كتابة الموجهات واقتراح بدائلها؛ والمعتمد على التدرج النصي حيث تُصاغ الانتقادات اللغوية «تدرجات» توجه التحسين التكراري؛ والتطوري الذي يحتفظ بمجتمع من الموجهات المرشحة ويطبق عليها الطفرة والتهجين والانتخاب. تتفاوت هذه الأساليب في كلفة البحث وقابليتها للتفسير واعتمادها على إشارات التقييم، لكنها تشترك في معاملة الموجه بوصفه متغير التحسين الأول والأرخص.</p>
+    <p>يمتد التحسين إلى الذاكرة والأدوات: تُحسَّن الذاكرة قصيرة المدى بإدارة السياق وتلخيصه واسترجاع المقاطع الملائمة، بينما تُحسَّن الذاكرة طويلة المدى بترسيخ الخبرات وفهرستها واسترجاعها عبر الزمن للحفاظ على الاتساق بعيد المدى؛ أما الأدوات فيُحسَّن استخدامها بالتدريب على الاستدعاء الصحيح، وفي زمن الاستدلال بالاختيار التكيفي للأداة المناسبة لكل خطوة، ويبلغ النضج تحسينَ وظائف الأدوات نفسها — اكتشاف أدوات جديدة وتأليفها وتكييفها — فيتشارك الوكيل وأدواته التطور بدل بقاء مجموعة الأدوات ثابتة مفروضة من المصمم.</p>
+  </section>
+
+  <section>
+    <h2>5. تحسين متعدد الوكلاء</h2>
+    <p>صُممت الأنظمة متعددة الوكلاء اليدوية بسير عمل حرفية وتقسيم أدوار ثابت: وكلاء متخصصون بمهام فرعية وبروتوكولات تواصل محددة مسبقًا وطوبولوجيا اتصال جامدة. يحقق هذا التصميم أداءً قويًا في المهام المعروفة، لكنه هش أمام المهام الجديدة والبيئات المتغيرة: أي تغيير في المتطلبات يستلزم إعادة تصميم بشرية، وتتعاظم الكلفة والهشاشة كلما اتسع النظام.</p>
+    <p>تتجاوز الأنظمة متعددة الوكلاء ذاتية التطور هذا الجمود بتحسين كل طبقة من طبقات التنظيم الجماعي: تحسين موجهات الوكلاء المتعددين بتنسيق تعليمات كل وكيل مع أدواره؛ وتحسين الطوبولوجيا بإعادة تشكيل من يتحدث إلى من ومتى — حذفًا للروابط الزائدة وإضافة لمسارات تنسيق جديدة؛ والتحسين الموحد الذي يعالج الموجهات والطوبولوجيا معًا بوصفهما قرارًا مشتركًا؛ وتحسين العمود الفقري اللغوي باختيار النموذج الأنسب لكل دور أو ضبطه عليه، إدراكًا بأن قدرات الاستدلال المختلفة تتطلب أحجام نماذج ومهارات متباينة.</p>
+    <p>تكشف المقارنة مفاضلات جوهرية: تحسين الأنظمة الكبيرة متعددة الوكلاء يرفع الأداء لكنه يتكبد كلفة حاسوبية وزمن استجابة وعدم استقرار كبيرًا، فتبقى الموازنة الصريحة بين الفعالية والكفاءة مسألة مفتوحة؛ كما أن الموجهات والطوبولوجيات المحسَّنة غالبًا ما تكون هشة ضعيفة التعميم عبر أعمدة لغوية مختلفة القدرات الاستدلالية، مما يقوض قابلية التوسع وإعادة الاستخدام في بيئات الإنتاج ويستدعي أساليب تحسين واعية بالموارد وقابلة للنقل.</p>
+  </section>
+
+  <section>
+    <h2>6. التحسين الخاص بالمجال</h2>
+    <p>في الطب الحيوي تُحكم استراتيجيات التطور بقيود المجال الصارمة: وكلاء التشخيص الطبي يتعلمون من السجلات السريرية والأدلة الإرشادية مع ندرة الحقيقة المرجعية الموثوقة والحساسية العالية للخطأ، ووكلاء الاكتشاف الجزيئي والاستدلال الرمزي يتعاملون مع فضاءات كيميائية هائلة تتطلب تكامل المعرفة المتخصصة ومعايير تقييم مصممة للمجال والامتثال التنظيمي، فتكون إشارات التغذية الراجعة هنا مزيجًا من المقاييس الحسابية والتحقق المخبري ورأي الخبراء.</p>
+    <p>تمثل البرمجة المجال الأمثل للتطور الذاتي لأن التغذية الراجعة قابلة للتنفيذ: وكلاء صقل الشيفرات يحسّنون جودة المخرجات تكراريًا مسترشدين بنتائج الاختبارات والمترجمات، ووكلاء تصحيح الأخطاء يشخّصون الأعطال ويقترحون الإصلاحات ويتحققون منها تنفيذيًا في حلقة مغلقة، فتوفر قابلية التنفيذ إشارة مكافأة موضوعية نادرة في المجالات الأخرى، وإن ظل التعميم إلى قواعد شيفرات ومشاريع غير مرئية تحديًا قائمًا.</p>
+    <p>وفي التمويل والبحث القانوني تتشابك أهداف التحسين مع القيود التنظيمية: وكلاء اتخاذ القرار المالي يوازنون العائد والمخاطرة تحت قواعد الامتثال وتقلبات السوق، ووكلاء الاستدلال القانوني يتعاملون مع معايير مفتوحة النسيج يصعب ترميزها في دوال مكافأة، فيُظهر المجالان معًا أن التطور الوكيلي الناجح ليس تحسينًا تقنيًا محضًا بل تكييف واعٍ بالمجال يدمج مصادر معرفية غير متجانسة ومعايير تقييم مخصصة والالتزام القانوني في صميم حلقة التحسين.</p>
+  </section>
+
+  <section>
+    <h2>7. التقييم</h2>
+    <p>ينقسم تقييم الأنظمة الوكيلة إلى تقييم معياري وتقييم مؤسَّس على النماذج: يغطي الأول وكلاء الأدوات والواجهات البرمجية، ووكلاء التصفح والتنقل الوبائي، والتعاون متعدد الوكلاء والوكلاء العموميين، ووكلاء البيئات الرسومية ومتعددة الوسائط، ووكلاء المهام الخاصة بالمجالات — وهي معايير تقيس النجاح الوظيفي لكنها لقطات ثابتة سرعان ما تتشبع ويصعب أن تعكس تعقيد العالم الحقيقي والتفاعل الممتد.</p>
+    <p>يقدّم التقييم المؤسَّس على النماذج بديلًا قابلًا للتوسع: النموذج اللغوي حَكَمًا يقيّم المخرجات وفق معايير مصرح بها، والوكيل حَكَمًا — كما في منهجية Agent-as-a-Judge المطبقة على معيار DevAI لوكلاء توليد الشيفرات — حيث تحلل وحدات متخصصة المخرجات الوسيطة وتبني مخططات استدلالية وتتحقق من المتطلبات الهرمية، فتتوافق الأحكام مع تقييمات الخبراء البشريين توافقًا أوثق من المقاربات التقليدية وبزمن وكلفة أقل، وإن أضافت تعقيدًا وتحديات تعميم إلى مجالات أبعد من توليد الشيفرات.</p>
+    <p>تشكل السلامة والمواءمة والمتانة القيد الأول على كل تطور بمقتضى قانون الصمود: فالسلامة ليست شهادة تُمنح مرة واحدة بل مطلب مستمر — كل خطوة تطور من تحديث موجه إلى تغيير طوبولوجيا يجب فحصها سلوكيًا. تقيس معايير المخاطر كـ AgentHarm ميل الوكيل للامتثال لطلبات خبيثة متعددة الخطوات كالاحتيال والجرائم السيبرانية، وتختبر مسابر متخصصة كـ RedCode لأمن الشيفرات وMobileSafetyBench للتحكم الجوال الوكلاءَ في بيئات معزولة واقعية، ويستكشف MACHIAVELLI نشوء استراتيجيات غير أخلاقية ساعية للقوة تحت ضغط المكافآت، ويُظهر SafeLawBench عجز أحدث النماذج عن استيفاء المبادئ القانونية الراسخة — ومع ذلك تبقى معظم التقييمات لقطية، فيما يتطلب التطور الذاتي معايير طولية واعية بالتطور تتتبع السلامة والمواءمة عبر دورة حياة المنظومة الوكيلة كاملة، وهو تحدٍّ مفتوح وملحّ.</p>
+  </section>
+
+  <section>
+    <h2>8. التحديات والاتجاهات المستقبلية</h2>
+    <p>تُجمَّع العقبات المفتوحة وفق القوانين الثلاثة: ففي الصمود يعطي معظم خطوط التحسين أولوية لمقاييس المهام على قيود السلامة متجاهلًا السلوكيات غير المقصودة وتسربات الخصوصية والأهداف المنحرفة، وتفترض الأطر القانونية القائمة كقانون الذكاء الاصطناعي الأوروبي واللائحة العامة لحماية البيانات نماذجَ ثابتة ومنطقَ قرار جامدًا فتعجز عن مواكبة الوكلاء المتطورين — مما يستدعي آليات تدقيق واعية بالتطور وتراخيص وبروتوكولات قانونية تتعقب المسار التطوري ذاتي التوجيه وتقيّده؛ كما تعاني نماذج المكافأة المتعلمة لخطوات الاستدلال الوسيطة من شح البيانات وضجيج الإشراف وتناقض التغذية الراجعة فتفضي إلى سلوكيات غير مستقرة أو متباينة.</p>
+    <p>وفي التفوق يصعب بناء إشارات تغذية راجعة جديرة بالثقة حيث تغيب الحقيقة المرجعية أو تُتنازع عليها كما في الطب والقانون، ويحسّن تحسين الأنظمة الكبيرة متعددة الوكلاء الأداء بكلفة حاسوبية وزمن استجابة وعدم استقرار باهظ دون حل مرضٍ للمفاضلة بين الفعالية والكفاءة، وتبقى الموجهات والطوبولوجيات المحسَّنة هشة ضعيفة التعميم عبر الأعمدة اللغوية المختلفة، مما يقوض قابلية التوسع. وفي التطور تقتصر معظم خوارزميات التحسين على النص بينما يجب على وكلاء العالم الحقيقي معالجة مدخلات متعددة الوسائط والاستدلال في بيئات مكانية مستمرة — مما يتطلب نماذج عالم داخلية واستدلالًا إدراكيًا-زمنيًا — وتفترض الطرق الحالية مجموعة أدوات ثابتة متجاهلةً الاكتشاف المستقل للأدوات وتكييفها وتشارك تطورها مع الوكلاء.</p>
+    <p>تشير هذه القيود إلى مسارات بحثية واعدة على امتداد التحول من التدريب المسبق إلى التطور الذاتي: بيئات محاكاة مفتوحة تفاعلية يتفاعل فيها الوكلاء تكراريًا ويصقلون مكوناتهم عبر تحسين الحلقة المغلقة؛ تجاوز استدعاء الأدوات الثابت نحو اختيار الأدوات وتأليفها وإنشائها تكيفيًا بالتعلم المعزز؛ معايير وبروتوكولات تعكس تعقيد العالم الحقيقي وتدعم التقييم التفاعلي والطولي؛ خوارزميات تحسين تصوغ الأداء وقيود الموارد معًا لتعمل تحت ميزانيات صارمة للزمن والكلفة والطاقة؛ وتطور واعٍ بالمجال للتطبيقات العلمية والمتخصصة يدمج المعرفة والامتثال التنظيمي — فمعالجة هذه التحديات بخطوط تحسين عالية الأداء ومتكيفة مجاليًا وآمنة وواعية بالتنظيم ومستدامة ذاتيًا، وتأصيلها في القوانين الثلاثة، يرسم خارطة طريق متماسكة نحو أنظمة وكيلة دائمة التعلّم ومستقلة حقًا تصمد وتتفوق وتتطور عبر كامل عمرها التشغيلي.</p>
+  </section>
+
+  <section>
+    <h2>9. الخاتمة</h2>
+    <p>يخلص المسح إلى أن مستقبل الوكلاء يكمن في تجاوز القدرات الثابتة للنماذج التأسيسية نحو أنظمة دائمة التطور: قدّم إطارًا مفاهيميًا موحدًا يجرّد حلقة التغذية الراجعة بمكوناتها الأربعة — مدخلات النظام ونظام الوكلاء والبيئة والمُحسِّنات — واستعرض منهجيًا تقنيات التطور الذاتي للوكيل الواحد (سلوك النموذج والموجهات والذاكرة والأدوات) والمتعدد الوكلاء (الموجهات والطوبولوجيا والتحسين الموحد والعمود الفقري) والتقنيات الخاصة بالمجالات، مع مناقشة معمقة للتقييم والسلامة والأخلاقيات.</p>
+    <p>الرسائل الجوهرية ثلاث: ماذا يُحسَّن — كل مكون من مكونات المنظومة الوكيلة هدف مشروع للتطور بدءًا من الموجه الأرخص حتى البنية التنظيمية؛ وكيف — بفضاء بحث وخوارزمية تحسين تُختاران على ضوء إشارة التغذية الراجعة المتاحة وكلفة التحسين؛ وكيف نثق — بتقييم مستمر ودقيق وقابل للتوسع يجعل الصمود قيدًا أول لا شهادة لاحقة، ومعايير طولية تتعقب السلامة عبر دورة الحياة كاملة.</p>
+    <p>يدعو المسح الباحثين والممارسين إلى البناء على هذا الفهم المنهجي لتطوير أنظمة وكيلة أكثر تكيفًا واستقلالية وديمومة — أنظمة لا تُدرَّب مرة واحدة بل تعيش وتتعلم وتدوم — مؤكدًا أن الطريق يمر عبر خطوط تحسين آمنة وواعية بالمجال ومستدامة ذاتيًا، مؤسَّسة في القوانين الثلاثة: الصمود والتفوق والتطور.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Recent advances in large language models have sparked growing interest in AI agents capable of solving complex, real-world tasks. However, most existing agent systems rely on manually crafted configurations that remain static after deployment, limiting their ability to adapt to dynamic and evolving environments. Recent research has explored agent evolution techniques that aim to automatically enhance agent systems based on interaction data and environmental feedback. This emerging direction lays the foundation for self-evolving AI agents, which bridge the static capabilities of foundation models with the continuous adaptability required by lifelong agentic systems. In this survey, we provide a comprehensive review of existing techniques for self-evolving agentic systems. Specifically, we first introduce a unified conceptual framework that abstracts the feedback loop underlying the design of self-evolving agentic systems. The framework highlights four key components: System Inputs, Agent System, Environment, and Optimisers, serving as a foundation for understanding and comparing different strategies. Based on this framework, we systematically review a wide range of self-evolving techniques that target different components of the agent system. We also investigate domain-specific evolution strategies developed for specialised fields such as biomedicine, programming, and finance, where optimisation objectives are tightly coupled with domain constraints. In addition, we provide a dedicated discussion on the evaluation, safety, and ethical considerations for self-evolving agentic systems, which are critical to ensuring their effectiveness and reliability. This survey aims to provide researchers and practitioners with a systematic understanding of self-evolving AI agents, laying the foundation for the development of more adaptive, autonomous, and lifelong agentic systems.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Progress in large-scale pretraining, supervised fine-tuning, and reinforcement learning has given large language models remarkable capabilities in planning, reasoning, and language understanding, sparking interest in LLM-based agents — autonomous systems that use an LLM as the decision and policy module to understand inputs, plan actions, and generate outputs in open-ended, real-world environments. A typical agent centres on a foundation model that interprets goals, plans, and executes, supported by perception, planning, memory, and tool modules. Such systems have been successfully applied to code generation, scientific research, web navigation, and specialised applications in biomedicine and finance.</p>
+    <p>Despite this progress, most systems — single- or multi-agent — remain static after deployment: handcrafted workflows, fixed communication protocols, and human-curated toolchains that cannot keep pace with open-ended environments where requirements, resources, and goals continuously change. The Multi-Agent Self-Evolving (MASE) paradigm addresses this by closing the loop between deployment and continual improvement: a population of agents autonomously refines its prompts, memory, tool-use strategies, and even interaction topology, guided by environment feedback and meta-rewards, evolving over its operational lifetime rather than adapting once.</p>
+    <p>This vision is guided by the Three Laws of Self-Evolving AI Agents — Endure (safety adaptation), Excel (performance preservation), and Evolve (autonomous optimisation): monitor performance and safety during operation, preserve or enhance capabilities through controlled incremental updates, and autonomously adapt components in response to shifting tasks and environments. The survey's contributions are a unified conceptual framework abstracting the evolution loop, a systematic review of single-agent, multi-agent, and domain-specific self-evolution techniques, a dedicated discussion of evaluation, safety, and ethics, and a roadmap of the MOP-to-MOA-to-MAO-to-MASE shift, supported by the open-source EvoAgentX framework and the Awesome-Self-Evolving-Agents repository.</p>
+  </section>
+
+  <section>
+    <h2>2. Foundation of AI Agent Systems</h2>
+    <p>An AI agent is an autonomous system that perceives inputs, reasons about goals, and interacts with the environment to complete tasks. At its core sits a foundation model — most commonly an LLM, with the principles generalising to vision–language and other backbones — acting as the central reasoning engine, surrounded by supporting modules: perception, which builds reasoning-ready representations from text, audio, and video; planning, which decomposes complex tasks, from simple linear decomposition such as chain-of-thought prompting to dynamic approaches interleaving planning and execution such as ReAct, to branching strategies such as Tree-of-Thought and Graph-of-Thought that explore multiple reasoning paths; short-term memory for ongoing context and long-term memory for accumulated experience; and tool-use policies for interacting with the external world.</p>
+    <p>Multi-agent systems (MAS) arose to address single-agent shortcomings in task specialisation and coordination within complex environments: each agent specialises in a subtask or domain of expertise, and agents exchange information and coordinate behaviour to achieve shared goals, accomplishing what no single agent could while simulating more realistic, dynamic settings. Yet even the most advanced frameworks still depend on handcrafted workflows and fixed protocols, constraining the ability to sustain performance in long-lived, open-ended environments.</p>
+    <p>The survey traces an evolutionary trajectory from Model Offline Pretraining (MOP) through Model Online Adaptation (MOA) and Multi-Agent Orchestration (MAO) to Multi-Agent Self-Evolving (MASE) systems that embed a continuous improvement loop at the core of the architecture. Rather than requiring human designers to handcraft every interaction pattern, a lifelong self-evolving system generates, evaluates, and refines its own agentic configurations — transforming from a static executor into a continually learning, co-evolving participant — with far-reaching implications for scientific discovery, software engineering, and human–AI collaboration, extending into the physical world through robotics, IoT devices, and cyber–physical infrastructures, on a path toward scalable, sustainable, trustworthy AI that lives, learns, and lasts.</p>
+  </section>
+
+  <section>
+    <h2>3. A Conceptual Framework of MASE</h2>
+    <p>The survey proposes a high-level conceptual framework abstracting the key elements behind the design of agent evolution and optimisation methods, enabling a comprehensive understanding of the field and comparative analysis across approaches. The self-evolving process begins with a task specification — a high-level description, input data, context, or examples — constituting the system inputs; the agent system (single- or multi-agent) is then deployed to perform the task within an environment that generates feedback signals derived from predefined evaluation metrics; the optimiser applies specific algorithms and strategies to update the system — adjusting LLM parameters, modifying prompts, or refining structure — and may synthesise training examples to expand available data, before the updated system is redeployed to begin a new cycle. This closed feedback loop repeats until a performance threshold or convergence criterion is met, and EvoAgentX is the first open-source framework to automate the generation, execution, evaluation, and optimisation of agentic systems under this process.</p>
+    <p>System inputs take two forms: task-level optimisation, the most common setting, where the system is improved on a specific task given a task description and training set, with dynamically synthesised surrogate data via LLM-based generation when labelled data is unavailable; and instance-level optimisation, a finer-grained setting targeting performance on a specific example given an input–output pair with optional context. The agent system is the core of the loop subject to optimisation, decomposable into the underlying LLM, prompting strategy, memory module, tool-use policy, and — for multiple agents — interaction topology.</p>
+    <p>The environment provides the operating context and feedback via proxy metrics — accuracy, F1, success rate — or via LLM-based evaluators in specialised domains such as coding, law, medicine, and research. The optimiser is defined by a search space (prompt templates, tool selection, LLM parameters, architectures) and an optimisation algorithm ranging from rule-based heuristics and gradient descent to Bayesian, Monte Carlo tree search, reinforcement learning, and learning-based policies — a map onto which every work in the literature can be placed: what is optimised, how, and with which feedback signal.</p>
+  </section>
+
+  <section>
+    <h2>4. Single-Agent Optimisation</h2>
+    <p>Self-evolution starts with the single agent via optimisation of the LLM's behaviour along two paths: training-based optimisation, which updates weights with interaction data — supervised fine-tuning and reinforcement learning over reasoning trajectories and environment observations — instilling new capabilities at significant computational cost; and test-time optimisation, which refines reasoning without weight updates, such as regenerating and selecting trajectories, self-verification, and self-critique, adapting per instance more cheaply but bounded by the frozen model's capability ceiling.</p>
+    <p>Prompt optimisation forms a broad family with no weight updates: direct editing driven by rules and feedback; generative approaches where an LLM rewrites and proposes prompt alternatives; text-gradient-based methods where linguistic critiques act as "gradients" guiding iterative refinement; and evolutionary approaches maintaining a population of candidate prompts under mutation, crossover, and selection. These methods differ in search cost, interpretability, and dependence on evaluation signals, but all treat the prompt as the primary and cheapest optimisation variable.</p>
+    <p>Optimisation extends to memory and tools: short-term memory is improved through context management, summarisation, and retrieval of relevant spans, while long-term memory is improved by consolidating, indexing, and recalling experiences over time to preserve long-range consistency; tool use is optimised by training correct invocation, by adaptive per-step tool selection at inference time, and — at maturity — by optimising tool functionality itself: discovering, composing, and adapting new tools, so that agent and toolset co-evolve rather than the toolset remaining a designer-imposed fixture.</p>
+  </section>
+
+  <section>
+    <h2>5. Multi-Agent Optimisation</h2>
+    <p>Manually designed multi-agent systems use handcrafted workflows with fixed role assignments: specialised agents for subtasks, pre-specified communication protocols, and rigid interaction topologies. This design performs strongly on known tasks but is brittle under novel tasks and changing environments: any requirements shift demands human redesign, with cost and fragility growing as the system scales.</p>
+    <p>Self-evolving multi-agent systems overcome this rigidity by optimising every layer of collective organisation: multi-agent prompt optimisation coordinating each agent's instructions with its roles; topology optimisation reshaping who talks to whom and when — pruning redundant links and adding new coordination paths; unified optimisation treating prompts and topology jointly as one decision; and LLM backbone optimisation selecting or tuning the most suitable model per role, recognising that differing reasoning capabilities demand different model sizes and skills.</p>
+    <p>The comparison reveals fundamental trade-offs: optimising large-scale multi-agent systems improves performance but incurs heavy computational cost, latency, and instability, leaving the explicit effectiveness–efficiency trade-off unresolved; and optimised prompts and topologies are often brittle, generalising poorly across LLM backbones with differing reasoning abilities, which undermines scalability and reuse in production and calls for resource-aware, transferable optimisation methods.</p>
+  </section>
+
+  <section>
+    <h2>6. Domain-Specific Optimisation</h2>
+    <p>In biomedicine, evolution strategies are governed by strict domain constraints: medical diagnosis agents learn from clinical records and guidelines amid scarce reliable ground truth and high error sensitivity, while molecular discovery and symbolic reasoning agents navigate vast chemical spaces requiring integrated specialist knowledge, bespoke evaluation criteria, and regulatory compliance — feedback signals here blending computational metrics, laboratory validation, and expert judgement.</p>
+    <p>Programming is the ideal domain for self-evolution because feedback is executable: code refinement agents iteratively improve output quality guided by test results and compilers, and debugging agents diagnose faults, propose fixes, and verify them executably in a closed loop — executability providing an objective reward signal rare in other domains, though generalisation to unseen codebases and projects remains an open challenge.</p>
+    <p>In finance and legal research, optimisation objectives intertwine with regulatory constraints: financial decision-making agents balance return and risk under compliance rules and market volatility, while legal reasoning agents handle open-textured norms difficult to encode as reward functions — both domains showing that successful agent evolution is not purely technical optimisation but domain-aware adaptation integrating heterogeneous knowledge sources, bespoke evaluation criteria, and legal compliance into the heart of the optimisation loop.</p>
+  </section>
+
+  <section>
+    <h2>7. Evaluation</h2>
+    <p>Agent evaluation splits into benchmark-based and model-based strands: the former covers tool- and API-driven agents, web navigation and browsing agents, multi-agent collaboration and generalists, GUI and multimodal environment agents, and domain-specific task agents — benchmarks measuring functional success but as static snapshots that saturate quickly and struggle to reflect real-world complexity and extended interaction.</p>
+    <p>Model-based evaluation offers a scalable alternative: LLM-as-a-Judge scoring outputs against stated criteria, and Agent-as-a-Judge — as in the methodology applied to the DevAI benchmark for code-generation agents — where specialised modules analyse intermediate artefacts, construct reasoning graphs, and validate hierarchical requirements, yielding judgements aligned more closely with human experts than traditional approaches, at lower time and cost, albeit with added complexity and generalisation challenges beyond code generation.</p>
+    <p>Safety, alignment, and robustness form the primary constraint on all evolution under the law of Endure: safety is not a one-off certification but an ongoing requirement — every evolution step, from prompt updates to topology changes, must be behaviourally screened. Risk-focused benchmarks such as AgentHarm measure an agent's propensity to comply with explicitly malicious multi-step requests such as fraud or cybercrime; specialist probes such as RedCode for code security and MobileSafetyBench for mobile control stress-test agents in realistic sandboxed environments; MACHIAVELLI explores the emergence of unethical power-seeking strategies under reward pressure; and SafeLawBench shows state-of-the-art models still failing established legal principles — yet most evaluations remain snapshot-based, while self-evolution demands longitudinal, evolution-aware benchmarks tracking safety across the full lifecycle of the agent ecosystem, an open and urgent challenge.</p>
+  </section>
+
+  <section>
+    <h2>8. Challenges and Future Directions</h2>
+    <p>The open obstacles group naturally under the Three Laws: under Endure, most optimisation pipelines prioritise task metrics over safety constraints, neglecting unintended behaviours, privacy breaches, and misaligned objectives, while existing legal frameworks such as the EU AI Act and GDPR assume static models and fixed decision logic and cannot track evolving agents — calling for evolution-aware audit mechanisms, licences, and legal protocols that track and constrain an agent's self-directed evolutionary path; learned reward models for intermediate reasoning steps additionally suffer dataset scarcity, noisy supervision, and feedback inconsistency, producing unstable or divergent behaviours.</p>
+    <p>Under Excel, trustworthy feedback signals are hard to build where ground truth is absent or disputed, as in medicine or law; large-scale multi-agent optimisation improves performance at steep computational, latency, and stability cost with no satisfactory effectiveness–efficiency resolution; and optimised prompts and topologies remain brittle across backbones, undermining scalability. Under Evolve, most optimisation algorithms are text-only while real-world agents must process multimodal inputs and reason in spatially continuous environments — demanding internal world models and perceptual–temporal reasoning — and current methods assume a fixed toolset, overlooking autonomous tool discovery, adaptation, and co-evolution with agents.</p>
+    <p>These limitations point to promising avenues along the MOP-to-MASE trajectory: open-ended interactive simulation platforms where agents iteratively interact and refine their components via closed-loop optimisation; moving beyond static tool invocation toward adaptive tool selection, composition, and creation with reinforcement learning; benchmarks and protocols reflecting real-world complexity with interactive, longitudinal assessment; optimisation algorithms jointly modelling performance and resource constraints for deployment under strict latency, cost, or energy budgets; and domain-aware evolution for scientific and specialised applications integrating knowledge and regulatory compliance — addressing these challenges with high-performing, domain-adaptive, safe, regulation-aware, self-sustaining pipelines, grounded in the Three Laws, charts a coherent roadmap toward truly lifelong, autonomous agentic systems that endure, excel, and evolve across their full operational lifetimes.</p>
+  </section>
+
+  <section>
+    <h2>9. Conclusions</h2>
+    <p>The survey concludes that the future of agents lies beyond the static capabilities of foundation models, in lifelong self-evolving systems: it presented a unified conceptual framework abstracting the feedback loop into four components — system inputs, agent system, environment, and optimisers — and systematically reviewed self-evolution techniques for the single agent (model behaviour, prompts, memory, tools), the multi-agent collective (prompts, topology, unified optimisation, backbones), and specialised domains, alongside an in-depth discussion of evaluation, safety, and ethics.</p>
+    <p>Three core messages stand out: what to optimise — every component of the agentic system is a legitimate evolution target, from the cheapest prompt to the organisational structure; how — a search space and optimisation algorithm chosen in light of the available feedback signal and optimisation cost; and how to trust — continuous, granular, scalable evaluation making Endure a first-order constraint rather than a post-hoc certificate, with longitudinal benchmarks tracking safety across the complete lifecycle.</p>
+    <p>The survey calls on researchers and practitioners to build on this systematic understanding toward more adaptive, autonomous, and lifelong agentic systems — systems not trained once but that live, learn, and last — stressing that the path runs through safe, domain-aware, self-sustaining optimisation pipelines grounded in the Three Laws: Endure, Excel, and Evolve.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected)</h2>
+    <ol dir="ltr">
+      <li>[1] J. Fang et al., "A Comprehensive Survey of Self-Evolving AI Agents: A New Paradigm Bridging Foundation Models and Lifelong Agentic Systems," <em>arXiv:2508.07407 [cs.AI]</em>, 2025.</li>
+      <li>[2] J. Wei et al., "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models," <em>Advances in Neural Information Processing Systems</em>, vol. 35, 2022.</li>
+      <li>[3] Y. Yao et al., "ReAct: Synergizing Reasoning and Acting in Language Models," <em>ICLR</em>, 2023.</li>
+      <li>[4] Y. Yao et al., "Tree of Thoughts: Deliberate Problem Solving with Large Language Models," <em>NeurIPS</em>, vol. 36, 2023.</li>
+      <li>[5] B. Besta et al., "Graph of Thoughts: Solving Elaborate Problems with Large Language Models," <em>AAAI</em>, 2024.</li>
+      <li>[6] T. Schick et al., "Toolformer: Language Models Can Teach Themselves to Use Tools," <em>NeurIPS</em>, vol. 36, 2023.</li>
+      <li>[7] A. Zhuge et al., "Agent-as-a-Judge: Evaluate Agents with the Help of Agents," 2024.</li>
+      <li>[8] M. Andriushchenko et al., "AgentHarm: A Benchmark for Measuring Harmfulness of AI Agents," 2025.</li>
+      <li>[9] A. Pan et al., "MACHIAVELLI: Benchmarking Competition in Multi-Agent Systems," 2023.</li>
+      <li>[10] X. Wang et al., "EvoAgentX: An Open-Source Framework for Self-Evolving Agentic Systems," 2025. [Online]. Available: <a href="https://github.com/EvoAgentX/Awesome-Self-Evolving-Agents">https://github.com/EvoAgentX/Awesome-Self-Evolving-Agents</a></li>
+      <li>... [full reference list available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.48550/arXiv.2508.07407">10.48550/arXiv.2508.07407</a> · License: CC BY 4.0 · Code: <a href="https://github.com/EvoAgentX/Awesome-Self-Evolving-Agents">EvoAgentX/Awesome-Self-Evolving-Agents</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

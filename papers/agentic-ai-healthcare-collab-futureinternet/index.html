@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الذكاء الاصطناعي الوكيل والتعاون متعدد الوكلاء في الرعاية الصحية — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Agentic AI and Multi-Agent Collaboration in Healthcare: A Comprehensive Survey of Architectures, Clinical Safety, and Future Directions</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">الذكاء الاصطناعي الوكيل والتعاون متعدد الوكلاء في الرعاية الصحية: مسح شامل للبنيات والسلامة السريرية والاتجاهات المستقبلية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Subir Biswas, Rajib Mondal, Manob Jyoti Saikia</span>
+    <span>📄 Future Internet, 2026 · Vol. 18, article 391</span>
+    <span>🔗 <a href="https://doi.org/10.3390/fi18080391">10.3390/fi18080391</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يتطور الذكاء الاصطناعي في المجال الصحي والسريري من نماذج سابقة كانت تتنبأ بالنتائج أو تولّد المحتوى في المقام الأول نحو أنظمة ذكاء اصطناعي وكيلة تُظهر القدرة على اتخاذ القرارات وإنجاز المهام باستقلالية. أسهمت أبحاث الذكاء الاصطناعي السابقة إسهامًا كبيرًا في تحديد الأمراض وتطبيقات التعلم العميق والنماذج اللغوية الكبيرة والذكاء الاصطناعي التوليدي، لكن هذه الأنظمة تعمل أساسًا كأدوات مساعدة تولّد نصوصًا أو تنبؤات دون تفاعل مباشر مع البنى التحتية السريرية. لذلك تتجه اتجاهات البحث الحديثة بشكل متزايد نحو أنظمة وكيلة تتجاوز أداء النماذج التنبؤية والتوليدية التقليدية. تقدم هذه المخطوطة مراجعة مفصلة للوضع الحالي للذكاء الاصطناعي الوكيل، بدءًا من تطور الذكاء الاصطناعي ومفهوم الوكيل الطبي. يشير الوكيل الطبي إلى نظام ذكي مصمم للمساعدة في المهام السريرية أو الإدارية عبر تحليل البيانات ودعم اتخاذ القرار والتفاعل مع بيئات الرعاية الصحية. تدمج بنيته الوكيلة التخطيط والذاكرة والاستدلال والتفاعل البيئي لتمكين الاستخدام المستقل للأدوات والتعاون متعدد الوكلاء وحلقات الإدراك–القرار–الفعل المستمرة عبر التطبيقات الصحية ومسارات العمل السريرية المتنوعة. كما تستعرض المراجعة آليات السلامة، بما فيها الإشراف البشري في الحلقة واستراتيجيات التحقق الذاتي وأطر المواءمة التنظيمية، المصممة لضمان الموثوقية والمساءلة والامتثال والنشر الآمن في بيئات الرعاية الصحية المنظمة. تشير نتائجنا إلى طرح عدد كبير من وكلاء الذكاء الاصطناعي في مخطوطات متعددة لتطبيقات الرعاية الصحية؛ غير أن الأنظمة المستقلة تمامًا ما تزال صعبة التحقيق، إذ يواجه الذكاء الاصطناعي قيودًا تتعلق بالموثوقية وقابلية التفسير والاعتماد على البيانات والتكامل ضمن مسارات العمل السريرية المعقدة. واستجابةً لهذه التحديات، تحوّل هذه المراجعة التركيز من أداء النماذج الخاصة بالمهام إلى الاستقلالية على مستوى النظام وتنسيق مسارات العمل، مقدمةً أساسًا منظمًا لفهم تصميم أنظمة الذكاء الاصطناعي الوكيل ونشرها وحوكمتها وقيودها في منظومات الرعاية الصحية الحديثة.</p>
+  </section>
+
+  <section>
+    <h2>١. المقدمة</h2>
+    <p>تعتمد المرافق السريرية اليوم بشكل متزايد على الذكاء الاصطناعي لتعزيز دقة التشخيص وتحسين مسارات العمل ونتائج المرضى. ويمكن تصنيف تطور الذكاء الاصطناعي في الرعاية الصحية على نطاق واسع في ثلاث موجات رئيسية: الذكاء الاصطناعي التنبؤي الذي يركز على التعرف على الأنماط والتنبؤ بالنتائج باستخدام النماذج الإحصائية وتقنيات التعلم العميق — مثل الشبكات العصبية الالتفافية في تحليل الصور الطبية كالأشعة السينية والمقطعية والرنين المغناطيسي، والشبكات المتكررة وذات الذاكرة الطويلة في تحليل الإشارات الفسيولوجية كتخطيط القلب والدماغ — ثم الذكاء الاصطناعي التوليدي الذي يركز على توليد المحتوى وتعلم التمثيل وتوليف المعرفة عبر النماذج اللغوية الكبيرة وشبكات الخصومة التوليدية والبنى التوليدية القائمة على المحولات.</p>
+    <p>أما الموجة الثالثة الناشئة فهي الذكاء الاصطناعي الوكيل، الذي يمثل تحولًا جوهريًا من النماذج التنبؤية والتوليدية نحو أنظمة مستقلة موجَّهة بالأهداف قادرة على العمل داخل البيئات السريرية المعقدة. صُممت الأنظمة الوكيلة لإدراك السياق والاستدلال عبر الزمن وتخطيط إجراءات متعددة الخطوات وتنفيذ القرارات عبر مسارات عمل الرعاية الصحية المترابطة، وذلك عبر دمج النماذج اللغوية الكبيرة مع آليات التخطيط والذاكرة واستخدام الأدوات والتفاعل البيئي، مما يتيح التفاعل المباشر مع أنظمة معلومات المستشفيات ومنصات جدولة المواعيد وبنى الفوترة وخطوط التنبيه السريري وعمليات الفرز الأولي. ورغم الأداء المثير للإعجاب للنماذج التوليدية الحديثة في الامتحانات الطبية ومعايير الاستدلال السريري، تبقى فجوة جوهرية تُعرف بـ«فجوة الفاعلية»: إذ تعمل النماذج اللغوية الحالية إلى حد كبير كمستجيبات سلبية تولّد توصيات أو مخرجات نصية دون القدرة على تنسيق المهام باستقلالية أو التكيف مع الحالات السريرية الديناميكية أو تنفيذ إجراءات متعددة الخطوات داخل أنظمة الرعاية الصحية الواقعية.</p>
+    <p>تتجاوز هذه الورقة المسح الأدبي التقليدي عبر تقديم إطار منظم وتطبيقي: تعريف الوكيل الطبي ومكوناته الأساسية، ودرجات الاستقلالية من المستوى صفر إلى الخامس، وبنى الأنظمة أحادية الوكيل ومتعددة الوكلاء، وتطبيقاتها السريرية والإدارية والبحثية، وآليات السلامة، والتحديات التقنية والعملية، وتوصيات قابلة للتنفيذ للبحوث المستقبلية. اعتمدت المراجعة منهجية شبه-منهجية بأسلوب PRISMA شملت 100 ورقة بحثية مفهرسة أساسًا في IEEE وSpringer وElsevier وPubMed وarXiv وMDPI وACM، مع توثيق توزيعها عبر قواعد البيانات وسنوات النشر وأنواع الدراسات ومستويات المخاطر السريرية وحالة النشر.</p>
+  </section>
+
+  <section>
+    <h2>٢. الوكيل الطبي ومستويات الاستقلالية</h2>
+    <p>يُعرَّف الوكيل الطبي بأنه نظام ذكاء اصطناعي ذكي مصمم للمساعدة في المهام السريرية أو الإدارية عبر تحليل البيانات ودعم اتخاذ القرار والتفاعل مع بيئات الرعاية الصحية. وعلى عكس النماذج التنبؤية التي تتعلم الارتباطات بين المتغيرات السريرية والنتائج المستهدفة، أو النماذج التوليدية التي تولّف المحتوى، يعمل الوكيل الطبي ضمن حلقة مستمرة من الإدراك–القرار–الفعل: يدرك السياق السريري، ويستدل عبر الزمن، ويخطط لإجراءات متعددة الخطوات، وينفذها عبر الأدوات والأنظمة المترابطة.</p>
+    <p>تتكون البنية الوكيلة الأساسية من مكونات متكاملة: الإدراك متعدد الوسائط (الصور كالرنين والمقطعية والموجات فوق الصوتية، والإشارات الزمنية كمعدل القلب وضغط الدم والتشبع بالأكسجين، والنصوص السريرية)، والتخطيط والاستدلال (تفكيك الأهداف السريرية إلى خطوات قابلة للتنفيذ)، والذاكرة (قصيرة المدى للحلقة الحالية وطويلة المدى لخبرات المريض الممتدة)، واستخدام الأدوات (واجهات برمجية وأنظمة المستشفيات وأجهزة التشخيص)، والتفاعل البيئي مع حلقات تغذية راجعة مستمرة. وكلما تقدم الوكيل من معالجة النصوص الأساسية نحو الوعي الظرفي المتمحور حول المريض، ازدادت قدرته على اكتشاف التدهور المبكر ووضع علامات على الأورام والكسور والنزيف والشذوذ الدقيق لمراجعة الطبيب.</p>
+    <p>يصنّف الإطار ستة مستويات من الاستقلالية: المستوى صفر (لا ذكاء اصطناعي — رعاية بشرية خالصة كمرجع للمقارنة)، والمستوى الأول (الذكاء الاصطناعي كمساعد اقتراحي يوصي دون تنفيذ)، والمستوى الثاني (ذكاء اصطناعي بإشراف بشري مستمر حيث يراجع الطبيب كل إجراء). وتمثل هذه المستويات الدنيا الوضع السائد حاليًا في الممارسة السريرية، إذ تبقى القرارات التشخيصية والعلاجية والتشغيلية كلها بيد المهنيين الصحيين مع دعم اقتراحي من الأنظمة.</p>
+    <p>أما المستويات العليا فتشمل: المستوى الثالث (ذكاء اصطناعي بدعم بشري مشروط يتدخل عند تجاوز حدود الثقة)، والمستوى الرابع (ذكاء اصطناعي بموافقة بشرية فقط على الإجراءات المقترحة)، والمستوى الخامس (استقلالية كاملة يخطط فيها الوكيل وينفذ ويتكيّف دون أي تدخل بشري، ويبقى هذا المستوى نظريًا إلى حد كبير في الرعاية الصحية لاعتبارات أخلاقية وقانونية وأمنية). وتخلص المناقشة إلى أن الموازنة بين الاستقلالية والمخاطر هي جوهر النشر الآمن: فكلما اتسعت صلاحيات الوكيل، تعاظمت الحاجة إلى آليات المحاذاة والمراقبة والمساءلة، لأن القرارات الصحية تمس سلامة المرضى مباشرة ولا تحتمل أخطاء التنفيذ الذاتي.</p>
+  </section>
+
+  <section>
+    <h2>٣. البنى والأطر</h2>
+    <p>تعمل أنظمة الوكيل الواحد ضمن حلقة تغذية راجعة مغلقة ينفذ فيها وكيل واحد قائم على نموذج لغوي كبير المهمة من البداية إلى النهاية، وهي مناسبة للمهام الضيقة المحددة. ومن أمثلتها تعزيز مخرجات التشخيص بمساعدة الحاسوب — كالتشخيص وتجزئة الآفات وتوليد التقارير — عبر تلخيص المعلومات بلغة طبيعية، مما حسّن الأداء التشخيصي وأنتج أنظمة تفاعلية ملائمة للمرضى. ويتمثل هدفها في ترجمة المعلومات الطبية المعقدة إلى توثيق دقيق ومقروء وملائم للمريض مع الحفاظ على السلامة عبر الإشراف السريري.</p>
+    <p>أما أنظمة الوكلاء المتعددة فهي أنظمة موزعة من وكلاء متخصصين يتعاونون نحو أهداف سريرية مشتركة عبر تنسيق منظم — بإشراف مركزي أو نقاش بين الوكلاء أو تنسيق تسلسلي. فعلى سبيل المثال، قد يفسّر وكيل الأشعة صور الفحص ويبلّغ عن النتائج، ثم يقيّمها وكيل الأورام وفق الإرشادات السريرية لاقتراح خيارات التدبير قبل عرضها على الطبيب البشري لاتخاذ القرار النهائي والإشراف. ويعكس هذا التحول انتقال الأشعة من أنظمة ذكاء اصطناعي منفردة نحو شبكات متعددة الوكلاء قادرة على الاستدلال المستقل واتخاذ القرارات المنسقة، حيث يبني الوكلاء على مخرجات بعضهم. وبالمقارنة: الأنظمة الأحادية ضيقة النطاق بتنفيذ مستقل، بينما تعالج الأنظمة المتعددة مسارات عمل معقدة متعددة الخطوات بتنسيق هيكلي — لكن على حساب تعقيد التنسيق وقابلية توسع أوسع.</p>
+    <p>تتناول المراجعة أيضًا البنى المحافِظة على الخصوصية وتخفيف التهديدات: فبروتوكولات الاتصال بين الوكلاء تثير قضايا أمنية تستلزم بنى انعدام الثقة كعمود فقري موثوق للنظم الوكيلة، إلى جانب حماية البيانات والمراجعة الأخلاقية والتوزيع المضبوط لمجموعات البيانات. وتُعد المرونة — أي القدرة على إنتاج نتائج متسقة رغم الاضطرابات كتعطل الحساسات أو إخفاقات الشبكة — سمة إلزامية في الأنظمة السريرية لا مجرد ميزة إضافية، لا سيما عندما تتحكم الأنظمة في بنى تحتية حرجة أو تنفذ عمليات طبية.</p>
+  </section>
+
+  <section>
+    <h2>٤. التطبيقات</h2>
+    <p>في المجال السريري، أبرزت الأبحاث إمكانات الوكلاء المدعومين بالذكاء الاصطناعي في جمع البيانات باستقلالية والتفاعل الحواري وتنسيق المهام السريرية وتحليل البيانات الطبية متعددة الوسائط. ومن الأمثلة: مساعد المقابلة الطبية الذي يجمع تاريخ المريض ويجيب عن أسئلة محددة مسبقًا، وأطر الأنظمة الحوارية بأسلوب المقابلات لتتبع المواقف والسلوك، والوكيل السريري التعاوني متعدد النماذج اللغوية للتوجيه بين الأقسام والاستشارة الأولية والتشخيص، ووكلاء التصوير الذين يفسّرون الفحوص ويُبلغون عن النتائج. كما قيّمت دراسات حديثة قابلية الاستخدام والجدوى والأداء السريري الواقعي ومكاسب الكفاءة في إدارة الرعاية الصحية.</p>
+    <p>على الصعيد الإداري، تدعم الوكلاء مهام التوثيق السريري والتنسيق التشغيلي وإدارة مسارات العمل، وتتقاطع مع ابتكارات أوسع تشمل إدارة التجارب السريرية والتحليلات التنبؤية. ويقدّم إطار MedScrubCrew الطبي متعدد الوكلاء مثالًا بارزًا بدمج المطابقة المستقرة وشبكات المعرفة ووكلاء النماذج اللغوية لأتمتة جدولة المواعيد وتصنيف الفرز، مُظهرًا كفاءة تشغيلية محسنة وتخصيصًا واعيًا بالسياق. كما تدرس أعمال أخرى أثر مبادرات التحول الرقمي على العمليات الصحية.</p>
+    <p>أما وكلاء البحث فيعملون في بيئات سريرية محاكاة عبر تخصصات ووسائط ولغات متعددة، مع معايير تقييم منهجية لوكلاء النماذج اللغوية. وتُظهر النتائج أن الوكلاء الحاليين ما يزالون يتعثرون في السيناريوهات متعددة الأدوار، مما يحفز مزيدًا من البحث في تحسين اتخاذ القرار الطبي التفاعلي. وتستكشف دراسة بأسلوب «ساحر أوز» كيفية استجابة محللي البيانات لمساعدة التخطيط من الذكاء الاصطناعي، موضحةً أنواع الاقتراحات المفيدة وكيفية تأثيرها على مسار التحليل والمبادرة واتخاذ القرار.</p>
+  </section>
+
+  <section>
+    <h2>٥. تحديات الفعل: الهلوسة والقابلية للتفسير والأمن</h2>
+    <p>يمثل «الفعل» التحدي الجوهري: فالأنظمة التي تولّد التوصيات قد تنفذ إجراءات ذات عواقب سريرية حرجة. تتراوح معدلات الهلوسة من 5٪ إلى 30٪ في البيئات الصحية، وقد يُسيء الوكلاء السريريون تفسير معلومات المريض أو تحويلات الوحدات أو تعليمات الجرعات، مما قد يؤدي إلى توصيات دوائية خطيرة. ومن الإخفاقات الموثقة أن نظامًا آليًا حرّف اسم الدواء «D10W» إلى «V10W»، مطلقًا استخراجًا خاطئًا للبيانات كان يمكن أن يؤدي إلى أخطاء إعطاء خطيرة. كما قد يقدم الوكلاء طمأنة زائفة أو يردون على «استعلام خاطئ» عندما تفتقر مصدر المعرفة إلى معلومات محددة.</p>
+    <p>تُعد قابلية التفسير والشفافية وقابلية الفهم متطلبات غير قابلة للتفاوض في البيئات المنظمة: إذ يجب أن تكون قرارات الوكيل قابلة للتتبع والتبرير أمام الأطباء والمرضى والجهات التنظيمية. غير أن سلوك الأنظمة الوكيلة الديناميكي التكيفي يزيد صعوبة المراقبة والضبط، خاصة في البيئات متعددة الوكلاء حيث تتفاعل المخرجات وتتراكم. وتقترح الأدبيات استراتيجيات التحقق الذاتي وسجلات الإجراءات التفصيلية التي توثق كل استدعاء للأدوات وخطوة قرار بشفافية، لضمان بقاء المساءلة البشرية في صلب جميع المخرجات السريرية.</p>
+    <p>يوسّع الذكاء الاصطناعي الوكيل سطح الهجوم بشكل كبير، لأن الوكلاء يصلون باستقلالية إلى الواجهات البرمجية وأنظمة الأدوات والذاكرة والبيئات الخارجية. ففي الرعاية الصحية قد تكشف الخروقات بيانات حساسة للمرضى بل وتمكّن من التلاعب عن بُعد بالأجهزة الطبية. وتشمل الثغرات حقن الأوامر والتلاعب العدائي بالأدوات وهجمات كسر الحماية متعددة الوسائط، وفي الأنظمة متعددة الوكلاء قد يتتابع اختراق وكيل واحد عبر النظام كله. لذا تُعد البنى الآمنة القابلة للتوسع ومنع النسيان الكارثي وتمكين التعلم المستمر دون زعزعة سلوك النظام من المشكلات المفتوحة.</p>
+  </section>
+
+  <section>
+    <h2>٦. الحوكمة والمحاذاة والتنسيق</h2>
+    <p>تثير الأنظمة الوكيلة مخاطر التحيز وعدم الإنصاف وسوء جودة البيانات التي قد تسهم في التفاوت في تقديم الرعاية وتأخر التدخلات وتآكل الثقة في الرعاية المدعومة بالذكاء الاصطناعي. ولمواجهة هذه المخاطر اقتُرحت استراتيجيات متعددة موجهة نحو الإنصاف، منها تقنيات إزالة التحيز العدائية التي تقلل تأثير السمات الديموغرافية المحمية أثناء تحسين النماذج، إلى جانب تطوير مجموعات بيانات متنوعة وتمثيلية مع الضبط الدقيق المزيل للتحيز لتقليل تضخيم الأنماط التمييزية وتحسين الإنصاف السريري.</p>
+    <p>على صعيد المساءلة والأخلاقيات والمسؤولية القانونية، تبرز إشكالية الانحياز للأتمتة: إذ قد يفرط الأطباء — تحت ضغط العمل وعبء التوثيق — في الاعتماد على مخرجات النظام ويؤيدون توصيات غير صحيحة دون تدقيق كافٍ. وتدعو الأدبيات الحديثة إلى «سلسلة مسؤولية الذكاء الاصطناعي» وأطر تتبع الضرر بسجلات إجراءات مفصلة. أما تحديات المحاذاة البشرية والضبط والمراقبة فتشمل سوء تحديد الأهداف عندما يحسّن الوكلاء أهدافًا بديلة تختلف عن النتيجة السريرية المقصودة — كإعطاء الأولوية للكفاءة التشغيلية على سلامة المريض — وتعقيد المراقبة في البيئات متعددة الوكلاء، مع التأكيد على دور «الطبيب في الحلقة» والتقييم في النشر الواقعي.</p>
+    <p>تضيف الذاكرة والتخطيط طويل الأمد ونسيان التعافي تحديات خاصة: إذ تتجه المقاربات الناشئة من الذاكرة العرضية قصيرة المدى نحو بنى ذاكرة دائمة تشمل مخازن متجهة تحفظ خبرات المريض عبر الجداول السريرية الممتدة. كما يُدخل تنسيق الوكلاء المتعددين عدم الاستقرار واختناقات الاتصال والسلوك الناشئ، مع توثيق تتابعات الأخطاء بين الوكلاء وتعقيد تصحيحها وسوء المحاذاة بين الوكلاء. وأخيرًا يثير القبول الاجتماعي وأثر القوى العاملة تساؤلات حول الثقة والتبني وإعادة تشكيل الأدوار السريرية حول التعاون بين الإنسان والذكاء الاصطناعي.</p>
+  </section>
+
+  <section>
+    <h2>٧. الاتجاهات المستقبلية وقيود المراجعة</h2>
+    <p>تحدد المراجعة اتجاهات بحثية قابلة للتنفيذ: بنى قابلة للتوسع وذاكرة آمنة قابلة للتوسع مع منع النسيان الكارثي وتمكين التعلم المستمر، ونشر آمن بضمانات تحقق، وأطر أخلاقية عالمية وآليات تدقيق ومسارات تنظيمية للأنظمة الوكيلة — خاصة ذات التعلم المستمر واستقلالية استخدام الأدوات — ودمج الذكاء الوكيل في مسارات العمل السريرية المنظمة، ومواءمة الأهداف مع القيم الإنسانية. ونظرًا للتطور السريع للذكاء الاصطناعي الوكيل في الرعاية الصحية، ينبغي تحديث مثل هذه المراجعات بانتظام لمواكبة المشهد المتغير.</p>
+    <p>وتقر المراجعة بقيودها: اقتصار بعض الدراسات المشمولة على النماذج اللغوية النصية الإنجليزية دون حلقات وكيلة متعددة الوسائط، وافتقار التكامل السريري اللاحق للذكاء التوليدي وتحديات النشر، وبقاء معظم الأنظمة المدروسة في مرحلة البحث فقط دون نشر سريري فعلي، وغياب معالجة التنفيذ الطبي الخاص بالمجال في بعض المسوحات. وهذه القيود تحدد بدقة مواضع الفجوات التي يجب أن تعالجها البحوث المقبلة بدل أن تُضعف قيمة الإطار المقدم.</p>
+  </section>
+
+  <section>
+    <h2>٨. الخاتمة</h2>
+    <p>استعرضت هذه المراجعة نشوء تقنية الذكاء الاصطناعي داخل الطب عبر المقاربات التنبؤية والتوليدية وصولًا إلى استخدام الذكاء الاصطناعي الوكيل الذي يتيح الاستدلال والتخطيط والفعل المستقل. وعرّفنا الوكيل الطبي ودرسنا مكوناته المعمارية الأساسية — الإدراك والتخطيط والذاكرة والاستدلال واستخدام الأدوات والتفاعل البيئي — ودرجات الاستقلالية في الحلول المعاصرة من الوكيل الواحد إلى الأنظمة الطبية متعددة الوكلاء، مع تحليل مقارن لأبعاد التعريف والبنية والنطاق السريري واستراتيجية التنسيق، وتطبيقاته عبر المجالات السريرية والإدارية والبحثية، وآليات السلامة من الإشراف البشري والتحقق الذاتي والمواءمة التنظيمية.</p>
+    <p>وتشير النتائج إلى طرح عدد كبير من وكلاء الذكاء الاصطناعي في مخطوطات متعددة لتطبيقات الرعاية الصحية، غير أن الأنظمة المستقلة تمامًا ما تزال صعبة التحقيق بسبب قيود الموثوقية وقابلية التفسير والاعتماد على البيانات والتكامل ضمن مسارات العمل السريرية المعقدة. لذلك تحوّل هذه المراجعة التركيز من أداء النماذج الخاصة بالمهام إلى الاستقلالية على مستوى النظام وتنسيق مسارات العمل، مقدمةً أساسًا منظمًا لفهم تصميم أنظمة الذكاء الاصطناعي الوكيل ونشرها وحوكمتها وقيودها — وخارطة طريق نحو تعاون آمن وموثوق بين الإنسان والوكيل في منظومات الرعاية الصحية الحديثة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>In the healthcare and clinical domain, artificial intelligence (AI) is evolving from earlier models that primarily predicted outcomes or generated content toward agentic AI systems that demonstrate the capability to make decisions and complete tasks autonomously. Previous AI research contributed significantly to disease identification, deep learning applications, large language models (LLMs), and generative AI, yet these systems function primarily as assistive tools, generating text or predictions without directly interacting with clinical infrastructures. Recent research trends are therefore increasingly oriented toward agentic AI systems that extend beyond traditional predictive and generative model performance. This manuscript provides a detailed review of the current state of agentic AI, starting with the evolution of AI and the concept of a medical agent. A medical agent refers to an intelligent AI system designed to assist in clinical or administrative tasks by analyzing data, supporting decision making, and interacting with healthcare environments. Its underlying agentic AI architecture integrates planning, memory, reasoning, and environmental interaction to enable autonomous tool use, multi-agent collaboration, and continuous perception–decision–action loops across diverse healthcare applications and clinical workflows. The review further examines safety mechanisms, including human-in-the-loop oversight, self-verification strategies, and regulatory alignment frameworks, designed to ensure reliability, accountability, compliance, and safe deployment in regulated healthcare environments. Our findings indicate that a large number of AI agents have been introduced in various manuscripts for healthcare applications; however, fully autonomous systems remain challenging to achieve, as AI still faces limitations related to reliability, interpretability, data dependency, and integration within complex clinical workflows. In response, this survey shifts the focus from task-specific model performance to system-level autonomy and workflow orchestration, providing a structured foundation for understanding the design, deployment, governance, and limitations of agentic AI systems in modern healthcare ecosystems.</p>
+  </section>
+
+  <section>
+    <h2>I. Introduction</h2>
+    <p>Today's clinical facilities increasingly depend on AI to enhance diagnostic accuracy, optimize workflows, and improve patient outcomes. The evolution of AI in healthcare can be broadly categorized into three major waves: predictive AI, which focuses on pattern recognition and outcome prediction using statistical models and deep learning — such as convolutional neural networks in medical imaging (X-ray, CT, MRI) and recurrent and long short-term memory networks in physiological time-series signals (ECG, EEG) — followed by generative AI, which focuses on content generation, representation learning, and knowledge synthesis through large language models, generative adversarial networks, and transformer-based generative architectures.</p>
+    <p>The third and emerging wave is agentic AI, which represents a fundamental shift from predictive and generative paradigms toward autonomous, goal-driven systems capable of acting within complex clinical environments. Agentic systems are designed to perceive context, reason over time, plan multi-step actions, and execute decisions across interconnected healthcare workflows by integrating large language models with planning, memory, tool use, and environmental interaction, enabling direct engagement with hospital information systems, appointment scheduling platforms, billing infrastructures, clinical alerting pipelines, and pre-screening processes. Despite the impressive performance of modern generative models on medical examinations and clinical reasoning benchmarks, a critical limitation known as the "agency gap" remains: current LLMs largely function as passive responders that generate recommendations or textual outputs without the capability to autonomously coordinate tasks, adapt to dynamic clinical states, or execute multi-step actions within real-world healthcare systems.</p>
+    <p>This paper goes beyond a conventional literature survey by offering a well-organized, application-oriented framework: the definition of the medical agent and its core components, levels of autonomy from Level 0 to Level 5, single-agent and multi-agent architectures, their clinical, administrative, and research applications, safety mechanisms, technical and practical challenges, and actionable recommendations for future research. The review followed a PRISMA-style semi-systematic methodology covering 100 research papers indexed primarily in IEEE, Springer, Elsevier, PubMed, arXiv, MDPI, and ACM, documenting their distribution across databases, publication years, study types, clinical risk levels, and deployment status.</p>
+  </section>
+
+  <section>
+    <h2>II. The Medical Agent and Levels of Autonomy</h2>
+    <p>A medical agent is defined as an intelligent AI system designed to assist in clinical or administrative tasks by analyzing data, supporting decision making, and interacting with healthcare environments. Unlike predictive models that learn correlations between clinical variables and target outcomes, or generative models that synthesize content, the medical agent operates within a continuous perception–decision–action loop: it perceives the clinical context, reasons over time, plans multi-step procedures, and executes them through interconnected tools and systems.</p>
+    <p>Its core agentic architecture comprises integrated components: multimodal perception (images such as MRI, CT, and ultrasound; time-series signals such as heart rate, blood pressure, and oxygen saturation; clinical text), planning and reasoning (decomposing clinical goals into executable steps), memory (short-term for the current episode and long-term for extended patient experience), tool use (APIs, hospital systems, diagnostic devices), and environmental interaction with continuous feedback loops. As the agent advances from basic text processing toward patient-centric situational awareness, it gains the ability to detect early deterioration and flag suspected tumors, fractures, hemorrhage, or subtle anomalies for clinician review.</p>
+    <p>The framework classifies six levels of autonomy: Level 0 (no AI — human-only care as a reference baseline), Level 1 (AI as a suggestive assistant that recommends without executing), and Level 2 (AI with continuous human oversight, where the clinician reviews every action). These lower levels represent the currently dominant state of clinical practice, in which all diagnostic, therapeutic, and operational decisions remain in the hands of healthcare professionals with advisory support from systems.</p>
+    <p>The higher levels comprise: Level 3 (AI with conditional human backup, intervening when confidence bounds are exceeded), Level 4 (AI with human approval only for proposed actions), and Level 5 (fully autonomous AI that plans, executes, and adapts without any human involvement — a level that remains largely theoretical in healthcare for ethical, legal, and safety reasons). The discussion concludes that balancing autonomy and risk is the essence of safe deployment: the broader the agent's authority, the greater the need for alignment, monitoring, and accountability mechanisms, because healthcare decisions directly affect patient safety and cannot tolerate autonomous execution errors.</p>
+  </section>
+
+  <section>
+    <h2>III. Architectures and Frameworks</h2>
+    <p>Single-agent systems operate within a closed feedback loop in which one LLM-based agent executes the task end to end, suiting narrow, well-scoped tasks. Examples include enhancing computer-aided diagnosis (CAD) outputs — diagnosis, lesion segmentation, and report generation — by summarizing information in natural language, which improved diagnostic performance and produced patient-friendly interactive systems. Their goal is to translate complex medical information into accurate, readable, patient-friendly documentation while maintaining safety through clinician oversight.</p>
+    <p>Multi-agent systems are distributed systems of specialized agents collaborating toward shared clinical objectives through structured coordination — central supervision, inter-agent debate, or sequential orchestration. For example, a radiology agent may interpret imaging scans and report findings, which are then evaluated by an oncology agent against clinical guidelines to propose management options before being presented to a human physician for final decision-making and oversight. This reflects a broader shift in radiology from single AI systems toward multi-agent networks capable of autonomous reasoning and coordinated decision-making, where agents build upon one another's outputs. In comparison: single-agent systems are narrow in scope with independent execution, while multi-agent systems handle complex multi-step workflows with structural coordination — at the cost of greater coordination complexity and wider scalability demands.</p>
+    <p>The review also addresses privacy-preserving architectures and threat mitigation: communication protocols among agents raise security issues requiring zero-trust architectures as a reliable backbone for agentic ecosystems, alongside data protection, ethical review, and controlled dataset distribution. Resilience — the ability to produce consistent results despite disruptions such as broken sensors or network failures — is a must-have trait of clinical systems rather than a bonus, particularly when systems control critical infrastructure or perform medical operations.</p>
+  </section>
+
+  <section>
+    <h2>IV. Applications</h2>
+    <p>In the clinical domain, research has highlighted the potential of AI-powered agents in autonomous data collection, conversational interaction, clinical task coordination, and multimodal medical data analysis. Examples include the Medical Interview Assistant (MIA), which collects patient history and answers predefined questions; interview-style conversational frameworks for attitude and behavior tracking; a collaborative multi-LLM clinical agent for department guidance, preliminary consultation, and diagnostics; and imaging agents that interpret scans and report findings. Recent studies have also evaluated usability, feasibility, real-world clinical performance, and efficiency gains in healthcare administration.</p>
+    <p>On the administrative side, agents support clinical documentation, operational coordination, and workflow management, intersecting with broader innovations including trial management and predictive analytics. The MedScrubCrew medical multi-agent framework presents a prominent example, integrating stable matching, knowledge graphs, and LLM agents to automate appointment scheduling and triage classification, demonstrating improved operational efficiency and context-aware allocation. Other works examine the impact of digital transformation initiatives on healthcare operations.</p>
+    <p>Research agents operate in simulated clinical environments across specialties, modalities, and languages, with systematic evaluation benchmarks for LLM agents. Results show that current LLM agents still struggle in multi-turn scenarios, motivating further research into improving interactive medical decision-making. A Wizard-of-Oz study investigates how data analysts respond to AI planning assistance, characterizing which kinds of suggestions are helpful and how they influence the analysis workflow, initiative, and decision-making.</p>
+  </section>
+
+  <section>
+    <h2>V. Challenges of Action: Hallucination, Explainability, Security</h2>
+    <p>"Action" is the core challenge: systems that generate recommendations may execute actions with safety-critical clinical consequences. Hallucination rates range from 5% to 30% in healthcare settings, and clinical agents may misinterpret patient information, unit conversions, or dosing instructions, potentially leading to dangerous medication recommendations. One documented failure occurred when an automated system mistranscribed the medication "D10W" as "V10W," triggering incorrect data extraction that could have led to dangerous administration errors. Agents may also provide false reassurance or respond to the "wrong query" when a knowledge source lacks specific information.</p>
+    <p>Explainability, transparency, and interpretability are non-negotiable requirements in regulated settings: agent decisions must be traceable and justifiable to clinicians, patients, and regulators. Yet the dynamic, adaptive behavior of agentic systems complicates monitoring and control, particularly in multi-agent environments where outputs interact and accumulate. The literature proposes self-verification strategies and detailed action ledgers that record every tool invocation and decision step transparently, ensuring that human accountability remains central to all clinical outcomes.</p>
+    <p>Agentic AI significantly expands the attack surface because agents autonomously access APIs, tool systems, memory, and external environments. In healthcare, breaches may expose sensitive patient data and even enable remote manipulation of medical devices. Vulnerabilities include prompt injection, adversarial tool manipulation, and multimodal jailbreak attacks, and in multi-agent systems the compromise of one agent can cascade across the whole system. Secure, scalable architectures, prevention of catastrophic forgetting, and continual learning without destabilizing system behavior therefore remain open problems.</p>
+  </section>
+
+  <section>
+    <h2>VI. Governance, Alignment, and Coordination</h2>
+    <p>Agentic systems raise risks of bias, unfairness, and poor data quality that can contribute to disparities in care delivery, delayed interventions, and eroded trust in AI-assisted healthcare. Multiple fairness-oriented strategies have been proposed to counter these risks, including adversarial debiasing techniques that reduce the influence of protected demographic attributes during model optimization, alongside the development of diverse, representative datasets with fairness-aware fine-tuning to reduce the amplification of discriminatory patterns and improve clinical fairness.</p>
+    <p>On accountability, ethics, and legal responsibility, the problem of automation bias stands out: clinicians under workload pressure and documentation burden may over-rely on system outputs and endorse incorrect recommendations without sufficient scrutiny. Recent literature calls for an "AI responsibility chain" and harm-traceability frameworks with detailed action ledgers. Challenges of human alignment, control, and monitoring include goal misalignment — when agents optimize proxy objectives differing from the intended clinical outcome, such as prioritizing operational efficiency over patient safety — and monitoring complexity in multi-agent environments, emphasizing the role of the doctor-in-the-loop and evaluation in real-world deployment.</p>
+    <p>Memory, long-horizon planning, and recovery failures add distinct challenges: emerging approaches transition from short-term episodic memory toward persistent memory architectures, including vector-based stores that preserve patient experience across extended clinical timelines. Coordinating multiple agents introduces instability, communication bottlenecks, and emergent behavior, with documented inter-agent error cascades, debugging complexity, and agent misalignment. Finally, social acceptance and workforce impact raise questions of trust, adoption, and the reshaping of clinical roles around human–AI collaboration.</p>
+  </section>
+
+  <section>
+    <h2>VII. Future Directions and Review Limitations</h2>
+    <p>The review identifies actionable research directions: scalable architectures and secure, scalable memory with prevention of catastrophic forgetting and continual learning, safe deployment with verification guarantees, universal ethical frameworks with auditability mechanisms and regulatory pathways for agentic systems — especially those with continual learning and tool-use autonomy — integration of agentic intelligence into regulated clinical workflows, and alignment of goals with human values. Given the rapidly evolving nature of agentic AI in healthcare, such reviews should be updated regularly to keep pace with the changing landscape.</p>
+    <p>The review acknowledges its limitations: some included studies are restricted to English-language text-based LLMs without multimodal agentic loops, post-generative clinical integration and deployment challenges receive limited attention, most studied systems remain at the research-only stage with no real clinical deployment, and some surveys lack coverage of domain-specific medical execution. These limitations precisely locate the gaps that future research must address rather than diminishing the value of the framework presented.</p>
+  </section>
+
+  <section>
+    <h2>VIII. Conclusions</h2>
+    <p>This review has outlined the emergence of artificial intelligence technology within medicine through predictive and generative approaches toward the use of agentic AI that allows autonomous reasoning, planning, and acting. We defined the medical agent and examined its core architectural components — perception, planning, memory, reasoning, tool use, and environmental interaction — as well as the degrees of autonomy in contemporary solutions, from single-agent to multi-agent medical systems, with a comparative analysis of definition, architecture, clinical scope, and coordination strategy dimensions, its applications across clinical, administrative, and research domains, and safety mechanisms from human oversight to self-verification and regulatory alignment.</p>
+    <p>Our findings indicate that a large number of AI agents have been introduced in various manuscripts for healthcare applications; however, fully autonomous systems remain challenging to achieve due to limitations in reliability, interpretability, data dependency, and integration within complex clinical workflows. This survey therefore shifts the focus from task-specific model performance to system-level autonomy and workflow orchestration, providing a structured foundation for understanding the design, deployment, governance, and limitations of agentic AI systems — and a roadmap toward safe, trustworthy human–agent collaboration in modern healthcare ecosystems.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected)</h2>
+    <ol dir="ltr">
+      <li>S. Biswas, R. Mondal, M. J. Saikia, "Agentic AI and Multi-Agent Collaboration in Healthcare: A Comprehensive Survey of Architectures, Clinical Safety, and Future Directions," <em>Future Internet</em>, vol. 18, no. 8, article 391, 2026. <a href="https://doi.org/10.3390/fi18080391">https://doi.org/10.3390/fi18080391</a></li>
+      <li>A. Bandi et al., "The Rise of Agentic AI: A Review of Definitions, Frameworks, Architectures, Applications, Evaluation Metrics, and Challenges," <em>Future Internet</em>, vol. 17, no. 9, article 404, 2025.</li>
+      <li>A. Gorenshtein et al., "AI Agents in Clinical Medicine: A Systematic Review," <em>medRxiv</em>, 2025.</li>
+      <li>B. Koçak, İ. Meşe, "AI Agents in Radiology: Toward Autonomous and Adaptive Intelligence," <em>Diagn. Interv. Radiol.</em>, 2025.</li>
+      <li>S. Schmidgall et al., "AgentClinic / LLM agent evaluation in simulated clinical environments," 2024–2025.</li>
+      <li>E. Bai et al., "Assessment and Integration of Large Language Models for Automated Electronic Health Record Documentation in Emergency Medical Services," <em>J. Med. Syst.</em>, vol. 49, 65, 2025.</li>
+      <li>P. Festor et al., "Levels of Autonomy and Safety Assurance for AI-Based Clinical Decision Systems," Proc. SAFECOMP, 2024.</li>
+      <li>... [full reference list of 101 references available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/fi18080391">10.3390/fi18080391</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

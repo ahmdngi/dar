@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الذكاء الاصطناعي الوكيل والنماذج اللغوية الكبيرة لأمن إنترنت الأشياء الذاتي: مسح منهجي وتصنيف وخارطة طريق بحثية — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Agentic AI and Large Language Models for Autonomous IoT Cybersecurity: A Systematic Survey, Taxonomy, and Research Roadmap</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">الذكاء الاصطناعي الوكيل والنماذج اللغوية الكبيرة لأمن إنترنت الأشياء الذاتي: مسح منهجي وتصنيف وخارطة طريق بحثية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Vinoth Nageshwaran, Soundararajan Ezekiel</span>
+    <span>📄 Electronics, 2026 · Vol. 15(12), 2740</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics15122740">10.3390/electronics15122740</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>لم تعد الدفاعات التقليدية القائمة على التواقيع تحمي البنى التحتية الواسعة وغير المتجانسة التي بات يشكلها إنترنت الأشياء (IoT). تفتح النماذج اللغوية الكبيرة (LLMs) والذكاء الاصطناعي الوكيل (agentic AI) — وهي أنظمة تدرك وتستدل وتخطط وتتصرف ذاتيًا — الطريق نحو منظومات ذاتية الدفاع، غير أن الأدبيات التي تدمج هذين المسارين ما تزال مشتتة. يقدم هذا المسح، وفق بروتوكول PRISMA 2020، تحليلًا منهجيًا لـ 153 دراسة محكمة نُشرت بين 2020 و2026 في IEEE Xplore ومكتبة ACM الرقمية ودوريات MDPI. ننظم المدونة البحثية وفق تصنيف رباعي الركائز: بنية الوكيل (أحادي مقابل متعدد)، واستراتيجية الاستدلال (سلسلة الأفكار، وReAct، والتخطيط والحل، واستخدام الأدوات)، ونطاق الفعل (الكشف، والاستجابة، واصطياد التهديدات، واكتشاف الثغرات، والخداع)، وطوبولوجيا النشر (الحافة، والضباب، والسحابة). نُجمِع أربعة مجالات تطبيقية رئيسية، ونوثق مجموعات البيانات ومعايير التقييم، ونحلل التحديات المفتوحة بما فيها الهلوسة ومتانة الحقن الموجه وقابلية التفسير والخصوصية والكمون والحوكمة. تحدد خارطة طريق 2026 أربعة اتجاهات ذات أولوية: التعلم الوكيل الاتحادي، والاستدلال الذاتي القابل للتحقق، والتعاون الموثوق بين الوكلاء المتعددين، ووكلاء الحافة المقواة بالموارد. وتُرافق الورقة عدة إعادة إنتاج — قوالب موجهات وحلقات مرجعية أحادية ومتعددة الوكلاء ومنصة تقييم على غرار Edge-IIoTset، منشورة كهيكل توضيحي لا كإطار مُتحقق منه — وهي متاحة علنًا ومؤرشفة على Zenodo (DOI 10.5281/zenodo.20726552).</p>
+  </section>
+
+  <section>
+    <h2>I. المقدمة</h2>
+    <p>من المتوقع أن يتجاوز عدد أجهزة إنترنت الأشياء 30 مليار جهاز بحلول عام 2026، وتشمل الأجهزة القابلة للارتداء وأنسجة المدن الذكية ووحدات المركبات والأجهزة الطبية وأنظمة التحكم الصناعية التي تشرف على البنية التحتية الحرجة. إن عدم التجانس نفسه واقتصاديات التصنيع منخفضة التكلفة وفترات النشر الممتدة لعقد كامل — وهي ما يجعل إنترنت الأشياء جذابًا اقتصاديًا — تجعله معاديًا بنيويًا للوضعيات الدفاعية التقليدية: نادرًا ما تُرقَّع برمجيات الأجهزة الثابتة، والهويات التشفيرية غير متسقة أو غائبة، وحركة مرور عشرات الملايين من المتحكمات الدقيقة لا يمكن فرزها من قبل محللين بشريين بأي نسبة توظيف معقولة. وتُجسد بوت نت Mozi — التي أصابت بحلول 2021 أكثر من 1.5 مليون جهاز وشكلت عدة بوت نتات نظيرة-لنظيرة ضخمة — كيف يتفوق خصوم إنترنت الأشياء الحديثون على الدفاعات التقليدية القائمة على التواقيع، وتواصل سلالات Mirai اللاحقة إعادة إنتاج هذا النمط.</p>
+    <p>على مدى الفترة نفسها، نضج مساران تقنيان يعدان باستجابة بنيوية لهذا التفاوت. أولهما ظهور النماذج اللغوية الكبيرة القادرة على الاستدلال الصفري عبر مصنوعات نصية غير متجانسة — حزم ملتقطة معروضة كنص، وسجلات أنظمة، وتقارير استخبارات التهديدات، وأوصاف تقنيات MITRE ATT&CK، وسرديات الثغرات CVE — دون هندسة سمات مخصصة. وثانيهما تطور الذكاء الاصطناعي الوكيل: أنظمة برمجية تُغلِّف استدلال النماذج اللغوية بحلقات إدراك وتخطيط وذاكرة واستخدام أدوات وتواصل متعدد الوكلاء، بما يمكنها من تنفيذ مهام أمنية متعددة الخطوات ذاتيًا كانت تتطلب سابقًا محللين بشريين. ويفتح اجتماع المسارين معًا طريقًا موثوقًا نحو منظومات إنترنت أشياء ذاتية الدفاع، تُفسَّر فيها الحركة غير المتجانسة دلاليًا، وتُشرح الشذوذات بلغة طبيعية، وتُركَّب خطط الاستجابة ديناميكيًا، وتُخدَع الأفعال العدائية في الوقت الحقيقي.</p>
+    <p>ورغم كثافة النشاط البحثي، تبقى الأدبيات التي تدمج هذين المسارين مشتتة. تستعرض المسوحات الحديثة النماذج اللغوية في الأمن السيبراني عمومًا، أو الذكاء الاصطناعي التوليدي في إنترنت الأشياء على نطاق واسع، أو نطاقات فرعية محددة مثل أتمتة مراكز العمليات الأمنية (SOC) واستخراج استخبارات التهديدات السيبرانية واختبار الاختراق الذاتي. ولا يقدم أي مسح منهجي سابق تصنيفًا موحدًا يجمع بنية الوكيل واستراتيجية الاستدلال ونطاق الفعل وطوبولوجيا النشر في إحداثية واحدة مخصصة لأمن إنترنت الأشياء، ولا يرسم مشكلات المجال المفتوحة على خارطة طريق ملموسة لعام 2026. ويعيق غياب هذا التوليف التقدم الأكاديمي والتبني الصناعي معًا.</p>
+    <p>تتمثل مساهمات هذه الدراسة في: (1) تصنيف رباعي الركائز للذكاء الاصطناعي الوكيل لأمن إنترنت الأشياء، مُشغَّل في مستودع مفتوح المصدر مرافق؛ (2) توليف نقدي لأربعة مجالات تطبيقية رئيسية — تفسير الشذوذات، وتنسيق الاستجابة الذكية، وتقييم المخاطر التنبؤية، والخداع العدائي — بما يشمل مقارنات كمية لدقة الكشف وتخفيضات زمن الاستجابة وكمون الاستدلال على الحافة؛ (3) أطلس موحد لمجموعات البيانات ومعايير التقييم؛ (4) تحليل صارم للتحديات المفتوحة؛ (5) خارطة طريق بحثية لعام 2026 بأربعة اتجاهات عالية الأثر ومعالم تجريبية ملموسة؛ (6) عدة إعادة إنتاج مرافقة مؤرشفة على Zenodo. وتنظم بقية الورقة كالتالي: القسم 2 للخلفية، و3 للمنهجية، و4 للدراسات ذات الصلة، و5 للتصنيف، و6 للمجالات التطبيقية، و7 للبيانات والمعايير، و8 للتحديات، و9 لخارطة الطريق، و10 لعدة الشيفرة، و11 للخاتمة.</p>
+  </section>
+
+  <section>
+    <h2>II. الخلفية والأساسيات</h2>
+    <p>يُحلل نظام إنترنت الأشياء تقليديًا إلى ثلاث طبقات: طبقة استشعار من حساسات ومشغلات مقيدة الموارد؛ وطبقة شبكة من بوابات الضباب وموجهات الحافة وشرائح 5G/6G وبروتوكولات واسعة النطاق مثل MQTT وCoAP؛ وطبقة تطبيق من السحب التحليلية ولوحات المعلومات ومنصات التنسيق. ولكل طبقة أسطح هجوم مميزة: استغلال البرمجيات الثابتة وحقن الأوامر في طبقة الاستشعار؛ وإغراق الحركة وتشويش البروتوكولات والحركة الجانبية في طبقة الشبكة؛ وإساءة استخدام بيانات الاعتماد واختراق سلسلة التوريد وتسريب البيانات في طبقة التطبيق، بينما يفاقم الانتقال إلى 5G/6G المشكلة عبر تقطيع الشبكة الذي تصبح ضمانات عزله نفسها هدفًا لهجمات القفز بين الشرائح. واعتمدت الممارسة الدفاعية تاريخيًا على أنظمة كشف التسلل القائمة على التواقيع، مدعومة بكواشف شذوذ بالمشفرات الذاتية وغابات العزل والشبكات المتكررة — وهي هشة أمام هجمات اليوم صفر، وذات معدلات إنذار كاذب مرتفعة تُغرق المحللين، ولا توفر أي آلية أصلية لتفسير القرارات. وقد حسّنت الشبكات العصبية للرسوم البيانية والتعلم الاتحادي الدقة الخام، لكنها تبقى مطابِقات أنماط معتمة لا تستدل على استراتيجيات المهاجمين الجديدة ولا تركب استجابات متعددة الخطوات.</p>
+    <p>النماذج اللغوية الكبيرة شبكات عصبية محولة مدرَّبة على مدونات نصية ضخمة للتنبؤ بالرمز التالي، وثلاث خصائص تجعلها مناسبة خصوصًا للتطبيقات الأمنية: التعميم الصفري، والتفسير الدلالي للمصنوعات غير المتجانسة ضمن نافذة سياق واحدة، وشرح القرارات بلغة طبيعية يمكن للمشغل البشري تدقيقها. وتوضح النتائج الملموسة الإمكانات: يحقق BARTPredict دقة 98% في التنبؤ بهجمات إنترنت الأشياء على معيار BoT-IoT، وتصنف نماذج DistilBERT وTinyBERT المنشورة على الحافة التسللات بدقة تتجاوز 99% وكمون استدلال دون 70 مللي ثانية. غير أن هذه الأرقام القياسية مُبلغ عنها على مجموعات بيانات مختلفة بتوزيعات هجوم وبروتوكولات تقسيم متباينة، فهي غير قابلة للمقارنة إحصائيًا — ونعود إلى هذه النقطة مع تدهور الأداء عبر مجموعات البيانات بمقدار 10–20 نقطة مئوية في القسم 7.1. وتدمج خطوط GPT-2 المعززة الكشف القائم على التواقيع مع الاستدلال الدلالي لتحديد متحورات غير مسبوقة، بينما يولّد APOLLO (وهو كاشف تصيد مبني على GPT-4o) تصنيفًا وشرحًا مقروءًا بشريًا لكل رسالة، ويستخرج CyberNER-LLM الكيانات من تقارير استخبارات التهديدات بدقة تقترب من أداء الخبراء البشر.</p>
+    <p>أما النموذج الوكيلي فيُعرَّف بحلقة تحكم تُغلِّف النموذج اللغوي: إدراك (قراءة القياس عن بُعد والسجلات والتنبيهات)، واستدلال (سلسلة الأفكار أو ReAct أو التخطيط والحل)، وذاكرة (سياق المهمة والمعرفة المسترجعة)، واستخدام أدوات (ماسحات الثغرات وواجهات الاستعلام وجمع الأدلة)، وتواصل متعدد الوكلاء (تقسيم العمل بين وكلاء متخصصين). وتحدد هذه الحلقة موقع كل دراسة في التصنيف: بنية أحادية الوكيل بحلقة محكمة ومنخفضة التكلفة، أو متعددة الوكلاء بأدوار متخصصة (كاشف، وصياد، ومستجيب) وتكلفة تنسيق، أو تصاميم هجينة هرمية. وتحكم بوابات الإشراف البشري درجات الاستقلالية، بحيث تتطلب الأفعال عالية التأثير (مثل عزل الأجهزة أو حظر الحركة) موافقة بشرية، وهو ما تُضفي عليه أطر الحوكمة مثل إطار NIST لإدارة مخاطر الذكاء الاصطناعي طابعًا مؤسسيًا.</p>
+    <p>ثلاث عائلات من تقنيات الكفاءة حاسمة للنشر على إنترنت الأشياء: التكميم (تخفيض الدقة من 32/16 بت إلى 4 أو 8 بت)، والتقليم (إزالة الأوزان منخفضة القيمة)، والتقطير المعرفي (تدريب نموذج «تلميذ» صغير لمحاكاة «معلم» كبير). ووفقًا لما أبلغ عنه Wang وآخرون، يحتفظ DistilBERT بنحو 97% من دقة BERT-base في مهام كشف تسلل إنترنت الأشياء مع عدد معاملات أقل بنحو 40% وسرعة أعلى بنحو 60%، بينما يحقق التقطير متعدد المناظر تخفيضًا في المعاملات بنسبة 92–95% مع الحفاظ على macro-F1 فوق 0.986. وهذه التقنيات هي ما يتيح تشغيل النماذج اللغوية على العتاد المقيد الذي يهيمن على قاعدة إنترنت الأشياء المثبتة.</p>
+  </section>
+
+  <section>
+    <h2>III. المنهجية: مراجعة منهجية على غرار PRISMA</h2>
+    <p>يتمحور التوليف حول خمسة أسئلة بحثية: (RQ1) أي بنى الوكلاء واستراتيجيات الاستدلال تهيمن على أدبيات أمن إنترنت الأشياء، وكيف توازن بين كلفة التنسيق ودقة الكشف؟ (RQ2) ما حدّ الدقة-مقابل-الكمون المُبلغ عنه للمدافعين المعتمدين على النماذج اللغوية عند طبقات الحافة والضباب والسحابة؟ (RQ3) كيف تخفف التصاميم الحالية المخاطر العدائية الخاصة بالنماذج (الحقن الموجه والهلوسة واختطاف الأدوات)، وما التعرض المتبقي؟ (RQ4) أي مجموعات بيانات ومعايير تُستخدم للتحقق من المدافعين الوكلاء، وأي جوانب من سلوك الوكيل تبقى غير مقاسة؟ (RQ5) أي الاتجاهات البحثية، إن سُلكت خلال 24 شهرًا، ستردم الفجوة ماديًا بين العروض المختبرية والنشر الإنتاجي الموثوق؟ وأُجري البحث المنهجي في ثلاثة مستوعبات محكمة — IEEE Xplore ومكتبة ACM الرقمية ودوريات MDPI — للفترة من يناير 2020 حتى مايو 2026 (وكان البحث النهائي في 29 مايو 2026)، مع استبعاد متعمد لمستودعات ما قبل النشر بما فيها arXiv لضمان مرور كل دراسة مشمولة بمراجعة أقران رسمية. وتقاطعت سلاسل البحث بين مجموعتين مصطلحيتين: منهجية الذكاء الاصطناعي («نموذج لغوي كبير» أو «ذكاء اصطناعي وكيل» أو «متعدد الوكلاء» أو «ReAct» أو «سلسلة الأفكار» أو «استخدام الأدوات») والتطبيق الأمني («IoT» أو «أمن الحافة» أو «كشف التسلل» أو «اصطياد التهديدات» أو «اكتشاف الثغرات» أو «الأفخاخ الإلكترونية»). ونميّز بشفافية منهجية بين مدونة PRISMA المكوَّنة من 153 دراسة وبين مراجع خلفية تأسيسية (منهجيات CoT وReAct ووثائق الحوكمة ودراسات بوت نت Mozi الأولية) لا تُحتسب ضمن المدونة.</p>
+    <p>أسفرت عمليات البحث الأولية عن 487 سجلًا مرشحًا: 198 من IEEE Xplore و142 من مكتبة ACM و147 من MDPI. وبعد إزالة 63 مكررًا بقي 424 سجلًا لفرز العناوين والملخصات، استُبعد منها 218 لخروجها عن النطاق، وخضعت الـ 206 المتبقية لفرز النص الكامل الذي استُبعد فيه 53 سجلًا إضافيًا — 31 لعدم كفاية التحقق التجريبي، و14 لمحتوى موضوعي أقل من صفحتين، و7 للغة غير الإنجليزية دون ترجمة، وواحد لوقوعه خارج الحد الزمني الأدنى — لتستقر المدونة النهائية عند 153 دراسة. أجرى المؤلف الأول الفرز ودقق المؤلف الأقدم عينة عشوائية بنسبة 15% في كل مرحلة (كابا كوهين = 0.84، ونسبة اتفاق 90.4%)، وشُفِّرت كل دراسة مشمولة على سبعة أبعاد: المعرف الببليوغرافي، وطبقة/طوبولوجيا إنترنت الأشياء، وبنية الوكيل، واستراتيجية الاستدلال، والتركيز الأمني، والمعايير الأساسية، والقيود الحرجة. وتتوزع المدونة بواقع 58 ورقة من IEEE و39 من ACM و56 من MDPI، وبانحياز زمني نحو 2024–2025 يعكس تسارع أبحاث الوكلاء بعد انتشار نماذج استدعاء الدوال القادرة أواخر 2023.</p>
+    <p>نفصح عن ستة قيود في سبيل الشفافية المنهجية: أولًا، اقتصار المدونة على ثلاثة مستوعبات يستبعد أعمالًا عالية الجودة في USENIX Security وIEEE S&P وNDSS ودوريات Elsevier/Springer — مع توقع أن يؤثر ذلك على كثافة خلايا التصنيف لا على بنيته؛ ثانيًا، اعتماد مراجع أول للفرز مع تدقيق جزئي بدل مراجعَين مستقلَين بالكامل؛ ثالثًا، اعتماد الملخصات والبيانات الوصفية المفهرسة في الاستخلاص للأوراق المحجوبة بنظام الدفع؛ رابعًا، الحد الزمني الأعلى في مايو 2026؛ خامسًا، اقتصار المدونة على الإنجليزية؛ سادسًا، أن عدة إعادة الإنتاج المرافقة قطعة تأسيسية بالنسخة v0.3.0 لم تُتحقق في أي بيئة إنتاجية، وأن أي عبارة في المسح تحيل إليها تُقرأ كمقترح لا كقدرة مُثبتة.</p>
+  </section>
+
+  <section>
+    <h2>IV. المسوحات ذات الصلة والتموضع</h2>
+    <p>تتناول عدة مسوحات حديثة أراضٍ مجاورة لكنها تتوقف قبل تقاطع الذكاء الاصطناعي الوكيل × أمن إنترنت الأشياء الذي يجمِّعه هذا المسح. يستعرض Yao وآخرون تطبيقات النماذج اللغوية عبر ثمانية مجالات للأمن السيبراني منها مقطع موجز عن إنترنت الأشياء، لكنهم يعالجون الوكلاء عرضًا. ويقدم Ferrag وآخرون مراجعة شاملة للذكاء الاصطناعي التوليدي في أمن إنترنت الأشياء بتغطية قوية لشبكات GAN ونماذج الانتشار، لكن بمعالجة محدودة للاستدلال متعدد الوكلاء. ويعالج مسح الطبقة المعرفية لـ Ali وآخرين تكامل النماذج اللغوية مع إنترنت الأشياء صراحة، لكنه منظم حول تقنيات الدفاع لا بنى الوكلاء. وتغطي مسوحات مراكز العمليات الأمنية المعززة بالذكاء الاصطناعي أتمتة SOC الوكيلة بالتفصيل لكنها موجهة نحو شبكات المؤسسات لا قيود حافة إنترنت الأشياء، بينما يفهرس مسح Bansal لمنهجية تقييم الوكلاء أساليب القياس دون معالجة مخاوف النشر الخاصة بإنترنت الأشياء. وكذلك تبقى مسوحات النطاقات — أمن إنترنت المركبات (IoV)، وتنسيق SOAR واصطياد التهديدات، والذكاء الاصطناعي القابل للتفسير لإنترنت الأشياء، والتعلم المعزز العميق لكشف التسلل، وكواشف الرسوم البيانية — جزئية إزاء هذا التقاطع.</p>
+    <p>يلخص الجدول 3 تموضع هذا المسح إزاء أقرب الأعمال المقارنة مباشرة ضمن مدونات IEEE وACM وMDPI: فمقارنةً بمسوحات النماذج اللغوية في الأمن السيبراني عمومًا نضيّق النطاق إلى إنترنت الأشياء لكننا نتعمق في بنية الوكلاء والنشر على الحافة، ومقارنةً بمسوحات أمن إنترنت الأشياء لكل تقنيات الذكاء الاصطناعي نضيّق العدسة إلى الأنظمة الوكيلة لكننا نمد التغطية حتى منشورات 2026 ونوحد مستودع شيفرة مرافقًا. ولا يفهرس أي مسح سابق في هذه المدونات تصنيفًا رباعي الركائز (البنية × الاستدلال × النطاق × الطوبولوجيا) من النوع المطوَّر هنا. ويعزز التموضع مسح سردي تكميلي لأعمال ممثلة من أهم محافل أمن الأنظمة — PentestGPT (USENIX Security 2024) وKARONTE (IEEE S&P 2020) وChatAFL (NDSS 2024) ومعيار الحقن الموجه لـ Liu وآخرين — وكلها تُسقط بسلاسة على إحداثيات الركائز الأربع، بما يدعم الادعاء بأن التصنيف لا يتحول بتوسيع سياسة المستوعبات، وأن أقرب المقارِنات المستبعدة (Zhang وآخرون في Springer، وJamshidi وآخرون في Elsevier) تتقارب مستقلةً على نفس المشكلات المفتوحة المهيمنة: الهلوسة والتعرض للحقن الموجه وعدم نضج التقييم.</p>
+  </section>
+
+  <section>
+    <h2>V. تصنيف رباعي الركائز للذكاء الاصطناعي الوكيل لأمن إنترنت الأشياء</h2>
+    <p>ننظم الأدبيات المستعرضة على أربعة أبعاد متعامدة تُنتج معًا إحداثية رباعية تحدد موقع كل دراسة وتكشف مناطق فضاء التصميم قليلة الاستكشاف. تُجسِّد الشكل 2 التصنيف كشجرة هرمية تربط كل ركيزة بخياراتها ثم بتخصيصاتها على طبقات إنترنت الأشياء.</p>
+    <p>الركيزة الأولى — بنية الوكيل: تعمل الأنظمة أحادية الوكيل بحلقة إدراك-استدلال-فعل محكمة ومنخفضة التكلفة، وهي مناسبة لمهام الكشف المركزة على الحافة حيث تكون الموارد شحيحة. أما الأنظمة متعددة الوكلاء فتوزع العمل على أدوار متخصصة — وكيل كشف، ووكيل اصطياد، ووكيل استجابة — بما يرفع القدرة على المهام المعقدة مقابل كلفة تنسيق وفشل مركب؛ ولم يلتزم أي نظام في المدونة ببروتوكولات التشغيل البيني الناشئة (MCP/ANP/A2A)، وهو عجز توثقه خارطة الطريق. وتجمع التصاميم الهجينة والهرمية بين حلقة محلية سريعة وتنسيق علوي للتخطيط بعيد المدى.</p>
+    <p>الركيزة الثانية — استراتيجية الاستدلال: تُعد سلسلة الأفكار (CoT) أخف الحلقات كلفة ومناسبة للحلقة الصناعية المغلقة (≤0.1 ثانية)، بينما يهيمن ReAct المعزز بالأدوات على الأدبيات لأنه يربط الاستدلال بالفعل الخارجي (الاستعلام، والمسح، والاحتواء). أما التخطيط والحل (plan-and-solve) فيوزع المهمة إلى خطة أمامية من نحو 3 خطوات قبل التنفيذ، والتأمل والنقد الذاتي يضاعفان الكمون بمعامل 1.5–2 مقابل مكاسب في الموثوقية. ويحدد الجدول المرافق ميزانيات التوافق: الاستدلال الصرف للحلقة المغلقة، وكل الحلقات للزمن شبه الحقيقي (1–10 ثوانٍ)، وكلها للتحليل الاسترجاعي (أكثر من 10 ثوانٍ).</p>
+    <p>الركيزة الثالثة — نطاق الفعل: يقتصر الكشف الصرف على التصنيف والشرح دون فعل احتوائي، بينما يركّب تنسيق الاستجابة خطط لعب ديناميكية ويتكامل مع منصات SOAR لتقليص زمن الاستجابة. ويصطاد اصطياد التهديدات التهديدات الكامنة استباقيًا عبر استعلامات يولدها النموذج، ويكتشف اكتشاف الثغرات نقاط الضعف في البرمجيات الثابتة والبروتوكولات (مع أن دراستين فقط من 13 في هذا النطاق تُبلغان عن معدل اكتشاف كاذب مُتحقق منه — وهو عجز في الموثوقية). أما الخداع العدائي فينشر أفخاخًا إلكترونية (honeypots) تقودها النماذج اللغوية لاستدراج المهاجمين وجمع استخبارات عنهم في الوقت الحقيقي.</p>
+    <p>الركيزة الرابعة — طوبولوجيا النشر: يعمل نشر الحافة/على الجهاز بنماذج لغوية صغيرة (SLMs) مُكمَّمة بميزانيات دون 100 مللي ثانية، لكن قابلية هذه النماذج للحقن الموجه تبقى غير مقاسة إلى حد كبير إزاء خط الأساس 26–41% لمعيار CyberSecEval. ويوازن نشر الضباب/البوابات بين الكمون والقدرة عبر تجميع القياس عن بُعد إقليميًا، بينما يستضيف النشر السحابي النماذج الكاملة القدرة لكنه يصطدم بمشكلة خروج حركة المرور الخام (privacy egress). ويوثق الجدول 2 حدّ الدقة-الكمون-المتانة عبر الطبقات مع تحذير صريح: خلايا الدقة قمم مُبلغ عنها على معايير مختلفة غير قابلة للمقارنة عبر الصفوف، ولا تُقارَن إلا الفروق داخل الدراسة الواحدة.</p>
+  </section>
+
+  <section>
+    <h2>VI. المجالات التطبيقية</h2>
+    <p>يُجمِّع القسم أربعة مجالات رئيسية. أولها تفسير الشذوذات: حيث يؤدي الفرز الدلالي للتنبيهات دور المحلل الأول، فيقرأ النموذج حزم الحركة والسجلات ضمن سياق واحد ويشرح الشذوذ بلغة طبيعية قابلة للتدقيق، بما يخفض إرهاق التنبيهات. وتدمج خطوط GPT-2 المعززة الكشف التوقيعي مع الاستدلال الدلالي لتحديد متحورات الهجوم غير المسبوقة، بينما يولّد APOLLO لكل رسالة تصيد تصنيفًا وشرحًا مقروءًا بشريًا.</p>
+    <p>ثانيها تنسيق الاستجابة الذكية: إذ يركّب الوكيل خطط لعب ديناميكية مكيَّفة مع الأصل المتأثر وسطح الهجوم المرصود، ويتكامل مع منصات SOAR لتنفيذ الاحتواء (عزل الأجهزة، وحظر التدفقات الخبيثة، وتدوير بيانات الاعتماد) مع بوابات موافقة بشرية للأفعال عالية التأثير. وتُبلغ الدراسات المستعرضة عن تخفيضات في متوسط زمن الاستجابة، لكنها قمم مختبرية على معايير متباينة لا تُقارَن عبر الدراسات.</p>
+    <p>ثالثها تقييم المخاطر التنبؤية واصطياد التهديدات: حيث يستخرج CyberNER-LLM الكيانات (الجهات الفاعلة، والبرمجيات الخبيثة، والتقنيات، والمؤشرات) من تقارير الاستخبارات بدقة تقترب من الخبراء، ويولّد وكلاء الاصطياد فرضيات وطلبات بحث استباقية عبر القياس عن بُعد التاريخي والحي، بما ينقل الوضعية من رد الفعل إلى الاستباق.</p>
+    <p>رابعها الخداع العدائي والأفخاخ الإلكترونية: إذ تنشر الأنظمة أفخاخًا تقودها النماذج اللغوية تحاكي أجهزة إنترنت أشياء حقيقية، وتتكيف حواراتها مع أساليب المهاجم لاستدراجه وإطالة بقائه وجمع بصمات تكتيكاته في الوقت الحقيقي. ويضيف القسم 6.5 سيناريوهات توضيحية للدمج الإنتاجي — مسارات نشر مقترحة عبر طبقات الحافة والضباب والسحابة — بوصفها مقترحات تأسيسية لا قدرات مُتحققًا منها.</p>
+  </section>
+
+  <section>
+    <h2>VII. مجموعات البيانات ومعايير التقييم ومنهجية القياس</h2>
+    <p>توثق المدونة خمس مجموعات رئيسية خاصة بإنترنت الأشياء: CICIoT2023 (33 هجومًا في 7 عائلات — المعيار الفعلي لكشف تسلل إنترنت الأشياء)، وEdge-IIoTset (14 هجومًا بتركيز على واقعية إنترنت الأشياء الصناعية وبروتوكولات مثل Modbus)، وTON_IoT (9 أنواع هجوم متعدد الوسائط: شبكة ونظام تشغيل وحساسات)، وCICIoMT2024 (18 هجومًا عبر أكثر من 40 جهازًا طبيًا)، وBoT-IoT/N-BaIoT لأبحاث البوت نت التأسيسية (Mirai وBashlite وهجمات DDoS). وتُؤخذ أعداد فئات الهجوم من توثيق كل مجموعة دون إعادة قياس أو إعادة تحقق من الوسوم، وتسري قاعدة القراءة الصريحة: البنود تصف معايير غير متجانسة، والأرقام المرتبطة بها استرشادية الاتجاه فقط وغير قابلة للمقارنة عبر الصفوف.</p>
+    <p>أما المعايير الخاصة بالنماذج اللغوية والوكلاء فتشمل CyberSecEval 1–3 (الشيفرة غير الآمنة والحقن الموجه والقدرات الهجومية) وCyberSOCEval (مهام مراكز العمليات: تحليل البرمجيات الخبيثة والاستدلال الاستخباري). وينتقد المسح غياب أجنحة تقييم وكيلة-أصيلة تختبر استخدام الأدوات متعدد الخطوات وميزانيات الكمون والمتانة العدائية معًا في آن واحد — وهي الفجوة التي تستهدفها منصة التقييم المرافقة.</p>
+    <p>وتُظهر ممارسات القياس والإبلاغ نمطًا متكررًا: تدهور الأداء عبر مجموعات البيانات بمقدار 10–20 نقطة مئوية (الجدول 1، مجمَّعًا من تسع دراسات أولية حسب عائلة الكاشف)، لأن الموجهات ومدونات الضبط الدقيق تُرسِّخ اختصارات خاصة بمجموعة البيانات. وقاعدة القراءة (القسم 7.1): كل خلايا الدقة استرشادية للاتجاه فقط، ولا تُعد قابلة للمقارنة المباشرة إلا الفروق داخل الدراسة/المجموعة الواحدة — كانخفاضات الانتقال في الجدول 1. وتستقل مزالق Arp وآخرين (الدقة المتضخمة تحت توازن فئات غير واقعي وانحياز أخذ العينات) بدافع إضافي لهذه التحذيرات.</p>
+  </section>
+
+  <section>
+    <h2>VIII. التحديات المفتوحة</h2>
+    <p>أول التحديات الهلوسة والاستدلال القابل للتحقق: إذ قد تُنتج النماذج تفسيرات واثقة لأحكام خاطئة في قرارات عالية المخاطر (الحظر، والعزل، والتصعيد)، والاستدلال اللفظي لا يطابق بالضرورة الحساب الفعلي — وهو عجز في الإخلاص لا تُبلغ عنه إلا دراستان من 13 في نطاق اكتشاف الثغرات بمعدل اكتشاف كاذب مُتحقق منه. ويتطلب الإغلاق تتبع نسب منسوبة وآليات تحقق تربط كل ادعاء سببي بدليل قابل للفحص.</p>
+    <p>ثانيها المتانة العدائية والحقن الموجه: فالوكلاء أنفسهم أسطح هجوم — حقن غير مباشر عبر القياس عن بُعد المسموم، واختطاف استدعاءات الأدوات، وتصعيد الحقن إلى تنفيذ شيفرة عن بُعد في التطبيقات المعززة بالأدوات (كما أظهرت دراسة CCS 2024). ويجمِّع الجدول 4 دفاعات طبقية مرتبة من المدخل إلى الإجراء: التطهير النحوي للمدخلات، وتمييز المدخلات غير الموثوقة، وبوابات استدعاء الأدوات وقوائم السماح، وحدود بين الوكلاء، وبوابات موافقة بشرية للأفعال المترتبة، وتقييم عدائي مستمر — مع بقاء تعرض متبقٍّ يحفز كل طبقة لاحقة.</p>
+    <p>ثالثها قابلية التفسير والتدقيق والحفاظ على الخصوصية: إذ تتطلب الثقة الإنتاجية مسارات تدقيق تربط القرار بالدليل والسياسة، ويرسم الجدول 8 دوال إطار NIST لإدارة مخاطر الذكاء الاصطناعي (الحوكمة، ورسم الخرائط، والقياس، والإدارة) على ركائز التصنيف الأربع مع مصنوعات الامتثال لكل دالة. وفي المقابل، يمنع خروج حركة المرور الخام التحليل السحابي بموجب سياسات الخصوصية، فيُدفع نحو التعلم الاتحادي الذي يبقي البيانات على الأجهزة — لكن بكلفة نطاق ترددي وتدهور دقة تحت ضمانات الخصوصية التفاضلية.</p>
+    <p>رابعها مفارقة الكمون-الأمن والحوكمة والمساءلة والأخلاقيات: فتعميق الاستدلال (التأمل، والتخطيط متعدد الخطوات) يحسّن القرار لكنه يكسر ميزانيات الحلقة المغلقة الصناعية (≤0.1 ثانية)، وهي مفارقة الكمون-الأمن عند الحافة. وتفرض الحوكمة سجلات استقلالية وتصنيفات مخاطر على غرار الملحق الثالث لقانون الاتحاد الأوروبي للذكاء الاصطناعي وبوابات إشراف بشري، بينما تتطلب الأخلاقيات تقليل البيانات وتحديد الغرض والشفافية — خاصة أن الأنظمة الدفاعية الذاتية تتخذ أفعالًا مترتبة على أصول حية.</p>
+  </section>
+
+  <section>
+    <h2>IX. خارطة طريق بحثية لعام 2026</h2>
+    <p>تحدد الخارطة أربعة اتجاهات عالية الأثر، يرتبط كل منها بفجوة مُقاسة في المدونة وبمعلم إغلاق ملموس. الاتجاه الأول — التعلم الوكيلي الاتحادي (9.1): يعالج عجز الخصوصية/الانتقال (9 دراسات على الأقل من 153 تُظهر تدهورًا عبر المجموعات بـ 10–20 نقطة مئوية، وخروج الخام يحظر التحليل السحابي)، والمعلم المغلِق هو دقة بمستوى DistilBERT على Edge-IIoTset تحت خصوصية تفاضلية (ε=1، δ=10⁻⁵) وبنطاق ترددي لا يتجاوز الضعف. والاتجاه الثاني — الاستدلال الذاتي القابل للتحقق (9.2): يعالج عجز الإخلاص (دراستان فقط من 13 تُبلغان عن معدل اكتشاف كاذب مُتحقق منه)، والمعلم هو انحراف لفظي-مقابل-منسوب دون 10% على معيار SECURE.</p>
+    <p>والاتجاه الثالث — التعاون الموثوق بين الوكلاء المتعددين (9.3): يعالج عجز التشغيل البيني/المتانة (صفر أنظمة في المدونة تلتزم بـ MCP/ANP/A2A، وخمس دراسات فقط من 153 تُبلغ عن أي نمط فشل مركب)، والمعلم هو كشف وكلاء خبيثة بنسبة ≥95% في معايير من 10 وكلاء فأكثر بخسارة إنتاجية ≤5%. والاتجاه الرابع — وكلاء الحافة المقواة بالموارد (9.4): يعالج عجز متانة الحافة (قابلية نماذج الحافة الصغيرة للحقن الموجه غير مقاسة إلى حد كبير إزاء خط أساس CyberSecEval 26–41%)، والمعلم هو نجاح حقن دون 5% وكمون وسيط دون 100 مللي ثانية على Cortex-A78.</p>
+    <p>الأفق الزمني 24 شهرًا (RQ5): مسار تحقق مرحلي من التأسيس التوضيحي إلى التحقق ببيانات حقيقية، مع توسيع سياسة المستوعبات مستقبلًا نحو USENIX Security وIEEE S&P وNDSS ودوريات Elsevier/Springer دون تغيير أعداد المدونة القابلة لإعادة الإنتاج. ويزيد تقارب المسوحات المستبعدة (Zhang وآخرون، وJamshidi وآخرون) على نفس المشكلات المفتوحة من الثقة بأن التصنيف والتحليل ليسا artifact لسياسة المستوعبات الثلاثة.</p>
+  </section>
+
+  <section>
+    <h2>X. عدة إعادة الإنتاج المرافقة</h2>
+    <p>تتكون العدة (GitHub: vnageshwaran-de/agentic-iot-security، بتاريخ وصول 29 مايو 2026؛ وأرشيف Zenodo DOI 10.5281/zenodo.20726552، الإصدار v0.3.0، منفذة بلغة Python 3.11) من: قوالب موجهات لكل نطاق فعل، وحلقات مرجعية لوكيل ReAct أحادي ولوكلاء متعددين منسقين، ومنصة تقييم للدقة وكمون القرار لكل قرار على حركة بأسلوب Edge-IIoTset، إضافة إلى مدونة الترميز المغلقة ومصفوفة الاستخلاص المشفرة (corpus/codebook.md وcorpus/extraction_matrix.csv) اللتين تتيحان لأي قارئ تكرار اختيار المدونة وقرارات الترميز. وتشير مؤشرات العدة في الجدول 4 إلى مواضع الدفاعات الطبقية في المستودع.</p>
+    <p>حالة الإصدار والنطاق (10.5): العدة هيكل توضيحي (scaffolding) لمسار العمل التجريبي اللاحق لا إطار إنتاج — فهي غير مُتحقَّق منها في أي بيئة إنترنت أشياء إنتاجية، وتشغيل التحقق الوحيد المشحون معها يستخدم بديلًا حتميًا (stub) على حركة اصطناعية (الملحق A)، وأي عبارة في المسح تحيل إليها تُقرأ كمقترح تعتمد قوته التجريبية على مسار التحقق المرحلي ببيانات حقيقية (القسم 10.3) لا كقدرة مُثبتة. ويُسجَّل هذا الوضع صراحةً كقيد للعمل الحالي (القسم 3.8 والقسم 10.5) لا كمزية مُدَّعاة.</p>
+  </section>
+
+  <section>
+    <h2>XI. الخاتمة</h2>
+    <p>يقدم هذا المسح — على حد علمنا — أول مراجعة منهجية توحّد بنية الوكيل واستراتيجية الاستدلال ونطاق الفعل وطوبولوجيا النشر في إحداثية واحدة مخصصة لأمن إنترنت الأشياء، مؤسِّسةً التوليف على مدونة من 153 دراسة محكمة فُرزت ببروتوكول PRISMA من IEEE Xplore ومكتبة ACM ودوريات MDPI للفترة 2020–2026. ويجمِّع أربعة مجالات تطبيقية رئيسية، وأطلسًا موحدًا لمجموعات البيانات (CICIoT2023 وEdge-IIoTset وTON_IoT وCICIoMT2024) ومعايير النماذج اللغوية (CyberSecEval وCyberSOCEval)، وتحليلًا صارمًا للتحديات المفتوحة من الهلوسة إلى الحوكمة.</p>
+    <p>الخلاصة: تفتح النماذج اللغوية الكبيرة والذكاء الاصطناعي الوكيل طريقًا موثوقًا نحو منظومات إنترنت أشياء ذاتية الدفاع — تُفسَّر فيها الحركة دلاليًا، وتُركَّب الاستجابات ديناميكيًا، وتُخدَع الأفعال العدائية في الوقت الحقيقي — لكن الثقة الإنتاجية تتطلب إغلاق فجوات قابلية التحقق والمتانة العدائية وتقوية الحافة. وندعو المجتمع البحثي إلى متابعة الاتجاهات الأربعة لخارطة 2026 — التعلم الوكيلي الاتحادي، والاستدلال الذاتي القابل للتحقق، والتعاون الموثوق بين الوكلاء، ووكلاء الحافة المقواة — بمعالمها التجريبية الملموسة، مع توسيع سياسة المستوعبات والتحقق ببيانات حقيقية لمنصة التقييم المرافقة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Conventional signature-based defenses no longer protect the heterogeneous, large-scale infrastructures that the Internet of Things (IoT) now constitutes. Large language models (LLMs) and agentic artificial intelligence (AI) — systems that autonomously perceive, reason, plan, and act — open a path to self-defending IoT ecosystems, but the integrating literature remains fragmented. Following a PRISMA 2020 protocol, this survey systematically analyzes 153 peer-reviewed studies published between 2020 and 2026 in IEEE Xplore, the ACM Digital Library, and MDPI journals. We organize the corpus along a four-pillar taxonomy: agent architecture (single- vs. multi-agent), reasoning strategy (chain-of-thought, ReAct, plan-and-solve, tool use), action scope (detection, response, threat hunting, vulnerability discovery, deception), and deployment topology (edge, fog, cloud). We synthesize four flagship application domains, consolidate datasets and benchmarks, and analyze open challenges including hallucination, prompt-injection robustness, explainability, privacy, latency, and governance. A 2026 research roadmap identifies four high-priority directions — federated agentic learning, verifiable autonomous reasoning, trustworthy multi-agent collaboration, and resource-hardened edge agents. A companion reproducibility kit — prompt templates, reference single- and multi-agent loops, and an Edge-IIoTset-style evaluation harness, released as illustrative scaffolding rather than a validated framework — is publicly available and archived on Zenodo (DOI 10.5281/zenodo.20726552).</p>
+  </section>
+
+  <section>
+    <h2>I. Introduction</h2>
+    <p>The global population of Internet of Things (IoT) endpoints is projected to exceed 30 billion devices by 2026, spanning consumer wearables, smart-city fabrics, vehicular telematics, medical implantables, and industrial control systems supervising critical infrastructure. The same heterogeneity, low-cost manufacturing economics, and decade-long deployment lifetimes that make IoT economically attractive also make it structurally hostile to traditional defensive postures: device firmware is rarely patched, cryptographic identities are inconsistent or absent, and the traffic of tens of millions of microcontrollers cannot be triaged by human analysts at any plausible staffing ratio. The Mozi botnet — which by 2021 had infected over 1.5 million devices and formed multiple large peer-to-peer botnets — exemplifies how modern IoT-scale adversaries outpace conventional signature-based defense, and subsequent Mirai variants continue to reproduce this pattern.</p>
+    <p>Over the same period, two technological trajectories have matured that promise a structural response to this asymmetry. The first is the emergence of large language models capable of zero-shot reasoning over heterogeneous textual artifacts — packet captures rendered as text, system logs, threat-intelligence reports, MITRE ATT&CK technique descriptions, CVE narratives — without bespoke feature engineering. The second is the development of agentic AI: software systems that wrap LLM reasoning in perception, planning, memory, tool-use, and multi-agent communication loops, enabling them to autonomously execute multi-step security tasks that previously required human analysts. Together they open a credible path to self-defending IoT ecosystems in which heterogeneous traffic is interpreted semantically, anomalies are explained in natural language, response playbooks are dynamically synthesized, and adversarial actions are deceived in real time.</p>
+    <p>Despite intense research activity, the literature integrating these two trajectories remains fragmented. Recent surveys treat LLMs in cybersecurity generally, generative AI in IoT broadly, or specific sub-domains such as SOC automation, CTI extraction, or autonomous penetration testing. No prior systematic review unifies agent architecture, reasoning strategy, action scope, and deployment topology into a single coordinate system specifically for IoT cybersecurity, nor maps the field's open problems onto a concrete 2026 research roadmap. The absence of such synthesis impedes both academic progress and industrial adoption.</p>
+    <p>Our contributions are: (1) a four-pillar taxonomy of agentic AI for IoT security, operationalized in a companion open-source repository; (2) a critical synthesis of four flagship application domains — anomaly interpretation, intelligent response orchestration, predictive risk assessment, and adversarial deception — including quantitative comparisons of detection accuracy, mean-time-to-respond reductions, and edge inference latencies; (3) a consolidated atlas of datasets and benchmarks; (4) a rigorous analysis of open challenges; (5) a 2026 research roadmap with four high-impact directions and concrete experimental milestones; and (6) a companion reproducibility kit archived on Zenodo. The remainder of the paper is organized as follows: Section 2 gives background, 3 the methodology, 4 related surveys, 5 the taxonomy, 6 application domains, 7 datasets and benchmarks, 8 open challenges, 9 the roadmap, 10 the code artifact, and 11 conclusions.</p>
+  </section>
+
+  <section>
+    <h2>II. Background and Preliminaries</h2>
+    <p>An IoT system is conventionally decomposed into three layers: a perception layer of resource-constrained sensors and actuators; a network layer of fog gateways, edge routers, 5G/6G slices, and wide-area protocols such as MQTT and CoAP; and an application layer of cloud analytics, dashboards, and orchestration platforms. Each layer exhibits distinct attack surfaces: firmware exploits and command injection at perception; traffic flooding, protocol fuzzing, and lateral movement at network; credential abuse, supply-chain compromise, and data exfiltration at application — while the 5G/6G transition compounds the problem through network slicing whose isolation guarantees become themselves the target of slice-hopping attacks. Defensive practice has historically relied on signature-based intrusion detection, supplemented by autoencoder, isolation-forest, and recurrent anomaly detectors — brittle against zero-day attacks, with high false-positive rates that drown analysts, and no native facility for explaining decisions. Graph neural networks and federated learning improved raw accuracy but remain opaque pattern matchers that cannot reason about novel attacker strategies or synthesize multi-step responses.</p>
+    <p>Large language models are transformer networks trained on massive text corpora to predict the next token, and three properties make them particularly suited to security applications: zero-shot generalization, semantic interpretation of heterogeneous artifacts within a single context window, and natural-language explanation of decisions that a human operator can audit. Concrete results illustrate the potential: BARTPredict achieves 98% accuracy in predicting IoT attacks on the BoT-IoT benchmark, and edge-deployed DistilBERT and TinyBERT models classify intrusions at over 99% accuracy with sub-70-millisecond inference latency. These headline figures are, however, reported on different datasets with different attack distributions and split protocols and are therefore not statistically comparable — a point we return to with the 10–20 percentage-point cross-dataset degradation in Section 7.1. LLM-augmented GPT-2 pipelines combine signature detection with semantic reasoning to identify previously unseen variants, while APOLLO (a GPT-4o phishing detector) generates both a classification and a human-readable explanation per message, and CyberNER-LLM extracts entities from threat-intelligence reports at accuracies approaching human experts.</p>
+    <p>The agentic paradigm is defined by a control loop wrapping the language model: perception (reading telemetry, logs, alerts), reasoning (chain-of-thought, ReAct, or plan-and-solve), memory (task context and retrieved knowledge), tool use (vulnerability scanners, query interfaces, evidence collectors), and multi-agent communication (dividing labor among specialized agents). This loop locates each study in the taxonomy: single-agent architectures with a tight, low-overhead loop, or multi-agent designs with specialized roles (detector, hunter, responder) and coordination cost, or hybrid hierarchical designs. Human-oversight gates govern autonomy tiers so that high-impact actions (e.g., quarantining devices or blocking traffic) require human approval — a practice institutionalized by governance frameworks such as the NIST AI Risk Management Framework.</p>
+    <p>Three families of efficiency techniques are critical for IoT deployment: quantization (reducing precision from 32/16-bit to 4- or 8-bit integers), pruning (removing low-magnitude weights), and knowledge distillation (training a small “student” model to mimic a large “teacher”). As reported by Wang et al., DistilBERT retains roughly 97% of BERT-base accuracy on IoT-IDS tasks with around 40% fewer parameters and roughly 60% faster inference, while cross-view distillation achieves 92–95% parameter reduction while sustaining macro-F1 above 0.986. These techniques are what enable LLMs to run on the constrained hardware that dominates the installed IoT base.</p>
+  </section>
+
+  <section>
+    <h2>III. Methodology: A PRISMA-Style Systematic Review</h2>
+    <p>The synthesis is structured around five research questions: (RQ1) Which agent architectures and reasoning strategies dominate the published IoT-cybersecurity literature, and how do they trade off coordination overhead against detection accuracy? (RQ2) What detection-accuracy versus end-to-end latency frontier has been reported for LLM-driven defenders at the edge, fog, and cloud tiers? (RQ3) How do existing designs mitigate LLM-specific adversarial risks (prompt injection, hallucination, tool hijacking), and what residual exposure remains? (RQ4) Which datasets and benchmarks validate agentic IoT defenders, and what aspects of agent behavior remain unmeasured? (RQ5) Which research directions, pursued over the next 24 months, would most materially close the gap between laboratory demonstrations and trustworthy production deployments? We searched three peer-reviewed venues — IEEE Xplore, the ACM Digital Library, and MDPI journals — covering January 2020 through May 2026 (final search 29 May 2026), deliberately excluding preprint repositories including arXiv so that every included study had passed formal peer review. Search strings intersected two term groups: the AI methodology (“large language model” OR “agentic AI” OR “multi-agent” OR “ReAct” OR “chain-of-thought” OR “tool use”) and the security application (“IoT” OR “edge security” OR “intrusion detection” OR “threat hunting” OR “vulnerability discovery” OR “honeypot”). We transparently distinguish the 153-study PRISMA corpus from foundational background references (CoT/ReAct methodologies, governance documents, the Mozi-botnet primary studies) that do not count toward the corpus.</p>
+    <p>The initial searches yielded 487 candidate records: 198 from IEEE Xplore, 142 from ACM DL, and 147 from MDPI. After removing 63 duplicates, 424 records remained for title-and-abstract screening, of which 218 were excluded as out of scope; the remaining 206 underwent full-text screening with 53 further exclusions — 31 for insufficient empirical validation, 14 with fewer than two pages of substantive content, 7 non-English without translation, and one out-of-window — leaving a final corpus of 153 studies. The first author screened and the senior author spot-checked a 15% random sample at each stage (Cohen's kappa = 0.84, 90.4% agreement), and each included study was coded along seven dimensions: bibliographic identifier, IoT layer/topology, agent architecture, reasoning strategy, security focus, key benchmarks, and critical limitations. The corpus comprises 58 IEEE, 39 ACM, and 56 MDPI papers, with a temporal skew toward 2024–2025 reflecting the acceleration of agentic research after capable function-calling models appeared in late 2023.</p>
+    <p>We disclose six limitations for methodological transparency: first, the three-venue restriction omits high-quality work in USENIX Security, IEEE S&P, NDSS, and Elsevier/Springer journals — expected to affect taxonomy cell density, not its structure; second, single-reviewer screening with partial spot-checks rather than two fully independent reviewers; third, metadata-based extraction for paywalled papers; fourth, the May 2026 upper bound; fifth, the English-only corpus; sixth, that the companion reproducibility kit is a v0.3.0 scaffolding artifact never validated in any production environment, so any statement referencing it should be read as a proposal, not an established capability.</p>
+  </section>
+
+  <section>
+    <h2>IV. Related Surveys and Positioning</h2>
+    <p>Several recent surveys touch on adjacent territory but stop short of the agentic AI × IoT cybersecurity intersection this survey synthesizes. Yao et al. review LLM applications across eight cybersecurity domains including a brief IoT subsection, but treat agents only tangentially. Ferrag et al. provide a comprehensive review of generative AI in IoT security with strong GAN and diffusion-model coverage but limited treatment of multi-agent reasoning. The cognitive-layer survey of Ali et al. explicitly addresses LLM-IoT integration but is structured around defense techniques rather than agent architectures. AI-augmented SOC surveys cover agent-based SOC automation in detail but target enterprise networks rather than IoT edge constraints, while Bansal et al.'s agent-evaluation survey catalogs measurement methodology without addressing IoT-specific deployment concerns. Domain surveys — IoV security, SOAR and threat hunting, XAI-for-IoT, deep reinforcement learning for intrusion detection, and graph-based IDS — are likewise partial with respect to this intersection.</p>
+    <p>Table 3 summarizes this survey's positioning against the most directly comparable prior work within the IEEE, ACM, and MDPI corpora: compared with broad LLM-for-security surveys we narrow scope to IoT but go deeper on agent architecture and edge deployment, and compared with all-AI IoT-security surveys we narrow the AI lens to agentic systems but extend coverage to 2026 publications and consolidate a companion code artifact. No prior survey in these corpora indexes a four-pillar taxonomy (architecture × reasoning × scope × topology) of the form developed here. The positioning is reinforced by a complementary narrative scan of representative work from top-tier systems-security venues — PentestGPT (USENIX Security 2024), KARONTE (IEEE S&P 2020), ChatAFL (NDSS 2024), and the Liu et al. prompt-injection benchmark — all of which map cleanly onto the four-pillar coordinates, supporting the claim that the taxonomy does not shift under a broadened venue policy, while the closest excluded-venue comparators (Zhang et al. in Springer; Jamshidi et al. in Elsevier) converge independently on the same dominant open problems: hallucination, prompt-injection exposure, and evaluation immaturity.</p>
+  </section>
+
+  <section>
+    <h2>V. A Four-Pillar Taxonomy of Agentic AI for IoT Cybersecurity</h2>
+    <p>We organize the surveyed literature along four orthogonal dimensions that together yield a 4-tuple coordinate locating every study and surfacing under-explored regions of the design space. Figure 2 renders the taxonomy as a hierarchy tree linking each pillar to its options and then to IoT-layer assignments.</p>
+    <p>Pillar I — agent architecture: single-agent systems run a tight, low-overhead perceive-reason-act loop suited to focused edge detection tasks where resources are scarce. Multi-agent systems divide labor among specialized roles — a detector, a hunter, a responder — raising capability on complex tasks at the price of coordination overhead and compound failure; no corpus system conforms to the emerging interoperability protocols (MCP/ANP/A2A), a deficit the roadmap targets. Hybrid and hierarchical designs combine a fast local loop with upper-level coordination for long-horizon planning.</p>
+    <p>Pillar II — reasoning strategy: chain-of-thought (CoT) is the lightest loop and fits the industrial closed loop (≤0.1 s), while tool-augmented ReAct dominates the literature because it binds reasoning to external action (querying, scanning, containing). Plan-and-solve front-loads the task into a ~3-step plan before execution, and reflection/self-critique multiplies latency by 1.5–2× in exchange for reliability gains. The accompanying table sets compatibility budgets: CoT-only for the closed loop, all loops for soft real-time (1–10 s), and all for retrospective analysis (>10 s).</p>
+    <p>Pillar III — action scope: detection-only systems classify and explain without containment action, while response orchestration synthesizes dynamic playbooks and integrates with SOAR platforms to cut response times. Threat hunting proactively seeks latent threats via model-generated queries, vulnerability discovery finds flaws in firmware and protocols (though only 2 of 13 studies in this scope report a verified false-discovery rate — a faithfulness deficit), and adversarial deception deploys LLM-driven honeypots to lure attackers and gather intelligence on them in real time.</p>
+    <p>Pillar IV — deployment topology: edge/on-device deployments run quantized small language models (SLMs) under sub-100 ms budgets, but these models' prompt-injection susceptibility remains largely unmeasured against the 26–41% CyberSecEval baseline. Fog/gateway deployments balance latency and capability by aggregating telemetry regionally, while cloud-centric deployments host full-capability models but collide with the raw-traffic egress (privacy) problem. Table 2 documents the accuracy–latency–robustness frontier across tiers with an explicit warning: accuracy cells are best-reported peaks on different benchmarks, not comparable across rows — only within-study deltas qualify as directly comparable.</p>
+  </section>
+
+  <section>
+    <h2>VI. Application Domains</h2>
+    <p>This section synthesizes four flagship domains. First, anomaly interpretation: semantic alert triage acts as the first analyst, with the model reading packet traffic and logs in one context and explaining the anomaly in auditable natural language, reducing alert fatigue. LLM-augmented GPT-2 pipelines combine signature detection with semantic reasoning to identify previously unseen attack variants, while APOLLO generates a classification plus a human-readable explanation for every phishing message.</p>
+    <p>Second, intelligent response orchestration: the agent synthesizes dynamic playbooks adapted to the affected asset and the observed attack surface, integrating with SOAR platforms to execute containment (quarantining devices, blocking malicious flows, rotating credentials) with human-approval gates for high-impact actions. Surveyed studies report mean-time-to-respond reductions, but these are laboratory peaks on differing benchmarks, not comparable across studies.</p>
+    <p>Third, predictive risk assessment and threat hunting: CyberNER-LLM extracts entities (actors, malware, techniques, indicators) from intelligence reports at near-expert accuracy, and hunting agents generate proactive hypotheses and search queries over historical and live telemetry, shifting the posture from reactive to anticipatory.</p>
+    <p>Fourth, adversarial deception and honeypots: systems deploy LLM-driven honeypots that mimic real IoT devices, adapting their dialogues to attacker tradecraft to lure adversaries, prolong engagement, and fingerprint tactics in real time. Section 6.5 adds illustrative production-integration scenarios — proposed deployment paths across edge, fog, and cloud tiers — positioned as scaffolding proposals, not validated capabilities.</p>
+  </section>
+
+  <section>
+    <h2>VII. Datasets, Benchmarks, and Evaluation Methodology</h2>
+    <p>The corpus documents five principal IoT-specific datasets: CICIoT2023 (33 attacks in 7 families — the de facto IoT IDS benchmark), Edge-IIoTset (14 attacks with industrial-IoT realism and protocols such as Modbus), TON_IoT (9 multi-modal attack types: network, OS, sensor), CICIoMT2024 (18 attacks across 40+ medical devices), and BoT-IoT/N-BaIoT for foundational botnet research (Mirai, Bashlite, DDoS). Attack-class counts are taken from each dataset's documentation without re-benchmarking or re-validating labels, under the explicit reading rule: entries describe heterogeneous benchmarks, and figures associated with them are indicative of trends only, not comparable across rows.</p>
+    <p>LLM- and agent-specific benchmarks comprise CyberSecEval 1–3 (insecure coding, prompt injection, offensive capability) and CyberSOCEval (SOC tasks: malware analysis, CTI reasoning). The survey critiques the absence of agent-native evaluation suites that test multi-step tool use, latency budgets, and adversarial robustness simultaneously — the gap the companion harness targets.</p>
+    <p>Metrics and reporting practice show a recurring pattern: 10–20 percentage-point cross-dataset performance degradation (Table 1, aggregated from nine primary studies by detector family), because prompts and fine-tuning corpora entrench dataset-specific shortcuts. The reading rule (Section 7.1): all accuracy cells are indicative of trends only; only within-study/within-dataset deltas — such as the transfer drops in Table 1 — qualify as directly comparable. The Arp et al. pitfalls (inflated accuracy under unrealistic class balance and sampling bias) independently motivate these cautions.</p>
+  </section>
+
+  <section>
+    <h2>VIII. Open Challenges</h2>
+    <p>First, hallucination and verifiable reasoning: models can produce confident explanations for wrong judgments in high-stakes decisions (blocking, quarantining, escalation), and verbalized reasoning need not track actual computation — a faithfulness deficit with only 2 of 13 vulnerability-discovery studies reporting a verified false-discovery rate. Closing it requires attributed reasoning traces and verification mechanisms binding every causal claim to inspectable evidence.</p>
+    <p>Second, adversarial robustness and prompt injection: agents are themselves attack surfaces — indirect injection via poisoned telemetry, tool-call hijacking, and injection escalating to remote code execution in tool-augmented applications (as the CCS 2024 study showed). Table 4 consolidates layered defenses ordered from input to procedure: syntactic input sanitization, untrusted-input marking, tool-call gating with allow-lists, inter-agent boundaries, human-approval gates for consequential actions, and continuous adversarial evaluation — with residual exposure motivating each subsequent layer.</p>
+    <p>Third, explainability, auditability, and privacy preservation: production trust requires audit trails binding each decision to evidence and policy, and Table 8 maps the NIST AI RMF functions (Govern, Map, Measure, Manage) onto the four taxonomy pillars with a compliance artifact per function. Conversely, raw-traffic egress blocks cloud analysis under privacy policies, pushing toward federated learning that keeps data on devices — but at bandwidth cost and accuracy degradation under differential-privacy guarantees.</p>
+    <p>Fourth, the latency–security paradox, governance, accountability, and ethics: deeper reasoning (reflection, multi-step planning) improves decisions but breaks industrial closed-loop budgets (≤0.1 s) — the latency–security paradox at the edge. Governance demands autonomy registers, EU-AI-Act-Annex-III-style risk classifications, and human-oversight gates, while ethics requires data minimization, purpose limitation, and transparency — especially since autonomous defensive systems take consequential actions on live assets.</p>
+  </section>
+
+  <section>
+    <h2>IX. A 2026 Research Roadmap</h2>
+    <p>The roadmap sets four high-impact directions, each tied to a measured corpus gap and a concrete closing milestone. Direction 1 — federated agentic learning (9.1): addresses the privacy/transfer deficit (≥9 of 153 studies showing 10–20 pp cross-dataset degradation, with raw egress blocking cloud analysis); the closing milestone is DistilBERT-grade Edge-IIoTset accuracy under (ε=1, δ=10⁻⁵) differential privacy at ≤2× bandwidth. Direction 2 — verifiable autonomous reasoning (9.2): addresses the faithfulness deficit (only 2 of 13 studies reporting a verified false-discovery rate); the milestone is <10% verbalization-vs.-attribution divergence on SECURE.</p>
+    <p>Direction 3 — trustworthy multi-agent collaboration (9.3): addresses the interoperability/robustness deficit (0 corpus systems conforming to MCP/ANP/A2A, only 5 of 153 reporting any compound failure mode); the milestone is ≥95% malicious-agent detection in 10+-agent benchmarks at ≤5% throughput loss. Direction 4 — resource-hardened edge agents (9.4): addresses the edge-robustness deficit (edge-SLM prompt-injection susceptibility largely unmeasured against the 26–41% CyberSecEval baseline); the milestone is <5% injection success with <100 ms p50 latency on Cortex-A78.</p>
+    <p>The horizon is 24 months (RQ5): a staged validation path from illustrative scaffolding to real-data validation, with future broadening of the venue policy toward USENIX Security, IEEE S&P, NDSS, and Elsevier/Springer journals without changing the reproducible corpus counts. Convergence from the excluded-venue syntheses (Zhang et al.; Jamshidi et al.) on the same open problems increases confidence that the taxonomy and analysis are not artifacts of the three-venue policy.</p>
+  </section>
+
+  <section>
+    <h2>X. Companion Reproducibility Kit</h2>
+    <p>The kit (GitHub: vnageshwaran-de/agentic-iot-security, accessed 29 May 2026; Zenodo archive DOI 10.5281/zenodo.20726552, release v0.3.0, implemented in Python 3.11) comprises: prompt templates for each action scope, reference single-agent ReAct and coordinated multi-agent loops, an evaluation harness for accuracy and per-decision latency on Edge-IIoTset-style traffic, plus the closed coding codebook and coded extraction matrix (corpus/codebook.md and corpus/extraction_matrix.csv) so any reader can replicate the corpus selection and coding decisions. Kit pointers in Table 4 locate the layered defenses in the repository.</p>
+    <p>Release status and scope (10.5): the kit is illustrative scaffolding for follow-up empirical work, not a production framework — it has never been validated in any production IoT environment, its only shipped validation run uses a deterministic stub on synthetic traffic (Appendix A), and any statement in the survey referencing it should be read as a proposal whose empirical force depends on the staged real-data validation path (Section 10.3), not as established capability. This status is recorded explicitly as a limitation of the present work (Sections 3.8 and 10.5), not claimed as a strength.</p>
+  </section>
+
+  <section>
+    <h2>XI. Conclusions</h2>
+    <p>This survey provides — to the best of our knowledge — the first systematic review unifying agent architecture, reasoning strategy, action scope, and deployment topology into a single coordinate system dedicated to IoT cybersecurity, grounding the synthesis in a 153-study PRISMA-screened corpus from IEEE Xplore, the ACM Digital Library, and MDPI journals for 2020–2026. It consolidates four flagship application domains, a unified atlas of datasets (CICIoT2023, Edge-IIoTset, TON_IoT, CICIoMT2024) and LLM benchmarks (CyberSecEval, CyberSOCEval), and a rigorous analysis of open challenges from hallucination to governance.</p>
+    <p>The takeaway: LLMs and agentic AI open a credible path to self-defending IoT ecosystems — where traffic is interpreted semantically, responses are synthesized dynamically, and adversarial actions are deceived in real time — but production trust requires closing the verifiability, adversarial-robustness, and edge-hardening gaps. We call on the research community to pursue the four 2026 roadmap directions — federated agentic learning, verifiable autonomous reasoning, trustworthy multi-agent collaboration, and resource-hardened edge agents — with their concrete experimental milestones, alongside broadened venue coverage and real-data validation of the companion harness.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] M. A. Ferrag et al., "Generative AI in IoT security: A comprehensive review," <em>Internet of Things</em>, 2024.</li>
+      <li>[2] Y. Yao et al., "LLM applications across cybersecurity domains," <em>IEEE Access</em>, 2024.</li>
+      <li>[3] Wang et al., "DistilBERT for IoT intrusion detection: efficiency and accuracy," <em>IEEE Xplore</em>, 2024.</li>
+      <li>[4] D. Deng et al., "PentestGPT: An LLM-empowered automatic penetration testing tool," <em>USENIX Security</em>, 2024.</li>
+      <li>[5] F. Redini et al., "KARONTE: Detecting insecure multi-binary interactions in embedded firmware," <em>IEEE S&amp;P</em>, 2020.</li>
+      <li>[6] R. Meng et al., "ChatAFL: Chatting augmented fuzzing," <em>NDSS</em>, 2024.</li>
+      <li>[7] A. Arp et al., "Dos and don'ts of machine learning in computer security," <em>USENIX Security</em>, 2022.</li>
+      <li>[8] Y. Zhang et al., "LLMs across cybersecurity tasks: a systematic review," <em>Cybersecurity (Springer)</em>, 2025.</li>
+      <li>[9] M. Jamshidi et al., "LLM applications to IoT security and privacy," <em>Internet of Things (Elsevier)</em>, 2025.</li>
+      <li>[10] NIST, "Artificial Intelligence Risk Management Framework (AI RMF 1.0)," 2023.</li>
+      <li>[11] V. Nageshwaran and S. Ezekiel, "Agentic IoT security: companion reproducibility kit," GitHub / Zenodo DOI 10.5281/zenodo.20726552, v0.3.0, 2026.</li>
+      <li>... [full reference list available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics15122740">10.3390/electronics15122740</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
