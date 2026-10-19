@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أمن نظام AIS السيبراني: التحديات والثغرات واستراتيجيات التخفيف — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">AIS Cybersecurity: Challenges, Vulnerabilities, and Mitigation Strategies</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">أمن نظام التعريف الآلي (AIS) السيبراني: التحديات والثغرات واستراتيجيات التخفيف</h2>
+
+  <div class="paper-meta">
+    <span>👤 Silvie Levy, Ehud Gudes, Danny Hendler</span>
+    <span>📄 J. Mar. Sci. Eng. (JMSE), 2026 · Vol. 14(14), 1258</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse14141258">10.3390/jmse14141258</a></span>
+    <span class="license-badge">✓ CC BY</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تعتمد العمليات البحرية على نظام التعريف الآلي (AIS)، وهو بروتوكول بث مفتوح تُبثّ رسائله ذاتية الإبلاغ دون مصادقة، مما يجعل إساءة استخدامه سهلة. يقدم هذا المسح توليفة شاملة تتمحور حول AIS وتركز على الأمن السيبراني لأبحاث أمن هذا النظام. ويقدم ثلاث مساهمات رئيسية. أولًا، يشرح آليات عمل بروتوكول AIS ويشتق منها مواطن الضعف الأمنية الأساسية الناشئة عن البث المفتوح عبر VHF، والبيانات ذاتية الإبلاغ، وغياب المصادقة المدمجة والحماية من إعادة التشغيل، والاعتماد على أنظمة الملاحة عبر الأقمار الصناعية (GNSS). ثانيًا، ينظم التهديدات وتدابير التخفيف في تصنيف موحد يربط نواقل الهجوم والآثار التقنية والآثار التشغيلية والتدابير الأمنية عبر دورة حياة الحوادث (المنع والكشف والاستجابة والتعافي). ثالثًا، يقيّم الدفاعات العملية، بما في ذلك مقترحات المصادقة، وتحصين النقاط الطرفية والشبكات، والتحليلات السلوكية الواعية، والتحقق عبر الحساسات المتقاطعة، وتدابير الحوكمة. يُظهر المسح أن الأعمال القائمة أقوى في مجال كشف الشذوذ وتحليلات بيانات AIS، بينما تظل المصادقة المتوافقة مع المعايير، وإدارة المفاتيح القابلة للتوسع، والنشر المتوافق مع الأنظمة القديمة، ودمج العرض الواعي بالثقة، والتحقق التشغيلي تحديات مفتوحة. وبالتالي، من المرجح أن يتطلب أمن AIS تدابير تخفيف طبقية ومرحلية ومتوافقة مع المعايير بدلًا من حل تقني واحد. ومن خلال الجمع بين منظورات الأمن السيبراني والعمليات البحرية وعلم البيانات، يقدم المسح إرشادات عملية لتأمين الأنظمة القائمة على AIS ويسلط الضوء على المشكلات المفتوحة أمام التوحيد القياسي والتنفيذ مستقبلًا.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تعتمد العمليات البحرية على نظام التعريف الآلي (AIS) لتجنب الاصطدام وإدارة الحركة والمراقبة واسعة النطاق. غير أن AIS هو بث مفتوح عبر VHF لبيانات غير موثقة وذاتية الإبلاغ: إذ يمكن لأي شخص ضمن النطاق الاستماع، وبالمعدات المناسبة يمكن للمهاجمين حقن الرسائل أو تعديلها أو حجبها، كما أن اعتماد AIS على أنظمة الملاحة عبر الأقمار الصناعية (GNSS) يجعله حساسًا للانتحال والتشويش. لهذه الثغرات عواقب على السلامة والتجارة والجيوسياسة: فقد تُدهور الوعي الظرفي على الجسر، وتعطل تدفقات الموانئ واللوجستيات، وتمكّن من التهرب من العقوبات أو التضليل.</p>
+    <p>توضح أمثلة واقعية خاصة بـ AIS هذه العواقب. تُظهر حالة الانتحال قرب جزيرة إلبا عام 2019 البُعد المتعلق بالسلامة: إذ أظهرت شاشات الجسر المعاد بناؤها سفنًا وهمية كان يمكن أن تخلق إشارات اصطدام مضللة وتُدهور الوعي الظرفي. وتوضح حالات نقل النفط من سفينة إلى سفينة باستخدام مواقع AIS مزيفة أو مفقودة البُعد التجاري والقانوني، لأن التلاعب بـ AIS يسهل الأنشطة غير المشروعة من التهريب والقرصنة إلى الصيد غير القانوني.</p>
+    <p>تتمثل المساهمة الأولى لهذا المسح في شرح آليات بروتوكول AIS واستخدامها لاشتقاق مواطن الضعف الأمنية الرئيسية. والثانية في تنظيم التهديدات والتخفيفات في تصنيف موحد يربط نواقل الهجوم بالآثار التقنية والتشغيلية والتدابير الأمنية عبر دورة حياة الحوادث. والثالثة في تقييم الدفاعات العملية وتحديد أولويات البحث المفتوحة. وتُنظم بقية الورقة كالتالي: يقدم القسم 2 نظرة عامة على نظام AIS، ويمسح القسم 3 التهديدات والثغرات، ويستعرض القسم 4 تدابير الأمن المقترحة، ويقدم القسم 5 النقاش والتوصيات العملية والأولويات البحثية.</p>
+  </section>
+
+  <section>
+    <h2>2. نظرة عامة على نظام التعريف الآلي (AIS)</h2>
+    <p>نظام التعريف الآلي (AIS) هو نظام وصلة بيانات VHF يُستخدم لتبادل بيانات الملاحة والتعريف بين السفن وبين السفن والشاطئ. يبث النظام معلومات ديناميكية مثل الموقع والمسار والسرعة، إلى جانب بيانات الهوية والبيانات الثابتة والمتعلقة بالرحلة مثل رقم MMSI واسم السفينة ونوعها ومعلومات الشحنة. تُعرض هذه البيانات على معدات AIS المخصصة أو تُدمج في أنظمة الجسر مثل نظام عرض الخرائط الإلكترونية (ECDIS) وتراكبات الرادار، دعمًا لتجنب الاصطدام ومراقبة الحركة والوعي بالمجال البحري.</p>
+    <h3>2.1. أنواع أنظمة AIS</h3>
+    <p>يُصنف AIS إلى أنظمة من الفئة A والفئة B، إلى جانب المحطات الأساسية ومحطات المساعدات الملاحية (AtoN) وأجهزة إرسال البحث والإنقاذ (SART) وطائرات البحث والإنقاذ. وتختلف هذه الأنواع في قدرة الإرسال ومعدل الإبلاغ والوظيفة، لكنها جميعًا تشترك في نموذج البث المفتوح نفسه.</p>
+    <h3>2.2. الجوانب الأمنية لاستخدام AIS</h3>
+    <p>إن خيارات التصميم نفسها التي تجعل AIS قابلًا للتشغيل البيني على نطاق واسع هي ما يخلق مواطن ضعفه الأمنية الرئيسية: فالرسائل مفتوحة البث وذاتية الإبلاغ وغير موثقة؛ ويعتمد الموقع والتوقيت على GNSS والحساسات المحمولة على السفينة؛ وتتقاسم السفن قنوات VHF نفسها عبر النفاذ القائم على TDMA.</p>
+    <h3>2.3. كيف يعمل AIS</h3>
+    <p>يعمل AIS على قناتي VHF باستخدام النفاذ المتعدد بتقسيم الوقت ذاتي التنظيم (SOTDMA)، حيث تحجز المحطات فترات زمنية لبثها. وتترتب على ذلك آثار أمنية مباشرة: إذ يمكن استغلال آلية حجز الفترات لحرمان المحطات الشرعية من النفاذ (تجويع الفترات)، ويمكن انتحال أوامر السلطة مثل أوامر القفز الترددي، ويمكن استغلال آليات التوقيت لهجمات توقيت متكررة.</p>
+    <h3>2.4. رسائل AIS</h3>
+    <p>يحدد معيار AIS أنواعًا متعددة من الرسائل (مثل التقارير الدورية للمواقع، وتقرير المحطة الأساسية من النوع 4، والرسائل المتعلقة بالسلامة من النوع 12 و14، وتقارير المساعدات الملاحية من النوع 21). ولأن الرسائل تفتقر إلى التشفير والمصادقة وفحوصات سلامة المحتوى والحماية من إعادة التشغيل، فهي عرضة للانتحال والتنصت والتلاعب.</p>
+  </section>
+
+  <section>
+    <h2>3. التهديدات والثغرات في نظام AIS</h2>
+    <p>يمسح هذا القسم مشهد التهديدات المتطور لنظام AIS، مع التركيز على ثغرات طبقات البروتوكول والإشارة والبيانات وتقنيات الاستغلال المعروفة. ويبرز كيف أن نموذج البث المفتوح ذاتي الإبلاغ والاعتماد على GNSS يعرّض النظام لهجمات الانتحال والتشويش/الحرمان من الخدمة والتلاعب بالبيانات.</p>
+    <h3>3.1. العلاقة بالمسوحات السابقة</h3>
+    <p>تغطي المسوحات السابقة خيوطًا مكملة: كشف الشذوذ في AIS وتحليل سلوك السفن والتنبؤ بالمسارات؛ وتعدين البيانات البحرية وتطبيقات AIS وأساليب الذكاء الاصطناعي والبيانات الضخمة؛ والأمن السيبراني البحري العام والحوادث والسياسات والعوامل البشرية والتنظيمية؛ وقدرات داعمة مثل دمج الحساسات المتعددة والوعي البحري البصري وعمليات تعلم الآلة البحرية (MLOps). ويتميز هذا المسح بتركيزه الأمني المتمحور حول AIS أولًا.</p>
+    <h3>3.2. مشهد التهديدات المتنامي</h3>
+    <p>تتصاعد الحوادث المرتبطة بـ AIS — من سفن وهمية وتزييف المواقع إلى التلاعب بتدفقات البيانات — مدفوعة بتوافر معدات الإرسال الرخيصة وانتشار البيانات المفتوحة والقيمة التجارية والجيوسياسية لإخفاء التحركات أو تزويرها.</p>
+    <h3>3.3. ثغرات AIS واستغلالها</h3>
+    <p>نظرًا لاعتماد AIS على بيانات ذاتية الإبلاغ غير مشفرة وغير موثقة تفتقر إلى فحوصات السلامة والحماية من إعادة التشغيل، فهو عرضة للانتحال والتنصت والتلاعب بالرسائل. ويميز التصنيف بين: (1) تزوير البيانات وانتحالها؛ (2) ثغرات النفاذ إلى TDMA/VDL بما فيها تجويع الفترات والقفز الترددي وهجمات التوقيت؛ (3) التنصت والاستقبال غير المصرح به؛ (4) التلاعب بتغذيات AIS ومصادر البيانات؛ (5) هجمات إتاحة وصلة VHF مثل التشويش والإغراق والتعطيل؛ (6) تقنيات تلاعب تمثيلية ودراسات حالة؛ (7) العواقب التشغيلية للتلاعب بـ AIS على سلامة الملاحة وتدفق الحركة وإنفاذ القانون.</p>
+  </section>
+
+  <section>
+    <h2>4. تدابير الأمن المقترحة لنظام AIS</h2>
+    <p>على الرغم من الدور المحوري لـ AIS في السلامة والملاحة وإدارة الحركة البحرية، فإنه يظل عرضة للانتحال والاختطاف والتلاعب بالبيانات والحرمان من الخدمة. ينظم هذا القسم التدابير المقترحة في الأدبيات على محورين: (1) الفئات: البروتوكول والتشفير، والنقاط الطرفية والشبكة، والتحليلات والكشف، والمرونة والتكرار، والحوكمة والعنصر البشري والمنظومة؛ (2) مراحل دورة حياة الحوادث: المنع (P) والكشف (D) والاستجابة (R) والتعافي (Rv). وقد صُممت التدابير لتعمل ضمن البنية المفتوحة لـ AIS مع مراعاة قيود إدارة المفاتيح والحفاظ على التوافق مع الأنظمة البحرية القديمة.</p>
+    <h3>4.1. قيود تصميم تدابير الأمن</h3>
+    <p>يفرض نموذج البث المفتوح وإدارة المفاتيح والتوافق مع الأنظمة القديمة قيودًا صارمة: فالمصادقة والسرية الكاملة قد تخفي بثوث السلامة الأساسية عن المستقبلين غير المشاركين، وتتطلب إدارة المفاتيح بنية تحتية للشهادات وسحب الاعتماد في البحر، ويجب أن يدعم أي حل الاعتماد الجزئي والتشغيل البيني مع المعدات القديمة.</p>
+    <h3>4.2. تدابير الأمن حسب الفئة</h3>
+    <p>تشمل تدابير البروتوكول والتشفير رموز المصادقة (MACs) والتوقيعات الرقمية مثل ECDSA والتشفير الموثق (AEAD) وآليات الحماية من إعادة التشغيل بالطوابع الزمنية، والمصادقة القائمة على الهوية (مثل SecAIS) لتبسيط توزيع المفاتيح. وتشمل تدابير النقاط الطرفية والشبكة تحصين أجهزة AIS وشبكات السفن وفصل الشبكات ومراقبة التغذيات.</p>
+    <h3>4.3. التحليلات والكشف</h3>
+    <p>تشمل أساليب الكشف النماذج العميقة والتجميع غير الخاضع للإشراف ونماذج السلاسل الزمنية لرصد المخالفات الحركية والإيقافات وأنماط الشحن العابر وشذوذ الهوية والمسار؛ والتنبؤ بالمسارات لتعلم السلوك الطبيعي؛ وتجميع المسارات التاريخية لتعلم الممرات المعتادة؛ وخطوط المعالجة القابلة للتوسع لمجاميع AIS الضخمة؛ وكشف عدم الاتساق بين النص والحساسات؛ ومحللات تدفق AIS الخلفية؛ والكشف البحري لإنترنت الأشياء المدفوع بمعلومات التهديدات السيبرانية (CTI).</p>
+    <h3>4.4. المرونة والتكرار</h3>
+    <p>تشمل تدابير المرونة التحقق عبر الحساسات المتقاطعة (الرادار، والصور الكهروبصرية/الحرارية، والرادار ذي الفتحة الاصطناعية، وتحديد الاتجاه، وفحوصات اتساق GNSS/eLORAN، والتحقق الشاطئي) والتجاوز عند الأعطال والتدهور السلس وإعادة مزامنة البيانات.</p>
+    <h3>4.5. الحوكمة والعنصر البشري والمنظومة</h3>
+    <p>تشمل التدابير تقييم المخاطر والوعي الظرفي السيبراني، والتصنيفات والأطر الشمولية، وتدريب الأطقم والتوعية، والتعاون وتبادل المعلومات، والتنظيم والامتثال (بما فيها قرارات المنظمة البحرية الدولية (IMO) وتوجيهات الاتحاد الأوروبي (EU)).</p>
+  </section>
+
+  <section>
+    <h2>5. النقاش والتوصيات</h2>
+    <p>يبني هذا القسم على آليات البروتوكول (القسم 2) والتهديدات والثغرات (القسم 3) وعائلات التخفيف (القسم 4) ليضع توصيات موجزة وقابلة للتنفيذ للممارسة وأولويات للبحث. وباختصار، فإن تصميم البث المفتوح ذاتي الإبلاغ القائم على TDMA يعرّض النظام لسبل هجوم معروفة مثل الانتحال والحرمان من الخدمة عبر التشويش والتلاعب بالبيانات.</p>
+    <h3>5.1. أولويات البروتوكول والمصادقة</h3>
+    <p>يوصي المسح بآليات مصادقة قابلة للنشر تحترم منظومة AIS القديمة وقيود التوافق، مثل حمل توقيعات مدمجة أو رموز MAC في رسائل AIS القياسية المتوافقة مع المعيار، مع حماية من إعادة التشغيل ودعم الاعتماد الجزئي وسحب الاعتماد.</p>
+    <h3>5.2. كشف الشذوذ المتقدم</h3>
+    <p>يجب تطوير كاشفات تتجاوز القواعد الثابتة نحو نماذج سلوكية واعية تدمج الحركة والهوية والسياق التشغيلي، مع معايير عامة وقابلة للتكرار نظرًا لندرة الحقيقة الأرضية الموثقة ومخاطر التقييم المتفائل بسبب تداخل مسارات التدريب والاختبار.</p>
+    <h3>5.3. دمج AIS مع حساسات مستقلة</h3>
+    <p>يجب دمج الرادار والصور الكهروبصرية والحرارية وSAR وتحديد الاتجاه وفحوصات GNSS/eLORAN والتحقق الشاطئي ضمن قيود واقعية للزمن والتغطية والتكلفة، مع إجراءات لحل الأدلة المتضاربة.</p>
+    <h3>5.4. عمليات تعلم الآلة والتقييم ومجموعات البيانات</h3>
+    <p>هناك حاجة إلى ممارسات MLOps بحرية: مجموعات بيانات ومعايير عامة للانتحال والتشويش والتلاعب بالتغذيات، ومعالجة اختلال الفئات وانحراف المفاهيم والإنذارات الكاذبة وقابلية التفسير بما يناسب سير عمل الجسر ومراكز تنسيق الحركة (VTS).</p>
+    <h3>5.5. الحوكمة والتعاون والعوامل البشرية</h3>
+    <p>تشمل الأولويات نماذج الحوكمة والترحيل: الاعتماد والمسؤولية القانونية وسلطات إدارة المفاتيح ومسارات التوحيد القياسي وحوافز الاعتماد من السفن والموانئ ومشغلي VTS ومزودي AIS ومصنعي المعدات، إلى جانب التدريب المستمر للأطقم.</p>
+    <h3>5.6.–5.8. المرونة والقيود واتجاهات البحث</h3>
+    <p>يجب النظر إلى أمن AIS كعملية تحسين مرحلية وطبقية ومتوافقة مع المعايير لا كحل شامل واحد. وتشمل القيود البنية التحتية المطلوبة وتكامل الأنظمة وتدريب المشغلين ومشكلات جودة البيانات. أما أهم الأسئلة البحثية المفتوحة فهي نشر المصادقة كطبقات متوافقة مع المعيار، وتمثيل الأهداف الموثقة وغير الموثقة على شاشات الجسر دون إجهاد الإنذارات، وبناء معايير عامة، ونماذج الحوكمة والترحيل.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Maritime operations rely on the Automatic Identification System (AIS), an open broadcast protocol whose unauthenticated, self-reported messages are easily abused. This survey provides an AIS-first, security-focused synthesis of AIS cybersecurity research. It makes three main contributions. First, it explains AIS protocol mechanics and uses them to derive the main security weaknesses that arise from open VHF broadcast, self-reported data, lack of built-in authentication and replay protection, and GNSS dependence. Second, it organizes AIS threats and mitigations into a unified taxonomy that links attack vectors, technical effects, operational impacts, and security measures across the prevent–detect–respond–recover lifecycle. Third, it assesses practical defenses, including authentication proposals, endpoint and network hardening, behavior-aware analytics, cross-sensor validation, and governance measures. The survey shows that existing work is strongest on anomaly detection and AIS data analytics, whereas standards-compatible authentication, scalable key management, backward-compatible deployment, trust-aware display integration, and operational validation remain open challenges. Consequently, AIS security is likely to require layered, staged, and standards-compatible mitigations rather than a single technical fix. By bringing together cybersecurity, maritime operations, and data-science perspectives, the survey provides practical guidance for securing AIS-based systems and highlights open problems for future standardization and implementation.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Maritime operations depend on the Automatic Identification System (AIS) for collision avoidance, traffic management, and wide-area monitoring. Yet AIS is an open VHF broadcast of unauthenticated, self-reported data. Anyone within range can listen; with the right equipment, attackers can inject, alter, or suppress messages, and AIS's reliance on Global Navigation Satellite Systems (GNSS) makes it sensitive to spoofing and jamming. These weaknesses have safety, commercial, and geopolitical consequences: they can degrade bridge situational awareness, disrupt port and logistics flows, and enable sanction evasion or misinformation.</p>
+    <p>Concrete AIS-specific examples illustrate these consequences. The 2019 Elba Island spoofing case shows the safety dimension: reconstructed bridge displays showed phantom vessels that could create misleading collision cues and degrade bridge situational awareness. Suspicious ship-to-ship oil-transfer cases involving falsified or missing AIS positions illustrate the commercial and law-enforcement dimension, because AIS manipulation facilitates illicit activities ranging from smuggling and piracy to illegal fishing.</p>
+    <p>This survey's first contribution is explaining AIS protocol mechanics and using them to derive the main security weaknesses. The second is organizing threats and mitigations into a unified taxonomy linking attack vectors to technical and operational effects and security measures across the incident lifecycle. The third is assessing practical defenses and identifying open research priorities. The remainder of the paper is organized as follows: Section 2 gives an AIS overview, Section 3 surveys threats and vulnerabilities, Section 4 reviews proposed security measures, and Section 5 presents the discussion, actionable recommendations, and research priorities.</p>
+  </section>
+
+  <section>
+    <h2>2. An Overview of the Automatic Identification System</h2>
+    <p>The Automatic Identification System (AIS) is a VHF data-link system used for ship-to-ship and ship-to-shore exchange of navigation and identification data. AIS broadcasts dynamic information such as position, course, and speed, together with identity, static, and voyage-related data such as Maritime Mobile Service Identity (MMSI), ship name, vessel type, and cargo-related information. These data are displayed on dedicated AIS equipment or integrated into bridge systems such as the Electronic Chart Display and Information System (ECDIS) and radar overlays, supporting collision avoidance, traffic monitoring, and maritime-domain awareness.</p>
+    <h3>2.1. Types of AIS Systems</h3>
+    <p>AIS is categorized into Class A and Class B systems, alongside AIS base stations, Aids to Navigation (AtoN), Search and Rescue Transmitters (SART), and search and rescue aircraft. These types differ in transmit power, reporting rate, and function, but all share the same open-broadcast model.</p>
+    <h3>2.2. Security-Relevant AIS Use</h3>
+    <p>The same design choices that make AIS widely interoperable also create its main security weaknesses: messages are openly broadcast, self-reported, and unauthenticated; position and timing depend on GNSS and onboard sensors; and many vessels share the same VHF channels through TDMA-based access.</p>
+    <h3>2.3. How AIS Works</h3>
+    <p>AIS operates on VHF channels using Self-Organized Time-Division Multiple Access (SOTDMA), in which stations reserve time slots for their broadcasts. This has direct security implications: the slot-reservation mechanism can be exploited to deny legitimate stations access (slot starvation), authority commands such as frequency-hopping orders can be impersonated, and timing mechanisms can be exploited for repeated timing attacks.</p>
+    <h3>2.4. AIS Messages</h3>
+    <p>The AIS standard defines multiple message types (e.g., periodic position reports, Message Type 4 base-station reports, safety-related Messages 12 and 14, Message Type 21 AtoN reports). Because messages lack encryption, authentication, message-integrity checks, and replay protection, they are vulnerable to spoofing, eavesdropping, and manipulation.</p>
+  </section>
+
+  <section>
+    <h2>3. Threats and Vulnerabilities in AIS</h2>
+    <p>This section surveys the evolving landscape of AIS threats, focusing on protocol-, signal-, and data-layer vulnerabilities and known exploitation techniques. It highlights how AIS's open, self-reported broadcast model and dependence on GNSS expose it to spoofing, jamming/denial-of-service, and data manipulation attacks.</p>
+    <h3>3.1. Relation to Prior Surveys</h3>
+    <p>Prior surveys cover complementary strands: AIS anomaly detection, vessel-behavior analysis, and trajectory prediction; maritime data mining, AIS applications, and AI/big-data methods; broad maritime cybersecurity, incidents, policy, and human and organizational factors; and supporting capabilities such as multi-sensor fusion, vision-based maritime awareness, and maritime MLOps. This survey is distinguished by its AIS-first, security-focused scope.</p>
+    <h3>3.2. The Growing Threat Landscape</h3>
+    <p>AIS-related incidents are escalating — from phantom vessels and location falsification to data-feed manipulation — driven by cheap transmitter equipment, open data availability, and the commercial and geopolitical value of concealing or forging movements.</p>
+    <h3>3.3. AIS Vulnerabilities and Exploitation</h3>
+    <p>Because AIS relies on unencrypted, unauthenticated self-reported data lacking integrity checks and replay protection, it is vulnerable to spoofing, eavesdropping, and message manipulation. The taxonomy distinguishes: (1) data falsification and spoofing; (2) TDMA/VDL access weaknesses including slot starvation, frequency hopping, and timing attacks; (3) eavesdropping and unauthorized reception; (4) AIS feed and data-source manipulation; (5) VHF-link availability attacks such as jamming, flooding, and disruption; (6) representative manipulation techniques and case studies; and (7) operational consequences of AIS manipulation for navigational safety, traffic flow, and law enforcement.</p>
+  </section>
+
+  <section>
+    <h2>4. Proposed AIS Security Measures</h2>
+    <p>Although AIS plays a crucial role in maritime safety, navigation, and traffic management, it remains susceptible to spoofing, hijacking, data manipulation, and denial-of-service. This section organizes the measures proposed in the literature along two axes: (i) categories — Protocol and Cryptography, Endpoints and Network, Analytics and Detection, Resilience and Redundancy, and Governance, People, and Ecosystem; and (ii) incident-lifecycle phases — Prevent (P), Detect (D), Respond (R), and Recover (Rv). The measures are designed to operate within AIS's open architecture while accommodating key-management constraints and maintaining backward compatibility with legacy maritime systems.</p>
+    <h3>4.1. Design Constraints for AIS Security Measures</h3>
+    <p>The open broadcast model, key management, and backward compatibility impose strict constraints: full authentication and confidentiality could hide essential safety broadcasts from non-participating receivers, key management requires certification infrastructure and at-sea revocation, and any solution must support partial adoption and interoperability with legacy equipment.</p>
+    <h3>4.2. Security Measures by Category</h3>
+    <p>Protocol and cryptography measures include message-authentication codes (MACs), digital signatures such as ECDSA, authenticated encryption (AEAD), timestamp-based replay protection, and identity-based authentication (e.g., SecAIS) to simplify key distribution. Endpoint and network measures cover hardening AIS devices and ship networks, segmentation, and feed monitoring.</p>
+    <h3>4.3. Analytics and Detection</h3>
+    <p>Detection approaches include deep models, unsupervised clustering, and time-series models for motion irregularities, shutdowns, transshipment patterns, and identity/route anomalies; trajectory prediction for learning normal behavior; clustering historical trajectories to learn customary lanes; scalable pipelines for large AIS corpora; text–sensor inconsistency detection; background AIS stream analyzers; and CTI-driven maritime IoT detection.</p>
+    <h3>4.4. Resilience and Redundancy</h3>
+    <p>Resilience measures include cross-sensor validation (radar, EO/IR, SAR, direction finding, GNSS/eLORAN consistency checks, shore-side validation) plus failover, graceful degradation, and data re-sync.</p>
+    <h3>4.5. Governance, People, and Ecosystem</h3>
+    <p>Measures include risk assessment and cyber situational awareness, taxonomies and holistic frameworks, crew training and awareness, collaboration and information sharing, and regulation and compliance (including IMO resolutions and EU directives).</p>
+  </section>
+
+  <section>
+    <h2>5. Discussion and Recommendations</h2>
+    <p>This section builds on the protocol mechanics (Section 2), the threats and vulnerabilities (Section 3), and the mitigation families (Section 4) to set out concise, actionable recommendations for practice and priorities for research. In brief, the open, self-reported TDMA-based broadcast design exposes known attack avenues such as spoofing, VHF-channel denial-of-service through jamming, and data manipulation.</p>
+    <h3>5.1. Protocol and Authentication Priorities</h3>
+    <p>The survey recommends deployable authentication mechanisms that respect the AIS legacy ecosystem and compatibility constraints, such as carrying compact signatures or MACs in standard-compliant AIS messages, with replay protection and support for partial adoption and revocation.</p>
+    <h3>5.2. Advanced Anomaly Detection</h3>
+    <p>Detectors should move beyond static rules toward behavior-aware models fusing motion, identity, and operational context, with public, reproducible benchmarks given the scarcity of validated ground truth and the risk of optimistic evaluation from training/test trajectory overlap.</p>
+    <h3>5.3. Fuse AIS with Independent Sensors</h3>
+    <p>Radar, EO/IR, SAR, direction finding, GNSS/eLORAN checks, and shore-side validation should be fused under realistic latency, coverage, and cost constraints, with procedures for resolving conflicting evidence.</p>
+    <h3>5.4. MLOps, Evaluation, and Datasets</h3>
+    <p>Maritime MLOps practices are needed: public datasets and benchmarks for spoofing, jamming, and feed manipulation; handling class imbalance, concept drift, and false positives; and explainability suited to bridge and VTS workflows.</p>
+    <h3>5.5. Governance, Collaboration, and Human Factors</h3>
+    <p>Priorities include governance and migration models — certification, liability, key-management authorities, standardization pathways, and adoption incentives for vessels, ports, VTS operators, AIS providers, and vendors — alongside continuous crew training.</p>
+    <h3>5.6.–5.8. Resilience, Limitations, and Research Directions</h3>
+    <p>AIS security should be viewed as a staged, layered, standards-compatible improvement process rather than a single global fix. Constraints include required infrastructure, system integration, operator training, and data-quality problems. The most important open research questions concern deploying authentication as standard-compliant overlays, representing authenticated versus unauthenticated targets on bridge displays without alarm fatigue, building public benchmarks, and governance and migration models.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected)</h2>
+    <ol dir="ltr">
+      <li>[11] UNCTAD, "Review of Maritime Transport 2024," United Nations Conference on Trade and Development, Geneva, 2024.</li>
+      <li>[16] International Maritime Organization (IMO), MSC resolutions and guidance on maritime cyber risk management.</li>
+      <li>[20] Baltic and International Maritime Council (BIMCO), maritime cybersecurity guidance, 2024.</li>
+      <li>[44] CyberKeel, "Maritime Cyber-Risks," Technical Report, Copenhagen, 2014.</li>
+      <li>[112] I. Goodfellow, Y. Bengio, A. Courville, <em>Deep Learning</em>, MIT Press, 2016.</li>
+      <li>[162] UK Department for Transport, maritime cybersecurity guidance.</li>
+      <li>[175] Windward, "The Dark Side of AIS: Staying Ahead in a Sea of Spoofing," Tel Aviv, 2024.</li>
+      <li>... [full reference list available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse14141258">10.3390/jmse14141258</a> · License: CC BY</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
