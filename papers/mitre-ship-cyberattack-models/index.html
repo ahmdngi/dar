@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نماذج الهجمات السيبرانية على معدات السفن بناء على إطار MITRE ATT&amp;CK — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Cyberattack Models for Ship Equipment Based on the MITRE ATT&amp;CK Framework</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نماذج الهجمات السيبرانية على معدات السفن بناء على إطار MITRE ATT&amp;CK</h2>
+
+  <div class="paper-meta">
+    <span>👤 Yonghyun Jo, Oongjae Choi, Jiwoon You, Youngkyun Cha, Dong Hoon Lee</span>
+    <span>📄 Sensors 2022, Vol. 22(5), 1860</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s22051860">10.3390/s22051860</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+
+    <p>الأمن السيبراني مهم على السفن التي تستخدم تقنية المعلومات والاتصالات. ففي هذه السفن تتصل أنظمة العمل والتحكم والاستشعار للتوجيه والملاحة وإدارة البضائع داخل البدن، ويمكن أن تكون للهجوم السيبراني عواقب مادية كالغرق والتحطم. وبحوث الأمن السيبراني للسفن تحدٍّ جديد تفتقر إلى دراسات ذات صلة. ويمكن أن تقدم نماذج الهجمات السيبرانية فهمًا أفضل. وتهدف هذه الدراسة إلى تقديم طريقة تحليل للهجمات السيبرانية بناء على إطار MITRE ATT&amp;CK لإرساء نموذج هجوم سيبراني للسفن. كما تحدد خصائص مرحلة الهجوم بتحليل حالات اختراق وبحوث ثغرات لأنظمة السفن باستخدام التكتيكات والتقنيات والإجراءات، وتقترح الحد الأدنى من التدابير الأساسية للدفاع. وباستخدام نموذج الهجوم السيبراني للسفن، نهدف إلى تحديد خصائص الأنظمة المستخدمة لملاحة السفن واتصالاتها والتحكم بها؛ وتقديم فهم للتهديدات والثغرات؛ واقتراح تدابير تخفيف عبر النموذج المقترح. ونعتقد أن نتائج هذه الدراسة قد توجه البحوث المستقبلية.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+
+    <p>السفن الحديثة مجهزة بأنظمة ملاحة وأتمتة لتوفير الوقود باختيار طرق فعالة مع الامتثال للوائح انبعاثات غازات الدفيئة. وهي مجهزة أيضًا بإنترنت الأشياء على متنها لتبادل البيانات مع البر في الوقت الحقيقي. ويمكن أن تسبب الهجمات السيبرانية على هذه السفن أضرارًا مادية: فمهاجمة أنظمة التوجيه والملاحة وإدارة البضائع المتصلة داخل البدن قد تُغرق السفينة أو تُحطمها. ومنذ حادثة 2021، أعلنت منظمات بحرية — بناة السفن والملاك والمنظمة البحرية الدولية وهيئات التصنيف — قوانين ولوائح للأمن السيبراني على السفن: فأصدرت المنظمة إدارة المخاطر السيبرانية البحرية في أنظمة إدارة السلامة، وأصدرت الحكومات إرشادات كخفر السواحل الأمريكي، ونشرت جمعيات كـ BIMCO إرشادات على متن السفن. ومع ذلك ما تزال بحوث الأمن السيبراني للسفن جديدة وتفتقر إلى دراسات ذات صلة.</p>
+
+    <p>تحديد التهديدات والثغرات خطوة أساسية في إدارة مخاطر الأمن السيبراني للسفن. وتحمل السفينة الواحدة 700 إلى 900 وحدة من معدات التحكم في الدفع والتوجيه والملاحة والاتصالات من 80 إلى 100 مصنّع — لذا فإن تحديد التهديدات والثغرات السيبرانية للمعدات الموردة من المصنعين والمركبة على السفن أمر حرج، ومن شأن منصة مشاركة لثغرات وتهديدات الأمن السيبراني للسفن أن تمكّن أصحاب المصلحة من إدارة المخاطر معًا. وتهدف هذه الدراسة إلى شرح نموذج اختراق السفن بناء على إطار MITRE ATT&amp;CK، استنادًا إلى بحوث أمن السفن المعروفة والثغرات: إذ تُحلل 15 دراسة رئيسية لاختراق السفن بإطار MITRE ATT&amp;CK، وتُحدد تدابير أمنية شائعة للسفن الحديثة، وتُقترح مصفوفة جديدة لتدابير التخفيف الأمنية لبيئة السفن.</p>
+
+    <p>يُنظم ما تبقى من الورقة كالتالي: يقدم القسم 2 خلفية عن منهجية تحليل حالات الاختراق. ويحلل القسم 3 الحالات الأربع بالتفصيل ويلخص نتائج التحليل. ويخلص القسم 4 إلى الاستنتاجات.</p>
+  </section>
+
+  <section>
+    <h2>2. الخلفية: إطار MITRE ATT&amp;CK</h2>
+
+    <p>تتبع سلسلة القتل السيبرانية (CKC) تسلسل خطوات خطيًا محددًا بوضوح يفيد في فهم عملية الهجوم السيبراني، لكنها لا تحلل سلوكيات الخصم الفردية ولا تربط الأفعال التفصيلية بالأهداف التكتيكية ولا تصل مصادر البيانات للهجوم والدفاع. أما إطار MITRE ATT&amp;CK، فعلى خلاف CKC، يرسم ويفهرس كل ما يتعلق بالاختراقات تقريبًا: التكتيكات (أهداف الخصم التكتيكية، أي «لماذا») والتقنيات (كيف تتحقق الأهداف) والإجراءات (التطبيقات المحددة). وقارن يون وآخرون هجمات على مذيعين أمريكيين من إيران وهجمات على مشرعين أمريكيين من روسيا باستخدام CKC وMITRE ATT&amp;CK: فصنّفت CKC الهجمات بوضوح في سبع مراحل (استطلاع وتسليح وتسليم واستغلال وتثبيت وقيادة وتحكم وأفعال على الأهداف)، بينما كشف ATT&amp;CK السلوكيات التفصيلية والارتباطات ورسم التدابير المضادة التي تفوت CKC.</p>
+
+    <p>يمدد إطار MITRE ATT&amp;CK لأنظمة التحكم الصناعي (ICS) الفلسفة إلى التقنية التشغيلية، وتستخدم هذه الدراسة إطاري المؤسسات وICS معًا لأن السفن تجمع تقنية المعلومات والتشغيل. ويرسم التحليل تهديدات أنظمة السفن إلى تقنيات، ثم إلى التكتيكات والإجراءات المرتبطة — ومنها إلى التخفيفات — منتجًا نماذج هجوم خاصة بالسفن ومصفوفة تخفيف.</p>
+  </section>
+
+  <section>
+    <h2>3. تحليل الهجمات السيبرانية على السفن بناء على MITRE ATT&amp;CK</h2>
+
+    <p>منذ قيّم باحثو IOActive أنظمة الصندوق الأسود للسفن عام 2014، ظهرت تحليلات ثغرات ودراسات اختراق كثيرة لأنظمة الاتصالات والملاحة وإدارة التوجيه. يحلل هذا القسم تقنيات اختراق السفن المبلغ عنها بإطار MITRE ATT&amp;CK، منظمًا عمليات الهجوم وخصائصها في إطار متسق. ووصف سانتامارتا الأبواب الخلفية وبيانات الاعتماد المكتوبة برمجيًا والبروتوكولات غير الآمنة وغير الموثقة وضعف إعادة ضبط كلمات المرور في محطات الاتصالات الفضائية (SAILOR 900 VSAT وJUE-250 FB)، مع سيناريوهات تزوير لنظام ECDIS ومعلومات حالة السفينة والبضائع. وصنّف كيسلر وآخرون تهديدات AIS — فالتعطل والتشويش والانتحال الأكثر شيوعًا. ووصف لوند وآخرون هجومًا على نظام الملاحة المتكامل: تعدّل البرمجيات الخبيثة إحداثيات GPS عبر رجل في المنتصف، فينهار النظام إلى «شاشة زرقاء» أو تبحر السفينة إلى إحداثيات خاطئة.</p>
+
+    <p>ووجد سفيليسيتش وآخرون مرارًا عيوبًا حرجة بأدوات المسح: على نظام JAN-901B ECDIS على سفينة التدريب فوكاي-مارو (شبكة إيثرنت محلية وIEC61162-1/2 وUSB وويندوز XP) عشرة تهديدات؛ وفي بيئة تدريب نظام Transas Navi Sailor 4000 ECDIS (ويندوز 7) إصدارات SMB وRDP ضعيفة؛ وعلى النظام نفسه على سفينة التدريب/البحث كراليكا مورا خادم ويب أباتشي قديم مع SMB ضعيف؛ وعلى نظام NACOS MULTIPILOT Platinum 2017 ECDIS على سفينة ركاب وبضائع SMB وRDP ضعيفان. ورسم هيرا وآخرون أسطح هجوم السفن بمنهجيات مخاطر تُكمّم الأصول والثغرات والتهديدات واحتمال الوقوع. واقترح شانغ وآخرون تقييم مخاطر بالمجموعات الضبابية/أشجار الهجوم لأنظمة التحكم، فوجدوا احتمالًا عاليًا في استغلال فيض المخزن المؤقت وهجمات البريد عن بُعد ومسارات خوارزميات كسر التشفير وطرق مهاجمة برمجيات السفن.</p>
+
+    <p>وجمع عوان والغامدي حوادث سلامة السفن المؤثرة في الأمن السيبراني — مثل غرق ناقلة فحم 2004 حيث أخفقت خريطة ملاحية إلكترونية قديمة في إظهار المياه الضحلة، مظهرة أن ملفات ENC غير الدقيقة قد تُغرق السفن. وأظهر كابرولو وآخرون أن أتمتة NMEA-2000 القائمة على CAN-bus المتصلة بمعظم معدات السفن عرضة للإيقاف وحجب الخدمة عبر التنصت على الرسائل غير المشفرة وحقن رسائل مزيفة. والتقط بافور وآخرون حركة VSAT البحرية فوجدوا بروتوكولات HTTP غير مشفرة عرضة للتنصت والانتحال. وكشف تيرني وآخرون عيوب Dualog Connection Suite ‏(CVE-2020-26576 حتى CVE-2020-26581)، ومنها تصعيد الامتيازات عبر الحساب الافتراضي؛ وبصعودهم سفينة سياحية وصلوا إلى إدارة شحن البضائع عبر محولات MOXA IP-to-serial والدوائر التلفزيونية عبر RTSP بكلمات مرور افتراضية وواي فاي الركاب — مع إمكانية التنصت على كل الحركة من مبدل الشبكة. وصنّف دومبالا التقنية التشغيلية للسفن (الاتصالات الفضائية/الداخلية والدفع والتوجيه والملاحة والطاقة وغرف ضبط البضائع وأنظمة مياه الصابورة) مع التهديدات والتخفيفات؛ واقترح جونز وآخرون سيناريوهات هجوم من برمجيات قديمة وشبكات غير آمنة؛ وأظهر ألكايدي وآخرون أن تغيير إشارة AIS أو حقنها يعطل التصادم أو يوقف العمليات؛ وأبلغ هاينز عن وثائق عمليات سيبرانية للحرس الثوري تخطط لقلب السفن أو إغراقها عبر المحطات الفضائية وأنظمة مياه الصابورة. ويُلخص الأدبيات الجدول 2 في الورقة.</p>
+  </section>
+
+  <section>
+    <h2>3.1. حالات الهجمات السيبرانية على السفن بناء على MITRE ATT&amp;CK</h2>
+
+    <h3>الحالة 1: إغراق سفينة عبر مياه الصابورة</h3>
+
+    <p>اختيرت أربع حالات عالية الأثر: الحالة 1 إغراق سفينة؛ والحالتان 2–3 مسارات خاطئة؛ والحالة 4 هجوم على نظام التحكم — ورُسمت كل منها إلى تكتيكات MITRE ATT&amp;CK وتقنياتها وإجراءاتها (TTPs) ثم إلى التخفيفات. وتتبع الحالة 1 تقرير فريق الاستخبارات 13 في الحرس الثوري الذي يفصّل اختراق نظام إدارة مياه الصابورة (BWMS) لإغراق السفينة. فالنظام — خزانات في القاع والجوانب تحافظ على مركز الثقل، تملؤها/تفرغها مضخات يتحكم بها HMI (إلزامية دوليًا ضد تلوث الأنواع الغازية) وقابلة للمراقبة برًا عبر الأقمار — يجب أن يضخ بدقة لمنع الانقلاب عند الميلان؛ وتعطله قد يُغرق السفينة. وتدعم حالة حقيقية موازية المعقولية: ففي ديسمبر 2020 اخترقت مجموعة مخترقين إيرانية نظام التحكم الصناعي لمنشأة مياه إسرائيلية، واصلة إلى HMI عبر منفذ Modbus/TCP رقم 502 المفتوح على الإنترنت للتلاعب بضغط الماء وحرارته.</p>
+
+    <p>تهاجم خطة الحرس الثوري عن بُعد من البر عبر الاتصالات الفضائية البحرية (معدات Seagull 5000i وSealink CIR)، في مراحل مرسومة إلى ATT&amp;CK. الاستطلاع: تحديد طراز معدات الأقمار عبر محرك بحث إنترنت الأشياء (ذُكرت Thuraya وWideye؛ و43 طراز BWMS معتمد النوع حتى يوليو 2021، وكلها معتمدة إلزاميًا فيسهل حصرها) — ووجدت هذه الدراسة تهديد استطلاع جديدًا: رفع أحد أفراد الطاقم كلمة مرور BWMS ‏(«1111111») مع اسم السفينة وتفاصيل المعدات إلى وسائل التواصل. والقيادة والتحكم/الأثر: هجوم عتادي يعطل دقة المضخة/المقياس عبر تعطل الاستشعار أو حجب حالته؛ وهجوم برمجي يفسد نظام ملفات خادم الإدارة أو مسار التحديث بالتلاعب بالملفات. ويُصاغ المخطط الكامل في الجدول 3 ومخطط تدفق الهجوم.</p>
+
+    <h3>الحالتان 2–3: مسارات خاطئة عبر أنظمة الملاحة</h3>
+
+    <p>تستهدف الحالة 2 نظام الملاحة المتكامل (INS) الموحد للرادار وECDIS والسونار وGPS، وجائزته سلامة النظام. ويحصل مهاجم ذو وصول مادي على معلومات النظام من حاسوب ECDIS المحمول (نظام التشغيل وعنوان IP الشبكي وأرقام المنافذ) — استطلاع — لتعديل مكتبة Winsock الديناميكية لهجوم رجل في المنتصف على برنامج ECDIS. والهدف أمر NMEA وهو بروتوكول قائم على CAN بضمان بصمة تحقق فقط، يسهل تجاوزها — قيادة وتحكم. وتصل الحمولة عبر USB: يحجب برنامج ECDIS إدخال لوحة المفاتيح إلا عمليات الفأرة، لكن «Windows + R» مع لوحة مفاتيح على الشاشة يفتح تنفيذ الأوامر وتسجيل دخول المسؤول — تهرب دفاعي؛ وكلمة المرور الافتراضية المصنعية 0000 تُرسم إلى التهرب الدفاعي والثبات وتصعيد الامتيازات والوصول الأولي (تقنية واحدة وتكتيكات متعددة)؛ وتشغيل حمولة USB يحقق الثبات وتصعيد الامتيازات؛ وخداع ECDIS لتحميل Winsock DLL مزيفة بامتيازات المسؤول هو الوصول الأولي؛ ونسخ المزيفة وتثبيتها هو التنفيذ. ثم تتيح مجلدات/سجل ECDIS المحدثة للمزيفة تعديل بيانات NMEA أو «الشاشة الزرقاء» في مياه معينة — وصول مادي متجاوز للفجوة الهوائية يوجّه السفينة خارج المسار أو إلى وجهات خاطئة أو للجنوح في الضحالة — قيادة وتحكم، مجدولة في مصفوفة MITRE (ومُنفذ السيناريو أغسطس 2018 على سفينة حقيقية قبالة النرويج؛ وتُحلل تحديثات ENC عبر وسائط USB/CD/DVD مصابة بالتشغيل التلقائي في الجدول 4 مع مخطط التدفق).</p>
+
+    <p>تهاجم الحالة 3 تجريبيًا سفينة حقيقية — سفينة التدريب لجامعة كوبي — بماسح ثغرات. الخطوة 1، الصعود إلى السفينة بتصاريح معقدة، هي تطوير موارد؛ والاقتراب من شبكة البدن بحاسوب محمول للوصول هو الوصول الأولي؛ ومراقبة الحركة وتحديد ECDIS المستهدف بالتقاط الحزم أو مسح المنافذ هو تطوير إضافي للوصول. الخطوة 2، رفع أداة المسح عبر شبكة السفينة أو USB، هي تطوير موارد مع وصول أولي. الخطوة 3، تنفيذ مسح الثغرات على الشبكة الحية، هي التنفيذ؛ وتحديد 37 ثغرة هو الاكتشاف. وكان ECDIS يعمل بويندوز XP قديم (مضمن، دون حزم خدمة) مع عيوب RPC وSMB/RDP قابلة للاستغلال عن بُعد مثل CVE-2019-0708 — محللة في مصفوفة MITRE ATT&amp;CK (الجدول 5) مع مخطط التدفق.</p>
+
+    <h3>الحالة 4: هجوم نظام التحكم (التشغيلي) للسفينة</h3>
+
+    <p>تصنّف الحالة 4 بيئة التقنية التشغيلية للسفن (الجدول 6) وتحدد التهديدات القابلة للهجوم، محللة بإطار MITRE ATT&amp;CK لأنظمة التحكم الصناعي: أنظمة الاتصالات (الجدول 7)، والتحكم في الدفع/الآلات/الطاقة (الجدول 8)، وأنظمة الملاحة (الجدول 9). ويستخدم سيناريو ملموس لثغرات نظام التحكم في المحرك (مخطط تدفق) لوحات Auto-Maskin البعيدة (RP) ووحدات DCU لمراقبة المحرك: يجرب المهاجم كلمة المرور الافتراضية المصنعية (DCU/1234) من دليل RP 210E في الجسر، أو CVE-2018-5401 وCVE-2018-5402 للوصول غير المصرح؛ وفي DCU 210E يمكّن CVE-2018-5400 هجمات انتحال أو ترحيل Modbus-TCP، مع إمكانية إرسال رسائل اعتباطية عن بُعد إلى أجهزة DCU أو RP دون دخول غرفة المحرك.</p>
+  </section>
+
+  <section>
+    <h2>3.2. تحليل التكتيكات والتقنيات والإجراءات</h2>
+
+    <p>يتيح MITRE ATT&amp;CK للمحللين تخطيط التدابير المضادة وتصميمها من مصفوفة السلوك: فتُبنى تدابير فعالة من حالات الأمن السيبراني المهمة للسفن المحللة. وتُقترح ثماني خطط تخفيف باستخدام 12 تكتيكًا و23 تقنية و8 مكونات مصادر بيانات (مفسرة مقابل شكل الحالة)؛ وتبقى تخفيفات أكثر تنوعًا ممكنة، مع تحليل مؤسس على تهديدات الحالات المحددة. وتقترح مجموعة ثانية اثنتي عشرة خطة تخفيف باستخدام 12 تكتيكًا و23 تقنية و10 مكونات مصادر بيانات: فهجوم نظام التحكم في السفينة قابل للكشف في سجل إنذارات معدات الشبكة ومراقبة الملفات — وإن كان للكشف القائم على الأجهزة حدود. وهكذا تحوّل الدراسة سلسلة TTP لكل حالة إلى رسوم دفاعية ملموسة لأنظمة ملاحة السفن واتصالاتها والتحكم بها.</p>
+  </section>
+
+  <section>
+    <h2>4. الاعتبارات والقيود</h2>
+
+    <p>السفن الحديثة القائمة على تقنية المعلومات والاتصالات شديدة التعرض للهجمات السيبرانية: فاختراق الأنظمة أو معدات الملاحة يمكّن المهاجم من الاستيلاء على السفينة وإغراقها. وتحليل نموذج الهجوم هو الخطوة الأولى نحو فهم الأمن السيبراني للسفن ووضع متطلبات أمنية مناسبة. ويصنّف إطار MITRE ATT&amp;CK سلوك الهجوم في قاعدة معرفية مفصلة، وقد صنّفت هذه الدراسة نماذج هجوم السفن كقاعدة معرفية مع تدابير تخفيف. وتحتاج السفن إطاري MITRE ATT&amp;CK للمؤسسات وأنظمة التحكم الصناعي معًا، إذ تعمل تقنية المعلومات والتشغيل جنبًا إلى جنب. وتتطور تقنية الهجوم — فيلزم الاستخدام السليم للإطارين مع التصليب المستمر.</p>
+  </section>
+
+  <section>
+    <h2>5. الخاتمة</h2>
+
+    <p>لملاحة آمنة للسفن، يجب الالتزام بلوائح المنظمة البحرية الدولية للأمن السيبراني مع إرشادات الحكومات (كخفر السواحل الأمريكي) والجمعيات (كـ BIMCO). ويجب على بناة السفن ومصنعي المعدات أيضًا فهم التهديدات في مكتبات التهديدات وتطبيق التدابير المضادة. وحللت هذه الدراسة حالات بحوث الأمن السيبراني للسفن بإطار MITRE ATT&amp;CK وقدمت خطط تخفيف من النتائج. وثبت أنه بينما السفن القائمة على تقنية المعلومات والاتصالات عرضة لهجمات سيبرانية متطورة، فإن القطاع ليس مستعدًا تمامًا بعد — وتلزم بحوث مستقبلية للأمن السيبراني للسفن، على امتداد الاتجاهات التي تحددها الورقة.</p>
+
+    <p>الأمن السيبراني قضية ملحة للسفن القائمة على تقنية المعلومات والاتصالات: إذ يجب أن يرتفع الوعي عبر التهديدات لأنظمة ECDIS وVDR وECS وVSAT وNMEA، مع ظهور ثغرات جديدة في تقنية المعلومات والتشغيل يوميًا. ومن منظور الأمن السيبراني، هذا الوعي حرج لاعتمادية السفينة في البحر. ويعتقد المؤلفون أن هذا البحث سيطلق اتجاهات مستقبلية ويحفز مزيدًا من بحوث الأمن السيبراني للسفن.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+
+    <p>Cybersecurity is important on ships that use information and communication technology. On such ships, the work, control, and sensor systems are connected for steering, navigation, and cargo management inside the hull, and a cyberattack can have physical consequences such as sinking and crashing. Research on ship cybersecurity is a new challenge, and related studies are lacking. Cyberattack models can provide better insight. With this study, we aim to introduce a cyberattack analysis method based on the MITRE ATT&amp;CK framework so that a cyberattack model for ships can be established. In addition, we identify the characteristics of the attack phase by analyzing cases of hacking and vulnerability research for ship systems using tactics, techniques, and procedures, and suggest the minimum measures essential for defense. Using the ship cyberattack model, we aim to identify the characteristics of the systems used for ship navigation, communication, and control; provide an understanding of the threats and vulnerabilities; and suggest mitigation measures through the proposed model. We believe the results of this study could guide future research.</p>
+  </section>
+  <section>
+    <h2>1. Introduction</h2>
+
+    <p>Modern ships are equipped with ship navigation and automation systems so that fuel can be saved by selecting efficient routes while complying with greenhouse gas emission regulations. They are also equipped with onboard Internet of Things (IoT) so that data can be exchanged with land in real time. Cyberattacks on such ships can cause physical damage: attacks on steering, navigation and cargo management systems connected inside the hull can sink or crash a vessel. Since the 2021 incident, maritime organizations — shipbuilders, ship owners, the IMO, and classification societies — have announced cybersecurity laws and regulations for ships: the IMO released Maritime Cyber Risk Management in Safety Management Systems, governments issued guidance such as the USCG, and associations such as BIMCO published onboard guidelines. Yet ship cybersecurity research remains new and related studies are lacking.</p>
+
+    <p>Identifying threats and vulnerabilities is an essential step in managing ship cybersecurity risks. One ship carries 700 to 900 units of propulsion control, steering, navigation, and communication equipment from 80 to 100 manufacturers — so identifying the cyber threats and vulnerabilities of manufacturer-supplied equipment installed on ships is critical, and a ship cybersecurity vulnerability/threat sharing platform would let stakeholders jointly manage risk. With this study, we aim to explain the ship hacking model based on the MITRE ATT&amp;CK framework, grounded in known ship security research and vulnerabilities: 15 major ship-hacking studies are analyzed with MITRE ATT&amp;CK, common security measures for modern ships are identified, and a new matrix of security mitigation measures for the ship environment is proposed.</p>
+
+    <p>The remainder of this paper is structured as follows. Section 2 provides background on hacking case analysis methodology. Section 3 analyzes the four cases in detail and summarizes the analysis results. Section 4 draws the conclusions.</p>
+  </section>
+  <section>
+    <h2>2. Background: MITRE ATT&amp;CK Framework</h2>
+
+    <p>The Cyber Kill Chain (CKC) follows a clearly defined linear step sequence useful for understanding the cyberattack process, but it cannot analyze individual adversary behaviors, correlate detailed actions with tactical objectives, or link data sources for attack and defense. MITRE ATT&amp;CK, unlike the CKC, maps and indexes virtually everything regarding intrusions: tactics (the adversary's tactical objectives, the 'why'), techniques (how objectives are achieved), and procedures (specific implementations). Yoon et al. compared attacks on U.S. broadcasters by Iran and on U.S. lawmakers by Russia using CKC and MITRE ATT&amp;CK: CKC cleanly classified the attacks into seven phases (reconnaissance, weaponization, delivery, exploitation, installation, command and control, actions on objectives), while ATT&amp;CK exposed the detailed behaviors, correlations and countermeasure mappings CKC misses.</p>
+
+    <p>MITRE ATT&amp;CK for Industrial Control Systems (ICS) extends the philosophy to operational technology, and this study uses both Enterprise and ICS frameworks since ships combine IT and OT. The analysis maps ship-system threats to techniques, then to connected tactics and procedures — and from there to mitigations — producing ship-specific attack models and a mitigation matrix.</p>
+  </section>
+  <section>
+    <h2>3. MITRE ATT&amp;CK-Based Ship Cyberattack Analysis</h2>
+
+    <p>Since IOActive researchers assessed ship black-box systems in 2014, many vulnerability analyses and hacking studies of ship communication, navigation and steering management systems have appeared. This section analyzes reported ship hacking techniques with MITRE ATT&amp;CK, organizing attack processes and characteristics in a consistent framework. Santamarta described backdoors, hardcoded credentials, insecure and undocumented protocols and password-reset weaknesses in SATCOM terminals (SAILOR 900 VSAT, JUE-250 FB), with ECDIS, ship-status and cargo-information falsification scenarios. Kessler et al. classified AIS threats — malfunction, jamming and spoofing as most common. Lund et al. described an integrated navigation system attack: malware modifies GPS coordinates via man-in-the-middle, crashing the system to a 'blue screen' or sailing the ship to wrong coordinates.</p>
+
+    <p>Svilicic et al. repeatedly found critical flaws with scanning tools: on the JAN-901B ECDIS aboard training ship Fukae-maru (Ethernet LAN, IEC61162-1/2, USB, Windows XP) ten threats; on a Transas Navi Sailor 4000 ECDIS practice environment (Windows 7) vulnerable SMB and RDP versions; on the Navi Sailor 4000 aboard training/research ship Kraljica Mora an outdated Apache web server plus vulnerable SMB; and on the NACOS MULTIPILOT Platinum 2017 ECDIS aboard a ROPAX vessel vulnerable SMB and RDP. Hyra et al. mapped ship attack surfaces with risk methodologies quantifying asset, vulnerability, threat and occurrence probability. Shang et al. proposed fuzzy-set/attack-tree risk assessment for ship control systems, finding high probability in buffer-overflow exploitation, remote mail attacks, encryption-cracking algorithm paths, and onboard-software attack routes.</p>
+
+    <p>Awan and Ghamdi collected ship safety accidents affecting cybersecurity — e.g. a 2004 coal carrier sinking where an outdated electronic navigational chart failed to show shallow water, showing inaccurate ENC files can sink ships. Caprolu et al. showed NMEA-2000 CAN-bus automation connected to most onboard equipment is vulnerable to shutdown and denial-of-service via unencrypted message eavesdropping and fake-message injection. Pavur et al. captured marine VSAT traffic finding unencrypted HTTP-based protocols vulnerable to eavesdropping and spoofing. Tierney et al. disclosed Dualog Connection Suite flaws (CVE-2020-26576 through CVE-2020-26581), including privilege escalation via the default account (admin.g4@g4.dulog.no); boarding a cruise ship, they reached cargo-loading management via MOXA IP-to-serial converters and CCTV via RTSP using default passwords and passenger Wi-Fi — with all traffic sniffable from the network switch. Dumbala classified ship OT (satellite/internal communications, propulsion, steering, navigation, power, cargo control rooms, BWMS) with threats and mitigations; Jones et al. proposed attack scenarios from outdated software and insecure networks; Alcaide et al. showed AIS signal alteration or injection disrupts collisions or suspends operations; Haynes reported IRGC cyber-operation documents planning to capsize or sink ships via satellite terminals and BWMS. The literature is summarized in the paper's Table 2.</p>
+  </section>
+  <section>
+    <h2>3.1. MITRE ATT&amp;CK-Based Ship Cyberattack Cases</h2>
+
+    <h3>Case 1: sinking a ship via ballast water</h3>
+
+    <p>Four high-impact cases were selected: Case 1 ship sinking; Cases 2–3 wrong routes; Case 4 ship control-system attack — each mapped to MITRE ATT&amp;CK tactics, techniques and procedures (TTPs), then to mitigations. Case 1 follows an IRGC Intelligence Team 13 report detailing how to hack a ship's Ballast Water Management System (BWMS) to sink it. The BWMS — tanks at the bottom and sides maintaining the center of gravity, filled/emptied by HMI-controlled pumps (mandated internationally against invasive-species contamination) and monitorable onshore via satellite — must pump precisely to prevent capsizing when tilted; failure can sink the vessel. A parallel real case supports plausibility: in December 2020 an Iranian hacker group penetrated Israel's water-facility ICS, accessing the HMI over Modbus/TCP port 502 open to the internet to manipulate water pressure and temperature.</p>
+
+    <p>The IRGC plan attacks remotely from land via maritime satellite communications (Seagull 5000i, Sealink CIR gear), in phases mapped to ATT&amp;CK. Reconnaissance: identify the satellite equipment model via an IoT search engine (Thuraya, Wideye named; 43 type-approved BWMS models as of July 2021, all mandatorily approved hence easily enumerated) — and this study found a new reconnaissance threat: a crew member uploaded the ship BWMS password ('1111111') plus ship name and equipment details to social media. Command and Control / Impact: hardware attack disrupting pump/gauge accuracy via sensor malfunction or status blocking; software attack corrupting the management server filesystem or update path with file tampering. Table 3 and the attack-flow diagram formalize the full plan.</p>
+
+    <h3>Cases 2–3: wrong routes via navigation systems</h3>
+
+    <p>Case 2 targets the Integrated Navigation System (INS) uniting radar, ECDIS, sonar and GPS, with system integrity as the prize. An attacker with physical access obtains system information from an ECDIS laptop (OS, ship network IP, port numbers) — Reconnaissance — to modulate the Winsock dynamic link library for a man-in-the-middle attack on ECDIS software. The NMEA command target is a CAN-based protocol with only a checksum safeguard, easily bypassed — Command and Control. The payload arrives via USB: ECDIS software blocks keyboard input except mouse operations, but 'Windows + R' plus an on-screen keyboard opens command execution and administrator login — Defense Evasion; factory-default password 0000 maps to Defense Evasion, Persistence, Privilege Escalation and Initial Access (one technique, multiple tactics); running the USB payload gives Persistence and Privilege Escalation; tricking ECDIS into loading a fake Winsock DLL with administrator privileges is Initial Access; copying and installing the fake DLL is Execution. Updated ECDIS folders/registry then let the fake DLL modulate NMEA data or 'blue screen' ECDIS in certain waters — air-gap physical access steering the ship off course, to wrong destinations, or aground in shallow water — Command and Control, tabulated in the MITRE matrix (Table 3 in text; scenario executed August 2018 on a real ship off Norway; ENC updates via infected USB/CD/DVD autorun media analyzed in Table 4 with flow diagram).</p>
+
+    <p>Case 3 experimentally cyberattacked a real ship — Kobe University's training ship — with a vulnerability scanner. Step 1, boarding the ship under complex permits, is Resource Development; approaching the hull network by laptop for access is Initial Access; monitoring traffic, identifying the target ECDIS via packet capture or port scanning is further access development. Step 2, uploading the scanning tool via onboard network or USB, is Resource Development plus Initial Access. Step 3, executing vulnerability scanning on the live network, is Execution; identifying 37 vulnerabilities is Discovery. The ECDIS ran outdated Windows XP (Embedded, unpatched service packs) with remotely exploitable RPC and SMB/RDP flaws such as CVE-2019-0708 — analyzed in the MITRE ATT&amp;CK matrix (Table 5) with flow diagram.</p>
+
+    <h3>Case 4: ship control (OT) system attack</h3>
+
+    <p>Case 4 classifies the ship OT environment (Table 6) and defines attackable threats, analyzed with MITRE ATT&amp;CK for ICS: communication systems (Table 7), propulsion/machinery/power control (Table 8), and navigation systems (Table 9). A concrete engine-control-system CVE scenario (flow diagram) uses Auto-Maskin remote panels (RP) and DCU control units for engine monitoring: the attacker tries the factory-default password (DCU/1234) from the RP 210E bridge manual, or CVE-2018-5401 and CVE-2018-5402 for unauthorized access; on DCU 210E, CVE-2018-5400 enables Modbus-TCP spoofing or relay attacks, with arbitrary messages sendable remotely to DCU or RP devices without entering the engine room.</p>
+  </section>
+  <section>
+    <h2>3.2. TTPs Analysis</h2>
+
+    <p>MITRE ATT&amp;CK lets analysts plan and design countermeasures from the behavior matrix: effective countermeasures map from the important ship cybersecurity cases analyzed. Eight mitigation plans are proposed using 12 tactics, 23 techniques and 8 data-source components (explained against the case figure); more diverse mitigations remain possible, with analysis grounded in the identified case threats. A second set proposes twelve mitigation plans using 12 tactics, 23 techniques and 10 data-source components: a ship control-system attack is detectable in network-equipment log alarm history and file monitoring — though device-based detection has limits. The study thus converts each case's TTP chain into concrete defensive mappings for ship navigation, communication and control systems.</p>
+  </section>
+  <section>
+    <h2>4. Considerations and Limitations</h2>
+
+    <p>Modern ICT-based ships are highly vulnerable to cyberattacks: compromise of systems or navigation equipment lets an attacker seize and sink the ship. Attack-model analysis is the first step toward understanding ship cybersecurity and setting appropriate security requirements. The MITRE ATT&amp;CK framework classifies attack behavior into a detailed knowledge base, and this study classified ship attack models as such a knowledge base with mitigation measures. Ships require both MITRE ATT&amp;CK Enterprise and ICS frameworks, since IT and OT operate together. Attack technology evolves — proper use of both frameworks plus continuous hardening is required.</p>
+  </section>
+  <section>
+    <h2>5. Conclusions</h2>
+
+    <p>For safe ship navigation, IMO cybersecurity regulations plus government (e.g. USCG) and association (e.g. BIMCO) guidelines must be observed. Shipbuilders and equipment manufacturers must also understand threats in threat libraries and implement countermeasures. This study analyzed ship cybersecurity research cases with MITRE ATT&amp;CK and presented mitigation plans from the results. It was established that while ICT-based ships are vulnerable to sophisticated cyberattacks, the industry is not yet fully prepared — and future ship cybersecurity research is required, along the trends the paper outlines.</p>
+
+    <p>Cybersecurity is an urgent issue for ICT-based ships: awareness must rise across threats to ECDIS, VDR, ECS, VSAT and NMEA systems, as new IT/OT vulnerabilities surface daily. From a cybersecurity perspective, such awareness is critical to a ship's dependability at sea. The authors believe this research will instigate future directions and motivate further ship cybersecurity research.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Perera L.P. Handling big data in ship performance and navigation monitoring. Smart Ship Technol. 2017:89–97. doi: 10.13140/RG.2.2.21372.33924.</li>
+      <li>[2] Inmarsat . A Superyacht Connectivity Report. Inmarsat; London, UK: 2020.</li>
+      <li>[3] The Maritime Executive Naval Dome: Cyberattacks on OT Systems on the Rise. 26 July 2020. [(accessed on 2 August 2021)]. Available online: https://www.maritime-executive.com/article/naval-dome-cyberattacks-on-ot-systems-on-the-rise.</li>
+      <li>[4] Santamarta R. SATCOM Terminals: Hacking by Air, Sea, and Land. IOActive; Seattle, WA, USA: 2014.</li>
+      <li>[5] Rundle J. Coast Guard Details February Cyberattack on Ship. The Wall Street Journal 26 July 2019. [(accessed on 2 August 2021)]. Available online: https://www.wsj.com/articles/coast-guard-details-february-cyberattack-on-ship-11564133401.</li>
+      <li>[6] US Coast Guard . Marine Safety Alert (06-19), Cyber Incident Expose Potential Vulerabilities Onboard Commercial Vessels. USCG; Washington, DC, USA: 2019.</li>
+      <li>[7] Svilicic B., Kamahara J., Rooks M., Yano Y. Maritime cyber risk management: An experimental ship assessment. J. Navig. 2019;72:1108–1120. doi: 10.1017/S0373463318001157.</li>
+      <li>[8] Hyra B. Master’s Thesis. Technical University of Denmark; Kongens Lyngby, Denmark: 2019. Analyzing the Attack Surface of Ships.</li>
+      <li>[9] Tran K., Keene S., Fretheim E., Tsikerdekis M. Marine network protocols and security risks. J. Cybersecur. Priv. 2021;1:239–251. doi: 10.3390/jcp1020013.</li>
+      <li>[10] Staff T. Secret files show alleged Iranian plans to sink ships using cyberattacks. The Times of Israel 28 July 2021. [(accessed on 10 August 2021)]. Available online: https://www.timesofisrael.com/secret-files-show-alleged-iranian-plans-to-sink-ships-using-cyberattacks/</li>
+      <li>[11] International Maritime Organization Guidelines on Maritime Cyber Risk Management. 5 July 2017. [(accessed on 2 August 2021)]. Available online: https://wwwcdn.imo.org/localresources/en/OurWork/Security/Documents/MSC-FAL.1-Circ.3%20-%20Guidelines%20On%20Maritime%20Cyber%20Risk%20Management%20(Secretariat).pdf.</li>
+      <li>[12] BIMCO . The Guidelines on Cyber Security Onboard Ships. BIMCO; Copenhagen, Denmark: 2020.</li>
+      <li>[13] Strom B.E., Applebaum A., Miller D.P., Nickels K.C., Pennington A.G., Thomas C.B. MITRE ATT&amp;amp;CK: Design and Philosophy. MITRE Corporation; McLean, VA, USA: 2018.</li>
+      <li>[14] Yoon Y., Kim J., Lee J., Yu S., Lee S. A research on cyber kill chain and TTP by APT attack case study. Converg. Secur. J. 2020;20:91–101. doi: 10.33778/kcsa.2020.20.4.091.</li>
+      <li>[15] Alexander O., Belisle M., Steele J. MITRE ATT&amp;amp;CK for Industrial Control Systems: Design and Philosophy. MITRE; McLean, VA, USA: 2020.</li>
+      <li>[16] Kessler G.C., Craiger J.P., Haass J.C. A taxonomy framework for maritime cybersecurity: A demonstration using the automatic identification system. TransNav. 2018;12:429. doi: 10.12716/1001.12.03.01.</li>
+      <li>[17] Santamarta R. Maritime Security: Hacking into a Voyage Data Recorder (VDR) IOActive; Seattle, WA, USA: 2015. [(accessed on 30 January 2022)]. Available online: https://ioactive.com/maritime-security-hacking-into-a-voyage-data-recorder-vdr/</li>
+      <li>[18] Lund M.S., Hareide O.S., Jøsok Ø. An attack on an integrated navigation system. Necesse. 2018;3:149–163.</li>
+      <li>[19] Svilicic B., Brčić D., Žuškin S., Kalebić D. Raising awareness on cyber security of ECDIS. TransNav. 2019;13:231–236. doi: 10.12716/1001.13.01.24.</li>
+      <li>[20] Svilicic B., Rudan I., Frančić V., Doričić M. Shipboard ECDIS cyber security: Third-party component threats. Pomorstvo. 2019;33:176–180. doi: 10.31217/p.33.2.7.</li>
+      <li>[21] Svilicic B., Rudan I., Jugović A., Zec D. A study on cyber security threats in a shipboard integrated navigational system. J. Mar. Sci. Eng. 2019;7:364. doi: 10.3390/jmse7100364.</li>
+      <li>[22] Shang W., Gong T., Chen C., Hou J., Zeng P. Information security risk assessment method for ship control system based on fuzzy sets and attack trees. Secur. Commun. Netw. 2019;2019:1–11. doi: 10.1155/2019/3574675.</li>
+      <li>[23] Awan M.S.K., Al Ghamdi M.A. Understanding the vulnerabilities in digital components of an integrated bridge system (IBS) J. Mar. Sci. Eng. 2019;7:350. doi: 10.3390/jmse7100350.</li>
+      <li>[24] Caprolu M., Di Pietro R., Raponi S., Sciancalepore S., Tedeschi P. Vessels cybersecurity: Issues, challenges, and the road ahead. IEEE Commun. Mag. 2020;58:90–96. doi: 10.1109/MCOM.001.1900632.</li>
+      <li>[25] Pavur J., Moser D., Strohmeier M., Lenders V., Martinovic I. A tale of sea and sky on the security of maritime VSAT communications. Proc. IEEE Symp. Secur. Priv. 2020;2020:1384–1400.</li>
+      <li>[26] Tierney A. Serious Vulnerabilities in Dualog Connection Suite. 10 December 2020. [(accessed on 10 January 2022)]. Available online: https://www.pentestpartners.com/security-blog/serious-vulnerabilities-in-dualog-connection-suite/</li>
+      <li>[27] Tierney A. Speed 2—The Poseidon Adventure–Part One. 8 September 2020. [(accessed on 2 August 2021)]. Available online: https://www.pentestpartners.com/security-blog/speed-2-the-poseidon-adventure-when-cruise-ships-attack-part-1/</li>
+      <li>[28] Dumbala R. A Study of Mitigation Measures for Cyber Risks in Shipboard OT Systems. 1 April 2021. [(accessed on 11 August 2021)]. Available online: https://itrust.sutd.edu.sg/wp-content/uploads/sites/3/2021/04/Webinar-2_Slides_Latest.pdf.</li>
+      <li>[29] Jones K.D., Tam K., Papadaki M. Engineering &amp;amp; Technology Reference. Volume 1 University of Plymouth; Plymouth, UK: 2016. Threats and impacts in maritime cyber security.</li>
+      <li>[30] Alcaide J.I., Llave R.G. Critical infrastructures cybersecurity and the maritime sector. Transp. Res. Procedia. 2020;45:547–554. doi: 10.1016/j.trpro.2020.03.058.</li>
+      <li>[31] Haynes D. Iran’s Secret Cyber Files. 27 July 2021. [(accessed on 11 August 2021)]. Available online: https://news.sky.com/story/irans-secret-cyber-files-on-how-cargo-ships-and-petrol-stations-could-be-attacked-12364871.</li>
+      <li>[32] Even N. What We’ve Learned from the December 1st Attack on an Israeli Water Reservoir. OTORIO. 3 December 2020. [(accessed on 13 August 2021)]. Available online: https://www.otorio.com/blog/what-we-ve-learned-from-the-december-1st-attack-on-an-israeli-water-reservoir/</li>
+      <li>[33] Tam K., Jones K. MaCRA: A model-based framework for maritime cyber-risk assessment. WMU J. Marit. Aff. 2019;18:129–163. doi: 10.1007/s13437-019-00162-2.</li>
+      <li>[34] Kessler G.C. The CAN Bus in the Maritime Environment–Technical Overview and Cybersecurity Vulnerabilities. Int. J. Mar. Navig. Saf. Sea Transp. 2021;3:531–540. doi: 10.12716/1001.15.03.05.</li>
+      <li>[35] Baykara M., Das R. A novel honeypot based security approach for real-time. J. Inf. Secur. 2018;41:103–116.</li>
+      <li>[36] Baykara M., Das R. SoftSwitch: A centralized honeypot-based security approach using software-defined switching for secure management of VLAN networks. Turk. J. Elec. Eng. Comp. Sci. 2019;27:3309–3325. doi: 10.3906/elk-1812-86.</li>
+      <li>[37] Jicha A., Patton M., Chen H. SCADA honeypots: An in-depth analysis of Conpot; Proceedings of the IEEE Conference on Intelligence and Security Informatics (ISI); Tucson, AZ, USA. 28–30 September 2016.</li>
+      <li>[38] Barbosa R.R.R., Sadre R., Pras A. Flow whitelisting in SCADA networks. Int. J. Crit. Infrastruct Prot. 2013:150–158. doi: 10.1016/j.ijcip.2013.08.003.</li>
+      <li>[39] Mavroeidis V., Bromander S. Cyber threat intelligence model: An evaluation of taxonomies, sharing standards, and ontologies within cyber threat intelligence; Proceedings of the 2017 European Intelligence and Security Informatics Conference (EISIC); Athens, Greece. 11–13 September 2017.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s22051860">10.3390/s22051860</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MaCySTe: منصة اختبار افتراضية للأمن السيبراني البحري — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">MaCySTe: A Virtual Testbed for Maritime Cybersecurity</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">MaCySTe: منصة اختبار افتراضية للأمن السيبراني البحري</h2>
+
+  <div class="paper-meta">
+    <span>👤 Giacomo Longo, Alessandro Orlich, Stefano Musante, Alessio Merlo, Enrico Russo</span>
+    <span>📄 SoftwareX, 2023 · Vol. 23, 101426</span>
+    <span>🔗 <a href="https://doi.org/10.1016/j.softx.2023.101426">10.1016/j.softx.2023.101426</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+<p>أدى الاعتماد المتزايد على التكنولوجيا والأتمتة في القطاع البحري إلى زيادة تعرضه للهجمات السيبرانية. ويمكن أن تترتب على التهديدات السيبرانية للسفن والمنصات البحرية عواقب وخيمة، منها حوادث تؤدي إلى خسائر في الأرواح وأضرار في الأصول أو أثر بيئي. ومن الوسائل الرئيسية لمواجهة هذه التهديدات تطوير واختبار التدابير المضادة المصممة للبنى التحتية السيبرانية-الفيزيائية على متن السفن وتدريب الأفراد. ولهذه الغاية نقدّم MaCySTe، وهو مشروع مفتوح المصدر يوفر منصة اختبار تُعيد إنتاج البنية التحتية الشبكية والمكونات الأساسية للأنظمة السيبرانية-الفيزيائية على متن السفن. وبما أنه يتصل بمحاكيات السفن، فإنه يتيح جلسات واقعية للاختبار والتدريب تجمع مشغّلي الأمن السيبراني والمشغّلين البحريين. ونتوقع أن يسهم MaCySTe في تعزيز الحماية السيبرانية والوعي بها في هذا القطاع الحيوي.</p>
+<p><strong>الكلمات المفتاحية:</strong> الأمن السيبراني البحري؛ التوأم الرقمي؛ منصة الاختبار؛ الأنظمة السيبرانية-الفيزيائية؛ اختبار الأمن السيبراني؛ التدريب على الأمن السيبراني؛ النطاقات السيبرانية.</p>
+<p><strong>بيانات الشيفرة:</strong> الإصدار الحالي v1.1.1 · الرابط الدائم للشيفرة: <a href="https://github.com/ElsevierSoftwareX/SOFTX-D-23-00042" dir="ltr">github.com/ElsevierSoftwareX/SOFTX-D-23-00042</a> · الترخيص: GNU AGPLv3 · نظام التحكم بالإصدارات: git · اللغات والأدوات: C++ وPython وRust وOpenPLC وFUXA وNATS · المتطلبات: envsubst وflatpak وflatpak-builder وmake وPodman وPython ولينكس · التوثيق: <a href="https://crack-mcr.github.io/MaCySTe" dir="ltr">crack-mcr.github.io/MaCySTe</a> · البريد: <a href="mailto:giacomo.longo@dibris.unige.it" dir="ltr">giacomo.longo@dibris.unige.it</a>.</p>
+  </section>
+
+  <section>
+    <h2>1. الدافع والأهمية</h2>
+<p>الأنظمة السيبرانية-الفيزيائية (CPS) [1] بنى معقدة تضم فيضًا من تقنيات الشبكات والحوسبة المتكاملة [2]، مما يجعلها — من منظور الأمن السيبراني — هدفًا مغريًا للفاعلين الخبثاء: إذ يصعب تقييم سطح هجومها الفعلي وتأمينها بموثوقية، كما قد تؤثر الهجمات الناجحة بشدة على الأصول والبيئة والبشر. وتنطبق أنظمة CPS على مجالات متعددة [3] (البنى التحتية الحرجة والسيارات وإلكترونيات الطيران والرعاية الصحية)، ولكل منها متطلبات أمنية ووظيفية خاصة. ويتطلب تأمينها فهم سطح الهجوم الفعلي من جهة، وتحديد حلول حماية ومراقبة مناسبة من جهة أخرى. ويتطلب الأمر الأول منصات اختبار (testbeds) [4–7] توفر بيئة مضبوطة لمحاكاة التهديدات وتقييم فعّالية التدابير المضادة، ويدعم الثاني حلولًا أمنية خاصة بالمجال تقلل سطح الهجوم قدر الإمكان [8–11].</p>
+<p>ومن بين مجالات CPS الجديرة بالذكر القطاع البحري بوصفه من أكثر القطاعات تضررًا بالهجمات السيبرانية [12، 13]. إذ تعتمد السفن اعتمادًا شديدًا على أنظمة CPS المعقدة [14] وتُعد محط تركيز المهاجمين [15، 16] في ظل مشهد تهديدات متسع باستمرار [17، 18]. ومن ثمّ، ثمة حاجة ملحّة لمنصات اختبار موثوقة تحاكي البنى التحتية للسفن الحقيقية.</p>
+<p>نقدّم في هذه الورقة منصة اختبار بحرية سيبرانية (Maritime Cyber Security Testbed) هي MaCySTe، وهي بيئة افتراضية تُعيد إنتاج المكونات الرئيسية لنظام CPS عامل على السفن الحديثة. وفيما يلي أبرز الميزات المدعومة:</p>
+<p><strong>مستشعرات ومشغّلات ومتحكمات خاصة بالمجال:</strong> تحاكي المنصة المستشعرات الرئيسية على متن السفن: هوائي الرادار، ونظام تحديد المواقع الإلكتروني (EPFS)، ومعدات قياس السرعة والمسافة (SDME)، والبوصلة، والجيروسكوب، وجهاز الإرسال والاستقبال AIS [19]. كما تدمج مشغّلات ومتحكمات مميزة بتوفير توأم رقمي لنظام التحكم في دفة التوجيه (SGCS) — وهو متحكم يمثل إحدى الوظائف الأساسية (التوجيه) ويعمل وفق لوائح ومتطلبات الاتفاقية الدولية لسلامة الأرواح في البحار (SOLAS) [20].</p>
+<p><strong>فيزياء تمثيلية ووحدات نمطية:</strong> تعمل المنصة في بيئة تمثل البيئة الفيزيائية عبر الاتصال بمحاكيَي السفن والأنظمة الهيدروليكية: يغذّي الأول البيانات المنبعثة من المستشعرات، ويطوّر الثاني المتغيرات المميزة لـSGCS (حرارة الزيت والضغط وسرعة المضخات). ويتم هذا الاتصال عبر طبقة تكامل تستغل طابور رسائل (MQ) مخصصًا لتبادل البيانات، مما يبسّط استبدال الحلول القائمة (كدمج محاكي جسر مختلف) وإضافة مكونات جديدة (كدمج نظام الدفع ونموذجه الفيزيائي).</p>
+<p><strong>نظام الجسر المتكامل:</strong> تحاكي المنصة — كأي سفينة حديثة — نظام الجسر المتكامل (IBS) أي الأجهزة والبرمجيات المترابطة التي تتيح الوصول المركزي للمعلومات الملاحية والتحكم والمراقبة. وتستضيف المعدات الأساسية لنظام الملاحة المتكامل (INS) [21] وهي نظام عرض الخرائط والمعلومات الإلكترونية (ECDIS) ومؤشر الخطة الموضعية للرادار (PPI)، وتنشئ ترابطهما لمركزة الوصول إلى معلومات المستشعرات، إضافة إلى مضيف لمراقبة SGCS والتحكم فيه (وظيفة أساسية من نظام إدارة المنصة المتكامل IPMS).</p>
+<p><strong>إعدادات شبكية وبروتوكولات خاصة بالمجال:</strong> تتبع مناطق الشبكة واتصالات المكونات التخطيط المعتاد لشبكة منطقة السفينة، وتلتزم بمعيار IEC 61162–450 [22] باعتماد بروتوكول NMEA-0183 [23] وحزم UDP متعددة البث للاتصالات بين المعدات والمستشعرات. ويمكن للهوائي بث فيديو الرادار ببروتوكول Navico Broadband Radar BR24 [24] أو معيار Eurocontrol المعروف ASTERIX Cat-240 [25]. وأخيرًا، تعمل الاتصالات بين وحدات التحكم المنطقية القابلة للبرمجة (PLC) والتفاعلات مع IPMS بالبروتوكول المعياري الفعلي MODBUS [26].</p>
+<p><strong>الإنسان في الحلقة:</strong> يمكّن دمج محاكي السفن والمعدات البحرية وضوابط شبيهة بضوابط السفن البحّار من التفاعل مع المنصة. كما أُضيف إلى المحاكي سيناريو في البحر الليغوري وميناء جنوى (الإحداثيات: 44°24′10″ شمالًا، 8°55′0″ شرقًا) لتشغيل المحاكاة في بيئة واقعية. وتدعم هذه القدرات جلسات التدريب والاختبار لسد فجوة الوعي السيبراني على متن السفن [27، 28] وإعداد المشغّلين للاستجابة المناسبة للتهديدات السيبرانية.</p>
+<p>وقد تناولت أعمال سابقة منصات اختبار بحرية: طوّر Sicard وآخرون [29] منصة فيزيائية لسفينة حربية تركّز على التوجيه والطاقة والمدفعية والدفع — وتنفّذ MaCySTe وظيفة التوجيه بمقاربة مشابهة بمكونات افتراضية فقط. وقدّم Amro وآخرون [30] منصة هجينة لسفينة ركاب ذاتية القيادة بتقنيات افتراضية تقليدية وواجهات مادية (USB وWi-Fi) لا تدعمها MaCySTe حاليًا لكنها مخططة مستقبلًا بفضل مرونة الحاويات. ونمذج مؤلفو [31] شبكة جسر بوحدة رادار BR24 وPPI ومستشعرات ملاحية — وهي ميزات تدعمها MaCySTe جميعًا. وناقش Tam وآخرون [32] المحاكاة والمضاهاة والأنظمة الحية للتدريب والبحث البحري عبر مختبر Cyber-SHIP الهجين؛ وكما ذكروا، فحلول مثل MaCySTe أرخص وأسرع تطويرًا، إذ تفتقدها قيود النماذج المفاهيمية. كما يمكن استخدام المنصات حجر أساس في النطاقات السيبرانية البحرية؛ وبما أن MaCySTe تنفّذ جزئيًا ميزات موصوفة في [33، 34]، يجري العمل على دمجها في سيناريو متعدد المجالات للنطاقات السيبرانية. وتمتاز MaCySTe عن الأعمال السابقة بكونها: (1) مفتوحة المصدر، (2) قائمة بذاتها على جهاز لينكس واحد تُدار عبر متصفح ويب، (3) تحاكي وحدة رادار وPPI بدعم بروتوكول ASTERIX CAT240.</p>
+  </section>
+
+  <section>
+    <h2>2. وصف البرمجية</h2>
+<p>تعمل MaCySTe على لينكس مستخدمة الحاويات (containerization) ركيزةً تقنية، بمتطلبات موصى بها: 4 معالجات و12GB ذاكرة و50GB تخزين وبطاقة رسومية تدعم OpenGL. وفيما يلي تفاصيل بنيتها الداخلية.</p>
+<h3>2.1. بنية منصة الاختبار</h3>
+<p>يستعرض الشكل 1 بنية MaCySTe المكوّنة من أربع شبكات: الجسر (Bridge) والتحكم (Control) والحقل (Field) والتكامل (Integration). تستضيف شبكة الجسر مكونات IBS: تستقبل وحدة جمع البيانات (DCU) وهوائي الرادار بيانات المستشعرات من محاكي السفن وتبثها كحزم UDP متعددة البث ببروتوكولي NMEA وBR24/Asterix، فتغذي ECDIS وPPI الراداري والطيار الآلي. كما تربط الشبكة نظام IPMS للتحكم في الأنظمة على متن السفن ومراقبتها من الجسر (الشكل 1).</p>
+<p>تستضيف شبكة التحكم متحكمات أتمتة السفينة: يعالج الطيار الآلي بيانات الملاحة ويتحكم تلقائيًا في الدفة والسرعة وفق القيم المضبوطة مسبقًا، ويستخدم IPMS الاتصال بهذه الشبكة للتفاعل مع المتحكمات. ويغيّر تلغراف المحرك السرعة عبر الإشراف على وحدتي PLC (اليسرى واليمنى) المتصلتين بالمحركات، بينما يوجّه المقود (Helm) السفينة عبر وحدة PLC الرئيسية للدفة التي تتحكم في خزانات الزيت ومضخات SCGS عبر خمس وحدات PLC متصلة بشبكة حقل مخصصة، وتقيس متغيرات SGCS عبر مكون مستشعرات SGCS.</p>
+<p>أما شبكة التكامل فهي شبكة إدارة داخلية غير مرتبطة ببنية السفينة، وتستضيف طابور رسائل (MQ) لربط المحاكيَين (السفن ونموذج SGCS) بمستشعرات السفينة ومتحكماتها، وأخيرًا تربط واجهة الإدارة الرسومية (GUI) للوصول إلى المنصة.</p>
+<h3>2.2. المكونات والوحدات والسيناريوهات</h3>
+<p>تتمحور MaCySTe حول مفاهيم المكوّن والوحدة والسيناريو. المكوّن هو اللبنة الأساسية لعناصر المنصة، قابل لإعادة الاستخدام وله معاملات يجب تحديدها قبل الاستخدام. والوحدة تضم مكوّنًا أو أكثر وتثبّت معاملاتها ويمكن إنشاء نسخ منها في المنصة: فمثلًا openplc هو المكوّن الذي يوفر PLC برمجيًا يتطلب برنامج Ladder Logic [35] كمعامل تشغيل، بينما sgs_master هي الوحدة المقابلة لوحدة PLC الرئيسية للدفة وتضم المكوّن openplc مع تحديد البرنامج المراد تشغيله. ويستغل تنفيذ المكونات والوحدات تقنيتي Pods [36] وتطبيقات Flatpak [37].</p>
+<p>ويمكن تشغيل المنصة بتخصيصات مختلفة تُسمى السيناريوهات: يتألف السيناريو من بنية شبكية تربط الوحدات العاملة، ويحدد كل تخصيص الوحدات المضمّنة وعنونتها IP. ويبدأ السيناريو بنصوص صدفية مخصصة تستخدم Podman [38] لإنشاء الشبكات وتشغيل Pods وFlatpak لتشغيل التطبيقات. وتأتي MaCySTe بسيناريوهين: (1) الأساسي الذي ينفّذ بنية الشكل 1، و(2) ممدّد يضيف نسخة من نظام إدارة المعلومات والأحداث الأمنية (SIEM) وبرمجية خبيثة تنفّذ هجمات مستهدفة كما يعرض القسم 3.</p>
+<h3>2.3. تنفيذ المكونات والوحدات</h3>
+<p>يناقش هذا القسم تنفيذ مكونات ووحدات السيناريو الأساسي. يفصّل الجدول 1 لكل مكوّن: الاسم، ونهج التنفيذ (جاهز، أو جاهز مُرقَّع/إطار عمل، أو مبني من الصفر)، والوحدات المضمّنة فيه، ووصفًا موجزًا (انظر [35، 39–43]). فالبرمجيات المبنية من الصفر نُفّذت بـJavaScript وPython وRust؛ ورُقّع محاكي سفن قائم (Bridge Command [39]) لتبادل بيانات المحاكاة مع MQ ضمن تحسينات أخرى؛ واستُخدم برنامج التصور العملياتي FUXA [40] إطارًا لواجهة الإنسان-الآلة (HMI) الخاصة بـIPMS؛ وخُصّصت نسخ متعددة من PLC البرمجي OpenPLC [35] ببرامج Ladder Logic المتحكمة في أتمتة SGCS. ودُمج NATS [41] وOpenCPN [42] مع ملحق [43] لرادارات Navico عريضة النطاق (BR24) لتوفير وظائف MQ وECDIS مع تراكب الرادار. وتجدر الإشارة إلى أن جميع المكونات موزعة كحاويات باستثناء bridgecommand المعبّأ كتطبيق Flatpak لضمان توافق أوسع مع بطاقات الرسوميات لمحاكي السفن.</p>
+<h3>2.4. إعداد المنصة وإدارتها</h3>
+<p>تأتي MaCySTe بمجلدين رئيسيين: doc للتوثيق وsrc لمصنوعات الإعداد والإدارة. ويضم src المجلدات: configs (ملفات إعداد الوحدات كالخرائط الإلكترونية لـECDIS)، وcontainers (نصوص Containerfile لبناء صور الحاويات)، وflatpaks (ملفات بيان البناء كمكونات Flatpak)، وpods (ملفات YAML لتعريف المكونات كـPods)، وscenarios (تعريفات الوحدات في مجلد 00-modules بملفي config.Makefile للمكونات المطلوبة وvars.Makefile لقيم المعاملات؛ وتعريفات السيناريوهات بمجلدات فرعية تحدد الوحدات وتخصيصات IP في alloc.Makefile)، وstate (البيانات الحالة الناتجة عن التنفيذ كالمخزن المؤقت لرسائل MQ). ويضم src أيضًا ملفين: settings.Makefile (الإعداد الرئيسي: السيناريو المراد تشغيله والسجلات البعيدة ووضع التشغيل headless لمحاكي السفن) وMakefile (مهام GNU make: build لبناء الصور والتطبيقات، وrun-bc لبدء المحاكي، وup/down لبدء المنصة وإيقافها، وopen-home لفتح الواجهة).</p>
+<h3>2.5. واجهة الإدارة الرسومية</h3>
+<p>توفر MaCySTe واجهة إدارة ويب للوصول إلى وحداتها. يعرض الشكل 2 إحدى configurations الممكنة: شبكة 2×2 قابلة لتغيير الحجم: الإطار الأول للأجهزة (الطيار الآلي مفعّل للحفاظ على اتجاه 30 درجة وسرعة 6 عقد)، والثاني لـECDIS (موقع السفينة وأهداف AIS والخريطة الإلكترونية لخليج جنوى مع تراكب صورة الرادار الكاملة)، والثالث لشاشة PPI لرادار ASTERIX، والرابع لواجهة HMI من IPMS التي تعرض حالة المضخات وخزانات زيت الدفة في الوقت الحقيقي وتتيح التحكم في تفعيل المضخات وضبط موضع الدفة.</p>
+  </section>
+
+  <section>
+    <h2>3. أمثلة توضيحية</h2>
+<p>لإظهار قدرات MaCySTe السيبرانية، نعرض سيناريو هجوم/دفاع (A/D) خاصًا بالسياق. يستعرض الشكل 3 التمديد المضاف إلى البنية الأساسية: ست وحدات مظللة بالرمادي وشبكتان جديدتان — شبكة SIEM (محلية تستضيف حل SIEM ومسبارَي NMEA وMODBUS لالتقاط حركة الشبكة) وشبكة الإنترنت المحاكاة (تحاكي اتصال السفينة بالإنترنت العام عبر موجّه/قمر اصطناعي مخصص).</p>
+<p>من منظور المهاجم، نحاكي برمجية خبيثة (Malware) مثبتة على نظام INS [44] قادرة على التنصت على حركة شبكة الجسر وحقن الحزم والتفاعل مع خادم قيادة وتحكم (C&C) بعيد في الإنترنت العام. يحدد خادم C&C حالة السفينة (القياسات عن بُعد ومواقع السفن القريبة) من بيانات البرمجية، ويستغل قدرات الحقن لتنفيذ هجمات مستهدفة عبر واجهة GUI Attack مخصصة (الشكل 4 يعرض حالة السفينة المعترضة والسفن القريبة على خريطة بحرية مع أدوات التحكم بالبرمجية).</p>
+<p>توفر البرمجية هجومين نموذجيين ضد INS يستغلان ضعف بروتوكولات اتصالاته: (1) حقن حزم NMEA عالية التردد لتزييف قيمة الاتجاه [45]، و(2) حزم ASTERIX لتعطيل صورة الرادار [46]. يعرض الشكل 5 شبكة 2×1: الإطار الأول لواجهة GUI Attack بزرَّي بدء/إيقاف الهجومين (هجوم ASTERIX مبدوء يغطي صورة الرادار — حجب خدمة)، والثاني لشاشة PPI تُظهر تغطية الهجوم لصورة الرادار.</p>
+<p>ومن منظور المدافع، ننفّذ مسابير شبكية لالتقاط حركة شبكتي الجسر والحقل، تُحلَّل لاستخلاص بيانات المستشعرات ونقاط الضبط من الأجهزة الميدانية وتُغذَّى إلى SIEM للاستيعاب والتصور والتحليل. يوضح الشكل 6 أثر هجوم NMEA واستراتيجية كشف ممكنة بشبكة 2×1: الإطار الأول لـECDIS بمسار نشط (أسهم حمراء) يتعقبه الطيار الآلي، فيهجوم الاتجاه المزيّف يجبر الطيار الآلي على الانحراف عن المسار المتوقع؛ والإطار الثاني للوحة SIEM يرسم متوسط قيم الاتجاه المعايَنة (أخضر) ومتوسط ±3σ (بنفسجي/أزرق فاتح)، والانحراف المرئي عن الاتجاه السابق يكشف الهجوم. ويمدّد الجدول 2 الجدول 1 بتفاصيل المكونات الجديدة (مبنية من الصفر بـJS وPython باستثناء mini_router بلينكس مخصص الجدار الناري وopensearch_preseeder الذي ينشر تلقائيًا إعدادات OpenSearch [47] للفهارس والبحوث واللوحات).</p>
+<p>يتيح السيناريو المعروض استغلال MaCySTe في ظروف اختبار وتدريب مختلفة: اختبار قدرة حلول المراقبة القائمة (مثل أنظمة كشف التسلل IDS) على تحليل البروتوكولات الخاصة بالمجال وكشف الشذوذ الناتج عن الهجمات المستهدفة، وتوفير أصول ومصنوعات الهجمات لضبط SIEM للسياق البحري، وتحسين المرونة السيبرانية للسفن عبر تدريب مشغّلي الأمن السيبراني على المعرفة الخاصة بالمجال والبحّارة على فهم آثار هذه الهجمات وعواقبها.</p>
+  </section>
+
+  <section>
+    <h2>4. الأثر والخاتمة</h2>
+<p>توفر MaCySTe منصة اختبار تُعيد إنتاج البنية التحتية الشبكية والأنظمة والمعدات الأساسية والبروتوكولات الخاصة بالمجال وإعدادات CPS مرجعية على متن السفن. ويتيح مكوّن ربط المحاكيات الخارجية — مع التركيز على محاكي السفن — للمنصة العمل في بيئة واقعية للغاية. وهذه الميزات أساسية للباحثين لمحاكاة هجمات سيبرانية معقدة ومستهدفة ضد السفن وتحليلها ودراسة التدابير المضادة اللازمة. كما تمثل MaCySTe بيئة مناسبة لتدريب مشغّلي الأمن السيبراني في المجال البحري، وزيادة وعي البحّارة وتعاونهم لمواجهة التهديدات.</p>
+<p>وقد استُغلت MaCySTe فعليًا في سياقات متعددة: أُجري تحليل عدائي لبروتوكول ASTERIX وصُمّمت هجمات تستهدف نظام الرادار [46] وقُيّمت آثارها وأُنشئ حل مراقبة دفاعي؛ واستُخدمت وحدة رادار ASTERIX مصدر بيانات لاختبار إطار اتصالات سفينة-إلى-شاطئ في الوقت الحقيقي [48]؛ واستُخدمت في [49] لعرض الحاجة لمركز عمليات أمنية متخصص لمساندة السفن الجارية وتقديم برنامج تدريب لمشغّليه بأنشطة عملية واقعية. وفي المستقبل، نأمل نمو مجتمع من المطورين والمستخدمين حول MaCySTe لتتحسن المكونات المدعومة وسيناريوهات الاستخدام، وتصبح مرجعًا بحثيًا وصناعيًا لأصول اختبارات وتدريبات الأمن السيبراني في المجال البحري.</p>
+  </section>
+
+  <section>
+    <h2>إقرارات وتوافر البيانات</h2>
+<p><strong>إقرار تضارب المصالح:</strong> يقرّ المؤلفون بأنه ليست لديهم مصالح مالية متنافسة معروفة أو علاقات شخصية يمكن أن تكون قد أثّرت ظاهريًا في العمل المُبلغ عنه في هذه الورقة.</p>
+<p><strong>الشكر:</strong> مُوّل هذا العمل جزئيًا بمشروع NextGenerationEU «الأمن والحقوق في الفضاء السيبراني» (SERICS) وبدعم بحثي من Fincantieri E-phors S.p.A. وأُنجز بينما كان Giacomo Longo مسجلًا في الدكتوراه الوطنية الإيطالية في الذكاء الاصطناعي بجامعة سابينزا روما بالتعاون مع جامعة جنوى.</p>
+<p><strong>توافر البيانات:</strong> لم تُستخدم بيانات في البحث الموصوف في المقال.</p>
+  </section>
+
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+<p>The increasing reliance on technology and automation in the maritime sector has made it more vulnerable to cyberattacks. Cyber threats to ships and offshore platforms can have serious consequences, including accidents leading to loss of life, asset damage, or environmental impact. One primary means of countering these threats is developing and testing countermeasures tailored to the shipboard infrastructures and training the personnel. To this aim, we present MaCySTe, an open-source project that provides a testbed reproducing the network infrastructure and core components of the onboard cyber–physical systems. As it interfaces with ship simulators, it allows for realistic testing and training sessions involving cybersecurity and maritime operators. We expect that MaCySTe will contribute to fostering cybersecurity protection and awareness in this critical sector.</p>
+<p><strong>Keywords:</strong> Maritime cybersecurity; Digital twin; Testbed; Cyber–physical systems; Cybersecurity testing; Cybersecurity training; Cyber ranges.</p>
+<p><strong>Code metadata:</strong> Current code version v1.1.1 · Permanent link to code: <a href="https://github.com/ElsevierSoftwareX/SOFTX-D-23-00042" dir="ltr">github.com/ElsevierSoftwareX/SOFTX-D-23-00042</a> · Legal code license: GNU AGPLv3 · Versioning: git · Languages/tools: C++, Python, Rust, OpenPLC, FUXA, NATS · Requirements: envsubst, flatpak, flatpak-builder, make, Podman, Python, Linux · Documentation: <a href="https://crack-mcr.github.io/MaCySTe" dir="ltr">crack-mcr.github.io/MaCySTe</a> · Support: <a href="mailto:giacomo.longo@dibris.unige.it" dir="ltr">giacomo.longo@dibris.unige.it</a>.</p>
+  </section>
+
+  <section>
+    <h2>1. Motivation and Significance</h2>
+<p>Cyber–Physical Systems (CPS) [1] are complex architectures often composed of a plethora of integrated networking and computational technologies [2]. From a cybersecurity standpoint, this complexity makes them a very stimulating target for malicious actors as (i) it is hard to evaluate their real attack surface and, therefore, reliably secure them, and (ii) the effects of successful attacks can severely affect assets, the environment, and people. CPSs apply to several different domains [3] (e.g., critical infrastructures, automotive, avionics, or health care and medicine), each with its own specific set of security and functional requirements. Securing such domains requires, on the one hand, understanding the actual attack surface and, on the other hand, defining proper protection and monitoring solutions. Addressing the first point demands the availability of specific testbeds (see, for example, [4], [5], [6], [7]) that provide a controlled environment in which to simulate threats and evaluate the effectiveness of countermeasures, and—concerning the latter point—support the definition of domain-specific security mechanisms that can reduce the attack surface as much as possible (see, e.g., [8], [9], [10], [11]).</p>
+<p>Among such CPS-based domains, it is worth mentioning the maritime sector as one of the most affected by cyberattacks [12], [13]. Ships heavily depend on complex CPSs [14] and are a significant focus for attackers [15], [16], given the continuously expanding threat landscape [17], [18]. Consequently, there is an urgent need for dependable testbeds that can simulate real ships' infrastructures.</p>
+<p>In this paper, we present a Maritime Cyber Security Testbed, namely MaCySTe, that provides a virtual environment accurately reproducing the main components of a CPS operating on modern ships. We detail the main features it supports below.</p>
+<p><strong>Domain-specific sensors, actuators, and controllers.</strong> It can simulate the main onboard sensors, e.g., a Radar antenna, the Electronic Position Fixing System (EPFS), the Speed and Distance Measurement Equipment (SDME), the Compass, the Gyroscope, and the Automatic Identification System (AIS) transponder [19]. Moreover, it integrates a set of characteristic actuators and controllers by providing the digital twin of a Steering Gear Control System (SGCS). Such a controller is representative of one of the core functions, i.e., direction, and works according to the International Convention for the Safety of Life at Sea (SOLAS) [20] regulation and requirements.</p>
+<p><strong>Representative and modular physics.</strong> The testbed operates in an environment representative of the physical one by connecting with a ship and hydraulic system simulators. The first feeds the data emitted from sensors. The second evolves the characteristic variables of SGCS, e.g., oil temperature, pressure, or pump RPM. It is worth noting that such connections occur through an integration layer that leverages a dedicated Message Queue (MQ) for exchanging data. This architecture simplifies replacing existing solutions, e.g., integrating a different bridge simulator, and adding new components, e.g., integrating a propulsion system and the corresponding physical model simulator.</p>
+<p><strong>Integrated Bridge System.</strong> Like any modern ship, it simulates an Integrated Bridge System (IBS), i.e., interconnected hardware and software systems allowing centralized access to navigational, control, and monitoring information. In particular, it hosts the core equipment of an Integrated Navigation System (INS) [21], namely an Electronic Chart Display and Information System (ECDIS) and a Radar Plan Position Indicator (PPI), and creates their interconnection to centralize the access to sensor information. Moreover, it provides a host that can monitor and control the SGCS. It simulates a primary function of an Integrated Platform Management System (IPMS).</p>
+<p><strong>Domain-specific network configuration and protocols.</strong> Network zones and components connections follow the typical layout of a ship area network. It complies with the IEC 61162–450 standard [22] as it adopts the NMEA-0183 [23] protocol and Multicast UDP for communications between equipment and onboard sensors. Moreover, the antenna can transmit Radar video information using the Navico Broadband Radar BR24 [24] or the Eurocontrol standard ASTERIX Cat−240 [25] protocols. Lastly, communications between Programmable Logic Controllers (PLC) and interactions with the IPMS work using the de-facto standard MODBUS [26] protocol.</p>
+<p><strong>Human-in-the-loop.</strong> Integrating a ship simulator, marine equipment, and shipboard-like controls enables the seafarer to interact with the testbed. Moreover, we added to the ship simulator a scenario set on the Ligurian Sea and the Port of Genoa (Coordinates: 44°24′10″ N, 8°55′0″ E) to run the simulations in a realistic environment. These capabilities can support training and testing sessions to fill the cybersecurity awareness gap onboard [27], [28] and prepare operators to respond appropriately to cyber threats.</p>
+<p>Several literature works considered testbeds for maritime cybersecurity. Sicard et al. [29] develop a physical testbed of a warship. Their primary emphasis revolves around direction, energy, artillery, and propulsion. Although MaCySTe uses only virtual components, it implements the direction function closely resembling their approach. Amro et al. [30] present a hybrid testbed representing an autonomous passenger ship. They use traditional virtualization to execute software that MaCySTe already includes or can easily integrate. They establish interfaces integrating physical components using various technologies, including USB and Wi-Fi. Currently, MaCySTe does not have such functionality, but we plan it for future work due to the flexibility of the containerization solution. In [31], the authors model a bridge network with a BR24 Radar unit, PPI, and navigation sensors. MaCySTe provides support for all these features. Tam et al. [32] discuss simulation, emulation, and live systems for maritime training and research by presenting their hybrid Cyber-SHIP Lab. As they stated, although simulation can be limited by conceptual models, solutions like MaCySTe are cheaper and quicker to develop. Testbeds can also be used as a cornerstone in maritime cyber ranges. As MaCySTe partially implements features described in [33], [34], we are also working on integrating it into a multi-domain scenario for cyber ranges. While serving similar functionalities of the above works, MaCySTe offers distinctive features, as follows: (i) available as an open-source project, (ii) self-contained in a single Linux machine and accessible via a web browser, and (iii) simulates a Radar unit and PPI with ASTERIX CAT240 protocol support.</p>
+  </section>
+
+  <section>
+    <h2>2. Software Description</h2>
+<p>MaCySTe runs on Linux using containerization as the pillar technology. The recommended system requirements are 4 CPUs, 12 GB of RAM, 50 GB of storage, and a graphic card supporting OpenGL. We detail below its internals.</p>
+<h3>2.1. Testbed Architecture</h3>
+<p>Fig. 1 depicts the architecture of MaCySTe. It consists of four networks, namely Bridge, Control, Field, and Integration. The Bridge network hosts components of the IBS. The Data Collection Unit (DCU) and the Radar Antenna receive sensor data from the ship simulator and transmit them as multicast UDP packets using NMEA and BR24/Asterix protocols. Such data feed the ECDIS, the Radar PPI, and the Autopilot. This network also connects the IPMS for controlling and monitoring the onboard systems from the bridge (Fig. 1).</p>
+<p>The Control network hosts controllers of the vessel automation. The Autopilot processes navigation data and automatically controls the rudder and speed according to preset values. The IPMS uses the connection with this network to interact with controllers. The Engine Order Telegraph changes the speed by supervising the PLCs, i.e., Left and Right, connected with engines. The Helm steers the ship through the PLC Master Rudder. This PLC controls oil tanks and pumps of SCGS via five PLCs connected by a dedicated Field network. It measures SGCS variables using the SGCS Sensors component.</p>
+<p>Integration is an internal management network not tied to the ship infrastructure. It hosts a Message Queue for interfacing simulators, i.e., Ship and SGCS Model, with the ship's sensors and controllers. Lastly, it connects the management Graphical User Interface (GUI) for accessing the testbed.</p>
+<h3>2.2. Components, Modules, and Scenarios</h3>
+<p>MaCySTe revolves around the concepts of component, module, and scenario. A component is the basic building block for elements of the testbed. Each component is designed to be reusable and has parameters that must be specified before use. A module comprises one or more components, fixes their parameters, and can be instantiated in the testbed. For example, openplc is the component providing a software PLC that requires a Ladder Logic [35] program to run as a parameter. sgs_master is the module corresponding to the PLC Master Rudder. It includes the openplc component and specifies which program to run. Implementing components and modules leverages Pods [36] or Flatpak [37] apps.</p>
+<p>Moreover, the testbed can be executed with different customizations, namely scenarios. Briefly, a scenario consists of a network infrastructure that connects running modules. Each customization specifies the included modules and their IP addressing. A scenario starts with custom shell scripts that use Podman [38] for creating networks and executing Pods and Flatpak to run apps. MaCySTe ships with two scenarios: (i) the core one that implements the architecture in Fig. 1, and (ii) an extension that adds an instance of a Security Information and Event Management (SIEM) and a malware executing targeted attacks, as presented in Section 3.</p>
+<h3>2.3. Components and Modules Implementation</h3>
+<p>This section discusses the components and modules implementation of the core scenario. In Table 1, for each component, we detail (i) the name, (ii) the implementation approach (cf. Impl. column), (iii) the modules including it, and (iv) a brief description (see [35], [39], [40], [41], [42], [43]). In particular, the approach specifies whether the implementation is built-from-scratch, patched off-the-shelf/framework, or off-the-shelf software. We used JavaScript, Python, or Rust for all the built-from-scratch software. We patched an existing ship simulator, i.e., Bridge Command [39], to exchange simulation data with an MQ, among other improvements. We used process visualization software, i.e., FUXA [40], as the framework for implementing the Human Machine Interface (HMI) of IPMS. We customized multiple instances of a software PLC, i.e., OpenPLC [35], with Ladder Logic programs controlling the automation of SGCS. We integrated NATS [41], OpenCPN [42] with plugin [43] for Navico Broadband Radars (BR24) to provide the functionalities of MQ and ECDIS with Radar overlay, respectively. Lastly, we highlight that all the components are distributed as containers except for bridgecommand, which we packaged as a Flatpak app. Flatpak ensures broader compatibility with graphic cards to the ship simulator.</p>
+<h3>2.4. Configure and Manage the Testbed</h3>
+<p>MaCySTe comes with two main directories, namely doc and src, that keep the documentation and artifacts for configuring and managing the testbed, respectively. The src directory includes: configs (configuration files for modules, e.g., electronic charts for ECDIS); containers (Containerfile scripts for building container images); flatpaks (manifest files for building components as Flatpak apps); pods (YAML files for defining components as Pods); scenarios (the 00-modules subdirectory keeps module definitions with config.Makefile for required components and vars.Makefile for parameter values; other subdirectories keep scenario definitions with required modules and alloc.Makefile IP allocations); state (stateful data generated by modules during executions, e.g., the MQ message buffer). The src directory also includes settings.Makefile (main configuration: scenario to start, remote registries, headless ship simulator mode for systems without a graphic card) and Makefile (GNU make targets: build, run-bc to start the ship simulator, up/down to start/stop the testbed, open-home to open the GUI).</p>
+<h3>2.5. Management Graphical User Interface</h3>
+<p>MaCySTe provides a web management GUI for accessing its modules. Fig. 2 shows one possible configuration: a resizable 2×2 grid. In the first frame, ship controls (autopilot maintaining constant heading 30 degrees and speed 6 knots). In the second, ECDIS showing the ship's position and AIS targets with the electronic chart of the Gulf of Genoa overlaid with the full Radar image. In the third, the ASTERIX Radar PPI display. In the fourth, the HMI from IPMS showing and monitoring pump and rudder oil-tank status in real time, allowing control of pump activation and rudder position.</p>
+  </section>
+
+  <section>
+    <h2>3. Illustrative Examples</h2>
+<p>To show the cybersecurity capabilities of MaCySTe, we represent a context-specific Attack/Defense scenario. In Fig. 3, we present the extension made to the core architecture: six gray-highlighted modules and two networks, namely SIEM network and Simulated Internet. The SIEM network is a local network hosting a Security Information and Event Management (SIEM) solution and probes for capturing NMEA and MODBUS traffic (NMEA Probe, MODBUS Probe). Simulated Internet mimics the ship connection to the public Internet via a dedicated (satellite) Router.</p>
+<p>From the attacker's perspective, we simulate malicious software (Malware) installed on the INS [44]. It can overhear Bridge network traffic, inject packets, and interact with a remote Command &amp; Control (C&amp;C) server in the public Internet. C&amp;C identifies the ship's state, i.e., telemetry and positions of nearby vessels, with data from the malware, and leverages injection capabilities to execute targeted attacks. Malware provides two sample attacks against INS. They exploit weaknesses in its communication protocols by injecting (i) high-frequency NMEA packets to fake the heading value [45] and (ii) ASTERIX packets aiming at disrupting the Radar image [46]. C&amp;C is managed using a dedicated GUI named GUI Attack (Fig. 4 visualizes the ship's state and nearby vessels on a nautical chart with malware control and attack facilities).</p>
+<p>In Fig. 5, MaCySTe is configured with a 2×1 grid: GUI Attack with the attack form (start/stop buttons; the ASTERIX attack is started, covering the Radar image—a denial of service; the NMEA attack is stopped, requiring a heading value and injection frequency) and a PPI display showing the covered Radar image.</p>
+<p>From the defender's perspective, we implement network probes capturing Bridge and Field network traffic. Such traffic is parsed to extract sensor data and setpoints from field devices and fed to SIEM for ingestion, visualization, and analysis. In Fig. 6, we demonstrate the NMEA attack effect and a possible detection strategy with a 2×1 grid: ECDIS has an active route (red arrows) tracked by the autopilot, while the NMEA heading-sensor attack forces the autopilot to veer off the expected course; the SIEM dashboard plots sampled heading averages (green) and average±3σ statistics (purple/light blue), and the visible deviation from the previous trend highlights the attack. In Table 2, we extend Table 1 with new component details (all built from scratch in JS/Python except mini_router with custom firewall Linux and opensearch_preseeder auto-deploying OpenSearch [47] index/search/dashboard configuration).</p>
+<p>The presented scenario allows MaCySTe to be exploited in different testing and training conditions: testing whether existing monitoring solutions (e.g., Intrusion Detection Systems) can analyze domain-specific protocols and detect anomalies from targeted attacks; providing attack assets and artifacts for tailoring SIEMs to the maritime context; and improving ships' cyber resilience by training cybersecurity operators on domain-specific knowledge and seafarers on understanding the effects and consequences of such cyberattacks.</p>
+  </section>
+
+  <section>
+    <h2>4. Impact and Conclusions</h2>
+<p>MaCySTe provides a testbed replicating the network infrastructure, core systems and equipment, domain-specific protocols, and configurations of a reference CPS onboard ships. The component of MaCySTe that interfaces external simulators—with an emphasis on the ship simulator—allows the testbed to operate in a highly realistic environment. The above features are essential for researchers to simulate and analyze complex and targeted cyberattacks against ships and study necessary countermeasures. Moreover, MaCySTe represents a suitable environment for training cybersecurity operators in the maritime domain, increasing seafarers' awareness and cooperation to counter threats.</p>
+<p>Regarding the above capabilities, MaCySTe has already been exploited in different contexts. Specifically, we utilized it to conduct an adversarial analysis of the ASTERIX protocol, devise attacks targeting the Radar system [46], assess their effects, and create a defensive monitoring solution. The ASTERIX Radar unit was also used as the data source for testing a novel ship-to-shore communication framework [48]. In [49], we argued the need for a specialized security operation center to assist the ships underway. We used MaCySTe to present a training program for their operators using realistic hands-on activities. In the future, we hope a community of developers and users around MaCySTe can grow. As a result, the tool can improve in terms of supported components and use-case scenarios and become a research and industrial reference asset for cybersecurity tests and training in the maritime domain.</p>
+  </section>
+
+  <section>
+    <h2>Declarations, Acknowledgments, and Data Availability</h2>
+<p><strong>Declaration of competing interest:</strong> The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this article.</p>
+<p><strong>Acknowledgments:</strong> This work was partially funded by the NextGenerationEU project “Security and Rights in CyberSpace” (SERICS) and supported by research funding from Fincantieri E-phors S.p.A. It was carried out while Giacomo Longo was enrolled in the Italian National Doctorate on Artificial Intelligence run by the Sapienza University of Rome in collaboration with the University of Genoa.</p>
+<p><strong>Data availability:</strong> No data was used for the research described in the article.</p>
+  </section>
+
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] M. S. Mahmoud, M. M. Hamdan, and U. A. Baroudi, “Modeling and control of Cyber-Physical Systems subject to cyber attacks: A survey of recent advances and challenges,” <em>Neurocomputing</em>, vol. 338, pp. 101–115, 2019. <a href="https://doi.org/10.1016/j.neucom.2019.01.099">10.1016/j.neucom.2019.01.099</a></li>
+      <li>[2] A. Humayed, J. Lin, F. Li, and B. Luo, “Cyber-physical systems security—A survey,” <em>IEEE Internet Things J.</em>, vol. 4, no. 6, pp. 1802–1831, 2017. <a href="https://doi.org/10.1109/jiot.2017.2703172">10.1109/jiot.2017.2703172</a></li>
+      <li>[3] J. Shi, J. Wan, H. Yan, and H. Suo, “A survey of cyber-physical systems,” in <em>2011 Int. Conf. Wireless Communications and Signal Processing</em>, IEEE, 2011. <a href="https://doi.org/10.1109/wcsp.2011.6096958">10.1109/wcsp.2011.6096958</a></li>
+      <li>[4] I. A. Oyewumi et al., “ISAAC: The Idaho CPS smart grid cybersecurity testbed,” in <em>2019 IEEE Texas Power and Energy Conf.</em>, IEEE, 2019. <a href="https://doi.org/10.1109/tpec.2019.8662189">10.1109/tpec.2019.8662189</a></li>
+      <li>[5] F. Luo et al., “Cybersecurity testing for automotive domain: A survey,” <em>Sensors</em>, vol. 22, no. 23, 9211, 2022. <a href="https://doi.org/10.3390/s22239211">10.3390/s22239211</a></li>
+      <li>[6] M. Strohmeier, G. Tresoldi, L. Granger, and V. Lenders, “Building an avionics laboratory for cybersecurity testing,” in <em>Cyber Security Experimentation and Test Workshop</em>, ACM, 2022. <a href="https://doi.org/10.1145/3546096.3546101">10.1145/3546096.3546101</a></li>
+      <li>[7] A. A. Hady, A. Ghubaish, T. Salman, D. Unal, and R. Jain, “Intrusion detection system for healthcare systems using medical and network data: A comparison study,” <em>IEEE Access</em>, vol. 8, pp. 106576–106584, 2020. <a href="https://doi.org/10.1109/access.2020.3000421">10.1109/access.2020.3000421</a></li>
+      <li>[8] R. Alguliyev, Y. Imamverdiyev, and L. Sukhostat, “Cyber-physical systems and their security issues,” <em>Comput. Ind.</em>, vol. 100, pp. 212–223, 2018. <a href="https://doi.org/10.1016/j.compind.2018.04.017">10.1016/j.compind.2018.04.017</a></li>
+      <li>[9] S. Han, M. Xie, H.-H. Chen, and Y. Ling, “Intrusion detection in cyber-physical systems: Techniques and challenges,” <em>IEEE Syst. J.</em>, vol. 8, no. 4, pp. 1052–1062, 2014. <a href="https://doi.org/10.1109/jsyst.2013.2257594">10.1109/jsyst.2013.2257594</a></li>
+      <li>[10] Y. Ashibani and Q. H. Mahmoud, “Cyber physical systems security: Analysis, challenges and solutions,” <em>Comput. Secur.</em>, vol. 68, pp. 81–97, 2017. <a href="https://doi.org/10.1016/j.cose.2017.04.005">10.1016/j.cose.2017.04.005</a></li>
+      <li>[11] S. Huang, C.-J. Zhou, S.-H. Yang, and Y.-Q. Qin, “Cyber-physical system security for networked industrial processes,” <em>Int. J. Autom. Comput.</em>, vol. 12, no. 6, pp. 567–578, 2015. <a href="https://doi.org/10.1007/s11633-015-0923-9">10.1007/s11633-015-0923-9</a></li>
+      <li>[12] P. H. Meland, K. Bernsmed, E. Wille, Ø. J. Rødseth, and D. A. Nesheim, “A retrospective analysis of maritime cyber security incidents,” <em>TransNav</em>, vol. 15, no. 3, pp. 519–530, 2021. <a href="https://doi.org/10.12716/1001.15.03.04">10.12716/1001.15.03.04</a></li>
+      <li>[13] M. A. B. Farah et al., “Cyber security in the maritime industry: A systematic survey of recent advances and future trends,” <em>Information</em>, vol. 13, no. 1, 22, 2022. <a href="https://doi.org/10.3390/info13010022">10.3390/info13010022</a></li>
+      <li>[14] I. Progoulakis, P. Rohmeyer, and N. Nikitakos, “Cyber physical systems security for maritime assets,” <em>J. Mar. Sci. Eng.</em>, vol. 9, no. 12, 1384, 2021. <a href="https://doi.org/10.3390/jmse9121384">10.3390/jmse9121384</a></li>
+      <li>[15] M. Caprolu, R. Di Pietro, S. Raponi, S. Sciancalepore, and P. Tedeschi, “Vessels cybersecurity: Issues, challenges, and the road ahead,” <em>IEEE Commun. Mag.</em>, vol. 58, no. 6, pp. 90–96, 2020. <a href="https://doi.org/10.1109/mcom.001.1900632">10.1109/mcom.001.1900632</a></li>
+      <li>[16] O. S. Hareide, Ø. Jøsok, M. S. Lund, R. Ostnes, and K. Helkala, “Enhancing navigator competence by demonstrating maritime cyber security,” <em>J. Navig.</em>, vol. 71, no. 5, pp. 1025–1039, 2018. <a href="https://doi.org/10.1017/s0373463318000164">10.1017/s0373463318000164</a></li>
+      <li>[17] G. Potamos, S. Theodoulou, E. Stavrou, and S. Stavrou, “Maritime cyber threats detection framework: Building capabilities,” in <em>WISE 2022</em>, Springer, 2022, pp. 107–129. <a href="https://doi.org/10.1007/978-3-031-08172-9_8">10.1007/978-3-031-08172-9_8</a></li>
+      <li>[18] B. Svilicic, J. Kamahara, M. Rooks, and Y. Yano, “Maritime cyber risk management: An experimental ship assessment,” <em>J. Navig.</em>, vol. 72, no. 5, pp. 1108–1120, 2019. <a href="https://doi.org/10.1017/s0373463318001157">10.1017/s0373463318001157</a></li>
+      <li>[19] ITU, “M.1371 Technical characteristics for an automatic identification system using time division multiple access in the VHF maritime mobile frequency band,” Recommendation M.1371-5, International Telecommunication Union, 2014.</li>
+      <li>[20] IMO, “International convention for the safety of life at sea: Consolidated Text of the 1974 SOLAS convention, the 1978 SOLAS protocol, the 1981 and 1983 SOLAS amendments,” International Maritime Organization, 1986.</li>
+      <li>[21] IMO, “Adoption of the revised performance standards for integrated navigation systems (INS),” Resolution MSC.252(83), International Maritime Organization, 2007.</li>
+      <li>[22] IEC, “Maritime navigation and radiocommunication equipment and systems–Digital interfaces–Part 450: Multiple talkers and multiple listeners–Ethernet interconnection,” International Electrotechnical Commission, 2018.</li>
+      <li>[23] IEC, “61162-1 Maritime navigation and radiocommunication equipment and systems—Digital interfaces—Part 1: Single talker and multiple listeners,” International Electrotechnical Commission, 2016.</li>
+      <li>[24] A. Dabrowski, S. Busch, and R. Stelzer, “A digital interface for imagery and control of a navico/lowrance broadband radar,” in <em>Robotic Sailing</em>, Springer, 2011, pp. 169–181. <a href="https://doi.org/10.1007/978-3-642-22836-0_12">10.1007/978-3-642-22836-0_12</a></li>
+      <li>[25] Eurocontrol, “Specification for surveillance data exchange – ASTERIX category 240: Radar video transmission,” 1st ed., EUROCONTROL-SPEC-0149-240, 2015. [Online]. Available: <a href="https://www.eurocontrol.int/publication/cat240-eurocontrol-specification-surveillance-data-exchange-asterix">eurocontrol.int/publication/cat240</a></li>
+      <li>[26] A. Swales, “Open Modbus/TCP specification,” Schneider Electric, vol. 29, pp. 3–19, 1999.</li>
+      <li>[27] D. Heering, O. Maennel, and A. Venables, “Shortcomings in cybersecurity education for seafarers,” in <em>Developments in Maritime Technology and Engineering</em>, CRC Press, 2021, pp. 49–61. <a href="https://doi.org/10.1201/9781003216582-06">10.1201/9781003216582-06</a></li>
+      <li>[28] K. Kanwal, W. Shi, C. Kontovas, Z. Yang, and C.-H. Chang, “Maritime cybersecurity: are onboard systems ready?” <em>Marit. Policy Manag.</em>, pp. 1–19, 2022. <a href="https://doi.org/10.1080/03088839.2022.2124464">10.1080/03088839.2022.2124464</a></li>
+      <li>[29] F. Sicard, E. Hotellier, and J. Francq, “An industrial control system physical testbed for naval defense cybersecurity research,” in <em>2022 IEEE European Symp. Security and Privacy Workshops</em>, IEEE, 2022. <a href="https://doi.org/10.1109/eurospw55150.2022.00049">10.1109/eurospw55150.2022.00049</a></li>
+      <li>[30] A. Amro and V. Gkioulos, “Communication and cybersecurity testbed for autonomous passenger ship,” in <em>Computer Security. ESORICS 2021 Int. Workshops</em>, Springer, 2022, pp. 5–22. <a href="https://doi.org/10.1007/978-3-030-95484-0_1">10.1007/978-3-030-95484-0_1</a></li>
+      <li>[31] K. Wolsing et al., “Radarsec-Lab,” Zenodo, 2022. <a href="https://doi.org/10.5281/zenodo.7188549">10.5281/zenodo.7188549</a></li>
+      <li>[32] K. Tam, K. Forshaw, and K. Jones, “Cyber-SHIP: Developing next generation maritime cyber research capabilities,” in <em>Proc. ICMET Oman</em>, IMarEST, 2019. <a href="https://doi.org/10.24868/icmet.oman.2019.005">10.24868/icmet.oman.2019.005</a></li>
+      <li>[33] A. Oruc, V. Gkioulos, and S. Katsikas, “Towards a cyber-physical range for the integrated navigation system (INS),” <em>J. Mar. Sci. Eng.</em>, vol. 10, no. 1, 107, 2022. <a href="https://doi.org/10.3390/jmse10010107">10.3390/jmse10010107</a></li>
+      <li>[34] G. Potamos, A. Peratikou, and S. Stavrou, “Towards a maritime cyber range training environment,” in <em>2021 IEEE Int. Conf. Cyber Security and Resilience</em>, IEEE, 2021. <a href="https://doi.org/10.1109/csr51186.2021.9527904">10.1109/csr51186.2021.9527904</a></li>
+      <li>[35] T. R. Alves, M. Buratto, F. M. de Souza, and T. V. Rodrigues, “OpenPLC: An open source alternative to automation,” in <em>IEEE Global Humanitarian Technology Conf.</em>, IEEE, 2014. <a href="https://doi.org/10.1109/ghtc.2014.6970342">10.1109/ghtc.2014.6970342</a></li>
+      <li>[36] “Kubernetes Pods,” 2023. [Online]. Available: <a href="https://kubernetes.io/docs/concepts/workloads/pods/">kubernetes.io/docs/concepts/workloads/pods/</a></li>
+      <li>[37] “Flatpak,” 2023. [Online]. Available: <a href="https://flatpak.org/">flatpak.org</a></li>
+      <li>[38] “Pod Manager tool,” 2023. [Online]. Available: <a href="https://podman.io/">podman.io</a></li>
+      <li>[39] J. Packer, “Bridge Command,” 2023. [Online]. Available: <a href="https://www.bridgecommand.co.uk/">bridgecommand.co.uk</a></li>
+      <li>[40] J. Frangoteam, “FUXA,” 2023. [Online]. Available: <a href="https://frangoteam.org/">frangoteam.org</a></li>
+      <li>[41] “NATS,” 2023. [Online]. Available: <a href="https://nats.io/">nats.io</a></li>
+      <li>[42] “OpenCPN Chart Plotter Navigation,” 2023. [Online]. Available: <a href="https://www.opencpn.org/">opencpn.org</a></li>
+      <li>[43] “OpenCPN Radar PI Plugin,” 2023. [Online]. Available: <a href="https://opencpn.org/OpenCPN/plugins/radarPI.html">opencpn.org/OpenCPN/plugins/radarPI.html</a></li>
+      <li>[44] J. Mass Soldal Lund, O. S. Hareide, and Ø. Jøsok, “An attack on an integrated navigation system,” 2018. <a href="https://doi.org/10.21339/2464-353X.3.2.149">10.21339/2464-353X.3.2.149</a></li>
+      <li>[45] C. Hemminghaus, J. Bauer, and E. Padilla, “BRAT: A BRidge attack tool for cyber security assessments of maritime systems,” <em>TransNav</em>, vol. 15, no. 1, pp. 35–44, 2021. <a href="https://doi.org/10.12716/1001.15.01.02">10.12716/1001.15.01.02</a></li>
+      <li>[46] G. Longo, E. Russo, A. Merlo, and E. Russo, “Attacking (and defending) the maritime radar system,” <em>IEEE Trans. Inf. Forensics Security</em>, pp. 1–15, 2023. <a href="https://doi.org/10.1109/tifs.2023.3282132">10.1109/tifs.2023.3282132</a></li>
+      <li>[47] “OpenSearch,” AWS, 2023. [Online]. Available: <a href="https://opensearch.org/">opensearch.org</a></li>
+      <li>[48] G. Longo, A. Orlich, A. Merlo, and E. Russo, “Enabling real-time remote monitoring of ships by lossless protocol transformations,” <em>IEEE Trans. Intell. Transp. Syst.</em>, pp. 1–11, 2023. <a href="https://doi.org/10.1109/tits.2023.3258365">10.1109/tits.2023.3258365</a></li>
+      <li>[49] M. Raimondi, G. Longo, A. Merlo, A. Armando, and E. Russo, “Training the maritime security operations centre teams,” in <em>2022 IEEE Int. Conf. Cyber Security and Resilience</em>, 2022, pp. 388–393. <a href="https://doi.org/10.1109/CSR54599.2022.9850324">10.1109/CSR54599.2022.9850324</a></li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.1016/j.softx.2023.101426">10.1016/j.softx.2023.101426</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

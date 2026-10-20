@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تحليل ديناميكيات الأمن السيبراني لنظام ECDIS باستخدام طريقة FUCOM الضبابية — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">ECDIS Cyber Security Dynamics Analysis based on the Fuzzy-FUCOM Method</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تحليل ديناميكيات الأمن السيبراني لنظام ECDIS باستخدام طريقة FUCOM الضبابية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Gizem Kayişoğlu, Bünyamin Güneş, Pelin Bolat</span>
+    <span>📄 Transactions on Maritime Science, 2024 · Vol. 13, No. 1</span>
+    <span>🔗 <a href="https://doi.org/10.7225/toms.v13.n01.w09">10.7225/toms.v13.n01.w09</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يُعد نظام عرض الخرائط الإلكترونية والمعلومات (ECDIS) من أهم معدات الملاحة والمعلومات على متن السفن، فضلاً عن كونه مكوّناً حيوياً في الفضاء السيبراني للسفينة. يعاني نظام ECDIS من ثغرات سيبرانية بسبب اتصالاته بالأنظمة الخارجية مثل الرادار ونظام تحديد المواقع العالمي (GPS)، والحساسات عبر الواجهات التسلسلية والتناظرية والرقمية، إضافة إلى تقنيات الواي فاي والإنترنت والشبكات المحلية على متن السفينة. تحدّد هذه الدراسة المخاطر السيبرانية التي تسبب فقدان السيطرة على نظام ECDIS وترتّبها، وكذلك الحواجز التي يمكن وضعها لوقفها، والعواقب المحتملة في حال عدم إيقافها، والتخفيفات التي يمكن استخدامها لتجنّبها. نظراً لنقص البيانات التاريخية والأبحاث حول تحديد ديناميكيات الأمن السيبراني لنظام ECDIS وترتيب أولوياتها، ولأن هذا المجال يتطلب معرفة متخصصة في علوم الحاسوب والملاحة البحرية التشغيلية، استُخدمت في هذه الدراسة طريقة الاتساق الكامل المثلثية الضبابية (FUCOM-F) المبنية على آراء الخبراء. ثم استُخدم إطار ربطة العنق (bow-tie) لتصوير ديناميكيات الأمن السيبراني لنظام ECDIS وتصنيفها الهرمي. تشير النتائج إلى أن التهديد السيبراني الرئيسي لنظام ECDIS هو «الإصابة بالبرمجيات الخبيثة عبر الإنترنت والإنترانت (M1)»، وأن العاقبة المحتملة الرئيسية هي «عدم توافر النظام (O1)». أما أكفأ الحواجز ضد هجمات M1 فهي «برامج الحماية المحدّثة من الفيروسات» و«برامج الفحص»، في حين أن أهم إجراء لمنع أثر O1 هو «تجزئة الشبكة». وبالتالي، تقدّم هذه الدراسة فوائد مهمة للمهنيين البحريين وخبراء الأمن السيبراني من خلال رؤى قيّمة حول منع الهجمات السيبرانية على البنية التحتية لأنظمة الجسر، ولا سيما نظام ECDIS.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>يتعلق الأمن السيبراني في المجال البحري بالبنى التحتية المادية والمعلوماتية حيث تتقاطع الفضاءات السيبرانية مع المجالات البحرية. تظهر السفن كبنى تحتية حرجة مدمجة فيها تقنيات المعلومات والاتصالات والملاحة مع أنظمة التحكم الصناعية. ومع استمرار تطور التكنولوجيا، باتت تقنية المعلومات (IT) والتقنية التشغيلية (OT) على متن السفن مترابطتين فيما بينهما ومع الشبكة العالمية، وتشكّل هذه الشبكة المتكاملة خطراً كبيراً من حيث الهجمات الخبيثة والوصول غير المصرّح به إلى أنظمة السفن وشبكاتها. ومن هذا المنظور، يمكن أن تتعرض جميع الآلات وأنظمة الملاحة والاتصالات على السفينة للتهديدات السيبرانية.</p>
+    <p>في بيئة السفينة، تُعد أنظمة GPS وAIS وECDIS تقنيات الاتصالات والشبكات الرئيسية القائمة على المجال الكهرومغناطيسي المستخدمة على الجسور. كما تضم السفن الرادار وجهاز تسجيل بيانات الرحلة (VDR) والاتصالات عبر الأقمار الصناعية وأنظمة الجسور المتكاملة التي تتلقى تغذية راجعة من عدد كبير من الحساسات. ومع ذلك، فإن نظام ECDIS هو الموضوع الرئيسي لهذه الدراسة. فهو من معدات الملاحة والمعلومات المهمة على متن السفن، وتُلزم اتفاقية سلامة الأرواح في البحار (SOLAS) السفن الدولية بحمله وفق معايير معينة، ويجب أن يكون معتمداً ومحدّثاً بالخرائط الإلكترونية مع صيانة البرامج وترتيبات النسخ الاحتياطي.</p>
+    <p>ينطوي نظام ECDIS على تقنيات الحاسوب والإلكترونيات البحرية التي تفي بمعايير تقنية المعلومات والتقنية التشغيلية، وترد مواصفاته الرئيسية في معايير اللجنة الكهروتقنية الدولية مثل IEC 61162 وIEC 61174 وIEC 62288. وتشمل هذه الواجهات، التي تنقل البيانات التسلسلية والرقمية والتناظرية من مصادر خارجية إلى ECDIS، ثغرات تسمح بالوصول الشبكي غير المرغوب فيه وهجمات حجب الخدمة وفساد النظام وعدم توافره والعبث به. فبروتوكول NMEA 0183 يفتقر إلى التشفير والمصادقة والتحقق، مما يجعل أجهزة ECDIS عرضة لهجمات انتحال الهوية والتقاط الحزم وهجمات الوسيط. وقد أظهرت مجموعة NCC الأمنية إمكانية التأثير على ECDIS واختراقه، إذ يمكن إدخال الفيروسات عبر أقراص USB قابلة للإزالة أو عبر ثغرة غير مُرقّعة من الإنترنت، كما يزرع المهاجمون البرمجيات الخبيثة في أنظمة ECDIS عبر الأقمار الصناعية.</p>
+    <p>تهدف هذه الدراسة إلى ترتيب أولويات ضوابط الأمن السيبراني لنظام ECDIS مع مراعاة التهديدات السيبرانية وعواقبها المحتملة. وتحقيقاً لذلك، حُدّدت أولاً: (1) التهديدات السيبرانية لنظام ECDIS، و(2) الحواجز المانعة لهذه التهديدات، و(3) العواقب المحتملة لهذه التهديدات، و(4) التخفيفات المانعة لهذه العواقب، باعتبارها ديناميكيات الأمن السيبراني لنظام ECDIS. ثم استُخدمت طريقة FUCOM المثلثية الضبابية لترجيح مستوى أهمية هذه الديناميكيات، وعُرضت النتائج في إطار ربطة العنق لإظهار ترتيب هرمي شامل للمخاطر السيبرانية وعمليات تخفيفها.</p>
+  </section>
+
+  <section>
+    <h2>2. مراجعة الأدبيات</h2>
+    <p>كشفت الدراسات الأكاديمية والأحداث السيبرانية والتقارير في القطاع البحري أن نظام ECDIS يحتوي على ثغرات سيبرانية تسبب عواقب حرجة للسفن مثل التصادم والجنوح، وأوصت بإجراء تقييم للمخاطر الخاصة به. ومع ذلك، لا يوجد سوى عدد محدود من الدراسات التي تركز مباشرة على الأمن السيبراني لنظام ECDIS، وقدّم معظمها مناهج لتقييم مخاطر الأمن السيبراني البحري وطبّقها على ECDIS كدراسة حالة. فعلى سبيل المثال، كشف Svilicic وآخرون عن خوادم وأنظمة تشغيل ضعيفة في ECDIS عبر أداة اختبار اختراق وذكروا بعض الهجمات السيبرانية ضدها، واقترحوا تخفيفات عامة مثل تدريب الطاقم وتحديث أنظمة التشغيل وسياسات الأمن السيبراني، بينما أبرز Hareide الوعي بالأمن السيبراني لأنظمة الجسور المتكاملة وعرض هجمات محتملة على ECDIS.</p>
+    <p>من ناحية أخرى، تُظهر مراجعة الأدبيات المتعلقة بمنهجيات تقييم المخاطر السيبرانية في القطاع البحري تنوع المناهج المستخدمة. فقد اقترح Kavallieratos وKatsikas منهجيتي STRIDE وDREAD لتحديد التهديدات الناشئة على السفن وتحليلها نوعياً وكمياً، واقترح Bolbot وآخرون طريقة تحليل المخاطر الأولية السيبرانية، واقترح Tam وJones إطار MaCRA النموذجي لتقييم المخاطر السيبرانية البحرية. غير أن مناهج تقييم المخاطر المقترحة وُضعت للأمن السيبراني البحري عموماً ولم تغطِّ تحديداً أمن ECDIS السيبراني، كما أنها تعرض مستوى المخاطر دون ترتيب أولويات التخفيفات المقترحة للتهديدات الخطرة وعواقبها.</p>
+    <p>يوجد عدد قليل جداً من الدراسات التي تستهدف ترتيب أولويات الديناميكيات السيبرانية للقطاع البحري، منها دراسة Karahalios التي رتّبت الهجمات السيبرانية على السفن في حالة قرصنة بطريقة FAHP الضبابية، ودراسة Yoo وPark التي أجرت تقييماً نوعياً للمخاطر وحلّلت النتائج بطريقة AHP لتحديد أولويات إجراءات التحسين. وعلى حد علم المؤلفين، لم يُتناول ترتيب أولويات الديناميكيات السيبرانية لنظام ECDIS ضمن نظام متكامل في الأدبيات، كما لم يُستكشف استخدام FUCOM الضبابية في الأمن السيبراني البحري من قبل، رغم استخدامها في مجالات أخرى مثل تقييم المخاطر السيبرانية لتقنيات الأمن العام وأنظمة إدارة الطاقة والتحكم. وبالتالي تُدخل هذه الدراسة تطبيقاً جديداً لمنهجية الترجيح على الفضاء السيبراني للسفن (ECDIS).</p>
+  </section>
+
+  <section>
+    <h2>3. المنهجية: طريقة الاتساق الكامل الضبابية (FUCOM-F)</h2>
+    <p>تهدف هذه الدراسة إلى فحص نظام الأمن السيبراني لنظام ECDIS على متن السفن. ولهذا الغرض، كُشفت أولاً التهديدات السيبرانية التي تستغل ثغرات ECDIS والعواقب التي قد تنجم عن تحققها، بالاستناد إلى الحلول المقترحة في تقرير DNV-GL حول الأمن السيبراني في القطاع البحري، إضافة إلى تحليل المعايير التقنية ومؤهلات ECDIS ونقاط ضعف بنيته عبر الأدبيات ودليل التشغيل وشهادات الاعتماد وكتالوجات المصنّعين ومعايير المنظمة الهيدروغرافية الدولية. ثم حُدّدت الحواجز المانعة لهذه التهديدات بالرجوع إلى توصيات تقرير DNV-GL، وحُدّدت العواقب من الأدبيات والتقارير الفنية، والتخفيفات المانعة للعواقب الحرجة. وبعد ذلك استُخدمت طريقة FUCOM-F لفهم أوزان أهمية التهديدات والحواجز والعواقب والتخفيفات، وأُنشئ مخطط ربطة العنق لإظهار الديناميكيات الكلية في مخطط هرمي واحد.</p>
+    <p>تُعد طريقة FUCOM-F، المقترحة من Pamucar وEcer، امتداداً لطريقة الاتساق الكامل التقليدية في البيئة الضبابية لترجيح أهمية المعايير في نظام اتخاذ القرار متعدد المعايير. تُستخدم الأرقام المثلثية الضبابية للتعبير عن آراء الخبراء عبر مقياس لغوي ضبابي يشمل: متساوٍ في الأهمية، وضعيف الأهمية، وعادل الأهمية، ومهم جداً، ومهم إطلاقاً، وتُحوَّل هذه التقييمات اللغوية إلى أرقام مثلثية ضبابية. ثم تُحل مسألة خطية لإيجاد قيم معاملات الترجيح التي تحقق الاتساق الكامل، حيث يتحقق الحد الأدنى للانحراف عن الاتساق الكامل فقط عند استيفاء خاصية التعدّي بين معاملات الترجيح. وتتميز منهجية FUCOM بخوارزمية تنفيذ سهلة ومعاملات ترجيح موثوقة تساعد على اتخاذ قرارات عقلانية، مع تقليل تفضيلات الخبراء وعدم اتساقها في قيم الترجيح النهائية، كما تتطلب عدداً أقل من المقارنات الزوجية مقارنة بغيرها من المنهجيات.</p>
+    <p>طُبّقت خطوات FUCOM-F على مرحلتين: الأولى لتحديد أهمية التهديدات السيبرانية الرئيسية والعواقب المتعلقة بنظام ECDIS، والثانية لتحديد أهمية الحواجز المانعة للتهديدات والتخفيفات المانعة للعواقب. وبعد الحصول على أوزان الأهمية المحلية للحواجز والتخفيفات، ضُربت في أوزان الأهمية المقابلة للتهديدات والعواقب للحصول على الأوزان المثلى الشاملة. طُبّقت الخطوات على درجات كل خبير على حدة باستخدام برنامج Excel لحل المسألة الخطية، ثم أُخذ المتوسط الحسابي للقيم الواضحة الناتجة بعد إزالة الضبابية للحصول على أوزان المعايير النهائية.</p>
+  </section>
+
+  <section>
+    <h2>4. التطبيق والنتائج</h2>
+    <p>لتطبيق طريقة FUCOM-F، أُنشئ جدول معايير هرمي لديناميكيات الأمن السيبراني لنظام ECDIS يشمل التهديدات والحواجز والتخفيفات والعواقب. حُدّدت خمسة تهديدات رئيسية: الإصابة بالبرمجيات الخبيثة عبر الإنترنت والإنترانت (M1)، وإدخال البرمجيات الخبيثة على الوسائط القابلة للإزالة (M2)، والاقتحام عبر الوصول عن بُعد (M3)، وثغرات المكونات المعيارية لأنظمة تقنية المعلومات وأنظمة التحكم الأخرى المتصلة بالإنترنت (M4)، والخطأ البشري والتخريب (M5). وصُمّمت الحواجز كمعايير فرعية للتهديدات، ومنها: الحماية من البرمجيات الخبيثة (M11) والإدارة الأمنية (M12) لتهديد M1، وإغلاق منافذ USB والذاكرة الخارجية الثابتة والفحص المسبق لتهديد M2، والقائمة البيضاء والشبكات الافتراضية الخاصة وإجراءات المصادقة لتهديد M3. أما العواقب الرئيسية فهي: عدم توافر النظام (O1)، وفساد النظام (O2)، وحذف الملفات أو تغييرها (O3)، واختطاف الأجهزة المتصلة مثل GPS وAIS (O4)، وتضرر البنية التحتية (O5)، مع تخفيفات فرعية لكل منها.</p>
+    <p>استُخدمت آراء خمسة خبراء من خلفيات متنوعة في أمن المعلومات — تشمل معالجة المعلومات والأمن وهندسة البرمجيات والأمن السيبراني البحري — مع خبرات تتراوح بين 3 و18 عاماً. قيّم الخبراء المقارنات الزوجية للمعايير والمعايير الفرعية بمقياس من 1 إلى 9 حسب مستوى الأهمية، وحُسب المتوسط الحسابي لدرجاتهم لاستخدامه في خطوات FUCOM-F. حُوّلت درجات الترتيب إلى مقاييس لغوية ضبابية ثم إلى أرقام مثلثية ضبابية بالرجوع إلى الجدول اللغوي، وحُلّت النماذج الخطية للحصول على القيم المثلى لمعاملات الترجيح لكل عامل على حدة.</p>
+    <p>أظهرت النتائج أن أهم تهديد سيبراني رئيسي لنظام ECDIS هو الإصابة بالبرمجيات الخبيثة عبر الإنترنت والإنترانت (M1)، يليه إدخال البرمجيات الخبيثة على الوسائط القابلة للإزالة (M2)، ثم الاقتحام عبر الوصول عن بُعد (M3)، ثم ثغرات المكونات المعيارية (M4)، وأخيراً الخطأ البشري والتخريب (M5). وكانت أهم الحواجز لتهديدات M1 هي برامج الحماية المحدّثة من الفيروسات وبرامج الفحص (G1)، تليها تحديث أنظمة تقنية المعلومات (G2)، وتوثيق التغييرات ومراقبتها (G3)؛ ومن حواجز الإدارة الأمنية (M12) جاءت إجراءات تحديث أنظمة وبرامج ECDIS (Z1) في المرتبة الأولى، تليها إجراءات العامل البشري (Z2) واعتماد المعايير مثل ISO/IEC 27001 (Z5) وتدريب الأفراد (Z3) وتغيير كلمات المرور دورياً (Z4).</p>
+    <p>فيما يتعلق بالعواقب، تبيّن أن أهم عاقبة محتملة هي عدم توافر النظام (O1)، تليها فساد النظام (O2)، ثم حذف الملفات أو تغييرها (O3) وتضرر البنية التحتية (O5) بالمرتبة نفسها، وأخيراً اختطاف الأجهزة المتصلة (O4). وكان أهم تخفيف لمنع عاقبة O1 هو تجزئة الشبكة (B1)، يليه جمع معلومات حركة الشبكة (B2) والإبلاغ المقروء آلياً عن إعدادات الأمن الحالية (B3). وعُرضت النتائج الهرمية الكاملة في مخطط ربطة العنق، حيث رُتّبت التهديدات وعواقبها هرمياً ورُتّبت الحواجز والتخفيفات من اليسار إلى اليمين حسب مستوى تأثيرها.</p>
+  </section>
+
+  <section>
+    <h2>5. المناقشة</h2>
+    <p>حلّلت هذه الدراسة الديناميكيات المكوّنة للأمن السيبراني لنظام ECDIS ورتّبت أولوياتها بنهج شمولي، وحصلت على نظام هرمي يمكن أن يكون دليلاً لضباط السفن المسؤولين عن أمن ECDIS السيبراني ومديري الشركات وحتى شركات التأمين عند وقوع أي حادث سيبراني. ويمكن لمديري الشركات على وجه الخصوص الاستثمار استراتيجياً في الأمن السيبراني، بما فيه ECDIS، عبر التحليل المتعمق للنموذج الهرمي. كما يجب الإقرار بأن حالات عدم اليقين أمر لا مفر منه في جميع المساعي العلمية، ولا سيما في اتخاذ القرار متعدد المعايير، وأن استنباط آراء الخبراء يمكّن من دمج المعايير التي هي في الواقع «تقديرات مستنيرة» لقياس مستوى عدم اليقين الناجم عن ندرة البيانات.</p>
+    <p>يُعد تسلل البرمجيات الخبيثة عبر الإنترنت والإنترانت أبرز مخاطر الأمن السيبراني لنظام ECDIS، إذ يمكن للبرمجيات مثل أحصنة طروادة والفيروسات وبرامج التجسس والفدية والجذور الخفية والديدان اختراق أنظمة الحاسوب وإتلاف البيانات والتسبب بالضرر. ولمكافحة العدوى بالبرمجيات الخبيثة، لا بد من استخدام برامج حماية وفحص محدّثة على أنظمة تقنية المعلومات، والحفاظ على تحديث الحواسيب، وضمان تحديث أي أنظمة تقنية معلومات مستخدمة على متن السفينة وصلاحيتها، وتوثيق أي تعديلات على الأنظمة الحالية ومراقبتها عن كثب. ويشمل ذلك مهام صياغة بروتوكولات أمنية شاملة وتنفيذها، ومراقبة إنفاذها، وتحديث البنية الأمنية، والامتثال للمعايير الدولية مثل ISO/IEC 27001، وتدريب طاقم السفينة، وإجراء تغييرات دورية لكلمات المرور، مع إعطاء الأولوية للتدابير الاستباقية على التفاعلية.</p>
+    <p>يأتي الاقتحام عبر الوصول عن بُعد في المرتبة التالية من حيث الخطورة، إذ يحتاج موظفو تقنية المعلومات غالباً إلى صيانة السفينة عن بُعد بدلاً من الحضور الفعلي، كما تُنفَّذ تحديثات الخرائط الملاحية لنظام ECDIS عبر الإنترنت، مما يعرّض النظام للوصول غير المصرّح به عند غياب الحواجز المطلوبة. ويمكن التخفيف من هذه الاختراقات بإدارة الوصول عن بُعد عبر القوائم البيضاء وضمان نقل البيانات الآمن عبر شبكة محمية بتقنيات تشفير قوية، مع إلزامية استخدام شبكة افتراضية خاصة مشفّرة عند السماح بالوصول عن بُعد، ووضع سياسة لتأمين الوصول عن بُعد لجميع الأطراف وآلية مصادقة للشركات وموظفي تقنية المعلومات ومقدّمي الخدمات. أما أخطر العواقب فهي عدم توافر النظام، إذ يمكن لبرامج الفدية تعطيل توافر النظام عبر الانتشار من خلال برامج التشغيل والحواسيب والخوادم المتصلة بالشبكة، وتشمل تدابير الحماية تجزئة الشبكة وجمع بيانات حركة الشبكة والإبلاغ المقروء آلياً عن الإعدادات الأمنية وفق معيار ISA/IEC 62443.</p>
+  </section>
+
+  <section>
+    <h2>6. الخاتمة</h2>
+    <p>حصلت هذه الدراسة على أوزان أهمية الديناميكيات السيبرانية لنظام ECDIS، حيث حُدّدت التهديدات والعواقب المتعلقة بفقدان السيطرة على النظام وطُوّرت حواجزها وتخفيفاتها، ثم وُجدت أوزان أهميتها بطريقة FUCOM المدمجة بالمنطق الضبابي، وأُنشئ نموذج ربطة العنق لإظهار رؤية شمولية وفق الترتيب الهرمي للديناميكيات. تُعد FUCOM-F طريقة أسهل وأكثر فاعلية لتحديد أهمية المعايير مقارنة بغيرها من منهجيات الترجيح، إذ تتطلب عدداً أقل من مقارنات الخبراء، بينما يعالج المنطق الضبابي مشكلتي الغموض وعدم الدقة في قرارات الخبراء ويعطي نتائج أكثر موثوقية وصلاحية. وتقدّم نتائج الدراسة إرشادات مفصلة لشركات الشحن وأصحاب المصلحة البحريين لاعتماد منهجية للاستثمار في الأمن السيبراني وتحسينه، بما يتماشى مع متطلبات المنظمة البحرية الدولية بإدراج بند الأمن السيبراني في نظام إدارة السلامة.</p>
+    <p>أما الدراسات المستقبلية، فيُقترح تحديد أوزان أهمية ديناميكيات تقنية المعلومات والتقنية التشغيلية المتعلقة بالأمن السيبراني للسفن بشكل منفصل لكل فضاء سيبراني آخر للسفن مثل الرادار وGPS وAIS، باستخدام المنهجية نفسها أو بأساليب حديثة مثل الشبكات العصبية الاصطناعية والشبكات البايزية. ومن قيود الدراسة عدد الخبراء الخمسة رغم خبرتهم، إذ يمكن تحسين العدد والمؤهلات في دراسات لاحقة، كما لا يمكن إزالة حالات عدم اليقين والتحيز بسبب نقص البيانات الإحصائية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>ECDIS is one of the most important pieces of navigational and information equipment on board ships, as well as a vital component of the ship's cyberspace. ECDIS has cyber vulnerabilities because of its connections to external systems like RADAR or GPS, sensors via serial (IEC61162-1/2), analogue, and digital interfaces, as well as onboard Wi-Fi, internet, and LAN technologies. This study identifies and ranks the cyber risks that cause ECDIS control loss, as well as the barriers that can be put in place to stop them, the potential consequences if they are not stopped, and the mitigations that can be utilised to avoid them. Due to a lack of historical data and research on identifying and prioritising ECDIS cyber security dynamics in the literature and the fact that this field necessitates specialised knowledge in terms of computer science and operational maritime navigation, the Fuzzy Triangular Full Consistency Method (FUCOM-F), based on expert opinion, is used in this study. Then, a bow-tie framework is employed to visualize the dynamics of ECDIS cyber security and their hierarchical classification from the analysis as a cyber-architecture. The results indicate that the primary cyber threat for ECDIS is "malware infection via the internet and intranet (M1)." The primary potential consequence, in the event that these cyber threats targeting ECDIS cannot be prevented, is the unavailability of the system (O1). The most efficient barriers against M1 attacks are "up-to-date virus protection" and "scanning software," while the most crucial measure to prevent the impact of O1 is "network segregation." Consequently, in addition to its strong methodological foundation, this research offers significant benefits to maritime professionals and cybersecurity experts by providing valuable insights on preventing cyber-attacks on bridge system infrastructure, particularly ECDIS.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Cybersecurity in the maritime field is about the physical and information infrastructures where cyberspaces intersect with maritime areas. Ships appear as critical infrastructures with information, communication, and navigation technologies integrated with industrial control systems. As technology continues to evolve, information technology (IT) and operational technology (OT) onboard ships are increasingly being connected to each other and to the world-wide network. This integrated network poses a great risk in terms of malicious attacks and unauthorised access to the ship's systems and networks. From this perspective, all machinery, navigation, and communication systems on a ship can be exposed to cyber threats.</p>
+    <p>In the ship environment, GPS, AIS, and ECDIS are the primary electromagnetic field-based communication and networking technologies used on bridges. Ships also carry RADAR, the Voyage Data Recorder (VDR), satellite communications, and integrated bridge systems receiving feedback from many sensors. ECDIS, however, is the main subject of this study. It is a significant item of navigation and information equipment on board vessels, and the SOLAS convention requires international vessels to carry it under certain criteria; it must be type-approved, maintained with updated ENCs, software maintenance, and backup arrangements.</p>
+    <p>ECDIS involves computer technology and marine electronics meeting IT and OT standards, with key specifications in IEC standards such as IEC 61162, IEC 61174, and IEC 62288. These interfaces, which transmit serial, digital, and analogue data from external sources to ECDIS, include vulnerabilities that allow unwanted network access, denial of service, system corruption, unavailability, and tampering. The NMEA 0183 protocol lacks encryption, authentication, and validation, leaving ECDIS devices vulnerable to spoofing, packet sniffing, and man-in-the-middle attacks. The NCC Group has shown that ECDIS can be influenced and infiltrated: viruses can be introduced via a removable USB disk or through an unpatched vulnerability over the internet, and attackers implant malware into ships' ECDIS via satellite.</p>
+    <p>From this point of view, this study aims at prioritising cyber security controls for ECDIS by considering cyber threats and their potential consequences. For this purpose, firstly, (i) ECDIS cyber threats, (ii) the barriers allowing to prevent these threats, (iii) the potential consequences of these threats, and (iv) the mitigations allowing to prevent these consequences are identified as ECDIS cyber security dynamics. Furthermore, the Fuzzy Triangular Full Consistency Method (FUCOM-F) is used to weight the importance level of the ECDIS cyber security dynamics. Finally, the findings derived from FUCOM-F analysis are presented in a bow-tie framework in terms of demonstrating a hierarchical order so as to show ECDIS cyber risks and their mitigation process as a holistic demonstration.</p>
+  </section>
+
+  <section>
+    <h2>2. Literature Review</h2>
+    <p>Academic studies, cyber events, and reports in the maritime sector have revealed that ECDIS contains several cyber vulnerabilities that cause critical consequences for ships, such as collision and grounding, and suggested that a risk assessment should be made for ECDIS. However, there are a limited number of studies focusing directly on ECDIS cyber security in the literature, and most of them offer risk assessment approaches for maritime cyber security performed on ECDIS as a case study. For instance, Svilicic et al. detected vulnerable servers and operating systems of ECDIS via a penetration testing tool and stated some cyber-attacks against these parts, offering general mitigations such as crew training, up-to-date operating systems, and cyber security policies, while Hareide highlighted cyber security awareness for integrated bridge systems and presented possible ECDIS cyber-attacks.</p>
+    <p>On the other hand, reviewing the literature on maritime cyber risk assessment methodologies shows diverse approaches. Kavallieratos and Katsikas offered the STRIDE and DREAD methodologies for the identification and analysis of emerging threats on ships, both qualitatively and quantitatively; Bolbot et al. proposed the Cyber-Preliminary Hazard Analysis method; and Tam and Jones proposed MaCRA, a model-based framework for maritime cyber-risk assessment. However, these risk assessment approaches were proposed for general maritime cybersecurity and did not specifically cover ECDIS cybersecurity, and they present the cyber risk level of the considered system without prioritising the suggested mitigations for risky threats and their consequences.</p>
+    <p>There is a critically low number of studies aiming at the prioritisation of cyber dynamics for the maritime sector, including Karahalios's study ranking ship cyberattacks in a piracy case with the FAHP method and Yoo and Park's study conducting a qualitative risk assessment analysed with AHP to prioritise improvement measures. To the best of the authors' knowledge, the prioritisation of cyber dynamics for ECDIS within a whole system has not been considered in the literature, nor has the utilisation of fuzzy FUCOM for maritime cyber security been investigated, despite its use in other fields such as cyber risk evaluation of general security technologies and energy management systems. This study therefore introduces a novel weighting application to the cyberspace of ships (ECDIS).</p>
+  </section>
+
+  <section>
+    <h2>3. Methodology: the Fuzzy FUCOM Method (FUCOM-F)</h2>
+    <p>This study examines the cyber security system for ECDIS onboard ships. First, the cyber threats exploiting ECDIS vulnerabilities and the consequences that may occur as a result are revealed through the solution proposals in the DNV-GL report on maritime cyber security, alongside analysis of ECDIS technological standards and qualifications and the weaknesses of its infrastructure via the literature, the ECDIS operational handbook, type approval certificates, manufacturers' catalogues, and IHO standards. Barriers to prevent these threats are then defined by referencing DNV-GL recommendations, consequences are identified from literature and technical reports, and mitigations are determined to prevent critical consequences for ECDIS. FUCOM-F is then used to weight the importance of the identified threats, barriers, consequences, and mitigations, and a bow-tie diagram is created to show the overall dynamics in a single hierarchical diagram.</p>
+    <p>The FUCOM-F method, proposed by Pamucar and Ecer, extends the traditional Full Consistency Method into the fuzzy environment for weighting the importance of criteria in a multi-criteria decision-making system. Triangular fuzzy numbers express expert opinions through a fuzzy linguistic scale comprising: equally important, weakly important, fairly important, very important, and absolutely important, which are transformed into triangular fuzzy numbers. A linear problem is then solved to find the weight coefficient values satisfying full consistency, where the minimum deviation from full consistency is achieved only when transitivity among weight coefficients is fully satisfied. FUCOM features an easy implementation algorithm and trustworthy weight coefficients aiding rational decision-making, reduces experts' preference inconsistency in the final weights, and requires fewer pairwise comparisons than other methodologies.</p>
+    <p>Two stages of FUCOM-F application are performed: the first determines the importance of the main ECDIS cyber threats and consequences, and the second determines the importance of barriers for threats and mitigations for consequences. After the local importance weights of barriers and mitigations are obtained, they are multiplied by the corresponding importance weights of threats and consequences respectively to reveal the global optimal weights. The steps are applied to each expert's scores separately with the linear problem solved in Excel for all factors, and the arithmetic mean of the resulting defuzzified crisp values is taken to obtain the final criteria weights.</p>
+  </section>
+
+  <section>
+    <h2>4. Application and Findings</h2>
+    <p>For the FUCOM-F method, a hierarchical criteria table of ECDIS cyber security dynamics was created covering threats, barriers, mitigations, and consequences. Five main threats were identified: malware infection via internet and intranet (M1), introduction of malware on removable media (M2), intrusion via remote access (M3), vulnerabilities of standard components of IT systems and other control systems connected to the internet (M4), and human error and sabotage (M5). Barriers were designed as sub-criteria of threats, including: protection against malware (M11) and security management (M12) for threat M1; closing USB ports, a single fixed external memory, and pre-scanning for threat M2; whitelisting, VPNs, and authentication procedures for threat M3. The main consequences are: system unavailable (O1), system corrupted (O2), files deleted or changed (O3), connected devices such as GPS and AIS hijacked (O4), and infrastructure damaged (O5), each with sub-criteria mitigations.</p>
+    <p>Five expert opinions with diverse information-security backgrounds — spanning information processing, security, software engineering, and maritime cyber security — with experience ranging from 3 to 18 years were used. Experts scored the pairwise comparisons of criteria and sub-criteria on a 1–9 scale by importance level, and the arithmetic means of their scores were used in the FUCOM-F steps. Ranking scores were transformed into fuzzy linguistic scales and then into triangular fuzzy numbers by referencing the linguistic table, and linear models were solved to obtain the optimal values of the weight coefficients for each factor.</p>
+    <p>The results show that the most important main cyber threat for ECDIS is malware infection via the internet and intranet (M1), followed by introduction of malware on removable media (M2), intrusion via remote access (M3), vulnerabilities of standard components (M4), and human error and sabotage (M5). The most important barriers for M1 threats are up-to-date virus protection and scanning software (G1), followed by up-to-date IT systems (G2) and documentation and monitoring of changes (G3); among the security management (M12) sub-barriers, security system and software update procedures for ECDIS (Z1) rank first, followed by human-factor procedures (Z2), adoption of standards such as ISO/IEC 27001 (Z5), personnel training (Z3), and regular password change (Z4).</p>
+    <p>Regarding consequences, the most important potential consequence is system unavailability (O1), followed by system corruption (O2), then files deleted or changed (O3) and infrastructure damaged (O5) at the same rank, and finally hijacking of connected devices (O4). The most critical mitigation to prevent O1 is network segregation (B1), followed by network traffic information collection (B2) and machine-readable reporting of current security settings (B3). The complete hierarchical results are displayed in the bow-tie diagram, with threats and consequences ranked hierarchically and barriers and mitigations ordered left to right by their influence level.</p>
+  </section>
+
+  <section>
+    <h2>5. Discussion</h2>
+    <p>In this study the dynamics constituting ECDIS cyber security have been analysed and prioritised with a holistic approach, and a hierarchical system has been obtained accordingly. With the hierarchical model, ECDIS cyber security is envisaged to be provided at a high level of convergence at the technical level. The model can guide ship officers responsible for ECDIS cyber security, company managers, and even insurers in any cyber incident to make policy on the proposed hierarchical diagram. Company managers in particular can strategically invest in cyber security, including ECDIS, by thoroughly analysing the hierarchical model. It must also be acknowledged that uncertainties are inevitable in all scientific endeavours, especially in multi-criteria decision-making, and expert elicitation enables the incorporation of parameters which are actually "informed estimations" to measure the level of uncertainty arising from data scarcity.</p>
+    <p>Malware infiltration through both the internet and intranet is the most prominent risk to ECDIS cyber security, as Trojans, viruses, spyware, ransomware, rootkits, and worms can infiltrate computer systems, compromising data and causing harm. To mitigate malware infections, it is imperative to utilise up-to-date malware protection and scanning software on IT systems, keep computers updated, ensure any onboard IT systems are regularly updated and valid, and thoroughly document and monitor modifications to current systems. This encompasses formulating and implementing comprehensive security protocols, overseeing their enforcement, upgrading security infrastructure, complying with international standards like ISO/IEC 27001, training ship staff, and conducting periodic password changes, prioritising proactive over reactive measures.</p>
+    <p>Remote access intrusion ranks next in severity, since IT staff often need remote maintenance access to the ship instead of going physically, and ECDIS chart updates are realised over the internet, exposing the system to unauthorised access when required barriers are absent. Such breaches can be mitigated through remote access management with whitelisting, safe data transmission over protected networks using robust encryption, mandatory encrypting VPNs where remote access is permitted, and authentication mechanisms for companies, IT staff, and service providers. The most severe consequence is system unavailability: ransomware can disrupt availability by propagating through drivers, connected PCs, and servers, and protection measures encompass network segmentation, network traffic data collection, and machine-readable reporting of security settings per ISA/IEC 62443.</p>
+  </section>
+
+  <section>
+    <h2>6. Conclusion</h2>
+    <p>In this study, the importance weights of ECDIS cyber dynamics are obtained: the threats and consequences related to the loss of control of ECDIS are defined, their barriers and mitigations are developed, and their importance weights are found via the fuzzy-integrated FUCOM method, with a bow-tie model built to demonstrate a holistic view in accordance with the hierarchical ranking. FUCOM-F is considered an easier and more effective method for defining the importance of criteria than other weighting methodologies because it requires fewer expert comparisons, while fuzzy set theory deals with the abstruseness and ambiguity in expert decisions and yields more reliable and valid results. The results provide detailed guidelines for shipping companies and maritime stakeholders in adopting a methodology for cyber security investment and improvement, in line with the IMO requirement that SOLAS-compliant ships include the cyber security clause in their safety management system.</p>
+    <p>For further studies, the importance weights obtained for IT and OT dynamics related to ship cyber security should be identified separately for other ship cyberspaces such as RADAR, GPS, and AIS, using the same method or state-of-the-art methods such as artificial neural networks and Bayesian networks. The number of experts (five) can be considered a limitation despite their experience, and both the number and qualifications of experts can be improved; additionally, uncertainties and bias cannot be eliminated due to the lack of statistical data.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Svilicic, B. et al. Shipboard ECDIS Cyber Security: Third-Party Component Threats. <em>Pomorstvo</em>, 33(2), pp. 176–180, 2019.</li>
+      <li>[2] Svilicic, B. et al. Maritime Cyber Risk Management: An Experimental Ship Assessment. <em>J. Navigation</em>, 72(5), pp. 1108–1120, 2019.</li>
+      <li>[3] Svilicic, B. et al. A Study on Cyber Security Threats in a Shipboard Integrated Navigational System. <em>J. Mar. Sci. Eng.</em>, 7(10), 2019.</li>
+      <li>[4] Svilicic, B. et al. Assessing Ship Cyber Risks: A Framework and Case Study of ECDIS Security. <em>WMU J. Maritime Affairs</em>, 18(3), pp. 509–520, 2019.</li>
+      <li>[5] Svilicic, B. et al. Raising Awareness on Cyber Security of ECDIS. <em>TransNav</em>, 13(1), pp. 231–236, 2019.</li>
+      <li>[6] Tam, K. &amp; Jones, K. MaCRA: A Model-Based Framework for Maritime Cyber-Risk Assessment. <em>WMU J. Maritime Affairs</em>, 18(1), pp. 129–163, 2019.</li>
+      <li>[7] Kavallieratos, G. &amp; Katsikas, S. Managing Cyber Security Risks of the Cyber-Enabled Ship. <em>J. Mar. Sci. Eng.</em>, 8(10), 768, 2020.</li>
+      <li>[8] Bolbot, V. et al. A Novel Cyber-Risk Assessment Method for Ship Systems. <em>Safety Science</em>, 131, 104908, 2020.</li>
+      <li>[9] DNV-GL. Cyber Security Resilience Management for Ships and Mobile Offshore Units in Operation. DNVGL-RP-0496, 2016.</li>
+      <li>[10] BIMCO. The Guidelines on Cyber Security Onboard Ships, Version 4, 2020.</li>
+      <li>[11] Hareide, O. S. Enhancing Navigator Competence by Demonstrating Maritime Cyber Security. <em>J. Navigation</em>, 71(5), pp. 1025–1039, 2018.</li>
+      <li>[12] Park, S. et al. Importance–Performance Analysis (IPA) of Cyber Security Management: Focused on ECDIS User Experience. <em>J. Korean Soc. Marine Environment &amp; Safety</em>, 27(3), pp. 429–438, 2021.</li>
+      <li>[13] Tran, K. et al. Marine Network Protocols and Security Risks. <em>J. Cybersecurity and Privacy</em>, 1(2), pp. 239–251, 2021.</li>
+      <li>[14] Kayisoglu, G. et al. Evaluating SLIM-Based Human Error Probability for ECDIS Cybersecurity in Maritime. <em>J. Navigation</em>, 75(6), pp. 1364–1388, 2022.</li>
+      <li>[15] Pamucar, D. &amp; Ecer, F. Prioritizing the Weights of the Evaluation Criteria under Fuzziness: The Fuzzy Full Consistency Method–FUCOM-F. <em>Facta Universitatis, Mech. Eng.</em>, 18(3), pp. 419–437, 2020.</li>
+      <li>[16] Karahalios, H. Appraisal of a Ship's Cybersecurity Efficiency: The Case of Piracy. <em>J. Transportation Security</em>, 13(3–4), pp. 179–201, 2020.</li>
+      <li>[17] Yoo, Y. &amp; Park, H. S. Qualitative Risk Assessment of Cybersecurity and Development of Vulnerability Enhancement Plans in Consideration of Digitalized Ship. <em>J. Mar. Sci. Eng.</em>, 9(6), 565, 2021.</li>
+      <li>[18] Soner, O. et al. Cybersecurity Risk Assessment of VDR. <em>J. Navigation</em>, 76(1), pp. 20–37, 2023.</li>
+      <li>[19] Park, C. et al. A BN Driven FMEA Approach to Assess Maritime Cybersecurity Risks. <em>Ocean &amp; Coastal Management</em>, 235, 106480, 2023.</li>
+      <li>[20] Amro, A. &amp; Gkioulos, V. Evaluation of a Cyber Risk Assessment Approach to Cyber–Physical Systems. <em>J. Mar. Sci. Eng.</em>, 11(4), 744, 2023.</li>
+      <li>[21] Melnyk, O. et al. Integral Approach to Vulnerability Assessment of Ship's Critical Equipment and Systems. <em>Trans. Maritime Science</em>, 12(1), 2023.</li>
+      <li>[22] Erstad, E. et al. CERP: A Maritime Cyber Risk Decision Making Tool. <em>TransNav</em>, 17(2), pp. 269–279, 2023.</li>
+      <li>[23] Harish, A. V. et al. BridgeInsight: An Asset Profiler for Penetration Testing in a Heterogeneous Maritime Bridge Environment. <em>Maritime Technology and Research</em>, 6(1), 2024.</li>
+      <li>[24] Hemminghaus, C. et al. BRAT: A BRidge Attack Tool for Cyber Security Assessments of Maritime Systems. <em>TransNav</em>, 15, 2021.</li>
+      <li>[25] Kessler, G. C. Cybersecurity in the Maritime Domain. <em>USCG Proceedings</em>, 76(1), 2019.</li>
+      <li>[26] IMO. ECDIS – Guidance for Good Practice. MSC.1/Circ.1503/Rev.1, 2017.</li>
+      <li>[27] Kala, N. &amp; Balakrishnan, M. Cyber Preparedness in Maritime Industry. <em>Int. J. Scientific and Technical Advancements</em>, 5(2), pp. 19–28, 2019.</li>
+      <li>[28] Shang, W. et al. Information Security Risk Assessment Method for Ship Control System Based on Fuzzy Sets and Attack Trees. <em>Security and Communication Networks</em>, 2019.</li>
+      <li>... [full reference list of 60 references available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.7225/toms.v13.n01.w09">10.7225/toms.v13.n01.w09</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

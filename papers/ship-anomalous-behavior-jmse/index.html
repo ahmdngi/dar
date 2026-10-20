@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كشف السلوك الشاذ للسفن باستخدام التكتل والشبكات العصبية المتكررة العميقة — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Ship Anomalous Behavior Detection Using Clustering and Deep Recurrent Neural Network</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">كشف السلوك الشاذ للسفن باستخدام التكتل والشبكات العصبية المتكررة العميقة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Bohan Zhang, Katsutoshi Hirayama, Hongxiang Ren, Delong Wang, Haijiang Li</span>
+    <span>📄 J. Mar. Sci. Eng. 2023, Vol. 11(4), 763</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse11040763">10.3390/jmse11040763</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+
+    <p>نقترح في هذه الدراسة طريقة للكشف الآني عن شذوذ السفن تعتمد على بيانات نظام التعريف الآلي (AIS). تستخدم الطريقة فئات تكتل مسارات السفن كنموذج طبيعي وخوارزمية تعلم عميق كأداة لكشف الشذوذ. وتنقسم الطريقة إلى ثلاث خطوات رئيسية: (1) صيانة جودة بيانات AIS الأصلية، (2) استخراج تكتلات مسارات السفن الطبيعية باستخدام التكتل المكاني الكثافي القائم على الكثافة مع الضجيج (DBSCAN)، مع استخدام خوارزمية محسنة مجزأة للالتواء الزمني الديناميكي (DTW) لقياس درجة تشابه المسارات، (3) استخدام نتائج التكتل كنموذج معياري لتدريب شبكة عصبية متكررة ثنائية الاتجاه ذات وحدة بوابية (BiGRU) تُستخدم كمتنبئ للمسار لتحقيق الكشف الآني عن شذوذ السفن. وأُجريت التجارب باستخدام بيانات AIS حقيقية من ميناء تيانجين في الصين. والنتائج التجريبية متعددة: أولًا، تُحسّن عملية المعالجة المسبقة للبيانات جودة بيانات AIS الخام بفعالية. وثانيًا، يمكن لنموذج تكتل مسارات السفن تصنيف التدفق المروري للأنماط المختلفة في المنطقة البحرية بدقة. وعلاوة على ذلك، حققت نتيجة التنبؤ بالمسار لنموذج BiGRU أصغر خطأ مع مسار السفينة الفعلي وأداء تنبؤ أفضل مقارنة بنموذجي شبكة الذاكرة الطويلة قصيرة المدى (LSTM) والوحدة البوابية (GRU). وفي تجربة كشف الشذوذ النهائية، كانت دقة الكشف وآنيّته لنموذج BiGRU أعلى أيضًا من LSTM وGRU. وبالتالي تحقق الطريقة المقترحة كشفًا فعالًا وآنيًا للسلوكيات الشاذة للسفن من حيث الموضع والاتجاه والسرعة أثناء الإبحار، مما يقدم رؤية لتعزيز ذكاء الإشراف على الحركة البحرية وتحسين سلامة الملاحة البحرية.</p>
+  </section>
+
+  <section>
+    <h2>1.1. الإشراف الذكي على الحركة البحرية</h2>
+
+    <p>مع تزايد كثافة السفن البحرية، تتكرر الحوادث البحرية وتواجه سلامة الحركة البحرية تحديات. وتُجرى المراقبة البحرية التقليدية بالرصد اليدوي لخدمة الحركة البحرية (VTS)، وهي محدودة بالبيانات المعقدة وغير المتجانسة وفيض المعلومات وإجهاد الأفراد وعدم الانتباه، فلا تحقق أثرًا رقابيًا جيدًا. أما الإشراف الذكي على الحركة البحرية القائم على البيانات البحرية وتقنية الحاسوب فيمكن أن يقدم معلومات قيمة عن الوضع المروري في المنطقة البحرية ويساعد في الإشراف على المخاطر، لاكتشاف السلوك الشاذ المحتمل للسفن في الوقت المناسب، وتقليل الحوادث والمخالفات البحرية، وضمان سلامة الملاحة البحرية واقتصادها.</p>
+
+    <p>يوفر نظام التعريف الآلي (AIS) معلومات الملاحة للسفن والمستقبلات الأخرى في الوقت الحقيقي، بما فيها المعلومات الديناميكية والثابتة والمتعلقة بالرحلة. وتشترط اتفاقية سولاس تجهيز السفن التجارية من 300 طن إجمالي فأكثر في الخطوط الدولية بنظام AIS، مع انتشار استخدامه تدريجيًا في السفن الصغيرة وقوارب النجاة. ومع الإشراف الذكي على الحركة البحرية، تغطي محطات AIS الأساسية وخدمات VTS وشبكات الرصد المناطق الساحلية العالمية، وينمو جمع بيانات الحركة البحرية أُسّيًا من الغيغابايت إلى التيرابايت. ويُعد بحث أنماط الحركة البحرية الكامنة في بيانات AIS واكتشاف الشذوذ المروري البحري في حينه وتحسين كفاءة الإشراف اتجاهًا تطويريًا حتميًا في عصر البيانات الضخمة.</p>
+  </section>
+
+  <section>
+    <h2>1.2. السلوك الشاذ للسفينة</h2>
+
+    <p>يمكن تلخيص السلوك الشاذ للسفينة بأنه أفعال لا تتوافق مع نموذج السلوك الطبيعي المحدد مسبقًا للسفينة في المنطقة البحرية، كتغيير السفينة سرعتها لأسباب غير طبيعية أو تغيير مسارها أو الحياد عن الطريق أو الظهور في منطقة غير مناسبة. وقد ترتبط هذه السلوكيات غالبًا بالحوادث البحرية أو التهريب غير المشروع أو القرصنة أو الأنشطة الإرهابية. ويرى إيفار إمكانية تمييز عدة أنواع من الشذوذ: النقطي والسياقي والجماعي. ويعرّف روا المظاهر المحددة للسلوك الشاذ للسفن بأنها شذوذ الموضع وشذوذ الحركة، مقسمة إلى 16 نوعًا. وبناء على ذلك، يلخص ريفيرو وآخرون السلوك الشاذ المرتبط بالسياق الظرفي كتهريب المخدرات والبشر والإرهاب، بينما يعرّف وولسينغ خمسة سلوكيات شاذة عامة مستمدة من مسار السفينة: الحياد عن المسار المعياري، ونشاط AIS غير المتوقع، والوصول غير المتوقع إلى الميناء، والاقتراب الشديد من السفن الأخرى، ودخول المناطق المحظورة.</p>
+
+    <p>يتضح من البحوث السابقة أن تعريفات السلوك الشاذ للسفن تختلف باختلاف محاور البحث. لكنها في جوهرها تُكتشف في موقع السفينة وسرعتها ومسارها. ولذلك تراقب هذه الدراسة ثلاثة جوانب — الموضع والسرعة والمسار — كبصمة قابلة للرصد للملاحة الشاذة.</p>
+  </section>
+
+  <section>
+    <h2>1.3. كشف شذوذ السفن</h2>
+
+    <p>في كشف الشذوذ، يجب تعريف نموذج معياري بناء على مجموعة البيانات، يولَّد من أحداث متكررة يمكن التنبؤ بها، مع اعتبار ما لا يطابقه شاذًا. ويتكون كشف السلوك الشاذ للسفن القائم على البيانات من خطوتين: (1) التعلم من بيانات مسارات السفن التاريخية لبناء نموذج يمثل السلوك الطبيعي، يُمثل عادة كتوزيع إحصائي أو عناقيد من سمات السلوك؛ (2) كشف الشذوذ بمطابقة ومقارنة الانحراف بين نموذج السلوك الطبيعي وبيانات حركة السفينة المراد فحصها، ويُعد شاذًا إذا تجاوز الانحراف عتبة. وتنقسم الطرق إلى التحليل الإحصائي وتعلم الآلة والكشف القائم على التنبؤ. ومن رواد الإحصائية: نموذج هولست الشبكي ومتجهات السرعة بتوزيعات غاوسية ثنائية الأبعاد (وحسّنه لاكسهامر بالتوقع الأعظم ونماذج الخليط الغاوسي، وإن تطلب بيانات غاوسية)، وتقدير ريستيك الكثافة النووية لأنماط الحركة، والوصف الإحصائي لشياو لديناميكيات AIS، ونموذج رونغ البايزي اللامعلمي للعمليات الغاوسية للتنبؤ بالمسار مع التحديث التكراري من بيانات AIS الجديدة.</p>
+
+    <p>أما مناهج تعلم الآلة فتتعلم نموذج ملاحة طبيعيًا من المسارات التاريخية وتبني نموذجًا مثاليًا بالتدريب: التعلم غير الموجه التزايدي لفيسب لأنماط الحركة المتكيف مع التغير البيئي؛ وشبكات ماسكارو البايزية ثنائية الطبقة الديناميكية والثابتة مع السياق المكاني الزماني؛ وسمات الفضاء والتسلسل والسلوك للاي مع تقييم MT-MAD؛ ونموذج ماركوف المخفي لسوزا مع تنقيب البيانات والترشيح متعدد الطبقات لسفن الصيد؛ ونموذج ماركوف المخفي لتولو على السرعة والموضع والمسار بدقة تتجاوز 96%. أما الطرق القائمة على التنبؤ فتبني متنبئًا للمسار وتقارن القيم الفعلية بالمتوقعة: المتنبئ التوافقي للاكسهامر مع تشابه المسارات بهاوسدورف؛ والشبكة العصبية الترابطية غير الموجهة لبومبرغر للتنبؤ بالمسار الطبيعي المستقبلي؛ وتكتل تشاو للمسارات داخل المياه المغذي لمتنبئ LSTM للكشف الآني؛ وتنبؤ تانغ بـ LSTM مع الكشف الشبكي للشذوذ.</p>
+
+    <p>الطرق الإحصائية سهلة التطبيق ودقيقة عندما تكون البيانات التاريخية كافية، لكن تعريف العتبة معقد والطرق خاصة بمشكلة بعينها وتفشل عندما تتوزع الشذوذات بانتظام. ويواجه تعلم الآلة قصور فضاء السمات عالي الأبعاد وحجوم العينات والفرط في التلاؤم والحلول المثلى المحلية وضعف قابلية التفسير. وتوفر شبكات التعلم العميق تعلمًا ذاتيًا قويًا واستخلاصًا للسمات، وتحسّن متغيرات الشبكات المتكررة الكفاءة والدقة — لكن الدراسات المطبقة للشبكات المتكررة العميقة على كشف الشذوذ البحري ما تزال نادرة. وسيحسّن الجمع بين قدرة تعلم الآلة النمذجية والتنبؤ التكيفي قابلية الكواشف في البحر كثيرًا — وهي الفجوة التي تعالجها هذه الدراسة.</p>
+  </section>
+
+  <section>
+    <h2>1.4. الدافع ونظرة عامة</h2>
+
+    <p>الدافع وراء هذا البحث هو استكشاف طرق بحثية مبتكرة لصيانة جودة بيانات AIS للسفن ونمذجة المسارات الطبيعية وكشف شذوذ المسارات بتقنيات علم البيانات والتعلم العميق — بما يخدم تحسين كفاءة الإشراف البحري الذكي وسلامة الحركة البحرية وتقديم دعم علمي لتعزيز قدرات الإشراف الذكي. ولتحقيق هذا الهدف، تقترح الورقة طريقة آنية لكشف السلوك الشاذ للسفن تعتمد على بيانات مسارات AIS: يستخلص تكتل المسارات نموذج المسار الطبيعي داخل المنطقة المائية، وتعمل شبكة عصبية عميقة ثنائية الاتجاه ذات وحدة بوابية (BiGRU) كأداة لكشف الشذوذ.</p>
+
+    <p>أولًا، تُقترح مجموعة طرق لتنظيف البيانات وإصلاحها لمشكلات الجودة في بيانات AIS الأصلية، مما يحسّن جودة بيانات التجارب بفعالية. وثانيًا، في تكتل مسارات السفن بـ DBSCAN، تقيس مسافة محسنة مجزأة للالتواء الزمني الديناميكي (DTW) تشابه المسارات، معالجةً عدم حساسية DTW لسمات الشكل ومواضع نقاط البداية والنهاية واتجاه المسار. وأخيرًا، تُستخدم BiGRU كمتنبئ دائم للكشف الآني عن حالة الملاحة: فبدلًا من مجرد المقارنة مع النموذج الطبيعي، تتعرف ذاتيًا على حالة المسار الطبيعية من خصائص الشبكة العميقة المتعلمة نفسها، محققة كشفًا أدق للشذوذ. ويصف القسم 2 نمذجة المسار الطبيعي (صيانة جودة البيانات مع DBSCAN وDTW المحسنة المجزأة)؛ والقسم 3 نموذج التنبؤ BiGRU وطريقة كشف الشذوذ؛ والقسم 4 التجارب والنتائج؛ والقسم 5 الخاتمة والأعمال المستقبلية.</p>
+  </section>
+
+  <section>
+    <h2>2.1. المعالجة المسبقة للبيانات</h2>
+
+    <p>تعاني بيانات AIS الأصلية من شذوذ خلال التوليد والتغليف والبث والإرسال وفك التشفير والتخزين، مع بيانات ضجيج متفاوتة؛ كما أن معظم رسائل AIS مختومة زمنيًا خارجيًا عند قبولها في محطة الاستقبال، فتعتمد جودة الطابع الزمني على المحطة لا على وقت تقرير الموضع الحقيقي. لذا تلزم المعالجة المسبقة. وتصنف الأعمال السابقة والملاحظة مشكلات بيانات AIS الأصلية في ثلاثة جوانب: قصور سلامة بيانات المسار (مقاطع مفقودة وتعذر مطابقة المعلومات الديناميكية والثابتة وقلة النقاط الصالحة — فتُستبعد هذه البيانات، وتُقسَّم مسارات حالات الرسو الحاوية رحلات متعددة)؛ وقصور دقة بيانات المسار (أخطاء الحقول وأخطاء منطق الحركة)؛ والبيانات الزائدة عديمة المعنى.</p>
+
+    <p>يتم إصلاح الدقة وفق بروتوكول NMEA0183: رقم MMSI (أرقامه الثلاثة الأولى رمز دولة العلم والستة الأخيرة معرف السفينة)، وخط الطول ضمن [-180, 180]، وخط العرض ضمن [-90, 90]، والمسار ضمن [0, 360) درجة — وتُحذف النقاط المخالفة. وتُكتشف أخطاء منطق الحركة كالسرعة الشاذة أو قفزات الموضع عبر متوسط السرعة بين النقاط والقيود الحركية (حدود التسارع الأمامي والخلفي؛ وفحوص الموضع المقدر)، مع استبدال قيم السرعة الخاطئة بمتوسط النقطتين والمواضع السيئة بالتقديرات. ثم يُخفَّض التكرار: مع حركة يومية بالآلاف في الميناء وفترات بث 2–30 ثانية، تتراكم ملايين النقاط بطيئة الحركة، فتستخلص خوارزمية دوغلاس–بيوكر نقاط سمات الموضع والمسار، مع مقياس لمعدل تغير السرعة يحتفظ بالنقاط التي يتجاوز معدلها 0.1 عقدة/ثانية — محافظةً على سمات المسار مع خفض تكاليف التخزين والحوسبة.</p>
+  </section>
+
+  <section>
+    <h2>2.2. طريقة تكتل المسارات</h2>
+
+    <p>يقدم هذا القسم نموذج تكتل المسارات المبني على بيانات AIS المعالجة مسبقًا، مقسمًا التدفق المروري البحري إلى أنماط حركة منتظمة متميزة. وخوارزمية DBSCAN بسيطة وفعالة للتكتل الكثافي مع معالجة الضجيج: إذ تجد عناقيد بأشكال اعتباطية في البيانات المكانية المشوشة دون تحديد مسبق لعدد العناقيد وتحل مشكلة المسارات المتشابهة المنفصلة مكانيًا — وهي مثالية لمسارات السفن غير الموسومة. ومعاملاها هما MinTrs (الحد الأدنى للنقاط لمنطقة كثيفة) وeps (مسافة الجوار)؛ وبدءًا من عنصر اعتباطي غير مزور، تنضم كل العناصر ضمن eps (بحد أدنى MinTrs) إلى عنقود واحد، يتوسع تكراريًا عبر حساب الجوار، كما يوضح مخطط التدفق في الورقة.</p>
+
+    <p>والسؤال الجوهري هو كيفية قياس التشابه بين المسارات: إذ تختلف الطوابع الزمنية للعينات وأعدادها في AIS مشكلة سلاسل زمنية متقطعة غير متوائمة، لذا تعتمد الدراسة الالتواء الزمني الديناميكي (DTW) الذي يمدد الزمن محليًا لمواءمة التسلسلات ويجد مطابقة النقاط ذات المسافة الدنيا بأقصر مسار عبر مصفوفة المسافة الإقليدية. لكن DTW التقليدية لها ثلاثة قصور لمسارات السفن: عجزها عن تمييز الخصائص المحلية للمسار، وضعف تمييز اتجاه المسار، وإهمال مواضع البداية والنهاية. وتحوّل DTW المحسنة المجزأة المقترحة المطابقة من نقطة-لنقطة إلى مطابقة مقاطع فرعية (مسافات نقطة-لمقطع مُعدَّلة بطول المقطع، مع مسافة زاوية بين المقاطع موزونة مع المسافة الخطية بـ 0.5 لكل منهما)، وتضاعف أوزان المقطعين الأول والأخير لتحسيس DTW لمواضع البداية والنهاية — معالجةً المشكلات الثلاث.</p>
+  </section>
+
+  <section>
+    <h2>3.1. نموذج الوحدة البوابية ثنائية الاتجاه</h2>
+
+    <p>ترسم شبكات التعلم العميق المدخلات إلى المخرجات عبر طبقات من التحويلات اللاخطية باستخلاص وتجريد قويين. وتناسب الشبكة العصبية المتكررة (RNN) البيانات التسلسلية المكانية الزمانية لكنها تعاني تدهورًا سريعًا لذاكرة العقد؛ ويعالج نموذج الذاكرة الطويلة قصيرة المدى (LSTM) ذلك بخلايا أساسية ذاتية الارتباط وثلاث بوابات (إدخال وإخراج ونسيان) تتحكم في تدفق المعلومات. أما الوحدة البوابية (GRU) — وهي متغير أسرع من LSTM بعوامل وأوزان أقل وتدريب أبسط — فتدمج بوابتي النسيان والإدخال في بوابة تحديث واحدة zt (مع بوابة إعادة ضبط rt): يمزج المرشح التاريخ المعدل بإعادة الضبط مع الإدخال الحالي عبر tanh، وبوابة واحدة تنسى (بالوزن z) وتتذكر (بالوزن 1−z) معًا، معالجةً اختفاء التدرج في RNN العادية. وتُكمل مصفوفات الأوزان Wz وWr وأوزان المرشح الصياغة.</p>
+
+    <p>في LSTM وGRU تنتشر الحالات أحاديًا، فتعتمد المخرجات على المعلومات السابقة فقط. وتعتمد هذه الدراسة بدلًا من ذلك GRU ثنائية الاتجاه (BiGRU): إذ تمر كل سلسلة تدريب عبر شبكتين أمامية وخلفية متصلتين بالمخرج نفسه، فتتكيف الشبكة لا من السياق السابق فحسب بل من السياق اللاحق أيضًا عبر التغذية الراجعة — مما يحسّن كفاءة تحديث الأوزان والتنبؤ بالمسار. وهذا الوعي السياقي هو سبب اعتماد BiGRU كمتنبئ آني للمسار وكاشف للشذوذ في الدراسة.</p>
+  </section>
+
+  <section>
+    <h2>3.2. طريقة كشف السلوك الشاذ للسفن</h2>
+
+    <p>المبدأ الأساسي: تدريب الشبكة المتكررة على نتائج تكتل DBSCAN بحيث تعمل، انطلاقًا من نقاط المسار السابقة وأنماط الحركة التاريخية، كمتنبئ آني للمسار الطبيعي للسفينة؛ وانحراف المسار الفعلي عن المسار الطبيعي المتوقع يشير إلى إبحار شاذ. والميزة هي التعرف الذاتي على الحالة الطبيعية من خصائص الشبكة المتعلمة نفسها لا مجرد المقارنة مع نموذج طبيعي مخزن — مما يجعل الكاشف شديد الحساسية لفشل التنبؤ في المسارات الخارجة عن أنماط الحركة التاريخية، ويمايز التنبؤات بدرجة الشذوذ. وتسير العملية في ثلاث خطوات: الخطوة 1: جمع بيانات AIS التاريخية في المنطقة البحرية المراقبة ومعالجتها مسبقًا واستخلاص نموذج المسار الطبيعي بـ DBSCAN.</p>
+
+    <p>الخطوة 2: تدرب عناقيد المسارات الطبيعية من DBSCAN الشبكة المتكررة للتنبؤ بالحالة الطبيعية للسفينة في اللحظة التالية. وسمات المسار في اللحظة t هي Y(t) = {الطول والعرض والسرعة والمسار}؛ وتولد نافذة منزلقة مجموعات الإدخال/الإخراج، ويخرج نموذج التنبؤ بالحالة الطبيعية Y(t+1)..Y(t+m) من الخطوات الـ n السابقة. الخطوة 3: التنبؤ بالحالة الملاحية الطبيعية للمرحلة التالية من الحالة السابقة وتاريخ المنطقة المائية. وبما أن معظم الشذوذات تظهر في الموضع والسرعة والمسار، فإن معيار الشذوذ هو قيمة الانحراف الجامعة للمسافة الجغرافية للموضع مع انحرافات السرعة والمسار المطلقة. ويضبط المستخدمون عتبات الإنذار حسب الحاجة الفعلية وأداء التدريب — مع عتبتين عليا ودنيا للموضع (أوضح مؤشر لحالة الإبحار): ينبه النموذج المشرفين عندما تتجاوز البيانات الآنية المستوى العالي أو تتجاوز المستويات الدنيا باستمرار، بينما تعني التنبؤات الدقيقة إبحارًا طبيعيًا.</p>
+  </section>
+
+  <section>
+    <h2>4.1. البيانات التجريبية والمعالجة المسبقة</h2>
+
+    <p>تستخدم الدراسة بيانات AIS لشهرين من عام 2019 من منطقة ميناء تيانجين الصيني، مختارة سفن البضائع والناقلات. وتكونت البيانات الخام من 1,059,741 سجلًا ديناميكيًا و376,333 سجلًا ثابتًا/متعلقًا بالرحلة و3,884 سفينة (2,556 بمعلومات إضافية) و712,214 نقطة مسار. وبعد المعالجة المسبقة، احتُفظ بـ 11,357 مسارًا من 2,608 سفن: 30.3% من البيانات كانت ناقصة السلامة (16.00% عدم تطابق معلومات، 14.30% قصور سلامة مكانية)، و1.76% من النقاط بها أخطاء حقول (18,910 نقطة)، و0.67% بها أخطاء منطق حركة (5,452 خطأ موقع، 1,736 خطأ سرعة)، وحقق الضغط خفضًا بنسبة 62.46% إلى 267,365 نقطة سمة رئيسية. وتُظهر مقارنة قبل/بعد إزالة المسارات الفوضوية وعبور اليابسة والطفرات مع الاحتفاظ بالسمات الأصلية.</p>
+  </section>
+
+  <section>
+    <h2>4.2. تحليل التكتل</h2>
+
+    <p>للتحقق من DTW المحسنة المجزأة، أُجريت مقارنة تكتل بين DTW المحسنة والتقليدية ومسافة هاوسدورف على 334 مسارًا موسومًا باختلافات واضحة في الشكل والاتجاه والبداية/النهاية، موسومة مسبقًا كـ 8 عناقيد. ومع اختيار تكيفي للمعاملات (eps = 0.3 ميل بحري، MinTrs = 3)، أنتجت DTW المحسنة 8 عناقيد مطابقة للوسوم (معدل خطأ 0.0058 أي دقة 99.42%) — مميزةً تمييزًا صحيحًا العناقيد المختلفة في الشكل المحلي (1 و2 و4) وفي مواضع البداية/النهاية (2 مقابل 3 مقابل 6؛ و7 مقابل 8). ودمجت DTW التقليدية بعضها في 6 عناقيد (خطأ 8.7%)، ولم تحقق هاوسدورف سوى 4 عناقيد (خطأ 17.9%)، متجاهلة الاتجاهات المتعاكسة وفروق الشكل المحلية الكبيرة. بيئة التجربة: معالج Intel i7-6700 وذاكرة 8 غيغابايت وويندوز 10 وTensorFlow 2.0 وبايثون.</p>
+  </section>
+
+  <section>
+    <h2>4.3. تجربة كشف السلوك الشاذ للسفن</h2>
+
+    <h3>4.3.1. التنبؤ بحالة الملاحة</h3>
+
+    <p>قُسمت عناقيد DBSCAN بنسبة 75%/25% إلى تدريب واختبار لتدريب BiGRU، مع توحيد فواصل النقاط إلى دقيقتين وتطبيع كل القيم. ومع خطوة إدخال 5 وخطوة إخراج 1 (التنبؤ بالحالة التالية من خمس نقاط سابقة)، تقيّم انحرافات الموضع والسرعة والمسار النموذج. وفي مسارين حقيقيين من الاختبار، تطابقت التنبؤات مع المسارات الفعلية ملتقطةً بدقة التوجيه وتغيرات السرعة اللاخطية؛ وتفوقت BiGRU على GRU وLSTM في متوسط وأقصى أخطاء الموضع والمسار والسرعة (ففي المسار الثاني بلغ متوسط خطأ الموضع 70.07 م لـ GRU مقابل 83.21 م لـ LSTM، وBiGRU أدنى منهما). وعبر عدد التكرارات، تذبذبت أخطاء LSTM وGRU بينما بقيت BiGRU مستقرة بمتوسط خطأ موضع دون 90 م؛ وخفضت BiGRU إجمالًا متوسط خطأ التنبؤ 13.1% عن GRU و21.3% عن LSTM.</p>
+
+    <h3>4.3.2. كشف السلوك الشاذ للسفن</h3>
+
+    <p>ضُبطت عتبتا الموضع الدنيا والعليا عند 100 م و250 م، وعتبتا الاتجاه والسرعة عند ±3% من القيم المعيارية المتوقعة. واختبرت أربعة مسارات حقيقية الكشف: الأول (120 دقيقة: مسار شاذ وتوجيه وانزياح)، والثاني (46 دقيقة: توجيه شاذ متكرر عابر للقناة)، والثالث (30 دقيقة: توقف مفاجئ في القناة)، والرابع (90 دقيقة: توجيه شاذ وتوقف مفاجئ). ويوضح المسار الأول التفاصيل: عند نقطة انعطاف القناة غادرت السفينة الطريق المقرر إلى حارة معاكسة — ففي 12:32 تغير الاتجاه إلى 292.3° متجاوزًا نطاق المسار الطبيعي المتوقع، مطلقًا إنذار الاتجاه؛ وفي 12:34–12:36 سحب انحراف المسار الموضع عن المسار المتوقع، مطلقًا إنذار الموضع منخفض الدرجة (1) حتى عودة الملاحة الطبيعية في 12:40. وفي 13:10 انعطفت السفينة يمينًا بحدة خارج القناة بينما بقي الموضع المتوقع داخلها، مطلقًا إنذار الموضع عالي الدرجة (2) حتى 13:22، مع كشف تذبذبات السرعة الشاذة أيضًا. وفي 13:40 ارتفعت السرعة فجأة 3.2 عقدة في دقيقتين فوق المتوقع 12 عقدة — ممارسة ملاحية سيئة تهدد حركة القناة — مطلقة إنذار السرعة، ثم إنذار الموضع (3) مع انحراف المسار؛ وفي 13:50 هوت السرعة 3.6 عقدة مطلقة الإنذار (4).</p>
+
+    <p>تقيّم ثلاث مقاييس النتائج: معدل دقة الكشف AR (النقاط الشاذة المكتشفة إلى الفعلية)، ومعدل الخطأ FR (النقاط الطبيعية المشخصة خطأ إلى الطبيعية)، والآنية (الإدراك في حينه مع زمن الحوسبة). وعبر المسارات الأربعة، حققت BiGRU متوسط دقة 96.35% (93.75% و91.66% و100% و100%) مع معدل خطأ 1.67% و9/9 إدراكًا في حينه (36.2–9.4 مللي ثانية للمسار)؛ وحققت GRU متوسط 93.23% مع خطأ 6.46% و8/9 في حينه؛ وLSTM متوسط 88.15% مع خطأ 9.79% و8/9 في حينه — ولم تخطئ BiGRU سوى في ثلاث نقاط في المسار الأول، ويزداد زمن حوسبتها أقل مع حجم المسار، محققة أفضل أداء آني. وهكذا تكشف الطريقة السلوك الشاذ في الموضع والسرعة والاتجاه في حينه وبفعالية.</p>
+  </section>
+
+  <section>
+    <h2>5. الخاتمة</h2>
+
+    <p>يتغلب الرصد البحري الذكي على قيود الطرق التقليدية من قلة خبرة المشرفين وإجهادهم البدني، رافعًا ذكاء الإشراف ومقدمًا معلومات عن الوضع المروري ومساعدًا في الإشراف على المخاطر ومقللًا الحوادث والمخالفات ومحسنًا كفاءة التدفق. وتتخذ هذه الدراسة مسارات AIS المذاعة موضوعًا وتقترح كشف شذوذ المسارات اعتمادًا على بيانات AIS، مع عناقيد المسارات كنموذج طبيعي وشبكة عميقة كأداة كشف. ومساهمتها ثلاثية: (1) تحليل جودة بيانات AIS عبر السلامة والدقة والإيجاز، مع حزمة معالجة مسبقة كاملة (تجزئة المسارات وإصلاح شذوذ القاعدة والموضع والسرعة واستخلاص السمات المكانية الزمانية المحافِظة على السمات بضغط 62.46%)؛ (2) نماذج مرورية معيارية عالية الجودة بـ DBSCAN مع DTW محسنة مجزأة حساسة للاتجاه والشكل المحلي ومواضع البداية/النهاية، بدقة تكتل 99.42% متفوقة كثيرًا على DTW التقليدية وهاوسدورف؛ (3) متنبئ مسارات BiGRU يحل تلاشي/انفجار تدرجات RNN بالسياق ثنائي الاتجاه، محققًا دقة شذوذ 96.35% بإنذارات كاذبة 1.67% مع تنبيهات آنية، متفوقًا على LSTM وGRU.</p>
+
+    <p>وتشير القيود إلى أعمال مستقبلية: تحتاج الطريقة نماذج مسارات عينة عالية الجودة، وتستبعد حاليًا البيانات متعذرة المطابقة بين الديناميكية والثابتة أو قليلة النقاط الصالحة — وقد يحسّن إصلاح هذه البيانات التنقيب في AIS. ويغطي النموذج الطبيعي سفن البضائع والناقلات فقط؛ وينبغي إدراج السفن الأقصر كسفن الصيد لمياه محددة، وتعزيز التحديث التكيفي للنموذج الطبيعي بالبيانات الجديدة للتطبيق العملي. كما يعتمد سلوك السفن على السياق المكاني الزماني — السفن المجاورة والطقس وحالة البحر — فربط التحليل الدلالي لبيئة الملاحة بكشف شذوذ السلوك أولوية مستقبلية أخرى.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+
+    <p>In this study, we propose a real-time ship anomaly detection method driven by Automatic Identification System (AIS) data. The method uses ship trajectory clustering classes as a normal model and a deep learning algorithm as an anomaly detection tool. The method is divided into three main steps: (1) quality maintenance of the original AIS data, (2) extraction of normal ship trajectory clusters using Density-Based Spatial Clustering of Applications with Noise (DBSCAN), in which a segmented improved Dynamic Time Warping (DTW) algorithm is used to measure the degree of trajectory similarity, (3) the clustering results are used as a normative model to train a Bi-directional Gated Recurrent Unit (BiGRU) recurrent neural network, which is used as a trajectory predictor to achieve real-time ship anomaly detection. Experiments were conducted using real AIS data from the port of Tianjin, China. The experimental results are manifold. Firstly, the data pre-processing process effectively improves the quality of raw AIS data. Secondly, the ship trajectory clustering model can accurately classify the traffic flow of different modes in the sea area. Moreover, the trajectory prediction result of the BiGRU model has the smallest error with the actual ship trajectory and has a better trajectory prediction performance compared with the Long Short-Term Memory Network (LSTM) and Gated Recurrent Unit (GRU) models. In the final anomaly detection experiment, the detection accuracy and timeliness of the BiGRU model are also higher than LSTM and GRU. Therefore, the proposed method can achieve effective and timely detection of ship anomalous behaviors in terms of position, heading and speed during ship navigation, which provides insight to enhance the intelligence of marine traffic supervision and improve the safety of marine navigation.</p>
+  </section>
+  <section>
+    <h2>1.1. Intelligent Maritime Traffic Supervision</h2>
+
+    <p>As the density of marine vessels increases, maritime accidents occur frequently and marine traffic safety faces challenges. Traditional maritime monitoring is conducted by manual monitoring of Vessel Traffic Service (VTS), which is limited by complex and heterogeneous data, information overload, personnel fatigue, inattention, and cannot achieve a good monitoring effect. Intelligent maritime traffic supervision based on maritime data and computer technology can provide valuable information on the traffic situation in the sea area and assist in hazard supervision, so as to discover potential abnormal behavior of ships in time, reduce the occurrence of maritime accidents and violations, and guarantee the safety and economy of maritime navigation.</p>
+
+    <p>The Automatic Identification System (AIS) provides navigation information to ships and other receivers in real time, including dynamic, static and voyage-related information. The SOLAS Convention requires merchant ships of 300 GT or more on international routes to be equipped with AIS, with use in smaller ships and lifeboats gradually becoming more common. With intelligent marine traffic supervision, more AIS base stations, VTS and monitoring networks cover global coastal areas, and maritime traffic data collection grows exponentially from gigabytes to terabytes. Researching the maritime traffic patterns hidden in AIS data, discovering maritime traffic abnormalities in time, and improving supervision efficiency is an inevitable developing trend in the era of big data.</p>
+  </section>
+  <section>
+    <h2>1.2. Abnormal Behavior of Ship</h2>
+
+    <p>The abnormal behavior of a ship can be summarized as actions that do not conform to the predefined normal behavior model of a ship in the sea area, for example, a ship changing speed for abnormal reasons, changing course, deviating from the route, or appearing in an inappropriate area. These behaviors may also often be related to maritime accidents, illegal smuggling, pirate hijacking, or terrorist activities. Iphar believes several types of anomalies can be distinguished: point, contextual and collective anomalies. Roy defines the specific manifestations of abnormal ship behavior as position anomalies and motion anomalies, subdivided into 16 types of anomalous behavior. On this basis, Riveiro et al. summarize anomalous behavior related to situational context such as drug smuggling, human smuggling and terrorism, while Wolsing defines five general abnormal behaviors derived from the ship's trajectory: deviation from the standard course, unexpected AIS activity, unexpected port arrival, coming too close to other ships, and prohibited area entry.</p>
+
+    <p>It can be seen from the above research that the definitions of ship abnormal behavior differ according to different research emphases. However, essentially these anomalous behaviors will be identified in the ship's location, speed and course. This study therefore monitors three aspects — position, speed and course — as the observable signature of anomalous navigation.</p>
+  </section>
+  <section>
+    <h2>1.3. Ship Anomaly Detection</h2>
+
+    <p>In anomaly detection, a normative model should be defined based on the dataset, generated by predictable repeated events, with non-matching anomalies. Data-driven anomalous ship behavior detection consists of two steps: (1) learning from historical ship trajectory data to build a model representing normal ship behavior, generally represented as a statistical distribution or clusters of behavioral features; (2) anomaly detection by matching and comparing the deviation between the normal behavior model and the ship's motion data to be detected, recognized as anomalous if the deviation exceeds a threshold. Methods divide into statistical analysis, machine learning, and prediction-based anomaly detection. Statistical pioneers include Holst's grid and velocity-vector model with two-dimensional Gaussian distributions (improved by Laxhammar with EM and Gaussian Mixture Models, though requiring Gaussian-distributed data), Ristic's Kernel Density Estimation of motion patterns, Xiao's statistical description of AIS dynamics, and Rong's nonparametric Bayesian Gaussian-process trajectory prediction model with iterative updating from new AIS data.</p>
+
+    <p>Machine learning approaches learn a normal navigation model from historical tracks and build an optimal model through training: Vespe's unsupervised incremental learning of motion patterns adapting to environmental change; Mascaro's two-layer dynamic and static Bayesian networks with spatio-temporal context; Lei's space-sequence-behavior features with MT-MAD evaluation; Souza's Hidden Markov Model with data mining and multilayer filtering for fishing vessels; and Toloue's HMM on speed, position and course exceeding 96% accuracy. Prediction-based methods build a trajectory predictor and compare actual versus predicted values: Laxhammar's conformal predictor with Hausdorff trajectory similarity; Bomberger's unsupervised associative neural network for future normal-trajectory prediction; Zhao's in-water trajectory clustering feeding an LSTM predictor for real-time detection; and Tang's LSTM prediction combined with grid-based anomaly detection.</p>
+
+    <p>Statistical methods are easy to implement and accurate when historical data are sufficient, but threshold definition is complex, methods are problem-specific, and they fail when anomalies are evenly dispersed. Machine learning faces insufficient high-dimensional feature spaces and sample sizes, overfitting, local optima, and poor interpretability. Deep neural networks offer strong autonomous learning and feature extraction, and RNN variants improve efficiency and accuracy — yet studies applying deep recurrent networks to maritime anomaly detection remain scarce. Combining machine learning's modeling power with adaptive prediction will greatly improve detector applicability at sea — the gap this study addresses.</p>
+  </section>
+  <section>
+    <h2>1.4. Motivation and Overview</h2>
+
+    <p>The motivation of this research is to explore innovative research methods for ship AIS data quality maintenance, ship normal trajectory modeling, and ship trajectory anomaly detection based on data science and deep learning technology — dedicated to improving maritime intelligent supervision efficiency and maritime traffic safety, and providing scientific support to enhance maritime intelligent supervision capability. To achieve this goal, the paper proposes a real-time ship anomalous behavior detection method driven by AIS trajectory data: trajectory clustering extracts a normal-trajectory model within the water area, and a Bi-directional Gated Recurrent Unit (BiGRU) deep neural network serves as the anomaly detection tool.</p>
+
+    <p>Firstly, a set of data cleaning and repair methods is proposed for data quality problems in the original AIS data, effectively improving experimental data quality. Secondly, in DBSCAN ship-trajectory clustering, a segmented improved Dynamic Time Warping (DTW) distance measures trajectory similarity, fixing DTW's insensitivity to shape features, start/stop point positions, and trajectory direction. Finally, BiGRU is used as a constant predictor for real-time ship navigation-status detection: rather than merely comparing against the normal model, it autonomously recognizes the normal trajectory state from the deep network's own learned characteristics, achieving more accurate anomaly detection. Section 2 describes normal trajectory modeling (data quality maintenance plus DBSCAN with segmented-improved DTW); Section 3 the BiGRU prediction model and anomaly detection method; Section 4 experiments and results; Section 5 conclusions and future work.</p>
+  </section>
+  <section>
+    <h2>2.1. Data Preprocessing</h2>
+
+    <p>Original AIS data suffer anomalies through generation, encapsulation, broadcasting, transmission, decoding and storage, with variable noisy data; additionally most AIS messages are externally timestamped when accepted by the receiving station, so timestamp quality depends on the station rather than the true position-report time. Preprocessing is therefore necessary. Related work and observation categorize original AIS data problems into three aspects: insufficient trajectory data integrity (missing segments, unmatchable dynamic/static information, too few valid points — such data are excluded, and anchoring-state trajectories containing multiple voyages are split); insufficient trajectory data accuracy (field errors and movement-logic errors); and too much meaningless redundant data.</p>
+
+    <p>Accuracy repair follows the NMEA0183 protocol: MMSI (first three digits flag country code, last six the vessel identifier), longitude within [-180, 180], latitude within [-90, 90], and course within [0, 360) degrees — non-conforming points are eliminated. Motion-logic errors such as abnormal speed or position jumps are detected via average inter-point speed and kinematic constraints (forward/reverse acceleration bounds; estimated-position checks), with wrong speed values replaced by the two-point average and bad positions replaced by estimates. Redundancy is then reduced: with port-area traffic in the thousands daily and 2–30 s broadcast intervals, millions of slow-moving points accumulate, so the Douglas–Peucker algorithm extracts location and course feature points, plus a speed-change-rate metric retaining points whose rate exceeds 0.1 kn/s — preserving trajectory features while cutting storage and computation costs.</p>
+  </section>
+  <section>
+    <h2>2.2. Trajectory Clustering Method</h2>
+
+    <p>This section introduces the trajectory clustering model built on preprocessed AIS data, dividing sea-area traffic flow into distinct regular movement patterns. DBSCAN is a simple, effective density-based clustering algorithm with noise handling: it finds arbitrarily shaped clusters in noisy spatial data without presetting the cluster count and resolves spatially disjoint similar trajectories — ideal for unlabeled ship trajectories. Its two parameters are MinTrs (minimum points for a dense region) and eps (neighborhood distance); starting from an arbitrary unvisited object, all objects within eps (at least MinTrs) join one cluster, expanded recursively through neighborhood computation, as diagrammed in the paper's DBSCAN flowchart.</p>
+
+    <p>The key question is how to measure similarity between trajectories: AIS sampling timestamps and counts differ, forming unaligned discrete time series, so the study adopts Dynamic Time Warping (DTW), which locally stretches time to align sequences and finds the minimum-distance point matching with the shortest path through the Euclidean distance matrix. But classic DTW has three shortcomings for ship tracks: it cannot distinguish local trajectory characteristics, poorly distinguishes trajectory direction, and ignores start/end positions. The proposed segmented improved DTW converts point-to-point matching into sub-segment matching (point-to-segment distances averaged over segment length, plus angular distance between segments weighted with linear distance at 0.5 each), and doubles the weights of the first and last sub-segments to sensitize DTW to start/end positions — solving all three problems.</p>
+  </section>
+  <section>
+    <h2>3.1. Bidirectional Gated Recurrent Unit Model</h2>
+
+    <p>Deep neural networks map inputs to outputs through layered nonlinear mappings with powerful extraction and abstraction. The Recurrent Neural Network (RNN) suits spatiotemporal sequential data but suffers rapid deterioration of neuron-node memory; the Long Short-Term Memory (LSTM) model fixes this with autocorrelated core cells and three gates (input, output, forget) controlling information flow. The Gated Recurrent Unit (GRU) — a faster LSTM variant with fewer tensors and parameters and simpler training — merges the forget and input gates into a single update gate zt (with reset gate rt): the candidate state blends reset-modulated history with current input through tanh, and one gate simultaneously forgets (weight z) and remembers (weight 1−z), solving ordinary RNN gradient disappearance. Weight matrices Wz, Wr and candidate weights complete the formulation.</p>
+
+    <p>In LSTM and GRU, states propagate unidirectionally, so outputs depend only on past information. This study instead adopts the Bi-directional GRU (BiGRU): each training sequence passes through forward and backward networks joined to the same output, so the network adjusts not only from past context but also from future context via feedback — improving weight-update efficiency and trajectory prediction. This contextual awareness is why BiGRU serves as the study's real-time trajectory predictor and anomaly detector.</p>
+  </section>
+  <section>
+    <h2>3.2. Method for Detecting Abnormal Ship Behavior</h2>
+
+    <p>The basic principle: train the RNN on DBSCAN clustering results so that, from previous trajectory points and historical traffic patterns, the RNN acts as a real-time predictor of the ship's normal trajectory; deviation of the actual trajectory from the predicted normal trajectory signals abnormal sailing. The advantage is autonomous normal-state recognition from the network's own learned characteristics rather than mere comparison with a stored normal model — making the detector highly sensitive to prediction failure on trajectories that do not fit historical movement patterns, and differentiating predictions by anomaly degree. The pipeline runs in three steps. Step 1: collect historical AIS data in the monitored sea area, preprocess it, and extract the normal trajectory model with DBSCAN.</p>
+
+    <p>Step 2: the normal trajectory clusters from DBSCAN train the RNN to predict the ship's next-moment normal state. Each trajectory feature at time t is Y(t) = {lon, lat, sog, cog} (longitude, latitude, speed over ground, course over ground); a sliding window generates input/output sets, and the normal-state prediction model outputs Y(t+1)..Y(t+m) from the previous n steps. Step 3: predict the next-stage normal navigation status from past status and water-area history. Since most ship anomalies manifest in position, speed and course, the anomaly criterion is the deviation value combining geographic position distance with absolute speed and course deviations. Users set alarm thresholds per actual demand and training performance — with high and low thresholds for position (the most direct sailing-status indicator): the model alerts supervisors when real-time data exceed the high level or persistently exceed low levels, while accurate predictions mean normal sailing.</p>
+  </section>
+  <section>
+    <h2>4.1. Experimental Data and Preprocessing</h2>
+
+    <p>The study uses two months of 2019 AIS data from China's Tianjin Port area, selecting cargo ships and tankers. The raw data comprised 1,059,741 dynamic records, 376,333 static/voyage records, 3,884 ships (2,556 with additional information), and 712,214 track points. After preprocessing, 11,357 trajectories from 2,608 ships were retained: 30.3% of data had insufficient integrity (16.00% information mismatch, 14.30% insufficient spatial integrity), 1.76% of points had field errors (18,910 points), 0.67% had motion-logic errors (5,452 location, 1,736 speed errors), and compression achieved a 62.46% reduction to 267,365 key feature points. Before/after comparison shows messy trajectories, land crossings and trajectory mutations eliminated while original features are retained.</p>
+  </section>
+  <section>
+    <h2>4.2. Clustering Analysis</h2>
+
+    <p>To verify the segmented improved DTW, a clustering comparison of improved DTW, classic DTW and Hausdorff distance ran on 334 labeled ship trajectories with clear shape, direction and start/end differences, pre-marked as 8 clusters. With adaptive parameter selection (eps = 0.3 nm, MinTrs = 3), the improved DTW produced 8 clusters matching the labels (error rate 0.0058, i.e. 99.42% accuracy) — correctly separating clusters differing in local shape (clusters 1, 2, 4) and in start/end positions (2 vs 3 vs 6; 7 vs 8). Classic DTW merged some of these into 6 clusters (8.7% error), and Hausdorff managed only 4 clusters (17.9% error), missing opposite-direction and large local-shape differences. Environment: Intel i7-6700 CPU, 8 GB RAM, Windows 10, TensorFlow 2.0, Python.</p>
+  </section>
+  <section>
+    <h2>4.3. Ship Abnormal Behavior Detection Experiment</h2>
+
+    <h3>4.3.1. Ship Navigation State Prediction</h3>
+
+    <p>DBSCAN clusters were split 75%/25% into training and test sets to train BiGRU, with trajectory point intervals regularized to 2 minutes and all values normalized. With input time-step 5 and output step 1 (the next state predicted from five previous points), position, speed and course deviations evaluate the model. On two real test trajectories, predictions closely coincided with actual tracks, accurately capturing nonlinear steering and speed changes; BiGRU beat GRU and LSTM on average and maximum position, course and speed errors (e.g. trajectory 2 average position error 70.07 m for GRU vs 83.21 m for LSTM, with BiGRU lower still). Across iteration counts, LSTM and GRU errors fluctuated widely while BiGRU stayed stable with average position error under 90 m; overall BiGRU reduced average prediction error by 13.1% versus GRU and 21.3% versus LSTM.</p>
+
+    <h3>4.3.2. Ship Abnormal Behavior Detection</h3>
+
+    <p>Position low/high thresholds were set to 100 m and 250 m, heading and speed thresholds to ±3% of predicted normative values. Four real trajectories tested detection: No.1 (120 min: abnormal path, steering and shifting), No.2 (46 min: repeated abnormal channel-crossing steering), No.3 (30 min: sudden channel stop), No.4 (90 min: abnormal steering, sudden stop). Trajectory No.1 illustrates the detail: at the channel turning point the ship left the prescribed route into a reverse lane — at 12:32 heading changed to 292.3°, beyond the predicted normal course range, triggering a heading alert; 12:34–12:36 course deviation pulled position off the predicted track, triggering low-grade position Alert (1) until normal sailing resumed at 12:40. At 13:10 a sharp right turn sailed out of the channel while the predicted position stayed inside, triggering high-grade position Alert (2) through 13:22, with abnormal speed fluctuations also detected. At 13:40 speed abruptly rose 3.2 kn in 2 minutes above the predicted 12 kn — bad seamanship threatening channel traffic — triggering a speed alert, then position Alert (3) as the track diverged; at 13:50 speed plummeted 3.6 kn, triggering Alert (4).</p>
+
+    <p>Three metrics evaluate results: detection accuracy rate AR (detected abnormal points over actual abnormal points), false rate FR (misidentified normal points over normal points), and timeliness (timely recognition plus computing time). Across the four trajectories, BiGRU averaged 96.35% accuracy (93.75%, 91.66%, 100%, 100%) with 1.67% false rate and 9/9 timely recognitions (36.2–9.4 ms per track); GRU averaged 93.23% accuracy with 6.46% false rate and 8/9 timely; LSTM averaged 88.15% with 9.79% false rate and 8/9 timely — BiGRU misidentified only three points in Track No.1, and its computing time grows least with trajectory size, giving the best real-time performance. The method thus detects abnormal position, speed and heading behavior timely and effectively.</p>
+  </section>
+  <section>
+    <h2>5. Conclusions</h2>
+
+    <p>Intelligent maritime traffic monitoring overcomes traditional limits of supervisor inexperience and physical fatigue, raising supervision intelligence, informing traffic situations, assisting hazard supervision, and reducing accidents, violations and traffic-flow inefficiency. This study takes AIS broadcast trajectories as its object and proposes trajectory anomaly detection driven by AIS data, with trajectory clusters as the normal model and a deep network as the detection tool. Its threefold contribution: (1) AIS data-quality analysis across integrity, accuracy and conciseness, with a complete preprocessing suite (trajectory segmentation, base/position/speed abnormality repair, spatio-temporal feature extraction preserving features at 62.46% compression); (2) DBSCAN-based high-quality normative traffic models with a segmented improved DTW sensitive to direction, local shape and start/stop positions, reaching 99.42% clustering accuracy far above classic DTW and Hausdorff; (3) a BiGRU trajectory predictor solving RNN vanishing/exploding gradients with bidirectional context, achieving 96.35% anomaly accuracy at 1.67% false alarms with timely warnings, outperforming LSTM and GRU.</p>
+
+    <p>Limitations point to future work: the method needs high-quality sample trajectory models, and currently discards data with unmatchable dynamic/static information or too few valid points — repairing such data could optimize AIS mining. The normal model covers only cargo ships and tankers; shorter vessels such as fishing boats should be included for specific waters, and adaptive normal-model updating with new data should be strengthened for practice. Ship behavior also depends on spatio-temporal context — nearby vessels, weather, sea state — so correlating navigational-environment semantic analysis with behavior anomaly detection is another future priority.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] International Maritime Organization (IMO). Resolution MSC. 74 (69): Adoption of New and Amended Performance Standards; International Maritime Organization (IMO): London: UK, 1998.</li>
+      <li>[2] Sidibé, A.; Shu, G. Study of automatic anomalous behavior detection techniques for maritime vessels. J. Navig. 2017, 70, 847–858. [CrossRef]</li>
+      <li>[3] Laxhammar, R. Anomaly detection for sea surveillance. Information Fusion. In Proceedings of the 11th International Conference on Information Fusion, Cologne, Germany, 30 June–3 July 2008; pp. 1–8.</li>
+      <li>[4] Iphar, C.; Ray, C.; Napoli, A. Data integrity assessment for maritime anomaly detection. Expert Syst. Appl. 2020, 147, 113219. [CrossRef]</li>
+      <li>[5] Martineau, E.; Roy, J. Maritime Anomaly detection: Domain Introduction and Review of Selected Literature; Technical Report; Defense Research and Development Canada—Valcartier, Technical Memorandum TM2010-460; Defence Research and Development Canada: Ottawa, ON, Canada, 2011.</li>
+      <li>[6] Riveiro, M.; Pallotta, G.; Vespe, M. Maritime anomaly detection: A review. Data Min. Knowl. Discov. 2018, 8, e1266. [CrossRef]</li>
+      <li>[7] Wolsing, K.; Roepert, L.; Bauer, J.; Wehrle, K. Anomaly Detection in Maritime AIS Tracks: A Review of Recent Approaches. J. Mar. Sci. Eng. 2022, 10, 112. [CrossRef]</li>
+      <li>[8] Chandola, V.; Banerjee, A.; Kumar, V. Anomaly detection: A survey. ACM Comput. Surv. 2009, 41, 75–79. [CrossRef]</li>
+      <li>[9] Wang, Y.; Liu, J.; Liu, R.W.; Liu, Y.; Yuan, Z. Data-driven methods for detection of abnormal ship behavior: Progress and trends. Ocean. Eng. 2023, 271, 113673. [CrossRef]</li>
+      <li>[10] Holst, A.; Ekman, J. Anomaly Detection in Vessel Motion; International Report Saab Systems: Järfälla, Sweden, 2003.</li>
+      <li>[11] Ristic, B.; Scala, B. Statistical analysis of motion patterns in AIS data: Anomaly detection and motion prediction. In Proceedings of the 11th International Conference on Information Fusion, Cologne, Germany, 30 June–3 July 2008; pp. 109–122.</li>
+      <li>[12] Xiao, F.; Ligteringen, H.; Van Gulijk, C.; Ale, B. Comparison study on AIS data of ship trafﬁc behavior. Ocean. Eng. 2015, 95, 84–93. [CrossRef]</li>
+      <li>[13] Rong, H.; Teixeira, A.P.; Guedes, S. Ship trajectory uncertainty prediction based on a Gaussian Process model. Ocean. Eng. 2019, 182, 499–511. [CrossRef]</li>
+      <li>[14] Vespe, M.; Visentini, I.; Bryan, K.; Braca, P. Unsupervised learning of maritime trafﬁc patterns for anomaly detection. In Proceedings of the 9th IET Data Fusion &amp; Target Tracking Conference: Algorithms &amp; Applications, London, UK, 16–17 May 2012; pp. 1–5.</li>
+      <li>[15] Mascaro, S.; Nicholso, A.E.; Korb, K.B. Anomaly detection in vessel tracks using Bayesian networks. Int. J. Approx. Reason. 2014, 55, 84–98. [CrossRef]</li>
+      <li>[16] Lei, P.R. A framework for anomaly detection in maritime trajectory behavior. Knowl. Inf. Syst. 2016, 47, 189–214. [CrossRef]</li>
+      <li>[17] de Souza, E.N.; Boerder, K.; Matwin, S.; Worm, B. Improving ﬁshing pattern detection from satellite AIS using data mining and machine learning. PLoS ONE 2016, 11, e0158248.</li>
+      <li>[18] Toloue, K.F.; Jahan, M.V. Anomalous behavior detection of marine vessels based on Hidden Markov Model. In Proceedings of the 6th Iranian Joint Congress on Fuzzy and Intelligent Systems (CFIS), Kerman, Iran, 28 February–2 March 2018; pp. 10–12.</li>
+      <li>[19] Laxhammar, R.; Falkman, G. Online learning and sequential anomaly detection in trajectories. Trans. Pattern Anal. Mach. Intell. 2014, 36, 1158–1173. [CrossRef] [PubMed]</li>
+      <li>[20] Bomberger, N.A.; Rhodes, B.J.; Seibert, M. Associative learning of vessel motion patterns for maritime situation awareness. In Proceedings of the 9th International Conference on Information Fusion, Florence, Italy, 10–13 July 2006; Volume 54, pp. 1–8.</li>
+      <li>[21] Zhao, L.B.; Shi, G.Y. Maritime anomaly detection using density-based clustering and recurrent neural network. J. Navig. 2019, 72, 894–916. [CrossRef]</li>
+      <li>[22] Tang, H.; Yin, Y.; Shen, H.L. A model for vessel trajectory prediction based on long short-term memory neural network. J. Mar. Eng. Technol. 2022, 21, 136–145. [CrossRef]</li>
+      <li>[23] Tang, H.; Wei, L.Q.; Yin, Y.; Shen, H.; Qi, Y. Detection of abnormal vessel behavior sased on probabilistic directed graph model. J. Navig. 2022, 21, 136–145.</li>
+      <li>[24] Zhen, R.; Jin, Y.; Hu, Q.Y. Vessel behavior prediction based on AIS data and BP neural network. Navig. China 2017, 40, 6–10.</li>
+      <li>[25] Zhao, L.B.; Shi, G.Y.; Yang, J.X. Ship trajectories pre-processing based on AIS data. J. Navig. 2018, 71, 1210–1230. [CrossRef]</li>
+      <li>[26] Douglas, D.H.; Peucker, T.K. Algorithms for the reduction of the number of points required to represent a digitized line or its caricature. Int. J. Geogr. Inf. Geovisualization 1973, 10, 112–122. [CrossRef]</li>
+      <li>[27] Fikioris, G.; Patroumpas, K.; Artikis, A.; Pitsikalis, M.; Paliouras, G. Optimizing vessel trajectory compression for maritime situational awareness. GeoInformatica 2022, 27, 1–27. [CrossRef]</li>
+      <li>[28] Ester, M.; Kriegel, H.P.; Sander, J.; Xu, X. A density-based algorithm for discovering clusters in large spatial databases with noise. In Proceedings of the KDD-96 Proceedings, Portland, Oregon, 2–4 August 1996; Volume 96, pp. 226–231.</li>
+      <li>[29] Pallotta, G.; Vespe, M.; Bryan, K. Vessel pattern knowledge discovery from AIS data: A framework for anomaly detection and route prediction. Entropy 2013, 15, 2218–2245. [CrossRef]</li>
+      <li>[30] Zhao, L.B.; Shi, G.Y. A trajectory clustering method based on douglas- peucker compression and density for marine trafﬁc pattern recognition. Ocean. Eng. 2019, 172, 456–467. [CrossRef]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse11040763">10.3390/jmse11040763</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

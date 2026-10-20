@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كشف الشذوذ في حركة المرور البحرية في الوقت الحقيقي بالاعتماد على المستشعرات — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Real-Time Maritime Traffic Anomaly Detection Based on Sensors and History Data Embedding</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">كشف الشذوذ في حركة المرور البحرية في الوقت الحقيقي بالاعتماد على المستشعرات وتضمين البيانات التاريخية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Julius Venskus, Povilas Treigys, Jolita Bernatavičienė, Gintautas Tamulevičius, Viktor Medvedev</span>
+    <span>📄 Sensors, 2019 · Vol. 19, No. 17, 3782</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s19173782">10.3390/s19173782</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+<p>يستقبل نظام التعريف الآلي (AIS) لحركة السفن كمية هائلة من بيانات المستشعرات متعددة المتغيرات وغير المتجانسة، والتي يجب تحليلها لاتخاذ قرار مناسب وفي الوقت المناسب بشأن تحركات السفن. ويجعل العدد الكبير من السفن من الصعب اكتشاف الشذوذ ويستغرق وقتًا طويلًا، لذا يجب تطوير خوارزميات استجابة سريعة لنظام دعم القرار لتحديد التحركات الشاذة للسفن في مناطق الحركة الكثيفة. توسّع هذه الورقة دراسة سابقة حول تطبيق خريطة التنظيم الذاتي (SOM) لمعالجة بيانات تدفق المستشعرات المستلمة عبر نظام AIS البحري. فكلما زادت بيانات حركة السفن المسجلة والمقدمة للخوارزمية، ارتفعت دقتها؛ غير أن هذه المهمة لا يمكن ضمانها دون استراتيجية فعّالة لإعادة التدريب من حيث الدقة وزمن معالجة البيانات. كما تضمن إعادة التدريب دمج أحدث بيانات حركة السفن التي تعكس الظروف والسياق الفعليين. وبغية الحفاظ على جودة نتائج الخوارزمية، دُرست استراتيجيات تجميع البيانات لإعادة تدريب الشبكة العصبية لكشف الشذوذ في بيانات الحركة البحرية المتدفقة. وقُيّمت فعّالية الاستراتيجيات من حيث دقة النمذجة وزمن معالجة البيانات على بيانات مستشعرات حقيقية. وأظهرت النتائج أنه يمكن تقليص زمن إعادة تدريب الشبكة العصبية إلى النصف بينما لا تتغير الحساسية والدقة إلا تغيرًا طفيفًا.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+<p>تُعد الصناعة البحرية جزءًا مهمًا من نظام التجارة العالمي بحجم ونمو واحتياجات متزايدة. ففي عام 2018، نُقل 1.9 مليار طن من البضائع ضمن النقل البحري الأوروبي قصير المدى [1]، بزيادة 3.2% مقارنة بعام 2016. وإجمالًا، يُنقل أكثر من 90% من البضائع بحرًا [2]. ويطرح هذا النمو تحديات: إذ يثير تزايد كثافة الحركة البحرية الحاجة إلى ضبط الحركة الموجّه نحو منع الحوادث. ويُعد كشف الشذوذ أو التحركات غير الطبيعية إحدى تقنيات الضبط، ويقوم على تحليل مسار السفينة والبحث عن مظاهر غير منتظمة أو غير قانونية أو شاذة في بيانات المسار [3].</p>
+<p>يمكن أن يشمل المسار البحري بيانات تعريف السفينة ومعاملات الحركة (مثل السرعة والدوران) وبيانات مساعدة (مثل بيانات الأرصاد الجوية)، مما يشكّل بنية بيانات واسعة ومعقدة. وتُعيد أنظمة جمع البيانات الآلية (مثل نظام التعريف الآلي AIS) مجموعات مسارات أكبر فأكبر، وهو ما يصعّب التحليل البشري وكشف الشذوذ [4]. واليوم، تُعد تقنيات تحليل البيانات والتعدين القائمة على التعلم الآلي خيارًا طبيعيًا لهذه المهمة: فبنية البيانات المستخلصة والمعلومات المستخرجة وانتظام البيانات المكتشف يمكن أن تساعد في تقدير حركة السفن واتخاذ قرارات السلامة، بل وتمكين الكشف الآلي عن الشذوذ.</p>
+<p>أما في التطبيقات الواقعية، فيبرز تحدّي التشغيل في الوقت الحقيقي وتعميم البيانات: إذ تُكتشف شذوذات الحركة كانحرافات عن البيانات التاريخية لمسار السفينة، وهو ما قد يكون إشكاليًا مع تدفقات بيانات المسارات الضخمة. وفي هذه الحالة، يعني التقدير المستمر للبيانات التاريخية والسياقية حاجة دائمة لإعادة تدريب النظام. وإعادة التدريب الكامل عملية مكلفة زمنيًا واستهلاكًا للطاقة؛ لذا تُفضَّل تقنيات التدريب الإضافي أو التكيفي: فيجب تطوير خوارزميات تعلم ذاتي سريعة لكشف التحركات الشاذة في البيانات المتدفقة.</p>
+<p>تنظم بقية الورقة على النحو التالي: يعرض القسم 2 مشكلة كشف التحركات الشاذة في بيانات الحركة البحرية ويستعرض الحلول الحديثة. ويعرض القسم 3 دافع الورقة: استراتيجيتان لإعادة التدريب لكشف الشذوذ البحري في الوقت الحقيقي بالشبكات العصبية. ويعرض القسم 4 نتائج البحث التجريبي لهذه الاستراتيجيات. ويختتم القسم 5 بنتائج الدراسة.</p>
+  </section>
+
+  <section>
+    <h2>2. مراجعة الأدبيات</h2>
+<p>يمكن تعريف حركة السفينة الشاذة بأنها انحراف غير مبرر عن الممرات البحرية أو المسار أو السرعة أو غيرها من معاملات الحركة [5]. وبما أن معظم السفن مزودة بنظام AIS الذي يقدم معلومات ساكنة وديناميكية عن حركة السفينة، فإن كشف شذوذ الحركة يصبح مهمة تحليل بيانات وكشف قيم متطرفة. ويمكن تحليل بيانات الحركة بأسلوب النقاط أو بأسلوب المسارات [6].</p>
+<p>في الأسلوب الأول، تُعامل كل نقطة بيانات (رسالة من السفينة إلى AIS) أو مجموعة منها كنقطة مستقلة: تُقسَّم المنطقة الجغرافية إلى خلايا مستقلة تُحلل رسائل AIS المرتبطة بها بتقنيات قائمة على التوقيعات أو القواعد، أي توظيف قواعد ارتباطية متنوعة لكشف تغيرات حركية محددة [7]. طبّق Zhu إدارة قواعد البيانات ومستودعاتها وتقنيات تعدين البيانات لتحليل بيانات AIS [8]، ووسّع Deng السمات بإضافة الطوابع الزمنية مما أتاح نماذج ماركوف لاستكمال القواعد [9]. واقترح Pallotta وآخرون [10] نافذة زمنية منزلقة لتقدير العلاقة بين رسائل AIS المتعاقبة، مع عنقدة النقاط الوسيطة بخوارزمية DBSCAN للكشف عن الشذوذ والتنبؤ بالحركة. أما العيب الرئيسي لتقنيات النقاط فهو تحليل التاريخ القصير للحركة أو إهمال التاريخ أصلًا؛ لكن قلة النقاط المحللة تعني حسابًا وقرارًا في الوقت الحقيقي، وهي ميزة جذابة لمهام الزمن الحقيقي.</p>
+<p>أما تقنيات المسارات فتعامل تسلسل بيانات الحركة ككل: تُبنى نماذج للحركة الطبيعية (باستخدام كامل بيانات المسار) ويُكتشف الشذوذ كعدم مطابقة بيانات الحركة للنموذج. ومن الاتجاهات المدروسة: تعدين أنماط الحركة، وتقييم مخاطر الاصطدام [12]، وكشف الشذوذ البحري [13–15]، وتصنيف أنواع السفن [16]، ومكافحة الصيد غير المشروع [17]. ويمنح تحليل المسار الكامل ميزة البيانات التاريخية للحركة، لكنه يتطلب خوارزميات معقدة كالشبكات العصبية، مما يصعّب تطبيقه في الزمن الحقيقي، كما أنه حساس للبيانات المفقودة (مثل رسائل AIS الضائعة). ويمكن الاطلاع على مراجعات تصنيفية شاملة في [5، 15، 23].</p>
+<p>ويتطلب تحليل البيانات الكاملة للمسارات مناهج قائمة على البيانات مثل الشبكات العصبية الاصطناعية أو الأساليب الإحصائية، التي تعمل بأسلوب غير مُشرف أو شبه مُشرف (لا تحتاج بيانات موسومة) وتتعامل مع كميات ضخمة. أما مسألة الحسابات في الزمن الحقيقي فيجب حلها بفكرة النمذجة التزايدية (إعادة التدريب وإعادة التقدير): أي تحديث نموذج حركة السفن وفق أحدث البيانات لتجنب إعادة النمذجة الكاملة.</p>
+  </section>
+
+  <section>
+    <h2>3. الدافع</h2>
+<p>يمكن النظر إلى حركة السفينة (طبيعية أو شاذة) بشكل مختلف تبعًا للمنطقة البحرية المرصودة: فبعيدًا عن الميناء، قد لا يُعد الانحراف الكبير عن المسار شذوذًا (بسبب الطقس أو البحر الهائج)، بينما قرب الميناء قد يُعد الانحراف البسيط نشاطًا شاذًا. لذا يجب أن تتمتع طريقة كشف الشذوذ بخاصية القياس الإقليمي المختلفة لمناطق المراقبة المختلفة، وهي خاصية توفرها طريقة خريطة التنظيم الذاتي (SOM) [24–28].</p>
+<p>في بحث سابق [29]، قُدّمت خوارزمية SOM معدّلة لتصنيف بيانات حركة السفن البحرية إلى طبيعية وشاذة، عبر دمج حسابات شدة الفرمون الافتراضي في الحقبة الأخيرة من تدريب النموذج، وتحديد عتبة الشدة بمنحدر التدرج أثناء التحقق. وحققت أفضل دقة تصنيف qA باستخدام دالة الجوار «القبعة المكسيكية»، وأفضل دقة بشبكة SOM بأبعاد 25×25. واستُخدمت هذه المعرفة كنقطة انطلاق لدراسة استراتيجيات تجميع البيانات وتدريب الشبكة في هذه الورقة.</p>
+<p>مع نمو الحركة البحرية قرب الموانئ، تصبح إعادة التدريب الكاملة لخوارزمية SOM مكلفة زمنيًا. والحاجة إلى إعادة التدريب بديهية: كلما زادت بيانات حركة السفن المرصودة والمغذاة للخوارزمية، تحسّنت دقتها. وجميع الشبكات العصبية شديدة الاعتماد على ترتيب الإدخال في بيانات التدريب؛ فقد لوحظ أنه بتغير ترتيب الإدخال فقط قد تتدهور دقة التصنيف كثيرًا [30]. واقتُرحت استراتيجيات إعادة تدريب لبناء نماذج مدمجة بذاكرة أقل وسرعة استدلال أعلى [31]، كما تُستخدم SOM لبناء مجموعات بيانات إعادة تدريب النماذج العميقة [30، 32] أو كجزء منها [33].</p>
+<p>تقدّم هذه الورقة استراتيجيتي إعادة تدريب للشبكات العصبية وتقارنهما بالإجراء المعياري للتجريب (الاستراتيجية I). تعرض الاستراتيجية I تجميع البيانات وتدريب الخوارزمية عند توفر دفعة جديدة كما لو لم تتوفر بيانات تاريخية، وهي النهج الشائع للتدريب/التحقق/الاختبار وتُستخدم مرجعًا. وتعرض الاستراتيجية II أداء الخوارزمية باستخدام معاملات نموذج مُدرَّب مسبقًا على بيانات سابقة مع دفعات البيانات الواردة حديثًا. وتعرض الاستراتيجية III تقنيات خلط مختلفة لدفعات البيانات مع استخدام معاملات النموذج المُدرَّب مسبقًا. وتدرس الاستراتيجيات الثلاث أثر معامل معدل التعلم على الأداء وزمن التدريب، إذ يجب تطوير نموذج كشف الشذوذ بتحليل مسارات السفن (إضافة إلى البيانات التاريخية) بطريقة تزايدية تعتمد على أحدث البيانات المستلمة [34].</p>
+  </section>
+
+  <section>
+    <h2>4. التجارب</h2>
+<h3>4.1. إعداد البيانات</h3>
+<p>اختيرت بيانات من منطقة حركة بحرية متوسطة قرب ميناء كلايبيدا لتحليل استراتيجيات إعادة التدريب المقترحة. واستُخدمت مجموعتا بيانات: سفن الشحن وسفن الركاب. تُوصف كل نقطة بيانات متدفقة بخط الطول وخط العرض والاتجاه وسرعة السفينة واتجاه الرياح وسرعتها واتجاه الموج وارتفاعه. تضم مجموعة الشحن 180,300 نقطة ومجموعة الركاب 43,879 نقطة حركية مسجلة تدفقيًا. وأُجريت جميع التجارب أولًا على مجموعة الشحن ثم اختُبرت الاستراتيجيات على مجموعة الركاب. اختيرت 20% من بيانات الشحن عشوائيًا لتقييم خطأ النموذج العام، وخُصصت 80% المتبقية لدراسة استراتيجيات التجميع: 20% منها للاختبار و80% لدفعات التدريب والتحقق T1 وT2 وT3 (الشكل 1). رُتّبت جميع العناصر تصاعديًا حسب زمن الإرسال، واستُخدمت شبكة SOM بأبعاد 25×25 وفق دراسة الحجم المنشورة في [29].</p>
+<h3>4.2. استراتيجيات تدريب شبكة SOM</h3>
+<p><strong>الاستراتيجية I:</strong> دُرّبت الشبكة وتحقق منها بدفعات T1 وT2 وT3 بمعدل تعلم 0.5؛ فبعد التدريب والتحقق بالدفعة T1، تُغذى البيانات الجديدة بدمج T1 وT2 معًا والتدريب من حالة عشوائية أولية بجميع العناصر، ثم يُطبق المخطط نفسه على الدفعة T3. ولتحسين الأداء، فُحص معامل معدل التعلم في الفترات: [0.005؛ 0.04] بخطوة 0.005، و[0.04؛ 0.1] بخطوة 0.01، و[0.1؛ 0.5] بخطوة 0.1 (الجدول 1). وبعد التدريب، اختُبر النموذج بمجموعة الاختبار لتقييم الخطأ العام (الجدول 2). وبلغ زمن إعادة التدريب 40,769 ثانية.</p>
+<p><strong>الاستراتيجية II:</strong> دُرّبت الخوارزمية أوليًا 10 مرات بدفعة T1 بأوزان عشوائية واختير أفضل نموذج بمعدل تعلم ثابت 0.5 (الجدول 3 يُظهر انحرافات ضئيلة في الدقة والحساسية مما يدل على استقرار الشبكة). ثم استُخدمت معاملات أفضل شبكة كأوزان أولية للتدريب بدفعة T2، ثم أُعيد تدريب أفضل نموذج بدفعة T3 محاكاةً لوصول دفعات جديدة. وأظهرت التجارب أن أفضل أداء تحقق بمعدل تعلم 0.025 (الجدول 4). وبلغ زمن التدريب 18,229 ثانية.</p>
+<p><strong>الاستراتيجية III:</strong> كالاستراتيجية II، لكن مع إنتاج أربع دفعات (Tm2–Tm5) يحتوي كل منها على ربع بيانات T2 وT3 (الجدول 5)، وبعد كل تدريب وتحقق تُستخدم معاملات أفضل نموذج للدفعة التالية مع تجميع بيانات التدريب: نصف عناصر الدفعات الجديدة من T2 وT3 والنصف الآخر مختار تناسبيًا من النقاط المرتبطة بالخلايا العصبية الفائزة في النموذج السابق، مما يضمن دمج معرفة المناطق البحرية المتكررة العبور (فالسفن نادرًا ما تغيّر طرقها). تحقق أفضل نموذج بمعدل تعلم 0.03 (الجدول 6). وبلغ زمن إعادة التدريب 27,854 ثانية. ويلخص الجدول 7 الزمن النسبي للاستراتيجيات I–III، واختُبرت الاستراتيجيات نفسها على مجموعة الركاب (الجدول 8).</p>
+<p>تُظهر النتائج أنه بتطبيق استراتيجيات إعادة تدريب SOM المختلفة مع ثبات أحجام الدفعات، يمكن تقليص زمن كشف التحركات الشاذة تقليصًا كبيرًا مع إبقاء الدقة والحساسية عند قيم عالية جدًا: إذ أُعيد تدريب الشبكة في نصف الزمن مع بقاء الدقة والحساسية شبه ثابتتين، وأكدت تجربة مجموعة البيانات المستقلة صحة دراسة الاستراتيجيات.</p>
+  </section>
+
+  <section>
+    <h2>5. الخاتمة</h2>
+<p>توسّع هذه الورقة دراسة سابقة حول تطبيق خريطة التنظيم الذاتي المُدرَّبة بأسلوب غير مُشرف عبر التعلم التنافسي لمعالجة بيانات تدفق المستشعرات لكشف تحركات السفن الشاذة في الحركة البحرية. وعُرضت ودُرست استراتيجيات مختلفة لإعادة التدريب غير المُشرف لشبكة SOM لتصنيف بيانات حركة السفن إلى طبيعية وشاذة. وتضمن استراتيجيات تجميع البيانات دقة عالية للخوارزمية عبر إدخال كم هائل من بيانات تحركات السفن الجديدة. واقتُرحت ودُرست استراتيجيتا إعادة تدريب غير مُشرفتين، وأظهر البحث التجريبي نتائج واعدة: إذ يمكن إعادة تدريب شبكة SOM في نصف الزمن بتطبيق نهج الدفعات على النموذج المُدرَّب مسبقًا، مع بقاء حساسية النموذج ودقته بتغير لا يتجاوز 3% في كشف الحركة البحرية غير المعتادة.</p>
+<p>وأظهرت نتائج التجارب ما يلي: إذا دُرّب النموذج من أوزان عشوائية أولية، لوحظ أفضل أداء لكن بزمن تدريب أطول (الدقة 0.979 والحساسية 0.889 بمعدل تعلم 0.5). وإذا دُرّب النموذج فوق أوزان مُدرَّبة مسبقًا، انخفضت الدقة والحساسية قليلًا لكن تناقص زمن التدريب إلى النصف (بمعدل تعلم 0.025). وإذا دُرّب النموذج فوق أوزان مُدرَّبة مسبقًا مع خلط دفعة البيانات الجديدة تناسبيًا مع الخلايا الفائزة، أمكن خفض الزمن بمقدار الثلث مع الحفاظ على النتائج نفسها تقريبًا (بمعدل تعلم 0.03). وأكدت تجربة مستقلة على بيانات غير مرئية صحة النتائج، وخلصت إلى أنه بتطبيق نهج الدفعات لإعادة تدريب SOM على النموذج المُدرَّب مسبقًا يمكن تقليص زمن التدريب إلى النصف باختيار معدل التعلم من الفترة [0.025؛ 0.03] مع الحفاظ على حساسية النموذج ودقته بتغيرات طفيفة فقط.</p>
+  </section>
+
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+<p>The automated identification system of vessel movements receives a huge amount of multivariate, heterogeneous sensor data, which should be analyzed to make a proper and timely decision on vessel movements. The large number of vessels makes it difficult and time-consuming to detect abnormalities, thus rapid response algorithms should be developed for a decision support system to identify abnormal movements of vessels in areas of heavy traffic. This paper extends the previous study on a self-organizing map application for processing of sensor stream data received by the maritime automated identification system. The more data about the vessel's movement is registered and submitted to the algorithm, the higher the accuracy of the algorithm should be. However, the task cannot be guaranteed without using an effective retraining strategy with respect to precision and data processing time. In addition, retraining ensures the integration of the latest vessel movement data, which reflects the actual conditions and context. With a view to maintaining the quality of the results of the algorithm, data batching strategies for the neural network retraining to detect anomalies in streaming maritime traffic data were investigated. The effectiveness of strategies in terms of modeling precision and the data processing time were estimated on real sensor data. The obtained results show that the neural network retraining time can be shortened by half while the sensitivity and precision only change slightly.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+<p>The maritime industry is an important part of the global trade system with a growing volume, intensity, and needs. In 2018, 1.9 billion tons of goods were transported as part of EU short sea shipping [1]. This is 3.2% more in comparison with 2016. Totally, more than 90% of cargo is carried by sea transport [2]. Such growth presents some challenges in the industry. Increasing intensity of maritime traffic raises the need for incident prevention-oriented traffic control. The maritime anomaly or abnormal movement detection is one of the control techniques. It is based on vessel trajectory analysis and search of irregular, illegal, and other anomalous appearances in trajectory data [3].</p>
+<p>A maritime trajectory can include vessel identification data, traffic parameters (e.g. speed and rotation), auxiliary data (e.g., meteorological data) for a vessel, and such dataset presents a large-scale, complex data structure. Automated data gathering systems (e.g., Automatic Identification System) return larger and larger trajectory datasets, which are challenging for human-based analysis and anomaly detection [4]. Nowadays, machine learning-based data analysis and mining techniques is a natural choice for this type of task: the obtained structure of data, the extracted information, detected data regularities could help to estimate vessel movement and make some safety decision, to enable the automatic anomaly detection even.</p>
+<p>For real-world applications, a challenge of real-time operation, data generalization arises. Movement anomalies are detected as history-based deviations of vessel's trajectory data, which can be problematic considering massive trajectory data streams. In this case, constant estimation of historical and context data means permanent need for system retraining. Full retraining is a time- and power-consuming process; therefore, some techniques of additional or adaptive training would be preferred: rapid self-learning algorithms have to be developed to detect the abnormal movement in stream data.</p>
+<p>The paper is organized as follows. Section 2 presents the problem of abnormal movement detection in maritime traffic data and gives the state-of-the-art problem solutions. Section 3 presents the motivation of this paper: two retraining strategies are introduced for neural network-based real-time maritime anomaly detection. The results of experimental research of these strategies are given in Section 4. The investigation results are concluded in Section 5.</p>
+  </section>
+
+  <section>
+    <h2>2. Review</h2>
+<p>The abnormal vessel movement can be defined as an unreasoned movement deviation from the sea lanes, trajectory, speed or other traffic parameters [5]. As most vessels have the Automatic Identification System (AIS) installed, giving the static and dynamic information about the vessel movement, the detection of traffic anomaly comes as the task of data analysis and outlier detection. In addition, different sensor systems can be connected to the AIS. Traffic data are analyzed in point-based or trajectory-based manner [6].</p>
+<p>In the first case, every single data point (message from the vessel to the AIS) or a group of them is treated as an independent point. For this purpose, the analyzed geographical area is subdivided into independent cells with related AIS messages. These data points in the grid are analyzed using so-called signature-based or rule-based techniques. The idea of these techniques is the employment of various association rules to detect specific movement changes [7]. Zhu applied database management, data warehouse, and data mining technologies to analyze AIS data [8]. Deng [9] extended the features and inserted time stamps. These extensions enable employing Markov model for supplementation of rules. While declaring the point-based analysis, Pallotta et al. [10] proposed to use a sliding time window to estimate the relationship between successive AIS data points. The obtained waypoints are clustered using Density-Based Spatial Clustering of Applications with Noise methodology and employed for anomaly detection and movement prediction. The main weakness of point-based techniques is the analysis of movement short-term history or disregard of history even. A limited number of analyzed data points means real-time calculation and decision making. This quality makes point-based anomaly detection techniques attractive for real-time tasks.</p>
+<p>Trajectory-based techniques treat the entire traffic data sequence as a whole. Several research directions are analyzed in the literature related to the analysis of vessel trajectories: maritime traffic pattern mining, ship collision risk assessment [12], maritime anomaly detection [13,14,15], identification of the types of ships [16], and combating abalone poaching [17]. In the case of trajectory-based detection, models of normal movement are created (using the entire trajectory data, not part of it) and the anomalies are detected as movement data inadequacy to the model. However, full data analysis requires much more complicated algorithms such as neural networks. This complicates the application of trajectory-based analysis for real-time tasks. In addition, such algorithms are sensitive to missing data (e.g., lost AIS messages). A comprehensive and categorizing review on maritime anomaly detection can be found in [5,15,23].</p>
+<p>Analysis of full trajectory data and anomaly detection would require data-driven approaches such as artificial neural network-based or statistical methods. These approaches can perform in an unsupervised or semi-supervised manner (i.e., they do not need labeled data) and can cope with large amounts of data. The issue of real-time calculations should be solved using the idea of incremental modeling (retraining, re-estimating, etc.): the model of vessel movement should be updated concerning recent data to avoid of complete remodeling or model retraining.</p>
+  </section>
+
+  <section>
+    <h2>3. Motivation</h2>
+<p>The vessel movement (normal or abnormal) can be treated differently regarding the sea region where the movement is observed. For example, if the ship is quite distant from the seaport, then even high decline from its course cannot be indicated as an anomaly: weather condition, stormy sea, etc. may have a great influence on vessel trajectory. On the other hand, if vessel movement is observed at the seaport surroundings, even a small deviation from the course may be thought as abnormal vessel activity. To this purpose, the method used for traffic anomaly detection has to have a feature that allows different region scaling at different maritime traffic observation areas. The self-organizing map (SOM) method has such a scaling property. SOM is a neural network-based method that is trained in an unsupervised way using a competitive learning [24,25,26,27]. The neural network can be used for both visualization and clustering of multidimensional data [28].</p>
+<p>In the previous research [29], the modified SOM algorithm for maritime vessel movement data classification into normal and abnormal classes is presented. The modification is achieved by incorporating virtual pheromone intensity calculations at the last epoch of model training. During the model validation stage, the pheromone intensity threshold is established by applying a gradient descent method. The best classification accuracy qA was achieved using the Mexican hat neighboring function. The best precision was achieved using SOM grid dimension 25 × 25. This knowledge was used as a starting point for the network data batching and training strategies investigation presented in this paper.</p>
+<p>With the growth of maritime traffic, especially near seaports, the complete retraining of the SOM algorithm becomes costly in terms of training time. The need for algorithm retrain is quite straightforward: the more vessel movement data that are observed and fed into the algorithm, the better the precision of the algorithm should be. All neural networks are strongly dependent on the input sequence in the training data. It was observed that, if only the input sequence of the data changes, even though the system architecture stays the same, classification accuracy results may be significantly impaired [30]. Other authors proposed neural networks retraining strategies to build compact neural network models with less memory usage and faster inference speed [31]. Recently, the SOM neural network is being used to build datasets used in deep neural network model retraining [30,32] or is used as a part of deep neural network model [33].</p>
+<p>In this article, the authors introduce two neural network retrain strategies and compare the results with the standard procedure of neural network model experimental investigation (so-called Strategy I). Strategy I presents data batching and algorithm training whenever the new batch becomes available as if no model history data were available. It is a common approach for neural network training/validation/testing. In this paper, it is used as a reference with the view to compare retrain Strategies II and III introduced by the authors. Strategy II presents algorithm performance while using pre-trained model parameters on previously trained data with the newly arriving data batches. Strategy III presents different data batch shuffling techniques and the use of previously pre-trained model parameters. All three strategies investigate the learning rate parameter influence on the model performance and training time as well [34].</p>
+  </section>
+
+  <section>
+    <h2>4. Experiments</h2>
+<h3>4.1. Data Preparation</h3>
+<p>The detailed description of the previous study of SOM size and modification by introducing the SOM evaporation functions are presented in [29]. Data from the region of medium maritime traffic at the Klaipeda seaport were selected for the analysis of the proposed retraining strategies of the SOM network. During the experiments, two datasets were used: Cargo vessels and Passenger vessels. Each item (point) of a vessel's streamed data is described by longitude, latitude, heading, vessel speed, wind direction, wind speed, wave direction, and wave height values. The Cargo dataset is represented by 180,300 and the Passenger dataset is described by 43,879 vessel movement observation items that were registered in a streamed manner. All experiments in this section were carried out with the Cargo dataset; afterwards, the data batching strategies were tested on the Passenger dataset. First, 20% of the Cargo vessel dataset was randomly selected for the general model error evaluation. Then, the resulting 80% of the dataset items were used for the data batching strategy investigation. These 80% of data items were split into 20% for strategy testing, and 80% for T1, T2, and T3 data batch splitting (see Figure 1) to perform the SOM network training and validation. All data items were sorted in ascending order with respect to data sending time. The SOM network of size 25 × 25 was taken according to the SOM size investigation published in [29].</p>
+<h3>4.2. Training Strategies of the SOM Network</h3>
+<p><strong>Strategy I.</strong> For the SOM network training and validation, T1, T2 and T3 data batches were used. The learning rate parameter was set to 0.5. Then, after the network was trained and validated with the T1 data batch, the new data were fed to the network as follows: the T1 and T2 batch data were merged together and the algorithm was trained from the initial random state using all items from T1 and T2. The same scheme was applied to the T3 data batch. To get the best network performance, the learning rate parameter search covered: [0.005;0.04] with step 0.005; [0.04;0.1] with step 0.01; [0.1;0.5] with step 0.1 (see Table 1). After the model was trained, it was tested with the test dataset (Tables 1–2). The time needed for the algorithm retraining was 40,769 s.</p>
+<p><strong>Strategy II.</strong> The initial algorithm was trained 10 times with the T1 batch data with randomly generated SOM weights, and the best performing network was selected at fixed learning rate 0.5 (Table 3; small deviations of precision and sensitivity show network stability). Then, the best-obtained network parameters were used as initial weights for training with T2 batch data. Finally, the best model obtained with T2 was retrained with the T3 batch. The best performance network was obtained with learning rate 0.025 (Table 4). The time needed for model training was 18,229 s.</p>
+<p><strong>Strategy III.</strong> The scheme was similar to Strategy II, except: from T2 and T3 batches, four data batches (Tm2–Tm5) were produced, each containing one quarter of both T2 and T3 data (Table 5); after every training/validation, the best model parameters seeded the next Tm2–Tm5 batch training. Half the items of Tm2–Tm5 batches were compounded of T2 and T3 items, while another part was selected proportionally to data points attached to the previous best model SOM winning neurons, guaranteeing that knowledge of frequently passed sea regions was incorporated into the next training (ships rarely change sea routes). The best model was obtained with learning rate 0.03 (Table 6). The retraining time was 27,854 s. Table 7 summarizes relative training times of Strategies I–III; the same strategies were tested on the Passenger dataset (Table 8).</p>
+<p>From the results shown in Tables 7 and 8, by applying different SOM model retraining strategies while keeping the same data batch sizes, it is possible to substantially decrease the time for maritime traffic abnormal movement detection while keeping model precision and sensitivity at very high values. The results show that the SOM network could be retrained in half the time while keeping precision and sensitivity at almost the same high values, and the independent experiment confirmed the correctness of the training strategies investigation.</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+<p>This paper extends the previous study on a self-organizing map application, which is trained in an unsupervised way using competitive learning, for processing of sensor stream data in order to detect abnormal vessel movement in maritime traffic. Different strategies for the unsupervised retraining of the SOM network to classify maritime vessel movement data into normal and abnormal classes were presented and investigated. The data batching strategies ensure high precision of the algorithm by introducing a huge amount of new data on vessel movements. Two different unsupervised SOM network retraining strategies for maritime vessel movement data classification into normal and abnormal classes were proposed and investigated. The experimental research depicted promising results. The study showed that the SOM network can be retrained in half the time by only applying different train/validation and test datasets. The initial results depict that the obtained speed-up in data processing time maintains precision and sensitivity, varying not more than 3% in unusual maritime traffic detection.</p>
+<p>The results of the experiments show that: if the model is trained from initial random weights of the SOM network, the best performance is observed; however, the training time is the longest. Model precision reaches 0.979 and sensitivity 0.889 at learning rate 0.5. If the model is trained on top of the pre-trained model weights, the precision and sensitivity slightly drop, but the training time decreases by half at learning rate 0.025. If the model is trained on top of the pre-trained model weights and the newly arrived data batch is proportionally mixed with those winning neurons, training time can be decreased by one third while keeping almost the same results as depicted previously at learning rate 0.03. The independent experiment on unseen dataset confirmed the results correctness and allowed concluding that, by applying batched data approach for SOM retraining on the pre-trained model, network training can be shortened to half the time by selecting learning rate parameter from the interval [0.025;0.03] while maintaining the model sensitivity and precision with only minor changes.</p>
+  </section>
+
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] The European Commission, “Maritime Transport Statistics—Short Sea Shipping of Goods,” 2019. [Online]. Available: <a href="https://ec.europa.eu/eurostat/statistics-explained/index.php/Maritime_transport_statistics_-_short_sea_shipping_of_goods">https://ec.europa.eu/eurostat/statistics-explained/index.php/Maritime_transport_statistics_-_short_sea_shipping_of_goods</a></li>
+      <li>[2] Z. Wan, J. Chen, A. E. Makhloufi, D. Sperling, and Y. Chen, “Four routes to better maritime governance,” <em>Nature</em>, vol. 540, pp. 27–29, 2016. <a href="https://doi.org/10.1038/540027a">10.1038/540027a</a></li>
+      <li>[3] P. Fu, H. Wang, K. Liu, X. Hu, and H. Zhang, “Finding abnormal vessel trajectories using feature learning,” <em>IEEE Access</em>, vol. 5, pp. 7898–7909, 2017. <a href="https://doi.org/10.1109/ACCESS.2017.2698208">10.1109/ACCESS.2017.2698208</a></li>
+      <li>[4] J. Will, L. Peel, and C. Claxton, “Fast maritime anomaly detection using kd-tree gaussian processes,” in <em>Proc. IMA Maths in Defence Conf.</em>, Swindon, UK, 20 Oct. 2011.</li>
+      <li>[5] R. O. Lane, D. A. Nevell, S. D. Hayward, and T. W. Beaney, “Maritime anomaly detection and threat assessment,” in <em>Proc. FUSION 2010: 13th Int. Conf. Information Fusion</em>, Edinburgh, UK, 26–29 July 2010.</li>
+      <li>[6] A. Sidibé and G. Shu, “Study of automatic anomalous behaviour detection techniques for maritime vessels,” <em>J. Navig.</em>, vol. 70, pp. 847–858, 2017. <a href="https://doi.org/10.1017/S0373463317000066">10.1017/S0373463317000066</a></li>
+      <li>[7] B. Ristic, “Detecting anomalies from a multitarget tracking output,” <em>IEEE Trans. Aerosp. Electron. Syst.</em>, vol. 50, pp. 798–803, 2014. <a href="https://doi.org/10.1109/TAES.2013.130377">10.1109/TAES.2013.130377</a></li>
+      <li>[8] F. Zhu, “Mining ship spatial trajectory patterns from AIS database for maritime surveillance,” in <em>Proc. 2nd IEEE Int. Conf. Emergency Management and Management Sciences</em>, Beijing, China, 8 Aug. 2011, pp. 772–775. <a href="https://doi.org/10.1109/ICEMMS.2011.6015796">10.1109/ICEMMS.2011.6015796</a></li>
+      <li>[9] F. Deng, S. Guo, Y. Deng, H. Chu, Q. Zhu, and S. Fu, “Vessel track information mining using AIS data,” in <em>Proc. Int. Conf. Multisensor Fusion and Information Integration for Intelligent Systems (MFI)</em>, Beijing, China, 28–29 Sept. 2014, p. 16. <a href="https://doi.org/10.1109/MFI.2014.6997641">10.1109/MFI.2014.6997641</a></li>
+      <li>[10] G. Pallotta, M. Vespe, and K. Bryan, “Vessel pattern knowledge discovery from AIS data: A framework for anomaly detection and route prediction,” <em>Entropy</em>, vol. 15, pp. 2218–2245, 2013. <a href="https://doi.org/10.3390/e15062218">10.3390/e15062218</a></li>
+      <li>[11] V. F. Arguedas, F. Mazzarella, and M. Vespe, “Spatio-temporal data mining for maritime situational awareness,” in <em>Proc. OCEANS 2015-Genova</em>, Genoa, Italy, 18–21 May 2015, p. 1. <a href="https://doi.org/10.1109/OCEANS-Genova.2015.7271544">10.1109/OCEANS-Genova.2015.7271544</a></li>
+      <li>[12] P. Silveira, A. Teixeira, and C. S. Soares, “Use of AIS data to characterise marine traffic patterns and ship collision risk off the coast of Portugal,” <em>J. Navig.</em>, vol. 66, pp. 879–898, 2013. <a href="https://doi.org/10.1017/S0373463313000519">10.1017/S0373463313000519</a></li>
+      <li>[13] P. R. Lei, “A framework for anomaly detection in maritime trajectory behavior,” <em>Knowl. Inf. Syst.</em>, vol. 47, pp. 189–214, 2016. <a href="https://doi.org/10.1007/s10115-015-0845-4">10.1007/s10115-015-0845-4</a></li>
+      <li>[14] R. Zhen, Y. Jin, Q. Hu, Z. Shao, and N. Nikitakos, “Maritime anomaly detection within coastal waters based on vessel trajectory clustering and Naïve Bayes classifier,” <em>J. Navig.</em>, vol. 70, pp. 648–670, 2017. <a href="https://doi.org/10.1017/S0373463316000850">10.1017/S0373463316000850</a></li>
+      <li>[15] M. Riveiro, G. Pallotta, and M. Vespe, “Maritime anomaly detection: A review,” <em>Wiley Interdiscip. Rev. Data Min. Knowl. Discov.</em>, vol. 8, e1266, 2018. <a href="https://doi.org/10.1002/widm.1266">10.1002/widm.1266</a></li>
+      <li>[16] K. Sheng, Z. Liu, D. Zhou, A. He, and C. Feng, “Research on ship classification based on trajectory features,” <em>J. Navig.</em>, vol. 71, pp. 100–116, 2018. <a href="https://doi.org/10.1017/S0373463317000546">10.1017/S0373463317000546</a></li>
+      <li>[17] J. J. Dabrowski, J. P. de Villiers, and C. Beyers, “Context-based behaviour modelling and classification of marine vessels in an abalone poaching situation,” <em>Eng. Appl. Artif. Intell.</em>, vol. 64, pp. 95–111, 2017. <a href="https://doi.org/10.1016/j.engappai.2017.06.005">10.1016/j.engappai.2017.06.005</a></li>
+      <li>[18] G. K. D. de Vries and M. van Someren, “Machine learning for vessel trajectories using compression, alignments and domain knowledge,” <em>Expert Syst. Appl.</em>, vol. 39, pp. 13426–13439, 2012. <a href="https://doi.org/10.1016/j.eswa.2012.05.060">10.1016/j.eswa.2012.05.060</a></li>
+      <li>[19] B. H. Soleimani, E. N. D. Souza, C. Hilliard, and S. Matwin, “Anomaly detection in maritime data based on geometrical analysis of trajectories,” in <em>Proc. 18th Int. Conf. Information Fusion (Fusion)</em>, Washington, DC, USA, 6–9 July 2015, pp. 1100–1105.</li>
+      <li>[20] A. N. Radon, K. Wang, U. Glässer, H. Wehn, and A. Westwell-Roper, “Contextual verification for false alarm reduction in maritime anomaly detection,” in <em>Proc. IEEE Int. Conf. Big Data (Big Data)</em>, Santa Clara, CA, USA, 29 Oct.–1 Nov. 2015, pp. 1123–1133. <a href="https://doi.org/10.1109/BigData.2015.7363866">10.1109/BigData.2015.7363866</a></li>
+      <li>[21] R. Laxhammar and G. Falkman, “Inductive conformal anomaly detection for sequential detection of anomalous sub-trajectories,” <em>Ann. Math. Artif. Intell.</em>, vol. 74, pp. 67–94, 2015. <a href="https://doi.org/10.1007/s10472-013-9381-7">10.1007/s10472-013-9381-7</a></li>
+      <li>[22] J. Smith, I. Nouretdinov, C. Craddock, R. Offer, and A. Gammerman, “Conformal anomaly detection of trajectories with a multi-class hierarchy,” in <em>Statistical Learning and Data Sciences</em>, A. Gammerman et al., Eds. Springer, Cham, 2015, pp. 28–129.</li>
+      <li>[23] L. Cazzanti and G. Pallotta, “Mining maritime vessel traffic: Promises, challenges, techniques,” in <em>Proc. OCEANS 2015-Genova</em>, Genoa, Italy, 18–21 May 2015, p. 1. <a href="https://doi.org/10.1109/OCEANS-Genova.2015.7271555">10.1109/OCEANS-Genova.2015.7271555</a></li>
+      <li>[24] T. Kohonen, “The self-organizing map,” <em>Neurocomputing</em>, vol. 21, pp. 1–6, 1998. <a href="https://doi.org/10.1016/S0925-2312(98)00030-7">10.1016/S0925-2312(98)00030-7</a></li>
+      <li>[25] H. G. Kayacik, A. N. Zincir-Heywood, and M. I. Heywood, “A hierarchical SOM-based intrusion detection system,” <em>Eng. Appl. Artif. Intell.</em>, vol. 20, pp. 439–451, 2007. <a href="https://doi.org/10.1016/j.engappai.2006.09.005">10.1016/j.engappai.2006.09.005</a></li>
+      <li>[26] O. Kurasova and A. Molytė, “Quality of quantization and visualization of vectors obtained by neural gas and self-organizing map,” <em>Informatica</em>, vol. 22, pp. 115–134, 2011.</li>
+      <li>[27] G. Dzemyda, O. Kurasova, and J. Žilinskas, <em>Multidimensional Data Visualization: Methods and Applications</em>. Springer, 2012, vol. 75.</li>
+      <li>[28] V. Medvedev, O. Kurasova, J. Bernatavičienė, P. Treigys, V. Marcinkevičius, and G. Dzemyda, “A new web-based solution for modelling data mining processes,” <em>Simul. Model. Pract. Theory</em>, vol. 76, pp. 34–46, 2017. <a href="https://doi.org/10.1016/j.simpat.2017.03.001">10.1016/j.simpat.2017.03.001</a></li>
+      <li>[29] J. Venskus, P. Treigys, J. Bernatavičienė, V. Medvedev, M. Voznak, M. Kurmis, and V. Bulbenkienė, “Integration of a self-organizing map and a virtual pheromone for real-time abnormal movement detection in marine traffic,” <em>Informatica</em>, vol. 28, pp. 359–374, 2017. <a href="https://doi.org/10.15388/Informatica.2017.133">10.15388/Informatica.2017.133</a></li>
+      <li>[30] A. H. Jafari and M. T. Hagan, “Application of new training methods for neural model reference control,” <em>Eng. Appl. Artif. Intell.</em>, vol. 74, pp. 312–321, 2018. <a href="https://doi.org/10.1016/j.engappai.2018.07.005">10.1016/j.engappai.2018.07.005</a></li>
+      <li>[31] Z. Wang, J. Lin, and Z. Wang, “Accelerating recurrent neural networks: A memory-efficient approach,” <em>IEEE Trans. Very Large Scale Integr. (VLSI) Syst.</em>, vol. 25, pp. 2763–2775, 2017. <a href="https://doi.org/10.1109/TVLSI.2017.2717950">10.1109/TVLSI.2017.2717950</a></li>
+      <li>[32] B. Cannas, A. Fanni, G. Pautasso, and G. Sias, “Disruption prediction with adaptive neural networks for ASDEX Upgrade,” <em>Fusion Eng. Des.</em>, vol. 86, pp. 1039–1044, 2011. <a href="https://doi.org/10.1016/j.fusengdes.2011.01.069">10.1016/j.fusengdes.2011.01.069</a></li>
+      <li>[33] M. He and D. He, “Deep learning based approach for bearing fault diagnosis,” <em>IEEE Trans. Ind. Appl.</em>, vol. 53, pp. 3057–3065, 2017. <a href="https://doi.org/10.1109/TIA.2017.2661250">10.1109/TIA.2017.2661250</a></li>
+      <li>[34] J. Bernataviciene, G. Dzemyda, G. Bazilevicius, V. Medvedev, V. Marcinkevicius, and P. Treigys, “Method for visual detection of similarities in medical streaming data,” <em>Int. J. Comput. Commun. Control</em>, vol. 10, p. 8, 2015. <a href="https://doi.org/10.15837/ijccc.2015.1.1310">10.15837/ijccc.2015.1.1310</a></li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s19173782">10.3390/s19173782</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

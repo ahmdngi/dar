@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الارتقاء بمعيار أمن مسجلات بيانات الرحلة البحرية — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Raising the Standard of Maritime Voyage Data Recorder Security</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">الارتقاء بمعيار أمن مسجلات بيانات الرحلة البحرية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Rory Hopcraft, Avanthika Vineetha Harish, Kimberly Tam, Kevin Jones</span>
+    <span>📄 J. Mar. Sci. Eng. 2023, Vol. 11(2), 267</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse11020267">10.3390/jmse11020267</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+
+    <p>تجمع مسجلات بيانات الرحلة (VDRs)، التي يشار إليها غالبًا باسم «الصناديق السوداء» في صناعة الشحن، البيانات الحيوية من أجهزة الاستشعار والمواقع الرئيسية في أنحاء السفينة وتخزنها. وتؤدي هذه البيانات دورًا محوريًا في التحقيق في الحوادث، كما ظهر في جنوح كوستا كونكورديا عام 2012 وغرق إل فارو عام 2015. وبالنظر إلى هذه الأهمية، ألزمت المنظمة البحرية الدولية (IMO) جميع السفن المسجلة بموجب اتفاقية سولاس بحمل مسجل بيانات رحلة يثبت الامتثال للمعايير المتفق عليها دوليًا، إذ لا يمكن للسفينة الإبحار دون مسجل متوافق مع هذه المعايير. غير أن تزايد الأجهزة الرقمية وتطورها يجعل القطاع عرضة بشكل متزايد للهجمات السيبرانية. توضح هذه الورقة عددًا من الثغرات السيبرانية عالية الخطورة في مسجلات بيانات الرحلة، وتستعرض المعايير التقنية الدولية الحالية التي تغطي جميع أجهزة VDR المصنعة والمستخدمة اليوم، مسلطة الضوء على الحد الأدنى من متطلبات الأمن. وتناقش الورقة كيف تخفق هذه المعايير في تعزيز المستويات اللازمة من الأمن السيبراني لحماية المسجلات من المخاطر السيبرانية المعاصرة، في ظل تزايد متطلبات الاتصال الرقمي للعمليات عن بُعد والعمليات ذاتية القيادة. وتخلص الورقة إلى اقتراح عدة تعديلات (تقنية وغير تقنية) على المعايير الحالية من شأنها، إذا اعتمدت، أن ترفع الحد الأدنى لمستوى أمن المسجلات. وقد جُمعت آراء القطاع حول هذا الموضوع وأُدرجت في ثنايا الورقة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+
+    <p>أثناء أي تحقيق في حادث، من الحيوي الوصول إلى معلومات دقيقة تتعلق بالحادث، إذ يمكن أن تقدم دليلًا ملموسًا على السبب أو الأسباب. ولهذا تسجل مسجلات بيانات الرحلة معلومات مفصلة من مصادر متنوعة في أنحاء السفينة. والغرض من المسجل هو تخزين البيانات بصورة آمنة وقابلة للاسترجاع لمدة 30 يومًا على الأقل (720 ساعة) على وسيط التخزين طويل الأمد و48 ساعة على وسيطي التسجيل الثابت والطافي الحر. وتشمل هذه البيانات التاريخ والوقت وموضع السفينة وسرعتها واتجاهها وأوامر الدفة والمحرك والتسجيلات الصوتية للجسر والاتصالات وبيانات المعدات مثل لقطات الرادار ومعلومات نظام التعريف الآلي (AIS). وقد جاء إدراج المسجل ضمن أنظمة السفينة عقب عدد من الحوادث البحرية الخطيرة في الثمانينيات والتسعينيات، ومنها غرق العبارة إم إس إستونيا الذي أودى بحياة 852 شخصًا. ومع دخول المتطلبات حيز النفاذ عام 2000، حددت لجنة السلامة البحرية في المنظمة البحرية الدولية اشتراطات حمل المسجلات على السفن لفهم الأسباب الجذرية للحوادث البحرية، وتستخدم سلطات مثل فرع التحقيق في الحوادث البحرية في المملكة المتحدة هذه البيانات.</p>
+
+    <p>اعتمدت عدة قضايا بارزة على البيانات التي سجلتها المسجلات في اللحظات الحرجة السابقة لكوارث، وأبرزها جنوح كوستا كونكورديا عام 2012 وغرق إل فارو عام 2015، حيث بذل المحققون جهودًا كبيرة لاستعادة مسجلات السفينتين. وبما أن المسجل جزء حاسم من تحقيقات الحوادث، فإن التلاعب ببياناته أو اختفاءها تمامًا قد يؤدي إلى طريق مسدود في التحقيق. وفي عالم قائم على البيانات، ليس مستغربًا أن ترغب المؤسسات في جمع معلومات عن السفن وأدائها لتحسين الكفاءة وخفض التكاليف؛ بل إن بعض مصنعي المسجلات يقدمون اليوم خدمات تستخدم بيانات المسجل خارج نطاق الحوادث لمساعدة الشركات على فهم عملياتها وتحسين التدريب أو الإجراءات التشغيلية، كما في تدابير كفاءة الطاقة التشغيلية مثل تحسين سرعة الإبحار.</p>
+
+    <p>علاوة على ذلك، يمضي المجتمع الدولي باستمرار نحو تأمين بنيته التحتية الرقمية عبر لوائح مثل توجيه أمن الشبكات والمعلومات (NIS) واللائحة العامة لحماية البيانات في الاتحاد الأوروبي (GDPR). ولمصنعي الأجهزة ومطوري البرمجيات دور مهم في الموقف الأمني الأوروبي، وينبغي أن يبذلوا جهودًا لتحسين الأمن السيبراني لأجهزتهم. وترى وكالة الاتحاد الأوروبي للأمن السيبراني (ENISA) أن شركات نقل الركاب والبضائع الداخلية والبحرية والساحلية يمكن اعتبارها مقدمي خدمات أساسية ملزمين بتطبيق حد أدنى من الأمن السيبراني. وقد تكون هناك تبعات مالية أيضًا: بما أن تسجيلات المسجل تشمل ميكروفونات الجسر (وباتت تشمل بث الفيديو)، فقد تُسجل محادثات شخصية تخضع للائحة حماية البيانات، فتؤدي سرقة البيانات إلى غرامات. وكما سيُناقش لاحقًا، تفرض متطلبات الامتثال الجديدة من هيئات تصنيف السفن تدابير أمنية أشد، وقد يؤدي عدم الامتثال إلى منع السفن من الإبحار.</p>
+  </section>
+
+  <section>
+    <h2>2. المعايير التقنية الحالية</h2>
+
+    <h3>2.1. متطلبات المنظمة البحرية الدولية</h3>
+
+    <p>تتكون معظم المسجلات من وحدة أساسية تعمل كوحدة لجمع البيانات من أجهزة الاستشعار ومعدات الجسر وتخزينها على أقراص صلبة داخلية. كما تحتوي على وسيطي تخزين خارجيين، أحدهما ثابت والآخر طافٍ حر. والمكون الأخير هو واجهة الجسر، وهي واجهة المستخدم الرسومية التي تتيح للطاقم مراقبة حالة المسجل. وتتكون الوحدة الأساسية عادة من واجهة قياسية لرفع البيانات وتنزيلها (USB)، وجهاز حوسبة مخصص يشغّل برنامج المسجل، وواجهة إدخال وإخراج (إيثرنت أو تسلسلية) لاستقبال البيانات من أجهزة الاستشعار وإرسال التسجيلات إلى التخزين، وقرصين صلبين متطابقين بحيث يُستخدم الثاني عند تعطل الأول، ومصدر طاقة غير منقطع إلزامي يخفف خطر انقطاع التيار.</p>
+
+    <p>حددت المنظمة البحرية الدولية عبر القرارات الحد الأدنى من المتطلبات التي يجب أن تثبتها هذه الأجهزة. غير أن الوثائق الأساسية الأربع لا تُحسّن كثيرًا أمن المسجل وبياناته. فبينما يذكر القراران الرئيسيان الخاصان بالمسجلات والمسجلات المبسطة، MSC.333(90) وMSC.163(78)، حماية البيانات من التلاعب، فإنهما لا يقدمان أي توصيات حول كيفية تحقيق ذلك — وكما يبين القسم 3، أمكن التلاعب حتى بالأجهزة المتوافقة دون تسجيل المحاولة. وأضاف اعتماد MSC.214(81) عام 2006 متطلبات التنزيل والتشغيل: فيجب أن تكون واجهات الأجهزة متوافقة مع أنظمة تشغيل جاهزة (مثل مايكروسوفت ويندوز أو لينكس/أندرويد)، وإذا استُخدم نظام مملوك فيجب تخزين طريقة الوصول إلى البيانات داخل المسجل — وهو تطبيق يمكن، كما يتبين في القسم 3، أن يُدخل ثغرات إلى الجهاز.</p>
+
+    <p>وثمة متطلب آخر له تبعات أمنية ضمن القرار A.694(17)، وهو من أقدم القرارات ولم يُحدَّث منذ 1991. إذ ينص المتطلب 3.4 على أن سوء استخدام أدوات التحكم يجب ألا يسبب ضررًا للمعدات أو إصابة للأفراد؛ وبالتالي فإن تضمين واجهات USB في المسجلات كوسيلة تحكم لتحديث البرمجيات يجب أن يتم بما يمنع أن يؤدي سوء الاستخدام إلى ضرر — لكن التجارب العملية تُظهر أن محرك USB المثبت مصنعيًا قد يتيح للمهاجم التلاعب بالبرمجيات والبيانات مباشرة. علاوة على ذلك، يشترط المتطلب 8.0 تركيب الأجهزة بحيث تكون متاحة ويسهل الوصول إليها للفحص والصيانة والاستبدال، مما قد يُدخل بطبيعته مخاطر سيبرانية. أما القرار MSC.191(79) فهو الأقل أهمية إذ لا يضيف أي متطلبات أمنية؛ وأهميته الوحيدة أن المسجلات يجب أن تثبت الامتثال لقواعد العرض فيه.</p>
+
+    <h3>2.2. معايير اللجنة الكهروتقنية الدولية</h3>
+
+    <p>من الأغراض الأساسية لمعايير اللجنة الكهروتقنية الدولية تحويل متطلبات المنظمة البحرية الدولية إلى متطلبات قابلة للاختبار والتحقق، مع توفير طرق اختبار الامتثال. والوثيقة الرئيسية هي IEC 61996-1:2013+A1:2021 التي توحّد متطلبات القرار MSC.333(90). ورغم أن معظم النص منسوخ مباشرة من قرار المنظمة، فهناك إضافات بارزة: وصف مفصل لعملية الاختبار والتحقق، وتحديد معايير أخرى يجب الرجوع إليها (مثل IEC 61162 الخاص بواجهات الإشارات)، والأهم قائمة متطلبات يجب توافرها أثناء الفحص لإثبات مقاومة العبث: ألا يتطلب الوصول إلى أي جزء مادي من النظام، باستثناء واجهة إخراج البيانات، سوى الأدوات أو المفاتيح؛ وأن يترك أي وصول إلى وسيط التسجيل النهائي دليلًا يسهل تمييزه على العبث مثل الأختام أو الملصقات؛ وألا يؤثر تشغيل أي أدوات تحكم أو مفاتيح لوحة مفاتيح على التسجيل؛ وألا يكون إنهاء التسجيل ممكنًا إلا بمفتاح أو وسيلة آمنة أخرى؛ وأن تُحمى البيانات المسجلة من الوصول غير المصرح به بكلمة مرور.</p>
+
+    <p>وإلى جانب هذه المتطلبات، يشترط المعيار الاحتفاظ بنسخة من أي برمجيات أو واجهات مملوكة داخل وحدة المسجل نفسها لتسهيل استعادة البيانات — وهو اشتراط قد يضر بأمن الجهاز دون فوائد واضحة كما سيُناقش لاحقًا. ومن المعايير الرئيسية الأخرى: IEC 60945:2008 (المتطلبات العامة التي توحد القرار A.694(17)، دون متطلبات أمنية)، وسلسلة IEC 61162 الخاصة بالواجهات الرقمية (حيث يوضح IEC 61162-450 كيفية إضافة وسم توثيق عام إلى الرسائل لدعم إدارة مخاطر الأمن السيبراني، دون تفاصيل عن تحسين أمن الجهاز أو سلامة البيانات)، وIEC 62288:2022 الذي يوحد متطلبات MSC.191(79) دون متطلبات أمنية. ومن اللافت أن أحد متطلبات IEC 60945:2008 — وهو حماية أدوات التشغيل التي قد يؤدي تشغيلها العرضي إلى إيقاف المعدات من التشغيل غير المقصود — يمكن قراءته كمتطلب أمني يشمل واجهة التحديث عبر USB.</p>
+  </section>
+
+  <section>
+    <h2>3. الثغرات الأمنية في مسجلات بيانات الرحلة</h2>
+
+    <h3>3.1. تحديد خصائص أمن المعلومات في المسجل</h3>
+
+    <p>ينص التنظيم الرئيسي لمتطلبات المسجلات، MSC.333(90)، على تأمين البيانات ضد التلاعب المادي والإلكتروني — أي أن يكون المسجل مضادًا للعبث أو مقاومًا له، بحيث لا يستطيع المهاجم تغيير كمية البيانات المسجلة أو البيانات نفسها، مع تسجيل كل محاولات التلاعب. غير أن التقارير تشير إلى وجود ثغرات في المسجلات المصنعة: ففي 2015 حلل باحث في IOActive البرامج الثابتة لجهاز Furuno VR3000 فوجد ثغرات يمكن لمهاجم عن بُعد استغلالها للوصول إلى البيانات وتعديلها وحذفها؛ وبما أن مالكي السفن غير ملزمين بتحديث أجهزتهم، فقد تظل سفن غير آمنة مبحرة. وكشفت ثغرة لاحقة في برنامج Interschalt VDR G4e إمكانية قراءة الملفات وتنزيلها (CVE-2016-9339 بدرجة خطورة أساسية 5.3)، وأظهرت دراسة على جهاز جاهز غير مُحاكى أن جهاز مصنّع لم يُختبر سابقًا كان عرضة للعبث أيضًا.</p>
+
+    <p>تستخدم معايير ISO ذات الصلة مصطلح «مضاد للعبث» لمستوى الأمن المطلوب، لكنها لا تقدم تعريفًا دقيقًا للمسجلات؛ فالتعريف المستخدم في معايير ISO الأخرى لا يغطي سوى مقاومة التداخل الكهرومغناطيسي من الأجهزة الإلكترونية الشائعة — أي أن المصنعين عمليًا لا يُطلب منهم سوى إثبات مقاومة التداخل الكهرومغناطيسي لا أشكال العبث الرقمي الأخرى مثل استخدام USB. وبالنظر إلى أهمية دقة بيانات الحوادث، يجب أن تفعل هذه الأجهزة المزيد لحماية بياناتها. ويُستخدم نموذج السرية والسلامة والتوافر (CIA) المعروف لهيكلة التحليل: فاختراق المسجل قد يمس السرية (الوصول إلى ملفات السجلات أو الأرشيف) أو السلامة (التلاعب بالبيانات أو حذفها) أو التوافر (الفشل في التسجيل أو التخريب المتعمد). وقد رتّب خبراء القطاع في منتدى عام ضم أكثر من 100 مختص في الأمن البحري والسيبراني الأولويات لبيانات المسجل: السلامة أولًا، ثم التوافر، ثم السرية — فالبيانات الموثوقة أهم من البيانات السرية.</p>
+
+    <p>ولإثبات الحقائق عمليًا، أجرى المؤلفون اختبار اختراق على جهاز مسجل جاهز من مصنّع عالمي (VDRT يعمل بنظام Windows Embedded Standard 7 الذي انتهى دعمه عام 2020)، وكان الهجوم من جهاز يعمل بنظام Kali Linux. وباستخدام أدوات متاحة للعموم فقط — Nmap لمسح الشبكة، وإطار Metasploit للاستغلال، وجهاز USB Rubber Ducky بسعر 59.99 دولارًا يحقن ضغطات مفاتيح تحاكي المستخدم، ومحاكي برامج الفدية Shinolocker، وحمولة Reverse TCP shell، وأداة Hydra لتخمين كلمات المرور — أظهر الاختبار بواقعية المخاطر الفعلية. ويوضح استخدام أدوات قياسية جاهزة، لا تتطلب مهارات متخصصة كبيرة أو تكلفة أو وقتًا أو معدات خاصة، سهولة استهداف هذه الأجهزة بنجاح.</p>
+  </section>
+
+  <section>
+    <h2>3.2. ثغرات المسجل وفق عناصر السرية والسلامة والتوافر</h2>
+
+    <h3>3.2.1. السرية</h3>
+
+    <p>كشف الاستطلاع الشبكي باستخدام Nmap نظام التشغيل (Windows Embedded Standard 7) وعنوان MAC ونوع الجهاز والمنافذ المفتوحة — ومنها منفذ SMB (كتلة رسائل الخادم) المفتوح. وباستخدام وحدة smb_enumusers في Metasploit، عُثر على خمسة حسابات مستخدمين فريدة في المسجل؛ وباستخدام Hydra وقائمة كلمات مرور شائعة، نجحت هجمات التخمين في استعادة كلمتي مروري حسابي Administrator وCaptain، بينما كانت الحسابات الثلاثة المتبقية بكلمات مرور فارغة. وكانت هذه الحسابات موجودة على الجهاز كما اقتُني، وتمنح بعضًا من أعلى الصلاحيات على متن السفينة، بما يتيح الوصول إلى إعدادات الحسابات وإعدادات النظام والسجلات، إضافة إلى بيانات الرحلة. أما الثغرة الثانية، وهي استغلال EternalRomance (المستخدم في هجوم NotPetya على ميرسك عام 2017)، فقد منح التحكم بالجهاز المستهدف عبر SMB؛ ومع بيانات الاعتماد المستعادة أمكن عرض جميع الملفات والسجلات على الجهاز — بما فيها أرشيفات بيانات الرحلة من لقطات الرادار والتسجيلات الصوتية وبيانات NMEA، وهي صيغة الرسائل القياسية للجمعية الوطنية للإلكترونيات البحرية التي يمكن للمهاجم، لمعرفته بمحتوياتها، تغييرها، مما يمس السرية والسلامة معًا.</p>
+
+    <h3>3.2.2. السلامة</h3>
+
+    <p>منح اتصال Reverse TCP shell من الجهاز المستهدف إلى جهاز المهاجم وصولًا عن بُعد بصلاحيات مستخدم محلي، تلاه تصعيد للصلاحيات واستخراج خمس بصمات لكلمات المرور عبر مسار مختلف. وتُؤرشف بيانات الرحلة كل دقيقة كملفات zip تحتوي رسائل NMEA في ملف نصي، ومقطعًا صوتيًا من الجسر لدقيقة واحدة، وأربع لقطات رادار بفاصل 15 ثانية — كل أرشيف مسمى باسم فريد ويسهل تمييزه. وتُخزن رسائل NMEA بنص صريح يسهل تغييره؛ وبصمة التحقق فيها لا تحمي سوى من أخطاء الإرسال ويمكن تزويرها هي نفسها، فلا تقدم ضمانًا يُذكر للسلامة. وكان الدليل الوحيد على التغيير في الجهاز هو قيم MACE (التعديل والوصول والإنشاء وتعديل الإدخال) الزمنية — لكن باستخدام أداة Timestomp عبر الاتصال العكسي، غُيّرت قيم MACE إلى تواريخ اعتباطية، ليفلت المهاجم بالتلاعب ببيانات الأدلة دون أثر، في مخالفة مباشرة لمتطلب IEC 61996 بترك دليل واضح على العبث.</p>
+
+    <h3>3.2.3. التوافر</h3>
+
+    <p>تعد هجمات برامج الفدية من الأكثر شيوعًا ضد الصناعات البحرية — فمنذ 2017 أصيبت شركات الشحن الأربع الكبرى (CMA CGM وميرسك وMSC وكوسكو)، مما عطّل العمليات لأيام. وقد نجح محاكي الفدية Shinolocker في سلب توافر الملفات على الجهاز حتى «دفع» الفدية وتقديم مفتاح فك التشفير. ويبقى سؤال ما إذا كانت السلطات ستدفع لاستعادة بيانات الأدلة مفتوحًا، وقد وجد تقرير سوفوس أن 4% فقط ممن دفعوا استعادوا كل بياناتهم — مما يؤثر مباشرة على التوافر وسلسلة حيازة الأدلة. أما استغلال EternalBlue (الشهير بهجوم WannaCry عام 2017) فقد عطّل الجهاز تمامًا وتطلب إعادة تشغيل يدوية؛ فمثل هذا الهجوم يوقف التسجيل حتى يلاحظه أحد ويعيد التشغيل — وهو حرمان من الخدمة لوظيفة التسجيل، بينما استهدفت الفدية مكون التخزين. كما أظهرت أعمال سابقة إمكانية مسح القرص الصلب بالكامل — وهو حرمان واضح من الخدمة قد يكون كارثيًا في التحقيقات البارزة.</p>
+
+    <h3>3.3. الخلاصة</h3>
+
+    <p>توضح الهجمات المعروضة كيف يمكن لأدوات يسهل الوصول إليها أن تمس سرية بيانات المسجل وسلامتها وتوافرها وخدماته؛ فالمهاجم لا يحتاج أدوات مخصصة. وقد ثبتت إمكانية حذف البيانات (مسح القرص الصلب) والتلاعب بها مع إخفاء الأثر (تغيير بيانات NMEA مع تزوير قيم MACE)، مما يبين أن المسجلات المتوافقة لا تحقق تمامًا اشتراط MSC.333(90) بالأمن ضد التلاعب المادي أو الرقمي. وعند سؤال الخبراء في المنتدى العام نفسه، قيّموا المسجل بأنه بالغ الأهمية للتحقيق في الحوادث — بمتوسط ثماني درجات من عشر — إذ يمكن أن يؤثر التلاعب بالبيانات أو فقدانها مباشرة على الإجراءات القانونية، وقد تكون المعلومات الرقمية هي الدليل الوحيد المتاح على السفن ذاتية القيادة.</p>
+
+    <p>تُبرز النتائج أيضًا كيف أن المتطلبات نفسها تعرّض المسجل: فاشتراط MSC.163(78) واجهات وأنظمة تشغيل شائعة يعني أن معظم المسجلات تستخدم واجهات USB قياسية، فحتى الواجهة المملوكة لا تقدم فائدة أمنية تُذكر لأن وصلة المحول يجب تخزينها ماديًا مع الجهاز؛ ويمكن القول إن استخدام USB كوسيلة تحكم يُخفق في متطلب A.694(17) الخاص بإساءة استخدام أدوات التحكم وتوقعات أداء IEC 60945. وبالمثل، فإن تدابير IEC 61996-1 ضد العبث — الوصول بالمفتاح أو الأداة الذي لا يغطي سوى المكونات المادية، والأختام والملصقات التي لا توقف هجمات الواجهات، وقاعدة إنهاء التسجيل الواسعة بحيث يحقق حذف كل البيانات الأثر نفسه دون إنهاء التسجيل تقنيًا — لا تقدم الكثير للأمن العام. وخلاصة القول: بينما توفر منشورات المنظمة البحرية الدولية واللجنة الكهروتقنية حدًا أدنى للجودة، فإنها لا تُلح على تضمين الأمن، إذ لا تراعي تعقيد التقنية الرقمية على متن السفن ولا قدرات الخصوم.</p>
+  </section>
+
+  <section>
+    <h2>4. الارتقاء بالمعيار</h2>
+
+    <h3>4.1. مكونات أمن المسجل (المادي والبيانات والتشفير)</h3>
+
+    <p>تجادل الورقة بأن معايير الأداء الحالية لا تغرس أمنًا كافيًا في المسجلات، لثلاثة أسباب: فالمنظمة البحرية الدولية منظمة معنية بالسلامة أساسًا وحوكمتها للمسجلات تستهدف تحسين السلامة؛ ولم تُدخل المنظمة إدارة المخاطر السيبرانية إلا مؤخرًا (MSC.428(98) النافذ في 1 يناير 2021)؛ وتنظر اللجنة الكهروتقنية إلى المنظمة لتحديد الأهداف العليا، فقلما تتجاوز المعايير ما اتفق عليه المنظم وتبقى غامضة أمنيًا. وبما أن تعريف «مضاد للعبث» غامض ولا يرى العبث الإلكتروني، تقترح الورقة إعادة صياغته بعبارة MSC.333(90) نفسها: أن يُصمَّم الجهاز بحيث لا يمكن، قدر الإمكان عمليًا، التلاعب بكمية البيانات المسجلة ولا بالبيانات نفسها ولا بالبيانات المسجلة سلفًا — لجعل المعلومات محور متطلبات أداء المسجل. واتباعًا لمبدأ الأفراد والعمليات والتقنية (PPT)، يعرض القسم تدابير مستندة إلى معايير أمن المعلومات القائمة (بالإحالة إليها لا بإعادة كتابتها) تشمل الأمن المادي وضبط الوصول والوحدات الآمنة والتشفير.</p>
+
+    <p>في الأمن المادي: بما أن الملحق C من IEC 61996-1 يشترط أن يكون منفذ البيانات «يسهل الوصول إليه»، فإن التحصين المادي مقيد — ومن الحلول وضع الجهاز في خزانة مقفلة يُحفظ مفتاحها منفصلًا على الجسر، أو اشتراط أدوات مثل مفتاح الربط مع المفتاح كما في A.694(17)، أو وضع الوحدة الأساسية في مناطق مزدحمة مشمولة أصلًا بضوابط الوصول في مدونة ISPS، مع اعتماد متطلبات ضبط الوصول في ISO 27001. وفي أمن البيانات: ينبغي استبدال واجهات USB العامة للتحديث والتنزيل بواجهات أو برمجيات مملوكة بحيث لا يصل إلى البيانات المخزنة إلا من يملك الموصل الصحيح؛ وبما أن القرارات الحالية تفرض صيغًا معترفًا بها دوليًا وتُلزم بتخزين أي وسيلة مملوكة داخل المسجل، تجادل الورقة بأنه يمكن بدلًا من ذلك الاحتفاظ بتعليمات تصنيع أدوات الاسترجاع لدى السلطات، مع إلزام المحققين بالاتصال بالمصنّع وإثبات الصفة (كالرقم التسلسلي للجهاز والتسجيل لدى جهة وطنية) واستخدام برمجيات محمية بكلمات مرور أو مصادقة متعددة العوامل — ربما بتصميم يُظهر العبث.</p>
+
+    <p>وفي فحص السلامة بالتشفير: تُستعرض طرق التجزئة (مثل مخطط رمز التوثيق لرسائل NMEA باستخدام مفاتيح سرية مشتقة من وقت وتاريخ GPS)، وتجزئة الصور والعلامات المائية للقطات الرادار (تجزئة FJLT مضمنة بتقنية DCT العمياء، مع سوابق في صور الأقمار الصناعية والطبية)، والتصاميم المرتكزة على العتاد. ويقترح الشكل 4 خيارين: (أ) جهاز تجزئة موازٍ يجزّئ بيانات أجهزة الاستشعار أثناء معالجة المسجل لها، ويخزن البصمات مع البيانات للمقارنة لاحقًا؛ و(ب) جهاز تشفير مُضاف (مثل AES-256) يشفّر بيانات الاستشعار قبل معالجتها في المسجل لضمان السرية — مع الاحتفاظ بمفاتيح فك التشفير لدى المحققين/المصنعين فقط وفق إدارة المفاتيح في ISO 27001، أو مفاتيح مجزأة بين المصنّع وشركة الشحن بموجب مدونة الممارسة البريطانية. وتضمن هذه الطرق السلامة والسرية (وإن لم تمنع الحذف الذي يمس التوافر) دون إعاقة الوصول على نحو مفرط.</p>
+
+    <h3>4.1. مكونات أمن المسجل (السياسات والاستجابة والتدريب)</h3>
+
+    <p>في سياسة كلمات المرور: كان يمكن تفادي كثير من الهجمات الموضحة بكلمات المرور — لكن اشتراط IEC 61996-1 يغطي البيانات لا نظام التشغيل، وكانت كلمات المرور المنشورة فارغة أو تافهة (حساب Engineer استخدم Pugwash1 وهو قرصان كرتوني بريطاني). واتباعًا لمدققات كلمات المرور النشطة في NIST SP 800-63B وإرشادات المصادقة متعددة العوامل في BIMCO وقواعد العبارات في ISO 27002 (لا كلمات من القاموس ولا أحرف متكررة أو متسلسلة)، تقترح الورقة المصادقة متعددة العوامل (عبارة محفوظة مع رمز تطبيق توثيق) وأجهزة كلمات مرور تُظهر العبث ومثبتة ماديًا في المسجل — علب «تُكسر للفتح» يُظهر كسرها دليلًا واضحًا على الوصول، وهي مقبولة مبدئيًا بموجب IEC 61996-1. وفي سياسة التحديث/الترقيع: لا تحدد معايير المسجلات إطارًا زمنيًا لتحديث نظام التشغيل رغم الثغرات الحرجة؛ ويحتاج الترقيع عبر USB إلى ضوابط، ويجب اختبار الترقيعات تشغيليًا، وينبغي أن تحكم التوثيق وفق IEC 62443-3-2 وISO 27001، المرتبط بمسؤوليات المخاطر السيبرانية في MSC.428(98)، من يرقّع ماذا ومتى وكيف.</p>
+
+    <p>وفي الاستجابة للحوادث: اتباعًا لـ NIST SP 800-61 (الإعداد والكشف والتحليل والاحتواء والاستئصال والاستعادة) ونقل BIMCO لإطار NIST إلى السفن، يبرز سيناريوهان للمسجل — كيف تؤثر أنشطة الاستجابة على متن السفينة على المسجل وهل تُسجَّل الأحداث السيبرانية بأمان، وكيف تُحمى بيانات المسجل ونسخها الاحتياطي ومنع انتشار العدوى عند مهاجمة المسجل نفسه — مع ملاحظة أن نظام ويندوز في الجهاز مع واجهات متعددة الاتجاهات (إيثرنت) قد يتيح للمهاجمين الانتقال عبر شبكة السفينة، وفق تعريفات الأدوار في ISO 27035. وفي التدريب الأمني: وفق إرشادات BIMCO وتعليمات خفر السواحل الأمريكي CVC-WI-027 ووظيفة «الحماية» في إطار NIST، يجب أن يُظهر الأطقم مهارات سيبرانية أساسية؛ وتُظهر قضية إنريكا لكسي — حيث «لم يضغط» ضابط الوردية زر التسجيل و«أخفق» القبطان في حفظ الأدلة — أن الضمانات التقنية تفشل دون تدريب، ومع أقراص 1 تيرابايت تتسع لتسجيلات عام كامل ينبغي أن يصبح زر «الحفظ» اليدوي علامة على الحدث لا إيقافًا للتسجيل.</p>
+
+    <h3>4.2. المناقشة</h3>
+
+    <p>تغيير متطلبات الأداء ليس سهلًا ولا سريعًا، كما أن الفحوص السنوية بموجب MSC.1/Circ.1222/Rev.1 تشترط التأكد من تسجيل الجهاز للبيانات الصحيحة للمدة المطلوبة — دون فحص سلامة البرمجيات أو دقة البيانات. غير أن الزخم يتصاعد: ففي 2021 أصدرت اللجنة IEC 63154:2021 بشأن الأمن السيبراني لمعدات الملاحة الخاضعة لسولاس (16 وحدة لمستوى أساسي من الحماية ضد الحوادث السيبرانية). وأبرز الوحدات: الوحدة C (توثيق المستخدم باسم/بطاقة مع كلمة مرور)، والوحدة J (حماية منافذ USB المتاحة بتدابير مادية وتشغيلية، أساسها الوصول بالمفتاح أو الأداة — وإن تعارض ذلك مع قواعد واجهات المسجل «سهلة الوصول»)، والوحدة D (دفاع النظام ببرامج مكافحة البرمجيات الخبيثة أو جدار ناري — مع أن الجدران النارية بالكاد تفحص حركة NMEA غير المعتمدة على IP، وبرامج المكافحة تحتاج تحديثات منتظمة عبر USB أو الإنترنت). لكن المعيار طوعي ويغطي الجهاز وحده (لا تركيب المدمج) ويسبق الأجهزة المدروسة — ففائدته لأمن المسجل قد تكون محدودة.</p>
+
+    <p>أما الجهة الثانية فهي الرابطة الدولية لهيئات التصنيف (IACS)، وهي منظمة تقنية غير حكومية تصدر هيئات التصنيف الأعضاء فيها شهادات فئة السفن التي لا تبحر السفن بدونها — أي أنها فعليًا جهة إنفاذ للمنظمة البحرية الدولية. وفي أبريل 2022 أصدرت الرابطة المتطلبات الموحدة UR26 (المرونة السيبرانية للسفن) وUR27 (المرونة السيبرانية للأنظمة والمعدات على متن السفن): 31 متطلبًا أمنيًا للأجهزة البحرية، 22 منها تنطبق على المسجلات المصممة حديثًا — بينما حقق الجهاز المختبر واحدًا فقط (و16 محتملة بتغييرات برمجية). وتنطبق هذه المتطلبات فقط على السفن المتعاقد عليها اعتبارًا من 1 يناير 2024، ولن تدخل الأسطول واقعيًا قبل 2027 تقريبًا نظرًا لسنوات البناء؛ ويجسد المتطلب 4.2.4 في UR26 بشأن ضبط الوصول (تقييد الفنيين والزوار والإشراف عليهم) هذا الاتجاه. وهكذا تشكل مقترحات الورقة خطوات أولى نحو الامتثال — قابلة للتطبيق بأثر رجعي على الأنظمة القديمة لرفع حدها الأمني دون استبدال مكلف — مع أن توليفات التدابير تحقق تحسنًا أكبر بكثير من أي تدبير منفرد، شريطة أن تفهم الشركات والمصنعون المسجل وبيئته المادية والرقمية.</p>
+  </section>
+
+  <section>
+    <h2>5. الخاتمة</h2>
+
+    <p>كثير من التحسينات الأمنية المقترحة بسيطة نسبيًا ولا تتطلب إعادة صياغة كبيرة للمعايير الحالية — لكن بعض المتطلبات الحالية تعيق الأمن فعلًا وتُفاقم ضعف هذه الأجهزة، وأبرزها تعريف «مضاد للعبث» الذي لا يستوعب احتياجات أمن المعلومات في المسجلات الحديثة. وتُظهر هذه الورقة أن المسجلات، جديدة وقديمة، عرضة للهجمات السيبرانية التي يمكن فيها التلاعب بالبيانات القيمة أو فقدانها، باستخدام أدوات متاحة على الإنترنت — مما يجعل المعالجة ملحة. والتدابير المناقشة تقنية (كالتشفير) وغير تقنية (كالموقع المادي للجهاز أو مفاتيح الوصول) وإجرائية (كسياسات كلمات المرور أو التحديث).</p>
+
+    <p>سيزداد دور المسجل كدليل أهمية مع تحرك القطاع نحو درجات أكبر من التشغيل عن بُعد والتشغيل الذاتي: إذ سيلزم جمع معلومات جديدة (كلقطات الدوائر التلفزيونية المغلقة) والتحقق من دقتها، مع اختفاء مصادر أخرى (أي البحّار). ودون دعم الشاهد العيان المادي، سيعتمد المحققون على بيانات الحوادث المخزنة. ومن مصلحة القطاع إذن النظر في أمن المسجل قبل الاعتماد على بياناته لتُكتشف بعدها إما غير دقيقة أو غير موثوقة أو غير متوفرة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+
+    <p>Voyage Data Recorders (VDRs), often referred to as the 'black boxes' of the shipping industry, collect and store vital data from key sensors and locations around the ship. This data plays a pivotal role in incident investigation, as was seen in the grounding of the Costa Concordia in 2012 and the sinking of the El Faro in 2015. With such an important role to play, the International Maritime Organization (IMO) has mandated that all SOLAS registered ships carry a VDR, which can demonstrate compliance with internationally agreed standards. Without a VDR compliant with these standards a ship cannot sail. However, the rise in the number, and sophistication, of digital devices are making the sector increasingly vulnerable to cyber-attacks. This paper demonstrates a number of high-risk VDR cyber security vulnerabilities and reviews the current international technical standards covering all VDR devices being manufactured and used today, drawing attention to the minimum security requirements. The paper goes on to discuss how these standards fail to promote the necessary levels of cyber security needed to protect VDRs from today's cyber risks, amidst increased demands for digital connectivity for remote and autonomous operations. The paper concludes by proposing several amendments (technical and non-technical) to the current standards which, if adopted, will help increase the minimum level of security of VDRs. Industry opinions were gathered on this topic, and their beliefs have been included across this paper.</p>
+  </section>
+  <section>
+    <h2>1. Introduction</h2>
+
+    <p>During any incident investigation, it is vital to have access to accurate information pertaining to the incident, as this can provide tangible proof of the cause or causes. For this reason, Voyage Data Recorders record detailed information from various sources around the ship. The purpose of the VDR is to store data in a secure and retrievable form for at least 30 days (720 hours) and 48 hours on the long-term and the fixed/float-free recording mediums respectively. This data includes information concerning the date and time, ship's position, speed, heading, rudder and engine orders, bridge and communications audio, and specific equipment data like radar captures and Automatic Identification System (AIS) information. The inclusion of the VDR as part of a ship's systems came about after a number of serious maritime incidents in the 1980s and 1990s, including the sinking of the MS Estonia with 852 people dead. Entering into force in 2000, the IMO's Maritime Safety Committee outlined the requirements for ships to carry VDRs so that the root causes of maritime accidents can be understood, with the data used by authorities like the UK's Marine Accident Investigation Branch (MAIB).</p>
+
+    <p>Several high-profile cases have relied on the data VDRs recorded in the critical moments leading up to a catastrophic incident, notably the grounding of the Costa Concordia in 2012 and the sinking of the El Faro in 2015, where investigators went to significant lengths to retrieve the ships' VDRs. As a critical part of incident investigations, the manipulation or outright disappearance of VDR data can lead to investigation dead ends. In a data driven world it is not surprising that organisations want to gather information about vessels and their performance to improve efficiency and cut costs; some VDR manufacturers now offer services which use VDR data outside of incidents to help companies understand their operations and improve training or operational procedures, for example in energy-efficient operational measures such as sailing speed optimization.</p>
+
+    <p>Furthermore, the international community is continually moving towards securing their digital infrastructure, through regulations like the NIS Directive and the EU's General Data Protection Regulation (GDPR). Hardware manufacturers and software developers have an important role to play in the EU's security stance and should be making efforts to improve the cyber security of their devices. The European Union Agency for Cybersecurity (ENISA) argues that inland, sea and coastal passenger and freight transport companies can be defined as essential services providers, obligated to implement a minimum level of cyber security. There could also be financial ramifications: since VDR recordings include bridge microphones (and now video feeds), personal conversations could be captured and fall under GDPR, so stolen data could lead to fines. As will be discussed later, new compliance requirements from ship Classification Societies stipulate more stringent security measures, and non-compliance could ground vessels.</p>
+  </section>
+  <section>
+    <h2>2. Current Technical Standards</h2>
+
+    <h3>2.1. IMO Requirements</h3>
+
+    <p>Most VDRs consist of a core module, which acts as a data acquisition unit gathering information from sensors and bridge equipment and storing it on internal hard drives. VDRs also have two external storage mediums, one fixed and the other float-free. The final component is the bridge interface, the graphical user interface that allows the crew to monitor the status of the VDR. The core unit normally consists of a standard interface for uploading/downloading data (USB), a dedicated computing device running the VDR software, some form of input and output interface (Ethernet or serial) for receiving data from sensors and sending recordings to storage, two mirrored hard drives so that if one drive fails the second can be used, and a required uninterruptible power supply which mitigates the risk of a power outage.</p>
+
+    <p>The IMO, through resolutions, has outlined the minimum requirements these devices must demonstrate. Four core documents do little to improve the security of the VDR and the data they store. Whilst the primary resolutions covering VDRs and S-VDRs, MSC.333(90) and MSC.163(78), do mention protecting data from manipulation, they provide no recommendations on how this should be achieved — and as Section 3 shows, even compliant devices could be manipulated without the attempt being recorded. The adoption of MSC.214(81) in 2006 added download and playback requirements: device interfaces must be compatible with off-the-shelf operating systems (such as Microsoft Windows or Linux/Android), and if a proprietary system is used, the method of accessing the data should be stored within the VDR — an implementation that, as demonstrated in Section 3, can introduce vulnerabilities.</p>
+
+    <p>Another requirement with security implications comes under A.694(17), one of the oldest resolutions, not updated since 1991. Requirement 3.4 argues that misuse of the controls should not cause damage to the equipment or injury to personnel; by extension, the inclusion of USB interfaces on VDRs as a control method for updating software should be done so that misuse does not lead to damage — yet the ground-truth experiments show the factory-installed USB drive could allow an attacker to manipulate software and data directly. Furthermore, Requirement 8.0 requires devices to be installed so they are readily available and accessible for inspection, maintenance, and replacement, which can inherently introduce cyber-risks. Of least interest is MSC.191(79), which adds no security requirements; its relevance is only that VDRs must demonstrate compliance with its presentation rules.</p>
+
+    <h3>2.2. IEC Standards</h3>
+
+    <p>One of the core purposes of the IEC standards is to convert the IMO requirements into testable and verifiable requirements, providing the methods through which compliance is tested. The primary document of interest is IEC 61996-1:2013+A1:2021, which standardises the requirements of MSC.333(90). While much of the text is directly copied from the IMO resolution, there are notable additions: a detailed description of the testing and verification process, identification of other standards to consult (for example IEC 61162 covering signal interfaces), and most importantly a list of requirements that must be present during an inspection to demonstrate tamper resistance: access to any physical part of the system, except the data output interface, shall require tools or keys; any access to the final recording medium shall leave easily recognisable evidence of tampering such as seals or stickers; operation of any controls or keyboard keys shall not affect recording; termination of recording shall only be possible by means of a key or other secure method; and recorded data shall be protected against unauthorised access by use of a password.</p>
+
+    <p>Alongside these requirements, the standard stipulates that to aid data recovery a copy of any proprietary software or interfaces be kept within the VDR unit itself — a requirement which, as discussed later, can harm device security without clear benefits. Other key standards include IEC 60945:2008 (general requirements standardising IMO Resolution A.694(17), with no security requirements), the IEC 61162 series covering digital interfaces (where IEC 61162-450 outlines how a general authentication tag can be added to messages to support cyber security risk management, though with no detail on improving device or data integrity), and IEC 62288:2022 standardising MSC.191(79), with no security requirements. Notably, one requirement from IEC 60945:2008 — that operational controls whose inadvertent exercise could switch off the equipment be specifically protected against unintentional operation — could be read as a security requirement covering the USB update interface.</p>
+  </section>
+  <section>
+    <h2>3. VDR Security Vulnerabilities</h2>
+
+    <h3>3.1. Determining the Information Security Properties of a VDR</h3>
+
+    <p>The primary regulation covering VDR requirements, MSC.333(90), argues that data should be secured against both physical and electronic manipulation — the VDR should be tamper proof or tamper resistant, so that an attacker cannot alter the amount of data recorded or the data itself, with all manipulation attempts recorded. However, reports indicate vulnerabilities readily exist in manufactured VDRs: in 2015 an IOActive researcher analysed the firmware and software of the Furuno VR3000 VDR and found vulnerabilities exploitable by a remote attacker to access, modify and delete data; ship-owners are not mandated to update their devices, so insecure ships may still sail. A later vulnerability in the Interschalt VDR G4e software allowed attackers to read and download files (CVE-2016-9339, CVSS base score 5.3), and work on an off-the-shelf non-emulated VDR showed a previously untested manufacturer's device was also vulnerable to tampering.</p>
+
+    <p>The relevant ISO standards use the term 'tamper proof' for the level of security required, yet give no exact definition for VDRs; the definition used in other ISO standards only covers resistance to electromagnetic interference from commonly available electronic devices — so in practice manufacturers only have to demonstrate resistance to electromagnetic interference rather than other forms of digital tampering such as USB use. Given the importance of accurate incident data, these devices must do more to protect stored data. The well-known Confidentiality, Integrity and Availability (CIA) triad is used here to structure the analysis: a compromised VDR can breach confidentiality (accessing log files or archives), integrity (manipulating or deleting data), or availability (failure to record or intentional damage). Industry experts at a public forum of over 100 maritime and cyber security specialists anonymously ranked the order for VDR data as Integrity first, then Availability, then Confidentiality — trustworthy data matters more than secret data.</p>
+
+    <p>To establish ground truth, the authors performed a penetration test on an off-the-shelf VDR produced by a global manufacturer (VDRT, running Windows Embedded Standard 7, whose support ended in 2020), attacked from a Kali Linux machine. Using only publicly available tools — Nmap for network scanning, the Metasploit framework for exploits, a $59.99 USB Rubber Ducky that injects keystrokes imitating a user typing, the Shinolocker ransomware simulator, a Reverse TCP shell payload, and the Hydra password cracker — the test realistically demonstrated the actual risks. The use of standard off-the-shelf tools, requiring limited specialist skill, cost, time or equipment, illustrates the ease with which an adversary can successfully target these devices.</p>
+  </section>
+  <section>
+    <h2>3.2. VDR Vulnerabilities by CIA Element</h2>
+
+    <h3>3.2.1. Confidentiality</h3>
+
+    <p>Network reconnaissance with Nmap identified the operating system (Windows Embedded Standard 7), MAC address, device type and open ports — including an open SMB (Server Message Block) port. Using Metasploit's 'smb_enumusers' module, five unique user accounts were found in the VDR; with Hydra and a common password list, brute-force attacks recovered the 'Administrator' and 'Captain' passwords, while the remaining three accounts had blank passwords. These accounts existed on the device as acquired and granted some of the highest onboard privileges, giving access to account configurations, system settings and logs, as well as the voyage data. A second flaw, the EternalRomance exploit (used in the NotPetya attack on Maersk in 2017), gave control over the target computer via SMB; combined with the recovered credentials, all files and logs on VDRT could be viewed — including voyage data archives with radar screenshots, audio recordings, and NMEA data, the standardised National Marine Electronics Association message format whose known contents an attacker can alter, compromising both confidentiality and integrity.</p>
+
+    <h3>3.2.2. Integrity</h3>
+
+    <p>A Reverse TCP shell from the target to the attacker's machine granted remote access with local user privileges, followed by privilege escalation and extraction of five password hashes via a different route. Voyage data is archived every minute as zip files containing NMEA messages in a text file, a one-minute bridge audio clip, and four radar screenshots at 15-second intervals — each archive uniquely named and easily identifiable. NMEA messages are stored in plain text and easy to alter; their checksum only guards against transmission errors and can itself be forged, offering little integrity assurance. The only indication of alteration on VDRT was the MACE (modified, accessed, created, entry modified) timestamps — but using the reverse shell's Timestomp utility, MACE values were changed to arbitrary dates, letting the attacker manipulate evidence data without a trace, directly contravening the IEC 61996 requirement to leave clear evidence of tampering.</p>
+
+    <h3>3.2.3. Availability</h3>
+
+    <p>Ransomware attacks are among the most common against maritime industries — since 2017 all four major shipping companies (CMA CGM, APM-Maersk, MSC and COSCO) have been hit, disrupting operations for days. The Shinolocker ransomware simulator successfully removed the availability of files on VDRT until the ransom was 'paid' and the decryption key provided. Whether authorities would pay to retrieve evidence is an open question, and a Sophos report found only 4% of those who paid got all their data back — directly impacting availability and the chain of custody. The EternalBlue exploit (of WannaCry 2017 fame) crashed VDRT outright, requiring a manual reboot; such an attack stops recording until someone notices and reboots — a denial of service against the recording function, whereas ransomware attacked the storage component. Prior work also showed full hard-drive erasure is possible — a clear denial of service that could prove catastrophic in high-profile investigations.</p>
+
+    <h3>3.3. Summary</h3>
+
+    <p>The attacks presented demonstrate how easily accessible tools can compromise the confidentiality, integrity and availability of VDR data and services; the attacker needs no custom tools. Both deletion of data (hard drive erasure) and manipulation of data while hiding the trace (altered NMEA data with forged MACE values) proved possible, showing compliant VDRs do not fully achieve MSC.333(90)'s requirement of security against physical or digital manipulation. When asked at the same public forum, experts rated the VDR as critically important to incident investigation — an average criticality of eight out of ten — since manipulation or loss of data can directly affect legal proceedings, and on autonomous vessels digital information may be the only evidence available.</p>
+
+    <p>The results also highlight how requirements themselves expose the VDR: MSC.163(78)'s demand for common interfaces and operating systems means most VDRs use standard USB interfaces, so even a proprietary interface offers little security benefit since the converter lead must be stored physically with the device; the USB-as-control-method arguably fails A.694(17)'s misuse-of-controls requirement and IEC 60945 performance expectations. Likewise, IEC 61996-1's tamper provisions — key-or-tool access covering only physical components, seals/stickers that cannot stop interface-based attacks, and a recording-termination rule so broad that deleting all data has the same effect without technically terminating recording — do little for overall security. In short, while IMO and IEC publications provide a minimum quality baseline, they fail to insist on security being included, considering neither the complexity of onboard digital technology nor adversary capabilities.</p>
+  </section>
+  <section>
+    <h2>4. Raising the Standard</h2>
+
+    <h3>4.1. Components of VDR Security (Physical, Data, Cryptographic)</h3>
+
+    <p>The paper argues the current performance standards do not instil sufficient security in VDRs, for three reasons: the IMO is primarily a safety-focused organisation whose VDR governance targets safety improvement; the IMO only recently included cyber risk management (MSC.428(98), in force 1 January 2021); and the IEC looks to the IMO for high-level goals, so standards rarely exceed what the regulator agreed and remain vague on security. Since the 'tamper proof' definition is vague and blind to electronic tampering, the paper proposes re-imagining it using MSC.333(90)'s own phrase: equipment should be so designed that, as far as is practical, it is not possible to manipulate the amount of data being recorded, the data itself, nor already-recorded data — making information central to VDR performance requirements. Following the People–Process–Technology (PPT) principle, the section lays out measures based on existing information-security standards (cross-referenced, not rewritten) covering physical security, access control, secure modules, and cryptography.</p>
+
+    <p>On physical security: because Annex C of IEC 61996-1 requires the data port to be 'easily accessible', physical hardening is constrained — one solution is locating the device in a locked cupboard with the key stored separately on the bridge, or requiring tools like a spanner alongside a key as in A.694(17), or siting the core module in high-traffic areas already covered by ISPS Code access controls, with ISO 27001 access-control requirements adopted. On data security: generic USB interfaces for updates and downloads should be replaced by proprietary interfaces or software so only those with the correct connector can access stored data; since current resolutions demand internationally recognised formats and mandate storing any proprietary means inside the VDR, the paper argues instructions for manufacturing retrieval tools could instead be held by authorities, with investigators required to contact the manufacturer, prove authority (e.g. device serial plus registration), and use password or MFA-protected software — potentially in tamper-evident form.</p>
+
+    <p>On cryptographic integrity checking: hash-based methods (e.g. Seong and Kim's NMEA-authentication-code scheme using GPS time/date-derived secret keys), image hashing and watermarking for radar screenshots (FJLT hashing embedded via DCT blind watermarking, plus satellite and medical watermarking precedents), and hardware-anchored designs are surveyed. Figure 4 proposes two options: (A) a parallel hashing device that hashes sensor data as the VDR processes it, storing hashes alongside data for later comparison; and (B) a retrofitted encryption device (e.g. AES-256) encrypting sensor data before VDR processing, ensuring confidentiality — with decryption keys held only by investigators/manufacturers per ISO 27001 key management, or split keys shared between manufacturer and shipping company under the UK Home Office code of practice. These methods assure integrity and confidentiality (though not availability against deletion) without unduly hindering accessibility.</p>
+
+    <h3>4.1. Components of VDR Security (Policy, Response, Training)</h3>
+
+    <p>On password policy: many demonstrated attacks could have been mitigated by passwords — yet IEC 61996-1's password requirement covers data, not the operating system, and deployed passwords were blank or trivial (the VDRT 'Engineer' account used 'Pugwash1', a British comic pirate). Following NIST SP 800-63B active password checkers, BIMCO's MFA guidance, and ISO 27002 passphrase rules (no dictionary words, no repetitive or sequential characters), the paper proposes MFA (e.g. memorised passphrase plus authenticator-app code) and tamper-evident password devices physically secured in the VDR — 'snap-to-open' cases whose breakage shows clear evidence of access, already approved in principle under IEC 61996-1. On update/patch policy: VDR standards specify no OS update timeframe despite critical vulnerabilities; USB-based patching needs controls, patches must be tested operationally, and IEC 62443-3-2 plus ISO 27001 documentation, tied to MSC.428(98) cyber-risk responsibilities, should govern who patches what, when and how.</p>
+
+    <p>On incident response: following NIST SP 800-61 (preparation, detection and analysis, containment/eradication/recovery) and BIMCO's transfer of the NIST framework to ships, two VDR scenarios matter — how onboard incident-response activities affect the VDR and whether cyber events are securely logged, and how to protect, back up and disinfect VDR data when the VDR itself is attacked — noting VDRT's Windows OS plus multi-directional interfaces (Ethernet) could let attackers pivot through the ship's network, per ISO 27035 role definitions. On security training: per BIMCO guidelines, USCG work instruction CVC-WI-027 and the NIST framework's 'Protect' function, crews must demonstrate basic cyber skills; the Enrica Lexie case — where the duty officer 'did not press the VDR for recording' and the captain 'failed to preserve' evidence — shows technical safeguards fail without training, and with 1 TB drives holding a year's recordings the manual 'save' button should become an event marker rather than a recording stop.</p>
+
+    <h3>4.2. Discussion</h3>
+
+    <p>Changing performance requirements is neither easy nor fast, and annual performance checks under IMO MSC.1/Circ.1222/Rev.1 require confirming the device records the right data for the required period — with no check of software integrity or data accuracy. Momentum is building, however: in 2021 the IEC released IEC 63154:2021 on cybersecurity of SOLAS navigational equipment (16 modules for a basic level of protection against cyber incidents). Module C (user authentication with username/card plus password), Module J (protecting accessible USB ports via physical/operational measures, primarily key-or-tool access — though this clashes with VDR 'easily accessible' interface rules), and Module D (system defence via anti-malware or firewall — though firewalls barely inspect NMEA-over-non-IP traffic, and anti-malware needs regular updates via USB or internet connectivity) are most relevant. Yet the standard is voluntary, device-only (not covering integrator installation), and predates the studied devices — so its benefit for VDR security may be limited.</p>
+
+    <p>The second organisation is IACS, the technical NGO whose member Classification Societies issue the ship class certificates without which ships cannot sail — effectively an IMO enforcement agency. In April 2022 IACS released Unified Requirements UR26 (cyber resilience of ships) and UR27 (cyber resilience of on-board systems and equipment): 31 security requirements for maritime devices, 22 relevant to newly designed VDRs — yet tested VDRT met only 1 (16 potentially with software changes). These apply only to ships contracted from 1 January 2024, realistically entering the fleet around 2027 given multi-year build times; UR26 requirement 4.2.4 on access control (restricting and supervising technicians/visitors) exemplifies the direction. The paper's suggestions thus form first steps toward compliance — implementable retrospectively on older systems to raise their minimum security without costly VDR replacement — while combinations of measures give substantially more improvement than any in isolation, provided companies and manufacturers understand the VDR and its physical and digital environment.</p>
+  </section>
+  <section>
+    <h2>5. Conclusions</h2>
+
+    <p>Many of the suggested security improvements are relatively simple and do not require significant rewording of the current standards — yet some current requirements actively inhibit security and worsen these devices' security, notably the 'tamper proof' definition which does not encompass modern VDR information-security needs. This paper demonstrates that VDRs, both new and old, are vulnerable to cyber-attacks whereby valuable data can be manipulated or lost, using tools readily available online — making remediation urgent. The mitigations discussed are technical (e.g. encryption), non-technical (e.g. physical location of the device or access keys), and procedural (e.g. password or update policies).</p>
+
+    <p>The role of the VDR as evidence will become increasingly important as the sector moves towards greater degrees of remote and autonomous operation: new information will need to be collected (e.g. CCTV footage), and its accuracy validated, as other sources are removed (i.e. the seafarer). Without the backup of the physical eye-witness, investigators will become reliant upon stored incident data. Thus, it is in the sector's best interest to consider the security of the VDR before its data is relied upon and found either inaccurate, untrustworthy or unavailable.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] IMO. Voyage Data Recorders; International Maritime Organization: London, UK, 2022. Available online: https://www.imo.org/ en/OurWork/Safety/Pages/VDR.aspx (accessed on 18 January 2023).</li>
+      <li>[2] IMO. Resolution Msc.333(90) (Adopted on 22 May 2012) Adoption of Revised Performance Standards for Shipborne Voyage Data Recorders (Vdrs); IMO: London, UK, 2012.</li>
+      <li>[3] IACS. No. 85—Recommendations on Voyage Data Recorder, 2018. Available online: https://iacs.org.uk/download/1871#:~: text=The%20voyage%20data%20recorder%20system,recoverability%20of%20the%20recorded%20data (accessed on 18 January 2023).</li>
+      <li>[4] Riviera Maritime Media. A Short History of VDR, 2009. Available online: https://www.rivieramm.com/news-content-hub/ news-content-hub/a-short-history-of-vdr-48518 (accessed on 18 January 2023).</li>
+      <li>[5] Joly, J. MS Estonia: New Expedition Conﬁrms Ofﬁcial Accident Report, 2021. Available online: https://www.euronews.com/20 21/11/18/ms-estonia-new-expedition-conﬁrms-ofﬁcial-accident-report (accessed on 18 January 2023).</li>
+      <li>[6] North of England P&amp;I Association. Voyage Data Recorders (VDR): Advice for the Ship’s Crew, 2015. Available online: https://www.nepia.com/media/222798/NORTH-Hot-Spots-VDR.PDF (accessed on 18 January 2023).</li>
+      <li>[7] Degnarain, N. Decoding The Black Box: The 2015 US Disaster That Revolutionized Ship Crash Investigations, 2020. Avail- able online: https://www.forbes.com/sites/nishandegnarain/2020/10/13/decoding-the-black-box-the-2015-us-disaster-that- revolutionized-ship-crash-investigations/?sh=71b75662712f (accessed on 18 January 2023).</li>
+      <li>[8] National Transportation Safety Board. NTSB/MAR-17/01—Singling of the US Cargo Vessel El Faro, 2018. Available online: https://www.ntsb.gov/investigations/AccidentReports/Reports/SPC1801.pdf (accessed on 18 January 2023).</li>
+      <li>[9] Piccinelli, M.; Gubian, P. Modern ships Voyage Data Recorders: A forensics perspective on the Costa Concordia shipwreck. Digit. Investig. 2013, 10, S41–S49. [CrossRef]</li>
+      <li>[10] Tam, K.; Jones, K. Forensic Readiness within the Maritime Sector. In Proceedings of the 2019 International Conference on Cyber Situational Awareness, Data Analytics And Assessment (Cyber SA), Oxford, UK, 3–4 June 2019; pp. 1–4. [CrossRef]</li>
+      <li>[11] Wingrove, M. Using VDR Data to Enhance Fleet Operations and Safety, 2014. Available online: https://www.rivieramm.com/ opinion/opinion/using-vdr-data-to-enhance-ﬂeet-operations-and-safety-39120 (accessed on 18 January 2023).</li>
+      <li>[12] Du, Y.; Chen, Y.; Li, X.; Schönborn, A.; Sun, Z. Data fusion and machine learning for ship fuel efﬁciency modeling: Part II—Voyage report data, AIS data and meteorological data. Commun. Transp. Res. 2022, 2, 100073. [CrossRef]</li>
+      <li>[13] Directive (EU) 2016/1148; Directive (EU) 2016/1148 of the European Parliament and of the Council of 6 July 2016 Concerning Measures for a High Common Level of Security of Network and Information Systems across the Union. European Commission: Brussels, Belgium, 2016.</li>
+      <li>[14] Regulation (EU) 2016/679; Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the Protection of Natural Persons with Regard to the Processing of Personal Data and on the Free Movement of Such Data, and Repealing Directive 95/46/EC (General Data Protection Regulation). European Commission: Brussels, Belgium, 2016.</li>
+      <li>[15] Drougkas, A. The Cyber Security Policy Framework: NIS Directive and Cyber Security in Maritime. In Proceedings of the Digital Ship Conference, Athens, Greece, 8 November 2019. Available online: https://static1.squarespace.com/static/57a8878837c58153 c1897c2c/t/5c056515aa4a99ba1fb7f2b1/1543857451926/14AthanasiosDrougkas_Athens18.pdf (accessed on 18 January 2023).</li>
+      <li>[16] MarineLink. Danelec Unveils Synchronized VDR Data and CCTV Interface, 2022. Available online: https://www.marinelink. com/news/danelec-unveils-synchronized-vdr-data-499285 (accessed on 18 January 2023).</li>
+      <li>[17] GDPR.EU. What Are the GDPR Fines? 2020. Available online: https://gdpr.eu/ﬁnes/ (accessed on 18 January 2023).</li>
+      <li>[18] Honeywell Industrial Cybersecurity USB Threat Report 2022; Honeywell: Charlotte, NC, USA, 2022. Available online: https://www. honeywellforge.ai/content/dam/forge/en/documents/cybersecurity/Industrial-Cybersecurity-USB-Threat-Report-2022.pdf (accessed on 18 January 2023).</li>
+      <li>[19] Santamarta, R. Maritime Security: Hacking into a Voyage Data Recorder (VDR), 2015. Available online: https://ioactive.com/ maritime-security-hacking-into-a-voyage-data-recorder-vdr/ (accessed on 18 January 2023).</li>
+      <li>[20] IMO. International Convention for the Safety of Life at Sea (SOLAS), 1974; International Maritime Organization: London, UK, 2021. Available online: https://www.imo.org/en/About/Conventions/Pages/International-Convention-for-the-Safety-of-Life-at- Sea-(SOLAS),-1974.aspx (accessed on 18 January 2023).</li>
+      <li>[21] DNV-GL. EC Certiﬁcate Type Examination, 2017. Available online: https://www.scribd.com/document/440781840/VR2272B- Installation-Manual-new (accessed on 18 January 2023).</li>
+      <li>[22] Furuno. VR-7000 Operator’s Manual, 2019. Available online: https://www.furunousa.com/-/media/sites/furuno/document_ library/documents/manuals/public_manuals/vr7000_operators_manual.pdf (accessed on 18 January 2023).</li>
+      <li>[23] NetWave. NW-6000-Series Voyage Data Recorder Operator Manual, 2015. Available online: https://cirspb.ru/pdf/NW6000-00 -Operator-manual-version1.3.pdf (accessed on 18 January 2023).</li>
+      <li>[24] Marine, D. Type Approval Certiﬁcate—DM100 VDR G2, 2022. Available online: https://www.danelec.com/umbraco/Api/ Download/media?name=DNV%20Type%20Approval%20Certiﬁcate%20DM100%20VDR%20and%20S-VDR%20G2%20with% 20Float%20Free%20Capsule%20MK2.pdf&amp;url=%2Fmedia%2Flvsnoog3%2Fdnv-type-approval-certiﬁcate-dm100-vdr-and-s- vdr-g2-with-ﬂoat-free-capsule-mk2.pdf (accessed on 18 January 2023).</li>
+      <li>[25] Hughes, K. Type Approval Certiﬁcate—X-VDR, 2017. Available online: https://uk.hensoldt.net/ﬁleadmin/kh/Type-Approval- Certiﬁcates-New/X-VDR_Voyage_Data_Recorder_233.pdf (accessed on 18 January 2023).</li>
+      <li>[26] MSC.163(78); Performance Standards for Shipbourne Simpliﬁed Voyage Data Recorders (S-VDRs). IMO: London, UK, 2004.</li>
+      <li>[27] MSC.214(81); Adoption of Amendments to the Performance Standards for Shipborne Voyage Data Recorders (VDRs) (Resolution A.861(20)) and Performance Standards for Shipborne Simpliﬁed Voyage Data Recorders (S-VDRs) (Resolution MSC.163(78)). IMO: London, UK, 2006.</li>
+      <li>[28] IResolution A.694(17); General Requirements for Shipborne Radio Equipment Forming Part of the Global Maritime Distress and Safety System (GMDSS) and for Electronic Navigational Aids. IMO: London, UK, 1991.</li>
+      <li>[29] MSC.163(78); PErformance Standards for the Presentation of Navigation-Related Information on Shipborne Navigational Displays). IMO: London, UK, 2004.</li>
+      <li>[30] IEC 61996-1:2013+A1:2021; Maritime Navigation and Radiocommunication Equipment and Systems. Shipborne Voyage Data Recorder (VDR). Performance Requirements, Methods of Testing and REQUIRED test results. International Electrotechnical Commission: Geneva, Switzerland, 2021.</li>
+      <li>[31] IEC 60945:2002; Maritime Navigation and Radiocommunication Equipment and Systems. General Requirements. Methods of Testing and Required Test Results. International Electrotechnical Commission: Geneva, Switzerland, 2021.</li>
+      <li>[32] IEC 61162-1:2016; Maritime Navigation and Radiocommunication Equipment and Systems. Digital Interfaces. Single Talker and Multiple listeners. International Electrotechnical Commission: Geneva, Switzerland, 2016.</li>
+      <li>[33] IEC 61162-2:1998; Maritime Navigation and Radiocommunication Equipment and Systems. Digital Interfaces. Single Talker and Multiple Listeners, High-Speed Transmission. International Electrotechnical Commission: Geneva, Switzerland, 1998.</li>
+      <li>[34] IEC 61162-450:2018; Maritime Navigation and Radiocommunication Equipment and Systems. Digital Interfaces. Multiple Talkers and Multiple Listeners. Ethernet Interconnection. International Electrotechnical Commission: Geneva, Switzerland, 2018.</li>
+      <li>[35] IEC 62288:2022; Maritime Navigation and Radiocommunication Equipment and Systems—Presentation of Navigation-Related Information on Shipborne navigational Displays—General Requirements, Methods of Testing and Required Test Results. Interna- tional Electrotechnical Commission: Geneva, Switzerland, 2022.</li>
+      <li>[36] Cybersecurity &amp; Infrastructure Security Agency. Interschalt VDR G4e Path Traversal Vulnerability|CISA; Cybersecurity &amp; Infrastructure Security Agency: Arlington, VA, USA, 2016.</li>
+      <li>[37] CVE Program. CVE-2016-9339—Interschalt VDR G4e Path Traversal Vulnerability; National Insitute of Standards and Technology: Gaithersburg, MD, USA, 2016.</li>
+      <li>[38] Harish, A.V.; Tam, K.; Jones, K. Investigating the Security and Accessibility of Voyage Data Recorder Data using a USB attack. In Special Track: CyMAR: Cyber at Sea: Issues Concerning the Maritime Sector, along with Cyber2022; Iaria XPS Press: Lisbon, Portugal, 2022.</li>
+      <li>[39] ISO/TS 10891; Freight Containers. Radio Frequency Identiﬁcation (RFID). Licence Plate Tag. ISO: Geneva, Switzerland, 2009.</li>
+      <li>[40] What Is the CIA Triad and Why Is It Important?; Fortinet: Sunnyvale, CA, USA,2022.</li>
+      <li>[41] Windows Embedded Standard 7—Microsoft Lifecycle|Microsoft Learn; Microsoft: California, CA, USA, 2022.</li>
+      <li>[42] Kali Linux. Introduction: Kali linux documentation. Available online: https://www.kali.org/docs/introduction/ (accessed on 19 January 2023).</li>
+      <li>[43] Lyon, G. Nmap Network Scanning: The Ofﬁcial Nmap Project Guide to Network Discovery and Security Scanning; Nmap Project: Online, 2009.</li>
+      <li>[44] Metasploit Penetration Testing Software, Pen Testing Security. Available online: https://www.metasploit.com/ (accessed on 18 January 2023).</li>
+      <li>[45] Hak5. USB Rubber Ducky. Available online: https://shop.hak5.org/products/usb-rubber-ducky-deluxe (accessed on 03 August 2022).</li>
+      <li>[46] Keystroke; Merriam-Webster: Springﬁeld, MA, USA, 2022.</li>
+      <li>[47] Gonzalez, A. Rubber Ducky: Learning about the Keystroke Injection|by Alejandro González|Trabe|Medium, 2022. Available online: https://medium.com/trabe/rubber-ducky-learning-about-keystroke-injection-324f462f80fa (accessed on 02 September 2022).</li>
+      <li>[48] The State of Ransomware 2022; Sophos: New Delhi, India, 2022. Available online: https://assets.sophos.com/X24WTUEQ/at/ 4zpw59pnkpxxnhfhgj9bxgj9/sophos-state-of-ransomware-2022-wp.pdf (accessed on 18 January 2023).</li>
+      <li>[49] Zdnet. All four of the world’s largest shipping companies have now been hit by cyber-attacks|ZDNet, 2020. Available online: https://www.zdnet.com/article/all-four-of-the-worlds-largest-shipping-companies-have-now-been-hit-by-cyber-attacks (ac- cessed on 3 August 2022).</li>
+      <li>[50] Kali Linux Tools. hydra. Available online: https://www.kali.org/tools/hydra/ (accessed on 3 August 2022).</li>
+      <li>[51] MalwareBytes. BadRabbit: A Closer Look at the New Version of Petya/NotPetya, 2017. Available online: https://www. malwarebytes.com/blog/news/2017/10/badrabbit-closer-look-new-version-petyanotpetya (accessed on 18 January 2023).</li>
+      <li>[52] MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Code Execution, 2018. Available online: https://www.rapid7.com/db/modules/exploit/windows/smb/ms17_010_psexec/ (accessed on 3 August 2022).</li>
+      <li>[53] NMEA. National Marine Electronics Association—NMEA. Available online: https://www.nmea.org/nmea-0183.html (accessed on 18 January 2023).</li>
+      <li>[54] MACE Times in ReFS|Forensic Investigation of Microsoft’s Resilient File System (ReFS). Available online: http:// resilientﬁlesystem.co.uk/mace-times (accessed on 3 August 2022).</li>
+      <li>[55] Golitsyn, V; Paik, J-H; Robinson, P; Francioni, F; Rao, P.S., PCA Case No. 2015-28 In the matter of an arbitration-before-an arbitral tribunal constituted under annex vii to the 1982 united nations convention on the law of the sea the italian republic- v.-the republic of india-concerning-the “enrica lexie” incident permanent court of arbitration, 2020. Available online: https: //pcacases.com/web/sendAttach/16500 (accessed on 18 January 2023).</li>
+      <li>[56] Gardner, A. Voyage Data Recorder—Is It Ready for Use? 2021. Available online: https://britishmarine.com/news-and-advice/ advice-and-notices/voyage-data-recorder-is-it-ready-for-use/ (accessed on 18 January 2023).</li>
+      <li>[57] CISecurity. Security Primer—EternalBlue; Center for Internet Security: East Greenbush, NY, USA, 2019; p. 4722.</li>
+      <li>[58] IMO. Brief History of IMO; International Maritime Organization: London, UK, 2022. Available online: https://www.imo.org/en/ About/HistoryOfIMO/Pages/Default.aspx (accessed on 18 January 2023).</li>
+      <li>[59] Hopcraft, R.; Martin, K.M. Effective maritime cybersecurity regulation—The case for a cyber code. J. Indian Ocean Reg. 2018, 14, 354–366. [CrossRef]</li>
+      <li>[60] Morgan, J.M.; Liker, J.K. The Toyota Product Development System—Integrating People, Process and Technology; CRC Press: Boca Raton, FL, USA, 2006.</li>
+      <li>[61] Emina˘gao˘glu, M.; Uçar, E.; Eren, ¸S. The positive outcomes of information security awareness training in companies—A case study. Inf. Secur. Tech. Rep. 2009, 14, 223–229. [CrossRef]</li>
+      <li>[62] National Institute of Standards and Technology. FIPS 140-2—Security Requirements for Cryptographic Modules, 2001. Available online: https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.140-3.pdf (accessed on 18 January 2023).</li>
+      <li>[63] Abdel Hakeem, S.A.; Abd El-Gawad, M.A.; Kim, H. A Decentralized Lightweight Authentication and Privacy Protocol for Vehicular Networks. IEEE Access 2019, 7, 119689–119705. [CrossRef]</li>
+      <li>[64] National Institute of Standards and Technology. NIST Special Publication 800-82—Guide to Industrial Control Systems (ICS) Security, 2015. Available online: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r2.pdf (accessed on 18 January 2023).</li>
+      <li>[65] IMO. International Ship and Port Facility Security (ISPS) Code; International Maritime Organization: London, UK, 2021.</li>
+      <li>[66] ISO/IEC27001:2013; Information Technology—Security Techniques— Information Security Management Systems—Requirements. ISO: Geneva, Switzerland, 2013.</li>
+      <li>[67] Seong, K.T.; Kim, G.H. Implementation of voyage data recording device using a digital forensics-based hash algorithm. Int. J. Electr. Comput. Eng. (IJECE) 2019, 9, 5412–5419. [CrossRef]</li>
+      <li>[68] Vasu, S.; George, S.N.; Deepthi, P. An Integrity Veriﬁcation System for Images using Hashing and Watermarking. In Proceedings of the 2012 International Conference on Communication Systems and Network Technologies, Rajkot, India, 11–13 May 2012. [CrossRef]</li>
+      <li>[69] Vocal. DCT Transform Digital Watermarking. Available online: https://vocal.com/video/dct-transform-digital-watermarking/ (accessed on 18 January 2023).</li>
+      <li>[70] Chauhan, Y.; Gupta, P.; Majumder, K. Digital Watermarking of Satellite Images. In Proceedings of the Third Indian Conference on Computer Vision, Graphics &amp; Image Processing, Ahmadabad, India, 16–18 December 2002. [CrossRef]</li>
+      <li>[71] Mojtaba Mousavi, S.; Naghsh, A.; R. Abu-Bakar, S.A. Watermarking Techniques used in Medical Images: A Survey. J. Digit. Imaging 2014, 27, 714–729. [CrossRef] [PubMed]</li>
+      <li>[72] National Institute of Standards and Technology. FIPS 197—Speciﬁcation for the Advanced Encryption Standard (AES), 2001. Available online: https://nvlpubs.nist.gov/nistpubs/ﬁps/nist.ﬁps.197.pdf (accessed on 18 January 2023 )</li>
+      <li>[73] UK Home Ofﬁce. Investigation of Protected Electronic Information Revised Code of Practice Presented to Parliament Pursuant to Section 71(4) of the Regulation of Investigatory Powers Act 2000; UK Home Ofﬁce: London, UK, 2018.</li>
+      <li>[74] Zimmermann, V.; Gerber, N. The password is dead, long live the password—A laboratory study on user perceptions of authentication schemes. Int. J. Hum.-Comput. Stud. 2020, 133, 26–44. [CrossRef]</li>
+      <li>[75] Brecht, D. Password Security: Complexity vs. Length, 2021. Available online: https://resources.infosecinstitute.com/topic/ password-security-complexity-vs-length/ (accessed on 18 January 2023).</li>
+      <li>[76] National Cyber Security Centre. Password Policy: Updating Your Approach. 2018. Available online: https://www.ncsc.gov.uk/ collection/passwords/updating-your-approach (accessed on 18 January 2023).</li>
+      <li>[77] BIMCO. The Guidelines on Cyber Security Onboard Ships v4. 2020. Available online: https://www.bimco.org/about-us-and- our-members/publications/the-guidelines-on-cyber-security-onboard-ships (accessed on 18 January 2023).</li>
+      <li>[78] Microsoft. Download Microsoft Authenticator, 2022. Available online: https://www.microsoft.com/en-us/security/mobile- authenticator-app (accessed on 18 January 2023).</li>
+      <li>[79] Summers, W.C.; Bosworth, E. Password Policy: The Good, the Bad, and the Ugly. In Proceedings of the Winter International Synposium on Information and Communication Technologies, WISICT ’04, Cancun Mexico, 5–8 January 2004; Trinity College Dublin: Dublin, Ireland, 2004; pp. 1–6.</li>
+      <li>[80] National Institute of Standards and Technology. NIST Special Publication 800-63B—Digital Identity Guidelines, 2017. Available online: https://pages.nist.gov/800-63-3/sp800-63b.html (accessed on 18 January 2023).</li>
+      <li>[81] ISO/IEC27002:2017; Information Technology—Security Techniques—Code of practice for information security controls. ISO: Geneva, Switzerland, 2017.</li>
+      <li>[82] Huang, D.L.; Patrick Rau, P.L.; Salvendy, G.; Gao, F.; Zhou, J. Factors affecting perception of information security and their impacts on IT adoption and security practices. Int. J. Hum.-Comput. Stud. 2011, 69, 870–883. [CrossRef]</li>
+      <li>[83] Ambinder, M. 2 White House Movie Tropes That Don’t Make Sense, 2015. Available online: https://theweek.com/articles/4623 39/2-white-house-movie-tropes-that-dont-make-sense (accessed on 18 Janaury 2023).</li>
+      <li>[84] KeySure. KeySure Key Control Product, 2022. Available online: https://www.keysure.net/ (accessed on 18 January 2023).</li>
+      <li>[85] CashStash. CashStash, 2013. Available online: https://www.thingiverse.com/thing:110897 (accessed on 18 January 2023).</li>
+      <li>[86] Cavusoglu, H.; Cavusoglu, H.; Zhang, J. Security Patch Management: Share the Burden or Share the Damage? Manag. Sci. 2008, 54, 657–670. [CrossRef]</li>
+      <li>[87] Microsoft. Windows 10 Update Servicing Cadence, 2018. Available online: https://techcommunity.microsoft.com/t5/windows- it-pro-blog/windows-10-update-servicing-cadence/ba-p/222376 (accessed on 18 January 2023).</li>
+      <li>[88] IEC 62443-3-2:2020 Security for Industrial Automation and Control Systems. International Electrotechnical Commission: London, UK, 2020.</li>
+      <li>[89] NIST Special Publication 800-61—Computer Security Incident Handling Guide Recommendations of the National Institute of Standards and Technology; National Institute of Standards and Technology: Gaithersburg, MD, USA, 2012. [CrossRef]</li>
+      <li>[90] ISO/IEC27035-3:2020; Information Technology—Information Security Incident Management. ISO: Geneva, Switzerland, 2020.</li>
+      <li>[91] Cyber Strategic Outlook Aug 2021; US Coast Guard: Washington, DC, USA, 2021.</li>
+      <li>[92] US Coast Guard. CVC-WI-027(1)—Vessel Cyber Risk Management Work Instruction. 2020. Available online: https:// www.dco.uscg.mil/Portals/9/DCO%20Documents/5p/CG-5PC/CG-CVC/CVC_MMS/CVC-WI-027(series).pdf (accessed on 18 January 2023).</li>
+      <li>[93] National Institute of Standards and Technology. Framework for Improving Critical Infrastructure Cybersecurity—Version 1.1. 2018. Available online: https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.04162018.pdf (accessed on 18 January 2023).</li>
+      <li>[94] The ’Enrica Lexie’ Incident (Italy v. India); Permanent Court of Arbitration: The Hague, The Netherlands, 2020.</li>
+      <li>[95] Voyage Data Recorder Vr-5000 (Serial Number 1001 or Greater); Furuno: Hyogo, Japan, 2005.</li>
+      <li>[96] Hodgkinson, S. The Voyage Data Recorder (VDR), 2022. Available online: https://www.westpandi.com/publications/news/ april-2022/the-voyage-data-recorder-(vdr)/ (accessed on 18 Janaury 2023).</li>
+      <li>[97] Hopcraft, R. Developing Maritime Digital Competencies. IEEE Commun. Stand. Mag. 2021, 5, 12–18. [CrossRef]</li>
+      <li>[98] Msc.1/Circ.1222/Rev.1)—Guidelines on Annual Testing of Voyage Data Recorders (Vdr) And Simpliﬁed Voyage Data Recorders (S-Vdr); IMO: London, UK, 2019.</li>
+      <li>[99] IEC63154:2021; Maritime Navigation and Radiocommunication Equipment and Systems—Cybersecurity—General Requirements, Methods of Testing and Required Test Results. IEC: London, UK, 2021.</li>
+      <li>[100] IACS. About IACS; International Association of Classiﬁcation Societies: London, UK, 2022. Available online: https://iacs.org.uk/ about/ (accessed on 18 January 2023).</li>
+      <li>[101] IACS. Uniﬁed Requirements; International Association of Classiﬁcation Societies: London, UK, 2022. Available online: https: //iacs.org.uk/publications/uniﬁed-requirements/ (accessed on 18 January 2023).</li>
+      <li>[102] IMO. E26—Cyber Resilience of Ships; International Association of Classiﬁcation Societies: London, UK, 2022. Available online: https://iacs.org.uk/download/14104 (accessed on 18 January 2023).</li>
+      <li>[103] IACS. E27—Cyber Resilience of On-board Systems and Equipment; International Association of Classiﬁcation Societies: London, UK, 2022. Available online: https://iacs.org.uk/download/14105 (accessed on 18 January 2023).</li>
+      <li>[104] Chokshi, N. How Giant Ships Are Built, 2020. Available online: https://www.nytimes.com/interactive/2020/06/17/business/ economy/how-container-ships-are-built.html (accessed on 18 January 2023).</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse11020267">10.3390/jmse11020267</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
