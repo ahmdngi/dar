@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الشبكات العصبية المتكررة: مراجعة شاملة للبنى والصيغ والتطبيقات — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Recurrent Neural Networks: A Comprehensive Review of Architectures, Variants, and Applications</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">الشبكات العصبية المتكررة: مراجعة شاملة للبنى والصيغ والتطبيقات</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ibomoiye Domor Mienye, Theo G. Swart, George Obaido</span>
+    <span>📄 Information 2024, 15, 517</span>
+    <span>🔗 <a href="https://doi.org/10.3390/info15090517">10.3390/info15090517</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>دفعت الشبكات العصبية المتكررة (RNN) مجال تعلم الآلة (ML) كثيرًا بتمكين المعالجة الفعالة للبيانات التسلسلية. تقدم هذه الورقة مراجعة شاملة للشبكات المتكررة وتطبيقاتها، مبرزة التقدم في البنى مثل شبكات الذاكرة الطويلة قصيرة المدى (LSTM) والوحدات المتكررة المبوبة (GRU) وBiLSTM وشبكات الحالة الصدوية (ESN) وLSTM ذات الثقوب وLSTM المكدسة. تدرس الدراسة تطبيقات الشبكات المتكررة في مجالات منها NLP والتعرف على الكلام والتنبؤ بالسلاسل الزمنية والمركبات الذاتية وكشف الشذوذ. كما تناقش ابتكارات حديثة كدمج آليات الانتباه وتطوير نماذج هجينة تجمع الشبكات المتكررة مع CNNs وبنى Transformer. تهدف المراجعة إلى تزويد باحثي وممارسي تعلم الآلة بنظرة شاملة على الوضع الراهن لبحوث الشبكات المتكررة واتجاهاتها المستقبلية.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>أعاد التعلم العميق (DL) تشكيل مجال الذكاء الاصطناعي (AI)، دافعًا التقدم في طائفة واسعة من التطبيقات من التعرف على الصور ومعالجة اللغة الطبيعية (NLP) إلى القيادة الذاتية والتشخيص الطبي [1–5]. يغذي هذا النمو السريع التوافر المتزايد للبيانات الضخمة والتقدم في القدرة الحاسوبية وتطوير خوارزميات متطورة [6–9]. ومع تطور نماذج التعلم العميق، تُنشر بشكل متزايد في قطاعات حرجة، مظهرة قدرتها على التفوق على أساليب تعلم الآلة التقليدية في المهام المعقدة.</p>
+    <p>الشبكات العصبية المتكررة (RNN) صنف من نماذج التعلم العميق مصمم أساسًا للبيانات التسلسلية [10، 11]. فعلى عكس الشبكات الأمامية، تمتلك الشبكات المتكررة خاصية فريدة بالاحتفاظ بذاكرة للمدخلات السابقة عبر حالتها الداخلية لمعالجة تسلسلات المدخلات [12]. وهذا يجعلها مثالية لتطبيقات مثل NLP والتعرف على الكلام والتنبؤ بالسلاسل الزمنية حيث السياق وترتيب نقاط البيانات حاسمان. تعود نشأة الشبكات المتكررة إلى السبعينيات مع العمل التأسيسي لـ Werbos [13] الذي قدم مفهوم الانتشار الخلفي عبر الزمن (BPTT) الذي أرسى أساس تدريب الشبكات المتكررة.</p>
+    <p>غير أن الشبكات المتكررة عانت عمليًا من مشكلة تلاشي التدرجات، حيث تنمو التدرجات أو تتضاءل أسيًا أثناء الانتشار الخلفي [14]. وكان تقديم شبكات LSTM على يد Hochreiter وSchmidhuber [15] نقطة تحول، إذ أتاح تعلم التبعيات على فترات أطول بكثير. كما قدمت الوحدات المتكررة المبوبة (GRU) المقترحة من Cho وآخرين [16] بديلًا مبسطًا لـ LSTM بأداء مقارن. وعبر السنوات، جعلت هذه البنى الشبكاتِ المتكررة حجر أساس في النمذجة التسلسلية رغم منافسة المحولات اللاحقة.</p>
+  </section>
+
+  <section>
+    <h2>2. الأعمال ذات الصلة</h2>
+    <p>طُبقت الشبكات المتكررة في تطبيقات مختلفة محققة الأداء القياسي، خاصة في تطبيقات السلاسل الزمنية. وضعت التطورات المبكرة — منها الشبكات التكرارية محليًا والأمامية عمومًا كما راجعها Tsoi وBack [23]، والشبكات المتكررة قطرية الكتل المقترحة من Mastorocostas وTheocharis [24] — أساسًا مهمًا لفهم النمذجة التسلسلية المعقدة. وأُجريت مراجعات عدة للشبكات المتكررة وتطبيقاتها، أسهمت كل منها في فهم المجال وتطويره.</p>
+    <p>فمثلًا، قدم Dutta وآخرون [25] نظرة شاملة على الأسس النظرية للشبكات المتكررة وتطبيقاتها في التعلم التسلسلي، مبرزين تحديات التدريب خاصة تلاشي التدرجات، ومناقشين التقدم في بنى LSTM وGRU — لكن المراجعة ركزت أساسًا على الجوانب النظرية دون تغطية موسعة لأحدث الابتكارات والتطبيقات العملية في حقول ناشئة كالمعلوماتية الحيوية والأنظمة الذاتية. وقدم Quradaa وآخرون [26] مراجعة حديثة للشبكات المتكررة ركزت على البنى الأساسية مع تطبيقات في النسخ البرمجية المكررة. وبالمثل، قدمت مراجعة Tarwani وآخرين [22] تحليلًا معمقًا للشبكات المتكررة في سياق NLP — برؤى قيمة لكن دون منظور أوسع على مجالات تطبيقية أخرى وابتكارات معمارية حديثة.</p>
+    <p>ومن المراجعات المهمة الأخرى مراجعة Goodfellow وآخرين [27] التي ركزت على أساسيات التعلم العميق ومنها الشبكات المتكررة وتطبيقاتها عبر المجالات — أساسًا متينًا لكن دون تعمق في التقدم الخاص ببنى الشبكات المتكررة وتطبيقاتها المتخصصة. وأجرى Greff وآخرون [28] دراسة موسعة قارنت صيغ LSTM متنوعة لتحديد فعاليتها في التطبيقات المختلفة. يتموضع هذا العمل كمراجعة شاملة تغطي البنى والصيغ والابتكارات ومجموعات البيانات والتطبيقات والتحديات معًا.</p>
+  </section>
+
+  <section>
+    <h2>3. أساسيات الشبكات المتكررة</h2>
+    <p>صُممت الشبكات المتكررة لمعالجة البيانات التسلسلية بالاحتفاظ بحالة خفية تلتقط معلومات عن المدخلات السابقة [40]. تتكون البنية الأساسية من طبقة دخل وطبقة خفية وطبقة خرج. وعلى عكس الشبكات الأمامية، تمتلك الشبكات المتكررة وصلات تكرارية تسمح للمعلومات بالدوران داخل الشبكة. في كل خطوة زمنية t، تأخذ الشبكة متجه دخل xt وتحدّث حالتها الخفية ht وفق المعادلة: ht = σh(Wxh·xt + Whh·h(t−1) + bh) ‏(1)، حيث Wxh مصفوفة أوزان الدخل–الخفية وWhh أوزان الوصلة التكرارية وbh متجه التحيز وσh دالة التنشيط (tanh أو ReLU عادة) [41، 42]. ويُحسب الخرج: yt = σy(Why·ht + by) ‏(2).</p>
+    <p>جوهر عمليات الشبكات المتكررة هو الحساب التكراري للحالة الخفية الذي يدمج الدخل الحالي مع الحالة الخفية السابقة [43]، مظهرًا سلوكًا زمنيًا ديناميكيًا. ويلعب اختيار دالة التنشيط σh دورًا حاسمًا بإدخال اللاخطية التي تمكّن الشبكة من تعلم الأنماط المعقدة وتمثيلها [44، 45]. من الدوال شائعة الاستخدام الظل الزائدي (tanh) الذي يضغط القيم إلى [−1، 1] فيكون صفري التمركز ومناسبًا للسلاسل ذات القيم الموجبة والسالبة [46]: σh(z) = tanh(z) ‏(3). ومنها وحدة ReLU الخطية المصححة التي تخرج الدخل مباشرة إن كان موجبًا وإلا صفرًا [47]، مما يخفف تلاشي التدرجات جزئيًا بتدفق أفضل للتدرجات، وصيغتها Leaky ReLU لمعالجة مشكلة «ReLU الميتة» [48] بالسماح بتدرج صغير غير صفري للدخل السالب، ووحدة ELU الأسية الخطية التي تُقارب متوسط التنشيط من الصفر مسرّعة التعلم بتقليل انزياحات التحيز [49]، إضافة إلى دالة sigmoid التي تضغط القيم إلى [0، 1].</p>
+    <p>يمثل تدريب الشبكات المتكررة تحديات كبيرة بسبب مشكلتي تلاشي التدرجات وانفجارها. أثناء التدريب تُستخدم خوارزمية BPTT لحساب تدرجات دالة الخسارة بالنسبة للأوزان [54]. ومع انتشار التدرجات خلفيًا عبر الزمن قد تتضاءل (تتلاشى) أو تنمو أسيًا (تنفجر)، فيصعب تعلم التبعيات طويلة المدى أو يضطرب التدريب. رياضيًا، يتضمن حساب التدرجات جداء مصفوفات يعقوبية عديدة: ∂ht/∂h(t−n)، فإن كانت القيم الذاتية أقل من 1 مال الجداء إلى الصفر (تلاشٍ) [55، 56]، وإن تجاوزت 1 نمت التدرجات أسيًا (انفجار) مسببة عدم استقرار المعاملات وفيضًا عدديًا. يمنع التلاشي تعلم التبعيات طويلة المدى لضعف إشارة التدرج عن تحديث أوزان الطبقات المبكرة، بينما قد يدفع الانفجار إلى نهاية محلية رديئة أو يُفشل التدريب بتحديثات ضخمة. ولمعالجتهما طُورت صيغ كـ LSTM وGRU بآليات تبويب تنظم تدفق المعلومات والتدرجات، إضافة إلى قصّ التدرجات بسقف أقصى أثناء الانتشار الخلفي لمنع الانفجار.</p>
+    <p>تحسّن الشبكات المتكررة ثنائية الاتجاه (BiRNN) البنية بمعالجة التسلسل في الاتجاهين الأمامي والخلفي، متيحة الوصول للسياق المستقبلي إضافة للماضي [43، 59]. تُحافَظ على حالتين خفيتين (أمامية وخلفية) وفق المعادلتين (11) و(12)، ويُحسب الخرج بدمج الحالتين ‏(13). وهي فعالة لمهام كالتعرف على الكيانات المسماة والترجمة الآلية والتعرف على الكلام حيث يحسّن سياق الاتجاهين الأداء [60، 61] — ففي نمذجة اللغة يحسّن فهم الكلمات المحيطة دقة التنبؤ بالكلمة التالية [62، 63]، وفي الترجمة تتيح معرفة الجملة كاملة ترجمة أدق، وفي السلاسل الزمنية كأسعار الأسهم والتشخيص الطبي تفيد التبعيات الزمنية ثنائية الاتجاه [64] — لكنها تتطلب موارد حاسوبية أكبر لمعالجة التسلسل مرتين [59، 65].</p>
+    <p>توسّع الشبكات المتكررة العميقة البنية الأساسية بتكديس طبقات متكررة متعددة لتتعلم تمثيلات أعقد [66]، فتكون الحالة الخفية لكل طبقة دخلًا للاحقة، ملتقطة خصائص هرمية. لشبكة عميقة بـ L طبقات تُحدَّث الحالات وفق المعادلة (14) ويُحسب خرج الطبقة العليا كالمعتاد ‏(15). تستطيع النمذجة الأعقد والتقاط تبعيات أطول من الضحلة [67]، لكنها أكثر عرضة لتلاشي التدرجات — يُخفَّف بصيغ متقدمة كـ LSTM وGRU — وطُبقت بنجاح في NLP والكلام وتحليل الفيديو، مع تحديات التعقيد وفرط التخصيص [68، 69] التي تُعالَج بالإسقاط والتطبيع الطبقي والوصلات المتبقية [70–72]: فالإسقاط يصفّر جزءًا من الوحدات أثناء التدريب لخصائص أمتن، والتطبيع الدفعي يثبّت التدريب ويسرّعه بتطبيع مدخلات كل طبقة [73]، والوصلات المتبقية المختصرة تخفف التلاشي في الشبكات العميقة جدًا [74].</p>
+  </section>
+
+  <section>
+    <h2>4. الصيغ المتقدمة للشبكات المتكررة</h2>
+    <p>تتباين بنى الشبكات المتكررة كثيرًا، فبعضها بتكرار داخلي داخل العصبونات وبعضها بتكرار خارجي بين الطبقات، مما يؤثر في قدرة الشبكة على التعلم ومعالجة التسلسلات وتطبيقاتها على مهام محددة. قُدمت شبكات LSTM على يد Hochreiter وSchmidhuber [15] لمعالجة تلاشي التدرجات المتأصل في الشبكات الأساسية. الابتكار المحوري هو آليات التبويب للتحكم في تدفق المعلومات، مما يتيح الحفاظ على الحالة الداخلية وتحديثها على فترات طويلة لنمذجة التبعيات طويلة المدى. تحوي كل خلية LSTM ثلاث بوابات (دخل ونسيان وخرج) تنظم حالة الخلية ct والحالة الخفية ht [75]: تحدد مقدار الدخل المُعتَبر، ومقدار الحالة السابقة المنسي، ومقدار حالة الخلية المخرَج — وفق معادلات التحديث (16)–(21) بدوال sigmoid وtanh والضرب العنصري. تتحكم بوابة الدخل في مقدار الدخل الجديد المكتوب في حالة الخلية، وبوابة النسيان في مقدار الحالة السابقة المحتفظ به، وبوابة الخرج في مقدار الحالة المستخدم لحساب ht، بينما دخل الخلية gt قيمة مرشحة تُضاف بعد تضمينها ببوابة الدخل.</p>
+    <p>توسّع BiLSTM بنية LSTM المعيارية بمعالجة التسلسل في الاتجاهين الأمامي والخلفي كـ BiRNN [76]، لالتقاط سياق الماضي والمستقبل وفهم أشمل للتبعيات. تُحافَظ على حالتين خفيتين منفصلتين لكل خطوة زمنية وفق (11) و(12)، بتكرار خارجي بين الطبقات. أما LSTM المكدسة فتكدّس طبقات LSTM متعددة يكون فيها خرج طبقة دخلًا للاحقة، ملتقطة أنماطًا أعقد بتمثيلات هرمية على مستويات تجريد مختلفة وفق (14) و(15): الطبقات الدنيا تلتقط الأنماط المحلية والتبعيات قصيرة المدى، والعليا الخصائص المجردة وطويلة المدى [21] — مفيد لنمذجة اللغة (مستويات نحوية ودلالية مختلفة) وتحليل الفيديو (تبعيات زمنية بمقاييس متعددة).</p>
+    <p>الوحدات المتكررة المبوبة (GRU) صيغة أخرى لمعالجة تلاشي التدرجات مع تبسيط بنية LSTM. قدمها Cho وآخرون [16] بدمج بوابتي النسيان والدخل في بوابة تحديث واحدة ودمج حالة الخلية والحالة الخفية، مقللة عدد البوابات والمعاملات ومبسّطة النموذج ومحسّنة كفاءته الحاسوبية. تتكون من بوابتين: بوابة التحديث zt وبوابة التصفير rt [77]، تتحكمان في الاحتفاظ بالمعلومات ذات الصلة وإسقاط غيرها، بتكرار داخلي داخل كل وحدة عبر الحفاظ على الحالة الخفية وتحديثها — وفق المعادلات (22)–(25): تحدد zt مقدار الحالة السابقة المنقول إلى الحالية، وتتحكم rt في مقدار المنسي [75]، وh′t الحالة المرشحة للمحتوى الجديد عبر بوابة التصفير. كفاءة GRU المبسطة تجعلها مناسبة للموارد المحدودة والتدريب الأسرع، وطُبقت بنجاح في مهام نمذجة تسلسلية عديدة بأداء مقارن بمعاملات أقل.</p>
+    <p>ورغم أن LSTM وGRU الأكثر استخدامًا، تقدم بنى أخرى مزايا فريدة لتطبيقات محددة: LSTM ذات الثقوب (peephole) المقدمة من Gers وSchmidhuber [82] تتيح للبوابات الوصول إلى حالة الخلية عبر وصلات ثقبية، محسّنة تنظيم التبويب بناءً على الحالة الحالية — مفيد لقرارات التوقيت في التعرف على الكلام والتنبؤ بالسلاسل المالية [83] — وفق المعادلات (26)–(28) بأوزان ثقبية Wci وWcf وWco. وشبكات الحالة الصدوية (ESN) المقترحة من Jaeger [84] طبقة خفية (خزان) ثابتة عشوائية التوصيل تُدرَّب فيها طبقة الخرج فقط، مبسّطة التدريب كثيرًا — مثالية لمعالجة الإشارات لحظيًا والتنبؤ بالسلاسل الزمنية وأنظمة التحكم التكيفية — وفق (29) بمصفوفتي Win وWres. كما تشمل الصيغ اللافتة الشبكات المتكررة المستقلة (IndRNN) التي تستقل فيها العصبونات بتكرارها الذاتي، محسّنة الثبات وقابلية التفسير لمهام محددة.</p>
+  </section>
+
+  <section>
+    <h2>5. الابتكارات في بنى الشبكات المتكررة ومنهجيات تدريبها</h2>
+    <p>شهدت السنوات الأخيرة ابتكارات كبيرة في بنى الشبكات المتكررة ومنهجيات تدريبها لتحسين الأداء ومعالجة القيود. أدى دمج الشبكات المتكررة مع بنى شبكية أخرى إلى نماذج هجينة توظف مزايا كل مكون: فدمج CNNs مع الشبكات المتكررة أثبت فعاليته في تحليل الفيديو — CNNs للخصائص المكانية والشبكات المتكررة للديناميكيات الزمنية [93] — معالجًا المعلومات المكانية والزمنية معًا. كما حسّن دمج آليات الانتباه قدرة النمذجة للتبعيات بعيدة المدى، بتركيز الشبكة على الأجزاء ذات الصلة من تسلسل الدخل — مفيد للترجمة الآلية وتلخيص النصوص — وفق: at = softmax(ut) ‏(33) وct = مجموع at,i·hi ‏(34)، حيث at وزن الانتباه وut دالة الدرجة وct متجه السياق.</p>
+    <p>أتمتت عملية البحث العصبي عن البنى (NAS) تصميم بنى الشبكات المتكررة، مكتشفة نماذج أكفأ وأقوى [94، 95]. تستكشف تقنيات NAS كالتي ابتكرها Zoph وLe [96] توليفات الطبقات ودوال التنشيط والمعاملات الفائقة لإيجاد تكوينات مثلى تتفوق على المصممة يدويًا، وتُصاغ كمسألة أمثلة: A* = argmax Accuracy(A) ‏(35). وطُورت تقنيات تحسين متقدمة لكفاءة التدريب وثباته: قصّ التدرجات لمنع تضخمها المزعزع للتدريب [58، 97]: g ← g·max(1, ‖g‖/τ) ‏(36) بعتبة τ؛ ومعدلات التعلم التكيفية كمحسّن Adam الذي يعدّل المعدل أثناء التدريب لتسريع التقارب [98] وفق المعادلات (37)–(40) بتقديري العزم الأول والثاني ومعدلي الاضمحلال β1 وβ2 ومعدل التعلم α؛ وطُورت أساليب أمثلة من الدرجة الثانية كالمحسّن خالي الهسيان لتحسين سرعة التقارب وثبات تدريب الشبكات العميقة.</p>
+    <p>يتيح دمج آليات الانتباه في الشبكات المتكررة التركيز الانتقائي على الأجزاء المهمة من تسلسل الدخل، معالجًا قصور الشبكات التقليدية في نمذجة التبعيات طويلة المدى [99–101]. يجمع هذا المنهج الهجين مزايا الشبكات المتكررة والانتباه، معززًا القدرة على مهام التسلسل المعقدة — بتحسينات كبيرة في التعرف على الكلام وتلخيص النصوص. فمثلًا، أظهر Bahdanau وآخرون [102] استخدام الانتباه في الترجمة الآلية العصبية بتركيز الشبكات على الكلمات ذات الصلة في الجملة المصدر، محسّنين دقة الترجمة. وبالمثل، اقترح Luong وآخرون [103] آليتي الانتباه الشامل والموضعي، معززين أداء الشبكات المتكررة في مهام تسلسل-إلى-تسلسل متنوعة.</p>
+    <p>المحولات المقدمة من Vaswani وآخرين [104] عام 2017 توظف آليات الانتباه الذاتي وأثبتت فعالية عالية في التقاط التبعيات بعيدة المدى. وعلى عكس الشبكات المتكررة، تعالج المحولات التسلسلات بالتوازي مما قد يحسّن الأداء على التسلسلات الطويلة. آلية الانتباه الذاتي: Attention(Q,K,V) = softmax(QK^T/√dk)V ‏(41)، حيث Q وK وV مصفوفات الاستعلام والمفتاح والقيمة وdk بُعد المفاتيح. وبما أن لكل من المحولات والشبكات المتكررة قيودًا، دمجت دراسات الطريقتين للحصول على نماذج قوية [104]. وهكذا يمكن بتسخير المعالجة التسلسلية للشبكات المتكررة والآليات المتوازية القائمة على الانتباه للمحولات تطوير نماذج أقوى وأكفأ لطائفة واسعة من التطبيقات، معالجةً قيود كل بنية ومحسّنة الأداء العام في النمذجة التسلسلية.</p>
+  </section>
+
+  <section>
+    <h2>6. مجموعات البيانات العامة لبحوث الشبكات المتكررة</h2>
+    <p>يقدم هذا القسم نظرة على مجموعات البيانات المتاحة علنًا شائعة الاستخدام في دراسة الشبكات المتكررة وتقييمها. تغطي هذه المجموعات تطبيقات متنوعة من NLP إلى التنبؤ بالسلاسل الزمنية، عاكسة القدرات المتنوعة للشبكات المتكررة. تقدم كل مجموعة تحديًا فريدًا، متيحة للباحثين استكشاف مزايا بنى الشبكات المتكررة المختلفة وقيودها عبر مهام واقعية متنوعة. يلخص الجدول 3 مجموعات البيانات العامة: Penn Treebank [105] (NLP — مدونة جمل إنجليزية موسومة لأدوار الكلام والتحليل والكيانات المسماة، واسعة الاستخدام لنمذجة اللغة)؛ ومراجعات IMDB [106] (تحليل المشاعر — مراجعات أفلام للتصنيف الثنائي)؛ وMNIST التسلسلي [107] (تعرف صور — نسخة MNIST مسلسلة لتعلم تسلسل-إلى-تسلسل)؛ ومدونة TIMIT الكلامية [108] (تعرف كلام — قاعدة بيانات كلامية موسومة لأنظمة التعرف الآلي)؛ ومجموعة Reuters-21578 [109] (تصنيف نصوص — مقالات إخبارية معيار شائع لتصنيف النصوص)؛ ومستودع UCI ML للسلاسل الزمنية [110] (تحليل زمني — أسعار أسهم وبيانات طقس مثالية للتنبؤ)؛ ومجموعة CORe50 [111] (تعرف أجسام — للتعرف المستمر على الأجسام وفيديو بسياق زمني).</p>
+  </section>
+
+  <section>
+    <h2>7. تطبيقات الشبكات المتكررة في الأدبيات المحكمة</h2>
+    <p>دُرست الشبكات المتكررة وصيغها وطُبقت على نطاق واسع عبر مجالات متنوعة في الأدبيات المحكمة. يقدم هذا القسم مراجعة شاملة لهذه التطبيقات. في NLP، حوّلت الشبكات المتكررة المجال بنماذج أكثر تطورًا ووعيًا بالسياق: في توليد النصوص، أظهر Souri وآخرون [112] توليد نص عربي متماسك وذي صلة بالسياق بتدريب نموذج على مدونة ضخمة لتعلم توزيع تسلسلات الكلمات؛ وقدم Islam [113] إطار تسلسل-إلى-تسلسل حسّن جودة التوليد باستخدام LSTM للتسلسلات الأطول والتماسك الممتد؛ وأظهر Gajendran وآخرون [114] فعالية الشبكات في توليد النصوص حرفيًا، إذ تلتقط BiLSTM أنماطًا من تبعيات الحروف إلى البنى النحوية العليا — متعددة الاستخدامات لتوليد الشيفرات والأدب والشعر. وركزت التطورات الأحدث على تنوع التوليد وتماسكه: اقترح Hu وآخرون [115] المشفرات التلقائية التباينية (VAE) مع الشبكات المتكررة لإبداعية التوليد بتنوع وثراء سياقي عبر تمثيل فضاء كامن؛ وقدم Holtzman وآخرون [116] مفهوم «التوليد النصي المتحكم فيه» متيحًا التأثير في الأسلوب والمحتوى للكتابة الإبداعية والمحتوى المخصص.</p>
+    <p>وفي التعرف على الكلام، أسهمت الشبكات المتكررة في أنظمة أدق وأكفأ: استكشف Hinton وآخرون [137] الشبكات العميقة ومنها المتكررة لأنظمة كلام-إلى-نص، ملتقطة التبعيات الزمنية في الإشارات الكلامية بتحسينات كبيرة في دقة النسخ. وقدم Hannun وآخرون [138] نظام DeepSpeech للتعرف الكلامي القياسي بشبكة LSTM عميقة مدرَّبة على بيانات كلامية موسومة ضخمة — متين للبيئات الضجيجة واللهجات المتنوعة. وقدم Amodei وآخرون [139] نظام DeepSpeech2 موسعًا قدرات الأصل بشبكات متكررة ثنائية الاتجاه ومجموعة بيانات أوسع، متحملًا تباينات الأنماط الكلامية واللهجات. واقترح Chiu وآخرون [140] نماذج المحوّل المتكرر (RNN-T) للتعرف الكلامي طرف-إلى-طرف بدمج النموذجين الصوتي واللغوي في إطار متكرر واحد — مخفضًا التعقيد وزمن الاستجابة للأنظمة لحظية. واقترح Zhang وآخرون [141] الشبكات التكرارية الالتفافية (CRNN) جامعة مزايا CNNs في استخراج الخصائص والشبكات المتكررة في النمذجة التسلسلية — قوية الدقة والكفاءة للتسلسلات الصوتية الطويلة ومعدلات الكلام المتباينة. وقدم Dong وآخرون [142] نموذج Speech-Transformer للكلام.</p>
+    <p>وفي التنبؤ بالسلاسل الزمنية، استُخدمت الشبكات المتكررة على نطاق واسع لنمذجة التبعيات والاتجاهات الزمنية: في التنبؤ المالي، أجرى Fischer وKrauss [148] دراسة شاملة بشبكات متكررة عميقة للتنبؤ بعوائد الأسهم، متفوقة على نماذج تعلم الآلة التقليدية كآلات المتجهات الداعمة والغابات العشوائية بتعلم أنماط معقدة في حركات الأسعار. واقترح Nelson وآخرون [149] نموذجًا يجمع CNNs والشبكات المتكررة لأسعار الأسهم — CNNs للخصائص المحلية من الأسعار التاريخية والشبكات المتكررة للتبعيات الزمنية — بتحسينات كبيرة توحي بأن دمج البنى يعزز التنبؤ المالي. ودُمج الانتباه: استخدم Luo وآخرون [150] نموذج CNN-BiLSTM انتباهيًا يركز على الخطوات الزمنية ذات الصلة ملتقطًا الأنماط المهمة في البيانات المالية؛ ووظف Bao وآخرون [151] إطارًا يجمع LSTM مع مشفرات تلقائية مكدسة لتقليل بُعدية الدخل ونمذجة التبعيات الزمنية متنبئًا بأسعار الأسهم المستقبلية؛ واستكشف Feng وآخرون [152] التعلم الانتقالي بالتدريب المسبق لشبكة متكررة.</p>
+    <p>وفي معالجة الإشارات، شهدت ESNs تطبيقات كبيرة لكفاءة تدريبها ومتانتها مع البيانات الزمنية: في الإشارات الفسيولوجية، طور Mastoi وآخرون [163] منهجًا قائمًا على ESN للمراقبة لحظية والتنبؤ بتقلبية معدل القلب — متفوقًا على الأساليب التقليدية دقة وكفاءة، مظهرًا إمكانات ESN في المراقبة الصحية لحظية. وفي الكلام، اقترح Valin وآخرون [164] بنية ESN مخصصة لتحسين الإشارة الكلامية — محسّنة تقليل الضجيج ووضوح الكلام في البيئات الضجيجة، حاسمة للمعينات السمعية وأنظمة التعرف. وفي السلاسل غير الثابتة والضجيجة، دمج Gao وآخرون [91] التحويل الموجي التجريبي (EWT) مع ESNs لتحسين التنبؤ — مظهرًا أن دمج قدرة EWT على تفكيك الإشارات المعقدة مع نمذجة ESN المتينة يؤدي لأداء متفوق خاصة مع الضجيج وعدم الثبات.</p>
+    <p>وفي المعلوماتية الحيوية، استُخدمت الشبكات المتكررة لتحليل التسلسلات البيولوجية (DNA وRNA والبروتينات): وظف Li وآخرون [165] الشبكات للتنبؤ الجيني وبنية البروتين، ملتقطة التبعيات داخل التسلسلات البيولوجية ومقدمة رؤى في المعلومات الجينية والعمليات الحيوية. واستخدم Zhang وآخرون [166] LSTM ثنائية الاتجاه للتنبؤ بتسلسلات البروتين المرتبطة بالـ DNA (نموذج DeepSite) مستفيدة من الطبيعة التسلسلية للبيانات البيولوجية بدقة أعلى في تحديد مواقع الارتباط من الأساليب التقليدية — مظهرة إمكانات الشبكات في فهم تفاعلات البروتين–DNA. وفي البروتيوميات، طور Xu وآخرون [167] نموذجًا للتنبؤ بالبنى الثانوية للبروتينات ملتقطًا التبعيات التسلسلية في الأحماض الأمينية بفعالية — تقدم مهم للتنبؤ البنيوي الضروري لاكتشاف الأدوية وأبحاث الأمراض. وحديثًا دُمجت الشبكات مع بنى أخرى: جمع Yadav وآخرون [168] BiLSTM مع CNNs لتحليل تسلسلات البروتين (خصائص محلية + تبعيات بعيدة المدى بأداء محسّن في التصنيف)، وقدم Aybey وآخرون [169] نموذجًا جماعيًا للتنبؤ بتفاعلات البروتين–البروتين بالشبكات المتكررة وGRU وCNNs — مبرزًا إمكانات التعلم العميق الجماعي في تحسين التفسير والأداء.</p>
+    <p>وفي المركبات الذاتية، تؤدي الشبكات المتكررة دورًا مهمًا بمعالجة بيانات المستشعرات التسلسلية لاتخاذ قرارات القيادة: استخدم Li وآخرون [170] الشبكات لتخطيط المسار وكشف الأجسام والتنبؤ بالمسار — ممكنة الملاحة في البيئات المعقدة والقرارات لحظية. وطور Lee وآخرون [171] إطار تعلم عميق يدمج LSTM مع CNN للقيادة طرف-إلى-طرف (CNN للخصائص المكانية من صور الكاميرا وLSTM للتبعيات الزمنية) — محسّنًا دقة قرارات القيادة ومتانتها في البيئات الديناميكية. وقدم Codevilla وآخرون [172] منهج التعلم بالمحاكاة المشروط الذي يجمع الشبكات المتكررة مع التعلم بالمحاكاة — متعلمًا من عروض القيادة البشرية ومتنبئًا بالإجراءات المستقبلية من المشاهدات الماضية — متكيفًا مع ظروف القيادة المتنوعة وقرارات أكثر أمانًا. واستُخدمت LSTM للتنبؤ بالمسار: اقترح Altché وde La Fortelle [173] نموذجًا يتنبأ بالمسارات المستقبلية للمركبات المحيطة مستفيدًا من الطبيعة التسلسلية لبيانات المرور لتخطيط مسار استباقي أدق. ودُمج الانتباه: قدم Li وآخرون [174] نموذج LSTM انتباهيًا يركز على الأجزاء ذات الصلة محسّنًا كشف الأجسام المرئية وتتبعها، ونماذج تجمع الشبكات مع CNN للتنبؤ بنوايا السائقين الآخرين [175].</p>
+    <p>وفي كشف الشذوذ عبر مجالات كالأمن السيبراني والمراقبة الصناعية والرعاية الصحية: أظهر Altindal وآخرون [177] استخدام LSTM لكشف الشذوذ في بيانات السلاسل الزمنية بنمذجة أنماط السلوك الطبيعي وتحديد الانحرافات الدالة على الشذوذ. واقترح Matar وآخرون [178] نموذجًا للسلاسل الزمنية متعددة المتغيرات بـ BiLSTM يتعلم التبعيات الزمنية ويكشف الانحرافات — فعالًا في التطبيقات الصناعية لمراقبة صحة الآلات والتنبؤ بالأعطال. وفي الأمن السيبراني، طبق Kumaresan وآخرون [179] الشبكات لكشف الشذوذ في حركة الشبكات بتحليل البيانات التسلسلية لتحديد الأنماط غير المعتادة الدالة على اختراقات أو أنشطة خبيثة — متيحًا الكشف والاستجابة لحظيًا. واستكشف Li وآخرون [180] التطبيق في عمليات التصنيع بنموذج يجمع الشبكات مع التعلم الانتقالي لالتقاط التبعيات الزمنية وتمثيلات الخصائص — محسّنًا كشف الشذوذ في العمليات الصناعية المعقدة وكفاءة الإنتاج وضبط الجودة. وفي الرعاية الصحية، وظف Mini وآخرون [181] الشبكات لكشف الأنماط الشاذة في إشارات تخطيط القلب (ECG) — محددًا بدقة الانحرافات الدالة على اضطرابات النظم القلبية، مظهرًا إمكانات الشبكات في التشخيص المبكر والمراقبة. وعزّز التعلم غير الخاضع للإشراف القدرات: قدم Zhou وPaffenroth [182] نموذج مشفر تلقائي عميق متين يوظف الشبكات المتكررة لكشف الشذوذ غير الخاضع للإشراف.</p>
+  </section>
+
+  <section>
+    <h2>8. التحديات واتجاهات البحث المستقبلية</h2>
+    <p>رغم التقدم الكبير، ثمة مشكلات غير محلولة عند تطبيق الشبكات المتكررة، ومعالجتها حاسمة لتحسين أدائها واستخدامها. في قابلية التوسع والكفاءة، يبقى تدريب الشبكات على مجموعات ضخمة بتسلسلات طويلة مكثفًا حاسوبيًا ومستهلكًا للوقت [185–187]. ورغم أن تقنيات مثل نقاط التفتيش التدرجية والمسرّعات العتادية حسّنته، تبقى الطبيعة التسلسلية مقيّدة لقابلية التوسع مقارنة بالبنى المتوازية كالمحولات [188]. يمكن للبحوث المستقبلية التركيز على خوارزميات تدريب أكفأ وأساليب تدريب غير متزامنة ومتوازية لتوزيع الحمل، وبنى هجينة تجمع الشبكات مع الانتباه أو الطبقات الالتفافية لتقليل أزمنة التدريب وتحسين التوسع مع الحفاظ على مزايا الأداء [104].</p>
+    <p>وفي قابلية التفسير والشرح، تُنظَر للشبكات غالبًا كنماذج «صندوق أسود» لديناميكياتها الداخلية المعقدة، فيصعب تفسير قراراتها [189، 190]. ورغم اقتراح آليات الانتباه وأساليب التفسير اللاحقة كـ LIME وSHAP [191] لتحسين التفسير، يمكن تحسينها لتفسيرات أشمل. لذا يجب أن تستهدف البحوث بنى متكررة قابلة للتفسير بطبيعتها ونماذج هرمية تقدم رؤى منظمة في عملية اتخاذ القرار، ودمج المعرفة المجالية لمواءمة سلوكها مع الاستدلال البشري — معززة التفسير والأداء في التطبيقات المتخصصة.</p>
+    <p>وفي التحيز والعدالة، قد تتعلم الشبكات التحيزات الكامنة في بيانات التدريب وتنشرها مؤدية لتنبؤات غير عادلة. ورغم تقنيات كشف التحيز والتخفيف منه كالخوارزميات الواعية بالعدالة والتدريب الخصومي، تحتاج لمزيد من الصقل لضمان العدالة عبر التطبيقات ومجموعات البيانات المتنوعة [192–194]. يجب مواصلة تطوير تقنيات كشف تحيز متينة وخوارزميات تدريب عادلة تُضمّن قيود العدالة صراحة، مع أطر شفافية ومساءلة كالتدقيق الخارجي وتقييمات الأثر لضمان تطوير مسؤول ونشر مسؤول.</p>
+    <p>وفي الاعتماد على البيانات وجودتها، تتطلب الشبكات كميات كبيرة من البيانات التسلسلية الموسومة عالية الجودة للتدريب الفعال [195]. وفي سيناريوهات واقعية عديدة قد تكون البيانات شحيحة أو ضجيجة أو ناقصة. ورغم استكشاف تعزيز البيانات والتعلم الانتقالي وشبه الخاضع للإشراف، تحتاج لمزيد من الصقل لمعالجة تحديات البيانات المتنوعة بفعالية. يجب التركيز على تحسينها لمتانة الشبكات مع البيانات المحدودة أو الناقصة، وتطوير أساليب جديدة لاستغلال البيانات غير الموسومة ودمج المعرفة المجالية لتحسين الأداء في البيئات شحيحة البيانات.</p>
+    <p>وفي فرط التخصيص والتعميم، تميل الشبكات المتكررة — خاصة العميقة — لفرط التخصيص خاصة مع مجموعات البيانات الصغيرة [196]. وضمان تعميم النماذج جيدًا على البيانات غير المرئية دون فرط تخصيص يبقى تحديًا كبيرًا. ورغم شيوع التنظيمات كالإسقاط وتنظيم L2، يلزم أساليب أمتن لتحسين التعميم. يمكن للبحوث المستقبلية استكشاف تنظيمات متقدمة كالتدريب الخصومي والأساليب الجماعية لتعزيز قدرات التعميم، وتطبيق تعزيز البيانات والتعلم الانتقالي لتعلم خصائص أمتن وتحسين التعميم على البيانات الجديدة.</p>
+  </section>
+
+  <section>
+    <h2>9. الخاتمة</h2>
+    <p>أظهرت الشبكات العصبية المتكررة قدرة ملحوظة على نمذجة البيانات التسلسلية، جاعلةً منها لا غنى عنها في تطبيقات تعلم آلة عديدة كـ NLP والتعرف على الكلام والتنبؤ بالسلاسل الزمنية والمعلوماتية الحيوية والأنظمة الذاتية. قدمت هذه الورقة نظرة شاملة على الشبكات المتكررة وصيغها، مغطية البنى الأساسية كالشبكات الأساسية وLSTM وGRU، والصيغ المتقدمة كالشبكات ثنائية الاتجاه وLSTM ذات الثقوب وESN وIndRNN. وقد قدمت الدراسة مراجعة مفصلة وشاملة للشبكات المتكررة وبناها وتطبيقاتها وتحدياتها.</p>
+    <p>ستكون الورقة موردًا قيمًا للباحثين والممارسين في مجال تعلم الآلة، موجّهة التطورات والتطبيقات المستقبلية للشبكات المتكررة — من البنى الهجينة مع المحولات والانتباه، إلى التدريب الأكفأ والأكثر عدالة وقابلية للتفسير، إلى التوسع في المجالات الحرجة كالصحة والمركبات الذاتية والأمن السيبراني.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Recurrent neural networks (RNNs) have significantly advanced the field of machine learning (ML) by enabling the effective processing of sequential data. This paper provides a comprehensive review of RNNs and their applications, highlighting advancements in architectures, such as long short-term memory (LSTM) networks, gated recurrent units (GRUs), bidirectional LSTM (BiLSTM), echo state networks (ESNs), peephole LSTM, and stacked LSTM. The study examines the application of RNNs to different domains, including natural language processing (NLP), speech recognition, time series forecasting, autonomous vehicles, and anomaly detection. Additionally, the study discusses recent innovations, such as the integration of attention mechanisms and the development of hybrid models that combine RNNs with convolutional neural networks (CNNs) and transformer architectures. This review aims to provide ML researchers and practitioners with a comprehensive overview of the current state and future directions of RNN research. Keywords: deep learning; GRU; LSTM; machine learning; NLP; RNN.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Deep learning (DL) has reshaped the field of artificial intelligence (AI), driving advancements in a wide array of applications, from image recognition and natural language processing (NLP) to autonomous driving and medical diagnostics [1–5]. This rapid growth is fueled by the increasing availability of big data, advancements in computing power, and the development of sophisticated algorithms [6–9]. As DL models continue to evolve, they are increasingly being deployed in critical sectors, demonstrating their ability to outperform traditional machine learning (ML) techniques in handling complex tasks.</p>
+    <p>Recurrent neural networks (RNNs) are a class of deep learning models that are fundamentally designed to handle sequential data [10, 11]. Unlike feedforward neural networks, RNNs possess the unique feature of maintaining a memory of previous inputs by using their internal state (memory) to process sequences of inputs [12]. This makes them ideally suited for applications such as natural language processing, speech recognition, and time series forecasting, where context and the order of data points are crucial. The inception of RNNs dates back to the 1970s, with foundational work by Werbos [13], which introduced the concept of backpropagation through time (BPTT) that laid the foundation for training recurrent neural networks.</p>
+    <p>However, RNNs struggled with practical applications due to the vanishing gradient problem, where gradients either grow or shrink exponentially during backpropagation [14]. Meanwhile, the introduction of Long Short-Term Memory (LSTM) networks by Hochreiter and Schmidhuber [15] was a turning point for RNNs, allowing for the learning of dependencies over much longer periods. Additionally, gated recurrent units (GRUs), proposed by Cho et al. [16], offered a simplified alternative to LSTM while maintaining comparable performance. Over the years, these architectures made RNNs a cornerstone of sequence modeling despite later competition from transformers.</p>
+  </section>
+
+  <section>
+    <h2>2. Related Works</h2>
+    <p>RNNs have been applied in different applications, achieving state-of-the-art performance, especially in time-series applications. Early developments in RNNs, including locally recurrent, globally feedforward networks, as reviewed by Tsoi and Back [23], and the block-diagonal recurrent neural networks proposed by Mastorocostas and Theocharis [24], laid important groundwork for understanding complex sequence modeling. Several reviews have been conducted on RNNs and their applications, each contributing to the understanding and development of the field.</p>
+    <p>For instance, Dutta et al. [25] provided a comprehensive overview of the theoretical foundations of RNNs and their applications in sequence learning. Their review highlighted the challenges associated with training RNNs, particularly the vanishing gradient problem, and discussed the advancements in LSTM and GRU architectures. However, the review primarily focused on the theoretical aspects and applications of RNNs and did not extensively cover the latest innovations and practical applications in emerging fields such as bioinformatics and autonomous systems. Quradaa et al. [26] presented a state-of-the-art review of RNNs, covering the core architectures with a focus on applications in code clones. Similarly, the review by Tarwani et al. [22] provided an in-depth analysis of RNNs in the context of NLP. While this review offered valuable insights into the advancements in NLP, it lacked a broader perspective on other application domains and recent architectural innovations.</p>
+    <p>Another significant review by Goodfellow et al. [27] focused on the fundamentals of deep learning, including RNNs, and discussed their applications across various domains. This review provided a solid foundation but did not delve deeply into the specific advancements in RNN architectures and their specialized applications. Greff et al. [28] conducted an extensive study comparing various LSTM variants to determine their effectiveness in different applications. The present work positions itself as a comprehensive review covering architectures, variants, innovations, datasets, applications, and challenges together.</p>
+  </section>
+
+  <section>
+    <h2>3. Fundamentals of RNNs</h2>
+    <p>RNNs are designed to process sequential data by maintaining a hidden state that captures information about previous inputs [40]. The basic architecture consists of an input layer, a hidden layer, and an output layer. Unlike feedforward neural networks, RNNs have recurrent connections, as shown in Figure 1, allowing information to cycle within the networks. At each time step t, the RNN takes an input vector xt and updates its hidden state ht using: ht = σh(Wxh·xt + Whh·h(t−1) + bh) (1), where Wxh is the input–hidden weight matrix, Whh the recurrent weight matrix, bh the bias vector, and σh the activation function, typically tanh or ReLU [41, 42]. The output at each step is: yt = σy(Why·ht + by) (2).</p>
+    <p>The core of RNN operations is the recurrent computation of the hidden state, which integrates the current input with the previous hidden state [43], giving dynamic temporal behavior. The choice of activation function σh is crucial, introducing the non-linearity that lets the network learn complex patterns [44, 45]. A common choice is the hyperbolic tangent (tanh), squashing inputs to [−1, 1], zero-centered and suitable for sequences with positive and negative values [46]: σh(z) = tanh(z) (3). Another is the rectified linear unit (ReLU), outputting the input directly if positive and zero otherwise [47], partly mitigating vanishing gradients through better gradient flow; its Leaky ReLU variant addresses the "dying ReLU" problem [48] by allowing a small non-zero gradient for negative inputs, while the exponential linear unit (ELU) brings mean activations closer to zero, speeding learning by reducing bias shifts [49]; the sigmoid function squashes inputs to [0, 1].</p>
+    <p>Training RNNs is hard due to the vanishing and exploding gradient problems. During training, the BPTT algorithm computes loss gradients with respect to weights [54]. As gradients propagate backward through time, they can diminish (vanish) or grow exponentially (explode), blocking long-term dependency learning or destabilizing training. Mathematically, gradient computation involves products of many Jacobian matrices: if their eigenvalues are below 1, the product tends to zero as depth grows (vanishing) [55, 56]; if above 1, gradients grow exponentially (exploding), destabilizing parameters and causing numerical overflow. Vanishing gradients starve early-layer weight updates of signal; exploding gradients can snap the model into a poor local minimum or fail training outright with huge updates. LSTM and GRU variants with gating mechanisms regulate information and gradient flow for better long-term dependencies, and gradient clipping caps gradients at a maximum threshold during backpropagation to prevent explosion.</p>
+    <p>Bidirectional RNNs (BiRNNs) enhance the architecture by processing the sequence in both forward and backward directions, giving access to future as well as past context [43, 59]. Two hidden states are maintained (forward and backward) per Equations (11) and (12), and the output concatenates both per (13). BiRNNs excel at named entity recognition, machine translation, and speech recognition where bidirectional context helps [60, 61] — in language modeling, surrounding words sharpen next-word prediction [62, 63]; in translation, whole-sentence knowledge yields more accurate word choices; in time series such as stock prediction and medical diagnosis, bidirectional temporal dependencies help [64] — at the cost of greater compute from processing each sequence twice [59, 65].</p>
+    <p>Deep RNNs extend the basic architecture by stacking multiple RNN layers so the network learns more complex representations [66], each layer's hidden state feeding the next to capture hierarchical features. For L layers, hidden states update per Equation (14) with top-layer output as usual (15). Deep RNNs model more complex sequences and longer dependencies than shallow ones [67], but are more vanishing-gradient-prone — mitigated with LSTM/GRU variants — and have succeeded in NLP, speech recognition, and video analysis, though training complexity and overfitting risks [68, 69] call for dropout, layer normalization, and residual connections [70–72]: dropout zeroes random units during training for more robust features, batch normalization stabilizes and accelerates training by normalizing per-layer inputs [73], and shortcut residual connections mitigate vanishing gradients in very deep networks [74].</p>
+  </section>
+
+  <section>
+    <h2>4. Advanced Variants of RNNs</h2>
+    <p>RNN architectures vary significantly, some with internal recurrence within neurons and others with external recurrence between layers, affecting learning ability and task fit. LSTM networks were introduced by Hochreiter and Schmidhuber [15] to address the vanishing gradient problem of basic RNNs. The key innovation is gating mechanisms controlling information flow, letting LSTM maintain and update internal state over long periods for long-term dependency modeling. Each LSTM cell holds three gates — input, forget, and output — regulating the cell state ct and hidden state ht [75]: how much input to admit, how much prior state to forget, and how much cell state to output — per update Equations (16)–(21) with sigmoid, tanh, and element-wise multiplication. The input gate writes new input xt into the cell state, the forget gate retains prior cell state ct−1, the output gate computes ht from ct, and the cell input gt is a candidate value added after input-gate modulation.</p>
+    <p>Bidirectional LSTM extends standard LSTM by processing sequences forward and backward like BiRNNs [76], capturing past and future context for fuller dependency understanding. Two separate hidden states per time step follow Equations (11) and (12), with external recurrence between layers. Stacked LSTM stacks multiple LSTM layers with each layer's output feeding the next, capturing more complex patterns through hierarchical representations at different abstraction levels per (14) and (15): lower layers capture local patterns and short-term dependencies, higher layers abstract features and long-term dependencies [21] — advantageous for language modeling (multiple syntactic/semantic levels) and video analysis (multi-scale temporal dependencies).</p>
+    <p>Gated recurrent units are another variant addressing vanishing gradients while simplifying LSTM. Introduced by Cho et al. [16], GRUs merge the forget and input gates into a single update gate and fuse cell and hidden states, cutting gate and parameter counts for a simpler, computationally cheaper model. The GRU has two gates — update gate zt and reset gate rt [77] — controlling retention of relevant and disposal of irrelevant information, with internal recurrence maintaining the hidden state across steps — per Equations (22)–(25): zt carries forward prior hidden state ht−1, rt forgets portions of it [75], and candidate state h′t holds new content modulated by the reset gate. The simplified GRU architecture is computationally cheaper than LSTM while still solving vanishing gradients, suiting limited resources and faster training, with successful applications across sequence modeling tasks at comparable performance with fewer parameters.</p>
+    <p>While LSTM and GRUs dominate, other architectures offer unique advantages: peephole LSTM, introduced by Gers and Schmidhuber [82], lets gates access the cell state through peephole connections, improving gate regulation from current cell state — useful for timing decisions in speech recognition and financial time-series prediction [83] — per Equations (26)–(28) with peephole weights Wci, Wcf, Wco. Echo state networks (ESNs), proposed by Jaeger [84], fix a randomly connected hidden reservoir and train only the output layer, greatly simplifying training — ideal for real-time signal processing, time-series prediction, and adaptive control — per (29) with input matrix Win and reservoir matrix Wres. Other notable variants include independently recurrent neural networks (IndRNNs), whose neurons recur independently for stability and interpretability on targeted tasks.</p>
+  </section>
+
+  <section>
+    <h2>5. Innovations in RNN Architectures and Training Methodologies</h2>
+    <p>In recent years, significant innovations in RNN architectures and training methodologies have enhanced performance and addressed limitations. Combining RNNs with other architectures produced hybrid models leveraging each component's strengths: CNN–RNN integration proved effective in video analysis — CNNs for spatial features, RNNs for temporal dynamics [93] — jointly processing spatial and temporal information. Attention mechanisms further improved long-range dependency modeling by focusing the network on relevant input-sequence parts — useful in machine translation and text summarization — as: at = softmax(ut) (33) and ct = Σ at,i·hi (34), with attention weight at, score function ut, and context vector ct.</p>
+    <p>Neural architecture search (NAS) automated RNN architecture design, discovering more efficient and powerful models [94, 95]. NAS techniques such as those of Zoph and Le [96] explore layer, activation, and hyperparameter combinations for optimal configurations beating manual designs, formulated as: A* = argmax Accuracy(A) (35). Advanced optimization techniques improved RNN training efficiency and stability: gradient clipping prevents destabilizing gradient growth [58, 97] via g ← g·max(1, ‖g‖/τ) (36) with threshold τ; adaptive learning rates such as the Adam optimizer adjust the rate during training to accelerate convergence [98] per Equations (37)–(40) with first/second moment estimates, decay rates β1, β2, and learning rate α; and second-order methods such as the Hessian-free optimizer have been explored for faster, stabler deep-network convergence.</p>
+    <p>Integrating attention mechanisms into RNNs lets networks selectively focus on important input-sequence parts, addressing traditional RNN limits in long-term dependencies [99–101]. This hybrid combines RNN and attention strengths for complex sequence tasks, with major gains in speech recognition and text summarization. For example, Bahdanau et al. [102] showed attention in neural machine translation letting RNNs focus on relevant source-sentence words and improving translation accuracy. Similarly, Luong et al. [103] proposed global and local attention mechanisms, further boosting RNN performance across sequence-to-sequence tasks.</p>
+    <p>Transformers, introduced by Vaswani et al. [104] in 2017, employ self-attention mechanisms highly effective at long-range dependencies. Unlike RNNs, transformers process sequences in parallel, which can improve long-sequence performance. Self-attention is: Attention(Q, K, V) = softmax(QK^T/√dk)V (41), with query, key, value matrices Q, K, V and key dimension dk. Since both transformer and RNN architectures have limitations, studies have integrated both for robust models, as recent literature shows [104]. By leveraging RNN sequential processing with transformer parallel attention mechanisms, researchers can build more powerful, efficient models for wide application ranges, addressing each architecture's limits and improving overall sequence-modeling performance.</p>
+  </section>
+
+  <section>
+    <h2>6. Public Datasets for RNN Research</h2>
+    <p>This section overviews publicly available datasets commonly used to study and evaluate RNNs. These datasets span applications from NLP to time-series forecasting, reflecting RNNs' diverse capabilities. Each dataset poses a unique challenge, letting researchers probe different RNN architectures' strengths and limitations across real-world tasks. Table 3 summarizes the public datasets: Penn Treebank [105] (NLP — an English-sentence corpus annotated for POS tagging, parsing, and named entity recognition; widely used for RNN language modeling); IMDB Reviews [106] (sentiment analysis — movie reviews for binary sentiment classification); Sequential MNIST [107] (image recognition — MNIST formatted as sequences for sequence-to-sequence learning); TIMIT Speech Corpus [108] (speech recognition — an annotated speech database for automatic speech recognition); Reuters-21578 [109] (text categorization — a newswire collection and standard NLP benchmark); UCI ML Repository time-series data [110] (time-series analysis — stock prices, weather data, ideal for forecasting); CORe50 Dataset [111] (object recognition — continuous object recognition, ideal for video-sequence RNN models where object persistence and temporal context matter).</p>
+  </section>
+
+  <section>
+    <h2>7. Applications of RNNs in Peer-Reviewed Literature</h2>
+    <p>RNNs and their variants have been extensively studied and applied across domains in the peer-reviewed literature. This section comprehensively reviews these applications. In NLP, RNNs transformed the field with more sophisticated, context-aware models: in text generation, Souri et al. [112] generated coherent, contextually relevant Arabic text by training on a large corpus to learn word-sequence distributions; Islam [113] introduced a sequence-to-sequence framework improving generation quality with LSTM for longer sequences and extended coherence; Gajendran et al. [114] showed RNN effectiveness in character-level generation, with BiLSTM capturing patterns from character dependencies to higher syntactic structures — versatile for code, literature, and poetry generation. Recent advances target diversity and coherence: Hu et al. [115] combined variational autoencoders (VAEs) with RNNs for more creative generation via latent-space representations yielding diverse, contextually rich sentences; Holtzman et al. [116] introduced "controlled text generation" letting users steer style and content for creative writing and personalized content.</p>
+    <p>In speech recognition, RNNs delivered more accurate, efficient systems: Hinton et al. [137] explored deep networks including RNNs for speech-to-text, capturing speech-signal temporal dependencies for large transcription-accuracy gains. Hannun et al. [138] introduced DeepSpeech, a state-of-the-art RNN-based recognizer with a deep LSTM trained on vast labeled speech data — robust to noisy environments and diverse accents. Amodei et al. [139] presented DeepSpeech2, extending the original with bidirectional RNNs and a larger dataset for handling speech-pattern and accent variation. Chiu et al. [140] proposed RNN-transducer (RNN-T) models for end-to-end recognition, fusing acoustic and language models in a single RNN framework — cutting real-time system complexity and latency. Zhang et al. [141] proposed convolutional recurrent neural networks (CRNNs) combining CNN feature extraction with RNN sequence modeling — accurate and efficient on long audio sequences and varying speech rates. Dong et al. [142] introduced the Speech-Transformer model.</p>
+    <p>In time-series forecasting, RNNs model temporal dependencies and trends extensively: in finance, Fischer and Krauss [148] comprehensively studied deep RNNs for stock-return prediction, beating traditional ML models such as SVMs and random forests by learning intricate price-movement patterns. Nelson et al. [149] combined CNNs and RNNs for stock prediction — CNNs extracting local features from price history, RNNs capturing temporal dependencies — with major gains suggesting architecture fusion boosts financial forecasting. Attention was integrated: Luo et al. [150] used an attention-based CNN-BiLSTM focusing on relevant time steps to capture key financial-data patterns; Bao et al. [151] combined LSTM with stacked autoencoders to reduce input dimensionality while modeling temporal dependencies for future price prediction; Feng et al. [152] explored transfer learning by pre-training an RNN.</p>
+    <p>In signal processing, ESNs saw major use for training efficiency and robustness on time-dependent data: in physiological signals, Mastoi et al. [163] built an ESN approach for real-time heart-rate-variability monitoring and prediction — beating traditional methods in accuracy and efficiency and showing ESN promise for real-time health monitoring. In speech, Valin et al. [164] proposed an ESN architecture for speech enhancement — improving noise reduction and intelligibility in noisy environments, critical for hearing aids and recognition systems. For non-stationary noisy series, Gao et al. [91] integrated the empirical wavelet transform (EWT) with ESNs for forecasting — showing EWT's complex-signal decomposition plus ESN robust modeling yields superior performance, especially under noise and non-stationarity.</p>
+    <p>In bioinformatics, RNNs analyzed biological sequences (DNA, RNA, proteins): Li et al. [165] used RNNs for gene prediction and protein structure prediction, capturing within-sequence dependencies for genetic and biological-process insights. Zhang et al. [166] used bidirectional LSTM for DNA-binding protein sequence prediction (DeepSite model), leveraging sequential biological data for higher binding-site accuracy than traditional methods — showing RNN potential for protein–DNA interaction understanding. In proteomics, Xu et al. [167] built an RNN model for protein secondary-structure prediction, effectively capturing amino-acid sequential dependencies — a significant advance for drug discovery and disease research. Recently RNNs were fused with other architectures: Yadav et al. [168] combined BiLSTM with CNNs for protein-sequence analysis (local features plus BiLSTM long-range dependencies, better classification); Aybey et al. [169] introduced an ensemble of RNNs, GRUs, and CNNs for protein–protein interaction prediction — highlighting ensemble deep learning for interpretability and performance.</p>
+    <p>In autonomous vehicles, RNNs process sequential sensor data for driving decisions: Li et al. [170] used RNNs for path planning, object detection, and trajectory prediction — enabling complex-environment navigation and real-time decisions. Lee et al. [171] built a deep framework fusing LSTM with CNN for end-to-end driving (CNN spatial features from camera images, LSTM temporal dependencies) — improving driving-decision accuracy and robustness in dynamic environments. Codevilla et al. [172] introduced conditional imitation learning combining RNNs with imitation learning — learning from human demonstrations and predicting future actions from past observations — adapting to diverse conditions for safer decisions. For trajectory prediction, Altché and de La Fortelle [173] proposed an LSTM model predicting surrounding vehicles' future trajectories from sequential traffic data for more accurate proactive path planning. Attention was integrated: Li et al. [174] introduced an attention-based LSTM focusing on relevant data parts for better video object detection and tracking, alongside RNN–CNN models predicting other drivers' intentions [175].</p>
+    <p>In anomaly detection across cybersecurity, industrial monitoring, and healthcare: Altindal et al. [177] used LSTM networks for time-series anomaly detection by modeling normal behavior and flagging deviations. Matar et al. [178] proposed a BiLSTM multivariate time-series model learning temporal dependencies to detect normal-pattern deviations — effective for industrial machinery health monitoring and failure prediction. In cybersecurity, Kumaresan et al. [179] applied RNNs to network-traffic anomaly detection, analyzing sequential data for unusual patterns signaling breaches or malicious activity — enabling real-time detection and response. Li et al. [180] applied RNNs to manufacturing processes with an RNN–transfer-learning model capturing temporal dependencies and feature representations — improving complex-process anomaly detection, production efficiency, and quality control. In healthcare, Mini et al. [181] used RNNs to detect abnormal electrocardiogram (ECG) signal patterns — accurately flagging cardiac-arrhythmia deviations and showing RNN promise for early diagnosis and monitoring. Unsupervised advances helped further: Zhou and Paffenroth [182] introduced a robust deep autoencoder leveraging RNNs for unsupervised anomaly detection.</p>
+  </section>
+
+  <section>
+    <h2>8. Challenges and Future Research Directions</h2>
+    <p>Despite significant advances, several unresolved problems confront RNN applications, and addressing them is crucial for further improving RNN performance and usage. On scalability and efficiency, training RNNs on large datasets with long sequences remains computationally intensive and time-consuming [185–187]. Although techniques like gradient checkpointing and hardware accelerators helped, RNNs' sequential nature still limits scalability versus parallelizable architectures like transformers [188]. Future research could target more efficient training algorithms and asynchronous, parallel training to distribute load, plus hybrid architectures fusing RNNs with attention or convolutional layers to cut training times and improve scalability while keeping RNN performance advantages [104].</p>
+    <p>On interpretability and explainability, RNNs are often seen as "black-box" models due to complex internal dynamics, complicating decision interpretation [189, 190]. Although attention mechanisms and post hoc explanation techniques like LIME and SHAP [191] were proposed, they need improvement for fuller explanations. Future research should develop inherently interpretable RNN architectures and hierarchical models offering structured decision-process insights, plus domain-knowledge integration aligning behavior with human reasoning — boosting interpretability and specialized-application performance.</p>
+    <p>On bias and fairness, RNNs can inadvertently learn and propagate training-data biases into unfair predictions. While bias detection and mitigation techniques such as fairness-aware algorithms and adversarial training exist, they need refinement for fairness across diverse applications and datasets [192–194]. Research should continue toward robust bias detection and fair training algorithms explicitly embedding fairness constraints, plus transparency and accountability frameworks including external audits and impact assessments for responsible RNN development and deployment.</p>
+    <p>On data dependency and quality, RNNs need large volumes of high-quality labeled sequential data for effective training [195]. In many real-world settings, such data may be scarce, noisy, or incomplete. Although data augmentation, transfer learning, and semi-supervised learning were explored, they need refinement for diverse data challenges. Future work should enhance them for robustness on limited or imperfect data, plus new methods exploiting unlabeled data and domain knowledge for data-scarce environments.</p>
+    <p>On overfitting and generalization, RNNs — especially deep ones — overfit easily, particularly on small datasets [196]. Generalizing well to unseen data without overfitting remains a major challenge. While dropout and L2 regularization are standard, more robust generalization methods are needed. Future research can explore advanced regularization such as adversarial training and ensemble methods, plus data augmentation and transfer learning for more robust features and better new-data generalization.</p>
+  </section>
+
+  <section>
+    <h2>9. Conclusions</h2>
+    <p>RNNs have demonstrated a remarkable ability to model sequential data, making them indispensable in numerous ML applications such as natural language processing, speech recognition, time series prediction, bioinformatics, and autonomous systems. This paper provided a comprehensive overview of RNNs and their variants, covering fundamental architectures like basic RNNs, LSTM networks, and GRUs, as well as advanced variants, including bidirectional RNNs, peephole LSTM, ESNs, and IndRNNs. This study has provided a detailed and comprehensive review of RNNs, as well as their architectures, applications, and challenges.</p>
+    <p>The paper will be a valuable resource for researchers and practitioners in the field of machine learning, helping to guide future developments and applications of RNNs — from hybrid architectures with transformers and attention, to more efficient, fairer, and more interpretable training, to expansion into critical domains such as health, autonomous vehicles, and cybersecurity.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[13] P. J. Werbos, "Backpropagation through time: what it does and how to do it," <em>Proc. IEEE</em>, vol. 78, no. 10, 1990.</li>
+      <li>[15] S. Hochreiter, J. Schmidhuber, "Long Short-Term Memory," <em>Neural Comput.</em>, vol. 9, no. 8, 1997.</li>
+      <li>[16] K. Cho et al., "Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation," in <em>Proc. EMNLP</em>, 2014.</li>
+      <li>[22] S. Tarwani et al., RNN studies in the context of NLP.</li>
+      <li>[23] A. C. Tsoi, A. D. Back, "Locally recurrent globally feedforward networks: a critical review of architectures," <em>IEEE Trans. Neural Netw.</em>, vol. 5, no. 2, 1994.</li>
+      <li>[25] S. Dutta et al., theoretical foundations of RNNs and sequence learning review.</li>
+      <li>[27] I. Goodfellow, Y. Bengio, A. Courville, <em>Deep Learning</em>, MIT Press, 2016.</li>
+      <li>[28] K. Greff et al., "LSTM: A Search Space Odyssey," <em>IEEE Trans. Neural Netw. Learn. Syst.</em>, vol. 28, no. 10, 2017.</li>
+      <li>[82] F. A. Gers, J. Schmidhuber, "Recurrent nets that time and count," in <em>Proc. IJCNN</em>, 2000.</li>
+      <li>[84] H. Jaeger, "The echo state approach to analysing and training recurrent neural networks," GMD Report 148, 2001.</li>
+      <li>[96] B. Zoph, Q. V. Le, "Neural Architecture Search with Reinforcement Learning," in <em>Proc. ICLR</em>, 2017.</li>
+      <li>[98] D. P. Kingma, J. Ba, "Adam: A Method for Stochastic Optimization," in <em>Proc. ICLR</em>, 2015.</li>
+      <li>[102] D. Bahdanau, K. Cho, Y. Bengio, "Neural Machine Translation by Jointly Learning to Align and Translate," in <em>Proc. ICLR</em>, 2015.</li>
+      <li>[103] M.-T. Luong, H. Pham, C. D. Manning, "Effective Approaches to Attention-based Neural Machine Translation," in <em>Proc. EMNLP</em>, 2015.</li>
+      <li>[104] A. Vaswani et al., "Attention Is All You Need," in <em>Proc. NeurIPS</em>, 2017.</li>
+      <li>[105] M. Marcus, B. Santorini, M. A. Marcinkiewicz, "Building a large annotated corpus of English: the Penn Treebank," <em>Comput. Linguist.</em>, 1993.</li>
+      <li>[106] A. L. Maas et al., "Learning Word Vectors for Sentiment Analysis," in <em>Proc. ACL</em>, 2011.</li>
+      <li>[108] J. S. Garofolo et al., TIMIT Acoustic-Phonetic Continuous Speech Corpus, NIST, 1993.</li>
+      <li>[138] A. Hannun et al., "DeepSpeech: Scaling up end-to-end speech recognition," <em>arXiv:1412.5567</em>, 2014.</li>
+      <li>[139] D. Amodei et al., "Deep Speech 2: End-to-End Speech Recognition in English and Mandarin," in <em>Proc. ICML</em>, 2016.</li>
+      <li>[173] F. Altché, A. de La Fortelle, "An LSTM Network for Highway Trajectory Prediction," in <em>Proc. IEEE ITSC</em>, 2017.</li>
+      <li>[182] C. Zhou, R. C. Paffenroth, "Anomaly Detection with Robust Deep Autoencoders," in <em>Proc. ACM KDD</em>, 2017.</li>
+      <li>... [full reference list of 196 references available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/info15090517">10.3390/info15090517</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

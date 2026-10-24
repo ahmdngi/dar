@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة الشبكات العصبية الرسومية: المفاهيم والبنى والتقنيات والتحديات ومجموعات البيانات والتطبيقات والاتجاهات المستقبلية — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Review of Graph Neural Networks: Concepts, Architectures, Techniques, Challenges, Datasets, Applications, and Future Directions</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مراجعة الشبكات العصبية الرسومية: المفاهيم والبنى والتقنيات والتحديات ومجموعات البيانات والتطبيقات والاتجاهات المستقبلية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Shruti Patil, Ketan Kotecha, Sudeep Tanwar</span>
+    <span>📄 Journal of Big Data, 2024 · 11:18 · Open Access</span>
+    <span>🔗 <a href="https://doi.org/10.1186/s40537-023-00876-4">10.1186/s40537-023-00876-4</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p dir="rtl">شهد التعلم العميق نموًا كبيرًا مؤخرًا ويُطبق الآن على طائفة واسعة من حالات الاستخدام التقليدية بما فيها الرسوم البيانية (graphs). توفر بيانات الرسوم معلومات علاقية بين العناصر وهي صيغة بيانات معيارية لمهام تعلم الآلة والتعلم العميق المختلفة. وتُعد النماذج القادرة على التعلم من هذه المدخلات ضرورية للتعامل الفعال مع بيانات الرسوم. يحدد هذا البحث العقد والحواف في تطبيقات محددة مثل النصوص والكيانات والعلاقات لبناء هياكل رسومية، إذ قد تتطلب التطبيقات المختلفة نماذج شبكات عصبية رسومية (GNN) متنوعة.</p>
+    <p dir="rtl">تسهّل شبكات GNN تبادل المعلومات بين عقد الرسم، مما يمكّنها من فهم الاعتماديات داخل العقد والحواف. وتتعمق الورقة في نماذج GNN محددة مثل شبكات الالتفاف الرسومية (GCNs) وGraphSAGE وشبكات الانتباه الرسومية (GATs) المستخدمة على نطاق واسع اليوم. كما تناقش آلية تمرير الرسائل التي تستخدمها نماذج GNN وتدرس نقاط القوة والقيود لهذه النماذج في المجالات المختلفة. وتستكشف الورقة كذلك التطبيقات المتنوعة لـ GNN ومجموعات البيانات شائعة الاستخدام معها ومكتبات Python الداعمة لها، مقدمة نظرة شاملة على مشهد أبحاث GNN وتطبيقاتها العملية.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p dir="rtl">برزت الشبكات العصبية الرسومية (GNNs) كنموذج تحويلي في تعلم الآلة. وقد غذى الحضور الواسع للبيانات المترابطة — من الشبكات الاجتماعية والأحياء إلى أنظمة التوصية والأمن السيبراني — تطورها السريع، مُظهرة قدرات لافتة في نمذجة العلاقات المعقدة التي تعجز عنها النماذج التقليدية [1]. وتلتقط GNN بفرادة المعلومات البنيوية الكامنة في بيانات الرسوم: الاعتماديات والاتصالات والعلاقات السياقية الضرورية للتنبؤات والقرارات المستنيرة.</p>
+    <p dir="rtl">تجوب هذه المراجعة الشاملة مشهد GNN: الخلفية وتطور الأبحاث، والدافع مقارنة بقيود CNN، وآلية تمرير الرسائل والتصنيف، وثلاثة نماذج رائدة (GCN وGraphSAGE وGAT) مع تحليل مقارن، وبناء الرسوم والتطبيقات عبر المجالات، ومجموعات البيانات الداعمة ومكتبات Python، والاتجاهات المستقبلية. وهي تستهدف الباحثين والممارسين والطلاب الباحثين عن التأصيل النظري والتوجيه العملي معًا [30].</p>
+  </section>
+
+  <section>
+    <h2>2. الدراسة الخلفية</h2>
+    <p dir="rtl">يوصف التعلم العميق بالمعيار الذهبي في تعلم الآلة، وأصبح بثبات التقنية الحاسوبية الأكثر استخدامًا بنتائج ممتازة في مهام إدراكية صعبة تضاهي أحيانًا القدرة البشرية [1]. وأظهرت متغيرات GNN مثل GCN وGAT وGraphSAGE أداءً رائدًا عبر مهام التعلم العميق [2]. وتتتبع الخلفية تطور أبحاث GNN من النماذج التكرارية المبكرة للمجالات الرسومية (Gori وScarselli وزملاؤهما [4،5]) عبر الالتفافات الطيفية إلى أطر تمرير الرسائل المكانية الحديثة [30].</p>
+    <p dir="rtl">ويضع استعراض الأدبيات هذا المسح مقابل النظرات السابقة: فبينما نظم Zhou وآخرون [30] المناهج والتطبيقات، يضيف هذا المسح تصنيفًا موحدًا (هياكل الرسوم وأنواعها ومهام التعلم)، ودراسة مقارنة مخصصة لـ GCN وGraphSAGE وGAT مع جداول أداء عبر مجموعات بيانات [33،47،48]، وتغطية لمجموعات البيانات والمكتبات والاتجاهات المستقبلية — مما يجعله مرجعًا شاملًا لاختيار النماذج.</p>
+  </section>
+
+  <section>
+    <h2>3. دافع البحث</h2>
+    <p dir="rtl">ينطلق الدافع من قيد CNN على الرسوم: فتعمل CNN على شبكات إقليدية منتظمة بجوار ثابت وعقد مرتبة، مستخدمة مرشحات مشتركة تنزلق على الصور [33]. أما بيانات الرسوم فغير منتظمة وغير إقليدية — للعقد درجات متفاوتة ولا ترتيب معياري — فلا تنتقل إليها النوى ثابتة الحجم والتجميع الشبكي. وتعمم GNN بنية CNN على هذا الإعداد بتجميع ثابت التبديل على جوار كل عقدة.</p>
+    <p dir="rtl">ويهم ذلك لأن الرسوم هي الصيغة الطبيعية للبيانات العلاقية: الجزيئات والرسوم المعرفية وشبكات المرور والمنصات الاجتماعية وأنظمة المعاملات. ومن ثم يهدف المسح إلى شرح كيفية نمذجة GNN لهذه الاعتماديات عبر تمرير الرسائل [17،30،31]، ومقارنة البنى الرائدة بعدل، ورسم التطبيقات ومجموعات البيانات والمكتبات لينتقل الممارسون من النظرية إلى التنفيذ.</p>
+  </section>
+
+  <section>
+    <h2>4. تمرير الرسائل وتصنيف GNN</h2>
+    <p dir="rtl">تحافظ آلية تمرير الرسائل على تماثلات الرسم عبر تحويلات قابلة للتحسين على العقد والحواف والسياق العام مع ثبات التبديل [17،30]. ففي كل تكرار تجمع العقد معلومات الجوار: بعد k = 1 يحمل كل تضمين جواره بمسافة قفزة واحدة، وبعد k = 2 جواره بقفزتين، وعمومًا بعد k تكرارات جواره بمسافة k — حاملًا معلومات بنيوية (الدرجات) ومعلومات سمات معًا [31]. وصياغيًا: h_u^{(k+1)} = UPDATE^{(k)}(h_u^{(k)}, AGGREGATE^{(k)}({h_v^{(k)} : v ∈ N(u)})) بدالتي AGGREGATE وUPDATE القابلتين للتفاضل (المعادلتان 4.1–4.2)؛ وينكشف رسم الحساب شجرة حول كل عقدة مستهدفة.</p>
+    <p dir="rtl">ويقسم التصنيف GNN إلى ثلاثة أجزاء [30]: هياكل الرسوم (إعدادات بنيوية كالجزيئات والأنظمة الفيزيائية والرسوم المعرفية حيث الرسم صريح، مقابل إعدادات غير بنيوية كالنصوص والصور حيث يجب أولًا بناء رسم كلمات أو رسم مشهد)؛ وأنواع الرسوم (موجهة مقابل غير موجهة، وساكنة مقابل ديناميكية — مثل رسم المتابعة المتطور في Twitter — إضافة إلى المتغايرة والمكانية-الزمنية وغيرها من المتغيرات المعقدة)؛ ومهام تعلم الرسوم (تصنيف العقد والتنبؤ بالروابط وتصنيف الرسوم، مدعومة بأنظمة مشرفة وشبه مشرفة وغير مشرفة).</p>
+  </section>
+
+  <section>
+    <h2>5. نماذج GNN والتحليل المقارن</h2>
+    <p dir="rtl">تُشرَّح ثلاثة نماذج رائدة. تعمم شبكات الالتفاف الرسومية (GCN لـ Kipf وWelling [33]، بناء على الأعمال الطيفية [34]) التفاف الصور على الرسوم: فتجمع كل طبقة سمات الجيران الموزونة بالمصفوفة المجاورة المطبّعة، وتطبق مصفوفة أوزان متعلمة W وانحيازًا مع ReLU، وترص الطبقات لتلتقط المستويات الأعمق اعتماديات أعلى رتبة — التهيئة والالتفاف والتجميع الموزون والتفعيل والترصيص والإخراج المخصص للمهمة. وتخدم GCN تصنيف الصور [35] والتنبؤ المروري [36] والتوصية [17] وتوليد رسم المشهد [37] والإجابة البصرية [38].</p>
+    <p dir="rtl">ويحقق GraphSAGE (Hamilton وآخرون [48]) التعلم الاستقرائي عبر الاعتيان ثم التجميع: فيدرَّب فقط على العينات المرتبطة بالحواف، ويقرن كل متجه عقدة بمتجه جواره المجمع عبر طبقة كاملة الاتصال بتفعيل لا خطي وتطبيع، مشاركًا مجمّعًا واحدًا ومصفوفة أوزان لكل طبقة عبر أربعة أنواع مجمعات. وتوزن شبكات الانتباه الرسومية (GAT لـ Veličković وآخرين [47]) الجيران بمعاملات انتباه متعلمة تُحسب في طبقة انتباه من أربعة أجزاء بدل أوزان المجاورة الثابتة. وتقيّم الدراسة المقارنة (الجداول 4–6) الثلاثة عبر مجالات التطبيق والتقنيات ومجموعات البيانات ومقاييس الدقة [33،47،48]، موجهة اختيار النموذج حسب حجم الرسم وديناميكيته والمهمة.</p>
+  </section>
+
+  <section>
+    <h2>6. تطبيقات GNN</h2>
+    <p dir="rtl">غالبًا ما يجب بناء الرسوم قبل التعلم: رسوم كلمات كاملة الاتصال للنصوص، ورسوم مشاهد للصور، ورسوم مستخدم-عنصر للموصيات، ورسوم طوبولوجيا المستشعرات للمرور [28،29]. ثم يطبق تعلم التمثيل القائم على GNN متغيرات GraphSAGE وGCN وGAT وGGNN — مخصصة لكل مهمة — على أهداف مستوى العقد والحواف والرسوم، ممتدة من كشف الأخبار المزيفة [2] وردع المعلومات الصحية المضللة [3] إلى التنبؤ بحركة السفن [28] والتنبؤ بتدفق المرور [29].</p>
+    <p dir="rtl">وتغطي التطبيقات المجالية معالجة اللغة الطبيعية (تصنيف النصوص واستخلاص العلاقات وإكمال الرسم المعرفي) ورؤية الحاسوب (فهم المشهد والإجابة البصرية) والمعلوماتية الحيوية (التنبؤ بالخصائص الجزيئية واكتشاف الأدوية وشبكات البروتينات)، إلى جانب التوصية الاجتماعية [17] وتحليل الاستشهادات وترتيب الويب [4،5] وأنظمة التوصية واسعة النطاق [1]. ويستعرض المسح أيضًا مجموعات البيانات شائعة الاستخدام لهذه المهام ومكتبات Python (وأبرزها أدوات PyTorch Geometric وأشباه DGL) التي تنفذ نماذج GNN، مخفضة العائق من الورقة إلى النموذج الأولي.</p>
+  </section>
+
+  <section>
+    <h2>7. الاتجاهات المستقبلية</h2>
+    <p dir="rtl">يرسم المسح العمل المستقبلي على محاور العمق والديناميكية والحجم والثقة: شبكات GNN أعمق تقاوم فرط التنعيم (مثل استراتيجيات التطبيع وإسقاط الحواف [23،31])، ورسوم ديناميكية وزمنية تتعقب البنية المتطورة، ورسوم متغايرة ومتعددة الوسائط تدمج النصوص والصور وإشارات المستشعرات، وتدريب قابل للتوسع قائم على الاعتيان لرسوم بمليارات الحواف.</p>
+    <p dir="rtl">وتشمل التحديات المفتوحة قابلية تفسير قرارات تمرير الرسائل، والمتانة أمام الاضطرابات الخصومية والضجيجية، والعدالة عبر مجتمعات العقد، وتعلم الرسوم الحافظ للخصوصية، والتدريب المسبق ذاتي الإشراف الذي يقلل الاعتماد على التسميات. ويرى المؤلفون أن التقدم في هذه الجبهات سيحسم ما إذا كانت GNN ستتخرج من نماذج مهام قوية إلى بنية موثوقة للعلم والصناعة.</p>
+  </section>
+
+  <section>
+    <h2>8. الاستنتاجات</h2>
+    <p dir="rtl">يوحّد هذا المسح مفاهيم GNN (تمرير الرسائل الثابت التبديل [17،30،31]) وبناها (GCN [33،34] وGraphSAGE [48] وGAT [47]) وتقنياتها (الالتفافات الطيفية والمكانية والاعتيان والانتباه) وتحدياتها (العمق والديناميكية والحجم والثقة) ومجموعات بياناتها وتطبيقاتها (NLP والرؤية والمعلوماتية الحيوية والموصيات والمرور) واتجاهاتها المستقبلية. وتمنح جداوله المقارنة الممارسين نقطة انطلاق قائمة على الأدلة للاختيار بين GCN وGraphSAGE وGAT.</p>
+    <p dir="rtl">ويخلص المؤلفون إلى أن GNN أعادت تعريف الممكن مع البيانات العلاقية، وأن التقدم المستمر في تعلم الرسوم القابل للتوسع والديناميكي والقابل للتفسير والموثوق سيوسّع مداها عبر العلم والصناعة. ويشكرون المتعاونين ويقرون بدعم صندوق دعم الأبحاث (RSF) في Symbiosis International (Deemed University) في Pune بالهند.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Deep learning has seen significant growth recently and is now applied to a wide range of conventional use cases, including graphs. Graph data provides relational information between elements and is a standard data format for various machine learning and deep learning tasks. Models that can learn from such inputs are essential for working with graph data effectively. This paper identifies nodes and edges within specific applications, such as text, entities, and relations, to create graph structures. Different applications may require various graph neural network (GNN) models.</p>
+    <p>GNNs facilitate the exchange of information between nodes in a graph, enabling them to understand dependencies within the nodes and edges. The paper delves into specific GNN models like graph convolution networks (GCNs), GraphSAGE, and graph attention networks (GATs), which are widely used in various applications today. It also discusses the message-passing mechanism employed by GNN models and examines the strengths and limitations of these models in different domains. Furthermore, the paper explores the diverse applications of GNNs, the datasets commonly used with them, and the Python libraries that support GNN models. It offers an extensive overview of the landscape of GNN research and its practical implementations.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Graph Neural Networks (GNNs) have emerged as a transformative paradigm in machine learning. The ubiquitous presence of interconnected data — from social networks and biology to recommendation systems and cybersecurity — has fueled their rapid evolution, displaying remarkable capabilities in modeling complex relationships that traditional models struggle to address [1]. GNNs uniquely capture structural information inherent in graph data: dependencies, connections, and contextual relationships essential for informed predictions and decisions.</p>
+    <p>This comprehensive review journeys through the GNN landscape: background and research evolution, motivation vis-à-vis CNN limitations, the message-passing mechanism and taxonomy, three flagship models (GCN, GraphSAGE, GAT) with comparative analysis, graph construction and applications across fields, supporting datasets and Python libraries, and future directions. It targets researchers, practitioners, and students seeking both theoretical grounding and practical orientation [30].</p>
+  </section>
+
+  <section>
+    <h2>2. Background Study</h2>
+    <p>Deep learning is called the gold standard in machine learning, steadily becoming the most used computational technique with excellent results on challenging cognitive tasks, sometimes matching human ability [1]. GNN variants such as GCNs, GATs, and GraphSAGE have shown groundbreaking performance across deep learning tasks [2]. The background traces GNN research evolution from early recursive models for graph domains (Gori, Scarselli and colleagues [4,5]) through spectral convolutions to modern spatial message-passing frameworks [30].</p>
+    <p>The literature review positions this survey against earlier overviews: while Zhou et al. [30] systematized methods and applications, this review adds a unified taxonomy (graph structures, graph types, learning tasks), a dedicated comparative study of GCN, GraphSAGE, and GAT with performance tables across datasets [33,47,48], and coverage of datasets, libraries, and future directions — making it a one-stop reference for model selection.</p>
+  </section>
+
+  <section>
+    <h2>3. Research Motivation</h2>
+    <p>The motivation starts from the limitation of CNNs over graphs: CNNs operate on regular Euclidean grids with fixed neighborhoods and ordered nodes, using shared filters sliding over images [33]. Graph data is instead irregular and non-Euclidean — nodes have varying degrees and no canonical ordering — so fixed-size kernels and grid pooling do not transfer. GNNs generalize CNNs to this setting with permutation-invariant aggregation over each node's own neighborhood.</p>
+    <p>This matters because graphs are the natural format for relational data: molecules, knowledge graphs, traffic networks, social platforms, and transaction systems. The review's goal is therefore to explain how GNNs model such dependencies via message passing [17,30,31], to compare the leading architectures fairly, and to map applications, datasets, and libraries so practitioners can move from theory to implementation.</p>
+  </section>
+
+  <section>
+    <h2>4. Message Passing and GNN Taxonomy</h2>
+    <p>The message-passing mechanism preserves graph symmetries through optimizable transformations over nodes, edges, and global context with permutation invariance [17,30]. Each iteration has nodes collect neighbor information: after k = 1 each embedding holds its 1-hop neighborhood, after k = 2 its 2-hop neighborhood, and generally after k iterations its k-hop neighborhood — carrying both structural information (degrees) and feature information [31]. Formally, h_u^{(k+1)} = UPDATE^{(k)}(h_u^{(k)}, AGGREGATE^{(k)}({h_v^{(k)} : v ∈ N(u)})) with differentiable AGGREGATE and UPDATE functions (Equations 4.1–4.2); the computation graph unfolds into a tree around each target node.</p>
+    <p>The taxonomy divides GNNs into three parts [30]: graph structures (structural settings like molecules, physical systems, and knowledge graphs where the graph is explicit, versus non-structural settings like text and images where a word-graph or scene-graph must first be constructed); graph types (directed vs. undirected, static vs. dynamic — e.g. Twitter's evolving follow graph — plus heterogeneous, spatial-temporal, and other complex variants); and graph learning tasks (node classification, link prediction, and graph classification, supported by supervised, semi-supervised, and unsupervised regimes).</p>
+  </section>
+
+  <section>
+    <h2>5. GNN Models and Comparative Analysis</h2>
+    <p>Three flagship models are dissected. Graph Convolutional Networks (GCN, Kipf and Welling [33], building on spectral work [34]) generalize image convolution to graphs: each layer aggregates normalized adjacency-weighted neighbor features, applies a learned weight matrix W and bias with ReLU, and stacks layers so deeper levels capture higher-order dependencies — initialization, convolution, weighted aggregation, activation, stacking, and task-specific output. GCNs serve image classification [35], traffic forecasting [36], recommendation [17], scene-graph generation [37], and visual QA [38].</p>
+    <p>GraphSAGE (Hamilton et al. [48]) realizes inductive learning via sampling plus aggregation: it trains only on edge-linked samples, pairs each node vector with its aggregated neighborhood vector through a fully connected layer with non-linearity and normalization, sharing one aggregator and weight matrix per layer across four aggregator types. Graph Attention Networks (GAT, Veličković et al. [47]) weight neighbors with learned attention coefficients computed in a four-part attention layer instead of fixed adjacency weights. The comparative study (Tables 4–6) evaluates the three across application areas, techniques, datasets, and accuracy metrics [33,47,48], guiding model choice by graph scale, dynamics, and task.</p>
+  </section>
+
+  <section>
+    <h2>6. Applications of GNNs</h2>
+    <p>Graphs must often be constructed before learning: fully connected word-graphs for text, scene-graphs for images, user-item graphs for recommenders, and sensor-topology graphs for traffic [28,29]. GNN-based representation learning then applies GraphSAGE, GCN, GAT, or GGNN variants — customized per task — to node, edge, and graph-level objectives spanning fake-news detection [2], healthcare misinformation deterrence [3], ship-traffic prediction [28], and traffic-flow forecasting [29].</p>
+    <p>Field-wise applications cover NLP (text classification, relation extraction, knowledge-graph completion), computer vision (scene understanding, VQA), and bioinformatics (molecular property prediction, drug discovery, protein networks), alongside social recommendation [17], citation and web-ranking analysis [4,5], and large-scale recommender systems [1]. The review also surveys commonly used datasets for these tasks and the Python libraries (notably PyTorch Geometric and DGL-style tooling) that implement GNN models, lowering the barrier from paper to prototype.</p>
+  </section>
+
+  <section>
+    <h2>7. Future Directions</h2>
+    <p>The review charts future work along depth, dynamics, scale, and trust: deeper GNNs that resist over-smoothing (e.g. normalization and edge-dropout strategies [23,31]), dynamic and temporal graphs that track evolving structure, heterogeneous and multi-modal graphs that fuse text, image, and sensor signals, and scalable sampling-based training for billion-edge graphs.</p>
+    <p>Open challenges include explainability of message-passing decisions, robustness to adversarial and noisy graph perturbations, fairness across node populations, privacy-preserving graph learning, and self-supervised pre-training that reduces label dependence. Progress on these fronts, the authors argue, will decide whether GNNs graduate from strong task models into dependable infrastructure for science and industry.</p>
+  </section>
+
+  <section>
+    <h2>8. Conclusions</h2>
+    <p>This review consolidates GNN concepts (permutation-invariant message passing [17,30,31]), architectures (GCN [33,34], GraphSAGE [48], GAT [47]), techniques (spectral and spatial convolutions, sampling, attention), challenges (depth, dynamics, scale, trust), datasets, applications (NLP, vision, bioinformatics, recommenders, traffic), and future directions. Its comparative tables give practitioners an evidence-based starting point for choosing among GCN, GraphSAGE, and GAT.</p>
+    <p>The authors conclude that GNNs have redefined what is possible with relational data and that continued advances in scalable, dynamic, explainable, and trustworthy graph learning will extend their reach across science and industry. They thank collaborators and acknowledge support from the Research Support Fund (RSF) of Symbiosis International (Deemed University), Pune, India.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+<li>[1] Pucci A, Gori M, Hagenbuchner M, Scarselli F, Tsoi AC. Investigation into the application of graph neural networks to large-scale recommender systems, infona.pl, no. 32, no 4, pp. 17–26, 2006.</li>
+      <li>[2] Mahmud FB, Rayhan MM, Shuvo MH, Sadia I, Morol MK. A comparative analysis of Graph Neural Networks and commonly used machine learning algorithms on fake news detection, Proc. - 2022 7th Int. Conf. Data Sci. Mach. Learn. Appl. CDMA 2022, pp. 97–102, 2022.</li>
+      <li>[3] Cui L, Seo H, Tabar M, Ma F, Wang S, Lee D, Deterrent: Knowledge Guided Graph Attention Network for Detecting Healthcare Misinformation, Proc. ACM SIGKDD Int. Conf. Knowl. Discov. Data Min., pp. 492–502, 2020.</li>
+      <li>[4] Gori M, Monfardini G, Scarselli F, A new model for earning in raph domains, Proc. Int. Jt. Conf. Neural Networks, vol. 2, no. January 2005, pp. 729–734, 2005, https://doi.org/10.1109/IJCNN.2005.1555942.</li>
+      <li>[5] Scarselli F, Yong SL, Gori M, Hagenbuchner M, Tsoi AC, Maggini M. Graph neural networks for ranking web pages, Proc.—2005 IEEE/WIC/ACM Int. Web Intell. WI 2005, vol. 2005, no. January, pp. 666–672, 2005, doi: https://doi.org/10.1109/WI.2005.67.</li>
+      <li>[6] Gandhi S, Zyer AP, P3: Distributed deep graph learning at scale, Proc. 15th USENIX Symp. Oper. Syst. Des. Implementation, OSDI 2021, pp. 551–568, 2021.</li>
+      <li>[7] Li C, Guo J, Zhang H. Pruning neighborhood graph for geodesic distance based semi-supervised classification, in 2007 International Conference on Computational Intelligence and Security (CIS 2007), 2007, pp. 428–432.</li>
+      <li>[8] Zhang Z, Cui P, Pei J, Wang X, Zhu W, Eigen-gnn: A graph structure preserving plug-in for gnns, IEEE Trans. Knowl. Data Eng., 2021.</li>
+      <li>[9] Nandedkar AV, Biswas PK. A granular reflex fuzzy min–max neural network for classification. IEEE Trans Neural Netw. 2009;20(7):1117–34.</li>
+      <li>[10] Chaturvedi DK, Premdayal SA, Chandiok A. Short-term load forecasting using soft computing techniques. Int’l J Commun Netw Syst Sci. 2010;3(03):273.</li>
+      <li>[11] Hashem T, Kulik L, Zhang R. Privacy preserving group nearest neighbor queries, in Proceedings of the 13th International Conference on Extending Database Technology, 2010, pp. 489–500.</li>
+      <li>[12] Sun Z et al. Knowledge graph alignment network with gated multi-hop neighborhood aggregation, in Proceedings of the AAAI Conference on Artificial Intelligence, 2020, vol. 34, no. 01, pp. 222–229.</li>
+      <li>[13] Zhang M, Chen Y. Link prediction based on graph neural networks. Adv Neural Inf Process Syst. 31, 2018.</li>
+      <li>[14] Stanimirović PS, Katsikis VN, Li S. Hybrid GNN-ZNN models for solving linear matrix equations. Neurocomputing. 2018;316:124–34.</li>
+      <li>[15] Stanimirović PS, Petković MD. Gradient neural dynamics for solving matrix equations and their applications. Neurocomputing. 2018;306:200–12.</li>
+      <li>[16] Zhang C, Song D, Huang C, Swami A, Chawla NV. Heterogeneous graph neural network, in Proceedings of the 25th ACM SIGKDD international conference on knowledge discovery &amp; data mining, 2019, pp. 793–803.</li>
+      <li>[17] Fan W et al. Graph neural networks for social recommendation,&quot; in The world wide web conference, 2019, pp. 417–426.</li>
+      <li>[18] Gui T et al. A lexicon-based graph neural network for Chinese NER,&quot; in Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP), 2019, pp. 1040–1050.</li>
+      <li>[19] Qasim SR, Mahmood H, Shafait F. Rethinking table recognition using graph neural networks, in 2019 International Conference on Document Analysis and Recognition (ICDAR), 2019, pp. 142–147</li>
+      <li>[20] You J, Ying R, Leskovec J. Position-aware graph neural networks, in International conference on machine learning, 2019, pp. 7134–7143.</li>
+      <li>[21] Cao D, et al. Spectral temporal graph neural network for multivariate time-series forecasting. Adv Neural Inf Process Syst. 2020;33:17766–78.</li>
+      <li>[22] Xhonneux LP, Qu M, Tang J. Continuous graph neural networks. In International Conference on Machine Learning, 2020, pp. 10432–10441.</li>
+      <li>[23] Zhou K, Huang X, Li Y, Zha D, Chen R, Hu X. Towards deeper graph neural networks with differentiable group normalization. Adv Neural Inf Process Syst. 2020;33:4917–28.</li>
+      <li>[24] Gu F, Chang H, Zhu W, Sojoudi S, El Ghaoui L. Implicit graph neural networks. Adv Neural Inf Process Syst. 2020;33:11984–95.</li>
+      <li>[25] Liu Y, Guan R, Giunchiglia F, Liang Y, Feng X. Deep attention diffusion graph neural networks for text classification. In Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing, 2021, pp. 8142–8152.</li>
+      <li>[26] Gasteiger J, Becker F, Günnemann S. Gemnet: universal directional graph neural networks for molecules. Adv Neural Inf Process Syst. 2021;34:6790–802.</li>
+      <li>[27] Yao D et al. Deep hybrid: multi-graph neural network collaboration for hyperspectral image classification. Def. Technol. 2022.</li>
+      <li>[28] Li Y, et al. Research on multi-port ship traffic prediction method based on spatiotemporal graph neural networks. J Mar Sci Eng. 2023;11(7):1379.</li>
+      <li>[29] Djenouri Y, Belhadi A, Srivastava G, Lin JC-W. Hybrid graph convolution neural network and branch-and-bound optimization for traffic flow forecasting. Futur Gener Comput Syst. 2023;139:100–8.</li>
+      <li>[30] Zhou J, et al. Graph neural networks: a review of methods and applications. AI Open. 2020;1(January):57–81. https://doi.org/10.1016/j.aiopen.2021.01.001.</li>
+      <li>[31] Rong Y, Huang W, Xu T, Huang J. Dropedge: Towards deep graph convolutional networks on node classification. arXiv preprint arXiv:1907.10903. 2019.</li>
+      <li>[32] Abu-Salih B, Al-Qurishi M, Alweshah M, Al-Smadi M, Alfayez R, Saadeh H. Healthcare knowledge graph construction: a systematic review of the state-of-the-art, open issues, and opportunities. J Big Data. 2023;10(1):81.</li>
+      <li>[33] Kipf TN, Welling M. Semi-supervised classification with graph convolutional networks. arXiv Prepr. arXiv1609.02907, 2016.</li>
+      <li>[34] Berg RV, Kipf TN, Welling M. Graph Convolutional Matrix Completion. 2017, http://arxiv.org/abs/1706.02263</li>
+      <li>[35] Monti F, Boscaini D, Masci J, Rodola E, Svoboda J, Bronstein MM. Geometric deep learning on graphs and manifolds using mixture model cnns. InProceedings of the IEEE conference on computer vision and pattern recognition 2017 (pp. 5115-5124).</li>
+      <li>[36] Cui Z, Henrickson K, Ke R, Wang Y. Traffic graph convolutional recurrent neural network: a deep learning framework for network-scale traffic learning and forecasting. IEEE Trans Intell Transp Syst. 2020;21(11):4883–94. https://doi.org/10.1109/TITS.2019.2950416.</li>
+      <li>[37] Yang J, Lu J, Lee S, Batra D, Parikh D. Graph r-cnn for scene graph generation. InProceedings of the European conference on computer vision (ECCV) 2018 (pp. 670-685). https://doi.org/10.1007/978-3-030-01246-5\_41.</li>
+      <li>[38] Teney D, Liu L, van Den Hengel A. Graph-structured representations for visual question answering. InProceedings of the IEEE conference on computer vision and pattern recognition 2017 (pp. 1-9). https://doi.org/10.1109/CVPR.2017.344.</li>
+      <li>[39] Yao L, Mao C, Luo Y. Graph convolutional networks for text classification. Proc AAAI Conf Artif Intell. 2019;33(01):7370–7.</li>
+      <li>[40] De Cao N, Aziz W, Titov I. Question answering by reasoning across documents with graph convolutional networks. arXiv Prepr. arXiv1808.09920, 2018.</li>
+      <li>[41] Gao H, Wang Z, Ji S. Large-scale learnable graph convolutional networks. in Proceedings of the 24th ACM SIGKDD international conference on knowledge discovery &amp; data mining, 2018, pp. 1416–1424.</li>
+      <li>[42] Hu F, Zhu Y, Wu S, Wang L, Tan T. Hierarchical graph convolutional networks for semi-supervised node classification. arXiv Prepr. arXiv1902.06667, 2019.</li>
+      <li>[43] Lange O, Perez L. Traffic prediction with advanced graph neural networks. DeepMind Research Blog Post, https://deepmind.google/discover/blog/traffic-prediction-with-advanced-graph-neural-networks/. 2020.</li>
+      <li>[44] Duan C, Hu B, Liu W, Song J. Motion capture for sporting events based on graph convolutional neural networks and single target pose estimation algorithms. Appl Sci. 2023;13(13):7611.</li>
+      <li>[45] Balcıoğlu YS, Sezen B, Çerasi CC, Huang SH. machine design automation model for metal production defect recognition with deep graph convolutional neural network. Electronics. 2023;12(4):825.</li>
+      <li>[46] Baghbani A, Bouguila N, Patterson Z. Short-term passenger flow prediction using a bus network graph convolutional long short-term memory neural network model. Transp Res Rec. 2023;2677(2):1331–40.</li>
+      <li>[47] Velickovic P, Cucurull G, Casanova A, Romero A, Lio P, Bengio Y. Graph attention networks. Stat. 2017;1050(20):10–48550.</li>
+      <li>[48] Hamilton W, Ying Z, Leskovec J. Inductive representation learning on large graphs. Advances in neural information processing systems. 2017; 30.</li>
+      <li>[49] Ye Y, Ji S. Sparse graph attention networks. IEEE Trans Knowl Data Eng. 2021;35(1):905–16.</li>
+      <li>[50] Chen Z et al. Graph neural network-based fault diagnosis: a review. arXiv Prepr. arXiv2111.08185, 2021.</li>
+      <li>[51] Brody S, Alon U, Yahav E. How attentive are graph attention networks? arXiv Prepr. arXiv2105.14491, 2021.</li>
+      <li>[52] Huang J, Shen H, Hou L, Cheng X. Signed graph attention networks,&quot; in International Conference on Artificial Neural Networks. 2019, pp. 566–577.</li>
+      <li>[53] Seraj E, Wang Z, Paleja R, Sklar M, Patel A, Gombolay M. Heterogeneous graph attention networks for learning diverse communication. arXiv preprint arXiv: 2108.09568. 2021.</li>
+      <li>[54] Zhang Y, Wang X, Shi C, Jiang X, Ye Y. Hyperbolic graph attention network. IEEE Transactions on Big Data. 2021;8(6):1690–701.</li>
+      <li>[55] Yang X, Ma H, Wang M. Research on rumor detection based on a graph attention network with temporal features. Int J Data Warehous Min. 2023;19(2):1–17.</li>
+      <li>[56] Lan W, et al. KGANCDA: predicting circRNA-disease associations based on knowledge graph attention network. Brief Bioinform. 2022;23(1):bbab494.</li>
+      <li>[57] Xiao L, Wu X, Wang G, 2019, December. Social network analysis based on graph SAGE. In 2019 12th international symposium on computational intelligence and design (ISCID) (Vol. 2, pp. 196–199). IEEE.</li>
+      <li>[58] Chang L, Branco P. Graph-based solutions with residuals for intrusion detection: The modified e-graphsage and e-resgat algorithms. arXiv preprint arXiv:2111.13597. 2021.</li>
+      <li>[59] Oh J, Cho K, Bruna J. Advancing graphsage with a data-driven node sampling. arXiv preprint arXiv:1904.12935. 2019.</li>
+      <li>[60] Kapoor M, Patra S, Subudhi BN, Jakhetiya V, Bansal A. Underwater Moving Object Detection Using an End-to-End Encoder-Decoder Architecture and GraphSage With Aggregator and Refactoring. InProceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition 2023 (pp. 5635-5644).</li>
+      <li>[61] Bhatti UA, Tang H, Wu G, Marjan S, Hussain A. Deep learning with graph convolutional networks: An overview and latest applications in computational intelligence. Int J Intell Syst. 2023;2023:1–28.</li>
+      <li>[62] David L, Thakkar A, Mercado R, Engkvist O. Molecular representations in AI-driven drug discovery: a review and practical guide. J Cheminform. 2020;12(1):1–22.</li>
+      <li>[63] Davies A, Ajmeri N. Realistic Synthetic Social Networks with Graph Neural Networks. arXiv preprint arXiv:2212.07843. 2022; 15.</li>
+      <li>[64] Frank MR, Wang D, Cebrian M, Rahwan I. The evolution of citation graphs in artificial intelligence research. Nat Mach Intell. 2019;1(2):79–85.</li>
+      <li>[65] Gao C, Wang X, He X, Li Y. Graph neural networks for recommender system. InProceedings of the Fifteenth ACM International Conference on Web Search and Data Mining 2022 (pp. 1623-1625).</li>
+      <li>[66] Wu S, Sun F, Zhang W, Xie X, Cui B. Graph neural networks in recommender systems: a survey. ACM Comput Surv. 2022;55(5):1–37.</li>
+      <li>[67] Wu L, Chen Y, Shen K, Guo X, Gao H, Li S, Pei J, Long B. Graph neural networks for natural language processing: a survey. Found Trends Mach Learn. 2023;16(2):119–328.</li>
+      <li>[68] Wu L, Chen Y, Ji H, Liu B. Deep learning on graphs for natural language processing. InProceedings of the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval 2021 (pp. 2651-2653).</li>
+      <li>[69] Liu X, Su Y, Xu B. The application of graph neural network in natural language processing and computer vision. In2021 3rd International Conference on Machine Learning, Big Data and Business Intelligence (MLBDBI) 2021 (pp. 708-714).</li>
+      <li>[70] Harmon SHE, Faour DE, MacDonald NE. Mandatory immunization and vaccine injury support programs: a survey of 28 GNN countries. Vaccine. 2021;39(49):7153–7.</li>
+      <li>[71] Yan W, Zhang Z, Zhang Q, Zhang G, Hua Q, Li Q. Deep data analysis-based agricultural products management for smart public healthcare. Front Public Health. 2022;10:847252.</li>
+      <li>[72] Hamaguchi T, Oiwa H, Shimbo M, Matsumoto Y. Knowledge transfer for out-of-knowledge-base entities: a graph neural network approach. arXiv preprint arXiv:1706.05674. 2017.</li>
+      <li>[73] Dai D, Zheng H, Luo F, Yang P, Chang B, Sui Z. Inductively representing out-of-knowledge-graph entities by optimal estimation under translational assumptions. arXiv preprint arXiv:2009.12765.</li>
+      <li>[74] Pradhyumna P, Shreya GP. Graph neural network (GNN) in image and video understanding using deep learning for computer vision applications. In2021 Second International Conference on Electronics and Sustainable Communication Systems (ICESC) 2021 (pp. 1183-1189).</li>
+      <li>[75] Shi W, Rajkumar R. Point-gnn: Graph neural network for 3d object detection in a point cloud. InProceedings of the IEEE/CVF conference on computer vision and pattern recognition 2020 (pp. 1711-1719).</li>
+      <li>[76] Wu Y, Dai HN, Tang H. Graph neural networks for anomaly detection in industrial internet of things. IEEE Int Things J. 2021;9(12):9214–31.</li>
+      <li>[77] Pitsik EN, et al. The topology of fMRI-based networks defines the performance of a graph neural network for the classification of patients with major depressive disorder. Chaos Solitons Fractals. 2023;167: 113041.</li>
+      <li>[78] Liao W, Zeng B, Liu J, Wei P, Cheng X, Zhang W. Multi-level graph neural network for text sentiment analysis. Comput Electr Eng. 2021;92: 107096.</li>
+      <li>[79] Kumar VS, Alemran A, Karras DA, Gupta SK, Dixit CK, Haralayya B. Natural Language Processing using Graph Neural Network for Text Classification. In2022 International Conference on Knowledge Engineering and Communication Systems (ICKES) 2022; (pp. 1-5).</li>
+      <li>[80] Dara S, Srinivasulu CH, Babu CM, Ravuri A, Paruchuri T, Kilak AS, Vidyarthi A. Context-Aware auto-encoded graph neural model for dynamic question generation using NLP. ACM transactions on asian and low-resource language information processing. 2023.</li>
+      <li>[81] Wu L, Cui P, Pei J, Zhao L, Guo X. Graph neural networks: foundation, frontiers and applications. InProceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining 2022; (pp. 4840-4841).</li>
+      <li>[82] Scarselli F, Gori M, Tsoi AC, Hagenbuchner M, Monfardini G. The graph neural network model. IEEE Trans neural networks. 2008;20(1):61–80.</li>
+      <li>[83] Cao P, Zhu Z, Wang Z, Zhu Y, Niu Q. Applications of graph convolutional networks in computer vision. Neural Comput Appl. 2022;34(16):13387–405.</li>
+      <li>[84] You R, Yao S, Mamitsuka H, Zhu S. DeepGraphGO: graph neural network for large-scale, multispecies protein function prediction. Bioinformatics. 2021;37(Supplement\_1):i262-71.</li>
+      <li>[85] Long Y, et al. Pre-training graph neural networks for link prediction in biomedical networks. Bioinformatics. 2022;38(8):2254–62.</li>
+      <li>[86] Wu Y, Gao M, Zeng M, Zhang J, Li M. BridgeDPI: a novel graph neural network for predicting drug–protein interactions. Bioinformatics. 2022;38(9):2571–8.</li>
+      <li>[87] Kang C, Zhang H, Liu Z, Huang S, Yin Y. LR-GNN: a graph neural network based on link representation for predicting molecular associations. Briefings Bioinf. 2022;23(1):bbab513.</li>
+      <li>[88] Wei X, Huang H, Ma L, Yang Z, Xu L. Recurrent Graph Neural Networks for Text Classification. in 2020 IEEE 11th International Conference on Software Engineering and Service Science (ICSESS), 2020, pp. 91–97.</li>
+      <li>[89] Schlichtkrull MS, De Cao N, Titov I. Interpreting graph neural networks for nlp with differentiable edge masking. arXiv Prepr. arXiv2010.00577, 2020.</li>
+      <li>[90] Tu M, Huang J, He X, Zhou B. Graph sequential network for reasoning over sequences. arXiv Prepr. arXiv2004.02001, 2020.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.1186/s40537-023-00876-4">10.1186/s40537-023-00876-4</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>طرق تدريب نماذج اللغة الكبيرة: النهج الحالية والتحديات — Training Methods for Large Language Models — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Training methods for large language models: Current approaches and challenges</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">طرق تدريب نماذج اللغة الكبيرة: النهج الحالية والتحديات</h2>
+
+  <div class="paper-meta">
+    <span>👤 Dimitris Karydas, Dimosthenis Margaritis, Helen C. Leligou</span>
+    <span>📄 Technologies, 2026 · 14(2), 133</span>
+    <span>🔗 <a href="https://doi.org/10.3390/technologies14020133">10.3390/technologies14020133</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>برزت نماذج اللغة الكبيرة (LLMs) بوصفها النموذج المهيمن في معالجة اللغة الطبيعية، مظهرة أداءً قويًا عبر طيف واسع من مهام التوليد والاستدلال. وتعتمد هذه الأنظمة على خطوط تدريب متعددة المراحل تدمج التدريب المسبق الذاتي الإشراف واسع النطاق، والضبط الدقيق الموجه، وتقنيات المواءمة. وتعرض هذه الورقة دراسة مسح منهجية لطرق تدريب LLM المعاصرة، مع التركيز على البنى القائمة على المحولات وأهداف الأمثلة واستراتيجيات تنظيم البيانات، إضافة إلى البنى المتناثرة الناشئة مثل نماذج خليط الخبراء (MoE). ونحلل نهج الضبط الدقيق الفعالة معامليًا وأطر التوليد المعزز بالاسترجاع وتقنيات التدريب متعدد الوسائط، منظمين إياها في تصنيف مقارن موحد. ونناقش التحديات التقنية الرئيسة مثل قيود قابلية التوسع والهلوسة وتضخيم التحيز والمقايضات بين المواءمة والقدرات، ثم نحدد اتجاهات بحثية ناشئة مثل التدريب المتمحور حول الاستدلال. ويقدم هذا العمل مرجعًا تقنيًا موجزًا للباحثين والممارسين العاملين على تدريب نماذج لغوية قابلة للتوسع وموثوقة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>أعادت نماذج اللغة الكبيرة تشكيل معالجة اللغة الطبيعية عبر خطوط تدريب متعددة المراحل: إذ يبني التدريب المسبق الذاتي الإشراف واسع النطاق المعرفة اللغوية الواسعة والمعرفة العالمية داخل معاملات النموذج، ويخصص الضبط الدقيق الموجه السلوك، وتوجه تقنيات المواءمة المخرجات نحو التفضيلات البشرية. ومع توسع النماذج من المحولات الكثيفة إلى تصاميم خليط الخبراء المتناثرة، ومن الأنظمة النصية إلى البنى متعددة الوسائط والمعززة بالاسترجاع، يواجه الممارسون مشهدًا مجزأً من الأهداف ومجموعات البيانات وطرق التكييف. وتُوحّد دراسة المسح المنهجية هذه (2017–2025) البنى القائمة على المحولات وأهداف الأمثلة واستراتيجيات تنظيم البيانات والتكييف الفعال معامليًا والتعزيز بالاسترجاع وممارسات التقييم في تصنيف مقارن موحد، مع اهتمام خاص بقيود قابلية التوسع والهلوسة وتضخيم التحيز والمقايضات بين المواءمة والقدرات.</p>
+  </section>
+
+  <section>
+    <h2>2. منهجية المسح</h2>
+    <p>اتبعت دراسة المسح المنهجية هذه بروتوكولًا منظمًا لضمان الشفافية وقابلية إعادة الإنتاج وتقليل تحيز الاختيار. وبحثنا في Scopus وGoogle Scholar وWeb of Science وIEEE Xplore بكلمات مفتاحية منها «نماذج اللغة الكبيرة» و«تدريب LLM» و«أهداف التدريب المسبق» و«الضبط الدقيق» و«RLHF» و«الضبط الدقيق الفعال معامليًا» لمنشورات 2017–2025. وأعاد البحث الأولي نحو 1500 سجل؛ وبعد إزالة المكرر وفحص العناوين والملخصات، احتُفظ بـ240 دراسة للمراجعة النصية الكاملة. وأعطت معايير التضمين الأولوية للمنشورات المحكمة ذات التركيز الصريح على خطوط تدريب LLM والمساهمات المنهجية التجريبية أو النظرية وتوفر النص الكامل، مع تضمين أوراق ما قبل النشر عالية التأثير وفق معايير تشغيلية صريحة (100 استشهاد على الأقل، أو 50 لأعمال الأشهر الـ12 السابقة، مع دليل على التأثير الميداني كالاندماج في منشورات محكمة أو التبني مفتوح المصدر). واستبعدت المعايير الأعمال غير الإنجليزية وغير الخاصة بـLLM والأوراق التي تفتقر لمساهمات منهجية، لينتج 58 دراسة أساسية في التحليل الأولي مع 10 دراسات رائدة إضافية أثناء المراجعة — أي 68 دراسة في التحليل النهائي (الشكل 1).</p>
+  </section>
+
+  <section>
+    <h2>3. أسس التدريب المسبق لنماذج اللغة الكبيرة</h2>
+    <p>في نماذج LLM، تهدف مرحلة التدريب المسبق إلى بناء فهم لغوي أساسي وجمع مقادير هائلة من المعرفة العالمية المشفرة داخل معاملات النموذج، وذلك بالتعلم الذاتي الإشراف حيث يتعلم النموذج بتوقع الأنماط والفجوات المعلوماتية في مجموعات نصية كبيرة ومتنوعة، محوّلًا البيانات إلى إشارة الإشراف [1]. ويشير الملخص البحثي [2] إلى أنه بينما تنتج نمذجة اللغة المقنعة (MLM) عمومًا نتائج إجمالية أفضل لمهام التمثيل النصي، توفر نمذجة اللغة السببية (CLM) مزايا في كفاءة البيانات واستقرار الضبط الدقيق؛ وتقترح الدراسة وتصادق على استراتيجية تدريب ثنائية الطور تطبق CLM ثم MLM تتابعيًا، محققة الأداء الأمثل ضمن ميزانية حسابية ثابتة — وهي مفيدة خاصة عند الانطلاق من نموذج CLM مدرب مسبقًا، إذ تخفض كثيرًا تكلفة تدريب أحدث مرمّزات NLP ‏[2]. وتتعلم نماذج LLM المعرفة اللغوية الأساسية والتمثيلات القابلة للتعميم من مصادر نصية متنوعة عبر أهداف تدريب محددة بدقة ومجموعات بيانات كبيرة مختارة بعناية [3].</p>
+    <p>ومن المكونات الحاسمة للتدريب المسبق بناء مجموعات بيانات كبيرة عالية الجودة، إذ يعتمد التعميم بشدة على تنوع البيانات ونظافتها. تُدرَّب النماذج التأسيسية على مدونات غير متجانسة تجمع مصادر الويب مع نصوص منتقاة عالية الجودة: إذ تأتي الحصة الأكبر عادة من Common Crawl، وهي مجموعة ويب ضخمة لكن مزعجة تتطلب معالجة وترشيحًا مكثفين [4]، تكملها Wikipedia ومدونات الكتب الكبيرة التي تقدم معرفة لغوية منظمة [5]، ومجموعات متعددة اللغات للتعميم، ومدونات برمجية متخصصة مثل The Stack أو مجموعات مشتقة من GitHub لنماذج البرمجة [6]. وتُعد خطوط الترشيح المتطورة أساسية — إزالة التكرار التي تقلل الحفظ، وترشيح الجودة بالاستدلالات ودرجات الحيرة والانتقاء القائم على المصنفات، وترشيح السلامة لإزالة المعلومات الشخصية والمحتوى السام أو الضار [7] — بما يشكل أداء النماذج وسلامتها وخصائص تحيزها [8]. فتكوين مجموعات البيانات وحجمها وتنظيمها لا يقل حسمًا عن حجمها: إذ تقايض التغطية واسعة الويب (Common Crawl) الضجيج والتحيز مقابل مصادر الجودة المنتقاة (Wikipedia والكتب)، بينما تضيف BookCorpus وOpenWebText نصوصًا طويلة متماسكة تعين الفهم على مستوى الخطاب (الجدول 2).</p>
+  </section>
+
+  <section>
+    <h2>4. استراتيجيات الضبط الدقيق: الموجه وتعليمات التعليمات</h2>
+    <p>بعد التدريب المسبق، تخضع نماذج LLM عادة للضبط الدقيق الموجه (SFT) للتخصص في مهام أو مجالات محددة باستخدام أزواج مدخلات-مخرجات منتقاة، حيث توفر البيانات الموسومة بشريًا إشرافًا صريحًا على السلوك المرغوب. ومن مجموعات بيانات اتباع التعليمات الشائعة Alpaca ‏[19] وOpenAssistant ‏(OASST) [20] وDolly ‏[21] وFLAN ‏[22]، التي تغطي طيفًا واسعًا من المواضيع وأساليب التفاعل. ويعزز SFT قدرة اتباع التعليمات ويحسن التعميم الصفري والقليل العينات في التطبيقات اللاحقة [23]، لكنه قد ينشر تحيزات الموسومين، مما يبرز أهمية تنوع مجموعات البيانات وضبط جودتها [24]. وبناءً على SFT، يوسع ضبط التعليمات التكييف الموجه بتعريض النماذج لتعليمات لغوية طبيعية متنوعة عبر صيغ مهام عديدة — التلخيص والتصنيف والاستدلال وحل المسائل متعدد الخطوات — مع مجموعات واسعة مثل FLAN ‏[22] وSelf-Instruct ‏[25] والتعليمات الطبيعية، مما يتيح تعميمًا أفضل على التوجيهات غير المرئية والبيئات التفاعلية [23]. ويعمل كل من SFT وضبط التعليمات غالبًا شرطين مسبقين لطرق المواءمة اللاحقة مثل RLHF، بتوفير خط أساس موجه قوي يُصقَل لاحقًا لتحسين الفائدة والسلامة ومواءمة التفضيلات البشرية [26، 27].</p>
+  </section>
+
+  <section>
+    <h2>5. الضبط الدقيق المتقدم والمواءمة والتكييف الفعال معامليًا</h2>
+    <h3>5.1. الضبط الدقيق المتقدم واستراتيجيات المواءمة الناشئة</h3>
+    <p>تواصلت البحوث في السنوات الأخيرة متجاوزة خطوط SFT وRLHF التقليدية نحو الواقعية والمواءمة والاستدلال وقابلية التوسع والكفاءة. فيقدم FLAME ‏[28] مواءمة واعية بالواقعية للحد من الهلوسات، بينما يستكشف RLTHF ‏[29] وCrowd-SFT ‏[30] استراتيجيات تغذية بشرية راجعة فعالة التكلفة؛ ويحسّن Reflection-Tuning ‏[31] مجموعات بيانات ضبط التعليمات عبر الاستبطان النموذجي، ويقترح PAFT ‏[32] نماذج ضبط دقيق متوازية للتوسع الفعال، ويجمع Re-Search ‏[33] وAGRO ‏[34] التعلم المعزز مع البحث أو البيانات خارج السياسة لتحسين الاستدلال والمواءمة. وتمكن تقنيات مثل RLHF النماذج من المواءمة مع التفضيلات البشرية، محسنة السلامة والواقعية واتباع التعليمات [35]، بينما تحسن طرق الضبط الدقيق المتقدمة الاستدلال وتقلل الهلوسات وتزيد قابلية التوسع [36، 37].</p>
+    <h3>5.2. التعلم المعزز بالتغذية البشرية الراجعة وتحسين التفضيلات</h3>
+    <p>يوائم RLHF وتحسين التفضيلات (DPO) ‏[27، 38] النماذج مع التفضيلات البشرية بالأمثلة على دوال مكافأة متعلمة مدرَّبة على أحكام التفضيل، محسّنين الفائدة والسلامة واتباع التعليمات — لكن الأمثلة المقيدة بإفراط قد تُدخل «ضريبة مواءمة» تُدهوِر العمومية أو عمق الاستدلال [26، 27]. وتمثل النهج الناشئة القائمة على المكافآت القابلة للتحقق (RLVR) تحولًا نحو مواءمة قابلة للتوسع متمحورة حول الاستدلال تستهدف إشارات الصحة [51، 56].</p>
+    <h3>5.3. طرق المواءمة الواعية بالواقعية والمتمحورة حول الاستدلال</h3>
+    <p>وراء RLHF، تعتمد نماذج LLM الحديثة على طيف أوسع من الضبط الدقيق المتقدم وتقنيات المواءمة. فطرق المواءمة الواعية بالواقعية مثل FLAME تهدف لتقليل أخطاء الهلوسة [28]، بينما يحسّن Reflection-Tuning مجموعات بيانات التعليمات عبر التصحيح الذاتي للنموذج [31]، وتستكشف النهج القائمة على التعزيز مثل AGRO أمثلة قابلة للتوسع للاستدلال والمواءمة [34] — مكملةً الضبط الموجه وضبط التعليمات بتعزيز الموثوقية والمتانة وقابلية التحكم في الأنظمة المنشورة [24].</p>
+    <h3>5.4. الضبط الدقيق الفعال معامليًا للتكييف القابل للتوسع</h3>
+    <p>برز الضبط الدقيق الفعال معامليًا (PEFT) استراتيجية رئيسة لتكييف نماذج LLM مع مهام أو مجالات جديدة مع تحديث جزء صغير فقط من المعاملات. فيتيح LoRA التكييف منخفض الرتبة لأوزان الانتباه [37]، ويجمع QLoRA التحديثات منخفضة الرتبة مع التكميم للضبط الفعال للنماذج الكبيرة جدًا تحت موارد GPU محدودة [39]، وبالمثل تقلل الضبط بالبادئة ووحدات المهايئ الذاكرة والحوسبة بتجميد معظم الأوزان المدربة مسبقًا [40، 41]. وتحقق طرق PEFT أداءً مماثلًا للضبط الدقيق الكامل رغم أنها تتطلب معاملات قابلة للتدريب أقل بعدة مراتب من حيث الحجم ‏[37، 39]: إذ يحدّث LoRA عادة أقل من 0.1% من الأوزان (خفض ≈99.9%) مع توفير ∼60–80% من VRAM، ويمكّن QLoRA ضبط نماذج حتى 65B معامل على GPU واحدة بسعة 48GB عبر التكميم 4-بت مع مهايئات منخفضة الرتبة، مما يجعل المواءمة والتكييف ممكنين تحت قيود العتاد السلعية [37، 39]. ومن ثم يوفر PEFT مسارًا قابلًا للتوسع يدمج تكييف المهام مع أهداف المواءمة مثل RLHF مع الحفاظ على اتباع التعليمات والسلامة [41] (الجدول 3).</p>
+  </section>
+
+  <section>
+    <h2>6. من النماذج متعددة الوسائط والمعززة بالاسترجاع إلى التدريب المتمحور حول الاستدلال</h2>
+    <p>وسّعت البحوث الحديثة قدرات النماذج وراء المهام النصية: إذ تعالج نماذج LLM متعددة الوسائط مثل GPT-4 وGemini وأنظمة فئة Claude وتولّد محتوى عبر النصوص والصور وفي بعض الحالات الصوت والفيديو [42، 43]، مع نماذج متخصصة مجاليًا مثل BioGPT للأحياء وLawGPT للقانون بدقة وملاءمة محسنتين في السياقات المهنية المتخصصة [44]. ومن الاتجاهات الحاسمة التوليد المعزز بالاسترجاع (RAG) الذي يعالج قيود المعرفة الساكنة للتدريب المسبق بتمكين الوصول الديناميكي لمصادر معلومات خارجية [45]: إذ تحسّن المستندات المسترجعة المُدخَلة سياقًا إضافيًا الواقعية والحداثة والوعي السياقي [46]، مع امتدادات حديثة تستكشف RAG متعدد الوسائط على مدخلات غير متجانسة كالصور مع النص [42]. وتواصل قوانين التوسع توجيه التطوير المعماري، مظهرة علاقات منتظمة بين الأداء وعدد المعاملات وحجم مجموعات البيانات والميزانية الحسابية [14، 15]، بما فيها القدرات البازغة في النماذج الكبيرة جدًا [15].</p>
+    <p>تشكل بنى خليط الخبراء المتناثرة (MoE) نموذج كفاءة أوسع مُستكشَفًا عبر Switch Transformers وMixtral وتطبيقات صناعية حديثة — مع تناول DeepSeek بوصفه دراسة حالة تمثيلية حديثة لا نهجًا مهيمنًا فريدًا. وعلى عكس محولات الكثيفة التي تفعّل كل المعاملات أثناء الاستدلال، تعتمد DeepSeek بنية MoE تُفعِّل فيها مجموعة فرعية فقط من شبكات الخبراء لكل رمز [49]، مما يخفض التكلفة الحسابية الفعالة مع الحفاظ على السعة وقابلية التوسع [48]. ويقارن الجدول 4 كميًا نماذج MoE المتناثرة على غرار DeepSeek مع الأسس الكثيفة: فرغم إجمالي معاملات ضخم جدًا، تبقى المعاملات المفعّلة مماثلة لنماذج كثيفة أصغر بكثير مع تحقيق أداء معياري قوي (مثل MMLU)، داعمًا الادعاء بأن التفعيل المتناثر قد يقارب التوسع الكثيف أو يتجاوزه بتكلفة فعالة أقل بكثير. وعمومًا، يتجه الطليعي نحو نماذج هجينة تدمج المعالجة متعددة الوسائط والتعزيز بالاسترجاع وما بعد التدريب المركز على الاستدلال، وتجسّد DeepSeek هذا الجيل من النماذج الواعية بالكفاءة بجمع MoE المتناثر مع الإشراف المنظم والمواءمة القابلة للتوسع [50، 51].</p>
+  </section>
+
+  <section>
+    <h2>7. تقييم نماذج اللغة الكبيرة والتطورات الحديثة</h2>
+    <h3>7.1. التقييم القائم على النتائج مقابل القائم على العمليات</h3>
+    <p>يلعب تقييم LLM دورًا مركزيًا في تقدير القدرات والمتانة والسلامة. إذ تقيس المعايير القياسية — GLUE وSuperGLUE وMMLU وBIG-bench وHELM وHumanEval — الاستدلال وفهم اللغة وتوليد الشيفرة [6، 58]، مع مجموعات خاصة بالمجالات الطبية والقانونية والثقافية؛ وتشمل المقاييس الدقة وF1 وBLEU وROUGE ‏[61] والحيرة والمطابقة التامة، مع جوانب المواءمة كالالتزام بالتعليمات ودقة الوقائع والتحيز والسمية للنماذج الموجهة للنشر الواقعي. ويُنظَر للتقييم الحديث على بُعدين متكاملين: معايير قائمة على النتائج تقيس صحة المهمة النهائية (MMLU وHumanEval)، وتقييم قائم على العمليات يقدّر سلامة خطوات الاستدلال الوسيطة وموثوقيتها. وتعكس المجموعات الكلاسيكية (GLUE وSuperGLUE وMMLU وBIG-bench) أساسًا أداء مستوى النتائج، بينما تحفز النماذج المتمحورة حول الاستدلال مثل التعلم المعزز بالمكافآت القابلة للتحقق (RLVR) بروتوكولات تتحقق لا من صحة الإجابة فحسب بل من سلامة عملية الاستدلال المؤدية إليها وموثوقيتها [56].</p>
+    <p>ومن تحديات التقييم الكبرى المؤكدة في 2025–2026 مشكلة تلوث البيانات (تسرب المعايير) [62]: فبما أن نماذج LLM الحديثة تُدرَّب على مدونات ويب واسعة ومجموعات تعليمات كبيرة، قد تظهر أسئلة المعايير أو حلولها المرجعية دون قصد في بيانات التدريب، فتعكس الدرجات العالية حفظًا جزئيًا لا تعميمًا حقيقيًا — مما يؤثر على قابلية تفسير المقارنات المعيارية ومنها الجدول 6 ويحفز بروتوكولات واعية بالتلوث وتدقيق مجموعات البيانات. ومن ثم تتصاعد النهج البشرية-المحورية ومتعددة الأبعاد: إذ يصنّف المقيمون البشر استجابات النماذج من حيث الفائدة والسلامة واتباع التعليمات بتفصيل تعجز عنه المقاييس الآلية، بينما تختبر التوجيهات العدائية والسيناريوهات خارج التوزيع ومهام الاستدلال المعقدة المتانة والموثوقية — مع تبنٍّ متزايد لأطر شاملة تدمج مقاييس الأداء والمواءمة والكفاءة لضمان نماذج فعالة وآمنة معًا [59].</p>
+  </section>
+
+  <section>
+    <h2>8. التصنيف التحليلي: كفاءة التدريب مقابل جودة المواءمة والاستدلال</h2>
+    <p>بينما تصف مسوح عديدة تقنيات تدريب LLM كلًا على حدة، يتمثل التحدي العملي المركزي في فهم المقايضات عبر خط التدريب الكامل. ولتقديم مساهمة مقارنة مميزة وراء التجميع المواضيعي، نقترح تصنيفًا تحليليًا موحدًا يضع نهج LLM الحديثة على محورين (الشكل 3): (1) كفاءة التدريب — تكلفة الحوسبة/المعاملات اللازمة لتوسيع القدرة (التفعيل الكثيف مقابل المتناثر، وكفاءة FLOPs، والضبط الدقيق الفعال معامليًا)؛ و(2) جودة المواءمة والاستدلال — كيف يحسّن ما بعد التدريب اتباع التعليمات والفائدة والسلامة وأداء الاستدلال القابل للتحقق. وتتقدم عائلات المحولات الكثيفة (مثل نماذج GPT وLLaMA) بالقدرات عبر توسيع المعاملات والتدريب المسبق واسع النطاق (8.1)، بينما تُفعِّل بنى MoE المتناثرة (على غرار DeepSeek) مجموعة فرعية فقط من المعاملات لكل رمز لكفاءة التدريب والاستدلال مع أداء تنافسي.</p>
+    <p>تحسّن طرق مواءمة ما بعد التدريب مثل RLHF وDPO ‏[27، 38] الامتثال للتعليمات والسلامة لكنها قد تفرض «ضريبة مواءمة» تُدهوِر العمومية أو عمق الاستدلال [26، 27]؛ وتمثل النهج الناشئة القائمة على المكافآت القابلة للتحقق (RLVR) ‏[51، 56] تحولًا نحو مواءمة قابلة للتوسع متمحورة حول الاستدلال تستهدف إشارات الصحة (8.2). وتنشأ الضريبة من ديناميكيات أمثلة ملموسة (8.3): ففي خطوط RLHF يُحسَّن النموذج ضد دالة مكافأة متعلمة تتنبأ بأحكام التفضيل البشري لا صحة المهمة [26، 27]؛ وبما أن وسوم التفضيل تكافئ غالبًا التهذيب والحذر أو تجنب الضرر، ترتبط ارتباطًا ناقصًا بدقة الاستدلال الموضوعية، ومع تزايد ضغط المكافأة يُعظِّم النموذج درجات التفضيل حتى على حساب استجابات أقصر وأكثر تحفظًا وأقل استكشافًا — كابتًا سلاسل الاستدلال الوسيطة في مهام الاستدلال متعدد الخطوات (فعلى معايير حسابية متعددة الخطوات مثل GSM8K، قد يفضل النموذج المحسَّن تفضيليًا إجابات عالية المستوى تبدو آمنة وواثقة على توضيح خطوات الاستدلال صراحة، مما يخفض دقة المطابقة التامة رغم تحسن درجات الفائدة). وقد كمّم Lin وآخرون [64] هذه الظاهرة مبلغين عن انخفاض الأداء في معايير الاستدلال الكثيف مثل GSM8K وMMLU مع تزايد قوة مواءمة RLHF. ويُسقط الجدول 8 النماذج الرئيسة — التدريب المسبق الكثيف وPEFT وRLHF/DPO وMoE المتناثر وRLVR — على مشهد الكفاءة-المواءمة هذا (8.4).</p>
+  </section>
+
+  <section>
+    <h2>9. المناقشة</h2>
+    <p>رغم الأداء التجريبي القوي، تواجه نماذج LLM قيودًا جوهرية: إذ يتطلب تدريب ونشر أحدث الأنظمة موارد حسابية هائلة تحد من إمكانية الوصول؛ وتُعقِّد الهلوسة والتحيز ومحدودية قابلية التفسير المستمرة النشر الآمن في المجالات عالية التأثير [8، 26]. وتعطي البحوث أولوية متزايدة للكفاءة: إذ توفر طرق PEFT مثل LoRA وQLoRA مسارًا عمليًا لتكييف النماذج الكبيرة مع المهام اللاحقة دون تكلفة حسابية باهظة [37، 39، 41]، ويحسّن التدريب متعدد اللغات والوسائط المتانة [42، 43]، وتُبقي آليات المواءمة مثل RLHF السلوك متسقًا مع النوايا البشرية على نطاق واسع [26، 27]. وتوضح النماذج المتمحورة حول الاستدلال مثل DeepSeek الوعد والحدود معًا: إذ يحقق MoE المتناثر أداءً قويًا بتكلفة مخفضة [48، 49]، لكن التفعيل المتناثر للخبراء يُعقِّد قابلية التفسير وتحليل تخصص الخبراء [49، 69]، وتفشل المعايير القياسية في التقاط كيف تشكل أهداف التدريب (الإشراف الاستدلالي والتغذية الخوارزمية الراجعة والأمثلة المعززة بالبحث) التمثيلات الداخلية [58]. وهذا يحفز أطر تقييم واعية بالتدريب وراء مقاييس المهام [58، 63]: فقد تحقق النماذج درجات معيارية متقاربة مع اختلاف جوهري في تخصيص المعلومات وديناميكيات التوجيه وسلوك الاستدلال — حيث تكشف التشخيصات على مستوى التضمين مثل إسقاطات LLM2Vec ‏[70] فروقًا تخفى على المعايير التقليدية، داعمة مقارنة وموثوقية وتحققًا أدق من المواءمة [63، 66]. ويجب أن تعامل بحوث LLM المستقبلية استراتيجيات التدريب ومنهجيات التقييم بوصفهما خياري تصميم مترابطين.</p>
+  </section>
+
+  <section>
+    <h2>10. الاتجاهات المستقبلية</h2>
+    <p>ستدمج نماذج LLM المستقبلية على الأرجح مراحل التدريب الأساسية تكراريًا — التدريب المسبق واسع النطاق وضبط التعليمات [24] وتقنيات المواءمة المتقدمة لما بعد التدريب مثل RLHF ‏[26، 27] — منتجة أنظمة جيل قادم تعظّم القدرة مع سلامة قوية وسلوك مواءم بشريًا [22]. وستتوسع النماذج لتعقيدات هائلة مع ازدياد قابليتها للتفسير مقارنة بالصناديق السوداء المعتمة اليوم [63]، ممكنة المطورين والمدققين والمنظمين من فهم صنع القرار في النشرات الحرجة [66]. ويجب توحيد أطر التقييم وراء دقة المعايير الساكنة [58]، متضمنة المواءمة مع القيم البشرية [63] وتخفيف مخاطر التحيز والعدالة عبر فئات المستخدمين [67] والمتانة ضد المدخلات العدائية أو غير المتوقعة [58] — وهي الاتجاهات التقنية والأخلاقية الأساسية لنماذج LLM موثوقة وجديرة بالثقة وصالحة للاندماج المجتمعي.</p>
+  </section>
+
+  <section>
+    <h2>11. القيود</h2>
+    <p>تخضع دراسة المسح المنهجية هذه لعدة قيود. أولًا، يتطور ميدان تدريب LLM بسرعة فائقة، وقد تظهر بنى أو نماذج مواءمة جديدة بعد اللقطة الزمنية الملتقطة (2017–2025) بوقت قصير. ثانيًا، رغم تغطية البحث قواعد علمية كبرى (Scopus وWeb of Science وIEEE Xplore وGoogle Scholar)، قد تفوته أماكن إقليمية متخصصة أو تقارير صناعية أو منشورات غير إنجليزية. ثالثًا، نظرًا لسرعة الطليعي، أُدرجت مجموعة فرعية من أوراق ما قبل النشر المؤثرة وفق معايير التأثير العالي، وقد تتأخر العتبات القائمة على الاستشهادات عن أحدث التطورات.</p>
+  </section>
+
+  <section>
+    <h2>12. الاستنتاجات</h2>
+    <p>وحّدت دراسة المسح المنهجية هذه طرق تدريب LLM المعاصرة — التدريب المسبق الذاتي الإشراف واسع النطاق، والضبط الدقيق الموجه وضبط التعليمات، والمواءمة المتقدمة ومنها RLHF والطرق الواعية بالواقعية، والتكييف الفعال معامليًا، والتدريب المعزز بالاسترجاع ومتعدد الوسائط، ونماذج الكفاءة المتناثرة MoE — في تصنيف موحد للكفاءة-المواءمة. ومن النتائج الرئيسة: أن تكوين مجموعات البيانات وتنظيمها لا يقل حسمًا عن حجمها؛ وأن PEFT يحقق جودة قريبة من الضبط الكامل بتكلفة أقل بعدة مراتب؛ وأن التفعيل المتناثر يقارب التوسع الكثيف بحوسبة فعالة أقل؛ وأن المواءمة تحسّن الفائدة والسلامة لكنها تخاطر بضريبة مواءمة على الاستدلال تعالجها طرق المكافآت القابلة للتحقق؛ وأن التقييم يجب أن يتجاوز المعايير الساكنة نحو أطر واعية بالتلوث والتدريب. وتقدم هذه النتائج مرجعًا تقنيًا موجزًا لبناء نماذج لغوية قابلة للتوسع وموثوقة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Large Language Models (LLMs) have emerged as a dominant paradigm in natural language processing, demonstrating strong performance across a wide range of generation and reasoning tasks. These systems depend on multi-stage training pipelines that integrate large-scale self-supervised pre-training, supervised fine-tuning, and alignment techniques. This paper presents a systematic mapping study of contemporary LLM training methodologies, emphasizing transformer-based architectures, optimization objectives, and data curation strategies as well as emerging sparse architectures such as Mixture-of-Experts (MoE) models. We analyze parameter-efficient fine-tuning approaches, retrieval-augmented generation frameworks, and multimodal training techniques, which we organize into a unified comparative taxonomy. We discuss key technical challenges such as scalability constraints, hallucination, bias amplification, and alignment–capability tradeoffs, then identify emerging research directions such as reasoning-centric training. This work provides a concise technical reference for researchers and practitioners working on scalable and reliable language model training.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Large Language Models have reshaped natural language processing through multi-stage training pipelines: large-scale self-supervised pre-training builds broad linguistic knowledge and world knowledge into model parameters, supervised fine-tuning specializes behavior, and alignment techniques steer outputs toward human preferences. As models scale from dense transformers to sparse Mixture-of-Experts designs and from text-only systems to multimodal and retrieval-augmented architectures, practitioners face a fragmented landscape of objectives, datasets, and adaptation methods. This systematic mapping study (2017–2025) consolidates transformer-based architectures, optimization objectives, data curation strategies, parameter-efficient adaptation, retrieval augmentation, and evaluation practice into a unified comparative taxonomy, with special attention to scalability constraints, hallucination, bias amplification, and alignment–capability tradeoffs.</p>
+  </section>
+
+  <section>
+    <h2>2. Survey methodology</h2>
+    <p>This systematic mapping study followed a structured protocol for transparency, reproducibility, and reduced selection bias. We searched Scopus, Google Scholar, Web of Science, and IEEE Xplore using keywords including “large language models”, “LLM training”, “pre-training objectives”, “fine-tuning”, “RLHF”, and “parameter-efficient fine-tuning” for publications between 2017 and 2025. The initial search returned approximately 1500 records; after duplicate removal and title/abstract screening, 240 studies were retained for full-text review. Inclusion criteria prioritized peer-reviewed publications with an explicit focus on LLM training pipelines, empirical or theoretical methodological contributions, and full-text availability, while high-impact frontier preprints were included under explicit operational criteria (at least 100 citations, or 50 for works from the preceding 12 months, plus evidence of field impact such as integration into peer-reviewed work or open-source adoption). Exclusion removed non-English works, non-LLM-specific studies, and papers lacking methodological contributions, resulting in 58 core studies in the initial analysis plus 10 additional frontier studies during revision — 68 studies in the final analysis (Figure 1).</p>
+  </section>
+
+  <section>
+    <h2>3. Foundations of pre-training for large language models</h2>
+    <p>In LLMs, the pre-training stage builds fundamental language understanding and vast world knowledge into model parameters through self-supervised learning, where the model anticipates patterns and information gaps in large varied text datasets, converting data into the supervision signal [1]. Research abstract [2] suggests that while Masked Language Modeling (MLM) generally produces better overall results for text representation tasks, Causal Language Modeling (CLM) offers advantages in data efficiency and fine-tuning stability; the study proposes and validates a biphasic training strategy applying CLM followed by MLM, achieving optimal performance within a fixed computational budget — particularly beneficial when starting from an already pre-trained CLM model, significantly lowering the cost of training state-of-the-art encoder models [2]. Through precisely defined training objectives and carefully selected large-scale datasets, LLMs learn fundamental linguistic knowledge and generalizable representations [3].</p>
+    <p>A crucial component of pre-training is the construction of high-quality large-scale datasets, since generalization depends heavily on data diversity and cleanliness. Foundation models train on heterogeneous corpora combining web-scale sources with curated text: the largest portion typically comes from Common Crawl, a massive but noisy web dataset requiring extensive preprocessing and filtering [4], complemented by Wikipedia and large book corpora providing structured linguistic knowledge [5], multilingual datasets for generalization, and specialized programming corpora such as The Stack or GitHub-derived datasets for coding models [6]. Sophisticated filtering pipelines — deduplication reducing memorization, quality filtering via heuristics, perplexity scoring, and classifier-based selection, plus safety filtering removing personally identifiable information, toxic, or harmful material [7] — shape performance, safety, and bias characteristics [8]. Dataset composition, scale, and curation are as decisive as dataset size: web-scale coverage (Common Crawl) trades noise and bias against curated quality sources (Wikipedia, books), with BookCorpus and OpenWebText adding lengthy coherent texts aiding discourse-level comprehension (Table 2).</p>
+  </section>
+
+  <section>
+    <h2>4. Fine-tuning strategies: supervised and instruction tuning</h2>
+    <p>After pre-training, LLMs typically undergo Supervised Fine-Tuning (SFT) to specialize in specific tasks or domains using curated input–output pairs, with human-labeled data providing explicit supervision. Common instruction-following datasets include Alpaca [19], OpenAssistant (OASST) [20], Dolly [21], and FLAN [22], spanning broad topics and interaction styles. SFT enhances instruction following and improves zero-shot and few-shot generalization in downstream applications [23], though it may propagate annotator biases, highlighting the importance of dataset diversity and quality control [24]. Building on SFT, instruction tuning exposes LLMs to diverse natural-language instructions across task formats — summarization, classification, reasoning, multi-step problem solving — with large-scale collections such as FLAN [22], Self-Instruct [25], and Natural Instructions enabling better generalization to unseen prompts and interactive settings [23]. Both SFT and instruction tuning typically serve as prerequisites for downstream alignment methods such as RLHF, providing a strong supervised baseline later refined to optimize helpfulness, safety, and human preference alignment [26, 27].</p>
+  </section>
+
+  <section>
+    <h2>5. Advanced fine-tuning, alignment, and parameter-efficient adaptation</h2>
+    <h3>5.1. Advanced fine-tuning and emerging alignment strategies</h3>
+    <p>Recent research extends beyond traditional SFT and RLHF pipelines toward factuality, alignment, reasoning, scalability, and efficiency. FLAME [28] introduces factuality-aware alignment to reduce hallucinations, while RLTHF [29] and Crowd-SFT [30] explore cost-effective human feedback strategies; Reflection-Tuning [31] enhances instruction-tuning datasets through model introspection, PAFT [32] proposes parallel fine-tuning paradigms for efficient scaling, and Re-Search [33] and AGRO [34] combine reinforcement learning with search or off-policy data to improve reasoning and alignment. Techniques such as RLHF align models with human preferences, improving safety, factuality, and instruction following [35], while advanced fine-tuning methods optimize reasoning, reduce hallucinations, and increase scalability [36, 37].</p>
+    <h3>5.2. Reinforcement learning from human feedback and preference optimization</h3>
+    <p>RLHF and preference optimization (DPO) [27, 38] align models with human preferences by optimizing against learned reward functions trained on preference judgments, improving helpfulness, safety, and instruction following — though overly constrained optimization may introduce an “alignment tax” degrading generality or reasoning depth [26, 27]. Emerging verifiable-reward approaches (RLVR) shift toward scalable reasoning-centric alignment targeting correctness signals [51, 56].</p>
+    <h3>5.3. Factuality-aware and reasoning-centric alignment methods</h3>
+    <p>Beyond RLHF, factuality-aware alignment methods such as FLAME reduce hallucination errors [28], Reflection-Tuning improves instruction datasets through model self-correction [31], and reinforcement-based approaches such as AGRO explore scalable optimization for reasoning and alignment [34] — complementing supervised and instruction tuning by strengthening reliability, robustness, and controllability in deployed systems [24].</p>
+    <h3>5.4. Parameter-efficient fine-tuning for scalable adaptation</h3>
+    <p>Parameter-Efficient Fine-Tuning (PEFT) adapts LLMs to new tasks or domains while updating only a small fraction of parameters. LoRA enables low-rank adaptation of attention weights [37], QLoRA combines low-rank updates with quantization for efficient fine-tuning of very large models under limited GPU resources [39], and prefix tuning and adapter modules similarly cut memory and compute by freezing most pre-trained weights [40, 41]. PEFT methods achieve performance comparable to full fine-tuning while requiring orders of magnitude fewer trainable parameters [37, 39]: LoRA typically updates less than 0.1% of weights (≈99.9% reduction) with ∼60–80% VRAM savings, and QLoRA enables fine-tuning models up to 65 B parameters on a single 48 GB GPU via 4-bit quantization with low-rank adapters, making alignment and adaptation feasible under commodity hardware constraints [37, 39]. PEFT thus provides a scalable pathway integrating task adaptation with alignment objectives such as RLHF while preserving instruction following and safety [41] (Table 3).</p>
+  </section>
+
+  <section>
+    <h2>6. From multimodal and retrieval-augmented models to reasoning-centric training</h2>
+    <p>Recent research extends model capabilities beyond text: multimodal LLMs such as GPT-4, Gemini, and Claude-class systems process and generate content across text, images, and in some cases audio and video streams [42, 43], alongside domain-specialized models such as BioGPT and LawGPT for biomedical and legal contexts [44]. Retrieval-Augmented Generation (RAG) addresses static pre-training knowledge limits by enabling dynamic access to external information [45]: retrieved documents supplied as additional context improve factuality, recency, and contextual awareness [46], with recent extensions exploring multimodal RAG over heterogeneous inputs such as images alongside text [42]. Scaling laws continue to guide architectural development, showing predictable relationships between performance, parameter count, dataset size, and computational budget [14, 15], including emergent capabilities in very large models [15].</p>
+    <p>Sparse Mixture-of-Experts (MoE) architectures constitute a broader efficiency paradigm explored across Switch Transformers, Mixtral, and recent industrial implementations — with DeepSeek discussed as a representative recent case study rather than a uniquely dominant approach. Unlike dense transformers activating all parameters during inference, DeepSeek adopts an MoE architecture activating only a subset of expert networks per token [49], reducing effective computational cost while preserving capacity and scalability [48]. Table 4 quantitatively compares DeepSeek-style sparse MoE models against dense baselines: despite very large total parameter counts, activated parameters remain comparable to much smaller dense models while achieving strong benchmark performance (e.g., MMLU), supporting the claim that sparse activation can approach or exceed dense scaling at substantially lower effective computational cost. Overall, the frontier moves toward hybrid paradigms integrating multimodal processing, retrieval augmentation, and reasoning-focused post-training, with DeepSeek exemplifying efficiency-aware models combining sparse MoE with structured supervision and scalable alignment [50, 51].</p>
+  </section>
+
+  <section>
+    <h2>7. Evaluation of large language models and recent advances</h2>
+    <h3>7.1. Outcome-based vs. process-based evaluation</h3>
+    <p>LLM evaluation spans capabilities, robustness, and safety. Standard benchmarks — GLUE, SuperGLUE, MMLU, BIG-bench, HELM, HumanEval — measure reasoning, language understanding, and code generation [6, 58], with task-specific suites for biomedical, legal, and cultural domains; metrics include accuracy, F1, BLEU, ROUGE [61], perplexity, and exact match, alongside alignment aspects such as instruction adherence, factual accuracy, bias, and toxicity for real-world deployment. Evaluation is increasingly viewed along two complementary dimensions: outcome-based benchmarks measuring final-task correctness (MMLU, HumanEval), and process-based evaluation assessing the validity of intermediate reasoning steps. Classical suites (GLUE, SuperGLUE, MMLU, BIG-bench) reflect outcome-level performance, while reasoning-centric paradigms such as Reinforcement Learning with Verifiable Rewards (RLVR) motivate protocols verifying that the reasoning process itself is sound and reliable [56].</p>
+    <p>A major 2025–2026 evaluation challenge is data contamination (benchmark leakage) [62]: since modern LLMs train on web-scale corpora and large instruction datasets, benchmark questions or reference solutions may unintentionally appear in training data, so high scores may partly reflect memorization rather than generalization — affecting the interpretability of benchmark comparisons including Table 6 and motivating contamination-aware protocols and dataset auditing. Human-centered and multi-dimensional approaches are therefore rising: human evaluators categorize responses by helpfulness, safety, and instruction-following detail beyond automatic metrics, while adversarial prompts, out-of-distribution scenarios, and complex reasoning tasks stress-test robustness — with unified frameworks merging performance, alignment, and efficiency metrics increasingly adopted to ensure LLMs are both effective and safe [59].</p>
+  </section>
+
+  <section>
+    <h2>8. Analytical taxonomy: training efficiency vs. alignment and reasoning quality</h2>
+    <p>While many surveys describe LLM training techniques in isolation, the practical challenge is understanding tradeoffs across the full pipeline. We propose a unified analytical taxonomy positioning modern LLM approaches along two axes (Figure 3): (i) Training Efficiency — the compute/parameter cost of scaling capability (dense vs. sparse activation, FLOPs efficiency, parameter-efficient fine-tuning); and (ii) Alignment and Reasoning Quality — how post-training improves instruction following, helpfulness, safety, and verifiable reasoning performance. Dense transformer families (e.g., GPT-style and LLaMA-style models) advance capabilities through parameter scaling and large-scale pre-training (8.1), while sparse MoE architectures (e.g., DeepSeek-style) activate only a subset of parameters per token for efficient training and inference at competitive performance.</p>
+    <p>Post-training alignment methods such as RLHF and DPO [27, 38] improve instruction compliance and safety but may impose an “alignment tax” of degraded generality or reasoning depth [26, 27]; emerging verifiable-reward approaches (RLVR) [51, 56] shift toward scalable correctness-driven reasoning-centric alignment (8.2). The tax arises from concrete optimization dynamics (8.3): RLHF optimizes against a learned reward function predicting human preference judgments rather than task correctness [26, 27]; since preference labels often reward politeness, caution, or harmlessness, they correlate imperfectly with reasoning accuracy, and as reward pressure grows the policy maximizes preference scores even at the cost of shorter, conservative, less exploratory responses — suppressing intermediate reasoning chains on multi-step tasks (e.g., on GSM8K, preference-optimized models may favor safe high-level answers over explicit reasoning steps, reducing exact-match accuracy despite higher helpfulness ratings). Lin et al. [64] quantified performance declines on reasoning-intensive benchmarks such as GSM8K and MMLU as RLHF alignment strength increases. Table 8 maps major paradigms — dense pre-training, PEFT, RLHF/DPO, sparse MoE, RLVR — onto this efficiency–alignment landscape (8.4).</p>
+  </section>
+
+  <section>
+    <h2>9. Discussion</h2>
+    <p>Despite strong empirical performance, LLMs face substantial limitations: training and deploying state-of-the-art systems demands extensive compute, restricting accessibility; persistent hallucination, bias, and limited interpretability complicate safe deployment in high-impact domains [8, 26]. Research increasingly prioritizes efficiency: PEFT methods such as LoRA and QLoRA adapt large models to downstream tasks without prohibitive cost [37, 39, 41], multilingual and multimodal training improve robustness [42, 43], and alignment mechanisms such as RLHF keep behavior consistent with human intentions at scale [26, 27]. Reasoning-centric models such as DeepSeek illustrate both promise and limits: sparse MoE achieves strong performance at reduced cost [48, 49], yet sparse expert activation complicates interpretability and expert specialization analysis [49, 69], and standard benchmarks fail to capture how training objectives (reasoning supervision, algorithmic feedback, search-augmented optimization) shape internal representations [58]. This motivates training-aware evaluation frameworks beyond task metrics [58, 63]: models may match benchmark scores while differing substantially in information allocation, routing dynamics, and reasoning behavior — where embedding-level diagnostics such as LLM2Vec-style projections [70] reveal differences invisible to conventional benchmarks, supporting more reliable comparison, interpretability, and alignment verification [63, 66]. Future LLM research must jointly treat training strategies and evaluation methodologies as coupled design choices.</p>
+  </section>
+
+  <section>
+    <h2>10. Future directions</h2>
+    <p>Future LLMs will likely integrate core training stages iteratively — foundation-scale pre-training, instruction tuning [24], and advanced post-training alignment such as RLHF [26, 27] — maximizing capability with robust safety and human-aligned behavior [22]. Models must scale to extreme complexity while becoming more interpretable than today's largely opaque black boxes [63], enabling developers, auditors, and regulators to understand decision-making in critical deployments [66]. Evaluation frameworks must unify beyond static benchmark accuracy [58], incorporating alignment with human values [63], bias and fairness risk mitigation across user groups [67], and robustness against adversarial or unexpected inputs [58] — the technical and ethical directions essential for reliable, trustworthy, societal-scale LLMs.</p>
+  </section>
+
+  <section>
+    <h2>11. Limitations</h2>
+    <p>This systematic mapping study has several limitations. First, the LLM training field evolves extremely rapidly, and new architectures or alignment paradigms may emerge shortly after the temporal snapshot captured (2017–2025). Second, although the search covered major scholarly databases (Scopus, Web of Science, IEEE Xplore, Google Scholar), it may miss specialized regional venues, industrial reports, or non-English publications. Third, given the fast-moving frontier, a subset of influential preprints was included under the high-impact criteria, and citation-based thresholds may lag the very latest developments.</p>
+  </section>
+
+  <section>
+    <h2>12. Conclusions</h2>
+    <p>This systematic mapping study consolidated contemporary LLM training methodologies — large-scale self-supervised pre-training, supervised and instruction fine-tuning, advanced alignment including RLHF and factuality-aware methods, parameter-efficient adaptation, retrieval-augmented and multimodal training, and sparse MoE efficiency paradigms — into a unified efficiency–alignment taxonomy. Key findings: dataset composition and curation are as decisive as scale; PEFT delivers near-full-tuning quality at orders-of-magnitude lower cost; sparse activation approaches dense scaling at lower effective compute; alignment improves helpfulness and safety but risks an alignment tax on reasoning that verifiable-reward methods address; and evaluation must move beyond static benchmarks toward contamination-aware, training-aware frameworks. These results provide a concise technical reference for building scalable, reliable language models.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[4] Common Crawl Foundation, “Common Crawl web corpus,” https://commoncrawl.org.</li>
+      <li>[6] M. Chen et al., “Evaluating large language models trained on code,” arXiv:2107.03374, 2021.</li>
+      <li>[14] J. Kaplan et al., “Scaling laws for neural language models,” arXiv:2001.08361, 2020.</li>
+      <li>[15] J. Hoffmann et al., “Training compute-optimal large language models,” in <em>Proc. NeurIPS</em>, 2022.</li>
+      <li>[19] R. Taori et al., “Stanford Alpaca: An instruction-following LLaMA model,” Stanford CRFM, 2023.</li>
+      <li>[20] A. Köpf et al., “OpenAssistant conversations,” arXiv:2304.07301, 2023.</li>
+      <li>[21] Databricks, “Free Dolly: Introducing the world's first truly open instruction-tuned LLM,” 2023.</li>
+      <li>[22] J. Wei et al., “Finetuned language models are zero-shot learners,” in <em>Proc. ICLR</em>, 2022.</li>
+      <li>[26] L. Ouyang et al., “Training language models to follow instructions with human feedback,” in <em>Proc. NeurIPS</em>, pp. 27730–27744, 2022.</li>
+      <li>[27] R. Rafailov et al., “Direct preference optimization,” in <em>Proc. NeurIPS</em>, 2023.</li>
+      <li>[37] E. J. Hu et al., “LoRA: Low-rank adaptation of large language models,” in <em>Proc. ICLR</em>, 2022.</li>
+      <li>[39] T. Dettmers et al., “QLoRA: Efficient finetuning of quantized LLMs,” in <em>Proc. NeurIPS</em>, 2023.</li>
+      <li>[45] P. Lewis et al., “Retrieval-augmented generation for knowledge-intensive NLP tasks,” in <em>Proc. NeurIPS</em>, pp. 9459–9474, 2020.</li>
+      <li>[52] W. Fedus, B. Zoph, and N. Shazeer, “Switch Transformers: Scaling to trillion parameter models,” <em>J. Mach. Learn. Res.</em>, vol. 23, pp. 1–39, 2022.</li>
+      <li>... [full reference list available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/technologies14020133">10.3390/technologies14020133</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

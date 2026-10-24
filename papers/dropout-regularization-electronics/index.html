@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة مناهج تنظيم الإسقاط للشبكات العصبية العميقة — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Review on Dropout Regularization Approaches for Deep Neural Networks within the Scholarly Domain</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مراجعة مناهج تنظيم الإسقاط (Dropout) للشبكات العصبية العميقة في المجال الأكاديمي</h2>
+
+  <div class="paper-meta">
+    <span>👤 Imrus Salehin, Dae-Ki Kang</span>
+    <span>📄 Electronics 2023, 12, 3106</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics12143106">10.3390/electronics12143106</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يُعد الإسقاط (Dropout) من أشهر أساليب التنظيم في المجال الأكاديمي لمنع فرط تخصيص نماذج الشبكات العصبية أثناء التدريب. وتطوير تقنية إسقاط فعالة متوافقة مع بنية النموذج أمر حاسم في مهام التعلم العميق، إذ اقتُرحت بنى شبكية عصبية متنوعة — كالالتفافية (CNN) والمتكررة (RNN) — وأظهرت أداءً معقولًا في مجالاتها المتخصصة. في هذه الورقة، نقدم مراجعة شاملة وجديدة لأحدث مناهج تنظيم الإسقاط: نشرح أساليب الإسقاط المتنوعة من الإسقاط العشوائي المعياري إلى إسقاط AutoDrop، ونناقش أداءها وقدراتها التجريبية. تلخص الورقة البحوث الأحدث في تقنيات الإسقاط لتحسين الأداء عبر «تغييرات البنية الداخلية» و«تعزيز البيانات» و«معلومات الدخل». ونرى أن التنظيم السليم للقيود البنيوية للبنية الشبكية عامل حاسم لتجنب فرط التخصيص. نناقش مزايا الأساليب المعروضة وقيودها كمراجع قيمة للبحوث المستقبلية وتطوير مناهج جديدة، ونهتم بالمجال الأكاديمي في النقاش لمواكبة الزيادة الهائلة في النتائج العلمية عبر تحليل قضايا أكاديمية مهمة عدة للشبكات العصبية.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>حققت تقنيات التعلم العميق في السنوات الأخيرة أداءً لافتًا في تحسين الذكاء الاصطناعي وأتمتته. ومن أهم الشواغل في بحوث التعلم العميق أسلوب التنظيم المستخدم لمنع فرط التخصيص أثناء التدريب. فالإسقاط [1] المقترح عام 2012 أسلوب تنظيم معروف يتفوق على عمليات التنظيم الأخرى أثناء الأمثلة، ويُستخدم في مهام شبكية متنوعة كتجزئة الصور وتعزيز البيانات وتوليد الصور والترجمة الآلية وتصنيف الصور لتقليل فرط التخصيص. ومفهوم الإسقاط سهل التطبيق نسبيًا مقارنة بتقنيات التنظيم الأخرى. وطُبّق في البداية أساسًا على النماذج المترابطة كاملةً حيث ترتبط كل عصبونات طبقة بكل عصبونات التالية، لكن مع الوقت نُفّذت صيغ عديدة لوجهات نظر وحلول متنوعة، بتعديلات تشجع أداء التنظيم للبنى القائمة.</p>
+    <p>فمثلًا، حاول الإسقاط المعياري [2] وDropConnect [3] وDropBlock [4] وSkipout [5] وMaxDropout [6] وDropPath [7] والإسقاط الانتقائي لـ CNN وcutout [8] وأساليب الإسقاط الخصومية [9] والإسقاط الطيفي [10] استكشاف قضية التنظيم من جوانب عدة. تقدم ورقة المراجعة هذه نظرة على البحوث السابقة والجارية في أساليب تنظيم الإسقاط — دون ادعاء الإحاطة — متعمقة في أساليب إسقاط محددة ذات صلة أو فائدة خاصة لحقول بحثية معينة. نجمع أساليب الإسقاط الرئيسية واسعة الاستخدام في الشبكات الأمامية العميقة والالتفافية [2، 11–22] لكفاءتها وفعاليتها، ونقدم مراجعة شاملة نستكشف فيها المنظورات والمساهمات المتنوعة لهذه الأساليب في الشبكات العصبية.</p>
+  </section>
+
+  <section>
+    <h2>2. الخلفية</h2>
+    <p>في الشبكات العصبية، التنظيم تقنية تعديل لخوارزمية التعلم تقلل خطأ التعميم مع موازنة خطأ التدريب. وهي مفيدة خاصة في الشبكات العصبية حيث الهدف الأساسي تقليل فرط التخصيص أثناء التدريب. وتتباين مزايا كل تقنية وعيوبها وعيوبها حسب المشكلة ومجموعة البيانات. يركز هذا القسم على التنظيم خاصة تنظيم الإسقاط، ولضمان شرح شامل قُسّم النقاش إلى قسمين فرعيين.</p>
+    <p>أساليب التنظيم الأساسية هي تنظيم L1 وL2 [38]: يفرض L1 قيدًا متناسبًا مع مجموع القيم المطلقة للأوزان، بينما يفرض L2 قيدًا متناسبًا مع مجموع مربعات الأوزان — مشجعًا النموذج على تعلم قيم أوزان أصغر مما يساعد على منع فرط التخصيص. وتطورت في السنوات الأخيرة خوارزميات التنظيم لنماذج التعلم العميق كالأمامية والالتفافية بسرعة: ومن امتدادات L1 وL2 تدهور الأوزان [39] والإيقاف المبكر [40] وتنظيم الإنتروبيا [41]. فالإيقاف المبكر يراقب خسارة التحقق أثناء التدريب ويوقفه مبكرًا قبل فرط تخصيص بيانات التدريب [40]، ويُختار النموذج النهائي بأدنى خسارة تحقق. والتطبيع الدفعي [42، 43] يطبّع الدخل لكل طبقة، مقللًا انزياح المتغير الداخلي ومحسّنًا معدل التقارب بتمليس مشهد الأمثلة — ويمكن أن يعمل تنظيمًا بإضافة ضجيج لدخل كل طبقة. وتعزيز البيانات [44] يزيد حجم مجموعة التدريب بنسخ معدلة من البيانات الأصلية (قلب وتدوير واقتصاص الصور...). أما الإسقاط الأصلي [1] فيُسقط الوحدات عشوائيًا أثناء التدريب. وشهدت أساليب الإسقاط كخوارزميات تنظيم تطورًا سريعًا في نماذج التعلم العميق كالأمامية (FNN) والالتفافية (CNN).</p>
+    <p>الشبكات العميقة ذات المعاملات القابلة للتدريب الكثيرة مرغوبة عمومًا لاستخراج خصائص متينة من البيانات، لكنها عرضة لفرط التخصيص. ولمعالجته، يُطفئ الإسقاط المعياري عصبونات مختارة عشوائيًا أثناء التدريب [1]. ومن جهة، وُظّف EDropout — الإسقاط القائم على الطاقة — في [45] لإسقاط الوحدات المرئية والخفية في الشبكات العميقة: يُدخل مقياسًا طاقيًا لتحديد العصبونات الأقل إسهامًا في طاقة الشبكة الكلية، فتُزال أثناء التدريب والاختبار لتقليل تعقيد الشبكة وتحسين كفاءتها. ومن سبل تحسين أداء نماذج CNN ومتانتها إسقاط التجميع الأقصى [46] الذي يُسقط عشوائيًا بعض قيم التجميع الأقصى أثناء تدريب شبكة الالتفاف — بأداء مشابه للإسقاط الأصلي الذي يختار عصبونات التنشيط عشوائيًا [46] — واقترح الباحثون استخدام التجميع الموزون احتماليًا بدل التجميع الأقصى لكل خريطة خصائص للحصول على نماذج دقيقة ومتينة، وثبتت فعاليته تجريبيًا. وفي نمذجة اللغة، قدم Merity وآخرون تقنيات تنظيم عدة منها الإسقاط لتحليل أثرها على نماذج LSTM اللغوية [47]، مستكشفين تقنيات كـ LSTM مُسقَطة الأوزان مع محسّنات كـ Adagrad وAdam لتحديد فعاليتها في تحسين أداء النماذج.</p>
+  </section>
+
+  <section>
+    <h2>3. المفهوم النظري للإسقاط</h2>
+    <p>تطورت بنى التعلم العميق وتوسعت كثيرًا في الآونة الأخيرة، محسّنة مهام متنوعة كالتصنيف وكشف الأجسام والتجزئة وغيرها. لكن استخدام بنى أعمق وأعقد يصاحبه خطر متزايد لفرط التخصيص أثناء التدريب. ولمواجهة تحديات التعلم العميق، طرح الباحثون تقنيات تنظيم متنوعة برز منها الإسقاط. يخفف الإسقاط المعياري [1] مشكلة فرط التخصيص بإسقاط عصبونات الشبكة عشوائيًا أثناء التدريب. فمثلًا، في شبكة بعصبونات N في طبقة خطية خفية، تكون دالة التنشيط Softmax مطابقة للمتوسط الحسابي الهندسي للخرج النهائي لشبكات العمل الممكنة 2^N تحت Softmax المعياري [2] — وهو أقرب لمنهج تعلم آلة كالتجميع (bagging) [48] الذي درّب النسخ منفصلة واستخدم الوسط الحسابي في الاستدلال.</p>
+    <p>ولنأخذ طبقة خطية مفردة داخل شبكة عصبية — تُسمى خطية لدمجها سلوك دالة تنشيط خطية f(x) = x — وفيها يُحصَل على العصبون النهائي (خرج الطبقة) بالجمع الموزون لكل المدخلات (الشكل 1). ورغم أن هذا التفسير الرياضي المبسط يصدق تجريبيًا على شبكات لاخطية معينة، فإن تقدير النموذج يتضمن تصغير دالة خسارة: خسارة المربعات الصغرى العادية (OLS): Ln = 1⁄2 (t − مجموع wi·Ii)² ‏(1) تمثل دالة الخسارة في الشبكات العامة، بينما LD = 1⁄2 (t − مجموع δi·wi·Ii)² ‏(2) تقابل شبكات الإسقاط، حيث معدل الإسقاط δ يتبع توزيع Bernoulli بمعامل احتمال الاحتفاظ. يوضح التحليل أن الإسقاط يقارب التجميع الضمني لعدد أسي من الشبكات الفرعية المشتركة الأوزان، مما يفسر قدرته التنظيمية الفائقة.</p>
+  </section>
+
+  <section>
+    <h2>4. إسهام أساليب تنظيم الإسقاط</h2>
+    <p>يناقش هذا القسم إسهام عدة تطبيقات إسقاط شائعة الاستخدام بناءً على أدائها تحت عملية الإسقاط. تؤدي مزايا أساليب تنظيم الإسقاط دورًا حيويًا في ترسيخ المعرفة، مبرزة المنافع المحورية وملهمة مزيدًا من البحث في التعلم العميق. والهدف الأساسي إبراز مزايا الأساليب وتقديم نظرة شاملة موحدة للمنافع — وفيما يلي عرض موجز لها.</p>
+    <p>في تحسين الفعالية، حسّنت تقنيات الإسقاط فعالية النماذج في توظيف التدريب وتعزيز البيانات عبر إجراءات متنوعة: • تعزيز البيانات: توظف هذه الأساليب [8، 41، 50، 51] لتعزيز البيانات المتاحة بإدخال ضجيج على بيانات الدخل وتوليد عينات تدريب إضافية وتحسين فعالية النموذج أثناء التدريب — ففي كل حقبة تدريب يُستخدم الإسقاط لتقديم مجموعة بيانات جديدة بإسقاط بيانات تدريب عشوائية. • منع فرط التخصيص: وُظفت غالبية مناهج الإسقاط [52، 53] للتنظيم لتخفيف فرط التخصيص — فإسقاط بعض العصبونات أثناء التدريب يقلل الترابط بين منع فرط التخصيص والعصبونات، إذ يصعّب الإسقاط العشوائي إقامة علاقة واضحة بين العصبونات المفردة ومنع فرط التعلم، وشاع استخدامه في الشبكات العميقة لتحسين التعميم. • تحسين تمثيل البيانات: توظف هذه المنهجيات [54–57] لتحسين تمثيل البيانات في مرحلة التدريب المسبق — فبعض الأساليب تولّد أقنعة عشوائية تُطبَّق على مقاطع بيانات الدخل، وتُستخدم الأجزاء غير المقنعة للتنبؤ بالمقنعة مما يزيد تمثيل البيانات. • منع فرط التمليس: وفق تحليلات بحثية، منع استخدام الإسقاط في الشبكات الالتفافية الرسومية مشكلة فرط التمليس [58] — فعندما تعمق شبكات GCN كثيرًا تتماثل تمثيلات كل العقد فيضيع المعلومات، وتشير دراسات إلى فعالية الإسقاط في التخفيف.</p>
+    <p>وفي تحسين الكفاءة، تحسّن تقنيات الإسقاط فعالية النموذج وكفاءته عبر عمليات عدة: • ضغط النماذج: وُظفت أساليب إسقاط عدة لأغراض الضغط [25، 59، 60] — فيسهل ضغط بنية النموذج بعد الإسقاط العشوائي للعصبونات كالتقليم العصبي، وأساليب التلخيص تقلل معاملات النموذج محققة كفاءة تدريب أعلى وفرط تخصيص أقل. • تقدير عدم يقين النموذج: استُخدمت تقنيات معروفة لتقدير عدم اليقين [15–17، 61] — كتأويل الإسقاط تعلمًا بايزيًا في إسقاط مونت كارلو الذي يفسره تقريبًا بايزيًا لعملية غاوسية عميقة، لكنه يعمل بالبحث الشبكي شبه المستحيل في النماذج العميقة والتعلم التعزيزي لكلفة الوقت والموارد العالية. • تسريع تدريب GCN: بتوظيف الإسقاط في الشبكات الرسومية يُسرَّع التدريب بتقليل الحمل الحسابي للانتشار عبر الأحياء الكبيرة مع الحفاظ على جودة التمثيلات.</p>
+  </section>
+
+  <section>
+    <h2>5. تصنيف مناهج تنظيم الإسقاط</h2>
+    <p>خلال الفترة 2012–2022، صنّفنا كل منهج تنظيم إسقاط وفق سنة تقديمه وتطوره. يصور الشكل 2 الخط الزمني لهذه المناهج مرئيًا — مبرزًا الاستمرارية الزمنية لتقنيات الإسقاط ونظرة واضحة على مشهدها عبر السنوات. ويوضح الشكل 3 تصنيف أساليب الإسقاط إلى ثلاث فئات رئيسية: تغيير البنية الداخلية، وتعزيز البيانات، ومعلومات الدخل — وتضم كل فئة فئات فرعية عدة. بتنظيم الأساليب في هذا التصنيف، نهدف لتقديم نظرة واضحة ومنهجية على أنواع تقنيات الإسقاط وفق تغييراتها في البنية الداخلية واستخدامها في تعزيز البيانات وأثرها على معلومات الدخل. يصلح التصنيف مرجعًا قيمًا لفهم أساليب الإسقاط المتنوعة في التعلم العميق، ويقدم القسم التالي تحليلًا معمقًا للتصنيف.</p>
+    <p>يبدأ الخط الزمني بالإسقاط المعياري (Hinton وآخرون) عام 2012 [1]، ثم Maxout (Goodfellow وآخرون) وDropConnect (Wan وآخرون) والإسقاط السريع (Wang وآخرون) عام 2013، ثم الضجيج الغاوسي الضربي (Srivastava وآخرون) والإسقاط المصلَّب (Rennie وآخرون) والتحليل التجريبي (Warde-Farley وآخرون) عام 2014، ثم Standout (Ba وآخرون) والإسقاط التبايني (Kingma وآخرون) وRNNdrop (Moon وآخرون) وإسقاط التجميع الأقصى (Wu وآخرون) والإسقاط المكاني عام 2015، ثم الإسقاط التطوري (Li وآخرون) وإسقاط RNN التبايني (Gal وآخرون) وإسقاط مونت كارلو (Gal وآخرون) والإسقاط الانتقائي لـ CNN (Park وآخرون) وSwapout (Singh وآخرون) والعمق العشوائي (Huang وآخرون) والإسقاط الموجَّه (Keshar وآخرون) والإسقاط المستهدف (Gomez وآخرون) وإسقاط المعلومات (Achille وآخرون) والإسقاط الأخوي (Żołna وآخرون) عام 2016، ثم DropBlock (Ghiasi وآخرون) وأساليب الإسقاط الخصومية (Park وآخرون، Saito وآخرون) عام 2018 — متتبعًا نضج المجال من إسقاط العصبونات المفردة إلى الهياكل والبيانات والمعلومات.</p>
+  </section>
+
+  <section>
+    <h2>6. الإسقاط القائم على تغييرات البنية الداخلية</h2>
+    <p>اقتُرحت مناهج متنوعة إضافة للإسقاط للتنظيم في التعلم العميق. عرّفنا في ورقة المراجعة التنظيم القائم على الإسقاط الداخلي بأنه تغيير الأوزان والنوى أثناء التدريب دون تغيير قيم الدخل. فإسقاط العصبونات المفردة [1، 22، 65] — كما ذُكر — يُسقط عشوائيًا عصبونات مفردة أو يعطّلها أثناء التدريب: لكل عصبون احتمال إسقاط يُصفَّر معه خرجه — مما يمنع فرط التخصيص بتقليل الاعتماد على عصبونات محددة ويشجع تعلم تمثيلات أمتن وأعمم. أما إسقاط مجموعات العصبونات فيسلك منهجًا مختلفًا: بدل إسقاط المفردات، يُسقط مجموعات كاملة أو مجموعات فرعية دفعة واحدة — وقد تُحدَّد المجموعات بعوامل كالموقع المكاني أو الدور الوظيفي داخل الشبكة. وفي القسم الفرعي التالي مناقشة مفصلة لبعض المناهج الشائعة.</p>
+    <p>نستكشف في هذا القسم أساليب إسقاط عصبونات شائعة قائمة على الشبكات الأمامية (FNN) والالتفافية (CNN): أولًا DropBlock [4] — فالشبكات العميقة تحقق أداءً عاليًا عادة عندما تُفرَط أمثلة معاملاتها وتُدرَّب بضجيج كبير وتنظيمات كتدهور الأوزان والإسقاط. وDropBlock صيغة إسقاط منظمة تزيل كل الوحدات داخل منطقة متصلة من خريطة الخصائص (موتر): يُحدَّد حجم المناطق المُسقَطة بمعامل فائق، وتُختار عشوائيًا في كل تكرار تدريب (الشكل 4). كما أن زيادة عدد الوحدات المُسقَطة تدريجيًا أثناء التدريب ترفع الدقة وتقلل حساسية النموذج لتغيرات المعاملات الفائقة كالمعدل والتعلم وحجم الدفعة. وأظهرت مهمة تصنيف الصور بنموذجي AmoebaNet-B وResNet-50 تحسن دقة النموذج مقارنة بصيغ الإسقاط الأخرى: فعلى ImageNet تفوقت بدائل cutout وAutoAugment على خط الأساس 2% لـ ResNet-50، وحقق AmoebaNet-B تحسنًا بنحو 0.3%.</p>
+    <p>وثانيًا MaxDropout [6]: بينما يُسقط الإسقاط المعياري [1] العصبون عشوائيًا من التدريب، يعطّل MaxDropout حساب العصبون من تنشيطاته — فتُطبَّع قيم الموتر أولًا، ثم تُصفَّر المخرجات ويُحدَّد العتبة p لانتقاء القيم الأعلى وتعطيل عصبوناتها (الشكل 5). يعكس هذا المنطق أن التنشيطات الأعلى قيمة الأكثر هيمنة على القرار تستحق الإسقاط لدفع الشبكة نحو خصائص بديلة أمتن — وحقق نتائج تنافسية على CIFAR-10/100 خاصة مقترنًا بـ cutout كما سيأتي في جدول الأداء.</p>
+    <p>وفي الإسقاط مع الشبكات المتكررة (RNN)، من أهم تحديات تطبيق الإسقاط أن للشبكات المتكررة وصلات تكرارية — أي الأوزان نفسها في كل خطوة زمنية — فيسبب إسقاط وحدات مختلفة في كل خطوة سلوكًا غير متسق وغير مستقر يضر أداء الشبكة. أوضح Yarin Gal وZoubin Ghahramani تقنية متينة لتطبيق تنظيم الإسقاط على الشبكات المتكررة [15]: الفكرة المحورية إظهار إمكانية التطبيق المؤسَّس نظريًا باشتقاق صياغة رياضية للإسقاط في الشبكات المتكررة من مفهوم إضافة ضجيج للوحدات الخفية. وأظهر V. Pham وآخرون [70] كيف يحسّن الإسقاط أداء نماذج الشبكات المتكررة في مهام التعرف على الكتابة اليدوية — مطبقين الإسقاط على الوصلات الأمامية فقط دون التكرارية، ومنفذين الإسقاط عمليًا كطبقة منفصلة تخرج القيم نفسها كالدخل باستثناء المواضع المُسقَطة. ويمثل «الإسقاط المتكرر» (recurrent dropout) [71] إسقاطًا آخر مع الشبكات دون فقدان معلومات مهمة من الحالة الخفية — بإدخال موتر «تقنيع» يُطبَّق على الحالة الخفية قبل دالة التنشيط، مولَّد عشوائيًا في كل تكرار باحتمالات يحددها معامل معدل الإسقاط الفائق.</p>
+  </section>
+
+  <section>
+    <h2>7. الإسقاط القائم على تعزيز البيانات</h2>
+    <p>تعزيز البيانات عملية تعديل البيانات لتقليل التباين بتعديلات طفيفة على الصور لتوليد بيانات تدريب أكثر. ويمكن أن تعمل بعض أساليب الإسقاط كشكل من تعزيز البيانات ممكنة تعميمًا محسّنًا دون معرفة مجالية محددة [50]. يناقش هذا القسم فعالية الإسقاط القائم على تعزيز البيانات كتقنية لتحسين أداء النموذج — مركزًا على الإسقاط عالي الأداء القائم على تعزيز البيانات، ومستكشفًا قدراته ومظهرًا فعاليته في تعزيز البيانات لأداء محسن.</p>
+    <p>أسلوب Cutout [8] تقنية مباشرة لكنها واعدة لتعزيز البيانات: أثناء التدريب يعمل تقنية لتعزيز الصور والتنظيم بإخفاء مناطق مربعة من بيانات الدخل فرادى. حلّل الباحث في [8] الأحجام المثلى للجزء المُسقَط في CIFAR-100 وCIFAR-10: تباين الحجم الأمثل حسب عدد نسخ كل صنف المحسوب من المجموعة، واستُخدم cutout لتعزيز قوة الشبكات الالتفافية وإنجازها — ولأفضل النتائج عُولجت CIFAR-10 بإسقاط منطقة 16×16 (ارتفاعًا وعرضًا) بينما كان الأفضل لـ CIFAR-100 منطقة 8×8 (ويوضح الشكل 6 آلية العمل). وأسلوب المحو العشوائي (random erasing) [51] من أكثر أساليب تعزيز البيانات شيوعًا وشمولًا (الشكل 7) ويعمل بأسلوب مشابه للإسقاط: يختار عشوائيًا منطقة من الصورة ويستبدل بكسلاتها قيمًا عشوائية «ماحيًا» ذلك الجزء — واستُخدم في الشبكات الالتفافية أثناء التدريب لتقليل فرط التخصيص وتعزيز متانة النموذج. ولأفضل أداء استُخدمت بنى عدة على Fashion-MNIST وCIFAR-10 وCIFAR-100، لكنه يعمل أفضل مع WRN-28-10 وResNeXt-8-64 من غيرهما. ووفق تحليل الصور الرمادية، حسّن المحو العشوائي أداء WRN-28-10 من 4.01% إلى 3.65% في خطأ top-1 على Fashion-MNIST.</p>
+    <p>ومن منظور مختلف، يقدم إسقاط «إزالة الغموض» (demystifying dropout) [33] رؤية مغايرة: طُوّر بمفاهيم نظرية ورياضية تشمل التمريرين الأمامي والخلفي، محسّنًا أداء الإسقاط المعياري [1] وتعزيز البيانات [8]. الفكرة المحورية أنه يُسقط الخصائص عشوائيًا أثناء التمرير الأمامي لكنه لا يُسقط أي خصائص ولا ينشر الأخطاء خلفيًا أثناء الخلفي؛ وعلى النقيض، في الإسقاط الخلفي تُحفَظ كل الخصائص في الأمامي حتى المُسقَط، وتُصفَّر فقط تدرجات الخصائص المُسقَطة في الخلفي — مقدمًا منظورًا جديدًا على الإسقاط المعزز. وأسلوب SmoothMix [72] تنظيم قياسي يساعد على منع فرط التخصيص وتحسين تعزيز البيانات — بتقليل مشكلة الحواف القوية عبر تغيير سلس للحد بين صورتين: أدخل المؤلفون مرشحات نوى وحقنوا ضجيجًا لتكوين دخل معزز بين صورتين. ولتقييم الأداء قارنوا النتائج التجريبية بنموذجي ResNet-50 وPyramidNet-200 على ImageNet وCIFAR-100.</p>
+  </section>
+
+  <section>
+    <h2>8. الإسقاط القائم على معلومات الدخل</h2>
+    <p>تُسقط بعض أساليب الإسقاط جزءًا من معلومات الدخل مباشرة أثناء التدريب، خادمة أغراضًا متنوعة في سيناريوهات مختلفة — كالتنظيم أو تعزيز البيانات أو تحسين تمثيل البيانات أثناء التدريب المسبق. في 2016، قدم Sennrich وآخرون [73] أسلوب WordDropout في الترجمة الآلية بإسقاط كلمات من بيانات الدخل. ومن التقنيات اللافتة المقترحة من Ghazvinine وآخرين [74] عام 2019 أسلوب Mask-Predict: فبينما تولّد معظم أنظمة الترجمة النص من اليسار إلى اليمين، يتبنى Mask-Predict منهج التقنيع لتدريب النموذج — فيبدأ بالتنبؤ بكل الكلمات الهدف ثم يقنّع ويعيد توليد مجموعة فرعية من الكلمات الأقل ثقة تكراريًا. ويمكن تصنيف أساليب تحسين البيانات الحالية في ثلاث مجموعات رئيسية: التحويل المكاني وتشويه الألوان وإسقاط المعلومات. وفي مجال إسقاط المعلومات، يُعد إسقاط معلومات الدخل ثنائية الأبعاد تقنية تحسين بيانات شائعة. وفي 2019، قدم Verma وآخرون [75] أسلوب manifold mixup الجديد: يمدد مفهوم mixup إلى مستوى الخصائص — فالخصائص تحوي معلومات دلالية أعلى رتبة والاستيفاء على مستواها ينتج عينات أجدى، فيستفيد النموذج من الخصائص المتنوعة والغنية للخصائص المختلفة. وفي 2019 أيضًا، قدم Yun وآخرون [76] أسلوب CutMix تقدمًا على mixup وcutout: فبينما يملأ cutout مناطق محددة من الصورة بمحتوى لا معنى له قد يعيق استغلال النموذج لبيانات التدريب كاملة، ويولّد mixup بالاستيفاء الخطي صورًا قد لا تشبه الطبيعية — يعالج CutMix القصورين باختيار مناطق مستطيلة عشوائية من صورة (Xa) واستبدالها بمناطق من صورة أخرى مع تعديل الموسومات تناسبيًا — محققًا أداءً متفوقًا في التصنيف وتحديد المواقع.</p>
+  </section>
+
+  <section>
+    <h2>9. الإسقاط مع المحولات</h2>
+    <p>في التعلم العميق، المحولات بنية شبكات عصبية قدمها Vaswani [79] عام 2017. صُممت لبيانات الدخل التسلسلية كجمل اللغة الطبيعية أو بيانات السلاسل الزمنية، وتوظف آلية انتباه ذاتي تمكّنها من معالجة تسلسل الدخل بالتوازي — على عكس الشبكات المتكررة التقليدية (RNN) التي تعالج البيانات تسلسليًا. قدم A. Fan وآخرون [80] نوعًا جديدًا من الإسقاط سُمّي «الإسقاط المنظم» (structured dropout) يتيح تقليل عدد طبقات نموذج المحولات بكفاءة أثناء الاستدلال: يُستخدم أثناء الاستدلال لإسقاط الطبقات غير المهمة وفق قناع متعلم — مما يقلل عمق النموذج بكفاءة موفرًا زمن الحساب والذاكرة.</p>
+    <p>واقترح Wu وآخرون [81] أسلوب تنظيم إسقاط متطورًا للمحولات سُمّي UniDrop يدمج ثلاث صيغ إسقاط: إسقاط الخصائص وإسقاط البنية وإسقاط البيانات. وأسلوب PatchDropout [82] تنظيم إسقاط مصمم لنماذج محولات الرؤية: فعلى عكس أساليب الإسقاط التقليدية التي تُسقط الرموز أو الخصائص المفردة، يُسقط PatchDropout عشوائيًا رقعًا من صورة الدخل أثناء التدريب — مما يقلل متطلبات محولات الرؤية الحاسوبية والذاكرية مع تحسين تعميمها ومتانتها.</p>
+  </section>
+
+  <section>
+    <h2>10. مواد التجارب</h2>
+    <p>في ورقة المراجعة، نقدم مقارنة مباشرة لكل أسلوب إسقاط بتحليل النتائج التجريبية والأداء. يناقش هذا القسم مجموعة البيانات وشرحًا أساسيًا للبنية التجريبية. ولتيسير مقارنة أشف، قسّمنا مواد التجارب إلى أقسام فرعية متوازية.</p>
+    <p>التدريب من أهم أجزاء الشبكة العصبية، معتمدًا اعتمادًا كبيرًا على مجموعة الأساس وبيانات التدريب والتقييم والتحقق — وهي مصادر حاسمة لضمان دقة أداء الشبكة وفعاليته. استخدمت تجربة أسلوب الإسقاط أغلبية مجموعات المعايير لعرض أداء الخوارزمية عليها، ومنها CIFAR-10 وCIFAR-100 وImageNet. فمجموعة CIFAR (المعهد الكندي للبحوث المتقدمة) مجموعة شهيرة تضم 80M صورة — لكن استخدم الباحثون غالبًا مجموعتين فرعيتين: (1) CIFAR-10 و(2) CIFAR-100. تتكون CIFAR-10 من 60,000 صورة بحجم 32×32 — 50,000 للتدريب و10,000 للاختبار والتحقق — في 10 أصناف من الحيوانات والأشياء. وتتكون CIFAR-100 من 60,000 صورة بالحجم نفسه — 50,000 للتدريب و10,000 للاختبار والتحقق — لكن في 100 صنف. أما ImageNet فطُوّرت لمشروع ImageNet لمهام الذكاء الاصطناعي كالتصنيف والكشف، وقُدمت من «تحدي ILSVRC 2012»، وتضم 1,240,000 صورة 224×224 للتدريب و50,000 للاختبار/التحقق في 1000 صنف — أكبر من مجموعتي CIFAR.</p>
+    <p>البنى: ResNet [83] — الشبكة المتبقية بنية CNN وأقدم بنية لأعمال التنظيم، ومن أكثر بنى الالتفافيات استخدامًا: تستخدم الوصلات المتبقية وتدمج خرج الطبقة السابقة مع تحويلات لاحقة. تستخدم التجارب صيغتين تختلفان بعمق الشبكة: ResNet-18 [8] وResNet-50 [4] الأشهر من عائلة ResNet — فالأولى ببنية 72 طبقة و18 طبقة عميقة تُدرَّب على ImageNet بأكثر من مليون صورة، والثانية بـ 50 طبقة تُدرَّب على ImageNet. ونموذج ViT-B/16 [84] يركز على محول الرؤية: يقسّم الصورة المرئية إلى رقع ثابتة ثم يضمّن كلًا منها مع نظام تضمين موضعي — وأظهر في CNN أداءً متفوقًا كفاءة حاسوبية ودقة. والشبكة المتبقية العريضة WRN [66] بنية شاملة أخرى لأعمال التنظيم بالمفهوم نفسه كـ ResNet مع اختلافات بنيوية في الوصلات المتبقية. وPyramidNet [85] أشهر بنية شبكية في جدول تجاربنا وواسعة الاستخدام لتحليل التنظيم: تزيد خريطة الخصائص في طبقة الشبكة وتزيد البُعدية باعتدال — محسّنة نتائج مهام التصنيف في الشبكات العصبية.</p>
+  </section>
+
+  <section>
+    <h2>11. مقارنة الأداء مع نتائج تجارب الإسقاط</h2>
+    <p>صُممت الشبكات الالتفافية (CNN) والمحولات عمومًا لتحقيق النتيجة المثلى في معالجة الصور. والإسقاط أسلوب تنظيم فعال يحسّن أداء الشبكات العصبية ودقتها بتقليل فرط التخصيص وتحسين ملاسة خرج النموذج. ويمكن دمج أساليب التنظيم مع مكونات أخرى بسهولة في تجارب لاحقة. يعرض الجدول 1 نتائج بنى CNN والمحولات المفردة على CIFAR-100 وCIFAR-10 وImageNet: فبنية ResNet-50 [4] بخطأ 23.49% على ImageNet، وتحسنه AutoDrop + RA [67] إلى 19.7% وAutoDrop وحده [67] إلى 21.3% وRA [86] إلى 22.4% وFixRes [87] إلى 17.5% وDropBlock [4] إلى 21.65% وMixup [87] إلى 22.1% وFast AA [88] إلى 22.37% وBA [89] إلى 23.14% وAA [4] إلى 22.4% وcutout [4] إلى 23.48% والإسقاط [4] إلى 23.20% وLocalDrop [90] (5.3 / 26.2 / 21.1) وShakeDrop [91] (25.26 على CIFAR-100) وBag of Tricks [92] إلى 21.67 وGradAug [93] إلى 20.33.</p>
+    <p>وعلى ViT-B/16 [84] (7.36 على CIFAR-100 و16.03 على ImageNet) يحسّنه RD [94] إلى 6.71 و15.62، وViT-L/16 + RD [94] إلى 6.15 و14.43. وعلى ResNet-18 [8] (4.72 على CIFAR-10 و22.46 على CIFAR-100) يحسّنه cutout [8] إلى 3.99 و21.96 وMaxDropout [6] إلى 4.66 و21.93 وMaxDropout + cutout [6] إلى 3.76 و21.82 وTargetDrop [95] إلى 4.41 و21.37 وTargetDrop + cutout [95] إلى 3.67 و21.25 وLocalDrop [90] إلى 4.3 و22.2. وعلى الشبكات المتبقية العريضة [66] (4.00 / 19.25 / 21.9) يحسّنه الإسقاط [66] إلى 3.89 و18.85 وMaxDropout [6] إلى 3.84 و18.81 وTargetDrop + cutout [8] إلى 3.08 و18.41، وAutoDrop [67] إلى 3.1 وAutoDrop + RE [67] إلى 2.1، والإسقاط + RA [86] إلى 2.7 و16.7. وعلى PyramidNet [85] (3.48 / 17.01 / 19.2) يحسّنه GradAug [93] (13.76 على CIFAR-100) وShakeDrop + RA [86] إلى 1.5 على CIFAR-10 — وهذا مفيد خاصة لمجموعات البيانات ذات عينات التدريب المحدودة التي تواجه تحديات التعميم.</p>
+  </section>
+
+  <section>
+    <h2>12. المزايا والقيود</h2>
+    <p>يركز هذا القسم على مناهج الإسقاط الحديثة والرئيسية، مبرزًا مزاياها ومحاولًا تحديد قيودها بناءً على البحوث السابقة في الجدول 2. وسّعت بعض المناهج أساليبها للتغلب على القيود بينما ما تزال أخرى تعمل ضمنها لتحسين فعاليتها: الإسقاط [1] يقلل فرط التخصيص في طبقة التدريب ومنها التعلم الخاضع للإشراف والتعرف على الكلام وتصنيف المستندات — لكن أداءه قد يكون أدنى نسبيًا في الشبكات الرسومية والالتفافيات والشبكات المتكررة. وDropBlock [4] يبني بنية للعصبونات المُسقَطة — لكنها ثابتة تُنشأ عشوائيًا. وAutoDrop [67] بنمط تلقائي لإسقاط العصبون — لكنه أظهر أداءً محسنًا للمحولات وتحليل النصوص فقط. وcutout [8] لا يحتاج معرفة مجالية لتوليد القناع — لكن أداءه ليس عاليًا للبنى المعقدة ومجموعات الصور الضجيجة.</p>
+    <p>وR-Drop [94] حريص على استدلال الوحدات المُسقَطة أثناء التدريب — لكنه لا يتفوق إلا في المحولات وتحليل النصوص. والإسقاط الأخوي (fraternal dropout) [28] يقلل الفجوة بين النماذج الفرعية ويصغّر دالة الخسارة — لكن مع عدم اتساق بين التدريب والاستدلال. وELD [96] ينظّم الفجوة بين النماذج الفرعية أثناء الاستدلال — لكنه قد يتطلب موارد حاسوبية أكثر من المعياري. وSkipout [5] لا يتطلب ضبط معاملات فائقة إضافية سهل التطبيق — لكن منهج التدريب طبقة-بطبقة حاسم للبنى المعقدة. وDropGNN [97] يملّس أداء أي شبكة رسومية بتقليل تعقيدها — لكنه قد يفقد معلومات كبيرة بإسقاط عقد أو حواف كاملة مضرًا بالأداء. وMaxDropout [6] يعطّل التنشيطات الأعلى قيمة دافعًا لخصائص بديلة — لكنه حساس لاختيار العتبة p وقد يُسقط إشارات مفيدة في البيانات الضجيجة.</p>
+  </section>
+
+  <section>
+    <h2>13. النقاش والقضية المفتوحة</h2>
+    <p>في دراستنا، أجرينا فحصًا شاملًا لأسلوب تنظيم الإسقاط المعروف — تقنية شائعة وفعالة لتحسين تقارب التدريب والأداء النهائي مقارنة بمناهج التنظيم الأخرى. يقارن جدول الأداء أداء أساليب الإسقاط المتنوعة والبنى الأساسية على مجموعات معيارية مختلفة: فبنية ResNet-50 على ImageNet تُظهر أداءً متفوقًا عند تطبيق AutoDrop + RA وFixRes — بدلالة نسبة الخطأ الأدنى مقارنة بالأساليب الأخرى. ولبنية ResNet-18 على CIFAR-10 لوحظت نتائج مماثلة بتفوق على أساليب كـ MaxDropout + cutout وcutout. وأسلوب الإسقاط فعال في تقليل فرط التخصيص وتسريع تدريب الشبكات العميقة ذات الأعماق الحسابية الكبيرة والمعقدة.</p>
+    <p>وفي الشكل 8 نعرض نظرة على الخصائص العامة لأساليب الإسقاط [1، 3–6، 28، 67، 94، 96، 97] إحصائيًا: يركز الرسم 1 على نسب أساليب الإسقاط المحققة للمعايير الثلاثة الرئيسية — المعرفة المجالية والتنفيذ التلقائي والإسقاط العشوائي — مبصرًا بمدى دمج الأساليب لهذه المعايير. ويصور الرسم 2 إحصاءات أساليب الإسقاط غير المحققة للمعايير الثلاثة جميعها، مبرزًا انتشار الأساليب التي قد تفتقد خاصية أو أكثر منها. وبتحليل الرسمين، نلاحظ أن أغلبية كبيرة من أساليب الإسقاط تمتلك معرفة مجالية — أي مبنية على فهم أو خبرة مسبقة في مجال محدد. وجدير بالذكر أن التوازن بين المعايير الثلاثة يحدد قابلية الأسلوب للتطبيق العام مقابل التخصص المجالي — وهي قضية مفتوحة توجه اختيار الأسلوب وتصميم الجديد.</p>
+  </section>
+
+  <section>
+    <h2>14. الخاتمة</h2>
+    <p>في هذه الدراسة، رصدنا أكثر من أربعين أسلوب تنظيم قائمًا على الإسقاط، يمكن تصنيفها في مجموعات رئيسية عدة (الأمامية والالتفافية والمتكررة والمحولات) مع عملية الإسقاط والأداء. واستكشفنا عبر النقاش استراتيجيات هذه الأساليب وتطبيقاتها وترابطاتها وإسهاماتها في عالم الشبكات العصبية. ومن المهم ملاحظة أن اختيار أنسب أسلوب إسقاط يعتمد على المشكلة والبنية المحددة، ويلزم مزيد من البحث لاستكشاف كامل إمكاناتها. وأثبت توظيف الإسقاط في نماذج التعلم العميق فعالية لافتة في تحسين الأداء ومعالجة فرط التخصيص: فبتعطيل جزء من العصبونات عشوائيًا أثناء التدريب، يشجع الإسقاط الشبكة على تعلم خصائص أمتن وأعمم — محسّنًا الأداء على بيانات الاختبار غير المرئية.</p>
+    <p>تعزز هذه القدرة تعميم النماذج وتخفف فعليًا خطر فرط التخصيص، منتجة شبكات عصبية أمتن وأوثق. وببساطته وفعاليته، أصبح الإسقاط تقنية واسعة التبني في مجتمع التعلم العميق، ممكنًا الباحثين والممارسين من بناء شبكات أوثق وأعلى أداءً. ولتعزيز متانة الإسقاط مستقبلًا، يمكن للباحثين التعمق في الاستكشاف والتطوير وفق نقاش مراجعتنا — من الإسقاط التكيفي التلقائي، إلى التكامل مع المحولات والشبكات الرسومية، إلى أساليب تقدر عدم اليقين بايزيًا بكفاءة — وهي مسارات ستحدد الجيل القادم من تقنيات التنظيم.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Dropout is one of the most popular regularization methods in the scholarly domain for preventing a neural network model from overfitting in the training phase. Developing an effective dropout regularization technique that complies with the model architecture is crucial in deep learning-related tasks because various neural network architectures have been proposed, including convolutional neural networks (CNNs) and recurrent neural networks (RNNs), and they have exhibited reasonable performance in their specialized areas. In this paper, we provide a comprehensive and novel review of the state-of-the-art (SOTA) in dropout regularization. We explain various dropout methods, from standard random dropout to AutoDrop dropout (from the original to the advanced), and also discuss their performance and experimental capabilities. This paper provides a summary of the latest research on various dropout regularization techniques for achieving improved performance through "Internal Structure Changes", "Data Augmentation", and "Input Information". We can see that proper regularization with respect to structural constraints of network architecture is a critical factor to facilitate overfitting avoidance. We discuss the strengths and limitations of the methods presented in this work, which can serve as valuable references for future research and the development of new approaches. We also pay attention to the scholarly domain in the discussion in order to meet the overwhelming increase of scientific research outcomes by providing an analysis of several important academic scholarly issues of neural networks. Keywords: dropout; regularization; overfitting; data augmentation; dropout benefits.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>In recent years, deep learning techniques have performed remarkably in artificial intelligence improvement and automation. One of the most critical concerns in deep learning research is the regularization method used to prevent overfitting during training. Dropout [1], which was proposed in 2012, is a well-known regularization method that outperforms other regularization processes during optimization. It is used in various neural network tasks, such as image segmentation, data augmentation, image generation, machine translation, and image classification to reduce overfitting during training. The concept of dropout is relatively easy to implement compared to other regularization techniques. Initially, this technique was primarily applied to fully connected models where all neurons in one layer are connected to all neurons in the next layer. However, over time, numerous variations have been implemented for different perspectives and solutions to various problems. Those variations also include a number of modifications to encourage the regularization performances of existing neural network architectures.</p>
+    <p>For example, standard dropout [2], DropConnect [3], DropBlock [4], Skipout [5], MaxDropout [6], DropPath [7], selective CNN dropout, cutout [8], adversarial dropout methods [9], and spectral dropout [10] have attempted to explore the regularization issue from several aspects. This review paper provides an overview of previous and ongoing research on dropout regularization methods. While not exhaustive, we delve into specific dropout methods that are particularly relevant or beneficial for specific fields of research. We collect major dropout methods that are widely used in deep feedforward neural networks as well as convolutional neural networks [2, 11–22] due to their efficiency and effectiveness. Furthermore, our paper presents a comprehensive review, where we thoroughly explore the diverse perspectives and contributions of these methods in neural networks.</p>
+  </section>
+
+  <section>
+    <h2>2. Background</h2>
+    <p>In neural networks, regularization is a modification technique to the learning algorithm, which reduces its generalization error with the balance of its training error. This technique is particularly useful in neural networks, where the primary goal is to minimize overfitting during training. The benefits and drawbacks of each technique vary, depending on the specific problem and dataset. In this section, we specifically focus on regularization, with a particular emphasis on dropout regularization. To ensure a comprehensive explanation, we divide this discussion into two subsections.</p>
+    <p>Basic regularization methods are L1 and L2 regularization methods [38]. L1 regularization applies a constraint proportional to the sum of the absolute values of weights while L2 regularization applies a constraint proportional to the sum of the squares of weights. By doing so, the model is encouraged to learn smaller weight values, which in turn helps to prevent overfitting. In recent years, regularization algorithms for deep learning models, like feedforward and convolutional neural networks, have developed quickly. Extended methods of L1 and L2 regularization include weight decay [39], early stopping [40], and entropy regularization [41]. One popular regularization method is early stopping. This approach monitors the validation loss during the training process and stops it early before the model overfits the training data [40]. The final model is selected based on the lowest validation loss. Batch normalization [42, 43] is a method that normalizes the input to each layer of a neural network. It reduces the internal covariate shift and improves the convergence rate by smoothing the optimization landscape. It can also serve as a type of regularization by adding noise to the input of each layer. Data augmentation [44] is a technique used to increase the size of the training dataset by creating modified versions of the original data. The methods of creating modified versions include flipping, rotating, cropping images, etc. The original dropout [1] method randomly drops out units during the training phase. Dropout methods as regularization algorithms have seen rapid development in deep learning models, like feedforward neural networks (FNNs) and convolutional neural networks (CNNs).</p>
+    <p>Deep neural networks with more trainable parameters are generally desirable for extracting robust features from data. The networks with a large number of trainable parameters are prone to overfitting. To address this issue, in the standard dropout, the network switches off randomly chosen neurons during training [1]. On the one hand, EDropout, an energy-based dropout method, has been employed in [45] to perform the dropout of visible and hidden units in deep neural networks. EDropout introduces an energy-based measure to identify neurons that contribute the least to the overall energy of the network. These neurons are removed during training and testing to reduce the network's complexity and improve its efficiency. One possible way to enhance the performance and robustness of a CNN model is through the regularization dropout technique. The max-pooling dropout [46] technique randomly drops out some of the max-pooled values during the training of the convolution network. In terms of performance, max-pooling dropout is similar to the original dropout, which selects activation neurons at random [46]. To obtain accurate and robust models before testing, the researchers suggested using probabilistic weighted pooling instead of max-pooling for each feature map. The use of probabilistic weighted pooling has been shown to be effective based on empirical analysis. In the field of language modeling, Merity et al. introduced several regularization techniques, including dropout, to analyze their impact on LSTM language models [47]. In their study, the authors explored different regularization techniques including weight-dropped LSTM, along with different optimization methods, such as Adagrad and Adam. Through their experimentation, they aimed to analyze the impacts of these techniques on LSTM language models and determine their effectiveness in improving model performance.</p>
+  </section>
+
+  <section>
+    <h2>3. Theoretical Concept of Dropout</h2>
+    <p>In recent times, deep learning architectures have significantly evolved and expanded leading to improvements in various tasks, such as classification, object detection, and segmentation, etc. But, the utilization of larger and more complex deep learning architectures comes with the downside of increased risks of overfitting during training. In order to tackle the challenges in deep learning, researchers have put forward various regularization techniques with dropout being particularly prominent among them. The standard dropout [1] method can be used to relieve the overfitting issue, which randomly drops neurons from the neural network during training. For example, consider a neural network with an individual hidden linear layer of N units. Then the activation function Softmax is identical, taking the geometric arithmetic mean of the final output of the 2^N workable networks under standard Softmax [2]. This method is closer to a machine learning approach, such as the bagging method [48], which has trained the instance separately and the output inference has used the arithmetic mean.</p>
+    <p>Let us consider a single linear layer within a neural network. This layer is commonly referred to as a linear layer because it incorporates the behavior of a linear activation function, f(x) = x. In this (Figure 1) layer, the final neuron (which serves as the output of the layer) is obtained by calculating the weighted sum of all the inputs. While this simplified mathematical explanation holds empirically for certain non-linear networks, it is important to note that the estimation of the model involves minimizing a loss function. The ordinary least square (OLS) loss, Ln = 1/2 (t − Σ wi·Ii)^2 (1), represents the loss function used in general neural networks, while LD = 1/2 (t − Σ δi·wi·Ii)^2 (2) corresponds to the loss function specific to dropout networks. In the dropout network, the dropout rate δ follows a Bernoulli distribution with a keep-probability parameter. The analysis shows dropout approximates implicit ensembling of an exponential number of weight-sharing sub-networks, explaining its superior regularization power.</p>
+  </section>
+
+  <section>
+    <h2>4. Contribution of Dropout Regularization Methods</h2>
+    <p>In this section, we discuss the contribution of several commonly used dropout implements based on their performance under the dropout operation. The advantages of dropout regularization methods play a vital role in consolidating knowledge, highlighting key benefits and inspiring further research in the field of deep learning. The primary aim of this section is to highlight the advantages of dropout regularization methods and provide a comprehensive and consolidated overview of the benefits. In the following section, we provide a concise overview of the benefits that these methods offer.</p>
+    <p>On effectiveness improving, dropout techniques have significantly improved model effectiveness in utilizing training and promoting data across procedures: • Data augmentation. These methods [8, 41, 50, 51] augment available data by introducing input noise, generating additional training samples and enhancing model effectiveness during training — each training epoch employing dropout to present a new dataset by randomly dropping training data. • Preventing overfitting. Most dropout approaches [52, 53] serve regularization to mitigate overfitting — dropping neurons during training reduces interdependence between overfitting prevention and neurons, since random dropping obscures individual-neuron-to-overlearning relationships; dropout is widely used in DNNs to improve generalization. • Enhancing data representation. These methodologies [54–57] enhance data representation in pre-training — some generate random masks applied to input-data segments, using unmasked portions to predict masked ones, increasing data representation. • Preventing over-smoothing. Per research analysis, dropout in graph convolutional networks prevents over-smoothing [58] — overly deep GCNs make every node's representation identical, losing information; several studies find dropout effective mitigation.</p>
+    <p>On efficiency improving, dropout techniques improve both model effectiveness and efficiency across processes: • Model compression. Several dropout methods serve model compression [25, 59, 60] — random neuron dropout eases later structural compression such as neural pruning, and summarization methods cut parameter counts for better training efficiency and less overfitting. • Model uncertainty estimation. Well-known uncertainty-estimation techniques [15–17, 61] include interpreting dropout as Bayesian learning in Monte Carlo dropout — a Bayesian approximation of a deep Gaussian process — though it relies on grid search, nearly unusable in deeper models and reinforcement learning for its heavy time and resource cost. • Accelerate GCN training. Dropout in graph networks accelerates training by reducing the compute load of propagation over large neighborhoods while preserving representation quality.</p>
+  </section>
+
+  <section>
+    <h2>5. Categorization of Dropout Regularization Approaches</h2>
+    <p>During the period from 2012 to 2022, we categorized each dropout regularization approach based on its year of introduction and development. The timeline of these dropout regularization approaches is visually depicted in Figure 2. The graphical representation depicts the temporal continuity of dropout regularization techniques, providing a clear overview of their scenario over the years. Figure 3 illustrates the taxonomy of dropout approaches, categorized into three main categories: internal structure change, data augmentation, and input information. Each category further consists of several subcategories. By organizing the dropout approaches in this taxonomy, we aim to provide a clear and systematic overview of the different types of dropout techniques based on the changes they induce in the internal structure, their usage in data augmentation, and their impact on input information. This taxonomy serves as a valuable reference for understanding the various dropout approaches employed in deep learning. The following section provides an in-depth analysis of the taxonomic classification.</p>
+    <p>The timeline starts with standard dropout (Hinton et al.) in 2012 [1], then Maxout (Goodfellow et al.), DropConnect (Wan et al.), and fast dropout (Wang et al.) in 2013, multiplicative Gaussian noise (Srivastava et al.), annealed dropout (Rennie et al.), and empirical dropout analysis (Warde-Farley et al.) in 2014, Standout (Ba et al.), variational dropout (Kingma et al.), RNNdrop (Moon et al.), max-pooling dropout (Wu et al.), and spatial dropout in 2015, evolutionary dropout (Li et al.), variational RNN dropout (Gal et al.), Monte Carlo dropout (Gal et al.), selective CNN dropout (Park et al.), Swapout (Singh et al.), stochastic depth (Huang et al.), guided dropout (Keshar et al.), targeted dropout (Gomez et al.), information dropout (Achille et al.), and fraternal dropout (Żołna et al.) in 2016, and DropBlock (Ghiasi et al.) plus adversarial dropout methods (Park et al., Saito et al.) in 2018 — tracing the field's maturation from single-neuron dropping to structural, data, and information dropping.</p>
+  </section>
+
+  <section>
+    <h2>6. Dropout Based on Internal Structure Changes</h2>
+    <p>Different approaches have been proposed in addition to dropout for regularization in deep learning. In our review paper, we defined internal dropout-based regularization, which involves changing the weights and kernels during the training period without making any changes to the input values. Individual neuron dropout [1, 22, 65], as mentioned earlier, involves randomly dropping or deactivating individual neurons during the training phase. Each neuron has a probability of being dropped out, which means its output is set to zero. This helps prevent overfitting by reducing the reliance on specific neurons and encourages the network to learn more robust and generalizable representations. On the other hand, group neuron dropout takes a different approach. Instead of dropping individual neurons, it drops entire groups or subsets of neurons simultaneously. These groups can be predefined based on various factors, such as their spatial location or functional role within the network. In the following subsection, we provide a detailed discussion of some popular approaches.</p>
+    <p>In this section, we explore various popular neuron dropout approaches based on both feedforward neural networks (FNNs) and convolutional neural networks (CNNs): first, DropBlock [4] — deep networks generally perform best when parameters are over-optimized and trained with significant noise and regularization like weight decay and dropout. DropBlock is a form of structured dropout removing all units within a contiguous region of a feature map (tensor): dropped-region size is set by a hyperparameter, randomly selected each training iteration (Figure 4). Moreover, gradually increasing discarded units during training raises accuracy and desensitizes the model to hyperparameter variations such as learning rate and batch size. Image classification with AmoebaNet-B and ResNet-50 showed improved accuracy over other dropout variations: on ImageNet, cutout and AutoAugment beat the 2% ResNet-50 baseline, and AmoebaNet-B gained about 0.3% accuracy.</p>
+    <p>Second, MaxDropout [6]: while standard dropout [1] randomly drops neurons from training, MaxDropout deactivates neurons' computation from their activations — tensor values are first normalized, then outputs zeroed with threshold p selecting higher values for deactivation (Figure 5). The logic is that the highest, most decision-dominant activations deserve dropping to push the network toward more robust alternative features — competitive on CIFAR-10/100, especially combined with cutout as the performance table shows.</p>
+    <p>On dropout with recurrent neural networks (RNNs), a key application challenge is that RNNs have recurrent connections — the same weights at each time step — so dropping different units per step causes inconsistent, unstable behavior harming RNN performance. Yarin Gal and Zoubin Ghahramani illustrated a robust technique for applying dropout regularization to RNNs [15]: the key idea is showing how dropout can be applied to RNNs in a theoretically grounded manner, deriving a mathematical formulation from adding noise to hidden units. V. Pham et al. [70] demonstrate how dropout regularization improves RNN models for handwriting recognition — applying dropout only to feedforward connections, not recurrent ones, implemented in practice as a separate layer passing through input values except at dropped locations. "Recurrent dropout" [71] is another RNN dropout preserving important hidden-state information — introducing a "masking" tensor applied to the hidden state before the activation function, randomly generated each training iteration with probabilities from a dropout-rate hyperparameter.</p>
+  </section>
+
+  <section>
+    <h2>7. Dropout Based on Data Augmentation</h2>
+    <p>Data augmentation is the process of modifying data to reduce variance by making slight modifications to images and is used to generate more training data. Some dropout methods can serve as a form of data augmentation allowing for improved generalization without requiring specific domain knowledge [50]. In this section, we discuss the effectiveness of dropout based on data augmentation as a technique for improving model performance. While focusing on high-performance dropout based on data augmentation, we explore its capabilities and demonstrate its effectiveness in augmenting data for improved model performance.</p>
+    <p>The Cutout method [8] is a straightforward but promising data augmentation technique: during training it serves image augmentation and regularization by masking out square regions of the input data individually. In [8], the researcher analyzed optimal dropped-part sizes on CIFAR-100 and CIFAR-10: the optimum varied with per-class instance counts computed from the dataset, and cutout enhanced CNN strength and performance — for best results, CIFAR-10 dropped a 16 × 16 region while CIFAR-100's best was 8 × 8 (Figure 6 illustrates the workflow). Random erasing [51] is among the most common and comprehensive augmentation methods (Figure 7), operating dropout-like: it randomly selects an image area and replaces its pixels with random values, "erasing" that portion — used in CNN training to reduce overfitting and harden the model. Best performance used several architectures on Fashion-MNIST, CIFAR-10, and CIFAR-100, though it works best for WRN-28-10 and ResNeXt-8-64. Per grayscale analysis, random erasing improved WRN-28-10 from 4.01% to 3.65% top-1 error on Fashion-MNIST.</p>
+    <p>From a different perspective, demystifying dropout [33] offers another view: developed from theoretical and mathematical concepts covering forward and backward passes, it improves both standard dropout [1] and data augmentation [8]. The key point is that it randomly drops features during the forward pass but drops no features nor backpropagates errors during the backward pass; conversely, in backward dropout, all features are kept in the forward pass even when dropped, and only dropped-feature gradients are zeroed in the backward pass — a novel perspective on augmented dropout. SmoothMix [72] is a state-of-the-art regularization method preventing overfitting and improving data augmentation — mitigating the strong-edge problem via smooth boundary change between two images: the authors introduced kernel filters and injected noise to create an augmented input between two images. For evaluation, they compared ResNet-50 and PyramidNet-200 results on ImageNet and CIFAR-100.</p>
+  </section>
+
+  <section>
+    <h2>8. Dropout Based on Input Information</h2>
+    <p>Some dropout methods directly discard a portion of input information during training, serving various purposes in different scenarios. These purposes may include regularization, data augmentation, or enhancing data representation during the pretraining stage. In 2016, Sennrich et al. [73] introduced WordDropout as a technique in machine translation, which involves dropping out words from the input data. Another notable technique, proposed by Ghazvinine et al. [74] in 2019, is Mask-Predict. While most machine translation systems generate text from left to right, Mask-Predict adopts a masking approach to train the model. It begins by predicting all target words and then iteratively masking and regenerating a subset of words for which the model exhibits the least confidence. Current data enhancement methods can be broadly categorized into three main groups: spatial transformation, color distortion, and information dropping. Within the realm of information dropping, the act of discarding two-dimensional input information is commonly considered a data enhancement technique. In 2019, Verma et al. [75] introduced manifold mixup as a novel approach. Manifold mixup extends the concept of mixup to the feature level. The underlying idea is that features contain higher-order semantic information, and performing interpolation at the feature level can yield more meaningful samples. By applying manifold mixup, the model can benefit from the diverse and informative characteristics of different features. In 2019, Yun et al. [76] introduced CutMix as an advancement over the techniques of mixup and cutout. While cutout fills specific regions of an image with meaningless content, which may hinder the model's ability to utilize the complete training data, mixup employs linear interpolation but generates images that may not resemble natural images. In contrast, CutMix addresses these limitations by randomly selecting rectangular regions from one image (Xa) and replacing them with regions from another image while proportionally adjusting labels — achieving superior classification and localization performance.</p>
+  </section>
+
+  <section>
+    <h2>9. Dropout with Transformer</h2>
+    <p>In deep learning, the transformer is a type of neural network architecture that was introduced by Vaswani [79] in 2017. Transformers are designed for sequential input data, such as natural language sentences or time series data. Transformers leverage a self-attention mechanism that enables them to process the input sequence in parallel, unlike conventional recurrent neural networks (RNN) that process data sequentially. A. Fan et al. [80] introduced a new type of dropout technique called "structured dropout", which allows for the efficient reduction in the number of layers in a transformer model at the inference time. At inference time, the structured dropout technique is used to drop the non-important layers according to the learned mask. This allows for the efficient reduction in the depth of the transformer model, which can save computation time and memory.</p>
+    <p>Wu et al. [81] proposed a cutting-edge transformer-based dropout regularization method named UniDrop, which amalgamates three dropout modalities: feature dropout, structure dropout, and data dropout. PatchDropout [82] is a dropout regularization technique designed for vision transformer models. Unlike traditional dropout techniques that drop out individual tokens or features, PatchDropout randomly drops out patches of the input image during training. This reduces the computational and memory requirements of vision transformers while improving their generalization and robustness.</p>
+  </section>
+
+  <section>
+    <h2>10. Materials for Experiments</h2>
+    <p>In our review paper, we provide a direct comparison of each dropout method by analyzing the experimental results and performance. In this section, we provide a discussion of the dataset and a basic explanation of the experimental architecture. To facilitate a more transparent comparison, we divided our experimental materials into parallel subsections.</p>
+    <p>Training is one of the most crucial parts of a neural network. It relies heavily on both the baseline dataset and the data that are used for training, evaluation, and validation. These data sources are critical for ensuring the accuracy and effectiveness of the network's performance. The experiment on the dropout method utilized a majority of the benchmark dataset to showcase the algorithm's performance on various benchmark datasets, including CIFAR-10, CIFAR-100, and ImageNet. CIFAR (Canadian Institute For Advanced Research) is a well-renowned dataset, which consists of 80M images. However, for this experiment, most researchers have used two other subsets frequently: (i) CIFAR-10 and (ii) CIFAR-100. The CIFAR-10 subset is made with 60,000 image instances, each with a size of 32 × 32; it is divided into 50,000 instances for training and the remaining 10,000 instances for testing and validation. This dataset is compounded into 10 classes, representing various animals and objects. The CIFAR-100 subset is made with 60,000 image instances, each with a size of 32 × 32; it is divided into 50,000 instances for training and the remaining 10,000 instances for testing and validation. However, this dataset is compounded into 100 classes, representing animals and objects, which are classified; this is the counterpart-updated version. The ImageNet dataset is developed by the ImageNet project, which is developed for artificial intelligence tasks, such as image classification, image detection, etc. This dataset has been introduced from the "2012 ImageNet Large Scale Visual Recognition Challenge" (ILSVRC). This dataset comprises 1,240,000 instances with 224 × 224 images for training and 50,000 for testing/validation purposes. It contains 1000 classes, which are bigger than the CIFAR subsets.</p>
+    <p>Architectures: ResNet [83]. The residual network is a CNN architecture, the oldest architecture for regularization works. This ResNet group is among the most commonly used convolutional neural network architectures. Basically, this ResNet uses residual connections, concatenating the previous layer's output with further transformations. Different experiments use two ResNet variants differing by network depth: ResNet-18 [8] and ResNet-50 [4] are the most popular ResNet-family subvariants — ResNet-18 built on a 72-layer architecture with 18 deep layers, trained on the ImageNet database with over a million images; ResNet-50 with 50 layers trained on ImageNet. ViT-B/16 [84] models focus on the vision transformer: the visual transformer partitions an image into fixed patch sizes, then embeds each including a positional embedding system — showing superior computational efficiency and accuracy over CNNs. The wide residual network WRN [66] is another comprehensive regularization-work architecture with the same concept as ResNet but different residual connections and structural differences. PyramidNet [85], the most common neural network architecture in our experiment table and widely used for regularization analysis, increases the feature map in the network layer and moderately increases dimensionality — improving classification-task results.</p>
+  </section>
+
+  <section>
+    <h2>11. Performance Comparison with Dropout Experiment Results</h2>
+    <p>Convolutional neural networks (CNNs) and transformers are generally designed to perform the best optimal outcome in image processing. Dropout is an effective regularization method that can improve the performance and accuracy of neural networks by reducing overfitting and improving the smoothness of the model's output. Regularization methods, along with other components, can be easily incorporated into further experiments. Table 1 presents the results of individual CNN and transformer architectures on the CIFAR-100, CIFAR-10, and ImageNet datasets: ResNet-50 [4] at 23.49% error on ImageNet, improved by AutoDrop + RA [67] to 19.7%, AutoDrop alone [67] to 21.3%, RA [86] to 22.4%, FixRes [87] to 17.5%, DropBlock [4] to 21.65%, Mixup [87] to 22.1%, Fast AA [88] to 22.37%, BA [89] to 23.14%, AA [4] to 22.4%, cutout [4] to 23.48%, dropout [4] to 23.20%, LocalDrop [90] (5.3 / 26.2 / 21.1), ShakeDrop [91] (25.26 on CIFAR-100), Bag of Tricks [92] to 21.67, and GradAug [93] to 20.33.</p>
+    <p>On ViT-B/16 [84] (7.36 on CIFAR-100, 16.03 on ImageNet), RD [94] improves it to 6.71 and 15.62, and ViT-L/16 + RD [94] to 6.15 and 14.43. On ResNet-18 [8] (4.72 on CIFAR-10, 22.46 on CIFAR-100), cutout [8] improves to 3.99 and 21.96, MaxDropout [6] to 4.66 and 21.93, MaxDropout + cutout [6] to 3.76 and 21.82, TargetDrop [95] to 4.41 and 21.37, TargetDrop + cutout [95] to 3.67 and 21.25, and LocalDrop [90] to 4.3 and 22.2. On wide residual networks [66] (4.00 / 19.25 / 21.9), dropout [66] improves to 3.89 and 18.85, MaxDropout [6] to 3.84 and 18.81, TargetDrop + cutout [8] to 3.08 and 18.41, AutoDrop [67] to 3.1, AutoDrop + RE [67] to 2.1, and dropout + RA [86] to 2.7 and 16.7. On PyramidNet [85] (3.48 / 17.01 / 19.2), GradAug [93] improves CIFAR-100 to 13.76 and ShakeDrop + RA [86] CIFAR-10 to 1.5 — particularly advantageous for datasets with limited training samples facing generalization challenges.</p>
+  </section>
+
+  <section>
+    <h2>12. Strengths and Limitations</h2>
+    <p>In this section, we focus on recent and major dropout approaches, highlight their strengths, and attempt to identify their limitations based on previous research in Table 2. Some dropout approaches have extended their methods to overcome limitations while others still work within these limitations to improve their effectiveness: Dropout [1] reduces overfitting in the training layer, including supervised learning, speech recognition, and document classification — though for graph neural networks, convolutional operations and recurrent network performance may be relatively lower. DropBlock [4] creates a structure for dropped neurons — but the structure is fixed and randomly created. AutoDrop [67] has an automatic neuron-dropping pattern — but demonstrated improved performance for transformer and text-processing analyses only. Cutout [8] needs no domain knowledge to generate the mask — but for complex architectures and noisy image datasets, performance was not that high.</p>
+    <p>R-Drop [94] is careful about dropped-unit inference during training — but only outperforms in transformer and text-processing analyses. Fraternal dropout [28] reduces the sub-model gap and minimizes the loss function — but with training/inference inconsistency. ELD [96] regularizes the sub-model gap during inference — but may require more compute than standard dropout. Skipout [5] needs no extra hyperparameter tuning, easy to implement and use — but layer-by-layer training is critical for complex architectures. DropGNN [97] smooths any graph neural network's performance by reducing complexity — but dropping whole nodes or edges can lose significant information, harming performance. MaxDropout [6] deactivates the highest-valued activations to drive alternative features — but is sensitive to threshold p choice and may drop useful signals in noisy data.</p>
+  </section>
+
+  <section>
+    <h2>13. Discussion and Open Issue</h2>
+    <p>In our study, we conducted a comprehensive examination of the well-known regularization dropout method, a popular and effective technique for improving training convergence and final performance compared to other regularization approaches. Our performance table compares the performances of various dropout methods and baseline architectures using different benchmark datasets. As illustrated in Table 1, the ResNet-50 architecture with the ImageNet dataset exhibits superior performance when implementing AutoDrop + RA and FixRes regularization techniques, as evidenced by the lower error percentage compared to other methods. For the ResNet18 architecture trained on the CIFAR-10 dataset, similar results were observed, showing better performance compared to other methods such as MaxDropout + cutout and cutout. The dropout technique is effective at reducing overfitting and speeding up training for deep neural networks with large and complex computational depths.</p>
+    <p>In Figure 8, we present an overview of the overall characteristics of dropout methods [1, 3–6, 28, 67, 94, 96, 97] in a statistical view. Chart 1 specifically focuses on the percentages of dropout methods that meet the three main criteria: domain knowledge, automatic implementation, and random dropping. This chart provides insights into the extent to which dropout methods incorporate these criteria. Additionally, Chart 2 depicts the statistics for dropout methods that do not fulfill all three criteria. This chart highlights the prevalence of dropout methods that may lack one or more of the specified characteristics. By utilizing these two charts, we provide a comprehensive understanding of the distribution and prevalence of dropout methods based on their adherence to the defined criteria. Analyzing both charts, we observe that a significant majority of dropout methods possess domain knowledge — i.e. they are based on prior understanding or expertise in a specific domain. Notably, balancing the three criteria determines a method's general applicability versus domain specialization — an open issue guiding method selection and new-method design.</p>
+  </section>
+
+  <section>
+    <h2>14. Conclusions</h2>
+    <p>In this study, we observed more than forty regularization methods based on dropout, which can be categorized into several major groups (i.e., feedforward, convolutional, recurrent neural network, and transformer) with dropout operation and performance. Throughout our discussion, we explored various strategies, applications, interconnections, and contributions of these methods in the realm of neural networks. It is important to note that the selection of the most appropriate dropout method depends on the specific problem and architecture, and further research is needed to explore their full potential. The utilization of dropout in deep learning models has proven to be remarkably effective in enhancing performance and addressing overfitting. By randomly deactivating a portion of neurons during training, dropout encourages the network to learn more robust and generalized features, ultimately leading to improved performance on unseen test data.</p>
+    <p>This ability enhances model generalization and effectively mitigates the risk of overfitting, resulting in more robust and reliable neural networks. With its simplicity and effectiveness, dropout has become a widely adopted technique in the deep learning community, empowering researchers and practitioners to build more reliable and high-performing neural networks. To further strengthen dropout robustness in the future, researchers can delve into exploration and development per our review discussion — from automatic adaptive dropout, to integration with transformers and graph networks, to efficient Bayesian uncertainty-estimating methods — paths that will define the next generation of regularization techniques.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] N. Srivastava, G. Hinton, A. Krizhevsky, I. Sutskever, R. Salakhutdinov, "Dropout: A Simple Way to Prevent Neural Networks from Overfitting," <em>J. Mach. Learn. Res.</em>, vol. 15, 2014.</li>
+      <li>[3] L. Wan, M. Zeiler, S. Chopra, Y. LeCun, "Regularization of Neural Networks using DropConnect," in <em>Proc. ICML</em>, 2013.</li>
+      <li>[4] G. Ghiasi, T.-Y. Lin, Q. V. Le, "DropBlock: A regularization method for convolutional networks," in <em>Proc. NeurIPS</em>, 2018.</li>
+      <li>[5] D. Krueger et al., Skipout dropout studies.</li>
+      <li>[6] H. C. S. Teles et al., MaxDropout studies.</li>
+      <li>[8] T. DeVries, G. W. Taylor, "Improved Regularization of Convolutional Neural Networks with Cutout," <em>arXiv:1708.04552</em>, 2017.</li>
+      <li>[15] Y. Gal, Z. Ghahramani, "Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning," in <em>Proc. ICML</em>, 2016.</li>
+      <li>[22] J. Ba, B. Frey, "Adaptive dropout for training deep networks," in <em>Proc. NeurIPS</em>, 2013.</li>
+      <li>[28] K. Żołna et al., fraternal dropout studies.</li>
+      <li>[33] X. Bouthillier et al., "Demystifying Dropout," in <em>Proc. ICML</em>, 2015.</li>
+      <li>[38] A. Y. Ng, "Feature selection, L1 vs. L2 regularization, and rotational invariance," in <em>Proc. ICML</em>, 2004.</li>
+      <li>[47] S. Merity, N. S. Keskar, R. Socher, "Regularizing and Optimizing LSTM Language Models," in <em>Proc. ICLR</em>, 2018.</li>
+      <li>[48] L. Breiman, "Bagging predictors," <em>Mach. Learn.</em>, vol. 24, 1996.</li>
+      <li>[66] S. Zagoruyko, N. Komodakis, "Wide Residual Networks," in <em>Proc. BMVC</em>, 2016.</li>
+      <li>[67] H. Pham et al., AutoDrop dropout studies.</li>
+      <li>[71] S. Semeniuta, A. Severyn, E. Barth, "Recurrent Dropout without Memory Loss," in <em>Proc. COLING</em>, 2016.</li>
+      <li>[73] R. Sennrich et al., WordDropout in neural machine translation, 2016.</li>
+      <li>[75] V. Verma et al., "Manifold Mixup: Better Representations by Interpolating Hidden States," in <em>Proc. ICML</em>, 2019.</li>
+      <li>[76] S. Yun et al., "CutMix: Regularization Strategy to Train Strong Classifiers with Localizable Features," in <em>Proc. ICCV</em>, 2019.</li>
+      <li>[79] A. Vaswani et al., "Attention Is All You Need," in <em>Proc. NeurIPS</em>, 2017.</li>
+      <li>[83] K. He, X. Zhang, S. Ren, J. Sun, "Deep Residual Learning for Image Recognition," in <em>Proc. IEEE CVPR</em>, 2016.</li>
+      <li>[84] A. Dosovitskiy et al., "An Image is Worth 16x16 Words," in <em>Proc. ICLR</em>, 2021.</li>
+      <li>[85] D. Han, J. Kim, J. Kim, "Deep Pyramidal Residual Networks," in <em>Proc. IEEE CVPR</em>, 2017.</li>
+      <li>... [full reference list of 97 references available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics12143106">10.3390/electronics12143106</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

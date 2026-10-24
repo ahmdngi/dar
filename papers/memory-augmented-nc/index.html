@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شبكات عصبية قوية عالية الأبعاد معززة بالذاكرة — Robust High-Dimensional Memory-Augmented Neural Networks — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Robust high-dimensional memory-augmented neural networks</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">شبكات عصبية قوية عالية الأبعاد معززة بالذاكرة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Geethan Karunaratne, Manuel Schmuck, Manuel Le Gallo, Giovanni Cherubini, Luca Benini, Abu Sebastian, Abbas Rahimi</span>
+    <span>📄 Nature Communications, 2021 · 12:2468</span>
+    <span>🔗 <a href="https://doi.org/10.1038/s41467-021-22364-0">10.1038/s41467-021-22364-0</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تتطلب الشبكات العصبية التقليدية كميات هائلة من البيانات لبناء تمثيلاتها المعقدة خلال إجراء تدريب بطيء يعيق قدرتها على إعادة التعلم والتكيف مع البيانات الجديدة. وتعزز الشبكات العصبية المعززة بالذاكرة الشبكات العصبية بذاكرة صريحة للتغلب على هذه المشكلات. غير أن الوصول إلى هذه الذاكرة الصريحة يتم عبر عمليات قراءة وكتابة ناعمة تشمل كل مدخل من مدخلات الذاكرة، مما ينتج عنه عنق زجاجة عند التنفيذ ببنية الحاسوب التقليدية فون نيومان. وللتغلب على هذا العنق، نقترح بنية قوية توظف وحدة ذاكرة حسابية بوصفها الذاكرة الصريحة التي تؤدي حسابًا تناظريًا داخل الذاكرة على متجهات عالية الأبعاد (HD)، مع مطابقة دقة البرمجيات ذات 32 بت عن كثب. ويتحقق ذلك بآلية انتباه قائمة على المحتوى تمثل العناصر غير المرتبطة في الذاكرة الحسابية بمتجهات HD غير مترابطة، يمكن تقريب مكوناتها حقيقية القيمة بمكونات ثنائية أو قطبية بسهولة. وتُظهر النتائج التجريبية فعالية نهجنا في مهام تصنيف الصور من عينات قليلة على مجموعة بيانات Omniglot باستخدام أكثر من 256,000 جهاز ذاكرة متغيرة الطور. ويدمج نهجنا بفعالية ثراء تمثيلات الشبكات العصبية العميقة مع الحوسبة عالية الأبعاد، مما يمهد الطريق لمعالجات رمزية-متجهة قوية قابلة للتطبيق في الاستدلال والدمج والضغط.</p>
+  </section>
+
+  <section>
+    <h2>1. بنية MANN المقترحة باستخدام الحوسبة داخل الذاكرة</h2>
+    <p>في بنى MANN، تبقى ذاكرة المفتاح-القيمة مستقلة غالبًا عن المهمة ونوع المدخلات، بينما يجب ملاءمة وحدة التحكم مع المهمة وخاصة نوع المدخلات. وتُعد الشبكات العصبية الالتفافية (CNNs) وحدات تحكم ممتازة لمهمة تصنيف صور Omniglot ‏[23] من عينات قليلة، التي رسّخت نفسها بوصفها المعيار الأساسي لشبكات MANN ‏[6، 11، 13، 14]. وقد اخترنا وحدة تحكم CNN من 5 طبقات توفر دالة تضمين تُسقط الصورة المدخلة إلى تمثيل سمات داخلي. وتتمثل مساهمتنا المركزية في توجيه وحدة تحكم CNN لترميز الصور بطريقة تجمع بين ثراء تمثيلات الشبكات العصبية العميقة والمعالجات الرمزية-المتجهة القوية للحوسبة عالية الأبعاد: إذ تُدرَّب وحدة تحكم CNN على إسناد متجهات HD ثنائية كثيفة شبه متعامدة للعناصر غير المرتبطة في ذاكرة المفاتيح، مع ضبط بُعد متجهات HD عند وصلة وحدة التحكم والذاكرة وتحويل متجهات HD حقيقية القيمة إلى متجهات ثنائية كثيفة للاستدلال.</p>
+    <p>في مرحلة التعلم، تُدرَّب وحدة تحكم CNN على ترميز مدخلات الصور المعقدة إلى متجهات متوافقة مع خصائص الحوسبة عالية الأبعاد، مُسندةً الصور غير المتشابهة إلى متجهات HD شبه متعامدة تُخزَّن أو تُقارَن في ذاكرة ترابطية للمفتاح-القيمة بمتانة فائقة. وتُحسَّن وحدة التحكم وذاكرة المفتاح-القيمة معًا بالتدرج المنحدر باستخدام دوال تشابه وتنقية قابلة للتفاضل عند وصلتهما، مع إجراء تدريب عرضي يحل مجموعات مسائل متنوعة من عينات قليلة بحيث تنتشر أخطاء التصنيف راجعة إلى وحدة التحكم التي تتعلم من أخطائها (التعلم الفوقي) وتُسقط الأصناف المختلفة بعيدًا عن بعضها في فضاء السمات عالي الأبعاد. وفي مرحلة الاستدلال، عندما تواجَه صورة لم تُرَ من قبل، تُرمِّزها وحدة التحكم الناضجة بسرعة وتُحدِّث محتويات ذاكرة المفتاح-القيمة لتُسترجَع لاحقًا للتصنيف — متفادية إعادة التدريب التكرارية المكلفة. وبينما تبقى البنية مستمرة أثناء التعلم، تستخلص التحويلات والتقريبات نسخة ملائمة للعتاد للاستدلال: إذ يصبح البحث عن التشابه جداءً نقطيًا يُحسب بتعقيد زمني O(1) باستخدام أجهزة ممرستية مجمعة في مصفوفة تقاطعية، مستغلة قوانين كيرشوف الكهربائية، بما يعالج بكفاءة التعلم من عينات قليلة وتصنيف الأمثلة الجديدة الواردة لحظيًا دون ضبط دقيق لأوزان وحدة التحكم.</p>
+  </section>
+
+  <section>
+    <h2>2. آلية انتباه جديدة ملائمة لهندسة HD</h2>
+    <p>تبدأ الحوسبة عالية الأبعاد بإسناد مجموعة من متجهات HD العشوائية لتمثيل العناصر غير المرتبطة، مثل أحرف الأبجدية المختلفة [18]. ويمكن أن يكون تمثيل متجه HD بأنواع كثيرة (حقيقية وعقدية [24] أو قطبية [25] أو ثنائية [26])، غير أن الخصائص الرئيسة مشتركة وتعمل بوصفها بنية حسابية متينة [18، 21]. ففي فضاء HD، يكون أي متجهين مختارين عشوائيًا شبه متعامدين باحتمال عالٍ جدًا، ولهذا نتائج مهمة للتنفيذ المتين: فعندما تُمثَّل عناصر غير مرتبطة بمتجهات شبه متعامدة من 10,000 بت، يمكن قلب أكثر من ثلث بتات المتجه بفعل العشوائية وتباينات الأجهزة والضجيج، ومع ذلك يمكن التعرف على المتجه المعيب مع الصحيح بيقين شبه مؤكد [18]. لذا من المرغوب فيه بشدة أن تُسقط وحدة تحكم MANN عينات من أصناف مختلفة إلى متجهات شبه متعامدة في فضاء السمات عالي الأبعاد؛ وإيجاد متجهات شبه متعامدة في الأبعاد العالية سهل وتزايدي لاستيعاب عناصر غير مألوفة [18].</p>
+    <p>لتكن α مقياس تشابه (مثل تشابه جيب التمام) وϵ دالة تنقية. عندها تكون σ دالة الانتباه σ(q, K<sub>i</sub>) تساوي ϵ(α(q, K<sub>i</sub>)) مقسومًا على مجموع ϵ(α(q, K<sub>j</sub>)) مع α(q, K<sub>i</sub>) تساوي q·K<sub>i</sub><sup>T</sup> مقسومًا على (‖q‖ ‖K<sub>i</sub>‖) في المعادلة (1)، حيث q متجه الاستعلام وK<sub>i</sub> متجه دعم في ذاكرة المفاتيح، وm عدد الطرق وn عدد اللقطات. وتؤدي دالة الانتباه مقارنة تشابه جيب التمام عبر متجهات الدعم، متبوعة بالتنقية والتطبيع لحساب خرجها بوصفه متجه انتباه w يساوي σ(q, K). ويتراوح تشابه جيب التمام على المجال من R<sup>d</sup> × R<sup>d</sup> إلى [−1، 1]، حيث α(x, y) تساوي 1 تعني التطابق التام، و0 التعامد التام، و−1 الارتباط العكسي التام. ومن منظور الانتباه، يجب أن يؤدي المتجهان غير المتشابهين تقريبًا إلى تركيز قريب من 0، لذا يجب أن تحقق ϵ الشرط ϵ(α(x, y)) ≈ 0 عندما α(x, y) ≈ 0 في المعادلة (2). وتحقق دالة التنقية المقترحة softabs هذا الشرط، منتجة سلوك تصنيف غير مصحح متوافق مع هندسة HD ومتفوقة على البدائل القائمة على softmax.</p>
+  </section>
+
+  <section>
+    <h2>3. ذاكرة المفاتيح القطبية والثنائية</h2>
+    <p>خرج وحدة التحكم متجه حقيقي ببُعد d؛ وأثناء التدريب تُكتَب المتجهات حقيقية القيمة مباشرة في ذاكرة المفاتيح، لكن أثناء الاستدلال تُقص مكونات متجه الدعم من وحدة التحكم الناضجة بدالة تفعيل — وهي دالة الإشارة للتمثيلات القطبية. ويستمد هذا التحويل موثوقيته من أن القص يحافظ تقريبًا على اتجاه متجهات HD ‏[27]. والفائدة الرئيسة للتمثيل القطبي أن كل مكون ثنائي الحالة يُسقَط على جهازين ثنائيين، وأن المتجهات القطبية بالبُعد نفسه لها دائمًا المعيار نفسه، مما يجعل تشابه جيب التمام جداءً نقطيًا بسيطًا بمقياس ثابت ويحوّل مقارنة الاستعلام مع كل الدعوم إلى عملية مصفوفة-متجه واحدة: α(â, b̂) تساوي (1/d) ضرب â·b̂<sup>T</sup> في المعادلة (7) وw تساوي (1/d) ضرب q̂·K̂<sup>T</sup> في المعادلة (8). ومن ثم يمكن إزالة التطبيع في تشابه جيب التمام وفي متجهات الانتباه أثناء الاستدلال.</p>
+    <p>للحصول على تمثيل ثنائي أبسط، تُحوَّل المتجهات القطبية بالمعادلة الخطية x̂ تساوي ½(x̌ + 1) في المعادلة (9)، حيث x̌ يرمز للمتجه القطبي. وعلى عكس المتجهات القطبية، لا تحافظ المتجهات الثنائية بالضرورة على معيار ثابت؛ غير أن خاصية HD للعشوائية شبه الكاملة تنقذ الموقف: فمع تهيئة عشوائية لأوزان وحدة التحكم وتوسيع البُعد، تُظهر مخرجات وحدة التحكم خاصية العشوائية شبه الكاملة، فعند تساوي أعداد مكونات −1 و+1 تقريبًا تُحافَظ هذه الخاصية بعد التحويل بالمعادلة (9) من حيث أعداد المكونات 0 و1، ومن ثم يحافظ التحويل تقريبًا على تشابه جيب التمام. ويُبسَّط خط الاستدلال أكثر بتقريب دالة التنقية softabs بدالة القيمة المطلقة العادية (ϵ<sub>inference</sub>(α) تساوي |α|)، التي تُتجاوَز كليًا للتمثيل الثنائي لأن درجات تشابهه موجبة دائمًا.</p>
+  </section>
+
+  <section>
+    <h2>4. النتائج التجريبية</h2>
+    <p>نعرض نتائج تجريبية رُسمت فيها ذاكرة المفاتيح على أجهزة PCM وأُجري البحث عن التشابه على شريحة PCM نموذجية، باستخدام تهيئة توصيل ثنائية المستوى بسيطة SET/RESET مبرمجة بنبضة واحدة. وفي مجموعة بيانات Omniglot، تُعد مسائل مثل 5 طرق و20 طريقة مع لقطة واحدة و5 لقطات [11، 13، 14، 28–32] معيارية، لكن لم تُبذَل جهود للتوسع إلى مسائل أكثر تعقيدًا؛ وبما أن كتابة ذاكرة المفاتيح تتدرج خطيًا بينما قراءة التشابه ثابتة التعقيد O(1) على المصفوفات التقاطعية الممرستية، وسّعنا المجموعة حتى مسألة 100 طريقة. وتُظهر دقة التصنيف البرمجية للتمثيلات حقيقية القيمة ذات 32 بت والقطبية والثنائية انخفاضًا أقصى قدره 0.45% (94.53% مقابل 94.08%) عند الانتقال من الحقيقي إلى القطبي عبر المسائل الثلاث؛ ويقتصر الانخفاض من القطبي إلى الثنائي على 0.11% لأن كليهما يستخدم تشابه جيب التمام، بينما قد يصل إلى 1.13% مع الجداء النقطي.</p>
+    <p>قُيِّمت البنية الملائمة للعتاد، التي تقارب تشابه جيب التمام بالجداء النقطي، في ثلاثة إعدادات: مصفوفة تقاطعية مثالية برمجيًا، ونموذج PCM يلتقط اللا-مثاليات كانحراف الانسياق وضجيج القراءة، وتجارب فعلية على عتاد PCM. وتطابقت دقة نموذج PCM عن كثب (±0.2%) مع تجارب PCM؛ وعند الانتقال من المصفوفة المثالية إلى تجربة PCM، لوحظ انخفاض دقة أقصى قدره 1.12% (92.95% مقابل 91.83%) لمسألة 100 طريقة و5 لقطات بالتمثيل الثنائي (0.41% للقطبي)، بسبب لا-مثاليات عتاد PCM التي لكانت أكبر لولا الترتيب بالمجموع-الأقصى. وفي المسائل الأصغر تبقى الفروق ضمن 0.58%. وتُظهر محاكاة المتانة عند تباين توصيل نسبي 31.7% انخفاض دقة أقصى قدره 0.75% لكلا التمثيلين؛ وعند تباين 100%، يتدهور الثنائي بـ5.1% و4.1% (5 طرق بلقطة واحدة، و100 طريقة بـ5 لقطات) بينما يتدهور القطبي بـ0.93% و0.58% فقط. ومقارنة بأعمال الحوسبة داخل الذاكرة الأخرى ذات الدقة متعددة البت في CAMs ‏[11، 13، 14]، تحقق بنيتنا الثنائية، رغم أدنى دقة ممكنة، أعلى دقة عبر كل المسائل مع متانة أعلى ضد لا-مثالية الأجهزة والضجيج، مع دعم فريد لتشابه جيب التمام. والكفاءة الطاقية لافتة: 25.9 فمتوجول لطاقة البحث لكل بت في PCM مقابل 5 بيكوجول في تصميم رقمي بتقنية 65 نانومتر.</p>
+  </section>
+
+  <section>
+    <h2>5. المناقشة</h2>
+    <p>توفر الحوسبة عالية الأبعاد إطارًا لمعالجات قوية للأنماط الكبيرة، تتحمل فقدان حتى ثلث إحداثيات المتجه [18] — مما يتيح اعتماد أجهزة مزعجة لكن فائقة الكفاءة لإسناد حسابات التشابه داخل ذاكرة المفاتيح. وتُظهر الأجهزة الممرستية مثل PCM تباين توصيل عاليًا، خاصة مع البرمجة أحادية النبضة التي تتجنب إجراءات التحقق التكرارية المعقدة والمستهلكة للطاقة؛ وبينما لا تضر تباينات حالة RESET لصغر قيم توصيلها، قد تؤثر تباينات حالة SET حتى 50% انحرافًا معياريًا نسبيًا على الدقة الحسابية. وتعطي المعادلة (11)، أي σ(Λ) تساوي √(2α/d) مضروبًا في σ<sub>rel</sub>، الحدس: فالانحراف المعياري لتشابه جيب التمام المزعج يتناسب عكسًا مع الجذر التربيعي لبُعد المتجه، لذا في الأبعاد العالية تُحتَمَل حتى التباينات الشديدة — فمع σ<sub>rel</sub> تساوي 31.7% وd تساوي 512 وα تساوي 0.5، يكون الانحراف المقاس σ(Λ) ≈ 0.015.</p>
+    <p>تعود أفضلية البنية القطبية جزئيًا لاستخدامها ضعف الأجهزة لكل متجه، لكنها عند تساوي عدد الأجهزة (القطبية بنصف بُعد الثنائية) ما تزال تتدهور أقل مع تزايد التباين، ويُعزى ذلك لتقريب أفضل لتشابه جيب التمام وتوافق دالة softabs مع المتجهات القطبية المقصوصة مباشرة. ويؤدي استخدام جهاز PCM نانوي واحد لكل مكون من متجه 512 بت إلى ذاكرة مفاتيح عالية الكثافة جدًا، يمكن تحقيقها أيضًا بـReRAM ‏[33] أو النهج القائمة على الشحنة [34]. ويمكن تحسين كفاءة وحدة التحكم عبر الشبكات العصبية الثنائية [35] أو بتنفيذ طبقات الشبكة العميقة على مصفوفات تقاطعية ممرستية [36، 37]. ووراء تصنيف العينات القليلة، تشكل أنماط HD المتعلمة تمثيلات رمزية-متجهة صالحة مباشرة للاستدلال أو الدمج متعدد الوسائط عبر الشبكات [38]، كما أن ذاكرة المفتاح-القيمة مكون مركزي في نماذج التعلم غير الموجه والتبايني الحديثة [39–41] حيث يجب تخزين مجموعات ضخمة من المتجهات النموذجية ومقارنتها وضغطها واسترجاعها بكفاءة.</p>
+  </section>
+
+  <section>
+    <h2>6. الطرق</h2>
+    <h3>وحدة التحكم والتدريب</h3>
+    <p>تتحقق وحدة التحكم بوصفها شبكة عصبية عميقة من أربع طبقات التفافية وطبقة واحدة متصلة كاملة، تُخرِج متجهات HD ببُعد d يساوي 512؛ ويستخدم التدريب المُحسِّن Adam ‏[42] مع مجموعات مسائل عرضية من عينات قليلة منفذة في TensorFlow ‏[44]، مع حد تنظيم يمكنه تعلم المتجهات الثنائية مباشرة.</p>
+    <h3>تقييم Omniglot</h3>
+    <p>يتبع التقييم بروتوكول Omniglot للعينات القليلة [23] مع توسيع الرموز بإزاحتها وتدويرها؛ وتستخدم تقسيمات الدعم والاستعلام أصنافًا متباينة تمامًا بين مرحلتي التعلم والاستدلال.</p>
+    <h3>تجارب PCM</h3>
+    <p>تستخدم قياسات شريحة PCM النموذجية برمجة SET/RESET أحادية النبضة دون تحقق تكراري [43]؛ ويلتقط نموذج PCM الإحصائي تباين الانسياق وضجيج القراءة، مع توصيف تباين التوصيل حتى σ<sub>rel</sub> تساوي 31.7% عند حالة SET المختارة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Traditional neural networks require enormous amounts of data to build their complex mappings during a slow training procedure that hinders their abilities for relearning and adapting to new data. Memory-augmented neural networks enhance neural networks with an explicit memory to overcome these issues. Access to this explicit memory, however, occurs via soft read and write operations involving every individual memory entry, resulting in a bottleneck when implemented using the conventional von Neumann computer architecture. To overcome this bottleneck, we propose a robust architecture that employs a computational memory unit as the explicit memory performing analog in-memory computation on high-dimensional (HD) vectors, while closely matching 32-bit software-equivalent accuracy. This is achieved by a content-based attention mechanism that represents unrelated items in the computational memory with uncorrelated HD vectors, whose real-valued components can be readily approximated by binary or bipolar components. Experimental results demonstrate the efficacy of our approach on few-shot image classification tasks on the Omniglot dataset using more than 256,000 phase-change memory devices. Our approach effectively merges the richness of deep neural network representations with HD computing that paves the way for robust vector-symbolic manipulations applicable in reasoning, fusion, and compression.</p>
+  </section>
+
+  <section>
+    <h2>1. Proposed MANN architecture using in-memory computing</h2>
+    <p>In the MANN architectures, the key-value memory remains mostly independent of the task and input type, while the controller should be fitted to the task and especially the input type. Convolutional neural networks (CNNs) are excellent controllers for the few-shot Omniglot [23] image classification task that has established itself as the core benchmark for the MANNs [6, 11, 13, 14]. We have chosen a 5-layer CNN controller that provides an embedding function to map the input image to an internal feature representation. Our central contribution is to direct the CNN controller to encode images in a way that combines the richness of deep neural network representations with robust vector-symbolic manipulations of HD computing: the methodology trains the CNN controller to assign quasi-orthogonal HD dense binary vectors to unrelated items in the key memory, tuning the HD vector dimensionality at the controller–memory interface and transforming the real-valued HD vectors into dense binary vectors for inference.</p>
+    <p>In the learning phase, the methodology trains the CNN controller to encode complex image inputs into vectors conforming with HD computing properties, assigning dissimilar images to quasi-orthogonal HD vectors stored or compared in an associative key-value memory with extreme robustness. Both controller and key-value memory are optimized with gradient descent using differentiable similarity and sharpening functions at their interface, with an episodic training procedure solving various few-shot problem sets so that classification errors propagate back to the controller, which learns from its own mistakes (meta-learning) and maps different classes far apart in the HD feature space. In the inference phase, when a never-seen-before image is encountered, the mature controller quickly encodes it and updates the key-value memory contents, later retrieved for classification — avoiding expensive iterative retraining. While the architecture stays continuous during learning, transformations and approximations derive a hardware-friendly version for inference: similarity search becomes a dot product computed in O(1) time complexity using memristive devices assembled in a crossbar array, exploiting Kirchhoff's circuit laws, efficiently handling few-shot learning of incoming unseen examples on the fly without fine-tuning the controller weights.</p>
+  </section>
+
+  <section>
+    <h2>2. A new attention mechanism appropriate for HD geometry</h2>
+    <p>HD computing starts by assigning a set of random HD vectors to represent unrelated items, e.g., different letters of an alphabet [18]. The HD vector representation can be of many kinds (real and complex [24], bipolar [25], or binary [26]), yet the key properties are shared and serve as a robust computational infrastructure [18, 21]. In HD space, two randomly chosen vectors are quasi-orthogonal with very high probability, with significant consequences: when unrelated items are represented by quasi-orthogonal 10,000-bit vectors, more than a third of a vector's bits can be flipped by randomness, device variations, and noise, and the faulty vector can still be identified with the correct one with near certainty [18]. It is therefore highly desirable for a MANN controller to map samples from different classes to quasi-orthogonal vectors in the HD feature space; finding quasi-orthogonal vectors in high dimensions is easy and incremental to accommodate unfamiliar items [18].</p>
+    <p>Let α be a similarity metric (e.g., cosine similarity) and ϵ a sharpening function. Then σ is the attention function σ(q, K<sub>i</sub>) = ϵ(α(q, K<sub>i</sub>)) / Σ<sub>j</sub> ϵ(α(q, K<sub>j</sub>)) with α(q, K<sub>i</sub>) = q·K<sub>i</sub><sup>T</sup> / (‖q‖ ‖K<sub>i</sub>‖) in Eq. (1), where q is a query vector, K<sub>i</sub> a support vector in the key memory, m the number of ways and n the number of shots. The attention function performs the cosine similarity comparison across support vectors, followed by sharpening and normalization to compute its output as an attention vector w = σ(q, K). Cosine similarity ranges over α: R<sup>d</sup> × R<sup>d</sup> → [−1, 1], where α(x, y) = 1 means perfectly similar, 0 perfectly orthogonal, and −1 perfectly anti-correlated. From the attention viewpoint, two nearly dissimilar vectors should lead to a focus close to 0, so ϵ must satisfy ϵ(α(x, y)) ≈ 0 when α(x, y) ≈ 0 in Eq. (2). The proposed softabs sharpening function satisfies this condition, yielding uncorrected classification behavior matched to HD geometry and outperforming softmax-based alternatives.</p>
+  </section>
+
+  <section>
+    <h2>3. Bipolar and binary key memory</h2>
+    <p>The output of the controller is a d-dimensional real vector; during training, real-valued vectors are written directly to the key memory, but during inference the support vector components from the mature controller are clipped by an activation function — the sign function for bipolar representations. Clipping approximately preserves the direction of HD vectors [27]. The main benefit of the bipolar representation is that every two-state component maps onto two binary devices, and bipolar vectors of the same dimensionality always have the same norm, rendering the cosine similarity a simple constant-scaled dot product and turning query-versus-all-supports comparison into a single matrix-vector operation: α(â, b̂) = (1/d) â·b̂<sup>T</sup> in Eq. (7) and w = (1/d) q̂·K̂<sup>T</sup> in Eq. (8). Hence normalization in the cosine similarity and of the attention vectors can be removed during inference.</p>
+    <p>To obtain an even simpler binary representation, bipolar vectors are transformed by the linear equation x̂ = ½(x̌ + 1) in Eq. (9), where x̌ denotes the bipolar vector. Unlike bipolar vectors, binary vectors do not necessarily maintain a constant norm; however, the HD property of pseudo-randomness comes to the rescue: with randomly initialized controller weights and expanded dimensionality, controller outputs exhibit pseudo-randomness, so with near-equal numbers of −1 and +1 components the transformed binary vectors have near-equal numbers of 0 and 1 components, and Eq. (9) approximately preserves cosine similarity. The inference pipeline is further simplified by approximating the softabs sharpening function with a regular absolute function (ϵ<sub>inference</sub>(α) = |α|), bypassed entirely for the binary representation whose similarity scores are always positive.</p>
+  </section>
+
+  <section>
+    <h2>4. Experimental results</h2>
+    <p>We present experimental results where the key memory is mapped to PCM devices and similarity search is performed on a prototype PCM chip, using a simple two-level SET/RESET conductance configuration programmed with a single pulse. For the Omniglot dataset, standard problems such as 5-way and 20-way with 1 and 5 shots [11, 13, 14, 28–32] are established, but no effort has scaled to more complex problems; since writing the key memory scales linearly while similarity (read) has constant O(1) complexity on memristive crossbars, we extended the repertoire up to the 100-way problem. Software classification accuracy for 32-bit floating-point, bipolar, and binary representations shows a maximum of 0.45% accuracy drop (94.53% vs. 94.08%) moving from real to bipolar across all three problems; the bipolar-to-binary drop is limited to 0.11% because both use cosine similarity, whereas it can reach 1.13% with the dot product.</p>
+    <p>The hardware-friendly architecture, which approximates cosine similarity with the dot product, was evaluated in three settings: an ideal software crossbar, a PCM model capturing drift and read-noise non-idealities, and actual PCM hardware experiments. The PCM model accuracy is closely matched (±0.2%) by the PCM experiments; going from the ideal crossbar to the PCM experiment, a maximum 1.12% accuracy drop (92.95% vs. 91.83%) is observed for the 100-way 5-shot problem with the binary representation (0.41% for bipolar), caused by PCM hardware non-idealities that would be larger without sum-argmax ranking. For smaller problems, differences stay within 0.58%. Robustness simulations at 31.7% relative conductance deviation show at most 0.75% accuracy drop for both representations; at 100% variation, binary degrades by 5.1% and 4.1% (5-way 1-shot, 100-way 5-shot) while bipolar degrades by only 0.93% and 0.58%. Compared with other in-memory computing works using multibit precision in CAMs [11, 13, 14], our binary architecture, despite the lowest possible precision, achieves the highest accuracy across all problems with higher robustness to device non-ideality and noise, while uniquely supporting cosine similarity. Energy efficiency is striking: 25.9 fJ search energy per bit of PCM versus 5 pJ in a 65 nm digital design.</p>
+  </section>
+
+  <section>
+    <h2>5. Discussion</h2>
+    <p>HD computing offers a framework for robust manipulations of large patterns, tolerating the loss of up to a third of vector coordinates [18] — making it possible to adopt noisy but extremely efficient devices for offloading similarity computations. Memristive devices such as PCM exhibit high conductance variability, especially with single-shot programming avoiding iterative program-and-verify procedures; while RESET variations are harmless given small conductance values, SET variations up to 50% relative standard deviation could affect accuracy. Equation (11), σ(Λ) = √(2α/d)·σ<sub>rel</sub>, gives the intuition: the standard deviation of the noisy cosine similarity inversely scales with the square root of vector dimensionality, so in high dimensions even extreme variability is tolerable — with σ<sub>rel</sub> = 31.7%, d = 512, and α = 0.5, the measured deviation σ(Λ) ≈ 0.015.</p>
+    <p>The bipolar architecture's edge partly comes from using twice the devices per vector, yet at equal device counts (bipolar at half the binary dimension) it still degrades less under increasing variation, attributed to better cosine approximation and the softabs function's match to clipped bipolar vectors. A single nanoscale PCM device per component of a 512-bit vector yields a very high-density key memory, realizable also with ReRAM [33] or charge-based approaches [34]. Controller efficiency can improve via binary neural networks [35] or by implementing deep layers on memristive crossbars [36, 37]. Beyond few-shot classification, HD learned patterns form vector-symbolic representations directly usable for reasoning or multimodal fusion across networks [38], and the key-value memory is central to recent unsupervised and contrastive learning models [39–41] where huge prototype-vector sets must be efficiently stored, compared, compressed, and retrieved.</p>
+  </section>
+
+  <section>
+    <h2>6. Methods</h2>
+    <h3>Controller and training</h3>
+    <p>The controller is realized as a deep neural network with four convolutional layers and one fully connected layer, outputting d = 512-dimensional HD vectors; training uses the Adam optimizer [42] with episodic few-shot problem sets implemented in TensorFlow [44], including a regularization term that can directly learn binary vectors.</p>
+    <h3>Omniglot evaluation</h3>
+    <p>Evaluation follows the few-shot Omniglot protocol [23] with symbol augmentation by shifting and rotating symbols; support/query splits use classes mutually exclusive between learning and inference phases.</p>
+    <h3>PCM experiments</h3>
+    <p>Prototype PCM chip measurements use single-pulse SET/RESET programming without iterative verify [43]; the PCM statistical model captures drift variability and read noise, with conductance variation characterized up to σ<sub>rel</sub> = 31.7% at the selected SET state.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[6] A. Santoro et al., “Meta-learning with memory-augmented neural networks,” in <em>Proc. ICML</em>, pp. 1842–1850, 2016.</li>
+      <li>[11] A. Ranjan et al., “X-mann: A crossbar based architecture for memory augmented neural network,” in <em>Proc. IEEE ISQED</em>, 2018.</li>
+      <li>[18] P. Kanerva, “Hyperdimensional computing: An introduction to computing in distributed representation with high-dimensional random vectors,” <em>Cogn. Comput.</em>, vol. 1, pp. 139–159, 2009.</li>
+      <li>[21] A. Rahimi et al., “High-dimensional computing as a nanoscalable paradigm,” <em>IEEE Trans. Circuits Syst. I</em>, vol. 64, pp. 2508–2521, 2017.</li>
+      <li>[22] G. Karunaratne et al., “In-memory hyperdimensional computing,” <em>Nature Electron.</em>, vol. 3, pp. 327–337, 2020.</li>
+      <li>[23] B. M. Lake, R. Salakhutdinov, and J. B. Tenenbaum, “Human-level concept learning through probabilistic program induction,” <em>Science</em>, vol. 350, pp. 1332–1338, 2015.</li>
+      <li>[28] C. Finn, P. Abbeel, and S. Levine, “Model-agnostic meta-learning for fast adaptation of deep networks,” in <em>Proc. ICML</em>, pp. 1126–1135, 2017.</li>
+      <li>[29] O. Vinyals et al., “Matching networks for one shot learning,” in <em>Proc. NeurIPS</em>, pp. 3630–3638, 2016.</li>
+      <li>[32] J. Snell, K. Swersky, and R. Zemel, “Prototypical networks for few-shot learning,” in <em>Proc. NeurIPS</em>, pp. 4077–4087, 2017.</li>
+      <li>[33] Q. Liu et al., “A fully integrated analog ReRAM based 78.4 TOPS/W compute-in-memory chip,” in <em>Proc. IEEE ISSCC</em>, 2020.</li>
+      <li>[34] N. Verma et al., “In-memory computing: Advances and prospects,” <em>IEEE Solid-State Circuits Mag.</em>, vol. 11, no. 3, pp. 43–55, 2019.</li>
+      <li>[42] D. P. Kingma and J. Ba, “Adam: A method for stochastic optimization,” in <em>Proc. ICLR</em>, 2015.</li>
+      <li>... [full reference list available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.1038/s41467-021-22364-0">10.1038/s41467-021-22364-0</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

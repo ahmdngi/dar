@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ما وراء الحلول العصبية: مراجعة نقدية لتعلم الآلة للأمثلية التوافقية — Beyond Neural Solvers — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Beyond neural solvers: A critical review of machine learning for combinatorial optimization</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">ما وراء الحلول العصبية: مراجعة نقدية لتعلم الآلة للأمثلية التوافقية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Mostafa E. A. Ibrahim, Alaa E. S. Ahmed, Yassine Daadaa</span>
+    <span>📄 Mathematics, 2026 · 14(12), 2208</span>
+    <span>🔗 <a href="https://doi.org/10.3390/math14122208">10.3390/math14122208</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تُعد الأمثلية التوافقية مكونًا رئيسيًا في مسائل القرار الحرجة مثل التوجيه والجدولة وتصميم الشبكات والأمثلية على الرسوم البيانية. ورغم توفر طرق الأمثلية التوافقية على نطاق واسع، ومنها الخوارزميات الدقيقة وطرق التقريب وبرمجة القيود والبرمجة الصحيحة المختلطة والميتا-استدلالات، فإنها غالبًا ما تواجه عقبات مثل محدودية قابلية التوسع والقابلية للتكيف في التطبيقات المختلفة. تقدم هذه الدراسة مراجعة نقدية منهجية لتعلم الآلة للأمثلية التوافقية لتوصيف استخدام النهج القائمة على التعلم وتقييمها. ويُستخدم تحليل مفصل لاستنتاج النتائج والقيود وتحديدها. وتؤكد الورقة كيف تغير تعلم الآلة للأمثلية الحسابية عبر الزمن، منتقلًا من الحلول العصبية من طرف إلى طرف إلى الأنظمة الهجينة. وتُعد مكونات التعلم أساسية لتوجيه هياكل الحل التقليدية مثل برمجة القيود والميتا-استدلالات أو تسريعها أو تعزيزها في الأنظمة الهجينة. وتفحص المراجعة أيضًا نقديًا القيود الحالية المؤثرة على الأداء عمومًا، ومنها قابلية التوسع والجاهزية للنشر والتعميم واتساق المعايير. ورغم أن استخدام نماذج اللغة الكبيرة لصياغة المسائل وتوليد الاستدلالات واعد، يلزم مزيد من العمل لضمان تحقق موثوق. وختامًا، تفحص هذه المقالة نتائج الدراسات الحديثة، وتؤكد الاتجاه المتنامي نحو أطر الأمثلية الهجينة المدفوعة بالتعلم، وتبرز القيود المنهجية المهمة والقضايا غير المحلولة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <h3>1.1. الدافع</h3>
+    <p>رغم النمو السريع في نهج تعلم الآلة والتعلم العميق والنمذجة المفاهيمية للأمثلية التوافقية (CO)، ما يزال الميدان البحثي مبعثرًا عبر موضوعات منهجية — الأمثلية التوافقية العصبية، والتعلم المعزز، والشبكات العصبية على الرسوم، والميتا-استدلالات المعززة بالتعلم، وخطوط التنبؤ-ثم-الأمثلية، والطرق المستوحاة من الكم، وتوليد الاستدلالات الناشئ القائم على LLM. وبينما تدعي الدراسات القائمة غالبًا نتائج مشجعة على معايير فردية، تندر التوليفة النقدية لكيفية اختلاف النهج في التوسع والعمومية وضمانات الجدوى والمتانة وقابلية إعادة الإنتاج والتنفيذ العملي.</p>
+    <h3>1.2. المساهمات الرئيسة</h3>
+    <p>ترسم هذه المراجعة منهجيًا وتقيّم نقديًا تطور تقنيات CO القائمة على تعلم الآلة ومساهماتها المنهجية وقيودها وآفاقها المستقبلية. فتوصّف كيف تحول تعلم الآلة لـCO عبر الزمن من الحلول العصبية من طرف إلى طرف إلى الأنظمة الهجينة التي توجه فيها مكونات التعلم هياكل الحل التقليدية مثل برمجة القيود والميتا-استدلالات أو تسرّعها أو تعززها؛ وتقارن نماذج التعلم وبنى الحل عبر أصناف مسائل CO ومجالات التطبيق؛ وتفحص نقديًا قيود قابلية التوسع والجاهزية للنشر والتعميم واتساق المعايير، بما فيها فجوات التحقق في توليد الاستدلالات المعان بـLLM.</p>
+    <h3>1.3. مخطط الورقة</h3>
+    <p>يحدد القسم 2 بروتوكول المراجعة PRISMA 2020 وأسئلة البحث؛ ويقدم القسم 3 الصياغة الرياضية لـCO والحلول القائمة على التعلم؛ ويعرض القسم 4 مراجعة الأدبيات والتوليفة النقدية عبر عشرة موضوعات منهجية؛ ويناقش القسم 5 النتائج والاتجاهات والتحليل المقارن والقيود؛ ويختتم القسم 6.</p>
+  </section>
+
+  <section>
+    <h2>2. بروتوكول المراجعة</h2>
+    <h3>2.1. الاهتمام البحثي والأسئلة</h3>
+    <p>سؤال البحث المركزي هو: ما المساهمات المنهجية والقيود والقضايا غير المحلولة لنهج تعلم الآلة والتعلم العميق ونماذج LLM للأمثلية التوافقية؟ وتسأل الأسئلة الفرعية: كيف نصنف جهود البحث الحالية؛ وأي أصناف مسائل CO ومجالات التطبيق الخاصة هيمنت على الأدبيات؛ وأي نماذج تعلم وبنى حل سادت؛ وكيف تقارَن طرق CO المعانة بتعلم الآلة مع معايير الأمثلية الفوقية التقليدية؛ وما الفجوات المتبقية في التقييم والتعميم والنشر.</p>
+    <h3>2.2. منهجية البحث ومعايير الاختيار</h3>
+    <p>طُبِّقت عملية PRISMA 2020 منهجية لمراجعة متسقة وقابلة لإعادة الإنتاج: تحديد نطاق المراجعة وأسئلة البحث، والبحث في قواعد أكاديمية مرموقة، وتنقية النتائج بفحص العناوين والملخصات، وتطبيق معايير تضمين واستبعاد صريحة لاسترجاع المخطوطات الكاملة، وتحليل المقالات المسترجعة بدقة من حيث المنهجية والصلاحية التجريبية والتوسع وقابلية إعادة الإنتاج وأوجه القصور. وتُعرض إحصاءات وصفية بعدد المقالات المنشورة سنويًا عبر الفترة المشمولة.</p>
+  </section>
+
+  <section>
+    <h2>3. الخلفية التقنية: الأمثلية التوافقية والحلول القائمة على التعلم</h2>
+    <p>الأمثلية التوافقية هي عملية اختيار حل منفصل أمثل من بين مجموعة معرفة من تكوينات CO الممكنة، وهي الأساس الرياضي لمسائل التوجيه والجدولة والإسناد والتعبئة وتخصيص الموارد والأمثلية على الرسوم والاختيار في بحوث العمليات وعلوم الحاسوب والهندسة والتصنيع والنقل وأنظمة الطاقة وشبكات الاتصالات [1، 2، 9]. وتُصاغ مسألة CO العامة على النحو x* تساوي argmin فوق x في X للدالة f(x; I) في المعادلة (1)، حيث f(x; I) دالة الهدف للنسخة I وx متجه قرار منفصل وX مجموعة الحلول الممكنة — وتشمل مسألة البائع المتجول (TSP) وتوجيه المركبات (VRP) وحقيبة الظهر وMax-Cut وتغطية المجموعات وMAX-SAT وجدولة الورش وجدولة الآلات وتخصيص الموارد [4، 6، 10]. وكثير من هذه المسائل NP-صعبة، فقد تتطلب الطرق الدقيقة زمنًا أسيًا ما لم يكن P يساوي NP، مما دفع CO نحو الخوارزميات الدقيقة وطرق التقريب والاستدلالات الخاصة بالمسائل والميتا-استدلالات [9، 10] — ويتزايد التوجه نحو تعلم الآلة أداةً لتسريع الأمثلية أو توجيهها.</p>
+    <p>وفي الصياغة الثنائية أو الصحيحة-المختلطة للبرمجة الخطية، تكون المسألة min فوق x لـc<sup>T</sup>x خاضعة لـAx ≤ b مع x<sub>j</sub> في {0، 1} لكل j في B ومتغيرات صحيحة في المعادلة (2) — وهي البنية الكلاسيكية الجوهرية للإسناد والجدولة والتوجيه والتغطية والتعبئة وتصميم الشبكات [9]. وهذه الصياغة مهمة لـCO القائم على التعلم لأن كثيرًا من الطرق لا تستبدل البرمجة الرياضية بل تعينها: بتقدير حلول أولية عالية الجودة أو التهيئة الدافئة للحلول أو اختيار متغيرات التفرع أو التنبؤ بأهمية المتغيرات أو تعلم القيود أو توجيه البحث [11، 12]. ومن ثم تتبنى حلول CO الحديثة القائمة على تعلم الآلة منظورات هجينة، مدمجة المكونات المتعلمة مع البرمجة الصحيحة المختلطة أو برمجة القيود أو البحث كبير الجوار أو الميتا-استدلالات [11، 13]. وتوضح مسألة TSP النموذجية — مدن V تساوي {1، …، n} وتكاليف سفر d<sub>ij</sub> ومتغيرات حافة ثنائية x<sub>ij</sub> وقيود الدرجة ومنع الدورات الفرعية — الصياغات المدمجة التي يجب أن تحترمها الاستدلالات المتعلمة.</p>
+  </section>
+
+  <section>
+    <h2>4. مراجعة الأدبيات والتوليفة النقدية للطرق القائمة على تعلم الآلة</h2>
+    <h3>4.1. المراجعات والمنظورات التأسيسية</h3>
+    <p>توحّد المراجعة أولًا المسوح السابقة والمنظورات التأسيسية للأمثلية التوافقية العصبية، مؤسسةً خط الأساس الذي تطورت منه الحلول العصبية من طرف إلى طرف نحو الأطر الهجينة المدفوعة بالتعلم.</p>
+    <h3>4.2. طرق التعلم المعزز للأمثلية التوافقية</h3>
+    <p>يميز البنية المتتابعة لصنع القرار الموجه بالمكافأة في RL-for-CO عن الحلول العصبية الموجهة: فبدل محاكاة الحلول المثلى الموسومة، يتعلم النموذج السياسات عبر التفاعل مع سياق أمثلية. ويؤسس تحويل القيود المنفصلة إلى عمليات قرار ماركوفية (MDPs) متتابعة فائدة RL في CO، ممكنًا نماذج السياسات المدفوعة بالقيمة والمتدرجة من بناء الحلول بأنشطة متكررة كجدولة الموارد أو مسارات TSP. ويوفر RL نهجًا قابلًا للتوسع للاستدلالات في مجالات NP-صعبة باهظة الحساب عبر مؤشرات المكافآت دون وسوم الحقيقة الأرضية. وتمتد الأعمال الممثلة عبر مجالات متنوعة: إسناد الآلات الافتراضية المستدام [28]، وRL قابل للتوسع لإعادة جدولة VM في مراكز بيانات السحابة [29]، وجدولة التصنيع المرتبط بالنقل بشبكة Q-العميقة القائمة على الجودة متعددة الأوجه المتنوعة [30]، وRL العميق متعدد الوكلاء مع برمجة القيود لجدولة سوق العمل القابلة للتكيف [31]، وفرط-استدلالات اختيار DQN ‏[32]، وشبكات المؤشر مع التعلم الموجه المدمج مع RL لمسألة Max-Cut ‏[33]، وتعلم-Q ضمن خوارزمية استباقية ثلاثية المراحل لجدولة سوق العمل اللامركزية القابلة للتكيف مع عوامل العمال [34] — مجسدةً التحول الأوسع إلى RL بوصفه مكونًا لا الحل الكامل. ويقارن الجدول 3 نهج RL من حيث المسألة وصياغة RL وتكامل النموذج/الحل والمقاييس والأسس والقيود الحرجة.</p>
+    <h3>4.3. الشبكات العصبية على الرسوم وبنى التعلم العميق</h3>
+    <p>تُولَّف الشبكات العصبية على الرسوم والبنى العميقة بوصفها العمود الفقري التمثيلي المهيمن لـCO: بترميز نسخ المسائل ذات البنية الرسومية (TSP وVRP وMax-Cut) في تضمينات متعلمة تشترط الاستدلالات الإنشائية ومشغلات التحسين وقرارات التفرع أو الاختيار، مع اهتمام نقدي بكيفية توسع تمرير الرسائل وتعميمه عبر أحجام النسخ وتوزيعاتها.</p>
+    <h3>4.4. الطرق الكمومية والمستوحاة من الكم وآلات Ising</h3>
+    <p>تُراجَع الطرق الكمومية والمستوحاة من الكم وآلات Ising بوصفها ركائز حسابية بديلة لـCO — بإسقاط أهداف الأمثلية على ديناميكيات التلدين الكمومية أو الكلاسيكية — مع تقييم نقدي لنضج العتاد وحدود حجم المسائل والعدالة في المقارنة مع الأسس الكلاسيكية والمتعلمة.</p>
+    <h3>4.5. الميتا-استدلالات المعززة بتعلم الآلة والفرط-استدلالات</h3>
+    <p>تشكل الميتا-استدلالات المعززة بتعلم الآلة والفرط-استدلالات موضوعًا هجينًا رئيسًا: إذ تختار النماذج المتعلمة المشغلات أو تضبط المعاملات أو تتنبأ بمسارات البحث أو تولّد استدلالات ضمن أطر التطور والبحث الجواري والفرط-استدلالات، مقيَّمةً مقابل معايير الميتا-استدلالات التقليدية.</p>
+    <h3>4.6. خطوط التنبؤ-ثم-الأمثلية والتفاضلية من طرف إلى طرف</h3>
+    <p>تربط خطوط التنبؤ-ثم-الأمثلية والتفاضلية من طرف إلى طرف نماذج التنبؤ مع الأمثلية اللاحقة، ناشرةً خسائر واعية بالقرار بحيث تُوزَّن أخطاء التنبؤ بأثرها على جودة الحل لا بدقتها الإحصائية فحسب.</p>
+    <h3>4.7. التطبيقات الخاصة بالمجالات</h3>
+    <p>تؤسس التطبيقات الخاصة بالمجالات — التوجيه واللوجستيات والجدولة والتصنيع وتصميم الشبكات وأنظمة الطاقة وإدارة موارد السحابة — الموضوعات المنهجية في سياقات النشر، كاشفةً أي النماذج ينتقل عبر المجالات وأيها يبقى خاصًا بالبيئة.</p>
+    <h3>4.8. الأسس النظرية والمتانة</h3>
+    <p>تُفحَص الأسس النظرية وتحليلات المتانة لما يمكن أن تقدمه CO القائمة على التعلم من ضمانات: سلوك التقريب وضمان الجدوى والحساسية لتحول التوزيع والشروط التي تحافظ فيها المكونات المتعلمة على صحة الحل.</p>
+    <h3>4.9. نماذج اللغة الكبيرة للأمثلية التوافقية</h3>
+    <p>تُقيَّم نماذج اللغة الكبيرة لـCO نقديًا لصياغة المسائل وتوليد الاستدلالات: فبينما تُظهر الاستدلالات وشيفرات الحل المولدة بـLLM وعدًا، تجد المراجعة فجوات تحقق — مخاطر التلوث وأسسًا ضعيفة وتكلفة استدلال غير مبلغة وتحقق جدوى غير مؤسس على الحل — تتطلب تقييمًا صارمًا قابلًا للتكرار قبل ادعاءات النشر.</p>
+    <h3>4.10. الفجوات البحثية</h3>
+    <p>وبالتوليف عبر الموضوعات، تحدد المراجعة فجوات مستمرة: التعميم عبر التمثيلات الرسومية وأحجام النسخ وعائلات المسائل؛ والأنظمة الهجينة العصبية-الرمزية المعتمدة بضمانات الجدوى والأمثلية؛ وقابلية توسع تدريب RL وتعلم الرسوم واسع النطاق واستدلال LLM؛ والمعايرة الموحدة المقاومة للتلوث مع تقييم مُطبَّع التكلفة؛ وربط أوثق بين تحليل المتانة النظري وتصميم الحل العملي.</p>
+  </section>
+
+  <section>
+    <h2>5. المناقشة</h2>
+    <h3>5.1. توليفة نماذج تعلم الآلة لـCO</h3>
+    <p>تُظهر الأدبيات تحولًا واضحًا من الحلول العصبية المستقلة من طرف إلى طرف إلى الأنظمة الهجينة العصبية-الرمزية التي تُكمَّل فيها المكونات المتعلمة برمجة القيود والبرمجة الصحيحة المختلطة والبحث المحلي وكبير الجوار والميتا-استدلالات أو توجهها.</p>
+    <h3>5.2. الاتجاهات الوصفية في الأدبيات المراجعة</h3>
+    <p>تؤكد الاتجاهات الوصفية — أعداد المنشورات السنوية وأصناف المسائل المهيمنة (التوجيه والجدولة والأمثلية على الرسوم) وعائلات النماذج السائدة — نموًا سريعًا متركزًا في موضوعات RL وGNN ومؤخرًا المعان بـLLM.</p>
+    <h3>5.3. التحليل المقارن عبر الطرق</h3>
+    <p>يكشف التحليل المقارن عن نقاط قوة متكاملة: تتفوق الحلول العصبية الموجهة مع وفرة الوسوم لكنها تعمم ضيقًا؛ ويتوسع RL دون وسوم لكنه مكلف التدريب؛ وتُرمِّز GNNs البنية طبيعيًا لكن تكاليف تمرير الرسائل تنمو مع حجم النسخ؛ وترث الأنظمة الهجينة ضمانات الحل بتكلفة التكامل.</p>
+    <h3>5.4. تحديات التقييم والمعايرة وقابلية إعادة الإنتاج</h3>
+    <p>يعاني التقييم من تباين توزيعات المعايير وحدود زمن الحل غير المبلغة وتهيئات العتاد والبذور العشوائية والتحقق الإحصائي — مما يحفز بروتوكولات موحدة بفترات ثقة ومحاسبة ذاكرة ومقارنات مُطبَّعة التكلفة مقابل أسس مضبوطة لا ضعيفة.</p>
+    <h3>5.5. الأمثلية القائمة على LLM: الفرص وتحديات الموثوقية</h3>
+    <p>توفر الأمثلية القائمة على LLM توليد الاستدلالات والمساعدة في الصياغة، لكن تحديات الموثوقية تهيمن: معايير قابلة للتلوث وحساسية التوجيه وفك التشفير وقيود مهلوسة وجدوى غير متحقق منها تتطلب تحققًا تنفيذيًا واختبارات وحدات وتقارير سجلات الحل وتقييمًا ثابت النموذج والتوجيه مع محاسبة صريحة لتكلفة الاستدلال.</p>
+    <h3>5.6. القيود الشاملة وحواجز النشر</h3>
+    <p>تشمل القيود الشاملة هشاشة تحول التوزيع وتكاليف الطاقة وزمن الاستجابة للمكونات المتعلمة الكبيرة وغياب شهادات الجدوى للنشر الحرج سلاميًا وقابلية إعادة الإنتاج تحت إصدارات النماذج المتغيرة — خاصة لنماذج LLM.</p>
+    <h3>5.7. الاتجاهات البحثية المستقبلية</h3>
+    <p>يجب أن تسعى الأعمال المستقبلية إلى: أمثلية واعية بالتعميم تنتقل عبر التمثيلات والأحجام والعائلات عبر التعلم الفوقي والنقلي والأمثلية الواعية بعدم اليقين؛ وأنظمة هجينة عصبية-رمزية معتمدة تجمع المكونات المتعلمة مع آليات دقيقة (برمجة القيود والبرمجة الصحيحة المختلطة والبحث المحلي والتحقق)؛ وتمثيلات عصبية ورسومية وهرمية متناثرة خفيفة مع أمثلية واعية بالعتاد؛ ومعايرة موحدة مقاومة للتلوث بالبذور وفترات الثقة وتطبيع التكلفة؛ وتقييم صارم لـLLM بتحقق تنفيذي وتحقق مؤسس على الحل؛ وربط أوثق بين نظرية التعقيد وضمانات المتانة وتصميم الحل العملي — متقاربةً نحو أنظمة هجينة قابلة للتوسع ومتينة وقابلة للتفسير والنشر تدمج التعلم العصبي والاستدلال الرمزي والأمثلية الدقيقة لا الحلول المتعلمة المستقلة.</p>
+  </section>
+
+  <section>
+    <h2>6. الاستنتاجات</h2>
+    <p>فُحصت نقديًا في مراجعة تعلم الآلة للأمثلية التوافقية هذه الحلول العصبية الموجهة والتعلم المعزز وGNNs والميتا-استدلالات المعززة بالتعلم وخطوط التنبؤ-ثم-الأمثلية والتقنيات المستوحاة من الكم والتطبيقات الخاصة بالمجالات والبحوث النظرية والنهج الناشئة المعاناة بـLLM. وتُظهر الأدبيات تحولًا ملحوظًا بعيدًا عن الحلول العصبية الخالصة من طرف إلى طرف نحو الأنظمة الهجينة العصبية-الرمزية، التي تُكمِّل فيها المكونات المتعلمة تقنيات الأمثلية التقليدية مثل الميتا-استدلالات والبحث المحلي وكبير الجوار والبرمجة الصحيحة المختلطة وبرمجة القيود أو توجهها. وتعتمد جودة الحل المتعلم اليوم على تكامل الحل وانضباط المعايرة وصرامة التحقق بقدر اعتمادها على بنية النموذج — وسد الفجوات في التعميم والاعتماد وقابلية إعادة الإنتاج وموثوقية LLM يحدد المرحلة القادمة للميدان.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Combinatorial optimization is a key component in critical decision problems such as routing, scheduling, network design, and graph optimization. Although combinatorial optimization methods, including exact algorithms, approximation methods, constraint programming, mixed integer programming, and metaheuristics, are widely available, they often face obstacles, such as limited scalability and adaptability in various applications. In this study, a systematic critical review of machine learning for combinatorial optimization is provided to characterize the usage and evaluation of learning-based approaches. A detailed analysis is used to infer and determine findings and limitations. The paper emphasizes how machine learning for computational optimization has changed over time, moving from end-to-end neural solvers to hybrid systems. Learning components are essential for directing, speeding up, or enhancing traditional solver backbones such as constraint programming and metaheuristics in hybrid systems. The review also critically examines current limits that impact performance in general, including scalability, deployment readiness, generalization, and benchmark consistency. Even though using large language models for problem formulation and heuristic synthesis has potential, more work needs to be done to ensure reliable validation. As a conclusion, this article examines recent studies' findings, emphasizes the growing trend toward hybrid learning-driven optimization frameworks, and underlines important methodological limits and unresolved issues.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <h3>1.1. Motivation</h3>
+    <p>Despite rapid growth in machine learning, deep learning, and conceptual modeling approaches for combinatorial optimization (CO), the research field remains scattered across methodological themes — neural combinatorial optimization, reinforcement learning, graph neural networks, learning-augmented metaheuristics, predict-then-optimize pipelines, quantum-inspired methods, and emerging LLM-based heuristic synthesis. While existing studies frequently claim encouraging results on individual benchmarks, there is little critical synthesis of how approaches vary in scaling, generality, feasibility assurances, robustness, reproducibility, and practical implementation.</p>
+    <h3>1.2. Key contributions</h3>
+    <p>This review systematically maps and critically evaluates the development, methodological contributions, constraints, and future prospects of ML-based CO techniques. It characterizes how ML for CO has shifted over time from end-to-end neural solvers to hybrid systems in which learning components direct, accelerate, or enhance traditional solver backbones such as constraint programming and metaheuristics; it compares learning models and solver architectures across CO problem classes and application domains; and it critically examines limits on scalability, deployment readiness, generalization, and benchmark consistency, including the validation gaps of LLM-assisted heuristic synthesis.</p>
+    <h3>1.3. Paper outline</h3>
+    <p>Section 2 defines the PRISMA 2020 review protocol and research questions; Section 3 introduces the mathematical formulation of CO and learning-based solvers; Section 4 presents the literature review and critical synthesis across ten methodological themes; Section 5 discusses findings, trends, comparative analysis, and limitations; and Section 6 concludes.</p>
+  </section>
+
+  <section>
+    <h2>2. Review protocol</h2>
+    <h3>2.1. Research concern and questions</h3>
+    <p>The central research question is: what are the methodological contributions, limitations, and unresolved issues of ML, DL, and LLM-based approaches to combinatorial optimization? Sub-questions ask how to categorize current research efforts; which CO problem classes and application-specific domains dominate the literature; which learning models and solver architectures prevail; how ML-assisted CO compares against conventional metaheuristic optimization benchmarks; and what gaps persist in evaluation, generalization, and deployment.</p>
+    <h3>2.2. Search methodology and selection criteria</h3>
+    <p>A systematic PRISMA 2020 process was applied for a consistent, reproducible review: defining the review scope and research questions, searching highly reputable academic databases, refining results by title and abstract screening, applying explicit inclusion and exclusion criteria for full-manuscript retrieval, and thoroughly analyzing retrieved articles for methodology, empirical validity, scaling, reproducibility, and shortcomings. The yearly count of published articles across the covered period is visualized in the review's descriptive statistics.</p>
+  </section>
+
+  <section>
+    <h2>3. Technical background: combinatorial optimization and learning-based solvers</h2>
+    <p>Combinatorial optimization is the process of selecting an optimal discrete solution out of a defined set of feasible CO configurations, underlying routing, scheduling, assignment, packing, resource allocation, graph optimization, and selection problems across operations research, computer science, engineering, manufacturing, transportation, energy systems, and communication networks [1, 2, 9]. A generic CO problem is expressed as x* = argmin<sub>x ∈ X</sub> f(x; I) in Eq. (1), where f(x; I) is the objective for instance I, x a discrete decision vector, and X the feasible set — encompassing the traveling salesman problem (TSP), vehicle routing (VRP), knapsack, Max-Cut, Set Cover, MAX-SAT, job-shop scheduling, machine scheduling, and resource allocation [4, 6, 10]. Many of these problems are NP-hard, so exact methods may require exponential time unless P = NP, driving CO toward exact algorithms, approximation methods, problem-specific heuristics, and metaheuristics [9, 10] — and increasingly toward machine learning as a tool for accelerating or guiding optimization.</p>
+    <p>In binary or mixed-integer linear programming form, the problem is min<sub>x</sub> c<sup>T</sup>x subject to Ax ≤ b with x<sub>j</sub> ∈ {0, 1} for j ∈ B and integer variables in Eq. (2) — the core classical structure for assignment, scheduling, routing, covering, packing, and network design [9]. This formulation matters for learning-based CO because many methods do not replace mathematical programming but assist it: estimating high-quality primal solutions, warm-starting solvers, choosing branching variables, predicting variable importance, learning limitations, or steering search [11, 12]. Recent ML-based CO solutions therefore adopt hybrid perspectives, integrating learned components with mixed-integer programming, constraint programming, large-neighborhood search, or metaheuristics [11, 13]. The canonical TSP — cities V = {1, …, n} with travel costs d<sub>ij</sub>, binary edge variables x<sub>ij</sub>, degree constraints, and subtour elimination — illustrates the compact formulations that learned heuristics must respect.</p>
+  </section>
+
+  <section>
+    <h2>4. Literature review and critical synthesis of ML-based methods</h2>
+    <h3>4.1. Reviews and fundamental perspectives</h3>
+    <p>The review first consolidates prior surveys and foundational perspectives on neural combinatorial optimization, establishing the baseline from which end-to-end neural solvers evolved toward hybrid learning-driven frameworks.</p>
+    <h3>4.2. Methods of reinforcement learning for combinatorial optimization</h3>
+    <p>The reward-oriented sequential decision-making structure of RL-for-CO sets it apart from supervised neural solvers: instead of mimicking annotated optimal solutions, the model learns policies through interaction with an optimization context. Casting discrete restrictions as sequential Markov decision processes (MDPs) lets value-driven and gradient-based policy models build solutions through repeated activities such as resource scheduling or TSP paths. RL offers a scalable approach for computationally exorbitant NP-hard fields via reward-driven heuristics without ground-truth labels. Representative works span diverse domains: sustainable virtual-machine assignment [28], scalable RL for VM rescheduling in cloud data centers [29], multi-faceted diversity-based Deep Q-Network scheduling for linked transportation manufacturing [30], multi-agent deep RL combined with constraint programming for adaptable job-market scheduling [31], DQN selection hyper-heuristics [32], pointer networks with supervised learning integrated with RL for Max-Cut [33], and Q-learning within a tri-stage proactive algorithm for decentralized adaptable job-market scheduling with worker factors [34] — exemplifying the broader shift to RL as a component rather than RL as the entire solver. Table 3 compares RL approaches by problem, RL formulation, model/solver integration, metrics, baselines, and critical limitations.</p>
+    <h3>4.3. Graph neural networks and deep learning architectures</h3>
+    <p>Graph neural networks and deep architectures are synthesized as the dominant representation backbone for CO: encoding graph-structured instances (TSP, VRP, Max-Cut) into learned embeddings that condition constructive heuristics, improvement operators, and branching or selection decisions, with critical attention to how message-passing scale and generalize across instance sizes and distributions.</p>
+    <h3>4.4. Quantum, quantum-inspired, and Ising machine methods</h3>
+    <p>Quantum, quantum-inspired, and Ising-machine methods are reviewed as alternative computational substrates for CO — mapping combinatorial objectives onto quantum or classical annealing dynamics — with critical appraisal of hardware maturity, problem-size limits, and fair comparison against classical and learned baselines.</p>
+    <h3>4.5. ML-enhanced metaheuristics and hyper-heuristics</h3>
+    <p>ML-enhanced metaheuristics and hyper-heuristics form a major hybrid theme: learned models select operators, tune parameters, predict search trajectories, or generate heuristics within evolutionary, neighborhood-search, and hyper-heuristic frameworks, evaluated against conventional metaheuristic benchmarks.</p>
+    <h3>4.6. Predict-then-optimize and end-to-end differentiable pipelines</h3>
+    <p>Predict-then-optimize and end-to-end differentiable pipelines connect forecasting models with downstream optimization, propagating decision-aware losses so that prediction errors are weighted by their impact on solution quality rather than statistical accuracy alone.</p>
+    <h3>4.7. Domain-specific applications</h3>
+    <p>Domain-specific applications — routing and logistics, scheduling and manufacturing, network design, energy systems, and cloud resource management — ground the methodological themes in deployment contexts, revealing which paradigms transfer across domains and which remain environment-specific.</p>
+    <h3>4.8. Theoretical foundations and robustness</h3>
+    <p>Theoretical foundations and robustness analyses are examined for what guarantees learning-based CO can offer: approximation behavior, feasibility assurance, sensitivity to distribution shift, and the conditions under which learned components preserve solver correctness.</p>
+    <h3>4.9. Large language models for combinatorial optimization</h3>
+    <p>Large language models for CO are critically assessed for problem formulation and heuristic synthesis: while LLM-generated heuristics and solver code show promise, the review finds validation gaps — contamination risk, weak baselines, unreported inference cost, and missing solver-based feasibility verification — requiring rigorous, repeatable evaluation before deployment claims.</p>
+    <h3>4.10. Research gaps</h3>
+    <p>Synthesizing across themes, the review identifies persistent gaps: generalization across graph representations, instance sizes, and problem families; certified hybrid systems with feasibility and optimality guarantees; scalability of RL training, large-scale graph learning, and LLM inference; standardized, contamination-resistant benchmarking with cost-normalized evaluation; and tighter links between theoretical robustness analysis and practical solver design.</p>
+  </section>
+
+  <section>
+    <h2>5. Discussion</h2>
+    <h3>5.1. Synthesis of ML-for-CO paradigms</h3>
+    <p>The literature shows a clear shift from standalone end-to-end neural solvers to hybrid neuro-symbolic systems in which learning components supplement or direct constraint programming, mixed-integer programming, local search, large-neighborhood search, and metaheuristics.</p>
+    <h3>5.2. Descriptive trends in the reviewed literature</h3>
+    <p>Descriptive trends — yearly publication counts, dominant problem classes (routing, scheduling, graph optimization), and prevailing model families — confirm rapid growth concentrated in RL, GNN, and recently LLM-assisted themes.</p>
+    <h3>5.3. Cross-method comparative analysis</h3>
+    <p>Cross-method comparison reveals complementary strengths: supervised neural solvers excel with abundant labels but generalize narrowly; RL scales without labels but trains expensively; GNNs encode structure naturally but message-passing costs grow with instance size; hybrid systems inherit solver guarantees at integration cost.</p>
+    <h3>5.4. Evaluation, benchmarking, and reproducibility challenges</h3>
+    <p>Evaluation suffers from inconsistent benchmark distributions, unreported solver time limits, hardware configurations, random seeds, and statistical validation — motivating standardized protocols with confidence intervals, memory accounting, and cost-normalized comparisons against tuned baselines rather than weak ones.</p>
+    <h3>5.5. LLM-based optimization: opportunities and reliability challenges</h3>
+    <p>LLM-based optimization offers heuristic synthesis and formulation assistance, but reliability challenges dominate: contamination-prone benchmarks, prompt and decoding sensitivity, hallucinated constraints, and unverified feasibility demand executable validation, unit testing, solver-log reporting, and fixed-model, fixed-prompt assessment with explicit inference-cost accounting.</p>
+    <h3>5.6. Cross-cutting limitations and deployment barriers</h3>
+    <p>Cross-cutting limitations include distribution-shift fragility, energy and latency costs of large learned components, missing feasibility certificates for safety-critical deployment, and reproducibility under changing model versions — especially for LLM-driven paradigms.</p>
+    <h3>5.7. Future research directions</h3>
+    <p>Future work should pursue: generalization-aware optimization transferring across representations, sizes, and families via meta-learning, transfer learning, and uncertainty-aware methods; certified hybrid neuro-symbolic systems combining learned components with exact mechanisms (constraint programming, mixed-integer programming, local search, verification); scalable lightweight neural, graph, and sparse hierarchical representations with hardware-aware optimization; standardized contamination-resistant benchmarking with seeds, confidence intervals, and cost normalization; rigorous LLM evaluation with executable validation and solver-based verification; and tighter coupling of complexity theory and robustness guarantees with practical solver design — converging on scalable, robust, interpretable, deployable hybrid systems integrating neural learning, symbolic reasoning, and exact optimization rather than standalone learned solvers.</p>
+  </section>
+
+  <section>
+    <h2>6. Conclusions</h2>
+    <p>Supervised neural solvers, reinforcement learning, GNNs, learning-enhanced metaheuristics, predict-then-optimize pipelines, quantum-inspired techniques, domain-specific applications, theoretical research, and emerging LLM-assisted approaches were all critically examined in this review of machine learning for combinatorial optimization. The literature shows a noticeable shift away from purely end-to-end neural solvers toward hybrid neuro-symbolic systems, in which learned components supplement or direct traditional optimization techniques such as metaheuristics, local search, large-neighborhood search, mixed-integer programming, and constraint programming. Learning solution quality now depends as much on solver integration, benchmarking discipline, and validation rigor as on model architecture — and closing the gaps in generalization, certification, reproducibility, and LLM reliability defines the field's next phase.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] E. L. Lawler et al., “The traveling salesman problem: A guided tour of combinatorial optimization,” Wiley, 1985.</li>
+      <li>[2] B. Korte and J. Vygen, “Combinatorial optimization: Theory and algorithms,” Springer, 2018.</li>
+      <li>[9] L. A. Wolsey, “Integer programming,” Wiley, 1998.</li>
+      <li>[10] C. Blum and A. Roli, “Metaheuristics in combinatorial optimization: Overview and conceptual comparison,” <em>ACM Comput. Surv.</em>, vol. 35, no. 3, pp. 268–308, 2003.</li>
+      <li>[11] Y. Bengio, A. Lodi, and A. Prouvost, “Machine learning for combinatorial optimization: A methodological tour d'horizon,” <em>Eur. J. Oper. Res.</em>, vol. 290, no. 2, pp. 405–421, 2021.</li>
+      <li>[28] Sustainability-aware RL for virtual-machine placement balancing power, SLA, and utilization, 2024.</li>
+      <li>[29] Scalable reinforcement learning for virtual-machine rescheduling in cloud data centers, 2024.</li>
+      <li>[30] Diversity-driven Deep Q-Network scheduling for transportation-linked manufacturing, 2024.</li>
+      <li>[31] Multi-agent deep reinforcement learning with constraint programming for job-shop scheduling, 2024.</li>
+      <li>[32] Deep Q-Network selection hyper-heuristics for combinatorial optimization, 2023.</li>
+      <li>[33] Pointer networks with supervised and reinforcement learning for Max-Cut, 2023.</li>
+      <li>[34] Tri-stage Q-learning for decentralized adaptive scheduling with worker factors, 2024.</li>
+      <li>... [full reference list available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/math14122208">10.3390/math14122208</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

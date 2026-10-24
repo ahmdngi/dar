@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>آليات الانتباه في الرؤية الحاسوبية: مسح — Attention Mechanisms in Computer Vision: A Survey — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Attention mechanisms in computer vision: A survey</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">آليات الانتباه في الرؤية الحاسوبية: مسح شامل</h2>
+
+  <div class="paper-meta">
+    <span>👤 Meng-Hao Guo, Tian-Xing Xu, Jiang-Jiang Liu, Zheng-Ning Liu, Peng-Tao Jiang, Tai-Jiang Mu, Song-Hai Zhang, Ralph R. Martin, Ming-Ming Cheng, Shi-Min Hu</span>
+    <span>📄 Computational Visual Media, 2022</span>
+    <span>🔗 <a href="https://doi.org/10.1007/s41095-022-0271-y">10.1007/s41095-022-0271-y</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يستطيع البشر طبيعيًا وبفعالية إيجاد المناطق البارزة في المشاهد المعقدة. وبدافع من هذه الملاحظة، أُدخلت آليات الانتباه إلى الرؤية الحاسوبية بهدف محاكاة هذا الجانب من النظام البصري البشري. ويمكن اعتبار آلية الانتباه عملية تعديل ديناميكية للأوزان بناءً على سمات الصورة المدخلة. وقد حققت آليات الانتباه نجاحًا كبيرًا في مهام بصرية كثيرة، منها تصنيف الصور وكشف الأجسام والتجزئة الدلالية وفهم الفيديو وتوليد الصور والرؤية ثلاثية الأبعاد والمهام متعددة الوسائط والتعلم الذاتي الإشراف. نقدّم في هذا المسح مراجعة شاملة لمختلف آليات الانتباه في الرؤية الحاسوبية ونصنّفها حسب النهج، مثل انتباه القنوات والانتباه المكاني والانتباه الزماني وانتباه الفروع؛ وقد خُصص مستودع على الرابط https://github.com/MenghaoGuo/Awesome-Vision-Attentions لجمع الأعمال ذات الصلة. كما نقترح اتجاهات مستقبلية لبحوث آليات الانتباه.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تُسمى طرق توجيه الانتباه إلى أهم مناطق الصورة وتجاهل الأجزاء غير ذات الصلة آليات الانتباه؛ ويستخدم النظام البصري البشري واحدة منها [1–4] للمساعدة في تحليل المشاهد المعقدة وفهمها بكفاءة وفعالية. وقد ألهم ذلك الباحثين لإدخال آليات الانتباه في أنظمة الرؤية الحاسوبية لتحسين أدائها. وفي نظام الرؤية، يمكن معاملة آلية الانتباه بوصفها عملية اختيار ديناميكية تتحقق بترجيح السمات تكيفيًا وفق أهمية المدخلات. وقد قدّمت آليات الانتباه فوائد في مهام بصرية كثيرة جدًا، مثل تصنيف الصور [5، 6] وكشف الأجسام [7، 8] والتجزئة الدلالية [9، 10] والتعرف على الوجوه [11، 12] وإعادة تحديد هوية الأشخاص [13، 14] والتعرف على الأفعال [15، 16] والتعلم من عينات قليلة [17، 18] ومعالجة الصور الطبية [19، 20] وتوليد الصور [21، 22] وتقدير الوضعية [23] والاستبانة الفائقة [24، 25] والرؤية ثلاثية الأبعاد [26، 27] والمهام متعددة الوسائط [28، 29].</p>
+    <p>في العقد الماضي، أدّت آلية الانتباه دورًا متزايد الأهمية في الرؤية الحاسوبية. ويمكن تقسيم التقدم تقريبًا إلى أربع مراحل. تبدأ المرحلة الأولى من RAM ‏[31]، وهو عمل رائد جمع الشبكات العصبية العميقة مع آليات الانتباه، إذ يتنبأ تكراريًا بالمنطقة المهمة ويحدّث الشبكة كاملة من طرف إلى طرف عبر تدرج السياسة؛ وكانت الشبكات العصبية المتكررة (RNNs) أدوات ضرورية في هذه المرحلة. وفي بداية المرحلة الثانية، اقترح Jaderberg وآخرون [32] شبكة STN التي تُدخل شبكة فرعية للتنبؤ بتحويل أفيني يُستخدم لاختيار المناطق المهمة في المدخلات؛ وكان التنبؤ الصريح بالسمات المدخلة المميزة السمة الرئيسة لهذه المرحلة، وتُعد الشبكات الالتفافية القابلة للتشوه DCNs ‏[7] أعمالًا ممثلة لها. وبدأت المرحلة الثالثة مع SENet ‏[5] التي قدّمت شبكة انتباه قنوات جديدة تتنبأ ضمنيًا وتكيفيًا بالسمات الرئيسة المحتملة؛ وتُعد CBAM ‏[6] وECANet ‏[37] أعمالًا ممثلة لهذه المرحلة. أما المرحلة الأخيرة فهي عصر الانتباه الذاتي: اقتُرح الانتباه الذاتي أولًا في المرجع [33] وحقق سريعًا تقدمًا كبيرًا في معالجة اللغة الطبيعية [33، 38، 39]. وكان Wang وآخرون [15] سبّاقين في إدخال الانتباه الذاتي إلى الرؤية الحاسوبية بشبكة مبتكرة غير محلية حققت نجاحًا كبيرًا في فهم الفيديو وكشف الأجسام، وتلتها أعمال مثل EMANet ‏[40] وCCNet ‏[41] والشبكة المستقلة [43]. ومؤخرًا، ظهرت شبكات انتباه ذاتي عميقة خالصة متنوعة (المحولات البصرية) [27، 34، 44–49] مظهرة الإمكانات الهائلة للنماذج القائمة على الانتباه. ومن الواضح أن النماذج القائمة على الانتباه لديها القدرة على أن تحل محل الشبكات العصبية الالتفافية وتصبح بنية أقوى وأعم في الرؤية الحاسوبية.</p>
+    <p>هدف هذه الورقة تلخيص وتصنيف طرق الانتباه الحالية في الرؤية الحاسوبية. نقسّم طرق الانتباه القائمة إلى ست فئات: أربع فئات أساسية — انتباه القنوات (ما الذي يجب الانتباه إليه [50])، والانتباه المكاني (أين يجب الانتباه)، والانتباه الزماني (متى يجب الانتباه)، وانتباه الفروع (أي فرع يجب الانتباه إليه) — مع فئتين هجينتين مركبتين: انتباه القنوات والمكان معًا، وانتباه المكان والزمان معًا. وتتمثل المساهمات الرئيسة لهذه الورقة في مراجعة منهجية لطرق الانتباه البصري تغطي وصفًا موحدًا، وتصنيفًا يجمع طرق الانتباه حسب مجال بياناتها بما يربطها بمعزل عن تطبيقاتها، واقتراحات لبحوث مستقبلية. يتناول القسم الثاني المسوح ذات الصلة، ثم القسم الثالث هو المتن الرئيس للمسح، وتُعرض اقتراحات البحث المستقبلي في القسم الرابع، وأخيرًا الاستنتاجات في القسم الخامس؛ وتُلخص الرموز الرئيسة في الجدول 2.</p>
+  </section>
+
+  <section>
+    <h2>2. مسوح أخرى</h2>
+    <p>نقارن في هذا القسم بإيجاز هذه الورقة مع مسوح قائمة متنوعة راجعت طرق الانتباه والمحولات البصرية. قدّم Chaudhari وآخرون [141] مسحًا لنماذج الانتباه في الشبكات العصبية العميقة يركز على تطبيقاتها في معالجة اللغة الطبيعية، بينما يركز عملنا على الرؤية الحاسوبية. وتلخص ثلاثة مسوح أكثر تخصصًا [142–144] تطور المحولات البصرية، بينما تراجع ورقتنا آليات الانتباه في الرؤية عمومًا وليس آليات الانتباه الذاتي فقط. وقدّم Wang وTax ‏[145] مسحًا لنماذج الانتباه في الرؤية الحاسوبية، لكنه يقتصر على نماذج الانتباه القائمة على RNN والتي لا تشكل سوى جزء من مسحنا. وإضافة إلى ذلك، وعلى عكس المسوح السابقة، نقدّم تصنيفًا يجمع طرق الانتباه المتنوعة وفق مجال بياناتها بدلًا من مجال تطبيقها، مركزين على طرق الانتباه في حد ذاتها بدل معاملتها كمكمل لمهام أخرى.</p>
+  </section>
+
+  <section>
+    <h2>3. طرق الانتباه في الرؤية الحاسوبية</h2>
+    <h3>3.1. الصيغة العامة</h3>
+    <p>يمكن كتابة آلية الانتباه بالصيغة العامة في المعادلة (1): أولًا توليد خريطة انتباه g(x) تُميّز المناطق المميزة، ثم معالجة المدخل x بناءً على ذلك الانتباه، أي f(g(x), x)، بما يتسق مع معالجة المناطق الحرجة. ففي الانتباه الذاتي، يمكن كتابة g(x) وf(g(x), x) على النحو: Q وK وV تساوي Linear(x) مع g(x) تساوي Softmax(QK<sup>T</sup>) وf(g(x), x) تساوي g(x)V. أما في كتلة SE فتكون g(x) تساوي Sigmoid(MLP(GAP(x))) وf(g(x), x) تساوي g(x)x. وفيما يلي نحدد مختلف آليات الانتباه وفق هذه الصيغة الموحدة.</p>
+    <h3>3.2. انتباه القنوات</h3>
+    <p>في الشبكات العصبية العميقة، تمثل القنوات المختلفة في خرائط السمات المختلفة عادة أجسامًا مختلفة [50]. ويعيد انتباه القنوات معايرة وزن كل قناة تكيفيًا، ويمكن اعتباره عملية اختيار للأجسام، أي تحديد ما الذي يجب الانتباه إليه. وكان Hu وآخرون [5] أول من اقترح مفهوم انتباه القنوات وقدّموا SENet: إذ تجمع كتلة الضغط والإثارة (SE) المعلومات المكانية الشاملة بالتجميع المتوسط الشامل في وحدة الضغط، ثم تلتقط العلاقات بين القنوات بطبقات متصلة كاملة وReLU وsigmoid في وحدة الإثارة، مُدرِّجةً كل قناة بمتجه الانتباه وفق s تساوي F<sub>se</sub>(X, θ) تساوي σ(W<sub>2</sub>δ(W<sub>1</sub>GAP(X))) في المعادلة (7)، وY تساوي sX. وتواصل ثلاثة تيارات تحسين انتباه القنوات: تحسين وحدة الضغط (مثل EncNet ‏[53] وGSoP-Net ‏[54] وFcaNet ‏[57])، أو تحسين وحدة الإثارة (مثل ECANet ‏[37])، أو تحسينهما معًا (مثل SRM ‏[55] وGCT ‏[56]). تستخدم GSoP-Net ‏[54] كتلة تجميع من الدرجة الثانية شاملة لنمذجة الإحصاءات عالية الرتبة؛ ويجمع SRM ‏[55] نقل الأسلوب مع الانتباه عبر تجميع الأسلوب باستخدام المتوسط والانحراف المعياري معًا؛ وينمذج GCT ‏[56] صراحة العلاقات بين القنوات بمعاملات قليلة بحيث يمكن إلحاقه بكل التفاف؛ ويستبدل ECANet ‏[37] تقليل الأبعاد بالتفاف أحادي البعد يلتقط التفاعل المحلي بين القنوات بحجم نواة تكيفي k يساوي ψ(C)؛ ويعيد FcaNet ‏[57] التفكير في التجميع المتوسط الشامل في مجال التردد بوصفه حالة خاصة من تحويل جيب التمام المتقطع مقترحًا انتباه قنوات متعدد الأطياف؛ ويضيف EncNet ‏[53] وحدة ترميز السياق مع خسارة ترميز دلالية للتجزئة؛ ويلتقط الانتباه الثنائي الخطي [147] التفاعلات الثنائية المحلية للسمات داخل كل قناة مع الحفاظ على المعلومات المكانية.</p>
+    <h3>3.3. الانتباه المكاني</h3>
+    <p>يمكن النظر إلى الانتباه المكاني بوصفه آلية تكيفية لاختيار المناطق المكانية: أي أين يجب الانتباه. وتُعد RAM ‏[31] وSTN ‏[32] وGENet ‏[61] وNon-Local ‏[15] ممثلة لأنواع مختلفة من طرق الانتباه المكاني. كانت RAM رائدة الانتباه البصري القائم على RNN: إذ يتنبأ حساس اللمحة وشبكة اللمحة وRNN تكراريًا بالمنطقة المهمة ويحدّثون الشبكة عبر التعلم المعزز، مركزين الحوسبة المحدودة على المناطق الرئيسة [31]؛ ووسّع Ba وآخرون [88] ذلك بشبكة متكررة عميقة للتعرف على أجسام متعددة تعالج لمحات صغيرة متعددة الدقة. وأدخل Xu وآخرون [35] الانتباه الصلب والناعم لتوليد التسميات التوضيحية للصور، مولّدين متجه سياق مشروطًا بالسمات البصرية والحالة الخفية السابقة لـLSTM. واقترح Oktay وآخرون [19] بوابة الانتباه الخفيفة (AG) التي تركز على المناطق المستهدفة مع كبح التفعيلات غير ذات الصلة في التجزئة الطبية. وتتنبأ STN ‏[32] صراحة بتحويل أفيني لتحقيق الثبات تجاه التحويلات، وهي أول آلية تتنبأ صراحة بالمناطق المهمة؛ وتختار الشبكات الالتفافية القابلة للتشوه [7] المناطق المهمة تكيفيًا بتعلم إزاحات أخذ العينات. وتلتقط متغيرات الانتباه الذاتي المعلومات الشاملة: إذ تحسب الشبكة غير المحلية [15] تشابهات ثنائية كثيفة؛ ويخفض CCNet ‏[41] التعقيد من O(N<sup>2</sup>) إلى O(N√N) بالانتباه المتقاطع؛ ويستخدم EMANet ‏[40] قواعد تعظيم التوقع مخفضًا التعقيد إلى O(NK)؛ ويقسم ViT ‏[34] الصورة إلى رقع تعالجها مرمّزة محول، مع توسيع DETR ‏[154] المحولات إلى كشف الأجسام من طرف إلى طرف.</p>
+    <h3>3.4. الانتباه الزماني</h3>
+    <p>يمكن النظر إلى الانتباه الزماني بوصفه آلية اختيار زمني ديناميكية تحدد متى يجب الانتباه، ومن ثم يُستخدم عادة لمعالجة الفيديو. وغالبًا ما تركز الأعمال السابقة [172، 173] على التقاط تبعيات السمات قصيرة وطويلة المدى عبر الإطارات. اقترح Li وآخرون [172] التمثيل الزماني الشامل-المحلي (GLTR)، بهرم زماني متمدد للسياق المحلي ووحدة انتباه ذاتي زمانية للتفاعل الشامل في إعادة تحديد هوية الأشخاص بالفيديو. واقترح Liu وآخرون [173] الوحدة الزمانية التكيفية (TAM)، التي تجمع تكيفيًا الإشارات الزمانية المحلية والشاملة بنوى تكيفية خفيفة للتعرف على الفيديو.</p>
+    <h3>3.5. انتباه الفروع</h3>
+    <p>يولّد انتباه الفروع خريطة انتباه عبر الفروع المختلفة ويستخدمها لاختيار الفروع المهمة [113–116]. ومن الأعمال الممثلة الالتفافات المعاملات ديناميكيًا مثل CondConv ‏[174]، التي تعامل نوى الالتفاف بوصفها مزيجًا من الخبراء لكل مثال لاستدلال فعال، والتصاميم الديناميكية وذات النوى الانتقائية ذات الصلة التي تدع الشبكة تختار الفرع الحسابي أو مجال الاستقبال الذي يجب إبرازه لكل مدخل.</p>
+    <h3>3.6. انتباه القنوات والمكان معًا</h3>
+    <p>تتنبأ طرق انتباه القنوات والمكان معًا بخريطتي انتباه للقنوات والمكان كلًا على حدة (مثل CBAM ‏[6]) أو تولّد خريطة انتباه مشتركة ثلاثية الأبعاد للقنوات والارتفاع والعرض مباشرة (مثل المراجع [118–120]) وتستخدمها لاختيار السمات المهمة [6، 10، 13، 14، 50، 101، 117–130]. تستدل CBAM ‏[6] انتباه القنوات تتابعيًا (عبر السمات المجمعة متوسطيًا وعظميًا من خلال MLP مشتركة) ثم الانتباه المكاني (بالتفاف على الواصفات المجمعة)، بينما تنمذج شبكة الانتباه المزدوج DANet ‏[10] معًا تبعيات الموضع والقنوات لتجزئة المشاهد، وتقسم A<sup>2</sup>Nets ‏[70] الانتباه إلى جمع السمات عبر التجميع من الدرجة الثانية وتوزيعها عبر الاختيار الناعم.</p>
+    <h3>3.7. انتباه المكان والزمان معًا</h3>
+    <p>تحسب طرق انتباه المكان والزمان معًا خريطتي انتباه زمانية ومكانية كلًا على حدة (مثل المرجعين [16، 131]) أو تنتج خريطة انتباه زمانية-مكانية مشتركة (مثل المرجع [132]) للتركيز على المناطق المثرية بالمعلومات في الفيديو [131، 133–140]. ومن التصاميم الممثلة النمذجة غير المحلية الزمانية-المكانية للتعرف على الأفعال [15، 16]، وانتباه STAT الزماني-المكاني لتوليد تسميات الفيديو [134]، والانتباه الزماني-المكاني القابل للتفسير [135]، والانتباه الزماني الشامل GTA ‏[136] لفهم الأفعال في الفيديو.</p>
+  </section>
+
+  <section>
+    <h2>4. البحث المستقبلي</h2>
+    <p>نختتم باتجاهات محتملة للبحث المستقبلي. (4.1) الشرط الضروري والكافي: ما يزال التفسير النظري الصارم لمتى ولماذا يساعد الانتباه مسألة مفتوحة. (4.2) كتلة الانتباه العامة: ما تزال هناك حاجة إلى تصميم كتلة انتباه موحدة جاهزة تُعمَّم عبر المهام والهياكل. (4.3) التوصيف وقابلية التفسير: تلزم أدوات أفضل لشرح ما تلتقطه خرائط الانتباه وكيف تقود القرارات. (4.4) التفعيل المتناثر: يعد الانتباه الأكثر تناثرًا وانتقائية بمكاسب في الكفاءة للمتتاليات الطويلة والمدخلات عالية الدقة. (4.5) النماذج المدربة مسبقًا القائمة على الانتباه: ستهيمن على الأرجح على التعلم بالنقل المستقبلي تدريبات مسبقة واسعة النطاق مبنية على هياكل الانتباه. (4.6) الأمثلة: تستحق ديناميكيات التدريب والتهيئة والتنظيم الخاصة بالنماذج الغنية بالانتباه دراسة أعمق. (4.7) النشر: تتمتع الشبكات العصبية الالتفافية ببنية بسيطة موحدة يسهل نشرها على العتاد، بينما يصعب تحسين نماذج الانتباه المعقدة والمتنوعة على الأجهزة الطرفية؛ ومع ذلك، تُظهر التجارب في المراجع [46–48] أن النماذج القائمة على الانتباه تعطي نتائج أفضل من الشبكات الالتفافية، لذا يجدر السعي لإيجاد نماذج انتباه بسيطة وفعالة وقابلة للنشر الواسع.</p>
+  </section>
+
+  <section>
+    <h2>5. الاستنتاجات</h2>
+    <p>أصبحت آليات الانتباه تقنية لا غنى عنها في الرؤية الحاسوبية في عصر التعلم العميق. وقد راجع هذا المسح واستعرض منهجيًا آليات الانتباه للشبكات العصبية العميقة في الرؤية الحاسوبية. وجمّعنا طرق الانتباه المختلفة وفق مجال عملها بدل مهمة التطبيق، وأظهرنا أن نماذج الانتباه يمكن اعتبارها موضوعًا مستقلًا بذاته. وختمنا ببعض الاتجاهات المحتملة للبحث المستقبلي. ونأمل أن يشجع هذا العمل مطوري التطبيقات المحتملة المتنوعين على توظيف آليات الانتباه لتحسين نتائج التعلم العميق، وأن يمنح الباحثين فهمًا أعمق لمختلف آليات الانتباه والعلاقات بينها، كمنطلق لبحوث مستقبلية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Humans can naturally and effectively find salient regions in complex scenes. Motivated by this observation, attention mechanisms were introduced into computer vision with the aim of imitating this aspect of the human visual system. Such an attention mechanism can be regarded as a dynamic weight adjustment process based on features of the input image. Attention mechanisms have achieved great success in many visual tasks, including image classification, object detection, semantic segmentation, video understanding, image generation, 3D vision, multimodal tasks, and self-supervised learning. In this survey, we provide a comprehensive review of various attention mechanisms in computer vision and categorize them according to approach, such as channel attention, spatial attention, temporal attention, and branch attention; a related repository at https://github.com/MenghaoGuo/Awesome-Vision-Attentions is dedicated to collecting related work. We also suggest future directions for attention mechanism research.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Methods for diverting attention to the most important regions of an image and disregarding irrelevant parts are called attention mechanisms; the human visual system uses one [1–4] to assist in analyzing and understanding complex scenes efficiently and effectively. This has inspired researchers to introduce attention mechanisms into computer vision systems to improve their performance. In a vision system, an attention mechanism can be treated as a dynamic selection process realized by adaptively weighting features according to the importance of the input. Attention mechanisms have provided benefits in very many visual tasks, e.g., image classification [5, 6], object detection [7, 8], semantic segmentation [9, 10], face recognition [11, 12], person re-identification [13, 14], action recognition [15, 16], few-shot learning [17, 18], medical image processing [19, 20], image generation [21, 22], pose estimation [23], super resolution [24, 25], 3D vision [26, 27], and multi-modal tasks [28, 29].</p>
+    <p>In the past decade, the attention mechanism has played an increasingly important role in computer vision. Progress can be coarsely divided into four phases. The first phase begins from RAM [31], pioneering work combining deep neural networks with attention mechanisms, which recurrently predicts the important region and updates the whole network end to end through a policy gradient; in this phase recurrent neural networks (RNNs) were necessary tools. At the start of the second phase, Jaderberg et al. [32] proposed the STN, which introduces a sub-network to predict an affine transformation used to select important regions in the input; explicitly predicting discriminative input features is the major characteristic of this phase, and DCNs [7] are representative works. The third phase began with SENet [5], which presented a novel channel-attention network that implicitly and adaptively predicts the potential key features; CBAM [6] and ECANet [37] are representative works of this phase. The last phase is the self-attention era: self-attention was first proposed in Ref. [33] and rapidly provided great advances in natural language processing [33, 38, 39]. Wang et al. [15] took the lead in introducing self-attention to computer vision with a novel non-local network with great success in video understanding and object detection, followed by works such as EMANet [40], CCNet [41], and the Stand-Alone Network [43]. Recently, various pure deep self-attention networks (visual transformers) [27, 34, 44–49] have appeared, showing the huge potential of attention-based models. It is clear that attention-based models have the potential to replace convolutional neural networks and become a more powerful and general architecture in computer vision.</p>
+    <p>The goal of this paper is to summarize and classify current attention methods in computer vision. We divide existing attention methods into six categories: four basic categories — channel attention (what to pay attention to [50]), spatial attention (where to pay attention), temporal attention (when to pay attention), and branch attention (which to pay attention to) — along with two hybrid combined categories: channel and spatial attention, and spatial and temporal attention. The main contributions of this paper are a systematic review of visual attention methods covering a unified description, a data-domain categorisation linking visual attention methods independently of their application, and suggestions for future research. Section 2 considers related surveys, Section 3 is the main body of the survey, suggestions for future research are given in Section 4, and conclusions in Section 5; key notation is summarized in Table 2.</p>
+  </section>
+
+  <section>
+    <h2>2. Other surveys</h2>
+    <p>In this section, we briefly compare this paper to various existing surveys which have reviewed attention methods and visual transformers. Chaudhari et al. [141] provided a survey of attention models in deep neural networks which concentrates on their application to natural language processing, while our work focuses on computer vision. Three more specific surveys [142–144] summarize the development of visual transformers, while our paper reviews attention mechanisms in vision more generally, not just self-attention mechanisms. Wang and Tax [145] presented a survey of attention models in computer vision, but it only considers RNN-based attention models, which form just a part of our survey. In addition, unlike previous surveys, we provide a classification which groups various attention methods according to their data domain, rather than according to their field of application, concentrating on the attention methods in their own right rather than treating them as supplementary to other tasks.</p>
+  </section>
+
+  <section>
+    <h2>3. Attention methods in computer vision</h2>
+    <h3>3.1. General form</h3>
+    <p>An attention mechanism can be written in the general form of Eq. (1): first generate an attention map g(x) that marks the discriminative regions, then process the input x based on that attention, f(g(x), x), consistent with processing critical regions. For self-attention, g(x) and f(g(x), x) can be written as Q, K, V = Linear(x) with g(x) = Softmax(QK<sup>T</sup>) and f(g(x), x) = g(x)V. For the SE block, g(x) = Sigmoid(MLP(GAP(x))) and f(g(x), x) = g(x)x. In what follows, we specify various attention mechanisms in this unified formulation.</p>
+    <h3>3.2. Channel attention</h3>
+    <p>In deep neural networks, different channels in different feature maps usually represent different objects [50]. Channel attention adaptively recalibrates the weight of each channel and can be viewed as an object selection process, determining what to pay attention to. Hu et al. [5] first proposed the concept of channel attention and presented SENet: its squeeze-and-excitation (SE) block collects global spatial information by global average pooling in a squeeze module, then captures channel-wise relationships with fully connected layers, ReLU, and sigmoid in an excitation module, scaling each channel by the attention vector as s = F<sub>se</sub>(X, θ) = σ(W<sub>2</sub>δ(W<sub>1</sub>GAP(X))) in Eq. (7), Y = sX. Three streams of work improve channel attention: improving the squeeze module (e.g., EncNet [53], GSoP-Net [54], FcaNet [57]), improving the excitation module (e.g., ECANet [37]), or improving both (e.g., SRM [55], GCT [56]). GSoP-Net [54] uses a global second-order pooling block to model higher-order statistics; SRM [55] combines style transfer with attention via style pooling using both mean and standard deviation; GCT [56] explicitly models channel-wise relationships with few parameters so it can follow every convolution; ECANet [37] replaces dimensionality reduction with a 1D convolution capturing local cross-channel interaction with adaptively chosen kernel size k = ψ(C); FcaNet [57] rethinks global average pooling in the frequency domain as a special case of the discrete cosine transform and proposes multi-spectral channel attention; EncNet [53] adds a context encoding module with semantic encoding loss for segmentation; and bilinear attention [147] captures local pairwise feature interactions within each channel while preserving spatial information.</p>
+    <h3>3.3. Spatial attention</h3>
+    <p>Spatial attention can be seen as an adaptive spatial region selection mechanism: where to pay attention. RAM [31], STN [32], GENet [61], and Non-Local [15] are representative of different kinds of spatial attention methods. RAM pioneered RNN-based visual attention: a glimpse sensor, glimpse network, and RNN recurrently predict the important region and update the network through reinforcement learning, concentrating limited computation on key regions [31]; Ba et al. [88] extended this with a deep recurrent multi-object recognition network processing small multi-resolution glimpses. Xu et al. [35] introduced hard and soft attention for image captioning, generating a context vector conditioned on visual features and the previous LSTM hidden state. Oktay et al. [19] proposed the lightweight attention gate (AG) that focuses on target regions while suppressing irrelevant activations in medical segmentation. STN [32] explicitly predicts an affine transformation to obtain transformation invariance, the first mechanism to explicitly predict important regions; deformable ConvNets [7] adaptively select important regions by learning sampling offsets. Self-attention variants capture global information: the non-local network [15] computes dense pairwise similarities; CCNet [41] reduces complexity from O(N<sup>2</sup>) to O(N√N) with criss-cross attention; EMANet [40] uses expectation-maximization bases reducing complexity to O(NK); and ViT [34] splits the image into patches processed by a transformer encoder, with DETR [154] extending transformers to end-to-end object detection.</p>
+    <h3>3.4. Temporal attention</h3>
+    <p>Temporal attention can be seen as a dynamic time selection mechanism determining when to pay attention, and is thus usually used for video processing. Previous works [172, 173] often emphasise capturing both short-term and long-term cross-frame feature dependencies. Li et al. [172] proposed global-local temporal representation (GLTR), with a dilated temporal pyramid for local context and a temporal self-attention module for global interaction in video person re-identification. Liu et al. [173] proposed the temporal adaptive module (TAM), adaptively aggregating local and global temporal cues with lightweight adaptive kernels for video recognition.</p>
+    <h3>3.5. Branch attention</h3>
+    <p>Branch attention generates an attention mask across different branches and uses it to select important branches [113–116]. Representative works include dynamically parameterized convolutions such as CondConv [174], which conditionally parameterizes convolutional kernels as a mixture of experts per example for efficient inference, and related dynamic and selective-kernel designs that let the network choose which computational branch or receptive field to emphasize for each input.</p>
+    <h3>3.6. Channel and spatial attention</h3>
+    <p>Channel and spatial attention methods predict channel and spatial attention masks separately (e.g., CBAM [6]) or generate a joint 3D channel–height–width attention mask directly (e.g., Refs. [118–120]) and use it to select important features [6, 10, 13, 14, 50, 101, 117–130]. CBAM [6] sequentially infers channel attention (via average- and max-pooled features through a shared MLP) and spatial attention (via convolution over pooled descriptors), while the dual attention network DANet [10] jointly models position and channel dependencies for scene segmentation, and A<sup>2</sup>Nets [70] divide attention into feature gathering via second-order pooling and distribution via soft selection.</p>
+    <h3>3.7. Spatial and temporal attention</h3>
+    <p>Spatial and temporal attention methods compute temporal and spatial attention masks separately (e.g., Refs. [16, 131]) or produce a joint spatiotemporal attention mask (e.g., Ref. [132]) to focus on informative regions in video [131, 133–140]. Representative designs include non-local spatiotemporal modeling for action recognition [15, 16], STAT's spatial-temporal attention for video captioning [134], interpretable spatiotemporal attention [135], and global temporal attention GTA [136] for video action understanding.</p>
+  </section>
+
+  <section>
+    <h2>4. Future research</h2>
+    <p>We conclude with potential directions for future research. (4.1) Necessary and sufficient conditions: a rigorous theoretical account of when and why attention helps remains open. (4.2) General attention blocks: designing a unified, plug-and-play attention block that generalizes across tasks and backbones is still needed. (4.3) Characterisation and interpretability: better tools are required to explain what attention maps capture and how they drive decisions. (4.4) Sparse activation: sparser, more selective attention promises efficiency gains for long sequences and high-resolution inputs. (4.5) Attention-based pre-trained models: large-scale pre-training built around attention backbones will likely dominate future transfer learning. (4.6) Optimization: training dynamics, initialization, and regularization specific to attention-heavy models deserve deeper study. (4.7) Deployment: convolutional neural networks have a simple, uniform structure that is easy to deploy on hardware, while complex and varied attention-based models are difficult to optimize on edge devices; nevertheless, experiments in Refs. [46–48] show attention-based models provide better results than convolutional networks, so finding simple, efficient, and effective attention-based models which can be widely deployed is worthwhile.</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>Attention mechanisms have become an indispensable technique in the field of computer vision in the era of deep learning. This survey has systematically reviewed and summarized attention mechanisms for deep neural networks in computer vision. We have grouped different attention methods according to their domain of operation, rather than by application task, and show that attention models can be regarded as an independent topic in their own right. We have concluded with some potential directions for future research. We hope that this work will encourage a variety of potential application developers to put attention mechanisms to use to improve their deep learning results, and give researchers a deeper understanding of various attention mechanisms and the relationships between them, as a springboard for future research.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] L. Itti, C. Koch, and E. Niebur, “A model of saliency-based visual attention for rapid scene analysis,” <em>IEEE Trans. Pattern Anal. Mach. Intell.</em>, vol. 20, no. 11, pp. 1254–1259, 1998.</li>
+      <li>[5] J. Hu, L. Shen, S. Albanie, G. Sun, and E. H. Wu, “Squeeze-and-excitation networks,” <em>IEEE Trans. Pattern Anal. Mach. Intell.</em>, vol. 42, no. 8, pp. 2011–2023, 2020.</li>
+      <li>[6] S. Woo, J. Park, J. Lee, and I. S. Kweon, “CBAM: Convolutional block attention module,” in <em>Proc. ECCV 2018</em>, Springer Cham, pp. 3–19, 2018.</li>
+      <li>[7] J. F. Dai et al., “Deformable convolutional networks,” in <em>Proc. IEEE ICCV</em>, pp. 764–773, 2017.</li>
+      <li>[15] X. Wang, R. Girshick, A. Gupta, and K. He, “Non-local neural networks,” in <em>Proc. IEEE CVPR</em>, pp. 7794–7803, 2018.</li>
+      <li>[31] V. Mnih, N. Heess, A. Graves, and K. Kavukcuoglu, “Recurrent models of visual attention,” in <em>Proc. NeurIPS</em>, pp. 2204–2212, 2014.</li>
+      <li>[32] M. Jaderberg, K. Simonyan, A. Zisserman, and K. Kavukcuoglu, “Spatial transformer networks,” in <em>Proc. NeurIPS</em>, pp. 2017–2025, 2015.</li>
+      <li>[33] A. Vaswani et al., “Attention is all you need,” in <em>Proc. NeurIPS</em>, pp. 5998–6008, 2017.</li>
+      <li>[34] A. Dosovitskiy et al., “An image is worth 16×16 words: Transformers for image recognition at scale,” in <em>Proc. ICLR</em>, 2021.</li>
+      <li>[37] Q. Wang et al., “ECA-Net: Efficient channel attention for deep convolutional neural networks,” in <em>Proc. IEEE CVPR</em>, pp. 11534–11542, 2020.</li>
+      <li>[141] S. Chaudhari et al., “An attentive survey of attention models,” <em>ACM Trans. Intell. Syst. Technol.</em>, vol. 12, no. 5, Article 53, 2021.</li>
+      <li>[145] F. Wang and D. M. J. Tax, “Survey on the attention based RNN model and its applications in computer vision,” arXiv:1601.06823, 2016.</li>
+      <li>[172] J. N. Li et al., “Global–local temporal representations for video person re-identification,” in <em>Proc. IEEE ICCV</em>, pp. 3957–3966, 2019.</li>
+      <li>... [full reference list available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.1007/s41095-022-0271-y">10.1007/s41095-022-0271-y</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

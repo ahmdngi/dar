@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المحوّلات التلقائية التباينية الخصومية لتوسيع النموذج التوليدي وتحسينه — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Adversarial Variational Autoencoders to Extend and Improve Generative Model</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">المحوّلات التلقائية التباينية الخصومية لتوسيع النموذج التوليدي وتحسينه</h2>
+
+  <div class="paper-meta">
+    <span>👤 Loc Nguyen, Hassan I. Abdalla, Ali A. Amer</span>
+    <span>📄 Applied Computing Review (IntechOpen), 2024 · CC BY 4.0</span>
+    <span>🔗 <a href="https://doi.org/10.5772/acrt.20240003">10.5772/acrt.20240003</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p dir="rtl">تقدم تقنيات الذكاء الاصطناعي التوليدي (GenAI) مثل ChatGPT وBard إنجازات ملحوظة، ويُعد النموذج التوليدي العميق (DGM) فرعًا بارزًا في توليد البيانات النقطية كالصور والأصوات بفضل الدور القوي للشبكات العصبية العميقة (DNN) في الاستدلال والتعرف. ومن أشهر منهجي DGM: المحوّل التلقائي التبايني (VAE) وشبكة الخصومة التوليدية (GAN). ولكل من VAE وGAN مزاياه رغم اشتراكهما في الأساس الإحصائي والتعقيد عبر الطبقات المخفية، إذ يُعد VAE مولّد بيانات جيدًا بترميز البيانات عبر فكرة تباعد كولباك-لايبلر (Kullback–Leibler)، بينما تقيّم GAN موثوقية البيانات من حيث كونها حقيقية أو مزيفة.</p>
+    <p dir="rtl">يوحّد هذا البحث VAE وGAN في نموذج متماسك هو المحوّل التلقائي التبايني الخصومي (AVA) الذي يكمل فيه كل منهما الآخر، بهدف تحسين دقة النماذج التوليدية وتوسيع وظائف النماذج التوليدية البسيطة. وتركز المنهجية على الجمع بين المفاهيم الرياضية التطبيقية والتقنيات البرمجية الماهرة لحل المشكلات المعقدة بأبسط صورة ممكنة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p dir="rtl">يُعد المحوّل التلقائي التبايني (VAE) وشبكة الخصومة التوليدية (GAN) أشهر منهجين للنماذج التوليدية العميقة (DGM) بدعم الشبكات العميقة [1]. يؤسس VAE — الذي وضعه Kingma وWelling [8] — ترميز البيانات عبر فضاء كامن احتمالي ينظمه تباعد كولباك-لايبلر، بينما تضع GAN — التي أسسها Goodfellow وآخرون [9] — مولّدًا في مواجهة مميّز يحكم على الحقيقي مقابل المزيف. وقد جمعت أعمال عدة بينهما: اعتبر Larsen وآخرون [2] فاكّ ترميز VAE مولّد GAN بهدف مجموع؛ وحوّل Mescheder وآخرون [3] مكسب VAE بتباعد KL إلى مكسب GAN عبر شبكة تمييز حقيقية القيمة مرتبطة بمعادلة ناش؛ ودمجهما Rosca وآخرون [4] بحيلة نسبة الكثافة؛ وربطهما Ahmad وآخرون [5] تسلسليًا لتصنيف أورام الدماغ.</p>
+    <p dir="rtl">ويختلف هذا البحث بدمج VAE وGAN بطريقة تبادلية متوازنة بدل صهر أحدهما في الآخر: فدالة التحسين المبنية تستبعد دالة هدف GAN التقليدية، وتُسقط المتغيرات غير المرتبطة بعد تحديد التدرجات، وتعيد استخدام البيانات المرمزة المعشاة z بدل بناء z′ عشوائية جديدة لحد GAN. كما تساهم الدراسة بتقنيات مشتقات ماهرة في خوارزمية الانتشار الخلفي. وتنظم الورقة في المنهجية والنتائج التجريبية والمناقشة والاستنتاجات.</p>
+  </section>
+
+  <section>
+    <h2>2. المنهجية</h2>
+    <p dir="rtl">تقترح الورقة دمج GAN في VAE لأن GAN لا ترمّز البيانات الأصلية — والترميز ضروري لتطبيقات مثل ضغط الصور والتعرف عليها — بينما يفتقر VAE لآلية تدقيق جودة البيانات المولدة. ومع بيانات أصلية x ببعد m وبيانات مرمزة z ببعد n (حيث m > n)، يكون مشفّر VAE هو f(x|Θ) = z وفاكّ الترميز g(z|Φ) = x′ شبكتين عميقتين، وجوهر VAE هو الخسارة lVAE(Θ, Φ) = ½‖x − x′‖² + KL(μ(x), Σ(x) | N(0, I)) في المعادلة (1) [8]. ويضيف AVA مميّزًا d(·|Ψ) يشرف على مخرج فاكّ الترميز x′، وفي المتغيرات المتوازنة مميّزًا ثانيًا D(·|Λ) يشرف على المتوسط المرمز μ(x) — وهي دالة التوازن BAVA(Θ, Λ) التي تقيّم موثوقية المشفّر.</p>
+    <p dir="rtl">وتُحدَّث المعاملات بقواعد تدرج مشتقة في الورقة: تتبع أوزان المشفّر Θ تدرج KL، وتتبع أوزان فاكّ الترميز Φ خطأ إعادة البناء إضافة إلى نسبة تقييم المميّز d′(d(x′|Ψ∗))/(1 − d(x′|Ψ∗))، بينما تقابل أوزان المميّز Ψ بين x الحقيقية وx′ المولدة. وتُعرَّف خمس نسخ من AVA: AVA1 (العادية بإشراف على فاكّ الترميز)، وAVA2 (AVA1 مع تحسين الميل الأمامي لفاكّ الترميز)، وAVA3 (إشراف على المشفّر عبر دالة التوازن)، وAVA4 (AVA3 مع مشفّر مائل)، وAVA5 (جميع الوظائف: إشراف فاكّ/مشفّر وميل فاكّ/مشفّر).</p>
+  </section>
+
+  <section>
+    <h2>3. النتائج التجريبية والمناقشة</h2>
+    <p dir="rtl">أُجريت التجربة على جهاز بذاكرة 4GB ونظام Windows 10 بلغة Java 15، ودُرّبت على 36 صورة رمادية بمقاس 100×64 بكسل (الشكل 5)، وقورنت AVA1–AVA5 مع VAE [8،10] وGAN [9] عبر تسعة معدلات تعلم باستخدام مقياس الجودة BM. ويعرض الجدول 2 قيم BM لكل معدل تعلم ويجملها الجدول 3: تحقق AVA5 أعلى متوسط BM وهو 0.2096 متجاوزة قطب GAN البالغ 0.2089؛ وتتفوق AVA1 (0.2093) وAVA2 (0.2092) أيضًا على GAN، بينما تسجل AVA3 أدنى متوسط BM وهو 0.1202 — قرب قطب التشابه في VAE البالغ 0.1207 — مما يجعلها أفضل نموذج عند اعتماد معيار جودة التشابه.</p>
+    <p dir="rtl">ويفسّر المؤلفون VAE وGAN كقطبين — جودة التشابه مقابل جودة التوازن — مع عائلة AVA التي تمتد بينهما وتتجاوزهما: فمتغيرات الإشراف على فاكّ الترميز (AVA1 وAVA2 وAVA5) تدفع جودة التوازن أبعد من GAN المنفردة، ويدفع AVA3 المشرف على المشفّر جودة التشابه إلى قطب VAE بل أبعد منه قليلًا. ويؤكد ذلك أطروحة أن ترميز VAE الموجه بتباعد KL وتدقيق GAN للحقيقي-مقابل-المزيف يتكاملان داخل نموذج موحد واحد بدل ربطهما أو صهرهما رياضيًا فقط [2-5].</p>
+  </section>
+
+  <section>
+    <h2>4. الاستنتاجات</h2>
+    <p dir="rtl">تخلص الورقة إلى أن AVA أفضل من VAE وGAN التقليديتين بفضل دعم تباعد KL الذي يؤسس المشفّر ودالة التمييز المدمجة في GAN التي تدقق موثوقية البيانات. ويظل VAE وGAN نموذجين راسخين لا تحتاج أسسهما الرياضية إلى تغيير، لكن يمكن تحسينهما بالتعديل والدمج وتطبيقهما على أدوات محددة تبرز فيها نقاط قوتهما. ويعلن المؤلفون عدم وجود تضارب في المصالح.</p>
+    <p dir="rtl">ومن القيود الملاحظة الذاكرة: ففي تطبيقات الصور النقطية يستهلك VAE ذاكرة كبيرة لأن التوزيع الاحتمالي يمثل الصورة كاملة، بينما تمثل مناهج البكسل التكرارية حواصل توزيعات شرطية لكل بكسل وتتعامل أفضل مع استعادة المناطق المتضررة الصغيرة. وستطبق الأعمال المستقبلية منهج البكسل على AVA — بمعالجة الصور الكبيرة كتلة كتلة مع نمذجة كل كتلة بتوزيع شرطي يستخدم شبكة تكرارية مع ذاكرة طويلة قصيرة المدى (LSTM).</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Generative artificial intelligence (GenAI) has been advancing with notable achievements like ChatGPT and Bard. The deep generative model (DGM) is a branch of GenAI, preeminent in generating raster data such as image and sound due to the strong role of deep neural networks (DNNs) in inference and recognition. Two popular approaches in DGM are the variational autoencoder (VAE) and generative adversarial network (GAN). Both VAE and GAN have their own strong points although they share the underlying theory of statistics, with VAE a good data generator by encoding data via Kullback–Leibler divergence and GAN an important method to assess data reliability as real or fake.</p>
+    <p>This research unifies VAE and GAN into a consistent model called the adversarial variational autoencoder (AVA) in which they complement each other, aiming to improve generative-model accuracy and extend the function of simple generative models. The methodology focuses on combining applied mathematical concepts with skillful programming techniques to solve complicated problems as simply as possible.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>The variational autoencoder (VAE) and the generative adversarial network (GAN) are the two popular approaches for deep generative models (DGM) with DNN support [1]. VAE, founded by Kingma and Welling [8], encodes data through a probabilistic latent space regularized by Kullback–Leibler divergence, while GAN, founded by Goodfellow et al. [9], pits a generator against a discriminator that judges real versus fake. Several works have combined them: Larsen et al. [2] treated the VAE decoder as the GAN generator with a summed objective; Mescheder et al. [3] transformed the VAE gain with KL divergence into a GAN gain via a real-valued discrimination network tied to the Nash equilibrium; Rosca et al. [4] fused them with a density-ratio trick; and Ahmad et al. [5] chained a trained VAE into a GAN for brain-tumor classification.</p>
+    <p>This research differs by combining VAE and GAN in a mutual, balancing way rather than fusing one into the other: the constructed optimization excludes the traditional GAN target function, drops uncorrelated variables after gradient determination, and reuses the randomized encoded data z instead of constructing a new random z′ for the GAN term. The study also contributes skillful derivative techniques in the backpropagation algorithm. The paper is organized into methodology, experimental results and discussion, and conclusions.</p>
+  </section>
+
+  <section>
+    <h2>2. Methodology</h2>
+    <p>The paper proposes incorporating GAN into VAE because GAN does not code original data — coding being essential for image compression and recognition — while VAE lacks a mechanism to audit generated-data quality. With original data x of dimension m and encoded data z of dimension n (m > n), the VAE encoder f(x|Θ) = z and decoder g(z|Φ) = x′ are DNNs, and the VAE essence is the loss lVAE(Θ, Φ) = ½‖x − x′‖² + KL(μ(x), Σ(x) | N(0, I)) in Equation (1) [8]. The AVA adds a discriminator d(·|Ψ) that supervises the decoder output x′ and, in balanced variants, a second discriminator D(·|Λ) that supervises the encoded mean μ(x) — the balance function BAVA(Θ, Λ) assessing encoder reliability.</p>
+    <p>Parameters are updated by gradient rules derived in the paper: the encoder weights Θ follow the KL gradient, the decoder weights Φ follow the reconstruction error plus the discriminator's assessment ratio d′(d(x′|Ψ∗))/(1 − d(x′|Ψ∗)), and the discriminator weights Ψ contrast real x against generated x′. Five AVA versions are defined: AVA1 (normal, decoder supervising), AVA2 (AVA1 plus leaning-forward decoder improvement), AVA3 (encoder supervising via the balance function), AVA4 (AVA3 plus leaning encoder), and AVA5 (all functions: decoder/encoder supervising plus leaning decoder/encoder).</p>
+  </section>
+
+  <section>
+    <h2>3. Experimental Results and Discussion</h2>
+    <p>The experiment, run on a 4 GB RAM Windows 10 machine with Java 15, trains on 36 grayscale images of 100×64 pixels (Figure 5) and compares AVA1–AVA5 against VAE [8,10] and GAN [9] across nine learning rates using the BM quality measure. Table 2 reports BM values per learning rate and Table 3 aggregates them: AVA5 achieves the highest BM mean of 0.2096, exceeding the GAN pole of 0.2089; AVA1 (0.2093) and AVA2 (0.2092) also beat GAN, while AVA3 records the lowest BM mean of 0.1202 — near the VAE similarity pole of 0.1207 — making it the best model when similarity quality is the criterion.</p>
+    <p>The authors interpret VAE and GAN as two poles — similarity quality versus balance quality — with the AVA family spanning and extending them: decoder-supervised variants (AVA1, AVA2, AVA5) push balance quality beyond standalone GAN, and the encoder-supervised AVA3 pushes similarity quality to the VAE pole and slightly beyond it. This confirms the thesis that VAE's KL-driven encoding and GAN's real-vs-fake auditing complement each other inside one consolidated model rather than merely being chained or fused mathematically [2–5].</p>
+  </section>
+
+  <section>
+    <h2>4. Conclusions</h2>
+    <p>The paper concludes that AVA is better than traditional VAE and GAN thanks to the KL-divergence support that establishes the encoder and GAN's built-in discriminator function that audits data reliability. VAE and GAN remain solid models whose mathematical foundations need not change, yet they can still be improved by modification, combination, and application to specific tools where their strengths play out. The authors declare no conflict of interest.</p>
+    <p>A noted limitation is memory: in raster-image applications VAE consumes much memory because a probabilistic distribution represents the entire image, whereas pixel-recurrent approaches model products of conditional distributions per pixel and handle small damaged-area recovery better. Future work will apply the pixel approach to AVA — processing big images block by block with each block modeled by a conditional distribution using a recurrent network with long short-term memory (LSTM).</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+<li>[1] Ruthotto L, Haber E. An Introduction to Deep Generative Modeling [Internet]. arXiv; 2021. Available from: https://arxiv.org/10.48550/arXiv.2103.05180.</li>
+      <li>[2] Larsen AB, Sønderby SK, Larochelle H, Winther O. Autoencoding beyond pixels using a learned similarity metric [Internet]. In: International Conference on Machine Learning, vol. 48, New York: JMLR; 2016. p. 1558–1566. Available from: http://proceedings.mlr.press/v48/larsen16.pdf.</li>
+      <li>[3] Mescheder L, Nowozin S, Geiger A. Adversarial variational Bayes: unifying variational autoencoders and generative adversarial networks [Internet]. In: Proceedings of the 34th International Conference on Machine, vol. 70, Sydney: PMLR; 2017. p. 2391–2400. Available from: http://proceedings.mlr.press/v70/mescheder17a/mescheder17a.pdf.</li>
+      <li>[4] Rosca M, Lakshminarayanan B, Warde-Farley D, Mohamed S. Variational Approaches for Auto-encoding Generative Adversarial Networks [Internet]. arXiv; 2017. Available from: https://arxiv.org/abs/1706.04987.</li>
+      <li>[5] Ahmad B, Sun J, You Q, Palade V, Mao Z. Brain tumor classiﬁcation using a combination of variational autoencoders and generative adversarial networks. Biomedicines. 2022;10(2):1–19. doi:10.3390/biomedicines10020223.</li>
+      <li>[6] Miolane N, Poitevin F, Li Y-T. Estimation of orientation and camera parameters from cryo-electron microscopy images with variational autoencoders and generative adversarial [Internet]. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops. New Orleans: IEEE; 2020.  p. 970–971. Available from: http://openaccess.thecvf.com/content_CVPRW_2020/papers/w57/Miolane_ Estimation_of_Orientation_and_Camera_Parameters_From_Cryo- Electron_Microscopy_Images_CVPRW_2020_paper.pdf.</li>
+      <li>[7] Ding Y, Kang W, Feng J, Peng B, Yang A. Credit card fraud detection based on improved variational autoencoder generative adversarial network. In: Abbott D, editor. IEEE Access, vol. 11, 2023. p. 83680–83691. doi:10.1109/ACCESS.2023.3302339.</li>
+      <li>[8] Kingma DP, Welling M. Auto-encoding Variational Bayes [Internet]. arXiv; 2022. 1–14. Available form: https://arxiv.org/10.48550/arXiv.1312.6114.</li>
+      <li>[9] Goodfellow I, Pouget-Abadie J, Mirza M, Xu B, Warde-Farley D, Ozair S, et al. Generative adversarial nets [Internet]. In: Ghahramani Z, Welling M, Cortes C, Lawrence N, Weinberger K, editors. Advances in Neural Information Processing Systems 27 (NIPS 2014), vol. 27, Montreal: NeurIPS; 2014 Available from: https://proceedings.neurips.cc/paper_ﬁles/paper/2014/ﬁle/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf.</li>
+      <li>[10] Doersch C. Tutorial on Variational Autoencoders [Internet]. arXiv; 2016. Available form: https://arxiv.org/abs/1606.05908.</li>
+      <li>[11] Nguyen L. In: Evans C, editor. Matrix analysis and calculus [Internet]. 1st ed. Hanoi, Vietnam: Lambert Academic Publishing; 2015 [cited 2014 Mar 3]. Available from: https://www.shuyuan.sg/store/gb/book/matrix-analysis-and-calculus/isbn/978-3-659-69400-4.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.5772/acrt.20240003">10.5772/acrt.20240003</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

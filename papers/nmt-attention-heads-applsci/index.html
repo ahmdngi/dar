@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نحو فهم الترجمة الآلية العصبية بأهمية رؤوس الانتباه — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Towards Understanding Neural Machine Translation with Attention Heads' Importance</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نحو فهم الترجمة الآلية العصبية بأهمية رؤوس الانتباه</h2>
+
+  <div class="paper-meta">
+    <span>👤 Zijie Zhou, Junguo Zhu, Weijiang Li</span>
+    <span>📄 Appl. Sci. 2024, 14, 2798</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app14072798">10.3390/app14072798</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>رغم التقدم الكبير في الترجمة الآلية العصبية، وتقدم المحولات (Transformer) للأداء القياسي في أزواج لغوية متنوعة، تبقى عملية اتخاذ القرار في آلية الانتباه — مكون المحولات المحوري — غير واضحة. في هذه الورقة، نقترح فهم قرارات النموذج عبر أهمية رؤوس الانتباه. نستكشف المعرفة التي اكتسبتها رؤوس الانتباه، موضحين عملية اتخاذ القرار من منظور الفهم اللغوي. وتحديدًا، نكمّم أهمية كل رأس انتباه بتقييم إسهامه في أداء الترجمة الآلية العصبية، موظفين منهج حجب رؤوس الانتباه (Masking Attention Heads). نقيّم المنهج ونبحث توزيع أهمية رؤوس الانتباه وارتباطها بإسهام أجزاء الكلام. ولفهم القرارات المتنوعة لرؤوس الانتباه، نركز على تحليل المعرفة اللغوية متعددة الحبيبات. تشير نتائجنا إلى أن الرؤوس المتخصصة تؤدي دورًا حاسمًا في تعلم اللغويات. وبالاحتفاظ برؤوس الانتباه المهمة وإزالة غير المهمة، نحسّن آلية الانتباه — مما يقلل عدد معاملات النموذج ويزيد سرعته. كما أن توظيف الصلة بين رؤوس الانتباه والمعرفة اللغوية متعددة الحبيبات يعزز قابلية تفسير النموذج. وبذلك يقدم بحثنا رؤى قيمة لتصميم نماذج ترجمة محسنة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>مع ظهور آليات الانتباه [1] وتعلم تسلسل-إلى-تسلسل [2]، تقدمت الترجمة الآلية العصبية (NMT) بسرعة، مضيّقة الفجوة بين القدرات اللغوية الآلية والبشرية خاصة في فهم الترجمات وتوليدها. ويتفوق نموذج المحولات (Transformer) [3] عبر طيف من مهام الترجمة الآلية، وآلية الانتباه فيه مكون محوري يوفر توازيًا استثنائيًا ييسّر معالجة البيانات واسعة النطاق بكفاءة. ورغم هذا التقدم، فإن تعقيد بنية النموذج وغموض اتخاذ القرار في نماذج الترجمة يجعلانها شبيهة بالصناديق السوداء. يعيق هذا الغموض فهمًا واضحًا للقرارات المحددة المتخذة والسمات الدقيقة للانتباه المتعلم. كما أن التعقيد المتأصل في مهام الترجمة الآلية، مقترنًا بالبنى المتطورة المصممة لمعالجتها، يفاقم التحدي [4].</p>
+    <p>بالنسبة للبشر، تبدو نماذج الترجمة غالبًا «صناديق سوداء»، بينما تعمل قابلية التفسير «كرة بلورية» توضح عمليات اتخاذ القرار الداخلية للنماذج. هذا الوضوح لا يساعد الباحثين على تنقيح النماذج فحسب، بل يوفر أساسًا نظريًا لذكاء اصطناعي جدير بالثقة. عُولجت قابلية تفسير نماذج الترجمة من منظورين متكاملين: أحدهما يركز على تصوير عمليات اتخاذ القرار ومحاكاة الآليات الداخلية لتنمية ثقة حقيقية بين البشر والنماذج [5]؛ والآخر يستهدف فهم قرارات النموذج فهمًا عميقًا من منظور بشري، بتحديد المحتوى المتعلم عبر معرفة لغوية في متناول البشر [6].</p>
+    <p>اخترنا نموذج الترجمة الآلية القياسي — نموذج المحولات — موضوعًا للدراسة. وهو شبكة عصبية قائمة على آلية الانتباه الذاتي تشمل طبقات متعددة من المشفّر ومفكّك الشفرة. نكمّم أهمية كل رأس انتباه عبر إسهامه في الأداء، ونحلل توزيع الأهمية وارتباطها بالمعرفة اللغوية متعددة الحبيبات — أجزاء الكلام والتبعيات والأشجار النحوية — كاشفين كيف تتخذ الرؤوس قراراتها وكيف يمكن تقليم غير المهم منها لتحسين الكفاءة والتفسير.</p>
+  </section>
+
+  <section>
+    <h2>2. الخلفية</h2>
+    <p>تفتقر قابلية التفسير إلى تعريف موحد: يراها بعض الباحثين مدى قدرة الناس على فهم أسباب القرارات، بينما يراها آخرون قدرة الفرد على التنبؤ بنتائج تنبؤات النموذج باستمرار ودقة [10]. ونظرًا لتعقيد نماذج الشبكات العصبية واسعة الاستخدام، يصعب على المستخدمين فهم منطقها الداخلي ومبادئ عملها، فلا يعرفون ما المعرفة اللغوية المفهومة التي اكتسبها النموذج بالتدريب وكيف يعالج المعلومات اللغوية. لذا نقترح أن قابلية التفسير تعني جسر الفجوة بين النماذج غير المفهومة للبشر ودمج المعرفة اللغوية المفهومة بشريًا لتوضيح سلوك النموذج.</p>
+    <p>في مجال تفسير الترجمة الآلية، ركزت دراسات عديدة على شرح أهمية مكونات النموذج المختلفة، ممكنة ملاحظة حدسية للعناصر الحاسمة في تنبؤات النموذج ومعززة قابليته للتفسير. وركزت الاستفسارات الحديثة في تفسير الانتباه على وظائف آليات الانتباه وآثار أوزان الانتباه، مع تزايد الاهتمام ببحوث رؤوس الانتباه [11]. وشُدد كثيرًا على تشريح أثر المكونات المتنوعة داخل النماذج لتعزيز التفسير [12]. وبوصف الانتباه القوة الدافعة للمحولات — نموذج الترجمة القياسي — يحظى باهتمام علمي متصاعد. وأبرزت تحقيقات سابقة القيمة الجوهرية للانتباه: فمثلًا، وظف Serrano [13] محو التمثيل الوسيط للتأكد من أثر آليات الانتباه، بينما استكشف Li [14] أثر المحاذاة لأوزان الانتباه. لكن كما تشير دراسات حديثة، لا يكفي الاعتماد على أوزان الانتباه وحدها لتفسير عمليات الانتباه.</p>
+    <p>تتعمق اللسانيات في بنية اللغة البشرية ووظيفتها وجوهرها — مُشتمِلة على البنية اللغوية والصوتيات وتكوين الكلمات والنحو والدلالة. وفي مجال التفسير، تُقدَّر المعرفة اللغوية لقدرتها على جعل قرارات النموذج مفهومة للبشر، ويدعو باحثون كثيرون لاستخدامها أساسًا لتوضيح النماذج [23]. وفسّرت دراسات حديثة نماذج الترجمة برؤى لغوية متزايدة، منها الصرف [6] وأجزاء الكلام (POS) [24] — لكنها ركزت أساسًا على أثر معلومات الكلمة المفردة في الترجمة. لذا استكشفنا توظيف التفاعلات بين الكلمات ومعلومات الكلمات المتعددة لتوضيح قرارات النموذج [25]. ففهم التفاعل بين الكلمات وتوظيف معلومات الكلمات المتعددة يجعل الترجمات أكثر سلاسة، محققًا معيار الترجمة «الأمانة والبلاغة والأناقة»، ويحسّن دقة وطلاقة الترجمات ذات التراكيب الجملية المعقدة كالتعابير الاصطلاحية والعامية.</p>
+    <p>تبحث هذه الورقة في قرارات الرؤوس المهمة للنموذج على ثلاث حبيبات مختلفة من المعرفة اللغوية: أجزاء الكلام والعلاقات التبعية والأشجار النحوية. يعكس جزء الكلام دور معلومات الكلمة المفردة في الجملة ويساعدنا على فهم كيفية معالجة النموذج للكلمات المفردة. وتعكس التبعيات العلاقة المهيمنة بين كلمتين وتساعد على فهم كيفية معالجة النموذج للعلاقات بين الكلمات. وتعكس الشجرة النحوية العلاقات بين الكلمات وتساعد على فهم كيفية معالجة النموذج للكلمات المتعددة والبنية النحوية. وأخيرًا، قارنّا في الجدول 1 فئتين من التفسير: التصوير والتفسير اللغوي، موضحين مزاياهما وقيودهما ومساهمات المراجع الرئيسية لفهم أفضل للاتجاهات السائدة.</p>
+  </section>
+
+  <section>
+    <h2>3. أهمية رؤوس الانتباه</h2>
+    <p>نكمّم أهمية كل رأس انتباه بتقييم إسهامه في أداء الترجمة، موظفين منهج حجب رؤوس الانتباه: نحجب الرؤوس المهمة وغير المهمة والعشوائية وفق الترتيب المحسوب، ونستدل على صحة الترتيب من تدهور أداء الترجمة. يُظهر الحجب أن إزالة الرؤوس المهمة تُدهور الأداء كثيرًا بينما لا يكاد حجب غير المهمة يؤثر — مما يثبت دقة ترتيب الأهمية. ثم نحلل توزيع الأهمية عبر الطبقات والآليات الثلاث (انتباه المشفّر الذاتي، وانتباه مفكّك الشفرة الذاتي، وانتباه المشفّر–مفكّك الشفرة)، وارتباطها بإسهام الرؤوس في أجزاء الكلام، لنكشف كيف تتعلم الرؤوس المعرفة اللغوية متعددة الحبيبات.</p>
+  </section>
+
+  <section>
+    <h2>3.1. إعداد التجارب</h2>
+    <p>لإجراء تقييم متين وقابل للتكرار للمنهج المعلن، اخترنا مجموعة بيانات واسعة متاحة علنًا: لمهمة الترجمة الصينية–الإنجليزية نستخدم مجموعة CWMT21 الصينية–الإنجليزية التي تضم 9.0M زوج جمل [27]. وكما يفصّل الجدول 2، قُسّمت المجموعة إلى تدريب واختبار وتحقق بنسبة 0.9:0.05:0.05. واتباعًا للإجراء المعياري، نعتمد ترميز أزواج البايت المعياري (BPE) [28] لجميع الأزواج اللغوية، ودرجة SacreBLEU المعيارية مقياسًا لأداء الترجمة — وهو مقياس واسع الاستخدام لجودة الترجمة الآلية يقيس التشابه بين الترجمة المولدة آليًا والترجمات المرجعية بناءً على دقة الوحدات اللغوية (n-gram) وعقوبة الإيجاز [29].</p>
+    <p>نوظف نموذج المحولات القياسي المكوّن من مشفّر ومفكّك شفرة، كل منهما من ست طبقات بثمانية رؤوس انتباه في كل طبقة. ومن خصوصياته ثلاث آليات انتباه متميزة: انتباه المشفّر الذاتي (Enc-Enc)، وانتباه مفكّك الشفرة الذاتي (Dec-Dec)، وانتباه المشفّر–مفكّك الشفرة (Enc-Dec) — وكلها تستخدم الانتباه متعدد الرؤوس (MHA). حلّلنا أهمية رأس الانتباه للآليات الثلاث جميعها، وتعلّم الرؤوس لمعلومات الكلمات المفردة (أجزاء الكلام) ومعلومات العلاقات بين الكلمات (العلاقات التبعية) ومعلومات بنية الجملة الكلية (الشجرة النحوية). وبناءً على ترتيب أهمية الرؤوس، أقمنا صلة بين هذه الأنواع الثلاثة من المعرفة المفهومة بشريًا وأهمية الرؤوس.</p>
+  </section>
+
+  <section>
+    <h2>3.2. الانتباه متعدد الرؤوس</h2>
+    <p>الترجمة الآلية العصبية تقنية لترجمة لغة طبيعية x = {x1, ..., xM} إلى أخرى y = {y1, ..., yN}. وفي الترجمة ذاتية الانحدار، تُولَّد كل كلمة من الجملة الهدف خطوة بخطوة، فيتأثر توليد الكلمة الهدف n ‏(yn) بالجملة المصدر x والجزء المولَّد من الجملة الهدف y&lt;n: ‏P(y|x) = حاصل ضرب P(yn|y&lt;n, x) ‏(1)، حيث x الجملة المصدر وy الجملة الهدف وyn توليد الكلمة n وy&lt;n الكلمات السابقة المولَّدة. يولّد النموذج كلمة الخرج بناءً على الجملة المصدر والترجمة الجزئية، وتُدمَج مخرجات رؤوس انتباه عديدة لإنتاج MHA وفق صيغة آلية الانتباه: Attention(Q,K,V) = softmax(QK^T/√dk)V ‏(2)، حيث Q وK وV ثلاث مصفوفات محولة خطيًا وdk بُعد متجه Q وK: أولًا تُحسَب درجة التشابه بين كل استعلام وكل مفتاح، ثم تُشتَق الأوزان بـ softmax، ثم تُوازَن الأوزان مع القيمة المقابلة، وأخيرًا تُدمَج مخرجات رؤوس انتباه كل طبقة: MultiHead(Q,K,V) = Concat(h1,...,hn)WO ‏(3)، حيث hi خرج رأس الانتباه i وWO مصفوفة تحويل خطي لمخرجات كل الرؤوس المدمجة.</p>
+    <p>وفي الترجمة الآلية، يُعد الحجب (masking) تقنية حاسمة تساعد النموذج على تعلم البيانات والتنبؤ بها بفعالية أكبر. يعزز تطبيقها كفاءة النموذج ودقته كثيرًا، جاعلًا منها مكونًا أساسيًا لأنظمة الترجمة المعاصرة. يمكّن الحجب النموذج من فهم الجمل متفاوتة الأطوال ومعالجتها واستغلال المعلومات السياقية بفعالية أكبر، محسّنًا جودة الترجمة. وجدير بالذكر أن الحجب في مفكّك الشفرة يمنع الاطلاع على الكلمات المستقبلية أثناء التدريب، محافظًا على الخاصية ذاتية الانحدار للتوليد.</p>
+  </section>
+
+  <section>
+    <h2>3.3. تحليل رؤوس الانتباه</h2>
+    <p>نحجب عدة رؤوس انتباه مهمة وغير مهمة وعشوائية وفق الأهمية المحسوبة لنُظهر صحتها: وبتتبع تدهور أداء الترجمة نقيّم صلاحية أهمية الرؤوس. يوضح الشكل 2 أثر حجب رؤوس انتباه متعددة على أداء الترجمة: تدهور كبير عند حجب عدة رؤوس مهمة، مقابل أثر طفيف عند حجب عدة رؤوس غير مهمة — مما يثبت صحة ترتيب أهمية رؤوس الانتباه. ولضمان موثوقية النتائج التجريبية، قيّمنا توزيع أهمية رؤوس الانتباه وارتباطه بإسهام الرؤوس في أجزاء الكلام.</p>
+    <p>يفترض Wang [12] أن مكونات معينة من نموذج المحولات أهم من غيرها، خاصة داخل طبقة الانتباه: فيرون أن طبقات انتباه مفكّك الشفرة الذاتي الأقل أهمية، بينما طبقات انتباه المشفّر العليا في مفكّك الشفرة أهم من الدنيا. أجرينا تجربتين لبحث توزيع أهمية رؤوس الانتباه والتحقق من توافقه مع هذه الخصائص: أولًا، أي الطبقات أهم وأيها أقل — لفهم أهمية طبقات الانتباه — فقيّمنا أداء الترجمة كدالة تجمّع إسهامات كل رؤوس الانتباه داخل الطبقة: فإن أظهرت الدالة أثرًا كبيرًا عُدّت الطبقة حاسمة وإلا عُدّت غير أساسية. ثم بحثنا هل تتركز الرؤوس المهمة في طبقة معينة وهل يكفي الاحتفاظ ببضعة رؤوس في طبقة ما للحفاظ على الأداء — بما يوجّه تقليم النموذج وتسريعه.</p>
+  </section>
+
+  <section>
+    <h2>3.4. تحليل الارتباط</h2>
+    <p>حددت بحوث سابقة أن رؤوس الانتباه المهمة غالبًا ما تمتلك وظائف محددة قابلة للتفسير [18]. وللتحقق من توافق أهمية الرؤوس مع الوظيفة القابلة للتفسير، حلّلنا الارتباط بين أهمية رأس الانتباه وإسهام رأس الانتباه في جزء الكلام — أي إسهام الرأس في الترجمة الدقيقة لكل كلمة من نوع POS، بتقييم الأثر على دقة ترجمة كل نوع عند حجب الرأس (للتفاصيل انظر القسم 4.1). وظفنا أساليب إحصائية متنوعة لتقييم هذه الارتباطات، منها ارتباط Pearson وتباعد KL: يقيس الأول الارتباط الخطي بين متغيرين بوضوح ويعكس قوة العلاقة الخطية مباشرة، بينما يلتقط الثاني الفروق الدقيقة بين توزيعين احتماليين بحساسية ويُستخدم على نطاق واسع في تعلم الآلة.</p>
+    <p>وبما أن البيانات تحوي قيمًا سالبة، يجب تطبيعها إلى [0، 1] قبل حساب تباعد KL. نستخدم طريقتي تطبيع: الأولى KLNorm = (xi−xmin)/(xmax−xmin)، والثانية بأخذ لوغاريتم البيانات من الفترة (−∞، +∞) للحصول على بيانات في (0، +∞) ثم التطبيع KLSoftmax = xi/sum(x). يوضح الجدول 3 الارتباط بين أهمية رؤوس الانتباه وإسهامها في أجزاء الكلام وفق ثلاثة معايير تقييم صلة متميزة. وقد أقمنا صلة بين معلومات أجزاء الكلام المفهومة بشريًا وأهمية رؤوس الانتباه، معززين قابلية تفسير النموذج كثيرًا ومساعدين على فهم سبب أهمية بعض الرؤوس دون غيرها.</p>
+  </section>
+
+  <section>
+    <h2>4. المعرفة اللغوية وأجزاء الكلام</h2>
+    <p>في هذا القسم، نحلل كيف يتعلم رأس الانتباه المعلومات اللغوية بحبيبات متنوعة، مما يكشف أفضل كيفية اتخاذ الترجمة لقراراتها. عبر حبيبات المعرفة اللغوية — أجزاء الكلام والعلاقات التبعية والأشجار النحوية — نستكشف كيف تعالج نماذج الترجمة معلومات الكلمات والعلاقات بين الكلمات ومعلومات الكلمات المتعددة والبنية النحوية. نسعى لتوضيح قرارات النموذج التي تتجاوز الفهم البشري بتوظيف معرفة لغوية مفهومة للبشر [32]. حجبنا عدة رؤوس مهمة وغير مهمة وفق أهميتها لتحديد المعارف اللغوية المتنوعة التي اكتسبتها. تضمنت تحقيقاتنا ثلاث خطوات: أولًا، توصيف الترجمة المرجعية بأداة StanfordCoreNLP 4.5.4 — وهي عدة مفتوحة المصدر لمعالجة اللغة الطبيعية تدمج أدوات متنوعة للتحليل اللغوي الشامل، فاخترناها لتجاربنا. ثانيًا، مقارنة دقة الترجمة المرجعية والترجمة المولدة من النموذج الكامل. ثالثًا، مقارنة دقة الترجمة المولدة من نموذج التقليم مع المرجعية.</p>
+    <p>نعتقد أنه عند حجب رؤوس الانتباه المهمة، يتدنى أداء النموذج عن الكامل، منخفضة معدلات الترجمة الدقيقة لأنواع المعلومات اللغوية المتنوعة وظاهرةً دقة سالبة — وتساعدنا التجربة على استكشاف المعلومات اللغوية المحورية التي تعلمها النموذج وأيها أهم. وعلى النقيض، قد يكون لحجب الرؤوس الأقل أهمية أثر إيجابي على بعض المعلومات اللغوية، مقدمًا رؤى جديدة لتقليم النماذج. وفيما يلي شرح مفصل للمعارف اللغوية المحددة: في تجربة أجزاء الكلام، حجبنا عدة رؤوس مهمة وغير مهمة وفق الأهمية لتحديد معرفة أجزاء الكلام المختلفة التي تعلمتها الرؤوس، بتقييم معلومات الجزء المتعلمة في دقة ترجمة كل نوع في الترجمات المولدة من نموذج الحجب. أولًا، وفق أنواع أجزاء الكلام في Penn Treebank [33] — مدونة واسعة بتوصيفات دقيقة لأجزاء الكلام والنحو، مفيدة جدًا لتدريب نماذج اللغة وتقييمها ومعيار أبحاث NLP — استخدمنا StanfordCoreNLP لتوصيف الترجمة المرجعية. مثّلت معلومات الجزء وظيفة معلومات الكلمة المفردة في الجملة، وركزنا على الأنواع الستة الأكثر تكرارًا: الاسم (N) والفعل (V) والصفة (ADJ) والحال (ADV) وحرف الجر أو العطف الثانوي (IN) والمحدد (DT). وبما أن أجزاء الكلام تنقسم لفئات فرعية (كالصفات العامة والتفضيلية والعليا)، جمّعنا الأسماء والأفعال والصفات والأحوال كلًا على حدة [34]. وأحصينا عدد كلمات كل نوع في الترجمة المرجعية كما في الجدول 4، وأُشير لإجمالي كلمات النوع p في المرجعية بـ total(p,ref).</p>
+  </section>
+
+  <section>
+    <h2>4.2. التبعيات</h2>
+    <p>في هذا القسم، استكشفنا معرفة التبعيات المتنوعة التي تعلمتها رؤوس الانتباه بحجب عدة رؤوس مهمة وغير مهمة، لفهم أفضل لمعلومات العلاقات بين الكلمات التي تعلّمها كل رأس — كما في تجارب أجزاء الكلام. أولًا، استخدمنا StanfordCoreNLP لاستخراج التبعيات من الترجمات المرجعية، وهي أداة تستخرج كل تبعيات الجملة. التبعية معرفة لغوية تكشف العلاقة المهيمنة بين كلمتين: للجملة جذر لا يعتمد على غيره، وكل كلمة أخرى تعتمد على كلمة واحدة، ولا يجوز لكلمة أن تعتمد على كلمتين أو أكثر. ركزنا على الأنواع الثمانية الأكثر تكرارًا: الجذر (root) والفاعل (nsubj) والمفعول (obj) والحال (advmod) والمحدد (det) والنعت (amod) والمضاف (nmod) والمركب (compound). وأحصينا عدد توليفات الكلمات لكل نوع تبعية في الترجمة المرجعية كما في الجدول 4، وأُشير لإجمالي توليفات النوع dep في المرجعية بـ total(dep,ref).</p>
+    <p>ثانيًا، استخرجنا التبعيات من الترجمات المولدة من النموذج الكامل. يُحصَى عدد الترجمات الصحيحة لتوليفة الكلمات لكل تبعية في الترجمة بـ N(dep,model) وفق الصيغة: N(dep,model) = مجموع الدالة المؤشرة φ على تطابق توليفات DEPre f مع DEPmodel ‏(9)، حيث s عدد جمل المجموعة وm توليفة كلمات للتبعية dep في الجملة. φ دالة مؤشرة، وDEPre f,j كل توليفات الكلمات ذات التبعية dep في الجملة j من الترجمة المرجعية، وDEPmodel,j,i التوليفة i في الجملة j من ترجمة النموذج الكامل: فإن وُجدت التوليفة في المرجعية عُدّت صحيحة وخرج المؤشر 1 وإلا 0. ثالثًا، كررنا الإجراء على ترجمات نموذج الحجب، فكشف انخفاض الدقة عند حجب الرؤوس المهمة أيَّ علاقات بين الكلمات تعلّمتها الرؤوس الحاسمة.</p>
+  </section>
+
+  <section>
+    <h2>4.3. الشجرة النحوية</h2>
+    <p>في هذا القسم، درسنا تغير دقة معلومات الشجرة النحوية في الترجمة عند حجب عدة رؤوس مهمة وغير مهمة، لتقييم أثر الرؤوس على معالجة النموذج لمعلومات الكلمات المتعددة والبنية النحوية الكلية [35]. الشجرة النحوية بنية نحوية مجردة تمثل بنية الجملة. أولًا، بنينا التحليل النحوي للترجمة المرجعية باستخدام StanfordCoreNLP التي تبني الأشجار النحوية للجمل. ولخصنا أنماط العقد الثلاث السفلى في مسارات الشجرة النحوية لكل كلمة لفحص أفضل للمعرفة البنيوية التي اكتسبها رأس الانتباه — لتعدد سبل دمج مسارات الأشجار. ركزنا على أنماط مسارات الأشجار الخمسة الأكثر تكرارًا: NP-NP-NN وNP-PP-IN وPP-NP-NN وNP-NP-DT وVP-PP-IN. وأحصينا عدد كلمات كل نمط في الترجمة المرجعية كما في الجدول 4، وأُشير لإجمالي كلمات النمط path في المرجعية بـ total(path,ref).</p>
+    <p>ثانيًا، بنينا الأشجار النحوية للترجمات المولدة من النموذج الكامل. أحصينا إجمالي الكلمات في ترجمة النموذج الكامل والمرجعية التي تتطابق مساراتها مع نمط الشجرة نفسه، بـ N(path,model) وفق الصيغة: N(path,model) = مجموع الدالة المؤشرة φ على تطابق PATHre f مع PATHmodel ‏(13)، حيث PATHre f,j الكلمة ذات النمط path في الجملة j من المرجعية، وPATHmodel,j,i الكلمة i ذات النمط في الجملة j من ترجمة النموذج الكامل. وكانت المعاملات الأخرى مطابقة للإعدادات التجريبية للتبعيات. ثالثًا، طُبّق الإجراء على نموذج الحجب، فأظهرت النتائج أن الرؤوس المهمة تتعلم البنى النحوية متعددة الكلمات بدرجات متفاوتة — دليلًا على أن القرارات النحوية المعقدة تتركز في رؤوس متخصصة يمكن الاحتفاظ بها عند التقليم.</p>
+  </section>
+
+  <section>
+    <h2>5. الخاتمة</h2>
+    <p>في هذه الورقة، نستكشف أهمية رؤوس الانتباه في فهم الترجمة الآلية العصبية. أكدنا صحة أهمية رؤوس الانتباه وبحثنا توزيعها. قيّمنا الارتباط بين أهمية الرؤوس وإسهامها في أجزاء الكلام بثلاثة معايير تقييمية. وغطى تحقيقنا كيفية اكتساب الرؤوس للمعرفة اللغوية على ثلاث حبيبات مختلفة: أجزاء الكلام والعلاقات التبعية والأشجار النحوية، معززين فهمنا لعمليات تعلمها. وجدنا أنه ليست كل رؤوس الانتباه مهمة، وأن الرؤوس المهمة تتوزع أكثر في طبقة انتباه المشفّر الذاتي وطبقة انتباه المشفّر–مفكّك الشفرة. دفعتنا هذه النتائج نحو فهم أعمق للبنية الداخلية لنماذج الترجمة وفتحت اتجاهات بحثية جديدة للدراسات اللاحقة.</p>
+    <p>وتحديدًا، يمكن لهذه الاكتشافات أن توجهنا في تحليل المكونات الحرجة داخل النموذج لتحسين أدائه، وتدعم تقليم الأجزاء غير الحرجة لتقليل المعاملات وتحسين الكفاءة التشغيلية. كما أن الرؤوس المهمة في الترجمة الصينية–الإنجليزية تسهم أكثر في توليد الأسماء والأفعال. وأخيرًا، اكتشفنا أن الرؤوس تتعلم أجزاء الكلام والتبعيات والأشجار النحوية بدرجات متفاوتة. تقدم النتائج توجيهًا قيمًا لتصميم النماذج المستقبلية: فمثلًا، عند تصميم نماذج الترجمة الصينية–الإنجليزية، يجب إيلاء معالجة العناصر اللغوية كالأسماء والصفات عناية أكبر — لضمان عمل آلية الانتباه بفعالية أكبر وتعزيز جودة الترجمة. وعمومًا، بحثنا تعدد حبيبات المعرفة اللغوية في سياق اتخاذ رؤوس الانتباه لقراراتها. وفي العمل المستقبلي، نخطط لاستكشاف دور رؤوس الانتباه في تعلم معارف لغوية أخرى.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Although neural machine translation has made great progress, and the Transformer has advanced the state-of-the-art in various language pairs, the decision-making process of the attention mechanism, a crucial component of the Transformer, remains unclear. In this paper, we propose to understand the model's decisions by the attention heads' importance. We explore the knowledge acquired by the attention heads, elucidating the decision-making process through the lens of linguistic understanding. Specifically, we quantify the importance of each attention head by assessing its contribution to neural machine translation performance, employing a Masking Attention Heads approach. We evaluate the method and investigate the distribution of attention heads' importance, as well as its correlation with part-of-speech contribution. To understand the diverse decisions made by attention heads, we concentrate on analyzing multi-granularity linguistic knowledge. Our findings indicate that specialized heads play a crucial role in learning linguistics. By retaining important attention heads and removing the unimportant ones, we can optimize the attention mechanism. This optimization leads to a reduction in the number of model parameters and an increase in the model's speed. Moreover, by leveraging the connection between attention heads and multi-granular linguistic knowledge, we can enhance the model's interpretability. Consequently, our research provides valuable insights for the design of improved NMT models. Keywords: neural machine translation; interpretability; linguistics.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>With the advent of attentional mechanisms [1] and sequence-to-sequence learning [2], neural machine translation (NMT) has rapidly advanced, narrowing the gap between machine and human language capabilities, particularly in understanding and generating translations. The Transformer model [3] excels across a spectrum of machine translation tasks, with its attention mechanism being a pivotal component that offers exceptional parallelism, facilitating efficient large-scale data processing. Despite these advancements, the intricacy of the model's structure and the opaque nature of decision making in NMT models render them akin to black boxes. This obscurity hinders a clear understanding of the specific decisions made and the precise attributes of attention learned. Moreover, the inherent complexity of machine translation tasks, coupled with the sophisticated model architectures designed to tackle them, exacerbates this challenge [4].</p>
+    <p>For humans, NMT models often appear as "black boxes", while interpretability serves as a "crystal ball" that elucidates the models' internal decision-making processes. This clarity not only aids researchers in debugging the models but also provides a theoretical foundation for trustworthy AI. The interpretability of NMT models has been tackled from two primary, complementary perspectives. One approach emphasizes visualizing the decision-making processes and simulating the models' internal mechanisms to cultivate genuine trust between humans and the models [5]. The other perspective aims to thoroughly understand the decisions made by the model from a human standpoint, identifying the model's learned content through language knowledge that is accessible to people [6].</p>
+    <p>We chose the state-of-the-art NMT model, the Transformer model, as our object of study. This model is a neural network based on the self-attention mechanism and includes multiple layers of encoder and decoder. We quantify each attention head's importance through its performance contribution, and analyze the importance distribution and its correlation with multi-granularity linguistic knowledge — parts of speech, dependencies, and syntax trees — revealing how heads make decisions and how unimportant ones can be pruned for efficiency and interpretability.</p>
+  </section>
+
+  <section>
+    <h2>2. Background</h2>
+    <p>Interpretability lacks a unified definition. Some researchers perceive it as the extent to which people can understand the reasons behind decisions, while others believe that interpretability refers to an individual's ability to consistently and accurately predict the outcomes of model predictions [10]. Due to the complexity of widely used neural network models, their internal logic and working principles are difficult for users to understand. Users are unclear about what comprehensible linguistic knowledge the model has acquired through training and how the model processes language information. Consequently, we propose that interpretability involves bridging the gap between models that are unintelligible to humans and the integration of human-comprehensible linguistic knowledge to elucidate model behavior.</p>
+    <p>In the realm of NMT interpretability, numerous studies have concentrated on explaining the importance of various model components. These studies enable an intuitive observation of the elements crucial to model predictions, thereby enhancing the interpretability of models. Recent inquiries into attention interpretability have honed in on the functionalities of attentional mechanisms and the implications of attention weights, with research on attention heads gaining increasing traction [11]. There has been a significant emphasis on dissecting the influence of diverse components within models for enhancing interpretability [12]. Attention as the driving force behind the Transformer, the state-of-the-art NMT model, is garnering escalating scholarly attention. Previous investigations underscored the intrinsic value of attention. For example, Serrano [13] employed intermediate representation erasure to ascertain the impact of attentional mechanisms, while Li [14] explored the alignment effect of attention weights. However, as recent studies indicate, relying solely on attention weights to interpret attentional processes is inadequate.</p>
+    <p>Linguistics delves into the structure, function, and essence of human language, encompassing areas such as language structure, phonology, word formation, syntax, and semantics. In the realm of interpretability, linguistic knowledge is particularly valued for its ability to render model decisions understandable to humans. Many researchers advocate for using linguistic knowledge as a basis for elucidating models [23]. Recent studies have increasingly interpreted NMT models using linguistic insights, including aspects like morphology [6] and POS [24]. However, these studies primarily focus on the impact of individual word information in NMT. Consequently, we have explored the utilization of inter-word interactions and multi-word information to shed light on model decisions [25]. Understanding the interplay between words and leveraging multiple-word information can make translations smoother, achieving the "faithfulness, expressiveness, and elegance" standard of translation. Additionally, this approach can improve the accuracy and fluency of translations involving complex sentence structures, such as idioms and colloquialisms.</p>
+    <p>This paper investigates the decisions made by the model's important heads at three different granularities of linguistic knowledge: POS, dependency relations, and syntactic trees. POS reflects the role of individual word information in a sentence in NMT and helps us understand how the model handles individual words. Dependencies reflect the dominant relationship between two words in a sentence and help us understand how the model handles inter-word relationships. The syntax tree reflects the relationships between words in a sentence and helps us understand how the model handles multiple words as well as syntactic structure. Finally, in Table 1, we compared two categories of interpretability: visualization and linguistic interpretation. We explained their strengths and limitations and provided explanations for some references and their main contributions in order to better understand the main trends.</p>
+  </section>
+
+  <section>
+    <h2>3. Attention Heads' Importance</h2>
+    <p>We quantify each attention head's importance by assessing its contribution to translation performance, employing a Masking Attention Heads approach: we mask important, unimportant, and random heads per the computed ranking, and infer ranking validity from translation-performance degradation. Masking shows that removing important heads degrades performance sharply while masking unimportant heads barely matters — validating the importance ranking. We then analyze the importance distribution across layers and the three mechanisms (encoder self-attention, decoder self-attention, encoder–decoder attention), and its correlation with heads' part-of-speech contributions, revealing how heads learn multi-granularity linguistic knowledge.</p>
+  </section>
+
+  <section>
+    <h2>3.1. Experimental Setup</h2>
+    <p>To perform a robust and reproducible evaluation of the disclosed approach, we chose a large-scale, publicly available dataset for our study. Specifically, for the Chinese–English translation task, we use the CWMT21 Chinese–English dataset, which contains 9.0M sentence pairs [27]. As detailed in Table 2, this dataset is segmented into training, testing, and validation sets in the ratio of 0.9:0.05:0.05. Following the standard NMT procedure, we adopt the standard byte pair encoding (BPE) [28] for all language pairs. We use the standard SacreBLEU score as the evaluation metric for translation performance. The BLEU score is a widely used metric for evaluating the quality of machine translation. It measures the similarity between the machine-generated translation and one or more reference translations based on n-gram precision and a brevity penalty [29].</p>
+    <p>We employ the state-of-the-art Transformer, which is composed of two parts: an encoder and a decoder. Each part is divided into six layers, each layer has eight attention heads. A particularity of this model is that it features three distinct attention mechanisms: encoder self-attention (Enc-Enc), decoder self-attention (Dec-Dec), and encoder–decoder attention (Enc-Dec), all of which use multi-headed attention (MHA). Our study analyzed the importance of the attention head to all of these three attention mechanisms. We analyzed the learning of attention heads in the Transformer model, which includes information on individual words (part of speech), inter-word relationship information (dependency relations), and overall sentence structure information (syntax tree). Based on the importance ranking of the attention heads, we established a relationship between these three types of human-understandable linguistic knowledge and head importance.</p>
+  </section>
+
+  <section>
+    <h2>3.2. Multi-Headed Attention</h2>
+    <p>NMT is a technique for translating one natural language x = {x1, . . . , xM} into another natural language y = {y1, . . . , yN}. In autoregressive NMT, each word of the target sentence is generated step by step. Therefore, the generation of the nth target word yn is influenced by the source sentence x and the part of the target sentence that has already been generated, denoted as y&lt;n: P(y|x) = Π P(yn|y&lt;n, x) (1), where x is the source sentence, y the target sentence, yn the nth target word generation, and y&lt;n the previously generated words. The model generates an output word based on the source sentence x and the partial translation y&lt;n, and the output values of numerous attention heads are combined to produce MHA per the attention formula: Attention(Q, K, V) = softmax(QK^T/√dk)V (2), where Q, K, V are three linearly transformed matrices and dk the vector dimension of Q, K: first compute query–key similarities, second derive weights with softmax, third average weights with corresponding values, and finally concatenate each layer's attention-head outputs: MultiHead(Q, K, V) = Concat(h1, . . . , hn)WO (3), where hi is the ith attention head output and WO a linear transformation of the concatenated head outputs.</p>
+    <p>In machine translation, masking is a crucial technique that helps the model learn and predict data more effectively. The application of this technique markedly boosts the model's efficiency and accuracy, rendering it an essential component of contemporary NMT systems. Masking enables the model to better understand and process sentences of varying lengths and to utilize contextual information more effectively, thereby enhancing the quality of translation. Notably, decoder masking prevents attending to future words during training, preserving the autoregressive property of generation.</p>
+  </section>
+
+  <section>
+    <h2>3.3. Attention Head Analysis</h2>
+    <p>We mask several important attention heads, unimportant attention heads, and random attention heads based on the attention heads' importance we acquired to show that it is accurate. By looking at the degradation in translation performance, we evaluate the validity of attention heads' importance. Figure 2 illustrates the effect of masking multiple attention heads on translation performance. There is a significant degradation in translation performance when masking several important attention heads, while masking multiple unimportant attention heads results in minimal impact. This outcome validates the accuracy of our attention head importance ranking. To ensure the reliability of our experimental results, we assessed the distribution of attention head importance and its correlation with the contribution of attention heads to POS.</p>
+    <p>Wang [12] posits that certain components of the Transformer model are more important than others, particularly within the attention layer. They suggest that the decoder self-attention layers are the least critical, whereas the upper encoder-attention layers in the decoder are more significant than the lower ones. We conducted two experiments to investigate the distribution of attention head importance and verify if it aligns with these suggested properties. First, we want to know which layers in the model are more important and which are less important. This can help us understand the importance of the attention layers. Therefore, the initial experiment aims to assess the importance of the attention heads in each layer. Specifically, the translation performance is evaluated as a function that aggregates the contributions of all attention heads within a layer. If this function demonstrates a significant influence, the layer is deemed crucial. Otherwise, it is considered non-essential. Then, we want to know whether the important attention heads are concentrated in a particular layer and whether retaining only a few attention heads in a certain layer can preserve performance — guiding model pruning and acceleration.</p>
+  </section>
+
+  <section>
+    <h2>3.4. Correlation Analysis</h2>
+    <p>Previous research has identified that important attention heads frequently possess specific and interpretable functions [18]. To verify whether the attention heads' importance is consistent with the interpretable function, we analyzed the correlation between attention head importance and attention head POS contribution. The attention head contributes to the accurate translation of each POS word, which is the attention head POS contribution. Specifically, we evaluate the impact on the translation accuracy of each POS word when masking the attention head. For more details see Section 4.1. We employed various statistical methods to evaluate these correlations, including Pearson correlation and KL divergence. The Pearson correlation measures the linear correlation between two variables and the KL divergence is an asymmetric measure of the difference between two probability distributions. The value of the Pearson correlation is easy to understand and directly reflects the strength of the linear relationship between variables. The KL divergence can sensitively capture subtle differences between two probability distributions and is widely used in machine learning.</p>
+    <p>Since the data contain negative values, we must normalize it to [0, 1] before computing the KL divergence. We use two normalization methods. The first is KLNorm = (xi − xmin)/(xmax − xmin). The second method takes the logarithm of the data in the interval (−∞, +∞) to obtain data in (0, +∞), then normalizes as KLSoftmax = xi/sum(x). The correlation between attention head importance and attention head POS contribution among three distinct relevance evaluation criteria is shown in Table 3. We have established a connection between human-understandable POS information and the importance of attention heads, significantly enhancing the model's interpretability and aiding in our understanding of why some attention heads are important.</p>
+  </section>
+
+  <section>
+    <h2>4. Linguistic Knowledge and Part-of-Speech</h2>
+    <p>In this section, we analyze how the attention head learns linguistic information at various granularities, which better reveals how NMT makes decisions. Through various linguistic knowledge granularities — POS, dependency relations, and syntax trees — we explore how NMT models process word information, inter-word relations, multi-word information, and syntactic structure information. We strive to elucidate model decisions that are beyond human comprehension by leveraging linguistic knowledge that is understandable to humans [32]. We masked several important and unimportant attention heads according to the attention heads' importance to identify the various linguistic knowledge that these attention heads had acquired. Three steps comprised our investigations. In the first step, the reference translation was annotated by StanfordCoreNLP 4.5.4. StanfordCoreNLP is an open-source natural language processing toolkit that integrates various NLP tools, enabling comprehensive linguistic analysis. Therefore, we chose it for our experiments. The accuracy of the reference translation and the translation generated from the complete model are compared in the second step. In the third step, we compare the accuracy of the translation generated by the pruning model and the reference translation.</p>
+    <p>We believe that when the important attention heads are masked, the performance of the model is not as good as the complete model, leading to a decrease in the accurate translation rates of various types of linguistic information and the occurrence of negative accuracy. This experiment helps us explore which key linguistic information the model has learned and which pieces of linguistic information are more important. On the other hand, when the less important attention heads are masked, it may have a positive effect on some linguistic information, providing new insights for model pruning. The following is a detailed explanation of specific linguistic knowledge: in the POS experiment, we masked several important and unimportant attention heads per head importance to identify different POS knowledge learned by these heads, evaluating the learned POS information via per-POS translation accuracy in masking-model translations. First, per the POS types in Penn Treebank [33] — a large-scale corpus with precise POS and syntactic annotations, extremely useful for language-model training and evaluation and widely referenced as an NLP benchmark — we used StanfordCoreNLP to POS-annotate the reference translation. POS information represented the function of individual word information in a sentence for NMT. For this study, we focused on the six most frequent POS types: noun (N), verb (V), adjective (ADJ), adverb (ADV), preposition or subordinating conjunction (IN), and determiner (DT). Since POS types split into subclasses (e.g. general, comparative, and superlative adjectives), we cluster nouns, verbs, adjectives, and adverbs individually [34]. We counted per-POS-type word counts in the reference translation as in Table 4, denoting total POS-type-p words in the reference as total(p,ref).</p>
+  </section>
+
+  <section>
+    <h2>4.2. Dependency</h2>
+    <p>In this section, we explored the knowledge of various dependencies learned by the attention heads by masking several important attention heads and unimportant attention heads to better understand the information about inter-word relationships learned by each attention head in the model, as in the experiments on POS. In the first step, we used StanfordCoreNLP to extract dependencies from reference translations, and this tool can extract all dependencies of a sentence. Dependency is linguistic knowledge that reveals the dominant relationship between two words. A sentence has a root that does not depend on other words, all other words depend on one word of the sentence, and no one word can depend on two or more words. For this study, we focused on the eight dependency types that are most frequently used: root, nsubj, obj, advmod, det, amod, nmod, and compound. We statistically counted the number of word combinations of each dependency type in the reference translation, as shown in Table 4, and the total number of word combinations of dependency type dep in the reference translation was indicated as total(dep,ref).</p>
+    <p>In the second step, we extracted the dependencies from the translations generated by the complete model. The number of correct translations for the word combination of each dependency in the translation is counted as N(dep,model), with the formula: N(dep,model) = Σ Σ φ(DEPref, DEPmodel) (9), where s denotes the number of sentences in the dataset and m denotes a word combination of dependency dep in a sentence. φ() is an indicator function, DEPref,j denotes all word combinations where dependency is dep in the jth sentence of the reference translation, and DEPmodel,j,i denotes the ith word combination where dependency is dep in the jth sentence of the translation generated by the complete model. If the word combination of DEPmodel,j,i exists in DEPref,j, the word combination is considered correctly translated and the indicator output is 1, otherwise 0. Third, the procedure was repeated on pruning-model translations, and the accuracy drop under important-head masking revealed which inter-word relations the crucial heads had learned.</p>
+  </section>
+
+  <section>
+    <h2>4.3. Syntax Tree</h2>
+    <p>In this section, we studied the change in the accuracy of syntactic tree information in the translation while masking several important attention heads and unimportant attention heads to evaluate the impact of attention heads on the model's processing of multiple-word information and overall syntactic structure [35]. A syntactic tree is an abstract syntactic structure that represents the structure of a sentence. In the first step, we constructed the syntactic analysis of the reference translation using StanfordCoreNLP, a tool that constructs syntactic trees of sentences. We summarize the patterns of the bottom three nodes in the syntactic tree paths of each word to better examine the syntactic structure knowledge acquired by the attention head because there are plenty of ways to combine syntactic tree paths. For this study, we focused on the five syntactic tree path patterns that are most frequently used: NP-NP-NN, NP-PP-IN, PP-NP-NN, NP-NP-DT, and VP-PP-IN. We statistically counted the number of words of each syntactic tree path pattern in the reference translation, as shown in Table 4, and the total number of words of each syntactic tree path pattern path in the reference translation was indicated as total(path,ref).</p>
+    <p>In the second step, we constructed syntactic trees for the translations generated by the complete model. We counted the total number of words in the translation generated by the complete model and the reference translation whose word paths have the same syntactic tree path pattern, denoted as N(path,model), with the formula: N(path,model) = Σ Σ φ(PATHref, PATHmodel) (13), where PATHref,j denotes the word where the syntactic tree path pattern is path in the jth sentence of the reference translation, and PATHmodel,j,i denotes the ith word where the syntactic tree path pattern is path in the jth sentence of the translation generated by the complete model. The other parameters were consistent with the experimental settings of dependency. Third, the procedure was applied to the pruning model, and results showed important heads learn multi-word syntactic structures to varying degrees — evidence that complex syntactic decisions concentrate in specialized heads worth keeping under pruning.</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>In this paper, we explore the importance of attention heads in understanding NMT. We confirmed the correctness of the importance of the attention head and investigated its distribution. The correlation between attention head importance and their contribution to POS was assessed using three evaluative criteria. Our investigation covered how attention heads acquire language knowledge at three different granularities: POS, dependency relationships, and syntactic trees, enhancing our understanding of their learning processes. We find that not all attention heads are important, and the important attention heads are more distributed in the encoder self-attention layer and the encoder–decoder attention layer. These findings have propelled us towards a deeper understanding of the internal structure of NMT models and have opened up new research directions for subsequent related studies.</p>
+    <p>Specifically, these discoveries can guide us in conducting in-depth analyses of critical components within the model to enhance its performance. Additionally, they also support pruning non-critical parts of the model to reduce parameters and improve operational efficiency. In addition, the important attention heads in Chinese–English machine translation contribute more to the generation of nouns and verbs in their translations. Finally, we discovered that the attention heads had varying degrees of POS, dependence, and syntax tree learning. These findings offer valuable guidance for future model design. For instance, when designing Chinese–English machine translation models, we should pay closer attention to the processing of linguistic elements such as nouns and adjectives. This ensures that the attention mechanism functions more effectively, thereby enhancing translation quality. Overall, we investigated the multigranularity of linguistic knowledge within the context of attention heads making decisions. For future work, we plan to explore the role of attention heads in learning other linguistic knowledge.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] D. Bahdanau, K. Cho, Y. Bengio, "Neural Machine Translation by Jointly Learning to Align and Translate," in <em>Proc. ICLR</em>, 2015.</li>
+      <li>[2] I. Sutskever, O. Vinyals, Q. V. Le, "Sequence to Sequence Learning with Neural Networks," in <em>Proc. NeurIPS</em>, 2014.</li>
+      <li>[3] A. Vaswani et al., "Attention Is All You Need," in <em>Proc. NeurIPS</em>, 2017.</li>
+      <li>[10] Z. C. Lipton, "The Mythos of Model Interpretability," <em>Queue</em>, vol. 16, no. 3, 2018.</li>
+      <li>[12] Y. Wang et al., component importance studies in Transformer attention layers.</li>
+      <li>[13] S. Serrano, N. A. Smith, "Is Attention Interpretable?," in <em>Proc. ACL</em>, 2019.</li>
+      <li>[18] E. Voita et al., interpretable functions of attention heads studies.</li>
+      <li>[23] J. Hewitt, C. D. Manning, "A Structural Probe for Finding Syntax in Word Representations," in <em>Proc. NAACL</em>, 2019.</li>
+      <li>[27] CWMT21 Chinese–English dataset, 9.0M sentence pairs.</li>
+      <li>[28] R. Sennrich, B. Haddow, A. Birch, "Neural Machine Translation of Rare Words with Subword Units," in <em>Proc. ACL</em>, 2016.</li>
+      <li>[29] K. Papineni, S. Roukos, T. Ward, W.-J. Zhu, "BLEU: A Method for Automatic Evaluation of Machine Translation," in <em>Proc. ACL</em>, 2002.</li>
+      <li>[32] J. Manning et al., StanfordCoreNLP 4.5.4 natural language processing toolkit.</li>
+      <li>[33] M. Marcus, B. Santorini, M. A. Marcinkiewicz, "Building a large annotated corpus of English: the Penn Treebank," <em>Comput. Linguist.</em>, 1993.</li>
+      <li>[35] D. M. Cer et al., syntactic structure studies in neural machine translation.</li>
+      <li>... [full reference list of 50 references available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app14072798">10.3390/app14072798</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  if (lang === 'both' || lang === 'compare') { document.getElementById('toggle-' + lang).classList.add('active'); } else { document.getElementById('toggle-' + btnId).classList.add('active'); }
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
