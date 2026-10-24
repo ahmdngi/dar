@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نظام التتبع والمراقبة بتقنية لورا للقوارب الخفيفة — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Tracking and Monitoring System Based on LoRa Technology for Lightweight Boats</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نظام التتبع والمراقبة القائم على تقنية لورا للقوارب خفيفة الوزن</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ramon Sanchez-Iborra, Ignacio G. Liaño, Christian Simoes, Elena Couñago, Antonio F. Skarmeta</span>
+    <span>📄 Electronics, 2019 · Vol. 8, No. 1, p. 15</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics8010015">10.3390/electronics8010015</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تمثل الاتصالات البحرية تحديًا كبيرًا بسبب ظروف الإرسال المعاكسة وغياب بنية تحتية مسبقة تدعم الاتصال بعيد المدى مع اليابسة. تُغطَّى اتصالات أعالي البحار عادةً عبر وصلات الأقمار الصناعية المكلفة والمستهلكة للطاقة. أما في المناطق الأقرب إلى الشاطئ، فقد اعتُمدت خيارات أخرى مثل الاتصالات الخلوية أو شبكات الاستشعار اللاسلكية لخدمات مثل تتبع القوارب وجمع البيانات، غير أن كلًا منها يعاني من عيوب تتعلق بالتغطية وكفاءة الطاقة. وفي هذا العمل نقدم نظامًا لتتبع القوارب ومراقبتها قائمًا على تقنية LoRa (المدى الطويل)، وهي من أبرز تقنيات شبكات المنطقة الواسعة منخفضة الطاقة (LP-WAN)، ونعرض دراسة حالة رُصدت فيها جلسات تدريب حقيقية لقوارب شراعية من فئة Optimist، محققةً مستويات جيدة من التغطية وموثوقية الوصلة مع استهلاك محدود للطاقة، إضافة إلى دراسة مدى إرسال تثبت صلاحية المقترح للمراقبة داخل الميناء والمناورات القريبة من الشاطئ.</p>
+  </section>
+
+  <section>
+    <h2>I. المقدمة</h2>
+    <p>شكّل تمكين الاتصالات البحرية تحديًا كبيرًا منذ نشأتها [1]. ورغم التطور السريع لتقنيات الإرسال اللاسلكي مثل WiFi و4G وWiMAX، لا تزال السيناريوهات البحرية تنطوي على خصائص تجعل نشر أنظمة اتصال موثوقة ومعتمدة على نطاق واسع أكثر صعوبة. وتعتمد خدمات وعمليات عديدة على بنية اتصال جديرة بالثقة، مثل مراقبة السفن والقوارب، وصيانة العلامات الملاحية، وتتبع البضائع، واستخراج البيانات من منصات الاستشعار، وإدارة المركبات غير المأهولة، وعمليات السلامة، والاتصالات الصوتية [2].</p>
+    <p>وتبعًا لبعدها عن الشاطئ، حُدّد سيناريوهان متمايزان في منظومة الاتصالات البحرية: مناطق بعيدة بعشرات الأميال عن اليابسة تُعد سيناريوهات مدى طويل، ومناطق أقرب تُعد سيناريوهات مدى متوسط أو قصير [3]. أما الأولى فخيارات التغطية فيها قليلة وتعتمد أساسًا على الاتصالات الفضائية [4] مثل Argos وIridium، أو وصلات الراديو التقليدية ذات التردد العالي جدًا والفائق [5]، وهي تقنيات توفر قدرات أساسية منخفضة معدل البيانات وبتكلفة عالية. ويركز هذا العمل على الحالة الثانية، أي الاتصالات في المناطق الساحلية، حيث استُخدمت حلول متنوعة تبعًا لمتطلبات التطبيق وخصائص القوارب، فاعتُمدت الاتصالات الخلوية أو WiMAX للقوارب غير المقيدة بالطاقة [1، 6].</p>
+    <p>غير أن سيناريوهات أخرى، كالقوارب الشراعية والمركبات الذاتية الصغيرة ومنصات الاستشعار الراسية، تعاني قيودًا صارمة على الطاقة لأن وحدات الاتصال فيها تعمل بالبطاريات، والتقنيات المذكورة ليست صديقة للبطارية لأنها لم تُصمَّم لنقل اتصالات منخفضة معدل البيانات كتلك المعهودة في سيناريوهات إنترنت الأشياء (IoT) [7]. لذا يلزم تقنيات بديلة تمنح هذه العقد المقيدة الاتصال مع اليابسة، وقد استُخدمت لذلك حلول شبكات الاستشعار اللاسلكية (WSN) [8] الصديقة للبطارية لكنها تعاني قصر المدى الذي يزيد تعقيد إدارة الشبكة مثل التوجيه متعدد القفزات [9]. وتبرز هنا تقنية شبكات المنطقة الواسعة منخفضة الطاقة (LP-WAN) التي تجذب اهتمام الأوساط الأكاديمية والصناعية، إذ تمكّن إرسالات تتجاوز 15 كم في الفضاء الحر [10] مع استهلاك محدود للطاقة يطيل عمر بطارية العقدة النهائية لسنوات [7].</p>
+  </section>
+
+  <section>
+    <h2>II. الأعمال ذات الصلة</h2>
+    <p>طُبّقت بدائل اتصال مختلفة شائعة الاستخدام في تطبيقات إنترنت الأشياء على السيناريوهات البحرية، وتشمل شبكات الاستشعار اللاسلكية مثل البنى القائمة على IEEE 802.15.4، والأنظمة الخلوية مثل GSM و3G و4G، أو حلول VHF/UHF [2]. غير أن أعمالًا قليلة جدًا تناولت استخدام تقنيات LP-WAN في هذه السيناريوهات. ففيما يخص شبكات الاستشعار اللاسلكية، اقتُرح استخدام شبكات Zigbee للمراقبة البحرية ومراقبة السلامة [14، 15]، لكن النهج الأول [14] قدّم إطار محاكاة لشبكة استشعار بحرية لجمع معلومات عن الحالة الديناميكية للسفن، بينما ركّز الثاني على السلامة، وكلاهما يعاني قصر المدى.</p>
+    <p>أما الأنظمة الخلوية فقد استُخدمت لتوفير الاتصال في المناطق الساحلية، لكن تغطيتها تقتصر على مسافة قصيرة من الشاطئ واستهلاكها للطاقة مرتفع، فضلًا عن تكاليف الاشتراك. وبالمثل، توفر حلول VHF/UHF التقليدية اتصالات صوتية ونقل بيانات محدودًا لكنها تتطلب تراخيص ومعدات مكلفة. وعلى النقيض من ذلك، توفر تقنيات LP-WAN، وعلى رأسها LoRa وSigfox وNB-IoT، توازنًا أفضل بين المدى واستهلاك الطاقة والتكلفة، ومع ذلك يبقى توثيق تطبيقاتها البحرية الميدانية محدودًا، وهو ما يعالجه هذا العمل عبر تصميم وتنفيذ وتقييم نظام حقيقي قائم على LoRa [10–12].</p>
+  </section>
+
+  <section>
+    <h2>III. تقنية LoRa</h2>
+    <p>تقنية LoRa هي تقنية إرسال حديثة تمكّن اتصالات طويلة تتجاوز 10 أميال مع استهلاك منخفض للطاقة يتيح عمر بطارية يقارب 10 سنوات [7]. ولتحقيق هذه الأهداف، تعتمد LoRa سلسلة من الاستراتيجيات: (1) معدلات بت منخفضة للإرسال؛ (2) استخدام نطاقات ترددية منخفضة (النطاقات دون الغيغاهرتز)؛ (3) قدرات اتصال محدودة للأجهزة النهائية. فمعدلات البيانات المحدودة ببضعة كيلوبت في الثانية تتيح استخدام مستقبلات عالية الحساسية قادرة على فك تشفير المعلومات المستلمة عند مستويات إشارة منخفضة جدًا، وتتحقق هذه المتانة بفضل تضمين LoRa الاحتكاري من Semtech القائم على تقنية تضمين الطيف المنتشر بالنبضات (CSS) [26].</p>
+    <p>ويحسّن استخدام النطاقات منخفضة التردد (868 MHz في أوروبا و911 MHz في أمريكا) مدى الإرسال والاختراق مقارنة بالنطاقات الأعلى مثل 2.4 GHz، كما يتيح تنظيم دورة العمل في نطاق ISM توافقًا مع قيود الطيف. وتُضبط أداء الوصلة عبر معامل الانتشار (SF) بين 7 و12: فالقيم الأعلى تزيد المدى والحساسية على حساب معدل البيانات وزمن الهواء (ToA)، بينما القيم الأدنى توفر معدلات أعلى وزمن هواء أقصر. وتعمل شبكة LoRaWAN فوق طبقة LoRa الفيزيائية وفق بنية نجمة-من-نجوم تضم العقد النهائية والبوابات وخادم الشبكة وخوادم التطبيقات، مع ثلاث فئات للأجهزة النهائية (A وB وC) توازن بين زمن الاستجابة واستهلاك الطاقة [11].</p>
+    <p>ومقارنةً بتقنيات LP-WAN الأخرى مثل Sigfox وNB-IoT، توفر LoRa ميزة تشغيل الشبكات الخاصة دون الاعتماد على مشغّل، وهو أمر جذاب للتطبيقات البحرية الساحلية حيث يمكن لسلطة الميناء أو نادٍ للإبحار نشر بوابته الخاصة. كما أن حساسية الاستقبال التي تصل إلى -137 dBm وميزانية الوصلة المرتفعة تجعلها مناسبة للبيئات البحرية المعاكسة ذات الانعكاسات متعددة المسارات وتأثيرات سطح البحر.</p>
+  </section>
+
+  <section>
+    <h2>IV. تقنيات الاتصال القائمة على إنترنت الأشياء في السيناريوهات الساحلية</h2>
+    <p>فيما يلي نحدد أولًا القيود الرئيسة لتقنيات الاتصال الحالية القائمة على إنترنت الأشياء والمستخدمة في السيناريوهات البحرية، ثم نستكشف التطبيقات المحتملة التي قد تستفيد من نظام اتصال LP-WAN، وأخيرًا نقترح بنية قائمة على LP-WAN.</p>
+    <h3>A. قيود الحلول القائمة</h3>
+    <p>اعتُمدت حتى الآن عائلتان من تقنيات الاتصال القائمة على إنترنت الأشياء لتطبيقات الاستشعار والمراقبة في السيناريوهات الساحلية، وهما تقنيات المدى القصير والمتوسط. لكنها تعاني عوائق ملحوظة أمام نشر حلول مستدامة وفعالة من حيث التكلفة: (1) مدى الإرسال الذي يحدد تنظيم الشبكة وقابليتها للتوسع؛ (2) تحديد أبعاد العقد الطرفية وكفاءتها الطاقية؛ (3) تكاليف إدارة الشبكة [7]. ولا نعدّ الاتصالات الفضائية تقنية تمكينية هنا بسبب تكلفتها العالية واستهلاكها المرتفع للطاقة. أما تقنيات المدى القصير مثل ZigBee أو 6LoWPAN [14، 15] فعيبها الرئيس مدى الإرسال المحدود الذي يقيّد منطقة التشغيل بشدة ويزيد تعقيد مهام إدارة الشبكة، بينما تعاني التقنيات الخلوية متوسطة المدى من الاستهلاك المرتفع للطاقة وتكاليف التشغيل.</p>
+    <p>وتزداد هذه القيود حدةً في البيئة البحرية حيث تتغير ظروف الانتشار باستمرار بسبب حركة الأمواج والرطوبة والعوائق المعدنية الكبيرة كالرافعات والسفن، مما يرفع الحاجة إلى ميزانية وصلة عالية وهوامش خفوت كبيرة. كما أن الطبيعة المتنقلة للقوارب تفرض إعادة تنظيم متكررة للشبكات متعددة القفزات، وهو ما يتعارض مع متطلبات البساطة وطول عمر البطارية في تطبيقات إنترنت الأشياء البحرية.</p>
+    <h3>B. تطبيق تقنيات LP-WAN</h3>
+    <p>في ضوء النقاش السابق، تبرز الحلول القائمة على LP-WAN، مثل LoRa، بديلًا واعدًا لتمكين عمليات مراقبة بحرية طويلة الأمد وقابلة للتوسع ومنخفضة التكلفة. ورغم أن القيد الرئيس لهذه الأنظمة هو قيود الإرسال من حيث طول الرزمة ومعدل البيانات، فإن عددًا من التطبيقات الساحلية يتوافق جيدًا مع هذه القيود لأن المعلومات المرسلة ودوريتها قد تكون منخفضة. فعمليات مراقبة القوارب والسفن في المناطق الساحلية والتنبيه عنها يمكن أن تدعمها تقنيات LP-WAN تمامًا، إذ تُبقي القوارب سلطات الميناء وخدمات السلامة على اطلاع دوري بحالتها ومواقعها. وباستخدام بنية جهاز-إلى-جهاز، يمكن للقوارب التواصل فيما بينها عند الحاجة، كما يمكن دعم خدمات تتبع السباقات والقياس عن بعد وجمع البيانات من أنظمة المراقبة الراسية.</p>
+    <p>وتشمل التطبيقات المرشحة الأخرى مراقبة العلامات الملاحية العائمة، وتتبع معدات المزارع السمكية، وجمع البيانات الأوقيانوغرافية من العوامات، وإدارة أساطيل القوارب الترفيهية. وتشترك هذه الحالات في نمط حركة منخفض الكثافة (بضع عشرات من البايتات كل بضع دقائق)، وهو ما يطابق تمامًا ملف حركة تقنيات LP-WAN وقيود دورة العمل التنظيمية في نطاقات ISM.</p>
+    <h3>C. البنية المقترحة</h3>
+    <p>نقترح بنية طرف-إلى-طرف قائمة على LP-WAN بهدف (1) استرجاع البيانات من السفن و(2) عرضها عبر منصة تصور بيانات أو نظام تحكم. قُسّمت البنية إلى ثلاثة مجالات: شبكة النفاذ الراديوي (RAN)، والسحابة، ومجال المستخدم. تتيح شبكة النفاذ الاتصال بين السفن والمحطة الأساسية/البوابة في اليابسة عبر حل LP-WAN، وهي الجزء الأكثر تحديًا بسبب ظروف الانتشار. والبوابة هي نقطة الاتصال التي تحوّل البيانات المستلمة إلى السحابة عبر شبكة توزيع مثل الإنترنت إلى خادم مركزي يتولى تجميعها، حيث يمكن تنفيذ خدمات متعددة من مصوّر للمعلمات إلى تطبيقات أكثر تعقيدًا قائمة على تحليلات البيانات أو أنظمة التنبيه. ويتضمن مجال المستخدم لوحة متابعة عبر الإنترنت تعرض مواقع القوارب ومساراتها وقياساتها في الزمن الحقيقي.</p>
+    <p>صُمّمت بنية الرزمة المرسلة لتكون مدمجة (52 بايت) وتحمل الطابع الزمني وإحداثيات GPS والسرعة والاتجاه وقياسات الحساسات الإضافية، مع تحسين دورية الإرسال لاحترام قيود دورة العمل وتحقيق التوازن بين حداثة البيانات واستهلاك الطاقة، بحيث تكفي بطارية صغيرة لعدة ساعات من المراقبة المتواصلة لجلسات التدريب.</p>
+  </section>
+
+  <section>
+    <h2>V. منصة الاختبار</h2>
+    <p>نعرض في هذا القسم سيناريو وسياق اختبارات التحقق، ثم نستعرض بالتفصيل المعدات المستخدمة في الإعداد التجريبي.</p>
+    <h3>A. السيناريو</h3>
+    <p>صُمّم النظام ونُفّذ لمراقبة تطور سباقات القوارب الخفيفة والصغيرة والإبلاغ عنها. ثبّتنا أجهزة المراقبة الممكّنة بتقنية LoRa على متن قوارب شراعية من فئة Optimist لتتبع جزء من جلساتها التدريبية في ميناء فيغو (إسبانيا). وراقبنا تحديدًا سلسلة جلسات تدريب مدة كل منها ساعة واحدة بمسافات إرسال قصوى تبلغ 1 كم داخل الميناء. زُوّدت القوارب بمجموعة حساسات وجهاز إرسال واستقبال LoRa بهدف إرسال مواقعها ومقاييس إضافية إلى محطة أساسية وُضعت على سطح مبنى في الميناء. ونظرًا للقيود الطاقية والحمولية الصارمة لهذه القوارب، حُسّنت المعدات والبيانات المرسلة للوفاء بهذه المتطلبات، وطُوّرت منصة تتبع عبر الإنترنت لمتابعة السباقات مباشرةً.</p>
+    <p>اختير ميناء فيغو لأنه بيئة تشغيلية حقيقية تجمع بين المساحات المائية المفتوحة والعوائق المعدنية الكبيرة كالرافعات والمباني المرتفعة، مما يجعله سيناريو اختبار قاسيًا لظروف الانتشار. وأُجريت القياسات خلال جلسات تدريب فعلية لضمان ظروف حركة واقعية للقوارب الشراعية الصغيرة سريعة المناورة.</p>
+    <h3>B. المعدات</h3>
+    <p>وُضعت وحدة مراقبة ممكّنة بتقنية LoRa في مقدمة القوارب المتتبعة، وتألفت من لوحة Arduino mini Pro بتردد 16 MHz وُصلت بها بقية الحساسات: وحدة GPS من طراز NeoN8M بدقة 2 م، ووحدة قياس بالقصور الذاتي MPU9250، وحساس ضغط جوي BMP280، وحساس تيار ACS712، ومقاومة ضوئية LDR لقياس شدة الإضاءة المستلمة. وفيما يخص اتصالات LoRa، استُخدم جهاز إرسال واستقبال SX1278 بقدرة خرج 14 dBm وقناة إرسال في نطاق 434 MHz، وغُلّفت الأجهزة بعلبة أبعادها 60 × 70 × 50 مم مع هوائي حلزوني ربع موجي. وتألفت المحطة الأساسية من بوابة LoRa متصلة بخادم سحابي يغذي لوحة المتابعة عبر الإنترنت.</p>
+    <p>ضُبطت وحدة القياس بالقصور الذاتي لتسجيل التسارع والاتجاه بمعدل يكفي لتحليل ديناميكية القارب دون إغراق قناة LoRa، بينما زوّد حساس التيار بيانات استهلاك الطاقة اللازمة لتقييم الميزانية الطاقية. واختير نطاق 434 MHz لتحسين الانتشار فوق سطح البحر مقارنة بالنطاقات الأعلى ترددًا.</p>
+  </section>
+
+  <section>
+    <h2>VI. النتائج</h2>
+    <p>نعرض في هذا القسم نتائج اختبارات التحقق. تتبعنا سلسلة جلسات تدريب لفئة Optimist بوضع وحدة استشعار واتصال على متن عدد من القوارب الشراعية. أولًا، أُجريت دراسة تغطية داخل منطقة الميناء لتحليل أثر المباني الكبيرة والآليات الثقيلة مثل الرافعات. عُرضت مستويات RSSI المستلمة في المحطة الأساسية خلال الجلسات المراقبة بتكوينَي LoRa المعتمدَين: التكوين الأول SF=12 وCR=4/5 وعرض نطاق BW=125 kHz، والثاني SF=7 بالمعاملات نفسها. لاحظ أن كلا التكوينين يغطي كامل منطقة الميناء بمستويات تغطية جيدة، لكن رُصدت منطقة انعدام تغطية صغيرة في كلتا التجربتين محاطة بمبانٍ مرتفعة حجبت الإرسالات عن المحطة الأساسية.</p>
+    <p>بلغت نسبة تسليم الرزم (PDR) في منطقة الميناء 97.17% مع SF12 مقابل 71.67% مع SF7، مما يؤكد المفاضلة بين المتانة ومعدل البيانات: إذ يحقق SF12 مدى وموثوقية أعلى على حساب زمن هواء أطول (2465.7 ms للرزمة المستخدمة مقابل 102.6 ms فقط مع SF7). كما أُجريت دراسة مدى في البحر المفتوح أظهرت إمكانية الاتصال لمسافات عدة كيلومترات بمستويات RSSI مقبولة، مما يثبت صلاحية الحل لمراقبة الأنشطة داخل الميناء والمناورات القريبة من الشاطئ.</p>
+    <p>أما من ناحية الطاقة، فقد أظهرت قياسات حساس التيار أن متوسط الاستهلاك خلال جلسات المراقبة منخفض بما يكفي لتشغيل الوحدة ببطارية صغيرة طوال الجلسات دون استبدال، ويعود ذلك أساسًا إلى قصر زمن الهواء ودورات النوم العميق بين الإرسالات. وأتاحت لوحة المتابعة عبر الإنترنت عرض مسارات القوارب ومواقعها لحظيًا، مما وفّر قيمة عملية لمنظمي التدريب والسباقات.</p>
+  </section>
+
+  <section>
+    <h2>VII. الاستنتاجات</h2>
+    <p>يمكن للاتصالات البحرية الاستفادة من أحدث تقنيات الاتصال الناشئة تحت مظلة إنترنت الأشياء. لذا استكشفنا في هذا العمل استخدام حلول LP-WAN لمنح السفن الاتصال مع اليابسة، وناقشنا وضع الحلول القائمة وحددنا المزايا التي توفرها هذه التقنيات الجديدة، ووجدنا ملاءمتها للقوارب ذات القيود الشديدة على الحمولة والطاقة مثل القوارب الشراعية الصغيرة أو الأجهزة البحرية منخفضة التكلفة. واقترحنا بنية قائمة على LP-WAN وأجرينا تجربة ميدانية للتحقق منها، إذ نُشرت شبكة LoRa حقيقية في ميناء فيغو (إسبانيا) لرصد أنشطة قوارب فئة Optimist. وأظهرت النتائج صلاحية المقترح بمستويات تغطية جيدة وموثوقية وصلة عالية مع استهلاك محدود للطاقة.</p>
+    <p>تشمل الأعمال المستقبلية توسيع الدراسة لتشمل مسافات أطول في البحر المفتوح، وتقييم تقنيات LP-WAN الأخرى مثل Sigfox وNB-IoT في الظروف نفسها، ودمج خوارزميات تقدير المواقع وتحليلات الأداء الرياضي في منصة المتابعة، إضافة إلى دراسة أثر ازدحام الطيف عند زيادة عدد القوارب المتتبعة في الفعاليات الكبيرة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Maritime communications are really challenging due to the adverse transmission conditions and the lack of a pre-provided infrastructure for supporting long range connectivity with land. Communications in high seas are usually covered by satellite links that are expensive and lead to high power consumption by the terminals. However, in areas closer to the shore, other communication options have been adopted for different kinds of services such as boat tracking and telemetry, data collection from moored monitoring systems, etc. In these scenarios, technologies such as cellular communications or wireless sensor networks have been employed so far; nevertheless, all of them present different drawbacks mostly related with the coverage and energy-efficiency of the system. In this work, we present a boat tracking and monitoring system based on LoRa (Long Range), one of the most prominent Low Power-Wide Area Network (LP-WAN) technologies. We provide a comprehensive overview of this communication solution and a case study in which real training sessions of Optimist Class sailboats were monitored with the presented architecture, obtaining good levels of coverage and link-reliability with limited power consumption, plus a transmission range study demonstrating the validity of this proposal for monitoring activities inside the port or maneuvers close to the shore.</p>
+  </section>
+
+  <section>
+    <h2>I. Introduction</h2>
+    <p>Enabling maritime communications has been a big challenge since their origins [1]. Although radio transmission technologies have rapidly evolved in recent times, e.g., WiFi, 4G, WiMAX, etc., maritime scenarios still present particular characteristics that notably make the deployment of reliable and widely adopted communication systems more difficult. Many services and operations depend on a trustworthy communication architecture, e.g., ship/boat monitoring, maintenance of navigation marks, goods tracking, data extraction from sensing platforms, unmanned vehicle management, safety operations, voice communications, etc. [2].</p>
+    <p>Depending on their distance from the shore, two well-differentiated scenarios have been identified within the maritime communications ecosystem: sea areas tens of miles apart from land are considered long-range scenarios, while closer areas are considered medium- or short-range scenarios [3]. For the former, few coverage options exist, basically satellite communications [4] such as Argos or Iridium, or classic Very/Ultra High Frequency (VHF/UHF) radio links [5] — technologies providing basic, low-data-rate capabilities at high cost. This work focuses on the second case, coastal-area communications, where diverse solutions have been used depending on application requirements and boat characteristics; boats without payload or power restrictions have used cellular or WiMAX technologies [1, 6].</p>
+    <p>Other scenarios, such as sailboats, small autonomous vehicles, or moored sensing platforms, face severe energy restrictions since communication modules are usually battery-powered, and the technologies cited above are not battery-friendly because they were not designed for the low-data-rate/bandwidth communications typical of Internet of Things (IoT) scenarios [7]. Alternative technologies are therefore needed to connect these constrained nodes with land; Wireless Sensor Network (WSN) solutions [8] have been used, which are battery-friendly but suffer from short range that increases network management complexity, e.g., multi-hop routing [9]. A novel technology attracting both academia and industry is the Low Power-Wide Area Network (LP-WAN), which enables transmissions beyond 15 km in free space [10] with limited power consumption permitting end-node battery lifetimes of years [7].</p>
+  </section>
+
+  <section>
+    <h2>II. Related Work</h2>
+    <p>Different communication alternatives commonly used in IoT deployments have been applied to maritime scenarios, including WSNs such as IEEE 802.15.4-based architectures, cellular systems such as GSM, 3G, and 4G, or VHF/UHF-based solutions [2]. However, very few works have addressed the use of LP-WAN technologies in these scenarios. Regarding WSNs, Zigbee-based networks were proposed for maritime surveillance and safety monitoring [14, 15], but the first [14] presented a simulation-based framework for acquiring ship dynamic-state information, while the second focused on safety — both limited by short range.</p>
+    <p>Cellular systems have been used for coastal coverage, but their coverage extends only a short distance from shore, their power consumption is high, and subscription costs apply. Similarly, traditional VHF/UHF solutions provide voice and limited data transfer but require licenses and costly equipment. By contrast, LP-WAN technologies — notably LoRa, Sigfox, and NB-IoT — offer a better range/power/cost trade-off, yet documented maritime field applications remain scarce, which this work addresses by designing, implementing, and evaluating a real LoRa-based system [10–12].</p>
+  </section>
+
+  <section>
+    <h2>III. LoRa</h2>
+    <p>LoRa is a novel transmission technology enabling long communications of more than 10 miles with reduced power consumption permitting battery lifetimes of about 10 years [7]. To achieve these goals, LoRa uses a series of strategies: (i) reduced transmission bit-rates; (ii) use of low-frequency bands (sub-GHz bands); and (iii) limited end-device communication capabilities. Limited data-rates of a few kilobits per second (kbps) allow highly sensitive receivers capable of decoding information received at very low signal levels; this robustness comes from Semtech's proprietary LoRa modulation based on Chirp Spread Spectrum (CSS) [26].</p>
+    <p>Using low-frequency bands (868 MHz in Europe and 911 MHz in America) improves transmission range and penetration compared with higher bands such as 2.4 GHz, while ISM-band duty-cycle regulation ensures spectrum compliance. Link performance is tuned via the Spreading Factor (SF) from 7 to 12: higher values increase range and sensitivity at the cost of data-rate and Time-on-Air (ToA), while lower values give higher rates and shorter airtime. The LoRaWAN network operates over the LoRa physical layer in a star-of-stars topology of end-nodes, gateways, a network server, and application servers, with three end-device classes (A, B, C) balancing responsiveness against power consumption [11].</p>
+    <p>Compared with other LP-WAN technologies such as Sigfox and NB-IoT, LoRa offers the advantage of operating private networks without relying on an operator — attractive for coastal maritime applications where a port authority or sailing club can deploy its own gateway. Receive sensitivity down to −137 dBm and a high link budget suit adverse maritime environments with multipath reflections and sea-surface effects.</p>
+  </section>
+
+  <section>
+    <h2>IV. IoT-Based Communication Technologies in Coastal Scenarios</h2>
+    <p>In the following, we first identify the main restrictions of current IoT-based communication technologies employed in maritime scenarios; thereafter, we explore potential applications that may take advantage of an LP-WAN communication system; finally, we propose an LP-WAN-based architecture.</p>
+    <h3>A. Limitations of Existing Solutions</h3>
+    <p>So far, two families of IoT-based communication technologies have been employed for sensing and monitoring in coastal scenarios: short- and medium-range technologies. They present notable impediments to sustainable, cost-effective solutions: (i) transmission range, which determines network organization and scalability; (ii) edge-node dimensioning and power efficiency; and (iii) network management costs [7]. Satellite communications are not considered an enabling technology here due to high cost and energy consumption. Short-range technologies such as ZigBee or 6LoWPAN [14, 15] suffer mainly from restricted range severely limiting the operation area and increasing network management complexity, while medium-range cellular technologies suffer high power consumption and operating costs.</p>
+    <p>These limitations are aggravated in the marine environment, where propagation conditions change continuously due to wave motion, humidity, and large metallic obstacles such as cranes and ships, demanding high link budgets and fade margins. The mobile nature of boats also forces frequent reorganization of multi-hop networks, conflicting with the simplicity and battery-longevity requirements of maritime IoT applications.</p>
+    <h3>B. Application of LP-WAN Technologies</h3>
+    <p>In light of the previous discussion, LP-WAN-based solutions, e.g., LoRa, rise as a promising alternative for long-term, scalable, low-cost maritime monitoring deployments. Although these systems are constrained in packet length and data-rate, many coastal applications fit well within these restrictions since the information to transmit and its periodicity may be low. Monitoring and alerting operations for boats and ships in coastal areas can be perfectly supported by LP-WAN: boats keep port authorities and safety services periodically informed of their state and position. With a device-to-device architecture, boats can communicate with each other when needed, and race tracking, telemetry, and data collection from moored monitoring systems can also be supported.</p>
+    <p>Other candidate applications include monitoring floating navigation marks, tracking fish-farm equipment, collecting oceanographic data from buoys, and managing recreational boat fleets. These share a low-intensity traffic pattern (a few dozen bytes every few minutes), exactly matching the LP-WAN traffic profile and ISM-band duty-cycle constraints.</p>
+    <h3>C. Proposed Architecture</h3>
+    <p>Henceforth, an LP-WAN-based end-to-end architecture is proposed to (i) retrieve data from ships and (ii) present them through a data-visualization platform or control system. It is divided into three domains: the Radio Access Network (RAN), the cloud, and the user domain. The RAN enables communication between ships and the land base station/gateway via an LP-WAN solution — the most challenging part due to propagation adversity. The gateway forwards received data to the cloud over a distribution network such as the Internet to a central aggregation server, where services from parameter visualizers to complex data-analytics or alert applications can run. The user domain includes an online dashboard displaying boat positions, tracks, and measurements in real time.</p>
+    <p>The transmitted frame was designed compactly (52 B), carrying timestamp, GPS coordinates, speed, heading, and additional sensor readings, with transmission periodicity optimized to respect duty-cycle limits and balance data freshness against power consumption, so a small battery lasts through entire training-session monitoring.</p>
+  </section>
+
+  <section>
+    <h2>V. Test-Bench</h2>
+    <p>In this section, we first present the scenario and context of our validation tests; thereafter, the equipment used in the experimental setup is explored in detail.</p>
+    <h3>A. Scenario</h3>
+    <p>The designed system monitors and reports the evolution of light- and small-boat races. We installed LoRa-enabled monitoring devices on Optimist Class sailboats to track part of their training sessions in the port of Vigo (Spain). Specifically, we monitored a series of 1-hour training sessions with maximum transmission distances of 1 km inside the port. Boats carried sensors and a LoRa transceiver to transmit position and additional metrics to a base station on a port-building roof. Given the strict energy and payload restrictions of these boats, both equipment and transmitted data were optimized accordingly, and an Internet-based tracking platform for live race monitoring was also developed.</p>
+    <p>The port of Vigo was chosen as a real operational environment combining open water with large metallic obstacles such as cranes and tall buildings — a harsh test of propagation conditions. Measurements were taken during actual training sessions to ensure realistic movement of fast-maneuvering small sailboats.</p>
+    <h3>B. Equipment</h3>
+    <p>A LoRa-enabled monitoring unit was placed in the bow of tracked boats, comprising an Arduino mini Pro board at 16 MHz connected to a U-BLOX NeoN8M GPS module (2 m precision), an MPU9250 inertial unit, a BMP280 barometric sensor, an ACS712 amperimetric sensor, and a Light Dependent Resistor (LDR) for received light intensity. For LoRa communications, an SX1278 transceiver was used with 14 dBm output power on the 434 MHz band, all encapsulated in a 60 × 70 × 50 mm case with a 1/4-wave helical dipole antenna. The base station consisted of a LoRa gateway connected to a cloud server feeding the online dashboard.</p>
+    <p>The inertial unit was configured to log acceleration and heading at a rate sufficient for boat-dynamics analysis without flooding the LoRa channel, while the current sensor provided the power-consumption data needed for the energy-budget assessment. The 434 MHz band was chosen for better over-sea propagation than higher-frequency bands.</p>
+  </section>
+
+  <section>
+    <h2>VI. Results</h2>
+    <p>In this section we present the validation-test outcomes. We tracked a series of Optimist Class training sessions with an on-board sensing and communication module. First, a coverage study inside the port area analyzed the impact of big buildings and heavy machinery such as cranes. RSSI levels received at the base station during monitored sessions are reported for the two adopted LoRa configurations: SF=12, CR=4/5, BW=125 kHz, and SF=7 with the same parameters. Both configurations cover the whole port area with good levels, but a small non-coverage zone was detected in both experiments, surrounded by tall buildings blocking sailboat-to-base-station transmissions.</p>
+    <p>Packet Delivery Ratio (PDR) in the port area reached 97.17% with SF12 versus 71.67% with SF7, confirming the robustness-versus-rate trade-off: SF12 gives longer range and reliability at the cost of longer Time-on-Air (2465.7 ms for the used frame versus only 102.6 ms with SF7). An open-sea range study showed connectivity over several kilometers at acceptable RSSI levels, proving the solution's validity for in-port monitoring and near-shore maneuvers.</p>
+    <p>On energy, current-sensor measurements showed average consumption during monitoring sessions low enough for a small battery to last whole sessions without replacement — thanks mainly to short airtime and deep-sleep cycles between transmissions. The online dashboard displayed boat tracks and positions live, providing practical value to training and race organizers.</p>
+  </section>
+
+  <section>
+    <h2>VII. Conclusions</h2>
+    <p>Maritime communications can take advantage of state-of-the-art communication technologies emerging under the IoT paradigm. This work explored LP-WAN solutions for providing ships with land connectivity, discussed the status of existing solutions, and identified the advantages of these novel transmission technologies — finding them appropriate for boats with strong payload and energy restrictions such as small sailboats or low-cost marine devices. An LP-WAN-based architecture was proposed and field-validated: a real LoRa network deployed in the port of Vigo (Spain) monitored Optimist Class sailboat activities, showing good coverage, high link reliability, and limited power consumption.</p>
+    <p>Future work includes extending the study to longer open-sea distances, evaluating other LP-WAN technologies such as Sigfox and NB-IoT under the same conditions, integrating position-estimation algorithms and sports-performance analytics into the tracking platform, and studying spectrum-congestion effects as the number of tracked boats grows in large events.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] F. Bekkadal, "Future maritime communications technologies," in <em>Proc. OCEANS 2009-EUROPE</em>, Bremen, Germany, 2009, pp. 1–6.</li>
+      <li>[2] A. Zolich et al., "Survey on communication and networks for autonomous marine systems," <em>J. Intell. Robot. Syst.</em>, vol. 91, 2018.</li>
+      <li>[3] G. Lees and W. Williamson, <em>Handbook for Marine Radio Communication</em>, 6th ed. Informa Law from Routledge, 2015.</li>
+      <li>[4] A. G. Guerra et al., "On small satellites for oceanography: A survey," <em>Acta Astronaut.</em>, vol. 127, pp. 404–423, 2016.</li>
+      <li>[5] J. Parker, "European view of automated VHF/UHF radio systems," <em>IEEE Trans. Veh. Technol.</em>, vol. 26, pp. 223–226, 1977.</li>
+      <li>[6] Y. Xu et al., "Quality of service provisions for maritime communications," <em>IEEE Commun. Mag.</em>, 2015.</li>
+      <li>[7] U. Raza, P. Kulkarni, and M. Sooriyabandara, "Low Power Wide Area Networks: An overview," <em>IEEE Commun. Surveys Tuts.</em>, vol. 19, no. 2, pp. 855–873, 2017.</li>
+      <li>[8] T. Yang et al., "A maritime WSN architecture for ship monitoring," <em>Sensors</em>, 2016.</li>
+      <li>[9] J. Shen et al., "Multi-hop routing in nautical ad hoc networks," <em>IEEE Trans. Veh. Technol.</em>, 2016.</li>
+      <li>[10] M. Centenaro et al., "Long-range communications in unlicensed bands: The rising stars in the IoT and smart city scenarios," <em>IEEE Wireless Commun.</em>, vol. 23, no. 5, pp. 60–67, 2016.</li>
+      <li>[11] LoRa Alliance, "LoRaWAN Specification v1.0," 2015. [Online]. Available: <a href="https://lora-alliance.org">https://lora-alliance.org</a></li>
+      <li>[12] R. Sanchez-Iborra and M.-D. Cano, "State of the art in LP-WAN solutions for industrial IoT services," <em>Sensors</em>, vol. 16, no. 5, p. 708, 2016.</li>
+      <li>... [full reference list available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics8010015">10.3390/electronics8010015</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

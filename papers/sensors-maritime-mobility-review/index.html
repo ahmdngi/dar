@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة المستشعرات للتنقل البحري المستدام والآمن — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+table.spec { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.9rem; }
+table.spec th, table.spec td { border: 1px solid var(--border); padding: 0.4rem 0.6rem; text-align: start; }
+table.spec th { background: var(--bg-2); }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+<div class="paper-header">
+  <h1 dir="ltr">Review on Sensors for Sustainable and Safe Maritime Mobility</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مراجعة المستشعرات للتنقل البحري المستدام والآمن</h2>
+
+  <div class="paper-meta">
+    <span>👤 Giovanni Briguglio, Vincenzo Crupi</span>
+    <span>📄 J. Mar. Sci. Eng., 2024</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse12020353">10.3390/jmse12020353</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>ولّدت المتطلبات الصارمة للحد من الملوثات والحاجة المستمرة لجعل النقل البحري أكثر أمانًا ضرورة حلول أصيلة. فوفق الوكالة الأوروبية للسلامة البحرية، بلغ إجمالي الحوادث والوقائع البحرية المبلغ عنها 21,173 خلال 2014–2021 (بمتوسط سنوي 2,647)، مع 495 حالة تلوث في الفترة نفسها — ويرتبط 64.2% من إجمالي التلوث بوقود السفن والملوثات الأخرى. ولا بد من نوع جديد من السفن يستغل التقنيات الجديدة لزيادة سلامة الأشخاص والبضائع على متنها.</p>
+    <p>وتفتقر الهياكل البحرية القائمة للتنقل البحري إلى مستشعرات أساسية لحالات الطوارئ مثل الفيضانات وتسربات النفط أو الحالات الصحية التي تتطلب مراقبة فعالة، كما يغيب التشريع لإدخال المركبات غير المأهولة في البنية التحتية البحرية. وتسلط هذه المراجعة الضوء على نقاط قوة وضعف المستشعرات في القطاع البحري، مكثفة مجالات التحسين للتحديات المستقبلية: كفاءة طاقة المستشعرات، ومعالجة البيانات، ومنهجيات دمج المستشعرات، والوصف الدقيق لحالة البحر مع المراقبة البيئية بواسطة المركبات غير المأهولة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>ينقل الشحن 11 مليار طن من البضائع سنويًا (التجارة والتنمية، 2021)؛ وسجل الأونكتاد نمو سفن الحاويات عبر المناطق (5.6% أفريقيا و3% أمريكا اللاتينية والكاريبي و3% آسيا)، بينما ارتفعت انبعاثات الدفيئة للشحن العالمي 4.7% في 2020–2021 — وأساسًا من سفن الحاويات وناقلات البضائع السائبة وسفن البضائع العامة. ولا تزال تصادمات السفن كبيرة [1]، مع الجنوح والحرائق أكثر الأحداث الحرجة شيوعًا؛ وسفن البضائع العامة والقاطرات وناقلات النفط الأكثر تورطًا في الحوادث [2]. ويسهم النقل البحري أيضًا كثيرًا في تلوث الهواء على المسارات وقرب الموانئ، مثيرًا مخاطر صحية [3]. ومع متوسط عمر السفن نحو 22 عامًا وإبقاء الملاك عليها نشطة في ظل عدم اليقين — الجوائح وتحولات الطاقة المتجددة والرقمنة بتعلم الآلة والشبكات العصبية الالتفافية — يمكن للمستشعرات المبتكرة أن تجعل السفن أكثر أمانًا واستدامة بيئية.</p>
+    <p>والمراقبة البيئية أساسية لكشف شذوذ الهواء والماء [4]، ويعد إنترنت الأشياء (IoT) ببيئة مستشعرات أكثر كفاءة [5]، محسّنًا السيطرة على أحداث استخدام السفن. وعلى خلاف مراجعات ركزت على موضوعات مفردة [6–9]، تتبنى هذه المراجعة نهجًا شموليًا عبر التطبيقات البحرية — المركبات البحرية والهياكل البحرية — كاشفة التفاعلات الممكنة بين مستشعرات الهياكل المختلفة لتتدفق أحجام ضخمة من بيانات المستشعرات المتعددة إلى المعماريات الرقمية للمعالجة اللاحقة. وتجسد المركبات الذاتية تحت الماء (AUVs) الرهانات: فالمستشعرات ذاتية التغذية قد تطيل المهام، والمستشعرات المتطورة قد تحل التوجيه في الأعماق حيث يغيب GNSS؛ لكن المركبات غير المأهولة تحتاج تشريعًا ودمجًا مع الحركة المأهولة لتجنب التعارضات، بينما يمكن لمراقبة الماء/الهواء بها أن تبسط كثيرًا الأنشطة البشرية في المناطق المحرمة.</p>
+    <p>وتهدف هذه المراجعة إلى عرض المستشعرات عبر التطبيقات البحرية (المركبات والهياكل البحرية)، مبرزة أوجه التآزر والضعف مع المعماريات الأخرى ومؤسسة للحقبة القادمة من رقمنة البحر — للسلامة وخفض التلوث. والاستعجال تنظيمي أيضًا: إذ يتطلب التوجيه الأوروبي 2023/2776 المؤرخ 12 أكتوبر 2023 بشأن مراقبة انبعاثات الدفيئة للنقل البحري أن تخضع كل سفينة ترسو في موانئ الاتحاد الأوروبي لمراقبة انبعاثات كاملة، مما يستلزم أنظمة مراقبة سفن/موانئ آنية بمعرفة كاملة بتفاعلات المستشعرات للأنظمة المدمجة المستقبلية.</p>
+  </section>
+
+  <section>
+    <h2>2. المنهجية</h2>
+    <p>اعتمدت المنهجية على بحث مفصل في Google Scholar، مع أولوية للمقالات الحديثة (السنوات الخمس الأخيرة) وإدراج أقدم منها لخلفية المستشعرات في بعض المجالات. وعُثر على كل المقالات المستشهد بها بالكلمات المفتاحية مضافًا إليها كلمة المستشعرات في المقدمة. واستُبعد نحو 30% من المقالات المعثور عليها لافتقارها لمعلومات تقنية أو عدم تطابق الموضوع. واللافت أن مقالات مستشعرات البحرية في السنوات الـ11 الأخيرة تجاوزت منشورات 1971–2013 — اهتمام متصاعد بالاستشعار عن بعد ومراقبة البيئة البحرية والمركبات الذاتية تحت الماء والصوتيات تحت الماء وشبكات الاستشعار (الشكلان 1–2: يُظهر تحليل Scopus هيمنة الولايات المتحدة والصين — الأعلى ناتجًا محليًا — في هذا الموضوع الاستراتيجي للشحن، مع بروز علم المحيطات إذ تغطي المحيطات ~70% من سطح الأرض وتبقى مجهولة بمعظمها).</p>
+  </section>
+
+  <section>
+    <h2>3. تطبيقات المستشعرات للمراقبة الهيكلية الصحية للهياكل البحرية</h2>
+    <p>خدمت المستشعرات الشحن 50 عامًا — في البداية لتحليل المشكلات الهيكلية لا لتطوير المراقبة. ومن الاستثناءات قطمرانة عالية السرعة بمستشعرات إجهاد لاسلكية وليفية ضوئية مع مقاييس تسارع ثلاثية المحاور (اللاسلكي يناسب السفن صعبة التوصيل كالعسكرية المعقدة، بانتظار دراسات الحرارة/الاهتزاز/الإشارة طويلة الأمد) [10]؛ والسفينة RV Triton بـ35 مستشعر إجهاد ليفيًا ضوئيًا معوضًا حراريًا يقيس أحمال الماء الساكن والارتطام مع 200 مقياس إجهاد محلي، مثبتة مقاييس Bragg الشبكية في بحار شديدة [11]؛ وحصاد بيانات الهيكل بمقاييس التسارع والإجهاد لمنع الأعطال والصيانة [12]؛ وغواصة سياحية مبتكرة بهيكل خارجي متعامد مع التدفق يوجه القدرة والدفع [13]؛ ومستشعرات Bragg الشبكية على بدن الدورية Skjold المركب، المقاومة للتآكل والمجالات الكهرومغناطيسية [14]. وتخدم بيانات المراقبة الهيكلية المعالجة مراقبة البدن المبكرة وتأكيد التصميم، ثم تقدير عمر الكلال وتخطيط الصيانة، والتحقق من إجهاد الموانئ الساكن، وتحديد أحمال التجارب البحرية للتحقق من تحليل العناصر المحدودة (FEA) — مدعومة بمستشعرات الكربون النانوية وiFEM والتصوير الحراري والانبعاث الصوتي ([15–28]، الجدولان 1–2، الشكل 3).</p>
+    <p>ويكمل تحديد الضرر القائم على الاهتزاز أنظمة الإجهاد الليفية الموزعة، مع أن منهجية طول موجة Bragg (مرشحات المسح والتداخلات غير المتوازنة مع المضاعفات والليزرات الممسوحة ومصفوفات CCD) تحتاج اختيارًا، وإزالة ضوضاء البيانات الخام ميزة شبكات Bragg. ويضمن الانبعاث الصوتي (AE) ضبط الشقوق/الضرر العام — مثلًا على زورق USCGC BERTHOLF من فئة Legend [29]. وتواجه الهياكل البحرية (TLP والسترات والرافعات والجاذبية) أحمالًا ميكانيكية وتآكلًا واهتزازًا تحت أحمال الموج/الرياح (نماذج رياح أرضية)؛ ومنذ أول نظام قياس بحري كامل لـBTM عام 1987 [9]، تتحقق المشاريع من التصاميم وتبني مجموعات بحثية (الجدولان 2–3): عوامات الموج ورادار X-band ومستشعرات الفجوة الهوائية لخصائص الموج [30،31]؛ ومراقبة Bragg الليفية والميل/الثنائية المحور/الشد العلوي لحوامل توربينات الرياح وأوتار TLP العائمة [32،33،36]؛ ومراقبة الحبال الليفية البوليمرية وخطوط الإرساء (خلايا حمل وميل ومقاييس إجهاد ومستشعرات ضوئية/عمق [34،35،37،38])؛ وكشف الضرر بطاقة الإجهاد النمطية والتماسك الثنائي [39،40] ومعاملات ارتباط شبكات الاستشعار [41،42].</p>
+  </section>
+
+  <section>
+    <h2>4. تطبيق المستشعرات لقياس الاهتزاز والضوضاء في السفن</h2>
+    <p>تزداد أهمية إدارة المحركات الرئيسية وضواغط الهواء ومولدات الديزل — مع الاهتزاز والصوت كبارامترين حرجين للراحة — للسفن الذكية؛ وتكثر أساليب استخراج عيوب الآلات بالإشارات الاهتزازية [43]. ويمكن لقياس الضوضاء تحت الماء بالمستشعرات المثبتة فقط أن يوجه تصميم السفن الجديدة [44]؛ وتؤثر ضوضاء القوارب على الموائل البحرية بحجب الاتصال وإرباك التوجيه عبر أنواع المحركات [45]؛ ويمكن للموانئ خفض الضوضاء تحت الماء للسفن [46]. وتشمل التطورات ذاتية التغذية مستشعر اهتزاز بمولد نانوي احتكاكي كروي مرتد (BB-TENG) يحول طاقة الاهتزاز إلى كهرباء لمستشعر حرارة إضافي [47]؛ والنموذج VAMPIRE — مقياس تسارع لاسلكي ذاتي التغذية لسفن البحرية الأمريكية وخفر السواحل يحصد طاقة المجال المغناطيسي الكهروميكانيكي [49]؛ ومستشعر اهتزاز التوائي مغناطيسي (MTVS) دون بطارية ودون قطع العمود لناقلة غاز مسال بحساسية كافية [50]، مقابل قياس العمود القياسي بمقياس الإجهاد مع القياس عن بعد [51] (الشكلان 4–5). وحُققت أيضًا المقاييس الصوتية النفسية لتشخيص الآلات [48].</p>
+    <p>وتمتد الاستخدامات الاهتزازية المبتكرة إلى تحديد نوع الجليد وسماكته: فبدل صور SAR أو مكملة لها، تغذي مقاييس تسارع IMU مثبتة في المقدمة وجيروسكوبات ثلاثية المحاور مع كاميرتي SIIRS عبر روابط LoRa ‏SX1268 تصنيف الجليد بتعلم الآلة [52].</p>
+  </section>
+
+  <section>
+    <h2>5. تطبيق المستشعرات للقياسات البيئية</h2>
+    <p>تُحمّض انبعاثات الشحن — PM2.5 وSOx وNOx [53،54] — التربة والبيئة البحرية وتسبب الوفاة المبكرة [55]، لذا تستلزم لوائح IMO لوقود منخفض الكربون مراقبة انبعاثات جاهزة. وتشمل مراقبة الماء متعددة المستشعرات قاربًا مُتحكمًا عن بعد بهيكل PVC مع مسابر التوصيل الكهربائي وpH والمواد الصلبة الذائبة والحرارة، وGPS، ومستشعر فوق صوتي HCSR-04 للعوائق، وحرارة مقاومة للماء وتوصيل وpH [56] (الشكل 6). وتشمل مراقبة الهواء سبع وحدات KOALA آنية لـPM/CO تبلغ سحابيًا عن ~3000 وصول في Beacon Cove بملبورن عبر 98 يومًا [57]؛ ونموذج أويلري ثلاثي الأبعاد لنقل الملوثات في بحر الشمال يُظهر زيادات كبريتات حتى 50% من وقود ثقيل غني بالكبريت فوق ألمانيا والدانمارك والسويد [54]؛ وشبكة مستشعرات ويب لرصد انبعاثات السفن (SEMSW) من مستشعرات جوية ومحيطية وأرضية وفضائية بمعالجة لاحقة آنية برية، قادرة على الإبلاغ عن السفن المخالفة [58] (الشكل 7، الجداول 4–6).</p>
+    <p>ويتكامل الاستشعار الفضائي عن بعد (تغطية واسعة ودقة منخفضة) مع المركبات غير المأهولة المتنقلة للمناطق المستهدفة: مراكب سطحية غير مأهولة (شراعية بالرياح/الشمس تستشعر الحرارة وحرارة السطح والملوحة ولون المحيط والأكسجين الذائب وpCO2 البحري)، وسفن غير مأهولة (ارتفاع/دور الموج والعمق وأصوات الثدييات وتركزات الأسماك)، وطائرات شراعية تحت الماء (بيانات أوقيانوغرافية للأعاصير تعين التنبؤ بالعواصف ودراسات الخلط [71]) وHarrier البريطانية والشراعيات المسيرة (الشكل 8). ويعتمد كشف تسربات النفط ورسمها — الحرجة لأضرارها البحرية الفورية وطويلة الأمد وصعوبة فصل النفط عن الماء — على إضاءة SAR المستقلة عن الطقس [75] (مع بقاء العلاقات الكمية متعددة المستشعرات والالتباس بالعناصر الحيوية [75،8])، وكاميرات الأشعة تحت الحمراء/المرئية/القريبة من تحت الحمراء/فوق البنفسجية، وأجهزة مراقبة/فصل بغشاء شبه منفذ تحدد نوع النفط وحجمه [76]، ومحطات WSN دقيقة وسفن غير مأهولة بمطيافية UV المرئية (TOC وNO3-N) ومستشعرات الأكسجين الذائب وpH والتوصيل بالطاقة الشمسية (خلايا وقود الميثانول كبديل جر في الطقس القاسي)، ومركبات ROV بكاميرات فيديو ومسابر تحليل ماء وهيدروفونات تبلغ المناطق المحرمة عبر GPS/التوطين الصوتي [77،78] (الجدول 7).</p>
+  </section>
+
+  <section>
+    <h2>6. تطبيق المستشعرات للملاحة والأمن على متن السفن</h2>
+    <p>أثبتت مستشعرات السفن الذكية أهميتها الحرجة للسلامة والصيانة والتفتيش [12]: فسجلت رحلة حاويات طركونة–ليفورنو درجات حرارة وضغوط غرفة المحرك كل ساعة لتحليل السلامة بعد الرحلة. ومعظم حوادث السفن تصادمات من غياب الاتصال أو فشل رادار كشف العوائق — وقوارب الصيد بارزة — عالجتها أنظمة تنبيه الصيادين بالموجات فوق الصوتية/الاهتزاز/GPS/GSM [79]؛ وقيّمت milliAmpere، منصة عبّارة ذاتية بعشر كاميرات ورادار وليدار، الكشف/التتبع عبر البيئات، محفزة دمج المستشعرات المتعددة [80]. وتتنبأ مستشعرات الفيضان لسفن الركاب [81،82] — الغائبة عن معظم السفن — بالفيضان وتوجه قرارات مسارات هروب الطاقم، مع قواعد محاكاة فيضان بتعلم الآلة تتنبأ بسلوك السفن؛ ومراقبة البطاريات إلزامية للسفن الهجينة/الكهربائية بالكامل، مثل شبكات NMEA 2000 الذكية لكشف تقادم الحرارة الداخلية لبطاريات الرصاص-الحمض المنظمة بالصمامات (VRLA) [83]، والمراقبة الوحداتية SeaPerformer (وحدات حصاد للجسر/المحرك مرتبطة فضائيًا تحلل استهلاك زيت الوقود لتآكل المحرك) [84]، والتنبؤ العصبي بحرارة أجهزة الدفع للتنبيه بالضرر [85] (الشكل 9).</p>
+    <p>ويستغل الشحن الذاتي قيد البحث للحالات البعيدة عن البشر المستشعرات البصرية والميكروفونات [7] والذكاء الاصطناعي/تعلم الآلة للوعي الظرفي والتعرف على العوائق والتوجيه — مع تحكم حاسوبي تجريبي لنموذج غير مأهول [86] يؤدي الرسو الآلي واختيار/تحسين المسار وتفادي التصادم، مع أن قيود تعلم الآلة واستراتيجياتها تحتاج تأملًا [87]. وحفزت تهديدات الأمن السيبراني لمستشعرات البحرية نموذج Light-GMB بدقة كشف 98.52% [88]؛ ويبقى فهم مواجهات الذاتي مقابل المأهول مشكلة الدمج الجوهرية [89]. ويحتاج التموضع الغواص المحروم من GPS تقنيات عددية ومستشعرات جديدة [93] (تركيبات صوتية/ضوئية باستراتيجيات توجيه [95])؛ وتناسب المستشعرات اللاسلكية التصاميم البحرية المدمجة لكنها تواجه حدود الطاقة/الشحن، يجيب عنها شحن العقد تحت الماء بالمركبات الذاتية [94]. وتقارن مراقبة الأعمدة المستشعرات اللاتلامسية عديمة التغذية [90]، وتوجيه حالة البحر بمقاييس التسارع/الإجهاد [91]، وتقييم خطأ MEMS مقابل الحرارة لسفن السطح الذاتية [92] (الجدولان 8–9).</p>
+  </section>
+
+  <section>
+    <h2>7. تطبيق المستشعرات لمنشآت الدفع الخضراء في السفن</h2>
+    <p>تشترط IMO خفض غازات الدفيئة 50% بحلول 2050؛ وتشمل وقود السفن البديل المتاح الغاز الطبيعي المسال والمسال البترولي والميثانول والديزل الحيوي والهيدروجين والأمونيا (NH3) [96،97]، مع أن الديزل الحيوي والهيدروجين والأمونيا وقود المستقبل الحتمي. وتتقدم خلايا وقود الميثانول المباشرة (DMFC — عائلة التبادل البروتوني، دون مُصلح) [98] واستراتيجيات الميثانول الحيوي من الكتلة الحيوية للنفايات [99]؛ ويناسب محرك الاحتراق الداخلي بالميثانول الحرف عالية القدرة كالعبارات السريعة [100،101]. ويوفر الغاز المسال انبعاثات منخفضة وكثافة طاقة عالية لكن بتخزين مبرد [101]؛ ويواجه المضغوط تخزين 200–250 بار بأمن معقد؛ ويوفر الهيدروجين قيمة حرارية وكفاءة احتراق لكن بمشكلات التخزين/التسرب — فالمستشعرات حاسمة. وقِيست آثار حركة السفن على تشتت الهيدروجين في الأماكن المغلقة بجيروسكوبات ومستشعرات غاز [102]؛ ومستشعرات التسرب أساس التحكم/الأمن الهيدروجيني؛ وتتقدم القطمرانات الهجينة بخلايا الوقود/البطاريات (220 راكبًا و20 عقدة وساحل أمالفي [103]) ومحركات الاحتراق بالهيدروجين/الميثانول [104،105]، مع مستشعرات مستوى الهيدروجين السائل فائقة التوصيل MgB2 [106] ومستشعرات حرارة بلاتينية مقاومة لنقل الهيدروجين السائل بحرًا [107] محافظة على أغلفة الضغط/الحرارة.</p>
+    <p>وستكون مستشعرات السفن الخضراء أكثر بتكرار 20 ضعفًا من السفن الحالية [108] — متطلبة جدوى الأعطال عبر التحقق من المستشعرات (مقارنة بالبيانات التاريخية) ودمج/استرداد بياناتها (دمج قياسات متعددة). وتحتاج هجن القوارب السياحية بخلايا PEM/البطاريات [109] وبطاريات الرصاص-الحمض/الليثيوم (كثافة طاقية/وزن عالية [110] وحساسية حرارية وتقادم) إدارة حرارية بمستشعرات صلبة (داخل الخلية) وناعمة (نماذج خارجية) [111]، وإدارة الضغط/التدفق الكتلي/الرطوبة ومستشعرات غاز تسرب/تلوث الهيدروجين [112،6]. وتطورت القوارب الشمسية من الهجينة/الكاملة [113] إلى قطمرانات ضوئية للأنهار/السواحل [114] وشراعيات ذاتية بالرياح والشمس بكاميرات بانورامية وسونار وهيدروفونات تغذي وحدات الملاحة [115] (الشكل 10).</p>
+  </section>
+
+  <section>
+    <h2>8. المناقشات والتحديات المستقبلية</h2>
+    <p>رسمت هذه المراجعة مستشعرات البحرية للتنقل المستدام والآمن. فمستشعرات التطبيقات القاسية (الغواصات والبحرية) تعاني نقص طاقة تفريغ البطاريات — ويمكن لاسترداد طاقة الموج على السفن الصغيرة أن يغذي المستشعرات الغواصة بالتنقيط، إلى جانب تعميق بحث التغذية الذاتية (مثل المغناطيسية-التقييدية) وطاقة الاهتزاز. ويحتاج التوجيه في أعماق المحيط دمج المستشعرات الآنية مع النماذج العددية؛ ويحتاج دمج الذاتي مقابل المأهول تطوير الاتصالات عبر سيناريوهات معروفة بتعلم الآلة/العميق. ويمكن لمراقبة الانبعاث الصوتي — إنذارات الطاقة المرنة الكاشفة عن وجود الشقوق ونموها (خلاف مقاييس الإجهاد المتنبئة بالأحداث) — أن تقترن بمقاييس الإجهاد والنقل اللاسلكي للحد من الكابلات، مع أن عدد مستشعرات البدن/الكابلات عقبتها. وتعمل المركبات غير المأهولة اليوم بالبطاريات/الطاقة الشمسية؛ ويمكن لخلايا وقود الميثانول أن تحل محل الألواح إذا روقبت انبعاثات الميثانول المتجدد المحايد كربونيًا. ويمكن لاستجابة تسربات النفط أن تجمع المركبات غير المأهولة مع مستشعرات المواد الذائبة/قطرات اللون لتخفيف آني أسرع وبيانات كمية للكوارث. ويحتاج الرصد الهيكلي أبحاث التموضع الأمثل على متن السفن (للحد من التكرار/التكلفة)، ومنهجية عامة لكشف الضرر البحري، ومعالجة إشارات مبتكرة متعددة البارامترات لاستجابات السفينة-الموج، ودراسة حالة البحر الممكنة بإنترنت الأشياء.</p>
+    <p>وآفاق المستقبل — إنترنت الأشياء والذكاء الاصطناعي للتنقل البحري: نقاط قوة الذكاء الاصطناعي بديهية لكنها تتطلب تطبيقًا سليمًا يتجنب الحالات المشكوك فيها وعدم إدراك التدهور الذي تلحقه الطبيعة الفيزيائية بالبيانات المحصودة [116]. ويحتاج إنترنت الأشياء البحري (IoMT) — إنترنت أشياء مخصص للبحر يبلغ 40 كم بهوائيات ذاتية الضبط [117]، مميز في المسارات القصيرة-المتوسطة على LTE — منطق تصنيف/إدارة يتجنب فيه الذكاء الاصطناعي المعالجة اللاحقة المفرطة. وينسق المركبة-إلى-السحابة (V2C) أساطيل المركبات غير المأهولة للحصاد في الموقع [118]، متكاملًا مع ذكاء اصطناعي الجيل القادم ومنصات الاتصال الأرضية الساحلية (V2I وV2G وV2D وV2N)، رافعًا الأمن البحري: ويخدم V2C خصوصًا المراقبة البيئية — فبيانات المركبات الكهربائية تحسن كفاءة الطاقة وتكاليف التشغيل بينما تطيل مراقبة المكونات الكهربائية الآنية عمر البطاريات وتقلل الاستهلاك.</p>
+  </section>
+
+  <section>
+    <h2>9. الاستنتاجات</h2>
+    <p>اقترحت هذه المراجعة رؤية شمولية للمستشعرات في المركبات البحرية والهياكل البحرية. ويتطلب إنجاز مهام لوائح التلوث الجديدة مع تحسين أمن المركبات البحرية معماريات رقمية مبتكرة وفعالة تولد بيانات زمانية-مكانية آنية للمركبات والهياكل البحرية قرب الموانئ وخارجها. ومعرفة كل التفاعلات الممكنة بين المستشعرات والهياكل البحرية المحيطة أساسية لبناء أنظمة بحرية مدمجة للمهام المستقبلية.</p>
+  </section>
+
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Stringent requirements for limiting pollutants and the constant need to make maritime transport safer generated the necessity for original solutions. According to the European Maritime Safety Agency, total reported marine casualties and incidents reached 21,173 over 2014–2021 (yearly average 2,647), with 495 pollution cases in the same period — 64.2% of all pollution linked to ships' fuel and other pollutants. A new kind of ship exploiting new technologies is mandatory to increase safety for people and onboard goods.</p>
+    <p>Existing marine structures for maritime mobility lack essential sensors for emergency situations such as flooding, oil spills or health situations requiring efficient monitoring, and legislation for inserting unmanned vehicles into marine infrastructure is missing. This review highlights the strengths and weaknesses of sensors in the maritime sector, intensifying areas of improvement for future challenges: sensor energy efficiency, data processing, sensor fusion methodologies, and accurate sea state description with environmental monitoring by means of unmanned vehicles.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Shipping delivers 11 billion tons of goods annually (Trade and Development, 2021); UNCTAD recorded container-ship growth across regions (5.6% Africa, 3% Latin America and the Caribbean, 3% Asia), while world shipping greenhouse emissions rose 4.7% in 2020–2021 — mainly from container ships, dry bulk carriers and general cargo vessels. Ship collisions remain significant [1], with groundings and fires the most common critical events; general cargo ships, tugs and oil tankers are the most accident-involved categories [2]. Maritime transport also contributes significantly to air pollution along routes and near ports, raising health risks [3]. With ships averaging nearly 22 years of age and owners keeping them active amid uncertainty — pandemics, renewable-energy transitions, digitalization with machine learning and convolutional neural networks — innovative sensors could make ships safer and more eco-sustainable.</p>
+    <p>Environmental monitoring is essential for detecting air and water anomalies [4], and the Internet of Things (IoT) promises a more efficient sensor environment [5], improving control over ship-usage events. Unlike reviews focused on single topics [6–9], this review takes a holistic approach across maritime applications — marine vehicles and offshore structures — exposing possible interactions among sensors of different structures so huge multi-sensor data volumes can reach digital architectures for post-processing. AUVs illustrate the stakes: self-powered sensors could extend missions, and sophisticated sensors could solve abyssal orientation where GNSS is unavailable; but unmanned vehicles need legislation and integration with manned traffic to avoid conflicts, while AUV-based water/air monitoring could vastly simplify human activities in forbidden zones.</p>
+    <p>The aim of this review is to present sensors across maritime applications (vehicles and offshore structures), pointing out synergies and weaknesses with other architectures and laying foundations for the next era of sea digitalization — for safety and pollution reduction. The urgency is regulatory as well: EU guideline 2023/2776 of 12 October 2023 on greenhouse-emission monitoring for maritime transport requires every ship docking at EU ports to be fully emissions-monitored, demanding real-time ship/port monitoring systems with full knowledge of sensor interactions for future embedded systems.</p>
+  </section>
+
+  <section>
+    <h2>2. Methodology</h2>
+    <p>The methodology relied on detailed Google Scholar research, prioritizing recent articles (last 5 years) while including older ones for sensor background in some fields. All cited articles were found with the keywords-section keywords plus the word sensors in front of them. Nearly 30% of found articles were excluded for lacking technical information or subject mismatch. Notably, more maritime-sensor papers were published in the last 11 years than in 1971–2013 — a surging interest in remote sensing, marine environment monitoring, autonomous underwater vehicles, underwater acoustics and sensor networks (Figures 1–2: Scopus analysis shows US and Chinese dominance — the highest-GDP countries — in this strategic shipping topic, with oceanography prominent since oceans cover ~70% of Earth's surface yet remain mostly unknown).</p>
+  </section>
+
+  <section>
+    <h2>3. Sensor Applications for Structural Health Monitoring of Marine Structures</h2>
+    <p>Sensors served shipping for 50 years — initially analyzing structural problems rather than advancing monitoring. Exceptions include a high-speed catamaran with wireless and fiber-optic strain sensors plus tri-axial accelerometers (wireless suits hard-to-wire ships, e.g., complex military vessels, pending long-term heat/vibration/signal studies) [10]; the RV Triton with 35 temperature-compensated fiber-optic strain sensors measuring still-water and slamming loads plus 200 local strain gauges, proving Bragg grating gauges in severe seas [11]; accelerometer/strain-gauge harvesting for fault prevention and maintenance [12]; an innovative tourist submarine with orthogonally flow-exposed exo-structure informing power/thrust [13]; and Bragg grating sensors on the Skjold-class patrol boat composite hull, resistant to corrosion and electromagnetic fields [14]. Processed SHM data serve early hull monitoring and design confirmation, then fatigue-life estimation and maintenance planning, static harbor stress verification and sea-trial load identification for Finite Element Analysis (FEA) validation — aided by carbon-nanotube strain sensors, iFEM, thermography and acoustic emission ([15–28], Tables 1–2, Figure 3).</p>
+    <p>Vibration-based damage identification complements distributed fiber-optic strain systems, though Bragg wavelength methodology (scanning filters, unbalanced interferometers with multiplexers, swept lasers, CCD arrays) needs selection, and raw-data noise removal is a Bragg-grating advantage. Acoustic emission (AE) guarantees general crack/damage control — e.g., on the USCGC BERTHOLF Legend-class cutter [29]. Offshore structures (TLP, jacket, jack-up, gravity platforms) face mechanical loads, corrosion and vibration under wave/wind loads (land-based wind models); since BTM's first full-scale offshore measurement system in 1987 [9], projects verify designs and build research datasets (Tables 2–3): wave buoys, X-band radar, air-gap sensors for wave properties [30,31]; fiber Bragg and inclinometer/bi-axial/top-tension monitoring of wind-turbine tripods and floating TLP tendons [32,33,36]; polymer fiber-optic rope and mooring-line monitoring (load cells, inclinometers, strain gauges, optical/depth sensors [34,35,37,38]); and modal-strain-energy, bicoherence [39,40] and sensor-network correlation-coefficient damage detection [41,42].</p>
+  </section>
+
+  <section>
+    <h2>4. Sensor Application for Vibration and Noise Measurement of Ships</h2>
+    <p>Managing main engines, air compressors and diesel generators — with vibration and sound as comfort-critical parameters — matters increasingly for smart ships; vibrational-signal machinery fault extraction methods abound [43]. Onboard-only underwater-noise measurement can inform new-ship design [44]; boat noise affects marine habitats by masking communication and confusing orientation across engine types [45]; ports can act to reduce ship underwater noise [46]. Self-powered advances include a bouncing-ball triboelectric nanogenerator (BB-TENG) vibration sensor converting vibration energy to electricity for a further temperature sensor [47]; the VAMPIRE prototype — a wireless, self-powered accelerometer for US Navy and Coast Guard vessels harvesting electromechanical magnetic-field energy [49]; and a battery-free, shaft-interruption-free magnetostrictive torsional vibration sensor (MTVS) for an LPG carrier with sufficient sensitivity [50], contrasted with standard strain-gauge-plus-telemetry shaft measurement [51] (Figures 4–5). Psychoacoustic metrics for machinery diagnosis were also validated [48].</p>
+    <p>Innovative vibration uses extend to ice type/thickness identification: replacing/augmenting SAR imagery, bow-mounted IMU accelerometers/triaxial gyroscopes with two SIIRS cameras over LoRa SX1268 links feed machine-learning ice classification [52].</p>
+  </section>
+
+  <section>
+    <h2>5. Sensor Application for Environmental Measurements</h2>
+    <p>Shipping emissions — PM2.5, SOx, NOx [53,54] — acidify ground and marine environments and cause premature death [55], so IMO low-carbon-fuel regulations demand ready emissions monitoring. Multi-sensor water monitoring includes a PVC-frame remote-controlled boat with electrical conductivity, pH, total dissolved solids and temperature probes, GPS, HCSR-04 ultrasonic obstacle sensor, waterproof temperature, conductivity and pH sensors [56] (Figure 6). Air monitoring includes seven KOALA real-time PM/CO units cloud-reporting ~3000 arrivals at Melbourne's Beacon Cove over 98 days [57]; a North Sea 3D eulerian pollutant-transport model showing up to 50% sulfate increases from sulfur-rich bunker fuel over Germany, Denmark and Sweden [54]; and a ship emission monitoring sensor web (SEMSW) of airborne, ocean, land and satellite sensors with onshore real-time post-processing, able to flag non-compliant ships [58] (Figure 7, Tables 4–6).</p>
+    <p>Satellite remote sensing (wide coverage, low resolution) combines with mobile unmanned vehicles for targeted areas: USVs (wind/solar sailboats sensing temperature, sea-surface temperature, salinity, ocean color, dissolved oxygen, pCO2), unmanned ships (wave height/period/depth, mammal sounds, fish concentrations), underwater gliders (hurricane oceanographic data aiding storm forecasting and mixing studies [71]) and British Harrier/saildrones (Figure 8). Oil-spill detection and mapping — critical given immediate and long-term marine damage and oil–water separation difficulty — relies on SAR weather-independent illumination [75] (though quantitative multi-sensor relationships and confusion with bio-elements persist [75,8]), infrared/visible/near-infrared/ultraviolet cameras, semi-permeable-membrane monitoring/separation devices identifying oil type and volume [76], WSN microstations and unmanned ships with UV-visible spectrometry (TOC, NO3-N), dissolved oxygen, pH and conductivity sensors on solar power (methanol fuel cells as harsh-weather traction alternative), and ROVs with video, water-analysis probes and hydrophones reaching forbidden zones via GPS/acoustic localization [77,78] (Table 7).</p>
+  </section>
+
+  <section>
+    <h2>6. Sensor Application for Navigation and Onboard Security</h2>
+    <p>Smart-ship sensors proved critical for safety, maintenance and inspection [12]: a Tarragona–Livorno container voyage recorded engine-room temperatures and pressures hourly for post-voyage safety analysis. Most ship incidents are collisions from missing communication or failed obstacle-detecting radar — fishing boats prominent — addressed by ultrasonic/vibration/GPS/GSM fisher alert systems [79]; milliAmpere, an autonomous ferry platform with 10 cameras, radar and lidar, evaluated detection/tracking across environments, motivating multi-sensor fusion [80]. Passenger-ship flooding sensors [81,82] — absent on most vessels — forecast flooding and guide crew escape-path decisions, with machine-learning flooding-simulation databases predicting ship behavior; battery monitoring is mandatory for hybrid/full-electric ships, e.g., NMEA 2000 smart networks for valve-regulated lead–acid (VRLA) inner-temperature aging detection [83], SeaPerformer modular monitoring (satellite-linked bridge/engine harvesting units analyzing fuel-oil consumption for engine wear) [84], and neural temperature forecasting for propulsion-device damage alerting [85] (Figure 9).</p>
+    <p>Autonomous shipping under investigation for human-unreachable situations exploits visual sensors, microphones [7] and AI/ML for situational awareness, obstacle recognition and routing — with experimental unmanned-model computer control [86] performing auto-mooring, route selection/optimization and anti-collision, though ML limitations and strategies need reflection [87]. Marine sensor cybersecurity threats motivated the Light-GMB model with 98.52% detection accuracy [88]; autonomous-versus-manned encounter understanding remains the core integration problem [89]. Submarine GPS-denied positioning needs new numerical techniques and sensors [93] (acoustic/optical combinations with orientation strategies [95]); wireless sensors suit compact marine designs but face energy/SOC limits, answered by AUV-based underwater-node charging [94]. Shaft monitoring compares powerless non-contact sensors [90], accelerometer/strain-gauge sea-state routing [91] and MEMS error-vs-temperature evaluation for autonomous surface ships [92] (Tables 8–9).</p>
+  </section>
+
+  <section>
+    <h2>7. Sensor Application for Green Propulsion Plants of Ships</h2>
+    <p>IMO requires 50% greenhouse-gas cuts by 2050; available marine alternative fuels include LNG, LPG, methanol, biodiesel, hydrogen and ammonia (NH3) [96,97], with biodiesel, hydrogen and ammonia the inevitable future fuels. Direct methanol fuel cells (DMFC — proton-exchange family, no reformer) [98] and waste-biomass bio-methanol strategies [99] advance the field; methanol ICE suits high-power craft like high-speed ferries [100,101]. LNG offers low emissions and high energy density but cryogenic storage [101]; CNG faces 200–250 bar storage security; hydrogen offers heating value and combustion efficiency but storage/leakage problems — so sensors are crucial. Ship-motion effects on hydrogen dispersion in enclosed spaces were measured with gyroscopes and gas sensors [102]; leakage sensors underpin hydrogen control/security; hybrid fuel-cell/battery catamarans (220 passengers, 20 knots, Amalfi Coast [103]) and hydrogen/methanol combustion engines [104,105] push ahead, with MgB2 superconducting liquid-hydrogen level sensors [106] and platinum resistance temperature sensors for marine liquid-hydrogen transport [107] maintaining pressure/temperature envelopes.</p>
+    <p>Green-ship sensors will be 20 times more frequent than on current ships [108] — demanding fault feasibility via sensor validation (assessed versus historical data) and sensor data-fusion–recovery (multi-measurement fusion). PEM fuel-cell/battery tourist-boat hybrids [109] and lead–acid/lithium batteries (high energy density/weight [110], thermal sensitivity, aging) need temperature management via hard sensors (inner-cell) and soft sensors (external models) [111], pressure/mass-flow/humidity management and hydrogen-leakage/contamination gas sensors [112,6]. Solar boats evolved from hybrid/full-solar [113] to river/coastal photovoltaic catamarans [114] and wind-plus-solar autonomous sailboats with panoramic cameras, sonar and hydrophones feeding navigation modules [115] (Figure 10).</p>
+  </section>
+
+  <section>
+    <h2>8. Discussions and Future Challenges</h2>
+    <p>This review mapped maritime sensors for sustainable, safe mobility. Harsh-application sensors (submarine, offshore) suffer battery-discharge power shortage — wave-energy recovery on small vessels could trickle-feed submarine sensors, alongside deeper self-powered (e.g., magneto-restrictive) and vibration-energy research. Deep-ocean orientation needs real-time sensor-plus-numerical-model fusion; autonomous-versus-manned integration needs communication development across known scenarios with machine/deep learning. Acoustic emission monitoring — elastic-energy alarms revealing crack presence and growth (unlike strain gauges predicting events) — could pair with strain gauges and wireless transmission to limit cabling, though hull sensor count/cabling is its hurdle. Unmanned vehicles run on batteries/solar today; methanol fuel cells could substitute panels if carbon-neutral renewable-methanol emissions are monitored. Oil-spill response could combine unmanned vehicles with TDS/color-droplet sensors for faster real-time mitigation and quantitative disaster data. SHM needs optimal onboard positioning research (limiting redundancy/cost), a general marine damage-detection methodology, innovative multi-parameter signal processing for ship-wave responses, and IoT-enabled sea-state study.</p>
+    <p>Future views — IoT and AI for maritime mobility: AI's strengths are evident but demand proper application avoiding dubious situations and unawareness of physical nature degrading harvested data [116]. The Internet of Maritime Things (IoMT) — marine-customized IoT reaching 40 km via auto-adjusting antennas [117], advantageous on short-medium routes over LTE — needs classification/management logic where AI avoids excessive post-processing. Vehicle-to-Cloud (V2C) coordination of USV fleets for in-situ harvesting [118], integrated with next-generation AI and coastal land-connectivity platforms (V2I, V2G, V2D, V2N), raises maritime security: V2C particularly serves environmental monitoring — EV data optimizing energy efficiency and operating costs while real-time electric-component monitoring extends battery life and minimizes consumption.</p>
+  </section>
+
+  <section>
+    <h2>9. Conclusions</h2>
+    <p>This review proposed a holistic view of sensors in maritime vehicles and offshore structures. Meeting new pollution-regulation tasks while improving maritime-vehicle security requires innovative, efficient digital architectures generating real-time spatiotemporal data for marine vehicles and structures near and outside ports. Knowing all possible interactions among sensors and surrounding maritime structures is essential to building embedded maritime systems for future tasks.</p>
+  </section>
+
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+    <li>[1] Antão, P.; Sun, S.; Teixeira, A.P.; Guedes Soares, C. Quantitative Assessment of Ship Collision Risk Influencing Factors from Worldwide Accident and Fleet Data. Reliab. Eng. Syst. Saf. 2023, 234, 109166. [CrossRef]</li>
+    <li>[2] Eliopoulou, E.; Alissafaki, A.; Papanikolaou, A. Statistical Analysis of Accidents and Review of Safety Level of Passenger Ships. J. Mar. Sci. Eng. 2023, 11, 410. [CrossRef]</li>
+    <li>[3] Mueller, N.; Westerby, M.; Nieuwenhuijsen, M. Health Impact Assessments of Shipping and Port-Sourced Air Pollution on a Global Scale: A Scoping Literature Review. Environ. Res. 2023, 216, 114460. [CrossRef] [PubMed]</li>
+    <li>[4] Parra, L.; Viciano-Tudela, S.; Carrasco, D.; Sendra, S.; Lloret, J. Low-Cost Microcontroller-Based Multiparametric Probe for Coastal Area Monitoring. Sensors 2023, 23, 1871. [CrossRef] [PubMed]</li>
+    <li>[5] Kishore Sonti, V.J.K.; Sundari, G.; Bernatin, T. Ecological Observing Using Sensor and IoT to Protect the Global Warming in WSN. In Proceedings of the 2023 International Conference on Recent Trends in Electronics and Communication (ICRTEC), Virtual, 10–11 February 2023.</li>
+    <li>[6] Mehrpooya, M.; Ganjali, M.R.; Mousavi, S.A.; Hedayat, N.; Allahyarzadeh, A. Comprehensive Review of Fuel-Cell-Type Sensors for Gas Detection. Ind. Eng. Chem. Res. 2023, 62, 2387–2409. [CrossRef]</li>
+    <li>[7] Thombre, S.; Zhao, Z.; Ramm-Schmidt, H.; Vallet Garcia, J.M.; Malkamaki, T.; Nikolskiy, S.; Hammarberg, T.; Nuortie, H.; Bhuiyan, M.Z.H.; Sarkka, S.; et al. Sensors and AI Techniques for Situational Awareness in Autonomous Ships: A Review. IEEE Trans. Intell. Transp. Syst. 2022, 23, 64–83. [CrossRef]</li>
+    <li>[8] Fingas, M.; Brown, C. A Review of Oil Spill Remote Sensing. Sensors 2017, 18, 91. [CrossRef] [PubMed]</li>
+    <li>[9] Wang, P.; Tian, X.; Peng, T.; Luo, Y. A Review of the State-of-the-Art Developments in the Field Monitoring of Offshore Structures. Ocean Eng. 2018, 147, 148–164. [CrossRef]</li>
+    <li>[10] Swartz, R.A.; Zimmerman, A.T.; Lynch, J.P.; Rosario, J.; Brady, T.; Salvino, L.; Law, K.H. Hybrid Wireless Hull Monitoring System for Naval Combat Vessels. Struct. Infrastruct. Eng. 2012, 8, 621–638. [CrossRef]</li>
+    <li>[11] Kiddy, J.S.; Baldwin, C.S.; Salter, T.; Chen, P.C. Structural Load Monitoring of the RV Triton Using Fiber Optic Sensors. In Smart Structures and Materials 2002: Industrial and Commercial Applications of Smart Structures Technologies; McGowan, A.-M.R., Ed.; SPIE: St. Bellingham, WA, USA, 2002; pp. 462–472.</li>
+    <li>[12] Raptodimos, Y.; Lazakis, I.; Theotokatos, G.; Varelas, T.; Drikos, L. Ship Sensors Data Collection &amp; Analysis for Condition Monitoring of Ship Structures &amp; Machinery Systems. In Proceedings of the Smart Ships Technology 2016, London, UK, 26–27 January 2016; RINA: Genoa, Italy, 2016; pp. 77–86.</li>
+    <li>[13] Parunov, J.; Pediši´c-Buˇca, M.; Gatin, I.; ´Catipovi´c, I. Hydrodynamic Tests of Innovative Tourist Submarine. J. Mar. Sci. Eng. 2023, 11, 1199. [CrossRef]</li>
+    <li>[14] Wang, G.; Pran, K.; Sagvolden, G.; Havsgård, G.B.; Jensen, A.E.; Johnson, G.A.; Vohra, S.T. Ship Hull Structure Monitoring Using Fibre Optic Sensors. Smart Mater. Struct. 2001, 10, 472–478. [CrossRef] J. Mar. Sci. Eng. 2024, 12, 353</li>
+    <li>[15] Mieloszyk, M.; Majewska, K.; Ostachowicz, W. Application of Embedded Fibre Bragg Grating Sensors for Structural Health Monitoring of Complex Composite Structures for Marine Applications. Mar. Struct. 2021, 76, 102903. [CrossRef]</li>
+    <li>[16] Kang, I.; Schulz, M.J.; Kim, J.H.; Shanov, V.; Shi, D. A Carbon Nanotube Strain Sensor for Structural Health Monitoring. Smart Mater. Struct. 2006, 15, 737–748. [CrossRef]</li>
+    <li>[17] Xu, T.; Qiu, Q.; Lu, S.; Ma, K.; Wang, X. Multi-Direction Health Monitoring with Carbon Nanotube Film Strain Sensor. Int. J. Distrib. Sens. Netw. 2019, 15, 155014771982968. [CrossRef]</li>
+    <li>[18] Alexopoulos, N.D.; Bartholome, C.; Poulin, P.; Marioli-Riga, Z. Structural Health Monitoring of Glass Fiber Reinforced Composites Using Embedded Carbon Nanotube (CNT) Fibers. Compos. Sci. Technol. 2010, 70, 260–271. [CrossRef]</li>
+    <li>[19] Sabra, K.G.; Huston, S. Passive Structural Health Monitoring of a High-Speed Naval Ship from Ambient Vibrations. J. Acoust. Soc. Am. 2011, 129, 2991–2999. [CrossRef]</li>
+    <li>[20] Torkildsen, H.E.; Grøvlen, Å.; Skaugen, A.; Wang, G.; Jensen, A.E.; Pran, K.; Sagvolden, G. Development and Applications of Full-Scale Ship Hull Health Monitoring Systems for the Royal Norwegian Navy; RTO: Neuilly-sur-Seine, France, 2005.</li>
+    <li>[21] Kefal, A.; Mayang, J.B.; Oterkus, E.; Yildiz, M. Three Dimensional Shape and Stress Monitoring of Bulk Carriers Based on iFEM Methodology. Ocean Eng. 2018, 147, 256–267. [CrossRef]</li>
+    <li>[22] Kefal, A.; Oterkus, E. Displacement and Stress Monitoring of a Chemical Tanker Based on Inverse Finite Element Method. Ocean Eng. 2016, 112, 33–46. [CrossRef]</li>
+    <li>[23] Bucci, V.; Corigliano, P.; Crupi, V.; Epasto, G.; Guglielmino, E.; Marinò, A. Experimental Investigation on Iroko Wood Used in Shipbuilding. Proc. Inst. Mech. Eng. C J. Mech. Eng. Sci. 2017, 231, 128–139. [CrossRef]</li>
+    <li>[24] Fan, J.; Guo, X.; Wu, C.; Crupi, V.; Guglielmino, E. Influence of Heat Treatments on Mechanical Behavior of FV520B Steel. Exp. Tech. 2015, 39, 55–64. [CrossRef]</li>
+    <li>[25] Tighe, R.C.; Dulieu-Barton, J.M.; Quinn, S. Infrared Techniques for Practical Defect Identification in Bonded Joints in Liquefied Natural Gas Carriers. Exp. Tech. 2018, 42, 121–128. [CrossRef]</li>
+    <li>[26] Crupi, V.; Chiofalo, G.; Guglielmino, E. Using Infrared Thermography in Low-Cycle Fatigue Studies of Welded Joints. Weld. J. 2010, 89, 195–200.</li>
+    <li>[27] Li, H.C.H.; Herszberg, I.; Davis, C.E.; Mouritz, A.P.; Galea, S.C. Health Monitoring of Marine Composite Structural Joints Using Fibre Optic Sensors. Compos. Struct. 2006, 75, 321–327. [CrossRef]</li>
+    <li>[28] Saeedifar, M.; Saleh, M.N.; Krairi, A.; de Freitas, S.T.; Zarouchas, D. Structural Integrity Assessment of a Full-Scale Adhesively- Bonded Bi-Material Joint for Maritime Applications. Thin-Walled Struct. 2023, 184, 110487. [CrossRef]</li>
+    <li>[29] Rogers, L.M. Application of Acoustic Emission Technology for Health Monitoring of Ship Structures; Ship Structure Committee: Washington, DC, USA, 2014.</li>
+    <li>[30] Edwards, R.; Prislin, I.; Johnson, T.; Campman, C.; Leverette, S.; Halkyard, J. Review of 17 Real-Time, Environment, Response, and Integrity Monitoring Systems on Floating Production Platforms in the Deep Waters of the Gulf of Mexico. In Proceedings of the Offshore Technology Conference, Houston, TX, USA, 8 April 2005.</li>
+    <li>[31] Gerner, M.B.; Perryman, S.R.; Geyer, J.F.; von Aschwege, J.T. Marine Monitoring of Gulf of Mexico Deepwater Floating Systems. In Proceedings of the All Days, OTC, Houston, TX, USA, 30 April 2007.</li>
+    <li>[32] Mieloszyk, M.; Ostachowicz, W. An Application of Structural Health Monitoring System Based on FBG Sensors to Offshore Wind Turbine Support Structure Model. Mar. Struct. 2017, 51, 65–86. [CrossRef]</li>
+    <li>[33] Chung, W.C.; Pestana, G.R.; Kim, M. Structural Health Monitoring for TLP-FOWT (Floating Offshore Wind Turbine) Tendon Using Sensors. Appl. Ocean Res. 2021, 113, 102740. [CrossRef]</li>
+    <li>[34] Gordelier, T.; Thies, P.R.; Rinaldi, G.; Johanning, L. Investigating Polymer Fibre Optics for Condition Monitoring of Synthetic Mooring Lines. J. Mar. Sci. Eng. 2020, 8, 103. [CrossRef]</li>
+    <li>[35] Gordon, R.B.; Brown, M.G.; Allen, E.M. Mooring Integrity Management: A State-of-the-Art Review. In Proceedings of the Offshore Technology Conference, OTC, Houston, TX, USA, 5–8 May 2014.</li>
+    <li>[36] Sakaris, C.S.; Yang, Y.; Bashir, M.; Michailides, C.; Wang, J.; Sakellariou, J.S.; Li, C. Structural Health Monitoring of Tendons in a Multibody Floating Offshore Wind Turbine under Varying Environmental and Operating Conditions. Renew. Energy 2021, 179, 1897–1914. [CrossRef]</li>
+    <li>[37] Nguyen, T.T.D.; Park, J.W.; Nguyen, V.M.; Yoon, H.K.; Jung, J.C.; Lee, M.M.S. Experimental Study on Application of an Optical Sensor to Measure Mooring-Line Tension in Waves. J. Ocean Eng. Technol. 2022, 36, 153–160. [CrossRef]</li>
+    <li>[38] Wu, W.; Feng, J.; Xie, B.; Tang, D.; Yue, Q.; Xie, R. Development and Sensing Properties Study of Underwater Assembled Water Depth-Inclination Sensors for a Multi-Component Mooring System, Using a Self-Contained Technique. Sensors 2016, 16, 1925. [CrossRef] [PubMed]</li>
+    <li>[39] Wang, S. Damage Detection in Offshore Platform Structures from Limited Modal Data. Appl. Ocean Res. 2013, 41, 48–56. [CrossRef]</li>
+    <li>[40] Hillis, A.J.; Courtney, C.R.P. Structural Health Monitoring of Fixed Offshore Structures Using the Bicoherence Function of Ambient Vibration Measurements. J. Sound Vib. 2011, 330, 1141–1152. [CrossRef]</li>
+    <li>[41] Tseranidis, S.; Theodoridis, L.; Loukogeorgaki, E.; Angelides, D.C. Investigation of the Condition and the Behavior of a Modular Floating Structure by Harnessing Monitoring Data. Mar. Struct. 2016, 50, 224–242. [CrossRef]</li>
+    <li>[42] Chung, J.S.; International Society of Offshore and Polar Engineers. The Proceedings of the Twenty-Third (2013) International Offshore and Polar Engineering Conference: Anchorage, AK, USA, 30 June–5 July 2013: ISOPE-2013 Anchorage; International Society of Offshore and Polar Engineers: Mountain View, CA, USA, 2013; ISBN 9781880653999. J. Mar. Sci. Eng. 2024, 12, 353</li>
+    <li>[43] Chu, C.; Zuo-Xi, Z.; Xin-Rong, K.E.; Yun-Zhi, G. The Research of Machinery Fault Feature Extraction Methods Based on Vibration Signal. IFAC-Pap. 2018, 51, 346–352. [CrossRef]</li>
+    <li>[44] Gilroy, L. Ship Noise Management and the ORCA Class of Ships. Mar. Pollut. Bull. 2022, 174, 113196. [CrossRef]</li>
+    <li>[45] McCormick, M.I.; Allan, B.J.M.; Harding, H.; Simpson, S.D. Boat Noise Impacts Risk Assessment in a Coral Reef Fish but Effects Depend on Engine Type. Sci. Rep. 2018, 8, 3847. [CrossRef]</li>
+    <li>[46] Virto, L.R.; Dumez, H.; Romero, C.; Bailly, D. How Can Ports Act to Reduce Underwater Noise from Shipping? Identifying Effective Management Frameworks. Mar. Pollut. Bull. 2022, 174, 113136. [CrossRef]</li>
+    <li>[47] Du, T.; Zuo, X.; Dong, F.; Li, S.; Mtui, A.E.; Zou, Y.; Zhang, P.; Zhao, J.; Zhang, Y.; Sun, P.; et al. A Self-Powered and Highly Accurate Vibration Sensor Based on Bouncing-Ball Triboelectric Nanogenerator for Intelligent Ship Machinery Monitoring. Micromachines 2021, 12, 218. [CrossRef]</li>
+    <li>[48] Poveda-Martínez, P.; Ramis-Soriano, J. A Comparison between Psychoacoustic Parameters and Condition Indicators for Machinery Fault Diagnosis Using Vibration Signals. Appl. Acoust. 2020, 166, 107364. [CrossRef]</li>
+    <li>[49] Gerhard, K.L. Non-Intrusive Vibration Monitoring in US Naval and US Coast Guard Ships. Master’s Thesis, Massachusetts Institute of Technology, Cambridge, MA, USA, 2013.</li>
+    <li>[50] Lee, J.K.; Seung, H.M.; Park, C.I.; Lee, J.K.; Lim, D.H.; Kim, Y.Y. Magnetostrictive Patch Sensor System for Battery-Less Real-Time Measurement of Torsional Vibrations of Rotating Shafts. J. Sound Vib. 2018, 414, 245–258. [CrossRef]</li>
+    <li>[51] Han, H.; Lee, K.; Park, S. Estimate of the Fatigue Life of the Propulsion Shaft from Torsional Vibration Measurement and the Linear Damage Summation Law in Ships. Ocean Eng. 2015, 107, 212–221. [CrossRef]</li>
+    <li>[52] Zhao, Y.; Sun, Z.; Li, W.; Tian, K.; Zhan, Z.; Shan, P.; Li, L. Sea Ice Type and Thickness Identification Based on Vibration Sensor Networks and Machine Learning. IEEE Trans. Instrum. Meas. 2023, 72, 2512111. [CrossRef]</li>
+    <li>[53] Liu, H.; Fu, M.; Jin, X.; Shang, Y.; Shindell, D.; Faluvegi, G.; Shindell, C.; He, K. Health and Climate Impacts of Ocean-Going Vessels in East Asia. Nat. Clim. Chang. 2016, 6, 1037–1041. [CrossRef]</li>
+    <li>[54] Matthias, V.; Bewersdorff, I.; Aulinger, A.; Quante, M. The Contribution of Ship Emissions to Air Pollution in the North Sea Regions. Environ. Pollut. 2010, 158, 2241–2250. [CrossRef]</li>
+    <li>[55] Sofiev, M.; Winebrake, J.J.; Johansson, L.; Carr, E.W.; Prank, M.; Soares, J.; Vira, J.; Kouznetsov, R.; Jalkanen, J.-P.; Corbett, J.J. Cleaner Fuels for Ships Provide Public Health Benefits with Climate Tradeoffs. Nat. Commun. 2018, 9, 406. [CrossRef]</li>
+    <li>[56] Dsouza, V.L.; Dsouza, S.F.; Sarosh, M.; Kukkilaya, S.; Chilimbi, V.; Fernandes, S.R. Remotely Controlled Boat for Water Quality Monitoring and Sampling. Mater. Today Proc. 2021, 47, 2391–2400. [CrossRef]</li>
+    <li>[57] Jayaratne, R.; Kuhn, T.; Christensen, B.; Liu, X.; Zing, I.; Lamont, R.; Dunbabin, M.; Maddox, J.; Fisher, G.; Morawska, L. Using a Network of Low-Cost Particle Sensors to Assess the Impact of Ship Emissions on a Residential Community. Aerosol Air Qual. Res. 2020, 20, 2754–2764. [CrossRef]</li>
+    <li>[58] Zhou, F.; Fan, Y.; Zou, J.; An, B. Ship Emission Monitoring Sensor Web for Research and Application. Ocean Eng. 2022, 249, 110980. [CrossRef]</li>
+    <li>[59] Sørensen, M.K.; Vinding, M.S.; Bakharev, O.N.; Nesgaard, T.; Jensen, O.; Nielsen, N.C. NMR Sensor for Onboard Ship Detection of Catalytic Fines in Marine Fuel Oils. Anal. Chem. 2014, 86, 7205–7208. [CrossRef]</li>
+    <li>[60] Deng, M.; Peng, S.; Xie, X.; Jiang, Z.; Hu, J.; Qi, Z. A Diffused Mini-Sniffing Sensor for Monitoring SO2 Emissions Compliance of Navigating Ships. Sensors 2022, 22, 5198. [CrossRef]</li>
+    <li>[61] Beecken, J.; Mellqvist, J.; Salo, K.; Ekholm, J.; Jalkanen, J.-P. Airborne Emission Measurements of SO2, NOx and Particles from Individual Ships Using a Sniffer Technique. Atmos. Meas. Tech. 2014, 7, 1957–1968. [CrossRef]</li>
+    <li>[62] Kattner, L.; Mathieu-Üffing, B.; Burrows, J.P.; Richter, A.; Schmolke, S.; Seyler, A.; Wittrock, F. Monitoring Compliance with Sulfur Content Regulations of Shipping Fuel by in Situ Measurements of Ship Emissions. Atmos. Chem. Phys. 2015, 15, 10087–10092. [CrossRef]</li>
+    <li>[63] Pirjola, L.; Pajunoja, A.; Walden, J.; Jalkanen, J.-P.; Rönkkö, T.; Kousa, A.; Koskentalo, T. Mobile Measurements of Ship Emissions in Two Harbour Areas in Finland. Atmos. Meas. Tech. 2014, 7, 149–161. [CrossRef]</li>
+    <li>[64] Passig, J.; Schade, J.; Irsig, R.; Li, L.; Li, X.; Zhou, Z.; Adam, T.; Zimmermann, R. Detection of Ship Plumes from Residual Fuel Operation in Emission Control Areas Using Single-Particle Mass Spectrometry. Atmos. Meas. Tech. 2021, 14, 4171–4185. [CrossRef]</li>
+    <li>[65] Yuan, S.; Li, Y.; Bao, F.; Xu, H.; Yang, Y.; Yan, Q.; Zhong, S.; Yin, H.; Xu, J.; Huang, Z.; et al. Marine Environmental Monitoring with Unmanned Vehicle Platforms: Present Applications and Future Prospects. Sci. Total Environ. 2023, 858, 159741. [CrossRef]</li>
+    <li>[66] Jo, W.; Hoashi, Y.; Paredes Aguilar, L.L.; Postigo-Malaga, M.; Garcia-Bravo, J.M.; Min, B.-C. A Low-Cost and Small USV Platform for Water Quality Monitoring. HardwareX 2019, 6, e00076. [CrossRef]</li>
+    <li>[67] Cao, H.; Guo, Z.; Wang, S.; Cheng, H.; Zhan, C. Intelligent Wide-Area Water Quality Monitoring and Analysis System Exploiting Unmanned Surface Vehicles and Ensemble Learning. Water 2020, 12, 681. [CrossRef]</li>
+    <li>[68] Yaakob, O.; Mohamed, Z.; Hanafiah, M.S.; Suprayogi, D.; Abdul Ghani, M.; Adnan, F.; Mukti, M.; Din, J. Development of Unmanned Surface Vehicle (USV) for Sea Patrol and Environmental Monitoring. In Proceedings of the International Conference on Marine Technology, Kuala Terengganu, Malaysia, 20–22 October 2012.</li>
+    <li>[69] Cryer, S.; Carvalho, F.; Wood, T.; Strong, J.A.; Brown, P.; Loucaides, S.; Young, A.; Sanders, R.; Evans, C. Evaluating the Sensor-Equipped Autonomous Surface Vehicle C-Worker 4 as a Tool for Identifying Coastal Ocean Acidification and Changes in Carbonate Chemistry. J. Mar. Sci. Eng. 2020, 8, 939. [CrossRef] J. Mar. Sci. Eng. 2024, 12, 353</li>
+    <li>[70] Chang, H.-C.; Hsu, Y.-L.; Hung, S.-S.; Ou, G.-R.; Wu, J.-R.; Hsu, C. Autonomous Water Quality Monitoring and Water Surface Cleaning for Unmanned Surface Vehicle. Sensors 2021, 21, 1102. [CrossRef] [PubMed]</li>
+    <li>[71] Glenn, S.M.; Miles, T.N.; Seroka, G.N.; Xu, Y.; Forney, R.K.; Yu, F.; Roarty, H.; Schofield, O.; Kohut, J. Stratified Coastal Ocean Interactions with Tropical Cyclones. Nat. Commun. 2016, 7, 10887. [CrossRef] [PubMed]</li>
+    <li>[72] da Silva, D.C.; dos Santos Lucas, C.R.; de Moraes Juviniano, H.B.; de Alencar Moura, M.C.P.; Dantas Neto, A.A.; de Castro Dantas, T.N. Novel Produced Water Treatment Using Microemulsion Systems to Remove Oil Contents. J. Water Process Eng. 2020, 33, [CrossRef]</li>
+    <li>[73] Lee, J.; Cho, W.-C.; Poo, K.-M.; Choi, S.; Kim, T.-N.; Son, E.-B.; Choi, Y.-J.; Kim, Y.M.; Chae, K.-J. Refractory Oil Wastewater Treatment by Dissolved Air Flotation, Electrochemical Advanced Oxidation Process, and Magnetic Biochar Integrated System. J. Water Process Eng. 2020, 36, 101358. [CrossRef]</li>
+    <li>[74] Zhang, N.; Yang, X.; Wang, Y.; Qi, Y.; Zhang, Y.; Luo, J.; Cui, P.; Jiang, W. A Review on Oil/Water Emulsion Separation Membrane Material. J. Environ. Chem. Eng. 2022, 10, 107257. [CrossRef]</li>
+    <li>[75] Jafarzadeh, H.; Mahdianpari, M.; Homayouni, S.; Mohammadimanesh, F.; Dabboor, M. Oil Spill Detection from Synthetic Aperture Radar Earth Observations: A Meta-Analysis and Comprehensive Review. GIsci. Remote Sens. 2021, 58, 1022–1051. [CrossRef]</li>
+    <li>[76] Budiman, F.; Ismardi, A.; Hardinah, T.; Muhammad, R.; Nurwijayadi; Hartaman, A.; Nurhidayat, A.; Sasto, I.H.S.; Sutapa, I.D.A. Strengthening Oil Pollution Monitoring System in Aquatic Environment through Development of IoT-Based Oil-Water Separator Device. Ecohydrol. Hydrobiol. 2023, in press. [CrossRef]</li>
+    <li>[77] Ma, J.; Meng, F.; Zhou, Y.; Wang, Y.; Shi, P. Intelligent Water Pollution Source Identification and Localization in Wireless Sensor Networks. In Proceedings of the 2018 2nd IEEE Advanced Information Management, Communicates, Electronic and Automation Control Conference (IMCEC), Xi’an, China, 25–27 May 2018; IEEE: Piscataway, NJ, USA, 2018; pp. 1300–1305.</li>
+    <li>[78] Hidalgo, F.; Mendoza, J.; Cuellar, F. ROV-Based Acquisition System for Water Quality Measuring. In Proceedings of the OCEANS 2015—MTS/IEEE, Washington, DC, USA, 9–22 October 2015; IEEE: Piscataway, NJ, USA, 2015; pp. 1–5.</li>
+    <li>[79] Subash, T.D.; Pradeep, A.S.; Rajan Joseph, A.; Jacob, A.; Jayaraj, P.S. Intelligent Collision Avoidance System for Fishing Boat. Mater. Today Proc. 2020, 24, 2457–2463. [CrossRef]</li>
+    <li>[80] Helgesen, Ø.K.; Vasstein, K.; Brekke, E.F.; Stahl, A. Heterogeneous Multi-Sensor Tracking for an Autonomous Surface Vehicle in a Littoral Environment. Ocean Eng. 2022, 252, 111168. [CrossRef]</li>
+    <li>[81] Takkinen, E.; Ruponen, P.; Pennanen, P. Required Flooding Sensor Arrangement for Reliable Automatic Damage Detection. In Proceedings of the Smart Ship Technology, London, UK, 24–25 January 2017.</li>
+    <li>[82] Braidotti, L.; Valˇci´c, M.; Prpi´c-Orši´c, J. Exploring a Flooding-Sensors-Agnostic Prediction of the Damage Consequences Based on Machine Learning. J. Mar. Sci. Eng. 2021, 9, 271. [CrossRef]</li>
+    <li>[83] García, E.; Quiles, E.; Correcher, A.; Morant, F. Marine NMEA 2000 Smart Sensors for Ship Batteries Supervision and Predictive Fault Diagnosis. Sensors 2019, 19, 4480. [CrossRef]</li>
+    <li>[84] Dudojc, B.; Mindykowski, J. New Approach to Analysis of Selected Measurement and Monitoring Systems Solutions in Ship Technology. Sensors 2019, 19, 1775. [CrossRef]</li>
+    <li>[85] Li, T.; Hua, M.; Yin, Q. The Temperature Forecast of Ship Propulsion Devices from Sensor Data. Information 2019, 10, 316. [CrossRef]</li>
+    <li>[86] Szelangiewicz, T.; ˙Zelazny, K.; Antosik, A.; Szelangiewicz, M. Application of Measurement Sensors and Navigation Devices in Experimental Research of the Computer System for the Control of an Unmanned Ship Model. Sensors 2021, 21, 1312. [CrossRef]</li>
+    <li>[87] Wright, R.G. Intelligent Autonomous Ship Navigation Using Multi-Sensor Modalities. TransNav Int. J. Mar. Navig. Saf. Sea Transp. 2019, 13, 503–510. [CrossRef]</li>
+    <li>[88] Tiwari, D.; Bhati, B.S.; Nagpal, B.; Sankhwar, S.; Al-Turjman, F. An Enhanced Intelligent Model: To Protect Marine IoT Sensor Environment Using Ensemble Machine Learning Approach. Ocean Eng. 2021, 242, 110180. [CrossRef]</li>
+    <li>[89] Rødseth, Ø.J.; Wennersberg, L.A.L.; Nordahl, H. Improving Safety of Interactions between Conventional and Autonomous Ships. Ocean Eng. 2023, 284, 115206. [CrossRef]</li>
+    <li>[90] Lee, Y.C.; Hoang, V.A. Battery-Free and Real-Time Wireless Sensor System on Marine Propulsion Shaft Using a Wireless Power Transfer Module. Sensors 2023, 23, 558. [CrossRef]</li>
+    <li>[91] Vettor, R.; Szlapczynska, J.; Szlapczynski, R.; Tycholiz, W.; Soares, C.G. Towards Improving Optimised Ship Weather Routing. Pol. Marit. Res. 2020, 27, 60–69. [CrossRef]</li>
+    <li>[92] Lee, H.-J.; Park, D.-J. Analysis of Thermal Characteristics of MEMS Sensors for Measuring the Rolling Period of Maritime Autonomous Surface Ships. J. Mar. Sci. Eng. 2022, 10, 859. [CrossRef]</li>
+    <li>[93] Sahoo, A.; Dwivedy, S.K.; Robi, P.S. Advancements in the Field of Autonomous Underwater Vehicle. Ocean Eng. 2019, 181, 145–160. [CrossRef]</li>
+    <li>[94] Cui, Y.; Zhu, P.; Lei, G.; Chen, P.; Yang, G. Energy-Efficient Multiple Autonomous Underwater Vehicle Path Planning Scheme in Underwater Sensor Networks. Electronics 2023, 12, 3321. [CrossRef]</li>
+    <li>[95] Huy, D.Q.; Sadjoli, N.; Azam, A.B.; Elhadidi, B.; Cai, Y.; Seet, G. Object Perception in Underwater Environments: A Survey on Sensors and Sensing Methodologies. Ocean Eng. 2023, 267, 113202. [CrossRef]</li>
+    <li>[96] Wang, Y.; Cao, Q.; Liu, L.; Wu, Y.; Liu, H.; Gu, Z.; Zhu, C. A Review of Low and Zero Carbon Fuel Technologies: Achieving Ship Carbon Reduction Targets. Sustain. Energy Technol. Assess. 2022, 54, 102762. [CrossRef] J. Mar. Sci. Eng. 2024, 12, 353</li>
+    <li>[97] Kim, K.; Roh, G.; Kim, W.; Chun, K. A Preliminary Study on an Alternative Ship Propulsion System Fueled by Ammonia: Environmental and Economic Assessments. J. Mar. Sci. Eng. 2020, 8, 183. [CrossRef]</li>
+    <li>[98] Ahmed, A.A.; Al Labadidi, M.; Hamada, A.T.; Orhan, M.F. Design and Utilization of a Direct Methanol Fuel Cell. Membranes 2022, 12, 1266. [CrossRef]</li>
+    <li>[99] Gautam, P.; Neha; Upadhyay, S.N.; Dubey, S.K. Bio-Methanol as a Renewable Fuel from Waste Biomass: Current Trends and Future Perspective. Fuel 2020, 273, 117783. [CrossRef]</li>
+    <li>[100] Acanfora, M.; Altosole, M.; Balsamo, F.; Campora, U.; Scamardella, F. A Methanol Fueled Marine Engine Simulator for Fast Craft Applications. In HSMV 2023: Proceedings of the 13th Symposium on High Speed Marine Vehicles; IOS Press: Amsterdam, The Netherlands, 2023.</li>
+    <li>[101] Padolecchia, D.; Utzeri, S.; Marinò, A.; Bucci, V. Feasibility Study for the Fuel Switch of a Fast Ferry. In HSMV 2023; IOS Press: Amsterdam, The Netherlands, 2023.</li>
+    <li>[102] Kim, B.; Hwang, K.-I. Experimental Analysis of the Effects of Ship Motion on Hydrogen Dispersion in an Enclosed Area. Int. J. Hydrogen Energy 2023, 48, 31779–31789. [CrossRef]</li>
+    <li>[103] Coppola, T.; De Luca, F.; Gambardella, S.; Mancini, S.; Micoli, L.; Pensa, C.; Sorrentino, V. Feasibility Study of a Zero-Emission Passenger Catamaran Ferry Operating in Italian Coastal Island. In HSMV 2023: Proceedings of the 13th Symposium on High Speed Marine Vehicles; IOS Press: Amsterdam, The Netherlands, 2023.</li>
+    <li>[104] Teoh, Y.H.; How, H.G.; Le, T.D.; Nguyen, H.T.; Loo, D.L.; Rashid, T.; Sher, F. A Review on Production and Implementation of Hydrogen as a Green Fuel in Internal Combustion Engines. Fuel 2023, 333, 126525. [CrossRef]</li>
+    <li>[105] Gainey, B.; Yan, Z.; Gandolfo, J.; Lawler, B. Methanol and Wet Ethanol as Interchangeable Fuels for Internal Combustion Engines: LCA, TEA, and Experimental Comparison. Fuel 2023, 333, 126257. [CrossRef]</li>
+    <li>[106] Takeda, M.; Matsuno, Y.; Kodama, I.; Kumakura, H.; Weisend, J.G.; Barclay, J.; Breon, S.; Demko, J.; DiPirro, M.; Kelley, J.P.; et al. Characteristics of Mgb2 Sensor for Detecting Level of Liquid Hydrogen. AIP Conf. Proc. 2008, 985, 933–939.</li>
+    <li>[107] Nakano, A.; Shimazaki, T.; Sekiya, M.; Shiozawa, H.; Ohtsuka, K.; Aoyagi, A.; Iwakiri, T.; Mikami, Z.; Sato, M.; Sugino, Y.; et al. Research and Development of Liquid Hydrogen (LH2) Temperature Monitoring System for Marine Applications. Int. J. Hydrogen Energy 2021, 46, 15649–15659. [CrossRef]</li>
+    <li>[108] Logan, K.P. Intelligent Diagnostic Requirements of Future All-Electric Ship Integrated Power System. IEEE Trans. Ind. Appl. 2007, 43, 139–149. [CrossRef]</li>
+    <li>[109] Choi, C.H.; Yu, S.; Han, I.-S.; Kho, B.-K.; Kang, D.-G.; Lee, H.Y.; Seo, M.-S.; Kong, J.-W.; Kim, G.; Ahn, J.-W.; et al. Development and Demonstration of PEM Fuel-Cell-Battery Hybrid System for Propulsion of Tourist Boat. Int. J. Hydrogen Energy 2016, 41, 3591–3599. [CrossRef]</li>
+    <li>[110] Koumentakos, A. Developments in Electric and Green Marine Ships. Appl. Syst. Innov. 2019, 2, 34. [CrossRef]</li>
+    <li>[111] Jinasena, A.; Spitthoff, L.; Wahl, M.S.; Lamb, J.J.; Shearing, P.R.; Strømman, A.H.; Burheim, O.S. Online Internal Temperature Sensors in Lithium-Ion Batteries: State-of-the-Art and Future Trends. Front. Chem. Eng. 2022, 4, 804704. [CrossRef]</li>
+    <li>[112] Wang, H.; Morando, S.; Gaillard, A.; Hissel, D. Sensor Development and Optimization for a Proton Exchange Membrane Fuel Cell System in Automotive Applications. J. Power Sources 2021, 487, 229415. [CrossRef]</li>
+    <li>[113] Kurniawan, A. A Review of Solar-Powered Boat. Development. IPTEK J. Technol. Sci. 2016, 27, 1–8. [CrossRef]</li>
+    <li>[114] Spagnolo, G.S.; Papalillo, D.; Martocchia, A.; Makary, G. Solar-Electric Boat. J. Transp. Technol. 2012, 02, 144–149. [CrossRef]</li>
+    <li>[115] Plumet, F.; Pêtrès, C.; Romero-Ramirez, M.A.; Gas, B.; Ieng, S.H. Toward an Autonomous Sailing Boat. IEEE J. Ocean Eng. 2015, 40, 397–407. [CrossRef]</li>
+    <li>[116] Park, S.; Yang, C.-S.; Kim, J. Design of Vessel Data Lakehouse with Big Data and AI Analysis Technology for Vessel Monitoring System. Electronics 2023, 12, 1943. [CrossRef]</li>
+    <li>[117] Song, Y.; Shin, H.; Koo, S.; Baek, S.; Seo, J.; Kang, H.; Kim, Y. Internet of Maritime Things Platform for Remote Marine Water Quality Monitoring. IEEE Internet Things J. 2022, 9, 14355–14365. [CrossRef]</li>
+    <li>[118] Wang, Z.; Yang, S.; Xiang, X.; Vasilijevi´c, A.; Miškovi´c, N.; Na ¯d, Ð. Cloud-Based Mission Control of USV Fleet: Architecture, Implementation and Experiments. Control Eng. Pract. 2021, 106, 104657. [CrossRef]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse12020353">10.3390/jmse12020353</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

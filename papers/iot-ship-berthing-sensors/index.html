@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>طريقة رسو سفن قائمة على إنترنت الأشياء باستخدام مجموعة مستشعرات فوق صوتية — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+table.spec { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.9rem; }
+table.spec th, table.spec td { border: 1px solid var(--border); padding: 0.4rem 0.6rem; text-align: start; }
+table.spec th { background: var(--bg-2); }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+<div class="paper-header">
+  <h1 dir="ltr">An IoT-Based Ship Berthing Method Using a Set of Ultrasonic Sensors</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">طريقة رسو سفن قائمة على إنترنت الأشياء باستخدام مجموعة مستشعرات فوق صوتية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ahmadhon Kamolov, Suhyun Park</span>
+    <span>📄 Sensors, 2019</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s19235181">10.3390/s19235181</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>لا جدال في أن تقنيات جديدة تمامًا مثل إنترنت الأشياء (IoT) والبيانات الضخمة والحوسبة السحابية تغزو كل جانب من جوانب الحياة — بما فيها التقنية البحرية، حيث تُطبق لإضافة المزايا وأتمتة العمليات البحرية وابتكار أجهزة ذكية جديدة. وهكذا تُستبدل الموانئ والسفن التقليدية بموانئ وسفن ذكية، وهو تحول يتطلب تطبيقات عديدة جديدة لجعلها ذكية.</p>
+    <p>والغرض من هذه الورقة تقديم نظام مخصص قائم على إنترنت الأشياء لأتمتة إجراءات الربط عبر البحث عن المواقع المتاحة بواسطة مستشعرات مثبتة في الميناء وإشعار مخطط للسفن. ففي النظام التجريبي، يحل هاتف ذكي محل السفينة العميلة، مع تطبيق Android يُسمى Smart Ship Berthing، بينما يستخدم جانب الخادم Raspberry Pi مع مجموعة مستشعرات فوق صوتية لكشف السفينة وتحديد الرصيف الفارغ للرسو. وتُظهر النتائج التجريبية أن مجموعة المستشعرات فوق الصوتية (UR) عالية الدقة في كشف السفن في الميناء لغرض الرسو، وأن النظام المقترح قابل للتطبيق بدرجة كبيرة في البيئة البحرية الحقيقية.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تمثل التقنيات المدمجة مثل البيانات الضخمة والذكاء الاصطناعي وإنترنت الأشياء اعتماد الثورة الصناعية الرابعة في المجال البحري، وستهيمن اتصالات الجيل القادم بين السفن الذكية والموانئ الذكية — بما فيها الاتصالات الفضائية [1]. وقد أصبحت الأماكن التي ندرس [2] ونعيش ونعمل فيها ذكية، وتتطور السفن والموانئ ذات النمذجة التقليدية إلى سفن وموانئ ذكية، موفرة فرصًا بحثية متميزة. وتقترح شركات كبرى في كوريا واليابان والصين حلول إنترنت الأشياء للسفن الذكية [3–6]، بينما تعمل دول أوروبية متقدمة مثل ألمانيا وهولندا بنشاط على الموانئ الذكية.</p>
+    <p>ونقترح نظامًا يدعم الرسو عبر التحديد التلقائي للرصيف في الميناء استنادًا إلى إنترنت الأشياء: فعند استلام طلب من سفينة قادمة، يرسل النظام تلقائيًا بيانات عن مكان رسوها قبل وصولها إليه، مستخدمًا معلومات من مجموعة مستشعرات فوق صوتية مرتبطة بالمساحات المتاحة. ولا يركز مفهوم السفينة الذكية على جمع البيانات والتحكم فيها باستقلالية فحسب، بل على التواصل الحر مع الموانئ والسفن الأخرى — وهو دور للمستشعرات والأجهزة والبرمجيات المثبتة في الموانئ والسفن، مع توقع نمو الطلب على برمجيات الأجهزة الذكية بقوة في السنوات القادمة.</p>
+    <p>وعند تطبيق التقنيات الناشئة مثل إنترنت الأشياء على إجراءات النقل، يُعد رسو الموانئ أحد وسائل النقل المتاحة، والنظام المستخدم حاليًا يعاني عيوبًا كثيرة. ويستخدم نظامنا معلومات من مجموعة مستشعرات فوق صوتية مرتبطة بالأرصفة الشاغرة المتاحة. وتغطي بقية الورقة الخلفية والأعمال ذات الصلة (القسم 2)، ومشكلة الرسو (القسم 3)، والمعمارية المقترحة والتصميم وسيناريو العمل (القسم 4)، والتنفيذ والتجارب (القسم 5)، والنتائج (القسم 6)، والمناقشة (القسم 7)، والاستنتاجات (القسم 8).</p>
+  </section>
+
+  <section>
+    <h2>2. الأعمال ذات الصلة</h2>
+    <p>إنترنت الأشياء (IoT) — أو إنترنت الأشياء المادية — يربط الأشياء والمستشعرات والمشغلات والأجهزة الذكية لاتصالات الإنسان–بالشيء والشيء–بالشيء [7–9]. وهو شبكة أجهزة ومعدات مادية مزودة بإلكترونيات وبرمجيات ومستشعرات واتصال شبكي تتيح للأشياء جمع البيانات وتبادلها [10،11]، وكل عنصر قابل للتعريف الفريد مع قابلية التشغيل البيني ضمن بنية الإنترنت القائمة [12]؛ وتوقع الخبراء نحو 30 مليار عنصر بحلول 2020 [13–17]. وتوجد أربع معماريات رئيسية لإنترنت الأشياء — ثلاثية الطبقات، والقائمة على الوسيط، والموجهة بالخدمات (SOA)، وخماسية الطبقات — وأشهرها المعمارية ثلاثية الطبقات (طبقات التطبيق والشبكة والاستشعار) [18،19]. وطبقة الشبكة هي الأهم، إذ تجمع البوابات وتقنيات مثل ZigBee وBluetooth وLTE و5G و6LoWPAN وWi-Fi [19–23].</p>
+    <p>وتمتد وظائف إنترنت الأشياء على ست مهام: التعريف (EPC وuCode [23،24] وعنونة IPv4/IPv6/6LoWPAN [23،24،26،27])، والاستشعار — المستشعرات النشطة التي تبث الطاقة مقابل السلبية التي تستقبلها [28] — وتقنيات الاتصال (NFC وZigBee وLTE وLoRa [29–31])، والحوسبة والإدارة (Arduino وRaspberry Pi وIntel Galileo والهواتف الذكية؛ وLinux وAndroid [32–36])، وخدمات إنترنت الأشياء (المرتبطة بالهوية والتجميع والوعي والتعاونية [23،37–39])، والدلالات لبيانات قابلة للتشغيل البيني وقابلة للتنفيذ. وفي القطاع البحري، تتمحور إنترنت الأشياء والسحابة والبيانات الضخمة حول مصطلحين ناشئين — السفن الذكية والموانئ الذكية [40–43]: سفن كروبوتات عائمة مجهزة بمستشعرات تتواصل مع السفن والموانئ والأنظمة الخارجية، وموانئ بأماكن رسو آلية التشغيل وبرمجيات واتصالات متعددة التقنيات [43–45]. وتعالج البيانات الضخمة والسحابة التدفقات الآنية الناتجة من آلاف المستشعرات.</p>
+    <p>ومن الجهود ذات الصلة ميناء هامبورغ [44] وميناء أمستردام [45] بخدمات آنية للعملاء، وتطبيقات We4Sea لتحسين الوقود [5]، ونظام Oceanstar الذكي للرسو باستخدام بيانات GNSS عالية الأداء [6]. أما المجالات المماثلة — اتصالات V2V [46،47] وV2I [48،49] وD2D، وأنظمة ركن السيارات الذكية القائمة على إنترنت الأشياء بالمستشعرات فوق الصوتية وZigBee [50–54] — فتعكس منهجنا عن كثب، إذ يستخدم معظمها المستشعرات فوق الصوتية لكشف المساحات الفارغة كما نفعل.</p>
+  </section>
+
+  <section>
+    <h2>3. تحليل مشكلة رسو السفن</h2>
+    <p>السفن مركبات ضخمة تتطلب جهودًا هائلة في العتاد والبرمجيات لتصبح ذكية — وهو ما لا يتحقق في وقت قصير — لذا بمعالجة الأجزاء الصغيرة من السفينة يمكننا إنشاء برمجيات بسيطة تدريجيًا. ويستهدف نظامنا المصغر عملية الوصول والرسو في الميناء، ومن المتوقع أن يساعد السفن على إيجاد مكان تلقائيًا، كما ثبت تجريبيًا. وفهم الاتصال بين السفن والموانئ شرط مسبق لتقدير مزايا النظام.</p>
+    <p>وفي صناعة الشحن، يُعد الاتصال بين السفن وبين السفن والموانئ حرجًا، ومعظمه عند وصول السفن إلى الميناء — لكن السفن تهدر من ساعتين إلى عدة أيام في الرسو. ومن الأسباب ازدحام الميناء؛ والآخر ضخامة تبادل المعلومات: اسم السفينة ومالكها وطاقمها وأبعادها وحالتها ووقتا الوصول والمغادرة المتوقعين — وهي تُدار حاليًا بأجهزة راديو محمولة، مما يهدر الوقت. ثم يجب على موظف مسؤول في الميناء ترتيب مكان الرسو يدويًا، مسببًا مزيدًا من المتاعب. ويوضح الملحق أ ذلك بحوار نموذجي بين TITANIC ومراقبة ميناء بوسان [42]، مظهرًا كيف تضيف الإجراءات وقتًا ومشكلات وتكلفة.</p>
+  </section>
+
+  <section>
+    <h2>4. النظام المقترح</h2>
+    <p>يساعد نظامنا الذكي للرسو القائم على إنترنت الأشياء السفن القادمة إلى الميناء ويتبادل بيانات الحالة: إذ يستقبل تلقائيًا بيانات الأرصفة المتاحة عبر مجموعة مستشعرات فوق صوتية مثبتة في الميناء، ويصنف البيانات المباشرة، ويعرض على السفينة المكان الأمثل بحسب الموقع والسعة ومعايير أخرى. ومثل كثير من تطبيقات إنترنت الأشياء، يتبع المعمارية ثلاثية الطبقات (الشكل 5) [37،55]: طبقة التطبيق (برمجيات السفينة للإرسال والاستقبال)، وطبقة الشبكة (Wi-Fi وWiMAX وLTE/LTE-A/LTE-M [56])، وطبقة الاستشعار (مستشعرات مثبتة في الميناء تبلغ عما إذا كان كل مكان يشغله مركب). واختيرت المستشعرات فوق الصوتية لتكلفتها المعقولة وملاءمتها، وتحمل الأرصفة الأكبر (مثل المكان 2) مستشعرات أكثر من الأصغر (المكان 1).</p>
+    <p>ويرقّي التصميم عالي المستوى (الشكلان 6a–6b) دراستنا السابقة [55]: فلكل رصيف مجموعة مستشعراته، والأحمر يعني مشغولًا والأزرق فارغًا. ويسير سيناريو العمل ذو الخطوات السبع: (1) تصل السفينة القادمة إلى نظام الميناء (5G أو LTE أو Wi-Fi أو WiMAX) وترسل طلب اتصال؛ (2–3) وعند النجاح ترسل بيانات السفينة وتطلب رصيفًا، فيتحقق الميناء منها (الشكل 7)؛ (4–5) يقرأ الميناء توافر الأرصفة من مجموعات المستشعرات فوق الصوتية ويفرز الأماكن إلى مشغولة وفارغة وغير مطابقة ومحجوزة (الشكل 8)؛ (6–7) تُفرز الشواغر ويُرسل الموقع الأمثل إلى السفينة على خريطة رقمية بالرقم والنوع بانتظار التأكيد، وتُعاد حالة محجوزة متى حجزت السفينة (الشكل 9).</p>
+    <p>وتفاصيل جانب السفينة: بيانات ثابتة (الطراز والنوع واللون والطول والاسم والمالك) مخزنة باستمرار مع إحداثيات الموانئ والأرصفة وخرائطها؛ وتغذية مستمرة من المستشعرات (الاتجاه والسرعة والموقع والحرارة)؛ وبيانات يدخلها القبطان. وجانب الميناء: بيانات ثابتة عن الأرصفة ومجموعات المستشعرات (الأبعاد والنوع والموقع والرقم ومعرف المجموعة)؛ وقراءات مستمرة للشغور والإشغال تحدد السفن الراسية؛ وتحديد الشواغر مع مراعاة الحجوزات السابقة ومطابقة الحجم والنوع (السفن الأطول تحتاج أرصفة أطول؛ وسفن الركاب مقابل البضائع تحتاج أنواعًا معينة). ولطبقة الشبكة، يُفضل LTE وWiMAX لمعدلات النقل العالية جدًا والمدى الطويل (الجدول 1) [56]: فكلاهما بروتوكولا IP يستخدمان OFDMA، ويوفر LTE حتى 75 ميغابت/ث تنزيلًا / 300 ميغابت/ث رفعًا ومدى 100 كم مقابل 46/4 ميغابت/ث و50 كم لـWiMAX.</p>
+  </section>
+
+  <section>
+    <h2>5. التنفيذ والتجربة</h2>
+    <p>سيكون التنفيذ على نطاق السفينة والميناء كاملين معقدًا جدًا، لذا أُعيد إنتاج إجراءات السفن والموانئ على نطاق صغير بالتقنيات الواردة في الجدول 2. ففي جانب السفينة، يتولى هاتف ذكي بنظام Android المهام؛ وفي جانب الميناء، يبلغ Raspberry Pi مع المستشعرات فوق الصوتية عن بيانات الأرصفة. ويتبع النظام معمارية إنترنت الأشياء ثلاثية الطبقات: طبقة التطبيق تطبيق Android Studio على الهاتف (Java)؛ وطبقة الشبكة تستخدم Wi-Fi كوسيلة اتصال بين طبقتي التطبيق والاستشعار؛ وطبقة الاستشعار تعمل على Raspberry Pi بنظام Noobs Raspbian (Linux)، مبرمجة بلغة Python لقراءة المستشعرات (يسرد الجدول 2: حاسوبًا وهاتف Android وRaspberry Pi وموجه Wi-Fi وبطاقة 8 غيغابايت وWindows وApache وJava/XML وPython وMySQL والمستشعرات وأسلاك التوصيل والمقاومة والصمام الثنائي).</p>
+    <p>ويضيف التنفيذ العتادي لنظام الميناء (الشكل 10) مستشعرًا فوق صوتي إضافيًا لكل مكان رسو، موصولًا كمستشعر أول [37،55]. ويجمع برنامج الخادم المعلومات ويصدر الأوامر عبر المستشعرات المتصلة بـRaspberry، كاشفًا السفينة من نحو 4 أمتار أمامه ومحدّثًا الرصيف الفارغ للرسو.</p>
+  </section>
+
+  <section>
+    <h2>6. النتائج</h2>
+    <p>يرشد تطبيق Android المصمم جيدًا Ship Berthing عملية الرسو في أربعة أنشطة (الشكل 11): تحديد القارة، واختيار الدولة، واختيار الميناء، ونشاط الميناء — حيث يرسل المستخدم بيانات السفينة (رقم IMO) ويطلب مكانًا بالضغط على Request MOORING، مع التحقق من حالة الميناء على الخريطة المباشرة. وترمز الألوان للحالة: الأحمر للأماكن المشغولة بالسفن؛ والأصفر للأماكن المشغولة دون سفن حاضرة — أي المحجوزة للسفن القادمة التي سترسو قريبًا؛ والأزرق للأرصفة الفارغة غير المناسبة حجمًا أو نوعًا؛ والأبيض للأرصفة الفارغة المتوافقة حجمًا ونوعًا حيث يمكن للسفينة الرسو.</p>
+    <p>وتحققت تجارب جانب الميناء من كشف الشواغر بمجموعة مستشعرات فوق صوتية HC-SR04: مستشعران لكل مكان رسو، يُقرآن بلغة Python على متحكم Raspberry Pi، مع صمامين أحمر/أخضر يشيران للحالة مشغول/شاغر (الأشكال 12a–12d). ويكشف المستشعر الأجسام من نحو 4 أمتار أمامه، محددًا ما إذا كانت السفينة تشغل المكان بدقة كافية.</p>
+  </section>
+
+  <section>
+    <h2>7. المناقشة</h2>
+    <p>تشكل التقنيات الجديدة مثل إنترنت الأشياء والبيانات الضخمة والحوسبة السحابية الحياة باطراد — وفي التقنية البحرية تتيح خدمات أكثر وأفضل، وتؤتمت العمليات، وتبتكر أجهزة ذكية جديدة. وتُستبدل الموانئ والسفن التقليدية بموانئ وسفن ذكية؛ ومع ازدحام المغادرات والقادمين، كثيرًا ما تعجز السفن القادمة عن إيجاد رصيف بسهولة. ويساعد نظامنا الذكي للرسو القائم على إنترنت الأشياء السفن والموانئ في مثل هذه الحالات، متبادلًا بيانات الحالة: فيدير تطبيق هاتف ذكي مهام السفينة بينما يبلغ Raspberry Pi مع المستشعرات فوق الصوتية عن حالة الأرصفة.</p>
+    <p>ويقوم النظام المقدم على معمارية إنترنت الأشياء ثلاثية الطبقات (تطبيق Android/Java، وشبكة Wi-Fi، وطبقة استشعار Raspberry Pi/Python بنظام Noobs Raspbian). وتُظهر التجارب إمكانية استخدام المستشعرات والأجهزة الذكية في الصناعة البحرية: فمجموعة المستشعرات فوق الصوتية تكشف السفن وتحدد الأرصفة الفارغة المناسبة بمدى ~4 أمتار ودقة عالية جدًا، حتى للسفن الكبيرة. وسيكون هذا النظام جزءًا من المستوى التالي للصناعة البحرية، مساعدًا على تطوير مشاريع الموانئ الذكية والسفن الذكية الكبرى.</p>
+  </section>
+
+  <section>
+    <h2>8. الاستنتاجات</h2>
+    <p>تُكرس هذه الورقة لنظام رسو سفن قائم على إنترنت الأشياء يستخدم مجموعة مستشعرات فوق صوتية. ويؤتمت النظام رسو السفن في الموانئ: فالمستشعرات المثبتة في الميناء تحدد الأرصفة الشاغرة تلقائيًا وتنقل البيانات إلى السفن الراغبة بالرسو. ويخفض النظام بملاءمة وقت عملية الرسو وجهدها وتكلفتها: فيحل هاتف ذكي محل السفينة العميلة مع تطبيق Smart Ship Berthing (بدل برامج مثل NORIVIS 4 وVDASH وODYSSEY)، بينما يكشف Raspberry Pi مع المستشعرات فوق الصوتية السفينة ويحدد رصيفًا شاغرًا لرسوها.</p>
+    <p>وتُظهر النتائج التجريبية أن مجموعة المستشعرات فوق الصوتية دقيقة بما يكفي لكشف سفن الميناء لغرض الرسو، وأن النظام قابل للتطبيق بدرجة كبيرة في البيئة البحرية الحقيقية. وفي العمل المستقبلي، نخطط لتوسيع النظام بميزة إبلاغ آلي للسفن، إضافة إلى دراسات حول حلول البيانات الضخمة والسحابة للسفن الذكية والموانئ الذكية.</p>
+  </section>
+
+  <section>
+    <h2>الملحق أ. مثال لمحادثة إبلاغ حالية بين سفينة وميناء</h2>
+    <p>تتضمن الورقة حوارًا نموذجيًا قبل الرسو بين قبطان السفينة TITANIC ومراقبة ميناء بوسان [42]، موضحًا كم يضيف الإجراء اليدوي من وقت ومتاعب وتكلفة. فعند الافتتاح على القناة 12، يبلغ الضابط: الوصول المتوقع إلى عوامة الممر غدًا 6 مايو 09:00 بالتوقيت المحلي، والغاطس الأقصى 10.7 متر (المقدمة 9.8 متر)، وآخر ميناء هامبورغ والقادم أمستردام، وسفينة حاويات خلوية بالكامل بـ1,543 حاوية، وحمولة ساكنة 28,976 طنًا، تحمل 896 طنًا من البضائع الخطرة (IMO الفئة 4.2) على السطح.</p>
+    <p>وبعد أن طُلب منها المعاودة على بعد ثلاثة أميال من عوامة الممر والبقاء على القناة 12، انتظرت السفينة ساعتين في المخطاف قبل تلقي تعليمات الرسو؛ ومع المرشد على متنها، حذر المرشد من منطقة تصادم وناقلة كبيرة تعبر أمامها ومدٍّ هابط وضحضاح أمام الرصيف، موجهًا بتغيير المسار إلى 75° بمحاذاة العوامة وصعود ضباط التفتيش في الطريق الداخلي — صورة حية للتنسيق اليدوي الذي يؤتمته نظامنا.</p>
+  </section>
+
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>It is indisputable that brand new technologies such as the Internet of Things (IoT), big data and cloud computing are conquering every aspect of life — including marine technology, where they are applied to add features, automate marine-related operations and create novel smart devices. Traditional ports and ships are thus being replaced by smart ports and vessels, a transition requiring numerous new applications to make them smart.</p>
+    <p>The purpose of this paper is to present a dedicated IoT-based system for automating linkage procedures by searching for available locations via port-mounted sensors and planned ship notification. In the experimental system, a smartphone stands in for the client-side vessel, with an Android app called Smart Ship Berthing, while the server side uses a Raspberry Pi combined with a set of ultrasonic sensors to detect the ship and mark the empty berth for anchoring. The experimental results show that the set of ultrasonic (UR) sensors has high accuracy in detecting ships at the port for berthing, and the proposed system is very amenable to implementation in the real marine environment.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Embedded technologies such as big data, artificial intelligence and the Internet of Things mark the adoption of Industry 4.0 in the maritime field, and next-generation communications between smart ships and smart ports — including satellite communications — will dominate [1]. Places where we study [2], live and work have become smart, and traditionally modeled ships and ports are evolving into smart ships and ports, offering premium research opportunities. Large corporations in Korea, Japan and China propose IoT solutions for smart ships [3–6], while developed European countries such as Germany and The Netherlands actively work on smart ports.</p>
+    <p>We propose a system that supports berthing by automatically locating a berth in a port based on the IoT: upon receiving a request from an arriving ship, the system automatically sends data about where it can dock before it reaches that location, using information from a range of ultrasonic sensors associated with the available spaces. The smart-ship concept focuses not only on independently collecting and controlling data but on free communication with other ports and ships — a role for port- and ship-installed sensors, devices and software, with demand for smart-device software expected to grow strongly in the coming years.</p>
+    <p>When emerging technologies such as the IoT are applied to transport procedures, port berthing is one available means of transport, and the system currently in use has many drawbacks. Our system uses information from a set of ultrasonic sensors associated with the available vacant berths. The rest of the paper covers background and related work (Section 2), the berthing problem (Section 3), the proposed architecture, design and working scenario (Section 4), implementation and experiments (Section 5), results (Section 6), discussion (Section 7) and conclusions (Section 8).</p>
+  </section>
+
+  <section>
+    <h2>2. Related Works</h2>
+    <p>The Internet of Things (IoT) — the Internet of objects — connects things, sensors, actuators and smart devices for human-to-object and object-to-object communications [7–9]. It is a network of physical devices, machines and items with electronics, software, sensors and connectivity allowing objects to gather and exchange data [10,11], each uniquely identifiable yet interoperable within the existing Internet infrastructure [12]; experts expected some 30 billion items by 2020 [13–17]. Four main IoT architectures exist — three-layer, middleware-based, service-oriented (SOA) and five-layer — of which the three-layer architecture (application, network, sensor layers) is the most typical [18,19]. The network layer is the most important, combining gateways and technologies such as ZigBee, Bluetooth, LTE, 5G, 6LoWPAN and Wi-Fi [19–23].</p>
+    <p>IoT functionality spans six tasks: identification (EPC, uCode [23,24], IPv4/IPv6/6LoWPAN addressing [23,24,26,27]), sensing — active sensors emitting energy versus passive sensors receiving it [28] — communication technologies (NFC, ZigBee, LTE, LoRa [29–31]), computation and management (Arduino, Raspberry Pi, Intel Galileo, smartphones; Linux, Android [32–36]), IoT services (identity-related, aggregation, awareness and collaborative-aware services [23,37–39]) and semantics for interoperable, actionable data. In the marine sector, IoT, cloud and big data center on two emerging terms — smart ships and smart ports [40–43]: ships as sensor-equipped floating robots communicating with ships, ports and external systems, and ports with automatically operated berthing places, software and multi-technology communications [43–45]. Big data and cloud handle the resulting real-time torrents from thousands of sensors.</p>
+    <p>Related efforts include the ports of Hamburg [44] and Amsterdam [45] with real-time client services, We4Sea fuel-optimization apps [5] and the Oceanstar intelligent berthing system using high-performance GNSS data [6]. Analogous domains — V2V [46,47], V2I [48,49], D2D communications, and IoT smart-parking systems using ultrasonic sensors with ZigBee [50–54] — closely mirror our approach, most using ultrasonic sensors to detect empty spaces just as we do.</p>
+  </section>
+
+  <section>
+    <h2>3. Problem Analysis in Ship Berthing</h2>
+    <p>Ships are huge vehicles requiring enormous hardware and software effort to become smart — unachievable in a short time — so by addressing small parts of a ship we can gradually create simple software. Our diminutive system targets the arriving-and-berthing port access process and is expected to help ships find a place automatically, as experimentally proven. Understanding ship–port communication is prerequisite to appreciating the system.</p>
+    <p>In the shipping industry, ship-to-ship and especially ship-to-port communication is critical, mostly when ships arrive at a port — yet ships waste from two hours to several days berthing. One reason is port crowding; the other is the huge information exchange: ship name, owner, crew, dimensions, condition, expected arrival and departure times — currently managed with portable radio transmitters, wasting time. Then a responsible port staff member must arrange a mooring place manually, causing further trouble. Appendix A illustrates this with a typical TITANIC–Busan Port Control dialogue [42], showing how the procedure adds time, problems and cost.</p>
+  </section>
+
+  <section>
+    <h2>4. Proposed System</h2>
+    <p>Our IoT-based smart berthing system helps vessels that have arrived at the port and exchanges situation data: it automatically receives data about available berths via a set of ultrasonic sensors affixed at the port, categorizes the online data, and offers the ship an optimal place by location, quantity and other criteria. Like many IoT applications, it follows the three-layer architecture (Figure 5) [37,55]: the application layer (ship software transmitting/receiving data), the network layer (Wi-Fi, WiMAX, LTE/LTE-A/LTE-M [56]), and the sensor layer (port-fixed sensors reporting whether each place holds a vessel). Ultrasonic sensors were chosen for affordable cost and convenience, with bigger berths (e.g., Place 2) carrying more sensors than smaller ones (Place 1).</p>
+    <p>The high-level design (Figures 6a–6b) upgrades our previous study [55]: every berth has its own sensor set, red indicating busy and blue empty. The seven-step working scenario runs: (1) the arriving ship accesses the port system (5G, LTE, Wi-Fi, WiMAX) and sends a connection request; (2–3) on success it sends ship data and requests a berth, which the port checks (Figure 7); (4–5) the port reads berth availability from the ultrasonic sensor sets and sorts places into busy, empty, mismatched and reserved (Figure 8); (6–7) the sorted vacancies yield the optimal location sent to the ship on a digital map with number and type, awaiting confirmation, and a reserved status is returned once the vessel books (Figure 9).</p>
+    <p>Ship-side details: static ship data (model, type, color, length, name, owner) stored constantly with port/berth coordinates and maps; continuous sensor feeds (direction, speed, location, temperature); and captain-entered data. Port-side: static berth/sensor-set data (dimensions, type, location, number, sensor-set ID); continuous vacancy/occupancy readings identifying moored ships; vacancy determination with prior reservations and size/type matching (longer vessels need longer berths; passenger versus cargo types need particular places). For the network layer, LTE and WiMAX are preferred for very high transfer rates and long range (Table 1) [56]: both IP protocols use OFDMA, with LTE offering up to 75 Mbps downlink / 300 Mbps uplink and 100 km range versus WiMAX 46/4 Mbps and 50 km.</p>
+  </section>
+
+  <section>
+    <h2>5. Implementation and Experiment</h2>
+    <p>Ship- and port-wide implementation would be very complicated, so the vessel/port procedures were reproduced at small scale with the techniques in Table 2. On the vessel side, a smartphone with Android OS runs the tasks; on the port side, a Raspberry Pi with ultrasonic sensors reports berth data. The system follows the three-layer IoT architecture: the application layer is an Android Studio app on the smartphone (Java); the network layer uses Wi-Fi as the communication means between application and sensor layers; the sensor layer runs on the Raspberry Pi under Noobs Raspbian (Linux), programmed in Python to read the sensors (Table 2 lists PC, Android smartphone, Raspberry Pi, Wi-Fi router, 8 GB card, Windows OS, Apache, Java/XML, Python, MySQL, sensors, jumper wires, resistor, LED).</p>
+    <p>The hardware implementation of the port system (Figure 10) adds an extra ultrasonic sensor per berthing place, connected as the first sensor [37,55]. Server software collects information and issues commands through the Raspberry-attached sensors, detecting the ship from about 4 m ahead and updating the empty berth for anchoring.</p>
+  </section>
+
+  <section>
+    <h2>6. Results</h2>
+    <p>The well-designed Android application Ship Berthing guides berthing in four activities (Figure 11): Identify the Continent, Country Selection, Port Selection, and Port Activity — where the user sends vessel data (ship IMO ID number) and requests a place by clicking Request MOORING, while checking port status on the online map. Map colors encode status: red marks places occupied by ships; yellow marks busy places with no ship present — reserved for newly arriving ships that will soon berth; blue marks empty berths of unsuitable size or type; white marks empty, size- and type-compatible berths where the ship can moor.</p>
+    <p>Port-side experiments verified vacancy detection with a set of HC-SR04 ultrasonic sensors: two sensors per berthing place, read in Python on the Raspberry Pi microcontroller, with red/green LEDs signaling occupied/vacant status (Figures 12a–12d). The sensor detects objects from approximately 4 m ahead, determining whether a ship occupies the place with high enough accuracy.</p>
+  </section>
+
+  <section>
+    <h2>7. Discussion</h2>
+    <p>Brand new technologies such as IoT, big data and cloud computing increasingly shape life — and in marine technology they access more and better services, automate operations and create novel smart devices. Traditional ports and ships are being substituted by smart ports and vessels; with departures/arrivals getting very busy, arriving ships often cannot find a berth easily. Our IoT-based smart berthing system helps vessels and ports in such situations, exchanging situation data: a smartphone app manages vessel tasks while Raspberry Pi plus ultrasonic sensors report berth status.</p>
+    <p>The presented system rests on the three-layer IoT architecture (Android/Java application, Wi-Fi network, Raspberry Pi/Python sensor layer under Noobs Raspbian). Experiments show sensors and intelligent devices usable in the marine industry: the UR sensor set detects ships and identifies suitable empty berths with ~4 m range and very high resolution, even for large vessels. This system will be part of the next level of the maritime industry, helping develop large smart-port and smart-ship projects.</p>
+  </section>
+
+  <section>
+    <h2>8. Conclusions</h2>
+    <p>This paper is dedicated to an IoT-based ship berthing system utilizing a set of ultrasonic sensors. The system automates ship berthing at ports: port-installed sensors automatically identify vacant berths and transfer the data to docking ships. It conveniently reduces time, effort and cost of the berthing process: a smartphone substitutes for the client-side vessel with the Smart Ship Berthing Android app (instead of programs like NORIVIS 4, VDASH or ODYSSEY), while a Raspberry Pi with ultrasonic sensors detects the ship and identifies a vacant berth for anchoring.</p>
+    <p>The experimental results show the UR sensor set has high enough accuracy to detect port ships for berthing, and the system is very amenable to real marine-environment implementation. In future work, we plan to extend the system with an automated ship reporting feature, plus studies on big data and cloud solutions for smart ships and smart ports.</p>
+  </section>
+
+  <section>
+    <h2>Appendix A. A Current Ship and Port Reporting Conversation</h2>
+    <p>The paper includes a typical pre-berthing dialogue between the captain of the vessel TITANIC and Busan Port Control [42], illustrating how much time, trouble and cost the manual procedure adds. Opening on channel 12, the officer reports: ETA Fairway Buoy tomorrow 6 May 09:00 local, maximum draught 10.7 m (forward 9.8 m), last port Hamburg, next port Amsterdam, a fully cellular container vessel with 1,543 containers, 28,976 tons deadweight, carrying 896 tons of dangerous cargo (IMO Class 4.2) on deck.</p>
+    <p>Told to call back three miles off the Fairway Buoy and stand by on channel 12, the ship waits two hours at anchor before receiving berthing instructions; with the pilot aboard, the pilot warns of a collision area, a big tanker passing ahead, a failing tide and a shoal ahead of the berth, directing a course alteration to 75° abeam the buoy and boarding officers in the inner road — a vivid picture of the manual coordination our system automates.</p>
+  </section>
+
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+    <li>[1] Kamolov, A.; Al-Absi, M.A.; Lee, H.J.; Park, S.H. Smart Flying Umbrella Drone on Internet of Things: AVUS. In Proceedings of the 21st International Conference on Advanced Communication Technology (ICACT), PyeongChang Kwangwoon_Do, Korea, 17–12 February 2019.</li>
+    <li>[2] Al-Absi, M.A.; Kamolov, A.; Kim, K.; Al-Absi, A.A.; Sain, M.; Lee, H.J. Labs and Classes: An Iot Design and Implementation. In Proceedings of the International Association for Convergence Science &amp; Technology (ICAST), Shaoxing, China, 15–18 November 2018.</li>
+    <li>[3] Hyundai Heavy Industries Debuts ‘Smart Ship’ Solution. Available online: <a href="https://www.marine">https://www.marine</a> link.com/news/industriessolution427522 (accessed on 9 July 2019).</li>
+    <li>[4] Japan Develops Smart Ship Platform. Available online: <a href="http://www.marinemec.com/news/view,japan-">http://www.marinemec.com/news/view,japan-</a> develops-smart-shipplatform_44850.htm (accessed on 11 January 2019).</li>
+    <li>[5] We4Sea Approved for MRV Compliance; Available online: www.we4sea.com (accessed on 21 November 2019).</li>
+    <li>[6] Oceanstar. Available online: <a href="https://www.fugro.com/our-services/marine-asset-integrity/satellite-">https://www.fugro.com/our-services/marine-asset-integrity/satellite-</a> positioning/oceanstar (accessed on 9 July 2019).</li>
+    <li>[7] Weiser, M. The Computer for the 21st Century. Sci. Am. 1991, 265, 94–105.</li>
+    <li>[8] Uckelmann, D.; Harrison, M.; Michahelles, F. An Architectural Approach Towards the Future Internet of Things. In Architecting the Internet of Things; Springer: Heidelberg, Germany; 2011; pp. 1–24.</li>
+    <li>[9] Kuyoro, S.; Osisanwo, F.; Akinsowon, O. Internet of Things (IoT): An Overview, In Proceedings of the 3rd International Conference on Advances in Engineering Sciences &amp; Applied Mathematics, London, UK, 23– 24 March 2015.</li>
+    <li>[10] Who Needs the Internet of Things? Available online: <a href="https://www.linux.com/news/who-needs-internet-">https://www.linux.com/news/who-needs-internet-</a> things (accessed on 9 July 2019).</li>
+    <li>[11] 21 Open Source Projects for IoT. Available online: <a href="https://www.linux.com/NEWS/21-OPEN-SOURCE-">https://www.linux.com/NEWS/21-OPEN-SOURCE-</a> PROJECTS-IOT (accessed on 9 July 2019).</li>
+    <li>[12] Internet of Thing. Available online: <a href="https://en.wikipedia.org/wiki/Internet_of_things">https://en.wikipedia.org/wiki/Internet_of_things</a> (accessed on 9 July 2019).</li>
+    <li>[13] Popular Internet of Things Forecast of 50 Billion Devices by 2020 Is Outdated. Available online: <a href="https://spectrum.ieee.org/tech-talk/telecom/internet/popular-internet-of-things-forecast-of-50-billion-">https://spectrum.ieee.org/tech-talk/telecom/internet/popular-internet-of-things-forecast-of-50-billion-</a> devices-by-2020-is-outdated (accessed on 9 July 2019).</li>
+    <li>[14] The Internet of Things: Sizing up the Opportunity. Available online: <a href="https://www.mckinsey.com/industries/semiconductors/our-insights/the-internet-of-things-sizing-up-the-">https://www.mckinsey.com/industries/semiconductors/our-insights/the-internet-of-things-sizing-up-the-</a> opportunity (accessed on 9 July 2019).</li>
+    <li>[15] The Internet of Things, Gateways, and Next Generation of APIs Speaker Session at APIStrat Austin. Available online: <a href="https://dzone.com/articles/the-internet-of-things-gateways-and-next-generatio">https://dzone.com/articles/the-internet-of-things-gateways-and-next-generatio</a> (accessed on 9 July 2019).</li>
+    <li>[16] Best Internet of Things Definition. Available online: <a href="https://www.postscapes.com/internet-of-things-">https://www.postscapes.com/internet-of-things-</a> definition/ (accessed on 9 July 2019).</li>
+    <li>[17] The Internet of Things. Available online: <a href="https://www.mckinsey.com/industries/high-tech/our-">https://www.mckinsey.com/industries/high-tech/our-</a> insights/the-internet-of-things (accessed on 9 July 2019).</li>
+    <li>[18] Mahmoud, R.; Yousuf, T.; Aloul, F.; Zualkernan, I. Internet of Things (IoT) security: Current status, challenges and prospective measures. In Proceedings of the 2015 10th International Conference for Internet Technology and Secured Transactions (ICITST), London, UK, 14–16 December 2015. Sensors 2019, 19, 5181</li>
+    <li>[19] Lin, J.; Yu, W.; Zhang, N.; Yang, X.; Zhang, H.; Zhao, W. A Survey on Internet of Things: Architecture, Enabling Technologies, Security and Privacy, and Applications. IEEE Internet Things J. 2017, 4, 1125–1142.</li>
+    <li>[20] Tan, L.; Wang, N. Future Internet: The Internet of Things. In Proceedings of the 2010 3rd International Conference on Advanced Computer Theory and Engineering (ICACTE), Chengdu, China, 20–22 August 2010; Volume 5, pp. V5376–V5380.</li>
+    <li>[21] Wu, M.; Lu, T.J.; Ling, F.Y.; Sun, J.; Du, H.Y. Research on the architecture of Internet of Things. In Proceedings of the 3rd International Conference on Advanced Computer Theory and Engineering (ICACTE), Chengdu, China, 20–22 August 2010; Volume 5, pp. 484–487.</li>
+    <li>[22] Chuah, J.W. The Internet of Things: An Overview and New Perspectives in Systems Design. In Proceedings of the International Symposium on Integrated Circuits (ISIC), Singapore, 10–12 December 2014.</li>
+    <li>[23] Ala, A.; Mohsen, G.; Mehdi, M.; Mohammed, A.; Moussa, A. Internet of Things: A Survey on Enabling Technologies, Protocols, and Applications. IEEE Commun. Surv. Tutor. 2015, 17, 2347–2376.</li>
+    <li>[24] Koshizuka, N.; Sakamura, K. Ubiquitous ID: Standards for Ubiquitous computing and the Internet of Things. IEEE Pervasive Comput. 2010, 9, 98–101.</li>
+    <li>[25] Internet of Things: Empowered by Auto-ID Technologies. Available online: <a href="https://www">https://www</a> redbite.com/auto- id-technologies/ (accessed on 9 July 2019).</li>
+    <li>[26] Kushalnagar, N.; Montenegro, G.; Schumacher, C. IPv6 over Low-Power Wireless Personal Area Networks (6LoWPANs): Overview, Assumptions, Problem Statement, and Goals; RFC 4919; IETF: Fremont, CA, USA, 2007.</li>
+    <li>[27] Montenegro, G.; Hui, J.; Culler, D.; Kushalnagar, N. Transmission of IPv6 Packets over IEEE 802.15.4 Networks; IETF Secretariat: Fremont, CA, USA, 2007.</li>
+    <li>[28] Internet of Things (IoT) and Connectivity. Available online: <a href="https://www">https://www</a> c- sharpcorner.com/article/internet-of-things-iot-sensors-and-connectivity/ (accessed on 9 July 2019).</li>
+    <li>[29] 11 Internet of Things (IoT) Protocols You Need to Know about. Available online: <a href="https://www">https://www</a> rs- online.com/designspark/eleven-internet-of-things-iot-protocols-you-need-to-know-about (accessed on 9 July 2019).</li>
+    <li>[30] Communication Technologies for Iot. Available online: <a href="https://iotfuse.com/communication-technologies-">https://iotfuse.com/communication-technologies-</a> for-iot/ (accessed on 1 January 2018).</li>
+    <li>[31] Al-Sarawi, S.; Anbar, M.; Alieyan, K.; Alzubaidi, M. Internet of Things (IoT) Communication Protocols: Review. In Proceedings of the 2017 8th International Conference on Information Technology (ICIT), Amman, Jordan, 17–18 May 2017; pp. 685–690.</li>
+    <li>[32] Arduino Uno Vs. BeagleBone Vs. Raspberry Pi. Available online: <a href="https://makezine.com/2013/04/15/arduino-uno-vs-beaglebone-vs-raspberry-pi/">https://makezine.com/2013/04/15/arduino-uno-vs-beaglebone-vs-raspberry-pi/</a> (accessed on 9 July 2019).</li>
+    <li>[33] How Intel’s Edison Stacks Up against Arduino and Raspberry Pi. Available online: <a href="https://readwrite.com/2014/09/10/intel-edison-raspberry-pi-arduino-comparison/">https://readwrite.com/2014/09/10/intel-edison-raspberry-pi-arduino-comparison/</a> (accessed on 9 July 2019).</li>
+    <li>[34] Linkit One Vs. Edison Vs. Raspberry Pi Vs. Beaglebone Black. Available online: <a href="https://www.seeedstudio.com/blog/2014/10/31/linkit-one-vs-edison-vs-raspberry-pi-vs-beaglebone-">https://www.seeedstudio.com/blog/2014/10/31/linkit-one-vs-edison-vs-raspberry-pi-vs-beaglebone-</a> black/(accessed on 9 July 2019).</li>
+    <li>[35] Raspberry Pi stays High in 2015 Hacker SBC Survey. Available online: <a href="http://linuxgizmos.com/raspberry-">http://linuxgizmos.com/raspberry-</a> pi-stays-sky-high-in-2015-hacker-sbc-survey (accessed on 9 July 2019).</li>
+    <li>[36] Arduino TRE. Available online: <a href="https://www.arduino.cc/en/Main/ArduinoBoardTre">https://www.arduino.cc/en/Main/ArduinoBoardTre</a> (accessed on 9 July 2019).</li>
+    <li>[37] Kamolov, A.; Park, S.H. IoT based smart reporting and mooring system for vessels. In Proceedings of the Korean Institute of Information and Communication Sciences Conferece Chungcheongnam-do, Korea, 10 October 2017; Volume 21, pp. 0395–0398.</li>
+    <li>[38] Xiaojiang, X.; Jianli, W.; Mingdong, L. Services and Key Technologies of the Internet of Things; ZTE Communications: Shenzhen, China, 2010; Volume 2, p. 011.</li>
+    <li>[39] Gigli, M.; Koo, S. Internet of things: Services and applications categorization. Adv. Internet Things 2011, 1, 27–31.</li>
+    <li>[40] The World’s First Smart Ship “I-Dolphin Unveiled”. Available online: <a href="https://www.marineinsight.com/shipping-news/the-worlds-first-smart-ship-i-dolphin-unveiled/">https://www.marineinsight.com/shipping-news/the-worlds-first-smart-ship-i-dolphin-unveiled/</a> (accessed on 9 July 2019).</li>
+    <li>[41] World’s First Smart Ship Developed and Built in China. Available online: <a href="http://www.chinadaily.com.cn/china/2017-11/03/content_34055628.htm">http://www.chinadaily.com.cn/china/2017-11/03/content_34055628.htm</a> (accessed on 9 July 2019). Sensors 2019, 19, 5181</li>
+    <li>[42] Arriving at a Port. Available online: <a href="https://www.pfri.uniri.hr/bopri/documents/21-">https://www.pfri.uniri.hr/bopri/documents/21-</a> MEArrivalataport_000.pdf (accessed on 9 July 2019).</li>
+    <li>[43] SMART-Navigation. Available online: <a href="http://www.smartnav.org/html/SMARTNavigation/about_smart_navigation.php">http://www.smartnav.org/html/SMARTNavigation/about_smart_navigation.php</a> (accessed on 9 July 2019).</li>
+    <li>[44] Hamburg Port. Available online: <a href="https://www.hafen-hamburg.de/en/portmap">https://www.hafen-hamburg.de/en/portmap</a> (accessed on 9 July 2019).</li>
+    <li>[45] Amsterdam Port. Available online: <a href="https://www.portofamsterdam.com/en/shipping/arrivals-and-">https://www.portofamsterdam.com/en/shipping/arrivals-and-</a> departures (accessed on 9 July 2019).</li>
+    <li>[46] Al-Absi, M.A.; Al-Absi, A.A.; Kim, T.; Lee, H.J. An Environmental Channel Throughput and Radio Propagation Modeling for Vehicle-to-Vehicle Communication. Int. J. Distrib. Sens. Netw. 2018, 14, 1–10.</li>
+    <li>[47] Al-Absi, M.A.; Al-Absi, A.A.; Lee, H.J. V2V communication modeling for environmental channel throughput and radio propagation. In Proceedings of the 8th IEEE International Conference on ICTC Convergence, Jeju Island, Korea, 18–20 October 2017; pp. 507–512.</li>
+    <li>[48] Al-Absi, M.A.; Al-Absi, A.A.; Kang, Y.J.; Lee, H.J. Obstacles Effects on Signal Attenuation in Line of Sight for Different Environments in V2V. In Proceedings of the 20th International Conference on Advanced Communication Technology (ICACT), Chuncheon-si Gangwon-do, Korea, 11–14 February 2018; pp. 17–20.</li>
+    <li>[49] Al-Absi, M.A.; Al-Absi, A.A.; Lee, H.J. Performance Analysis for City, Highway, and Rural Area in Vehicle- to-Vehicle Network. In Proceedings of the 8th IEEE International Conference on ICTC Convergence, Jeju Island, Korea, 17–19 October 2018.</li>
+    <li>[50] Reza, M.O.; Ismail, M.F.; Rokoni, A.A.; Sarkar, M.A.R. Smart parking system with image processing facility. Int. J. Intell. Syst. Appl. 2012, 4, 41–47.</li>
+    <li>[51] Khanna, A.; Anand, R. IoT based Smart Parking System. In Proceedings of the International Conference on Internet of Things and Applications (IOTA), Pune, India, 22–24 January 2016; pp. 266–270.</li>
+    <li>[52] Idris, M.Y.I.; Tamil, E.M.; Noor, N.M.; Razak, Z.; Fong, K.W. Parking Guidance System utilizing Wireless Sensor Network and Ultrasonic Sensor. Inf. Technol. J. 2009, 8, 138–146.</li>
+    <li>[53] Raghavender Rao, T. Automatic Smart Parking System using Internet of Things (IOT). Int. J. Eng. Technol. Sci. Res. 2017, 4, 225-228.</li>
+    <li>[54] Ji, Z.; Ganchev, I.; O’Droma, M.; Zhao, L.; Zhang, X. A Cloud-Based Car Parking Middleware for IoT-Based Smart Cities: Design and Implementation. Sensors 2014, 14, 22372–22393.</li>
+    <li>[55] Kamolov, A.; Park, S.H. An IoT Based Smart Berthing (Parking) System for Vessels and Ports. In ICMWT 2018: Mobile and Wireless Technology 2018; Kim, K., Kim, H., Eds.; Lecture Notes in Electrical Engineering; Springer: Singapore, 2019; Volume 513.</li>
+    <li>[56] Mori, U.R.; Chandarana, P.M.; Gajjar, G.V.; Dasi, S. Performance Comparison of Different Modulation Schemes in Advanced Technologies WiMAX and LTE. In Proceedings of the IEEE International Advance Computing Conference (IACC), Banglore, India, 12–13 June 2015; pp. 286–289. © 2019 by the authors. Licensee MDPI, Basel, Switzerland. This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution (CC BY) license (<a href="http://creativecommons.org/licenses/by/4.0/).">http://creativecommons.org/licenses/by/4.0/).</a></li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s19235181">10.3390/s19235181</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

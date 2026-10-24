@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التعلم المتبقي العميق للتعرف على الصور: مسح — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Deep Residual Learning for Image Recognition: A Survey</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التعلم المتبقي العميق للتعرف على الصور: مسح شامل</h2>
+
+  <div class="paper-meta">
+    <span>👤 Muhammad Shafiq, Zhaoquan Gu</span>
+    <span>📄 Appl. Sci. 2022, 12, 8972</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app12188972">10.3390/app12188972</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>أظهرت الشبكات المتبقية العميقة (Deep Residual Networks) مؤخرًا تحسنًا كبيرًا في أداء الشبكات العصبية المدرَّبة على ImageNet، متفوقةً على جميع الأساليب السابقة في مهمة تصنيف الصور بفوارق كبيرة. غير أن معنى هذه الأرقام المثيرة وآثارها على البحوث المستقبلية لم يُفهما تمامًا بعد. في هذا المسح، نشرح ماهية الشبكات المتبقية العميقة وكيف تحقق نتائجها الممتازة، ولماذا يمثل تطبيقها الناجح عمليًا تقدمًا كبيرًا على التقنيات القائمة. كما نناقش أسئلة مفتوحة حول التعلم المتبقي وتطبيقات محتملة للشبكات المتبقية العميقة خارج ImageNet، ونختم بقضايا ما تزال بحاجة إلى حل قبل تطبيق التعلم المتبقي العميق على مشكلات أكثر تعقيدًا.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>التعلم المتبقي العميق بنية شبكات عصبية اقترحها He وآخرون عام 2015 [1]. وقد استُشهد بورقة «التعلم المتبقي العميق للتعرف على الصور» مرات عديدة، وهي من أكثر الأوراق تأثيرًا في مجال الرؤية الحاسوبية. في هذه الورقة المسحية، نستعرض التقدم الحديث في التعلم المتبقي العميق: نناقش ماهية الشبكات المتبقية العميقة وخصائصها من حيث الاستقرار وقابلية التدريب، ثم نستعرض تطبيقاتها الحديثة، ونختم بآراء حول اتجاهات البحث المستقبلية وأسئلة مفتوحة.</p>
+    <p>يقدم هذا المسح الشامل نظرة على حالة الفن في التعلم العميق للتعرف على الصور، ويعرض منهجية التعلم المتبقي العميق التي تقدم تحسينات كبيرة على الأساليب القائمة. يقدم المؤلف في [1] عرضًا تفصيليًا للمنهج المقترح ومزاياه. والتعلم المتبقي العميق كفء حاسوبيًا لانخفاض عدد معاملاته واستخدامه الانتشار الخلفي البسيط لخفض كلفة الحساب. كما يُقترح في [2] أن ثمة تطبيقات أخرى غير التعرف على الصور، مثل الترجمة والتعرف على الكلام، يمكن أن تستفيد من التعلم المتبقي العميق. وبالمثل، يقدم المؤلف في [3] مقارنات بين نماذج ببنى مختلفة ويجد أن النماذج المتبقية العميقة تتفوق دائمًا على غيرها.</p>
+    <p>بالإضافة إلى ذلك، يشير المؤلف إلى تحديات متنوعة في تطبيق التعلم المتبقي العميق المقترح، مثل: كيف نتعامل مع التشبع والإسقاط (dropout)؟ وكيف نتعامل مع مهام كالترجمة حيث تقل البيانات المتاحة؟ ويختم المؤلف ورقته باقتراح اتجاهات بحثية مستقبلية للتغلب على هذه التحديات، مشيرًا إلى ضرورة دراسة دمج التعلم المتبقي العميق مع البحث العصبي عن البنى، والالتفافات في المجال المكاني، ودوال الخسارة الخصومية المقيدة، والنماذج التوليدية الغاوسية.</p>
+  </section>
+
+  <section>
+    <h2>2. ما الشبكة المتبقية العميقة؟</h2>
+    <p>في عام 2015، اقتُرحت الشبكة المتبقية العميقة (ResNet) في [1] للتعرف على الصور. وهي نوع من الشبكات العصبية الالتفافية (CNN) يُضاف فيه دخل الطبقة السابقة إلى خرج الطبقة الحالية. هذه الوصلة التخطية (skip connection) تسهّل التعلم على الشبكة وتحسّن الأداء. وقد نجحت بنية ResNet في مهام عدة منها تصنيف الصور وكشف الأجسام والتجزئة الدلالية. وبما أن هذه الشبكات مبنية من طبقات، يمكن أن تكون عميقة اعتباطيًا لأي مستوى من التمثيل المكاني.</p>
+    <p>ثمة أسباب عدة لنجاح النموذج: الحقول الاستقبالية الكبيرة التي تلتقط معلومات أكثر عن كل بكسل، والفصل بين مرحلتي التوطين والتصنيف، والكفاءة الحاسوبية في المستويات العليا، وترميزات فعالة بعمليات حسابية منخفضة التعقيد، وزيادة الدقة كلما استُخرجت الخصائص في عمق أكبر. ورغم هذه المزايا، تبقى الشبكات الحالية مكلفة حاسوبيًا جدًا؛ فبينما تؤدي GPUs الحديثة أكثر من مئة مليون عملية في الثانية، قد تستغرق بنية شائعة بطبقة مترابطة كاملة بعشرة ملايين وزن أكثر من ساعتين للتدريب. ولهذا اقترح المؤلفون في [9] استبدال بعض الطبقات المترابطة الكاملة بطبقات تجميع عشوائية وتقليل حجم المرشح من 5×5 إلى 3×3.</p>
+    <p>باختصار، أثبت التعلم المتبقي العميق للتعرف على الصور فعاليته في مهام تصنيف الصور. غير أن بنى مشابهة لم تُستكشف بعد لمهام رؤية حاسوبية أخرى كالتجزئة الدلالية أو كشف الأجسام. وثمة مشكلات مفتوحة تحتاج إلى استكشاف، منها الكفاءة الحاسوبية في المستويات العليا واستقرار التدريب، وإضافة الوصلات التخطية، والموازنة بين عمق الشبكة وتعقيدها، وتحيّز اللاخطيات أثناء التدريب، وقضايا المعالجة المسبقة للمدخلات مثل التطبيع الدفعي.</p>
+  </section>
+
+  <section>
+    <h2>3. ما التعرف على الصور؟</h2>
+    <p>التعرف على الصور فرع من الرؤية الحاسوبية يُعنى بتحديد الأجسام وتصنيفها في الصور الرقمية. وهو جزء من تعلم الآلة، فرع الذكاء الاصطناعي الذي يُعنى بتصميم وتطوير خوارزميات تتعلم من البيانات وتتنبأ بها. عندما تلتقط صورة، قد تحتوي على أي عدد من العناصر: كلاب وسيارات وأشخاص وغيرها. هدف التعرف على الصور إسناد فئات لكل عنصر؛ فعند رفع صورة إلى وسائل التواصل أو البحث في صور Google تحصل على معلومات عما فيها وأين تجد مثيلاتها.</p>
+    <p>التعرف على الصور مشكلة ضمن الرؤية الحاسوبية تعني الكشف التلقائي عن طائفة واسعة من الأجسام في الصور وفهمها. ويمكن النظر إلى الرؤية الحاسوبية كنسخة اصطناعية من البصر البشري. وتتضمن العملية عادة تحويل الصورة إلى أرقام تفهمها الحواسيب: فالصورة تحوي مئات الآلاف (إن لم يكن الملايين) من الألوان المكونة من الأحمر والأخضر والأزرق (RGB) [13]. تُحوَّل هذه الألوان إلى نقاط بيانات تشكل متجهات، ولتقليل حجم المتجه الناتج تُستخدم مصنفات خطية أو لاخطية لبناء نموذج تنبؤي قادر على تصنيف المدخلات الجديدة.</p>
+    <p>حاليًا، تتضمن معظم الشبكات العصبية العميقة وصلات متبقية تساعد على نشر التدرجات المحلية عبر طبقات خفية لاخطية عديدة دون انفجار التدرجات. ومستقبل التعلم المتبقي العميق واعد ويستحق مزيدًا من الاستكشاف.</p>
+  </section>
+
+  <section>
+    <h2>4. التعلم المتبقي العميق للتعرف على الصور</h2>
+    <p>يستعرض هذا القسم تطبيقات التعلم المتبقي العميق: تحليل الإخفاء (steganalysis) [4.1] حيث تتعلم الشبكات المتبقية العميقة خصائص الرقع المحلية لكشف البيانات المخفية في الصور عبر ثلاث مراحل (معالجة مسبقة، استخراج خصائص، تصنيف)؛ وضغط الصور [4.2] حيث درس Rathgeb وآخرون في [15] أثر الضغط على دقة نماذج التعلم العميق فوجدوا أنه يقلل حجم مجموعات التدريب حتى 90% دون فقدان دقة يُذكر، مع ملاحظة أن الترميز الحسابي قد يتفوق على Huffman بتجنب أخطاء التقريب. كما قورن البصر البشري بخوارزميات الرؤية الآلية فتفوق البشر في التعرف والتوطين والتجزئة بينما تفوقت الآلة في الكشف وتقدير الوضعية بكلفة حاسوبية أقل؛ ودُرس استخدام التجزئة الدلالية في الطب والسيارات الذاتية والمراقبة في [16].</p>
+    <p>وفي استعادة الصور [4.3]، وهي إزالة الضبابية المنتظمة، أظهرت الأعمال أن الشبكات العميقة المدربة على تعظيم التعميم تحل المهمة بفعالية ملحوظة، وأن التعلم المتبقي العميق (DRL) بهندسة ريمانية يحقق تقريبًا هجينًا أمثل؛ وبُيّن في [18] أنه يزيل الضجيج بفعالية ويحسّن الاستعادة والتصنيف وكشف الأجسام والتعرف على المشاهد [19] والاسترجاع [20] والتعليق على الفيديو، كبديل ممتاز للشبكات التقليدية دون التضحية بالإنتاجية أو كفاءة الطاقة [21، 22]. وفي إعادة بناء التصوير المقطعي [4.4] يساعد نموذج المميِّز المتبقي العميق [23، 24] أطباء الأشعة على تصنيف الكشوفات في صور CT [25]، مقللًا زمن المسح وإعداد التقارير؛ وأظهرت الدراسات تفوقه على ImageNet مع تحليل تعديلات تتفوق على الإسقاط والتطبيع الدفعي، مع ملاحظة كلفة الطبقات الكثيرة على سرعة الحساب [26، 27].</p>
+    <p>وفي تحسين المعاملات الفائقة [4.5] تُوزَن عوامل عمق الشبكة وعرضها (عدد العصبونات في الطبقة) ومعدل التعلم — فالشبكات الأعمق تتعلم خصائص أعقد لكن الأضحل أسرع وأكفأ ذاكرةً، ومعدل التعلم الأعلى أسرع لكنه أكثر عرضة لفرط التخصيص — مع محاولات استخدام مصنفات خطية مثل SVM أو الجيران الأقرب كنقاط انطلاق ذكية للانحدار التدرجي [28]. وفي الشبكات الالتفافية العميقة جدًا [4.6] حققت CNNs العميقة [29، 30] دقة لا مثيل لها، واقتُرحت شبكة DRRN التكرارية العميقة [31] لفائق الدقة بثلاث مراحل (تصغير، تكبير، إعادة بناء)، مع تحديات مجموعات البيانات متعددة الدقة والحاجة لبنى شبيهة بـ ResNet بكتل متبقية متعددة.</p>
+    <p>وفي التسريع على FPGA [4.7] أصبحت ResNets الأداء القياسي [35]، لكن تدريبها ونشرها مكلف؛ وتوفر FPGA [36] توازيًا وكفاءة طاقية عاليين كمنصة جذابة للتسريع، مع مقارنة منهجية بين تدريب CPU وGPU. وفي نماذج ResNet [4.8] التي قدمها باحثو Microsoft عام 2015 [1] ضمن CNNs [37]، تحققت أرقام قياسية في ImageNet وILSVRC وCOCO وPASCAL VOC بكلفة مليارات المعاملات، وخفّضت GPUs الحديثة وأطر مثل CUDA [38، 39] وIntel IPP الكلفة تدريجيًا رغم تحديات التوسع [34، 40]. وتشمل التطبيقات الأخرى: شبكة الانكماش [4.9] بالالتفاف العميق والتجميع الأقصى والاختزال [44–48]، والتصوير المقطعي [4.10] بالتجزئة والتدريب المسبق غير الخاضع للإشراف بدقة تقارب 99% في تصنيف المركبات [50–53]، والتعلم الهجين [4.11] الذي يجمع CNN وRNN ويتغلب على قيود التعلم التقليدي والتعزيزي [54–57]، وبنى التعلم العميق [4.12] كـ SqueezeNet [61] وCheckerboardNet [62] والبنى الهجينة، وأنظمة التعلم العميق [4.13] بتحسينات الدوال والذاكرة وتعزيز البيانات والتدريب المسبق الواسع [63]، وتحليل التماثل المستمر [4.14] لفهم آليات الشبكات العميقة كصندوق أسود [64]، وتحديد الآفات [4.15] بدقة محسوبة دون تضحية كبيرة بالسرعة عبر الالتفافات المتوسعة ومشاركة الأوزان [65].</p>
+  </section>
+
+  <section>
+    <h2>5. التعرف على الصور</h2>
+    <p>يستعرض هذا القسم التعرف على الصور من سبع زوايا: التقنية [5.1] حيث التعلم المتبقي العميق [67] هو الأداء القياسي بتدريب شبكات عميقة جدًا، مع طبقات التجميع الأقصى لتقليل التعقيد وزيادة التعميم، والتطبيع الدفعي بإضافة تحيزات [68] لمعالجة التباين، وأساليب أخرى كـ WaveNet وإطار ديناميكيات Langevin (LDN) للمدخلات الاحتمالية، والتدريب الخصومي للتغلب على صعوبة إيجاد النهاية المحلية. وتعلم الآلة [5.2] فرع الذكاء الاصطناعي [69] الذي يصمم خوارزميات تتعلم من البيانات [70]، وقد تفوق التعلم المتبقي العميق على الأساليب التقليدية مع ممارسات تدريب GPU وأمثلة تطبيقية، بدءًا من فكرة الشبكات المتبقية في [71] كامتداد لـ L-BFGS باستخراج المعلومات على مستويات تجريد متعددة ثم ربطها.</p>
+    <p>والشبكة العصبية [5.3] (DRL) بنية قدمها باحثو Microsoft Research عام 2015 [1] بطبقات التفافية وتجميعية ووصلات تخطية تتعلم الخصائص على مستويات تجريد متعددة، وطُبقت لاحقًا على NLP والكلام والترجمة والتوصية واكتشاف الأدوية، مع تكييفات مجالية مثل word2vec [72] لنقل المعرفة، ودراسات متانة لتغيرات حجم الإدخال وتوزيع البيانات ومجموعات البيانات غير المتوازنة. والتعلم العميق [5.4] أحدث ثورة في المجال، ووجد المؤلف في [67] تفوق ResNet بفارق كبير، مع تنظيمات كتدهور الأوزان (WD) [77] والإسقاط وتنظيم l2، واستراتيجيتي الانحدار التدرجي العشوائي بالزخم والدفعي، وتعزيز البيانات بالتحويلات لتحقيق ثبات تجاه الإزاحة والتحجيم والدوران والسطوع، وتطبيقات واقعية كمعالجة الفيديو وكشف المشاة [78] وكشف إشارات المرور.</p>
+    <p>والنظام [5.5] يتعلم أنماط البكسلات المقابلة للأجسام (قط أو سيارة) ويتحسن من أخطائه تكراريًا، ومن مزاياه التعامل مع المهام التكرارية دون إشراف بشري، وتحمل الصور المشوشة، والتدريب من الصفر أو من نماذج قديمة دون إعادة تدريب، والمتانة ضد الهجمات الخصومية — مقابل عيب الكلفة الحاسوبية العالية. والمنهج [5.6] درسه المؤلف في [79] فوجد تفوق ResNet حتى على نماذج أعمق بكثير، وقابليته للتدريب بتقنيات معيارية دون حساسية للمعاملات الفائقة، وصلاحيته لكشف الأجسام والتجزئة الدلالية، مع آفاق النماذج متعددة المهام والتعلم الانتقالي [80]. والخوارزميات [5.7] تنقسم إلى ResNets وDIMs (نماذج الصور القابلة للتفاضل بالمشفرات التلقائية التباينية)، وقُيّمت على IFAR-10 وMNIST وSVHN وFashion-MNIST وILSVRC2012 [81]، بتطبيقات تتجاوز الرؤية كألعاب الفيديو والواقع المعزز.</p>
+  </section>
+
+  <section>
+    <h2>6. مزايا الشبكات المتبقية العميقة على النماذج الأخرى</h2>
+    <p>أصبح التعلم المتبقي العميق سريعًا المنهج المفضل لمهام التعرف على الصور لما يقدمه من مزايا: (1) سهولة التدريب بفضل البنية البسيطة والوصلات القصيرة بين الطبقات؛ (2) أداء أفضل مثبت على مهام متنوعة؛ (3) حاجة أقل للبيانات لتعلم الخصائص من تمثيلات منخفضة الأبعاد؛ (4) متانة أعلى تجاه تغيرات توزيع البيانات ومعاملات النموذج؛ (5) متطلبات حاسوبية أقل؛ (6) تطبيقات تتجاوز التعرف على الصور لانخفاض كلفته كمعالجة اللغة والصوت. هذه الخصائص تجعله خيارًا جذابًا لبناء أنظمة التعرف على الصور.</p>
+    <p>غير أن ثمة عيوبًا يجب مراعاتها: (1) متطلبات ذاكرة أعلى أثناء التدريب رغم انخفاضها أثناء التشغيل؛ (2) زمن تقارب أبطأ قد يقيّد بعض مهام الرؤية؛ (3) حاجة لعمل إضافي لمراعاة ضجيج التدرج لأن الشبكات تعتمد على الانتشار الخلفي عبر الزمن (BPTT)؛ (4) استمرار الحاجة لضبط دقيق للمعاملات رغم كل المزايا.</p>
+  </section>
+
+  <section>
+    <h2>7. اتجاهات البحث الحالية في الشبكات المتبقية العميقة</h2>
+    <p>أثبتت الشبكات المتبقية العميقة فعالية كبيرة في مهام التعرف على الصور، وتصاعد مؤخرًا الاهتمام باستخدامها في مهام رؤية أخرى ككشف الأجسام والتجزئة الدلالية. يستعرض هذا المسح أساليب الأداء القياسي الحالية للتعلم المتبقي العميق، مناقشًا مزايا كل منهج وعيوبه ورؤى حول الاتجاهات المستقبلية. تقتصر الأعمال المعروضة على تصنيف الصور، وهدفنا تقديم نظرة على تقنيات التعلم المتبقي العميق واسعة الاستخدام لتلك المهمة [83]. ولإبراز التقدم الحديث، نقتصر على مساهمات ما بعد 2010 حين قُدّمت AlexNet.</p>
+    <p>نبدأ بظاهرة تكديس النماذج، الفكرة المحورية وراء كثير من التقدم الحديث في مهام تصنيف ImageNet. تُظهر دراسات حديثة نتائج واعدة في الترجمة الآلية العصبية [84] والتعرف على الكلام عبر ضغط التمثيلات بالنماذج اللغوية المدربة مسبقًا أو التمثيلات البصرية من مجموعات كبيرة كـ ImageNet وCOCO. والسؤال المهم: هل يمكن تعميم نموذج التدريب المسبق الخاضع للإشراف الناجح إلى أنظمة شبه أو غير خاضعة للإشراف دون بيانات موسومة؟ الامتداد الطبيعي استخدام البيانات غير الموسومة لا لاستخراج الخصائص فحسب بل كمصدر إشراف أثناء التدريب، حيث يمكن للاستكشاف النشط تمكين تدريب خاضع للإشراف أكفأ.</p>
+  </section>
+
+  <section>
+    <h2>8. أساليب التعلم العميق التقليدية</h2>
+    <p>التعلم المتبقي العميق منهج جديد للتعرف على الصور تفوق على الأساليب التقليدية، باستخدام شبكات عصبية عميقة لتعلم الخصائص من البيانات — وهي خصائص أكثر متانة تجاه تغيرات الإضاءة والخلفية. يستعرض هذا القسم ثلاث أوراق في التعلم المتبقي العميق ومقارنتها بالمناهج التقليدية: أولًا Inceptionism (التعمق في الشبكات العصبية) لفريق Google Brain بشبكة Inception التي تتعلم تمثيلات الصور بتكوين طبقات عديدة من كاشفات الخصائص مع تدريب مسبق غير خاضع للإشراف يغني عن التوصيف اليدوي المضني؛ وثانيًا تدريب الشبكات الالتفافية العميقة جدًا بـ 100–300 مرشح في الطبقة وطبقتين إلى ثلاث خفية دون هندسة خصائص يدوية beyond التدوير والإزاحة البسيطين.</p>
+    <p>وثالثًا الكشف المشترك عن المعالم الوجهية ثلاثية الأبعاد والمحاذاة بإطار يكشف معالم الوجه في إطار الفيديو ويحاذيها بين الإطارات ويقدّر العمق ثلاثي الأبعاد لتوليد خرائط عمق تُدمَج كمدخلات للمصنفات بدقة عالية وكلفة حاسوبية مخفضة كثيرًا. وخلاصة المقارنة أن الأوراق الثلاث لكل منها مزايا متميزة على أساليب التعلم العميق التقليدية دون عيوبها نفسها.</p>
+    <h3>8.1. إطار التعلم المتبقي وتصميم الكتلة المتبقية</h3>
+    <p>التعلم المتبقي العميق إطار لتدريب شبكات عصبية عميقة جدًا، اقتُرح أول مرة عام 2015 في ورقة [1]. الفكرة المحورية استخدام وصلات مختصرة أو تخطية ليتعلم الشبكة دوال متبقية بالصيغة F(x) + x حيث F(x) تحويل قابل للتعلم. ومنهج آخر لتصميم الكتل المتبقية قُدّم عام 2016 على يد Tai وآخرين، يُنفَّذ فيه بعض الطبقات فقط فوق طبقات أخرى كجزء من دالة الربط دخل-إلى-خرج. عيبه أنه يتطلب ذاكرة وزمن حساب أكبر لوجوب الاحتفاظ بكل التنشيطات الوسيطة. وفي المنهجين تُستخدم الوصلات التكرارية لتجنب تلاشي التدرجات، ويُدرَّب بالانحدار التدرجي العشوائي على دفعات صغيرة مع تدهور الأوزان.</p>
+    <h3>8.2. بنية ResNet</h3>
+    <p>التعلم المتبقي العميق بنية شبكات عصبية تسمح بشبكات عميقة جدًا — عشرات أو مئات الطبقات عادة — مقابل المنهج التقليدي للشبكات الأضحل. فوائد العمق معروفة: تعلم الخصائص على مستويات تجريد أعلى تدريجيًا مما يحسّن الأداء. لكن تدريب الشبكات العميقة جدًا كان صعبًا لتلاشي التدرجات، وصُممت ResNet لمعالجته بالوصلات التخطية التي تُسهّل تدفق التدرجات. وقد نجحت مؤخرًا في أصعب مشكلات الرؤية كالتعرف على الصور، مقدمة ميزتين: لا حاجة لخطوات معالجة مسبقة منفصلة قبل تعلم CNN، وأداء مدهش دون تغييرات معمارية. وامتد المنهج بنجاح إلى AlexNet [88] وGoogLeNet [88] وVGGNet [89] وResNeXt [90] وXception [46] وغيرها من نماذج التعرف الشهيرة المستوحاة من محاولات مبكرة كـ CaffeNet [87].</p>
+  </section>
+
+  <section>
+    <h2>9. اللبنات الأساسية للشبكة المتبقية</h2>
+    <p>الشبكة المتبقية (ResNet) شبكة عصبية للتعلم العميق مبنية على مبدأ التعلم المتبقي. درس المؤلف في [35] أثر إضافة وصلات مختصرة إلى CNNs فتمكن من تدريب شبكات أعمق بكثير دون تلاشي التدرجات. اللبنة الأساسية (الشكلان 10 و11) طبقتا التفاف 3×3، كل منهما متبوعة بتطبيع دفعي وتنشيط ReLU، وبينهما وصلة مختصرة أو ربط هوياتي. تسمح هذه البنية بتدريب شبكات عميقة جدًا دون مشكلة التلاشي، بعيب زيادة زمن الحساب للعمليات الإضافية — لكن كلفة الحساب لا تُقارَن بمكاسب الدقة. وأظهرت دراسة أحدث أن إضافة التطبيع الدفعي بعد أول ثلاث طبقات التفافية يحسّن الأداء كثيرًا ويسمح بنماذج أعمق بمضاعفات أقل.</p>
+    <p>طُبقت الشبكات المتبقية بنجاح على مهام تعرف صورية عديدة منها التصنيف، وتركزت البحوث الحديثة على تحسينها لكشف الأجسام. بدأ تطبيق الشبكات المتبقية متعددة الطبقات (الشبكات الأمامية العميقة) على يد البروفيسور Geoffrey Hinton في Google عام 2006، ثم طور شبكات أكبر متعددة المراحل تتفوق على الضحلة، حيث ترى الطبقات اللاحقة مدخلات مشتقة من السابقة.</p>
+    <h3>9.1. وحدة الاختناق المتبقية</h3>
+    <p>وحدة الاختناق المتبقية [91] نوع من CNNs مصمم خصيصًا للتعرف على الصور، بثلاث طبقات: التفاف 1×1 ثم 3×3 ثم 1×1. تقلل الأولى بُعدية الدخل، وتتعلم الثانية الخصائص، وتستعيد الثالثة البُعدية — أي ضغط ثم فك ضغط للصور. أظهرت تقاربًا أسرع من CNNs التقليدية لكنها تُدخل فرط تخصيص شديدًا لتعقيدها المتزايد. ودرس المؤلف في [51] استخدام الشبكات العميقة لمشكلات التصوير الطبي كتجزئة الأوعية الشبكية من صور القاع أو تصوير الأوعية بالتماسك البصري، مساعِدةً الخبراء بتقليل عبء التحليل اليدوي — ككشف إعتام عدسة العين من مقاطع CT [92] بخوارزمية رؤية مدرَّبة على مقاطع موسومة يدويًا. ولمعالجة التعميم عبر صور متباينة دون فرط تخصيص، اقتُرح رفع مستوى الضجيج أثناء التدريب باضطرابات عشوائية صغيرة لكل بكسل، فحسّن التعميم وسرّع الاختبار.</p>
+    <h3>9.2. صيغ وحدات الاختناق المتبقية</h3>
+    <p>في 2015 درس المؤلف في [1] أول نموذج تعلم متبقي عميق ناجح فوجد أن الاختناق (طبقة بعصبونات أقل من سابقتها ولاحقتها) يحسّن التدريب. ومنذ ذلك الحين اقتُرحت صيغ عديدة: الاختناقات العريضة [2] بعصبونات أكثر في طبقة الاختناق، والكثيفة [3] التي تربط كل عصبون دخل بكل عصبون اختناق، والمهتزة shake-shake [4] التي تختار عشوائيًا بين تكويني اختناق في كل تكرار. حسّنت جميعها الأداء، لكن الكثيفة وحدها تفوقت على الأسس المتناثرة بعد تقييم 16 أسلوبًا قياسيًا (2012–2017)، فطُرحت استراتيجية الأسس المتناثرة السياقية (CSP) التي تستبدل التماثل الدفعي والعنصري بتماثل سياقي بتعلّم حد إضافي من المشاهدات الحديثة ضمن أحياء المشاهدات، محققة نتائج أفضل بكثير في تصنيف ImageNet دون معلومات عن الدخل أو الخرج المرغوب beyond البكسلات الخام ودون قيود معمارية ودون حسابات باهظة أثناء الاستدلال، وقابلة للدمج مع بنى كالانتباه الذاتي لدقة مماثلة وضغط أعلى.</p>
+  </section>
+
+  <section>
+    <h2>10. تقليل العمق والعرض</h2>
+    <p>درس المؤلفون [1] آثار تقليل العمق والعرض على التعلم المتبقي العميق للتعرف على الصور: فتقليل العمق خفّض الأداء بينما لم يكن لتقليل العرض أثر يُذكر. ووجدوا أن أفضل طريقة لتقليل العمق هي الوصلات التخطية التي ساعدت الشبكة على تعلم تمثيلات أفضل، محسّنة الدقة على CIFAR-10 من 74% إلى 80%. وخلصوا إلى أن تقليل الطبقات قد يحسّن التعميم، ويمكن استخدام شبكات أصغر بمعاملات أقل من قبل — وشوهدت تحسينات في CNNs على الصور الطبيعية والمخططات الطيفية الصوتية (من 68% إلى 79%). وبخلاف البحوث السابقة، يمكن التطبيق مع التخطي أو دونه. وتفوق هذا النموذج على LSTM التقليدية لاستغلاله الخصائص الطيفية أسهل، إذ تفتقر LSTM للمعالجة عالية المستوى بينما CNNs أبرع في الأنماط المعقدة عبر المقاييس المكانية المختلفة. وساعدت أساليب التحسين كالانحدار التدرجي العشوائي بالزخم على تحقيق الأداء القياسي في CIFAR-10 متفوقًا على RNNs ومنافسًا في معايير أخرى، بشرطين للنجاح: تنوع الخصائص الوسيطة في كل خطوة تدريب، وسرعة الحساب لتجنب تراكم التدرجات.</p>
+    <p>وعلّلوا بأن الانتشار الخلفي عبر هذه الخصائص الوسيطة المتنوعة يسمح بتدفق معلومات كل المدخلات خلفيًا حتى بعد طبقات لاحقة عديدة. ولتحقيق ذلك أُدخلت الالتفافات الخطية السريعة في بنى CNN الحديثة، مسرّعة الانتشار الخلفي لتدرجات الخطأ بمرتبة عشرية دون تغيير بنية التعلم: تبقى الشبكات الالتفافية من مجموعتي عصبونات (أمامية وخلفية عبر تسلسل الدخل)، محوّلة التسلسلات إلى تمثيل ثابت الطول يُسمى طبقة الاختناق.</p>
+    <h3>10.1. تقليل البُعد المكاني</h3>
+    <p>أظهرت دراسة أثر تقليل البُعد المكاني أن استخدام فضاء منخفض البُعد يحسّن الدقة ويقلل زمن التدريب، وأن الفضاء الأعلى بُعدًا يحسّن الدقة أكثر لكن بكلفة زمن تدريب أعلى. وأفضل طريقة للتقليل هي الجمع بين الأسلوبين. وتحقق CNNs بخوارزميات الدمج الهرمي والمشفرات التلقائية التباينية (VAE) دقة محسنة وتعقيدًا حاسوبيًا أقل من CNNs وحدها. واقترح المؤلفون في [33] إطارًا بمكونين (تصميم شبكي ثنائي المرحلة وتعزيز البيانات)، فوجدوا أن إضافة معلومات التعزيز قبل أول طبقة مترابطة كاملة أو دمج الصيغ قبل/بعد كل مرحلة ترميز/فك ترميز لا يُحدث فرقًا يُذكر — فيُستحسن التبسيط — وأن VAE بأوزان مدربة مسبقًا (خارج نطاق تدريب DNN لأن VAE غير متين للأوزان المفقودة) يحسّن الأداء على CIFAR-10 وSTL دون مضاعفة المعاملات.</p>
+    <h3>10.2. تقليل العمق</h3>
+    <p>في 2015 درس مؤلف [1] أثر العمق على الدقة فوجد أن الشبكات الأضحل أسوأ أداءً عمومًا، لكن ثمة نقطة تناقص عوائد لا يضيف بعدها العمق دقة. وفي 2016 استخدم المؤلفون في [2] الفكرة لبناء ما يُعرف بـ ResNet: طبقات عديدة (فوق 100 عادة) تتعلم كل منها متبقيًا صغيرًا بين خرج الطبقة ودخلها، مما يسمح بتدريب شبكات عميقة جدًا دون تلاشي التدرجات. وكانت الشبكات المتبقية سابقًا طبقة خفية واحدة، لكن عند التدريب للتنبؤ بالأوزان من الموسومات قد تعيد إنتاج أنماط الموسومات بدل التنبؤ الجيد — فتُنتج تنبؤات غير دقيقة إن كانت الأنماط بارزة — فاقتُرحت طبقتان خفيتان (كثيرة العقد وقليلتها) مع قطع الوصلات دوريًا حتى لا تُفرط في مطابقة المخرجات السابقة.</p>
+  </section>
+
+  <section>
+    <h2>11. مقاييس تقييم الشبكات المتبقية العميقة</h2>
+    <p>درس المؤلف في [1] أداء DRN في أربع مهام تعرف صورية فتفوقت كثيرًا على الأساليب السابقة في جميعها. واقترح المؤلفون مقياس تقييم جديدًا هو خطأ Top-1، بفكرة أنه أدق من الدقة التقليدية: حققت DRN خطأ top-1 بنسبة 3.56% فقط على ImageNet مقابل 4.82% للسابق، وخطأ top-5 بنسبة 9.8% مقابل 17.2%، ومتوسط دقة (mAP) 0.927 مقابل 0.648. تُظهر النتائج تفوق DRN في المقاييس الثلاثة جميعًا.</p>
+    <p>لتقييم النماذج يستخدم الباحثون الدقة أو الضبط/الاستدعاء، لكنها قد تضلل إن طُبقت عميانيًا دون مراعاة افتراضاتها: فنموذجان بدقة 99% قد يتعرف أحدهما على كل صورة صحيحًا بينما لا يعيد الآخر إيجابيات كاذبة لكنه يفوّت نصف الصور — والخطأ استنتاج تفوق الثاني! ومقاييس خطأ top-1 وtop-5 أفضل للمقارنة لأن السلبيات الكاذبة أثقل أثرًا فيها من الإيجابيات الكاذبة. ومن مزايا خطأ top-1 مقارنة النماذج جنبًا إلى جنب على قدم المساواة.</p>
+  </section>
+
+  <section>
+    <h2>12. مجموعات البيانات للتعلم المتبقي العميق</h2>
+    <p>التعلم المتبقي العميق أداة قوية لتحسين أداء نماذج تعلم الآلة. يناقش هذا القسم مجموعات البيانات المتنوعة المستخدمة لتدريب الشبكات المتبقية العميقة، وأشهرها: مجموعة CIFAR-10 [44، 93] من أكثر مجموعات التعرف استخدامًا — 60,000 صورة تدريب و10,000 اختبار في 10 فئات (طائرات وسيارات وطيور وقطط...) بحجم 32×32 وقيم بكسل 0–255، وهي جزء من CIFAR-100 الأصلية. تُنظَّم في مجموعة تدريب (50,000) واختبار (10,000)، وتُستخدم لتدريب صيغ متنوعة كـ ResNet وDenseNet.</p>
+    <p>ومجموعة ImageNet [94] هي المعيار الفعلي لبحوث الرؤية المستخدم في أنظمة الأداء القياسي: أكثر من 15 مليون صورة في 1000 فئة عبر 20,000 فئة فرعية. يتكون المستوى الأول من 1000 فئة مقسمة إلى 10,000 فئة فرعية (تحدي ILSVRC)، وتضم نسخة التعرف الشهيرة مليون صورة تدريب و200 ألف اختبار في 1000 فئة (فراشة وسلحفاة...) بحجم 216×216.</p>
+  </section>
+
+  <section>
+    <h2>13. التوصيات والتحديات في التعلم المتبقي العميق للتعرف</h2>
+    <p>فيما يلي تحديات مفتوحة في التعلم المتبقي العميق للتعرف على الصور: ضعف إشارة الخطأ بين دخل الشبكة العميقة وخرجها بما يعجز عن تدريبها — ويُتجاوَز بالشبكات المتبقية التي تحسب إشارة متبقية بطبقات إضافية إلى جانب التمرير الأمامي المعياري. ويتكون DRL عمومًا من مرحلتين: إعادة بناء بمشفر تلقائي يحفظ الخصائص البارزة بترميز هجين في كل طبقة، وتحسين بنموذج انتباه. وللتطبيق على مشكلات واسعة النطاق يلزم تقليل معاملات الشبكة لتلائم الذاكرة، وتحسين التدريب للتعميم عبر الصور دون فرط تخصيص. ورغم تطبيقاته في التعرف على الصور والكلام واللغة، يبقى تدريب الشبكات المتبقية العميقة غير بديهي.</p>
+    <p>ومن التحديات: التعامل مع خرائط الخصائص واسعة النطاق — فالكتل المتبقية تتعلم تمثيلات الطبقات الوسيطة وتحتاج خرائط كبيرة بما يكفي لالتقاط معلوماتها، بينما الطبقات العليا التقليدية بـ CNNs بأنوية صغيرة (3×3) تعاني فرط التخصيص لضعف قدرة التعميم. والتطبيع الدفعي مهم لكنه يتطلب عناية، ويلزم بناء مكتبة برمجية مفتوحة المصدر تدعم الحوسبة المتوازية، وتطوير مجموعات بيانات جديدة تغطي فئات أكثر مع البيانات الوصفية لا البكسلات فقط، وسبل تحليل البيانات تلقائيًا دون تدخل بشري لقابلية التوسع والدقة، ودراسة البنى العصبية الأنسب لكل مهمة كالتجزئة الدلالية.</p>
+  </section>
+
+  <section>
+    <h2>14. الخاتمة</h2>
+    <p>في السنوات الماضية استُخدمت الشبكات العصبية العميقة (DNN) على نطاق واسع في التعرف على الصور وتطبيقات ذات صلة كمعالجة الفيديو والتعرف على الكلام. غير أن ثمة قضايا ما تزال بحاجة إلى معالجة قبل تطبيقها على مشكلات أكثر تعقيدًا. في هذه الورقة قدمنا مسحًا شاملًا للتعلم المتبقي العميق للتعرف على الصور: استعرضنا أولًا التعلم المتبقي العميق وتطبيقاته في التعرف على الصور، ثم عرضنا تطبيقات ناجحة عدة منها تصنيف الصور وكشف الأجسام والتجزئة الدلالية، وأخيرًا ناقشنا قضايا ما تزال بحاجة إلى حل قبل التطبيق على مشكلات أعقد.</p>
+    <p>ولتحسين أداء DRL نقترح: (1) إضافة طبقات عصبونات أكثر إلى الشبكة؛ (2) زيادة عدد المرشحات في كل طبقة لنموذج أفضل؛ (3) زيادة الطبقات الخفية والعصبونات في كل طبقة؛ (4) إضافة بيانات أكثر من صور وفيديوهات متنوعة لتدريب النموذج ببيانات أوفر، مما يسهّل تعلم الصور والفيديوهات الجديدة ويحسّن التنبؤ.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Deep Residual Networks have recently been shown to significantly improve the performance of neural networks trained on ImageNet, with results beating all previous methods on this dataset by large margins in the image classification task. However, the meaning of these impressive numbers and their implications for future research are not fully understood yet. In this survey, we will try to explain what Deep Residual Networks are, how they achieve their excellent results, and why their successful implementation in practice represents a significant advance over existing techniques. We also discuss some open questions related to residual learning as well as possible applications of Deep Residual Networks beyond ImageNet. Finally, we discuss some issues that still need to be resolved before deep residual learning can be applied on more complex problems. Keywords: deep residual learning for image recognition; deep residual learning; image processing; image recognition.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Deep residual learning is a neural network architecture that was proposed in 2015 by He et al. [1]. The paper Deep Residual Learning for Image Recognition has been cited many times and is one of the most influential papers in the field of computer vision. In this survey paper, we will survey the recent advances in deep residual learning. After discussing what deep residual networks are, we will review their properties, including stability and trainability. Next, we will discuss some recent applications of deep residual networks. Finally, we will provide our thoughts on future research directions in deep residual learning and end with open questions.</p>
+    <p>This comprehensive survey looks at the current state of the art in deep learning for image recognition and proposes a new method, called deep residual learning, which offers significant improvements over existing methods. The author in [1] provides a detailed overview of the proposed approach and its advantages. The proposed deep residual learning is computationally efficient as it has a low parameter number and uses simple backpropagation to reduce computation cost. They also [2] suggest that there are applications other than just image recognition, such as translation and speech recognition, which could benefit from deep residual learning. Similarly, author [3] presents comparisons between different models with different architectures and finds that deep residual models always outperform other models.</p>
+    <p>In addition, the author points out various challenges in applying the proposed deep residual learning. For instance, how do we deal with saturation and dropout? How do we deal with tasks like translation where there is less data available? The author concludes their paper by suggesting future research directions on how these challenges can be overcome. They point out that more details should be studied on combining deep residual learning with neural architecture search, spatial domain convolutions, constrained adversarial loss function and Gaussian-based generative models.</p>
+  </section>
+
+  <section>
+    <h2>2. What Is a Deep Residual Network?</h2>
+    <p>In 2015, a deep residual network (ResNet) was proposed by the authors in [1] for image recognition. It is a type of convolutional neural network (CNN) where the input from the previous layer is added to the output of the current layer. This skip connection makes it easier for the network to learn and results in better performance. The ResNet architecture has been successful in a number of tasks, including image classification, object detection, and semantic segmentation. Additionally, since ResNets are made up of layers, these networks can be arbitrarily deep for an arbitrary level of spatial representation.</p>
+    <p>There are various reasons for the success of the model: the large receptive fields that capture more information about each pixel in an image; the separation between the localization and classification stages; the computational efficiency at higher levels; the efficient encoding schemes with low-complexity arithmetic operations; and increased accuracy as features are extracted deeper into the network. Despite these advantages, current ResNets are computationally very expensive. While modern GPUs can perform over one hundred million operations per second (Giga ops), a commonly used architecture of a fully connected layer with ten million weights takes more than two hours to train. This is why the authors in [9] propose to replace some fully connected layers by stochastic pooling layers and to reduce the filter size from 5 × 5 to 3 × 3.</p>
+    <p>In summary, deep residual learning for image recognition has been shown to be an effective method for image classification tasks. However, similar architectures have not yet been explored for other computer vision tasks such as semantic segmentation or object detection. There are several open problems that need further exploration when doing so, including computational efficiency at higher levels and training stability; adding skip connections; network depth versus complexity; biasing nonlinearities during training; and input preprocessing issues such as batch normalization.</p>
+  </section>
+
+  <section>
+    <h2>3. What Is Image Recognition?</h2>
+    <p>Image recognition is a field of computer vision that deals with the identification and classification of objects in digital images. It is a subset of machine learning, which is a branch of artificial intelligence that deals with the design and development of algorithms that can learn from and make predictions on data. When you take a picture, it could be an image containing any number of items: dogs, cars, people, etc. The goal of image recognition is to assign categories to each one; so that when you upload an image to your social media feed or search Google Images you will get back information about what is in it and find out where else you might find them.</p>
+    <p>Image recognition is a problem within computer vision which refers to automatically detecting and understanding a wide range of objects in images. Computer vision can be seen as an artificial version of human sight or photography. The first step is usually to convert an image into numbers that computers understand: an image contains hundreds of thousands (if not millions) of colors made up of red, green and blue (RGB) [13]. These colors are turned into data points which form vectors; to reduce the resulting vector size, linear or non-linear classifiers are used to build a predictive model able to classify new inputs.</p>
+    <p>Currently, most deep neural networks include residual connections that help propagate local gradients through many layers of nonlinear hidden units without exploding gradients. The future of deep residual learning is promising and worthy of further exploration.</p>
+  </section>
+
+  <section>
+    <h2>4. Deep Residual Learning for Image Recognition</h2>
+    <p>This section surveys applications of deep residual learning: image steganalysis [4.1], where deep residual networks learn local patch features to detect data hidden in images through three stages (pre-processing, feature extraction, classification); image compression [4.2], where Rathgeb et al. in [15] studied compression effects on deep learning accuracy and found training datasets can shrink by up to 90% without significant accuracy loss, noting arithmetic coding may improve over Huffman by avoiding rounding errors. Human vision was compared with machine vision algorithms — humans perform better at recognition, localization and segmentation, while machine vision wins at detection and pose estimation at lower computational cost; and semantic segmentation was studied for medicine, self-driving cars, and surveillance in [16].</p>
+    <p>In image restoration [4.3] — removing uniform blur — deep networks trained to maximize generalization solve the task remarkably well, and Deep Residual Learning (DRL) with Riemannian geometry achieves optimal sparse approximation; [18] showed it effectively removes noise and improves restoration, classification, object detection [19], scene recognition, retrieval [20] and video captioning models, as an excellent alternative to traditional DNNs without compromising throughput or energy efficiency [21, 22]. In sensing CT reconstruction [4.4], the Deep Residual Discriminator [23, 24] helps radiologists classify detections in CT images [25], cutting scan and reporting time; studies showed gains over ImageNet baselines with modifications beating dropout and batch normalization, while noting many layers slow computation [26, 27].</p>
+    <p>In hyperparameter optimization [4.5], key factors are network depth (deeper learns more complex features; shallower trains faster with less memory), width (neurons per layer), and learning rate (higher learns faster but risks overfitting) — with attempts at intelligent search initialization using linear classifiers such as SVMs or k-nearest neighbors [28]. In very deep convolutional networks [4.6], very deep CNNs [29, 30] achieved unparalleled accuracy, and the deep recursive residual network (DRRN) [31] was proposed for super-resolution in three stages (downsizing, upsampling, reconstruction), facing multi-resolution dataset challenges that call for ResNet-like multi-block architectures.</p>
+    <p>In FPGA acceleration [4.7], ResNets have become state of the art [35], but training and deployment are costly; FPGAs [36] offer parallelism and energy efficiency as an attractive acceleration platform, with systematic CPU-vs-GPU training comparisons. In ResNet models [4.8], introduced by Microsoft researchers in 2015 [1] within CNNs [37], world records were set on ImageNet, ILSVRC, COCO and PASCAL VOC at the cost of billions of parameters, with GPUs and frameworks such as CUDA [38, 39] and Intel IPP gradually lowering costs despite scaling challenges [34, 40]. Other applications include the shrinkage network [4.9] with depthwise convolution, max pooling and subsampling layers [44–48]; tomography [4.10] with segmentation, unsupervised pre-training and near-99% vehicle classification accuracy [50–53]; hybrid deep learning [4.11] combining CNNs and RNNs and overcoming traditional and reinforcement learning limits [54–57]; deep learning architectures [4.12] such as SqueezeNet [61], CheckerboardNet [62] and hybrid stacks; deep learning systems [4.13] with activation, memory, augmentation and large-scale pre-training improvements [63]; persistent homology analysis [4.14] toward understanding deep networks as black boxes [64]; and pest identification [4.15] with improved accuracy at little speed cost via dilated convolutions and weight sharing [65].</p>
+  </section>
+
+  <section>
+    <h2>5. Image Recognition</h2>
+    <p>This section reviews image recognition from seven angles: technology [5.1], where deep residual learning [67] is state of the art for training very deep networks, with max-pooling layers cutting complexity, batch normalization with biases [68] countering variance, plus WaveNet and the Langevin dynamics framework (LDN) for probabilistic inputs, and adversarial training to escape poor local optima. Machine learning [5.2], a branch of AI [69] designing algorithms that learn from data [70], where deep residual learning beats traditional methods, with GPU training best practices, code, and examples — tracing back to [71] as an extension of L-BFGS that extracts multi-level abstractions then maps them together.</p>
+    <p>Neural networks [5.3] (DRL), introduced by Microsoft Research in 2015 [1] with convolutional, pooling and skip-connection layers learning multi-level abstractions, later applied to NLP, speech, translation, recommenders and drug discovery, with domain adaptations such as word2vec [72] for knowledge transfer, plus robustness studies on input-size variation, data distribution shift, and imbalanced datasets. Deep learning [5.4] revolutionized the field, with [67] showing ResNet beating prior state of the art by large margins, using regularization such as weight decay (WD) [77], dropout and l2, online vs. batch gradient descent with momentum, data augmentation for translation/scale/rotation/brightness invariance, and real-world uses from video processing to pedestrian detection [78] and traffic-sign detection.</p>
+    <p>Systems [5.5] learn pixel patterns for objects (cat, car) and improve iteratively from mistakes; advantages include handling repetitive tasks without human supervision, tolerating noisy images, training from scratch or old models without retraining, and adversarial robustness — against the drawback of high computational cost. Methods [5.6], studied in [79], show ResNet beating even much deeper models, trainable with standard techniques insensitive to hyperparameters, and suited to detection and segmentation, with prospects in multi-task models and transfer learning [80]. Algorithms [5.7] divide into ResNets and DIMs (differentiable image models with variational autoencoders), evaluated on IFAR-10, MNIST, SVHN, Fashion-MNIST and ILSVRC2012 [81], with applications beyond vision such as video games and augmented reality.</p>
+  </section>
+
+  <section>
+    <h2>6. Advantages of DRN over Other Models</h2>
+    <p>Deep residual learning has quickly become the go-to method for image recognition tasks because it offers a number of advantages over other models: (1) ease of training — deep residual networks are easier to train due to their simple structure and short inter-layer connections; (2) better performance — shown to outperform other models on a variety of image recognition tasks; (3) reduced need for data — able to learn from smaller datasets via lower-dimensional feature representations; (4) increased robustness — more robust to changes in data distribution and model parameters; (5) lower computational requirements; (6) applications beyond image recognition — being computationally cheap, DRNs are applied to NLP and audio processing. These properties make deep residual networks an attractive choice for building an image recognition system.</p>
+    <p>There are, however, disadvantages to consider: (1) higher memory requirements — typically consuming more space during training though less at runtime; (2) slower convergence time, which may limit some computer vision tasks; (3) additional work needed to account for gradient noise, since deep residual networks rely on backpropagation through time (BPTT); (4) training still needs careful parameter tuning despite all these benefits.</p>
+  </section>
+
+  <section>
+    <h2>7. Current Research Trends in Deep Residual Networks</h2>
+    <p>Deep residual networks (ResNets) have been shown to be very effective in image recognition tasks, and interest has recently surged in using them for other vision tasks such as object detection and semantic segmentation. This survey covers current state-of-the-art deep residual learning methods for image recognition, discussing each method's advantages and disadvantages with insights into future directions. All work presented here concerns image classification, aiming to overview widely used deep residual learning techniques for that task [83]. To capture recent progress, we restrict ourselves to contributions published after 2010, when AlexNet was introduced.</p>
+    <p>We begin with the phenomenon of model stacking, a key idea behind many recent ImageNet classification gains. Recent studies show promising results on neural machine translation [84] and speech recognition through representation compression with pre-trained language models or visual representations from large datasets like ImageNet or COCO. A key question is whether the successful supervised pre-training paradigm can generalize to semi-supervised or unsupervised regimes with no labeled data at all. A natural extension would use unlabeled data not just for feature extraction but as a supervision source during training, where active exploration of unlabeled data could enable more efficient supervised training.</p>
+  </section>
+
+  <section>
+    <h2>8. Traditional Deep Learning Methods</h2>
+    <p>Deep residual learning is a new approach to image recognition shown to outperform traditional methods, using deep neural networks to learn robust features — e.g. to lighting or background changes. This section reviews three papers on deep residual learning versus traditional approaches: first, Inceptionism (Going Deeper into Neural Networks) by the Google Brain team, whose Inception network learns image representations by composing many layers of convolutional and deconvolutional feature detectors, with unsupervised pre-training avoiding laborious human annotation; second, Training Very Deep Convolutional Networks, training CNNs with 100–300 filters per layer and two to three hidden layers without manual feature engineering beyond simple rotations and translations.</p>
+    <p>Third, Joint 3D Facial Landmark Detection and Alignment, a joint framework detecting facial landmarks in a video frame, aligning them across frames, applying 3D depth estimation for per-frame depth maps from relative landmark positions, then fusing these maps as classifier inputs with high accuracy at greatly reduced computational cost. In summary, the three reviewed papers each carry distinct advantages over traditional deep learning methods without the same drawbacks.</p>
+    <h3>8.1. Residual Learning Framework and Residual Block Design</h3>
+    <p>Deep residual learning is a framework for training very deep neural networks, first proposed in 2015 in [1]. The key idea is shortcut or skip connections letting the network learn residual functions of the form F(x) + x, where F(x) is a learnable transformation. Another scheme, residual block design introduced in 2016 by Tai et al., implements only certain layers on top of others as part of an input-to-output mapping. Its downside is higher memory and compute cost from retaining all intermediate activations. In both schemes recurrent connections avoid vanishing gradients, and training uses stochastic gradient descent over mini-batches with weight decay.</p>
+    <h3>8.2. ResNet Architecture</h3>
+    <p>Deep residual learning is a neural network architecture allowing very deep networks — typically tens or hundreds of layers — versus the traditional shallower approach. Deeper networks learn increasingly abstract features and perform better, but very deep training was historically hard due to vanishing gradients; ResNet addresses this with skip connections easing gradient flow. ResNets have since succeeded on the hardest vision problems such as image recognition, with two major advantages: no separate preprocessing before the CNN learns, and surprisingly good performance without architectural changes. The standard approach has been successfully extended to AlexNet [88], GoogLeNet [88], VGGNet [89], ResNeXt [90], Xception [46], and other popular recognition models, following early attempts such as CaffeNet [87].</p>
+  </section>
+
+  <section>
+    <h2>9. Basic Building Blocks of Residual Network</h2>
+    <p>A Residual Network, or ResNet, is a deep learning neural network built on the principle of residual learning. The author in [35] studied adding short-cut connections to CNNs and could thereby train much deeper networks without vanishing gradients. The basic building block (Figures 10 and 11) has two 3 × 3 convolutional layers, each followed by batch normalization and ReLU, with a short-cut (identity) connection between them. This enables very deep training without vanishing gradients, at the cost of extra computation — a cost dwarfed by accuracy gains. A later study showed batch normalization after the first three convolutional layers significantly improves performance and allows even deeper models with fewer complications.</p>
+    <p>Residual networks have succeeded on many image recognition tasks including classification, with recent research focused on improving them for object detection. Multilayer residual networks (deep feedforward nets) were started by Professor Geoffrey Hinton at Google in 2006, evolving into larger multi-stage architectures outperforming shallow nets, where later layers see inputs derived from earlier ones.</p>
+    <h3>9.1. Bottleneck Residual Unit</h3>
+    <p>The bottleneck residual unit [91] is a CNN type designed specifically for image recognition, with three layers: 1 × 1 convolution, 3 × 3 convolution, and 1 × 1 convolution. The first reduces input dimensionality, the second learns features, and the third restores dimensionality — i.e. compression followed by decompression of images. This converges faster than traditional CNNs but introduces severe overfitting from increased complexity. The author of [51] studied deep networks for medical imaging such as retinal vessel segmentation from fundus images or OCT angiography segmentation, showing how models assist human experts by reducing manual analysis workload — e.g. detecting cataracts from eye CT scans that would otherwise go unnoticed [92] with a vision algorithm trained on manually labeled scans. For generalization across vastly different images without overfitting, raising training noise via small random per-pixel perturbations improved generalization and test-time speed.</p>
+    <h3>9.2. Model Variations of Bottleneck Residuals</h3>
+    <p>In 2015 the author in [1] studied the first successful deep residual learning model and found that a bottleneck (a layer with fewer neurons than its neighbors) improved training. Since then many bottleneck-residual variations were proposed: wide bottlenecks [2] with more bottleneck neurons; dense bottlenecks [3] connecting every input neuron to every bottleneck neuron; and shake-shake bottlenecks [4] randomly choosing between two bottleneck configurations each iteration. All improved image recognition performance, but only dense bottlenecks beat sparse priors: after evaluating 16 state-of-the-art methods from 2012 to 2017 and concluding none beat a sparse 2012 benchmark, a contextual sparse priors (CSP) strategy was introduced, replacing batch- and item-level sparsity with contextual sparsity learned from recent observations within neighborhoods — achieving far better ImageNet classification results without input/output information beyond raw pixels, without architectural constraints, without expensive inference compute, and combinable with architectures such as self-attention for similar accuracy at higher compression.</p>
+  </section>
+
+  <section>
+    <h2>10. Reduction in Depth and Width</h2>
+    <p>The authors [1] studied the effects of reducing depth and width on deep residual learning for image recognition: depth reduction decreased performance while width reduction had no significant effect. Skip connections were found to be the best way to reduce depth, helping the network learn better representations and improving CIFAR-10 accuracy from 74% to 80%. Fewer layers can thus generalize better, enabling smaller networks with fewer parameters — improvements also seen training CNNs on natural images and audio spectrograms (classification rates from 68% to 79%). Unlike prior research, the approach works with or without skipping. The model outperformed traditional LSTMs by exploiting spectral properties more easily, since LSTMs lack high-level processing while CNNs handle complex multi-scale spatial-temporal patterns better. Optimization methods such as SGD with momentum achieved state-of-the-art CIFAR-10 performance, surpassing RNNs, provided two success factors hold: many intermediate-feature variations per training step, and fast computation to avoid gradient accumulation.</p>
+    <p>The reasoning is that backpropagation through many diverse intermediate features lets information about all inputs flow backward even after many subsequent layers. To that end, fast linear convolutions were introduced into modern CNN architectures, speeding error-gradient backpropagation by an order of magnitude without changing the learned structure: CNNs still comprise forward-looking and backward-looking neuron sets, transforming input sequences into a fixed-length bottleneck-layer representation.</p>
+    <h3>10.1. Spatial Dimension Reduction</h3>
+    <p>Studies of spatial dimension reduction showed lower-dimensional spaces improve accuracy while reducing training time, and higher-dimensional spaces improve accuracy further at the cost of more training time; the best approach combines both. CNNs with hierarchical fusion algorithms and variational autoencoders (VAEs) yield better accuracy at lower complexity than CNNs alone. The authors [33] proposed a two-component framework (two-stage network design plus data augmentation), finding no significant difference among augmentation variants — hence the advice to keep things simple by adding augmentation information before the first fully connected layer or combining variation types before/after each encoding/decoding stage — and showing pre-trained-weight VAEs (pre-trained outside DNN training, since VAEs are fragile to missing weights) improve CIFAR-10 and STL performance without doubling vanilla-NN parameter counts.</p>
+    <h3>10.2. Depth Reduction</h3>
+    <p>In 2015 the author of [1] studied depth versus accuracy and found shallower networks generally worse, but with diminishing returns beyond a certain depth. In 2016 the authors in [2] used this idea to create the ResNet: many layers (usually over 100), each learning only a small residual between its output and input, enabling very deep training without vanishing gradients. Previously residual networks had just one hidden layer, but when trained to predict weights from labels they can end up reproducing label patterns rather than predicting weights well — yielding inaccurate predictions when patterns are too salient. The author therefore proposed two-hidden-layer residual networks (one many-node, one few-node) with connections periodically cut so the network predicts properly from other inputs instead of mimicking prior outputs.</p>
+  </section>
+
+  <section>
+    <h2>11. Evaluation Metrics for DRN</h2>
+    <p>The author in [1] studied DRN performance on four image recognition tasks and found DRN significantly outperformed prior state of the art on all four. The authors also proposed a new DRN evaluation metric, the Top-1 error, arguing it measures performance more accurately than traditional accuracy: DRN achieved only 3.56% top-1 error on ImageNet versus 4.82% for the previous state of the art, 9.8% top-5 error versus 17.2%, and 0.927 mean Average Precision versus 0.648. DRN thus beats prior methods on all three metrics: top-1 error, top-5 error, and mean average precision.</p>
+    <p>Researchers evaluate models with accuracy or precision/recall, but these mislead when applied blindly: two models at 99% accuracy may differ in that one recognizes every photo correctly while the other returns no false positives but misses half the photos it should catch — wrongly crowning the second! Top-1 and top-5 errors compare better because false negatives weigh more heavily than false positives. One advantage of top-1 error over traditional accuracy is side-by-side comparison of algorithms on equal footing.</p>
+  </section>
+
+  <section>
+    <h2>12. Datasets for Deep Residual Learning</h2>
+    <p>Deep residual learning is a powerful tool for improving machine learning model performance. This section discusses the datasets used to train deep residual networks, the most common being: the CIFAR-10 dataset [44, 93] — among the most widely used for image recognition with 60,000 training and 10,000 test images in 10 categories (airplanes, automobiles, birds, cats, etc.) at 32 × 32 pixels with values 0–255, a subset of CIFAR-100 with 60,000 32 × 32 color images in 10 classes. Images are organized into a 50,000-image train set for training and a 10,000-image test set for evaluating new-data performance, usable for training ResNet, DenseNet and similar models.</p>
+    <p>ImageNet [94] is the de facto computer vision research standard used in many state-of-the-art systems: over 15 million images in 1000 categories across 20,000 subcategories. Its first level holds 1000 categories further divided into 10,000 subcategories (the ImageNet Large Scale Visual Recognition Challenge); the popular recognition split contains 1 million training and 200k test images in 1000 categories (butterfly, turtle, etc.) at 216 × 216 pixels with values 0–255.</p>
+  </section>
+
+  <section>
+    <h2>13. Recommendations &amp; Challenges in Deep Residual Learning for Image Recognition</h2>
+    <p>The following are open challenges in deep residual learning for image recognition: the error signal between a deep network's input and output is too weak to train it — overcome by residual networks computing a residual signal in extra layers alongside the standard forward pass. DRL generally has two stages: reconstruction, where an autoencoder reconstructs the input image with a sparse code preserving salient per-layer features; and refinement, enhancing the reconstruction with an attention model. For large-scale problems we must shrink parameter counts to fit memory and train networks to generalize across images without overfitting particular examples. Although applied to image recognition, speech recognition and NLP, training deep residual networks is far from trivial.</p>
+    <p>Further challenges include: handling large-scale feature maps — residual blocks learn intermediate-layer representations needing large enough maps, while traditional small-kernel (3 × 3) CNN upper layers overfit from insufficient generalization capacity. Batch normalization matters but needs care; an open-source parallel-computing software library is needed; novel datasets should cover more object categories with metadata, not just pixels; automatic human-free data analysis is needed for scalability and accuracy; and future work should study which neural architecture suits specific tasks such as semantic segmentation.</p>
+  </section>
+
+  <section>
+    <h2>14. Conclusions</h2>
+    <p>In the past few years, deep neural networks (DNNs) have been widely used in image recognition and related applications such as video processing and speech recognition. However, some issues still need addressing before they apply to more complex problems. In this paper, we presented a comprehensive survey of deep residual learning for image recognition. We first reviewed deep residual learning and its image recognition applications, then presented several successful applications including image classification, object detection and semantic segmentation. Finally, we discussed issues still needing resolution before deep residual learning applies to more complex problems.</p>
+    <p>To improve DRL performance we suggest: 1. add more neuron layers to the network. 2. increase the number of filters in each layer for a better model. 3. increase hidden layers and per-layer neuron counts. 4. add more data from diverse images and videos so the model trains on more data, easing learning of new images/videos and improving predictions.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] K. He, X. Zhang, S. Ren, J. Sun, "Deep Residual Learning for Image Recognition," in <em>Proc. IEEE CVPR</em>, 2016.</li>
+      <li>[9] S. Ioffe, C. Szegedy, "Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift," in <em>Proc. ICML</em>, 2015.</li>
+      <li>[13] R. Szeliski, <em>Computer Vision: Algorithms and Applications</em>, Springer, 2010.</li>
+      <li>[15] C. Rathgeb et al., "Effects of image compression on face recognition," <em>IET Biom.</em>, 2020.</li>
+      <li>[31] Y. Tai, J. Yang, X. Liu, "Image Super-Resolution via Deep Recursive Residual Network," in <em>Proc. IEEE CVPR</em>, 2017.</li>
+      <li>[35] K. He et al., ResNet model zoo, ImageNet Large Scale Visual Recognition Challenge, 2015.</li>
+      <li>[36] C. Zhang et al., "Optimizing FPGA-based Accelerator Design for Deep Convolutional Neural Networks," in <em>Proc. ACM/SIGDA FPGA</em>, 2015.</li>
+      <li>[46] F. Chollet, "Xception: Deep Learning with Depthwise Separable Convolutions," in <em>Proc. IEEE CVPR</em>, 2017.</li>
+      <li>[64] G. Carlsson et al., "Topological methods for the analysis of high dimensional data sets and 3D object recognition," in <em>Proc. Eurographics SPBG</em>, 2007.</li>
+      <li>[65] M. A. Khan et al., deep residual learning for pest identification studies.</li>
+      <li>[72] T. Mikolov et al., "Efficient Estimation of Word Representations in Vector Space," <em>arXiv:1301.3781</em>, 2013.</li>
+      <li>[77] A. Krogh, J. A. Hertz, "A Simple Weight Decay Can Improve Generalization," in <em>Proc. NeurIPS</em>, 1991.</li>
+      <li>[78] P. Dollar et al., "Pedestrian Detection: An Evaluation of the State of the Art," <em>IEEE Trans. Pattern Anal. Mach. Intell.</em>, 2012.</li>
+      <li>[87] Y. Jia et al., "Caffe: Convolutional Architecture for Fast Feature Embedding," in <em>Proc. ACM MM</em>, 2014.</li>
+      <li>[88] A. Krizhevsky, I. Sutskever, G. E. Hinton, "ImageNet Classification with Deep Convolutional Neural Networks," in <em>Proc. NeurIPS</em>, 2012; C. Szegedy et al., "Going Deeper with Convolutions," in <em>Proc. IEEE CVPR</em>, 2015.</li>
+      <li>[89] K. Simonyan, A. Zisserman, "Very Deep Convolutional Networks for Large-Scale Image Recognition," <em>arXiv:1409.1556</em>, 2014.</li>
+      <li>[90] S. Xie, R. Girshick, P. Dollar, Z. Tu, K. He, "Aggregated Residual Transformations for Deep Neural Networks," in <em>Proc. IEEE CVPR</em>, 2017.</li>
+      <li>[91] S. Zagoruyko, N. Komodakis, "Wide Residual Networks," in <em>Proc. BMVC</em>, 2016.</li>
+      <li>[93] A. Krizhevsky, G. Hinton, "Learning Multiple Layers of Features from Tiny Images," Univ. of Toronto, 2009.</li>
+      <li>[94] J. Deng et al., "ImageNet: A Large-Scale Hierarchical Image Database," in <em>Proc. IEEE CVPR</em>, 2009.</li>
+      <li>... [full reference list of 95 references available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app12188972">10.3390/app12188972</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

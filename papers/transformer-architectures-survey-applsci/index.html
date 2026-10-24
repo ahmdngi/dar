@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسح تاريخي لتطور بنى المحولات — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Historical Survey of Advances in Transformer Architectures</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مسح تاريخي لتطور بنى المحولات</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ali Reza Sajun, Imran Zualkernan, Donthi Sankalpa</span>
+    <span>📄 Appl. Sci. 2024, 14, 4316</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app14104316">10.3390/app14104316</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>برزت نماذج التعلم العميق القائمة على المحولات (Transformer) في الآونة الأخيرة في مجال تعلم الآلة لمهام متنوعة مثل الرؤية الحاسوبية وتوليد النصوص. ومع هذا الاهتمام المتزايد، أصبح من الضروري إلقاء نظرة تاريخية على تطور هذه النماذج وتقدمها السريع لفهم صعود هذه البنية المحورية. يقدم هذا البحث مسحًا للأعمال المحورية المتعلقة بالتطور المبكر للمحولات وتطبيقاتها في مجالات متنوعة مثل التعلم العميق التوليدي وكأعمدة فقارية للنماذج اللغوية الكبيرة. صُنفت الأعمال السابقة وفق مناهجها التاريخية، ثم عُرضت الأعمال المحورية في تطبيقات النصوص والصور والتطبيقات المتنوعة الأخرى. كما يُقدم تحليل كمي ونوعي للمناهج المختلفة، وتُ ناقَش الاتجاهات الحديثة لبحوث المحولات مثل المجالين الطبي والسلاسل الزمنية. وأخيرًا، حُددت فرص بحثية مستقبلية، لا سيما فيما يتعلق بتعدد الوسائط وتحسين عملية تدريب المحولات.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>منذ تقديم نموذج المحولات في يونيو 2017 على يد Vaswani وآخرين [1]، شهد عالم التعلم العميق تبنيًا سريعًا لهذا النموذج لدفع حدود الأداء في عدد من المهام الصعبة سابقًا. وبفضل براعته في نمذجة التسلسلات والترجمة الآلية، طُبقت بنية المحولات على نطاق واسع وأصبحت نموذج التعلم العميق السائد لمهام معالجة اللغة الطبيعية (NLP) والتعلم العميق التوليدي [2]. وكان لتقديم المحولات دور محوري في تطوير النماذج اللغوية الكبيرة مثل GPT-3 وGPT-4 التي تقوم عليها أدوات ذات أثر ثقافي مثل ChatGPT [3].</p>
+    <p>ومستلهمًا من آلية الانتباه الذاتي الثورية في المحولات، طُبقت هذه البنية لاحقًا في مجالات تطبيقية متنوعة مثل الصور والصوت وبيانات السلاسل الزمنية [4]. بل إن المحولات رُشحت مؤخرًا لتكون بديلًا محتملًا للشبكات العصبية الالتفافية (CNN) في تطبيقات الرؤية [5]، مع فتح نموذج محول الرؤية (ViT) مجالًا جديدًا للبنى المبنية عليه. ونظرًا للزيادة السريعة في الاهتمام ببنية المحولات، بات من المهم دراسة بنية المحولات بالتفصيل وتقدمها التاريخي من كونها بديلًا لبنى شبيهة بالشبكات المتكررة للربط تسلسل-بتسلسل إلى كونها من أكثر البنى تأثيرًا في التعلم العميق المعاصر.</p>
+    <p>قبل تقديم المحولات، كان الأداء القياسي في نمذجة التسلسلات حكرًا على شبكات الذاكرة الطويلة قصيرة المدى (LSTM) [6] وأشكال أخرى من الشبكات العصبية المتكررة (RNN) [7]، خاصة لمشكلات التحويل مثل نمذجة اللغة والترجمة الآلية بفضل تكراريتها التي تسمح بأخذ المعلومات الحديثة في الحسبان. غير أن هذه النماذج عانت من صعوبة التوازي وتلاشي التدرجات عبر التسلسلات الطويلة، وهي قيود عالجتها المحولات عبر التخلي الكامل عن التكرار لصالح الانتباه الذاتي.</p>
+  </section>
+
+  <section>
+    <h2>1.1. المحولات</h2>
+    <p>لدراسة أسباب نجاح نموذج المحولات بعمق، لا بد من فحص بنية الحل المقترح من Vaswani وآخرين [1] وعمله بالتفصيل. فعلى عكس نماذج التحويل التسلسلي المقترحة سابقًا مثل [11] و[12]، تحافظ المحولات على بنية المشفّر–مفكّك الشفرة، لكنها تتخلى عن عنصري التكرار والالتفاف. وقد أمكن ذلك بفضل آلية الانتباه متعدد الرؤوس الجديدة إلى جانب شبكات التغذية الأمامية النقطية المتأصلة في النموذج.</p>
+    <p>يتألف المشفّر من طبقات مكدسة، كل منها تحتوي على انتباه ذاتي متعدد الرؤوس يليه شبكة تغذية أمامية، مع وصلات متبقية وتطبيع طبقي حول كل وحدة. أما مفكّك الشفرة فيضيف طبقة انتباه بين المشفّر ومفكّك الشفرة تسمح له بالتركيز على مواضع الإدخال ذات الصلة. وتُناقَش مختلف الكتل المساهمة في هذه البنية بالتفصيل في الأقسام التالية.</p>
+  </section>
+
+  <section>
+    <h2>1.2. الانتباه الذاتي</h2>
+    <p>المكوّن الأول والأهم في بنية المحولات هو آلية الانتباه الذاتي التي تسمح للنموذج بتعلم العلاقات بين عناصر التسلسل [13]. ففي سياق نموذج لغوي مثل BERT، تعني هذه الآلية أنه في جملة مثل «ضفة النهر تفيض»، يستخدم النموذج الانتباه الذاتي ليستنتج أن «الضفة» هنا تعني جانب النهر لا مؤسسة مالية. وتتكون مدخلات هذه الطبقة في المشفّر من الاستعلامات والمفاتيح، وتُطبق دالة الانتباه وفق المعادلة (1): ‏Attention(Q, K, V) = softmax(QK^T / √dk)V، حيث Q مصفوفة الاستعلامات وK مصفوفة المفاتيح وV مصفوفة القيم.</p>
+    <p>يُحسب أولًا الجداء النقطي بين الاستعلام والمفتاح لتكوين الدرجات S = QK^T التي تحدد مقدار الانتباه الموجَّه للكلمات الأخرى عند ترميز الكلمة في الموضع الحالي. ثم تُطبَّع هذه الدرجات لضمان استقرار التدرج وتحسين التدريب، ثم تُمرَّر عبر دالة softmax لتحويلها إلى احتمالات تُطبَّق على مصفوفة القيم، فتحظى المتجهات ذات الاحتمالات الأكبر بتركيز أكبر من الطبقات اللاحقة [5].</p>
+    <p>تستخدم المحولات نظام انتباه متعدد الرؤوس تُسقَط فيه الاستعلامات والمفاتيح والقيم الأصلية على H مجموعات مختلفة من الإسقاطات المتعلَّمة، وتُطبَّق معادلة الانتباه من (1) على كل إسقاط، ثم تُدمَج المخرجات عبر الرؤوس H لتكوين مخرج الانتباه متعدد الرؤوس وفق الصياغة في المعادلة (2). يسمح هذا التصميم للنموذج بالتركيز المتزامن على جوانب تمثيلية مختلفة للمواضع المختلفة.</p>
+  </section>
+
+  <section>
+    <h2>1.3. شبكات التغذية الأمامية</h2>
+    <p>من المكونات المهمة الأخرى في عمل المحولات شبكة التغذية الأمامية التي تُطبَّق بعد طبقات الانتباه الذاتي في المشفّر ومفكّك الشفرة. تتكون هذه الشبكة من تحويلين خطيين ودالة تنشيط ReLU غير خطية تُطبَّق على كل موضع على حدة وبشكل متطابق. يضمن ذلك المعاملة نفسها لجميع المواضع في الإدخال، أي أن الرمز يُعالَج بمعزل، مما يسمح للنموذج بتعلم التحويلات المعقدة للبيانات عند كل موضع.</p>
+    <p>وبالعودة إلى مثال «الضفة»، فإن الانتباه الذاتي يساعد على إعطاء السياق وتمييز أنها ليست مؤسسة مالية، بينما تلتقط شبكة التغذية الأمامية الفروق الدقيقة — مثل كون الضفة زلقة لقربها من الماء — بإضافة طبقات من التجريد والتعقيد إلى التضمينات. وصياغة هذه الشبكة موضحة في المعادلة (3): ‏FFN(x) = max(0, xW₁ + b₁)W₂ + b₂.</p>
+  </section>
+
+  <section>
+    <h2>1.4. الوصلات المتبقية</h2>
+    <p>تطبّق المحولات أيضًا الوصلات المتبقية [15] حول كل وحدة، متبوعة بالتطبيع الطبقي [16] الذي يطبّق التطبيع طبقةً بطبقة. يساعد ذلك على التخفيف من مشكلة تلاشي التدرج بالسماح للتدرجات بالتدفق مباشرة متجاوزةً عدة طبقات. ويمكن تمثيل كل كتلة محولات بالصياغة في المعادلة (4)، حيث يُجمَع مخرج الانتباه الذاتي مع الدخل جمعًا عنصريًا (المؤثر '+' يشير إلى الجمع العنصري) ثم يُطبَّق التطبيع قبل شبكة التغذية الأمامية.</p>
+    <p>تعزز هذه الوصلة المتبقية تدفق البيانات بإعادة تمرير المعلومات إلى الأمام، مما يحسّن أداء النموذج. وفي سياق مثال «الضفة»، تضمن هذه الوصلات عدم ضياع الخصائص الأساسية للكلمة في أعماق طبقات النموذج.</p>
+  </section>
+
+  <section>
+    <h2>1.5. ترميزات المواضع</h2>
+    <p>بما أن عملية الانتباه الذاتي تتخلى عن الطريقة التسلسلية التي تعالج بها RNN وLSTM تضمينات الإدخال، وتعامل جميع المدخلات بشكل متزامن ومتطابق، فإن طبقة الانتباه الذاتي لا تستطيع مراعاة موضع الكلمات في الجملة. ولأن الكلمات متسلسلة بطبيعتها، يلزم وجود آلية تحافظ على مواضع الكلمات ضمن المعلومات المرمَّزة، ولذلك يستخدم نموذج المحولات ترميزات المواضع التي تُضاف إلى تضمين الإدخال.</p>
+    <p>صياغة هذه التضمينات المضافة موضحة في المعادلة (5) بدالتي الجيب وجيب التمام: ‏PE(pos,2i) = sin(pos/10000^(2i/d_model)) وPE(pos,2i+1) = cos(pos/10000^(2i/d_model))، حيث pos موضع الكلمة وd_model البُعد وi البُعد الحالي لترميز الموضع. يتوافق كل عنصر من عناصر الترميز مع دالة جيبية، مما يسمح للنموذج بتعلم الانتباه بناءً على المواضع النسبية أيضًا، وبالتالي الاستقراء لتسلسلات أطول. وقد كانت هذه الترميزات محورًا للأبحاث اللاحقة التي استهدفت تحسين عملية التعلم، باقتراح تعديلات مثل عملية تعلُّم للترميزات [17، 18] أو صيغة نسبية لترميز المواضع [19].</p>
+  </section>
+
+  <section>
+    <h2>2. منهجية المسح</h2>
+    <p>أُجري البحث عن مصادر هذا العمل باتباع قائمة PRISMA المرجعية [20]. حُددت الأعمال المؤثرة المراد إدراجها في المسح عبر البحث في قواعد البيانات الإلكترونية ومسح قوائم المراجع ضمن الأوراق الرئيسية. طُبق البحث أساسًا على Google Scholar وOpenAI وPapers with Code وarXiv، إذ تبيّن أن غالبية أعمال المحولات تُنشر عبر arXiv. وبما أن المسح تاريخي الطابع، لم يُقيَّد البحث بسنة، لكن تبيّن أن الأعمال موجودة فقط من عام 2017 حتى الحاضر، وكان آخر بحث عن المصادر في 29 سبتمبر 2023.</p>
+    <p>استُخدمت مصطلحات البحث التالية في جميع قواعد البيانات المذكورة: Transformers وState-of-The-Art Transformers وKey Transformer Architectures وTransformer Deep Learning وTransformer Vision وTransformer NLP وBERT. رُشحت الأعمال أولًا وفق معامل التأثير وعدد الاستشهادات، ثم رُشحت further وفق فائدتها لموضوع المسح. أُنشئ جدول بيانات Excel لاستخراج البيانات بأعمدة: اسم الورقة والمؤلف والتاريخ والنموذج المقترح ومجموعات البيانات والنماذج المقارَن بها والنتائج والملاحظات المحورية، ورُبط عبر رقم مسلسل بمستند Word يضم نقاطًا محورية ملخصة من الأوراق.</p>
+  </section>
+
+  <section>
+    <h2>3.1. التطبيقات المبكرة للمحولات</h2>
+    <p>منذ تقديم نموذج المحولات عام 2017، سعت طائفة واسعة من الأعمال للبناء على بنيته الجديدة لتحسين أدائه في مجالات متنوعة. وقد استُشهد بالعمل المقترِح للنموذج أكثر من 90,500 مرة حتى 29 سبتمبر 2023 وفق Google Scholar [21]. ومن بين آلاف الأعمال اللاحقة، برزت نماذج لافتة دفعت حدود الأداء وأصبحت معايير في حقولها، ويعرض الشكل 3 خطًا زمنيًا لهذه الأعمال مرتبة زمنيًا ومشفرة حسب مجال التطبيق. ومن مجموعات البيانات شائعة الاستخدام للمقارنة: BookCorpus [48] وWMT 2014 [49] وWikipedia [50] وC4 [22] وImageNet [51] وCOCO [52].</p>
+    <p>من الأعمال المبكرة البانية على المحولات عمل Shaw وآخرين [19] الذي وسّع آلية الانتباه الذاتي لمراعاة تمثيلات المواضع النسبية أو المسافات بين عناصر التسلسل بكفاءة، عبر نمذجة الإدخال كرسم بياني مُسمى مكتمل الاتصال، محققًا تحسينات في مهمتي EN-DE وEN-FR مقارنة بالمحولات الأصلية. ومن الأعمال المبكرة ذات الأثر الكبير عمل Radford وآخرين [23] الذي اقترح التوليد المسبق التدريب الشهير (GPT)، والذي أرسى نهج التدريب المسبق غير الخاضع للإشراف ثم الضبط الدقيق حسب المهمة.</p>
+    <p>تلا ذلك نموذج BERT المقترح عام 2018 من Devlin وآخرين [17]، الذي قدّم التدريب المسبق ثنائي الاتجاه العميق عبر نمذجة لغوية مُقنَّعة، محققًا نتائج قياسية في GLUE وSQuAD. ثم جاءت تحسينات مثل RoBERTa [26] بعملية تدريب مسبق محسّنة، وTransformer-XL للتبعيات بعيدة المدى، وXLNet بالترتيب التبادلي، وGPT-2 بتوسيع الحجم، وDistilBERT وALBERT بالضغط والتخفيف، وT5 [22] بتوحيد كل مهام NLP في إطار نص-إلى-نص.</p>
+    <p>وفي مجال الرؤية، قدّم Dosovitskiy وآخرون عام 2020 محول الرؤية (ViT) [32] الذي يجزّئ الصورة إلى رقع ويعالجها كتسلسل، ثم جاء DeiT من Touvron وآخرين [35] بتدريب مُقطَّر فعّال للبيانات. كما ظهرت نماذج خفيفة مثل Lite Transformer [29] لمعالجة التعقيد التربيعي، وأعمال توسعة العمق مثل DeepNet القادر على الوصول إلى 1000 طبقة، ونماذج كفؤة مثل Longformer وReformer وLinformer وPerformer وOPT، وصولًا إلى GPT-3 وGPT-4 واسعتي النطاق.</p>
+  </section>
+
+  <section>
+    <h2>3.2. التطبيقات النصية</h2>
+    <p>أحدثت المحولات ثورة في التطبيقات النصية ومعالجة اللغة الطبيعية عبر حلول متنوعة مثل تصنيف النصوص والإجابة عن الأسئلة وتلخيص النصوص والترجمة الآلية وتوليد النصوص [66]. وكان النموذج السائد الأول هو BERT المقترح عام 2018 من Devlin وآخرين [17]، الذي ما يزال مهمًا حتى اليوم لريادته عند اقتراحه. وقد كان أساسًا لنماذج سائدة أخرى مثل RoBERTa [26] عام 2019 الذي حقق نتائج ممتازة بصيغة معدلة من BERT، وETC [67] عام 2020 الذي أظهر أداءً عاليًا بالبناء على BERT واستخدام أوزان RoBERTa، وBig Bird [68] عام 2021 كصيغة من BERT للتسلسلات الأطول.</p>
+    <p>من التطبيقات اللافتة للمحولات في المجال النصي نموذج TENER [69] المقترح عام 2019 لمهمة التعرف على الكيانات المسماة — أي إيجاد بداية الكيان ونهايته في الجملة وإسناد صنف له. وهو مفيد في تطبيقات مثل توليد الأسئلة [70] واستخراج العلاقات [71] وحل الإشارات المشتركة [72]. يكيّف هذا النموذج مشفّر المحولات لنمذجة الخصائص على مستوى الحروف والكلمات معًا.</p>
+    <p>وبشكل عام، هيمنت منهجية التدريب المسبق ثم الضبط الدقيق على التطبيقات النصية، مع تنوع البنى بين نماذج المشفّر فقط (BERT وعائلته) للفهم، ونماذج مفكّك الشفرة فقط (GPT وعائلته) للتوليد، ونماذج المشفّر–مفكّك الشفرة (T5) للتحويل التسلسلي العام.</p>
+  </section>
+
+  <section>
+    <h2>3.3. التطبيقات الصورية</h2>
+    <p>في مجال التطبيقات الصورية، كان من التطبيقات المبكرة محول الصور المقترح من Parmar وآخرين عام 2018 [73] الذي قيّد الانتباه الذاتي للمحولات بالأحياء المحلية. لكن النموذج المهيمن في مجال الصور هو محول الرؤية المقدم من Dosovitskiy وآخرين عام 2020 [32]. وقد انبثقت أعمال لاحقة عديدة من هذا النموذج، منها عمل Touvron وآخرين [35] الذي تفوق عليه عبر التقطير.</p>
+    <p>ومن الأطر البديلة القائمة على ViT إطار Feature Fusion Vision Transformer (FFVT) المقترح من Wang وآخرين [74] عام 2021، الذي يتبنى عملية توليد الرقع المستخدمة في ViT لكنه يعدّلها لتجنب التداخل. ومن الحلول الحديثة جدًا التي تستخدم المحولات في الرؤية نموذج Unsupervised Semantic Segmentation Transformer (STEGO) المقترح في مارس 2022 من Hamilton وآخرين [75]، الذي يوطّن الفئات الدلالية ذات المعنى ضمن مجموعات الصور دون أي توصيف، عبر دالة خسارة جديدة تشجع الخصائص على تكوين عناقيد مدمجة مع الحفاظ على علاقاتها عبر المجموعات.</p>
+    <p>تُظهر هذه التطورات أن المحولات انتقلت من كونها بنية لغوية خالصة إلى عمود فقري للرؤية الحاسوبية، منافِسةً الشبكات الالتفافية في التصنيف والكشف والتجزئة، مع ميزة التقاط التبعيات بعيدة المدى عبر الصورة كاملة.</p>
+  </section>
+
+  <section>
+    <h2>3.4. تطبيقات متنوعة</h2>
+    <p>بالإضافة إلى المجالين السابقين، تُناقَش مجموعتان متنوعتان من المناهج. الأولى تصنيف الصوت، الذي اقتُرحت له محولات صوتية عدة عبر السنوات. أولها اقتراح Dong وآخرين عام 2018 [76] بفكرة تطبيق كتلة انتباه ثنائية الأبعاد في نموذج المحولات الصوتية. ومن النماذج اللاحقة للتعليق الصوتي محول التعليق الصوتي (TRACKE) المقترح من Koizumi وآخرين [77] عام 2020، الذي يقدّر الكلمات المفتاحية — وهي مجموعة كلمات مطابقة للأحداث/المشاهد الصوتية في الصوت المدخل — ويولّد التعليق بالرجوع إلى الكلمات المقدَّرة لتقليل عدم تحديد اختيار الكلمات. ثم اقتُرح عام 2021 محول المخطط الطيفي الصوتي من Gong وآخرين [78] كنموذج خالص قائم على الانتباه دون التفاف لتصنيف الصوت.</p>
+    <p>أما المجموعة المتنوعة الثانية فهي نمذجة السلاسل الزمنية، التي بدأت بعمل Liu وآخرين عام 2021 [79] بإضافة البوابات إلى المحولات الأصلية في منهج أسموه شبكات المحولات المبوبة. ومن النماذج المقترحة عام 2021 للتنبؤ بالسلاسل الزمنية نموذج Frequency Enhanced Decomposed Transformer (FEDformer) المقترح من Zhou وآخرين [80]. ومن التطبيقات المثيرة للاهتمام للسلاسل الزمنية نموذج TranAD المقترح من Tuli وآخرين عام 2022 لكشف الشذوذ في بيانات السلاسل الزمنية [81]، الذي يستخدم تكييفًا ذاتيًا مشروطًا قائمًا على الدرجة المركزة لاستخراج خصائص متعددة الوسائط قوية، والتدريب الخصومي لاكتساب الاستقرار.</p>
+    <p>تبرهن هذه التطبيقات على مرونة بنية المحولات وقابليتها للنقل عبر الوسائط — من النصوص والصور إلى الصوت والسلاسل الزمنية — مع تعديلات معمارية طفيفة نسبيًا تحافظ على جوهر آلية الانتباه.</p>
+  </section>
+
+  <section>
+    <h2>3.5. الاتجاهات الحديثة</h2>
+    <p>أدت الزيادة الحديثة في أهمية المحولات والأعمال الجارية في استكشاف استخداماتها إلى جعلها أكثر قابلية للتطبيق في تطبيقات العالم الحقيقي. ومن التطبيقات التي شهدت استخدام المحولات بكثافة تحليل الصور الطبية [82]. فرغم أن أعمالًا عديدة استهدفت سابقًا تطبيق خوارزميات الذكاء الاصطناعي لحل قضايا محورية في الطب مثل كشف كوفيد-19 [83] واستخراج وكشف مخطط القلب الكهربائي للجنين [84، 85]، فإن تقديم المحولات للرؤية فتح الباب أمام تقنيات عديدة مثل تخليق الصور/إعادة بنائها والتسجيل والتجزئة والكشف والتشخيص. وكما يناقش Li وآخرون [86]، فإن قدرة المحولات على التقاط التبعيات بعيدة المدى وقابلية توسع الانتباه الذاتي تمكّنان استخداماتها المتنوعة في المجال الطبي.</p>
+    <p>وبالإضافة إلى التصوير الطبي، يناقش Shamshad وآخرون [87] تطبيقات المحولات في استخدامات طبية أخرى مثل توظيف قدرتها على توليد النصوص لتوليد التقارير الطبية واستخدامها في مهام الانحدار مثل التنبؤ بنتائج البقاء. ومع تزايد عمق المحولات وتعقيدها، ركّز عدد من الباحثين على استقرار المحولات العميقة جدًا، ومن هذه المناهج القائمة على التحجيم نموذج DeepNet المقترح من Wang وآخرين [40] الذي يقدم دالة تطبيع جديدة لتعديل الوصلات المتبقية مع عملية تهيئة مشتقة نظريًا، محققًا توسيع المحولات بنجاح حتى 1000 طبقة.</p>
+    <p>كما لوحظ مع اتساع تبني المحولات تركيز متزايد على تطوير نسخ أخف منها لمعالجة كلفة الحوسبة والذاكرة، عبر نماذج فعالة مثل Longformer وReformer وLinformer وPerformer، وعبر التقطير والتكميم والتقليم، مما يمهّد لنشرها على الأجهزة محدودة الموارد. ويُبرز القسم التالي النتائج المحصلة من هذه النماذج وتحليلها الكمي والنوعي.</p>
+  </section>
+
+  <section>
+    <h2>4.1. رؤية تاريخية</h2>
+    <p>يلخص الجدول 1 الأعمال التاريخية المناقَشة في القسم السابق. الأعمال ملوَّنة في الخط الزمني: الأعمال الموجهة لمهام النصوص ومعالجة اللغة الطبيعية بالأزرق، والموجهة للمهام الصورية بالبرتقالي. يبدأ الخط الزمني بورقة «Attention Is All You Need» لـ Vaswani وآخرين في يونيو 2017 [1] التي حققت 28.4 BLEU في EN-DE و41.8 BLEU في EN-FR بنموذج المحولات الكبير، مستشهدًا بها أكثر من 90,500 مرة.</p>
+    <p>يليها الانتباه الذاتي بالمواضع النسبية لـ Shaw وآخرين في مارس 2018 [19]، ثم التدريب المسبق التوليدي لـ Radford وآخرين في يونيو 2018 [23]، ثم BERT لـ Devlin وآخرين في أكتوبر 2018 [17] بمتوسط 82.1 في اختبار GLUE لنموذج BERT الكبير ونحو 78,786 استشهادًا. ويُظهر الجدول لكل عمل: النموذج المقترح ومجموعات البيانات والنماذج المقارَن بها والنتائج وعدد الاستشهادات، مما يعطي صورة كمية لمسار التطور.</p>
+    <p>تكشف هذه الرؤية التاريخية عن نمط واضح: بدأت المحولات في الترجمة الآلية، ثم هيمنت على فهم اللغة عبر التدريب المسبق ثنائي الاتجاه، ثم توسعت إلى التوليد واسع النطاق (GPT-2 وGPT-3)، ثم قفزت إلى الرؤية عبر ViT، وأخيرًا إلى الوسائط المتعددة والتطبيقات المتخصصة — مع تسارع وتيرة الاقتراحات سنة بعد سنة.</p>
+  </section>
+
+  <section>
+    <h2>4.2. التطبيقات القائمة على المجال</h2>
+    <p>كما يتبين من أنواع النماذج المستخدمة في هذه التطبيقات، فإن الجانب المهم في تطبيق محولات النصوص هو المشفّر وترميز الإدخال. فالنموذج الأوسع استخدامًا هو BERT [17] الذي يعدّل ترميزات الإدخال لتكون ثنائية الاتجاه، ويبني عليه RoBERTa [26] بإضافة عملية تدريب مسبق محسّنة. ومعظم مناهج حل NLP الأخرى تضمنت تعديلات على ترميزات الإدخال مثل TENER [69] وETC [67] وBig Bird [68]، مما يبرهن على أهمية الترميزات في عملية معالجة اللغة. ويعرض الجدول 2 ملخصًا لدراسات المحولات اللافتة في مجال NLP بنتائجها، مثل F1 بقيمة 94.6 في SQuAD 1.1 لنموذج RoBERTa.</p>
+    <p>وفي مجال الرؤية، دارت التطبيقات حول تكييف تجزئة الرقع واستراتيجيات التدريب (التقطير في DeiT، دمج الخصائص في FFVT، التجميع غير الخاضع للإشراف في STEGO)، بينما ركّزت تطبيقات الصوت والسلاسل الزمنية على تمثيلات الإدخال (المخططات الطيفية، التضمينات الزمنية) وآليات الانتباه المتخصصة (البوابات، التحليل الترددي).</p>
+    <p>يُظهر التحليل الكمي والنوعي أن النجاح عبر المجالات يعود إلى مبدأين مشتركين: التدريب المسبق على نطاق واسع ثم الضبط الدقيق، وقدرة الانتباه الذاتي على نمذجة التبعيات بعيدة المدى أيًا كانت طبيعة الإشارة المدخلة.</p>
+  </section>
+
+  <section>
+    <h2>5. الفجوات والعمل المستقبلي</h2>
+    <p>كما يوضح النقاش السابق، فإن مجال بنى المحولات مجال انفجر بالأعمال الجديدة والقائمة المقترَحة بسرعة منذ منشور Vaswani وآخرين الثوري [1]. ويُبرز الشكل 10 التقدم في البنية وتعقيد نماذج المحولات منذ ذلك الحين عبر تصوير بنى التطبيقات اللافتة بالترتيب. ورغم هذا التقدم السريع، تبقى فجوات معينة في المجال. من أبرز الفجوات في البحوث المعاصرة أن المحولات ذات تعقيد حسابي وذاكري تربيعي عمومًا لوجوب نمذجة تبعيات طويلة اعتباطية [91]. وقد شكّل ذلك عائقًا كبيرًا أمام إتاحة استخدام المحولات، وأدى إلى مسار بحثي واعد يستهدف تبسيط عملية تدريبها [92].</p>
+    <p> وقد قُدّم Lite Transformer [29] لمعالجة هذه المشكلة تحديدًا، وكذلك تطبيقات مثل Longformer [93] وReformer [94] وLinformer [95] وPerformer [96] وOPT [39]. لكن هذه النماذج بداية لفضاء بحثي واسع في تحسين إجراءات تدريب المحولات. وهي قضية ملحة، إذ تستهدف كثير من النماذج القياسية مجرد زيادة حجم النموذج (GPT-4 مثلًا) [97]، مما يجعل استخدامها غير عملي في تطبيقات واقعية كثيرة.</p>
+    <p>ومن القضايا البحثية المثيرة مشكلة دمج جميع الوسائط دون تغيير البنية نحو وسيلة واحدة. ظهرت تطبيقات مبكرة لذلك في نماذج مثل Perceiver [98] الذي يقبل كل أنواع المدخلات لكنه لا يولّد إلا مخرجات ثابتة مثل احتمالات الأصناف، وPerceiver IO المرن في المدخلات والمخرجات لكنه ما يزال يعتمد على خصوصيات الوسائط. ويبقى بناء بنية موحدة حقيقية متعددة الوسائط تحديًا مفتوحًا.</p>
+    <p>ختامًا، يحدد هذا المسح فرصًا بحثية مستقبلية تتمحور حول تعدد الوسائط وتحسين عملية تدريب المحولات: تخفيف التعقيد التربيعي، والتوسع الكفء إلى آلاف الطبقات، والتطبيقات الطبية والزمنية، ودمج الوسائط في بنية واحدة — وهي اتجاهات ستحدد الجيل القادم من نماذج المحولات.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>In recent times, transformer-based deep learning models have risen in prominence in the field of machine learning for a variety of tasks such as computer vision and text generation. Given this increased interest, a historical outlook at the development and rapid progression of transformer-based models becomes imperative in order to gain an understanding of the rise of this key architecture. This paper presents a survey of key works related to the early development and implementation of transformer models in various domains such as generative deep learning and as backbones of large language models. Previous works are classified based on their historical approaches, followed by key works in the domain of text-based applications, image-based applications, and miscellaneous applications. A quantitative and qualitative analysis of the various approaches is presented. Additionally, recent directions of transformer-related research such as those in the biomedical and timeseries domains are discussed. Finally, future research opportunities, especially regarding the multi-modality and optimization of the transformer training process, are identified. Keywords: transformers; deep learning; generative deep learning; large language models; GPT; computer vision.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Ever since the introduction of the transformer model in June 2017 by Vaswani et al. [1], the world of deep learning has seen a rapid adaptation of the model in pushing the state of the art in a number of previously challenging tasks. Due to its prowess in sequence modeling and machine translation, the transformer architecture was initially widely implemented and indeed emerged as the predominant deep learning model for natural language processing (NLP) and generative deep-learning tasks [2]. Indeed, the introduction of transformers has been a key factor in the development of large language models such as GPT-3 and GPT-4, which are the basis of culturally significant tools such as ChatGPT [3].</p>
+    <p>However, inspired by the revolutionary self-attention mechanism in transformers, the architecture has since been implemented in various application domains such as that of images, audio, and time series data [4]. Indeed, in recent times, transformers have been touted as being a potential replacement for Convolutional Neural Networks (CNNs) for vision applications [5], with the introduction of the Vision Transformer (ViT) opening a new realm of architectures which build upon it. Considering the rapid increase in interest in transformer architecture, it becomes pertinent to examine in detail the architecture of the transformer as well as its historical progression from being introduced as an alternative to RNN-like architectures for sequence-to-sequence mapping to being one of the most impactful architectures in the current realm of deep learning.</p>
+    <p>Prior to the introduction of transformers to the deep learning space, the established state of the art in sequence modeling had long been Long Short-Term Memory networks (LSTMs) [6] and other forms of Recurrent Neural Networks (RNNs) [7], which were especially prevalent for transduction problems such as language modeling and machine translation due to their recurrence, which allows recent information to be accounted for. These models, however, suffered from limited parallelizability and vanishing gradients over long sequences — limitations the transformer addressed by abandoning recurrence entirely in favour of self-attention.</p>
+  </section>
+
+  <section>
+    <h2>1.1. Transformers</h2>
+    <p>In order to take a deeper look and investigate the success seen by the transformer model, it is imperative to examine, in detail, the architecture and workings of the solution proposed by Vaswani et al. [1]. Unlike previously proposed sequence transduction models like [11] and [12], transformers maintain the encoder–decoder structure but discard the recurrence and convolution aspects. This is made possible thanks to the novel multi-head attention mechanism proposed in addition to the point-wise feedforward networks ingrained in the transformer model.</p>
+    <p>The encoder consists of stacked layers, each containing multi-head self-attention followed by a feedforward network, with residual connections and layer normalization around each module. The decoder adds an encoder–decoder attention layer that lets it focus on relevant input positions. The following sections describe the various blocks contributing to this architecture in further detail.</p>
+  </section>
+
+  <section>
+    <h2>1.2. Self-Attention</h2>
+    <p>The first and most important component of transformer architecture is the self-attention mechanism which allows the model to learn the relationships between the elements of a sequence [13]. In the context of an LLM such as BERT, this would mean that in a sentence such as "The bank of the river is overflowing", the model would use self-attention to conclude that the "bank" in this case refers to the side of a river as opposed to a financial organization. The inputs to this layer in the encoder consist of queries and keys, and the attention function is applied as in Equation (1): Attention(Q, K, V) = softmax(QK^T / sqrt(d_k))V, where Q is the matrix of queries, K the matrix of keys, and V the matrix of values.</p>
+    <p>The dot product between the query and the key is first computed to form the scores S = QK^T, which determine how much attention is given to other words when encoding the word at the current position. These scores are then normalized to ensure gradient stability and enhance training, and the softmax function is applied to translate them into probabilities that are applied to the value matrix, so that vectors with larger probabilities receive greater focus from subsequent layers [5].</p>
+    <p>In transformers, a multi-head attention system is used wherein the original queries, keys, and values are projected into H different sets of learned projections. For each projection, the attention equation from (1) is applied to formulate the output, and the outputs across the H projections are concatenated to form the multi-head output as formulated in Equation (2). This design lets the model jointly attend to different representational aspects of different positions.</p>
+  </section>
+
+  <section>
+    <h2>1.3. Feedforward Networks</h2>
+    <p>Another important component in the functioning of transformers is the feedforward network which is applied after the self-attention layers in the encoder and decoder. This network consists of two linear transformations and a non-linear ReLU activation function which is applied to each position separately and identically. This ensures the same treatment across all positions in the input, meaning the token is processed in isolation, and allows the model to learn the complex transformations of the data at each position.</p>
+    <p>Going back to the example mentioned in the previous section, the self-attention would help give context and recognize the bank is not a financial organization, while the feedforward network would capture the nuance about the bank being slippery due to it being close to water, by adding additional layers of abstraction and complexity to the embeddings. The formulation for this network can be seen in Equation (3): FFN(x) = max(0, xW1 + b1)W2 + b2.</p>
+  </section>
+
+  <section>
+    <h2>1.4. Residual Connections</h2>
+    <p>The transformer also implements residual connections [15] around each module followed by layer normalization [16] which applies normalization layer by layer. This helps mitigate the vanishing gradient problem by allowing gradients to flow directly, bypassing several layers. Each transformer block can therefore be represented using the formulation seen in Equation (4), where the self-attention output is added element-wise to its input (the '+' operator refers to element-wise addition) before normalization and the feedforward network.</p>
+    <p>This residual connection boosts the flow of data by relaying the information forward and therefore serves to enhance the model's performance. In the context of the running example, these residual connections make sure essential characteristics of the word "bank" are not lost in the depth of the model's layers.</p>
+  </section>
+
+  <section>
+    <h2>1.5. Position Encodings</h2>
+    <p>As the self-attention process of the transformer discards the sequential way in which RNNs or LSTMs handle input embeddings and instead treats all inputs simultaneously and identically, the self-attention layer is not able to account for the position of words in a sentence. However, since words are sequential, a mechanism is needed which maintains the positions of the words within the encoded information, and therefore the transformer model makes use of position encodings which are added to the input embedding.</p>
+    <p>The formulation for the added embeddings is seen in Equation (5) with sine and cosine functions: PE(pos,2i) = sin(pos/10000^(2i/d_model)) and PE(pos,2i+1) = cos(pos/10000^(2i/d_model)), where pos is the position of a word, d_model the dimension and i the current dimension of the encoding. Each element of the positional encoding corresponds to a sinusoid, allowing the model to learn to attend based on relative positions and to extrapolate to longer sequences. These encodings have been a focal point of follow-up research proposing modifications such as learned encodings [17, 18] or relative position encodings [19].</p>
+  </section>
+
+  <section>
+    <h2>2. Survey Methodology</h2>
+    <p>The search for sources for this work was done following the PRISMA checklist [20]. Impactful works to be added to the survey were identified by searching online databases and scanning through the reference lists within the main papers. The search was applied mainly to Google Scholar, OpenAI, Papers with Code, and arXiv, as the majority of transformer works were found to be published through arXiv. As the survey is historical, the search was not limited by year, though works were found only from 2017 to the present, and the last search was conducted on 29 September 2023.</p>
+    <p>The following search terms were used across all databases: Transformers, State-of-The-Art Transformers, Key Transformer Architectures, Transformer Deep Learning, Transformer Vision, Transformer NLP, and BERT. Works were first shortlisted by impact factor and citation count, then further filtered by usefulness to the survey's subject. A data-extraction Excel spreadsheet was created with columns for paper name, author, date, proposed model, datasets, benchmarked models, results, and key notes, linked by serial number to a Word document of summarized key points.</p>
+  </section>
+
+  <section>
+    <h2>3.1. Early Transformer Implementations</h2>
+    <p>Since the introduction of the transformer model in 2017, a vast array of works have aimed to build upon its novel architecture to optimize performance across domains. The paper proposing the transformer has been cited more than 90,500 times as of 29 September 2023 according to Google Scholar [21]. Among the thousands of consequential works, a few notable models pushed the state of the art and established themselves as standards in their fields; Figure 3 displays a timeline of these works arranged chronologically and coded by application domain. Commonly used benchmark datasets include BookCorpus [48], WMT 2014 [49], Wikipedia [50], C4 [22], ImageNet [51], and COCO [52].</p>
+    <p>An early work building upon the transformer was that of Shaw et al. [19], which extended self-attention to efficiently consider relative position representations between sequence elements by modeling the input as a labeled, fully connected graph, reporting improvements on EN-DE and EN-FR tasks over the vanilla transformer. Another early and highly consequential work was that of Radford et al. [23], who proposed the famous Generative Pre-Training (GPT) approach, establishing unsupervised pre-training followed by task-specific fine-tuning.</p>
+    <p>This was followed by the BERT model of Devlin et al. in 2018 [17], which introduced deep bidirectional pre-training via masked language modeling and set records on GLUE and SQuAD. Improvements followed rapidly: RoBERTa [26] with optimized pre-training, Transformer-XL for long-range dependencies, XLNet with permutation ordering, GPT-2 with scaled-up size, DistilBERT and ALBERT with compression, and T5 [22] unifying all NLP tasks in a text-to-text framework.</p>
+    <p>In vision, Dosovitskiy et al. introduced the Vision Transformer (ViT) in 2020 [32], splitting images into patches processed as a sequence, followed by Touvron et al.'s DeiT [35] with data-efficient distillation. Lightweight efforts such as the Lite Transformer [29] tackled quadratic complexity, depth-scaling works such as DeepNet reached 1000 layers, efficient variants such as Longformer, Reformer, Linformer, Performer and OPT appeared, culminating in large-scale GPT-3 and GPT-4.</p>
+  </section>
+
+  <section>
+    <h2>3.2. Text-Based Applications</h2>
+    <p>Transformers have revolutionized text-based applications and NLP by solving problems such as text classification, question answering, text summarization, machine translation, and text generation [66]. The first prevalent model in text applications is the BERT model of Devlin et al. in 2018 [17], which remains relevant to this day because of how groundbreaking it was. BERT's NLP transformer has been the base for various other prevalent models such as RoBERTa [26] in 2019, which achieved excellent results with a BERT variant, ETC [67] in 2020, which reported high performance building upon BERT with RoBERTa weights, and Big Bird [68] in 2021 as a BERT variant for longer sequences.</p>
+    <p>Another notable transformer implementation for text is TENER [69], proposed in 2019 for named entity recognition — finding the start and end of an entity in a sentence and assigning it a class. This is especially useful in applications such as question generation [70], relation extraction [71], and coreference resolution [72]. The model adapts the transformer encoder to model both character-level and word-level features.</p>
+    <p>Overall, the pre-train-then-fine-tune methodology has dominated text applications, with architectures split between encoder-only models (BERT and family) for understanding, decoder-only models (GPT and family) for generation, and encoder–decoder models (T5) for general sequence transduction.</p>
+  </section>
+
+  <section>
+    <h2>3.3. Image-Based Applications</h2>
+    <p>In image-based applications, an early implementation was the Image Transformer of Parmar et al. in 2018 [73], which restricted transformer self-attention to local neighborhoods. In the image domain, however, one model reigns supreme: the Vision Transformer introduced by Dosovitskiy et al. in 2020 [32]. Numerous consequential works derive from it, including that of Touvron et al. [35], which outperformed ViT via distillation.</p>
+    <p>An alternative ViT-based framework is the Feature Fusion Vision Transformer (FFVT) of Wang et al. [74] in 2021, which adopts the ViT patch-generation process but modifies it to avoid overlap. An extremely recent vision solution is the Unsupervised Semantic Segmentation Transformer (STEGO) of Hamilton et al. in March 2022 [75], which localizes semantically meaningful categories within image corpora without any annotation, using a novel loss function that encourages features to form compact clusters while preserving their relationships across corpora.</p>
+    <p>These developments show transformers moving from a purely linguistic architecture to a backbone of computer vision, rivaling CNNs in classification, detection, and segmentation, with the advantage of capturing long-range dependencies across the whole image.</p>
+  </section>
+
+  <section>
+    <h2>3.4. Miscellaneous Applications</h2>
+    <p>In addition to the previously identified domains, two miscellaneous sets of approaches are discussed. The first is audio classification, for which a number of audio transformers have been proposed over the years. The first was proposed by Dong et al. in 2018 [76] with a two-dimensional attention block in an audio transformer model. A consequential model for audio captioning was the Audio Captioning Transformer (TRACKE) of Koizumi et al. [77] in 2020: TRACKE estimates keywords — a word set corresponding to audio events/scenes in the input audio — and generates the caption while referring to the estimated keywords to reduce word-selection indeterminacy. In 2021, Gong et al. proposed the Audio Spectrogram Transformer [78] as a convolution-free, purely attention-based model for audio classification.</p>
+    <p>The second miscellaneous set comprises time series modeling, first introduced by Liu et al. in 2021 [79] by adding gating to the vanilla transformer in an approach they call Gated Transformer Networks. Another 2021 model for time series forecasting was the Frequency Enhanced Decomposed Transformer (FEDformer) of Zhou et al. [80]. An interesting time-series implementation is TranAD of Tuli et al. in 2022 for anomaly detection in time series data [81], which uses focused score-based self-conditioning for robust multi-modal feature extraction and adversarial training for stability.</p>
+    <p>These applications demonstrate the flexibility of the transformer architecture and its transferability across modalities — from text and images to audio and time series — with relatively minor architectural adjustments preserving the essence of the attention mechanism.</p>
+  </section>
+
+  <section>
+    <h2>3.5. Recent Directions</h2>
+    <p>The recent increase in the relevance of transformers and the work exploring their uses has made them more accessible for real-world applications. One application area with heavy transformer use is medical image analysis [82]. While numerous earlier works applied AI algorithms to key medical problems such as COVID-19 detection [83] and fetal electrocardiogram extraction and detection [84, 85], the introduction of transformers for vision unlocked techniques such as image synthesis/reconstruction, registration, segmentation, detection, and diagnosis. As Li et al. [86] discuss, the ability of transformers to capture long-range dependencies and the scalability of self-attention enable their diverse usage in medicine.</p>
+    <p>Beyond medical imaging, Shamshad et al. [87] discuss transformer implementations in other medical applications such as leveraging text generation to produce medical reports and regression tasks such as survival outcome prediction. With increasing transformer depth and complexity, researchers have focused on the stability of extremely deep transformers; one scaling-based approach is DeepNet of Wang et al. [40], which introduces a new normalization function modifying residual connections with a theoretically derived initialization, successfully scaling transformers to 1000 layers.</p>
+    <p>Furthermore, wider transformer adoption has driven focus on lighter versions addressing compute and memory cost, through efficient models such as Longformer, Reformer, Linformer and Performer, and through distillation, quantization and pruning — paving the way for deployment on resource-constrained devices. The next section highlights and analyzes the results obtained by these models.</p>
+  </section>
+
+  <section>
+    <h2>4.1. Historical Insight</h2>
+    <p>Table 1 summarizes the historical works discussed in the previous section. Works are color-coded in the timeline: text/NLP-task works in blue and image-task works in orange. The timeline begins with "Attention Is All You Need" by Vaswani et al. in June 2017 [1], which achieved 28.4 BLEU on EN-DE and 41.8 BLEU on EN-FR with the big Transformer and has gathered over 90,500 citations.</p>
+    <p>It is followed by relative-position self-attention of Shaw et al. in March 2018 [19], generative pre-training of Radford et al. in June 2018 [23], and BERT of Devlin et al. in October 2018 [17] with an average GLUE test score of 82.1 for BERT Large and about 78,786 citations. For each work the table records the proposed model, datasets, benchmarked models, results, and citation counts, giving a quantitative picture of the development trajectory.</p>
+    <p>This historical view reveals a clear pattern: transformers began in machine translation, then dominated language understanding via bidirectional pre-training, expanded into large-scale generation (GPT-2, GPT-3), leapt into vision via ViT, and finally into multimodal and specialized applications — with the pace of new proposals accelerating year after year.</p>
+  </section>
+
+  <section>
+    <h2>4.2. Application-Based Implementations</h2>
+    <p>As seen from the model types used for these applications, an important aspect of text-based transformer implementation is the encoder and input encoding. The most widely used model has been BERT [17], which modifies input encodings to be bidirectional; RoBERTa [26] builds on it with an optimized pre-training process. Most other NLP-solving approaches involved input-encoding modifications such as TENER [69], ETC [67], and Big Bird [68], demonstrating the importance of encodings to the NLP process. Table 2 summarizes notable NLP transformer studies with results, such as an F1 of 94.6 on SQuAD 1.1 for RoBERTa.</p>
+    <p>In vision, applications revolved around adapting patch tokenization and training strategies (distillation in DeiT, feature fusion in FFVT, unsupervised clustering in STEGO), while audio and time-series applications focused on input representations (spectrograms, temporal embeddings) and specialized attention mechanisms (gating, frequency enhancement).</p>
+    <p>The quantitative and qualitative analysis shows that cross-domain success rests on two shared principles: large-scale pre-training followed by fine-tuning, and the ability of self-attention to model long-range dependencies regardless of the input signal's nature.</p>
+  </section>
+
+  <section>
+    <h2>5. Gaps and Future Work</h2>
+    <p>As the above discussion illustrates, transformer architectures are a field that has exploded with rapidly proposed new and existing works ever since the revolutionary publication of Vaswani et al. [1]. Figure 10 highlights the progression in architecture and complexity of transformer models since, visualizing notable implementations in order. Despite this rapid progression, certain gaps remain. One major gap in contemporary research is that transformers generally have quadratic computation and memory complexity due to modeling arbitrary long dependencies [91]. This has greatly hindered accessible transformer use and motivated a promising research avenue aimed at simplifying transformer training [92].</p>
+    <p>Indeed, the Lite Transformer [29] was introduced to address this very issue, as were implementations such as Longformer [93], Reformer [94], Linformer [95], Performer [96], and OPT [39]. These models are, however, only the start of a vast potential research space in optimizing transformer training procedures. This is pressing, as many state-of-the-art models simply aim to increase model size (GPT-4, for instance) [97], making such models impractical for many real-world applications.</p>
+    <p>Another interesting research issue is integrating all modalities without reshaping the architecture toward a single modality. Early implementations include models such as the Perceiver [98], which accepts all kinds of input but can only generate fixed outputs such as class probabilities, and Perceiver IO, with flexible inputs and outputs but still relying on modality specifics. A truly unified multimodal architecture remains an open challenge.</p>
+    <p>In conclusion, this survey identifies future research opportunities centered on multi-modality and optimization of the transformer training process: alleviating quadratic complexity, efficient scaling to thousands of layers, medical and temporal applications, and fusing modalities into a single architecture — trends that will define the next generation of transformer models.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] A. Vaswani et al., "Attention Is All You Need," <em>Adv. Neural Inf. Process. Syst.</em>, vol. 30, 2017.</li>
+      <li>[11] I. Sutskever, O. Vinyals, Q. V. Le, "Sequence to Sequence Learning with Neural Networks," <em>arXiv:1409.3215</em>, 2014.</li>
+      <li>[15] K. He, X. Zhang, S. Ren, J. Sun, "Deep Residual Learning for Image Recognition," in <em>Proc. CVPR</em>, 2016.</li>
+      <li>[16] J. L. Ba, J. R. Kiros, G. E. Hinton, "Layer Normalization," <em>arXiv:1607.06450</em>, 2016.</li>
+      <li>[17] J. Devlin, M.-W. Chang, K. Lee, K. Toutanova, "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding," in <em>Proc. NAACL</em>, 2019.</li>
+      <li>[19] P. Shaw, J. Uszkoreit, A. Vaswani, "Self-Attention with Relative Position Representations," <em>arXiv:1803.02155</em>, 2018.</li>
+      <li>[20] M. J. Page et al., "The PRISMA 2020 statement: An updated guideline for reporting systematic reviews," <em>BMJ</em>, vol. 372, 2021.</li>
+      <li>[22] C. Raffel et al., "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer," <em>J. Mach. Learn. Res.</em>, vol. 21, 2020.</li>
+      <li>[23] A. Radford, K. Narasimhan, T. Salimans, I. Sutskever, "Improving Language Understanding by Generative Pre-Training," OpenAI, 2018.</li>
+      <li>[26] Y. Liu et al., "RoBERTa: A Robustly Optimized BERT Pretraining Approach," <em>arXiv:1907.11692</em>, 2019.</li>
+      <li>[29] Z. Wu et al., "Lite Transformer with Long-Short Range Attention," in <em>Proc. ICLR</em>, 2020.</li>
+      <li>[32] A. Dosovitskiy et al., "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale," in <em>Proc. ICLR</em>, 2021.</li>
+      <li>[35] H. Touvron et al., "Training Data-Efficient Image Transformers &amp; Distillation through Attention," in <em>Proc. ICML</em>, 2021.</li>
+      <li>[39] S. Zhang et al., "OPT: Open Pre-trained Transformer Language Models," <em>arXiv:2205.01068</em>, 2022.</li>
+      <li>[40] H. Wang et al., "DeepNet: Scaling Transformers to 1,000 Layers," <em>arXiv:2205.13359</em>, 2022.</li>
+      <li>[69] H. Yan et al., "TENER: Adapting Transformer Encoder for Named Entity Recognition," <em>arXiv:1911.04474</em>, 2019.</li>
+      <li>[73] N. Parmar et al., "Image Transformer," in <em>Proc. ICML</em>, 2018.</li>
+      <li>[78] Y. Gong, Y.-A. Chung, J. Glass, "AST: Audio Spectrogram Transformer," in <em>Proc. Interspeech</em>, 2021.</li>
+      <li>[80] H. Zhou et al., "FEDformer: Frequency Enhanced Decomposed Transformer for Long-term Series Forecasting," in <em>Proc. ICML</em>, 2022.</li>
+      <li>[81] S. Tuli, G. Casale, N. R. Jennings, "TranAD: Deep Transformer Networks for Anomaly Detection in Multivariate Time Series Data," <em>Proc. VLDB Endow.</em>, vol. 15, 2022.</li>
+      <li>... [full reference list of 100 references available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app14104316">10.3390/app14104316</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
