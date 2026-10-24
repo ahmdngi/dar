@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تحسين كشف الشذوذ في اتصالات شبكة SCADA بتوسيع السمات — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Improving Anomaly Detection in SCADA Network Communication with Attribute Extension</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تحسين كشف الشذوذ في اتصالات شبكة SCADA بتوسيع السمات</h2>
+
+  <div class="paper-meta">
+    <span>👤 Mahwish Anwar, Lars Lundberg, Anton Borg</span>
+    <span>📄 Energy Informatics, 2022 · Vol. 5, Article 69</span>
+    <span>🔗 <a href="https://doi.org/10.1186/s42162-022-00252-1">10.1186/s42162-022-00252-1</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يُعدّ كشف الشذوذ الشبكي لأنظمة التحكم الإشرافي وتحصيل البيانات (SCADA) الخاصة بالبنية التحتية الحرجة خط الدفاع الأول ضد الهجمات السيبرانية. وغالبًا ما تُستخدم أساليب هجينة، مثل تعلم الآلة مع أساليب كشف التسلل القائمة على التوقيعات، لتحسين نتائج الكشف. هنا تُبذَل محاولة لتعزيز أسلوب كشف الشواذ القائم على متجهات الدعم عبر توسيع السمات السلوكية لعقد الشبكة. تُمذج عقد الشبكة رؤوسًا بيانية لبناء سمات مترابطة تعزز توصيف الشبكة، وقد تحسّن قدرة كشف الشذوذ غير الموجَّه لشبكة SCADA. واستُخدمت بيانات اتصالات بروتوكول SCADA IEC 104 ذات الدقة المجالية الجيدة للاختبار التجريبي. تُظهر النتائج أن النهج المقترح يحقق تحسينات جوهرية على النهج الأساسي (ارتفع متوسط درجة F1 من 0.6 إلى 0.9، ومعامل ارتباط ماثيوز (MCC) من 0.3 إلى 0.8). كما تجاوزت النتيجة المحققة درجات الأعمال ذات الصلة غير الموجَّهة. وفي الشبكات الحرجة لا غنى عن تحديد الهجمات؛ إذ تُظهر النتائج معدل إنذارات فائتة ضئيلًا (0.3% في المتوسط)، وهو الأدنى بين الأعمال ذات الصلة. وتُظهر النتائج المجمعة أن النهج المقترح يكشف عقد SCADA المارقة بصورة معقولة ويساعد على تنقية العينات غير الاعتيادية المحددة.</p>
+  </section>
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تتعرض البنية التحتية الحرجة لتهديد مستمر (Tariq وآخرون [33]). فالبنية التحتية الحرجة نظامٌ يحافظ على الوظائف المجتمعية الحيوية، وتشمل قطاعات الطاقة والنفط والغاز والمياه ومعالجة النفايات والنقل، وتعطيلها يُفضي إلى عجز المجتمع عن العمل ويضر باقتصاده وسلامته.</p><p>تعتمد البنى التحتية الحرجة على نطاق واسع على أنظمة SCADA لإدارة عملياتها والتحكم فيها (Tariq وآخرون [33])، فتؤدي المراقبة والتحكم المركزيين للوحدات البعيدة المنتشرة جغرافيًا، وتُنتج البيانات المجموعة أوامر إشرافية آلية أو بقيادة المشغّل للوحدات الميدانية، كفتح الصمامات والقواطع وإغلاقها ومشاركة بيانات الحساسات ومراقبة البيئة المحلية لظروف الإنذار (Zhu وآخرون [41]). ولما كان نظام SCADA عنصرًا جوهريًا في البنية الحرجة، وجب حمايته من تهديدات المشهد السيبراني. وكما يحذر خبراء أمن أنظمة التحكم الصناعية/SCADA: المسألة ليست هل سيفشل النظام بل متى سيفشل (Assante وLee [3]).</p><p>عادةً ما تُعزل أنظمة SCADA عن التهديدات الخارجية بالفجوات الهوائية وأنظمة كشف التسلل والوقاية والجدران النارية (Pliatsios وآخرون [26]). لكن باستغلال ثغرات بروتوكولات SCADA الخاصة وإطلاق برمجية خبيثة ناجحة، يمكن للمتسلل تجاوز التدابير الأمنية والحصول على وصول غير مصرح به للشبكة الحرجة (Assante وLee [3]؛ Pliatsios وآخرون [26]). وأبرزت هجمات Stuxnet وBlackEnergy على أنظمة التحكم ضعف الوعي بأمن هذه الأنظمة، إذ يمكن للمهاجم التنصت السلبي على اتصالات SCADA ثم تنفيذ الهجوم بنجاح متى دخل الشبكة (Assante وLee [3]).</p><p>تعتمد أساليب كشف تسلل SCADA عمومًا على بيانات حركة الشبكة أو بيانات عمليات المضيف أو البيانات المتعلقة بالحدث الفيزيائي. وتشمل الأساليب: الكشف القائم على التوقيعات (مثل Suricata التي تستخدم بيانات حركة شبكة SCADA (Wong وآخرون [37]))، وكشف الشذوذ بتعلم الآلة (Robles-Durazno وآخرون [30])، وكشف الشذوذ بالتعلم العميق (Gaggero وآخرون [11])، إضافة إلى الأساليب الهجينة التي تجمع بيانات بروتوكول الشبكة بالخصائص السلوكية الفيزيائية لعزل شذوذ SCADA (Yang وآخرون [39]). يركز عملنا على بيانات حركة شبكة SCADA وتطبيق كشف الشذوذ بتعلم الآلة، مستكشفًا السؤال: إلى أي مدى يمكن لتوسيع السمات تحسين كشف الشذوذ بآلة متجهات الدعم أحادية الصنف في اتصالات بروتوكول IEC 104 داخل شبكة SCADA؟</p>
+  </section>
+  <section>
+    <h2>2. الخلفية والأعمال ذات الصلة</h2>
+    <p>تتكون شبكة SCADA من تسلسل هرمي وظيفي: المستوى الميداني بالأجهزة الفيزيائية، ووحدات الأطراف البعيدة (RTU) ووحدات التحكم المنطقية (PLC) والأجهزة الإلكترونية الذكية (IED) للتحكم المحلي، وشبكة إشرافية تربط الخادم الرئيسي (MTU) وخادم المؤرخ ومحطات HMI، ومركز تحكم يجمع المعلومات ويحللها ويولّد الإجراءات، إضافة إلى المنطقة منزوعة السلاح (DMZ) وشبكة تقنية المعلومات المؤسسية المتصلة بالإنترنت.</p><p>يُعدّ بروتوكول IEC 60870-5-104 (IEC 104) بروتوكول تحكم عن بُعد واسع التنفيذ ومعرضًا للثغرات (Gy&ouml;rgy وHolczer [13]). وقد دُرس كشف الشذوذ لاتصالات IEC 104 في أعمال سابقة: قارن Egger وآخرون (2020) [7] الكشف القائم على التوقيعات بأساليب تعلم الآلة، فتفوق التعلم الموجَّه وشبه الموجَّه (بآلة متجهات الدعم أحادية الصنف) بينما أعطى Snort القائم على التوقيعات نتائج أسوأ؛ وقيّم Anwar وآخرون (2021) [2] منهجيًا خوارزميات التعلم غير الموجَّه لذات البروتوكول، فتبين أن أسلوب آلة متجهات الدعم أحادية الصنف ثابت الأداء في المتوسط.</p><p>تُعدّ خوارزمية آلة متجهات الدعم أحادية الصنف خيارًا شائعًا لكشف التسلل بتعلم الآلة (Tsai وآخرون [35]؛ Thakkar وLohiya [34]) وخيارًا معترفًا به في شبكات SCADA (Rakas وآخرون [29]). وتكمن حداثة هذه الدراسة في توسيع السمات: تمثيل سلوك شبكة SCADA بنمذجة العلاقة بين العقد المتفاعلة، وهي مقارَبة لم تُستكشَف لبروتوكول IEC 104 على حد علمنا، رغم تطبيقات مشابهة لبروتوكول IEC 61870 (Linda وآخرون [18]) وتحليلات سمات حركة IP في SCADA (Mantere وآخرون [22]).</p><p>تشمل مساهماتنا: أسلوب لتوسيع السمات يعرض سلوك شبكة SCADA؛ وتقييم أثر مجموعة السمات الموسعة بآلة متجهات الدعم مع وصف تصميم النموذج المحسّن وتنفيذه؛ والمقارنة مع النتائج الأساسية والأبحاث السابقة.</p>
+  </section>
+  <section>
+    <h2>3. المنهجية</h2>
+    <p>يصف هذا القسم عملية البحث بدءًا من استخراج سمات بروتوكول IEC 104 الأصلية وحتى خيارات تصميم تجربة تعلم الآلة، عبر 11 خطوة. الخطوة 1 (استخراج البيانات): استُخرجت عينات IEC 104 من اتصالات محاكاة (Maynard وآخرون 2018) وُلّدت من إطار اختبار متوافق مع المعايير يحاكي نظام SCADA حقيقيًا، مع هجمات محاكاة وملف التقاط حزم متاح علنًا؛ وتشمل السجلات حقول طبقة التطبيق. ومن محدوديات مجموعة Egger وآخرين (2020) أنها لا تحدد اتجاه الإرسال ولا عناوين Ethernet، وهما معلومتان مفيدتان أضافناهما مع الفارق الزمني بين حزمتين مرسلتين وعناوين المصدر والوجهة.</p><p>الخطوة 2 (توسيم العينات): تتضمن الاتصالات المحاكاة هجمتي رجل-في-المنتصف (MITM) واستطلاع (Reconnaissance) على مدى 150 دقيقة من اتصالات IEC 104 (44,373 حزمة) بين 8 عقد (عقدة تحكم واحدة، 5 عقد خاضعة، ومهاجِمَين). وُسمت الإطارات: 0 طبيعي، 1 تسلل MITM، 2 تسلل استطلاع، ثم أُعيد تجميع كل الهجمات بوصفها شاذة، فأصبحت المجموعة 41,948 حزمة طبيعية و2,425 حزمة شاذة. الخطوة 3 (تقليل السمات): عُوّضت القيم الفئوية المفقودة (TypeID وCauseTx) بـ&lsquo;none&rsquo;، وأُجري تحليل ارتباط للسمات غير الفئوية.</p><p>الخطوة 4 (تحويل السمات): قُطّعت السمات المستمرة المتبقية (Length وtcpWinSize وdeltaTime) بتقسيم ترتيبي منتظم، ثم رُمّزت كل السمات متغيرات صورية. الخطوة 5 (التحقق المتقاطع): قُسّمت المجموعة إلى تدريب واختبار بتكرار التحقق المتقاطع 10 مرات بخمس طيات (10x5)، ويضم كل اختبار نحو 8,390 حزمة طبيعية و485 حزمة شاذة، مع الحفاظ على نسبة الطبيعي إلى الشاذ في كل طية.</p><p>الخطوة 6 (توسيع السمات): لالتقاط السمات الموسعة من مجموعات التدريب، مُثّلت طوبولوجيا العقد المشاركة سماتٍ موسعة: درجة العقدة ووزنها وسمات سلوكية مشتقة من بنية الاتصالات سيد-تابع المشتركة في IEC 104، مستندةً إلى معرفة خبراء المجال. الخطوات 7&ndash;8 (تقليل السمات الموسعة وتحويلها): أُهملت عناوين العقد بعد إسقاطها على سمات سلوكية (ما يخفض الكلفة الحسابية في شبكات تضم مئات العقد)، وأُجري تحليل ارتباط كشف ارتباطًا خطيًا قويًا بين السمات الجديدة؛ وحُوّلت درجة العقدة بعتبة معرفية معمارية (الدرجة الأكبر من نصف عقد الشبكة قد تعني انتحال السيد)، وحُوّل وزن العقدة بعتبة المئين الأربعين (النسبة الأدنى من الوزن النمطي النسبي تُجزَّأ).</p><p>الخطوات 9&ndash;11 (كشف الشذوذ بآلة متجهات الدعم أحادية الصنف والتقييم): دُرّب نموذج أحادي الصنف على البيانات الطبيعية الموسعة، وقُيّم بمعدل الإنذارات الفائتة (FNR) ومعدل الإنذارات الكاذبة (FPR) ومتوسط درجة F1 الكلي ومعامل MCC ومساحة AUC، وقُورن النهج الأساسي (السمات الأصلية) بالنهج النهائي (السمات الموسعة) باختبار Student-t.</p>
+  </section>
+  <section>
+    <h2>4. النتائج</h2>
+    <p>نُفّذت التجربة أولًا بالسمات الأصلية لبروتوكول IEC 104 كتقييم أساسي لكشف الشذوذ الأحادي، ثم بمجموعة السمات المعاد بناؤها كتقييم نهائي، وقُورن أداء النهجين في الإعداد غير الموجَّه. واستُخدم التحقق المتقاطع 10x5 لتقييم قدرة الكاشف، مع تمثيل النتائج بمصفوفات التباس فاصلة لكل طية اختبار.</p><p>في النتائج الأساسية تراوح معدل الإنذارات الفائتة (FNR) بين 45% و54%، أي أن نحو نصف حزم IEC 104 الشاذة (49%) لم تُكتشَف، بينما بلغ متوسط معدل الإنذارات الكاذبة (FPR) نحو 6.8% (524&ndash;635 إطارًا طبيعيًا صُنّف خطأً شاذًا من كل طية). وبلغ متوسط درجة F1 الكلية 0.6 ومتوسط MCC ما قيمته 0.3 ومتوسط AUC ما قيمته 0.7، ما يعكس عجز النهج الأساسي عن فصل الحزم الطبيعية والشاذة.</p><p>أما النتائج النهائية فبقي معدل الإنذارات الفائتة بين 0 و0.8% عبر الطيات، وانخفض متوسط معدل الإنذارات الكاذبة إلى 2.8% (نحو 3% إجمالًا، أي دون عتبة 5%). وتجاوزت درجة F1 الكلية 0.88 في كل الطيات، وبلغ متوسط AUC ما قيمته 0.98، وبلغ متوسط MCC ما قيمته 0.8، ما يدل على أداء كشف شبه مثالي.</p><p>أظهر تحليل المقارنة باختبار Student-t أن المتوسط الأساسي (F1 بدرجة 0.6 وMCC بقيمة 0.3) أدنى دلاليًا من النهائي (F1 بدرجة 0.9 وMCC بقيمة 0.8). وتجاوزت النتيجة درجات الأعمال ذات الصلة غير الموجَّهة: سجّل Egger وآخرون (2020) AUC بقيمة 0.49 بالإعدادات الافتراضية، وسجّل Anwar وآخرون (2021) AUC بقيمة 0.64 بعد ضبط المعلمات، بينما حقق نهجنا AUC بقيمة 0.98 مع متوسط معدل تنبيهات فائتة 0.3% فقط، وهو الأدنى بين الأعمال ذات الصلة.</p>
+  </section>
+  <section>
+    <h2>5. المناقشة</h2>
+    <p>مقارنةً بالأعمال السابقة، يقدم هذا البحث نهجًا محسّنًا لكشف الشذوذ بآلة متجهات الدعم أحادية الصنف لاتصالات بروتوكول IEC 104. فمتوسط AUC المتقاطع للنهج النهائي (0.98) أعلى من الأساسي، وتُظهر المقاييس المرافقة (FNR وFPR وMCC) الاتجاه نفسه. والمعياران الحاسمان &mdash; عزل حزم IEC 104 المشبوهة صحيحًا وعدم تفويت أي حزمة مشبوهة &mdash; تحققا معًا: متوسط معدل الإيجابيات الحقيقية 99.6% ومتوسط FPR بقيمة 2%.</p><p>تشكّل خوارزمية التعلم حدًّا قراريًا للبيانات المعطاة، ولا يستطيع المستوى الفائق لـSVM تشكيل حد قراري مثالي لأن بيانات التدريب ملوثة (لمحاكاة سيناريو واقعي). وقد تقلل البيانات المطهّرة أخطاء التنبؤ، كما في التعلم شبه الموجَّه الذي يستخدم معرفة مسبقة عن بعض النقاط لتدريب المصنف، لكن هذه المعالجة الإضافية تكلف جهد توسيم يدويًا. ويبقى النهج المقترح غير موجَّه بالكامل، وهي ميزة عملية في شبكات SCADA حيث نادرًا ما تتوفر بيانات هجوم موسومة.</p><p>من محدوديات العمل أن السمات الموسعة صُمّمت لطوبولوجيا سيد-تابع الخاصة ببروتوكول IEC 104 وقد تحتاج تكييفًا لبروتوكولات أخرى؛ وأن التقييم جرى على مجموعة محاكاة واحدة رغم دقتها المجالية الجيدة. وتشمل الأعمال المستقبلية اختبار قابلية النقل إلى بروتوكولي IEC 61850 وModbus، ودراسة التكامل مع كشف التوقيعات الهجين (مثل Suricata) لتنقية التنبيهات أيضًا.</p>
+  </section>
+  <section>
+    <h2>6. الاستنتاجات</h2>
+    <p>خلصت هذه الدراسة إلى أن توسيع السمات السلوكية لعقد الشبكة &mdash; بنمذجة العقد رؤوسًا بيانية وتمثيل طوبولوجيا الاتصالات &mdash; يحسّن جوهريًا كشف الشذوذ غير الموجَّه بآلة متجهات الدعم أحادية الصنف لاتصالات بروتوكول IEC 104 في شبكات SCADA: ارتفع متوسط درجة F1 من 0.6 إلى 0.9 وMCC من 0.3 إلى 0.8، مع معدل تنبيهات فائتة 0.3% فقط.</p><p>تفتح النتائج الباب أمام كشف عملي للعقد المارقة في الشبكات الحرجة دون الحاجة لبيانات هجوم موسومة، وتقترح الأعمال المستقبلية تعميم السمات الموسعة على بروتوكولات SCADA الأخرى ودمجها في حلول كشف هجينة قائمة على التوقيعات والتعلم الآلي معًا.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Network anomaly detection for critical infrastructure supervisory control and data acquisition (SCADA) systems is the first line of defense against cyber-attacks. Often hybrid methods, such as machine learning with signature-based intrusion detection methods, are employed to improve the detection results. Here an attempt is made to enhance the support vector-based outlier detection method by leveraging behavioural attribute extension of the network nodes. The network nodes are modeled as graph vertices to construct related attributes that enhance network characterisation and potentially improve unsupervised anomaly detection ability for SCADA network. IEC 104 SCADA protocol communication data with good domain fidelity is utilised for empirical testing. The results demonstrate that the proposed approach achieves significant improvements over the baseline approach (average F1 score increased from 0.6 to 0.9, and Matthews correlation coefficient (MCC) from 0.3 to 0.8). The achieved outcome also surpasses the unsupervised scores of related literature. For critical networks, the identification of attacks is indispensable. The result shows an insignificant missed-alert rate (0.3% on average), the lowest among related works. The gathered results show that the proposed approach can expose rogue SCADA nodes reasonably and assist in further pruning the identified unusual instances.</p>
+  </section>
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Critical infrastructure is under constant threat (Tariq et al. [33]). A critical infrastructure (CI) is a system that maintains vital societal functions. Examples of CI sectors include energy, oil and gas, water and waste treatment, and transportation; disruption of such a system causes society to fail to function and harms its economy and safety.</p><p>CIs widely rely on supervisory control and data acquisition (SCADA) systems to manage and control CI operations (Tariq et al. [33]). A SCADA system performs centralised monitoring and control for geographically distributed remote units, and the gathered data results in automated or operator-driven supervisory commands for the field units, e.g., open and close valves/breakers, share sensor data or monitor the local environment for alarm conditions (Zhu et al. [41]). Since the SCADA system is an essential element within the CI, it becomes vital to protect it from cyber-landscape threats. As ICS/SCADA security experts warn, &ldquo;it is not a matter of if it (ICS/SCADA system) will fail, but when it will fail&rdquo; (Assante and Lee [3]).</p><p>SCADA systems are usually zoned out from external cyber-threats through air-gapping, intrusion detection and prevention systems, and firewalls (Pliatsios et al. [26]). However, by exploiting SCADA-specific protocol vulnerabilities and launching a successful malware attempt, the intruder can bypass the security measures and gain unauthorised access to the critical network (Assante and Lee [3]; Pliatsios et al. [26]). Stuxnet and BlackEnergy attacks on control systems highlighted the lack of awareness of these systems&rsquo; security: the hacker could passively listen to SCADA communication and deliver the attack successfully once inside the network (Assante and Lee [3]).</p><p>Generally, SCADA intrusion detection relies on network traffic data, host process data, or data related to the physical event. Approaches include signature-based detection (e.g., Suricata utilising SCADA network traffic data (Wong et al. [37])), machine learning-based anomaly detection (Robles-Durazno et al. [30]), deep learning-based anomaly detection (Gaggero et al. [11])), and hybrid approaches combining network protocol traffic data with physical behaviour characteristics (Yang et al. [39]). Our work focusses on SCADA network traffic data and machine learning-based anomaly detection, exploring the question: to what extent can attribute extension improve one-class SVM anomaly detection in IEC 104 protocol communication within SCADA network?</p>
+  </section>
+  <section>
+    <h2>2. Background and related work</h2>
+    <p>A SCADA network consists of a functional hierarchy: the field level with physical devices; RTUs, PLCs and intelligent electronic devices (IEDs) for local control; a supervisory network connecting the master terminal unit (MTU), historian server and HMI stations; a control center collecting and analysing information and generating actions; plus a demilitarized zone (DMZ) and the corporate IT network connected to the internet.</p><p>IEC 60870-5-104 (IEC 104) is a widely implemented telecontrolling protocol prone to vulnerabilities (Gy&ouml;rgy and Holczer [13]). Anomaly detection for IEC 104 communication was studied before: Egger et al. (2020) [7] compared signature-based detection with machine learning methods, where supervised and semi-supervised (one-class SVM) learning performed better while signature-based Snort performed worse; Anwar et al. (2021) [2] systematically evaluated unsupervised learning algorithms for the same protocol, finding one-class SVM steady on average.</p><p>The one-class support vector machine is a popular machine learning intrusion detection algorithm (Tsai et al. [35]; Thakkar and Lohiya [34]) and an acknowledged choice for SCADA networks (Rakas et al. [29]). This study&rsquo;s novelty is attribute extension: representing SCADA network behaviour by modeling relationships between interacting nodes &mdash; an approach not previously investigated for the IEC 104 protocol to our knowledge, despite similar applications for the IEC 61870 protocol (Linda et al. [18]) and IP traffic feature analyses in SCADA (Mantere et al. [22]).</p><p>Our contributions are: a method for extending attributes to project SCADA network behaviour; evaluation of the extended attribute set with the Support Vector Machine, describing the improved model design and implementation; and comparison with baseline results and previous research.</p>
+  </section>
+  <section>
+    <h2>3. Method</h2>
+    <p>This section describes the research process from extraction of the original IEC 104 protocol attributes through the machine learning experiment&rsquo;s design choices, in 11 steps. Step 1 (data extraction): IEC 104 instances were extracted from simulated IEC 104 protocol communication (Maynard et al. 2018) generated from a standards-compliant testbed framework mimicking a real SCADA system, with simulated attacks and a publicly available packet-capture log including application-layer fields. One limitation of the Egger et al. (2020) dataset is that it defines neither packet transmission direction nor node Ethernet addresses &mdash; both deemed helpful by domain experts &mdash; so we added transmission direction, inter-packet time difference, and source/destination Ethernet addresses.</p><p>Step 2 (instance labelling): the emulated communication includes Man-in-the-Middle (MITM) and Reconnaissance attack simulations over 150 min of IEC 104 communication (44,373 packets) among 8 nodes (1 controlling node, 5 controlled nodes, 2 attackers). Frames were labelled 0 normal, 1 MITM intrusion, 2 reconnaissance intrusion, then all attacks regrouped as anomalous: 41,948 normal vs 2,425 anomalous packets. Step 3 (attribute reduction): missing categorical values (TypeID, CauseTx) were substituted with &lsquo;none&rsquo;, and correlation analysis run on non-categorical attributes.</p><p>Step 4 (attribute transformation): remaining continuous attributes (Length, tcpWinSize, deltaTime) were discretised with ordinal uniform binning, then all attributes encoded as dummy variables. Step 5 (cross-validation): the dataset was split into train/test with 10-times-repeated 5-fold cross-validation (10x5), each test fold holding about 8,390 normal and 485 anomalous packets while retaining the normal-to-anomalous ratio in every fold.</p><p>Step 6 (attribute extension): training sets were examined to capture extended features, representing the topology of participating nodes as extended attributes &mdash; node degree, node weight, and behavioural attributes derived from the shared IEC 104 master-slave communication structure, grounded in domain-expert knowledge. Steps 7&ndash;8 (extended attribute reduction and transformation): node addresses were disregarded after projection onto behavioural features (reducing computational cost in networks with hundreds of nodes), and correlation analysis revealed strong linear correlation among new attributes; node degree was transformed with an architecture-knowledge threshold (degree above half the network nodes may indicate master impersonation), and node weight with a 40th-percentile threshold (nodes below the relative mode weight are segmented).</p><p>Steps 9&ndash;11 (one-class SVM anomaly detection and evaluation): a one-class model was trained on extended normal data and evaluated with false negative rate (FNR), false positive rate (FPR), macro-average F1, MCC, and AUC; baseline (original attributes) vs endline (extended attributes) were compared with Student&rsquo;s t-test.</p>
+  </section>
+  <section>
+    <h2>4. Results</h2>
+    <p>The experiment was first executed with original IEC 104 attributes as a baseline unary SVM anomaly detection evaluation, then with the reconstructed attribute set as the endline evaluation, comparing both approaches in an unsupervised setting. A 10x5 cross-validation assessed detector ability, with results represented as interval confusion matrices per test fold.</p><p>In the baseline results, the false negative rate (FNR) lingered between 45% and 54%, i.e., on average almost half of anomalous IEC 104 packets (49%) went undetected, while the average false positive rate (FPR) stayed around 6.8% (524&ndash;635 normal frames falsely categorised as anomalous per fold). The macro-average F1 score was 0.6, average MCC 0.3, and average AUC 0.7, reflecting the baseline&rsquo;s inability to separate normal and anomalous IEC 104 packets.</p><p>In the endline results, FNR remained between 0 and 0.8% across folds, and the average false alert rate fell to 2.8% (about 3% overall, below the 5% threshold). The macro-average F1 exceeded 0.88 on all folds, average AUC was 0.98, and average MCC 0.8, indicating near-perfect detection.</p><p>Comparative analysis with Student&rsquo;s t-test showed the baseline mean (F1 0.6, MCC 0.3) significantly below the endline (F1 0.9, MCC 0.8). The outcome surpassed related unsupervised scores: Egger et al. (2020) reported AUC 0.49 with default settings and Anwar et al. (2021) AUC 0.64 after tuning, while our approach achieved AUC 0.98 with only 0.3% average missed-alert rate &mdash; the lowest among related works.</p>
+  </section>
+  <section>
+    <h2>5. Discussion</h2>
+    <p>Compared with previous work, this study presents an improved one-class SVM anomaly detection approach for IEC 104 protocol communication. The endline cross-validated average AUC (0.98) exceeds the baseline, with companion metrics (FNR, FPR, MCC) showing the same trend. Both crucial criteria &mdash; correctly isolating suspicious IEC 104 packets and missing none &mdash; are jointly satisfied: average true positive rate 99.6% and average FPR 2%.</p><p>The learning algorithm forms a decision boundary for the given data, and the SVM hyperplane cannot form an optimal boundary because training data is polluted (to replicate a real scenario). Sanitised data could reduce prediction errors, as in semi-supervised learning using prior knowledge of some datapoints &mdash; but that extra processing costs manual labelling effort. The proposed approach stays fully unsupervised, a practical advantage in SCADA networks where labelled attack data is rarely available.</p><p>Limitations include that extended attributes were designed for IEC 104&rsquo;s master-slave topology and may need adaptation for other protocols, and evaluation used a single simulated dataset despite its good domain fidelity. Future work includes testing transferability to IEC 61850 and Modbus protocols, and integration with hybrid signature detection (e.g., Suricata) for alert pruning.</p>
+  </section>
+  <section>
+    <h2>6. Conclusions</h2>
+    <p>This study concludes that behavioural attribute extension of network nodes &mdash; modeling nodes as graph vertices and representing communication topology &mdash; significantly improves unsupervised one-class SVM anomaly detection for IEC 104 protocol communication in SCADA networks: average F1 rose from 0.6 to 0.9 and MCC from 0.3 to 0.8, with only 0.3% missed alerts.</p><p>Results open the door to practical rogue-node detection in critical networks without labelled attack data; future work should generalise extended attributes to other SCADA protocols and integrate them into hybrid signature- plus machine-learning-based detection solutions.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>Akoglu L, McGlohon M, Faloutsos C (2010) Oddball: Spotting anomalies in weighted graphs. In: Zaki MJ, Yu JX, Ravindran B, Pudi V (eds) Advances in knowledge discovery and data mining. Pacific-Asia conference on knowledge discovery and data mining (PAKDD). Lecture notes in computer science, Vol 6119. Springer, Berlin, Heidelberg, pp. 410–421</li>
+      <li>Anwar M, Borg A, Lundberg L (2021) A comparison of unsupervised learning algorithms for intrusion detection in IEC 104 SCADA protocol. In: 20th International conference on machine learning and cybernetics (ICMLC), IEEE, pp. 1–8. https://doi.org/10.1109/ICMLC54886.2021.9737267</li>
+      <li>Assante MJ, Lee RM (2015) The industrial control system cyber kill chain. Technical report, SANS Institute InfoSec Reading Room</li>
+      <li>Chicco D, Jurman G (2020) The advantages of the Matthews correlation coefficient (MCC) over F1 score and accuracy in binary classification evaluation. BMC Genomics 21(1):6. https://doi.org/10.1186/s12864-019-6413-7</li>
+      <li>CISA (2016) ICS Alert (IR-ALERT-H-16-056-01). Cyber-attack against Ukrainian critical infrastructure; Cybersecurity and Infrastructure Security Agency. Cybersecurity and Infrastructure Security Agency (CISA).&amp;nbsp;&amp;nbsp;https://www. cisa.gov/uscert/ics/alerts/IR-ALERT-H-16-056-01. Accessed 9 May&amp;nbsp;2022</li>
+      <li>Corizzo R, Ceci M, Pio G, Mignone P, Japkowicz N (2021) Spatially-aware autoencoders for detecting contextual anomalies in geo-distributed data. In: International conference on discovery science, pp. 461–471. Springer</li>
+      <li>Egger M, Eibl G, Engel D (2020) Comparison of approaches for intrusion detection in substations using the IEC 60870–5- 104 protocol. Energy Inform 3(S1):1–17. https://doi.org/10.1186/s42162-020-00118-4</li>
+      <li>ENISA (2017) Communication Network Dependencies for ICS/SCADA Systems. European Network and Information Security Agency, Athens. https://doi.org/10.2824/397676</li>
+      <li>Flach P (2012) Machine learning: the art and science of algorithms that make sense of data. Cambridge University Press, Cambridge</li>
+      <li>Ferling B, Chromik J, Caselli M, Remke A (2018) Intrusion detection for sequence-based attacks with reduced traffic models. In: International conference on measurement, modelling and evaluation of computing systems, pp. 53–67. Springer</li>
+      <li>Gaggero GB, Rossi M, Girdinio P, Marchese M (2020) Detecting system fault/cyberattack within a photovoltaic system connected to the grid: a neural network-based solution. J Sens Actuator Netw 9(2):20. https://doi.org/10.3390/jsan9 020020</li>
+      <li>Grammatikis PR, Sarigiannidis P, Sarigiannidis A, Margounakis D, Tsiakalos A, Efstathopoulos G (2020) An anomaly detection mechanism for iec 60870-5-104. In: 9th International conference on modern circuits and systems technologies (MOCAST), IEEE, pp. 1–4. https://doi.org/10.1109/MOCAST49295.2020.9200285</li>
+      <li>György P, Holczer T (2020) Attacking iec 60870-5-104 protocol. In: 1st Conference on Information Technology and Data Science (CITDS), pp. 140–150. http://ceur-ws.org/Vol-2874/paper13.pdf</li>
+      <li>Henderson K, Gallagher B, Eliassi-Rad T, Tong H, Basu S, Akoglu L, Koutra D, Faloutsos C, Li L (2012) Rolx: structural role extraction &amp; mining in large graphs. In: 18th ACM SIGKDD International conference on knowledge discovery and data mining, pp. 1231–1239. https://doi.org/10.1145/2339530.2339723</li>
+      <li>Henderson K, Eliassi-Rad T, Faloutsos C, Akoglu L, Li L, Maruhashi K, Prakash BA, Tong H (2010) Metric forensics: a multilevel approach for mining volatile graphs. In: 16th ACM SIGKDD international conference on knowledge discovery and data mining, pp. 163–172. ACM, NY. https://doi.org/10.1145/1835804.1835828</li>
+      <li>Hodo E, Grebeniuk S, Ruotsalainen H, Tavolato P (2017) Anomaly detection for simulated IEC-60870-5-104 Trafiic. In: 12th International conference on availability, reliability and security, pp. 1–7. ACM, Reggio Calabria. https://doi.org/10. 1145/3098954.3103166. Accessed 1 Jul&amp;nbsp;2021</li>
+      <li>Lin C-Y, Nadjm-Tehrani S (2019) Timing patterns and correlations in spontaneous scada traffic for anomaly detection. In: 22nd International symposium on research in attacks, intrusions and defenses (RAID), pp. 73–88</li>
+      <li>Linda O, Vollmer T, Manic M (2009) Neural network based intrusion detection system for critical infrastructures. In: 2009 International joint conference on neural networks, IEEE,&amp;nbsp; pp. 1827–1834</li>
+      <li>Mahmood AN, Leckie C, Hu J, Tari Z, Atiquzzaman M (2010) Network traffic analysis and scada security. Handbook of Information and Communication Security. Springer, Berlin, pp 383–405. https://doi.org/10.1007/978-3-642-04117-4</li>
+      <li>Matousek P (2017) Description and analysis of IEC 104 Protocol. Technical Report FIT-TR-2017-1, Faculty of Information Technology, Brno University of Technology, Brno, Czech Republic. https://www.fit.vut.cz/research/publication-file/ 11570/TR-IEC104.pdf</li>
+      <li>Matousek P, Ryšavỳ O, Grégr M (2019) Increasing visibility of iec 104 communication in the smart grid. In: 6th International Symposium for ICS &amp; SCADA Cyber Security Research, pp. 21–30. https://doi.org/10.14236/ewic/icscsr19.3</li>
+      <li>Mantere M, Sailio M, Noponen S (2013) Network traffic features for anomaly detection in specific industrial control system network. Future Internet 5(4):460–473. https://doi.org/10.3390/fi5040460</li>
+      <li>Matousek P, Ryšavỳ O, Grégr M, Havlena V (2020) Flow based monitoring of ics communication in the smart grid. J Inf Secur Appl 54:1–16. https://doi.org/10.1016/j.jisa.2020.102535</li>
+      <li>Maynard P, McLaughlin K, Sezer S (2018) An open framework for deploying experimental scada testbed networks. In: 5th International symposium for ICS &amp; SCADA cyber security research 2018, pp. 92–101. https://doi.org/10.14236/ewic/ ICS2018.11</li>
+      <li>Panagiotis F, Taxiarxchis K, Georgios K, Maglaras L, Ferrag MA (2021) Intrusion detection in critical infrastructures: a literature review. Smart Cities 4(3):1146–1157. https://doi.org/10.3390/smartcities4030061</li>
+      <li>Pliatsios D, Sarigiannidis P, Lagkas T, Sarigiannidis AG (2020) A survey on SCADA systems: secure protocols, incidents, threats and tactics. IEEE Commun Surv Tutor 22(3):1942–1976. https://doi.org/10.1109/COMST.2020.2987688</li>
+      <li>Pourhabibi T, Ong K-L, Kam BH, Boo YL (2020) Fraud detection: a systematic literature review of graph-based anomaly detection approaches. Decis Support Syst 133:113303. https://doi.org/10.1016/j.dss.2020.113303</li>
+      <li>Radoglou-Grammatikis P, Sarigiannidis P, Giannoulakis I, Kafetzakis E, Panaousis E (2019) Attacking iec-60870-5-104 SCADA systems. In: IEEE World Congress on Services (SERVICES), IEEE, pp. 41–46. https://doi.org/10.1109/SERVICES. 2019.00022</li>
+      <li>Rakas SVB, Stojanović MD, Marković-Petrović JD (2020) A review of research work on network-based scada intrusion detection systems. IEEE Access 8:93083–93108. https://doi.org/10.1109/ACCESS.2020.2994961</li>
+      <li>Robles-Durazno A, Moradpoor N, McWhinnie J, Russell G (2018) A supervised energy monitoring-based machine learning approach for anomaly detection in a clean water supply system. In: 2018 International Conference on Cyber Security and Protection of Digital Services (Cyber Security), IEEE, pp. 1–8. https://doi.org/10.1109/CyberSecPODS. 2018.8560683</li>
+      <li>Schölkopf B, Williamson RC, Smola A, Shawe-Taylor J, Platt J (1999) Support vector method for novelty detection. In: 12th International conference on neural information processing systems (NIPS), pp. 582–588. MIT Press, Colorado. https:// doi.org/10.5555/3009657.3009740. https://proceedings.neurips.cc/paper/1999/file/8725fb777f25776ffa9076e44 fcfd776-Paper.pdf</li>
+      <li>Sullivan GM, Feinn R (2012) Using effect size-or why the p value is not enough. J Grad Med Educ 4(3):279–282. https:// doi.org/10.4300/JGME-D-12-00156.1</li>
+      <li>Tariq N, Asim M, Khan FA (2019) Securing scada-based critical infrastructures: challenges and open issues. Proc Comput Sci 155:612–617. https://doi.org/10.1016/j.procs.2019.08.086</li>
+      <li>Thakkar A, Lohiya R (2021) A survey on intrusion detection system: feature selection, model, performance measures, application perspective, challenges, and future research directions. Artif Intell Rev. https://doi.org/10.1007/ s10462-021-10037-9</li>
+      <li>Tsai C-F, Hsu Y-F, Lin C-Y, Lin W-Y (2009) Review: intrusion detection by machine learning: a review. Expert Syst Appl 36(10):11994–12000. https://doi.org/10.1016/j.eswa.2009.05.029</li>
+      <li>Udd R, Asplund M, Nadjm-Tehrani S, Kazemtabrizi M, Ekstedt M (2016) Exploiting bro for intrusion detection in a scada system. In: 2nd ACM international workshop on cyber-physical system security, pp. 44–51. ACM, Xian. https://doi. org/10.1145/2899015.2899028</li>
+      <li>Wong K, Dillabaugh C, Seddigh N, Nandy B (2017) Enhancing suricata intrusion detection system for cyber security in SCADA networks. In: 2017 IEEE 30th Canadian Conference on Electrical and Computer Engineering (CCECE), IEEE, pp. 1–5. https://doi.org/10.1109/CCECE.2017.7946818</li>
+      <li>Yang Y, McLaughlin K, Littler T, Sezer S, Pranggono B, Wang H (2013) Intrusion detection system for iec 60870-5-104 based scada networks. In: 2013 IEEE power &amp; energy society general meeting, IEEE, pp. 1–5. https://doi.org/10.1109/ PESMG.2013.6672100</li>
+      <li>Yang Y, Xu H-Q, Gao L, Yuan Y-B, McLaughlin K, Sezer S (2016) Multidimensional intrusion detection system for iec 61850- based scada networks. IEEE Trans Power Deliv 32(2):1068–1078. https://doi.org/10.1109/TPWRD.2016.2603339</li>
+      <li>Zhao Y, Nasrullah Z, Li Z (2019) Pyod: a python toolbox for scalable outlier detection. J Mach Learn Res 20(96):1–7</li>
+      <li>Zhu B, Joseph A, Sastry S (2011) A taxonomy of cyber attacks on scada systems. In: 2011 International Conference on Internet of Things and 4th International Conference on Cyber, Physical and Social Computing, IEEE, pp. 380–388. https://doi.org/10.1109/iThings/CPSCom.2011.34</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.1186/s42162-022-00252-1">10.1186/s42162-022-00252-1</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Multi-Component Deep Learning Approach for Cyber-Attack Detection in Critical Infrastructure SCADA Systems — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Multi-Component Deep Learning Approach for Cyber-Attack Detection in Critical Infrastructure SCADA Systems</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نهج التعلم العميق متعدد المكونات لكشف الهجمات السيبرانية في أنظمة سكادا للبنية التحتية الحرجة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Onur Polat, Sümeyya Bulut</span>
+    <span>📄 Applied Sciences, 2026 · Vol. 16(16), 8075</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app16168075">10.3390/app16168075</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تتطلب شبكات التحكم الصناعية القائمة على أنظمة سكادا (SCADA) المستخدمة في البنية التحتية الحرجة آليات كشف هجمات موثوقة وقابلة للتوسع والتعميم في مواجهة التهديدات السيبرانية المتزايدة. غير أن جزءًا كبيرًا من مجموعات البيانات الشائعة في الأدبيات يعتمد على حركة شبكات عامة الأغراض ولا يعكس على نحو كافٍ البنية الاتصالية الدورية والحتمية والموجهة بالعمليات للبروتوكولات الصناعية مثل Modbus/TCP.</p>
+    <p>في هذه الدراسة، صُممت بيئة سكادا افتراضية معزولة تمامًا، وطُوّرت مجموعة هجوم متعددة الفئات خاصة بسكادا تُدعى SCADANet تضم 13 سيناريو هجوم مختلفًا مُولّدًا concurrently مع حركة شبكية مشروعة. واقتُرحت بنية هجينة للتعلم العميق من هياكل التفافية موسعة متوازية وكتل Residual-SE وطبقات LSTM. واختُبر النموذج على كلٍّ من SCADANet ومجموعة WUSTL-IIoT-2021 شائعة الاستخدام، محققًا دقة 99.80% (macro-F1 قدره 98.65%) و99.99% (macro-F1 قدره 97.70%) على التوالي، مع تحسن ملحوظ في الحساسية لفئات الهجوم الأقلية [11].</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تُعد أنظمة البنية التحتية الحرجة مثل الطاقة والرعاية الصحية والنقل والخدمات المالية ضرورية لاستمرار الحياة الطبيعية. ويُدار جزء كبير من هذه الأنظمة باستخدام تقنيات سكادا (SCADA) وأنظمة التحكم الصناعية (ICS) [1،2]. إن القدرة على إدارة الأنظمة عن بُعد تفرض متطلبًا طبيعيًا للأمن السيبراني، إذ يجب حماية استمرارية الخدمات التي تقدمها البنية التحتية الحرجة من الهجمات الخارجية [3].</p>
+    <p>إن الثغرة في النظام لا تسبب عطلًا في النظام نفسه فحسب، بل قد تتضرر أيضًا العوامل الخارجية المرتبطة به [4]. وتتصدر هذه التهديدات هجمات حجب الخدمة (DoS) والتهديدات المتقدمة المستمرة (APTs)، التي تحدث بتكرار وتُبطئ تشغيل النظام أو تعرقله [5،6]. ويظل كشف الهجمات والشذوذ في أنظمة سكادا مسألة حرجة بسبب متطلبات التشغيل الآني، وانخفاض تقبّل الإيجابيات الكاذبة، وتوزيعات الحركة غير المتكافئة، في حين أن الهجمات المندسة داخل تدفقات الاتصال المشروعة تصعّب الكشف الموثوق في ظل ظروف تشغيلية واقعية [7،8،9،10].</p>
+    <p>تقترح هذه الدراسة مجموعة بيانات SCADANet التي تمثل واقعيًا سيناريوهات هجوم متنوعة خاصة بسكادا، إلى جانب بنية هجينة للتعلم العميق قادرة على نمذجة التبعيات متعددة المقاييس والزمنية. وعلى خلاف المناهج السابقة، يُقيَّم النموذج على كلٍّ من SCADANet وWUSTL-IIoT-2021، ويدمج التفافيات Conv1D المتوازية موسعة المعدل وكتل Residual-SE وطبقات LSTM لتمثيل سياق الحركة متعدد المقاييس وعلى مستوى السمات. وتتمثل المساهمات الرئيسية في: (1) مجموعة بيانات SCADANet الخاصة بسكادا والمُولّدة في بيئة افتراضية معزولة تمامًا مع حركة Modbus/TCP مندسة في حركة خلفية؛ (2) سمات تدفق غنية متعددة الطبقات تشمل بصمات JA4+؛ (3) بنية هجينة مبتكرة؛ (4) تحسين متوازن من مرحلتين باستخدام Focal Loss وأوزان الفئات للفئات غير المتوازنة؛ (5) قابلية تعميم عبر مجموعات البيانات.</p>
+  </section>
+
+  <section>
+    <h2>2. الخلفية ومراجعة الأدبيات</h2>
+    <p>تتزايد الهجمات السيبرانية التي تستهدف أنظمة التحكم الصناعية، ولا سيما أنظمة سكادا، وتضرب نقاطًا مختلفة من هذه الأنظمة: فهجمات الاستطلاع ترسم بنية النظام بماسحات الشبكة [12]؛ وحقن الأوامر والقياسات يرسل أوامر خادعة قد تسبب أضرارًا مادية وانقطاعات؛ وهجمات حجب الخدمة تُغرق النظام بحركة زائدة [13]؛ والبرمجيات الخبيثة تسعى للوصول غير المصرح لاختلاس البيانات أو تعطيل العمليات [14]؛ وهجمات الاختطاف والإطفاء الكامل تهدف للسيطرة على النظام وإيقافه؛ وهجمات إعادة التشغيل والتجزئة تعيد إرسال حزم ملتقطة لتعطيل العمليات [7،16]. إن البروتوكولات الصناعية القديمة التي تفتقر إلى التشفير والتوثيق وفحوص السلامة — وعلى رأسها Modbus/TCP — إلى جانب هجمات الوسيط المعتمدة على انتحال ARP، تجعل هذه الأنظمة عرضة للهجمات القائمة على البروتوكولات [15،18،19،20].</p>
+    <p>يشمل الكشف التقليدي أنظمة كشف التسلل القائمة على التواقيع (IDS)، والأنظمة القائمة على القواعد، والنماذج الإحصائية القائمة على الشذوذ. تكشف أنظمة التواقيع الهجمات المعروفة بمعدلات إيجابيات كاذبة منخفضة لكنها تفشل أمام هجمات اليوم الصفري والتقنيات الجديدة [13،28،29،30]. وقد تنجح الأنظمة القائمة على القواعد المبنية على خبرة المتخصصين في عمليات محددة [31] لكنها تضعف أمام التهديدات المتطورة وتتطلب تحديثًا مستمرًا للقواعد [16،32]. أما الطرق الإحصائية القائمة على الشذوذ فترصد الانحرافات عن السلوك الطبيعي وتكشف الهجمات الجديدة بشكل أفضل، مما يناسب بيئات سكادا الديناميكية [33]، لكن التدفقات الطبيعية تُخطأ كثيرًا على أنها تهديدات مما يولّد إيجابيات كاذبة [7،34،35].</p>
+    <p>تتفوق أساليب تعلم الآلة — آلات المتجهات الداعمة وأشجار القرار والغابات العشوائية وخوارزمية الجيران الأقرب وXGBoost — على الطرق التقليدية، إذ تكشف مناهج التعلم الجماعي الهجمات الحجمية مثل DDoS في أنظمة سكادا المعتمدة على SDN بأداء عالٍ [36]، وقد ثبت أن اختيار السمات يقود الأداء بقوة متجاوزًا غالبًا دقة 90% [37،38،39]. وتضيف أساليب التعلم العميق قوة أكبر: فالشبكات الالتفافية CNN فعالة حاسوبيًا لكنها محدودة في العلاقات التسلسلية بعيدة المدى [42،44،45]؛ وشبكات LSTM تلتقط التمثيلات ذات البنية التسلسلية باستدعاء قوي [43،46،47،48]؛ والمشفرات التلقائية تتعلم التمثيلات الكامنة للحركة الشاذة [49]؛ ونماذج Transformer تلتقط التبعيات بعيدة المدى [50]. ويكشف كل نموذج سمات سياقية مميزة، مما يحفز البنى الهجينة متعددة المقاييس التي تجمع نقاط قوتها (الجدولان 2–3) [53،54،55،56].</p>
+  </section>
+
+  <section>
+    <h2>3. المواد والطرق</h2>
+    <p>جُمعت الحزم الخام الملتقطة من شبكة سكادا الافتراضية في تدفقات ثنائية الاتجاه ذات سمات متعددة الطبقات: إحصاءات على مستوى الحزم، وسلوك أعلام TCP، والخصائص الزمنية، وسمات البصمات القائمة على JA4+ القادرة على تمييز الهجمات منخفضة الحجم المندسة في الحركة الطبيعية. نُظفت التدفقات وطُبّعت وشُفّرت في تمثيلات حركية ثابتة الحجم تحفظ أنماط السمات المكانية والترتيب التسلسلي معًا، مع تقسيمات طبقية تُبقي فئات الهجوم الأقلية ممثلة في أقسام التدريب والاختبار.</p>
+    <p>تعالج البنية المقترحة كل تمثيل حركي عبر ثلاث مراحل متكاملة. أولًا، تستخلص فروع Conv1D المتوازية موسعة المعدل بمعدلات تمدد مختلفة السمات المكانية قصيرة وبعيدة المدى في آنٍ واحد، ملتقطةً أنماط الفيض المفاجئة والشذوذات الدقيقة أحادية الحزمة. ثانيًا، تعيد كتل Residual-SE (الضغط والإثارة) معايرة استجابات السمات على مستوى القنوات، مضخمةً خرائط السمات المميزة مع حفاظ الوصلات المتبقية على تدفق التدرج في الطبقات العميقة [72،73،74،77]. ثالثًا، تنمذج طبقات LSTM التبعيات التسلسلية والسياقية على مستوى السمات عبر التدفق، متعلمةً الترتيبات الحتمية الدورية المميزة لدورات الاقتراع في Modbus/TCP [78،79،80].</p>
+    <p>يستخدم التدريب تحسينًا من مرحلتين لمواجهة اختلال الفئات الشديد: تركز دالة Focal Loss الموزونة بالفئات التعلم على الأمثلة الصعبة من الفئات الأقلية مع تخفيف وزن تدفقات الأغلبية السهلة، يليها ضبط دقيق بمعدلات تعلم مخفضة. ويجمع التنظيم بين التسوية الدفعية [76] والإسقاط والإيقاف المبكر بناءً على macro-F1. وطُبق بروتوكول التدريب نفسه وميزانية البحث عن المعاملات والتحقق المتقاطع الطبقي من خمسة طيات على جميع النماذج المرجعية (KNN وSVM الخطي والانحدار اللوجستي وGaussian NB وMLP وCNN1D وLSTM) لضمان مقارنة عادلة.</p>
+    <p>يستند التقييم إلى مجموعتي بيانات. وُلّدت SCADANet في المختبر الافتراضي المعزول (مستنشق Ubuntu على 192.168.119.130 ومهاجِمون بنظام Kali وعقد خادم/عميل Modbus) بواقع 486,714 تدفقًا موسومًا عبر 13 سيناريو هجوم — فيوض TCP-SYN/ACK وUDP وICMP وHTTP وحقن SQL ومسوحات المنافذ والثغرات وأنظمة التشغيل وحقن بيانات Modbus الكاذبة وإساءة أوامر Modbus وترشيح بيانات APT والتخريب الداخلي — مندسةً بالتزامن في حركة Modbus/TCP المشروعة (الجدول 6). وتوفر مجموعة WUSTL-IIoT-2021 العامة [11،81] معيارًا مستقلًا بهجمات حجب الخدمة والاستطلاع والحقن ضد اتصالات إنترنت الأشياء الصناعية.</p>
+  </section>
+
+  <section>
+    <h2>4. العمل التجريبي والنتائج</h2>
+    <p>على SCADANet، بلغت النتائج المتوسطة لخمسة طيات دقة 99.80% مع دقة كلية 98.63% واستدعاء كلي 98.70% وmacro-F1 قدره 98.65% (الجدول 7). ويُظهر التحليل لكل فئة أكبر المكاسب في الفئات الأقلية — إساءة أوامر Modbus وترشيح بيانات APT والتخريب الداخلي — حيث رفع ترجيح Focal Loss الاستدعاء بهوامش من رقمين فوق خط الأساس غير الموزون، مؤكدًا تحسن الحساسية تحديدًا حيث البيانات أندر.</p>
+    <p>على WUSTL-IIoT-2021، حققت البنية نفسها دقة 99.99% مع دقة كلية 97.79% واستدعاء كلي 97.68% وmacro-F1 قدره 97.70% (الجدول 7)، متفوقةً على أقوى الأسس المنشورة على تلك المجموعة: DeepFM بدقة 98.72% [88] وCNN+Transformer بدقة 98.75% [89] وTransformer+GAN+AE بدقة 97.86% [90] وAOA-SMA+Enhanced GRU+Attention بدقة 97.90% [91] (الجدول 10). ومقابل الأسس الكلاسيكية المُقيّمة بالبروتوكول نفسه، يتصدر النموذج المقترح على المجموعتين — مثلًا macro-F1 قدره 98.65% مقابل 92.43% (LSTM) و92.32% (KNN) على SCADANet (الجدول 11).</p>
+    <p>تؤكد دراسة الاستئصال (الجدول 8) أن كل مكوّن يسهم إسهامًا ذا معنى ومتكاملًا: إزالة كتلة Residual-SE تخفض macro-F1 من 98.65% إلى 98.30%؛ وإزالة CNN موسعة المعدل تخفضه إلى 97.84%؛ وإزالة LSTM تخفضه إلى 97.33% — وهو أكبر تدهور مفرد، مما يبرز أهمية النمذجة التسلسلية لحركة سكادا الدورية.</p>
+    <p>يُظهر تحليل التعقيد زمن استدلال متوافقًا مع النشر شبه الآني على عتاد GPU شائع، مع تحليل قرارات بأسلوب SHAP يربط التنبؤات بسمات تدفق مفهومة (مثل تسلسلات شفرات وظائف Modbus الشاذة وأزمنة الوصول البينية الشاذة)، مما يدعم ثقة المشغّلين والمراجعة الجنائية (الأقسام 4.13–4.15).</p>
+  </section>
+
+  <section>
+    <h2>5. المناقشة</h2>
+    <p>مقارنةً بالدراسات الحديثة على سكادا وإنترنت الأشياء الصناعية (الجدول 9) — GAN-LSTM على SwAT بدقة 87% [82] وGAT-AD على WADI بدقة 86.69% [83] وESML على BATADAL بدقة 96.93% [84] والتعلم الجماعي الالتفافي على بيانات MSU بدقة 96.6% [85] وRF/SVM على CIC Modbus بدقة 95% [86] وTransformer+FedNova على Edge-IIoTset بدقة 98% [87] — يحقق النهج متعدد المكونات المقترح أعلى دقة مُبلغ عنها مع تغطية أوسع طيف هجومي (13 فئة تمتد على الفيض والويب والاستطلاع وهجمات سكادا الخاصة وAPT والتهديدات الداخلية).</p>
+    <p>يمثل التقييم عبر مجموعتي البيانات الميزة المنهجية الأساسية للدراسة: فالطريقة المقترحة وحدها تجمع بين التحقق على مجموعة عامة ومجموعة سكادا جديدة مُنشأة وتحليل الاستئصال والنمذجة متعددة المقاييس والانتباه والزمنية في آنٍ واحد (الجدول 10). ويثبت ثبات macro-F1 فوق 97.6% على مجموعتي بيانات مختلفتي البنية تعميمًا حقيقيًا لخصائص حركة سكادا بدلًا من فرط التخصيص لبيئة التقاط واحدة.</p>
+  </section>
+
+  <section>
+    <h2>6. الاستنتاجات والعمل المستقبلي</h2>
+    <p>تُظهر هذه الدراسة أن بنية التعلم العميق متعددة المكونات — التفافيات CNN المتوازية موسعة المعدل وكتل Residual-SE وطبقات LSTM — تنمذج بفعالية خصائص حركة سكادا وتقدم كشفًا مستقرًا عالي الحساسية عبر مصادر البيانات، ببلوغ دقة 99.80% على مجموعة SCADANet المُنشأة حديثًا و99.99% على WUSTL-IIoT-2021. وتشكل النتائج إسهامًا منهجيًا (تصميم مجموعة بيانات وفية لسكادا مع دمج هجومي متزامن وبصمات JA4+) وتجريبيًا (نتائج رائدة مع إسهامات مُتحقق منها للمكونات).</p>
+    <p>تشمل القيود التقييم على مجموعتين ببيانات خلفية مُولّدة مخبريًا والاستدلال دون الاتصال. وينبغي للبحوث المستقبلية السعي للنشر المباشر في محطات حية، والدمج مع التعلم الموحد عبر المشغّلين، ومتانة سمات البصمات ضد الخصومة، والتوسع لبروتوكولات صناعية إضافية مثل DNP3 وIEC 61850 وOPC UA.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en" style="display:none">
+  <section>
+    <h2>Abstract</h2>
+    <p>Industrial control networks based on Supervisory Control and Data Acquisition (SCADA) systems used in critical infrastructure require reliable, scalable, and generalizable attack detection mechanisms in the face of increasing cyber-threats. However, a large portion of the datasets commonly used in the literature are based on general-purpose network traffic and do not adequately reflect the cyclical, deterministic, and process-oriented communication structure of industrial protocols such as Modbus/TCP.</p>
+    <p>In this study, a completely isolated virtual SCADA environment was designed, and a SCADA-specific multi-class attack dataset called SCADANet was developed, containing 13 different attack scenarios generated concurrently with legitimate network traffic. A hybrid deep learning architecture consisting of parallel dilated Convolutional Neural Network (CNN) structures, Residual-SE blocks, and Long Short-Term Memory (LSTM) layers was proposed. Tested on both the SCADANet dataset and the widely used WUSTL-IIoT-2021 dataset, the model achieved 99.80% accuracy (macro-F1 98.65%) and 99.99% accuracy (macro-F1 97.70%) respectively, with markedly improved sensitivity in minority attack classes [11].</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Systems with critical infrastructure such as energy, healthcare, transportation, and financial services are essential for the natural flow of life. A large portion of such systems are managed using SCADA and Industrial Control System (ICS) technologies [1,2]. The ability to manage systems remotely creates a natural cybersecurity requirement, because the continuity of the services provided by critical infrastructure must be protected against external attacks [3].</p>
+    <p>A vulnerability in the system does not only cause a malfunction in the system itself; external factors connected to the system may also suffer damage [4]. Denial of Service (DoS) attacks and Advanced Persistent Threats (APTs) occur frequently, slowing down or obstructing operation [5,6]. Attack and anomaly detection in SCADA-based systems remains critical due to real-time operational requirements, low tolerance for false positives, and uneven traffic distributions, while attacks hidden within legitimate communication flows make reliable detection difficult under realistic conditions [7,8,9,10].</p>
+    <p>This study proposes a SCADANet dataset that realistically represents different SCADA-specific attack scenarios, together with a hybrid deep learning architecture capable of modelling multi-scale and temporal dependencies. Unlike prior approaches, the model is evaluated on both SCADANet and WUSTL-IIoT-2021, integrating parallel dilated Conv1D, Residual-SE blocks, and LSTM layers to represent multi-scale and feature-level contextual traffic. The main contributions are: (i) the SCADA-specific SCADANet dataset generated in a fully isolated virtual environment with Modbus/TCP traffic embedded in background traffic; (ii) rich multi-layer flow features including JA4+-based fingerprints; (iii) a novel hybrid architecture; (iv) a balanced two-stage optimisation with Focal Loss and class weights for imbalanced classes; and (v) cross-dataset generalizability.</p>
+  </section>
+
+  <section>
+    <h2>2. Background and Literature Review</h2>
+    <p>Cyberattacks targeting ICSs, particularly SCADA systems, are increasing and strike different points of such systems: reconnaissance attacks map the architecture with network scanners [12]; command and measurement injection sends deceptive commands that can cause physical damage and interruptions; DoS attacks flood the system with unnecessary traffic [13]; malware seeks unauthorised access to steal data or disrupt operations [14]; hijacking and blackout attacks aim to seize control and shut the system down; replay and fragmentation attacks resend captured packets to interrupt processes [7,16]. Legacy industrial protocols lacking encryption, authentication, and integrity checks — notably Modbus/TCP — together with ARP-spoofing-enabled man-in-the-middle attacks, make these systems vulnerable to protocol-based attacks [15,18,19,20].</p>
+    <p>Traditional detection comprises signature-based intrusion detection systems (IDSs), rule-based systems, and anomaly-based statistical models. Signature-based IDSs detect known attacks with low false-positive rates but fail against zero-day and novel techniques [13,28,29,30]. Rule-based systems built on expert knowledge can succeed in specific operations [31] yet weaken against evolving threats and require constant rule updates [16,32]. Statistical anomaly-based methods flag deviations from normal behaviour and detect novel attacks better, suiting dynamic SCADA environments [33], but natural flows are easily mistaken for threats, producing false positives [7,34,35].</p>
+    <p>Machine learning methods — Support Vector Machines, Decision Trees, Random Forest, k-NN, and XGBoost — outperform traditional ones, with ensemble approaches detecting volumetric attacks such as DDoS in SDN-based SCADA systems with high performance [36], and feature selection shown to strongly drive performance, often exceeding 90% accuracy [37,38,39]. Deep learning methods add further power: CNNs are computationally efficient but limited in long-range sequential relations [42,44,45]; LSTMs capture sequence-structured representations with strong recall [43,46,47,48]; autoencoders learn latent representations of abnormal traffic [49]; Transformers capture long-range dependencies [50]. Each model exposes distinct contextual attributes, motivating hybrid, multi-scale architectures that combine their strengths (Tables 2–3) [53,54,55,56].</p>
+  </section>
+
+  <section>
+    <h2>3. Materials and Methods</h2>
+    <p>Raw packets captured from the virtual SCADA network were aggregated into bidirectional flows with multi-layer attributes: packet-level statistics, TCP flag behaviour, timing characteristics, and JA4+-based fingerprint features capable of distinguishing low-volume attacks hidden in normal traffic. Flows were cleaned, normalised, and encoded into fixed-size traffic representations preserving both spatial feature patterns and sequential order, with stratified splits keeping minority attack classes represented in training and test partitions.</p>
+    <p>The proposed architecture processes each traffic representation through three complementary stages. First, parallel dilated Conv1D branches with different dilation rates extract short- and long-range spatial features simultaneously, capturing both bursty flood patterns and subtle single-packet anomalies. Second, Residual-SE (Squeeze-and-Excitation) blocks recalibrate channel-wise feature responses, amplifying discriminative feature maps while residual connections preserve gradient flow in deeper layers [72,73,74,77]. Third, LSTM layers model feature-level sequential and contextual dependencies across the flow, learning the deterministic, cyclical orderings characteristic of Modbus/TCP polling cycles [78,79,80].</p>
+    <p>Training uses a two-stage optimisation to counter severe class imbalance: class-weighted Focal Loss focuses learning on hard, minority-class examples while down-weighting easy majority flows, followed by fine-tuning with reduced learning rates. Regularisation combines batch normalisation [76], dropout, and early stopping on macro-F1. The same training protocol, hyperparameter search budget, and stratified five-fold cross-validation were applied to all baseline models (KNN, linear SVM, logistic regression, Gaussian NB, MLP, CNN1D, LSTM) to ensure fair comparison.</p>
+    <p>Two datasets ground the evaluation. SCADANet was generated in the isolated virtual laboratory (Ubuntu sniffer at 192.168.119.130, Kali attackers, Modbus server/client nodes) with 486,714 labelled flows across 13 attack scenarios — TCP-SYN/ACK floods, UDP/ICMP/HTTP floods, SQL injection, port/vulnerability/OS scans, Modbus false data injection, Modbus command abuse, APT exfiltration, and insider sabotage — embedded concurrently in legitimate Modbus/TCP traffic (Table 6). The public WUSTL-IIoT-2021 dataset [11,81] provides an independent benchmark with DoS, reconnaissance, and injection attacks against IIoT communication.</p>
+  </section>
+
+  <section>
+    <h2>4. Experimental Work and Results</h2>
+    <p>On SCADANet, five-fold averaged results reach 99.80% accuracy with macro-precision 98.63%, macro-recall 98.70%, and macro-F1 98.65% (Table 7). Per-class analysis shows the largest gains in minority classes — Modbus command abuse, APT exfiltration, and insider sabotage — where the Focal Loss weighting lifts recall by double-digit margins over the unweighted baseline, confirming that sensitivity is improved precisely where data are scarcest.</p>
+    <p>On WUSTL-IIoT-2021, the identical architecture achieves 99.99% accuracy with macro-precision 97.79%, macro-recall 97.68%, and macro-F1 97.70% (Table 7), surpassing the strongest published baselines on that dataset: DeepFM at 98.72% [88], CNN+Transformer at 98.75% [89], Transformer+GAN+AE at 97.86% [90], and AOA-SMA+Enhanced GRU+Attention at 97.90% [91] (Table 10). Against classical baselines evaluated under the same protocol, the proposed model leads on both datasets — e.g. macro-F1 98.65% vs 92.43% (LSTM) and 92.32% (KNN) on SCADANet (Table 11).</p>
+    <p>The ablation study (Table 8) confirms that every component contributes meaningfully and complementarily: removing the Residual-SE block drops macro-F1 from 98.65% to 98.30%; removing the dilated CNN drops it to 97.84%; removing the LSTM drops it to 97.33% — the largest single degradation, underscoring the importance of sequential modelling for cyclical SCADA traffic.</p>
+    <p>Complexity analysis shows inference latency compatible with near-real-time deployment on commodity GPU hardware, with SHAP-style decision analysis linking predictions to intelligible flow features (e.g. abnormal Modbus function-code sequences, anomalous inter-arrival times), supporting operator trust and forensic review (Sections 4.13–4.15).</p>
+  </section>
+
+  <section>
+    <h2>5. Discussion</h2>
+    <p>Compared with recent SCADA and IIoT studies (Table 9) — GAN-LSTM on SwAT at 87% [82], GAT-AD on WADI at 86.69% precision [83], ESML on BATADAL at 96.93% [84], CNN ensembles on MSU data at 96.6% [85], RF/SVM on CIC Modbus at 95% [86], and Transformer+FedNova on Edge-IIoTset at 98% [87] — the proposed multi-component approach achieves the highest reported accuracy while covering the broadest attack spectrum (13 classes spanning flooding, web, reconnaissance, SCADA-specific, APT, and insider threats).</p>
+    <p>The cross-dataset evaluation is the study's key methodological differentiator: only the proposed method combines public-dataset validation, a newly created SCADA dataset, ablation analysis, and multi-scale, attention, and temporal modelling simultaneously (Table 10). The consistent macro-F1 above 97.6% on two structurally different datasets indicates genuine generalisation to SCADA traffic characteristics rather than overfitting to a single capture environment.</p>
+  </section>
+
+  <section>
+    <h2>6. Conclusions and Future Work</h2>
+    <p>This study demonstrates that a multi-component deep learning architecture — parallel dilated CNNs, Residual-SE blocks, and LSTM layers — effectively models SCADA-specific traffic characteristics and delivers stable, high-sensitivity attack detection across data sources, reaching 99.80% accuracy on the newly created SCADANet dataset and 99.99% on WUSTL-IIoT-2021. The findings constitute both a methodological contribution (SCADA-faithful dataset design with concurrent attack embedding and JA4+ fingerprinting) and an experimental one (state-of-the-art results with verified component contributions).</p>
+    <p>Limitations include evaluation on two datasets with lab-generated background traffic and offline inference. Future research should pursue online deployment in live substations, integration with federated learning across operators, adversarial robustness of the fingerprint features, and extension to additional industrial protocols such as DNP3, IEC 61850, and OPC UA.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] 01. Birnbaum, Z.; Davis, M.; Salman, S.; Schaffter, J.; Watkins, L.; Yamajala, S.; Paul, S. Cyber-Resilient Scada Systems via Secure State Restoration. IFIP Adv. Inf. Commun. Technol. 2020, 596, 183–207.</li>
+      <li>[2] 02. Alsabbagh, W.; Amogbonjaye, S.; Urrego, D.; Langendörfer, P. A Stealthy False Command Injection Attack on Modbus Based SCADA Systems. In Proceedings of the 2023 IEEE 20th Consumer Communications &amp; Networking Conference (CCNC), Las Vegas, NV, USA, 8–11 January 2023.</li>
+      <li>[3] 03. Paulraj, J.; Raghuraman, B.; Gopalakrishnan, N.; Otoum, Y. Autonomous AI-Based Cybersecurity Framework for Critical Infrastructure: Real-Time Threat Mitigation. In Proceedings of the 2025 IEEE/ACIS 29th International Conference on Software Engineering, Artificial Intelligence, Networking and Parallel/Distributed Computing (SNPD), Busan, Republic of Korea, 25–27 June 2025; pp. 925–931.</li>
+      <li>[4] 04. Do, V.L.; Fillatre, L.; Nikiforov, I.; Willett, P. Security of SCADA Systems against Cyber-Physical Attacks. IEEE Aerosp. Electron. Syst. Mag. 2017, 32, 28–45.</li>
+      <li>[5] 05. Lehto, M. Cyber-Attacks Against Critical Infrastructure. Comput. Methods Appl. Sci. 2022, 56, 3–42.</li>
+      <li>[6] 06. Jahan Simu, S.; Zaman, F.I. Advanced Cybersecurity Strategies for Protecting Critical Infrastructure: Strengthening the Backbone of National Security. Int. J. Sci. Res. Manag. 2023, 11, 999–1016.</li>
+      <li>[7] 07. Mondal, S.; Prudhvi, B.; Khare, P.; Bharata Reddy, M.J. Real-Time Analysis of Cyber Attacks in SCADA Based Power System. Aust. J. Electr. Electron. Eng. 2025, 1–25.</li>
+      <li>[8] 08. Usama, M.; Aman, M.N. Command Injection Attacks in Smart Grids: A Survey. IEEE Open J. Ind. Appl. 2024, 5, 75–85.</li>
+      <li>[9] 09. Zhang, H.; Min, Y.; Liu, S.; Tong, H.; Li, Y. MODLSTM: A Method to Recognize DoS Attacks on Modbus/TCP. In Proceedings of the IEEE International Performance, Computing, and Communications Conference 2022, Austin, TX, USA, 11–13 November 2022; pp. 319–324.</li>
+      <li>[10] 10. Kim, B.K.; Kang, Y. Abnormal Traffic Detection Mechanism for Protecting IIoT Environments. In Proceedings of the 2018 International Conference on Information and Communication Technology Convergence (ICTC), Jeju, Republic of Korea, 17–19 October 2018; pp. 943–945.</li>
+      <li>[11] 11. WUSTL-IIOT-2021 Dataset for IIoT Cybersecurity Research. Available online: https://www.cse.wustl.edu/~jain/iiot2/index.html (accessed on 17 January 2026).</li>
+      <li>[12] 12. Morris, T.H.; Gao, W. Industrial Control System Cyber Attacks. In Proceedings of the 1st International Symposium on ICS &amp; SCADA Cyber Security Research 2013, Leicester, UK, 16–17 September 2013.</li>
+      <li>[13] 13. Yang, Y.S.; Lee, S.H.; Chen, W.C.; Yang, C.S.; Huang, Y.M.; Hou, T.W. Securing SCADA Energy Management System under DDos Attacks Using Token Verification Approach. Appl. Sci. 2022, 12, 530.</li>
+      <li>[14] 14. Altaleb, H.; Rajnai, Z. Malware Attacks on SCADA Systems: Assessing Risks and Strengthening Cybersecurity Measures. In Proceedings of the 2023 IEEE 21st Jubilee International Symposium on Intelligent Systems and Informatics (SISY), Pula, Croatia, 21–23 September 2023; pp. 625–629.</li>
+      <li>[15] 15. Wali, S.; Farrukh, Y.A.; Khan, I.; Hamilton, J.A. Covert Penetrations: Analyzing and Defending SCADA Systems from Stealth and Hijacking Attacks. Comput. Secur. 2025, 156, 104449.</li>
+      <li>[16] 16. Sayegh, N.; Chehab, A.; Elhajj, I.H.; Kayssi, A. Internal Security Attacks on SCADA Systems. In Proceedings of the 2013 3rd International Conference on Communications and Information Technology, ICCIT, Beirut, Lebanon, 19–21 June 2013; pp. 22–27.</li>
+      <li>[17] 17. Le, X.; Li, J.; Zhao, Y.; Fan, Z. A Security-Enhanced Scheme for ModBus TCP Protocol Based on Lightweight Cryptographic Algorithm. Electronics 2025, 14, 3674.</li>
+      <li>[18] 18. Mohammed, A.S.; Saxena, N.; Rana, O. Wheels on the Modbus—Attacking ModbusTCP Communications. In Proceedings of the WiSec 2022—Proceedings of the 15th ACM Conference on Security and Privacy in Wireless and Mobile Networks, San Antonio, TX, USA, 16–19 May 2022; CTYPE:STRING:BOOK; pp. 288–289.</li>
+      <li>[19] 19. Katuri, K.; Thi Nguyen, H.; Anagnostou, E. Real-Time Detection and Identification of ARP Spoofing Attacks in Microgrids. IEEE Access 2025, 13, 72427–72441.</li>
+      <li>[20] 20. Zhang, Y.; Wang, L.; Xiang, Y.; Ten, C.W. Power System Reliability Evaluation With SCADA Cybersecurity Considerations. IEEE Trans. Smart Grid 2015, 6, 1707–1721.</li>
+      <li>[21] 21. Langner, R. Stuxnet: Dissecting a Cyberwarfare Weapon. IEEE Secur. Priv. 2011, 9, 49–51.</li>
+      <li>[22] 22. NERC. Analysis of the Cyber Attack on the Ukrainian Power Grid Defense Use Case; NERC: Washington, DC, USA, 2016.</li>
+      <li>[23] 23. Triton Malware Spearheads Latest Attacks on Industrial Systems | McAfee Blog. Available online: https://www.mcafee.com/blogs/other-blogs/mcafee-labs/triton-malware-spearheads-latest-generation-of-attacks-on-industrial-systems/ (accessed on 17 January 2026).</li>
+      <li>[24] 24. Slowik, J. The baffling Berserk Bear: A decade’s activity targeting critical infrastructure. In Proceedings of the Virus Bulletin Conference, Online, 7–8 October 2021.</li>
+      <li>[25] 25. View of Dragonfly Cyber Threats: A Case Study of Malware Attacks Targeting Power Grids. Available online: https://jcbi.org/index.php/Main/article/view/137/82 (accessed on 17 January 2026).</li>
+      <li>[26] 26. Verkerken, M.; D’hooge, L.; Wauters, T.; Volckaert, B.; De Turck, F. Towards Model Generalization for Intrusion Detection: Unsupervised Machine Learning Techniques. J. Netw. Syst. Manag. 2021, 30, 12.</li>
+      <li>[27] 27. Bronk, C.; Tikk-Ringas, E. The Cyber Attack on Saudi Aramco. Survival 2013, 55, 81–96.</li>
+      <li>[28] 28. Liao, H.J.; Richard Lin, C.H.; Lin, Y.C.; Tung, K.Y. Intrusion Detection System: A Comprehensive Review. J. Netw. Comput. Appl. 2013, 36, 16–24.</li>
+      <li>[29] 29. Mehrotra, L.; Saxena, P.S. An Assessment Report on: Statistics-Based and Signature-Based Intrusion Detection Techniques. Adv. Intell. Syst. Comput. 2018, 625, 321–327.</li>
+      <li>[30] 30. Doğan, F.; Polat, O.; Yardimci, F. A New Method for Detecting Beaconing Attacks in IoT-Based Scada Systems. Int. J. Inf. Secur. 2025, 24, 244.</li>
+      <li>[31] 31. Sayghe, A. Digital Twin-Driven Intrusion Detection for Industrial SCADA: A Cyber-Physical Case Study. Sensors 2025, 25, 4963.</li>
+      <li>[32] 32. Bajwa, A.; Al Razee Tonoy, A.; Rana, S.; Ahmed, I. Cybersecurity in industrial control systems: A systematic literature review on ai-based threat detection for SCADA and IOT networks. Am. Sch. Res. Conf. 2025, 1, 1–15.</li>
+      <li>[33] 33. Awaad, A.M.; Ali Alheeti, K.M.; Najem, A.K.A.H. Anomaly-Based IDS (Intrusion Detection System) for Cyber-Physical Systems. Mesop. J. Big Data 2024, 2024, 230–240.</li>
+      <li>[34] 34. Sharma, N.; Arora, B. Machine Learning and Deep Learning Models for Anomaly Intrusion Detection in Networks: A Systematic Review. SN Comput. Sci. 2025, 6, 832.</li>
+      <li>[35] 35. Razaque, A.; Bektemyssova, G.; Yoo, J.; Hariri, S.; Khan, M.J.; Nalgozhina, N.; Hwang, J.; Khan, M.A. Review of Malicious Code Detection in Data Mining Applications: Challenges, Algorithms, and Future Direction. Clust. Comput. 2025, 28, 206.</li>
+      <li>[36] 36. Oyucu, S.; Polat, O.; Türkoğlu, M.; Polat, H.; Aksöz, A.; Ağdaş, M.T. Ensemble Learning Framework for DDoS Detection in SDN-Based SCADA Systems. Sensors 2023, 24, 155.</li>
+      <li>[37] 37. Sukhadeo, B.S.; Patil, R.N.; Atole, R.; Sinkar, Y.D.; Patkar, U.C.; Chopade, R. MLIDS: A Machine Learning-Based Intrusion Detection System Using the NSLKDD Data. Int. J. Intell. Syst. Appl. Eng. 2023, 12, 167–179.</li>
+      <li>[38] 38. Lee, J.H.; Shin, J.; Seo, J.T. Solar Power Plant Network Packet-Based Anomaly Detection System for Cybersecurity. Comput. Mater. Contin. 2023, 77, 757.</li>
+      <li>[39] 39. Fang, Y.; Yao, Y.; Lin, X.; Wang, J.; Zhai, H. A Feature Selection Based on Genetic Algorithm for Intrusion Detection of Industrial Control Systems. Comput. Secur. 2024, 139, 103675.</li>
+      <li>[40] 40. Patil, S.B. Network Intrusion Detection System Using Ensemble Learning. Master’s Thesis, National College of Ireland, Dublin, Ireland, 2020.</li>
+      <li>[41] 41. Gbashi, S.M.; Adedeji, P.A.; Olatunji, O.O.; Madushele, N. Optimal Feature Selection for a Weighted K-Nearest Neighbors for Compound Fault Classification in Wind Turbine Gearbox. Results Eng. 2025, 25, 103791.</li>
+      <li>[42] 42. Sharma, A.; Tiwari, R. Anomaly Detection in Smart Grid Using Optimized Extreme Gradient Boosting with SCADA System. Electr. Power Syst. Res. 2024, 235, 110876.</li>
+      <li>[43] 43. Roopesh; Albert, B.; Manuel, A.S.; Hemram, S. Developing an ML Model for Detecting the Cyber Attacks in Electric Vehicles. In Proceedings of the 2024 International Conference on Cognitive Robotics and Intelligent Systems, ICC—ROBINS, Coimbatore, India, 17–19 April 2024; pp. 776–781.</li>
+      <li>[44] 44. Cui, J.; Long, J.; Min, E.; Liu, Q.; Li, Q. Comparative Study of CNN and RNN for Deep Learning Based Intrusion Detection System. In Proceedings of the International Conference on Communication, Computing &amp; Security, Haikou, China, 8–10 June 2018; pp. 159–170.</li>
+      <li>[45] 45. Elsayed, S.; Mohamed, K.; Madkour, M.A. A Comparative Study of Using Deep Learning Algorithms in Network Intrusion Detection. IEEE Access 2024, 12, 58851–58870.</li>
+      <li>[46] 46. Kimanzi, R.; Kimanga, P.; Cherori, D.; Gikunda, P.K. Deep Learning Algorithms Used in Intrusion Detection Systems—A Review. arXiv 2024, arXiv:2402.17020.</li>
+      <li>[47] 47. Al-Shurbaji, T.; Anbar, M.; Manickam, S.; Hasbullah, I.H.; Alfriehat, N.; Alabsi, B.A.; Alzighaibi, A.R.; Hashim, H. Deep Learning-Based Intrusion Detection System for Detecting IoT Botnet Attacks: A Review. IEEE Access 2025, 13, 11792–11822.</li>
+      <li>[48] 48. Sangeetha, K.; Kala, A.; Femi, P.S.; Priya, S.B. A Comparative Analysis of Deep Learning Based Techniques for Cyber Security. In Proceedings of the 2024 1st International Conference on Software, Systems and Information Technology, SSITCON, Tumkur, India, 18–19 October 2024.</li>
+      <li>[49] 49. Musthafa, M. Real-Time Intrusion Detection Leveraging Deep Learning: A Comparative Analysis of CNN, RNN, and Transformer Architectures. Int. J. Adv. Eng. Manag. Sci. 2025, 11, 64–72.</li>
+      <li>[50] 50. Nour, S.M.; Said, S.A. Deep Learning Performance Evaluation Model for Enhancing Network Intrusion Detection Systems. In Proceedings of the 2024 6th Novel Intelligent and Leading Emerging Sciences Conference (NILES), Giza, Egypt, 19–21 October 2024; pp. 61–65.</li>
+      <li>[51] 51. Siegel, B. Industrial Anomaly Detection: A Comparison of Unsupervised Neural Network Architectures. IEEE Sens. Lett. 2020, 8, 7501104.</li>
+      <li>[52] 52. Abd Elaziz, M.; Ahmed Fares, I.; Aseeri, A.O. CKAN: Convolutional Kolmogorov-Arnold Networks Model for Intrusion Detection in IoT Environment. IEEE Access 2024, 12, 134837–134851.</li>
+      <li>[53] 53. Saheed, Y.K.; Misra, S.; Chockalingam, S. Autoencoder via DCNN and LSTM Models for Intrusion Detection in Industrial Control Systems of Critical Infrastructures. In Proceedings of the 2023 IEEE/ACM 4th International Workshop on Engineering and Cybersecurity of Critical Systems, EnCyCriS, Melbourne, Australia, 15 May 2023; pp. 9–16.</li>
+      <li>[54] 54. Nazir, S.; Patel, S.; Patel, D. Autoencoder Based Anomaly Detection for SCADA Networks. Int. J. Artif. Intell. Mach. Learn. 2021, 11, 83–99.</li>
+      <li>[55] 55. Casajús-Setién, J.; Bielza, C.; Larrañaga, P. Anomaly-Based Intrusion Detection in IIoT Networks Using Transformer Models. In Proceedings of the 2023 IEEE International Conference on Cyber Security and Resilience, CSR, Venice, Italy, 31 July–2 August 2023; pp. 72–77.</li>
+      <li>[56] 56. Ortega-Fernandez, I.; Sestelo, M.; Burguillo, J.C.; Piñón-Blanco, C. Network Intrusion Detection System for DDoS Attacks in ICS Using Deep Autoencoders. Wirel. Netw. 2023, 30, 5059–5075.</li>
+      <li>[57] 57. Ramos, L.S.; Yang, Z. LSTM-Based Detection of OT Cyber-Attacks for an Offshore HVAC-Cooling Process. In Proceedings of the 2023 IEEE 6th International Conference on Electronic Information and Communication Technology, ICEICT, Qingdao, China, 21–24 July 2023; pp. 943–948.</li>
+      <li>[58] 58. Ji, I.; Jeon, S.; Seo, J.T. AE-LSTM Based Anomaly Detection System for Communication Over DNP 3.0. In Information Security Applications; Lecture Notes in Computer Science; Springer: Berlin/Heidelberg, Germany, 2024; Volume 14402, pp. 91–104.</li>
+      <li>[59] 59. Macas, M.; Wu, C.; Fuertes, W. An Attention-Based Deep Generative Model for Anomaly Detection in Industrial Control Systems. In Proceedings of the International Conference on Web Information Systems and Technologies, WEBIST—Proceedings, Porto, Portugal, 17–19 November 2024; pp. 566–577.</li>
+      <li>[60] 60. Alguliyev, R.; Shikhaliyev, R. Network Cybersecurity Incidents Multiclassification Based on Deep Learning Network Cybersecurity Incidents Network Cybersecurity Incidents Multiclassification, Deep Learning Model, CNN-LSTM Model Network Traffic Classification. Probl. Inf. Technol. 2024, 15, 16–23.</li>
+      <li>[61] 61. Shang, W.; Qiu, J.; Shi, H.; Wang, S.; Ding, L.; Xiao, Y. An Efficient Anomaly Detection Method for Industrial Control Systems: Deep Convolutional Autoencoding Transformer Network. Int. J. Intell. Syst. 2024, 2024, 5459452.</li>
+      <li>[62] 62. Basnet, M.; Poudyal, S.; Ali, M.H.; Dasgupta, D. Ransomware Detection Using Deep Learning in the SCADA System of Electric Vehicle Charging Station. In Proceedings of the 2021 IEEE PES Innovative Smart Grid Technologies Conference—Latin America, ISGT Latin America 2021, Lima, Peru, 15–17 September 2021.</li>
+      <li>[63] 63. Eshmawi, A.A.; Aldrees, A.; Alharthi, R. Smart Framework for Industrial IoT and Cloud Computing Network Intrusion Detection Using a ConvLSTM-Based Deep Learning Model. Front. Comput. Sci. 2025, 7, 1622382.</li>
+      <li>[64] 64. Alsaiari, A.; Ilyas, M. A Hybrid CNN-LSTM Deep Learning Model for Intrusion Detection in Smart Grid. SSRN Electron. J. 2025.</li>
+      <li>[65] 65. Zhang, Y.; Zhang, L.; Zheng, X. Enhanced Intrusion Detection for ICS Using MS1DCNN and Transformer to Tackle Data Imbalance. Sensors 2024, 24, 7883.</li>
+      <li>[66] 66. Harrou, F.; Bouyeddou, B.; Dairi, A.; Sun, Y. Exploiting Autoencoder-Based Anomaly Detection to Enhance Cybersecurity in Power Grids. Future Internet 2024, 16, 184.</li>
+      <li>[67] 67. Mahi-Al-rashid, A.; Hossain, F.; Anwar, A.; Azam, S. False Data Injection Attack Detection in Smart Grid Using Energy Consumption Forecasting. Energies 2022, 15, 4877.</li>
+      <li>[68] 68. Muhlburger, H.; Wotawa, F. A Passive Testing Approach Using a Semi-Supervised Intrusion Detection Model for SCADA Network Traffic. In Proceedings of the 4th IEEE International Conference on Artificial Intelligence Testing, AITest, Newark, CA, USA, 15–18 August 2022; pp. 42–47.</li>
+      <li>[69] 69. Chu, A.; Lai, Y.; Liu, J. Industrial Control Intrusion Detection Approach Based on Multiclassification GoogLeNet-LSTM Model. Secur. Commun. Netw. 2019, 2019, 6757685.</li>
+      <li>[70] 70. Tavallaee, M.; Bagheri, E.; Lu, W.; Ghorbani, A.A. A Detailed Analysis of the KDD CUP 99 Data Set. In Proceedings of the IEEE Symposium on Computational Intelligence for Security and Defense Applications, CISDA 2009, Ottawa, ON, Canada, 8–10 July 2009.</li>
+      <li>[71] 71. Sharafaldin, I.; Lashkari, A.H.; Ghorbani, A.A. Toward Generating a New Intrusion Detection Dataset and Intrusion Traffic Characterization. ICISSp 2018, 1, 108–116.</li>
+      <li>[72] 72. Alam, M.; Abid, F.; Guangpei, C.; Yunrong, L.V. Social Media Sentiment Analysis through Parallel Dilated Convolutional Neural Network for Smart City Applications. Comput. Commun. 2020, 154, 129–137.</li>
+      <li>[73] 73. Chauhan, V.K.; Kumar, A. Cascaded Capsule Twin Attentional Dilated Convolutional Network for Malicious URL Detection. Expert Syst. Appl. 2025, 262, 125507.</li>
+      <li>[74] 74. Qi, G.; Mao, J.; Huang, K.; You, Z.; Lin, J. Multi-Head Attention Enhanced Parallel Dilated Convolution and Residual Learning for Network Traffic Anomaly Detection. Comput. Mater. Contin. 2025, 82, 2159.</li>
+      <li>[75] 75. Hussen, N.; Elghamrawy, S.M.; Salem, M.; El-Desouky, A.I. A Fully Streaming Big Data Framework for Cyber Security Based on Optimized Deep Learning Algorithm. IEEE Access 2023, 11, 65675–65688.</li>
+      <li>[76] 76. Bjorck, N.; Gomes, C.P.; Selman, B.; Weinberger, K.Q. Understanding Batch Normalization. Adv. Neural Inf. Process. Syst. 2018, 31, 7705–7716.</li>
+      <li>[77] 77. Kumar, A. HybridNet: Advancing Deepfake Detection Through Residual, SE, and Depthwise Convolutions. IEEE Access 2025, 13, 207541–207552.</li>
+      <li>[78] 78. Kang, J.; Jang, S.; Li, S.; Jeong, Y.S.; Sung, Y. Long Short-Term Memory-Based Malware Classification Method for Information Security. Comput. Electr. Eng. 2019, 77, 366–375.</li>
+      <li>[79] 79. Heddam, S.; Kim, S.; Danandeh Mehr, A.; Zounemat-Kermani, M.; Elbeltagi, A.; Malik, A.; Kisi, O. A Long Short-Term Memory Deep Learning Approach for River Water Temperature Prediction. In Current Trends and Advances in Computer-Aided Intelligent Environmental Data Engineering; Elsevier: Amsterdam, The Netherlands, 2022; pp. 243–270.</li>
+      <li>[80] 80. Laghrissi, F.E.; Douzi, S.; Douzi, K.; Hssina, B. Intrusion Detection Systems Using Long Short-Term Memory (LSTM). J. Big Data 2021, 8, 65.</li>
+      <li>[81] 81. Zolanvari, M.; Teixeira, M.A.; Gupta, L.; Khan, K.M.; Jain, R. Machine Learning-Based Network Vulnerability Analysis of Industrial Internet of Things. IEEE Internet Things J. 2019, 6, 6822–6834.</li>
+      <li>[82] 82. Siddique, M.S.; Khan, M.A.R.; Ahammad, I.; Nath, N.; Das, J.R.; Rahman, F. An Intelligent Intrusion Detection System for Cyber-Physical Systems Using GAN-LSTM Networks. Frankl. Open 2025, 11, 100281.</li>
+      <li>[83] 83. Latif-Martínez, H.; Suárez-Varela, J.; Cabellos-Aparicio, A.; Barlet-Ros, P. GAT-AD: Graph Attention Networks for Contextual Anomaly Detection in Network Monitoring. Comput. Ind. Eng. 2025, 200, 110830.</li>
+      <li>[84] 84. Lachure, J.; Doriya, R. ESML: A Hyperparameter-Tuned Stacking Machine Learning Approach for Anomaly Attack Detection in Water Distribution Systems. SN Comput. Sci. 2025, 6, 505.</li>
+      <li>[85] 85. Naeem, H.; Ullah, F.; Srivastava, G. Classification of Intrusion Cyber-Attacks in Smart Power Grids Using Deep Ensemble Learning with Metaheuristic-Based Optimization. Expert Syst. 2025, 42, e13556.</li>
+      <li>[86] 86. Vasilica, B.V.; Anton, F.D.; Pietraru, R.; Anton, S.O.; Chiriac, B.N. Enhancing Security in Smart Robot Digital Twins Through Intrusion Detection Systems. Appl. Sci. 2025, 15, 4596.</li>
+      <li>[87] 87. Bilal, M.A.; Ul Islam, I.; Idrees, S.; Qasim, M.; Junaid Khan, M.; Khan, J.; Khan, M.J. Dataset-Centric Evaluation of Federated Intrusion Detection Models in IoT Networks. Sci. Rep. 2026, 16, 2683.</li>
+      <li>[88] 88. Zakariah, M.; Amin, S.U.; Alrayes, F.S.; Helal, M.; Khan, Z.I. SCADA Intrusion Detection Using Deep Factorization Machines. Sci. Rep. 2025, 15, 39753.</li>
+      <li>[89] 89. Babayigit, B.; Abubaker, M. Image-Based Vulnerability Detection Based on a Hybrid Deep Learning Model in the Industrial Internet of Things Using Convolution Neural Network and Transformer Architectures. Eng. Appl. Artif. Intell. 2026, 176, 114803.</li>
+      <li>[90] 90. Salehiyan, A.; Moghaddam, P.S.; Kaveh, M. An Optimized Transformer–GAN–AE for Intrusion Detection in Edge and IIoT Systems: Experimental Insights from WUSTL-IIoT-2021, EdgeIIoTset, and TON_IoT Datasets. Future Internet 2025, 17, 279.</li>
+      <li>[91] 91. Sanjalawe, Y.; Fraihat, S.; Al-E’mari, S.; Makhadmeh, S.N. AOA-SMA-EGRUAttNet: A Hybrid Feature Selection and Dual-Stream Attention-Based Intrusion Detection Framework for IIoT Systems. Internet Things Cyber-Phys. Syst. 2025, 5, 143–164. !Applsci 16 08075 g001</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app16168075">10.3390/app16168075</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

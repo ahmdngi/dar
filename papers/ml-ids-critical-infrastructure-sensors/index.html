@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسح أنظمة كشف التسلل القائمة على تقنيات تعلم الآلة لحماية البنية التحتية الحرجة — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Survey on Intrusion Detection Systems Based on Machine Learning Techniques for the Protection of Critical Infrastructure</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مسح أنظمة كشف التسلل القائمة على تقنيات تعلم الآلة لحماية البنية التحتية الحرجة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Andrea Pinto, Luis-Carlos Herrera, Yezid Donoso, Jairo A. Gutierrez</span>
+    <span>📄 Sensors, 2023 · Vol. 23, 2415</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s23052415">10.3390/s23052415</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تُعد أنظمة التحكم الصناعية (ICSs) وأنظمة الإشراف والتحكم وجمع البيانات (سكادا) وأنظمة التحكم الموزعة (DCSs) مكونات أساسية للبنية التحتية الحرجة (CI). وتدعم البنية التحتية الحرجة تشغيل أنظمة النقل والصحة ومحطات الكهرباء والحرارة ومرافق معالجة المياه وغيرها. ولم تعد هذه البنى التحتية معزولة، ووسّع اتصالها بتقنيات الثورة الصناعية الرابعة السطح الهجومي. لذا أصبحت حمايتها أولوية للأمن القومي. وأصبحت الهجمات السيبرانية أكثر تطورًا والمجرمون قادرين على تجاوز أنظمة الأمن التقليدية؛ لذا أصبح كشف الهجمات مجالًا صعبًا. وتُعد التقنيات الدفاعية مثل أنظمة كشف التسلل (IDSs) جزءًا أساسيًا من أنظمة الأمن لحماية البنية التحتية الحرجة. ودمجت أنظمة كشف التسلل تقنيات تعلم الآلة (ML) القادرة على التعامل مع أنواع أوسع من التهديدات. ومع ذلك، يبقى كشف هجمات اليوم صفر وتوافر الموارد التقنية لتنفيذ الحلول المقترحة واقعيًا من شواغل مشغلي البنية التحتية الحرجة. يهدف هذا المسح إلى تقديم تجميع لأحدث ما توصلت إليه أنظمة كشف التسلل التي استخدمت خوارزميات تعلم الآلة لحماية البنية التحتية الحرجة. ويحلل أيضًا مجموعة بيانات الأمن المستخدمة لتدريب نماذج تعلم الآلة. وأخيرًا، يعرض بعض أبرز الأبحاث في هذه المواضيع المطورة في السنوات الخمس الأخيرة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>يعتمد المجتمع الحديث على بنى تحتية متطورة (سيبرانية وفيزيائية) لأداء أنشطته اليومية. وتُصنف هذه البنى أصولًا حرجة لحماية الخدمات ليس في العالم الفيزيائي فحسب بل الرقمي أيضًا. وأصبحت حمايتها شاغلًا للأمن القومي [1]. وتطورت أنظمة ICS تطورًا هائلًا في العقود الأخيرة. وزادت تقنيات الثورة الصناعية الرابعة الكفاءة مع توفير الموارد، لكن ربط أنظمة ICS بالإنترنت ودمج بروتوكولات مثل TCP/IP وسّعا السطح الهجومي وجعلا البنية التحتية الحرجة عرضة لطائفة أوسع من الهجمات [2]. وعلى وجه الخصوص، زاد دمج إنترنت الأشياء الصناعي (IIoT) لربط الأجهزة على المستوى الصناعي، مثل المستشعرات والمشغلات، من مخاطر الأمن السيبراني [3]. وأصبحت التقنيات المدمجة لتعلم الآلة (ML) ضرورية في تحديد الهجمات السيبرانية، إذ يمكن لتعلم الآلة تحديد الأنماط أو القيم الشاذة أو الشذوذات المرتبطة بهجمات معينة [4] — لكن تدابير الأمن السيبراني تبقى ضعيفة في تحديد هجمات اليوم صفر التي تستغل ثغرات غير معلنة [5،6].</p>
+    <p>حقق تعلم الآلة كجزء من أنظمة كشف التسلل نتائج إيجابية بأنواع تعلم مختلفة، منها الخاضع للإشراف وغير الخاضع للإشراف والتعزيزي [5،7،8]. يحدد التعلم الخاضع للإشراف الهجمات المعروفة بدقة عالية وإيجابيات كاذبة منخفضة، رغم اختباره غالبًا على مجموعات بيانات قديمة لا تمثل السيناريوهات الواقعية، مما يثير الشك في تعميمه على الهجمات المجهولة. ويؤدي التعلم غير الخاضع للإشراف أفضل على هجمات اليوم صفر عبر العنقدة أو الارتباط، لكن الإيجابيات الكاذبة تزداد كثيرًا [9،10]. أما التعلم التعزيزي، وهو أحدث الأنواع، فيمكنه معالجة تعقيد تهديدات الأمن السيبراني بتوافر زمن التعلم الكافي [8]. وتقود التقنيات المعقدة — التعلم الفوقي والنماذج الطبقية والشبكات العصبية الاصطناعية والعميقة — إلى نتائج أفضل.</p>
+    <p>تستعرض هذه الورقة أبرز الأبحاث المطورة في مجال كشف التسلل، وتحديدًا أنظمة كشف التسلل المعززة لأمن البنية التحتية الحرجة السيبراني بحلول قائمة على تعلم الآلة (الجدول 1)، مع ملاحظة أن خصائص البنية التحتية الحرجة لا تتطابق عادة مع شبكات تقنية المعلومات. ويحدد العمل الجوانب الرئيسية لكشف التسلل في الأنظمة الصناعية ويناقش تحديات التطوير. ورغم أن بعض المسوحات تغطي تعلم الآلة المطبق على أنظمة كشف التسلل، إلا أنها تميل لإهمال التطبيقات في الشبكات الصناعية؛ ويساعد هذا المسح أيضًا في تثبيت أحدث أنظمة كشف التسلل للبنية التحتية الحرجة.</p>
+  </section>
+
+  <section>
+    <h2>2. الأهداف البحثية</h2>
+    <p>كان الهدف الرئيسي لبحثنا إجراء مراجعة منهجية لأنظمة كشف التسلل لتحسين مستوى الأمن السيبراني للبنية التحتية الحرجة عبر تقنيات تعلم الآلة. وغطت المراجعة السنوات الخمس الأخيرة. إضافة إلى ذلك، هناك هدفان محددان: تجميع وتحليل الأعمال البحثية الأكثر تمثيلًا المنجزة لتطوير أنظمة كشف التسلل للأنظمة الصناعية عبر تقنيات تعلم الآلة؛ وتوليد مناقشة وتقييم نقدي للأساس المعرفي القائم في تطوير أنظمة كشف التسلل باستخدام تقنيات تعلم الآلة لحماية البنية التحتية الحرجة.</p>
+  </section>
+
+  <section>
+    <h2>3. المنهجية</h2>
+    <p>لضمان مراجعة منهجية وتمثيلية لأنظمة كشف التسلل المستخدمة لتعلم الآلة في البنية التحتية الحرجة، تكيّف مراجعة الأدبيات منهجية Tavares وScavarda وScavarda (2016) ذات الخطوات الثماني [16]: التخطيط وصياغة المشكلة، والبحث في الأدبيات، وجمع البيانات، وتقييم الجودة، وتحليل البيانات وتجميعها، والتفسير، وعرض النتائج، وتحديث المراجعة.</p>
+    <p>وبتطبيق هذه المنهجية، بُحث بتوليفات الكلمات المفتاحية (IDS وNID وكشف الشذوذ/الأساليب/البصمات/الهجين وتعلم الآلة والذكاء الاصطناعي والتعلم العميق والبنية الحرجة وICS وسكادا) في Scopus (الجدول 2). ومن أكثر من 30,000 نتيجة أولية، خفضت المرشحات المتعاقبة — الكلمات المفتاحية، والسنوات الخمس الأخيرة (2018–2022)، ونوع المقال/المؤتمر/المراجعة/المسح القصير، واللغة الإنجليزية أو الإسبانية، والتركيز على البنية الحرجة/كشف التسلل/تعلم الآلة، وتحليل الملخص — المجموعة من 1396 إلى 1192 و1091 و1079 و300 و166 وثيقة؛ ثم اختار التحليل العميق 98 وثيقة مسهمة إيجابيًا في المسح (بعضها يضم مصادر أقدم لمجموعات بيانات الأمن السيبراني أو مفاهيم محددة).</p>
+  </section>
+
+  <section>
+    <h2>4. المفاهيم الأساسية</h2>
+    <p>تختلف مفاهيم البنية التحتية الحرجة باختلاف المصدر [17]؛ وتركز هذه الدراسة على الخصائص التي تجعل البنية الحرجة بنية يجب تأمينها، منظمة حول بنية نموذج Purdue لأنظمة ICS (الشكل 1) بمستوياته الهرمية من العمليات الفيزيائية عبر شبكات التحكم إلى أنظمة المؤسسة. وتمتد تقنيات تعلم الآلة المستخدمة في أنظمة كشف التسلل لحماية البنية الحرجة عبر نماذج التعلم الخاضع للإشراف وغير الخاضع للإشراف والتعزيزي (الشكل 2)، إذ يحقق التعلم الخاضع للإشراف دقة قوية على الهجمات المعروفة لكنه يتعثر على هجمات اليوم صفر، ويؤدي التعلم غير الخاضع للإشراف أفضل على الهجمات الجديدة بتكلفة إيجابيات كاذبة، ويناسب التعلم التعزيزي الإعدادات العدائية الفورية.</p>
+    <p>تُصنف أنظمة كشف التسلل حسب النطاق — المضيفة مقابل الشبكية — وحسب المنهجية — القائمة على البصمات والقائمة على الشذوذ والقائمة على القواعد والهجينة (الجدول 3) [31]. وتستخدم أنظمة البصمات تعلم الآلة لكشف البصمات المتعلمة مسبقًا بنتائج ممتازة على الهجمات المعروفة لكنها تفشل عندما تغيّر التعديلات الطفيفة البصمات [5]؛ ونمذج أنظمة الشذوذ السلوك الطبيعي للشبكة وتُعلّم الانحرافات، كاشفةً الهجمات المجهولة واليوم صفر بثمن معدلات إيجابيات كاذبة أعلى كثيرًا، إذ ليس كل سلوك شاذ هجومًا (ككيس بلاستيكي يحجب مستشعرًا في نظام كهرومائي). وتمزج النُهج الهجينة الإمكانيتين لكنها تنتج أنظمة معقدة صعبة التنفيذ [7،31،34،69]. وأصبح تعلم الآلة من أنفع أساليب أمن البنية الحرجة السيبراني بقدرته على إدارة أحجام بيانات هائلة وكشف الشذوذات والأنماط والقيم الشاذة [29،30]، رغم اعتماد النماذج على جودة مجموعة البيانات وحاجتها للتحديث الدوري واختبارها غالبًا على مجموعات غير كافية [5،32].</p>
+    <p>تبقى مجموعة KDD-99 أشهر مجموعات اختبار أنظمة كشف التسلل [33–35] (ناشئة عن تصحيحات تسعينية لتكرار CUP-99 وتحيز فئاتها)، وحُدثت لاحقًا كـ NSL-KDD (2009) — التي تجاوز عمرها عقدًا في مجال تتحور فيه التهديدات باستمرار. وفي مقارنة ما، استخدم 26 من 65 مقالًا مجموعة KDD-99 و18 مجموعة NSL-KDD و9 مجموعة KDD-CUP 99 ومقالان فقط مجموعات مخصصة [5]، ولا توجد مجموعة موثوقة تمثل الهجمات الشائعة والجديدة معًا [37]، وتحد الفروق بين مجموعات الأمن من أساليب التقييم [38]. وأصدرت مؤسسات ومختبرات مجموعات إضافية كثيرة (الجدول 4: من LBNL 2005 إلى NF-ToN-IoT وNF-UQ-NIDS 2022 [38–55]، ومنها SWaT 2019 [53]) — لكنها غالبًا قديمة أو غير متاحة مجانًا أو متجانسة السجلات أو ناقصة التوثيق [39]، رغم فائدتها في اختبار الفرضيات الجديدة.</p>
+  </section>
+
+  <section>
+    <h2>5. تعلم الآلة في أنظمة كشف التسلل لحماية البنية التحتية الحرجة</h2>
+    <p>تساعد مصنفات تعلم الآلة أنظمة الأمن بأربع طرق: أشجار القرار بإيجاد مجموعات قواعد دقيقة لتصنيف الحركة؛ والجيران الأقرب بتعلم الأنماط من الحركة الجديدة لتصنيف هجمات اليوم صفر كفئات غير مرئية؛ وآلات المتجهات الداعمة؛ والشبكات العصبية الاصطناعية بالتكيف مع الاتصالات الجديدة والتعلم من الحوادث دون إعادة تدريب كاملة وضبط أوزان الخلايا للهجمات غير المرئية [28]. وتشترك جميعها في الاعتماد على جودة مجموعة البيانات والتعلم الخاضع للإشراف والتحديث الدوري. وزاد توسع إنترنت الأشياء الصناعي في الثورة الصناعية الرابعة بيانات البنية الحرجة المتنوعة أضعافًا [8]، بينما وسّع اعتماد سكادا لبروتوكول TCP/IP السطح الهجومي [5،32]؛ ولا يمكن للتوسيم الخبير مواكبة ابتكار المهاجمين ونمو الحركة الفورية [28]، ويصعب تمييز أنماط حركة البنية الحرجة غير المتوازنة والمشوشة وغير المكتملة [71] — مما يجعل التعلم غير الخاضع للإشراف (مؤشرات خفية عبر العنقدة [31،60]) والتعلم التعزيزي (الأقرب للتعلم البشري والقوي في السيناريوهات العدائية الفورية [8]) أكثر براعة.</p>
+    <p>تفتقد حلول الأمن المعتادة الثغرات المدمجة لتفاعل تقنية المعلومات والأنظمة الفيزيائية [72،73]؛ وتحتاج أنظمة كشف التسلل الموجهة للبنية الحرجة خصائص محددة: (1) تشغيل ICS مستمر لا يتوقف طويلًا لإدارة الأمن مع توافر قصوى إلزامي؛ و(2) ارتجاج/تأخير أقل من شبكات IT؛ و(3) أمن ذو أولوية للمستشعرات والمشغلات ووحدات PLC المحركة للعمليات الفيزيائية [1]؛ و(4) احتواء هجمات قد تتصاعد لعواقب اقتصادية أو اجتماعية أو سياسية أو على الأرواح [19]؛ و(5) حركة مستقرة بحمولات معتمدة على المواصفات عبر بروتوكولات صناعية [74]. وترد معالجات مفصلة لخوارزميات تعلم الآلة في الشكل 2، مع شيوع التعلم الخاضع للإشراف وقوته في الدقة — رغم إعاقة المقارنة عبر النتائج باختلاف المقاييس ومجموعات البيانات والخوارزميات، وحتى درجات AUC المثالية [60] لا تحسّن أنواع أخطاء محددة، مما يحفز مقاييس معقدة مثل معامل ارتباط Matthews.</p>
+    <p>ورغم أن نتائج كشف الشذوذ تبدو واعدة، استخدم معظم الاختبار مجموعات بيانات لا تمثل تهديدات شبكة البنية الحرجة الماضية أو الحاضرة، مما يثير الشك في التعميم الواقعي؛ ويلزم توصيف دقيق لبيانات شبكة البنية الحرجة لتدريب أنظمة كشف التسلل الشبكية والمضيفة معًا، ويبقى تطوير مجموعات بيانات أدق مجال بحث مفتوحًا. ومقارنة الأعمال السابقة صعبة (الجدولان 5–6): اختلاف مجموعات البيانات والتقنيات والمقاييس — وأحيانًا الدقة وحدها [30،72] المعروف قصورها لنماذج تعلم الآلة — إضافة لتفاصيل إعادة الإنتاج المفقودة وأزمنة الكشف غير المحسوبة في سياقات ICS تجعل مقارنة النماذج نفسها مجال بحث مشجعًا. ويلزم أيضًا سد الفجوة بين أنظمة الأمن السيبراني وإدارة الحوادث لتتمكن المؤسسات من اتخاذ تدابير تحكم استباقية [18].</p>
+  </section>
+
+  <section>
+    <h2>6. الاستنتاجات والاتجاه المستقبلي</h2>
+    <p>عرضنا في هذه الورقة مسحًا لأنظمة كشف التسلل المطورة لحماية البنية التحتية الحرجة، استنادًا لبيانات السنوات الخمس الأخيرة. وتستخدم هذه الأنظمة تقنيات تعلم الآلة مكونًا أساسيًا لكشف الهجمات السيبرانية. ورغم التقدم الملموس في أدوات الكشف للتحديد الدقيق للهجمات المعروفة، تبقى تحديات: كشف هجمات اليوم صفر وتحديث النماذج وارتفاع معدلات الإيجابيات الكاذبة. ويُبرز هذا العمل نقاط قوة وضعف (1) تعلم الآلة المستخدم لتحسين أمن البنية الحرجة السيبراني، و(2) مجموعات بيانات الأمن السيبراني، و(3) متطلبات أمن البنية الحرجة، ليكون نقطة انطلاق للدراسات المقبلة.</p>
+    <p>حماية البنية التحتية الحرجة شاغل للأمن القومي [1]، وتعتمد نماذج أمنها السيبراني على تقريبات تقليدية بحلول أمنية مستقلة [98]. ويحقق التعلم الخاضع للإشراف نتائج إيجابية على الهجمات المعروفة لكنه يتعثر مع اليوم صفر؛ ويكشف التعلم غير الخاضع للإشراف الهجمات المجهولة أفضل لكن بنتائج أضعف على المعروفة؛ ويعالج التعلم التعزيزي مشكلات الدفاع السيبراني عالية الأبعاد [8]، بينما تُختبر المتعلمات الفوقية والشبكات العصبية الاصطناعية. وينبغي أن تركز الأبحاث المستقبلية على تحسين هذه التحديات المحددة — كشف اليوم صفر والتحديث والإيجابيات الكاذبة — إلى جانب مجموعات بيانات بنية حرجة أدق وأساليب مقارنة معيارية لتعلم الآلة ودمج أوثق بين أنظمة الأمن السيبراني وإدارة الحوادث.</p>
+  </section>
+
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Industrial control systems (ICSs), supervisory control and data acquisition (SCADA) systems, and distributed control systems (DCSs) are fundamental components of critical infrastructure (CI). CI supports the operation of transportation and health systems, electric and thermal plants, and water treatment facilities, among others. These infrastructures are not insulated anymore, and their connection to fourth industrial revolution technologies has expanded the attack surface. Thus, their protection has become a priority for national security. Cyber-attacks have become more sophisticated and criminals are able to surpass conventional security systems; therefore, attack detection has become a challenging area. Defensive technologies such as intrusion detection systems (IDSs) are a fundamental part of security systems to protect CI. IDSs have incorporated machine learning (ML) techniques that can deal with broader kinds of threats. Nevertheless, the detection of zero-day attacks and having technological resources to implement purposed solutions in the real world are concerns for CI operators. This survey aims to provide a compilation of the state of the art of IDSs that have used ML algorithms to protect CI. It also analyzes the security dataset used to train ML models. Finally, it presents some of the most relevant pieces of research on these topics that have been developed in the last five years.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Modern society depends on sophisticated infrastructures (cyber and physical) to carry out its day-to-day activities. These infrastructures are classified as critical assets to protect services not only in the physical but also in the digital world. Their protection has become a national security concern [1]. ICSs have exponentially evolved over the last few decades. New technologies from the fourth industrial revolution have increased efficiency while saving resources, but the connection of ICSs to the internet and the incorporation of protocols such as TCP/IP have expanded the attack surface and made CI vulnerable to a wider range of attacks [2]. In particular, the incorporation of the industrial internet of things (IIoT) to connect devices at industrial level, such as sensors and actuators, has increased cybersecurity risks [3]. Technologies incorporating machine learning (ML) have become must-haves in identifying cyber-attacks, since ML can identify patterns, outliers, or anomalies connected to particular attacks [4] — yet cybersecurity measures remain weak at identifying zero-day attacks exploiting undisclosed vulnerabilities [5,6].</p>
+    <p>ML as part of intrusion detection systems has had positive results with different kinds of learning, including supervised, unsupervised, and reinforcement learning [5,7,8]. Supervised learning identifies well-known attacks with high accuracy and low false positives, though mostly tested on outdated datasets unrepresentative of real scenarios, questioning generalization to unknown attacks. Unsupervised learning performs better on zero-day attacks through clustering or association, but false positives increase significantly [9,10]. Reinforcement learning, the most recent type, can handle cybersecurity threat complexity given sufficient learning time [8]. Complex techniques — meta learning, layered models, artificial and deep neural networks — are leading to better results.</p>
+    <p>This paper reviews the most remarkable research developed in the IDS field, specifically IDSs enhancing CI cybersecurity with ML-based solutions (Table 1), noting that CI characteristics do not normally coincide with IT networks. The work identifies key aspects of intrusion detection in industrial systems and discusses development challenges. Although some surveys cover ML applied to IDSs, they tend to neglect applications in industrial networks; this survey also helps establish the most up-to-date IDSs for CI.</p>
+  </section>
+
+  <section>
+    <h2>2. Research Objectives</h2>
+    <p>The main objective of our research was to perform a systematic review of IDSs to improve the cybersecurity level of CI through ML techniques. The review covered the last five years. Additionally, there are two specific objectives: synthesize and analyze the most representative research works conducted to develop IDSs for industrial systems through ML techniques; and generate a discussion and a critical evaluation of the existing foundation of knowledge in developing IDSs using ML techniques for CI protection.</p>
+  </section>
+
+  <section>
+    <h2>3. Methodology</h2>
+    <p>To ensure a systematic and representative review of IDSs using ML in CI, the literature review adapts the eight-step methodology of Tavares, Scavarda, and Scavarda (2016) [16]: planning and formulating the problem, searching the literature, data gathering, quality evaluation, data analysis and synthesis, interpretation, presenting results, and updating the review.</p>
+    <p>Following this methodology, keyword combinations (IDS, NID, anomaly/method/signature/hybrid detection, ML, AI, deep learning, CI, ICS, SCADA) were searched in Scopus (Table 2). From more than 30,000 initial results, successive filters — keywords, last five years (2018–2022), article/conference/review/short-survey type, English or Spanish language, CI/IDS/ML focus, and abstract analysis — reduced the set from 1396 to 1192, 1091, 1079, 300, and 166 documents; deep analysis then selected 98 documents positively contributing to the survey (some incorporating older cybersecurity dataset or concept sources).</p>
+  </section>
+
+  <section>
+    <h2>4. Fundamental Concepts</h2>
+    <p>Critical infrastructure concepts differ by source [17]; this study focuses on the characteristics making CI an infrastructure that must be secured, structured around the ICS Purdue Model architecture (Figure 1) with its hierarchical levels from physical processes through control networks to enterprise systems. ML techniques used in IDSs to protect CI span supervised, unsupervised, and reinforcement paradigms (Figure 2), with supervised learning producing strong accuracy on known attacks but struggling on zero-days, unsupervised learning better at novel attacks at the cost of false positives, and reinforcement learning suited to real-time adversarial settings.</p>
+    <p>IDSs classify by scope — host-based versus network-based — and by methodology — signature-based, anomaly-based, rule-based, and hybrid (Table 3) [31]. Signature-based IDSs use ML to detect previously learned signatures with excellent results on known attacks but fail when small attack modifications change signatures [5]; anomaly-based IDSs model normal network behavior and flag deviations, detecting unknown and zero-day attacks at the price of considerably higher false positive rates, since abnormal behavior (e.g., a plastic bag blocking a hydroelectric sensor) is not always an attack. Hybrid approaches mix both potentials but yield complex, hard-to-implement systems [7,31,34,69]. ML has become one of the most useful CI cybersecurity methods through its capacity to manage enormous data volumes and detect anomalies, patterns, and outliers [29,30], though models depend on dataset quality, require periodic updating, and were often tested on inadequate datasets [5,32].</p>
+    <p>The most popular IDS test dataset remains KDD-99 [33–35] (originating from 1990s corrections to CUP-99 redundancy and class bias), later refreshed as NSL-KDD (2009) — now over a decade old in a field where threats mutate steadily. In one comparison, 26 of 65 articles used KDD-99, 18 used NSL-KDD, 9 used KDD-CUP 99, and only two used customized datasets [5], and no reliable dataset represents both common and novel attacks [37], with dataset differences limiting evaluation methods [38]. Institutions and laboratories have released many additional datasets (Table 4: LBNL 2005 through NF-ToN-IoT and NF-UQ-NIDS 2022 [38–55], including SWaT 2019 [53]) — yet they are often outdated, not freely available, log-homogeneous, or incompletely documented [39], though still useful for testing new hypotheses.</p>
+  </section>
+
+  <section>
+    <h2>5. Machine Learning in Intrusion Detection Systems to Protect CI</h2>
+    <p>ML classifiers aid security systems in four ways: decision trees finding accurate rule sets for traffic classification; k-nearest neighbors learning patterns from new traffic to classify zero-days as unseen classes; support vector machines; and artificial neural networks adapting to new communications, learning from incidents without full retraining, and adjusting neuron weights to unseen attacks [28]. All share dependence on dataset quality, supervised learning, and periodic updating. The fourth industrial revolution's IIoT expansion has exponentially increased diverse CI data [8], while SCADA TCP/IP adoption widened the attack surface [5,32]; expert labeling cannot keep pace with attacker innovation and real-time traffic growth [28], and unbalanced, noisy, incomplete CI traffic patterns are hard to recognize [71] — making unsupervised learning (hidden indicators via clustering [31,60]) and reinforcement learning (closest to human learning, strong in real-time adversarial scenarios [8]) increasingly adept.</p>
+    <p>Typical security solutions miss vulnerabilities merging IT and physical interaction [72,73]; CI-oriented IDSs need specific characteristics: (1) continuous ICS operation that cannot pause long for security management with mandatory top availability; (2) lower jitter/delay than IT networks; (3) priority security for sensors, actuators, and PLCs driving physical processes [1]; (4) containment of attacks that could scale into economic, social, political, or human-life consequences [19]; and (5) stable traffic with specification-dependent payloads over industrial protocols [74]. Detailed ML algorithm treatments appear in Figure 2, with supervised learning most frequent and strong on accuracy — though cross-result comparison is hampered by differing measures, datasets, and algorithms, and even perfect AUC scores [60] cannot optimize specific error types, motivating complex metrics such as the Matthews correlation coefficient.</p>
+    <p>Although anomaly detection results look promising, most testing used datasets unrepresentative of past or present CI network threats, questioning real-world generalization; accurate characterization of CI network data is needed for both network- and host-based IDS training, and developing more accurate datasets remains an open research area. Comparing with previous works is challenging (Tables 5–6): different datasets, techniques, and metrics — sometimes accuracy alone [30,72], already known to be insufficient for ML models — plus missing replication details and undetermined detection times in ICS contexts make model comparison itself an encouraging research area. There is also a need to close the gap between cybersecurity systems and incident management so organizations can take proactive control measures [18].</p>
+  </section>
+
+  <section>
+    <h2>6. Conclusions and Future Direction</h2>
+    <p>In this paper, we have presented a survey on IDSs developed for CI protection, based on data from the last five years. These IDSs use ML techniques as a principal component to detect cyber-attacks. Although there are meaningful advances in detection tools for accurate identification of known attacks, challenges remain: zero-day attack detection, model updating, and high false positive rates. This work highlights the strengths and weaknesses of (1) the ML used to improve CI cybersecurity, (2) the cybersecurity datasets, and (3) CI security requirements, serving as a starting point for forthcoming studies.</p>
+    <p>The protection of CI is a national security concern [1], and its cybersecurity models depend on traditional approximations using standalone security solutions [98]. Supervised learning produces positive results on well-known attacks but struggles with zero-days; unsupervised learning detects unknown attacks better but with weaker known-attack results; reinforcement learning addresses high-dimensional cyber defense problems [8], while meta-learners and artificial neural networks are being tested. Future research should improve these identified challenges — zero-day detection, updating, and false positives — alongside more accurate CI datasets, standardized ML comparison methods, and tighter integration of cybersecurity systems with incident management.</p>
+  </section>
+
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Markopoulou, D.; Papakonstantinou, V. The regulatory framework for the protection of critical infrastructures against cyberthreats: Identifying shortcomings and addressing future challenges: The case of the health sector in particular. Comput. Law Secur. Rev. Int. J. Technol. Law Pract. 2021, 41, 105502. [CrossRef]</li>
+      <li>[2] Selim, G.E.I.; Hemdan, E.E.-D.; Shehata, A.M.; El-Fishawy, N.A. Anomaly events classiﬁcation and detection system in critical industrial internet of things infrastructure using machine learning algorithms. Multimedia Tools Appl. 2021, 80, 12619–12640. [CrossRef]</li>
+      <li>[3] Ahmed, I.; Anisetti, M.; Ahmad, A.; Jeon, G. A Multilayer Deep Learning Approach for Malware Classiﬁcation in 5G-Enabled IIoT. IEEE Trans. Ind. Inform. 2022, 19, 1495–1503. [CrossRef]</li>
+      <li>[4] Ridwan, M.A.; Radzi, N.A.M.; Abdullah, F.; Jalil, Y.E. Applications of Machine Learning in Networking: A Survey of Current Issues and Future Challenges. IEEE Access 2021, 9, 52523–52556. [CrossRef]</li>
+      <li>[5] Shaukat, K.; Luo, S.; Varadharajan, V.; Hameed, I.A.; Xu, M. A Survey on Machine Learning Techniques for Cyber Security in the Last Decade. IEEE Access 2020, 8, 222310–222354. [CrossRef]</li>
+      <li>[6] Kruszka, L.; Klósak, M.; Muzolf, P. Critical Infrastructure Protection Best Practices and Innovative Methods of Protection; NATO Science for Peace and Security, Sub-Series D, Information and Communication Security; IOS Press: Amsterdam, The Netherlands, 2019; Volume 52.</li>
+      <li>[7] Khraisat, A.; Gondal, I.; Vamplew, P.; Kamruzzaman, J. Survey of intrusion detection systems: Techniques, datasets and challenges. Cybersecurity 2019, 2, 20. [CrossRef]</li>
+      <li>[8] Nguyen, T.T.; Reddi, V.J. Deep Reinforcement Learning for Cyber Security. IEEE Trans. Neural Netw. Learn. Syst. 2021, 1–17. [CrossRef]</li>
+      <li>[9] Alimi, O.A.; Ouahada, K.; Abu-Mahfouz, A.M.; Rimer, S.; Alimi, K.O.A. A Review of Research Works on Supervised Learning Algorithms for SCADA Intrusion Detection and Classiﬁcation. Sustainability 2021, 13, 9597. [CrossRef] 15 of 18</li>
+      <li>[10] Almalawi, A.; Fahad, A.; Tari, Z.; Khan, A.I.; Alzahrani, N.; Bakhsh, S.T.; Alassaﬁ, M.O.; Alshdadi, A.; Qaiyum, S. Add-On Anomaly Threshold Technique for Improving Unsupervised Intrusion Detection on SCADA Data. Electronics 2020, 9, 1017. [CrossRef]</li>
+      <li>[11] Conti, M.; Donadel, D.; Turrin, F. A Survey on Industrial Control System Testbeds and Datasets for Security Research. IEEE Commun. Surv. Tutor. 2021, 23, 2248–2294. [CrossRef]</li>
+      <li>[12] Ring, M.; Wunderlich, S.; Scheuring, D.; Landes, D.; Hotho, A. A survey of network-based intrusion detection data sets. Comput. Secur. 2019, 86, 147–167. [CrossRef]</li>
+      <li>[13] Bhamare, D.; Zolanvari, M.; Erbad, A.; Jain, R.; Khan, K.; Meskin, N. Cybersecurity for industrial control systems: A survey. Comput. Secur. 2020, 89, 101677. [CrossRef]</li>
+      <li>[14] Ghosh, S.; Sampalli, S. A Survey of Security in SCADA Networks: Current Issues and Future Challenges. IEEE Access 2019, 7, 135812–135831. [CrossRef]</li>
+      <li>[15] Ramotsoela, D.; Abu-Mahfouz, A.; Hancke, G. A Survey of Anomaly Detection in Industrial Wireless Sensor Networks with Critical Water System Infrastructure as a Case Study. Sensors 2018, 18, 2491. [CrossRef]</li>
+      <li>[16] Thomé, A.M.T.; Scavarda, L.F.; Scavarda, A.J. Conducting systematic literature review in operations management. Prod. Plan. Control 2016, 27, 408–420. [CrossRef]</li>
+      <li>[17] Gallais, C.; Filiol, E. Critical Infrastructure: Where Do We Stand Today? A Comprehensive and Comparative Study of the Deﬁnitions of a Critical Infrastructure. J. Inf. Warf. 2017, 16, 64. Available online: <a href="https://www.jstor.org/stable/26502877">https://www.jstor.org/stable/26502877</a> (accessed on 20 October 2022).</li>
+      <li>[18] Kure, H.; Islam, S. Cyber Threat Intelligence for Improving Cybersecurity and Risk Management in Critical Infrastructure. J. Univers. Comput. Sci. 2019, 25, 1478–1502. [CrossRef]</li>
+      <li>[19] Herrera, L.-C.; Maennel, O. A comprehensive instrument for identifying critical information infrastructure services. Int. J. Crit. Infrastruct. Prot. 2019, 25, 50–61. [CrossRef]</li>
+      <li>[20] Mattioli, R.; Levy-Bencheton, C.; European Union, European Network and Information Security Agency. Methodologies for the Identiﬁcation of Critical Information Infrastructure Assets and Services: Guidelines for Charting Electronic Data Communication Networks; European Union Agency for Network and Information Security: Heraklion, Greece, 2014.</li>
+      <li>[21] U.S. Homeland Security Ofﬁce. Homeland Security Presidential Directive 7: Critical Infrastructure Identiﬁcation, Prioriti- zation, and Protection. Available online: <a href="https://www.cisa.gov/homeland-security-presidential-directive-7">https://www.cisa.gov/homeland-security-presidential-directive-7</a> (accessed on 17 December 2003).</li>
+      <li>[22] Pătra¸scu, P. Emerging Technologies and National Security: The Impact of IoT in Critical Infrastructures Protection and Defence Sector. Land Forces Acad. Rev. 2021, 26, 423–429. [CrossRef]</li>
+      <li>[23] Das, S.K.; Kant, K.; Zhang, N. Handbook on Securing Cyber-Physical Critical Infrastructure. Waltham, MA: Morgan Kaufmann, 2012. Available online: <a href="https://ezproxy.uniandes.edu.co/login?url=https://search.ebscohost.com/login.aspx?direct=true&amp;db=">https://ezproxy.uniandes.edu.co/login?url=https://search.ebscohost.com/login.aspx?direct=true&amp;db=</a> e000xww&amp;AN=453871&amp;lang=es&amp;site=eds-live&amp;scope=site (accessed on 1 November 2022).</li>
+      <li>[24] Kure, H.I.; Islam, S.; Mouratidis, H. An integrated cyber security risk management framework and risk predication for the critical infrastructure protection. Neural Comput. Appl. 2022, 34, 15241–15271. [CrossRef]</li>
+      <li>[25] Dawson, M.; Bacius, R.; Gouveia, L.B.; Vassilakos, A. Understanding the Challenge of Cybersecurity in Critical Infrastructure Sectors. Land Forces Acad. Rev. 2021, 26, 69–75. [CrossRef]</li>
+      <li>[26] Malatji, M.; Marnewick, A.L.; Von Solms, S. Cybersecurity capabilities for critical infrastructure resilience. Inf. Comput. Secur. 2022, 30, 255–279. [CrossRef]</li>
+      <li>[27] Arora, P.; Kaur, B.; Teixeira, M.A. Evaluation of Machine Learning Algorithms Used on Attacks Detection in Industrial Control Systems. J. Inst. Eng. (India) Ser. B 2021, 102, 605–616. [CrossRef]</li>
+      <li>[28] Zeadally, S.; Adi, E.; Baig, Z.; Khan, I.A. Harnessing Artiﬁcial Intelligence Capabilities to Improve Cybersecurity. IEEE Access 2020, 8, 23817–23837. [CrossRef]</li>
+      <li>[29] Handa, A.; Sharma, A.; Shukla, S.K. Machine learning in cybersecurity: A review. WIREs Data Min. Knowl. Discov. 2019, 9, e1306. [CrossRef]</li>
+      <li>[30] Buczak, L.; Guven, E. A survey of data mining and machine learning methods for cyber security intrusion detection. IEEE Commun. Surv. Tutor. 2015, 18, 1153–1176. [CrossRef]</li>
+      <li>[31] Sarker, I.H.; Kayes, A.S.M.; Badsha, S.; Alqahtani, H.; Watters, P.; Ng, A. Cybersecurity data science: An overview from machine learning perspective. J. Big Data 2020, 7, 1–29. [CrossRef]</li>
+      <li>[32] Polat, H.; Türko˘glu, M.; Polat, O.; ¸Sengür, A. A novel approach for accurate detection of the DDoS attacks in SDN-based SCADA systems based on deep recurrent neural networks. Expert Syst. Appl. 2022, 197, 116748. [CrossRef]</li>
+      <li>[33] Sarnovsky, M.; Paralic, J. Hierarchical Intrusion Detection Using Machine Learning and Knowledge Model. Symmetry 2020, 12, 203. [CrossRef]</li>
+      <li>[34] Mishra, P.; Varadharajan, V.; Tupakula, U.; Pilli, E.S. A Detailed Investigation and Analysis of Using Machine Learning Techniques for Intrusion Detection. IEEE Commun. Surv. Tutor. 2019, 21, 686–728. [CrossRef]</li>
+      <li>[35] Shams, E.A.; Rizaner, A.; Ulusoy, A.H. A novel context-aware feature extraction method for convolutional neural network-based intrusion detection systems. Neural Comput. Appl. 2021, 33, 13647–13665. [CrossRef]</li>
+      <li>[36] Viegas, E.K.; Santin, A.O.; Oliveira, L.S. Toward a reliable anomaly-based intrusion detection in real-world environments. Comput. Netw. 2017, 127, 200–216. [CrossRef] 16 of 18</li>
+      <li>[37] Kanimozhi, V.; Jacob, T.P. Artiﬁcial Intelligence based Network Intrusion Detection with hyper-parameter optimization tuning on the realistic cyber dataset CSE-CIC-IDS2018 using cloud computing. ICT Express 2019, 5, 211–214. [CrossRef]</li>
+      <li>[38] Sarhan, M.; Layeghy, S.; Portmann, M. Towards a Standard Feature Set for Network Intrusion Detection System Datasets. Mob. Netw. Appl. 2022, 27, 357–370. [CrossRef]</li>
+      <li>[39] Kenyon, A.; Deka, L.; Elizondo, D. Are public intrusion datasets ﬁt for purpose characterising the state of the art in intrusion event datasets. Comput. Secur. 2020, 99, 102022. [CrossRef]</li>
+      <li>[40] Nechaev, B.; Allman, M.; Paxson, V.; Gurtov, A. Lawrence Berkeley National Laboratory (LBNL)/ICSI Enterprise Tracing Project; LBNL/ICSI: Berkeley, CA, USA, 2004.</li>
+      <li>[41] Sperotto, A.; Sadre, R.; Van Vliet, F.; Pras, A. A labeled data set for ﬂow-based intrusion detection. In IP Operations and Management, Proceedings of the 9th IEEE International Workshop, IPOM 2009, Venice, Italy, 29–30 October 2009; Springer: Berlin/Heidelberg, Germany, 2009; pp. 39–50.</li>
+      <li>[42] Fontugne, R.; Borgnat, P.; Abry, P.; Fukuda, K. MAWILab: Combining Diverse Anomaly Detectors for Automated Anomaly Labeling and Performance Benchmarking. In Proceedings of the 6th International Conference, Philadelphia, PA, USA, 30 November–3 December 2010; pp. 1–12.</li>
+      <li>[43] Song, J.; Takakura, H.; Okabe, Y.; Eto, M.; Inoue, D.; Nakao, K. Statistical analysis of honeypot data and building of Kyoto 2006+ dataset for NIDS evaluation. In Proceedings of the EuroSys’11: Sixth EuroSys Conference 2011, Salzburg, Austria, 10 April 2011; pp. 29–36. [CrossRef]</li>
+      <li>[44] Gogoi, P.; Bhuyan, M.H.; Bhattacharyya, D.K.; Kalita, J.K. Packet and ﬂow based network intrusion dataset. In Proceedings of the International Conference on Contemporary Computing, Noida, India, 6–8 August 2012; pp. 322–334.</li>
+      <li>[45] Shiravi, A.; Shiravi, H.; Tavallaee, M.; Ghorbani, A.A. Toward developing a systematic approach to generate benchmark datasets for intrusion detection. Comput. Secur. 2012, 31, 357–374. [CrossRef]</li>
+      <li>[46] Wheelus, C.; Khoshgoftaar, T.M.; Zuech, R.; Najafabadi, M.M. A Session Based Approach for Aggregating Network Trafﬁc Data—The SANTA Dataset. In Proceedings of the 2014 IEEE International Conference on Bioinformatics and Bioengineering, Boca Raton, FL, USA, 10–12 November 2014; pp. 369–378. [CrossRef]</li>
+      <li>[47] Bhattacharya, S.; Selvakumar, S. SSENet-2014 dataset: A dataset for detection of multiconnection attacks. In Proceedings of the 3rd International Conference on Eco-Friendly Computing and Communication Systems, ICECCS 2014, Mangalore, India, 18–21 December 2014; pp. 121–126. [CrossRef]</li>
+      <li>[48] Kent, D. Comprehensive, Multi-Source Cyber-Security Events Data Set; Los Alamos National Lab (LANL): Los Alamos, NM, USA, 2015.</li>
+      <li>[49] García, S.; Grill, M.; Stiborek, J.; Zunino, A. An empirical comparison of botnet detection methods. Comput. Secur. 2014, 45, 100–123. [CrossRef]</li>
+      <li>[50] Beer, F.; Hofer, T.; Karimi, D.; Bühler, U. A New Attack Composition for Network Security. 2017. Available online: https: //openwrt.org/ (accessed on 25 October 2022).</li>
+      <li>[51] Sharma, R.; Singla, R.; Guleria, A. A New Labeled Flow-based DNS Dataset for Anomaly Detection: PUF Dataset. Procedia Comput. Sci. 2018, 132, 1458–1466. [CrossRef]</li>
+      <li>[52] Maciá-Fernández, G.; Camacho, J.; Magán-Carrión, R.; García-Teodoro, P.; Therón, R. UGR‘16: A new dataset for the evaluation of cyclostationarity-based network IDSs. Comput. Secur. 2018, 73, 411–424. [CrossRef]</li>
+      <li>[53] Adepu, S.; Junejo, K.N.; Mathur, A.; Goh, J. A Dataset to Support Research in the Design of Secure Water Treatment Systems Physical Layer security for Cyber Physical Systems: Attack Design, Detection and Solution (ADDS) View Project Advancing Security of Public Infrastructure Using Resilience and Economics View Project A Dataset to Support Research in the Design of Secure Water Treatment Systems. Available online: <a href="https://www.researchgate.net/publication/305809559">https://www.researchgate.net/publication/305809559</a> (accessed on 30 September 2022).</li>
+      <li>[54] Guerra-Manzanares, A.; Medina-Galindo, J.; Bahsi, H.; Nõmm, S. MedBIoT: Generation of an IoT botnet dataset in a medium-sized IoT network. In Proceedings of the ICISSP 2020—6th International Conference on Information Systems Security and Privacy, Valletta, Malta, 25–27 February 2020; pp. 207–218.</li>
+      <li>[55] MVS Datasets z/OS TSO/E Customization SA32-0976-00. Available online: <a href="https://www.ibm.com/docs/en/zos/2.1.0?topic=">https://www.ibm.com/docs/en/zos/2.1.0?topic=</a> tsoe-mvs-data-sets (accessed on 3 November 2022).</li>
+      <li>[56] Center for Applied Internet Data Analysis at the University of California’s, CAIDA Data—Completed Datasets. Available online: <a href="https://www.caida.org/catalog/datasets/completed-datasets/">https://www.caida.org/catalog/datasets/completed-datasets/</a> (accessed on 5 November 2022).</li>
+      <li>[57] Faramondi, L.; Flammini, F.; Guarino, S.; Setola, R. A Hardware-in-the-Loop Water Distribution Testbed Dataset for Cyber- Physical Security Testing. IEEE Access 2021, 9, 122385–122396. [CrossRef]</li>
+      <li>[58] Wu, M.; Song, J.; Sharma, S.; Di, J.; He, B.; Wang, Z.; Zhang, J.; Lin, L.W.L.; Greaney, E.A.; Moon, Y. Development of testbed for cyber-manufacturing security issues. Int. J. Comput. Integr. Manuf. 2020, 33, 302–320. [CrossRef]</li>
+      <li>[59] Haider, W.; Hu, J.; Slay, J.; Turnbull, B.; Xie, Y. Generating realistic intrusion detection system dataset based on fuzzy qualitative modeling. J. Netw. Comput. Appl. 2017, 87, 185–192. [CrossRef]</li>
+      <li>[60] Zoppi, T.; Gharib, M.; Atif, M.; Bondavalli, A. Meta-Learning to Improve Unsupervised Intrusion Detection in Cyber-Physical Systems. ACM Trans. Cyber-Phys. Syst. 2021, 5, 1–27. [CrossRef]</li>
+      <li>[61] Alsaedi, A.; Moustafa, N.; Tari, Z.; Mahmood, A.; Anwar, A. TON_IoT Telemetry Dataset: A New Generation Dataset of IoT and IIoT for Data-Driven Intrusion Detection Systems. IEEE Access 2020, 8, 165130–165150. [CrossRef] 17 of 18</li>
+      <li>[62] Hindy, H.; Bayne, E.; Bures, M.; Atkinson, R.; Tachtatzis, C.; Bellekens, X. Machine Learning Based IoT Intrusion Detection System: An MQTT Case Study (MQTT-IoT-IDS2020 Dataset). In Selected Papers from the 12th International Networking Conference: INC 2020; Springer International Publishing: Cham, Switzerland, 2021; pp. 73–84. Available online: <a href="http://arxiv.org/abs/2006.15340">http://arxiv.org/abs/2006.15340</a> (accessed on 1 December 2022).</li>
+      <li>[63] Al-Hawawreh, M.; Sitnikova, E.; Aboutorab, N. X-IIoTID: A Connectivity-Agnostic and Device-Agnostic Intrusion Data Set for Industrial Internet of Things. IEEE Internet Things J. 2021, 9, 3962–3977. [CrossRef]</li>
+      <li>[64] Ferrag, M.A.; Friha, O.; Hamouda, D.; Maglaras, L.; Janicke, H. Edge-IIoTset: A New Comprehensive Realistic Cyber Security Dataset of IoT and IIoT Applications for Centralized and Federated Learning. IEEE Access 2022, 10, 40281–40306. [CrossRef]</li>
+      <li>[65] Gyamﬁ, E.; Jurcut, A. Intrusion Detection in Internet of Things Systems: A Review on Design Approaches Leveraging Multi-Access Edge Computing, Machine Learning, and Datasets. Sensors 2022, 22, 3744. [CrossRef]</li>
+      <li>[66] Ahsan, R.; Shi, W.; Ma, X.; Croft, W.L. A comparative analysis of CGAN-based oversampling for anomaly detection. IET Cyber-Phys. Syst. Theory Appl. 2022, 7, 40–50. [CrossRef]</li>
+      <li>[67] Francia, G.A. A Machine Learning Test Data Set for Continuous Security Monitoring of Industrial Control Systems. In Proceedings of the 2017 IEEE 7th Annual International Conference on CYBER Technology in Automation, Control, and Intelligent Systems (CYBER), Honolulu, HI, USA, 31 July 2017–4 August 2017; pp. 1043–1048. [CrossRef]</li>
+      <li>[68] Fujdiak, R.; Blazek, P.; Mlynek, P.; Misurec, J. Developing Battery of Vulnerability Tests for Industrial Control Systems. In Proceedings of the 2017 IEEE 7th Annual International Conference on CYBER Technology in Automation, Control, and Intelligent Systems (CYBER), Honolulu, HI, USA, 31 July 2017–4 August 2019; pp. 1–5. [CrossRef]</li>
+      <li>[69] Kaouk, M.; Flaus, J.-M.; Potet, M.-L.; Groz, R. A Review of Intrusion Detection Systems for Industrial Control Systems. In Proceedings of the 2019 6th International Conference on Control, Decision and Information Technologies (CoDIT), Paris, France, 23–26 April 2019; pp. 1699–1704. [CrossRef]</li>
+      <li>[70] Kegyes, T.; Süle, Z.; Abonyi, J. The Applicability of Reinforcement Learning Methods in the Development of Industry 4.0 Applications. Complexity 2021, 2021, 1–31. [CrossRef]</li>
+      <li>[71] Roberts, C.; Ngo, S.-T.; Milesi, A.; Peisert, S.; Arnold, D.; Saha, S.; Scaglione, A.; Johnson, N.; Kocheturov, A.; Fradkin, D. Deep Reinforcement Learning for DER Cyber-Attack Mitigation. September 2020. Available online: <a href="http://arxiv.org/abs/2009.13088">http://arxiv.org/abs/2009.13088</a> (accessed on 5 December 2022).</li>
+      <li>[72] Shitharth, S.; Kshirsagar, P.R.; Balachandran, P.K.; Alyoubi, K.H.; Khadidos, A.O. An Innovative Perceptual Pigeon Galvanized Optimization (PPGO) Based Likelihood Naïve Bayes (LNB) Classiﬁcation Approach for Network Intrusion Detection System. IEEE Access 2022, 10, 46424–46441. [CrossRef]</li>
+      <li>[73] Prashanth, S.K.; Shitharth, S.; Kumar, B.P.; Subedha, V.; Sangeetha, K. Optimal Feature Selection Based on Evolutionary Algorithm for Intrusion Detection. SN Comput. Sci. 2022, 3, 1–9. [CrossRef]</li>
+      <li>[74] MR, G.R.; Ahmed, C.M.; Mathur, A. Machine learning for intrusion detection in industrial control systems: Challenges and lessons from experimental evaluation. Cybersecurity 2021, 4, 27. [CrossRef]</li>
+      <li>[75] Mishra, N.; Pandya, S. Internet of Things Applications, Security Challenges, Attacks, Intrusion Detection, and Future Visions: A Systematic Review. IEEE Access 2021, 9, 59353–59377. [CrossRef]</li>
+      <li>[76] Le, T.-T.; Kim, H.; Kang, H.; Kim, H. Classiﬁcation and Explanation for Intrusion Detection System Based on Ensemble Trees and SHAP Method. Sensors 2022, 22, 1154. [CrossRef]</li>
+      <li>[77] Faker, O.; Dogdu, E. Intrusion detection using big data and deep learning techniques. In Proceedings of the ACMSE 2019, Kennesaw, GA, USA, 18–20 April 2019; pp. 86–93. [CrossRef]</li>
+      <li>[78] Nirmala, P.; Manimegalai, T.; Arunkumar, J.R.; Vimala, S.; Rajkumar, G.V.; Raju, R. A Mechanism for Detecting the Intruder in the Network through a Stacking Dilated CNN Model. Wirel. Commun. Mob. Comput. 2022, 2022, 1955009. [CrossRef]</li>
+      <li>[79] Liu, Z.; Ghulam MU, D.; Zhu, Y.; Yan, X.; Wang, L.; Jiang, Z.; Luo, J. Deep Learning Approach for IDS. In Proceedings of the Fourth International Congress on Information and Communication Technology, London, UK, 25–26 February 2020; pp. 471–479.</li>
+      <li>[80] Sharafaldin, I.; Lashkari, A.H.; Ghorbani, A.A. Toward generating a new intrusion detection dataset and intrusion trafﬁc characterization. In Proceedings of the International Conference on Information Systems Security and Privacy, Funchal, Portugal, 22–24 January 2018; pp. 108–116.</li>
+      <li>[81] Malik, A.J.; Khan, F.A. A hybrid technique using binary particle swarm optimization and decision tree pruning for network intrusion detection. Clust. Comput. 2017, 21, 667–680. [CrossRef]</li>
+      <li>[82] Al Jallad, K.; Aljnidi, M.; Desouki, M.S. Big data analysis and distributed deep learning for next-generation intrusion detection system optimization. J. Big Data 2019, 6, 1–18. [CrossRef]</li>
+      <li>[83] Batina, L.; Picek, S.; Mondal, M. Security, Privacy, and Applied Cryptography Engineering, Proceedings of the 10th International Conference, SPACE 2020, Kolkata, India, 17–21 December 2020; Springer Nature: Berlin/Heidelberg, Germany, 2020; Volume 12586.</li>
+      <li>[84] Khan, I.A.; Pi, D.; Khan, Z.U.; Hussain, Y.; Nawaz, A. HML-IDS: A Hybrid-Multilevel Anomaly Prediction Approach for Intrusion Detection in SCADA Systems. IEEE Access 2019, 7, 89507–89521. [CrossRef]</li>
+      <li>[85] Sangeetha, K.; Shitharth, S.; Mohammed, G.B. Enhanced SCADA IDS Security by Using MSOM Hybrid Unsupervised Algorithm. Int. J. Web-Based Learn. Teach. Technol. 2022, 17, 1–9. [CrossRef]</li>
+      <li>[86] Khadidos, A.O.; Manoharan, H.; Selvarajan, S.; Khadidos, A.O.; Alyoubi, K.H.; Yafoz, A. A Classy Multifacet Clustering and Fused Optimization Based Classiﬁcation Methodologies for SCADA Security. Energies 2022, 15, 3624. [CrossRef] 18 of 18</li>
+      <li>[87] Kwon, H.-Y.; Kim, T.; Lee, M.-K. Advanced Intrusion Detection Combining Signature-Based and Behavior-Based Detection Methods. Electronics 2022, 11, 867. [CrossRef]</li>
+      <li>[88] Song, J.Y.; Paul, R.; Yun, J.H.; Kim, H.C.; Choi, Y.J. CNN-based anomaly detection for packet payloads of industrial control system. Int. J. Sens. Netw. 2021, 36, 36–49. [CrossRef]</li>
+      <li>[89] Wang, C.; Liu, H.; Sun, Y.; Wei, Y.; Wang, K.; Wang, B. Dimension Reduction Technique Based on Supervised Autoencoder for Intrusion Detection of Industrial Control Systems. Secur. Commun. Netw. 2022, 2022, 5713074. [CrossRef]</li>
+      <li>[90] Durairaj, D.; Venkatasamy, T.K.; Mehbodniya, A.; Umar, S.; Alam, T. Intrusion detection and mitigation of attacks in microgrid using enhanced deep belief network. Energy Sources, Part A Recover. Util. Environ. Eff. 2022, 1–23. [CrossRef]</li>
+      <li>[91] Chen, J.; Gao, X.; Deng, R.; He, Y.; Fang, C.; Cheng, P. Generating Adversarial Examples Against Machine Learning-Based Intrusion Detector in Industrial Control Systems. IEEE Trans. Dependable Secur. Comput. 2022, 19, 1810–1825. [CrossRef]</li>
+      <li>[92] Panagiotis, F.; Taxiarxchis, K.; Georgios, K.; Maglaras, L.; Ferrag, M.A. Intrusion Detection in Critical Infrastructures: A Literature Review. Smart Cities 2021, 4, 1146–1157. [CrossRef]</li>
+      <li>[93] Yadav, G.; Paul, K. Architecture and security of SCADA systems: A review. Int. J. Crit. Infrastruct. Prot. 2021, 34, 100433. [CrossRef]</li>
+      <li>[94] Jmila, H.; Ibn Khedher, M. Adversarial machine learning for network intrusion detection: A comparative study. Comput. Netw. 2022, 214, 109073. [CrossRef]</li>
+      <li>[95] Madry, A.; Makelov, A.; Schmidt, L.; Tsipras, D.; Vladu, A. Towards Deep Learning Models Resistant to Adversarial Attacks. Available online: <a href="https://github.com/MadryLab/cifar10_challenge">https://github.com/MadryLab/cifar10_challenge</a> (accessed on 2 December 2022).</li>
+      <li>[96] Gao, R.; Liu, F.; Zhang, J.; Han, B.; Liu, T.; Niu, G.; Sugiyama, M. Maximum Mean Discrepancy Test is Aware of Adversarial Attacks. In Proceedings of the International Conference on Machine Learning, Virtual Event, 13–18 July 2020. Available online: <a href="http://arxiv.org/abs/2010.11415">http://arxiv.org/abs/2010.11415</a> (accessed on 17 November 2022).</li>
+      <li>[97] Akhtar, N.; Mian, A. Threat of Adversarial Attacks on Deep Learning in Computer Vision: A Survey. IEEE Access 2018, 6, 14410–14430. [CrossRef]</li>
+      <li>[98] Yurekten, O.; Demirci, M. Citadel: Cyber threat intelligence assisted defense system for software-deﬁned networks. Comput. Netw. 2021, 191, 108013. [CrossRef]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s23052415">10.3390/s23052415</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

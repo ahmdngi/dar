@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Application Perspective on Cybersecurity Testbed for Industrial Control Systems — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Application Perspective on Cybersecurity Testbed for Industrial Control Systems</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">منظور تطبيقي لمنصة اختبار الأمن السيبراني لأنظمة التحكم الصناعية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ondrej Pospisil, Petr Blazek, Karel Kuchar, Radek Fujdiak, Jiri Misurec</span>
+    <span>📄 Sensors, 2021 · Vol. 21(23), 8119</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s21238119">10.3390/s21238119</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>في السنوات الأخيرة، عجّل نموذج الصناعة 4.0 برقمنة الصناعة وقلّص ببطء الخط الفاصل بين تقنيات المعلومات (IT) وتقنيات التشغيل (OT)، جالبًا تحديات تقارب تشمل متجهات هجوم وتهديدات وعيوبًا أمنية جديدة. لذا تتطلب حماية البنية التحتية الصناعية أنظمة مراقبة وكشف مُدرّبة على مجموعات بيانات عالية الجودة وكبيرة ومجموعة في ظروف متنوعة — لكن كشف إعدادات المصانع الحقيقية مكلف ومقيد باعتبارات الخصوصية والحساسية.</p>
+    <p>ومن شحّ البيانات هذا يبرز موضوع منصات اختبار الصناعية: بيئات مخبرية فيزيائية شبه واقعية ومصانع افتراضية وشبكات ومصائد خادعة تقدم مجموعات بيانات للبحث والتطوير. يستعرض هذا المقال الأعمال ذات الصلة بمنصات الاختبار الصناعية، ويصف أفضل الممارسات والدروس المستفادة من تجميع منصات فيزيائية ومحاكاة وافتراضية وهجينة، ويقارن معلماتها الأساسية، ويعرض النتائج مرئيًا كاشفًا تحديات البحث والتطوير.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>يجلب نموذج الصناعة 4.0 — إنترنت الأشياء الصناعية وتحليلات البيانات الضخمة والحوسبة السحابية والتكامل الأفقي والرأسي والروبوتات والواقع المعزز والتصنيع بالإضافة والتوائم الرقمية [1،2،3،4] — مزايا لا تُنكر لكنه يطرح أيضًا تحديات كبرى، في مقدمتها الأمن السيبراني. فالرقمنة الهائلة وتقارب تقنيات المعلومات والتشغيل وتزايد الترابط تجعل الأمن السيبراني شاغلًا محوريًا [5،6،7،8،9،10،11]. وتصعب كشف البرمجيات الخبيثة المتطورة التي تستهدف أنظمة التحكم، ولا سيما هجمات اليوم الصفري والجذور الخفية المتخصصة، بينما تُدخل البرمجيات والعتاد المعياري داخل شبكات ICS ثغرات إضافية.</p>
+    <p>يتجلى حجم المشكلة في إحصاءات الثغرات: لم تُنشر سوى ثغرتين في أنظمة التحكم الصناعية عام 1997، و19 ثغرة عام 2010، و189 ثغرة عام 2015 [13]؛ وكشفت Kaspersky عن 415 ثغرة في 2018 و509 في 2019 [12،14،15]، بينما نما العمل عن بُعد في الصناعة 53% خلال الجائحة موسعًا سطح الهجوم. وتؤكد الهجمات الواقعية حجم المخاطر: هجوم 2013 على مصنع صلب ألماني عطّل الإنتاج بأضرار جسيمة [16]، وهجوما 2015 و2016 على شبكة الكهرباء الأوكرانية قطعا التيار عن ربع مليون أسرة في كل مرة [17،18].</p>
+    <p>لهذه الأسباب، ثمة حاجة لمخططات كشف تسلل جديدة لشبكات ICS على مستويي التحكم بالعمليات واتصالات الشبكة، ويُعد تعلم الآلة الاتجاه الأكثر وعدًا حاليًا [19،20،21،22،23]. لكن مجموعات البيانات المناسبة للتعلم والتدريب والاختبار شحيحة، مما يجبر الباحثين على بناء بيئات اختبار مخصصة. فمنصة الاختبار — وهي منصة تحاكي الأنشطة الواقعية تحت الإشراف لتجارب قابلة للتكرار — تمكّن من توليد مجموعات البيانات واختبار الحوادث دون أثر اقتصادي على المصانع الحية والتقييم الآني لطرق الكشف. وتتمثل إسهامات المقال في: مسح حديث لمنصات الاختبار خارج قطاع الطاقة؛ وملخص معلمات لكل منصة؛ وتوثيق الخبرة في بناء منصات فيزيائية ومحاكاة وافتراضية وهجينة؛ وعرض مرئي للنسب المئوية للمعلمات يحدد تحديات البحث المستقبلي.</p>
+  </section>
+
+  <section>
+    <h2>2. الأعمال ذات الصلة</h2>
+    <p>لرسم خريطة الحالة الراهنة، بحث المؤلفون في Scopus بالاستعلام (testbed OR test bed) AND survey AND (ICS OR industrial control systems)، فحصلوا على سبع نتائج طابق اثنان منها [24،25] تركيز أتمتة العمليات؛ وأُضيفت ثلاثة مسوح أخرى [26،27،28] عبر المراجع وGoogle Scholar. يقارن Holm وآخرون [24] (2015) الأهداف البحثية وتنفيذ المكونات (المحاكاة الافتراضية والمضاهاة والمحاكاة والعتاد) والإخلاص عبر سيناريوهات مثل تحليل الثغرات والتعليم واختبارات آليات الدفاع والشبكات الخادعة وتحليل التهديدات — وهو نقطة انطلاق جيدة لاختيار المعلمات رغم قِدمه.</p>
+    <p>يقارن Cintuglu وآخرون [26] (2016) منصات الشبكات الذكية حسب المجال البحثي والنطاقات ونوع المنصة والبروتوكولات والاتصال — مفيد منهجيًا لكنه متمحور حول شبكات الطاقة. ويصف Qassim وآخرون [27] مناهج المنصات (فيزيائية ومحاكاة وافتراضية وهجينة) ويقيّمون الإخلاص وقابلية التكرار والدقة والسلامة والفعالية من حيث التكلفة والموثوقية وقابلية التوسع لكل منهج. ويصنف Geng وآخرون [25] المنصات الفيزيائية والبرمجية وشبه الفيزيائية والافتراضية مع أحد عشر سيناريو تطبيقيًا، بينما يقدم Ani وآخرون [28] منهجية تقييم شاملة متمحورة حول الإخلاص ومركزة على منصات الطاقة.</p>
+    <p>يتميز هذا المسح بتركيزه الحصري على أتمتة العمليات (المتمحورة حول PLC) مع إغفال متعمد لقطاع الطاقة المشمول تغطيةً؛ وبمقارنة الخصائص ذات الصلة ببناء مجموعات بيانات لأنظمة كشف التسلل القائمة على تعلم الآلة؛ وبتضمين استخدام الخدمات السحابية كمعامل، مواكبةً لاتجاهات البنية التحتية كخدمة في الشبكات الصناعية [29]. وتلي ذلك المنهجية وتعريفات المعلمات.</p>
+  </section>
+
+  <section>
+    <h2>3. منهجنا — منصات الاختبار الفيزيائية</h2>
+    <p>بُنيت جميع المنصات في مختبر الجامعة لجمع البيانات، مشملةً الفئات الفيزيائية (عتاد صناعي خالص) والهجينة والافتراضية والمحاكاة. تستخدم منصة التحكم في المحركات الصناعية (الربع الأول 2021) مكونات Siemens حصرًا — PLC من طراز S7-1200 وواجهة KTP700 ومبدل Scalance XB005 ومشغّل V90 ومحرك Simotics (الجدول 3) — لالتقاط اتصالات S7/Profinet الخاصة التي لا توجد لها مجموعات بيانات عامة. ويشمل السيناريو التحكم في بدء/إيقاف المحرك وسرعته واتجاه دورانه عبر HMI. والدروس المستفادة: مكّن البناء من الغوص العميق في تحليل بروتوكول S7 لمجموعات بيانات كشف الشذوذ؛ وتشمل الأعمال المستقبلية إضافة اتصال SCADA وواجهة WinCC Unified من TIA Portal v17 والالتقاط طويل الأمد مع حقن الشذوذ. والقيد الرئيسي: مرونة أحادية الغرض.</p>
+    <p>تحاكي منصة معالجة مياه الصرف محطة حقيقية بتقنية المفاعل الدفعي المتسلسل (SBR) لإحدى القرى، واكتملت في يونيو 2021 لجمع بيانات العمليات (المضخات وحساسات المستوى والحمأة والمطر والمنافيخ) ودراسة متجهات الهجوم على محطات المعالجة المُشرفة عن بُعد. وبُنيت حول PLC من Siemens طراز S7-1200 وواجهة KTP700 ومبدل CSM1277 ومضخات ثنائية وحساسات مستوى (الجدول 4)، مع إمكانية التحكم في العملية كاملة — البدء/الإيقاف وحالات المنافيخ والمضخات والخزانات والتصريف الكامل — عبر HMI. واستغرق التصميم الفيزيائي المعقد تخطيطًا مطولًا؛ ولا يزال التشغيل يُحسَّن لالتقاط مجموعات البيانات طويلة الأمد.</p>
+    <p>صُممت منصة التخمير (PLC من Siemens طراز S7-300 وواجهة KTP700 وصمامات ومرحلات وحساسات مستوى وحرارة وضغط؛ الجدول 5) بعد البناءين السابقين، باستخدام TIA Portal v15.1 للبرمجة والإشراف وopenMUC كواجهة SCADA. وتمنح المنصات الفيزيائية أصدق سلوك للأجهزة وأعلى إخلاص، مقابل زمن البناء والتكلفة وضعف المرونة — فكل منصة تخدم عملية واحدة أساسًا.</p>
+  </section>
+
+  <section>
+    <h2>4. منهجنا — المنصات الافتراضية والمحاكاة والهجينة</h2>
+    <p>تعمل منصة المصيدة الخادعة افتراضيًا بالكامل: HonSSH لخداع SSH وMiniNet/MiniCPS لمحاكاة الشبكات والأنظمة الصناعية وعزل Docker وتسجيل التسلل عبر Suricata والمراقبة عبر Grafana، كلها على خادم Ubuntu افتراضي بعنوان IP عام (الجدول 6) يكشف ModBus وEthernet/IP. وهي تلتقط سلوك المهاجمين الحقيقي بأمان وسلبية، وتغذي مجموعات بيانات IDS، وتتوسع بتكلفة زهيدة — لكنها تفتقر لإخلاص العمليات الفيزيائية. أما منصتا التخمير (Raspberry Pi 3B+ ونظام Raspbian 10 ومكتبة pymodbus 2.5.2 وopenMUC كسكادا عبر ModBusTCP؛ الجدول 7) ومعالجة المياه (Raspberry Pi 3B+ ومكتبة CPPPO وopenMUC وشاشة لمس؛ الجدول 8) فتستبدلان الإخلاص بالمرونة وقابلية التوسع والتكلفة شبه الصفرية، وهي مثالية للتكرار السريع للسيناريوهات.</p>
+    <p>تجمع حلقة الإنتاج الصناعية الهجينة بين أذرع Dobot Magician الروبوتية (3×) وسير ناقل وسكة انزلاقية وحساس ألوان وعملاء Raspberry Pi 3B+ وسكادا OpenMUC عبر ModBus-TCP/Ethernet-IP (الجدول 9) — ميكاترونيات حقيقية بتحكم مضاهى. وتمتد محاكاة أخرى لمعالجة مياه محطة نووية بالنهج نفسه إلى العمليات الحرجة للسلامة. وتُظهر المقارنة الموجزة (الجدول 10) أن المنصات السبع الداخلية تدعم تحليل البيانات وأبحاث الأمن السيبراني والتعليم؛ وأن تصاميم المحاكاة والهجينة وحدها توفر المرونة وقابلية التوسع؛ ولم تستخدم أيٌّ منها الحلول السحابية بعد.</p>
+    <p>تلتقي جميع المنصات في طبقة سكادا واحدة: الإشراف القائم على openMUC (القسم 3.6)، مما يمنح واجهة موحدة لجمع البيانات والتحكم عبر عتاد متنوع. وأبرز الدروس الشاملة: ابدأ بحزمة مورّد واحد لإتقان بروتوكول خاص واحد قبل التوسع؛ وخصّص معظم الجهد للبناء الفيزيائي؛ وصمّم التقاط الشبكة (منافذ المراقبة والمؤرخات ونقاط الهندسة) قبل منطق العملية؛ وفضّل المحاكاة لحجم مجموعات البيانات والمنصات الفيزيائية لإخلاص الحقيقة المرجعية.</p>
+  </section>
+
+  <section>
+    <h2>5. المناقشة والنتائج وتحديات البحث المفتوحة</h2>
+    <p>يكشف العرض المرئي لمعلمات المنصات المسحوبة (القسم 4) فجوات بنيوية: فالمؤرخات ومحطات الهندسة وتنوع MTU/RTU نادرة؛ وتتركز المرونة والقابلية للتكيف والتوسع في تصاميم المحاكاة والافتراضية؛ ويكاد يغيب التقييم الأمني المخصص ودعم الحلول السحابية. وبعبارة أخرى، يستطيع المجتمع بناء منصات أحادية العملية عالية الإخلاص أو محاكاة مرنة منخفضة الإخلاص، لكن ليس بعد منصات وفية ومرنة وقابلة للتوسع ومتصلة سحابيًا في آنٍ واحد.</p>
+    <p>ومن ذلك تنبثق تحديات مفتوحة: مقاييس موحدة للإخلاص والتقييم تمكّن مقارنة مجموعات البيانات عبر المنصات؛ وتصاميم عتادية نمطية ميسورة قابلة لإعادة الاستخدام عبر العمليات؛ وحركة تقارب واقعية بين IT وOT (الوصول عن بُعد والروابط السحابية وبوابات IIoT) داخل المنصات؛ ومجموعات هجوم موسومة على البروتوكولات الخاصة (S7 وProfinet) بحقيقة مرجعية موثقة؛ وإجراءات آمنة قابلة للتكرار لتنفيذ سيناريوهات هجوم تدميرية. ومن شأن معالجة هذه التحديات تحويل المنصات المعزولة إلى بنية بحثية مشتركة تراكمية لكشف التسلل في ICS.</p>
+  </section>
+
+  <section>
+    <h2>6. الاستنتاجات</h2>
+    <p>مسح هذا المقال مشهد منصات الاختبار الصناعية خارج قطاع الطاقة، وجدول المعلمات الأساسية لكل منصة، وعرض خبرة مباشرة في بناء منصات فيزيائية (التحكم بالمحركات ومعالجة المياه والتخمير) وافتراضية (المصيدة الخادعة) ومحاكاة (التخمير ومعالجة مياه نووية) وهجينة (حلقة الإنتاج) — تُشغَّل جميعها في مختبر الجامعة لجمع البيانات. وتُظهر المقارنة أن المنصات الفيزيائية تعظّم الإخلاص بينما تعظّم تصاميم المحاكاة والهجينة المرونة وقابلية التوسع، مع توفير openMUC لطبقة إشراف SCADA مشتركة.</p>
+    <p>تحدد النتائج المعروضة مرئيًا خطوات تالية ملموسة: تصاميم نمطية قابلة لإعادة الاستخدام، وحركة التقارب، ومجموعات البروتوكولات الخاصة، والتكامل السحابي، والتقييم الموحد. ويخلص المؤلفون إلى أن منصات الاختبار مكوّن لا غنى عنه في أبحاث أمن ICS — لدراسات تقنيات الهجوم ومجموعات كشف الشذوذ والاختبارات الوظيفية — وأن مشاركة تصاميمها وبياناتها هي أسرع طريق لتجاوز شحّ مجموعات البيانات الذي يعيق الدفاع القائم على تعلم الآلة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en" style="display:none">
+  <section>
+    <h2>Abstract</h2>
+    <p>In recent years, the Industry 4.0 paradigm has accelerated digitalization and slowly diminished the line between information technologies (IT) and operational technologies (OT), bringing convergence challenges including new attack vectors, threats, and security imperfections. Protecting industrial infrastructure therefore requires monitoring and detection systems trained on high-quality, large datasets collected under diverse conditions — yet revealing real factory setups is costly and restricted by privacy and sensitivity concerns.</p>
+    <p>From this lack of data emerges the topic of industrial testbeds: sub-real physical laboratory environments, virtual factories, honeynets, and honeypots that deliver datasets for research and development. This paper surveys related work on industrial testbeds, describes best practices and lessons learned from assembling physical, simulated, virtual, and hybrid testbeds, compares their essential parameters, and visualises the findings to reveal research and development challenges.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>The Industry 4.0 paradigm — industrial IoT, big data analytics, cloud computing, horizontal and vertical integration, robotics, augmented reality, additive manufacturing, and digital twins [1,2,3,4] — brings indisputable advantages but also major challenges, cybersecurity being crucial. Massive digitalization, IT/OT convergence, and growing interconnectivity make cybersecurity a central concern [5,6,7,8,9,10,11]. Sophisticated malware targeting control systems is hard to detect, especially zero-days and specialized rootkits, while standard IT software and hardware inside ICS networks introduce additional vulnerabilities.</p>
+    <p>The scale of the problem is visible in vulnerability statistics: only two ICS vulnerabilities were published in 1997, 19 in 2010, and 189 in 2015 [13]; Kaspersky detected 415 ICS vulnerabilities in 2018 and 509 in 2019 [12,14,15], while remote access in industry grew 53% during the pandemic, widening the attack surface. Real attacks confirm the stakes: the 2013 attack on a German steel mill disabled production with major damage [16], and the 2015 and 2016 attacks on the Ukrainian power grid cut electricity to a quarter of a million households each [17,18].</p>
+    <p>For these reasons, new intrusion detection schemes for ICS networks at both process-control and network-communication levels are needed, with machine learning currently the most promising direction [19,20,21,22,23]. But suitable datasets for learning, training, and testing are scarce, forcing researchers to build custom test environments. A testbed — a platform simulating real-world activities under supervision for replicable experiments — enables dataset generation, incident testing without economic impact on live plants, and real-time evaluation of detection methods. The contributions of this article are: a current survey of testbeds outside the power sector; a parameter summary of each testbed; documented experience with physical, simulated, virtual, and hybrid testbeds; and visualised parameter percentages defining further research challenges.</p>
+  </section>
+
+  <section>
+    <h2>2. Related Work</h2>
+    <p>To map the state of the art, the authors searched Scopus with (testbed OR test bed) AND survey AND (ICS OR industrial control systems), obtaining seven results, of which two [24,25] matched the process-automation focus; three further surveys [26,27,28] were added via references and Google Scholar. Holm et al. [24] (2015) compare research goals, component implementation (virtualization, emulation, simulation, hardware), and fidelity across scenarios such as vulnerability analysis, education, defence-mechanism tests, honeynets, and threat analysis — a good starting point for parameter selection despite its age.</p>
+    <p>Cintuglu et al. [26] (2016) compare smart-grid testbeds by research area, domains, platform type, protocols, and connectivity — methodologically useful but power-grid-centred. Qassim et al. [27] describe testbed approaches (physical, simulated, virtual, hybrid) and evaluate fidelity, repeatability, accuracy, safety, cost-effectiveness, reliability, and scalability per approach. Geng et al. [25] classify physical, software-simulation, semi-physical, and virtualized testbeds with eleven application scenarios, while Ani et al. [28] give a thorough fidelity-centred evaluation methodology focused on energy testbeds.</p>
+    <p>This survey differs by focusing exclusively on process automation (PLC-centred), deliberately omitting the well-covered energy sector; by comparing properties relevant to building datasets for ML-based intrusion detection; and by including cloud-service usage as a parameter, reflecting infrastructure-as-a-service trends in industrial networks [29]. The methodology and parameter definitions follow next.</p>
+  </section>
+
+  <section>
+    <h2>3. Our Approach — Physical Testbeds</h2>
+    <p>All testbeds were built in the university laboratory for data collection, spanning physical (pure industrial hardware), hybrid, virtual, and simulation categories. The industrial motor control testbed (Q1 2021) uses exclusively Siemens components — S7-1200 PLC, KTP700 HMI, Scalance XB005 switch, V90 drive, and Simotics servo motor (Table 3) — to capture proprietary S7/Profinet communication for which no public datasets exist. The scenario controls motor start/stop, speed, and rotation direction via HMI. Lesson learned: the build enabled a deep dive into S7 protocol analysis for anomaly-detection datasets; future work adds SCADA connectivity, TIA Portal v17 WinCC Unified HMI, and long-term interception with anomaly injection. Main limitation: single-purpose flexibility.</p>
+    <p>The wastewater treatment testbed replicates a real village sequencing batch reactor (SBR) plant, completed June 2021, to collect process data (pumps, level/sludge/rain sensors, blowers) and study attack vectors against remotely supervised treatment plants. Built around a Siemens S7-1200 PLC, KTP700 HMI, CSM1277 switch, binary pumps, and level sensors (Table 4), the whole process — start/stop, blower and pump states, tank states, full drain — is controllable via HMI. The complex physical design took extensive planning; operation is still being optimised for long-term dataset capture.</p>
+    <p>The brewery testbed (Siemens S7-300 PLC, KTP700 HMI, valves, relays, level/temperature/pressure sensors; Table 5) was designed after the previous builds, using TIA Portal v15.1 for programming/supervision and openMUC as the SCADA interface. Physical testbeds give the truest device behaviour and highest fidelity, at the cost of build time, expense, and inflexibility — each rig serves essentially one process.</p>
+  </section>
+
+  <section>
+    <h2>4. Our Approach — Virtual, Simulation, and Hybrid Testbeds</h2>
+    <p>The honeypot testbed runs entirely virtualized: HonSSH for SSH deception, MiniNet/MinicPS for network and industrial-system simulation, Docker isolation, Suricata for intrusion logging, Grafana monitoring, all on an Ubuntu VPS with a public IP (Table 6) exposing ModBus and Ethernet/IP. It captures real attacker behaviour passively and safely, feeds IDS datasets, and scales cheaply — though it lacks physical-process fidelity. The simulated brewery testbed (Raspberry Pi 3B+, Raspbian 10, pymodbus 2.5.2, openMUC SCADA over ModBusTCP; Table 7) and the simulated wastewater testbed (Raspberry Pi 3B+, CPPPO Modbus library, openMUC, touch LCD; Table 8) trade fidelity for flexibility, scalability, and near-zero cost, ideal for rapid scenario iteration.</p>
+    <p>The hybrid industrial production loop combines Dobot Magician robotic arms (3×), conveyor belt, sliding rail, colour sensor, Raspberry Pi 3B+ clients, and OpenMUC SCADA over ModBus-TCP/Ethernet-IP (Table 9) — real mechatronics driven by emulated control. A further nuclear power plant wastewater treatment simulation extends the approach to safety-critical processes. The summary comparison (Table 10) shows all seven in-house testbeds support data analysis, cybersecurity research, and education; only simulation/hybrid designs offer flexibility and scalability; none yet use cloud solutions.</p>
+    <p>All rigs converge on one SCADA layer: openMUC-based supervision (Section 3.6), giving a uniform data-collection and control interface across heterogeneous hardware. Key cross-cutting lessons: start from a single-vendor stack to master one proprietary protocol before expanding; budget most effort for physical builds; design the network capture (span ports, historians, engineering workstation taps) before the process logic; and prefer simulation for dataset volume, physical rigs for ground-truth fidelity.</p>
+  </section>
+
+  <section>
+    <h2>5. Discussion, Results, and Open Research Challenges</h2>
+    <p>Visualising the surveyed testbeds' parameters (Section 4) reveals structural gaps: historians, engineering workstations, and MTU/RTU diversity are rare; flexibility, adaptability, scalability, and extensibility concentrate in simulation/virtual designs; dedicated cybersecurity evaluation and cloud-solution support are nearly absent. In other words, the community can build high-fidelity single-process rigs or flexible low-fidelity simulations, but not yet testbeds that are simultaneously faithful, flexible, scalable, and cloud-connected.</p>
+    <p>From this emerge open challenges: standardised fidelity and evaluation metrics enabling cross-testbed dataset comparability; affordable modular hardware designs reusable across processes; realistic IT/OT convergence traffic (remote access, cloud links, IIoT gateways) inside testbeds; labelled attack datasets on proprietary protocols (S7, Profinet) with documented ground truth; and safe, repeatable procedures for executing destructive attack scenarios. Addressing these would turn isolated rigs into a shared, cumulative research infrastructure for ICS intrusion detection.</p>
+  </section>
+
+  <section>
+    <h2>6. Conclusions</h2>
+    <p>This paper surveyed the industrial testbed landscape outside the power sector, tabulated essential parameters of each testbed, and reported first-hand experience building physical (motor control, wastewater, brewery), virtual (honeypot), simulation (brewery, nuclear wastewater), and hybrid (production loop) testbeds — all operated in the university laboratory for dataset collection. The comparison shows physical rigs maximise fidelity while simulation and hybrid designs maximise flexibility and scalability, with openMUC providing a common SCADA supervision layer.</p>
+    <p>The visualised findings define concrete next steps: modular reusable designs, convergence traffic, proprietary-protocol datasets, cloud integration, and standardised evaluation. Testbeds, the authors conclude, are an indispensable component of ICS security research — for attack-technology studies, anomaly-detection datasets, and functional testing — and sharing their designs and data is the fastest route past the dataset scarcity blocking ML-based ICS defence.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] 01. Pech, M.; Vrchota, J.; Bednář, J. Predictive Maintenance and Intelligent Sensors in Smart Factory. Sensors 2021, 21, 1470.</li>
+      <li>[2] 02. Ioana, A.; Burlacu, C.; Korodi, A. Approaching OPC UA Publish–Subscribe in the Context of UDP-Based Multi-Channel Communication and Image Transmission. Sensors 2021, 21, 1296.</li>
+      <li>[3] 03. Elsisi, M.; Tran, M.Q.; Mahmoud, K.; Lehtonen, M.; Darwish, M.M. Deep Learning-Based Industry 4.0 and Internet of Things towards Effective Energy Management for Smart Buildings. Sensors 2021, 21, 1038.</li>
+      <li>[4] 04. Khalid, H.; Hashim, S.J.; Ahmad, S.M.S.; Hashim, F.; Chaudhary, M.A. SELAMAT: A New Secure and Lightweight Multi-Factor Authentication Scheme for Cross-Platform Industrial IoT Systems. Sensors 2021, 21, 1428.</li>
+      <li>[5] 05. Murray, G.; Johnstone, M.N.; Valli, C. The convergence of IT and OT in critical infrastructure. In Proceedings of the Australian Information Security Management Conference, Perth, Australia, 5–6 December 2017.</li>
+      <li>[6] 06. Conklin, W.A. IT vs. OT security: A time to consider a change in CIA to include resilienc. In Proceedings of the 2016 49th Hawaii International Conference on System Sciences (HICSS), Koloa, HI, USA, 5–8 January 2016; IEEE: Piscataway, NJ, USA, 2016; pp. 2642–2647.</li>
+      <li>[7] 07. Kamal, S.; Al Mubarak, S.; Scodova, B.; Naik, P.; Flichy, P.; Coffin, G. IT and OT convergence-opportunities and challenges. In Proceedings of the SPE Intelligent Energy International Conference and Exhibition, Society of Petroleum Engineers, Scotland, UK, 6–8 September 2016.</li>
+      <li>[8] 08. Paes, R.; Mazur, D.C.; Venne, B.K.; Ostrzenski, J. A guide to securing industrial control networks: Integrating IT and OT systems. IEEE Ind. Appl. Mag. 2019, 26, 47–53.</li>
+      <li>[9] 09. Garimella, P.K. IT-OT integration challenges in utilities. In Proceedings of the 2018 IEEE 3rd International Conference on Computing, Communication and Security (ICCCS), Kathmandu, Nepal, 25–27 October 2018; IEEE: Piscataway, NJ, USA, 2018; pp. 199–204.</li>
+      <li>[10] 10. Sari, A.; Lekidis, A.; Butun, I. Industrial networks and IIoT: Now and future trends. In Industrial IoT; Springer: Berlin/Heidelberg, Germany, 2020; pp. 3–55.</li>
+      <li>[11] 11. Butun, I.; Sari, A. Early Detection and Recovery Measures for Smart Grid Cyber-Resilience. In Decision Support Systems and Industrial IoT in Smart Grid, Factories, and Cities; IGI Global: Hershey, PA, USA, 2021; pp. 91–110.</li>
+      <li>[12] 12. Menze, T. The State of Industrial Cybersecurity, 2020. Available online: https://ics.kaspersky.com/the-state-of-industrial-cybersecurity-2020/ (accessed on 18 April 2021).</li>
+      <li>[13] 13. Asghar, M.R.; Hu, Q.; Zeadally, S. Cybersecurity in industrial control systems: Issues, technologies, and challenges. Comput. Netw. 2019, 165, 106946.</li>
+      <li>[14] 14. Menze, T. The State of Industrial Cybersecurity, 2019. Available online: https://cuadernosdeseguridad.com/wp-content/uploads/2019/09/2019_Kaspersky_ARC_ICS_report.pdf (accessed on 18 April 2021).</li>
+      <li>[15] 15. Wolfgang Schwab, M.P. The State of Industrial Cybersecurity, 2018. Available online: https://ics.kaspersky.com/the-state-of-industrial-cybersecurity-2018/ (accessed on 18 April 2021).</li>
+      <li>[16] 16. Lee, R.M.; Assante, M.J.; Conway, T. German steel mill cyber attack. Ind. Control Syst. 2014, 30, 62.</li>
+      <li>[17] 17. Zetter, K. Everything we know about Ukraine’s power plant hack. Wired 2016. Available online: https://www.wired.com/2016/01/everything-we-know-about-ukraines-power-plant-hack/ (accessed on 18 April 2021).</li>
+      <li>[18] 18. Case, D.U. Analysis of the cyber attack on the Ukrainian power grid. Electr. Inf. Shar. Anal. Cent. (E-ISAC) 2016, 388, 29.</li>
+      <li>[19] 19. Mokhtari, S.; Abbaspour, A.; Yen, K.K.; Sargolzaei, A. A Machine Learning Approach for Anomaly Detection in Industrial Control Systems Based on Measurement Data. Electronics 2021, 10, 407.</li>
+      <li>[20] 20. Jiang, D.; Zhao, J. Machine Learning in Industrial Control System Security: A Survey. In Proceedings of the Chinese Intelligent Systems Conference, Haikou, China, 26–27 October 2019; Springer: Berlin/Heidelberg, Germany, 2019; pp. 310–317.</li>
+      <li>[21] 21. Ahmed, C.M.; MR, G.R.; Mathur, A.P. Challenges in machine learning based approaches for real-time anomaly detection in industrial control systems. In Proceedings of the 6th ACM on Cyber-Physical System Security Workshop, Taipei, Taiwan, 6 October 2020; pp. 23–29.</li>
+      <li>[22] 22. Perales Gómez, Á.L.; Fernández Maimó, L.; Huertas Celdrán, A.; García Clemente, F.J. MADICS: A Methodology for Anomaly Detection in Industrial Control Systems. Symmetry 2020, 12, 1583.</li>
+      <li>[23] 23. Butun, I.; Almgren, M.; Gulisano, V.; Papatriantafilou, M. Intrusion Detection in Industrial Networks via Data Streaming. In Industrial IoT; Springer: Berlin/Heidelberg, Germany, 2020; pp. 213–238.</li>
+      <li>[24] 24. Holm, H.; Karresand, M.; Vidström, A.; Westring, E. A survey of industrial control system testbeds. In Proceedings of the Nordic Conference on Secure IT Systems, Stockholm, Sweden, 19–21 October 2015; Springer: Berlin/Heidelberg, Germany, 2015; pp. 11–26.</li>
+      <li>[25] 25. Geng, Y.; Wang, Y.; Liu, W.; Wei, Q.; Liu, K.; Wu, H. A survey of industrial control system testbeds. Nord. Conf. Secur. IT Syst. 2019, 569, 042030.</li>
+      <li>[26] 26. Cintuglu, M.H.; Mohammed, O.A.; Akkaya, K.; Uluagac, A.S. A survey on smart grid cyber-physical system testbeds. IEEE Commun. Surv. Tutor. 2016, 19, 446–464.</li>
+      <li>[27] 27. Qassim, Q.; Jamil, N.; Abidin, I.Z.; Rusli, M.E.; Yussof, S.; Ismail, R.; Abdullah, F.; Ja’afar, N.; Hasan, H.C.; Daud, M. A survey of scada testbed implementation approaches. Indian J. Sci. Technol. 2017, 10, 1–8.</li>
+      <li>[28] 28. Ani, U.P.D.; Watson, J.M.; Green, B.; Craggs, B.; Nurse, J.R. Design Considerations for Building Credible Security Testbeds: Perspectives from Industrial Control System Use Cases. J. Cyber Secur. Technol. 2020, 5, 71–119.</li>
+      <li>[29] 29. Bhamare, D.; Zolanvari, M.; Erbad, A.; Jain, R.; Khan, K.; Meskin, N. Cybersecurity for industrial control systems: A survey. Comput. Secur. 2020, 89, 101677.</li>
+      <li>[30] 30. Morris, T.; Srivastava, A.; Reaves, B.; Gao, W.; Pavurapu, K.; Reddi, R. A control system testbed to validate critical infrastructure protection concepts. Int. J. Crit. Infrastruct. Prot. 2011, 4, 88–103.</li>
+      <li>[31] 31. Genge, B.; Nai Fovino, I.; Siaterlis, C.; Masera, M. Analyzing Cyber-Physical Attacks on Networked Industrial Control Systems. In Critical Infrastructure Protection V; Butts, J., Shenoi, S., Eds.; Springer: Berlin/Heidelberg, Germany, 2011; pp. 167–183.</li>
+      <li>[32] 32. Urias, V.; Van Leeuwen, B.; Richardson, B. Supervisory Command and Data Acquisition (SCADA) system cyber security analysis using a live, virtual, and constructive (LVC) testbed. In Proceedings of the MILCOM 2012—2012 IEEE Military Communications Conference, Orlando, FL, USA, 29 October–1 November 2012; pp. 1–8.</li>
+      <li>[33] 33. Foo, E.; Branagan, M.; Morris, T. A Proposed Australian Industrial Control System Security Curriculum. In Proceedings of the 2013 46th Hawaii International Conference on System Sciences, Maui, HI, USA, 7–10 January 2013; pp. 1754–1762.</li>
+      <li>[34] 34. Almalawi, A.; Tari, Z.; Khalil, I.; Fahad, A. SCADAVT-A framework for SCADA security testbed based on virtualization technology. In Proceedings of the 38th Annual IEEE Conference on Local Computer Networks, Sydney, Australia, 21–24 October 2013; pp. 639–646.</li>
+      <li>[35] 35. Gao, H.; Peng, Y.; Jia, K.; Dai, Z.; Wang, T. The Design of ICS Testbed Based on Emulation, Physical, and Simulation (EPS-ICS Testbed). In Proceedings of the 2013 Ninth International Conference on Intelligent Information Hiding and Multimedia Signal Processing, Beijing, China, 16–18 October 2013; pp. 420–423.</li>
+      <li>[36] 36. Sayegh, N.; Chehab, A.; Elhajj, I.H.; Kayssi, A. Internal security attacks on SCADA systems. In Proceedings of the 2013 Third International Conference on Communications and Information Technology (ICCIT), Beirut, Lebanon, 19–21 June 2013; pp. 22–27.</li>
+      <li>[37] 37. Candell, R.; Stouffer, K.; Anand, D. A cybersecurity testbed for industrial control systems. In Proceedings of the 2014 Process Control and Safety Symposium, Houston, TX, USA, 6–9 October 2014; pp. 1–16.</li>
+      <li>[38] 38. Haney, M.; Papa, M. A Framework for the Design and Deployment of a SCADA Honeynet. In Proceedings of the CISR ’14: Proceedings of the 9th Annual Cyber and Information Security Research Conference, Oak Ridge, TN, USA, 8–10 April 2014; Association for Computing Machinery: New York, NY, USA, 2014; pp. 121–124.</li>
+      <li>[39] 39. Ahmed, I.; Roussev, V.; Johnson, W.; Senthivel, S.; Sudhakaran, S. A SCADA System Testbed for Cybersecurity and Forensic Research and Pedagogy. In Proceedings of the ICSS ’16: Proceedings of the 2nd Annual Industrial Control System Security Workshop, Vienna, Austria, 28 October 2016; Association for Computing Machinery: New York, NY, USA, 2016; pp. 1–9.</li>
+      <li>[40] 40. Alves, T.; Das, R.; Morris, T. Virtualization of Industrial Control System Testbeds for Cybersecurity. In Proceedings of the 2nd Annual Industrial Control System Security Workshop, Los Angeles, CA, USA, 6 December 2016; Association for Computing Machinery: New York, NY, USA, 2016; pp. 10–14.</li>
+      <li>[41] 41. Ghaleb, A.; Zhioua, S.; Almulhem, A. SCADA-SST: A SCADA security testbed. In Proceedings of the 2016 World Congress on Industrial Control Systems Security (WCICSS), London, UK, 12–14 December 2016; pp. 1–6.</li>
+      <li>[42] 42. Tesfahun, A.; Bhaskari, D.L. A SCADA testbed for investigating cyber security vulnerabilities in critical infrastructures. Autom. Control Comput. Sci. 2016, 50, 54–62.</li>
+      <li>[43] 43. David, U.; Jairo, G.; Ole, T.N.; Alvaro, C. Attacking Fieldbus Communications in ICS: Applications to the SWaT Testbed. Cryptol. Inf. Secur. Ser. 2016, 14, 75–89.</li>
+      <li>[44] 44. Miciolino, E.E.; Bernieri, G.; Pascucci, F.; Setola, R. Communications network analysis in a SCADA system testbed under cyber-attacks. In Proceedings of the 2015 23rd Telecommunications Forum Telfor (TELFOR), Belgrade, Serbia, 24–25 November 2015; pp. 341–344.</li>
+      <li>[45] 45. Soley, R.M. First European Testbed for the Industrial Internet Consortium. 2017. Available online: https://blog.bosch-si.com/industry40/first-european-testbed-for-the-industrial-internet-consortium/ (accessed on 10 May 2021).</li>
+      <li>[46] 46. Mathur, A.P.; Tippenhauer, N.O. SWaT: A water treatment testbed for research and training on ICS security. In Proceedings of the 2016 International Workshop on Cyber-physical Systems for Smart Water Networks (CySWater), Vienna, Austria, 11 April 2016; pp. 31–36.</li>
+      <li>[47] 47. Teixeira, M.A.; Salman, T.; Zolanvari, M.; Jain, R.; Meskin, N.; Samaka, M. SCADA System Testbed for Cybersecurity Research Using Machine Learning Approach. Future Internet 2018, 10, 76.</li>
+      <li>[48] 48. Maynard, P.; McLaughlin, K.; Sezer, S. An Open Framework for Deploying Experimental SCADA Testbed Networks. In Proceedings of the 5th International Symposium for ICS &amp; SCADA Cyber Security Research 2018, Hamburg, Germany, 29–30 August 2018; BCS Learning &amp; Development: Swindon, UK, 2018.</li>
+      <li>[49] 49. Xie, Y.; Wang, W.; Wang, F.; Chang, R. VTET: A Virtual Industrial Control System Testbed for Cyber Security Research. In Proceedings of the 2018 Third International Conference on Security of Smart Cities, Industrial Control System and Communications (SSIC), Shanghai, China, 18–19 October 2018; pp. 1–7.</li>
+      <li>[50] 50. Sauer, F.; Niedermaier, M.; Kießling, S.; Merli, D. LICSTER – A Low-cost ICS Security Testbed for Education and Research. In Proceedings of the 6th International Symposium for ICS &amp; SCADA Cyber Security Research 2019, Athens, Greece, 10–12 September 2019.</li>
+      <li>[51] 51. Tao, Y.; Xu, W.; Li, H.; Ji, S. Experience and Lessons in Building an ICS Security Testbed. In Proceedings of the 2019 1st International Conference on Industrial Artificial Intelligence (IAI), Shenyang, China, 22–26 July 2019; pp. 1–6.</li>
+      <li>[52] 52. Niedermaier, M.; von Bodisco, A.; Merli, D. CoRT: A Communication Robustness Testbed for Industrial Control System Components. arXiv 2019, arXiv:1904.04286.</li>
+      <li>[53] 53. Matsuda, W.; Fujimoto, M.; Aoyama, T.; Mitsunaga, T. Cyber Security Risk Assessment on Industry 4.0 using ICS testbed with AI and Cloud. In Proceedings of the 2019 IEEE Conference on Application, Information and Network Security (AINS), Penang, Malaysia, 19–21 November 2019; pp. 54–59.</li>
+      <li>[54] 54. Krishnan, S.; Wei, M. SCADA Testbed for Vulnerability Assessments, Penetration Testing and Incident Forensics. In Proceedings of the 2019 7th International Symposium on Digital Forensics and Security (ISDFS), Barcelos, Portugal, 10–12 June 2019; pp. 1–6.</li>
+      <li>[55] 55. Zhou, L.; Guo, H.; Deng, G. A fog computing based approach to DDoS mitigation in IIoT systems. Comput. Secur. 2019, 85, 51–62.</li>
+      <li>[56] 56. Gardiner, J.; Craggs, B.; Green, B.; Rashid, A. Oops I Did It Again: Further Adventures in the Land of ICS Security Testbeds. In Proceedings of the ACM Workshop on Cyber-Physical Systems Security &amp; Privacy, Auckland, New Zealand, 8 July 2019; Association for Computing Machinery: New York, NY, USA, 2019; pp. 75–86.</li>
+      <li>[57] 57. Gillen, R.E.; Anderson, L.A.; Craig, C.; Johnson, J.; Columbia, A.; Anderson, R.; Craig, A.; Scott, S.L. Design and Implementation of Full-Scale Industrial Control System Test Bed for Assessing Cyber-Security Defenses. In Proceedings of the 2020 IEEE 21st International Symposium on “A World of Wireless, Mobile and Multimedia Networks” (WoWMoM), Cork, Ireland, 31 August 2020–3 September 2020; pp. 341–346.</li>
+      <li>[58] 58. Khan, M.; Rehman, O.; Rahman, I.M.H.; Ali, S. Lightweight Testbed for Cybersecurity Experiments in SCADA-based Systems. In Proceedings of the 2020 International Conference on Computing and Information Technology (ICCIT-1441), Tabuk, Saudi Arabia, 9–10 September 2020; pp. 1–5.</li>
+      <li>[59] 59. Fujita, S.; Hata, K.; Mochizuki, A.; Sawada, K.; Shin, S.; Hosokawa, S. OpenPLC based control system testbed for PLC whitelisting system. Artif. Life Robot. 2020, 26, 149–154.</li>
+      <li>[60] 60. Čeleda, P.; Vykopal, J.; Švábenský, V.; Slavíček, K. KYPO4INDUSTRY: A Testbed for Teaching Cybersecurity of Industrial Control Systems. In Proceedings of the 51st ACM Technical Symposium on Computer Science Education, Portland, OR, USA, 11–14 March 2020; Association for Computing Machinery: New York, NY, USA, 2020; pp. 1026–1032.</li>
+      <li>[61] 61. Continued Growth for Industrial Networks Despite Pandemic. 2021. Available online: https://www.hms-networks.com/news-and-insights/news-from-hms/2021/03/31/continued-growth-for-industrial-networks-despite-pandemic (accessed on 18 June 2021).</li>
+      <li>[62] 62. Piggin, R. Are industrial control systems ready for the cloud? Int. J. Crit. Infrastruct. Prot. 2015, 9, 38–40.</li>
+      <li>[63] 63. Kulik, T.; Tran-Jørgensen, P.W.; Boudjadar, J. Formal security analysis of cloud-connected industrial control systems. In Proceedings of the International Conference on Security for Information Technology and Communications, Bucharest, Romania, 8–9 November 2018; Springer: Berlin/Heidelberg, Germany, 2018; pp. 71–84. !Sensors 21 08119 g001</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s21238119">10.3390/s21238119</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

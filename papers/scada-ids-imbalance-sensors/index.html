@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أثر اختلال مجموعات البيانات على أداء أنظمة كشف التسلل لسكادا — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">The Effect of Dataset Imbalance on the Performance of SCADA Intrusion Detection Systems</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">أثر اختلال مجموعات البيانات على أداء أنظمة كشف التسلل لسكادا</h2>
+
+  <div class="paper-meta">
+    <span>👤 Asaad Balla, Mohamed Hadi Habaebi, Elfatih A. A. Elsheikh, Md. Rafiqul Islam, F. M. Suliman</span>
+    <span>📄 Sensors, 2023 · Vol. 23, 758</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s23020758">10.3390/s23020758</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>دمج أجهزة إنترنت الأشياء (IoT) في أنظمة سكادا (SCADA) وفّر تقنيات فعّالة ومحسّنة لجمع البيانات ونقلها. يأتي هذا التحسين مصحوبًا بتحديات أمنية جسيمة، إذ كشف الأنظمة المعزولة تقليديًا لشبكة الإنترنت العامة. وتُعدّ الأجهزة الأمنية الفعّالة والموثوقة للغاية، مثل أنظمة كشف التسلل (IDS) وأنظمة منع التسلل (IPS)، بالغة الأهمية. استخدمت دراسات لا حصر لها خوارزميات التعلم العميق لتصميم نظام كشف تسلل فعّال؛ غير أن المشكلة الجوهرية المتمثلة في اختلال توازن مجموعات البيانات لم تُعالَج بالكامل. في بحثنا، درسنا أثر اختلال البيانات على تطوير نظام فعّال لكشف التسلل قائم على سكادا. ولاستقصاء أثر تقنيات موازنة البيانات المختلفة، اخترنا مجموعتي بيانات غير متوازنتين، هما مجموعة موريس لبيانات الطاقة ومجموعة CICIDS2017، وشملت التقنيات: أخذ العينات العشوائي، والاختيار أحادي الجانب (OSS)، وخوارزمية القريب الأدنى (near-miss)، وSMOTE، وADASYN. وللتصنيف الثنائي، دُمجت الشبكات العصبية الالتفافية مع الذاكرة الطويلة قصيرة المدى (CNN-LSTM). وقِيست فعّالية النظام بمصفوفة الالتباس، التي تشمل مقاييس التقييم مثل الدقة (accuracy) والإحكام (precision) ومعدل الكشف ودرجة F1. وتُظهر أربع تجارب على مجموعتي البيانات أثر اختلال البيانات. يهدف هذا البحث إلى مساعدة باحثي الأمن على فهم مجموعات البيانات المختلة وأثرها على أنظمة كشف التسلل لسكادا القائمة على التعلم العميق.</p>
+  </section>
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تُستخدم أنظمة التحكم الإشرافي وتحصيل البيانات (سكادا) في طيف واسع من الصناعات لمراقبة العمليات الصناعية والتحكم فيها، مثل التصنيع والطاقة والنقل. وتتكون من حاسوب مركزي أو خادم يتواصل مع شبكة من الأجهزة، كالحساسات وأنظمة التحكم، لجمع البيانات وضبط مختلف العمليات [1]. ففي صناعة الطاقة مثلًا، قد يُستخدم نظام سكادا لمراقبة تدفق الكهرباء عبر شبكة الطاقة والتحكم فيه، حيث تجمع الحساسات داخل الشبكة بيانات عن تدفق الكهرباء، ويستخدمها النظام لضبط الشبكة آنيًا لضمان توزيع الكهرباء بكفاءة وأمان.</p><p>شهدت السنوات الأخيرة تزايدًا في دمج إنترنت الأشياء في أنظمة سكادا. إذ تربط منصة إنترنت الأشياء مليارات الأجهزة، بما فيها وحدات التحكم المنطقية القابلة للبرمجة (PLC) والمشغّلات والأجهزة الإلكترونية الذكية (IED) الخاصة بأنظمة التحكم الصناعية (ICS) [1]. وتستفيد أنظمة سكادا من إنترنت الأشياء استفادة كبيرة في الأتمتة وتحسين المراقبة وجمع البيانات، إذ مكّنت الصناعة الحديثة من مراقبة الأنظمة الفيزيائية والتحكم فيها بكفاءة، بما أثمر جمعًا ذكيًا للبيانات ومعالجةً وإدارةً ناجحة للأعمال. ولا يمكن استخدام إنترنت الأشياء في سكادا ما لم يُكسَر عزل شبكات سكادا، لأن هذه الأجهزة تتواصل عبر الإنترنت العامة.</p><p>أدّى كسر هذا العزل إلى تعريض أنظمة سكادا لهجمات سيبرانية، مثل هجمات الحرمان من الخدمة (DoS) وهجمات القوة الغاشمة وحقن الأوامر. لذا أُنشئت أنظمة كشف التسلل (IDS) لتأمين هذه الأنظمة [5]. غير أن بناء نموذج تعلم آلي أو تعلم عميق فعّال يتطلب مجموعة بيانات جيدة، وتمثل موازنة البيانات تحديًا رئيسيًا: فعندما تتجاوز نسبة صنفٍ ما نسبةَ صنف آخر يحدث اختلال البيانات [6]، ما يُدخل تحيزًا في نتائج النماذج التي تميل إلى تصنيف المدخلات ضمن الصنف الغالب.</p><p>يتمثل الحلان الرئيسيان المنشوران لهذه المشكلة في تقليل العينات (undersampling) وزيادة العينات (oversampling): الأول يخفّض نسبة الصنف الغالب، والثاني يرفع نسبة الصنف الأقل بزيادة عيناته. تدرس هذه الورقة أثر اختلال مجموعات البيانات على أداء أنظمة كشف التسلل لسكادا باستخدام نموذج CNN-LSTM، وتقارن تقنيات الموازنة المختلفة على مجموعتي بيانات، وتُجيب عن أسئلة البحث المتعلقة بأفضل استراتيجية موازنة لكل مجموعة بيانات.</p>
+  </section>
+  <section>
+    <h2>2. الأعمال ذات الصلة</h2>
+    <p>دَرس باحثو الأمن على نطاق واسع موضوع اختلال مجموعات البيانات في الأدبيات. اختيرت المنشورات المناقَشة وفق معايير: (أ) نُشرت بين 2018 و2022، (ب) أوراق مراجعة أو أبحاث منشورة في دوريات فقط، (ج) احتوت على مصطلحي &ldquo;IDS&rdquo; و&ldquo;imbalanced dataset&rdquo;. وجُمعت هذه المقالات من ScienceDirect وWiley Online Library وGoogle Scholar. وقبل استعراض الأعمال ذات الصلة، يجب تعريف مفاهيم مثل أنظمة سكادا وأنظمة كشف التسلل واختلال البيانات وتقليل العينات وزيادتها.</p><p>تتكون أنظمة سكادا من مكوّنين رئيسيين: الأجهزة الميدانية مثل وحدات الأطراف البعيدة (RTU) ووحدات التحكم المنطقية القابلة للبرمجة (PLC)، وواجهة الإنسان والآلة (HMI). تراقب هذه الأنظمة الخصائص وتتحكم فيها عبر رقعة جغرافية واسعة، وتُؤتمت العمليات الصناعية وتضبطها. تجمع أجهزة إنترنت الأشياء البيانات في أنظمة سكادا الحديثة، وتُنقل البيانات عبر شبكة الإنترنت العامة، ومن هنا جاءت الحاجة إلى أنظمة كشف التسلل [5].</p><p>تُصنف أنظمة كشف التسلل إلى قائمة على الشبكة أو قائمة على المضيف، وتعمل في ثلاثة أنماط: القائم على القواعد، وكشف الشذوذ، والهجين. وتقع نماذج التعلم الآلي (ML) والتعلم العميق (DL) في قلب أنظمة كشف الشذوذ هذه. ويحتاج تدريب هذه النماذج إلى مجموعة بيانات جيدة يمكن الحصول عليها من نظام سكادا كامل أو من نظام محاكى باستخدام منصات اختبار. ومن الصعوبات التي يواجهها الباحثون اختلال البيانات، الذي يُفسَّر مشكلةً لأنه يُحيّز نتائج النماذج [6].</p><p>نشرت أعمال عن حلين رئيسيين: تقليل العينات، بأساليب اختيار السجلات المراد الاحتفاظ بها أو حذفها أو الجمع بينهما؛ وزيادة العينات بإعادة إنتاج الصنف الأقل عشوائيًا أو اصطناعيًا. ويستعرض القسم التالي الأعمال التي استخدمت هذين النهجين، بما فيها أخذ العينات العشوائي، وSMOTE، وADASYN، والاختيار أحادي الجانب، وخوارزمية القريب الأدنى.</p>
+  </section>
+  <section>
+    <h2>3. المنهجية</h2>
+    <p>يعرض هذا القسم الخطوات اللازمة للإجابة عن أسئلة البحث وتحقيق هدف الورقة، وهو فهم أثر اختلال مجموعات البيانات على تطوير أنظمة كشف التسلل في سكادا. نُظّم القسم كالتالي: أولًا تدريب نموذج CNN-LSTM على بيانات مختلة؛ ثانيًا تدريبه على بيانات متوازنة؛ ثالثًا وصف موجز لمجموعتي البيانات؛ وأخيرًا مناقشة بيئة التجارب وإعداداتها.</p><p>في التجربة الأولى ضُبطت مجموعات سكادا غير المتوازنة باستخدام MinMaxScaler مع تخصيص 70% من البيانات للتدريب و30% للاختبار، وذلك في ثلاث خطوات: (1) المعالجة المسبقة بتحويل السمات الفئوية إلى عددية ثم تطبيع القيم بين 0 و1 وفق المعادلة (1): xi = (xi &minus; Min)/(Max &minus; Min)؛ (2) التدريب والاختبار بتطوير نموذج CNN-LSTM واختيار أفضل معلمات التدريب؛ (3) التقييم بمقاييس مثل الدقة والاستدعاء ودرجة F1. وحُوّلت سمة &ldquo;العلامة&rdquo; (Marker) الفئوية الوحيدة في مجموعة موريس (Normal وAttack) ترميزًا ثنائيًا (0 و1)، وكذلك الأصناف المتعددة في CICIDS2017 إلى طبيعي وهجوم، وأُزيلت السجلات ذات القيم المفقودة والسمات الثابتة في أكثر من 80% من السجلات.</p><p>في التجارب 2 و3 و4 قُسّمت مجموعة البيانات وفق صنفيها الغالب والأقل، ووُازنت بتقليل عينات الصنف الغالب وزيادة عينات الصنف الأقل. شمل تقليل العينات: أساليب اختيار السجلات المراد الاحتفاظ بها مثل القريب الأدنى (near miss) وقاعدة الجار الأقرب المكثف؛ وأساليب اختيار العينات المراد حذفها مثل روابط Tomek وقاعدة الجيران المحرَّرة؛ وأساليب تجمع بينهما مثل الاختيار أحادي الجانب وقاعدة تنظيف الجوار. وشملت زيادة العينات: الزيادة العشوائية، وSMOTE، وSMOTE الحدّي (Borderline&ndash;SMOTE)، والزيادة الحدّية بـSVM، وأخذ العينات التكيفي الاصطناعي (ADASYN).</p><p>استُخدمت مجموعتا بيانات: مجموعة موريس لبيانات الطاقة (72,073 سجلًا: طبيعي وهجوم) ومجموعة CICIDS2017 (1,161,344 سجلًا: طبيعي وهجوم) في تصنيف ثنائي. واختيرت السمات بأعلى قيمة ANOVA F، وقُسّمت البيانات 70:30 للتدريب والاختبار، ودُرّب نموذج CNN-LSTM الذي يجمع الطبقات الالتفافية لاستخلاص السمات مع طبقات LSTM لالتقاط التبعيات الزمنية في حركة الشبكة.</p><p>نُفّذت أربع تجارب: الأولى بدون موازنة كخط أساس، والثانية بتقليل العينات (RUS والاختيار أحادي الجانب والقريب الأدنى)، والثالثة بزيادة العينات (ROS وSMOTE وADASYN)، مع تقييم كل إعداد بالدقة والإحكام والاستدعاء ودرجة F1 المستخرجة من مصفوفة الالتباس.</p>
+  </section>
+  <section>
+    <h2>4. النتائج والتحليل</h2>
+    <p>نعرض في هذا القسم النتائج العددية لتجاربنا في كشف الهجمات عبر أساليب موازنة مجموعات البيانات المختلفة، بهدف الإجابة عن أسئلة البحث. استُخدم نموذج CNN-LSTM لتصنيف الهجمات في بيانات شبكة سكادا، مع عرض مقاييس التقييم والنتائج.</p><p>أولًا قُورن أداء مجموعتي البيانات دون أي استراتيجية موازنة. في مجموعة موريس للطاقة كانت الدقة أعلى عند إزالة السمات الثابتة في أكثر من 70% من السجلات، بينما ظلت دقة CICIDS2017 ثابتة مع مختلف العتبات. وحققت المجموعتان: موريس (الدقة 73.63، الإحكام 73.22، الاستدعاء 74.84، F1 بدرجة 58.06) وCICIDS2017 (الدقة 98.42، الإحكام 98.03، الاستدعاء 98.12، F1 بدرجة 98.44). غير أن الدقة ليست أفضل مقياس في سيناريوهات كشف التسلل ذات البيانات المختلة، لأن خوارزميات التدريب تنحاز لتقدير كل البيانات طبيعية متجاهلةً النسبة الصغيرة من أحداث الهجوم [8].</p><p>في المرحلة الثانية وُازنت البيانات بتقليل العينات. في مجموعة موريس خفّض أخذ العينات العشوائي صنف الهجوم بنسبة 35.3%، والاختيار أحادي الجانب الصنف الغالب بنسبة 2.3% فقط، بينما حقق القريب الأدنى أفضل النتائج بتخفيض صنف الهجوم إلى النصف. ورغم أن العشوائي أعطى دقة أعلى، حقق القريب الأدنى أعلى درجة F1 (66%)، وهي المقياس الرئيسي في بحثنا، بتحسن 9% عن مجموعة البيانات غير المتوازنة (57%). وفي CICIDS2017 حقق القريب الأدنى أفضل النتائج أيضًا (الدقة 99.25، F1 بدرجة 99.34) مقابل 96% للعشوائي و97.67% للأحادي الجانب.</p><p>في التجربة الثالثة استُخدمت أساليب زيادة العينات فقط (ROS وSMOTE وADASYN). في مجموعة موريس ضاعف ROS الصنف الأقل، وقارب SMOTE الموازنة التامة بزيادة الصنف الطبيعي، وأدى ADASYN جيدًا دون الأمثلية. وكانت دقة كل الخوارزميات نحو 71%، لكن SMOTE تفوقت في درجة F1 مسجلةً 64%. وفي CICIDS2017 حسّنت زيادة العينات الأداء إلى نحو 99% في جميع المقاييس، مؤكدةً أن موازنة البيانات تحسّن كشف التسلل في كلتا المجموعتين.</p><p>تُظهر النتائج أن اختلال البيانات يُدهور أداء كشف التسلل بشدة، خاصة في مجموعة موريس حيث قفزت درجة F1 من 57&ndash;58% إلى 66% بعد الموازنة، بينما كانت مجموعة CICIDS2017 الأكبر والأكثر تنوعًا أقل تأثرًا. ويُعدّ القريب الأدنى أفضل أساليب تقليل العينات وSMOTE أفضل أساليب زيادتها في هذه التجارب.</p><p>خلاصة التحليل: الدقة مضللة في البيانات المختلة ويجب الاعتماد على درجة F1 والاستدعاء؛ وموازنة البيانات خطوة ضرورية قبل تدريب نماذج التعلم العميق لأنظمة كشف التسلل في سكادا؛ ويتفوق القريب الأدنى وSMOTE على الأساليب العشوائية البسيطة في الحفاظ على حدود القرار المفيدة للكشف.</p>
+  </section>
+  <section>
+    <h2>5. الاستنتاجات</h2>
+    <p>أثبتت هذه الدراسة أن اختلال مجموعات البيانات يؤثر تأثيرًا كبيرًا على أداء أنظمة كشف التسلل القائمة على التعلم العميق في بيئات سكادا. فبتطبيق تقنيات الموازنة (تقليل العينات وزيادتها) تحسّن أداء نموذج CNN-LSTM تحسنًا ملموسًا على مجموعتي موريس للطاقة وCICIDS2017، وكان القريب الأدنى وSMOTE الأكثر فعّالية.</p><p>تشمل الأعمال المستقبلية اختبار أساليب موازنة هجينة تجمع تقليل العينات وزيادتها، وتوسيع التقييم ليشمل مجموعات بيانات سكادا أخرى ونماذج تعلم عميق إضافية، ودراسة أثر الموازنة على كشف فئات هجومية محددة بدل التصنيف الثنائي العام. ويهدف هذا البحث إلى مساعدة باحثي الأمن على فهم مجموعات البيانات المختلة وأثرها على أنظمة كشف التسلل لسكادا القائمة على التعلم العميق.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Integrating IoT devices in SCADA systems has provided efficient and improved data collection and transmission technologies. This enhancement comes with significant security challenges, exposing traditionally isolated systems to the public internet. Effective and highly reliable security devices, such as intrusion detection systems (IDSs) and intrusion prevention systems (IPS), are critical. Countless studies used deep learning algorithms to design an efficient IDS; however, the fundamental issue of imbalanced datasets was not fully addressed. In our research, we examined the impact of data imbalance on developing an effective SCADA-based IDS. To investigate the impact of various data balancing techniques, we chose two unbalanced datasets, the Morris power dataset and the CICIDS2017 dataset, including random sampling, one-sided selection (OSS), near-miss, SMOTE, and ADASYN. For binary classification, convolutional neural networks were coupled with long short-term memory (CNN-LSTM). The system&rsquo;s effectiveness was determined by the confusion matrix, which includes evaluation metrics such as accuracy, precision, detection rate, and F1-score. Four experiments on the two datasets demonstrate the impact of the data imbalance. This research aims to help security researchers in understanding imbalanced datasets and their impact on DL SCADA-IDS.</p>
+  </section>
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Supervisory control and data acquisition (SCADA) systems are used in a variety of industries to monitor and control industrial processes, such as manufacturing, energy, and transportation. They consist of a central computer or server that communicates with a network of devices, such as sensors and control systems, to collect data and control various processes [1]. For example, in the energy industry, a SCADA system might be used to monitor and control the flow of electricity through a power grid, where sensors collect data on electricity flow and the system adjusts the grid in real time to distribute electricity efficiently and safely.</p><p>In recent years, there has been an increase in the integration of IoT in SCADA systems. An IoT platform connects billions of devices, including PLCs, actuators, and intelligent electronic devices (IEDs) of industrial control systems (ICS) [1]. SCADA systems benefit greatly from IoT in automation, improved monitoring, and data collection, enabling modern industry to monitor and control physical systems efficiently, with intelligent data collection, processing, and successful business management. The use of IoT in SCADA is impossible unless the isolation of SCADA networks is broken, as these devices communicate over the public internet.</p><p>Breaking this isolation has exposed SCADA systems to cyberattacks such as denial of service (DoS), brute-force, and command-injection attacks. Intrusion detection systems (IDSs) were therefore created to secure such systems [5]. Building an effective machine learning or deep learning model requires a good dataset, and data balancing is a major challenge: when one class has a higher percentage than another, data imbalance occurs [6], biasing model results toward classifying inputs into the majority class.</p><p>The two main published solutions are undersampling, which lowers the proportion of the majority class, and oversampling, which raises the minority share. This paper studies the impact of dataset imbalance on SCADA IDS performance using a CNN-LSTM model, compares balancing techniques on two datasets, and answers which balancing strategy suits each dataset best.</p>
+  </section>
+  <section>
+    <h2>2. Related Works</h2>
+    <p>Security researchers have widely studied dataset imbalance in the literature. The publications discussed were chosen based on the following criteria: (a) published between 2018 and 2022, (b) review or research papers published only in journals, and (c) containing the terms &ldquo;IDS&rdquo; and &ldquo;imbalanced dataset.&rdquo; These articles were gathered from ScienceDirect, Wiley Online Library, and Google Scholar. Before examining the related works, concepts such as SCADA systems, intrusion detection systems, data imbalance, undersampling, and oversampling must be defined.</p><p>SCADA systems are control systems comprised of two major components: field devices, such as remote terminal units (RTUs) and programmable logic controllers (PLCs), and the human machine interface (HMI). These systems monitor and control properties across a large geographic area and automate industrial operations. IoT devices collect data in modern SCADA systems, transmitted via the public internet network, hence IDSs were created to secure such systems [5].</p><p>Intrusion detection systems are classified as either network-based or host-based, operating in three modes: rule-based, anomaly detection, and hybrid. Machine learning (ML) and deep learning (DL) models are at the heart of these anomaly detection systems. Training such models requires a good dataset, obtainable from an entire SCADA system or a simulated system utilizing testbeds. Data imbalance is interpreted as a problem since it introduces bias into ML/DL model results [6].</p><p>Published works cover two primary solutions: undersampling, via methods that select records to keep or to delete or combinations of both; and oversampling by randomly or synthetically reproducing the minority class. The following review covers works employing these approaches, including random sampling, SMOTE, ADASYN, one-sided selection, and near-miss.</p>
+  </section>
+  <section>
+    <h2>3. Methodology</h2>
+    <p>This section provides the steps needed to answer the research questions and achieve the goal of this paper: understanding the impact of dataset imbalance on IDS development in SCADA systems. It is organized as follows: first training the CNN-LSTM with imbalanced datasets; second, training with balanced data; third, a brief description of the datasets; and finally, the experiment environment and settings.</p><p>In the first experiment, the unbalanced SCADA datasets were adjusted using MinMaxScaler with 70% of the data for training and 30% for testing, in three steps: (1) preprocessing, converting categorical features to numerical and normalizing values between 0 and 1 per Equation (1): xi = (xi &minus; Min)/(Max &minus; Min); (2) training and testing, developing the CNN-LSTM model and choosing the best training parameters; (3) evaluation using metrics such as accuracy, recall, and F1-score. The single categorical attribute &ldquo;marker&rdquo; in the Morris dataset (Normal, Attack) was binary-encoded (0 and 1), as were the CICIDS2017 multiclass labels (Normal vs Attack); instances with missing values and features constant in over 80% of records were removed.</p><p>In Experiments 2, 3, and 4, the dataset was divided by majority and minority classes, balancing by undersampling the majority and oversampling the minority. Undersampling comprised: methods selecting records to keep (near miss, condensed nearest neighbor); methods selecting instances to delete (Tomek links, edited nearest neighbors); and combinations of both (one-sided selection, neighborhood cleaning rule). Oversampling comprised: random oversampling, SMOTE, Borderline&ndash;SMOTE, Borderline oversampling with SVM, and adaptive synthetic sampling (ADASYN).</p><p>Two datasets were used: the Morris power dataset (72,073 records: Normal and Attack) and CICIDS2017 (1,161,344 records: Normal and Attack) for binary classification. Features were selected by ANOVA F-value, data split 70:30 for training and testing, and a CNN-LSTM model combined convolutional layers for feature extraction with LSTM layers capturing temporal dependencies in network traffic.</p><p>Four experiments were run: the first without balancing as a baseline, the second with undersampling (RUS, one-sided selection, near miss), the third with oversampling (ROS, SMOTE, ADASYN), each evaluated with accuracy, precision, recall, and F1-score from the confusion matrix.</p>
+  </section>
+  <section>
+    <h2>4. Results and Analysis</h2>
+    <p>In this section, we present the numerical results of our experiments in detecting attacks through different dataset-balancing approaches, aiming to answer the research questions. We used the CNN-LSTM model to classify attacks in SCADA network data, detailing the evaluation metrics and outcomes.</p><p>First, dataset performance was compared without any balancing strategy. On the Morris power dataset, accuracy was highest when features constant in more than 70% of instances were removed, while CICIDS2017 accuracy remained constant across thresholds. The datasets scored: Morris (accuracy 73.63, precision 73.22, recall 74.84, F1-score 58.06) and CICIDS2017 (accuracy 98.42, precision 98.03, recall 98.12, F1-score 98.44). However, accuracy is not the best measure in imbalanced intrusion detection scenarios, because training algorithms are skewed toward estimating all data as normal, disregarding the small percentage of attack events [8].</p><p>In the second phase, data were balanced with undersampling. On Morris, random undersampling cut the attack class by 35.3%, one-sided selection reduced the majority by only 2.3%, while near miss performed best, halving the attack class. Although random sampling gave higher accuracy, near miss achieved the highest F1-score (66%), our primary metric &mdash; a 9% improvement over the unbalanced dataset (57%). On CICIDS2017, near miss was also best (accuracy 99.25, F1-score 99.34) versus 96% for random and 97.67% for one-sided selection.</p><p>The third experiment used only oversampling (ROS, SMOTE, ADASYN). On Morris, ROS doubled the minority class, SMOTE nearly balanced the dataset by growing the normal class, and ADASYN performed well but not optimally. All algorithms reached around 71% accuracy, but SMOTE led on F1-score at 64%. On CICIDS2017, oversampling lifted performance to about 99% on all metrics, confirming that balancing improves intrusion detection on both datasets.</p><p>Results show data imbalance severely degrades IDS performance, especially on Morris where F1 jumped from 57&ndash;58% to 66% after balancing, while the larger, more diverse CICIDS2017 was less affected. Near miss was the best undersampling method and SMOTE the best oversampling method in these experiments.</p><p>In summary: accuracy is misleading on imbalanced data &mdash; F1-score and recall must be used; balancing is a necessary step before training deep learning SCADA IDS models; and near miss and SMOTE outperform naive random methods in preserving decision boundaries useful for detection.</p>
+  </section>
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>This study proved that dataset imbalance significantly impacts the performance of deep learning-based intrusion detection systems in SCADA environments. Applying balancing techniques (undersampling and oversampling) tangibly improved CNN-LSTM performance on both the Morris power and CICIDS2017 datasets, with near miss and SMOTE the most effective.</p><p>Future work includes testing hybrid balancing combining under- and oversampling, extending evaluation to additional SCADA datasets and deep learning models, and studying balancing effects on detecting specific attack classes rather than generic binary classification. This research aims to help security researchers understand imbalanced datasets and their impact on DL SCADA-IDS.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] S. Huda, J. Yearwood, M. M. Hassan, and A. Almogren, &quot;Securing the operations in SCADA-IoT platform based industrial control system using ensemble of deep belief networks,&quot; <em>Appl. Soft Comput.</em>, vol. 71, pp. 66&ndash;77, 2018. https://doi.org/10.1016/j.asoc.2018.06.017</li>
+      <li>[2] A. A. Abdulrahman and M. K. Ibrahem, &quot;Toward constructing a balanced intrusion detection dataset based on CICIDS2017,&quot; <em>Samarra J. Pure Appl. Sci.</em>, vol. 2, pp. 132&ndash;142, 2020.</li>
+      <li>[3] F. Wotawa and H. Muhlburger, &quot;On the effects of data sampling for deep learning on highly imbalanced data from SCADA power grid substation networks for intrusion detection,&quot; in <em>Proc. IEEE Int. Conf. Software Quality, Reliability and Security (QRS)</em>, Haikou, China, 2021. https://doi.org/10.1109/qrs54544.2021.00095</li>
+      <li>[4] A. Fundin, &quot;Generating datasets through the introduction of an attack agent in a SCADA testbed,&quot; Master&rsquo;s Thesis, Link&ouml;ping University, Link&ouml;ping, Sweden, 2021.</li>
+      <li>[5] J. Suaboot, A. Fahad, Z. Tari, J. Grundy, A. N. Mahmood, A. Almalawi, A. Zomaya, and K. Drira, &quot;A taxonomy of supervised learning for IDSs in SCADA environments,&quot; <em>ACM Comput. Surv.</em>, vol. 53, pp. 1&ndash;37, 2020. https://doi.org/10.1145/3379499</li>
+      <li>[6] A. Kulkarni, D. Chong, and F. A. Batarseh, &quot;Foundations of data imbalance and solutions for a data democracy,&quot; in <em>Data Democracy</em>, 1st ed., F. A. Batarseh and R. Yang, Eds. Elsevier, 2020, pp. 83&ndash;106. https://doi.org/10.1016/B978-0-12-818366-3.00005-8</li>
+      <li>[7] J. M. Peterson, J. L. Leevy, and T. M. Khoshgoftaar, &quot;A review and analysis of the Bot-IoT dataset,&quot; in <em>Proc. 15th IEEE Int. Conf. Service-Oriented System Engineering (SOSE)</em>, Oxford, UK, 2021, pp. 20&ndash;27. https://doi.org/10.1109/SOSE52839.2021.00007</li>
+      <li>[8] &quot;Effect of imbalanced datasets on security of industrial IoT using machine learning.&quot; Available online: http://www.cse.wustl.edu/~jain/papers/ftp/imb_isi.pdf (accessed on 25 November 2022).</li>
+      <li>[9] K. Jiang, W. Wang, A. Wang, and H. Wu, &quot;Network intrusion detection combined hybrid sampling with deep hierarchical network,&quot; <em>IEEE Access</em>, vol. 8, pp. 32464&ndash;32476, 2020. https://doi.org/10.1109/ACCESS.2020.2973730</li>
+      <li>[10] O. Miah, S. Khan, S. Shatabda, and M. F. Dewan, &quot;Improving detection accuracy for imbalanced network intrusion classification using cluster-based under-sampling with random forests,&quot; in <em>Proc. Int. Conf. Advances in Science, Engineering and Robotics Technology (ICASERT)</em>, Dhaka, Bangladesh, 2019. https://doi.org/10.1109/ICASERT.2019.8934495</li>
+      <li>[11] C. F. Tsai, W. C. Lin, Y. H. Hu, and G. T. Yao, &quot;Under-sampling class imbalanced datasets by combining clustering analysis and instance selection,&quot; <em>Inf. Sci.</em>, vol. 477, pp. 47&ndash;54, 2019. https://doi.org/10.1016/j.ins.2018.10.029</li>
+      <li>[12] M. N. Aziz and T. Ahmad, &quot;Clustering under-sampling data for improving the performance of intrusion detection system,&quot; <em>JESTEC</em>, vol. 16, pp. 1342&ndash;1355, 2021.</li>
+      <li>[13] Z. Wang, D. Jiang, L. Huo, and W. Yang, &quot;An efficient network intrusion detection approach based on deep learning,&quot; <em>Wirel. Netw.</em>, vol. 5, pp. 1&ndash;14, 2021. https://doi.org/10.1007/s11276-021-02698-9</li>
+      <li>[14] X. Zhang, J. Ran, and J. Mi, &quot;An intrusion detection system based on convolutional neural network for imbalanced network traffic,&quot; in <em>Proc. Int. Conf. Computer Science and Network Technology (ICCSNT)</em>, Dalian, China, 2019. https://doi.org/10.1109/ICCSNT47585.2019.8962490</li>
+      <li>[15] K. Wu, Z. Chen, and W. Li, &quot;A novel intrusion detection model for a massive network using convolutional neural networks,&quot; <em>IEEE Access</em>, vol. 6, pp. 50850&ndash;50859, 2018. https://doi.org/10.1109/ACCESS.2018.2868993</li>
+      <li>[16] I. Sharafaldin, A. H. Lashkari, and A. A. Ghorbani, &quot;Toward generating a new intrusion detection dataset and intrusion traffic characterization,&quot; in <em>Proc. 4th Int. Conf. Information Systems Security and Privacy (ICISSP)</em>, 2018.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s23020758">10.3390/s23020758</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

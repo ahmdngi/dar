@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLC Honeypots: Enhancing Interaction-Level Assessment — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">PLC Honeypots: Enhancing Interaction-Level Assessment</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مصائد PLC الخادعة: تعزيز تقييم مستوى التفاعل</h2>
+
+  <div class="paper-meta">
+    <span>👤 Jessica B. Heluany</span>
+    <span>📄 Electronics, 2024 · Vol. 13(20), 4024</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics13204024">10.3390/electronics13204024</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>نشأ الدافع لهذا العمل عند ملاحظة أن تعريفات مستوى تفاعل المصائد الخادعة مبنية أساسًا على بيئة تقنية المعلومات (IT) ولا تعكس التقنية التشغيلية (OT)، رغم أن عدة مشاريع مصائد تستهدف هذا المجال. وتحتل وحدات التحكم المنطقية القابلة للبرمجة (PLC) دورًا رئيسيًا داخل OT، لذا يحاكي الباحثون هذا الجهاز غالبًا عند مستوى تفاعل معين — لكن تعريفات مستوى التفاعل الخاصة بـPLC نادرة.</p>
+    <p>يكيّف هذا العمل تعريف مستوى التفاعل المعلوماتي ليشمل PLC وسماته الخاصة. ومن خلال مراجعة أدبية غير منهجية لـ41 ورقة، رُسمت السمات وفق منظورات النظام الخادع والخدمة الخادعة والرمز الخادع، مُنتجةً مقترح مقاييس للتفاعل المنخفض والعالي: النظام (برمجيات خاصة بالمورّد ولافتة جهاز فريدة وطوبولوجيا شبكية واقعية)؛ والخدمة (بروتوكولات صناعية وشبكية وأزمنة استجابة وتفاعلات شيفرة وإدخال/إخراج ديناميكي ومحاكاة عمليات وواجهة ويب)؛ والرمز (ملفات برامج PLC وملفات MIB وتراخيص البرمجيات). ويمكن للباحثين استخدام هذه المقاييس لتصميم مصائد PLC أو اختيار أدوات مطابقة لمستوى التفاعل المستهدف.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>يعرّف المعهد الوطني الأمريكي للمعايير والتقنية (NIST) الخداع بأنه تضليل الخصم أو إرباكه أو إخفاء الأصول الحرجة عنه أو كشف أصول ملوثة سرًا له [1]. وتعود المصائد الخادعة (honeypots) — وهي موارد أمنية تكمن قيمتها في استكشافها أو مهاجمتها أو اختراقها — إلى أواخر الثمانينيات، حين لاحظ Cliff Stoll، وهو طالب يساعد في صيانة شبكة جامعته، مهاجمين يقتحمون النظام ويعدّلون البرامج لسرقة كلمات المرور [2]. ومنذ ذلك الحين انتشرت أدوات الخداع إلى أنظمة التحكم الصناعية (ICS) في جميع القطاعات، حيث يضخّم استخدامها في البنى التحتية الحرجة الهجمات التي تستهدفها.</p>
+    <p>في بيئات التقنية التشغيلية (OT)، تستخدم أنظمة ICS معدات أتمتة وتحكم متخصصة ببنى حلول مميزة، وغالبًا ما تتواصل عبر بروتوكولات صناعية صُممت دون اعتبار أمني [3]. ومن ثم فإن وحدة التحكم المنطقية القابلة للبرمجة (PLC) — وهي الجهاز الحاوي لمنطق العمليات لمهام الأتمتة والتحكم، مع واجهات مشغّلين على مستويات عدة [4] — هدف مرجح للمهاجمين. ويكتسب الباحثون فهمًا للتفاعلات بين المهاجم وPLC بنشر أنظمة شركية تحاكي PLC بخدمات مماثلة. تبحث هذه الدراسة مصائد PLC وترسم ما يُحاكى عادةً في النوعين منخفض وعالي التفاعل، وهي منظمة في ستة أقسام: الطرق في القسم 2، والخلفية في القسم 3، والنتائج في القسم 4، والمناقشة في القسم 5.</p>
+  </section>
+
+  <section>
+    <h2>2. المواد والطرق</h2>
+    <p>تستند هذه الدراسة إلى مقالات الدوريات والمؤتمرات والكتب ومواقع التقنية ومستودع Conpot على GitHub وبرمجية OpenPLC — غذّت الأولى الخلفية، وأسّس الأخيران المناقشة وتطبيق المقاييس. وجوهرها مراجعة أدبية غير منهجية يقودها سؤال بحثي واحد: ما سمات PLC الصريحة والضمنية القابلة للاستخدام في تصنيف مستوى تفاعل مصائد PLC؟</p>
+    <p>اعتُمدت المقاييس الصريحة عندما عرّف المؤلفون مستوى التفاعل أو قارنوا عمدًا بين المصائد عالية ومنخفضة التفاعل؛ والضمنية عندما نوقشت السمات عبر الواقعية والمصداقية وقدرة الخداع المؤثرة في تفاعل المهاجم. ورُسمت السمات وفق منظورات النظام الخادع والخدمة الخادعة والرمز الخادع (القسم 3) للحفاظ على بنية تعريف تقنية المعلومات الذي تشير إليه معظم الأعمال ذات الصلة. وباستخدام Google Scholar وScopus بتركيبات الكلمات (honeypot وhoneynet وPLC ومستوى التفاعل والتقنية التشغيلية)، جُمعت 41 ورقة — مسوح وحالات مفردة — عالجت 16 منها سمات يمكن تحديدها كمقاييس صريحة أو ضمنية تجيب السؤال البحثي (الشكل 1).</p>
+  </section>
+
+  <section>
+    <h2>3. الخلفية</h2>
+    <p>من أوائل التعريفات الرسمية للمصيدة الخادعة تعريف Lance Spitzner مؤسس مشروع Honeynet (1999): مورد أمني تكمن قيمته في استكشافه أو مهاجمته أو اختراقه [5]. تحاكي المصائد أنظمة أو خدمات أو بيانات معروفة مُهيأة لتبدو ضعيفة، محوِّلة المهاجمين أو جامعة معلومات عن نشاطهم أو مستبقية إياهم للتوثيق والاستجابة [6]. وكانت المصائد الإنتاجية تحرس الشبكات الحية بينما ترصد البحثية المهاجمين خارجها [2]؛ وتجمع الشبكات الخادعة مصائد متعددة رغم عدم اتساق المصطلح [7]. وبحسب ما يُحاكى، تنقسم المصائد إلى نظام خادع (نظام تشغيل وخدماته، مثل نظام Ubuntu) وخدمة خادعة (برمجيات/بروتوكولات مثل HTTP وSSH وSMB) ورمز خادع (بيانات مثل مستند Word) [2]. وتحاكي مصائد التفاعل المنخفض دون منح وصول لنظام التشغيل — نطاق ضيق لكنها أكثر أمانًا وموجهة للكشف (الأزمنة وعناوين المصدر والمنافذ) — بينما تكشف مصائد التفاعل العالي نظام تشغيل حقيقيًا، عادة في جهاز افتراضي معزول، ملتقطةً سلوكًا مهاجمًا أغنى بكثير مقابل مخاطر وتكاليف أعلى [5].</p>
+    <p>وحدات PLC مكونات صناعية مبنية لبيئات الإنتاج الآنية، تُفضّل الكفاءة والإتاحة، ومن ثم تعتمد أنظمة تشغيل مخصصة لا تجارية [8]. ومكوناتها الرئيسية: التغذية الكهربائية والمعالج ووحدات الاتصال والإدخال/الإخراج (الشكل 2)، وتُنفَّذ دوريًا في ثلاث مراحل — أخذ العينات المدخلة وتنفيذ البرنامج وتحديث المخرجات — ضمن أزمنة دورات صارمة يسبب انتهاكها أعطالًا، مما يجعل أزمنة الاستجابة النموذجية سمة إخلاص مهمة. وتتبع البرمجة لغات IEC 61131-3 (LD وSFC وFBD وST وIL) [9]. وبحسب نموذج Purdue [10]، تقع PLCs بين المستوى 0 (عملية الإنتاج) والمستوى 2 (الإشراف) (الشكل 3)، وتتحدث بروتوكولات تسلسلية وTCP/IP — مثل Modbus وProfibus وProfinet وOPC UA وIEC 60870-5 وIEC 61850 [11،12] — إضافة إلى الخاصة مثل S7comm وHSDS وSRTP. وتمتد متجهات هجوم PLC من محطات الهندسة وHMI والأجهزة المارقة ووسائط USB وشبكات المتحكمات، بأساليب من استغلال البروتوكولات وإعادة التشغيل إلى حقن الشيفرة، مهددةً بالتلاعب بالعمليات وأعطال المتحكم وإيقاف المصنع [8] (الجدول 1).</p>
+    <p>توجد أنظمة شركية في IT وOT، لكن أبحاث مصائد OT نادرًا ما تبني نتائجها حسب مستوى التفاعل كما في أعمال IT. يستعرض القسم 3.4 الأعمال ذات الصلة بمصائد OT — من دراسات تزييف البرمجيات الثابتة [17] واعتبارات بصمات أنظمة التشغيل [18] إلى أطر PLC الفيزيائية عالية التفاعل [19] والشبكات الخادعة [20] وآثار النشر السحابي على الخداع [22] وICSpot [23] وMimepot [24] ودراسات الانكشاف عبر Shodan [25] وأنظمة Dipot الموزعة [27] وS7commTrace [28] وهجائن IDS للكشف المبكر [29،31] والتقارير الصناعية الواقعية [30] والتصاميم الافتراضية [32] وHoneyPLC [35] وConpot [36،37] وOpenPLC [38] — مظهرةً مجالًا مفتتًا تهدف مقاييس هذا العمل لتوحيده.</p>
+  </section>
+
+  <section>
+    <h2>4. النتائج</h2>
+    <p>استُخلصت الأوراق الـ16 الحاملة للمقاييس (الجدول 2) في سمات خاصة بـPLC عبر منظورات المصيدة الثلاثة. تتعلق سمات النظام بالآلة التي يظن المهاجم مواجهتها: صور البرمجيات الثابتة ومحاكاة بصمات أنظمة التشغيل والبصمات القابلة للتخصيص وطوبولوجيا الشبكة وتهيئتها ومقاومة البصمات والجدران النارية والطوبولوجيات الحلقية. وتمتد سمات الخدمة — وهي أغنى فئة — على لافتات SSH/Telnet/DNS/NTP/FTP/HTTP/SNMP والتوثيق وModbus TCP وS7comm وIEC 104 وDNP3 وGOOSE وMMS وSTEP7 وخدمات برامج PLC (الترجمة والتفسير والتحميل) وتغطية شفرات الوظائف وزمن الاستجابة وسلوك مسوحات Nmap وواجهات الويب ومحاكاة المصنع والعمليات والتحديثات الديناميكية للإدخال/الإخراج ومحاكاة تفاعل المشغّلين ومضاهاة الحركة. وتشمل سمات الرمز ملفات برامج PLC وخوادم الملفات المزيفة وملفات الشركات والموظفين وبرمجيات HMI وبرامج PLC ومنطق التحكم. ويمتد النشر من Docker وسحابة AWS والأجهزة الافتراضية المحلية إلى المعدات المضاهاة والحقيقية [7،16،3،15].</p>
+    <p>ومن ذلك وُضع مقترح التصنيف (الجدول 3) بعتبات صريحة للمنخفض/العالي. النظام: المنخفض يعني برمجيات ثابتة عامة ولا لافتة فريدة ولا محاكاة طوبولوجيا؛ والعالي يعني برمجيات خاصة بالمورّد ولافتة جهاز فريدة ومحاكاة طوبولوجيا الشبكة. الخدمة: المنخفض يغطي الوظائف الأساسية للبروتوكولات الصناعية ووظائف الإدارة الشبكية الأساسية والمعالجة الساكنة للإدخال/الإخراج؛ والعالي يتطلب إضافةً تغطية 70% من تحركات متجهات الهجوم الشائعة ووظائف إدارة شبكية موسعة وأزمنة استجابة ملائمة وتفاعلات مرتبطة بشيفرة PLC ومعالجة ديناميكية للإدخال/الإخراج ومحاكاة العمليات الفيزيائية وواجهة ويب ومحاكاة المشغّل البشري. الرمز: المنخفض لا يقدم ملفات مزيفة؛ والعالي يقدم قطع أتمتة حقيقية و/أو مزيفة — برامج PLC وملفات MIB وأدلة الحساسات والمشغّلات وتراخيص البرمجيات.</p>
+    <p>يتقاطع النشر الفيزيائي مقابل الافتراضي (القسم 4.1.4) مع التصنيف: فالمحاكاة الافتراضية (Docker والأجهزة الافتراضية والسحابة) تخفض التكلفة وتوسّع بنية الخداع لكنها تخاطر بقطع قابلة للتبصيم (لافتات المراقبة الافتراضية ونطاقات IP السحابية وشذوذات التوقيت) تفضح الشرك [22]، بينما يعظّم النشر الفيزيائي المصداقية بتكلفة ومخاطر عاليتين — وهي مقايضة تجعلها المقاييس صريحة بدل إخفائها داخل تسميتي منخفض/عالٍ الغامضتين.</p>
+  </section>
+
+  <section>
+    <h2>5. المناقشة</h2>
+    <p>يُعد Conpot [36،37] — المصيدة الأكثر انتشارًا لأنظمة ICS — قالب Siemens S7-200 افتراضيًا (الأشكال 5 و7 و8) مع تغطية شفرات وظائف Modbus معروضة مقابل مواصفة البروتوكول (الشكل 6، [34]). وبتقييمه وفق المقاييس (الجدول 4)، يوفر Conpot محاكاة موسعة لبروتوكولات الإدارة الشبكية وواجهة ويب، لكن دون لافتة فريدة ولا محاكاة طوبولوجيا ولا برمجيات خاصة بالمورّد ولا محاكاة بروتوكولات صناعية بتغطية 70% ولا نمذجة ملائمة لزمن الاستجابة ولا تفاعلات شيفرة PLC ولا إدخال/إخراج ديناميكي ولا محاكاة عمليات ولا ملفات مزيفة: ملف تفاعل منخفض متين تكشف المقاييس حدوده بدقة.</p>
+    <p>أما OpenPLC [38] — برمجية PLC مفتوحة المصدر بمحرر (الشكل 9، عينة Traffic Light بلغة FBD) — فيعكس الصورة: سلوك برمجيات خاصة بالمورّد وأزمنة استجابة ملائمة وتفاعلات شيفرة PLC ومحاكاة عمليات فيزيائية وواجهة ويب وملفات أتمتة مزيفة تُسجَّل إيجابيًا، بينما تبقى اللافتات الفريدة ومحاكاة الطوبولوجيا والتغطية البروتوكولية الكاملة للمتجهات ووظائف الإدارة الشبكية الموسعة والإدخال/الإخراج الديناميكي ومحاكاة المشغّل غائبة. يُظهر الثنائي القيمة العملية للمقاييس: فبدل الجدل المجرد حول تصنيف Conpot أو OpenPLC، يستطيع المتبنون قراءة الخداعات التي يقدمها كلٌّ منهما بدقة واختيار — أو دمج — الأدوات المطابقة لمستوى التفاعل المستهدف.</p>
+  </section>
+
+  <section>
+    <h2>6. الاستنتاجات</h2>
+    <p>ترجم هذا العمل مفردات التفاعل المنخفض/العالي ذات الجذور المعلوماتية إلى مصطلحات خاصة بـPLC. وتمنح المقاييس الناتجة — النظام (البرمجيات واللافتة والطوبولوجيا) والخدمة (البروتوكولات والتوقيت والشيفرة والإدخال/الإخراج والعمليات والويب والمشغّل) والرمز (ملفات الأتمتة) — الباحثين قائمة تحقق ملموسة لتصميم مصائد PLC عند مستوى تفاعل مقصود ولتدقيق الأدوات القائمة، مستبدلةً التسميات الانطباعية بادعاءات سمات قابلة للتحقق.</p>
+    <p>وبالتطبيق على Conpot وOpenPLC، تؤكد المقاييس نقاط قوة تفاعل منخفض متكاملة وتحدد بدقة ما ينقص كلًا منهما للتفاعل العالي. وينبغي للأعمال المستقبلية توسيع المقاييس بقياسات تجريبية لانخراط المهاجمين، وتغطية مورّدين وبروتوكولات إضافية، والتحقق من العتبات — مثل قاعدة تغطية 70% لمتجهات الهجوم — مقابل جلسات خصوم ملتقطة في الطبيعة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en" style="display:none">
+  <section>
+    <h2>Abstract</h2>
+    <p>The motivation for this work arose when noticing that honeypot interaction-level definitions are mainly based on the information technology (IT) environment and do not reflect operational technology (OT), even though several honeypot projects target this field. Within OT, programmable logic controllers (PLCs) play a main role, so researchers often mimic this device at a certain interaction level — yet definitions of interaction level approaching PLCs are scarce.</p>
+    <p>This work adapts the IT definition of interaction level to encompass PLCs and their specific features. Through a nonsystematic literature review of 41 papers, features were mapped under honey system, honey service, and honey token perspectives, yielding a metrics proposal for low and high interaction: system (vendor-specific firmware, unique device banner, realistic network topology); service (industrial and network-management protocols, response times, code interactions, dynamic I/O, process simulation, web interface); token (PLC program files, MIB files, software licenses). Researchers can use these metrics to design PLC honeypots or select tools matching their target interaction level.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>The U.S. National Institute of Standards and Technology (NIST) defines deception as misleading, confusing, hiding critical assets from, or exposing covertly tainted assets to the adversary [1]. Honeypots — security resources whose value lies in being probed, attacked, or compromised — date back to the late 1980s, when Cliff Stoll, a student helping maintain his university computer network, noticed attackers breaking in and modifying programs for password stealing [2]. Since then, deception tools have spread to industrial control systems (ICSs) across all sectors, where their use in critical infrastructures amplifies the attacks targeting them.</p>
+    <p>In OT environments, ICSs use specialised automation and control equipment with distinct solution architectures, often communicating through industrial protocols designed without security in mind [3]. The programmable logic controller (PLC) — the device holding the process logic for automation and control tasks, with operator interfaces at several levels [4] — is therefore a likely attacker target. Researchers gain insight into attacker–PLC interactions by deploying decoy systems imitating a PLC with comparable services. This study investigates PLC honeypots and maps what is usually mimicked at low and high interaction types, structured in six sections with methods in Section 2, background in Section 3, results in Section 4, and discussion in Section 5.</p>
+  </section>
+
+  <section>
+    <h2>2. Materials and Methods</h2>
+    <p>This study rests on journal and conference articles, books, technology websites, the Conpot GitHub repository, and the OpenPLC software — the former feeding the background, the latter two grounding the discussion and metric application. Its core is a nonsystematic literature review driven by one research question: what are the explicit and implicit PLC features usable for classifying the interaction level of PLC honeypots?</p>
+    <p>Explicit metrics were counted when authors defined the interaction level or deliberately compared high- and low-interaction honeypots; implicit metrics when features were discussed via realism, credibility, and deception capability affecting attacker interaction. Features were mapped under the honey system, honey service, and honey token perspectives (Section 3) to preserve the IT definition's structure that most related work references. Using Google Scholar and Scopus with keyword combinations (honeypot, honeynet, PLC, programmable logic controller, interaction level, operational technology), 41 papers were collected — surveys and single use cases alike — of which 16 addressed features identifiable as explicit or implicit metrics answering the research question (Figure 1).</p>
+  </section>
+
+  <section>
+    <h2>3. Background</h2>
+    <p>One of the first formal honeypot definitions came from Lance Spitzner, founder of the Honeynet Project (1999): a security resource whose value lies in being probed, attacked, or compromised [5]. Honeypots emulate well-known systems, services, or data configured to look vulnerable, diverting attackers, collecting activity information, or holding intruders for documentation and response [6]. Originally production honeypots guarded real networks while research honeypots observed attackers off-network [2]; honeynets combine multiple honeypots, though the term is used inconsistently [7]. By what is mimicked, honeypots divide into honey system (an OS and its services, e.g. an Ubuntu system), honey service (software/protocols, e.g. HTTP, SSH, SMB), and honey token (data, e.g. a Word document) [2]. Low-interaction honeypots emulate without granting OS access — narrow scope but safer and detection-oriented (timestamps, source IPs, ports) — while high-interaction honeypots expose a real OS, usually in a sandboxed VM, capturing far richer attacker behaviour at higher risk and cost [5].</p>
+    <p>PLCs are industrial components built for real-time production environments, favouring efficiency and availability, and hence rely on customised rather than commercial operating systems [8]. Their main components are power supply, CPU, communication and I/O modules (Figure 2), executing cyclically in three stages — input sampling, program execution, output refresh — within strict cycle times whose violation causes malfunctions, making typical response times a relevant fidelity feature. Programming follows IEC 61131-3 languages (LD, SFC, FBD, ST, IL) [9]. Per the Purdue model [10], PLCs sit between level 0 (production process) and level 2 (supervision) (Figure 3), speaking serial and TCP/IP protocols — Modbus, Profibus, Profinet, OPC UA, IEC 60870-5, IEC 61850 [11,12] — plus proprietary ones such as S7comm, HSDS, and SRTP. PLC attack vectors span engineering workstations, HMIs, rogue devices, USB media, and controller networks, with methods from protocol exploitation and replay to code injection, threatening process manipulation, controller faults, and plant shutdown [8] (Table 1).</p>
+    <p>Decoy systems exist across IT and OT, but OT honeypot research rarely structures findings by interaction level the way IT work does. Section 3.4 reviews OT honeypot related work — from firmware-counterfeiting studies [17] and OS-fingerprinting considerations [18] to high-interaction physical PLC frameworks [19], ICS honeynets [20], cloud-deployment deception effects [22], ICSpot [23], Mimepot [24], Shodan-exposure studies [25], distributed Dipot systems [27], S7commTrace [28], early-detection IDS hybrids [29,31], realistic plant reports [30], virtual-PLC designs [32], HoneyPLC [35], Conpot [36,37], and OpenPLC [38] — showing a fragmented field this work's metrics aim to unify.</p>
+  </section>
+
+  <section>
+    <h2>4. Results</h2>
+    <p>The 16 metric-bearing papers (Table 2) were distilled into PLC-specific features across the three honeypot perspectives. System features concern what machine the attacker believes they face: firmware images and OS-fingerprint simulation, customizable fingerprints, network topology and configuration, fingerprint resistance, firewalls, and ring topologies. Service features — the richest category — span SSH/Telnet/DNS/NTP/FTP/HTTP/SNMP banners and authentication, Modbus TCP, S7comm, IEC 104, DNP3, GOOSE, MMS, STEP7, PLC program services (compile, interpret, load), function-code coverage, response latencies, Nmap scan behaviour, web interfaces, plant and process simulation, dynamic I/O updates, operator-interaction simulation, and traffic emulation. Token features comprise PLC program files, fake file servers, company/employee profiles, HMI software, PLC programs, and control logic. Deployment spans Docker, AWS cloud, local VMs, emulated and real equipment [7,16,3,15].</p>
+    <p>From these, the classification proposal (Table 3) sets explicit low/high thresholds. System: low means generic firmware, no unique banner, no topology simulation; high means vendor-specific firmware, a unique device banner, and simulated network topology. Service: low covers only basic industrial-protocol functions, basic network-management functions, and static I/O; high additionally requires covering 70% of common attack-vector moves, extended network-management functions, appropriate response times, PLC code-related interactions, dynamic I/O processing, physical process simulation, a web interface, and human-operator simulation. Token: low offers no fake files; high provides real and/or fake automation artefacts — PLC programs, MIB files, sensor/actuator manuals, software licences.</p>
+    <p>Physical versus virtual deployment (Section 4.1.4) cross-cuts the classification: virtualization (Docker, VMs, cloud) lowers cost and scales deception infrastructure but risks fingerprintable artefacts (hypervisor banners, cloud IP ranges, timing anomalies) that betray the decoy [22], while physical deployment maximises credibility at high cost and risk — a trade-off the metrics make explicit rather than hiding inside vague low/high labels.</p>
+  </section>
+
+  <section>
+    <h2>5. Discussion</h2>
+    <p>Conpot [36,37] — the most widely deployed ICS honeypot — ships a default Siemens S7-200 template (Figures 5, 7, 8) with Modbus function-code coverage visualised against the protocol specification (Figure 6, [34]). Scored against the metrics (Table 4), Conpot provides extended network-management protocol simulation and a web interface, but no unique banner, no topology simulation, no vendor-specific firmware, no 70%-coverage industrial-protocol simulation, no appropriate response-time modelling, no PLC-code interactions, no dynamic I/O, no process simulation, and no fake files: a solid low-interaction profile whose limits the metrics expose precisely.</p>
+    <p>OpenPLC [38] — open-source PLC software with an editor (Figure 9, Traffic Light FBD sample) — inverts the picture: vendor-specific firmware behaviour, appropriate response times, PLC-code interactions, physical process simulation, a web interface, and fake automation files score positively, while unique banners, topology simulation, full attack-vector protocol coverage, extended network-management functions, dynamic I/O, and operator simulation remain absent. The pair demonstrates the metrics' practical value: instead of debating whether Conpot or OpenPLC is low or high interaction in the abstract, adopters can read off exactly which deceptions each delivers and select — or combine — tools matching their target interaction level.</p>
+  </section>
+
+  <section>
+    <h2>6. Conclusions</h2>
+    <p>This work translated the IT-rooted low/high interaction vocabulary into PLC-native terms. The resulting metrics — system (firmware, banner, topology), service (protocols, timing, code, I/O, process, web, operator), token (automation files) — give researchers a concrete checklist for designing PLC honeypots at a deliberate interaction level and for auditing existing tools, replacing impressionistic labels with verifiable feature claims.</p>
+    <p>Applied to Conpot and OpenPLC, the metrics confirm complementary low-interaction strengths and pinpoint exactly what each lacks for high interaction. Future work should extend the metrics with empirical attacker-engagement measurements, cover additional PLC vendors and protocols, and validate thresholds — such as the 70% attack-vector coverage rule — against captured adversary sessions in the wild.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Ross, R.; Pillitteri, V.; Graubart, R.; Bodeau, D.; McQuaid, R. Developing Cyber Resilient Systems: A Systems Security Engineering Approach; Technical report; National Institute of Standards and Technology: Gaithersburg, MD, USA, 2019.</li>
+      <li>[2] Sanders, C. Intrusion Detection Honeypots: Detection through Deception; Applied Network Defense: 2020.</li>
+      <li>[3] Maesschalck, S.; Giotsas, V.; Green, B.; Race, N. Don’t get stung, cover your ICS in honey: How do honeypots fit within industrial control system security. Comput. Secur. 2022, 114, 102598.</li>
+      <li>[4] Learn the Industrial Automation Skills of Tomorrow. RealPars, 2024.</li>
+      <li>[5] Spitzner, L. Honeypots: Tracking Hackers; Addison-Wesley Reading: Boston, MA, USA, 2003; Volume 1.</li>
+      <li>[6] Whitman, M.; Mattord, H. Principles of Information Security; Cengage: Boston, MA, USA, 2021.</li>
+      <li>[7] Franco, J.; Aris, A.; Canberk, B.; Uluagac, A.S. A survey of honeypots and honeynets for internet of things, industrial internet of things, and cyber-physical systems. IEEE Commun. Surv. Tutorials 2021, 23, 2351–2383.</li>
+      <li>[8] Knapp, E.D.; Langill, J.T. Industrial Network Security: Securing Critical Infrastructure Networks for Smart Grid, SCADA, and Other Industrial Control Systems; Syngress: Oxford, UK, 2014.</li>
+      <li>[9] IEC 61131-3 2nd Ed; Programmable Controllers-Programming Languages. International Electrotechnical Commission: Geneva, Switzerland, 2013.</li>
+      <li>[10] Williams, T.J. The Purdue enterprise reference architecture. Comput. Ind. 1994, 24, 141–158.</li>
+      <li>[11] IEC 60870-5; Telecontrol Equipment and Systems—Part 5: Transmission Protocols—ALL PARTS. International Electrotechnical Commission: Geneva, Switzerland, 2024.</li>
+      <li>[12] IEC 61850; Communication Networks and Systems for Power Utility Automation—ALL PARTS. International Electrotechnical Commission: Geneva, Switzerland, 2024.</li>
+      <li>[13] Drias, Z.; Serhrouchni, A.; Vogel, O. Taxonomy of attacks on industrial control protocols. In Proceedings of the 2015 International Conference on Protocol Engineering (ICPE) and International Conference on New Technologies of Distributed Systems (NTDS), Paris, France, 22–24 July 2015; IEEE: Piscataway, NJ, USA, 2015; pp. 1–6.</li>
+      <li>[14] Wardak, H.; Zhioua, S.; Almulhem, A. PLC access control: A security analysis. In Proceedings of the 2016 World Congress on Industrial Control Systems Security (WCICSS), London, UK, 12–14 December 2016; IEEE: Piscataway, NJ, USA, 2016; pp. 1–6.</li>
+      <li>[15] Antonioli, D.; Agrawal, A.; Tippenhauer, N.O. Towards high-interaction virtual ICS honeypots-in-a-box. In Proceedings of the 2nd ACM Workshop on Cyber-Physical Systems Security and Privacy, New York, NY, USA, 28 October 2016; pp. 13–22.</li>
+      <li>[16] Dalamagkas, C.; Sarigiannidis, P.; Ioannidis, D.; Iturbe, E.; Nikolis, O.; Ramos, F.; Rios, E.; Sarigiannidis, A.; Tzovaras, D. A survey on honeypots, honeynets and their applications on smart grid. In Proceedings of the 2019 IEEE Conference on Network Softwarization (NetSoft), Paris, France, 24–28 June 2019; IEEE: Piscataway, NJ, USA, 2019; pp. 93–100.</li>
+      <li>[17] Basnight, Z.H. Firmware Counterfeiting and Modification Attacks on Programmable Logic Controllers. Master’s Thesis, Air Force Institute of Technology, Wright-Patterson Air Force Base, OH, USA, 2013.</li>
+      <li>[18] OS Fingerprinting. ITPERFECTION, 2023.</li>
+      <li>[19] You, J.; Lv, S.; Zhao, L.; Niu, M.; Shi, Z.; Sun, L. A scalable high-interaction physical honeypot framework for programmable logic controller. In Proceedings of the 2020 IEEE 92nd Vehicular Technology Conference (VTC2020-Fall), Victoria, BC, Canada, 18 November–16 December 2020; IEEE: Piscataway, NJ, USA, 2020; pp. 1–5.</li>
+      <li>[20] Schuba, M.; Höfken, H.; Linzbach, S. An ICS Honeynet for Detecting and Analyzing Cyberattacks in Industrial Plants. In Proceedings of the 2021 International Conference on Electrical, Computer and Energy Technologies (ICECET), Cape Town, South Africa, 9–10 December 2021; IEEE: Piscataway, NJ, USA, 2021; pp. 1–6.</li>
+      <li>[21] Mesbah, M.; Elsayed, M.S.; Jurcut, A.D.; Azer, M. Analysis of ICS and SCADA Systems Attacks Using Honeypots. Future Internet 2023, 15, 241.</li>
+      <li>[22] Ivanova, S.; Moradpoor, N. Fake PLC in the cloud, we thought the attackers believed that: How ICS honeypot deception gets impacted by cloud deployments? In Proceedings of the 2023 IEEE 19th International Conference on Factory Communication Systems (WFCS), Pavia, Italy, 26–28 April 2023; IEEE: Piscataway, NJ, USA, 2023; pp. 1–4.</li>
+      <li>[23] Conti, M.; Trolese, F.; Turrin, F. Icspot: A high-interaction honeypot for industrial control systems. In Proceedings of the 2022 International Symposium on Networks, Computers and Communications (ISNCC), Washington, DC, USA, 22–25 October 2022; IEEE: Piscataway, NJ, USA, 2022; pp. 1–4.</li>
+      <li>[24] Bernieri, G.; Conti, M.; Pascucci, F. Mimepot: A model-based honeypot for industrial control networks. In Proceedings of the 2019 IEEE International Conference on Systems, Man and Cybernetics (SMC), Bari, Italy, 6–9 October 2019; IEEE: Piscataway, NJ, USA, 2019; pp. 433–438.</li>
+      <li>[25] Matherly, J. Complete Guide to Shodan; Shodan, LLC: 2015; Volume 1.</li>
+      <li>[26] OS Fingerprinting for Beginners. HackerCoolMagazine, 2023.</li>
+      <li>[27] Cao, J.; Li, W.; Li, J.; Li, B. Dipot: A distributed industrial honeypot system. In Proceedings of the Smart Computing and Communication: Second International Conference, SmartCom 2017, Shenzhen, China, 10–12 December 2017; Springer: Berlin/Heidelberg, Germany, 2018; pp. 300–309.</li>
+      <li>[28] Xiao, F.; Chen, E.; Xu, Q. S7commtrace: A high interactive honeypot for industrial control system based on s7 protocol. In Proceedings of the Information and Communications Security: 19th International Conference, ICICS 2017, Beijing, China, 6–8 December 2017; Springer: Berlin/Heidelberg, Germany, 2018; pp. 412–423.</li>
+      <li>[29] Pashaei, A.; Akbari, M.E.; Lighvan, M.Z.; Charmin, A. Early Intrusion Detection System using honeypot for industrial control networks. Results Eng. 2022, 16, 100576.</li>
+      <li>[30] Navarro, O.; Balbastre, S.A.J.; Beyer, S. Gathering Intelligence Through Realistic Industrial Control System Honeypots: A Real-World Industrial Experience Report. In Proceedings of the Critical Information Infrastructures Security: 13th International Conference, CRITIS 2018, Kaunas, Lithuania, 24–26 September 2018; Springer: Berlin/Heidelberg, Germany, 2019; pp. 143–153.</li>
+      <li>[31] Pashaei, A.; Akbari, M.E.; Lighvan, M.Z.; Teymorzade, H.A. Improving the IDS performance through early detection approach in local area networks using industrial control systems of honeypot. In Proceedings of the 2020 IEEE International Conference on Environment and Electrical Engineering and 2020 IEEE Industrial and Commercial Power Systems Europe (EEEIC/I&amp;CPS Europe), Madrid, Spain, 9–12 June 2020; IEEE: Piscataway, NJ, USA, 2020; pp. 1–5.</li>
+      <li>[32] Chowdhury, S.Y.; Dudley, B.; Sun, R. The Case for Virtual PLC-enabled Honeypot Design. In Proceedings of the 2023 IEEE European Symposium on Security and Privacy Workshops (EuroS&amp;PW), Delft, The Netherlands, 3–7 July 2023; IEEE: Piscataway, NJ, USA, 2023; pp. 351–357.</li>
+      <li>[33] Modicon Modbus Protocol Reference Guide. Modbus Organization, 2023.</li>
+      <li>[34] Shahzad, A.; Lee, M.; Lee, Y.K.; Kim, S.; Xiong, N.; Choi, J.Y.; Cho, Y. Real time MODBUS transmissions and cryptography security designs and enhancements of protocol sensitive information. Symmetry 2015, 7, 1176–1210.</li>
+      <li>[35] López-Morales, E.; Rubio-Medrano, C.; Doupé, A.; Shoshitaishvili, Y.; Wang, R.; Bao, T.; Ahn, G.J. Honeyplc: A next-generation honeypot for industrial control systems. In Proceedings of the 2020 ACM SIGSAC Conference on Computer and Communications Security, Virtual Event, 9–13 November 2020; pp. 279–291.</li>
+      <li>[36] CONPOT ICS/SCADA Honeypot. Conpot Project, 2023.</li>
+      <li>[37] mushorg/conpot. GitHub repository, 2023.</li>
+      <li>[38] Open Source PLC Software: OpenPLC Overview. AutonomyLogic, 2023.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics13204024">10.3390/electronics13204024</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

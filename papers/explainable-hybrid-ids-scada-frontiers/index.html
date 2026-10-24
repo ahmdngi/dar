@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كشف التسلل الهجين القابل للتفسير لسكادا/ICS: مراجعة وأجندة بحثية — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Explainable Hybrid Intrusion Detection for SCADA/ICS: A Review and Research Agenda</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">كشف التسلل الهجين القابل للتفسير لسكادا/ICS: مراجعة وأجندة بحثية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Heinrihs Kristians Skrodelis, Andrejs Romanovs</span>
+    <span>📄 Frontiers in Computer Science, 2026 · Vol. 8, 1724245</span>
+    <span>🔗 <a href="https://doi.org/10.3389/fcomp.2026.1724245">10.3389/fcomp.2026.1724245</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تقوم شبكات أنظمة التحكم الإشرافي وتحصيل البيانات (سكادا) وأنظمة التحكم الصناعية (ICS) على البنية التحتية الحرجة في قطاعات الطاقة والمياه والنقل والتصنيع. تواجه أنظمة كشف التسلل الحالية مفاضلات جوهرية: تحقق الأساليب القائمة على التوقيعات معدلات إنذارات كاذبة منخفضة لكنها لا تكشف هجمات اليوم الصفري، بينما تكشف أساليب الشذوذ التهديدات الجديدة لكنها تولّد تنبيهات غامضة تُثقل المشغّلين وتُضعف الثقة. وتكشف الدراسات التجريبية الحديثة فجوات تطبيقية مستمرة، منها صعوبة الحصول على بيانات هجوم موسومة للأساليب الموجَّهة، وتحديات ضبط المعلمات الفائقة الصعبة لمصنفات الصنف الواحد، والتكامل المحدود للسمات الواعية بالبروتوكول رغم انتشار الكشف الواعي بالعملية. ولا تزال أساليب قابلية التفسير غير مطبقة بما يكفي في كشف التسلل الصناعي رغم قدرتها على تحسين فهم المشغّلين وتكامل سير عمل الأمن. تعرض هذه المقالة مراجعة منهجية وأجندة بحثية لكشف التسلل الهجين القابل للتفسير في بيئات سكادا/ICS.</p><p>الكلمات المفتاحية: سكادا؛ ICS؛ كشف التسلل الهجين؛ الذكاء الاصطناعي القابل للتفسير؛ SHAP؛ الأجندة البحثية.</p>
+  </section>
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تعتمد البنية التحتية الحرجة على شبكات سكادا وأنظمة التحكم الصناعية التي صُمّمت تاريخيًا للعزل لا للاتصال بالإنترنت، فأصبحت مكشوفة للتهديدات السيبرانية مع التقارب بين تقنية المعلومات (IT) والتقنية التشغيلية (OT). تحقق أنظمة كشف التسلل القائمة على التوقيعات (مثل Snort وSuricata) دقة عالية للهجمات المعروفة لكنها عمياء عن نواقل الهجوم الجديدة، بينما يكشف كشف الشذوذ التهديدات الجديدة بكلفة إنذارات كاذبة تُرهق محللي مراكز العمليات الأمنية (SOC) وتُضعف الثقة بالنظام.</p><p>تعالج الأساليب الهجينة هذه المفاضلة بجمع التوقيعات وكشف الشذوذ، وأحيانًا الكشف القائم على المواصفات، عبر معماريات متسلسلة أو متوازية أو هرمية (بان وآخرون، 2015؛ خان وآخرون، 2019). وبالتوازي، يَعِد الذكاء الاصطناعي القابل للتفسير (XAI) &mdash; لا سيما إسنادات SHAP (لوندبرغ ولي، 2017) وLIME (ريبيرو وآخرون، 2016) &mdash; بتحويل التنبيهات الغامضة إلى مبررات قابلة للفهم مرتبطة بسياق العملية، غير أن تطبيقه في كشف التسلل الصناعي لا يزال محدودًا رغم نضجه في مجالات أخرى.</p><p>تُظهر الدراسات التجريبية الحديثة فجوات عملية خمسًا (G1&ndash;G5): تغطية محدودة لهجمات اليوم الصفري، وضبط غير كافٍ للإنذارات الكاذبة، وعمى بروتوكولي مقابل الوعي بالعملية، ونقص التفسيرات المتمحورة حول المشغّل، وانجراف النشر بين بيئات المختبر والتشغيل. تهدف هذه المراجعة إلى تجميع الأدلة حول هذه الفجوات وتقديم أجندة بحثية وقائمة تحقق تقييمية تُرسم عليها كل بند مقابل الفجوات.</p><p>تُنظَّم بقية الورقة كالتالي: تعرض الخلفية مفاهيم كشف التسلل الهجين وقابلية التفسير وأسئلة البحث؛ وتصف المنهجية بروتوكول المراجعة المنهجية؛ وتُجمّع النتائج الأدلة عبر المحاور الأربعة؛ ويُفصّل تحليل الفجوات التحديات المفتوحة؛ ثم تُعرض معمارية مرجعية مفاهيمية؛ ويحدد القسم 7 الأجندة البحثية؛ ويقدم القسم 8 خطة التقييم؛ ويناقش القسم 9 النتائج ويخلص إليها.</p>
+  </section>
+  <section>
+    <h2>2. الخلفية</h2>
+    <p>تُبنى أنظمة كشف التسلل الهجينة بثلاثة أنماط معمارية: متسلسلة تُرشّح فيها المكونات المبكرة البيانات قبل التحليل العميق (مثل الترشيح الإحصائي ثم التعلم العميق)؛ ومتوازية (مجمّعة) تجمع كواشف متزامنة بالتصويت أو التجميع (bagging وstacking وAdaBoost مع Naive Bayes وSVM بدقة تصل 99% على بعض المجموعات)؛ وهرمية تدمج المعالجة المسبقة وتحسين السمات وتقليل الأبعاد وطبقات كشف متعددة (مثل autoencoders للشذوذ وCNN لاستخلاص السمات وResNet-LSTM الهجين للأنماط الزمنية). وتُبلغ الأنظمة الهجينة دقة 90.4%&ndash;99.5% ومعدلات إنذارات كاذبة 0.8%&ndash;2.1% حيثما أُبلغ عنها.</p><p>تقدّم أساليب قابلية التفسير &mdash; وأبرزها إسنادات SHAP القائمة على قيم شابلي (لوندبرغ ولي، 2017) وLIME (ريبيرو وآخرون، 2016) &mdash; إسنادات سمات تربط التنبيه بمدخلاته، مع تطبيقات ناشئة تربط الإسنادات بسياق العملية (مثل تحليل شابلي للكشف القائم على البروتوكول، والاستدلال السببي، والشبكات العصبية المستنيرة بالفيزياء). غير أن معظم الدراسات تستخدم التفسير لاحقًا للتحليل دون دمجه في سير عمل الفرز، وقليلة هي التي تُقيّم فهم المشغّل أو سرعة الفرز أو الثقة (ويرتس وآخرون، 2019).</p><p>يبقى البُعد البروتوكولي نقطة عمياء: فرغم أن بروتوكولات مثل Modbus وDNP3 وIEC 60870-5-104 وOPC UA تحمل دلالات غنية للكشف، تعتمد معظم الدراسات سمات عامة لحركة الشبكة أو بيانات العملية فقط (أوستيباي وآخرون، 2024). وتتوزع مجموعات البيانات المرجعية بين SWaT وWADI وHAI ومدونات IEC-104، مع هيمنة التقييم المخبري وضعف تمثيل ضجيج التشغيل الحقيقي وانجرافه.</p><p>صيغت أربعة أسئلة بحثية: (RQ1) ما الأنماط المعمارية للكشف الهجين وأداؤها؟ (RQ2) كيف تُدمج قابلية التفسير وما أثرها؟ (RQ3) ما البروتوكولات ومجموعات البيانات المغطاة؟ (RQ4) ما مقاييس التقييم والمقارنات مع الأساليب الأحادية؟ وتُهيكل هذه الأسئلة تخليق النتائج وتحليل الفجوات والأجندة.</p>
+  </section>
+  <section>
+    <h2>3. المنهجية</h2>
+    <p>تتبع المنهجية إرشادات التقارير المفضلة للمراجعات المنهجية والتحليلات التلوية (PRISMA) مكيفةً لبحوث الهندسة. أُجري بحث منهجي في خمس قواعد بيانات إلكترونية &mdash; IEEE Xplore وACM Digital Library وScopus وWeb of Science وGoogle Scholar &mdash; بتركيبات مصطلحات حول أنظمة التحكم الصناعية وأمن سكادا/OT وكشف التسلل الهجين والذكاء الاصطناعي القابل للتفسير، مقتصرًا على المقالات المحكّمة وأوراق المؤتمرات الكاملة والمنشورات الإنجليزية بين 2010 ومايو 2025.</p><p>جمع الاستعلام الأساسي ثلاث مجموعات مفاهيمية: المجال (ICS أو SCADA أو &ldquo;industrial control&rdquo; أو &ldquo;operational technology&rdquo;)، والكشف (&ldquo;intrusion detection&rdquo; أو IDS أو &ldquo;anomaly detection&rdquo;)، والنهج (hybrid أو fusion أو correlation أو ensemble) أو (explain* أو SHAP أو LIME أو XAI). وأعادت الاستعلامات 412 سجلًا أُضيف إليها 23 سجلًا من تتبع الاستشهادات القبلي والبعدي لثلاث بذور حول مجموعات بيانات ICS وكشف التسلل الهجين (كونتي وآخرون، 2021؛ ستوففر وآخرون، 2015؛ نيوبين وآخرون، 2022). وبعد إزالة 137 مكررًا بقي 298 سجلًا فريدًا للفرز، فاستُبعد 187 لخروجها عن الموضوع أو لافتقارها للتجريبية أو لمكون IDS، وبقي 111 مقالًا للتقييم النصي الكامل، فاستُبعد 71 لنقص السياق الصناعي أو العنصر الهجين/التفسيري أو مقاييس التقييم، لتستقر المجموعة النهائية على 40 دراسة.</p><p>طبّقت معايير إدراج واستبعاد صارمة: الإدراج يتطلب سياق ICS/OT صريحًا ومكون كشف هجين أو تفسيريًا وتقييمًا تجريبيًا بمقاييس مُبلغ عنها؛ والاستبعاد يشمل كشف التسلل الشبكي الصرف لتقنية المعلومات، والأوراق غير التجريبية، والدراسات دون مقاييس. واستُخرجت من كل دراسة معمارية الكشف والبروتوكولات ومجموعة البيانات وأسلوب التفسير والمقاييس والمحدوديات، ثم صُنّفت تخليقيًا عبر المحاور الأربعة لأسئلة البحث.</p>
+  </section>
+  <section>
+    <h2>4. النتائج</h2>
+    <p>تُجمّع النتائج أدلة الدراسات الأربعين عبر المحاور الأربعة. في معماريات الكشف الهجين (RQ1) تبرز ثلاثة أنماط: متسلسلة تُخفّض العبء الحسابي (مثل مرشح Bloom مع LSTM بزمن تصنيف 0.03 مللي ثانية)، ومتوازية بدقة أعلى وكلفة أكبر، وهرمية الأكثر تطورًا بدمج autoencoders وCNN وResNet-LSTM. وتتراوح الدقة المُبلغ عنها بين 90.4% و99.5%، لكن المقارنات المباشرة مع الأساليب الأحادية نادرة؛ ودراستان فقط تُكمّمان التحسن (زيادة الإحكام 0.008 والاستدعاء 0.067 ودرجة F1 بمقدار 0.039 عن autoencoder الصرف).</p><p>في قابلية التفسير (RQ2) تهيمن إسنادات SHAP وLIME، مع تطبيقات متقدمة: تحليل شابلي للكشف القائم على البروتوكول (Ustebay وآخرون 2024)، والاستدلال السببي بخوارزمية PC (Ghazi وآخرون 2025)، والتفسيرات السببية من العمليات إلى الآثار في الشبكات المستنيرة بالفيزياء (Ike وآخرون 2023)، وتقييم SHAP المرتكز على الإنسان لمعالجة التنبيهات (Weerts وآخرون 2019). لكن التكامل في واجهات المشغّلين نادر، ومعظم التقييمات تقنية لا تركز على المستخدم.</p><p>في البروتوكولات ومجموعات البيانات (RQ3) يُغطَّى Modbus وDNP3 وOPC UA وIEC 60870-5-104 جزئيًا، مع هيمنة مجموعات SWaT وWADI؛ وتُظهر دراسات مثل TwinSec-IDS (Krishnaveni وآخرون 2024) وOyedotun وآخرون (2025) تغطية بروتوكولية محدودة ودقة 92% مع إحكام 0.49 لصنف الهجوم بسبب الاختلال. وفي مقاييس التقييم (RQ4) تسود الدقة والإحكام والاستدعاء ودرجة F1، بينما يندر الإبلاغ عن معدلات الإنذارات الكاذبة وزمن الكشف وكلفة الحوسبة، وتكاد تغيب تقييمات المتانة الخصومية.</p><p>يلخص جدول مقارن دراسات هجينة/تفسيرية حديثة (2019&ndash;2025): تحسن F1 بنسبة 2.27% بذاكرة ماركوف من الدرجة الثانية مع SHAP (Ghazi وآخرون 2025)؛ وصعوبة ضبط مصنفات الصنف الواحد دون هجمات وتقييم مخبري فقط (Wolsing وآخرون 2024)؛ ودقة 97% دون XAI وتنوع بروتوكولي محدود (Khan وآخرون 2019)؛ وتحسينات متواضعة (+0.008 إحكام، +0.067 استدعاء) عن autoencoder الصرف (Kwon وآخرون 2022).</p><p>خلاصة النتائج: تنجح الأساليب الهجينة مخبريًا لكن أدلتها الميدانية ضعيفة، وقابلية التفسير واعدة تقنيًا وغائبة تشغيليًا، والبروتوكولات الصناعية غير مستغلة بما يكفي، والتقييم غير موحد. وهذه الخلاصة هي أساس تحليل الفجوات الخمس والأجندة البحثية.</p>
+  </section>
+  <section>
+    <h2>5. تحليل الفجوات والتحديات المفتوحة</h2>
+    <p>الفجوة G1 (تغطية محدودة لليوم الصفري): تطابق التوقيعات الأنماط المعروفة بدقة عالية لكنها لا تكشف الجديد؛ وتوفر أساليب الشذوذ تغطية أوسع بمفاضلة جوهرية بين الإنذارات الكاذبة على التغيرات التشغيلية المشروعة والفائتة على الأنماط الخفية. وتعالج الهجينة الفجوة جزئيًا: يُبلغ Pan وآخرون (2015) دقة إجمالية 90.4% لسيناريوهات مختلطة، لكن دقة كشف اليوم الصفري تهبط إلى 73.43% بالتحقق المتقاطع العشري على أنماط هجوم غير مرئية.</p><p>الفجوة G2 (ضبط الإنذارات الكاذبة): معدلات الإنذارات الكاذبة حاسمة لسير عمل SOC، إذ تُسبب التنبيهات المفرطة إجهاد المحللين وتُضعف الثقة؛ وتتراوح المعدلات المُبلغ عنها بين 0.8% و2.1% في التقييمات المضبوطة، لكن ظروف المختبر قد لا تعكس ضجيج التشغيل. وتُفاقم متطلبات البيانات وضبط المعلمات التحدي، إذ تتطلب مصنفات الصنف الواحد اختيارًا دقيقًا للمعلمات نادرًا ما ينتقل عبر سياقات ICS المختلفة (Wolsing وآخرون 2024).</p><p>الفجوة G3 (الوعي بالعملية مقابل العمى البروتوكولي): تدمج أنظمة الكشف الواعية بالعملية نماذج حالة المصنع والقيود الفيزيائية، لكنها تتجاهل غالبًا دلالات البروتوكولات الصناعية (حقول Modbus/DNP3/IEC 104 الوظيفية وآلات حالاتها). والمطلوب كواشف واعية بالبروتوكول أولًا تُدخل مخرجاتها (درجات انتهاك الثوابت وشذوذ حالات الأتمتة) في طبقة الدمج بدل معاملتها خطوط أساس منفصلة.</p><p>الفجوتان G4 وG5 (التفسير والانجراف): تبقى أساليب التفسير غير مطبقة بما يكفي رغم قدرتها على تحسين فهم المشغّل؛ والتقييمات المتمحورة حول الإنسان نادرة؛ والواجهات التفسيرية نفسها مكوّن أمني إذ ثبتت هشاشة المفسّرات اللاحقة وقابليتها للتلاعب (Ghorbani وآخرون 2019؛ Slack وآخرون 2020). كما يتدهور الأداء المخبري عند النشر بسبب انجراف البيانات وقيود الكمون وتغطية البروتوكولات، ما يستلزم كشف الانجراف وتحديث العتبات وإعادة التدريب الموجَّهة بأهمية SHAP (وادينغر وكفاسنيكا، 2024).</p>
+  </section>
+  <section>
+    <h2>6. المعمارية المفاهيمية المقترحة</h2>
+    <p>يعرض هذا القسم معمارية مرجعية مفاهيمية لكشف التسلل الهجين القابل للتفسير في بيئات سكادا/ICS، وهي مخطط مستمد من تحليل الفجوات وتخليق الأدبيات لا نظام منفَّذ بالكامل. فمكونات مشابهة (توقيعات IDS ونماذج شذوذ ومفسّرات SHAP ومحللات ICS) موجودة في أعمال سابقة؛ والإسهام هنا تنظيمها في إطار هجين تفسيري مؤسَّس على الأدلة مع صياغة رياضية وخطة تقييم للتحقق التجريبي مستقبلًا.</p><p>تتكون المعمارية من أربعة عناصر: (1) محرك توقيعات واعٍ بالبروتوكول (مثل Snort/Suricata/Zeek بقواعد خاصة بـICS) يطابق أنماط الهجوم المعروفة وانتهاكات البروتوكول؛ (2) محرك شذوذ بنماذج السلاسل الزمنية ومتعددة المتغيرات (autoencoders وشبكات LSTM وغابات العزل) مدرَّبة على البيانات التشغيلية السليمة؛ (3) طبقة دمج تجمع المخرجات بإزالة التكرار والارتباط الزمني وتجميع الدرجات؛ (4) طبقة XAI بوحدة تفسير SHAP تحسب إسنادات السمات لتنبيهات الشذوذ وترفق مبررات قابلة للتأويل في منصة المشغّل مع سياق العملية.</p><p>تُصاغ آليات الدمج رياضيًا: درجة الدمج F(x) = &alpha; &middot; A(x) + (1 &minus; &alpha;) &middot; S(x) &ensp;(1)، حيث A(x) درجة الشذوذ وS(x) ثقة التوقيع و&alpha; وزن قابل للضبط (بالبحث الشبكي أو الأمثلة البايزية على مجموعة تحقق) ويُولَّد التنبيه عندما تتجاوز F(x) العتبة &tau;alert. وتشمل بدائل الدمج قاعدة الحد الأقصى (conservative، تُفعَّل بأي قناة) وتركيب Dempster&ndash;Shafer؛ وتُصاغ أيضًا آليات كشف الانجراف وتحديث العتبات وخطوط تفسير SHAP كمنطق مخطط للتنفيذ المستقبلي.</p>
+  </section>
+  <section>
+    <h2>7. الأجندة البحثية</h2>
+    <p>تحدد الأجندة البحثية مسار الانتقال من المعمارية المفاهيمية إلى نموذج أولي مُتحقق ونشر تجريبي، ويرتبط كل بند بفجوة أو أكثر: (1) تكامل النموذج الأولي [G1&ndash;G3]: تنفيذ محركي التوقيعات والشذوذ المتوازيين مع طبقة الدمج، ودمج محللات ICSNPP لبروتوكولات Modbus وDNP3 وIEC 60870-5-104 وOPC UA، ومعايرة وزن الدمج &alpha; والعتبة &tau;alert على حركة الأساس.</p><p>(2) التقييم المرجعي [G1&ndash;G2]: مقارنة الإعدادات الهجينة مع خطوط الأساس الأحادية على مجموعات ICS متعددة (SWaT وWADI وHAI ومدونة IEC-104) والإبلاغ عن مكاسب تغطية اليوم الصفري وضبط الإنذارات الكاذبة بمقاييس موحدة. (3) تجربة المستخدم التفسيرية [G4]: تصميم سرديات تربط إسنادات SHAP بسياق العملية، ودراسات قابلية استخدام مع مشغلي ICS ومحللي SOC لقياس سرعة الفرز ودقة القرار والثقة (خضيري وآخرون، 2024).</p><p>(4) الأمثلة الموجَّهة بـSHAP [G4&ndash;G5]: أتمتة اختيار السمات وإعادة التدريب بإحصاءات أهمية SHAP المتراكمة، وتنفيذ كشف الانجراف وتحديث العتبات. (5) المتانة الخصومية [G1&G5]: تقييم مخاطر المراوغة والتسميم ضد الكاشف الهجين، واعتماد دفاعات المجمَّعات وأساليب الإسناد المجمَّعة (تشن وآخرون، 2022؛ عوض وآخرون، 2025؛ فونغ وآخرون، 2024)، ومعاملة واجهة التفسير مكوّنًا أمنيًا (التحكم في الوصول وتحديد المعدل ومراقبة استقرار التفسير تحت السبر الخصومي) (غورباني وآخرون، 2019).</p><p>(6) التكامل مع SOC وATT&CK الخاص بـICS [G4&ndash;G5]: ربط الكشوفات والتفسيرات بتقنيات MITRE ATT&CK for ICS لتحسين الفرز والوعي الظرفي (بهوسال وآخرون، 2024؛ كايا وآخرون، 2025). (7) النشر التجريبي [G5]: التحقق في منصة اختبار عالية الدقة أو بيئة تشغيلية شريكة، ومعالجة فجوات تغطية البروتوكولات وقيود الكمون وأنماط الانجراف الواقعية. (8) دمج النماذج القائمة على المواصفات والحالة [G1&G3]: إدخال مخرجات الكواشف القائمة على المواصفات وآلات حالات البروتوكول (درجات انتهاك الثوابت وشذوذ الحالات) مدخلات أصيلة في الدمج.</p>
+  </section>
+  <section>
+    <h2>8. خطة التقييم</h2>
+    <p>تحدد خطة التقييم قائمة تحقق توحّد تقييم أنظمة كشف التسلل الهجينة القابلة للتفسير: تغطية اليوم الصفري على أنماط هجوم غير مرئية بالتحقق المتقاطع؛ وضبط الإنذارات الكاذبة بعتبات مُبلغ عنها ومنحنيات المفاضلة؛ وتغطية البروتوكولات (Modbus وDNP3 وIEC 104 وOPC UA)؛ وجودة التفسير بتقييمات متمحورة حول الإنسان لسرعة الفرز ودقة القرار وثقة المشغّل (ويرتس وآخرون، 2019)؛ والمتانة الخصومية للكواشف والواجهات التفسيرية؛ وكلفة الحوسبة وزمن الكشف؛ وقابلية إعادة الإنتاج بمجموعات بيانات ومعلمات معلنة.</p><p>تُطبَّق القائمة على كل بند من الأجندة، فيُقاس النموذج الأولي بتغطية اليوم الصفري والإنذارات الكاذبة، وتُقيَّم تجربة المستخدم بدراسات المشغّلين، وتُختبر المتانة بالمراوغة والتسميم، ويُوثَّق النشر التجريبي بالدروس الميدانية. وتهدف القائمة إلى جعل المقارنات عبر الدراسات ممكنة وسدّ فجوة التقييم غير الموحد التي كشفتها المراجعة.</p>
+  </section>
+  <section>
+    <h2>9. المناقشة والاستنتاج</h2>
+    <p>خلصت المراجعة إلى أن كشف التسلل الهجين في بيئات سكادا/ICS ناضج مخبريًا لكنه هش ميدانيًا: دقة 90.4%&ndash;99.5% في التقييمات المضبوطة تقابلها تغطية يوم صفري 73.43% فقط عند مواجهة الجديد، وضبط معلمات هش، وعمى بروتوكولي، وتفسيرات غائبة عن منصات المشغّلين. وقد حددت المراجعة &mdash; عبر 40 دراسة مختارة بمنهجية PRISMA من 412 سجلًا &mdash; خمس فجوات عملية وقدمت معمارية مرجعية بأربعة عناصر (توقيعات، شذوذ، دمج، تفسير) مع صياغة رياضية للدمج وكشف الانجراف وخطوط SHAP.</p><p>تتمثل المساهمات في: تخليق منهجي للأدلة عبر الأسئلة الأربعة؛ وتحليل فجوات يربط الأدلة بالتحديات العملية؛ ومعمارية مفاهيمية مؤسسة على الأدلة؛ وأجندة من ثمانية بنود تُرسم على الفجوات؛ وقائمة تحقق تقييمية توحّد القياس. وتدعو الورقة المجتمع البحثي إلى تجاوز تحسينات الدقة المختبرية نحو التحقق الميداني والتفسير المتمحور حول المشغّل والمتانة الخصومية.</p><p>من محدوديات المراجعة: الاقتصار على المنشورات الإنجليزية (2010&ndash;مايو 2025)؛ وهيمنة التقييم المخبري في الدراسات المدروسة؛ وكون المعمارية مفاهيمية بانتظار التنفيذ والتحقق. وتشمل الأعمال المستقبلية تنفيذ النموذج الأولي والتقييم المرجعي ودراسات المستخدم والنشر التجريبي وفق الأجندة وخطة التقييم المعلنتين.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Supervisory Control and Data Acquisition (SCADA) and Industrial Control System (ICS) networks underpin critical infrastructure across energy, water, transportation, and manufacturing sectors. Existing intrusion detection systems face inherent trade-offs: signature-based approaches achieve low false-positive rates but cannot detect zero-day attacks, while anomaly-based methods detect novel threats but generate ambiguous alerts that burden operators and erode trust. Recent empirical studies reveal persistent practical gaps, including the difficulty of obtaining labeled attack data for supervised methods, severe hyperparameter tuning challenges for one-class classifiers, and limited integration of protocol-aware features despite the prevalence of process-aware detection. Explainability techniques remain underimplemented in industrial intrusion detection despite their potential for improving operator understanding and security workflow integration. This article presents a systematic review and research agenda for explainable hybrid intrusion detection in SCADA/ICS environments.</p><p>Keywords: SCADA; ICS; hybrid intrusion detection; explainable AI; SHAP; research agenda.</p>
+  </section>
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Critical infrastructure relies on SCADA and ICS networks historically designed for isolation rather than internet connectivity, leaving them exposed to cyber threats as IT and operational technology (OT) converge. Signature-based IDS (e.g., Snort, Suricata) achieve high precision on known attacks but are blind to novel vectors, while anomaly detection catches new threats at the cost of false alerts that burden security operations center (SOC) analysts and erode system trust.</p><p>Hybrid approaches address this trade-off by combining signatures, anomaly detection, and sometimes specification-based detection through sequential, parallel, or hierarchical architectures (Pan et al., 2015; Khan et al., 2019). In parallel, explainable AI (XAI) &mdash; notably SHAP (Lundberg and Lee, 2017) and LIME (Ribeiro et al., 2016) attributions &mdash; promises to turn ambiguous alerts into understandable rationales linked to process context, yet its application in industrial intrusion detection remains limited despite maturity elsewhere.</p><p>Recent empirical studies reveal five practical gaps (G1&ndash;G5): limited zero-day coverage, insufficient false-positive control, protocol blindness versus process awareness, lack of operator-centred explanations, and deployment drift between lab and operations. This review synthesises evidence on these gaps and offers a research agenda plus an evaluation checklist mapping each item to specific gaps.</p><p>The rest of the article is organised as follows. Background covers hybrid IDS concepts, explainability, and the research questions; Methodology describes the systematic review protocol; Findings synthesise evidence across four themes; Gap analysis details open challenges; then a conceptual reference architecture is presented; Section 7 outlines the research agenda; Section 8 the evaluation plan; and Section 9 discusses and concludes.</p>
+  </section>
+  <section>
+    <h2>2. Background</h2>
+    <p>Hybrid IDS are built in three architectural patterns: sequential, where early components filter data before deeper analysis (e.g., statistical filtering then deep learning); parallel (ensemble), combining concurrent detectors by voting or aggregation (bagging, stacking, AdaBoost with Naive Bayes and SVM reaching 99% accuracy on some datasets); and hierarchical, integrating preprocessing, feature optimisation, dimensionality reduction, and multiple detection layers (e.g., autoencoders for anomalies, CNNs for features, hybrid ResNet-LSTM for temporal patterns). Hybrid systems report 90.4%&ndash;99.5% accuracy and 0.8%&ndash;2.1% false-positive rates where reported.</p><p>Explainability methods &mdash; chiefly SHAP Shapley-value attributions (Lundberg and Lee, 2017) and LIME (Ribeiro et al., 2016) &mdash; offer feature attributions linking alerts to inputs, with emerging applications binding attributions to process context (e.g., Shapley analysis for protocol-based detection, causal inference, physics-informed networks). Yet most studies use explanations post hoc for analysis without integrating them into triage workflows, and few evaluate operator understanding, triage speed, or trust (Weerts et al., 2019).</p><p>The protocol dimension remains a blind spot: although protocols such as Modbus, DNP3, IEC 60870-5-104, and OPC UA carry rich detection semantics, most studies rely on generic traffic features or process data alone (Ustebay et al., 2024). Benchmark datasets span SWaT, WADI, HAI, and IEC-104 corpora, with lab evaluation dominant and real operational noise and drift underrepresented.</p><p>Four research questions were formulated: (RQ1) What hybrid architectural patterns exist and how do they perform? (RQ2) How is explainability integrated and with what effect? (RQ3) Which protocols and datasets are covered? (RQ4) What evaluation metrics and comparisons against single-method baselines exist? These questions structure the findings synthesis, gap analysis, and agenda.</p>
+  </section>
+  <section>
+    <h2>3. Methodology</h2>
+    <p>The methodology follows Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) guidelines adapted for engineering research. A systematic search was conducted in five electronic databases &mdash; IEEE Xplore, ACM Digital Library, Scopus, Web of Science, and Google Scholar &mdash; using term combinations on industrial control systems, SCADA/OT security, hybrid intrusion detection, and explainable AI, limited to peer-reviewed articles, full conference papers, and English-language publications from 2010 to May 2025.</p><p>The core query combined three concept groups: Domain (ICS OR SCADA OR &ldquo;industrial control&rdquo; OR &ldquo;operational technology&rdquo;), Detection (&ldquo;intrusion detection&rdquo; OR IDS OR &ldquo;anomaly detection&rdquo;), and Approach (hybrid OR fusion OR correlation OR ensemble) OR (explain* OR SHAP OR LIME OR XAI). Queries returned 412 records, plus 23 added through backward and forward citation chasing of three seed papers on ICS datasets and hybrid IDS (Conti et al., 2021; Stouffer et al., 2015; Neupane et al., 2022). After removing 137 duplicates, 298 unique records remained for screening; 187 were excluded as off-topic, non-empirical, or lacking an IDS component, leaving 111 full texts for eligibility assessment; 71 were excluded at full-text stage, yielding 40 included studies.</p><p>Strict inclusion and exclusion criteria were applied: inclusion requires explicit ICS/OT context, a hybrid or explainable detection component, and empirical evaluation with reported metrics; exclusion covers pure-IT IDS, non-empirical papers, and metric-less studies. From each study the detection architecture, protocols, dataset, explainability approach, metrics, and limitations were extracted and synthesised across the four research-question themes.</p>
+  </section>
+  <section>
+    <h2>4. Findings</h2>
+    <p>Findings synthesise the 40 studies across four themes. On hybrid architectures (RQ1), three patterns emerge: sequential designs reducing computational burden (e.g., Bloom filter plus LSTM at 0.03 ms classification time), parallel designs with higher accuracy and cost, and hierarchical designs combining autoencoders, CNNs, and hybrid ResNet-LSTM. Reported accuracy spans 90.4%&ndash;99.5%, but direct comparisons with single methods are scarce; only two studies quantify gains (precision +0.008, recall +0.067, F1 +0.039 over autoencoder-only).</p><p>On explainability (RQ2), SHAP and LIME attributions dominate, with advanced uses: Shapley analysis for protocol-based detection (Ustebay et al. 2024), causal inference with the PC algorithm (Ghazi et al. 2025), causal operation-to-effect explanations in physics-informed networks (Ike et al. 2023), and human-grounded SHAP evaluation for alert processing (Weerts et al. 2019). Operator-console integration is rare, and most evaluations are technical rather than user-centred.</p><p>On protocols and datasets (RQ3), Modbus, DNP3, OPC UA, and IEC 60870-5-104 are partially covered, with SWaT and WADI dominant; studies such as TwinSec-IDS (Krishnaveni et al. 2024) and Oyedotun et al. (2025) show limited protocol coverage and 92% accuracy with 0.49 attack-class precision due to imbalance. On evaluation metrics (RQ4), accuracy, precision, recall, and F1 dominate, while false-positive rates, detection latency, compute cost, and adversarial robustness are rarely reported.</p><p>A comparative table of recent hybrid/XAI studies (2019&ndash;2025) shows: +2.27% F1 with second-order Markov memory plus SHAP (Ghazi et al. 2025); difficult attack-free hyperparameter tuning with lab-only evaluation (Wolsing et al. 2024); 97% accuracy without XAI and limited protocol diversity (Khan et al. 2019); and modest gains (+0.008 precision, +0.067 recall) over pure autoencoders (Kwon et al. 2022).</p><p>In sum: hybrids succeed in labs but lack field evidence, explainability is technically promising but operationally absent, industrial protocols are underexploited, and evaluation is unstandardised &mdash; the basis for the five-gap analysis and research agenda.</p>
+  </section>
+  <section>
+    <h2>5. Gap analysis and open challenges</h2>
+    <p>Gap G1 (limited zero-day coverage): signatures match known patterns precisely but miss novelty; anomaly methods offer broader coverage with a fundamental false-positive versus false-negative trade-off. Hybrids partially close the gap: Pan et al. (2015) report 90.4% overall accuracy for mixed scenarios, but zero-day accuracy drops to 73.43% under 10-fold cross-validation on unseen attack patterns.</p><p>Gap G2 (false-positive control): false-positive rates are critical for SOC workflows &mdash; excessive alerts cause analyst fatigue and erode trust; reported rates range 0.8%&ndash;2.1% in controlled evaluations, but lab conditions may not reflect operational noise. Data requirements and hyperparameter tuning exacerbate the challenge: one-class classifiers need careful configuration that rarely transfers across ICS contexts (Wolsing et al. 2024).</p><p>Gap G3 (process awareness vs protocol blindness): process-aware IDS incorporate plant-state and physics models but often ignore industrial protocol semantics (Modbus/DNP3/IEC 104 function fields and state machines). Protocol-aware detectors are needed whose outputs (invariant-violation scores, automaton-state anomalies) feed the fusion layer as first-class inputs rather than separate baselines.</p><p>Gaps G4 and G5 (explanation and drift): explainability stays underimplemented despite its operator-understanding potential; human-centred evaluations are rare; and explanation interfaces are themselves security-relevant, since post-hoc explainers are fragile and manipulable (Ghorbani et al. 2019; Slack et al. 2020). Lab performance also degrades at deployment through data drift, latency constraints, and protocol coverage &mdash; requiring drift detection, threshold updates, and SHAP-guided retraining (Wadinger and Kvasnica, 2024).</p>
+  </section>
+  <section>
+    <h2>6. Proposed conceptual architecture</h2>
+    <p>This section presents a conceptual reference architecture for explainable hybrid IDS in SCADA/ICS environments &mdash; a blueprint derived from gap analysis and literature synthesis, not a fully implemented system. Similar components (signature IDS, anomaly models, SHAP explainers, ICS parsers) exist in prior work; the contribution is organising them into an evidence-based explainable hybrid framework with mathematical formalisation and an evaluation plan for future empirical validation.</p><p>The architecture has four core elements: (1) a protocol-aware signature engine (e.g., Snort/Suricata/Zeek with ICS-specific rulesets) matching known attack patterns and protocol violations; (2) an anomaly engine with time-series and multivariate models (autoencoders, LSTM networks, isolation forests) trained on benign operational data; (3) an alert-fusion layer combining outputs through deduplication, temporal correlation, and score aggregation; (4) an XAI layer with a SHAP-based explanation module computing feature attributions for anomaly alerts, attached as interpretable rationales on the operator console with process context.</p><p>Fusion is formalised as F(x) = &alpha; &middot; A(x) + (1 &minus; &alpha;) &middot; S(x) &ensp;(1), where A(x) is the anomaly score, S(x) the signature confidence, and &alpha; a tunable weight (via grid search or Bayesian optimisation on a held-out set), alerting when F(x) exceeds threshold &tau;alert. Alternatives include the maximum rule (conservative, triggers on either channel) and Dempster&ndash;Shafer combination; drift detection, threshold updates, and SHAP explanation pipelines are likewise formalised as planned logic for future implementation.</p>
+  </section>
+  <section>
+    <h2>7. Research agenda</h2>
+    <p>The research agenda charts the path from conceptual architecture to validated prototype and pilot deployment, each item tied to specific gaps: (1) Prototype integration [G1&ndash;G3]: implement parallel signature and anomaly engines with the fusion layer, integrate ICSNPP parsers for Modbus, DNP3, IEC 60870-5-104, and OPC UA, and calibrate fusion weight &alpha; and threshold &tau;alert on baseline traffic.</p><p>(2) Benchmark evaluation [G1&ndash;G2]: compare hybrid configurations against signature-only and anomaly-only baselines on multiple ICS datasets (SWaT, WADI, HAI, IEC-104 corpus), reporting zero-day coverage and false-positive trade-offs with standardised metrics. (3) Explainability UX [G4]: design narratives mapping SHAP attributions to process context, with usability studies involving ICS operators and SOC analysts measuring triage speed, decision accuracy, and trust (Khediri et al., 2024).</p><p>(4) SHAP-guided optimisation [G4&ndash;G5]: automate feature selection and retraining with accumulated SHAP importance statistics, implementing drift detection and threshold updates. (5) Adversarial robustness [G1, G5]: assess evasion and poisoning risks against the hybrid IDS, adopt ensemble defences and attribution-ensemble methods (Chen et al., 2022; Awad et al., 2025; Fung et al., 2024), and treat the explanation interface as security-relevant (access control, rate limiting, monitoring explanation stability under adversarial probing) (Ghorbani et al., 2019).</p><p>(6) SOC integration and ATT&amp;CK for ICS [G4&ndash;G5]: map detections and explanations to MITRE ATT&amp;CK for ICS techniques for better triage and situational awareness (Bhosale et al., 2024; Kaya et al., 2025). (7) Pilot deployment [G5]: validate in a high-fidelity testbed or partner operational environment, addressing protocol coverage, latency constraints, and real drift patterns. (8) Specification and stateful model fusion [G1, G3]: ingest specification-based detector and protocol state-machine outputs (invariant-violation scores, automaton-state anomalies) as first-class fusion inputs.</p>
+  </section>
+  <section>
+    <h2>8. Evaluation plan</h2>
+    <p>The evaluation plan defines a checklist standardising assessment of explainable hybrid IDS: zero-day coverage on unseen attack patterns via cross-validation; false-positive control with reported thresholds and trade-off curves; protocol coverage (Modbus, DNP3, IEC 104, OPC UA); explanation quality through human-centred evaluations of triage speed, decision accuracy, and operator trust (Weerts et al., 2019); adversarial robustness of detectors and explanation interfaces; compute cost and detection latency; and reproducibility with disclosed datasets and parameters.</p><p>The checklist applies to each agenda item: prototypes measured on zero-day coverage and false positives, UX assessed in operator studies, robustness tested with evasion and poisoning, and pilots documented with field lessons. The checklist aims to enable cross-study comparison and close the unstandardised-evaluation gap the review exposed.</p>
+  </section>
+  <section>
+    <h2>9. Discussion and conclusion</h2>
+    <p>The review concludes that hybrid intrusion detection in SCADA/ICS environments is lab-mature but field-fragile: 90.4%&ndash;99.5% controlled accuracy meets only 73.43% zero-day coverage on novelty, fragile hyperparameter tuning, protocol blindness, and explanations absent from operator consoles. Through 40 PRISMA-selected studies from 412 records, the review identified five practical gaps and offered a four-element reference architecture (signatures, anomaly, fusion, explanation) with mathematical formalisation of fusion, drift detection, and SHAP pipelines.</p><p>Contributions are: systematic evidence synthesis across four research questions; gap analysis binding evidence to practical challenges; an evidence-based conceptual architecture; an eight-item research agenda mapped to gaps; and an evaluation checklist standardising measurement. The article calls on the community to move beyond lab accuracy gains toward field validation, operator-centred explanation, and adversarial robustness.</p><p>Review limitations include English-only publications (2010&ndash;May 2025), lab-evaluation dominance in studied works, and the architecture&rsquo;s conceptual status pending implementation. Future work covers prototype implementation, benchmark evaluation, user studies, and pilot deployment per the stated agenda and evaluation plan.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>Abbas, S. G., Ozmen, M. O., Alsaheel, A., Khan, A., Celik, Z. B., Xu, D., et al. (2024). “SAIN: improving ICS attack detection sensitivity via state-aware invariants,” in USENIX Security Symposium (Philadelphia, PA: USENIX Association).</li>
+      <li>Abdelaty, M. F., Doriguzzi Corin, R., and Siracusa, D. (2021). DAICS: a deep learning solution for anomaly detection in industrial control systems. IEEE Trans. Emerg. Topics Comput. 10, 1117–1129. doi: 10.1109/TETC.2021.3073017</li>
+      <li>Almalawi, A., Hassan, S., Fahad, A., Iqbal, A., and Khan, A. I. (2025). Hybrid cybersecurity for asymmetric threats: intrusion detection and SCADA system protection innovations. Symmetry 17:616. doi: 10.3390/sym170 40616</li>
+      <li>Altunay, H., Albayrak, Z., Özalp, A., and Çakmak, M. (2021). “Analysis of anomaly detection approaches performed through deep learning methods in SCADA systems,” in 2021 3rd International Congress on Human-Computer Interaction, Optimization and Robotic Applications (HORA) (Ankara: IEEE), 1–6. doi: 10.1109/HORA52670.2021.9461273</li>
+      <li>Awad, Z., Zakaria, M., and Hassan, R (2025). An enhanced ensemble defense framework for boosting adversarial robustness of intrusion detection systems. Sci. Rep. 15:14177. doi: 10.1038/s41598-025-94023-z</li>
+      <li>Bateni, M., and Baraani, A. (2013). Time window management for alert correlation using context information and classiﬁcation. Int. J. Comput. Netw. Inf. Secur. 5, 9–16. doi: 10.5815/ijcnis.2013.11.02</li>
+      <li>Bharani, D., Lakshmi Priya, V., and Saravanan, S. (2024a). “Adaptive real-time malware detection for IoT traﬃc streams: a comparative study of concept drift detection techniques,” in ICICNIS (Bengaluru: IEEE).</li>
+      <li>Bharani, D., Lakshmi Priya, V., and Saravanan, S. (2024b). “Adaptive real-time malware detection for IOT devices: a comparative study of concept drift detection techniques,” in 2024 International Conference on IoT Based Control Networks and Intelligent Systems (ICICNIS) (Bengaluru: IEEE), 172–179.</li>
+      <li>Bhatia, S., Kush, N., Djamaludin, C., Akande, J., and Foo, E. (2014). “Practical Modbus ﬂooding attack and detection,” in Proceedings of the Twelfth Australasian Information Security Conference (AISC 2014) (Auckland).</li>
+      <li>Bhosale, P., Kastner, W., and Sauter, T. (2024). “Mapping ICS vulnerabilities with MITRE ATT&amp;CK and Bayesian networks,” in 2024 IEEE 29th International Conference on Emerging Technologies and Factory Automation (ETFA) (Padova: IEEE).</li>
+      <li>Burgetova, I., Ahmed, M., Judah, J., and Khorshed, T. (2021). Anomaly detection using supervised learning and temporal features in industrial control systems. IEEE Access 9, 24292–24305. doi: 10.1109/CNSM52442.2021.9615 542</li>
+      <li>Cali, U., Çatak, F. O., and Halden, U. (2024). Trustworthy cyber-physical power systems using AI: dueling algorithms for PMU anomaly detection and cybersecurity. Artif. Intell. Rev. 57:183. doi: 10.1007/s10462-024-10827-x Carvalho, D. V., Pereira, E. M., and</li>
+      <li>Cardoso, J. S. (2019). Machine learning interpretability: a survey on methods and metrics. Electronics 8:832. doi: 10.3390/electronics8080832</li>
+      <li>Chen, J., Gao, X., Deng, R., He, Y., Fang, C., and Cheng, P. (2022). Generating adversarial examples against ML-based intrusion detectors in industrial control systems. IEEE Trans. Dependable Secure Comput. 19, 1810–1825. doi: 10.1109/TDSC.2020.3037500 CISA (2025). Malcolm Documentation. Available online at: https://malcolm.fyi/ (Accessed November 10, 2025).</li>
+      <li>Clark, J., Zhang, S., and Hayajneh, T. (2018). “Adaptive sliding window for anomalybased intrusion detection systems,” in 2018 IEEE 9th Annual Information Technology, Electronics and Mobile Communication Conference (IEMCON) (Vancouver, BC: IEEE), 1080–1087.</li>
+      <li>Conti, M., Donadel, D., and Turrin, F. (2021). A survey on industrial control system testbeds and datasets for security research. IEEE Commun. Surv. Tutorials 23, 2243–2276. doi: 10.1109/COMST.2021.3094360</li>
+      <li>Dakhil, Y., and Çakmak, M. (2025). XAI-XGBoost: an innovative explainable intrusion detection approach for securing internet of medical things systems. Sci. Rep. 15:22278. doi: 10.1038/s41598-025-07790-0</li>
+      <li>Dutta, P., Josan, P. K., Wong, R. K. W., Dunbar, B. J., Diaz-Artiles, A., Selva, D., et al. (2025). Eﬀects of explanations and accuracy on human performance and trust in AI-assisted anomaly diagnosis tasks. J. Cogn. Eng. Decis. Mak. 19, 453–473. doi: 10.1177/15553434251338433 Eißler, J., Schuba, M., Höner, T., Hack, S., and Neugebauer, G. (2023). Human-Centric Introduction to a Complex Cybersecurity Standard. Istanbul: AHFE International. doi: 10.54941/ahfe1004249</li>
+      <li>Eriksson, H. S., and Grov, G. (2022). “Towards XAI in the SOC-a user centric study of explainable alerts with SHAP and LIME,” in 2022 IEEE International Conference on Big Data (Big Data) (Osaka: IEEE). doi: 10.1109/BigData55660.2022.100 20248</li>
+      <li>Esquivel-Vargas, H., Frank, J., Niakanlahiji, A., and Zonouz, S. A. (2017). “Automatic speciﬁcation extraction from industrial control system device documentation,” in Proceedings of the 2017 Workshop on Cyber-Physical Systems Security and Privacy (New York, NY: ACM), 31–42.</li>
+      <li>Faisal, M., and Sitnikova, E. (2016). “Modeling stateful intrusion detection systems for industrial control systems using ﬁnite state machine,” in 2016 IEEE 11th Conference on Industrial Electronics and Applications (ICIEA) (Hefei: IEEE), 1395–1400.</li>
+      <li>Feng, C., Li, T., and Chana, D. (2017). “Multi-level anomaly detection in industrial control systems via package signatures and LSTM networks,” in 2017 47th Annual IEEE/IFIP International Conference on Dependable Systems and Networks (DSN) (Denver, CO: IEEE), 261–272. doi: 10.1109/DSN.2017.34</li>
+      <li>Feng, C., Li, T., Zhu, Q., and Zhang, H. (2019). Systematic study of distributed anomaly detection for cyber security in power grids. IEEE Trans. Smart Grid 11, 1648–1659. doi: 10.1109/TSG.2019.2906316</li>
+      <li>Fung, C., Zeng, E., and Bauer, L. (2024). “Attributions for ML-based ICS anomaly detection: from theory to practice,” in NDSS (San Diego, CA). doi: 10.14722/ndss.2024.23216 Gallenmüller, S., Wiedner, F.,</li>
+      <li>Naab, J., and Carle, G. (2022). How low can you go? A limbo dance for low-latency network functions. J. Netw. Syst. Manage. 31:20. doi: 10.1007/s10922-022-09710-3</li>
+      <li>Garcia-Teodoro, P., Diaz-Verdejo, J., Macia-Fernandez, G., and Vazquez, E. (2009). Anomaly-based network intrusion detection: techniques, systems and challenges. Comput. Secur. 28, 18–28. doi: 10.1016/j.cose.2008.08.003</li>
+      <li>Gaspar, D., Silva, P., and Silva, C. (2024). Explainable AI for intrusion detection systems: LIME and SHAP applicability on MLP. IEEE Access 12, 65650–65660. doi: 10.1109/ACCESS.2024.3368377</li>
+      <li>Ghazi, Y., Tabaa, M., Ennaji, M., and Zaz, G. (2025). An explainable Markov chainmachine learning sequential-aware anomaly detection framework for industrial IoT systems based on OPC UA. Sensors 25:6122. doi: 10.3390/s25196122</li>
+      <li>Ghorbani, A., Abid, A., and Zou, J. Y. (2019). Interpretation of neural networks is fragile. Proc. AAAI Conf. Artif. Intell. 33, 3681–3688. doi: 10.1609/aaai.v33i01.33013681</li>
+      <li>Goh, J., Adepu, S., Junejo, K. N., and Mathur, A. (2016). “A dataset to support research in the design of secure water treatment systems,” in The 11th International Conference on Critical Information Infrastructures Security (Cham: Springer). doi: 10.1007/978-3-319-71368-7_8</li>
+      <li>Haas, S., Sommer, R., and Fischer, M. (2020). “Zeek-osquery: host-network correlation for advanced monitoring and intrusion detection,” in ICT Systems Security and Privacy Protection. SEC 2020. IFIP Advances in Information and Communication Technology (Cham: Springer), 248–262. doi: 10.1007/978-3-030-58201-2_17</li>
+      <li>Ike, M., Phan, K., Badapanda, A., Landen, M., Sadoski, K., Guo, W., et al. (2023). Bridging both worlds in semantics and time: domain knowledge based analysis and correlation of industrial process attacks. arXiv [preprint]. arXiv:2311.18539. doi: 10.48550/arXiv.2311.18539</li>
+      <li>Jacovi, A., and Goldberg, Y. (2020). “Towards faithfully interpretable NLP systems: how should we deﬁne and evaluate faithfulness?” in Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics, 4198–4205. doi: 10.18653/v1/2020.acl-main.386</li>
+      <li>Jesus, S., Santos, G., Henriques, P. R., and Antunes, N. (2021). “How much do explanations tell about intrusion detection models?” in 2021 IEEE European Symposium on Security and Privacy Workshops (EuroS&amp;PW) (Vienna: IEEE), 188–197.</li>
+      <li>Jethani, N., Sudarshan, M., Covert, I. C., Lee, S.-I., and Ranganath, R. (2021). “FastSHAP: real-time Shapley value estimation,” in ICLR.</li>
+      <li>Joy, A., Chandane, M., and Kazi, F. (2024). “An investigative evaluation of open source intrusion detection systems for operational technology networks using MITRE ICS attack simulation on a thermal power plant test bed,” in 2024 IEEE 21st India Council International Conference (INDICON) (Kharagpur: IEEE), 1–6. doi: 10.1109/INDICON63790.2024.10958514</li>
+      <li>Katar, C., Debar, H., and Viho, C. (2006). “Combining multiple intrusion detection systems in coalition,” in 2006 ACS/IEEE International Conference on Computer Systems and Applications (Amman: IEEE), 303–310.</li>
+      <li>Kaya, S. C., Elbez, G., and Hagenmeyer, V. (2025). “Enhancing situational awareness in smart grids through event correlation for ATT&amp;CK mapping,” in Energy-Eﬃcient Computing and Networking (Cham: Springer). Kayode Saheed, Y., Harazeem Abdulganiyu, O., and Ait</li>
+      <li>Tchakoucht, T. (2023). A novel hybrid ensemble learning for anomaly detection in industrial sensor networks and SCADA systems for smart city infrastructures. J. King Saud Univ. Comput. Inf. Sci. 35:101532. doi: 10.1016/j.jksuci.2023.03.010</li>
+      <li>Kenmogne, L. A., and Mocanu, S. (2024). “Explainable AI for process-aware attack detection in industrial control systems,” in 2024 IEEE 10th International Conference on Network Softwarization (NetSoft) (Saint Louis, MO: IEEE), 363–368. doi: 10.1109/NetSoft60951.2024.10588940</li>
+      <li>Khan, I. A., Pi, D., Khan, Z. U., Hussain, Y., and Nawaz, A. (2019). HML-IDS: a hybridmultilevel anomaly prediction approach for intrusion detection in SCADA systems. IEEE Access 7, 89507–89521. doi: 10.1109/ACCESS.2019.2925838</li>
+      <li>Khediri, A., Slimi, H., Yahiaoui, A., Derdour, M., Bendjenna, H., Ghenai, C. E., et al. (2024). “Enhancing machine learning model interpretability in intrusion detection systems through SHAP explanations and LLM-generated descriptions,” in 2024 6th International Conference on Pattern Analysis and Intelligent Systems (PAIS) (EL OUED: IEEE). doi: 10.1109/PAIS62114.2024.10541168</li>
+      <li>Khraisat, A., Gondal, I., Vamplew, P., and Kamruzzaman, J. (2019). Survey of intrusion detection systems: techniques, datasets and challenges. Cybersecurity 2:20. doi: 10.1186/s42400-019-0038-7</li>
+      <li>Kim, Y., Dán, G., and Zhu, Q. (2024). Human-in-the-loop cyber intrusion detection using active learning. IEEE Trans. Inf. Forensics Secur. 19, 8658–8672. doi: 10.1109/TIFS.2024.3434647</li>
+      <li>Kiruki, J. K., Muketha, G. M., and Kamau, G. (2023). Metrics for evaluating alerts in intrusion detection systems. Int. J. Netw. Secur. Appl. 15, 15–37. doi: 10.5121/ijnsa.2023.15102</li>
+      <li>Kleinmann, A., and Wool, A. (2016). “Automatic construction of stateful modbus/TCP intrusion detection system using scada data,” in Proceedings of the 2016 ACM Workshop on Cyber-Physical System Security (New York, NY: ACM), 23–34.</li>
+      <li>Koucham, O., Mocanu, S., Hiet, G., Thiriet, J. C., and Majorczyk, F. (2022). Crossdomain alert correlation methodology for industrial control systems. Comput. Secur. 118: 102723. doi: 10.1016/j.cose.2022.102723</li>
+      <li>Krishnaveni, S., Sivamohan, S., Jothi, B., Chen, T. M., and Sathiyanarayanan, M. (2024). TwinSec-IDS: an enhanced intrusion detection system in SDN-digital-twinbased industrial cyber-physical systems. Concurr. Comput. Pract. Exp. 37:e8334. doi: 10.1002/cpe.8334</li>
+      <li>Kuhn, J., Mandjes, M., and Taimre, T. (2018). Practical aspects of false alarm control for change point detection: beyond average run length. Methodol. Comput. Appl. Probab. 21, 25–42. doi: 10.1007/s11009-018-9636-1</li>
+      <li>Kwon, H.-Y., Kim, T., and Lee, M.-K. (2022). Advanced intrusion detection combining signature-based and behavior-based detection methods. Electronics 11:867. doi: 10.3390/electronics11060867</li>
+      <li>Kwubeghari, A., Gates, C., and Atapour-Abarghouei, A. (2025). “Designing Explainable intrusion detection systems for SOC analysts,” in 2025 IEEE Conference on Communications and Network Security (CNS) (San Antonio, TX: IEEE), 253–259.</li>
+      <li>Lundberg, S. M., and Lee, S.-I. (2017). “A uniﬁed approach to interpreting model predictions,” in Advances in Neural Information Processing Systems 30 (NeurIPS 2017) (Long Beach, CA: Curran Associates). Matoušek, P., Havlena, V., and Holík, L. (2021). “Eﬃcient modelling of ICS communication for anomaly detection using probabilistic automata,” in 2021 IFIP/IEEE International Symposium on Integrated Network Management (IM) (Bordeaux: IEEE), 81–89.</li>
+      <li>Mei, Y. (2008). Is average run length to false alarm always an informative criterion? Seq. Anal. 27, 354–376. doi: 10.1080/07474940802445790</li>
+      <li>Mitchell, R., and Chen, I.-R. (2014). A survey of intrusion detection techniques for cyber-physical systems. ACM Comput. Surv. 46, 55:1–55:29. doi: 10.1145/2542049</li>
+      <li>Mitseva, A., Thierse, P., Hoﬀmann, H., Er, D., and Panchenko, A. (2022). “Challenges and pitfalls in generating representative ICS datasets in cyber security research,” in Proc. CyberICPS Workshop (ESORICS) (Cham: Springer). doi: 10.1007/978-3-031-25460-4_22</li>
+      <li>Nayebi, A., and Heer, J. (2022). “An empirical evaluation of explainable AI measures for model trust,” in Proceedings of the 2022 CHI Conference on Human Factors in Computing Systems (New York, NY: ACM).</li>
+      <li>Neupane, S., Ables, J., Anderson, W., Mittal, S., Rahimi, S., Banicescu, I., et al. (2022). Explainable intrusion detection systems (X-IDS): a survey of current methods, challenges, and opportunities. IEEE Access 10, 99187–99231. doi: 10.1109/ACCESS.2022.3216617</li>
+      <li>Oyedotun, S. A., Oise, G. P., and Ozobialu, C. E. (2025). Towards intelligent cybersecurity in SCADA and DCS environments: anomaly detection using multimodal deep learning and explainable AI. J. Sci. Res. Rev. 2, 20–31. doi: 10.70882/josrar.2025.v2i3.76</li>
+      <li>Pan, S., Morris, T., and Adhikari, U. (2015). Developing a hybrid intrusion detection system using data mining for power systems. IEEE Trans. Smart Grid 6, 3104–3113. doi: 10.1109/TSG.2015.2409775</li>
+      <li>Pesaranghader, A., and Viktor, H. L. (2016). “Fast Hoeﬀding drift detection method for evolving data streams,” in MLDM (Cham: Springer). doi: 10.1007/978-3-319-46227-1_7</li>
+      <li>Radoglou-Grammatikis, P., Sarigiannidis, P., Giannoulakis, I., Kafetzakis, E, and Panaousis, E. (2019). IEC 60870-5-104 Network Characterization and Intrusion Detection (Thessaloniki).</li>
+      <li>Ribeiro, M. T., Singh, S., and Guestrin, C. (2016). ““Why should I trust you?”: explaining the predictions of any classiﬁer,” in Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (New York, NY: ACM). doi: 10.1145/2939672.2939778 Rodoﬁle, N. R., Radke, K., and</li>
+      <li>Foo, E. M. (2017). “Framework for SCADA cyber-attack dataset creation,” in ACSW (New York, NY: ACM). doi: 10.1145/3014812.3014883</li>
+      <li>Rosa, L., Cruz, T., Freitas, M. B., Quitério, P., Henriques, J., Caldeira, F., et al. (2021). Intrusion and anomaly detection for the next-generation of industrial automation and control systems. Future Gener. Comput. Syst. 119, 50–67. doi: 10.1016/j.future.2021.01.033</li>
+      <li>Sahu, A., and Davis, K. (2021). “Structural learning techniques for Bayesian attack graphs in cyber physical power systems,” in 2021 IEEE Texas Power and Energy Conference (TPEC) (College Station, TX: IEEE), 1–6. doi: 10.1109/TPEC51183.2021.9384933</li>
+      <li>Sahu, A., and Siano, P. (2021). Inter-domain fusion for enhanced intrusion detection in power systems: an evidence theoretic and meta-heuristic approach. Sensors 22:2100. doi: 10.3390/s22062100</li>
+      <li>Schlegel, U., Arnout, H., Kleickmann, S., Schmidt, M., and Thom, A. (2019). “Towards a rigorous evaluation of XAI methods on time series,” in Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems (New York, NY: ACM), 1–12. doi: 10.1109/ICCVW.2019.00516</li>
+      <li>Shetty, S., McShane, M., and Panwar, S. (2011). An integrated Kullback Leibler divergence and Bayesian update framework for anomaly detection in wireless networks. Secur. Commun. Netw. 4, 1–12. doi: 10.1002/sec.151</li>
+      <li>Shurrab, S., and Duwairi, R. (2022). Self-supervised learning methods and applications in medical imaging analysis: a survey. PeerJ Comput. Sci. 8:e1045. doi: 10.7717/peerj-cs.1045</li>
+      <li>Skrodelis, H., Kelle, R., and Romanovs, A. (2024). “Cybersecurity in scada systems with advanced ai and ml techniques,” in 2024 IEEE 65th International Scientiﬁc Conference on Information Technology and Management Science of Riga Technical University (ITMS) (Riga: IEEE), 1–5. doi: 10.1109/ITMS64072.2024.10741936</li>
+      <li>Skrodelis, H. K., Blumbergs, B., and Romanovs, A. (2024). “Threat scenario generation for IEC104 cyber defense,” in 2024 IEEE 11th Workshop on Advances in Information, Electronic and Electrical Engineering (Riga: IEEE), 1–7. doi: 10.1109/AIEEE62837.2024.10586596</li>
+      <li>Slack, D., Hilgard, S., Jia, E., Singh, S., and Lakkaraju, H. (2020). “Fooling LIME and SHAP: Adversarial attacks on post hoc explanation methods,” in Proceedings of the AAAI/ACM Conference on AI, Ethics, and Society (AIES) (New York, NY: ACM), 180–186. doi: 10.1145/3375627.3375830</li>
+      <li>Sommer, R., and Paxson, V. (2010). “Outside the closed world: on using machine learning for network intrusion detection,” in IEEE Symposium on Security and Privacy (Oakland, CA: IEEE). doi: 10.1109/SP.2010.25</li>
+      <li>Song, Y., Feng, C., Li, T., and Zhang, H. (2024). “Leveraging physics-model based invariants for industrial control system intrusion detection,” in IEEE Transactions on Industrial Informatics (Piscataway, NJ: IEEE).</li>
+      <li>Stefanidis, K., and Voyiatzis, D. (2016). “An HMM-based anomaly detection approach for SCADA systems,” in WISTP (Cham: Springer). doi: 10.1007/978-3-319-45931-8_6 Stouﬀer, K., Pillitteri, V., Lightman, S.,</li>
+      <li>Abrams, M., and Hahn, A. (2015). Guide to industrial Control Systems (ICS) Security. Special Publication 800-82 Rev. 2. Gaithersburg, MD: NIST. doi: 10.6028/NIST.SP.800-82r2</li>
+      <li>Taormina, R., Finney, K. G., Wicker, S. B., and Grave, R. (2018). Battle of the attack detection algorithms: disclosing cyber attacks on water distribution networks. J. Water Resour. Plan. Manag. 144:04018048. doi: 10.1061/(ASCE)WR.1943-5452.0000969</li>
+      <li>Tariq, S., Allix, K., and Lalande, J.-F. (2025). “Alert fatigue in security operations centers: causes and mitigation,” in 2025 IEEE European Symposium on Security and Privacy (EuroS&amp;P) (Venice: IEEE), 174–190.</li>
+      <li>Umer, M. A., Mathur, A., Junejo, K. N., and Adepu, S. (2017). “Integrating design and data centric approaches to generate invariants for distributed attack detection,” in CPS ’17: Proceedings of the 2017 Workshop on Cyber-Physical Systems Security and PrivaCy (New York, NY: ACM). doi: 10.1145/3140241.3140248</li>
+      <li>Ustebay, S., Akgün, B. B., and Gaj, P. (2024). “Securing SCADA systems: a protocolbased intrusion detection approach with shapley analysis,” in 2024 Innovations in Intelligent Systems and Applications Conference (ASYU) (Ankara: IEEE), 1–7. doi: 10.1109/ASYU62119.2024.10756979</li>
+      <li>Vermeer, M. J., and McGovern, G. (2023). Alert Management and Fatigue in Cybersecurity Operations Centers. Santa Monica, CA: RAND Corporation Reports.</li>
+      <li>Waagsnes, H., and Ulltveit-Moe, N. (2018). “Intrusion detection system test framework for SCADA systems,” in Proceedings of the 4th International Conference on Information Systems Security and Privacy (Funchal: SciTe Press). doi: 10.5220/0006588202750285</li>
+      <li>Wadinger, M., and Kvasnica, M. (2024). Adaptable and interpretable framework for anomaly detection in SCADA-based industrial systems. Expert Syst. Appl. 246:123200. doi: 10.1016/j.eswa.2024.123200</li>
+      <li>Waleed, A.-K., Dubois, D. J., Haven, J., Rossi, D., and Ziliotto, G. (2022). “Which network intrusion detection system is right for you? A performance evaluation of Suricata, Snort and Zeek,” in 2022 IEEE 11th International Conference on Cloud Networking (CloudNet) (Paris: IEEE), 108–114.</li>
+      <li>Wali, S. A., Ramli, R. I., Abawajy, J., and Hassan, M. M. (2021). “Explainable Intrusion detection system for imbalanced dataset,” in 2021 International Conference on Decision Aid Sciences and Application (DASA) (Manama: IEEE), 390–394.</li>
+      <li>Wang, Y., and Ghorbani, A. (2004). “Distributed intrusion detection using cooperating agents,” in 2004 IEEE International Conference on Systems, Man and Cybernetics (IEEE Cat. No.04CH37583) (The Hague: IEEE), 4432–4437.</li>
+      <li>Weerts, H. J. P., van Ipenburg, W., and Pechenizkiy, M. (2019). A humangrounded evaluation of SHAP for alert processing. arXiv [preprint]. arXiv:1907.03324. doi: 10.48550/arXiv.1907.03324</li>
+      <li>Wolf, T., Debut, L., Sanh, V., Chaumond, J., Delangue, C., Moi, A., et al. (2020). “Transformers: State-of-the-art natural language processing,” in Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: System Demonstrations, 38–45. doi: 10.18653/v1/2020.emnlp-demos.6</li>
+      <li>Wolsing, K., Wagner, E., Basels, F., Wagner, P., and Wehrle, K. (2024). “Deployment challenges of industrial intrusion detection systems,” in ESORICS Workshops (New York, NY: ACM). doi: 10.1007/978-3-031-82349-7_29</li>
+      <li>Wolsing, K., Wagner, E., Saillard, A., and Henze, M. (2022). “IPAL: breaking up silos of protocol-dependent and domain-speciﬁc industrial intrusion detection systems,” in Proceedings of the 25th International Symposium on Research in Attacks, Intrusions and Defenses, RAID ’22 (New York, NY: Association for Computing Machinery), 510–525. doi: 10.1145/3545948.3545968</li>
+      <li>Xu, L., Huang, X., Li, R., Zhang, Z., Luo, J., Xu, H., et al. (2023). ADTCD: anomaly detection via teacher-student knowledge distillation under concept drift. Neurocomputing 560:126514. doi: 10.1016/j.neucom.2023.126 514</li>
+      <li>Xu, Y., and Eckert, C. (2009). A novel Bayesian method for combining multiple classiﬁers in network intrusion detection. Comput. Secur. 28, 209–220. doi: 10.1016/j.cose.2008.09.005</li>
+      <li>Yang, J. (2021). Fast TreeSHAP: accelerating SHAP value computation for trees. arXiv [preprint]. arXiv:2109.09847. doi: 10.48550/arXiv.2109.09847</li>
+      <li>Yang, S., Zhang, X., Cai, Z., Li, S., and Zhang, D. (2021). “Near-real-time alert correlation method for ISP security operation center,” in 2021 IEEE International Conference on Cyber Security and Cloud Computing (CSCloud)/IEEE International Conference on Edge Computing and Scalable Cloud (EdgeCom) (IEEE), 211–219.</li>
+      <li>Zhang, S., Liu, Y., Zhu, X., and Cheng, X. (2024). MNSSA: a multi-level network security situational awareness framework. Comput. Netw. 238:109966. doi: 10.1016/j.comnet.2023.110162</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3389/fcomp.2026.1724245">10.3389/fcomp.2026.1724245</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
