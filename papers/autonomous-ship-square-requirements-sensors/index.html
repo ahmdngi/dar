@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>صياغة متطلبات الأمن السيبراني للسفن المستقلة باستخدام منهجية SQUARE — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Formulating Cybersecurity Requirements for Autonomous Ships Using the SQUARE Methodology</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">صياغة متطلبات الأمن السيبراني للسفن المستقلة باستخدام منهجية SQUARE</h2>
+
+  <div class="paper-meta">
+    <span>👤 Jiwoon Yoo, Yonghyun Jo</span>
+    <span>📄 Sensors, 2023 · Vol. 23, 5033</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s23115033">10.3390/s23115033</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ARABIC -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تُعد تقنية الذكاء الاصطناعي (AI) حاسمة لتطوير السفن المستقلة في الصناعة البحرية. فالسفن المستقلة، بناءً على المعلومات المجمعة، تدرك البيئة دون أي تدخل بشري وتشغّل نفسها بحكمها الخاص. غير أن اتصال السفينة بالشاطئ ازداد بسبب المراقبة الآنية والتحكم عن بُعد (في الظروف غير المتوقعة) من الشاطئ؛ وهذا يشكل تهديدًا سيبرانيًا محتملًا لمختلف البيانات المجمعة داخل السفن وخارجها ولتقنية الذكاء الاصطناعي المطبقة. ومن أجل سلامة السفن المستقلة، يجب مراعاة الأمن السيبراني لتقنية الذكاء الاصطناعي، بالإضافة إلى الأمن السيبراني لأنظمة السفن. ومن خلال تحديد مختلف الثغرات وعبر حالات بحثية لأنظمة السفن وتقنيات الذكاء الاصطناعي، تعرض هذه الدراسة سيناريوهات هجوم سيبراني محتملة على تقنيات الذكاء الاصطناعي المطبقة على السفن المستقلة. وبناءً على سيناريوهات الهجوم هذه، تُصاغ التهديدات السيبرانية ومتطلبات الأمن السيبراني للسفن المستقلة باستخدام منهجية هندسة متطلبات جودة الأمن (SQUARE).</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>شهدنا في السنوات القليلة الماضية نموًا كبيرًا في تطوير ونشر أنواع مختلفة من الأنظمة الفيزيائية السيبرانية. وقد أثر هذا النمو على كل جانب من جوانب حياتنا اليومية تقريبًا، بما في ذلك شبكات الكهرباء وأنظمة النقل والأجهزة الطبية والأجهزة المنزلية [1]. كما أحدث عدة تغييرات في صناعات بناء السفن والصناعات البحرية. فمع تزايد اتصال شبكات السفن، ظهرت السفن الذكية، ويشتد السباق لتأمين تقنيات السفن المستقلة، مما قد يؤدي إلى نموذج جديد في الصناعة البحرية. وتُعد تقنية الذكاء الاصطناعي (AI)، وهي التقنية الأساسية في أنظمة الملاحة المستقلة، قادرة على معالجة معلومات عالية الأبعاد مثل الإدراك البشري والتعلم والاستدلال بناءً على البيانات والمعرفة [2]. ومن المتوقع أن تدعم تقنيات الذكاء الاصطناعي مثل تعلم الآلة والتعلم العميق السفن المستقلة عبر معالجة كمياتها الكبيرة من البيانات المتولدة.</p>
+    <p>السفن المستقلة هي سفن الجيل التالي التي تدمج تقنيات الذكاء الاصطناعي المتقدمة والبيانات الضخمة والحساسات؛ وعلى الرغم من أنها تلبي التوقعات بخفض تكاليف التشغيل ومنع الحوادث البحرية [3]، إلا أنها معرضة للعديد من التهديدات السيبرانية بسبب اتصال السفينة بالشاطئ العالي، وهو أمر ضروري لتشغيلها. وتشمل نواقل الهجوم نماذج الذكاء الاصطناعي وبيانات الحساسات والشبكات العصبية وبروتوكولات الاتصال. تقدم هذه الدراسة أربعة سيناريوهات هجوم — هجوم مجموعة بيانات السفينة، وهجوم بيانات الحساسات، وهجوم الشبكة العصبية الاصطناعية، وهجوم بروتوكول الاتصال — ثم تشتق ثمانية متطلبات أمنية (R-01 إلى R-08) باستخدام منهجية SQUARE، مصنفة حسب أهداف السلامة والموثوقية والاستقرار والتحكم في الوصول والتوافر، ومرتبة حسب الأولوية ومفحوصة مقابل متطلبات IACS UR E27.</p>
+  </section>
+
+  <section>
+    <h2>2. الخلفية</h2>
+    <p>تشمل التقنيات الأساسية للسفن المستقلة الإدراك الظرفي والكشف، والحكم، والفعل والتحكم، وتقنيات البنية التحتية، كما هو موضح في الشكل 1 من الورقة الأصلية. ففي السفن المستقلة، يُنفذ الكشف والحكم والفعل باستخدام الذكاء الاصطناعي، ولا يراقَب إلا ناتج الفعل من قبل أفراد الطاقم أو مراكز التحكم الساحلية [8]. وتشمل تقنية الإدراك الظرفي والكشف نظام رؤية مثل الرادار وLiDAR والدوائر التلفزيونية المغلقة ونظام التعريف الآلي (AIS)، القادر على إدراك الظروف الجوية والأجسام المختلفة في البحر بدقة. وتتيح تقنية الحكم للسفن المستقلة الإبحار والرسو والربط تلقائيًا بناءً على البيانات المجمعة والمتنبأ بها باستخدام أنظمة الرؤية. ويمكنها تحديد مسار ملاحي آمن واقتصادي تلقائيًا وفق ظروف البحر، والتنبؤ بالأعطال واتخاذ إجراءات مسبقة. أما تقنية البنية التحتية فتتيح التحكم عن بُعد بالسفينة (في حالات الطوارئ) من مركز التحكم الساحلي، وتقابل تقنية أتمتة الموانئ التي تشغّل السفن المستقلة، وتشمل القوانين والمؤسسات والمعايير.</p>
+    <h3>2.2.1. الإدراك الظرفي والكشف</h3>
+    <p>وفقًا لاتفاقية SOLAS لعام 1974 الصادرة عن المنظمة البحرية الدولية (الفصل الخامس، القاعدة 19 من تعديل 1999/2000)، يُعد تركيب AIS إلزاميًا لمعظم السفن باستثناء سفن الركاب التي تزن أقل من 300 طن. وتُبلغ AIS عن بيانات ساكنة وديناميكية ضرورية لإدراك حركة المرور البحرية. ويتطلب الجمع بين بيانات AIS وبيانات أخرى قدرة عالية على الإدراك والحكم الظرفي، ومن الطرق القادرة على ذلك الشبكات العصبية والشبكات البايزية والعمليات الغاوسية [9]. بالإضافة إلى ذلك، تُدرس تقنيات قائمة على التعلم العميق تكتشف الشذوذ في المناطق البحرية باستخدام العديد من البيانات المأخوذة من AIS، مثل الشبكات العصبية المتكررة التغايرية والشبكات العصبية الاصطناعية (ANNs) [10،11]. ومن عيوب استخدام الشبكات العصبية الالتفافية (CNNs) لكشف الأجسام في البحر أنها تتطلب عملًا حسابيًا مكثفًا؛ وبما أن ذلك ليس ممكنًا دائمًا في بيئة بحرية يختلف فيها حجم الجسم في الصورة مع المسافة، تُقترح شبكة اقتراح المناطق (RPN) كإحدى طرق حل هذه المشكلة، وهي مفيدة عندما تكون مساحة الجسم بالبكسل صغيرة جدًا (مثل القوارب الصغيرة) [12].</p>
+    <h3>2.2.2. نظام الملاحة المستقل</h3>
+    <p>يتضمن التشغيل المستقل للسفن تقنيات ذكاء اصطناعي متنوعة، ويمكن تقسيم بنية نظام الملاحة الآلي إلى أربعة مجالات تقنية: تقنية الوعي الظرفي والكشف عبر جمع بيانات الحساسات وتحليلها للتشغيل المستقل دون تدخل القرارات البشرية؛ وتقنية إصدار الأحكام مثل الملاحة الآلية وتجنب الاصطدام وتخطيط المسار الفعال؛ وتقنية التحكم في أنشطة السفينة واتخاذ إجراءات بشأن المواقف بناءً على الحكم؛ وتقنية البنية التحتية لتشغيل السفن المستقلة من خارج السفينة ومراقبتها والتحكم فيها عن بُعد. ويوضح الشكل 3 من الورقة الأصلية بنية نظام الملاحة المستقل (ANS) [13]. وتنجم معظم اصطدامات السفن عن الحوادث البشرية؛ فهي تشكل تهديدًا كبيرًا في البحر [14]. وينظم تجنب اصطدام السفن اتفاقية منع الاصطدام في البحر لعام 1972 (COLREGs). ويمكن للسفن المستقلة تجنب الاصطدام بتقدم التعلم العميق، وذلك عبر تحليل البيانات المجمعة مسبقًا وبيانات الحساسات الآنية لإيجاد إجراءات يمكن أن تتبع COLREGs.</p>
+    <h3>2.2.3. نظام الرسو الآلي</h3>
+    <p>الرسو هو إرساء السفن في الموانئ. وتدعم السفن الكبيرة القائمة زوارق القطر لمساعدتها على الرسو. وزورق القطر مركبة بحرية تدفع السفن الأخرى أو تسحبها بقوة دافعة كبيرة نسبة إلى حجمه. ولهذا السبب أُجريت أبحاث سابقًا على مزامنة حركات عدة زوارق قطر. غير أن الأبحاث تحولت مؤخرًا نحو إيجاد طرق لرسو السفينة تلقائيًا دون استخدام سفن دعم إضافية مثل زوارق القطر. ومن مناهج حل مشكلة الرسو استخدام الشبكات العصبية الاصطناعية (ANNs)، وهي خوارزمية تعلم إحصائية مستوحاة من الشبكات العصبية البيولوجية وتُستخدم في تعلم الآلة والعلوم المعرفية. ويتحكم نظام الرسو الآلي، باستخدام ANN، يدويًا بالسفينة لتوليد بيانات تدريب لتدريب الشبكة العصبية. وتُستخدم حالة السفينة — مثل إحداثيات السفينة واتجاهها والمسافة إلى الرسو المسجلة أثناء عملية توجيه السفينة — كبيانات تدريب، وتُستخدم الشبكة العصبية المدربة من هذه البيانات كوحدة تحكم رئيسية في نظام الرسو. وكانت وحدات التحكم ANN القائمة لا ترسو إلا في الموانئ التي جُمعت فيها بيانات التدريب، لكن أبحاثًا حديثة اقترحت وحدة تحكم ترسو تلقائيًا في موانئ جديدة دون إعادة تعلم وحدة التحكم ANN [18–20].</p>
+  </section>
+
+  <section>
+    <h2>3. سيناريوهات الهجوم السيبراني على السفن المستقلة</h2>
+    <p>في الفترة من أغسطس 2022 إلى مارس 2023، حُللت 55 حادثة سيبرانية بحرية، شملت 28 مجموعة برامج فدية و19 مجموعة مهاجمة مجهولة و8 مجموعات تهديد متقدم مستمر (APT). وكانت أنواع الأضرار الرئيسية برامج الفدية وتعطيل الخدمة، وهي تمثل أكثر من نصف جميع أنواع الأضرار. ولا تأخذ التأثيرات والتقديرات المتوقعة للسفن المستقلة في الاعتبار التهديدات المحتملة المرتبطة بالهجمات السيبرانية والسيبرانية-الفيزيائية، لأن التركيبات غير المختبرة من الأنظمة البحرية القائمة مع تقنيات الملاحة المستقلة الجديدة تجعل التقييم الشامل لمخاطرها صعبًا. وتتزايد أسطح الهجوم (على السفن والبنية التحتية الشاطئية)، ومع تزايدها تتزايد التهديدات السيبرانية المحتملة [24،25]. وتحدد حساسات السفن المستقلة موقع السفينة والعوائق من داخل السفينة وخارجها وتنقلها إلى نموذج الذكاء الاصطناعي، الذي يحلل البيانات الآنية لتحديد الطرق التي يمكن للسفينة أن تعمل بها باستقرار، ونتيجة للتحليل والحكم تبحر السفينة تحت تحكم المشغلات عبر نظام التحكم. أي أنها تجمع بيانات آنية من حساسات مثل AIS وGNSS والكاميرات وتنقل الأحكام المناسبة (بناءً على نتائج التحليل) إلى نظام الملاحة أو التحكم للتحكم في السفينة.</p>
+    <h3>3.1. هجوم مجموعة بيانات السفينة</h3>
+    <p>إذا هاجم المهاجم نقاط الضعف الموجودة في مرحلة تعلم الذكاء الاصطناعي، فقد يؤدي ذلك إلى أحكام خاطئة بسبب التعلم المغلوط. وفي مثل هذه الحالات، يمكن توقع سيناريو هجوم يُظن فيه التهديد عنصرًا آمنًا أثناء رحلة السفينة، وتُقاد السفينة للسماح بالوصول. واستخدم Jiang وآخرون [26] هجوم التسميم مع تقنية تحسين سرب الجسيمات لحقن بعض العينات الخبيثة في مجموعة بيانات التدريب، مما أدى إلى انخفاض الأداء بنسبة تصل إلى 95–33% في أسوأ الحالات. وبهذه الطريقة يمكن شن هجمات التسميم على تعلم تمييز السفن كما هو موضح في الشكل 5 من الورقة الأصلية؛ فالصورة (أ) عينة سفينة عادية، والصورة (ب) عينة مضاف إليها ضجيج. وبالعين المجردة يمكن تمييز الصورتين على أنهما السفينة ذاتها، لكن عند حقنهما في بيانات تدريب الذكاء الاصطناعي يمكن أن تنخفض دقة التصنيف بشكل كبير [27]. ويوضح الشكل 6 سيناريو محتملًا عندما يحاول المهاجم شن هجوم تسميم على بيانات تدريب نموذج الذكاء الاصطناعي: إذ من الحاسم للسفن المستقلة أن تتعلم على الساحل حيث العوائق كثيرة، ومن خلال الملاحة الساحلية يتعلم نظام السفينة البيئة مثل العوائق والممرات.</p>
+    <h3>3.2. هجوم بيانات الحساسات</h3>
+    <p>لا تشمل هجمات التهرب طريقة تزوير الأجسام التي تلتقطها الكاميرا فحسب، بل تشمل أيضًا إمكانية هجمات مثل الانتحال والتشويش باستغلال الثغرات في نظام السفينة. فمن الممكن مهاجمة نظام السفينة والتسبب في خلل الذكاء الاصطناعي عبر الخروقات مثل العبث بالبيانات واضطرابها. وكما هو موضح في الشكل 7 من الورقة الأصلية، إذا اختُرقت بيانات الحساسات المستخدمة كمدخلات للذكاء الاصطناعي بهجوم سيبراني، فلا يمكن ضمان الملاحة المستقلة الآمنة. فعلى سبيل المثال، يُعد AIS إلزاميًا في كثير من السفن الكبيرة، لكن معيار AIS لا يأخذ الأمن في الاعتبار [29]. ورسائل AIS غير مشفرة وبالتالي فهي عرضة للاستغلال والتلاعب من قبل المهاجمين [30–32]. وقد ظهرت هجمات باستخدام ثغرات AIS ممكنة في عدد من السيناريوهات، بما في ذلك التلاعب بمعلومات الطقس وتحذيرات الاصطدام الكاذبة وهجمات الحرمان من الخدمة [30]. ومن المتوقع أن يكون للعبث بالبيانات واضطرابها أثر كبير على الملاحة المستقلة غير المأهولة. وكما وُصف أعلاه، يُعد الانتحال والتشويش والحرمان من الخدمة (DoS) طرقًا معروفة تتيح للمهاجم مهاجمة بيانات الحساسات. فإذا استُخدم هجوم التهرب لتشويش كاميرا أو لدفع بيانات الحساسات في نظام رسو آلي إلى إساءة حساب مسافة الميناء، فقد ترسو السفينة في موقع خاطئ أو تصطدم بالرصيف.</p>
+    <h3>3.3. هجوم الشبكة العصبية الاصطناعية</h3>
+    <p>تطور الذكاء الاصطناعي من الطرق الكلاسيكية والتفاعلية إلى تعلم الآلة ثم إلى التعلم العميق، وهو خوارزمية متقدمة ذكية لاتخاذ القرارات [9]. وتُعد الشبكة العصبية الاصطناعية (ANN) التقنية الأساسية لخوارزميات الذكاء الاصطناعي في التعلم للملاحة المستقلة. وفي حالة المركبات المستقلة، تعتمد خوارزميات الذكاء الاصطناعي على الشبكات العصبية مثل الشبكات العصبية العميقة (DNNs) والالتفافية (CNNs) والمتكررة (RNNs)، وهي أشكال متقدمة من ANN [37]. وكما هو الحال مع البرمجيات الأخرى، تجعل هجمات مثل القوة الغاشمة وتجاوز سعة المخزن المؤقت وحقن البرمجيات الخبيثة خوارزميات الشبكات العصبية غير آمنة [38]. وكما هو موضح في الشكل 9 من الورقة الأصلية، بعيدًا عن مهاجمة مجموعة بيانات نموذج الذكاء الاصطناعي، يمكن لهجوم الشبكة العصبية الذي يهاجم عملية خوارزمية الذكاء الاصطناعي أن يقوض استقرار الذكاء الاصطناعي. فالسماح للشبكات العصبية بإساءة إدراك البيئة الواقعية وإساءة الحكم عليها قد يكون مشكلة كبيرة في التطبيقات الحرجة للسلامة مثل الملاحة المستقلة. ويُعد الهجوم على الشبكات العصبية الاصطناعية هجومًا على أنظمة الملاحة الآلية والرسو، وهي تقنية رئيسية للسفن المستقلة. فإذا تعرضت عملية أخذ بيانات الحساسات كمدخلات واشتقاق قيم المخرجات للخطر بسبب مهاجم، فلن تتمكن السفن المستقلة من مواصلة الملاحة الطبيعية. وبما أن الخوارزميات القائمة على الشبكات العصبية تُستخدم على نطاق واسع في التطبيقات عالية المخاطر، فقد حظيت القضايا الأمنية باهتمام واسع [39].</p>
+    <h3>3.4. هجوم بروتوكول الاتصال</h3>
+    <p>تمتلك أنظمة السفن المستقلة القدرة على منح التحكم الكامل بالسفينة في الهجمات السيبرانية بسبب اتصال الشبكة العالي لتيسير التواصل مع الشاطئ [42،43]. وكما هو موضح في الشكل 10 من الورقة الأصلية، هجوم بروتوكول الاتصال هو هجوم يُستهدف فيه التواصل الذي تستخدمه السفينة المستقلة. وتُستخدم بروتوكولات متنوعة داخل السفينة وخارجها، منها ناقل Ethernet (الأكثر استخدامًا كشبكة أرضية)، وشبكات 4G/5G اللاسلكية، وبروتوكول ModBus (الذي يُستخدم غالبًا في أنظمة التحكم). كما تُستخدم CAN bus، وهو بروتوكول قائم على الرسائل يُستخدم على نطاق واسع في المركبات. وأخيرًا، يُستخدم بروتوكول NMEA الذي يُستخدم لإرسال واستقبال بيانات الحساسات على السفن. وبما أن بروتوكولي CAN bus وNMEA المستخدمين داخل السفن لم يُصمما مع مراعاة الأمن، توجد ثغرات في البروتوكول نفسه. فاتصالات CAN bus وNMEA ترسل البيانات وتستقبلها دون تشفير أو توثيق، لذا إذا وصل المهاجم إلى الشبكة سُرقت جميع بيانات التواصل. وبروتوكولات CAN وNMEA التي تفتقر إلى أجهزة التوثيق عرضة لهجمات الرجل في المنتصف، التي تمكّن المهاجم من التلاعب بالبيانات أو جمعها أثناء انتقالها بين الأنظمة.</p>
+  </section>
+
+  <section>
+    <h2>4. متطلبات الأمن للسفن المستقلة</h2>
+    <h3>4.1. هندسة متطلبات الأمن</h3>
+    <p>تُصاغ متطلبات الأمن لتحقيق أهداف أمنية، مثل ضمان تعريف المستخدمين والتطبيقات وتوثيقهم، وضمان عدم الوصول إلا إلى البيانات والخدمات المصرح بها، وكشف محاولات التسلل من قبل مستخدمين غير مصرح لهم. ولتحقيق هذه الأهداف الأمنية العامة، يمكن صياغة 12 متطلبًا أمنيًا تشمل التعريف والتوثيق والتخويل [46]. ووفقًا لتحليل Salini وآخرين [47]، يجب مراعاة متطلبات الأمن في مرحلة مبكرة من عملية دورة حياة تطوير البرمجيات (SDLC). فأهمية هندسة متطلبات الأمن لأنظمة البرمجيات ما تزال مستهانًا بها؛ إذ لا تُحلل إلا في مرحلة متأخرة من التطوير. ولتحقيق أهداف الأعمال وبناء نظام برمجي يحمي المعلومات، من الضروري تحديد متطلبات الأمن وتوصيفها. وبالتالي فإن التحليل الشامل لمتطلبات الأمن حاسم لتطوير الأنظمة البرمجية، مما سيحسن جودة التطوير ويضمن توفر نظام بلا ثغرات. ومنهجية هندسة متطلبات جودة الأمن (SQUARE) المستخدمة في هذه الدراسة مفيدة لتوثيق الجوانب الأمنية لأنظمة الحقول وتحليلها، كما تدعم التحسينات المستقبلية وتعديلات النظام.</p>
+    <h3>4.2.1. الاتفاق على التعريفات</h3>
+    <p>المهمة الأولى هي الاتفاق على مجموعة مشتركة من التعريفات الأمنية، تُعرّف بالنظر في سياسة الأمن ورؤية المنظمة. ونظرًا للاختلاف في الخبرة والتجربة بين مهندسي متطلبات الأمن وأصحاب المصلحة، قد يحمل أي مصطلح تعريفات مختلفة بين المشاركين، لذا يجب حل هذه الفروق في وجهات النظر. وتُعرّف المرونة السيبرانية للسفن (IACS UR E26) والمتطلبات السيبرانية للمرونة السيبرانية للسفن بعض المصطلحات كما هو موضح في الجدول 1 من الورقة الأصلية. فعلى سبيل المثال، سطح الهجوم هو مجموعة كل النقاط الممكنة التي يمكن لمستخدم غير مصرح له الوصول عبرها إلى النظام واستخراج البيانات، ويشمل فئتين: الرقمية (كل العتاد والبرمجيات المتصلة بشبكة المنظمة مثل التطبيقات والشيفرة والمنافذ والخوادم والمواقع) والفيزيائية (كل أجهزة النقاط الطرفية التي يمكن للمهاجم الوصول الفيزيائي إليها مثل الحواسيب المكتبية والأقراص الصلبة والحواسيب المحمولة والهواتف المحمولة والأقراص القابلة للإزالة). وبعد الانتهاء من تعريف كل مصطلح، تُعرّف قائمة مصطلحات كاملة وتُشارك مع أصحاب المصلحة.</p>
+    <h3>4.2.2. تحديد الأهداف الأمنية</h3>
+    <p>تواجه السفن المستقلة تهديدات سيبرانية محتملة في الذكاء الاصطناعي وبيانات الحساسات والشبكات وغيرها، مما قد يتيح نجاح الهجمات السيبرانية. وفي القسم 3 عرضنا سيناريوهات هجوم سيبراني للسفن المستقلة، ومن خلالها وُضعت أهداف الأمن الخمسة التالية: السلامة (ضمان سلامة بيانات الحساسات)، والموثوقية (ضمان موثوقية بيانات الحساسات)، والاستقرار (ضمان استقرار الذكاء الاصطناعي)، والتحكم في الوصول (التحكم في وصول شبكة السفينة)، والتوافر (ضمان توافر أنظمة الملاحة المستقلة).</p>
+    <h3>4.2.3. تطوير المخرجات</h3>
+    <p>في عملية تصميم السفن القائمة، يُنتج كل رسم تصميمي عبر عملية التصاميم المفاهيمية والأساسية والتفصيلية. وفي هذه الدراسة حُددت أنظمة الملاحة المستقلة ومكوناتها عبر دراسات حالة للسفن المستقلة بدلًا من عملية التصميم الأصلية. وكما هو موضح في الشكل 11 من الورقة الأصلية، حُدد مسار هجوم المهاجم في نمذجة الشبكة باستخدام سيناريوهات الهجوم للسفينة المستقلة المبتكرة سابقًا عبر النمذجة المنطقية للشبكة [49]. وقد يحاول المهاجمون السيبرانيون مهاجمة مجموعات البيانات والشبكات العصبية في المنطقتين 1 و2، وبيانات الحساسات والبروتوكولات في المنطقتين 3 و4. وفي كل سيناريو هجوم، تشمل نواقل الهجوم الضعيفة للسفن المستقلة نماذج الذكاء الاصطناعي والحساسات والشبكات العصبية والبروتوكولات الضعيفة. وسيناريوهات الهجوم المبتكرة في القسم 3 هي طرق هجوم نموذج الذكاء الاصطناعي التي لا تحدث في السفن القائمة لكنها ممكنة في السفن المستقلة. وكما هو موضح في الشكل 12 (شجرة هجوم السفينة المستقلة)، ستكون هجمات الانتحال على بيانات الحساسات مثل التشويش أكثر تزايدًا في السفن المستقلة بسبب زيادة الاتصال. بالإضافة إلى ذلك، لاستبدال حالات سوء الاستخدام، ابتُكرت سيناريوهات هجوم سيبراني للسفن المستقلة كما في الجدول 2 عبر التهديدات السيبرانية على أنظمة السفن والذكاء الاصطناعي.</p>
+    <h3>4.2.4. إجراء تقييمات المخاطر</h3>
+    <p>وفقًا للاستخدام على متن السفن وتطبيق الأنظمة الحاسوبية (IACS UR E22)، يمكن تصنيف أنظمة الملاحة المستقلة للسفن المستقلة ضمن الفئة III فيما يتعلق بالتصنيف العام لقدرات الأنظمة أو درجة أثر الأعطال، والحساسات ووحدات التحكم دون الدرجات في الفئة III يمكن تصنيفها ضمن الفئة II. وفي شجرة الهجوم الموضحة في الشكل 12، يمكن تصنيف التهديدات السيبرانية للسفن المستقلة كما يلي. وبالرجوع إلى التوصية بشأن دمج إدارة المخاطر السيبرانية في أنظمة إدارة السلامة (IACS رقم 171)، قُيمت التهديدات بالنظر في أثرها على السفن المستقلة وإمكانية وصول المهاجم. وانعكاسًا لتصنيف IACS UR E22 وفق قدرات الأنظمة، صُنفت التهديدات على مقياس 1–3 كما هو موضح في الجدول 3 من الورقة الأصلية، الذي يسرد التهديدات المحتملة (الانتحال، الحرمان من الخدمة، التشويش، التعتيم، هجمات القنوات الخفية، الإخفاء، التشفير الضعيف، التوثيق، تحديث البرامج الثابتة، فساد البيانات على الأنظمة؛ وهجمات التسميم والتهرب والانعكاس واستخراج النموذج وتجاوز المخزن المؤقت والقوة الغاشمة وحقن البرمجيات الخبيثة على الذكاء الاصطناعي) مقابل سيناريوهات الهجوم الأربعة.</p>
+    <h3>4.2.5. اختيار تقنية الاستنباط</h3>
+    <p>على الرغم من أن SQUARE قدمت عدة تقنيات استخلاص مناسبة لاشتقاق المتطلبات، فبدلًا من استخدام تقنيات الاستخلاص التي قدمتها SQUARE في هذه الدراسة، استخدمنا تحليل المتطلبات القائم على السيناريو لصياغة متطلبات الأمن بناءً على التهديدات المحتملة المحللة وسيناريوهات الهجوم. وتحليل المتطلبات القائم على السيناريو هو طريقة لوصف متطلبات النظام عبر سيناريوهات مستخلصة من الخبرة الواقعية أو الأمثلة المتاحة. ومن بين منهجيات تحليل المتطلبات القائمة على السيناريو، تعتمد منهجية SCRAM على التقنيات الأربع التالية [51]: النموذج الأولي أو عرض المفهوم (توفر المفاهيم الأساسية مخرجات تصميم يمكن للمستخدم إعادة إنتاجها)؛ والسيناريو (تتيح المخرجات المصممة للمستخدمين ربط عملهم بالتصميم في بيئة المستخدم)؛ ومبررات التصميم (منطق المصمم مفتوح للمستخدم لتشجيع مشاركة المستخدم في اتخاذ القرار)؛ وتحديد أولويات المتطلبات. وتُدمج التقنيات أعلاه مع عملية صياغة المتطلبات، وتشمل الطريقة النهائية الخطوات التالية: (1) تحديد المتطلبات الأولية وتحليل المجال؛ (2) وصف المفاهيم وضبط الخصائص؛ (3) اشتقاق المتطلبات وتحليلها؛ (4) التحقق من المتطلبات.</p>
+    <h3>4.2.6. استنباط متطلبات الأمن</h3>
+    <p>حُللت التهديدات المحتملة للسفن المستقلة لابتكار سيناريوهات هجوم متنوعة. ولصياغة متطلبات الأمن لسيناريوهات الهجوم والمخاطر الأمنية، استُخدمت تقنيات اشتقاق متطلبات الأمن ومخرجات أخرى لصياغة متطلبات الأمن من حيث ما يجب أن تفعله أنظمة الملاحة المستقلة: R-01 يجب توفير وظيفة الحساس للتحقق من بيانات التعريف؛ R-02 يجب حماية نقل بيانات الحساسات من العبث؛ R-03 في حال هجوم الحرمان من الخدمة يجب توفير الحد الأدنى من وظائف تشغيل السفينة؛ R-04 يجب إجراء تصميم أمني لإزالة العيوب في الشبكة العصبية؛ R-05 يجب استخدام آلية تشفير لحماية بيانات التواصل؛ R-06 يجب تدريب الذكاء الاصطناعي باستخدام بيانات تدريب موثوقة؛ R-07 يجب حظر اتصالات الشبكة غير المصرح بها؛ R-08 يجب تنفيذ تدابير وقائية لمنع البرمجيات الخبيثة.</p>
+    <h3>4.2.7. تصنيف المتطلبات</h3>
+    <p>تُصنف المتطلبات المصاغة أوليًا وتُجرى التسمية والتصنيف. وتُجمع المتطلبات المصاغة ويُنشأ اسم فريد للمجموعة لسرد المتطلبات. ويجمع الجدول 5 من الورقة الأصلية المتطلبات في أهداف أمنية مثل التوافر والسلامة والموثوقية والاستقرار والتحكم في الوصول: السلامة (R-02 حماية نقل بيانات الحساسات من العبث؛ R-05 آلية تشفير لحماية بيانات التواصل)؛ الموثوقية (R-01 وظيفة الحساس للتحقق من بيانات التعريف؛ R-04 تصميم أمني لإزالة عيوب الشبكة العصبية؛ R-05 آلية التشفير)؛ الاستقرار (R-04 التصميم الأمني؛ R-06 تدريب الذكاء الاصطناعي ببيانات موثوقة؛ R-08 تدابير منع البرمجيات الخبيثة)؛ التحكم في الوصول (R-07 حظر الاتصالات غير المصرح بها؛ R-08 منع البرمجيات الخبيثة)؛ التوافر (R-03 الحد الأدنى لوظائف تشغيل السفن).</p>
+    <h3>4.2.8. ترتيب المتطلبات حسب الأولوية</h3>
+    <p>يصنف نظام فئات IACS UR E22 الأنظمة التي يشكل تعطلها تهديدًا مباشرًا للبشر وسلامة السفينة والبيئة ضمن الفئة III وهي أعلى فئة، بينما الفئة I وهي أدنى فئة تُصنف كنظام لا يشكل تعطله تهديدًا. وبالتالي تُحدد أولوية المتطلبات بناءً على التوافر العالي. ووفقًا لتصنيف الأنظمة في E22 ونتائج تقييم المخاطر، رُتبت المتطلبات حسب الأولوية كما هو موضح في الجدول 6 من الورقة الأصلية.</p>
+    <h3>4.2.9. فحص المتطلبات</h3>
+    <p>رُبطت المتطلبات المبتكرة بمتطلبات IACS كما هو موضح في الجدول 7 من الورقة الأصلية: الأولوية العالية (R-02 سلامة التواصل؛ R-03 الحماية من الحرمان من الخدمة؛ R-04 التحقق من وظائف الأمن؛ R-05 سلامة التواصل؛ R-08 الحماية من الشيفرة الخبيثة)، والمتوسطة (R-01 تعريف الأجهزة والتوثيق؛ R-06 التحقق من المدخلات؛ R-07 إعدادات الشبكة والأمن)، والمنخفضة (R-02). ويتبع كل متطلب من متطلبات IACS UR E27 معيار IEC 62443-3-3 الذي يصف متطلبات الأمن لأنظمة التحكم الصناعية. ويؤكد الربط أن المتطلبات الثمانية المشتقة تغطي ضوابط E27 ذات الصلة بأنظمة الملاحة المستقلة، مما يمنحها أساسًا تنظيميًا قويًا.</p>
+  </section>
+
+  <section>
+    <h2>5. الاستنتاجات</h2>
+    <p>تؤثر بيانات حساسات السفن على إدراك الذكاء الاصطناعي وحكمه وتحكمه، ويؤثر الذكاء الاصطناعي بدوره على التحكم في السفينة. ففي السفن المستقلة، الأنظمة الفردية ليست مستقلة؛ إذ يؤدي كل نظام دوره الخاص ويولد بيانات تؤثر على الأنظمة الأخرى. ويمكن أن تؤثر التهديدات السيبرانية أيضًا ليس فقط على نظام واحد بل على السفينة المستقلة بأكملها. ومن المتوقع للسفن المستقلة خفض تكاليف التشغيل والحوادث البحرية، وإذا وقع حادث بسبب هجوم سيبراني على سفينة مستقلة فسيصعب تحقيق أهدافها. ويمكن تطبيق التحصينات مثل التحكم المنطقي في الوصول والفصل بين المهام وتعزيز أمن الحسابات بسهولة نسبية. غير أنه إذا تعذر معالجة المشكلة بالتحصين بسبب طبيعة السفن، وحتى عند اكتشاف عيب أمني، تلزم جهود وأموال كبيرة لاتخاذ التدابير المناسبة. وبالتالي، لمنع الهجمات السيبرانية، يجب تصميم كل مكون من مكونات نظام السفينة بحيث لا يؤثر على الأنظمة الأخرى أثناء الخروقات السيبرانية.</p>
+    <p>في هذه الدراسة، حققنا في الثغرات والتهديدات في أنظمة السفن وتقنيات الذكاء الاصطناعي، وحللنا التهديدات السيبرانية المحتملة لتقنيات الذكاء الاصطناعي المستخدمة في السفن المستقلة. وبما أن السفن المستقلة ما تزال في مرحلة البحث، فمن المتوقع ظهور أنظمة أكثر تقدمًا، ويجب أن تتطور متطلبات الأمن معها. وتُظهر الدراسة أن منهجية SQUARE — عبر خطواتها التسع من الاتفاق على التعريفات إلى فحص المتطلبات — توفر مسارًا منظمًا وقابلًا للتكرار لاشتقاق متطلبات أمنية للسفن المستقلة مؤسسة على سيناريوهات هجوم واقعية ومربوطة بأطر تنظيمية قائمة مثل IACS UR E26/E27 ومعيار IEC 62443-3-3.</p>
+  </section>
+
+  <section>
+    <h2>المراجع</h2>
+    <p>قائمة المراجع الكاملة (51 مصدرًا) متاحة في <a href="https://www.mdpi.com/1424-8220/23/11/5033/pdf" target="_blank">الملف الأصلي للPDF</a>.</p>
+  </section>
+</div>
+
+<!-- ENGLISH -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Artificial intelligence (AI) technology is crucial for developing autonomous ships in the maritime industry. Autonomous ships, based on the collected information, recognize the environment without any human intervention and operate themselves using their own judgment. However, ship-to-land connectivity increased, owing to the real-time monitoring and remote control (for unexpected circumstances) from land; this poses a potential cyberthreat to various data collected inside and outside the ships and to the applied AI technology. For the safety of autonomous ships, cybersecurity around AI technology needs to be considered, in addition to the cybersecurity of the ship systems. By identifying various vulnerabilities and via research cases of the ship systems and AI technologies, this study presents possible cyberattack scenarios on the AI technologies applied to autonomous ships. Based on these attack scenarios, cyberthreats and cybersecurity requirements are formulated for autonomous ships by employing the security quality requirements engineering (SQUARE) methodology.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>In the past few years, we have witnessed substantial growth in the development and deployment of various types of cyberphysical systems. This growth has affected nearly every aspect of our daily life, including power grids, transportation systems, medical devices, and household appliances [1]. It has also brought several changes in the shipbuilding and marine industries. With the increasing ship network connectivity, smart ships have emerged, and the race to secure autonomous ship technologies is intensifying, which may lead to a new paradigm in the maritime industry. Artificial intelligence (AI) technology, the core technology in autonomous navigation systems, is capable of processing high-dimensional information such as human cognition, learning, and reasoning based on data and knowledge [2]. AI technologies such as machine learning and deep learning are expected to support autonomous ships by processing their large amounts of generated data.</p>
+    <p>Autonomous ships are the next-generation ships that integrate advanced AI technologies, big data, and sensors; although they satisfy the anticipations of low operating costs and maritime accident prevention [3], they are exposed to many cyberthreats owing to high ship-to-land connectivity, which is essential for their operation. Attack vectors include AI models, sensor data, neural networks, and communication protocols. This study presents four attack scenarios — ship dataset attack, sensor data attack, artificial neural network attack, and communication protocol attack — then derives eight security requirements (R-01 to R-08) using the SQUARE methodology, categorized by integrity, reliability, stability, access control, and availability goals, prioritized, and inspected against IACS UR E27 requirements.</p>
+  </section>
+
+  <section>
+    <h2>2. Background</h2>
+    <p>The core technologies of autonomous ships comprise situational recognition and detection, judgment, action and control, and infrastructure technologies, as shown in Figure 1 of the original paper. In autonomous ships, detection, judgment, and action are performed using AI, and only the action outcome is monitored by crew members or coastal control centers [8]. Situational recognition and detection technology involves a vision system, such as radar, LiDAR, CCTV, and automatic identification system (AIS), that can accurately recognize weather conditions and different objects at sea. Judgment technology allows autonomous ships to automatically sail, berth, and moor based on data collected and predicted using vision systems. It can automatically set a safe, economic navigation route according to sea conditions, predict failures, and take action in advance. Infrastructure technology allows remote control of the ship (in emergencies) from the coastal control center, corresponding to seaport automation technology that can operate autonomous ships, including laws, institutions, and standards.</p>
+    <h3>2.2.1. Situational Recognition and Detection</h3>
+    <p>According to the International Maritime Organization's 1974 SOLAS (Chapter 5, Rule 19 of the 1999/2000 Amendment), installation of AIS is mandatory for most ships except passenger ships weighing less than 300 tons. AIS reports static and dynamic data essential for maritime traffic recognition. Combining AIS data with other data requires high recognition and situational judgment capability, with capable methods including neural networks, Bayesian networks, and Gaussian processes [9]. Additionally, deep-learning-based techniques detecting anomalies in maritime regions using numerous AIS-derived data are being studied, such as variational recurrent neural networks and artificial neural networks (ANNs) [10,11]. A disadvantage of using convolutional neural networks (CNNs) to detect objects at sea is extensive computational work; since this is not always possible in a maritime environment where object size in images varies with distance, the region proposal network (RPN) is proposed as one way to solve this issue, useful when an object's pixel area is very small (e.g., small boats) [12].</p>
+    <h3>2.2.2. Autonomous Navigation System</h3>
+    <p>Autonomous ship operation involves various AI technologies, and the automatic navigation system architecture divides into four technical areas: situational awareness and detection via sensor data collection and analysis for autonomous operation without human decision intervention; judgment technology such as automatic navigation, collision avoidance, and efficient route planning; technology for controlling ship activities and acting on situations based on judgment; and infrastructure technology for operating autonomous ships from outside the ship with remote monitoring and control. Figure 3 of the original paper depicts the autonomous navigation system (ANS) architecture [13]. Most ship collisions are caused by human accidents, a major threat at sea [14]. Ship collision avoidance is regulated by the 1972 Convention on the Prevention of Collisions at Sea (COLREGs). Autonomous ships can avoid collisions with advances in deep learning, by analyzing precollected and real-time sensor data to find actions that can follow COLREGs.</p>
+    <h3>2.2.3. Automatic Berthing System</h3>
+    <p>Berthing is the mooring of ships in ports. Existing large ships are supported by tugboats to help them berth. A tugboat is a marine vessel that pushes or pulls other ships with strong driving force relative to its size. Research was previously conducted on synchronizing movements of several tugboats. Recently, however, research has shifted toward automatically docking ships without additional support vessels such as tugboats. One approach to the berthing problem uses artificial neural networks (ANNs), a statistical learning algorithm inspired by biological neural networks used in machine learning and cognitive science. The ANN-based automated berthing system manually controls the ship to generate training data for neural network training. The ship's status — coordinates, direction, distance to berthing recorded during steering — is used as training data, and the trained network serves as the berthing system's main controller. Existing ANN controllers could only dock at ports where training data was collected, but recent research suggests a controller that automatically docks in new ports without relearning the ANN controller [18–20].</p>
+  </section>
+
+  <section>
+    <h2>3. Cyberattack Scenarios on Autonomous Ships</h2>
+    <p>From August 2022 to March 2023, 55 maritime cyber incidents were analyzed, with 28 ransomware groups, 19 unknown attack groups, and 8 APT attack groups. Primary damage types are ransomware and service disruption, accounting for more than half of all damage types. Anticipated effects and estimates for autonomous ships do not account for potential cyber and cyber-physical attack threats, because untested combinations of existing maritime systems with new autonomous navigation technologies make comprehensive risk assessment difficult. Attack surfaces (on ships and onshore infrastructure) are increasing, and as they increase, so do potential cyberthreats [24,25]. An autonomous ship's sensors identify position and obstacles from inside and outside the ship and transmit them to the AI model, which analyzes real-time data to determine how the ship can operate stably; as a result of analysis and judgment, the ship navigates under actuator control via the control system. That is, it collects real-time data from sensors such as AIS, GNSS, and cameras and transmits appropriate judgments (based on analysis results) to the navigation or control system to control the ship.</p>
+    <h3>3.1. Ship Dataset Attack</h3>
+    <p>If an attacker attacks vulnerabilities found at the AI learning stage, it can lead to wrong judgments owing to erroneous learning. An anticipated attack scenario is one where a threat is mistaken for a safe element during the voyage and the ship is led to allow access. Jiang et al. [26] used a poisoning attack with particle swarm optimization to inject malicious samples into the training dataset, reducing performance by up to 95–33% in the worst case. Poisoning attacks can thus be attempted on ship identification learning as shown in Figure 5 of the original paper: (a) a normal ship image, (b) the same image with noise added. To the naked eye both are recognizable as the same ship, but when injected into AI training data, classification accuracy can drop significantly [27]. Figure 6 illustrates a possible scenario of a poisoning attack on AI model training data: autonomous ships must crucially learn on the coast where obstacles are many, with the ship system learning the environment — obstacles and fairways — through coastal navigation.</p>
+    <h3>3.2. Sensor Data Attack</h3>
+    <p>Evasion attacks include not only falsifying camera-captured objects but also attacks such as spoofing and jamming exploiting ship system vulnerabilities. Systems can be attacked to malfunction AI through data tampering and disturbance. As shown in Figure 7 of the original paper, if sensor data used as AI input is breached by cyberattack, safe autonomous navigation cannot be guaranteed. For example, AIS is mandatory on many large ships, but the AIS standard does not take security into account [29]. AIS messages are unencrypted and thus at risk of exploitation and manipulation by attackers [30–32]. AIS-vulnerability attacks have been shown possible in scenarios including weather information manipulation, false collision warnings, and denial-of-service attacks [30]. Data tampering and disturbance are expected to significantly impact unmanned autonomous navigation. As described, spoofing, jamming, and DoS are known attacker methods against sensor data. If evasion attacks disturb cameras or cause automated berthing sensor data to miscalculate port distance, the ship may berth at the wrong location or collide with the quay.</p>
+    <h3>3.3. Artificial Neural Network Attack</h3>
+    <p>AI has evolved from classical and reactive methods to machine learning and further to deep learning, an advanced intelligent decision-making algorithm [9]. ANN is the core AI algorithm technology in learning for autonomous navigation. For autonomous vehicles, AI algorithms are based on neural networks such as DNNs, CNNs, and RNNs — advanced ANN forms [37]. As with other software, attacks such as brute forcing, buffer overflow, and malware injection make neural network algorithms insecure [38]. As shown in Figure 9 of the original paper, beyond attacking the AI model dataset, a neural network attack on the AI algorithm process can undermine AI stability. Letting neural networks misperceive and misjudge the real-world environment can be a big problem in safety-critical applications such as autonomous navigation. ANN attacks target automated navigation and berthing systems — key autonomous ship technologies. If the process of taking sensor data as input and deriving output values is compromised, autonomous ships cannot continue normal navigation. Since neural-network-based algorithms are widely used in high-stakes applications, security issues have received widespread attention [39].</p>
+    <h3>3.4. Communication Protocol Attack</h3>
+    <p>Autonomous ship systems can give complete ship control to attackers in cyberattacks owing to high network connectivity for land communication [42,43]. As illustrated in Figure 10 of the original paper, a communication protocol attack targets communications used by autonomous ships. Various protocols are used inside and outside the ship: the Ethernet bus (most common land-based network), 4G/5G wireless networks, and the ModBus protocol (often used in control systems). CAN bus, a message-based protocol widely used in vehicles, is also used. Finally, the NMEA protocol for transmitting and receiving ship sensor data is used. Since in-ship CAN bus and NMEA protocols were not designed with security consideration, the protocols themselves are vulnerable. CAN bus and NMEA communication sends and receives data without encryption or authentication, so if an attacker gains network access, all communication data can be stolen. CAN and NMEA protocols without authentication devices are vulnerable to man-in-the-middle attacks, letting attackers manipulate or collect data in transit between systems.</p>
+  </section>
+
+  <section>
+    <h2>4. Security Requirements for Autonomous Ships</h2>
+    <h3>4.1. Security Requirement Engineering</h3>
+    <p>Security requirements are formulated to achieve security objectives, such as ensuring users and applications are identified and authenticated, only authorized data and services can be accessed, and intrusion attempts by unauthorized users are detected. To achieve these general security goals, 12 security requirements including identification, authentication, and authorization can be formulated [46]. According to Salini et al. [47], security requirements should be considered at an early stage of the SDLC process. The importance of engineering security requirements for software systems is still underestimated; they are analyzed only later in development. To achieve business goals and build a software system protecting information, identifying and specifying security requirements is essential. Thorough security requirements analysis is therefore crucial for software system development, improving development quality and ensuring an available vulnerability-free system. The SQUARE methodology employed in this study is useful for documenting and analyzing field systems' security aspects and supports future improvements and system modifications.</p>
+    <h3>4.2.1. Agreeing on Definitions</h3>
+    <p>The first task is agreeing on a common set of security definitions, defined by considering an organization's security policy and vision. Given differences in expertise and experience between security requirement engineers and stakeholders, any term can carry different definitions among participants, so these perspective differences must be resolved. Ship cyber-resilience (IACS UR E26) and cyber requirements for ship cyber-resilience define terms as shown in Table 1 of the original paper. For example, the attack surface is the set of all possible points where an unauthorized user can access a system and extract data, comprising two categories: digital (all hardware and software connecting to an organization's network — applications, code, ports, servers, websites) and physical (all endpoint devices an attacker can physically access — desktops, hard drives, laptops, mobile phones, removable drives). After finalizing each term's definition, a complete glossary is defined and shared with stakeholders.</p>
+    <h3>4.2.2. Identify Security Goals</h3>
+    <p>Autonomous ships face potential cyberthreats in AI, sensor data, networks, and more, which can allow cyberattacks to succeed. In Section 3 we presented cyberattack scenarios for autonomous ships; through these, five security objectives were established: Integrity (ensure sensor data integrity), Reliability (ensure sensor data reliability), Stability (ensure AI stability), Access control (control the ship network's access), and Availability (ensure autonomous navigation systems' availability).</p>
+    <h3>4.2.3. Develop Artifacts</h3>
+    <p>In the existing ship design process, each design drawing is produced through conceptual, basic, and detailed designs. Here, autonomous navigation systems and components were identified via autonomous-ship case studies rather than the original design process. As shown in Figure 11 of the original paper, the attacker's attack path in network modeling was identified using the earlier-devised autonomous-ship attack scenarios via network logical modeling [49]. Cyber attackers may attempt dataset and neural network attacks in Zones 1 and 2, and sensor data and protocol attacks in Zones 3 and 4. In each attack scenario, vulnerable autonomous-ship attack vectors include AI models, sensors, neural networks, and weak protocols. The Section 3 scenarios are AI model attack methods not occurring on existing ships but possible on autonomous ships. As shown in Figure 12 (autonomous ship attack tree), spoofing attacks on sensor data such as jamming will further increase on autonomous ships due to increased connectivity. Additionally, to replace misuse cases, cyberattack scenarios for autonomous ships were devised as in Table 2 through cyberthreats on ship systems and AI.</p>
+    <h3>4.2.4. Perform Risk Assessments</h3>
+    <p>According to onboard use and application of computer-based systems (IACS UR E22), autonomous navigation systems of autonomous ships can be classified as Category III regarding general system capability classification or malfunction impact degree, with sensors and controllers below Category III classifiable as Category II. In the Figure 12 attack tree, autonomous-ship cyberthreats can be classified accordingly. Referring to the recommendation on incorporating cyber risk management into safety management systems (IACS No. 171), threats were assessed considering their impact on autonomous ships and attacker accessibility. Reflecting IACS UR E22 classification by system capabilities, threats were classified on a 1–3 scale as shown in Table 3 of the original paper, listing potential threats (spoofing, denial of service, jamming, obfuscation, covert channel attacks, steganography, weak encryption, authentication, firmware update, data corruption on systems; poisoning, evasion, inversion, model extraction, buffer overflow, brute forcing, malware injection attacks on AI) against the four attack scenarios.</p>
+    <h3>4.2.5. Select Elicitation Technique</h3>
+    <p>Although SQUARE introduced several suitable derivation techniques, instead of SQUARE's techniques this study used scenario-based requirements analysis to formulate security requirements based on analyzed potential threats and attack scenarios. Scenario-based requirements analysis describes system requirements through scenarios extracted from real-world experience or accessible examples. Among scenario-based requirements analysis methodologies, the SCRAM methodology relies on four techniques [51]: prototype or concept demonstration (core concepts provide reproducible design artifacts); scenario (designed artifacts let users relate their work to the design in the user environment); design rationale (designer reasoning is open to users to encourage participation in decision-making); and requirement priorities identification. Combined with the requirements formulation process, the final method comprises: (1) identification of initial requirements and domain analysis; (2) description of concepts and property setting; (3) derivation and analysis of requirements; (4) validation of requirements.</p>
+    <h3>4.2.6. Elicit Security Requirements</h3>
+    <p>Autonomous-ship potential threats were analyzed to devise various attack scenarios. To formulate security requirements for attack scenarios and security risks, security requirements derivation techniques and other artifacts formulated requirements in terms of what autonomous navigation systems should do: R-01 the sensor's identification-data verification function should be provided; R-02 sensor data transmission must be protected against tampering; R-03 in a denial-of-service attack, minimum ship-operation functions should be provided; R-04 security design must eliminate neural network defects; R-05 an encryption mechanism should protect communication data; R-06 AI must be trained using reliable training data; R-07 unauthorized network connections should be blocked; R-08 protective measures must prevent malware.</p>
+    <h3>4.2.7. Categorize Requirements</h3>
+    <p>Initially formulated requirements are classified, with naming and categorization. Formulated requirements are grouped with a unique group name created to list requirements. Table 5 of the original paper groups requirements into security objectives such as availability, integrity, reliability, stability, and access control: Integrity (R-02 sensor data transmission tamper protection; R-05 encryption mechanism for communication data); Reliability (R-01 sensor identification-data verification; R-04 security design eliminating neural network defects; R-05 encryption); Stability (R-04 security design; R-06 reliable training data; R-08 malware prevention); Access control (R-07 blocking unauthorized connections; R-08 malware prevention); Availability (R-03 minimum ship-operation functions).</p>
+    <h3>4.2.8. Prioritize Requirements</h3>
+    <p>The IACS UR E22 system category classifies systems whose failure immediately threatens humans, ship safety, and the environment as Category III, the highest class, while Category I, the lowest, covers systems whose failure poses no threat. Requirement priority is therefore determined based on high availability. According to E22 system categorization and risk assessment results, requirements are prioritized as shown in Table 6 of the original paper.</p>
+    <h3>4.2.9. Requirements Inspection</h3>
+    <p>Devised requirements were mapped onto IACS requirements as shown in Table 7 of the original paper: High priority (R-02 communication integrity; R-03 denial-of-service protection; R-04 security functionality verification; R-05 communication integrity; R-08 malicious code protection), Medium (R-01 software process and device identification and authentication; R-06 input validation; R-07 network and security configuration settings), Low (R-02). Each IACS UR E27 requirement follows IEC 62443-3-3, describing security requirements for industrial control systems. The mapping confirms the eight derived requirements cover the autonomous-navigation-relevant E27 controls, giving them a strong regulatory foundation.</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>Ship sensor data affects AI perception, judgment, and control, and AI in turn affects ship control. In autonomous ships, individual systems are not independent; each system plays its own role and generates data affecting other systems. Cybersecurity threats can affect not just one system but the entire autonomous ship. Autonomous ships are anticipated to reduce operating costs and maritime accidents, and if an accident is caused by a cyberattack on an autonomous ship, its goals will be hard to achieve. Hardenings such as logical access control, separation of duties, and enhanced account security should be relatively easy to apply. However, if hardening cannot address the problem due to ships' nature, even when a security defect is discovered, great effort and money are necessary for appropriate measures. Therefore, to prevent cyberattacks, each ship system component must be designed so as not to affect other systems during cyber breaches.</p>
+    <p>In this study, we investigated vulnerabilities and threats in ship systems and AI technologies, and analyzed potential cyberthreats to AI technologies used on autonomous ships. As autonomous ships are still at the research stage, more advanced systems are expected, and security requirements must evolve with them. The study shows that the SQUARE methodology — through its nine steps from agreeing on definitions to requirements inspection — provides a structured, repeatable path for deriving autonomous-ship security requirements grounded in realistic attack scenarios and tied to existing regulatory frameworks such as IACS UR E26/E27 and IEC 62443-3-3.</p>
+  </section>
+
+  <section>
+    <h2>References</h2>
+    <p>Full reference list (51 sources) available in the <a href="https://www.mdpi.com/1424-8220/23/11/5033/pdf" target="_blank">original PDF</a>.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s23115033">10.3390/s23115033</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('toggle-' + (lang === 'both' ? 'both' : lang)).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

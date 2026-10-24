@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التقييم النوعي للمخاطر للسفن الرقمية باستخدام عملية التحليل الهرمي — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Qualitative Risk Assessment of a Digitalized Ship and Its Improvement Plan Using an Analytic Hierarchy Process</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التقييم النوعي للمخاطر لسفينة رقمية وخطة تحسينها باستخدام عملية التحليل الهرمي</h2>
+
+  <div class="paper-meta">
+    <span>👤 Yu-Jeong Yoo, Hyoung-Seon Park</span>
+    <span>📄 JMSE, 2021 · Vol. 9, Article 565</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse9060565">10.3390/jmse9060565</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>نشرت المنظمة البحرية الدولية (IMO) إرشادات إدارة المخاطر السيبرانية البحرية في عام 2017 لتعزيز الأمن السيبراني في ضوء السفن الرقمية. وضمن هذه الإرشادات، توصي المنظمة كل دولة علم بدمج وإدارة المسائل المتعلقة بالمخاطر السيبرانية في نظام إدارة السلامة للسفن (SMS) وفق مدونة إدارة السلامة الدولية (ISM Code) قبل أول تحقق سنوي يقع في 1 يناير 2021 أو بعده. وتهدف هذه الورقة إلى تحديد مكونات المخاطر السيبرانية في القطاع البحري التي يجب أن يديرها نظام SMS في عام 2021، واشتقاق أولويات خطط تحسين الثغرات عبر تقييم مفصّل للمخاطر. وتحقيقًا لذلك، أُجري تقييم نوعي للمخاطر (RA) لمكونات المخاطر الأمنية الإدارية والتقنية والمادية بناءً على المعايير الصناعية والدولية الواردة في إرشادات المنظمة البحرية الدولية. وبناءً على مصفوفة المخاطر من نتائج تحليل التقييم، أُجري مسح حول تحسين الثغرات السيبرانية في القطاع البحري، وحُلّلت النتائج باستخدام عملية التحليل الهرمي (AHP) لاشتقاق تدابير أولوية خطط التحسين.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>مع تقدم التقنية، تعتمد أنظمة السفن أكثر فأكثر على الرقمنة والتكامل والأتمتة، ومن ثم تتطلب إدارة للمخاطر السيبرانية [1–3]. علاوة على ذلك، فإن السفن المجهزة بتقنية المعلومات (IT) والتقنية التشغيلية (OT) متصلة بشبكات خارجية، مما يزيد احتمال الهجمات السيبرانية عبر الوصول غير المصرح به إلى أنظمة السفن أو العدوى بالشيفرات الخبيثة [4–10]. ويمكن للهجمات السيبرانية في البحر أن تؤثر سلبًا على خطوط الشحن الداعمة لعمليات سلامة السفن. ففي فبراير 2017، أدى اختراق نظام ملاحة سفينة حاويات سعة 8250 حاوية نمطية إلى سيطرة القراصنة السيبرانيين عليها لمدة 10 ساعات، كما أُبلغ عن حالات هجمات بحرية وبرية أخرى [11–18]. وفي يونيو 2017، تعرض نظام تقنية المعلومات في محطة Maersk Line — أكبر شركة شحن في العالم — لهجوم ببرنامج الفدية NotPetya، فتوقفت سفن الحاويات التابعة لها و76 محطة مينائية حول العالم عن العمل، وكلّفت عملية التعافي اللاحقة ما يصل إلى 300 مليون دولار أمريكي [19].</p>
+    <p>استنادًا إلى مسح لأصحاب المصلحة البحريين الرئيسيين في أكثر من 50 دولة، أعلن تقرير مرصد القضايا البحرية العالمية 2018 أن «الهجمات السيبرانية وسرقة البيانات» سيكون لهما الأثر الأكبر على التجارة البحرية خلال السنوات العشر التالية، إذ بلغ مؤشر الأثر المتوقع 3.61 ومؤشر الاحتمال 3.67 — وهو الأعلى — بينما كان مؤشر الجاهزية الأدنى عند 2.34 [20، 21]. ويمكن لهذا التباين بين الأثر والاحتمال المرتفعين والجاهزية المنخفضة أن يسبب أضرارًا اقتصادية جسيمة. ووفق Cybersecurity Ventures (2020)، يُتوقع أن تصل تكاليف الجرائم السيبرانية العالمية إلى 6 تريليونات دولار بحلول 2021 وأن تنمو بمعدل سنوي 15% لتصل إلى 10.5 تريليونات دولار بحلول 2025 [22].</p>
+    <p>تشمل البيئة السيبرانية على السفن تقنية المعلومات — المكونة من الحواسيب والحواسيب المحمولة والأجهزة اللوحية والموجّهات — والتقنية التشغيلية — المكونة من أنظمة التحكم والمستشعرات والمشغلات والرادارات — وكلها أهداف أولية للهجمات [3، 8، 23]. وقد اقترح Tam وJones [24] ثغرات سيبرانية محتملة وآثارها وسياسات وقائية، وقدّم Rodseth وBurmeister [25] مفهوم تقييم مخاطر للسفن غير المأهولة قائمًا على التحليل الرسمي للسلامة (FSA)، وحاول Chang وآخرون [26] قياس مستوى مخاطر فئات الأخطار الرئيسية للسفن السطحية ذاتية القيادة (MASS)، وحدد Svilicic وآخرون [27] مستوى مخاطر التهديدات السيبرانية لنظام ملاحي متكامل على متن السفن، وعرّف Awan وGhamdi [28] الثغرات في المكونات الرقمية لنظام الجسر المتكامل (IBS)، بينما راجع Park وآخرون [12] أربعة تهديدات سيبرانية مع خيارات ضبط المخاطر، واقترح Kang [29] أساليب تقنية لتعزيز أمن أنظمة السفن وفقًا لإرشادات القطاع [30]، وقدّم Miron وMuita [31] توصيات حول نماذج نضج القدرات السيبرانية، واقترح Kang وآخرون [32] وBae وآخرون [33] منهجيات ومعايير وطنية لتقييم القدرات السيبرانية. غير أن تدابير تعزيز الأمن السيبراني التي تعكس بصورة شاملة سياسات تراعي احتياجات أصحاب المصلحة وتحمي الجوانب التقنية والمادية لأنظمة السفن ما تزال ناقصة، لذا يلزم وضع خطط تحسين شاملة لتحديد الثغرات في ضوء إدخال السفن الرقمية مثل MASS.</p>
+    <p>إدراكًا للحاجة إلى مواجهة التهديدات السيبرانية على السفن الرقمية، ناقشت المنظمة البحرية الدولية الأمن السيبراني البحري واعتمدت في الدورة 98 للجنة السلامة البحرية (MSC) عام 2017 قرارًا حول إدارة المخاطر السيبرانية البحرية [36]. وبموجب هذا القرار، توصي المنظمة كل دولة علم بدمج المسائل المتعلقة بإدارة المخاطر السيبرانية في نظام SMS قبل أول تدقيق سنوي مستحق في 1 يناير 2021 أو بعده. وبدأت المنظمة أيضًا مناقشة كاملة حول السفن السطحية ذاتية القيادة (MASS) في الدورة 99 للجنة السلامة البحرية [34]، فعرّفت مستويات الاستقلالية الأربعة وأجرت تمرين تحديد النطاق التنظيمي (RSE) [35]، وأصدرت إرشادات مؤقتة لتجارب MASS [42]. وتهدف هذه الورقة إلى تحديد مكونات المخاطر السيبرانية التي يجب دمجها في نظام SMS وإدارتها، واشتقاق أولويات خطط التحسين للسفن الرقمية.</p>
+  </section>
+
+  <section>
+    <h2>2. المنهجية</h2>
+    <p>لتحديد أولويات خطط التحسين لمعالجة الثغرات السيبرانية في السفن الرقمية بالقطاع البحري، حُدّد 27 عامل خطر استنادًا إلى نظام تصنيف المخاطر المعروض في معايير ISO/IEC 27001 الدولية وإرشادات الصناعة [30، 40]. تحدد ISO/IEC 27001 متطلبات تقنية الأمن لنظام إدارة أمن المعلومات، بما فيها أهداف الضبط الداعمة لأمن المعلومات، ويعني الفشل في تحقيق هدف الضبط الفشل في حماية نظم المعلومات، ومن ثم يُصنف خطرًا ويُوصف في الجدول 1. وتنقسم هذه العوامل إلى ثلاث مجموعات رئيسية: المخاطر الإدارية (A1–A9)، والمخاطر التقنية (T1–T9)، ومخاطر الأمن المادي (P1–P9)، وتشمل عناصر مثل التوعية بحماية المعلومات (A1)، وضبط استخدام الوسائط المحمولة (A7)، وترقية العتاد والبرمجيات (A3)، وكشف الهجمات وحظرها (T3)، والتشفير عبر الشبكات الافتراضية الخاصة (T4)، وإعداد مناطق أمنية مادية (P1)، وحماية إمدادات الطاقة والكابلات (P5).</p>
+    <p>قيّم ستة خبراء أمنيين من هيئات التصنيف — بخبرة ميدانية في مهام التصديق السيبراني للسفن وشركات الشحن وأحواض بناء السفن بمتوسط خبرة 11.3 سنة — أهمية كل عامل من العوامل الـ 27 عبر تقييم المخاطر (RA) المحسوب كحاصل ضرب الاحتمال × الشدة، باستخدام مصفوفة مخاطر بمؤشر تكرار ومؤشر شدة. ثم قُيّمت أولويات التخفيف لأهم 12 خطرًا عبر مسح شمل 127 عاملًا في المجالات ذات الصلة (بنسبة استجابة 28%) باستخدام عملية التحليل الهرمي [43–46]. وتضمن المسح أسئلة تتيح للمستجيبين اختيار إجابات متعددة في سؤال واحد، فبلغ عدد المستجيبين المجدولين 117 (مسح إلكتروني: 41، ومسح ميداني: 76) كما يبين الجدول 2.</p>
+    <p>تقترح إرشادات المنظمة البحرية الدولية إدارة المخاطر السيبرانية بما يشمل إطار NIST للأمن السيبراني (التحديد-الحماية-الكشف-الاستجابة-التعافي) [38، 41]. ويجب أن تتضمن وظيفة التعافي خططًا لمرونة الأنظمة واستعادة عملها عند وقوع حادث سيبراني. لذلك، ورغم أن نتائج تقييم المخاطر للبند A9 (وضع خطط طوارئ للهجمات السيبرانية) كانت منخفضة عند 6.67 (مستوى منخفض)، فقد أُدرج في الاستبيان النهائي لإجراء عملية التحليل الهرمي في مجال الأمن الإداري بموجب مراجعة فريق الخبراء. وحُلّلت الأهمية النسبية للعوامل حسب مجال الأمن بنسبة اتساق أقل من 0.066 (نسبة استجابة فعالة 28.2%) كما يبين الجدول 5، باستخدام مقاييس IEC 31010 لتقنيات التقييم [50] وإرشادات الأمن السيبراني البحري للسجل الكوري [51] وأساليب تحسين مؤشر الاتساق في عملية التحليل الهرمي [52، 53].</p>
+  </section>
+
+  <section>
+    <h2>3. نتائج التحليل</h2>
+    <p>أُجري تقييم المخاطر السيبرانية في القطاع البحري على فريق الخبراء المكون من ستة أشخاص، فراجعوا 27 بندًا وأجروا المسح الأول (تقييم RA)، ويبين الجدول 2 هذا المسح الأول ونظرة عامة على الاستبيان الثاني لاشتقاق أولويات خطط التحسين. وجاءت نتائج متوسطات قيم RA من مسوحات الخبراء وفق مصفوفة المخاطر ورموز التعريف (A1–A9 وT1–T9 وP1–P9) كما يبين الشكلان 4 و5: ففي مجال الأمن الإداري سجل البند A7 (سياسة ضبط الوسائط المتنقلة مثل USB والحواسيب المحمولة) أعلى قيمة عند 17، يليه A3 (ترقية العتاد والبرمجيات وصيانتها) عند 14.17. وفي مجال الأمن التقني سجل البند T6 (تركيب برمجيات الحماية من الشيفرات الخبيثة وملفات التصحيح الدورية) أعلى قيمة عند 16.5. وفي مجال الأمن المادي سجل البند P1 (إعداد منطقة أمنية مادية وضبط الوصول) أعلى قيمة عند 12، لكن معظم البنود وقعت دون مستوى المخاطر المتوسط (11–15)، أي منخفضة نسبيًا مقارنة بالمجالين الإداري والتقني.</p>
+    <p>بلغ متوسط تقييم المخاطر المفصّل الأعلى في المجال التقني عند 11.35، يليه المجال الإداري عند 11.28، ثم المجال المادي عند 9.02 فقط، مما يدل على انخفاض المخاطر فيه نسبيًا. ومن بين 27 بندًا، ظهر بندان عاليَا المخاطر (RA بين 16–20) هما A7 وT6، و15 بندًا متوسط المخاطر (RA بين 11–15) منها T5 وما يليه حتى P9، وتسعة بنود منخفضة المخاطر (RA بين 6–10)، وكان المجال المادي الأكثر حضورًا بين المنخفضة كما يبين الشكل 5. وتؤكد هذه النتائج أن المخاطر الإدارية والتقنية هي الأكبر وتستحق الأولوية في التخفيف.</p>
+    <p>أُجري المسح الثاني المتضمن 12 بندًا من الجدول 4 بين 117 عاملًا بحريًا وأمنيًا (إلكتروني: 41، ميداني: 76) لتحديد أولويات تحسين الثغرات السيبرانية في القطاع البحري. وأظهر تحليل النتائج أهمية العوامل مفصّلة حسب مجال الأمن بنسبة اتساق أقل من 0.066 كما يبين الجدول 5: إذ كان وزن الأهمية النسبية الأعلى للأمن التقني عند 0.377، يليه الأمن الإداري عند 0.363، بينما بلغ وزن الأمن المادي 0.281، مما يدل على أنه أقل أهمية نسبيًا من المجالين الآخرين. وجاءت أهم البنود فرادى: البند I-1 (التوعية والتعليم) في المجال الإداري أولًا، يليه II-1 (ضبط الوصول الشبكي) وII-2 (كشف الهجمات السيبرانية وحظرها) في المجال التقني.</p>
+    <p>وبمقارنة المجموعتين، بلغ متوسط قيمة RA لفريق الخبراء 11.35 مؤكدًا أهمية الأمن التقني، بينما منحت مجموعة العاملين ذات المجال وزن أهمية قريبًا عند 0.363 للأمن الإداري. وكانت نتائج RA للبند A7 (ضبط استخدام الوسائط المحمولة) الأعلى لدى الخبراء عند 17 (الأول من 27 بندًا)، بينما جاءت نتائج عملية التحليل الهرمي للعاملين للبند نفسه رابعة من 12 بندًا. في المقابل، حصل البند A1 (التوعية بحماية المعلومات والتعليم للعاملين على متن السفن وعلى البر) على مخاطر متوسطة عند 12.5 لدى الخبراء، لكنه احتل المرتبة الأعلى في نتائج العاملين، مما يدل على اختلاف الوعي بين المجموعتين.</p>
+  </section>
+
+  <section>
+    <h2>4. المناقشة</h2>
+    <p>حُدّدت عوامل المخاطر السيبرانية في مجالات الأمن الإداري والتقني والمادي للقطاع البحري استنادًا إلى الأدبيات وآراء الخبراء، ودُرست أهميتها النسبية عبر مسح وتحليل لاحق لاشتقاق أولويات خطط التحسين. فحصلت التوعية والتدريب في حماية المعلومات — وهما بند في الأمن الإداري — على أعلى أهمية وأولوية، لكن المتوسط المرجح الأعلى كان للمجال التقني، مما يدل على الأهمية الكبيرة لبنود هذا المجال إلى جانب المجال الإداري. وأظهر تقييم المخاطر أن عوامل الأمن الإداري (A1–A5 وA7) بلغت مستوى متوسطًا (RA بين 11–15) أو أعلى، مما يدل على التعرض للخطر، وكذلك ثلاثة بنود تقنية (T1 وT5–T6)، بينما بلغ بند مادي واحد فقط (P1) المستوى المتوسط، فكان هذا المجال الأقل خطرًا. وكان الخطر الأعلى في الأمن التقني (مؤشر RA بالمتوسط: 11.35)، يليه الإداري (11.28)، بينما كان المادي منخفضًا نسبيًا (9.2).</p>
+    <p>ووجد تحليل عملية التحليل الهرمي الهادف إلى أولويات خطط التحسين أن المجال التقني حصل على أعلى وزن أهمية (0.377)، يليه الإداري (0.363). وفرادى، كانت أهم البنود: I-1 (التوعية والتعليم) في الأمن الإداري، يليه II-1 (ضبط الوصول الشبكي) وII-2 (كشف الهجمات السيبرانية وحظرها) في الأمن التقني. ومن محدوديات تقييم المخاطر النوعي هذا أنه لا يقدم مستويات مخاطر كمية لجميع العناصر المعرضة في أنظمة IT/OT للسفن، ويلزم إجراء دراسات إضافية بأساليب تقييم كمية تشير إلى المعايير الصناعية المستخدمة لتقييم الثغرات الأمنية في أنظمة الحواسيب لحساب المخاطر الكمية. وقد بدأت الحكومة الكورية في 2020 مشروع السفن السطحية ذاتية القيادة (KASS) لتطوير أربع تقنيات أساسية مع 13 تقنية تفصيلية بحلول 2025، بما فيها تطوير تقنية الأمن السيبراني [54] عبر بوابات أمنية وأنظمة إدارة أمنية متكاملة يُقيَّم أداؤها عبر اختبار الاختراق، ومع تقدم المشروع ينبغي إجراء تقييمات كمية لسفن MASS الفعلية بدل التقييمات النوعية مستقبلًا.</p>
+    <p>توصي إرشادات المنظمة البحرية الدولية حول إدارة المخاطر السيبرانية البحرية بأن تنعكس المسائل المتعلقة بالأمن الإداري لإدارة المخاطر السيبرانية في أنظمة إدارة السلامة (SMS) لمدونة ISM [39] قبل أول تحقق سنوي بعد يناير 2021 [38]. وقد وضعت الحكومة الكورية معايير مدونة ISM في المادة 46 من قانون السلامة البحرية (إنشاء أنظمة إدارة السلامة للسفن) والمادة 15 من المرسوم التنفيذي (السفن الخاضعة للأنظمة) والمادة 16 (معايير تأهيل الأشخاص المعينين) [55، 56]، لكن لا يوجد أساس قانوني لفرض مسائل الأمن السيبراني بموجب القانون الحالي، وبما أن المنظمة توصي بمراجعة مدونة ISM لتشمل إدارة المخاطر السيبرانية، فينبغي أن تستعد القوانين المحلية لإجراءات قانونية تشمل هذه المسائل. كما ناقشت المنظمة شمول حماية الأصول السيبرانية المادية في الخطة الأمنية للسفن (SSP) لمدونة ISPS [57، 58]، ولدى الحكومة الكورية أساس قانوني لتغطية تدابير الأمن المادي للسفن والمرافق المينائية (كما تقتضي ISPS) في قانون أمن السفن والمرافق المينائية الدولي ومرسومه التنفيذي [59، 60]، لكن مدونات ISPS تركز على الأمن المادي ويجب توسيعها ومراجعتها لتغطي المجالين الإداري والتقني لمدونة ISM كتشريع واحد.</p>
+    <p>ومن الضروري أيضًا مراعاة أولويات خطط التحسين من نتائج عملية التحليل الهرمي — وهي الأولويات الأربع الأولى: I-1 (التوعية والتعليم) وI-2 (ضبط استخدام الوسائط المحمولة) في الأمن الإداري، وII-1 (ضبط الوصول الشبكي) وII-2 (كشف الهجمات السيبرانية وحظرها) في الأمن التقني — عند مراجعة القانون الحالي ومناقشته للتعديل. فبالنسبة للبندين I-1 وI-2، يجب أن يكون التدريب الأمني الدوري إلزاميًا للعاملين في نظم معلومات الأمن، واتخاذ تدابير تضمن استخدام الوسائط المصرح بها فقط. وبالنسبة للبندين II-1 وII-2، يجب وضع خطة لتطبيق تقنيات ضبط تتيح الوصول الشبكي للأنظمة المصرح بها فقط عبر المصادقة (أو التصديق من هيئة تصنيف)، وتطبيق تقنيات الكشف والحظر ضد الهجمات والتهديدات السيبرانية.</p>
+  </section>
+
+  <section>
+    <h2>5. الاستنتاجات</h2>
+    <p>ضمن هدف تعزيز أنظمة الأمن السيبراني في القطاع البحري، نشرت المنظمة البحرية الدولية «إرشادات إدارة المخاطر السيبرانية البحرية» في 2017، مضافة إلى المعيار الدولي ISO ومعايير المعهد الوطني الأمريكي للمعايير والتقنية وإرشادات الصناعة لمنظمات مالكي السفن. وبموجب إرشادات المنظمة، تدمج كل دولة علم المسائل السيبرانية وتديرها في نظام SMS لمدونة ISM قبل أول تدقيق سنوي مستحق في 1 يناير 2021 أو بعده. وفي هذه الورقة، ومن أجل اشتقاق أولويات خطط التحسين السيبراني للسفن الرقمية، قُسّمت بنود الثغرات السيبرانية في القطاع البحري إلى مجالات الأمن الإداري والتقني والمادي استنادًا إلى إرشادات الصناعة والمعايير الدولية، بهدف تحديد القضايا السيبرانية وإجراء تحليل للثغرات حول العوامل التي يجب دمجها في نظام SMS للسفن وإدارتها في 2021.</p>
+    <p>استُخدمت مصفوفة مخاطر لتحليل الثغرات السيبرانية البحرية لإجراء تقييم نوعي (RA) استنادًا إلى عوامل الخطر لكل مجال أمني، مؤلفًا من مؤشر تكرار ومؤشر شدة. وعلاوة على ذلك، ولاشتقاق بنود مسح أولوية خطط التحسين لعوامل الخطر السيبراني في القطاع البحري، عُكست بنود المخاطر العالية من نتائج مصفوفة المخاطر في بنود المسح النهائية لتحليل عملية التحليل الهرمي بعد مراجعة الخبراء. ويجب أن يغطي أي تقييم للمخاطر السيبرانية المخاطر الإدارية والتقنية إلى جانب الأمن المادي، إذ أظهر مسح الخبراء الأول أن المجالين الأولين يمثلان أكبر المخاطر، بينما أشار مسح العاملين الثاني إلى أن أفراد المجتمع البحري سيمنحونهما أولوية أعلى للتخفيف.</p>
+    <p>والأولويات الثلاث الأولى للتخفيف من المخاطر السيبرانية البحرية هي: زيادة التوعية بالمخاطر وتعليم العاملين تدابير التخفيف؛ وضبط الوصول إلى الشبكات السيبرانية؛ وتحسين أنظمة كشف التهديدات وحظرها. وقد اقتُرحت عدة توصيات لخطط التحسين ذات الصلة بالأمن السيبراني في القطاع البحري في ظل قيود النظام القانوني المحلي ووفق نتائج عملية التحليل الهرمي. ويلزم إجراء دراسات لاحقة تعتمد أساليب تقييم كمية — مثل المعايير الصناعية المستخدمة لتقييم الثغرات الأمنية في أنظمة الحواسيب — لتقييم عوامل الأمن السيبراني مستقبلًا في أنظمة IT/OT.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>The International Maritime Organization (IMO) published the Guidelines on Maritime Cyber Risk Management in 2017 to strengthen cybersecurity in consideration of digitalized ships. As part of these guidelines, the IMO recommends that each flag state should integrate and manage matters regarding cyber risk in the ship safety management system (SMS) according to the International Safety Management Code (ISM Code) before the first annual verification that takes place on or after 1 January 2021. The purpose of this paper is to identify cybersecurity risk components in the maritime sector that should be managed by the SMS in 2021 and to derive priorities for vulnerability improvement plans through itemized risk assessment. To this end, qualitative risk assessment (RA) was carried out for administrative, technical, and physical security risk components based on industry and international standards, which were additionally presented in the IMO guidelines. Based on the risk matrix from the RA analysis results, a survey on improving cybersecurity vulnerabilities in the maritime sector was conducted, and the analytic hierarchy process was used to analyze the results and derive improvement plan priority measures.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>As technology advances, more and more ship systems rely on digitalization, integration, and automation and thus require cyber risk management [1–3]. Moreover, ships equipped with information technology (IT) and operational technology (OT) are connected to external networks, increasing the likelihood of cyberattacks in the form of unauthorized access to ship systems or malicious code infections [4–10]. Cyberattacks at sea can have adverse effects on the shipping lines supporting the safety operations of ships and vessels. For example, in February of 2017, the hacking of an 8250 TEU container ship's navigation system resulted in 10 h of the ship being controlled by cyber pirates, and other cases of offshore and shore cyberattacks also have been reported [11–18]. In June 2017, the port terminal IT system of Maersk Line, the world's largest shipping company, was also attacked by the NotPetya ransomware, which led Maersk's container ships and its 76 port terminals around the world to cease working, and the subsequent recovery process cost up to USD 300 million [19].</p>
+    <p>Based on a survey of key maritime stakeholders in more than 50 countries, the Global Maritime Issues Monitor 2018 report announced that "cyberattacks and data theft" would have the greatest impact on sea trade over the next 10 years, with an expected impact index of 3.61 and a likelihood index of 3.67 — the highest — while the preparedness index was the lowest at 2.34 [20, 21]. This gap between high impact and likelihood and low preparedness could cause serious economic damage. According to Cybersecurity Ventures (2020), global cybercrime costs are expected to reach up to USD 6 trillion by 2021 and grow at an annual average rate of 15 percent to reach USD 10.5 trillion by 2025 [22].</p>
+    <p>The cyber environment on ships includes IT — comprising PCs, laptops, tablets and router switches — and OT — comprising control systems, sensors, actuators and radars — all primary targets of cyberattacks [3, 8, 23]. Tam and Jones [24] proposed possible cyber vulnerabilities, impacts and preventive policies; Rodseth and Burmeister [25] presented a formal safety analysis (FSA)-based risk assessment concept for an unmanned ship; Chang et al. [26] tried to quantify major hazard risk levels for Maritime Autonomous Surface Ships (MASS); Svilicic et al. [27] proposed cyber threat risk levels for a shipboard integrated navigational system; Awan and Ghamdi [28] identified vulnerabilities in digital components of an integrated bridge system (IBS); Park et al. [12] reviewed four cyber threats with risk control options; Kang [29] suggested technical methods to enhance ship system cybersecurity per industry guidelines [30]; Miron and Muita [31] recommended cybersecurity capability maturity models; and Kang et al. [32] and Bae et al. [33] proposed national cyber capability assessment methodologies and criteria. Yet comprehensive cybersecurity enhancement measures reflecting stakeholder needs and protecting technical and physical aspects of onboard systems remain lacking, so comprehensive improvement plans are needed to identify vulnerabilities with the introduction of digitalized ships such as MASS.</p>
+    <p>Recognizing the need to respond to cyber threats on digitalized ships, the IMO discussed maritime cybersecurity and adopted a resolution on maritime cyber risk management at the 98th Maritime Safety Committee in 2017 [36]. Per this resolution, the IMO recommends each flag state integrate cyber risk management matters into the ship SMS before the first annual audit due on or after 1 January 2021. The IMO also began a full MASS discussion at the 99th MSC [34], defining four autonomy levels and carrying out a regulatory scoping exercise (RSE) [35], plus interim MASS trial guidelines [42]. This paper identifies the cybersecurity risk components to integrate into and manage via the ship SMS and derives digitalized-ship improvement plan priorities.</p>
+  </section>
+
+  <section>
+    <h2>2. Methodology</h2>
+    <p>To derive improvement plan priorities addressing cybersecurity vulnerabilities in digitalized ships in the maritime sector, 27 risk factors were identified based on the risk classification system in the ISO/IEC 27001 international standards and industry guidelines [30, 40]. ISO/IEC 27001 specifies security technique requirements for an information security management system, including control objectives supporting information security; failure to meet a control objective means failing to protect information systems, so it is classified as a risk and described in Table 1. These fall into three main groups: administrative risks (A1–A9), technical risks (T1–T9), and physical security risks (P1–P9), covering items such as information protection awareness (A1), portable media control (A7), hardware/software upgrades (A3), attack detection and blocking (T3), VPN encryption (T4), physical security zoning (P1), and power supply and cable protection (P5).</p>
+    <p>Six security experts from classification societies — with field experience in cyber certification tasks for ships, shipping companies and shipyards averaging 11.3 years — assessed each of the 27 factors via risk assessment (RA) computed as likelihood × severity, using a risk matrix of occurrence-frequency and severity indices. Priorities for mitigating the 12 most important risks were then assessed via a survey of 127 related-field workers (28% response rate) using the analytic hierarchy process [43–46]. The survey allowed multiple-choice answers per question, yielding 117 tabulated respondents (online: 41, field: 76) as shown in Table 2.</p>
+    <p>The IMO guidelines propose cyber risk management including the NIST cybersecurity framework (Identify-Protect-Detect-Respond-Recover) [38, 41]. The Recover function should include resilience and restoration plans for cybersecurity incidents. Therefore, although the RA results for A9 (establish contingency plans for cyberattacks) were low at 6.67 (low risk), it was included in the final AHP questionnaire for the administrative security area following expert group review. Itemized importance by security area was analyzed with a consistency ratio below 0.066 (effective response rate 28.2%) as shown in Table 5, drawing on IEC 31010 assessment techniques [50], Korean Register maritime cybersecurity guidelines [51], and AHP consistency-improvement methods [52, 53].</p>
+  </section>
+
+  <section>
+    <h2>3. Analysis Results</h2>
+    <p>A cybersecurity risk assessment was conducted on the six-person expert group, who reviewed the 27 survey items and performed the first survey (RA assessment); Table 2 shows this first survey plus an overview of the second questionnaire for deriving improvement plan priorities. Mean RA values per the risk matrix and identification codes (A1–A9, T1–T9, P1–P9) are shown in Figures 4 and 5: in administrative security, A7 (mobile media control policy such as USB, mobile PC) scored highest at 17, followed by A3 (hardware/software upgrade and maintenance) at 14.17. In technical security, T6 (malicious-code protection software installation and periodic patch files) scored highest at 16.5. In physical security, P1 (physical security zone setup and access control) scored highest at 12, but most items lay below the medium risk level (11–15) — relatively low versus the administrative and technical areas.</p>
+    <p>The itemized RA average was highest in technical security at 11.35, followed by administrative security at 11.28, and only 9.02 for physical security, indicating relatively low risk there. Of the 27 items, 2 showed high risk (RA 16–20) — A7 and T6 — and 15 showed medium risk (RA 11–15) including T5 through P9, while nine items appeared low risk (RA 6–10), with physical security most frequent among them as shown in Figure 5. These results confirm that administrative and technical risks are the largest and deserve mitigation priority.</p>
+    <p>The second survey with the 12 items of Table 4 was conducted among 117 maritime and security workers (online: 41, field: 76) to prioritize maritime cybersecurity vulnerability improvements. Analysis produced itemized importance by security area with a consistency ratio below 0.066 as shown in Table 5: relative importance was highest for technical security at 0.377, followed by administrative security at 0.363, while physical security at 0.281 is relatively less important. Individually, the top items were I-1 (awareness and education) in administrative security, followed by II-1 (network access control) and II-2 (cyberattack detection and blocking) in technical security.</p>
+    <p>Comparing the groups, the expert group's mean RA of 11.35 confirmed technical security as most important, while the worker group gave the administrative area a close importance weight of 0.363. Experts' RA for A7 (portable media control) was highest at 17 (first of 27 items), whereas workers' AHP results ranked the same item fourth of 12. Conversely, A1 (information protection awareness and education for onboard and onshore staff) carried medium risk of 12.5 among experts but ranked highest in worker results, indicating a difference in consciousness between the two groups.</p>
+  </section>
+
+  <section>
+    <h2>4. Discussion</h2>
+    <p>Cybersecurity risk factors in the maritime sector's administrative, technical and physical security areas were identified from literature and expert opinion, and their relative significance studied via survey and analysis to set vulnerability improvement plan priorities. Information protection awareness and training — an administrative security item — gained the highest importance and priority, yet the technical area carried the highest average weighting, showing the significant importance of its items alongside administrative ones. Risk assessment showed administrative factors (A1–A5, A7) at medium level (RA 11–15) or higher, indicating vulnerability, as did three technical items (T1, T5–T6), while only one physical element (P1) reached medium level — the lowest-risk area. Risk was highest in technical security (mean RA index: 11.35), followed by administrative (11.28), with physical relatively low (9.2).</p>
+    <p>The AHP analysis for improvement plan priorities found technical security with the highest importance weight (0.377), followed by administrative (0.363). Individually, the top items were I-1 (awareness and education) in administrative security, followed by II-1 (network access control) and II-2 (cyberattack detection and blocking) in technical security. A limitation of this qualitative RA is that it yields no quantitative risk levels for all vulnerable elements of a ship's IT/OT systems; further studies using quantitative assessment methods referencing industry standards for computer system security vulnerability assessment are required to compute quantitative risks. The Korean government launched the Korea Autonomous Surface Ship (KASS) project in 2020 to develop four core technologies with 13 detailed element technologies by 2025, including cybersecurity technology development [54] via security gateways and integrated security management systems verified through penetration testing; as KASS progresses, quantitative assessments of actual MASS ships should be carried out instead of qualitative cyber risk assessments.</p>
+    <p>The IMO's maritime cyber risk management guidelines recommend that administrative security matters for cyber risk management be reflected in ISM Code safety management systems (SMSs) [39] before the first annual verification after January 2021 [38]. Korea established ISM Code standards in Article 46 of the Maritime Safety Act (safety management systems for vessels), Article 15 of its Enforcement Decree (vessels subject to systems) and Article 16 (designated-person qualification standards) [55, 56], yet no legal basis forces cybersecurity matters under current law; since the IMO recommends revising the ISM Code to include cyber risk management, domestic laws should prepare legal procedures covering cyber risk management. The IMO also discussed covering physical cyber-asset protection in the Ship Security Plan (SSP) of the ISPS Code [57, 58]; Korea has a legal basis for ship and port facility physical security (as the ISPS Code requires) in its International Ship and Port Facility Security Act and Enforcement Decree [59, 60], but the ISPS Codes focus on physical security and must be expanded and reviewed to cover the ISM Code's administrative and technical security areas as one legislation.</p>
+    <p>Improvement plan priorities from the AHP results — the top four: I-1 (awareness and education) and I-2 (portable media control) in administrative security, and II-1 (network access control) and II-2 (cyberattack detection and blocking) in technical security — must also be considered when reviewing current law for modification. For I-1 and I-2, regular security training must be mandatory for information security system workers, with measures ensuring only authorized mobile media are used. For II-1 and II-2, plans should apply control techniques allowing network access only to authorized systems through authentication (or classification-society certification), plus detection–blocking techniques against cyberattacks and threats.</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>As part of strengthening maritime cybersecurity systems, the IMO published the "Guidelines on Maritime Cyber Risk Management" in 2017, alongside the ISO international standard, U.S. NIST standards, and shipowners' industry guidelines. Under the IMO guidelines, each flag state integrates and manages cyber risk matters in the ISM Code ship SMS before the first annual audit due on or after 1 January 2021. In this paper, to derive digitalized-ship cybersecurity improvement plan priorities, maritime cybersecurity vulnerability items were divided into administrative, technical and physical security areas based on industry guidelines and international standards, aiming to identify cyber issues and analyze vulnerabilities for factors to integrate into and manage via the ship SMS in 2021.</p>
+    <p>A risk matrix for maritime cybersecurity vulnerability analysis performed qualitative risk assessment (RA) on each security area's risk factors, comprising occurrence-frequency and severity indices. Furthermore, to derive survey items for maritime cybersecurity risk factor improvement priorities, high-risk items from the risk matrix results were reflected in the final AHP survey items after expert review. Any cyber risk assessment should cover administrative and technical risks plus physical security, since the first (expert) survey showed the first two areas as the largest risks, while the second (worker) survey suggested the maritime community would give them higher mitigation priority.</p>
+    <p>The top three priorities for mitigating maritime cybersecurity risks are: increasing risk awareness and educating staff on mitigation measures; controlling access to cyber networks; and improving threat detection and blocking systems. Several improvement plan recommendations for maritime cybersecurity were proposed under current domestic legal constraints per the AHP results. Further studies relying on quantitative assessment methods, such as industry standards for computer system security vulnerability assessment, are required to assess cybersecurity factors of IT/OT systems in the future.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Kessler, G.C.; Craiger, J.P.; Haass, J.C. A taxonomy framework for maritime cybersecurity: A demonstration using the automatic identiﬁcation system. J. Trans. Nav. 2018, 12, 429–437. [CrossRef]</li>
+      <li>[2] Oikonomou, S. Maritime Cybersecurity Practices Scheme (Block Box). Master’s Thesis, School of Science Informatics and Computational Biomedicine, University of Thessaly, San Jose, CA, USA, 2019.</li>
+      <li>[3] You, B.; Zhang, Y.; Cheng, L.C. Review on cybersecurity risk assessment and evaluation and their approaches on maritime transportation. In Proceedings of the 30th Annual Conference of International Chinese Transportation Professionals Association, Houston, TX, USA, 19–21 May 2017; pp. 429–437.</li>
+      <li>[4] AON. 2018 Cybersecurity Predictions: A Shift to Managing Cyber as an Enterprise Risk, 2018 ed.; Aon Cyber Solutions: London, UK, 2018.</li>
+      <li>[5] CISCO. 2018 Annual Cybersecurity Report, 2018 ed.; CISCO: San Jose, CA, USA, 2018.</li>
+      <li>[6] COMODO. Comodo cybersecurity Q1 2018 Report, 2018 ed.; COMODO Threat Research Labs: Clifton, NJ, USA, 2018.</li>
+      <li>[7] FIRE-EYE. M-Trends 2018, 2018 ed.; FireEye: Milpitas, CA, USA, 2018.</li>
+      <li>[8] Kessler, G.C. Cybersecurity in the maritime domain. In Proceedings of the Marine Safety &amp; Security Council; US Department of Homeland Security: Washington, DC, USA; US Coast Guard: Arlington, VA, USA, 2019; Volume 76, pp. 34–39.</li>
+      <li>[9] PWC. Revitalizing Privacy and Trust in a Data-Driven World: Key Findings from The Global State of Information Security Survey 2018, 2018 ed.; PwC: London, UK, 2018.</li>
+      <li>[10] WIPRO. State of Cybersecurity Report 2018: Foresight for the Global Cybersecurity Community, 2018 ed.; WIPRO: Bengaluru, India, 2018.</li>
+      <li>[11] G-CAPTAIN. Clarkson Plc Reveals Details of 2017 Cybersecurity Incident. Available online: https://gcaptain.com/clarkson-plc- reveals-details-of-2017-cyber-security-incident/ (accessed on 19 June 2019).</li>
+      <li>[12] Park, C.; Shi, W.; Zhang, W.; Kontovas, C.; Chang, C.H. Cybersecurity in the maritime industry: A literature review. In Proceedings of the International Association of Maritime Universities (IAMU) Conference, Tokyo, Japan, 30 October–1 November 2019.</li>
+      <li>[13] SAFETY-AT-SEA. Shipping Must Confront Onboard Systems’ Cyber Vulnerabilities. Available online: https://safetyatsea.net/ news/2017/shipping-must-confront-onboard-systems-cyber-vulnerabilities/ (accessed on 19 June 2019).</li>
+      <li>[14] SAFETY-AT-SEA. Cyber Attack Hits COSCO Shipping. Available online: https://safetyatsea.net/news/2018/cyber-attack-hits- cosco-shipping/ (accessed on 19 June 2019).</li>
+      <li>[15] SAFETY4SEA. Lessons to be Learned from Recent Cyber Incidents. Available online: https://safety4sea.com/cm-lessons-to-be- learned-from-recent-cyber-incidents/ (accessed on 19 June 2019).</li>
+      <li>[16] THREAT-POST. Gold Galleon Hacking Group Plunders Shipping Industry. Available online: https://threatpost.com/gold- galleon-hacking-group-plunders-shipping-industry/131203/ (accessed on 19 June 2019).</li>
+      <li>[17] WORLD-MARITIME-NEWS. Hackers Access BW Group’s IT Systems. Available online: https://worldmaritimenews.com/ archives/232434/hackers-access-bw-groups-it-systems-countermeasures-undertaken/ (accessed on 19 June 2019).</li>
+      <li>[18] ZDNET. Port of San Diego Suffers Cyber-Attack. Available online: https://www.zdnet.com/article/port-of-san-diego-suffers- cyber-attack-second-port-in-a-week-after-barcelona/ (accessed on 19 June 2019).</li>
+      <li>[19] SAFETY4SEA. Maersk Line: Surviving from a Cyber Attack. Available online: https://safety4sea.com/cm-maersk-line-surviving- from-a-cyber-attack/ (accessed on 19 June 2019).</li>
+      <li>[20] GMF; MARSH; IUMI. Global Maritime Issues Monitor, 2018 ed.; Global Maritime Forum Foundation: Copenhagen, Denmark, 2018.</li>
+      <li>[21] ALLIANZ. Safety and Shipping Review 2019: An Annual Review of Trends and Developments in Shipping Losses and Safety, 2019 ed.; Allianz Global Corporate &amp; Specialty: Munich, Germany, 2019.</li>
+      <li>[22] CYBERCRIME-MAGAZINE. Cybercrime to Cost the World $10.5 Trillion Annually by 2025. Available online: https:// cybersecurityventures.com/cybercrime-damages-6-trillion-by-2021/ (accessed on 9 December 2020).</li>
+      <li>[23] Kavallieratos, G.; Katsikas, S. Managing cyber security risks of the cyber-enabled ship. J. Mar. Sci. Eng. 2020, 8, 768. [CrossRef]</li>
+      <li>[24] Tam, K.; Jones, K. Maritime cyber-security policy: The scope and impact of evolving technology on international shipping. J. Cyber Policy 2018, 3, 147–164. [CrossRef]</li>
+      <li>[25] Rodseth, O.; Burmeister, H. Risk assessment for an unmanned merchant ship. J. TransNav 2015, 9, 147–164. [CrossRef]</li>
+      <li>[26] Chang, C.; Kontovas, C.; Yu, Q.; Yang, Z. Risk assessment of the operations of maritime autonomous surface ships. Reliab. Eng. Syst. Saf. 2021, 207, 1–11. [CrossRef]</li>
+      <li>[27] Svilicic, B.; Rudan, I.; Jugovic, A.; Zec, D. A study on cyber security threats in a shipboard Integrated Navigational System. J. Mar. Sci. Eng. 2019, 7, 364. [CrossRef]</li>
+      <li>[28] Awan, M.; Ghamdi, M. Understanding the vulnerabilities in digital components of an Integrated Bridge System (IBS). J. Mar. Sci. Eng. 2019, 7, 350. [CrossRef]</li>
+      <li>[29] Kang, N.S. Analysis of on-board ship cybersecurity. J. Kor. Soc. Mar. Eng. 2018, 42, 463–471. [CrossRef]</li>
+      <li>[30] BIMCO; CLIA; ICS; INTERCARGO; INTERMANAGER; INTERTANKO; IUMI; OCIMF; WSC. The Guidelines on Cyber Security Onboard Ships, 3rd ed.; INTERCARGO: London, UK, 2018.</li>
+      <li>[31] Miron, W.; Muita, K. Cybersecurity capability maturity models for providers for critical infrastructure. Technol. Innov. Manag. Rev. 2014, 4, 33–39. [CrossRef]</li>
+      <li>[32] Kang, J.M.; Hwang, H.U.; Lee, J.M.; Yun, Y.T.; Bae, B.C.; Jung, S.Y. A study on national cyber capability assessment methodology. J. Kor. Inst. Info. Secur. Cryptol. 2012, 22, 1039–1055.</li>
+      <li>[33] Bae, S.; Park, S.; Kim, S.J. A study on the development for the national cybersecurity capability assessment criteria. J. Kor. Inst. Info. Secur. Cryptol. 2015, 25, 1293–1314. [CrossRef]</li>
+      <li>[34] IMO. Provisional Agenda for the 99th Session of the Maritime Safety Committee to Be Held from 16–25 May 2018; MSC.99/1; International Maritime Organization: London, UK, 2017.</li>
+      <li>[35] IMO. Regulatory Scoping Exercise for the use of Maritime Autonomous Surface Ships (MASS); MSC.99/5; International Maritime Organization: London, UK, 2017.</li>
+      <li>[36] IMO. Maritime Cyber Risk Management in Safety Management Systems; MSC.428(98) Resolution; International Maritime Organization: London, UK, 2017.</li>
+      <li>[37] Hopcraft, R.; Martin, K.M. Effective maritime cybersecurity regulation—The case for a cyber code. J. Indian Ocean Reg. 2018, 14, 354–366. [CrossRef]</li>
+      <li>[38] IMO. Guidelines on Maritime Cyber Risk Management; MSC-FAL.1/Circ.3 Annex; International Maritime Organization: London, UK, 2017.</li>
+      <li>[39] IMO. International Safety Management (ISM) Code with Guidelines for Its Implementation, 5th ed.; International Maritime Organization: London, UK, 2018.</li>
+      <li>[40] ISO/IEC. International Standard 27001: Information Technology—Security Techniques—Information Security Management Systems— Requirements; 2013 Standard; International Organization for Standardization: Geneva, Switzerland, 2013.</li>
+      <li>[41] NIST. Framework for Improving Critical Infrastructure Cybersecurity, 1.1 version; National Institute of Standards and Technology: Gaithersburg, MD, USA, 2018.</li>
+      <li>[42] IMO. Interim Guidelines for MASS Trials; MSC.1/Circ.1604; International Maritime Organization: London, UK, 2019.</li>
+      <li>[43] Bernasconi, M.; Choirat, C.; Seri, R. The analytic hierarchy process and the theory of measurement. Manag. Sci. 2010, 56, 699–711. [CrossRef]</li>
+      <li>[44] Saaty, T.L. The Analytic Hierarchy Process: Planning, Priority Setting, Resources Allocation; McGraw-Hill: London, UK, 1980.</li>
+      <li>[45] Saaty, T.L. How to make a decision: The analytic hierarchy process. Eur. J. Oper. Res. 1990, 48, 9–26. [CrossRef]</li>
+      <li>[46] Taherdoost, H. Decision making using the analytic hierarchy process (AHP): A step by step approach. Econ. Manag. Syst. 2017, 2, 244–246.</li>
+      <li>[47] BV. Rules on Cybersecurity for the Classiﬁcation of Marine Units, 2018 ed.; Bureau Veritas: Paris, France, 2018.</li>
+      <li>[48] DEUTSCHE-FLAGGE. ISM Cybersecurity. Available online: https://www.deutsche-ﬂagge.de/de/redaktion/dokumente/ism- rundschreiben/circ2018_4_2.pdf (accessed on 19 June 2019).</li>
+      <li>[49] IALA. Risk Management, IALA Guideline 1018, 3rd ed.; International Association of Marine Aids to Navigation and Lighthouse Authorities: Saint-Germain-en-Laye, France, 2013.</li>
+      <li>[50] IEC. Risk Management—Risk Assessment Techniques; IEC 21010:2009 Standard; International Electrotechnical Commission: Geneva, Switzerland, 2009.</li>
+      <li>[51] KR. Guidelines of Maritime Cybersecurity, 1.0 version; Korean Register: Busan, South Korea, 2017.</li>
+      <li>[52] Han, S.H. A practical approaches to decrease the consistency index in AHP. In Proceedings of the 5th SCIS &amp; ISIS 2014, Kitakyushu, Japan, 3–6 December 2014; pp. 867–872.</li>
+      <li>[53] Lee, J.G. A Study on Decision Factor of Residential Environments of NEW STAY Using the AHP. Master’s Thesis, Graduate School of Real Estate Studies, Konkuk University, Seoul, Korea, 2015.</li>
+      <li>[54] KASS. Project Detail. KASS (Korea Autonomous Surface Ship) Project. Available online: http://kassproject.org/en/info/ projectdetail.php (accessed on 12 May 2021).</li>
+      <li>[55] MGL. Maritime Safety Act. MGL (Ministry of Government Legislation). Available online: https://elaw.klri.re.kr/kor_service/ lawView.do?hseq=49260&amp;lang=ENG/ (accessed on 9 December 2020).</li>
+      <li>[56] MGL. Enforcement Decree of the Maritime Safety Act. MGL (Ministry of Government Legislation). Available online: https: //elaw.klri.re.kr/kor_service/lawView.do?hseq=53293&amp;lang=ENG/ (accessed on 9 December 2020).</li>
+      <li>[57] IMO. The International Ship and Port Facility Security (ISPS) Code, 2003 ed.; International Maritime Organization: London, UK, 2003.</li>
+      <li>[58] IMO. Measures to Enhance Maritime Security—Cyber Risk Management in Safety Management Systems; MSC 101/4/4; International Maritime Organization: London, UK, 2019.</li>
+      <li>[59] MGL. International Ship and Port Facility Security Act. MGL (Ministry of Government Legislation). Available online: https: //elaw.klri.re.kr/kor_service/lawView.do?hseq=51649&amp;lang=ENG/ (accessed on 9 December 2020).</li>
+      <li>[60] MGL. Enforcement Decree of the International Ship and Port Facility Security Act. MGL (Ministry of Government Legislation). Available online: https://elaw.klri.re.kr/kor_service/lawView.do?hseq=49955&amp;lang=ENG/ (accessed on 9 December 2020).</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse9060565">10.3390/jmse9060565</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

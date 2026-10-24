@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التقييم السيبراني-الفيزيائي للسفن البحرية: سفينة حفر ونظام التموضع الديناميكي — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Cyber–Physical Security Assessment for Maritime Vessels: Study on Drillship DP System Using American Petroleum Institute Security Risk Analysis and Bow-Tie Analysis</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التقييم الأمني السيبراني-الفيزيائي للسفن البحرية: دراسة نظام التموضع الديناميكي لسفينة حفر باستخدام تحليل المخاطر الأمنية لمعهد البترول الأمريكي وتحليل ربطة العنق</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ioannis Progoulakis, Ioannis K. Dagkinis, Anna Dimakopoulou, Theodoros Lilas, Nikitas Nikitakos, Petros M. Psomas</span>
+    <span>📄 JMSE, 2024 · Vol. 12, Article 1757</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse12101757">10.3390/jmse12101757</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>أدى التكامل المتزايد لأنظمة تقنية المعلومات/التقنية التشغيلية (IT/OT) في عمليات السفن بالصناعة البحرية إلى رفع تعرضها للتهديدات السيبرانية-الفيزيائية بشكل كبير، مما جعل تطوير استراتيجيات فعالة لإدارة المخاطر السيبرانية ضرورة ملحة. تقدم هذه الورقة نظرة على المشهد الحالي للتهديدات والثغرات السيبرانية للأمن السيبراني في القطاع البحري والسفن، وتعرض موجزًا للتوجيهات والمعايير والمبادئ الحكومية والصناعية ذات الصلة بالأمن السيبراني في السفن البحرية. وباعتبار السفن البحرية عناصر حرجة في قطاع البنية التحتية الحرجة للنقل البحري، يُعرض عدد من أساليب التقييم الأمني السيبراني-الفيزيائي ذات الصلة. ومن خلال الربط بين الأمن السيبراني-الفيزيائي وسلامة العمليات والأمن، يُقدَّم تحليل المخاطر الأمنية لمعهد البترول الأمريكي (API SRA) وتحليل ربطة العنق (BTA) بوصفهما أنسب أساليب التقييم الأمني للسفن البحرية المعقدة مثل سفينة حفر النفط والغاز البحرية. ويُعرض سيناريو هجوم سيبراني على نظام التموضع الديناميكي (DP) لسفينة حفر باستخدام API SRA وBTA. كما تُناقش صعوبات تنفيذ إطار NIST CSF v2.0 ومتطلبات IACS الموحدة E26 وE27 في القطاع البحري. وتُبرز الحاجة إلى تكثيف البحث وصياغة تدابير أمن سيبراني مخصصة للتخفيف من التهديدات السيبرانية المتطورة في المجال البحري، والحاجة إلى تخصيص التدريب والموارد لتعزيز قدرة طاقم السفن على تخفيف التهديدات السيبرانية والعمليات البحرية الآمنة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>في الصناعة البحرية المعاصرة، أدى دمج الأنظمة الرقمية المتحكمة في عمليات السفن إلى زيادة كبيرة في قابلية السفن للتهديدات السيبرانية. ويؤكد قرار المنظمة البحرية الدولية MSC.428(98) أهمية تعزيز الوعي بالمخاطر السيبرانية ودمج إدارة المخاطر السيبرانية في أنظمة إدارة السلامة (SMS) وفق مدونة إدارة السلامة الدولية (ISM Code). وهذا القرار مهم لجميع أصحاب المصلحة البحريين، إذ يلزمهم بإدارة المخاطر السيبرانية جنبًا إلى جنب مع مخاطر السلامة التقليدية، بينما تواصل التهديدات السيبرانية التطور من حيث التعقيد والتكرار عبر قطاعي تقنية المعلومات والتقنية التشغيلية.</p>
+    <p>تُعد السفن البحرية أصولًا صناعية بحرية تضم أنظمة تحكم صناعية (ICSs) وأنظمة تقنية معلومات وتشغيلية ومعدات ومكونات تمكّن العمليات البحرية على المستوى التقني. ونظرًا لتعقيدها وترابطها، تتطلب هذه السفن أساليب تقييم تتناول بُعديها البحري والصناعي معًا. ورغم وفرة أطر التقييم الأمني للبنى التحتية الحرجة، فإن القليل منها طُبّق ميدانيًا على السفن المتخصصة مثل سفن الحفر البحرية، التي تجمع بين العمليات البحرية وعمليات النفط والغاز الأولية عبر أنظمة IT/OT معقدة ومترابطة.</p>
+    <p>تهدف هذه الورقة إلى سد هذه الفجوة عبر تقديم تقييم أمني سيبراني-فيزيائي لسفينة حفر بحرية، مع التركيز على نظام التموضع الديناميكي (DP) بوصفه هدفًا عالي القيمة. ويُستخدم معيار API 780 لتحليل المخاطر الأمنية (SRA) لتقييم الثغرات السيبرانية والجاذبية المستهدفة والوضع الأمني، بينما تُستخدم طريقة Bow-Tie Analysis (BTA) — وهي أداة إدارة سلامة العمليات — لتقييم الحواجز الأمنية المنفذة قبل الحدث وبعده وتصورها. ويُختتم العمل بمناقشة صعوبات تطبيق NIST CSF v2.0 ومتطلبات IACS UR E26 وUR E27، وبتوصيات حول التدريب والموارد لتعزيز قدرة الأطقم.</p>
+  </section>
+
+  <section>
+    <h2>2. الأمن السيبراني في المجال البحري</h2>
+    <p>أصبحت الصناعة البحرية المترابطة والمعتمدة على الأنظمة الرقمية وأنظمة التحكم الصناعية (ICSs) هدفًا رئيسيًا للتهديدات السيبرانية [19]. وأفادت الوكالة الأوروبية للأمن السيبراني (ENISA) [20، 21] بتحول كبير في ملف المخاطر السيبرانية للقطاع البحري، مع ارتفاع حوادث الأمن السيبراني في الموانئ وعلى متن السفن. كما أبلغ خفر السواحل الأمريكي (USCG) [22] وENISA [20] عن زيادة في تهديدات متنوعة — منها التهديدات المتقدمة المستمرة وهجمات التصيد وحالات الفدية التي تؤثر على قطاع النقل البحري وشركات الشحن والأصول المعنية — بعواقب كبيرة على التجارة والأمن العالميين. وتكشف الهجمات ذات الدوافع السياسية والمالية على أنظمة IT وOT تورط جهات فاعلة حكومية [21]، مما يخلق بيئة تهديد مركبة ومتطورة باستمرار يمتزج فيها العمل العسكري الخفي بالعمليات الإجرامية السيبرانية.</p>
+    <p>صنّفت BIMCO [23] التهديدات السيبرانية التي يواجهها القطاع البحري في فئتين كما يبين الجدول 1: هجمات غير موجهة — تشمل البرمجيات الخبيثة (أحصنة طروادة والفدية وبرمجيات التجسس والفيروسات والديدان)، والثقوب المائية (Water Holing) التي تستغل بحارة يتصفحون الإنترنت في البحر، والمسح العشوائي للثغرات، والأخطاء المطبعية (Typosquatting) — وهجمات موجهة — تشمل الهندسة الاجتماعية، وتخمين كلمات المرور (Brute Force)، وحشو بيانات الاعتماد (Credential Stuffing)، وهجمات حجب الخدمة (DoS وDDoS)، والتصيد الموجه، وهجمات سلسلة التوريد عبر المعدات أو البرمجيات الموردة للسفينة. ومن الحوادث السيبرانية المعروفة في القطاعات البحرية والحرجة، تُستخلص فئات الخصوم: مجرمو الفضاء السيبراني، وخصوم الدول، والداخليون (الساخطون أو المهملون)، والإرهابيون السيبرانيون، والناشطون السيبرانيون [23، 24].</p>
+    <p>تستلزم هذه التهديدات المتصاعدة يقظة أصحاب المصلحة وتطبيق تدابير أمنية قوية تراعي الأصول والخصائص التشغيلية والتقنية، مع الإقرار بتداخل النقل البحري مع قطاعات البنى الحرجة الأخرى. وقد رُوجعت المبادرات الحالية للأمن السيبراني البحري — من معايير ولوائح وإرشادات وتوجيهات صادرة عن جهات صناعية وحكومية — في أدبيات أكاديمية عدة [25–29]، وتحدد هذه الورقة أبرزها في الجدول 2 بعد عملية مراجعة عبر قاعدة بيانات IHS Markit والصفحات الحكومية بكلمات مفتاحية حول الأمن السيبراني البحري. وتشمل المبادئ: معايير NIST (المنشورات الخاصة 800-30 و800-37 و800-82 وإطار CSF 2.0)، وASTM F3286-17 وF3449-20، ومعايير ISO/IEC 27001 [30] وIEC 62443-4-2 [31] وIEC 62443-3-3 [32] وISO/IEC 21827 [33] وISO/IEC 15408-1 [34] وISO/IEC 18045 [35] وISO/IEC 27032 [36]، ومنظمات صناعية: قرار المنظمة البحرية الدولية MSC.428(98) والإرشاد MSC-FAL.1/Circ.3، وإرشادات BIMCO للأمن السيبراني على متن السفن، ومتطلبات IACS الموحدة E26 وE27.</p>
+    <p>ورغم شمول هذه التوجيهات، فإن أغلبيتها وثائق عامة توصي بممارسات محسّنة لتعزيز الوضع الأمني لأنظمة IT وOT دون تحديد الأنظمة أو العمليات أو المكونات الحرجة تقنيًا أو تشغيليًا للسفن المتخصصة. كما يحتاج تنفيذ التوجيهات والسياسات والمعايير البحرية القائمة إلى تعزيز من أصحاب المصلحة للحفاظ على الامتثال والوضع الأمني. وتُظهر الحوادث الموثقة — من تحليل Meland وآخرين بأثر رجعي للحوادث السيبرانية البحرية [1] إلى المسوحات المنهجية الحديثة [2، 3] وحوادث انتحال GPS [4، 5] وآليات استهداف المستشعرات البحرية [6] وسيناريوهات محركات الوقود المزدوج [7] وهجمات خفر السواحل الموثقة [8] وهجمات الناقلات قرب الفجيرة [9، 10] والعمليات السيبرانية في البحر الأحمر [11، 12] وتهديدات أنظمة الملاحة المتكاملة [13] والهجمات السيبرانية-الفيزيائية على الموانئ والسفن [14] وبيئات الأجهزة-في-الحلقة [15] وقضايا أنظمة الملاحة من منظور التحكم [16] والتحذيرات من إمكانية السيطرة على السفن سيبرانيًا [17، 18] وتقييمات المراكز الوطنية [19–22] — أن سطح التهديد حقيقي ومتنامٍ.</p>
+  </section>
+
+  <section>
+    <h2>3. التقييم الأمني السيبراني-الفيزيائي في المجال البحري</h2>
+    <p>تُعرّف الأنظمة السيبرانية-الفيزيائية عمومًا بأنها تلك التي تجمع بين تقنية المعلومات (IT) والتقنية التشغيلية (OT) والعمليات البشرية [25]. ويُعرّف التقييم الأمني عمومًا بأنه عملية تقييم خصائص الأصل عبر معايير التهديد والخطر والثغرات، بينما التقييم الأمني السيبراني-الفيزيائي هو تقييم المخاطر السيبرانية لأنظمة التقنية التشغيلية ومكوناتها إلى جانب أنظمة IT المتصلة بها بما يتصل بسلامة العمليات وأمنها. ويكتسب هذا التقييم أهمية خاصة للأصول الصناعية والحرجة نظرًا لمعاييرها التقنية والتشغيلية المعقدة والمتعددة التخصصات. وباعتبار السفن عناصر في قطاع النقل البحري، يجب النظر إليها كأصول صناعية بحرية تضم أنظمة ICS وأنظمة OT وIT، مما يستلزم منهجيات تقييم ملائمة للبُعد البحري وخصائص البنى الحرجة معًا.</p>
+    <p>استنادًا إلى مراجعة أدبية عبر قواعد بيانات ScienceDirect وGoogle Scholar وWiley وIEEE Xplore وProQuest وResearchGate وAcademia.edu ومحركات البحث الشائعة — بكلمات مفتاحية مثل «الأمن البحري» و«النفط والغاز + الأمن السيبراني البحري» و«حماية البنى الحرجة + البحري + النفط والغاز» — عُرضت في الجدول 3 أساليب نوعية وكمية ذات صلة لتقييم الأمن السيبراني-الفيزيائي للبنى الحرجة، منها: إدارة مخاطر سلسلة التوريد التجارية [48]، وFuzzy RAMCAP [49]، وأطر الكوارث الشاملة [50–52]، وأساليب نمذجة الهجوم [53]، ومنهجيات التحليل الحرج القائم على المخاطر [54]، وشبكات LIMOD البايزية [55]، وأمن أنظمة التحكم في العمليات لأنظمة سكادا [56]، ونماذج المهاجم-المدافع ثنائية وثلاثية المستويات [57، 58]، ومنهجيات الثغرات بمصفوفات المخاطر [59، 60]، وتقييم حرجية الطاقة [61]، والردع بنظرية الألعاب [62]، ونظام CYSM التعاوني [63]، وتحليل المخاطر القائم على النماذج MBRA [64–67]، ونماذج تدهور قوة الهجوم [68]، وCRASH للتقييم النوعي للسفن [69]، وCYRA-MS المعدّلة من CPHA وفق IEC 62443 [46]، وCRAMMTS الكمية المعدّلة من ISRAM [70]، ومصفوفات المخاطر المخصصة لمعايير OT السفن [71]، وMV-HARM البيانية الهرمية [72]، وتقييم منظومة الموانئ والسفن [73]، وSVAPP لتقييم حواجز السلامة [74]، وتحليل مخاطر العمليات السيبرانية Cyber PHA، وغيرها.</p>
+    <p>تُستخدم معظم هذه الأساليب والأطر في بيئات «مخبرية» أو «صفية» لعرض الخصائص التقنية والجدوى وقدرات التقييم، ولا تعالج بصورة كافية مشكلة التحقق الميداني والتنفيذ الصناعي الذي يراعي القيود التقنية والموارد. وبالمقارنة، وُجد أن تحليل المخاطر الأمنية لمعيار API 780 (API SRA) معترف به على نطاق واسع ومستخدم في صناعتي النفط والغاز والبحرية [25، 26، 91]، ويقدم تحليلًا مفصلًا للسفن البحرية والثغرات السيبرانية المحددة وتدابير المواجهة المقترحة آخذًا في الحسبان جاذبية الهجوم السيبراني للمناطق المستهدفة. أما طريقة Bow-Tie Analysis — وهي أداة إدارة سلامة العمليات — فتقيّم بفعالية حواجز الأمن السيبراني المنفذة قبل سيناريو الاختراق الأمني المحتمل وبعده، وتعرض تصورًا وتحليلًا مفصلًا لجميع عواقب التهديدات والحوادث السيبرانية. لذا اختير المزج بين API SRA وBTA بوصفه أنسب أساليب التقييم للسفن المعقدة مثل سفينة الحفر البحرية.</p>
+  </section>
+
+  <section>
+    <h2>4. التقييم الأمني السيبراني-الفيزيائي لسفينة حفر بحرية</h2>
+    <p>يتمثل سيناريو الأمن السيبراني-الفيزيائي المدروس في حادثة اختراق سيبراني لنظام التموضع الديناميكي (DP) لسفينة حفر بحرية، وقد اختير بعد فحص أهداف محتملة أخرى على السفن البحرية وبالنظر إلى منشورات حول إمكانية مثل هذه الحوادث [93–99]. وسفينة الحفر وحدة عائمة ذاتية الدفع بهيكل سفينة قادرة على حفر آبار استكشافية في مياه نائية عميقة [100]، وتجمع بين المعدات والعمليات الصناعية المدعومة بأنظمة IT وOT متطورة ومعقدة لعمليات النفط والغاز الأولية والعمليات البحرية. ويمكّن نظام DP السفينة العائمة من الحفاظ على موقعها فوق نقطة محددة عبر تغيير قوة وحدات الدفع المثبتة على الهيكل دون مراسي تقليدية، إذ تُوجه قوة الدفع بإشارات قياس عن بُعد من سلسلة مستشعرات تشمل عوامات قاع البحر ومعلومات الأقمار الصناعية (GPS وGNSS وGLONASS) ومستشعرات الرياح والبوصلة الجيروسكوبية ووحدات المرجع الحركي والرأسي والمستشعرات الصوتية المائية أو الحركة الزاوية لسلك مشدود [100]. وتُصنف أنظمة DP إلى فئات (DPS 0 وDPS 1 وDPS 2 وDPS 3) وفق إرشادات المنظمة البحرية الدولية MSC.1/Circ.1580 [101] وMSC/Circ.645 [102] بمستويات مختلفة من القدرة على الثبات والتكرار. وتتمثل أهداف التحليل في: تحديد أنظمة السفينة ومواقعها المعرضة للاختراق؛ والتحقق من الجاذبية المستهدفة والثغرات لنظام DP؛ وتطبيق API SRA لتقييم الثغرات والجاذبية والوضع الأمني عبر الحواجز القائمة؛ وتطبيق BTA لتصور الحواجز قبل الحدث وبعده وتقييمها؛ والتحقق من الاستخدام المتكامل للأداتين في تقييم تدابير الحماية الاستباقية والتفاعلية.</p>
+    <p>يأخذ التحليل في الحسبان الخصائص البحرية والصناعية للأصول ومعاييرها الهندسية والتشغيلية، واستند إلى رسومات التصميم التقني للسفينة المتاحة للمؤلفين [104] ومخطط نظام DP وشبكة IT من إعداد المؤلفين يبين الاتصال المنطقي بين خادم السفينة ومعدات IT ومكونات DP (الشكل 2). ونظام DP المختار من مستوى DPS 2 ويشمل ثلاث محطات DP على الجسر وواحدة محمولة (الشكل 2). وطبّق التحقق من API SRA العملية الخماسية لمعيار API STD 780: ففي الخطوة 01 أُجري تصنيف الأصول — تحديد المكونات السيبرانية لسفينة الحفر وتبعياتها وضمانات الأمن السيبراني القائمة (داخلية وخارجية) وتحديد العواقب على الأرواح والبيئة واستمرارية الأعمال وتخصيص الحرجة حسب أسوأ العواقب — عبر التقييم العياني لرسم تصنيف المناطق الخطرة (الشكل 3) المشتق من تحليل هندسي وفق IEC 60079-10-1، فحُدّدت المناطق والأصول السيبرانية الحرجة (الجدول 4) ضمن ثلاث فئات: عمليات النفط والغاز الصناعية، والعمليات البحرية، وأنظمة IT — بما فيها غرف التحكم في المحركات والمحولات والدفات وغرف المضخات وVDR وSATCOM/TELECOM وأنظمة DP — ثم صُنّفت حسب عواقب الضحايا والبيئة والاستبدال والأعمال والسمعة. وبتقييم الأصول والمواقع المحددة وسيناريوهات الاختراق، جرى التحقق من نظام DP واختياره هدفًا للتحليل المعمق، إذ قد يؤدي تعطيله أثناء الحفر إلى فقدان الثبات وربما الدفع والطاقة وتوقف عمليات الحفر كليًا.</p>
+    <p>وفي الخطوة 02 حُدّد الخصوم وقُيّمت التهديدات: صُنّف مجرمو الفضاء السيبراني وخصوم الدول المهاجمون لسفينة الحفر تهديدًا مرتفعًا (4–5 على مقياس 1–5) — أي تهديد موثوق قائم على قدرة المهاجم ونيته، يستهدف الأصل أو مثيلاته بصورة متكررة واحتمال تكرار الهجوم مرتفع جدًا — بينما صُنّف الفاعل الداخلي تهديدًا متوسطًا، أي تهديد محتمل دون تهديد محدد موثق حاليًا، لكنه مرجح بشدة بالنظر إلى ترابط شبكات السفينة وسوابق الحوادث الداخلية. وفي تقييم الجاذبية المستهدفة، حظي نظام DP باهتمام مرتفع محتمل من الجهات الخارجية (مجرمي السيبر وخصوم الدول) وبأعلى تفضيل نسبي لتحقيق أهدافهم، بالنظر إلى ثغرات المواقع والأنظمة (الجدول 4) والآثار المدمرة لحادث سلامة عمليات ناجم عن حادث سيبراني-فيزيائي. أما الخطوة 03 (تقييم الثغرات) فحددت ثلاثة سيناريوهات اختراق: (1) هجوم خارجي على أنظمة DP عبر شبكات OT الخارجية أو تحديثات البرمجيات/البرامج الثابتة عن بُعد أو التداخل مع GPS/GLONASS مؤديًا إلى فقدان الثبات البحري؛ (2) هجوم مشابه من خصوم الدول عبر الاتصالات الخارجية لأنظمة الدفع؛ (3) وصول فرد من الطاقم إلى شبكة السفينة وزرع برمجية خبيثة عمدًا أو سهوًا عبر USB محمول، فتتلوث محطات الحواسيب ثم الأنظمة الشبكية تدريجيًا، معطلة عمليات الحفر والعمليات البحرية. واقتُرحت تدابير مواجهة تشمل: تعزيز التدقيق الأمني للطاقم ومراقبة الأداء؛ والفصل المادي لأنظمة المحرك والدفع والتحكم DP؛ وترقية أنظمة IT/OT ومعدات HMI وبرامج محطات DP الثابتة؛ وتركيب جدران نارية ومضادات فيروسات؛ وتعيين خبراء IT وOT على متن السفينة؛ ومراقبة منافذ USB وضبط الوصول إليها؛ وترقية تدريب مشغلي غرف المحركات وDP؛ ووضع بروتوكولات طوارئ لأعطال IT/OT؛ وبناء أنظمة تكرار للتحكم والمراقبة؛ وتمكين المراقبة والتحكم والإصلاح الآمن عن بُعد؛ وتعزيز إجراءات التشغيل القياسية (SOPs)؛ وتركيب أنظمة HMI بديلة؛ ومراقبة الأحداث والإنذارات؛ والتحقق من بيانات الأداء؛ وتجزئة الشبكات وتركيب خوادم متعددة؛ واستخدام أنظمة مرجعية متعددة للمواقع؛ ومعايرة أنظمة المرجع الحركي والرأسي بانتظام.</p>
+    <p>بعد تقييم الثغرات، أُجريت في الخطوة 04 تقييم المخاطر — تقييم الاحتمال المشروط لسيناريوهات الاختراق، وتعيين المخاطر الأولية، وترتيب الأولويات: فصُنّفت الهجمات الخارجية من مجرمي السيبر وخصوم الدول عالية المخاطر والاحتمال، بينما صُنّف الاختراق الداخلي متوسط المخاطر مع احتمال مرتفع لوقوعه، إذ تُحسب احتمالية الهجوم الناجح دالةً للعواقب والاحتمال/التكرار باستخدام مصفوفة ترتيب المخاطر وفق API STD 780، ورُتّبت المخاطر حسب اختيار التدابير المضادة وتوافر الموارد التقنية والتنظيمية والمالية وفعاليتها. وأخيرًا، في الخطوة 05 (معالجة المخاطر) قُيّمت الحاجة إلى التدابير المضادة والتوصية بها، وأُعيد حساب احتمال الهجوم وشدة العواقب، وحُسبت المخاطر المتبقية، ورُتّبت التدابير المقترحة — وتبقى تدابير الخطوة 03 صالحة لخفض الثغرات والمخاطر المتبقية، ويتوقف استخدامها الانتقائي على الموارد المتاحة والجدوى التقنية وفق قرارات الإدارة وأصحاب المصلحة التقنيين.</p>
+    <p>تُعرض سيناريوهات الاختراق — تلوث البرمجيات الخبيثة والتداخل مع نظام DP من جهات خارجية (مجرمي السيبر وخصوم الدول) وداخلية (أفراد الطاقم) — استنادًا إلى SRA المنفذ ومخطط DP والشبكة (الشكل 2)، ويبين الشكل 4 مثال تحليل ربطة العنق المدمج. والحواجز الوقائية (قبل الحدث) المحددة هي: التدقيق الأمني للطاقم ومراقبة أداء مشغلي DP؛ وبرمجيات أنظمة IT وOT ومعدات HMI ونظام DP الثابتة؛ والفصل المادي لأنظمة المحرك والدفع والتحكم DP؛ وتركيب جدران نارية ومضادات فيروسات لجميع الأنظمة الحرجة؛ ومراقبة استخدام منافذ USB؛ وترقية تدريب مشغلي غرف المحركات وDP؛ وإجراءات التشغيل القياسية للفحوص الوقائية؛ وتجزئة الشبكات والخوادم؛ ووضع فريق خبراء IT وOT على متن السفينة؛ واستخدام أنظمة مرجعية متعددة للمواقع؛ ومعايرة أنظمة المرجع الحركي والرأسي. وتُبرز تدابير التخفيف من التهديدات الداخلية (تدقيق الموظفين ومراقبة الأداء) لمنع الموظفين الساخطين من التخريب، كما أن مراقبة منافذ USB أو ضبطها أو حظرها يقضي على نقل البرمجيات الخبيثة عمدًا أو سهوًا، ويرفع التدريب وإجراءات الطوارئ الوعي السيبراني ويرسي ممارسات النظافة السيبرانية، بينما تساعد مراقبة معايير التشغيل الحرجة للدفع وDP والتدخل عند الانحرافات المفرطة في تخفيف السيناريوهات، وتقضي مضادات الفيروسات والجدران النارية على تثبيت البرمجيات الخبيثة — رهنًا بالجدوى التقنية والتشغيلية حسب نوع أنظمة IT وOT وبرمجياتها وعمرها. أما حواجز التخفيف (بعد الحدث) فتشمل: أنظمة التكرار للتحكم في المحرك والدفع وDP ومراقبتها؛ والمراقبة والتحكم والإصلاح عن بُعد لأنظمة IT/OT؛ وأنظمة HMI البديلة للدفع وDP؛ ومراقبة الأحداث والإنذارات وإدارتها؛ والتحقق من بيانات أداء الدفع وDP؛ ووضع فريق خبراء IT وOT على متن السفينة؛ والاستجابة للآثار البيئية؛ وبروتوكولات إدارة الطوارئ.</p>
+  </section>
+
+  <section>
+    <h2>5. الاستنتاجات</h2>
+    <p>تشير التهديدات المتطورة إلى ضرورة زيادة الوضع الأمني السيبراني والمرونة التشغيلية لقطاع النقل البحري وتعزيزهما، ولا يمكن تحقيق ذلك إلا عبر تخصيص موارد كافية من أصحاب المصلحة والكيانات المؤسسية المعنية. وأظهر فحص التوجيهات والمعايير الحكومية والصناعية المتاحة (الجدول 2) أن أغلبيتها تغطي الموضوع لكن أساسًا عبر إرشادات لحماية البنى القائمة أو تعزيزها، وتبقى معظمها وثائق عامة توصي بممارسات محسّنة لتعزيز الوضع الأمني لأنظمة IT وOT دون تحديد الأنظمة أو العمليات أو المكونات الحرجة للسفن المتخصصة مثل سفينة الحفر المختارة. كما يحتاج تنفيذ التوجيهات والسياسات والمعايير البحرية القائمة إلى تعزيز من أصحاب المصلحة للحفاظ على الامتثال اللازم والوضع الأمني.</p>
+    <p>وقد جرى التحقق من مصداقية سيناريو الاختراق السيبراني لشبكة سفينة الحفر المؤدي إلى تعطيل نظام DP عن بُعد عبر تقييم أمني سيبراني-فيزيائي باستخدام أداتي API SRA وBTA. وأثبت استخدام API SRA قيمته في تقييم التهديدات والثغرات والجاذبية المستهدفة للأمن السيبراني-الفيزيائي للسفن البحرية بوصفها عناصر في قطاعي النقل البحري والنفط والغاز الحرجين. وبالمثل، أثبت تطبيق BTA فائدته في تصور مسار الأحداث لسيناريو التهديد، مبرزًا مرحلتي ما قبل الحدث وما بعده والحواجز الوقائية والتخفيفية القائمة. وأكّد الاستخدام المدمج للأداتين صحة سيناريوهات الاختراق المختارة عبر تأكيد التدابير المضادة الوقائية والتخفيفية قبل الاختراق الأمني في نظام DP لسفينة الحفر وبعده. وتلعب العوامل البشرية — أفراد أطقم السفن — الدور الأهم في الامتثال للتوجيهات السيبرانية والحفاظ على الوضع الأمني وتنفيذ إجراءات الطوارئ، إذ هم من يوازنون بين العمليات البحرية والنظافة السيبرانية واستخدام أنظمة السفن، لذا لا بد من تخصيص التدريب والموارد اللازمة لتعزيز قدرتهم على تخفيف التهديدات السيبرانية والعمليات البحرية الآمنة.</p>
+  </section>
+
+  <section>
+    <h2>6. المناقشة</h2>
+    <p>يفترض تنفيذ أساليب API SRA وBTA استخدام الرسومات التقنية لسفينة حفر، لكن لم يُتح للمؤلفين سوى عدد صغير من رسومات أنظمة السفينة لأسباب سرية. وبالمثل، فإن مخطط الشبكة ونظام DP الذي أعده المؤلفون هو إعداد نموذجي، إذ استند جزئيًا إلى بيانات متاحة علنًا، فقد لا يلتقط جميع المعايير التقنية أو بنى الأنظمة لأنظمة DP الفعلية ومخططات شبكات IT/OT للسفن البحرية. ومن المحتمل أن تكون معايير أو توجيهات أو إرشادات أو سياسات متعلقة بالأمن السيبراني البحري قد أُغفلت أثناء كتابة هذا المنشور، وكذلك منشورات أكاديمية وبحثية حول الأمن السيبراني-الفيزيائي البحري — لا عن قصد، بل لأن موضوع المقال يتسع لما يتجاوز الموارد المتاحة للمؤلفين ولأن بعض المعايير أو المنشورات ربما صدرت بعد تقديم المقال للنشر.</p>
+    <p>وفيما يخص الإصدار الأحدث NIST CSF v2.0، تجدر الإشارة إلى أنه يحمل آثارًا كبيرة لمتخصصي OT في القطاع البحري. فبينما يوفر الإطار مجموعة شاملة من الإرشادات لإدارة المخاطر السيبرانية، يكشف تطبيقه على القطاع البحري فجوة — خاصة في الأمن السيبراني لأنظمة التقنية التشغيلية (OT)، وهي أنظمة حاسمة للتحكم في العمليات المادية على السفن وفي الموانئ ومرتبطة ارتباطًا وثيقًا بسلسلة التوريد البحرية، إذ يمكن لتعطلها أن يخلف تداعيات كبيرة. وكشفت دراسة بحثية منشورة [105] فجوات حرجة في كيفية تنفيذ الصناعة البحرية لـ NIST CSF v2.0، مشيرة إلى أنه لا يُستخدم بالكامل للأمن السيبراني البحري، ومؤكدة الحاجة الملحة لنسخة من هذا الإطار مكيفة للاستخدام البحري من شأنها تحسين المرونة السيبرانية في هذا القطاع. علاوة على ذلك، ثمة نقص ملحوظ في البحث حول الأمن السيبراني في سلاسل التوريد البحرية — وهي مجال حيوي مرتبط بأنظمة OT على السفن — مما يؤكد ضرورة مزيد من البحث لتعزيز الأمن السيبراني عبر جميع الأنشطة البحرية. كما أن تطبيق NIST CSF v2.0 لا يراعي المقاربات الهندسية لإدارة الأمن المادي الناجم عن التهديدات السيبرانية لأنظمة OT وIT في القطاعات الصناعية والحرجة العامة [76]، مما يؤدي إلى تنفيذ غير فعال للأمن السيبراني-الفيزيائي لهذه الأصول.</p>
+    <p>وينطبق الأمر نفسه على متطلبات IACS الموحدة E26 (المرونة السيبرانية للسفن) وE27 (المرونة السيبرانية للأنظمة والمعدات على متن السفن)، التي تواجه صعوبات تنفيذ في القطاع البحري نظرًا لطبيعتها العامة وحداثة تطبيقها على السفن الجديدة، والحاجة إلى مواءمتها مع الخصائص الهندسية والتشغيلية للسفن المتخصصة. وتؤكد هذه الفجوات مجتمعة أن الأطر العامة وحدها غير كافية، وأن القطاع البحري يحتاج إلى تدابير أمن سيبراني مخصصة وبحوث مكثفة — تقنية وتنظيمية وبشرية — لمواجهة التهديدات المتطورة، مع إعطاء الأولوية لتدريب الأطقم وتخصيص الموارد بما يعزز قدرة السفن على الصمود السيبراني-الفيزيائي.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>The maritime industry's increasing integration of IT/OT systems into vessel operations has significantly elevated its exposure to cyber–physical threats, making the development of effective cyber risk management strategies a necessity. This paper provides an outlook of the current landscape of cyber security threats and vulnerabilities for the maritime sector and vessels. An outline of the relevant governmental and industry directives, standards, and guidelines for cyber security in maritime vessels is given. Considering maritime vessels as critical elements of the maritime critical infrastructure sector, a number of relevant cyber–physical security assessment methods are presented. Bridging cyber–physical security, process safety, and security, API SRA (American Petroleum Institute Security Risk Analysis) and BTA (Bow-Tie Analysis) are presented as the most applicable cyber–physical security assessment methods for complex maritime vessels, such as an offshore oil and gas drillship. The scenario of a cyber-attack on the Dynamic Positioning (DP) system of a drillship is presented with the use of API SRA and BTA. The difficulties in the implementation of NIST CSF v2.0 and IACS UR E26 and UR E27 in the maritime sector are also discussed. The need for intensified research on and the formulation of bespoke cyber security measures to mitigate the evolving cyber threats within the maritime domain is highlighted. The need for the allocation of training and resources for the reinforcement of the capacity of a maritime vessel's crew in the mitigation of cyber threats and safe maritime operations is emphasized.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>In the contemporary maritime industry, the integration of digital systems that control vessel operations has significantly increased the susceptibility of ships to cyber threats. International Maritime Organization (IMO) Resolution MSC.428(98) underscores the importance of heightened cyber risk awareness and the incorporation of cyber risk management into Safety Management Systems (SMSs), as stipulated by the International Safety Management (ISM) Code. This resolution matters for all maritime stakeholders, obliging them to manage cyber risks alongside traditional safety risks, while cyber threats keep evolving in sophistication and frequency across both IT and OT domains.</p>
+    <p>Maritime vessels are maritime industrial assets comprising industrial control systems (ICSs), IT and OT systems, equipment and components enabling maritime operations at a technical level. Given their complexity and interconnectivity, these vessels need assessment methods addressing both their maritime dimension and their industrial critical-infrastructure characteristics. Despite abundant critical-infrastructure security assessment frameworks, few have been field-applied to specialized vessels such as offshore drillships, which combine maritime with upstream oil and gas operations through complex interconnected IT/OT systems.</p>
+    <p>This paper bridges that gap by presenting a cyber–physical security assessment of an offshore drillship, focusing on the Dynamic Positioning (DP) system as a high-value target. The API 780 Security Risk Analysis (SRA) standard assesses cyber vulnerabilities, target attractiveness and security posture, while Bow-Tie Analysis (BTA) — a process safety management tool — evaluates and visualizes the security barriers deployed before and after a potential breach. The work closes by discussing NIST CSF v2.0 and IACS UR E26/UR E27 implementation difficulties and by recommending training and resources to strengthen crew capacity.</p>
+  </section>
+
+  <section>
+    <h2>2. Cyber Security in the Maritime Domain</h2>
+    <p>The maritime industry is increasingly interconnected and reliant on digital systems and industrial control systems (ICSs) [19], making it a prime target for cyber threats. The European Union Agency for Cybersecurity (ENISA) [20, 21] reported a significant shift in the maritime sector's cyber risk profile, with rising cybersecurity incidents at ports and on vessels. The United States Coast Guard (USCG) [22] and ENISA [20] reported growth in diverse threats — including advanced persistent threats, phishing attacks and ransomware cases affecting the maritime transportation sector, shipping companies and assets — with major consequences for global trade and security. Politically and financially motivated attacks on vessel and company IT/OT systems also expose state actors' involvement [21], creating a composite, continually evolving threat landscape where covert military operations blend with cyber-criminal operations.</p>
+    <p>BIMCO [23] categorized maritime cyber threats as shown in Table 1: untargeted attacks — malware (trojans, ransomware, spyware, viruses, worms), water holing exploiting crew internet use at sea, random vulnerability scanning, typosquatting — and targeted attacks — social engineering, brute force password guessing, credential stuffing, DoS/DDoS, spear phishing, and supply chain attacks via equipment or software delivered to the vessel. From known maritime and critical-sector incidents, adversary classes emerge: cybercriminals, state adversaries, insiders (disgruntled or careless), cyber terrorists, and cyber activists [23, 24].</p>
+    <p>These escalating threats demand stakeholder vigilance and robust measures accounting for assets and operational/technical characteristics, acknowledging the maritime transportation sector's overlap with other critical infrastructure sectors. Current maritime cybersecurity initiatives — standards, regulations, guidelines and directives from industry and governmental organizations — were extensively reviewed in prior literature [25–29]; this paper identifies the most prominent in Table 2, derived via a review using the IHS Markit database and governmental webpages. They include: NIST standards (Special Publications 800-30, 800-37, 800-82 and CSF 2.0), ASTM F3286-17 and F3449-20, ISO/IEC 27001 [30], IEC-62443-4-2 [31], IEC 62443-3-3 [32], ISO/IEC 21827 [33], ISO/IEC 15408-1 [34], ISO/IEC 18045 [35] and ISO/IEC 27032 [36]; and industry bodies: IMO Resolution MSC.428(98) and guidance MSC-FAL.1/Circ.3, the BIMCO Guidelines on Cyber Security Onboard Ships, and IACS UR E26 and E27.</p>
+    <p>Yet most of these directives remain generic documents recommending improved practices for IT/OT security posture without specifying systems, processes or components deemed operationally or technically critical for specialized vessels. Implementation of existing maritime cybersecurity directives, policies and standards also needs reinforcement by industry stakeholders to sustain compliance and posture. Documented incidents — from Meland et al.'s retrospective analysis of maritime cyber incidents [1] to recent systematic surveys [2, 3], GPS spoofing cases [4, 5], naval sensor targeting mechanisms [6], dual-fuel engine scenarios [7], documented Coast Guard cases [8], tanker attacks near Fujairah [9, 10], Red Sea cyber operations [11, 12], integrated navigational system threats [13], port-and-ship cyber–physical attacks [14], hardware-in-the-loop environments [15], navigation-system control-perspective issues [16], warnings that ships are wide open to cyber attack [17, 18], and national assessments [19–22] — show the threat surface is real and growing.</p>
+  </section>
+
+  <section>
+    <h2>3. Cyber–Physical Security Assessment in the Maritime Domain</h2>
+    <p>Cyber–physical systems are generally defined as those combining IT (Information Technology), OT (Operational Technology) and human operations [25]. A security assessment is generally the evaluation of an asset's characteristics through the security parameters of threat, risk and vulnerabilities, while a cyber–physical security assessment evaluates the cybersecurity risks of OT systems and components plus connected IT systems as they relate to process safety and security. Such assessment is especially relevant to industrial and critical infrastructure assets given their complex multidisciplinary technical and operational parameters. With ships as elements of the maritime transportation sector, they must be seen as maritime industrial assets comprising ICSs and OT/IT systems, requiring methodologies relevant both to ships' maritime dimension and their industrial critical-infrastructure characteristics.</p>
+    <p>Based on a literature review across ScienceDirect, Google Scholar, Wiley, IEEE Xplore, ProQuest, ResearchGate, Academia.edu and common web search engines — with keyword combinations such as "maritime security", "oil and gas + maritime + cyber security", "offshore maritime security", "CIP and cyber security + oil and gas", "CIP + maritime + oil and gas" and "offshore oil and gas security" — Table 3 presents relevant qualitative and quantitative cyber–physical security assessment methods for critical infrastructure, including: commercial supply chain risk management [48], Fuzzy RAMCAP [49], all-hazards catastrophe frameworks [50–52], attack-modelling methods [53], generic risk-based criticality analysis [54], LIMOD Bayesian networks [55], PCS security for SCADA in CIP [56], bilevel/trilevel attacker–defender models [57, 58], matrix-based vulnerability methodologies [59, 60], energy criticality assessment [61], game-theoretic deterrence quantification [62], the CYSM collaborative system [63], model-based risk/vulnerability analysis MBRA/MBVA [64–67], attack-strength-degradation models [68], CRASH qualitative ship risk analysis [69], CYRA-MS adapted from CPHA to IEC 62433 parameters [46], quantitative CRAMMTS adapted from ISRAM [70], ship-OT risk-matrix methods [71], MV-HARM graphical models [72], port-and-ship ecosystem assessment [73], SVAPP barrier methodology [74], Cyber PHA, and others.</p>
+    <p>Most of these methods are used in "laboratory-" or "classroom-" based environments to present technical features, feasibility and capabilities, and do not adequately tackle field validation and industry implementation under technical and resource constraints. By comparison, the API 780 Security Risk Analysis (SRA) was found widely recognized and used in the oil and gas and maritime industry [25, 26, 91], providing detailed analysis of vessels, identified cyber vulnerabilities and proposed countermeasures while accounting for target attractiveness. The Bow-Tie Analysis (BTA) process safety method effectively assesses cybersecurity barriers deployed before and after a potential breach scenario, with visual presentation and detailed analysis of all threat consequences and incidents. The API SRA plus BTA combination was therefore selected as the most applicable assessment approach for complex vessels such as an offshore drillship.</p>
+  </section>
+
+  <section>
+    <h2>4. Cyber–Physical Security Assessment for an Offshore Drillship</h2>
+    <p>The examined cyber–physical security scenario is a cyber breach incident in the Dynamic Positioning system of an offshore drillship, selected after reviewing other potential vessel targets and publications on such breach possibilities [93–99]. This drillship is a self-propelled floating offshore drilling unit with a ship hull capable of drilling exploratory wells in deep remote waters [100], combining industrial equipment and processes supported by sophisticated complex IT/OT systems for upstream (oil and gas exploratory) and maritime operations. The DP system lets a floating vessel hold position over a location by varying propulsion power along the hull without conventional mooring or anchoring; propulsion power is directed by telemetry signals from sensors including seafloor beacons, satellite information (GPS, GNSS, GLONASS), wind sensors, gyro compasses, motion and vertical reference units, hydro-acoustic sensors, or taut-wire angular movement [100]. DP systems are categorized (DPS 0, DPS 1, DPS2, DPS3) per IMO Guidelines MSC.1/Circ.1580 [101] and MSC/Circ.645 [102] with different station-keeping, reliability and redundancy capacities. The analysis aims to: identify asset systems and locations vulnerable to cyber breach; validate target attractiveness and vulnerabilities for the drillship's DP system; apply API SRA to assess vulnerabilities, attractiveness and posture through established barriers; apply BTA to visualize and assess pre- and post-event barriers; and validate the integrated SRA–BTA use for proactive and reactive protection analysis.</p>
+    <p>The analysis accounts for maritime and industrial asset features and engineering/operational parameters, using the vessel's technical design drawings made available to the authors [104] plus an author-created DP system and IT network diagram showing logical connectivity between the vessel server, IT equipment and DP components (Figure 2). The selected DP system is DPS 2 with three bridge DP workstations and one portable unit (Figure 2). Validating API SRA meant following the API STD 780 five-step process: in Step 01, asset classification — identifying drillship cyber components, interdependencies, existing safeguards (internal/external), human-life/environment/business-continuity consequences, and criticality graded on worst-case consequences — was carried out through macroscopic evaluation of the hazardous areas' classification drawing (Figure 3) derived from IEC 60079-10-1 engineering analysis, identifying cyber-critical areas and assets (Table 4) across (a) industrial (oil and gas) process, (b) maritime process, and (c) IT systems — including engine control rooms, transformer rooms, rudders, pump rooms, VDR, SATCOM/TELECOM, DP system and more — then severity-ranked on casualties, environment, replacement, business and reputation consequences. Assessing the identified assets, locations, systems and breach scenarios validated and selected the DP system for deeper analysis: interfering with or incapacitating the DP system during well drilling can cause loss of station keeping and possibly propulsion and power, disrupting or halting drilling operations entirely.</p>
+    <p>In Step 02, adversaries were identified and threats ranked: cybercriminals and state adversaries targeting the drillship were both ranked high (4–5 on a 1–5 scale) — a credible threat based on capability and intent, frequently recurring against the asset or similar assets with very high attack frequency over asset life — while the insider threat actor was ranked medium: a possible threat with currently no specific verified threat, yet highly probable given the drillship's network interconnectivity and past insider-led incidents. For target attractiveness, the drillship's DP system holds potentially high interest for external actors (cybercriminals and state adversaries) with the highest preference value, given the onboard locations' and systems' vulnerabilities (Table 4) and the detrimental effects of a process safety incident from a cyber–physical event. Step 03 (vulnerability assessment) identified three breach scenarios: (1) external attack on DP systems via OT-external networks, remote software/firmware updates, or GPS/GLONASS interference, losing sea-keeping capability; (2) a similar state-adversary attack via propulsion systems' external communications; (3) a crew member accessing the drillship network and intentionally or unintentionally planting malware via portable USB, infecting PC stations then gradually other network systems, disrupting drilling and maritime operations with system failures. Proposed countermeasures include: stronger crew and DP operator security vetting and performance monitoring; physical separation of engine, propulsion and DP control systems; IT/OT, HMI and DP workstation firmware/software upgrades; firewalls and antivirus for all systems; onboard IT/OT experts; USB port access monitoring and control; upgraded engine-room and DP operator training; IT/OT failure emergency protocols; control/monitoring redundancy; secure remote monitoring, control and remediation; reinforced preventive-check SOPs; alternate propulsion/DP HMIs; event and alarm monitoring; performance data verification; network segmentation with multiple servers; multiple position reference systems; common-mode failure assertion across GPS systems; and regular motion/vertical reference calibration.</p>
+    <p>After vulnerability assessment, Step 04 (risk evaluation) assessed conditional likelihood of each breach scenario, assigned initial risk and prioritized: external cybercriminal and state-adversary attacks were ranked high risk and likelihood, while the insider-led breach was medium risk with high likelihood — attack success likelihood computed as a function of consequence and probability/frequency with an API STD 780 risk-ranking matrix, prioritized per countermeasure selection and technical, organizational and financial resource availability and effectiveness. Finally, Step 05 (risk treatment) evaluated and recommended countermeasures, re-calculated attack likelihood and consequence severity, computed residual risks and ranked proposed countermeasures — with Step 03 countermeasures remaining valid for vulnerability and residual-risk reduction, their selective use depending on available resources and technical feasibility per corporate management and technical stakeholders.</p>
+    <p>The breach scenarios — malware contamination and DP interference by external (cybercriminals and state adversaries) and internal (crew) actors — rest on the SRA performed and the DP/network diagram (Figure 2), with the combined Bow-Tie Analysis in Figure 4. Identified preventive (pre-event) barriers are: crew and DP operator security vetting and performance monitoring; IT/OT, HMI and DP system software and firmware; physical separation (segregation) of engine, propulsion and DP control systems; firewalls and antivirus for all critical systems; USB port usage monitoring across IT/OT; upgraded engine-room and DP operator training; preventive-check SOPs; network and server segmentation; onboard IT/OT expert team; multiple DP position reference systems; and motion/vertical reference calibration. Insider-threat mitigation (vetting and monitoring) deserves emphasis against disgruntled-employee sabotage; USB monitoring, control or blockage eliminates intentional or unintentional malware transfer; training and emergency procedures raise cyber awareness and hygiene; monitoring critical propulsion/DP parameters with intervention on excessive deviations strongly mitigates the scenarios; and antivirus/firewalls would eliminate malware installation — subject to technical and operational feasibility given onboard IT/OT type, age and software/firmware. Post-event mitigation barriers include: engine/propulsion/DP control and monitoring redundancy; remote IT/OT monitoring, control and remediation; alternate propulsion/DP HMIs; event and alarm monitoring and management; propulsion/DP performance data verification; onboard IT/OT expert team; environmental impact responses; and emergency management protocols.</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>The evolving threat landscape indicates the necessity of increasing or reinforcing the maritime transportation sector's cybersecurity posture and operational resilience, achievable only through adequate resource allocation by involved industry stakeholders and corporate entities. Reviewing available governmental and industry directives and standards (Table 2) showed most cover the subject but mainly through guidelines protecting or reinforcing existing IT/OT infrastructure, remaining generic documents recommending improved practices for IT/OT security posture without specifying systems, processes or components deemed operationally or technically critical for specialized vessels such as the selected drillship. Implementation of existing maritime cybersecurity directives, policies and standards also needs industry reinforcement to sustain compliance and posture.</p>
+    <p>The credibility of the drillship-network cyber breach scenario leading to remote DP incapacitation was validated through the API SRA and BTA cyber–physical security assessment. API SRA proved valuable for assessing maritime vessels' cyber–physical threats, vulnerabilities and target attractiveness as elements of the maritime transportation and oil and gas critical infrastructure sectors. Similarly, BTA proved useful for visualizing the threat scenario's event path, highlighting pre- and post-event stages and deployed preventive and mitigative barriers. The combined API SRA–BTA use validated the selected breach scenarios by confirming preventive and mitigative countermeasures before and after the drillship DP cybersecurity breach. Human factors — vessel crew members — play the most crucial role in cybersecurity directive compliance, posture maintenance and breach emergency procedures, balancing maritime operations, cyber hygiene and vessel-system usage; adequate training and resources must therefore be allocated to reinforce their cyber threat mitigation and safe operations capacity.</p>
+  </section>
+
+  <section>
+    <h2>6. Discussion</h2>
+    <p>Implementing the API SRA and BTA methods assumes use of a drillship's technical drawings, yet only a small number of the vessel's system drawings were made available to the authors for confidentiality reasons. Similarly, the authors' network and DP diagram is a typical configuration, partly based on publicly available data, so it may not capture all technical parameters or system architectures of existing DP and IT/OT network diagrams of maritime vessels. Industry or governmental maritime cybersecurity standards, directives, guidelines or policies may have been omitted during writing, as may academic publications on maritime cyber–physical security — unintentionally, since the subject extends beyond the authors' available resources and some standards or publications may have released after submission.</p>
+    <p>Regarding the latest NIST CSF v2.0 release, it holds significant implications for maritime OT professionals. While NIST CSF v2.0 provides comprehensive cyber risk management guidelines, its maritime application reveals a gap — particularly for Operational Technology (OT) cybersecurity: these systems, crucial for controlling physical operations on vessels and ports, are closely connected to the maritime supply chain, and their disruption carries major repercussions. A published study [105] revealed critical gaps in maritime industry implementation of NIST CSF v2.0, finding it not fully utilized for maritime cybersecurity, and stressing the urgent need for a maritime-adapted version of this framework that could significantly improve sector resilience. There is also a notable lack of research on maritime supply chain cybersecurity — a vital area tied to shipboard OT systems — underscoring the need for intensified research across all maritime activities. Moreover, NIST CSF v2.0 application does not account for engineering approaches to physical security management from OT/IT cyber threats in industrial and general critical infrastructure sectors [76], leading to ineffective cyber–physical security implementation for such assets.</p>
+    <p>The same applies to IACS Unified Requirements E26 (cyber resilience of ships) and E27 (cyber resilience of onboard systems and equipment), which face maritime implementation difficulties given their generic nature and recent application to newbuilds, plus the need to align them with specialized vessels' engineering and operational characteristics. Together these gaps confirm that generic frameworks alone are insufficient, and the maritime sector needs bespoke cybersecurity measures and intensified research — technical, regulatory and human — against evolving threats, prioritizing crew training and resource allocation to strengthen vessels' cyber–physical resilience.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Meland, P.H.; Bernsmed, K.; Wille, E.; Rødseth, Ø.J.; Nesheim, D.A. A retrospective analysis of maritime cyber security inci- dents. TransNav Int. J. Mar. Navig. Saf. Sea Transp. 2021, 15, 519–530. https://doi.org/10.12716/1001.15.03.04.</li>
+      <li>[2] Ben Farah, M.A.; Ukwandu, E.; Hindy, H.; Brosset, D.; Bures, M.; Andonovic, I.; Bellekens, X. Cyber security in the maritime industry: A systematic survey of recent advances and future trends. Information 2022, 13, 22.</li>
+      <li>[3] Akpan, F.; Bendiab, G.; Shiaeles, S.; Karamperidis, S.; Michaloliakos, M. Cybersecurity challenges in the maritime sector. Net- work 2022, 2, 123–138.</li>
+      <li>[4] Ubaleht, J. Importance of Positioning to MASS: The Eﬀect of Jamming and Spooﬁng on Autonomous Vessel. Master’s Thesis, Novia University of Applied Sciences, Vaasa, Finland, 2022.</li>
+      <li>[5] Hambling, D. Ships Fooled in GPS Spooﬁng Attack Suggest Russian Cyberweapon. New Scientist; 10 August 2017. Available online: https://www.newscientist.com/article/2143499-ships-fooled-in-gps-spooﬁng-attack-suggest-russian-cyberweapon/ (ac- cessed on 2 August 2024).</li>
+      <li>[6] Leite Junior, W.C.; de Moraes, C.C.; de Albuquerque, C.E.; Machado, R.C.S.; de Sá, A.O. A triggering mechanism for cyber- attacks in naval sensors and systems. Sensors 2021, 21, 3195.</li>
+      <li>[7] Bolbot, V.; Methlouthi, O.; Banda, O.V.; Xiang, L.; Ding, Y.; Brunou, P. Identiﬁcation of cyber-attack scenarios in a marine Dual- Fuel engine. In Trends in Maritime Technology and Engineering; CRC Press: Boca Raton, FL, USA, 2022; pp. 503–510.</li>
+      <li>[8] Rundle, J. Coast Guard Details February Cyberattack on Ship. WSJ. Wall Str. J. 2019, 26. Available online: https://www.wsj.com/articles/coast-guard-details-february-cyberattack-on-ship-11564133401 (accessed on 1 August 2024).</li>
+      <li>[9] Seanews Editor. Naval Dome CEO Itai Sela Comments on Attacks on Tankers Near Port of Fujairah—Sea News. Sea News— Global Maritime News. 16 May 2019. Available online: https://seanews.co.uk/shipping-news/naval-dome-ceo-itai-sela-com- ments-on-attacks-on-tankers-near-port-of-fujairah/ (accessed on 11 July 2024).</li>
+      <li>[10] Cyber-Attacks on Maritime Oil Tankers. (n.d.). Available online: https://www.cybersecurityintelligence.com/blog/cyber-attacks- on-maritime-oil-tankers-4293.html (accessed on 1 August 2024).</li>
+      <li>[11] Babb, C. US Cyberattack Hit 2 Iranian Military Ships in Red Sea. Voice of America; Voice of America (VOA News). 17 February 2024. Available online: https://www.voanews.com/a/us-cyberattack-hit-2-iranian-military-ships-in-red-sea-/7491503.html (ac- cessed on 1 August 2024).</li>
+      <li>[12] The Maritime Executive. Report: U.S. Carried Out Covert Cyberattack on Iranian Spy Ship. The Maritime Executive; The Mari- time Executive. 15 February 2024. Available online: https://maritime-executive.com/article/report-u-s-carried-out-covert- cyberattack-on-iranian-spy-ship (accessed on 5 July 2024).</li>
+      <li>[13] Svilicic, B.; Rudan, I.; Jugović, A.; Zec, D. A study on cyber security threats in a shipboard integrated navigational system. J. Mar. Sci. Eng. 2019, 7, 364.</li>
+      <li>[14] Tam, K.; Hopcraft, R.; Moara-Nkwe, K.; Misas, J.P.; Andrews, W.; Harish, A.V.; Gimienez, P.; Chrichton, T.; Jones, K. Case study of a cyber-physical attack aﬀecting port and ship operational safety. J. Transp. Technol. 2021, 12, 1–27.</li>
+      <li>[15] Vu, L.; Nguyen, T.L.; Abdelrahman, M.S.; Vu, T.; Mohammed, O.A. A cyber-HIL for investigating control systems in ship cyber physical systems under communication issues and cyber attacks. IEEE Trans. Ind. Appl. 2023, 60, 2142–2152.</li>
+      <li>[16] Hassani, V.; Crasta, N.; Pascoal, A.M. Cyber security issues in navigation systems of marine vessels from a control perspective. In Proceedings of the International Conference on Oﬀshore Mechanics and Arctic Engineering, Trondheim, Norway, 25–30 June 2017; p. V07BT06A029.</li>
+      <li>[17] Dryad Global. Can a Cyber Attack Control a Ship? Dryad Global Ltd. 30 July 2024. Available online: https://channel16.dry- adglobal.com/can-a-cyber-attack-control-a-ship (accessed on 5 August 2024).</li>
+      <li>[18] Bush, D. Ethical Hacker Says Ships Are Wide Open to Cyber Attack. Lloyd’s List. 27 May 2021. Available online: https://www.lloydslist.com/LL1136933/Ethical-hacker-says-ships-are-wide-open-to-cyber-attack (accessed on 1 August 2024).</li>
+      <li>[19] The Danish Center for Cybersecurity. The Cyber Threat against Operational Systems on Ships. Centre for Cybersecurity. 2020. Available online: https://www.cfcs.dk/globalassets/cfcs/dokumenter/trusselsvurderinger/en/-cyber_threat_against_opera- tional_systems_on_ships-.pdf (accessed on 10 August 2024).</li>
+      <li>[20] ENISA (European Union Agency for Cybersecurity) ENISA Threat Landscape: Transport Sector (January 2021 to October 2022); ENISA Publications Oﬃce: Attiki, Greece, 2023. Available online: https://data.europa.eu/doi/10.2824/553997 (accessed on 1 August 2024).</li>
+      <li>[21] COMPU-VISION. Cyber Attacks on Shipping See Rapid Growth in Numbers. Roban Assaﬁna. 2024. Available online: https://as- saﬁnaonline.com/news_details/en/20768/Cyber-attacks-on-shipping-see-rapid-growth-in-numbers (accessed on 1 August 2024).</li>
+      <li>[22] United States Coast Guard (USCG), U.S. Coast Guard Cyber Command (CGCYBER), 2023 Cyber Trends and Insights in the Marine Environment Report. 22 April 2024. Available online: https://www.news.uscg.mil/maritime-commons/Arti- cle/3750095/2023-cyber-trends-and-insights-in-the-marine-environment-report/ (accessed on 4 August 2024).</li>
+      <li>[23] The Guidelines on Cyber Security Onboard Ships. 2023. Available online: https://www.bimco.org/about-us-and-our-mem- bers/publications/the-guidelines-on-cyber-security-onboard-ships (accessed on 3 August 2024).</li>
+      <li>[24] ENISA (European Union Agency for Cybersecurity) Foresight Cybersecurity Threats For 2030—Update 2024. ENISA. Available online: https://www.enisa.europa.eu/publications/foresight-cybersecurity-threats-for-2030-update-2024 (accessed on 3 August 2024).</li>
+      <li>[25] Progoulakis, I.; Rohmeyer, P.; Nikitakos, N. Cyber physical systems security for maritime assets. J. Mar. Sci. Eng. 2021, 9, 1384.</li>
+      <li>[26] Progoulakis, I.; Nikitakos, N.; Dalaklis, D.; Christodoulou, A.; Dalaklis, A.; Yaacob, R. Digitalization and cyber physical security aspects in maritime transportation and port infrastructure. In Smart Ports and Robotic Systems: Navigating the Waves of Techno- Regulation and Governance; Springer International Publishing: Cham, Switzerland, 2023; pp. 227–248.</li>
+      <li>[27] Taherdoost, H. Understanding cybersecurity frameworks and information security standards—A review and comprehensive overview. Electronics 2022, 11, 2181.</li>
+      <li>[28] Djebbar, F.; Nordström, K. A comparative analysis of industrial cybersecurity standards. IEEE Access 2023, 11, 85315–85332.</li>
+      <li>[29] Kalogeraki, E.M.; Polemi, N. A taxonomy for cybersecurity standards. Secur. Saf. 2024, 5, 95–115. https://doi.org/10.20517/jsss.2023.50.</li>
+      <li>[30] ISO/IEC 27001; International Organization for Standardization (ISO) and the International Electrotechnical Commission (IEC). Information technology-Security techniques-Information security management systems–Requirements, ISO/IEC. 2013.</li>
+      <li>[31] IEC-62443-4-2; International Electrotechnical Commission (IEC). Security for Industrial Automation and Control Systems: Tech- nical Security Requirements for IACS Components, IEC. 2019.</li>
+      <li>[32] International Electrotechnical Commission (IEC). (2013). IEC 62443-3-3, Security for industrial automation and control systems Part 3-3: System security requirements and security levels, IEC.</li>
+      <li>[33] International Organization for Standardization (ISO) and the International Electrotechnical Commission (IEC). (2008). ISO/IEC 21827, Information technology - Security techniques - Systems Security Engineering - Capability Maturity Model® (SSE- CMM®), ISO/IEC.</li>
+      <li>[34] International Organization for Standardization (ISO) and the International Electrotechnical Commission (IEC). (2009). ISO/IEC 15408-1, Information technology - Security techniques - Evaluation criteria for IT security, ISO/IEC.</li>
+      <li>[35] International Organization for Standardization (ISO) and the International Electrotechnical Commission (IEC). (2008). ISO/IEC 18045, Information technology - Security techniques - Methodology for IT security evaluation, ISO/IEC.</li>
+      <li>[36] International Organization for Standardization (ISO) and the International Electrotechnical Commission (IEC). (2012). ISO/IEC 27032, Information technology - Security techniques - Guidelines for cybersecurity, ISO/IEC.</li>
+      <li>[37] National Institute of Standards and Technology (NIST). Framework for Improving Critical Infrastructure Cybersecurity, Ver- sion 2.0; Public Draft NIST.CSWP.29.ipd. 2024. Available online: https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf (accessed on 2 August 2024).</li>
+      <li>[38] International Association of Classiﬁcation Societies (IACS) UR E26 Cyber resilience of Ships—Rev. 1 November 2023. Available online: https://iacs.s3.af-south-1.amazonaws.com/wp-content/uploads/2022/02/04140503/UR-E26-Rev.1-Nov-2023-CR.pdf (ac- cessed on).</li>
+      <li>[39] International Association of Classiﬁcation Societies (IACS) UR E27 Cyber Resilience of On-Board Systems and Equipment— Rev.1 Sep 2023. Available online: https://iacs.s3.af-south-1.amazonaws.com/wp-content/uploads/2022/05/29103853/UR-E27- Rev.1-Sep-2023-CLN.pdf (accessed on 2 August 2024).</li>
+      <li>[40] Kavallieratos, G.; Katsikas, S. Managing cyber security risks of the cyber-enabled ship. J. Mar. Sci. Eng. 2020, 8, 768.</li>
+      <li>[41] Lagouvardou, S. Maritime Cyber Security: Concepts, Problems and Models; Department of Management Engineering: Kongens Lyngby, Copenhagen, 2018.</li>
+      <li>[42] Androjna, A.; Brcko, T.; Pavic, I.; Greidanus, H. Assessing cyber challenges of maritime navigation. J. Mar. Sci. Eng. 2020, 8, 776.</li>
+      <li>[43] Miranda Silgado, D. Cyber-Attacks: A Digital Threat Reality Aﬀecting the Maritime Industry. Ph.D. Thesis, World Maritime University, Malmö, Sweden, 11 April 2018.</li>
+      <li>[44] Tusher, H.M.; Munim, Z.H.; Notteboom, T.E.; Kim, T.E.; Nazir, S. Cyber security risk assessment in autonomous shipping. Marit. Econ. Logist. 2022, 24, 208–227.</li>
+      <li>[45] Zhou, X.Y.; Liu, Z.J.; Wang, F.W.; Wu, Z.L. A system-theoretic approach to safety and security co-analysis of autonomous ships. Ocean. Eng. 2021, 222, 108569.</li>
+      <li>[46] Bolbot, V.; Theotokatos, G.; Boulougouris, E.; Vassalos, D. A novel cyber-risk assessment method for ship systems. Saf. Sci. 2020, 131, 104908.</li>
+      <li>[47] Melnyk, O.; Onyshchenko, S.; Onishchenko, O.; Lohinov, O.; Ocheretna, V. Integral approach to vulnerability assessment of ship’s critical equipment and systems. Trans. Marit. Sci. 2023, 12, 1–10.</li>
+      <li>[48] Häyhtiö, M.; Zaerens, K. A comprehensive assessment model for critical infrastructure protection. Manag. Prod. Eng. Rev. 2017, 8, 42–53.</li>
+      <li>[49] Alidoosti, A.; Yazdani, M.; Fouladgar, M.M.; Basiri, M.H. Risk assessment of critical asset using fuzzy inference system. Risk Manag. 2012, 14, 77–91.</li>
+      <li>[50] Lewis, T.G.; Mackin, T.J.; Darken, R. Critical infrastructure as complex emergent systems. Int. J. Cyber Warf. Terror. (IJCWT) 2011, 1, 1–12.</li>
+      <li>[51] Pollet, J.; Cummins, J. All Hazards Approach for Assessing Readiness of Critical Infrastructure. In Proceedings of the IEEE Conference on Technologies for Homeland Security, Boston, MA, USA, 11–12 May 2009; pp. 366–372.</li>
+      <li>[52] Taquechel, E.F.; Lewis, T.G. A Right-Brained Approach to Critical Infrastructure Protection Theory in support of Strategy and Education: Deterrence, Networks, Resilience, and “Antifragility”. Homel. Secur. Aﬀ. 2017, 13, 50-83.</li>
+      <li>[53] Ivanc, B.; Klobucar, T. Attack Modeling in the Critical Infrastructure/Modeliranje napadov v kriticni infrastrukturi. El- ektrotehniski Vestn. 2014, 81, 285.</li>
+      <li>[54] Theoharidou, M.; Kotzanikolaou, P.; Gritzalis, D. Towards a Criticality Analysis Methodology: Redeﬁning Risk Analysis for Critical Infrastructure Protection. In Proceedings of the 3rd IFIP International Conference on Critical Infrastructure Protection, Hanover, NH, USA, 22–25 March 2009.</li>
+      <li>[55] Misuri, A.; Khakzad, N.; Reniers, G.; Cozzani, V. A Bayesian network methodology for optimal security management of critical infrastructures. Reliab. Eng. Syst. Saf. 2019, 191, 106112.</li>
+      <li>[56] Ryu, D.H.; Kim, H.; Um, K. Reducing security vulnerabilities for critical infrastructure. J. Loss Prev. Process Ind. 2009, 22, 1020– 1024.</li>
+      <li>[57] Brown, G.; Carlyle, M.; Salmerón, J.; Wood, K. Defending critical infrastructure. Interfaces 2006, 36, 530–544.</li>
+      <li>[58] Alderson, D.L.; Brown, G.G.; Carlyle, W.M.; Wood, R.K. Solving Defender-Attacker-Defender Models for Infrastructure Defense; Na- val Postgraduate School Monterey CA, Dept of Operations Research: Monterey, CA, USA, 2011.</li>
+      <li>[59] Baker, G.H. A vulnerability assessment methodology for critical infrastructure sites. In DHS Symposium: R and D Partnerships in Homeland Security; James Madison University: Harrisonburg, VA, USA, 2005.</li>
+      <li>[60] Ouyang, M. Critical location identiﬁcation and vulnerability analysis of interdependent infrastructure systems under spatially localized attacks. Reliab. Eng. Syst. Saf. 2016, 154, 106–116.</li>
+      <li>[61] Augutis, J.; Jokšas, B.; Krikštolaitis, R.; Urbonas, R. The assessment technology of energy critical infrastructure. Appl. Energy 2016, 162, 1494–1504.</li>
+      <li>[62] Taquechel, E.F.; Lewis, T.G. How to Quantify Deterrence and Reduce Critical Infrastructure Risk. Homel. Secur. Aﬀ. 2012, 8, 1- 28.</li>
+      <li>[63] Karantjias, A.; Polemi, N.; Papastergiou, S. Advanced security management system for critical infrastructures. In Proceedings of the IISA 2014, The 5th International Conference on Information, Intelligence, Systems and Applications, Chania, Greece, 7–9 July 2014; pp. 291–297.</li>
+      <li>[64] Lewis, T.G.; Darken, R.P.; Mackin, T.; Dudenhoeﬀer, D. Model-based risk analysis for critical infrastructures. WIT Trans. State— Art Sci. Eng. 2012, 54.</li>
+      <li>[65] Taquechel, E. Layered defense: Modeling terrorist transfer threat networks and optimizing network risk reduction. IEEE Net- work 2010, 24, 30–35.</li>
+      <li>[66] Valencia, V.V.; Thal, A.E., Jr. Applying the Model-Based Vulnerability Assessment Technique to Interdependent Infrastructures. In Proceedings of the IIE Annual Conference, Orlando, Florida, USA, 19–23 May 2012.</li>
+      <li>[67] Gran, B.A.; Fredriksen, R.; Thunem, A.P.J. Addressing dependability by applying an approach for model-based risk assessment. Reliab. Eng. Syst. Saf. 2007, 92, 1492–1502.</li>
+      <li>[68] Wu, B.; Tang, A.; Wu, J. Modeling cascading failures in interdependent infrastructures under terrorist attacks. Reliab. Eng. Syst. Saf. 2016, 147, 1–8.</li>
+      <li>[69] Oruc, A.; Kavallieratos, G.; Gkioulos, V.; Katsikas, S. Cyber Risk Assessment for SHips (CRASH). Int. J. Mar. Navig. Saf. Sea Transp. 2023, 18, 115–124.</li>
+      <li>[70] Tatar, U.; Karabacak, B.; Keskin, O.F.; Foti, D.P. Charting New Waters with CRAMMTS: A Survey-Driven Cybersecurity Risk Analysis Method for Maritime Stakeholders. Comput. Secur. 2024, 145, 104015.</li>
+      <li>[71] Rajaram, P.; Goh, M.; Zhou, J. Guidelines for cyber risk management in shipboard operational technology systems. J. Phys. Conf. 2022, 2311, 012002.</li>
+      <li>[72] Enoch, S.Y.; Lee, J.S.; Kim, D.S. Novel security models, metrics and security assessment for maritime vessel networks. Comput. Netw. 2021, 189, 107934.</li>
+      <li>[73] Kapalidis, C.; Karamperidis, S.; Watson, T.; Koligiannis, G. A Vulnerability Centric System of Systems Analysis on the Maritime Transportation Sector Most Valuable Assets: Recommendations for Port Facilities and Ships. J. Mar. Sci. Eng. 2022, 10, 1486.</li>
+      <li>[74] van Staalduinen, M.A.; Khan, F.; Gadag, V. SVAPP methodology: A predictive security vulnerability assessment modeling method. J. Loss Prev. Process Ind. 2016, 43, 397–413.</li>
+      <li>[75] Marszal, E.M.; McGlone, J. Security PHA Review for Consequence-Based Cybersecurity; International Society of Automation (ISA): Research Triangle Park, NC, USA, 2019.</li>
+      <li>[76] Ginter, A. Engineering-Grade OT Security: A Manager’s Guide; Abterra Technologies Inc.: Calgary, AB, Canada, 2023.</li>
+      <li>[77] Baybutt, P. Cyber security risk analysis for process control systems using rings of protection analysis (ROPA). Process Saf. Prog. 2004, 23, 284–291.</li>
+      <li>[78] Roldán-Molina, G.; Almache-Cueva, M.; Silva-Rabadão, C.; Yevseyeva, I.; Basto-Fernandes, V. A comparison of cybersecurity risk analysis tools. Procedia Comput. Sci. 2017, 121, 568–575.</li>
+      <li>[79] Knowles, W.; Prince, D.; Hutchison, D.; Disso, J.F.P.; Jones, K. A survey of cyber security management in industrial control systems. Int. J. Crit. Infrastruct. Prot. 2015, 9, 52–80.</li>
+      <li>[80] Erbas, M.; Khalil, S.M.; Tsiopoulos, L. Systematic literature review of threat modeling and risk assessment in ship cybersecurity. Ocean. Eng. 2024, 306, 118059.</li>
+      <li>[81] American Petroleum Institute (API). Standard (STD) 780: Security Risk Assessment Methodology for the Petroleum and Petrochemical Industries; API: Washington, DC, USA, 2013.</li>
+      <li>[82] U.S. Department of Homeland Security (DHS), Cybersecurity and Infrastructure Security Agency (CISA). Chemical Facility Anti-Terrorism Standards (CFATS). 2014. Available online: https://www.cisa.gov/chemical-facility-anti-terrorism-standards (ac- cessed on 10 September 2024).</li>
+      <li>[83] American Institute of Chemical Engineers. Center for Chemical Process Safety. Bow Ties in Risk Management: A Concept Book for Process Safety; John Wiley &amp; Sons, Inc.: Hoboken, NJ, USA, 2018.</li>
+      <li>[84] DRAGOS Inc and OSIsoft Inc. Using Bow Tie Risk Modeling for Industrial Cybersecurity, DRAGOS Inc. 2021. Available online: https://www.dragos.com/resource/using-bow-tie-risk-modeling-for-industrial-cybersecurity/ (accessed on 2 August 2024).</li>
+      <li>[85] aeBlogs: “The Beneﬁts of Visualizing CyberPHAs Using Bowtie Diagrams.” aeSolutions Inc. Available online: https://www.linkedin.com/pulse/beneﬁts-visualizing-cyberphas-using-bowtie-diagrams-kramer-mba/ (accessed on 2 June 2024).</li>
+      <li>[86] SANS Institute Information Security Reading Room White Paper: “Evaluating Cyber Risk in Engineering Environments: A Proposed Framework and Methodology”, Rebekah Mohr, 2016. Available online: https://www.sans.org/white-papers/37017/ (accessed on 22 May 2024).</li>
+      <li>[87] Arnaboldi, L.; Aspinall, D. Towards interdependent safety security assessments using bowties. In Proceedings of the Interna- tional Conference on Computer Safety, Reliability, and Security, Florence, Italy, 6–9 June 2022; Springer International Publish- ing: Cham, Switzerland, 2022; pp. 211–229.</li>
+      <li>[88] Yang, S.H.; Cao, Y.; Wang, Y.; Zhou, C.; Yue, L.; Zhang, Y. Harmonizing safety and security risk analysis and prevention in cyber-physical systems. Process Saf. Environ. Prot. 2021, 148, 1279–1291.</li>
+      <li>[89] Meland, P.H.; Bernsmed, K.; Frøystad, C.; Li, J.; Sindre, G. An experimental evaluation of bow-tie analysis for security. Inf. Comput. Secur. 2018, 26, 536–561. https://doi.org/10.1108/ICS-11-2018-0132.</li>
+      <li>[90] Abdo, H.; Kaouk, M.; Flaus, J.; Masse, F. A safety/security risk analysis approach of Industrial Control Systems: A cyber bow- tie—Combining new version of attack tree with bowtie analysis. Comput. Secur. 2018, 72, 175–195. https://doi.org/10.1016/j.cose.2017.09.004.</li>
+      <li>[91] Bernsmed, K.; Frøystad, C.; Meland, P.H.; Nesheim, D.A.; Rødseth, Ø.J. Visualizing Cyber Security Risks with Bow-Tie Dia- grams. In Graphical Models for Security, GraMSec 2017; Lecture Notes in Computer, Science; Liu, P., Mauw, S., Stolen, K., Eds.; Springer: Cham, Switzerland, 2018; Volume 10744.</li>
+      <li>[92] Progoulakis, I.; Nikitakos, N.; Rohmeyer, P.; Bunin, B.; Dalaklis, D.; Karamperidis, S. Perspectives on cyber security for oﬀshore oil and gas assets. J. Mar. Sci. Eng. 2021, 9, 112.</li>
+      <li>[93] Nolan, D.P. Safety and Security Review for the Process Industries: Application of HAZOP, PHA, What-If and SVA Reviews; Elsevier: Amsterdam, The Netherlands, 2015.</li>
+      <li>[94] DNV GL. (Det Norske Veritas-Germanischer Lloyd) Recommended Practice DNVGL-RP-G496. In Cyber Security Resilience Man- agement for Ships and Mobile Oﬀshore Units in Operation; DNV GL: Oslo, Norway, 2016; Volume 5.</li>
+      <li>[95] International Organization for Standardization/International Electrotechnical Commission standard ISO/IEC 31010. Risk Man- agement—Risk Assessment Techniques; International Organization for Standardization: Geneva, Switzerland, 2019.</li>
+      <li>[96] DP Ships Potentially at Risk from Cyber Attacks. Riviera. 2024. Available online: https://www.rivieramm.com/news-content- hub/news-content-hub/dp-ships-potentially-at-risk-from-cyber-attacks-37302 (accessed on 18 May 2024).</li>
+      <li>[97] Hamill-Stewart, J. The Cyber Vulnerabilities of Dynamic Positioning Systems. The Maritime Executive. 6 March 2023. Available online: https://maritime-executive.com/editorials/the-cyber-vulnerabilities-of-dynamic-positioning-systems (accessed on 19 May 2024).</li>
+      <li>[98] Hacking the Ship Scenario: An Oﬀshore Supply Vessel’s Dynamic Positioning System. ABS Group. 2015. Available online: https://www.abs-group.com/Knowledge-Center/Insights/Hacking-the-Ship-Scenario-An-Oﬀshore-Supply-Vessels-Dynamic- Positioning-System/ (accessed on 18 May 2024).</li>
+      <li>[99] United States Coast Guard (USCG), U.S. Coast Guard Inspections and Compliance Directorate, Marine Safety Alert 11-22: Dy- namic Positioning Systems—Don’t Overestimate Their Capabilities! 1 November 2022. Available online: https://www.dco.uscg.mil/Portals/9/DCO%20Documents/5p/CG- 5PC/INV/Alerts/USCGSA_1122.pdf?ver=3De_jhZjFj31ThdbAFE-Gg%3d%3d (accessed on 4 August 2024).</li>
+      <li>[100] Baker, B.J.; Call, I.F.R. A Primer of Oilwell Drilling: A Basic Text of Oil and Gas Drilling; Petroleum Extension Service, Continuing &amp; Extended Education, University of Texas at Austin: Austin, TX, USA, 2001.</li>
+      <li>[101] International Maritime Organization (IMO). Resolution MSC.1/Circ. 1580, Guidelines for Vessels and Units with Dynamic Positioning; IMO Publishing: London, UK, 2017.</li>
+      <li>[102] International Maritime Organization (IMO). Resolution MSC/Circ. 645 Guidelines for Vessels with Dynamic Positioning Systems; IMO Publishing: London, UK, 1994.</li>
+      <li>[103] American Bureau of Shipping (ABS). Guide for Dynamic Positioning Systems; ABS: Houston, TX, USA, 2024.</li>
+      <li>[104] Teriakidis, G. (Naval Architect, Athens, Greece). Personal communication, 29 June 2018.</li>
+      <li>[105] Dimakopoulou, A.; Rantos, K. Comprehensive Analysis of Maritime Cybersecurity Landscape Based on the NIST CSF v2. 0. J. Mar. Sci. Eng. 2024, 12, 919.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse12101757">10.3390/jmse12101757</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>استكشاف طرق المحاكاة لمواجهة الهجمات السيبرانية على توجيه السفن المستقلة — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Exploring Simulation Methods to Counter Cyber-Attacks on the Steering Systems of the Maritime Autonomous Surface Ship (MASS)</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">استكشاف طرق المحاكاة لمواجهة الهجمات السيبرانية على أنظمة توجيه السفن السطحية البحرية المستقلة (MASS)</h2>
+
+  <div class="paper-meta">
+    <span>👤 Igor Astrov, Sanja Bauk, Pentti Kujala</span>
+    <span>📄 J. Mar. Sci. Eng., 2025 · Vol. 13, 1470</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse13081470">10.3390/jmse13081470</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ARABIC -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تعرض هذه الورقة تحقيقًا قائمًا على المحاكاة في استراتيجيات التحكم للتخفيف من عواقب الاعتداء السيبراني على أنظمة توجيه السفن السطحية البحرية المستقلة (MASS). تركز الدراسة على تجربتي محاكاة أُجريتا في بيئة Simulink/MATLAB، باستخدام النموذج الرياضي لطوف «Nymo» من نوع catamaran لتمثيل ديناميكيات السفينة. تُنمذج الهجمات السيبرانية كاضطرابات خارجية تؤثر على إشارة التحكم في الدفة، محاكيةً سيناريوهات تدخل واقعية. ولتقييم مرونة التحكم، تُقارن تهيئتان أثناء مناورة التفاف تمثيلية نحو اتجاه محدد: (1) منظم تناسبي-تكاملي-تفاضلي (PID) معزز بمرشح تكيفي للمربعات الصغرى (LMS)، و(2) منظم شبكة عصبية للمتوسط المتحرك غير الخطي ذات الانحدار الذاتي مع مدخلات خارجية (NARMA-L2). تهدف تهيئتا PID وLMS إلى تعزيز قدرات رفض الاضطرابات للمتحكم الكلاسيكي عبر الترشيح التكيفي، بينما يمثل نهج NARMA-L2 بديل تحكم غير خطي قائم على البيانات. وتشير نتائج المحاكاة إلى أنه على الرغم من أن إعدادات PID وLMS تُظهر أداءً محسنًا مقارنةً بمنظم PID المستقل في ظل الاضطرابات المستحثة سيبرانيًا، فإن متحكم NARMA-L2 يُظهر قدرة تكيف ودقة ومتانة متفوقة في الظروف العدائية. وتشير هذه النتائج إلى أن التحكم القائم على الشبكات العصبية يوفر مسارًا واعدًا لتطوير أنظمة توجيه مرنة سيبرانيًا لسفن MASS.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تشهد الصناعة البحرية تحولًا جوهريًا بفضل الاعتماد الواسع لتقنيات الشحن الذكي التي تجمع بين الاتصال والروبوتات وتحليلات البيانات واسعة النطاق والذكاء الحسابي [1]. وتهدف هذه الابتكارات إلى تعزيز التنافسية والسلامة التشغيلية والاستدامة البيئية. وأصبحت السفن الحديثة مجهزة بشكل متزايد بمجموعة متنوعة من الحساسات ومعالجات البيانات على متن السفن وأنظمة اتخاذ القرار القائمة على البيانات باستخدام خوارزميات التعلم العميق. وبفضل الاتصال عالي عرض النطاق، أصبح بالإمكان مراقبة السفن وتشغيلها عن بُعد، مما يمهد الطريق لاستقلالية أكبر في البحر. وتمثل سفن MASS تحولًا محوريًا في العمليات البحرية، فهي هياكل رقمية-فيزيائية ممكنة بتقارب تكنولوجيا المعلومات والتشغيل الآنية (IT/OT). وتشمل تكنولوجيا التشغيل (OT) طيفًا واسعًا من وحدات التحكم القابلة للبرمجة والأنظمة المدمجة التي تدير العمليات الفيزيائية على متن السفن، بينما تتولى تكنولوجيا المعلومات (IT) إدارة البيانات والوظائف الإدارية. وكلا المجالين حاسم لتشغيل MASS، وكلاهما معرض بشكل متزايد للهجمات السيبرانية [3].</p>
+    <p>تتمتع سفن MASS بعدة مزايا: إذ يمكن بناؤها لتكون أنظف وقودًا وأخف وزنًا وأرخص تشغيلًا ومقاومة للرياح وكفؤة ديناميكيًا هوائيًا. ومع ذلك، فإن الطريق إلى اعتماد MASS الواسع ما يزال محفوفًا بالتحديات التقنية والتنظيمية. وتُعد أنظمة التوجيه هدفًا جذابًا بشكل خاص، لأن تعطيل التحكم في الاتجاه يمكن أن يؤدي إلى الجنوح أو الاصطدام دون الحاجة إلى اختراق عميق للأنظمة. ولذلك تركز هذه الدراسة على المرونة السيبرانية لنظام التحكم في التوجيه تحديدًا، عبر مقارنة متحكم PID كلاسيكي ومتحكم PID معزز بمرشحات LMS ومتحكم شبكة عصبية NARMA-L2 تحت الاضطرابات المستحثة سيبرانيًا ذاتها، باستخدام نموذج الطوف «Nymo».</p>
+  </section>
+
+  <section>
+    <h2>2. مراجعة الأدبيات</h2>
+    <p>يمثل تطوير المركبات البحرية غير المأهولة والمستقلة تغيرًا مهمًا في النقل البحري والأبحاث والدفاع. فقد بدأ تطوير المركبات تحت المائية المستقلة (AUVs) في الخمسينيات، متطورًا من نماذج أولية ثقيلة وغير فعالة إلى منصات متطورة قادرة على الملاحة على أعماق تصل إلى 6000 متر بقدرات متقدمة لكشف العوائق ورسم الخرائط [11]. وبالمثل، تقدمت سفن MASS من سفن تجريبية إلى منصات عاملة تجاريًا تشمل سفن شحن وسفن أبحاث ومركبات عسكرية [12]. ومع ذلك، ورغم هذه التطورات، ما تزال المركبات السطحية وتحت المائية المستقلة تمامًا القادرة على المهام العميقة والخطرة قيد التطوير، مع تحديات تقنية وقانونية وتنظيمية عديدة ما تزال دون حل [13]. وتعمل السلطات التنظيمية الدولية مثل المنظمة البحرية الدولية (IMO) بنشاط على الأطر القانونية وأطر السلامة اللازمة للدمج الآمن لسفن MASS في حركة المرور البحرية القائمة. وتتوقع IMO الانتهاء من لوائح MASS غير الإلزامية قبل عام 2025، مما سيمهد لتدابير تحضيرية لإطار تنظيمي إلزامي شامل يُتوقع تنفيذه بعد عام 2030 [14].</p>
+    <p>ووضعت هيئات التصنيف مثل Lloyd's Register مستويات استقلالية تتراوح من العمليات اليدوية (AL0) إلى السفن المستقلة تمامًا دون تدخل بشري (AL6)، مما يوفر تصنيفًا معياريًا لتقييم الأنظمة البحرية غير المأهولة [15]. وفي مجال الأمن السيبراني للتحكم، أظهرت أبحاث سابقة أن المتحكمات التقليدية مثل PID تؤدي أداءً جيدًا في الظروف الاسمية لكنها تتعثر في البيئات غير الخطية أو عالية الاضطرابات، بينما توفر مناهج الترشيح التكيفي والتحكم العصبي التكيفي بدائل واعدة. ومع ذلك، تظل المرونة السيبرانية الخاصة بالتوجيه — أي قدرة نظام التحكم في الاتجاه على الحفاظ على المسار تحت تدخل عدائي مباشر في إشارة التحكم — مجالًا غير مدروس بما يكفي في أدبيات MASS الحالية، وهي الفجوة التي تعالجها هذه الدراسة عبر تقييم تجريبي مفصل في المحاكاة.</p>
+  </section>
+
+  <section>
+    <h2>3. المنهجية</h2>
+    <p>تتضمن تجربة المحاكاة في هذه الدراسة سفينة MASS واحدة، وهي الطوف «Nymo» من نوع catamaran (الشكل 1 من الورقة الأصلية)، مُنمذجًا بديناميكيات غير خطية وميكانيكا دفع تفاضلي. وتبحث الدراسة في المرونة السيبرانية لنظام التحكم في توجيه السفينة عبر منهجية منظمة تشمل النمذجة الرياضية، ومحاكاة واقعية للهجمات السيبرانية، وتحليلًا مقارنًا لأداء المتحكمات. ويعكس النموذج المطور بدقة سلوك مناورة السفينة ويشكل أساسًا لمحاكاة الملاحة في الظروف الاسمية والعدائية. وبُنيت بيئة محاكاة مخصصة في Simulink/MATLAB لتكرار سيناريوهات الهجوم السيبراني التي تستهدف نظام التحكم في الدفة. وتُنمذج هذه الهجمات كاضطرابات ضجيج أبيض غاوسي متراكبة على مدخلات التحكم، محاكيةً تدخلًا غير مصرح به قد يعطل القدرة على المناورة والتحكم في الاتجاه. واختُبرت ثلاث استراتيجيات تحكم في ظروف متطابقة: متحكم PID كلاسيكي (كخط أساس)، ومتحكم PID معزز بمرشحات LMS تكيفية مما يحسن القدرة على التكيف ورفض الاضطرابات، ومتحكم شبكة عصبية NARMA-L2 الذي يوفر قدرات تكيفية متقدمة. ويتضمن السيناريو التجريبي مناورة التفاف نحو زاوية اتجاه ثابتة (مثل 45◦ شمال-شرق-أسفل (NED))، حيث تُقيّم كل استراتيجية تحكم بناءً على قدرتها على الحفاظ على المسار المطلوب.</p>
+    <h3>3.1. نموذج طوف MASS من نوع Catamaran</h3>
+    <p>يستكشف هذا القسم نموذج الطوف «Nymo» (الشكل 2 من الورقة الأصلية). يمتلك هذا الطوف بدنَين متميزَين بمروحتين منفصلتين، حيث Fl وFr هما قدرتا الجانبين الأيسر والأيمن الناتجتان عن الدفع التفاضلي، وd هو الفصل الجانبي بين الهيكلين (من خط مركز الهيكل إلى خط مركز MASS). ويوضح الشكل 2 بنية تعريف المتغيرات، حيث تشير زاوية الاتجاه ψ إلى توجه الهيكل الإنشائي للمركبة نسبة إلى الربع الشمال-شرق-أسفل (NED). وللراحة، تُؤخذ زاوية اتجاه السفينة الحالية φ بعكس اتجاه عقارب الساعة من المستوى الأفقي، أي φ = π/2 − ψ. وتعتمد مناورة الطوف على الدفع التفاضلي: فإذا تساوت Fl وFr سارت المركبة في خط مستقيم، وإذا اختلفتا أحدث فرق الدفع بين المحركَين الخلفيَين عزم دوران يغيّر مسار الطوف. ويمكن وصف حركيات النموذج كما يلي [44]: [ẋ, ẏ, φ̇]ᵀ = R(φ)·[u, v, r]ᵀ، (1) حيث (x,y) إحداثيات مركز كتلة الطوف في النظام الأرضي الثابت، وφ زاوية اتجاه السفينة، وu وv وr هي سرعات التقدم والانجراف والانعراج على التوالي. وتفترض الدراسة الحالية إهمال المؤثرات البيئية الضارة لعزل أثر الهجوم السيبراني.</p>
+    <h3>3.2. بارامترات طوف MASS من نوع Catamaran</h3>
+    <p>يقيّم هذا القسم بارامترات الطوف لسفينة MASS «Nymo». ويمكن تحديد بارامترات المركبة اللاحقة بالقياس المباشر [48]: m = 225kg، وd = 0.405m، وdp = 0.18m، وlx = 2.56m، وly = 1.08m، وld = 0.36m، (6) حيث تشير lx وly وld إلى طول الطوف وعرضه وغاطسه على التوالي. ويمكن حساب مقداري tP وdNP من (3) [46]: tP = 0.25، وdNP = 0.25. وتُحصل على عزم القصور الذاتي للمتوازي المستطيلات Izz نسبة إلى المحور Z بالصيغة التالية [49]: Izz = m/12·(lx² + ly²)، (7) ومن (6) و(7) نجد Izz = 144.7500kgm². (8) وترتبط بارامترات (6) و(8) بالكتل المضافة للهيكل من (2) [45]: m11 = ldm/2lx، وm22 = 2ldm/ly·(1 − ly/2lx)، وm66 = 2ldIzz/ly·(1 − 1.6ly/lx)، (9) وبالتالي تُسند القيم التالية لبارامترات (9): m11 = 15.8203kg، وm22 = 118.3594kg، وm66 = 31.3625kgm². ومن المعروف أن قيمة ρ في (4) هي: ρ = 1000kg/m³. ولتقييم قيمة F لإحدى المروحتين باستخدام المعادلة (4)، يمكن كتابة معامل السرعة المتقدمة Jp للمروحة المختارة من (4) كما يلي [50]: Jp = u/ndp، (10) حيث u سرعة التقدم، وn عدد دورات المروحة، وdp قطر المروحة. وتُستخدم حدودية تربيعية لـ Jp لتقريب دالة معامل دفع المروحة kt لأغراض المحاكاة: kt = a1Jp² + a2. (11)</p>
+    <h3>3.3. التحكم PID في مسار MASS</h3>
+    <p>نموذج الطوف نموذج غير خطي، ومن الصعب تصميم منظم بسيط يلتزم في كل الحالات بالحدود الموضحة. ويمكن اعتبار دفع المروحة اليسرى Fl ثابتًا. فالسماح بتغير Fl وFr سيجعل النظام نظامًا متعدد المدخلات والمخرجات، مما يجعل تطبيق استراتيجيتي PID وNARMA-L2 غير مناسب. لذا نفترض Fl = const. (15) وباختيار (15)، يُستخدم دفع المروحة اليمنى Fr كمدخل تحكم لتنظيم زاوية الاتجاه φ، مما يحول مشكلة التحكم المعقدة إلى مشكلة تحكم أحادية. ونستخدم متحكم PID لتنظيم متغير الإدخال Fr. وتأتي متحكمات PID بصيغ متنوعة؛ ومن التطبيقات الممكنة لصيغة المعوض: PID(s) = P(br−y) + I·(1/s)(r−y) + D·(N/(1+N(1/s)))(cr−y)، (16) حيث P وI وD وN وb وc هي بارامترات المكونات التناسبية والتكاملية والتفاضلية ومعامل الترشيح ووزنَي نقطة الضبط التناسبي والتفاضلي لمتحكم PID على التوالي؛ وr هو المرجع المستهدف، وy هو المخرج المقاس. وتؤدي زيادة الكسب التناسبي (P) إلى زيادة إشارة التحكم تناسبيًا لنفس مستوى الخطأ، مما يجعل النظام المغلق يستجيب بسرعة أكبر لكنه قد يسبب تجاوزًا وعدم استقرار إذا بُولغ فيه.</p>
+    <h3>3.4. محاكاة الهجوم السيبراني باستخدام متحكم PID</h3>
+    <p>الأنظمة الفيزيائية السيبرانية (CPSs) هي أجهزة رقمية وميكانيكية تستخدم الحساسات والمشغلات لكشف حالتها وتغييرها على التوالي. وتعتمد CPSs على دقة الحساسات والمشغلات وضبطها للوصول إلى الحالة المرغوبة. وجميع أجزاء CPSs عرضة للأعطال أو الأخطاء، كما أن CPSs عرضة للهجمات المتعمدة على مكوناتها الفيزيائية والسيبرانية على حد سواء، إذ يمكن للهجمات على CPSs أن تدفع النظام إلى استجابة غير مرغوبة أو خطيرة. ويمكن للخصم مهاجمة النظام عند أي مكون من مكونات نظام التحكم، وينتشر هذا الهجوم عبر نظام التحكم ويعدل قيمة إشارة التحكم بطريقة عشوائية. ويمكن نمذجة هذا الأثر الخبيث بالكتابة فوق إشارة التحكم الأصلية بقيمة عشوائية [52،53]. فعلى سبيل المثال، يمكن الكتابة فوق أمر الدفة المرغوب بضجيج أبيض غاوسي لنمذجة آثار الهجوم على أي مكون في نظام التحكم. ويرتبط المخرج المقصود والقياس الفعلي φa؛ ويوضح الشكل 6 من الورقة الأصلية أن φd مع v ضجيج مفروض: φa = φd(τ) + ν(τ). (17) وعند حدوث تدخل عند جانب إدخال النظام كما في الشكل 6: Fra(τ) = Frd(τ) + w(τ)، (18) حيث يصعب بناء كاشف يميز التشويش العدائي عن اضطرابات البيئة الطبيعية، مما يبرز الحاجة إلى متحكمات مرنة بطبيعتها.</p>
+    <h3>3.5. محاكاة منع الهجوم السيبراني باستخدام متحكم PID ومرشحات LMS</h3>
+    <p>في هذه الإعدادات، تُضاف مرشحات LMS إلى مدخلات النظام ومخرجاته، مع الحفاظ على تهيئة نظام التحكم PID المذكورة سابقًا (الشكل 9 من الورقة الأصلية). ويُستخدم مرشح LMS بسيط نسبيًا مع متحكم PID لمواجهة الهجمات السيبرانية، مما يحسن أداء متحكم PID تحت الهجمات السيبرانية. وخوارزمية LMS خوارزمية تكيفية واسعة الاستخدام، ولا سيما في الترشيح التكيفي والشبكات العصبية. وهي طريقة انحدار عشوائي تعدل تكراريًا معاملات المرشح لتقليل متوسط مربع الخطأ بين الإشارة المرغوبة ومخرجات المرشح، مما يدرب المرشح فعليًا على مطابقة خصائص الإشارة المرغوبة بشكل أفضل. وفي الشكل 9، تستخدم كتلة مرشح LMS خوارزمية LMS التكيفية. وتلزم أوزان المرشح أو معاملاته لتقليل الخطأ ε بين المخرجات والإشارات المطلوبة. وإشارة المخرجات هي الإشارة المدخلة المرشحة، أي تقريب الإشارة المطلوبة. ويعطي منفذ الخطأ ناتج طرح إشارة المخرجات من الإشارة المستهدفة. وتُعرض أخطاء الترشيح لمرشحَي المدخلات والمخرجات في الشكلين 10 و11 على التوالي، وتُعرض إشارة التحكم المدخلة في الشكل 12، ومسار السفينة مع الترشيح LMS في الشكل 13. وفي هذه الحالة، يُظهر خط الاتجاه تحسنًا واضحًا في تتبع المسار مقارنةً بمتحكم PID المستقل، لكن ما تزال هناك انحرافات ملحوظة وتذبذب حول المسار المرغوب تحت استمرار الاضطراب.</p>
+    <h3>3.6. محاكاة منع الهجوم السيبراني باستخدام متحكم NARMA-L2</h3>
+    <p>يُستخدم متحكم NARMA-L2 في بنية نظام التحكم ذاتها الموصوفة سابقًا (انظر الشكل 14 من الورقة الأصلية). ويُعد نموذجا NARMA-L1 وNARMA-L2 تقريبَين لنموذج NARMA المقترح في [54]. ومن الناحية العملية، تبين أن نموذج NARMA-L2 أسهل ضبطًا من NARMA-L1. وأسسنا دراستنا هنا على نموذج NARMA-L2 التقريبي فقط. وبالنسبة لمتحكمي PID وNARMA قيد الدراسة، لا يلزم منطق كشف إشارة الهجوم السيبراني؛ فمتحكم PID لا قيود عليه في إشارات المدخلات والمخرجات أثناء التشغيل، بينما يخضع NARMA لقيود تقابل إشارة إدخال معينة لكن إشارة المخرجات غير محدودة. وبعد الضبط، يعمل هذان المتحكمان في الوضع الآلي. ويمكن استخدام النافذة الداخلية مع البارامترات المرتبطة (الشكل 15) لضبط منظم NARMA-L2. ويوضح الشكل 16 التنظيم الداخلي لكتلة منظم NARMA-L2 الموضحة في الشكل 14، ويوضح الشكل 17 بنية الشبكة العصبية من الشكل 16. وتُعرض إشارة التحكم المدخلة في الشكل 18، ومسار MASS في الشكل 19. وفي هذه الحالة، يحافظ الطوف على تحكم سلس في المسار مع انحراف طفيف فقط حتى في ظل التهديدات السيبرانية المحاكاة، متفوقًا بوضوح على كل من PID المستقل وPID المعزز بـ LMS.</p>
+  </section>
+
+  <section>
+    <h2>4. المناقشة</h2>
+    <p>استكشفت الدراسة الحالية فروق الأداء بين متحكمي PID التقليدي وNARMA-L2 في سياق الهجمات السيبرانية على MASS، مطبقةً على استراتيجيتي التحكم في الظروف العدائية، مما يقدم رؤى قيمة في الجوانب النظرية والتطبيقية للملاحة البحرية المستقلة. ومن المحاكاة، تبين أن متحكم PID التقليدي، رغم فعاليته في الظروف الاسمية، فشل في الحفاظ على الاستقرار ودقة المسار تحت تأثير الهجمات السيبرانية المُنمذجة كاضطرابات ضجيج أبيض غاوسي. ويتوافق ذلك مع نتائج سابقة في أدبيات أنظمة التحكم، حيث تُعرف متحكمات PID بمحدوديتها في البيئات غير الخطية أو عالية الاضطرابات. وحتى مع إدخال ترشيح LMS لقمع الضجيج، أظهرت سفينة MASS المتحكم بها بـ PID سلوكًا غير متوقع وانحرافًا كبيرًا عن مسارها المقصود، مما يشكل مخاطر محتملة على حركة المرور البحرية المحيطة. وفي المقابل، أظهر متحكم NARMA-L2 أداءً متينًا، محافظًا على تحكم سلس في المسار مع انحراف طفيف فقط حتى في ظل التهديدات السيبرانية المحاكاة. وتُعزى هذه الأداء المتفوق إلى القدرة الجوهرية للنموذج على التعلم والتكيف مع ديناميكيات النظام غير الخطية وأنماط الاضطرابات، مما يدعم دراسات سابقة حول التكيف العصبي الدماغي في السياقات الديناميكية. وتبرز هذه النتائج الأهمية الحاسمة لاعتماد بنى تحكم تكيفية قائمة على التعلم في تطبيقات الملاحة المستقلة الحرجة للسلامة.</p>
+    <p>ومع ذلك، تثير النتائج أسئلة عملية مهمة حول قابلية النشر: إذ يتطلب متحكم NARMA-L2 تحديدًا دقيقًا للنظام (plant identification) وموارد حسابية أكبر من PID، وقد يتطلب تكامله في أنظمة التوجيه البحرية المعتمدة إعادة اعتماد واختبارات مكثفة. كما أن متانته المثبتة في المحاكاة أمام ضجيج غاوسي قد لا تُعمم مباشرة على هجمات عدائية ذكية تتكيف مع سلوك المتحكم. وتشير الدراسة إلى أن الاتجاه الأكثر واقعية هو بنية دفاعية متعددة الطبقات: متحكم PID مثبت كخط أساس معتمد، معزز بترشيح تكيفي من نوع LMS كطبقة أولى لرفض الاضطرابات، وطبقة عليا قائمة على التعلم من نوع NARMA-L2 للظروف العدائية، مع مراقبة سلامة مستمرة تتيح العودة الآمنة إلى التحكم التقليدي عند خروج التوقعات العصبية عن الحدود الآمنة.</p>
+  </section>
+
+  <section>
+    <h2>5. الاستنتاجات</h2>
+    <p>في هذه الورقة، عُرض نموذج رياضي لمناورة الطوف «Nymo» من نوع catamaran، وطُبقت متحكمات PID وNARMA-L2 للتحكم في الاتجاه المرغوب، بهدف الحفاظ على المسار الآلي للطوف تحت تأثير الهجمات السيبرانية. وعُرضت نتائج المحاكاة في Simulink. وعند فحص النتائج المحصل عليها، لوحظ أن التحكم باستخدام المتحكمات التقليدية مثل PID يُظهر أداءً دون المستوى عند التعرض للهجمات السيبرانية. وفي المقابل، يُظهر متحكم NARMA-L2، وهو حل قائم على الشبكات العصبية الاصطناعية، مرونة قوية وأداءً عاليًا في الظروف العدائية. ويتيح نموذج المحاكاة الناتج للطوف «Nymo» تجنب التجارب صعبة التنفيذ في ظروف بحرية قاسية، موفرًا بيئة افتراضية آمنة وفعالة التكلفة لاختبار استراتيجيات التحكم المتقدمة. وبمقارنة الاستراتيجيات التكيفية مقابل العصبية، تسهم هذه الدراسة بتقييم مفصل وعملي للمرونة السيبرانية الخاصة بالتوجيه، وهو مجال غير مغطى بما يكفي في أدبيات MASS الحالية.</p>
+    <p>ومع ذلك، وعلى الرغم من أن النهج المقترح يبشر بالخير في بيئة محاكاة، فإن النقاش حول الجدوى الواقعية لتطبيق أنظمة تحكم عصبية كهذه في سفن MASS التشغيلية ما يزال محدودًا. فالتحديات العملية للتكامل العتادي والحمل الحسابي والمتانة في ظروف بيئية وحركة مرور متنوعة ما تزال مفتوحة. كما أن قابلية التوسع لسفن أكبر وأكثر تعقيدًا ذات ديناميكيات مختلفة تتطلب مزيدًا من البحث. ويجب أن تعطي الأعمال المستقبلية الأولوية للتحقق التجريبي على منصات فيزيائية، واختبار أنماط هجوم عدائية ذكية تتجاوز الضجيج الغاوسي، وتطوير ضمانات سلامة رسمية للمتحكمات العصبية قبل نشرها في أنظمة التوجيه الحرجة للسلامة.</p>
+  </section>
+
+  <section>
+    <h2>المراجع</h2>
+    <p>قائمة المراجع الكاملة (54 مصدرًا) متاحة في <a href="https://www.mdpi.com/2077-1312/13/8/1470/pdf" target="_blank">الملف الأصلي للPDF</a>.</p>
+  </section>
+</div>
+
+<!-- ENGLISH -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>This paper presents a simulation-based investigation into control strategies for mitigating the consequences of cyber-assault on the steering systems of the Maritime Autonomous Surface Ships (MASS). The study focuses on two simulation experiments conducted within the Simulink/MATLAB environment, utilizing the catamaran "Nymo" MASS mathematical model to represent vessel dynamics. Cyber-attacks are modeled as external disturbances affecting the rudder control signal, emulating realistic interference scenarios. To assess control resilience, two configurations are compared during a representative turning maneuver to a specified heading: (1) a Proportional–Integral–Derivative (PID) regulator augmented with a Least Mean Squares (LMS) adaptive filter, and (2) a Nonlinear Autoregressive Moving Average with Exogenous Input (NARMA-L2) neural network regulator. The PID and LMS configurations aim to enhance the disturbance rejection capabilities of the classical controller through adaptive filtering, while the NARMA-L2 approach represents a data-driven, nonlinear control alternative. Simulation results indicate that although the PID and LMS setups demonstrate improved performance over standalone PID in the presence of cyber-induced disturbances, the NARMA-L2 controller exhibits superior adaptability, accuracy, and robustness under adversarial conditions. These findings suggest that neural network-based control offers a promising pathway for developing cyber-resilient steering systems for MASS.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>The marine industry is going through a substantial shift, owing to the widespread adoption of smart shipping technologies that combine connectivity, robotics, large-scale data analytics, and computational intelligence [1]. These innovations aim to enhance competitiveness, operational safety, and environmental sustainability. Modern ships are increasingly equipped with a variety of sensors, onboard data processors, and data-driven decision-making systems based on deep learning algorithms. Thanks to high-bandwidth connectivity, vessels can now be remotely monitored and operated, laying the groundwork for greater autonomy at sea. The emergence of MASSs represents a pivotal shift in maritime operations. MASSs are digital–physical structures enabled by the convergence of real-time Information and Operational Technologies (IT/OT). The OT encompasses a broad range of programmable controllers and embedded systems managing onboard physical processes, while the IT handles data management and administrative functions. Both domains are critical to MASS operation, and both are increasingly susceptible to cyber-attacks [3].</p>
+    <p>MASSs have several advantages: they may be constructed cleaner on fuel, lighter, more affordable to operate, wind-resistant, and aerodynamically efficient. The path to widespread MASS adoption nevertheless remains strewn with technical and regulatory challenges. Steering systems are a particularly attractive target, since disrupting heading control can cause grounding or collision without deep system penetration. This study therefore focuses on the cyber resilience of the steering control system specifically, comparing a classical PID controller, an LMS-augmented PID, and a NARMA-L2 neural controller under identical cyber-induced disturbances, using the "Nymo" catamaran model.</p>
+  </section>
+
+  <section>
+    <h2>2. Literature Review</h2>
+    <p>The development of unmanned and autonomous naval vehicles marks an important change in marine transportation, research, and defense. Autonomous Underwater Vehicle (AUV) development began in the 1950s, evolving from heavy, inefficient early prototypes to sophisticated platforms capable of navigating depths up to 6000 m with advanced obstacle detection and mapping capabilities [11]. Similarly, MASSs progressed from experimental vessels to commercially operational platforms including cargo ships, research vessels, and military craft [12]. However, despite these advancements, fully autonomous surface and underwater vessels capable of deep and hazardous missions remain a work in progress, with numerous technical, legal, and organizational challenges still unresolved [13]. International regulators like the IMO are actively working on the legal and safety frameworks for safe MASS integration into existing marine traffic. The IMO anticipates finalizing non-mandatory MASS regulations before 2025, laying preparatory measures for a comprehensive mandatory regulatory framework expected post-2030 [14].</p>
+    <p>Classification societies like Lloyd's Register established autonomy levels from manual operations (AL0) to fully autonomous vessels without human intervention (AL6), providing a standardized taxonomy for assessing unmanned marine systems [15]. In control cybersecurity, prior research showed traditional controllers such as PID perform well under nominal conditions but struggle in nonlinear or high-disturbance environments, while adaptive filtering and adaptive neural control offer promising alternatives. Steering-specific cyber resilience — a heading control system's ability to hold course under direct adversarial interference with the control signal — nevertheless remains understudied in current MASS literature, the gap this study addresses through detailed experimental evaluation in simulation.</p>
+  </section>
+
+  <section>
+    <h2>3. Methodology</h2>
+    <p>The simulation experiment in this study involves a single MASS, specifically the "Nymo" catamaran (Figure 1 of the original paper), modeled using nonlinear dynamics and differential thrust mechanics. The study investigates the steering control system's cyber-resilience through a structured methodology encompassing mathematical modeling, realistic cyber-attack emulation, and comparative controller performance analysis. The developed model accurately reflects the ship's maneuvering behavior and serves as a foundation for simulating navigation under nominal and adversarial conditions. A dedicated simulation environment was constructed in Simulink/MATLAB to replicate cyber-attack scenarios targeting the rudder control system. These attacks are modeled as Gaussian white noise disturbances superimposed on control inputs, simulating unauthorized interference that may disrupt maneuverability and heading control. Three control strategies were tested under identical conditions: a classical PID controller (baseline); a PID controller augmented with LMS adaptive filters, improving adaptability and disturbance rejection; and a NARMA-L2 neural network controller offering advanced adaptive capabilities. The experimental scenario involves a turning maneuver to a fixed heading angle (e.g., 45◦ North–East–Down (NED)), where each control strategy is evaluated on its ability to maintain the desired course.</p>
+    <h3>3.1. Model of a Catamaran MASS</h3>
+    <p>This section explores the "Nymo" catamaran model (Figure 2 of the original paper). This catamaran watercraft has two distinct hulls with separate propellers, where Fl and Fr are the port-side (left) and starboard-side (right) powers produced by differential thrusts, and d is the lateral hull separation (from hull centerline to MASS centerline). Figure 2 depicts the variable definition structure, with heading angle ψ denoting the orientation of the craft's construction-fixed structure reference to the NED quadrant. For convenience, the vessel's heading angle φ is taken counterclockwise from the horizontal plane, i.e., φ = π/2 − ψ. The catamaran's maneuvering depends on differential thrust: if Fl equals Fr, the vessel travels straight; if they differ, thrust variation between the stern engines creates a turning moment changing course. The model kinematics are [44]: [ẋ, ẏ, φ̇]ᵀ = R(φ)·[u, v, r]ᵀ, (1) where (x,y) are the catamaran center-of-mass coordinates in the earth-fixed system, φ the heading angle, and u, v, r the surge, sway, and yaw speeds respectively. The current study assumes harmful environmental influences are neglected to isolate the cyber-attack effect.</p>
+    <h3>3.2. Parameters of the Catamaran MASS</h3>
+    <p>This section assesses the catamaran parameters for MASS "Nymo". Direct measurements can determine this vehicle's parameters [48]: m = 225 kg, d = 0.405 m, dp = 0.18 m, lx = 2.56 m, ly = 1.08 m, ld = 0.36 m, (6) where lx, ly, ld denote catamaran length, width, and draft respectively. Magnitudes of tP and dNP follow from (3) [46]: tP = 0.25, dNP = 0.25. The parallelepiped's moment of inertia Izz relative to the Z axis is [49]: Izz = m/12·(lx² + ly²), (7) hence from (6) and (7), Izz = 144.7500 kgm². (8) Parameters (6) and (8) link to hull-added masses from (2) [45]: m11 = ldm/2lx, m22 = 2ldm/ly·(1 − ly/2lx), m66 = 2ldIzz/ly·(1 − 1.6ly/lx), (9) giving parameter values in (9): m11 = 15.8203 kg, m22 = 118.3594 kg, m66 = 31.3625 kgm². Parameter ρ in (4) is well known: ρ = 1000 kg/m³. To assess one propeller's F value via Equation (4), the chosen propeller's advance speed coefficient Jp from (4) is [50]: Jp = u/ndp, (10) where u is surge speed, n propeller revolutions, dp propeller diameter. A quadratic polynomial of Jp approximates the propeller thrust coefficient function kt for simulation: kt = a1Jp² + a2. (11)</p>
+    <h3>3.3. PID Control of Course of the MASS</h3>
+    <p>A catamaran model is nonlinear, and designing a simple regulator adhering in every situation to outlined boundaries is challenging. The left propeller thrust Fl can be considered a fixed constant. Allowing Fl and Fr to vary would make the system a multiple-input, multiple-output system, rendering PID and NARMA-L2 control strategies inappropriate. Hence Fl = const. (15) With (15), the right propeller thrust Fr serves as control input regulating heading angle φ, transforming the complex control problem into a single-input one. A PID controller regulates the input variable Fr. PID controllers come in various formats; one possible compensator formula implementation is PID(s) = P(br−y) + I·(1/s)(r−y) + D·(N/(1+N(1/s)))(cr−y), (16) where P, I, D, N, b, c are the proportional, integral, derivative, filter coefficient, proportional setpoint weight, and derivative setpoint weight parameters of the PID controller respectively; r is the targeted reference; y the measured output. Increasing the proportional gain (P) proportionally increases the control signal for the same error level, making the closed-loop system react faster but risking overshoot and instability if overdone.</p>
+    <h3>3.4. Simulation of Cyberattack Using PID Controller</h3>
+    <p>Cyber–physical systems (CPSs) are digital and mechanical devices using sensors and actuators to detect and change their state respectively. CPSs rely on sensor and actuator accuracy and precision to reach a desired state. All CPS parts are prone to malfunctions or errors, and CPSs are vulnerable to deliberate attacks on both their physical and cyber components — attacks on CPSs can drive undesired or dangerous responses. Adversaries can attack the system at any control-system component; the attack propagates through the control system, modifying the control signal value randomly. This malevolent effect can be modeled as overwriting the original control signal with some random value [52,53]. For instance, the desired rudder command can be overwritten with Gaussian white noise to model attack effects on any control system component. Intended output and actual measurement φa are connected; Figure 6 of the original paper shows φd with imposed noise v: φa = φd(τ) + ν(τ). (17) For interference at the system input side as in Figure 6: Fra(τ) = Frd(τ) + w(τ), (18) where building a detector distinguishing adversarial jamming from natural environmental disturbance is difficult, underscoring the need for inherently resilient controllers.</p>
+    <h3>3.5. Simulation of Cyberattack Prevention Using PID Controller and LMS Filters</h3>
+    <p>In this setting, LMS filters are added to the system's input and output, maintaining the PID control system configuration previously discussed (Figure 9 of the original paper). A relatively simple LMS filter combined with a PID controller counters cyber-attacks, improving PID performance under cyber-attacks. The LMS algorithm is a widely used adaptive algorithm, particularly in adaptive filtering and neural networks. It is a stochastic gradient descent method iteratively adjusting filter coefficients to minimize mean squared error between a desired signal and filter output, effectively training the filter to better match desired signal characteristics. In Figure 9, the LMS filter block uses the LMS adaptive algorithm. Filter weights or coefficients must reduce the error ε among output and wanted signals. The output signal is the filtered input signal, i.e., the wanted-signal approximation. The error output port gives the subtraction of the output signal from the aimed signal. Filtered errors for input and output LMS filters are presented in Figures 10 and 11 respectively, the input control signal in Figure 12, and the trajectory with LMS filtering in Figure 13. Here the trend line shows clear tracking improvement over standalone PID, though notable deviations and oscillation around the desired course persist under continued disturbance.</p>
+    <h3>3.6. Simulation of Cyberattack Prevention Using NARMA-L2 Controller</h3>
+    <p>The NARMA-L2 controller is used in the same control system architecture as previously described (see Figure 14 of the original paper). NARMA-L1 and NARMA-L2 are two approximations to the NARMA model proposed in [54]. Practically, the NARMA-L2 model is easier to set than NARMA-L1. Here we grounded our study only on the approximate NARMA-L2 model. For the PID and NARMA controllers under consideration, no cyber-attack signal detection logic is required. The PID controller has no input/output signal restrictions during operation, while NARMA has restrictions corresponding to a given input signal but the output signal is unlimited. After tuning, these controllers operate automatically. The internal window with associated parameters (Figure 15) tunes the NARMA-L2 regulator. Figure 16 depicts the internal organization of the NARMA-L2 regulator block shown in Figure 14, and Figure 17 the neural network structure from Figure 16. An input control signal is given in Figure 18 and the MASS path in Figure 19. Here the catamaran maintains smooth trajectory control with only minor leeway even under simulated cyber threats, clearly outperforming both standalone PID and LMS-augmented PID.</p>
+  </section>
+
+  <section>
+    <h2>4. Discussion</h2>
+    <p>The present study explored performance differences between conventional PID and NARMA-L2 controllers in the context of cyber-attacks on MASS, applied to the two control strategies under adversarial conditions, offering insights into theoretical and applied aspects of autonomous maritime navigation. From simulations, the traditional PID controller, while effective under nominal conditions, failed to maintain stability and course accuracy under cyber-attacks simulated as Gaussian white noise disturbances. This aligns with prior control literature, where PID controllers are recognized for limitations in nonlinear or high-disturbance environments. Even with LMS filtering to suppress noise, the PID-controlled MASS still exhibited unpredictability and significant deviation from its desired trajectory, posing potential hazards to surrounding maritime traffic. In contrast, the NARMA-L2 controller demonstrated robust performance, retaining smooth trajectory control and only minor leeway even under simulated cyber threats. This superior performance is attributed to the model's innate capacity to learn and adjust to nonlinear system dynamics and disturbance patterns, supporting earlier studies on brain adaptive control in dynamic contexts. These findings highlight the critical importance of employing adaptive, learning-based control architectures in safety-critical autonomous navigation applications.</p>
+    <p>The results nevertheless raise important deployment questions: NARMA-L2 requires accurate plant identification and greater computational resources than PID, and integrating it into certified marine steering systems may demand re-certification and extensive testing. Its simulation-proven robustness against Gaussian noise may not generalize directly to intelligent adversarial attacks adapting to controller behavior. The study points to a layered defensive architecture as most realistic: a certified PID controller as approved baseline, augmented with LMS-type adaptive filtering as a first disturbance-rejection layer, and an NARMA-L2-type learning layer for adversarial conditions, with continuous safety monitoring enabling safe fallback to conventional control when neural predictions leave safe bounds.</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>In this paper, a mathematical model for the catamaran "Nymo" maneuvering is presented, and PID and NARMA-L2 controllers for desired heading control are applied, with the objective of maintaining the automatic course of a catamaran under cyber-attacks. Simulation results in Simulink are presented. When the obtained results are examined, control using conventional controllers such as PID shows underperformance when subject to cyber-attacks. In contrast, the NARMA-L2 controller, an artificial neural network-based solution, demonstrates strong resilience and high performance under adversarial conditions. The resulting "Nymo" catamaran simulation model makes it possible to avoid difficult-to-implement experiments in rough sea conditions, offering a safe and cost-effective virtual environment for testing advanced control strategies. Comparing adaptive versus neural strategies, this study contributes a detailed, practical evaluation of steering-specific cyber resilience, an area insufficiently addressed in current MASS literature.</p>
+    <p>However, while the proposed approach shows promise in a simulated setting, real-world feasibility of implementing such neural control systems in operational MASS is only briefly discussed. Practical hardware integration, computational overhead, and robustness challenges across diverse environmental and traffic conditions remain open. Scalability to larger, more complex vessels with different dynamics requires further research. Future work should prioritize physical-platform experimental validation, testing against intelligent adversarial attack patterns beyond Gaussian noise, and developing formal safety assurances for neural controllers before deployment in safety-critical steering systems.</p>
+  </section>
+
+  <section>
+    <h2>References</h2>
+    <p>Full reference list (54 sources) available in the <a href="https://www.mdpi.com/2077-1312/13/8/1470/pdf" target="_blank">original PDF</a>.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse13081470">10.3390/jmse13081470</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('toggle-' + (lang === 'both' ? 'both' : lang)).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
