@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تقنية جديدة للتكيف مع الوصلة في نظام تبادل البيانات VHF للاتصالات البحرية — DAR</title>
+<meta name="description" content="Shim et al. introduce mARF, a maritime auto-rate fall-back link adaptation technique for VDES handling deep-null fading, validated in a MATLAB VDE-TER simulator. Bilingual AR/EN.">
+<link rel="canonical" href="https://dararchive.com/papers/vde-link-adaptation-electronics/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A New Link Adaptation Technique for Very High Frequency Data Exchange System in Future Maritime Communication</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تقنية جديدة للتكيف مع الوصلة في نظام تبادل البيانات بالتردد العالي جدًا في الاتصالات البحرية المستقبلية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Wooseong Shim, Buyoung Kim, Eui-Jik Kim, Dongwan Kim</span>
+    <span>📄 Electronics, 2024 · Vol. 13(2), 323 · 13 pp · Technical Note</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics13020323">10.3390/electronics13020323</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>أدى الطلب المتزايد على تقنيات الاتصالات القادرة على توفير معدلات نقل عالية في البيئات البحرية إلى استكشاف نظام تبادل البيانات بالتردد العالي جدًا (VDES) حلًا واعدًا. فالنظام — الذي يدمج نظام التعريف الآلي (AIS) والرسائل الخاصة بالتطبيق (ASM) وتبادل بيانات VHF (VDE) — يوفر معدلات نقل محسنة واتصالات مستقرة مقارنة بالتقنيات القائمة. ورغم أن VDES يدعم معدلات النقل العالية عبر تقنيات متنوعة لمخططات التضمين والترميز (MCS)، فإنه يفتقر إلى آلية معيارية للتحكم في متغيرات MCS ويعتمد على خوارزميات المستخدمين في التشغيل. تقدم هذه الورقة تقنية الانحدار التلقائي للمعدل البحري (mARF)، المصممة لمعالجة تحديات سيناريوهات الاتصالات البحرية بفعالية باستخدام إطار MCS الذي يوفره VDES. وتتضمن تقنية mARF آليتي هبوط سريع واسترداد سريع للتكيف السريع مع أنواع MCS المتغيرة في ظل الفراغات العميقة (deep nulls) الشائعة في بيئات الاتصالات البحرية. وتُتعلم العتبات التكيفية لعمليتي الهبوط والاسترداد ديناميكيًا باستخدام بيانات الاتصالات التاريخية. ومن خلال محاكاة موسعة، نُظهر فعالية mARF في تعزيز قدرات التحكم في MCS لنظام VDES، مقارنة بالنموذج القائم، مما يثبت إمكانات mARF في تحسين الاتصالات البحرية.</p>
+    <p><strong>الكلمات المفتاحية:</strong> التكيف مع الوصلة؛ VDES؛ الاتصالات البحرية؛ الانحدار التلقائي للمعدل؛ التضمين والترميز.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>مع انتشار تقنية إنترنت الأشياء، تزايد الطلب على تقنيات تدعم الاتصال في القطاع البحري — من الملاحة الإلكترونية (e-Navigation) وفق خطة المنظمة البحرية الدولية [20]، إلى المصايد الذكية والمراقبة البيئية واللوجستيات. غير أن تطور الاتصالات البحرية كان أبطأ من نظيره الأرضي: فالنظام العالمي للاستغاثة والسلامة (GMDSS) والاتصالات الصوتية VHF وAIS محدودة السعة، والاتصالات الفضائية مكلفة، مما يجعل VDES — بمعدلات نقله العالية واستقراره [10] — الحل الواعد للجيل القادم.</p>
+    <p>لكن VDES، رغم دعمه معدلات نقل عالية عبر مخططات MCS متعددة (تضمين وترميز مختلفان حسب حالة القناة)، يفتقر إلى آلية معيارية للتحكم في متغيرات MCS ويترك الأمر لخوارزميات المستخدمين. وتقنيات التكيف مع الوصلة (LA) القائمة — كالانحدار التلقائي للمعدل (ARF) القائم على سجل النجاح، والمعدل التلقائي القائم على المستقبل (RBAR) القائم على قياس قوة الإشارة — صُممت للاتصالات الأرضية وتفشل في البيئات البحرية التي تتسم بتشوه إشارة كبير، وعلى رأسه ظاهرة «الفراغ العميق» حيث يخبو الإشارة فجأة ثم تختفي. تقدم هذه الورقة تقنية mARF، وتنظم بقية الورقة: القسم 2 يعرض VDES والقناة البحرية اللاسلكية، والقسم 3 يعرض تقنية التكيف الجديدة، والقسم 4 يقيّم الأداء، والقسم 5 يخلص إلى النتائج.</p>
+  </section>
+
+  <section>
+    <h2>2. نظام VDES والقناة البحرية اللاسلكية</h2>
+    <p>يتكون VDES من ثلاث خدمات: AIS للتعريف والتتبع، وASM للرسائل التطبيقية الخاصة، وVDE — الأرضي (VDE-TER) والفضائي (VDE-SAT) — لنقل البيانات عالية السرعة ثنائي الاتجاه [19]. ويوفر VDE-TER تسعة مخططات MCS تحددها معرفات إعداد الوصلة (link IDs 11–19) بعرض نطاق قناة ومعدل رمزي ومعدل ترميز ودرجة تضمين مختلفة، ولكل مخطط معدل خطأ حزمة (PER) مشتق من معدل خطأ الرمز (SER) حسب التضمين والترميز — لذا يجب اختيار المعرف المناسب حسب حالة القناة: فالمعرفات الأعلى (17–19) تعطي إنتاجية أعلى لكنها تتطلب نسبة إشارة–إلى–ضجيج (SNR) أعلى.</p>
+    <p>أما القناة البحرية اللاسلكية فتُنمذج بمساري شعاعين وثلاثة أشعة (two-ray/three-ray) مع ارتفاع التبخر الفعال، وتتميز بظاهرة الفراغ العميق: خبو حاد مفاجئ في قوة الإشارة عند مسافات معينة ثم اختفاء، مما يسبب أخطاء اتصال متقطعة لا تعكس حالة القناة العامة. وهذا ما يجعل تقنيات ARF الأرضية (التي ترفع MCS بعد 10 نجاحات وتخفضه بعد فشلين متتاليين) غير فعالة بحريًا، إذ تستجيب ببطء للفراغات وتسيء تفسير الخبو اللحظي — بينما يكون RBAR القائم على قياس قوة الإشارة لحظيًا أدق لكنه مكلف ويتأثر بالخبو العابر، فضلًا عن أن الاتصالات البحرية غير مستمرة أصلًا. لذا فالنهج القائم على سجل الاتصالات التاريخي (ARF) أكثر كفاءة بحريًا لو عُولجت مشكلة الفراغ العميق — وهو ما تفعله mARF.</p>
+  </section>
+
+  <section>
+    <h2>3. تقنية التكيف الجديدة مع الوصلة في البيئة البحرية (mARF)</h2>
+    <p>الفكرة المحورية في mARF هي أن خطأ الاتصال في البيئة البحرية ناجم غالبًا عن التوهين الإشاري لظاهرة الفراغ العميق لا عن تصادم البيانات، لذا يجب استخدام أكثر تقنيات الاتصال موثوقية فورًا: فعند حدوث خطأ اتصال واحد — حتى في أعلى مخطط (link ID 19) — تنفذ mARF «هبوطًا سريعًا» بالتحول فورًا إلى أدنى مخطط MCS (link ID 13) لضمان استقرار الاتصال، بدلًا من الخفض التدريجي البطيء في ARF التقليدية.</p>
+    <p>وبالمقابل، بما أن حالات الاتصال البحرية تتدهور سريعًا لكنها قد تتحسن تحسنًا كبيرًا أيضًا، ترفع mARF المخطط تدريجيًا مع تحسن القناة لتعزيز استغلالها عبر «استرداد سريع»: فعند استخدام المخطط الأكثر موثوقية ورصد n نجاحات متتالية يُتحول إلى المخطط الأعلى التالي، ثم بعد ⌊n/2⌋ نجاحًا متتاليًا في المخطط الحالي يُتحول إلى الأعلى مجددًا — وهكذا صعودًا نحو إنتاجية أعلى. وتُتعلم عتبات الهبوط والاسترداد السريعين ديناميكيًا من بيانات الاتصالات التاريخية (بقيمة افتراضية للمعامل α تساوي 0.7 قابلة للتعديل من المستخدم)، ويوضح الخوارزم 1 في الورقة الشيفرة الزائفة لإجراء التكيف.</p>
+    <p>وبذلك تجمع mARF بين حذر ARF القائم على السجل (المناسب للاتصالات البحرية المتقطعة) وسرعة الاستجابة للفراغات العميقة: هبوط فوري عند أول خطأ، وصعود متسارع عند استقرار القناة — دون الحاجة إلى قياس قوة الإشارة لكل اتصال كما في RBAR، مما يخفض التكلفة الحسابية ويتفادى سوء تفسير الخبو اللحظي.</p>
+  </section>
+
+  <section>
+    <h2>4. تقييم الأداء</h2>
+    <p>طُور محاكٍ لنظام VDE-TER بلغة MATLAB (معاملات الطبقة الفيزيائية: تردد حامل 160 ميجاهرتز، وقدرة إرسال EIRP 12.5 واط، وارتفاع تبخر فعال 12 مترًا، وعرض نطاق 100 كيلوهرتز، وكسب هوائي استقبال 0 ديسيبل، وكثافة ضجيج −150 ديسيبل-ميلي/هرتز، ومعامل ضجيج 7 ديسيبل) ونُفذت فيه mARF وARF القائمة (رفع MCS بعد 10 نجاحات، وخفضه بعد فشلين متتاليين). أولًا، حُقق من أداء VDE-TER في بيئة مثالية (AWGN دون فراغ عميق): فالإنتاجية أعلى مع المعرفات الأعلى (نطاق أعرض وترميز وتضمين أعلى)، والمعرف الأمثل يعتمد على SNR — فعند عرض 100 كيلوهرتز يجب التبديل بين المعرفات 17 و18 و19 حسب الإشارة.</p>
+    <p>ثم قُيمت mARF في قنوات بحرية (نموذجي الشعاعين والثلاثة أشعة مع فراغات عميقة) بالشروط ذاتها: فتفوقت على ARF القائمة في الإنتاجية والاستقرار، إذ يحافظ الهبوط السريع على الاتصال أثناء الفراغات بدلًا من سلسلة إخفاقات، ويستعيد الاسترداد السريع الإنتاجية العالية فور تحسن القناة بدلًا من الصعود البطيء. وأثبتت المحاكاة الموسعة فعالية mARF في تعزيز قدرات التحكم في MCS لنظام VDES مقارنة بالنموذج القائم، مؤكدة إمكاناتها في تحسين الاتصالات البحرية.</p>
+  </section>
+
+  <section>
+    <h2>5. الخاتمة</h2>
+    <p>تطورت الاتصالات في المجال البحري أبطأ من الاتصالات الأرضية، لكن ظهور تطبيقات بحرية متنوعة أطلق حاجة متزايدة إلى اتصالات تضمن الاستقرار ومعدلات النقل العالية في البيئات البحرية. وفي هذه الورقة قدمنا تقنية mARF المصممة لتعزيز معدلات النقل مع الحفاظ على اتصالات موثوقة عبر معالجة تحديات بيئة الاتصالات البحرية بفعالية.</p>
+    <p>تعالج تقنية mARF ظاهرة الفراغ العميق — الشائعة في الاتصالات البحرية — عبر آليتي الهبوط السريع (التحول الفوري إلى أدنى مخطط MCS عند أول خطأ) والاسترداد السريع (الصعود المتسارع عند استقرار القناة) بعتبات تُتعلم ديناميكيًا من السجل التاريخي. وأظهر تقييم الأداء في محاكي VDE-TER تفوقها على تقنية ARF القائمة في الإنتاجية والاستقرار في القنوات البحرية، مما يثبت إمكاناتها في تحسين الاتصالات البحرية المستقبلية — مع أعمال مستقبلية للتحقق الميداني ودمج قياسات القناة الآنية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>The growing demand for communication technology capable of providing high transmission rates in maritime environments has led to the exploration of the very high frequency (VHF) data exchange system (VDES) as a promising solution. The VDES, the integration of an automatic identification system (AIS), application-specific messaging (ASM), and VHF data exchange (VDE), offers improved transmission rates and stable connections compared with existing technologies. Although the VDES supports high transmission rates through various modulation and coding scheme (MCS) technologies, it lacks a standardized mechanism for controlling MCS parameters and relies on user algorithms for operation. In this paper, we introduce the maritime auto-rate fall-back (mARF) technology, designed to effectively address the challenges of maritime communication scenarios using the MCS framework provided by the VDES. mARF technology incorporates fast drop-out and recovery mechanisms to swiftly adapt to changing MCS types in the presence of deep nulls, a common occurrence in maritime communication environments. These adaptive thresholds for fast drop-out and recovery operations are dynamically learned using historical communication data. Through extensive simulations, we demonstrate the effectiveness of mARF in enhancing the MCS control capabilities of the VDES. Our findings, compared to the existing model, validate the potential of mARF in optimizing maritime communication.</p>
+    <p><strong>Keywords:</strong> link adaptation; VDES; maritime communication; auto-rate fall-back; modulation and coding.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>With the proliferation of Internet-of-Things technology, demand has grown for technologies supporting connectivity in the maritime sector — from e-Navigation under IMO's strategy [20] to smart fisheries, environmental monitoring, and logistics. Yet maritime communications evolved slower than terrestrial: GMDSS, VHF voice, and capacity-limited AIS plus costly satellite links leave VDES — with its high rates and stability [10] — as the promising next-generation solution.</p>
+    <p>But VDES, while supporting high rates through multiple MCS schemes (different modulation and coding per channel state), lacks a standardized MCS control mechanism, leaving it to user algorithms. Existing link adaptation (LA) techniques — history-based auto-rate fall-back (ARF) and receiver-measured RBAR — were designed for terrestrial links and fail in maritime settings marked by severe signal distortion, chiefly the "deep null" phenomenon where signals fade suddenly then vanish. This paper introduces the mARF technique: Section 2 covers VDES and the maritime wireless channel, Section 3 the new adaptation technique, Section 4 performance evaluation, and Section 5 conclusions.</p>
+  </section>
+
+  <section>
+    <h2>2. VDES and the Maritime Wireless Channel</h2>
+    <p>VDES comprises three services: AIS for identification and tracking, ASM for application-specific messaging, and VDE — terrestrial (VDE-TER) and satellite (VDE-SAT) — for high-speed bidirectional data transfer [19]. VDE-TER provides nine MCS schemes identified by link configuration IDs (11–19) with different channel bandwidth, symbol rate, coding rate, and modulation order, each with a packet error rate (PER) derived from the symbol error rate (SER) of its modulation and coding — so the right ID must match channel state: higher IDs (17–19) deliver higher throughput but need higher signal-to-noise ratio (SNR).</p>
+    <p>The maritime wireless channel is modeled with two-ray/three-ray paths plus effective evaporation height, and is distinguished by deep nulls: sharp sudden fades at certain distances that cause sporadic errors unrepresentative of overall channel state. This defeats terrestrial ARF (raise MCS after 10 successes, lower after 2 consecutive failures), which reacts slowly to nulls and misreads momentary fading — while RBAR's per-transmission signal measurement is accurate but costly and fooled by transient fades, besides maritime communication being inherently non-continuous. A history-based ARF approach is therefore more efficient at sea if deep nulls are handled — which mARF does.</p>
+  </section>
+
+  <section>
+    <h2>3. New Link Adaptation Technique in the Maritime Environment (mARF)</h2>
+    <p>The key insight of mARF is that maritime communication errors mostly stem from deep-null signal attenuation, not data collisions, so the most reliable scheme must be used immediately: upon a single communication error — even at the top scheme (link ID 19) — mARF performs a "fast drop-out," switching instantly to the lowest MCS profile (link ID 13) to guarantee stable communication, instead of the slow gradual step-down of classic ARF.</p>
+    <p>Conversely, since maritime channel states deteriorate fast but can also improve dramatically, mARF steps the profile up as conditions improve for better utilization via "fast recovery": using the most reliable profile, n consecutive successes trigger a switch to the next profile, then ⌊n/2⌋ consecutive successes in the current profile step up again — climbing toward higher throughput. Fast drop-out/recovery thresholds are learned dynamically from historical communication data (default α of 0.7, user-adjustable), with Algorithm 1 in the paper giving the adaptation pseudocode.</p>
+    <p>mARF thus combines history-based ARF caution (suited to intermittent maritime links) with fast null response: instant drop at the first error, accelerated climb once the channel stabilizes — without RBAR's per-transmission signal measurements, cutting overhead and avoiding misread transient fades.</p>
+  </section>
+
+  <section>
+    <h2>4. Performance Evaluation</h2>
+    <p>A VDE-TER simulator was built in MATLAB (PHY parameters: 160 MHz carrier, 12.5 W EIRP TX power, 12 m effective evaporation height, 100 kHz bandwidth, 0 dB RX antenna gain, −150 dBm/Hz noise PSD, 7 dB noise figure) implementing mARF and baseline ARF (MCS up after 10 successes, down after 2 consecutive failures). First, VDE-TER was verified in an ideal AWGN environment without deep nulls: throughput is higher with higher IDs (wider BW, stronger FEC, higher modulation), and the optimal ID depends on SNR — at 100 kHz bandwidth, IDs 17, 18, and 19 must be switched by signal level.</p>
+    <p>mARF was then evaluated in maritime channels (two-ray/three-ray models with deep nulls) under identical conditions: it beat baseline ARF in throughput and stability, since fast drop-out sustains links through nulls instead of failure streaks, and fast recovery regains high throughput as soon as the channel improves instead of climbing slowly. Extensive simulation proved mARF's effectiveness in enhancing VDES MCS control over the existing model, confirming its potential for maritime communications.</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>Communication technology in the maritime domain has evolved slower than terrestrial communication. However, the advent of various marine applications has triggered a growing need for communication ensuring stability and high transmission rates in marine environments. In this paper, we introduced the mARF technique, designed to enhance transmission rates while maintaining reliable communication by effectively addressing maritime communication environment challenges.</p>
+    <p>The mARF technique handles the deep null phenomenon — prevalent in maritime communication — via fast drop-out (instant switch to the lowest MCS on the first error) and fast recovery (accelerated climb as the channel stabilizes) with thresholds learned dynamically from history. VDE-TER simulator evaluation showed superiority over baseline ARF in throughput and stability in maritime channels, proving its potential for future maritime communications — with future work on field validation and live channel-measurement fusion.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected)</h2>
+    <ol dir="ltr">
+      <li>W. Shim et al., "A New Link Adaptation Technique for Very High Frequency Data Exchange System in Future Maritime Communication," <em>Electronics</em>, vol. 13, no. 2, 323, 2024.</li>
+      <li>R. Raulefs, "Overview of the VHF Data Exchange System," <em>Proc. OCEANS 2022</em>, Hampton Roads, VA, USA, 2022.</li>
+      <li>[19] IALA, "G1117 VHF Data Exchange System (VDES) Overview," 2017.</li>
+      <li>[20] IMO, "E-Navigation Strategy Implementation Plan — Update 1," MSC.1/Circ.1595, 2018.</li>
+      <li>[10] ITU-R M.2092, "Technical characteristics for a VHF data exchange system in the VHF maritime mobile band," 2022.</li>
+      <li>Z. Wu et al., "Application Prospects and Challenges of VDES in Smart Fisheries," <em>J. Mar. Sci. Eng.</em>, vol. 13, no. 2, 250, 2025.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics13020323">10.3390/electronics13020323</a> · License: CC BY 4.0 · <a href="paper.pdf">PDF</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

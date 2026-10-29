@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>آفاق نظام تبادل البيانات VHF في المصايد الذكية وتحدياته — DAR</title>
+<meta name="description" content="Wu et al. review VDES application prospects and challenges in smart fisheries: architecture, comparison with existing marine communications, scenarios, and development trends. Bilingual AR/EN.">
+<link rel="canonical" href="https://dararchive.com/papers/vdes-smart-fisheries-jmse/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Application Prospects and Challenges of VHF Data Exchange System (VDES) in Smart Fisheries</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">آفاق تطبيق نظام تبادل البيانات بالتردد العالي جدًا (VDES) في المصايد الذكية وتحدياته</h2>
+
+  <div class="paper-meta">
+    <span>👤 Zuli Wu, Minsi Xiong, Tianfei Cheng, Yang Dai, Shengmao Zhang, Wei Fan, Xuesen Cui</span>
+    <span>📄 J. Mar. Sci. Eng. (JMSE), 2025 · Vol. 13(2), 250 · 16 pp</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse13020250">10.3390/jmse13020250</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تُعد المصايد الذكية سبيلًا مهمًا لتعزيز التنمية المستدامة للمصايد، وتمثل أنظمة الاتصالات البحرية الفعالة والموثوقة مفتاح تحقيقها. وبوصفه تقنية اتصالات بحرية ناشئة، يتمتع نظام تبادل البيانات بالتردد العالي جدًا (VDES) بمزايا ارتفاع معدل نقل البيانات وسعة الاتصال الكبيرة والتغطية الواسعة، مما يتيح فرصًا جديدة لتحول المصايد الذكية وتطويرها. تقدم هذه الورقة البنية التقنية ووظائف نظام VDES، وتقارنه مع تقنيات الاتصالات البحرية القائمة، وتحلل المتطلبات الرئيسية للمصايد الذكية، وتقيّم مدى تلبية VDES لهذه المتطلبات. وتُناقش سيناريوهات التطبيق المحتملة لنظام VDES في مجالات المصايد الذكية مثل مراقبة سفن الصيد وإدارة الموارد السمكية والأمن البحري. وتُحلل التحديات التي تواجه VDES في تطبيقات المصايد الذكية، كالتقنية والسياسات والأنظمة وتكاليف الإنشاء، مع استشراف اتجاهات تطوره المستقبلية. وتُقترح توصيات كالدمج مع التقنيات الناشئة وتحقيق التغطية العالمية السلسة وتعزيز التعاون الدولي وتبادل البيانات. وتهدف الورقة إلى تقديم توجيه نظري ومرجع علمي لتعزيز تطبيق VDES ونشره في المصايد الذكية.</p>
+    <p><strong>الكلمات المفتاحية:</strong> المصايد الذكية؛ VDES؛ الاتصالات البحرية؛ إنترنت الأشياء؛ البيانات الضخمة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>مع نمو سكان العالم وازدياد الطلب الاستهلاكي، تواجه استدامة الموارد السمكية ضغوطًا متزايدة بفعل الصيد الجائر والتلوث البيئي وتغير المناخ [1]، اللذين أديا إلى استنزاف المخزونات السمكية وتدمير النظم البيئية. ولتحقيق تنمية مستدامة للمصايد، أصبحت المصايد الذكية توافقًا عالميًا: وهي توظيف تقنيات المعلومات الحديثة — إنترنت الأشياء والبيانات الضخمة والذكاء الاصطناعي والاستشعار عن بعد بالأقمار الصناعية والإنترنت المتنقل — لتطوير موارد معلومات المصايد واستغلالها ورفع إنتاجية المصايد وكفاءة إدارتها بصورة شاملة.</p>
+    <p>غير أن المصايد الذكية تعتمد اعتمادًا حاسمًا على اتصالات بحرية فعالة وموثوقة، بينما تعاني التقنيات القائمة (نظام AIS المحدود السعة، والاتصالات الصوتية VHF، والاتصالات الفضائية المكلفة) من قيود في معدل النقل والسعة والتغطية والتكلفة. يأتي نظام VDES — الذي يدمج AIS والرسائل الخاصة بالتطبيق (ASM) وتبادل بيانات VHF (VDE) عبر روابط أرضية وفضائية — ليسد هذه الفجوة بمعدل نقل أعلى وسعة أكبر وتغطية أوسع، مما يجعله مرشحًا طبيعيًا للبنية الاتصالية للمصايد الذكية. تستعرض هذه الورقة بنية VDES ووظائفه، وتقارنه بالتقنيات القائمة، وتحلل متطلبات المصايد الذكية، وترسم سيناريوهات التطبيق والتحديات والاتجاهات المستقبلية.</p>
+  </section>
+
+  <section>
+    <h2>2. نظرة على تقنية VDES ومقارنتها بالتقنيات القائمة</h2>
+    <p>نظام VDES هو نظام اتصالات بحري جديد قائم على التردد العالي جدًا (VHF) يهدف إلى تعزيز وظائف نظام التعريف الآلي (AIS) وتوسيعها، بتوفير معدلات نقل بيانات أعلى وسعة اتصال أكبر ونطاق تطبيقات أوسع [22]. ويعتمد جوهره على استخدام روابط أرضية أو فضائية، تحت إدارة محطة تحكم أو بشكل ذاتي، لتحقيق تبادل بيانات آلي أو يدوي بين السفن والمستخدمين الشاطئيين، عبر قنوات VHF مخصصة تقلل تدخل الطاقم، مع التوافق مع تطبيقات AIS وASM القائمة. كما يدعم وظائف VDE، والاتصالات المستقلة عن اللغة، ومراقبة سلامة البيانات، وإجراءات أمن الشبكات، واتصالات آلة–لآلة.</p>
+    <p>ويعمل VDES عبر ثلاث خدمات تطبيقية متكاملة: الرسائل الخاصة بالتطبيق (ASM) — نسخة محسنة من AIS تبث معلومات السلامة والبيانات التطبيقية بسعات أكبر وتدعم الوعي الظرفي المشترك (تفادي التصادم وتحديثات الطقس وأنشطة الصيد)؛ وتبادل بيانات VHF (VDE) للنقل عالي السرعة ثنائي الاتجاه؛ ورسائل التوزيع الأرضية (GDM/ABM). وتوفر هذه الخدمات معًا تبادلًا سلسًا للبيانات عبر الروابط الأرضية والفضائية لمختلف التطبيقات البحرية بما فيها المصايد الذكية [15].</p>
+    <p>وبالمقارنة مع التقنيات القائمة، تتفوق VDES على AIS في معدل النقل والسعة (إذ يعاني AIS من ازدحام القنوات في المناطق الكثيفة) [22]، وعلى الاتصالات الفضائية في التكلفة (فهي أقل كلفة بكثير مع تغطية ساحلية ومحيطية واسعة)، وعلى شبكات الهاتف المتنقل (4G/5G) في التغطية البحرية البعيدة عن الشاطئ. ومع ذلك، تبقى قدرات VDES أقل من الألياف والاتصالات الفضائية عريضة النطاق في الذروة، وتتطلب نشر بنية أرضية وفضائية مكتملة، مما يجعلها مكملة لا بديلة كليًا — لكنها الخيار الأنسب لاحتياجات المصايد من حيث التكلفة والتغطية والسعة معًا.</p>
+  </section>
+
+  <section>
+    <h2>3. متطلبات المصايد الذكية وتلبية VDES لها</h2>
+    <p>تُظهر تحليلات الطلب أن الاحتياجات الرئيسية للمصايد الذكية تتركز في: المراقبة الآنية (نقل بيانات عالي التردد وتحديث لحظي لسلامة سفن الصيد وكفاءتها)، وتبادل البيانات (مشاركة المعلومات بين السفن والموانئ والإدارات والباحثين)، والإدارة عن بعد (التحكم في معدات الاستزراع وأجهزة السفن)، والأمن والموثوقية (اتصالات طوارئ وتشفير واستمرارية)، والتشغيل البيني (التوافق مع الأنظمة والمعدات القائمة). وتشمل مجالات التطبيق الاستزراع الذكي (مراقبة البيئة والتغذية الآلية وسلوك الأسماك والوقاية من الأمراض)، والصيد الذكي (التنبؤ بمواقع الصيد وتتبع السفن ومعدات الصيد الذكية ومراقبة الصيد غير القانوني)، وإدارة الموارد (تقييم المخزونات وحماية البيئة وتحليل البيانات ودعم القرار)، والأسواق والخدمات (تتبع جودة المنتجات والمنصات التجارية)، وإنشاء موانئ الصيد الذكية وإدارة سلامة الإنتاج.</p>
+    <p>ويلبي VDES هذه المتطلبات عبر خصائصه التقنية: فمعدل النقل العالي والتحديث الآني يدعمان المراقبة اللحظية لحالة السفن (الموقع والسرعة وسرعة المحرك واستهلاك الوقود وتشغيل معدات الصيد)؛ والروابط الأرضية–الفضائية المدمجة تحقق التغطية الواسعة بما فيها المناطق البحرية النائية؛ وبنية الرسائل الموحدة (ASM/VDE/GDM) تدعم تبادل البيانات متعددة الأطراف والتشغيل البيني مع AIS؛ ووظائف مراقبة السلامة والأمن تدعم اتصالات الطوارئ والإنذار المبكر؛ وقدرة الشبكة على حمل بيانات الاستشعار الضخمة (الطوافات والعوامات والأقمار) تدعم تحليل البيانات الضخمة واتخاذ القرار في إدارة الموارد.</p>
+  </section>
+
+  <section>
+    <h2>4. سيناريوهات التطبيق المحتملة في المصايد الذكية</h2>
+    <p>رغم أن تقنية VDES لا تزال في مراحل التطوير والتطبيق المبكرة، وأن التطبيقات واسعة النطاق في المصايد الذكية لا تزال تتراكم أدلتها، فإن خصائصها (النطاق الأعلى والاتصال الأكثر موثوقية والتحديد الأكثر دقة) تسمح باستشراف أدوار محورية لها. في مراقبة سفن الصيد، سيتجاوز VDES مجرد بث الموقع والسرعة والاتجاه إلى جمع ونقل مؤشرات حالة متعددة (سرعة المحرك واستهلاك الوقود وتشغيل معدات الصيد)، مما يتيح للإدارات إدراك ديناميكيات كل سفينة ورصد الشذوذ واتخاذ التدابير، وتحليل المسارات التاريخية لكشف الصيد غير القانوني [15]، وتحسين التخطيط المساري لخفض التكاليف والانبعاثات — لأنواع السفن المختلفة كسفن الجر والشباك الحلقية ومعدات الصيد.</p>
+    <p>وفي إدارة الموارد السمكية، يدعم VDES نقل بيانات المسوحات الصوتية والعوامات والأقمار الصناعية لتقييم المخزونات ومراقبة البيئة البحرية، وتحديث خرائط مناطق الصيد ومناطق الحظر، وتنسيق جهود الصيد بما يمنع الاستنزاف. وفي الأمن البحري، يوفر اتصالات سلامة وإنذارًا مبكرًا (تحذيرات الطقس والاستغاثة وتتبع السفن المعرضة للخطر) وتحديدًا دقيقًا للمواقع يسرّع البحث والإنقاذ. وفي تحليل البيانات، يغذي VDES منصات البيانات الضخمة بتدفقات مستمرة من السفن والطوافات والموانئ، داعمًا التنبؤ بمواقع الصيد وتقييم الأثر البيئي وتتبع المنتجات من الصيد إلى السوق [56].</p>
+    <p>غير أن تحقيق هذه السيناريوهات يتطلب مزيدًا من الاستكشاف للتكامل مع أنظمة التشغيل والإجراءات القائمة في المصايد، إذ أثبت VDES قيمته حتى الآن في المراقبة البحرية والاتصالات المشفرة واللوجستيات والبحث والإنقاذ، بينما يبقى تكييفه مع خصوصيات قطاع الصيد (تنوع السفن، ومحدودية البنية الشاطئية في مناطق الصيد النائية، والفجوة الرقمية لدى الصيادين) مجالًا يحتاج تطويرًا وتحققًا ميدانيًا.</p>
+  </section>
+
+  <section>
+    <h2>5. التحديات واتجاهات التطور</h2>
+    <p>على المستوى التقني، يجب حل محدودية التغطية الشبكية في أعالي البحار، والموثوقية في البيئات القاسية (التداخل والتلاشي والحالة البحرية السيئة)، واستهلاك الطاقة في الأجهزة الطرفية على الطوافات والسفن الصغيرة، ودمج وتحليل البيانات الضخمة غير المتجانسة من مصادر متعددة. وعلى مستوى السياسات والأنظمة، يلزم تنسيق إدارة الطيف الترددي دوليًا، وإرساء آليات ملكية البيانات وتبادلها، وتنظيم تدفقات البيانات عبر الحدود بين الدول الساحلية.</p>
+    <p>وعلى مستوى التكلفة والكوادر، يلزم خفض تكاليف نشر وصيانة معدات VDES (خاصة لأساطيل الصيد الصغيرة والحرفية)، وسد الفجوة الرقمية لدى الصيادين عبر التدريب، وضمان التكامل مع أنظمة الاتصالات البحرية القائمة واستدامته طويلة الأمد. كما أن توحيد المعايير (كإرشادات IALA) واعتماد الأجهزة يمثلان تحديًا تنظيميًا إضافيًا أمام النشر الواسع.</p>
+    <p>أما الاتجاهات المستقبلية فتشمل: الدمج مع التقنيات الناشئة (الجيل الخامس 5G والاتصالات الفضائية منخفضة المدار وإنترنت الأشياء والذكاء الاصطناعي لتحليل البيانات)، وتحقيق التغطية العالمية السلسة عبر التكامل الأرضي–الفضائي، وتعزيز التعاون الدولي وتبادل البيانات (توحيد المعايير والحوكمة المشتركة للمصايد العابرة للحدود). وتقترح الورقة خارطة طريق تجمع بين التحقق التجريبي وتحسين الأداء والنشر التدريجي من السواحل إلى أعالي البحار.</p>
+  </section>
+
+  <section>
+    <h2>6. الخاتمة</h2>
+    <p>ناقشت هذه الورقة آفاق تطبيق VDES في المصايد الذكية وتحدياته: فبمزايا النطاق العريض والتغطية الواسعة والسرعة العالية، أظهر VDES إمكانات كبيرة في رفع كفاءة إنتاج الصيد ومستوى إدارة الموارد والسلامة البحرية، عبر سيناريوهات تشمل المراقبة الآنية لسفن الصيد وتقييم الموارد وإدارتها واتصالات السلامة والإنذار المبكر ومراقبة الصيد غير القانوني، مقدمًا وسائل تقنية جديدة لتحقيق استدامة المصايد عبر جمع بيانات أدق ونقلها ودعم المديرين والباحثين والصيادين بمعلومات أغنى وأسرع — بما يحسن استراتيجيات الصيد ويرفع كفاءة استخدام الموارد ويخفض التكاليف التشغيلية ويعزز السلامة.</p>
+    <p>غير أن التطبيق الواسع يواجه تحديات تقنية وتنظيمية وتكلفوية وتدريبية، وتقتصر الدراسة الحالية على التحليل النظري واستكشاف السيناريوهات دون تجارب ميدانية أو محاكاة (لما تتطلبه من موارد ووقت)، مما يحد من فهم أداء VDES في البيئات الواقعية المعقدة. ومع ذلك، تضع هذه الدراسة الأولية أساسًا نظريًا مهمًا لأعمال تجريبية ومحاكاة أعمق مستقبلًا: إذ ستتركز الأبحاث المقبلة على التحقق من الأداء وتحسينه في سيناريوهات صيد واقعية — ببناء منصات محاكاة لبيئات الصيد (أعداد مختلفة من السفن والطوافات وظروف الطقس والبحر) لقياس معدل النقل وزمن الاستجابة والتغطية ومقاومة التداخل، وإجراء اختبارات ميدانية ساحلية بنشر أجهزة VDES — بما يمهد لنشر عملي واسع يخدم استدامة المصايد العالمية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Smart fisheries are an important way to promote the sustainable development of fisheries, and efficient and reliable marine communication systems are the key to realizing smart fisheries. As an emerging marine communication technology, the VHF Data Exchange System (VDES) has the advantages of a high data transmission rate, large communication capacity, and wide coverage, providing new opportunities for the transformation and upgrading of smart fisheries. This paper introduces the technical architecture and functions of the VDES, compares it with existing marine communication technologies, analyzes the key requirements of a smart fishery, and assesses how the VDES meets these requirements. The potential application scenarios of the VDES in smart fishery fields such as fishing vessel monitoring, fishery resource management, and maritime security are discussed. The challenges faced by the VDES in the application of smart fisheries, such as technology, policies and regulations, and construction cost layout, are analyzed, and its future development trend is prospected. Suggestions such as its integration with emerging technologies, the realization of global seamless coverage, and the strengthening of international cooperation and data sharing are proposed. This paper aims to provide theoretical guidance and scientific reference for the promotion and application of the VDES in smart fisheries.</p>
+    <p><strong>Keywords:</strong> smart fishery; VDES; maritime communication; internet of things; big data.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>With the growth of the global population and the increase in consumption demand, the sustainability of fishery resources is facing increasing pressure from overfishing, environmental pollution, and climate change [1], which have depleted fish stocks and damaged ecosystems. To achieve sustainable fishery development, smart fisheries have become a global consensus: applying modern information technologies — IoT, big data, AI, satellite remote sensing, and mobile internet — to develop fishery information resources and comprehensively improve fishery productivity and management efficiency.</p>
+    <p>Smart fisheries depend critically on efficient, reliable marine communications, while existing technologies (capacity-limited AIS, VHF voice, costly satellite links) are constrained in data rate, capacity, coverage, and cost. VDES — integrating AIS, Application Specific Messages (ASM), and VHF Data Exchange (VDE) over terrestrial and satellite links — fills this gap with higher rates, larger capacity, and wider coverage, making it a natural communication backbone for smart fisheries. This paper presents the VDES architecture and functions, compares it with incumbent technologies, analyzes smart-fishery requirements, and maps application scenarios, challenges, and future trends.</p>
+  </section>
+
+  <section>
+    <h2>2. VDES Technology Overview and Comparison with Existing Technologies</h2>
+    <p>VDES is a new VHF-based marine communication system designed to enhance and extend the functions of AIS with higher data transmission rates, greater communication capacity, and a wider application range [22]. Its core uses terrestrial or satellite links, under control-station management or autonomously, to achieve automated or manual data exchange between ships and shore users over dedicated VHF channels that minimize crew intervention, while remaining compatible with existing AIS and ASM applications. It also supports VDE functions, language-independent communications, data integrity monitoring, network security measures, and machine-to-machine communications.</p>
+    <p>VDES operates through three integrated application services: Application Specific Messages (ASM) — an enhanced AIS broadcasting safety and application data with larger payloads, supporting shared situational awareness (collision avoidance, weather updates, fishery activity); VHF Data Exchange (VDE) for high-speed bidirectional transfer; and Ground Distribution Messaging (GDM/ABM). Together they provide seamless data exchange over terrestrial and satellite links for diverse maritime applications including smart fisheries [15].</p>
+    <p>Compared with incumbents, VDES exceeds AIS in data rate and capacity (AIS suffers channel congestion in dense areas) [22], beats satellite communications on cost with broad coastal and ocean coverage, and outperforms mobile networks (4G/5G) in offshore coverage far from shore. It still trails fiber and broadband satellite in peak throughput and needs completed terrestrial/space infrastructure — a complement rather than a wholesale replacement — but it is the best fit for fishery needs on cost, coverage, and capacity combined.</p>
+  </section>
+
+  <section>
+    <h2>3. Smart-Fishery Demands and How VDES Meets Them</h2>
+    <p>Demand analysis shows smart fisheries' key needs concentrate on: real-time monitoring (high-frequency data transmission and live updates for vessel safety and efficiency), data sharing (exchange among vessels, ports, authorities, researchers), remote management (control of aquaculture equipment and vessel devices), security and reliability (emergency communications, encryption, continuity), and interoperability (compatibility with existing systems). Application domains span smart aquaculture (environmental monitoring, automatic feeding, fish behavior, disease control), smart fishing (catch forecasting, vessel tracking, smart gear, illegal-fishing monitoring), resource management (stock assessment, environmental protection, analytics and decision support), markets and services (product traceability, trading platforms), smart fishing-port construction, and production-safety management.</p>
+    <p>VDES meets these demands through its technical profile: high data rates with real-time updates support live vessel-state monitoring (position, speed, engine RPM, fuel consumption, gear operation); integrated terrestrial–satellite links deliver wide coverage including remote waters; the unified message framework (ASM/VDE/GDM) supports multi-party data exchange and interoperability with AIS; safety and security functions support emergency communications and early warning; and capacity for massive sensor data (buoys, floats, satellites) feeds big-data analytics and decision-making in resource management.</p>
+  </section>
+
+  <section>
+    <h2>4. Potential Application Scenarios in Smart Fisheries</h2>
+    <p>Although VDES is still in early development and deployment, with large-scale fishery evidence still accumulating, its strengths (higher bandwidth, more reliable links, more accurate positioning) allow outlining pivotal future roles. In vessel monitoring, VDES will go far beyond position/speed/heading to collect and transmit multi-parameter state data (engine speed, fuel burn, gear operation), letting managers grasp each vessel's dynamics, detect anomalies, act in time, analyze historical tracks to expose illegal fishing [15], and optimize routing to cut costs and emissions — across trawlers, purse seiners, and gear vessels.</p>
+    <p>In resource management, VDES carries acoustic-survey, buoy, and satellite data for stock assessment and marine-environment monitoring, updates fishing-ground and closure maps, and coordinates fishing effort against depletion. In maritime security, it provides safety communications and early warning (weather alerts, distress, at-risk vessel tracking) with precise positioning that accelerates search and rescue. In data analytics, VDES feeds big-data platforms with continuous streams from vessels, buoys, and ports, supporting catch forecasting, environmental impact assessment, and catch-to-market traceability [56].</p>
+    <p>Realizing these scenarios needs further work integrating VDES with existing fishery operating systems and procedures: VDES has proven value in maritime surveillance, encrypted communications, logistics, and SAR, while adaptation to fishery specifics (vessel diversity, limited shore infrastructure in remote grounds, fishers' digital-skills gap) remains an area needing development and field validation.</p>
+  </section>
+
+  <section>
+    <h2>5. Challenges and Development Trends</h2>
+    <p>Technically, network-coverage limits offshore, reliability in harsh environments (interference, fading, rough seas), terminal power consumption on buoys and small vessels, and fusion/analysis of massive heterogeneous multi-source data must be solved. At policy level, international spectrum coordination, data-ownership and sharing mechanisms, and regulation of cross-border data flows between coastal states are needed.</p>
+    <p>On cost and workforce, VDES equipment deployment and maintenance costs must fall (especially for small-scale and artisanal fleets), fishers' digital-skills gap must be bridged through training, and integration with existing marine communication systems plus long-term sustainability must be ensured. Standardization (e.g., IALA guidelines) and equipment certification add a further regulatory hurdle to wide deployment.</p>
+    <p>Future trends include: integration with emerging technologies (5G, low-orbit satellite, IoT, AI-driven analytics), global seamless coverage via terrestrial–satellite convergence, and stronger international cooperation and data sharing (harmonized standards and joint governance of transboundary fisheries). The paper proposes a roadmap combining experimental validation, performance optimization, and staged rollout from coastal waters to the high seas.</p>
+  </section>
+
+  <section>
+    <h2>6. Conclusions</h2>
+    <p>This paper discussed VDES application prospects and challenges in smart fisheries: with high bandwidth, wide coverage, and high speed, VDES shows great potential for improving fishing production efficiency, resource-management standards, and maritime security — across vessel monitoring, resource assessment and management, safety communications and early warning, and illegal-fishing surveillance — offering new technical means for fishery sustainability through finer data collection and transmission that gives managers, researchers, and fishers richer, timelier information, optimizing fishing strategies, raising resource efficiency, cutting operating costs, and enhancing safety.</p>
+    <p>Wide application still faces technical, regulatory, cost, and training challenges, and the current study is limited to theoretical analysis and scenario exploration without field experiments or simulation (which demand heavy resources and time), constraining understanding of VDES performance in complex real environments. Nevertheless, this preliminary study lays an important theoretical foundation for deeper experimental and simulation work: future research will verify and optimize VDES performance in real fishery scenarios — building simulation platforms for fishery environments (varying vessel/buoy counts, weather and sea states) to measure data rate, latency, coverage, and anti-interference capability, plus coastal field trials deploying VDES devices — paving the way for broad practical deployment serving global fishery sustainability.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected)</h2>
+    <ol dir="ltr">
+      <li>Z. Wu et al., "Application Prospects and Challenges of VHF Data Exchange System (VDES) in Smart Fisheries," <em>J. Mar. Sci. Eng.</em>, vol. 13, no. 2, 250, 2025.</li>
+      <li>[22] IALA, "G1117 VHF Data Exchange System (VDES) Overview," 2017.</li>
+      <li>R. Raulefs, "Overview of the VHF Data Exchange System," <em>Proc. OCEANS 2022</em>, Hampton Roads, VA, USA, 2022.</li>
+      <li>N. Alagha and L. Løge, "Opportunities and challenges of maritime VHF data exchange systems," <em>Int. J. Satell. Commun. Netw.</em>, 2022.</li>
+      <li>W. Shim et al., "A New Link Adaptation Technique for Very High Frequency Data Exchange System in Future Maritime Communication," <em>Electronics</em>, vol. 13, no. 2, 323, 2024.</li>
+      <li>[56] X. Wang et al., "A Credibility Monitoring Approach and Software Monitoring System for VDES Data Link Based on a Combined Detection Method," <em>J. Mar. Sci. Eng.</em>, vol. 12, no. 10, 1751, 2024.</li>
+      <li>[1] FAO, "The State of World Fisheries and Aquaculture (SOFIA)," Rome, 2024.</li>
+      <li>IMO, "E-Navigation Strategy Implementation Plan — Update 1," MSC.1/Circ.1595, 2018.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse13020250">10.3390/jmse13020250</a> · License: CC BY 4.0 · <a href="paper.pdf">PDF</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

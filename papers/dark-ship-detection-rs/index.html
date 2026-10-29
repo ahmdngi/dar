@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كشف السفن المظلمة عبر التعاون البصري وSAR: طريقة محسنة للربط متعدد السمات — DAR</title>
+<meta name="description" content="Dark Ship Detection via Optical and SAR Collaboration: An Improved Multi-Feature Association Method — Arabic translation (DAR)">
+<link rel="canonical" href="https://dararchive.com/papers/dark-ship-detection-rs/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Dark Ship Detection via Optical and SAR Collaboration: An Improved Multi-Feature Association Method Between Remote Sensing Images and AIS Data</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">كشف السفن المظلمة عبر التعاون البصري وSAR: طريقة محسنة للربط متعدد السمات بين صور الاستشعار عن بعد وبيانات AIS</h2>
+
+  <div class="paper-meta">
+    <span>👤 Fan Li, Kun Yu, Chao Yuan, Yichen Tian, Guang Yang, Kai Yin, Youguang Li</span>
+    <span>📄 Remote Sens, 2025 · Vol. 17(13), 2201</span>
+    <span>🔗 <a href="https://doi.org/10.3390/rs17132201">10.3390/rs17132201</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>السفن المظلمة — وهي السفن التي تتعمد إطفاء أجهزة إرسال نظام التعريف الآلي (AIS) — تشكل خطرًا جسيمًا على السلامة البحرية، إذ تعيق جهود الكشف الاعتماد المفرط على AIS ونقص التغطية الرقابية وارتفاع معدلات عدم التطابق. تقترح هذه الورقة طريقة محسنة للربط متعدد السمات تدمج الاستشعار عن بعد الساتلي مع بيانات AIS، مع التركيز على تقدير الاتجاه عبر صناديق الإحاطة الموجهة، لتحسين كشف السفن المظلمة وتعزيز المراقبة البحرية.</p>
+    <p>دُرّب نموذج كشف الأجسام بصناديق الإحاطة الموجهة (YOLOv11n-OBB) [35] متجاوزًا قيود الصناديق الأفقية في تمثيل الاتجاه. وبدمج سمات الموقع والأبعاد (الطول والعرض) والاتجاه، صُممت دالة تكلفة مشتركة تُحسَّن عبر خوارزمية JVC المحسنة [36] لضمان ربط عالي الدقة في المشاهد المزدحمة. وأخيرًا، بدمج بيانات القمرين غاوفن-6 (بصري) وغاوفن-3B (SAR)، بُني إطار مراقبة تعاوني نهاري-ليلي يعالج النقاط العمياء للاستشعار أحادي المصدر ليلًا وفي الأحوال الجوية السيئة. بلغت الدقة المتوسطة (AP50) 0.986 على البيانات البصرية و0.903 على بيانات SAR، وبلغت دقة الربط 91.74%.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تشير السفن المظلمة تحديدًا إلى السفن التي تُطفئ بنشاط أجهزة إرسال AIS [1] أو تتهرب باستمرار من التقاط الإشارة. وبوصفها فئة فرعية من السفن غير المتعاونة، ترتبط أنماط سلوكها ارتباطًا وثيقًا بأنشطة بحرية غير قانونية عالية الخطورة كالصيد غير المشروع وتهريب المخدرات والقرصنة. ووفق بيانات الأقمار الصناعية العالمية، فإن نحو 75% من سفن الصيد الصناعية و25% من السفن التجارية خارج شبكة مراقبة AIS منذ فترات طويلة، ما يخلق نقاطًا رقابية عمياء واسعة [2].</p>
+    <p>تعاني الطرق الحالية من ثلاث مشكلات: الاعتماد المفرط على مصدر واحد، وصعوبة الربط الدقيق بين الصور وبيانات AIS في المشاهد المزدحمة، وغياب معلومات الاتجاه في صناديق الإحاطة الأفقية التقليدية. تعالج هذه الورقة هذه المشكلات عبر ثلاث إسهامات: الكشف بصناديق الإحاطة الموجهة لحل مشكلة تمثيل الاتجاه، ودالة تكلفة مشتركة متعددة السمات لتحسين متانة الربط، وإطار تعاوني بصري-SAR لسد الفجوات الزمنية.</p>
+  </section>
+
+  <section>
+    <h2>2. المنهجية</h2>
+    <p>يتألف سير العمل من ثلاث مراحل. أولًا، بناء مجموعات بيانات صور الاستشعار عن بعد والسفن لتدريب نموذج الشبكة العصبية العميقة واختباره، مع الحصول على صور منطقة الدراسة لتشغيل النموذج المدرب وكشف السفن. ثانيًا، تنظيف بيانات AIS في منطقة الدراسة ومواءمتها زمانيًا ومكانيًا. ثالثًا، حساب التكلفة المشتركة متعددة السمات (الموقع والأبعاد والاتجاه) وتطبيق خوارزمية JVC المحسنة [36] للحصول على التخصيص ذي التكلفة العامة الدنيا، ومنه اشتقاق نتائج كشف السفن المظلمة.</p>
+    <p>لتدريب النموذج جُمعت مجموعة بيانات بصرية من 24 مشهدًا للقمر غاوفن-6 في منطقة بحر بوهاي (2023–2024) قُطعت إلى رقائق 512×512 بكسل، إلى جانب مجموعة بيانات SAR من القمر غاوفن-3B [44]. أما خطوات الربط فتشمل: اختيار السمات المشتركة بين صور الاستشعار وAIS، وحساب التكلفة المشتركة، والحصول على التخصيص الأمثل بخوارزمية JVC المحسنة، وتحديد عتبة القرار، وإخراج النتائج (ربط ناجح، أو سفينة مظلمة، أو إشارة AIS بلا مقابل بصري).</p>
+  </section>
+
+  <section>
+    <h2>3. منطقة الدراسة والبيانات</h2>
+    <p>تقع منطقة الدراسة بين رأس لاوتيشان في الطرف الجنوبي لمدينة داليان بمقاطعة لياونينغ وشبه جزيرة شاندونغ، حيث يربط مضيق بوهاي البحر الأصفر ببحر بوهاي بعرض 105 كم فقط من الشمال إلى الجنوب، ويُعرف بـ"حنجرة بوهاي". وتُعد المنطقة مركزًا اقتصاديًا محوريًا يضم مناطق لياودونغ وبكين-تيانجين-خبي وشاندونغ الاقتصادية، مع كثافة ملاحية عالية تجعلها مثالية لاختبار الكشف.</p>
+    <p>تُنتج عملية الربط ثلاث نتائج ممكنة: تطابق ناجح بين الصورة وAIS (ملاحة طبيعية)، أو سفينة مرصودة بصريًا بلا إشارة AIS مقابلة (سفينة مظلمة تستدعي المراقبة)، أو إشارة AIS بلا كشف بصري مقابل (قد تعود لإنذارات AIS كاذبة أو لدقة محدودة للصور). وقد أُخفيت أسماء السفن في النتائج المنشورة حفاظًا على الخصوصية مع الاحتفاظ بنوع السفينة.</p>
+  </section>
+
+  <section>
+    <h2>4. النتائج</h2>
+    <p>حقق نموذج الكشف دقة متوسطة (AP50) بلغت 0.986 على مجموعة البيانات البصرية و0.903 على مجموعة SAR، متفوقًا على النماذج المرجعية ذات الصناديق الأفقية، ويُعزى ذلك أساسًا إلى تمثيل الاتجاه الدقيق الذي تتيحه الصناديق الموجهة. وبلغت دقة الربط لخوارزمية التكلفة المشتركة متعددة السمات 91.74% في مطابقة الصور البصرية مع AIS.</p>
+    <p>أظهرت تجارب مضيق بوهاي أن الإطار التعاوني نهاري-ليلي يكشف السفن المظلمة بفعالية في المشاهد المزدحمة، حيث عالجت بيانات SAR الليلية والأحوال الغائمة النقاط العمياء للصور البصرية. كما حسّن دمج سمة الاتجاه التمييز بين السفن المتجاورة التي كانت تُربط خطأً عند الاعتماد على الموقع وحده.</p>
+  </section>
+
+  <section>
+    <h2>5. المناقشة</h2>
+    <p>لقياس أداء الربط استُخدم معدل الربط (نسبة النقاط المربوطة إلى الحد الأقصى القابل للربط) ودقة الربط (صحة الارتباطات). وتُظهر المقارنات أن دالة التكلفة المشتركة متعددة السمات تتفوق على الطرق أحادية السمة (الموقع فقط)، خاصة في الممرات المزدحمة حيث تتشابه المسافات بين السفن [7,31,34].</p>
+    <p>كما تناقش الورقة حالات الفشل: سفن تحمل إشارة AIS دون كشف بصري مقابل، وهي لا تُعد سفنًا مظلمة. ومن أسبابها تجاوز تغطية AIS لنطاق الكشف الراداري (مناطق محجوبة بجسور أو جبال)، وتأثر دقة AIS بالحالة التشغيلية للأجهزة، ومحدودية دقة الصور. وتقترح معالجة ذلك بدمج مصادر إضافية وتحسين دقة المواءمة الزمانية-المكانية.</p>
+  </section>
+
+  <section>
+    <h2>6. الاستنتاجات</h2>
+    <p>قدمت هذه الدراسة طريقة محسنة للربط متعدد السمات بين صور الاستشعار عن بعد وبيانات AIS لكشف السفن المظلمة، تجمع بين الكشف بالصناديق الموجهة (YOLOv11n-OBB) ودالة تكلفة مشتركة (الموقع والأبعاد والاتجاه) وخوارزمية JVC المحسنة وإطار تعاوني بصري-SAR. وحققت النتائج دقة كشف وربط عالية في تجارب مضيق بوهاي الحقيقية.</p>
+    <p>تشمل الأعمال المستقبلية توسيع التغطية لمناطق بحرية أخرى، ودمج بيانات الأقمار ذات إعادة الزيارة العالية للمراقبة شبه المستمرة، وتحسين تقدير الاتجاه للسفن الصغيرة، ودراسة أسباب إشارات AIS غير المربوطة بمزيد من التعمق لدعم جهود مكافحة الصيد غير المشروع والتهريب.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Dark ships, vessels deliberately disabling their AIS signals, constitute a grave maritime safety hazard, with detection efforts hindered by issues like over-reliance on AIS, inadequate surveillance coverage, and significant mismatch rates. This paper proposes an improved multi-feature association method that integrates satellite remote sensing and AIS data, with a focus on oriented bounding box course estimation, to improve the detection of dark ships and enhance maritime surveillance.</p>
+    <p>Firstly, the oriented bounding box object detection model (YOLOv11n-OBB) [35] is trained to break through the limitations of horizontal bounding box orientation representation. Secondly, by integrating position, dimensions (length and width), and course characteristics, a joint cost function is devised to evaluate the combined significance of multiple features. Subsequently, an advanced JVC global optimization algorithm [36] is employed to ensure high-precision association in dense scenes. Finally, by integrating data from Gaofen-6 (optical) and Gaofen-3B (SAR) satellites, a day-and-night collaborative monitoring framework is constructed to address the blind spots of single-sensor monitoring during night-time or adverse weather conditions. Results indicate a high average precision (AP50) of 0.986 on the optical dataset and 0.903 on the SAR dataset, with a multi-feature association accuracy of 91.74%.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Dark ships specifically refer to vessels that actively shut down their AIS transmitters [1] or consistently evade signal collection. As a core subclass of non-cooperative vessels, their behavior patterns are significantly correlated with high-risk maritime illegal activities such as illegal fishing, drug smuggling, and piracy. According to global satellite observation data, about 75% of industrial fishing vessels and 25% of merchant ships have long been outside the AIS monitoring network, creating large-scale regulatory blind spots [2].</p>
+    <p>Current approaches suffer from three problems: over-reliance on a single source, inaccurate image-to-AIS association in dense scenes, and missing course information in conventional horizontal bounding boxes. This paper addresses them through three contributions: oriented bounding box detection solving course representation, a multi-feature joint cost function improving association robustness, and an optical-SAR collaborative framework closing temporal gaps.</p>
+  </section>
+
+  <section>
+    <h2>2. Methods</h2>
+    <p>The workflow comprises three stages. First, satellite remote sensing imagery and ship datasets are constructed to train and test the deep neural network, while imagery of the study area is acquired for the trained model to perform ship detection. Second, AIS data from the study area undergoes cleaning and spatio-temporal alignment. Third, the multi-feature joint cost of position, dimensions, and course is computed and the improved JVC algorithm [36] is applied to obtain the minimum-global-cost allocation, from which dark ship detection outcomes are derived.</p>
+    <p>For training, an optical dataset of 24 Gaofen-6 scenes over the Bohai Sea region (2023–2024) was cropped to 512×512-pixel chips, alongside a Gaofen-3B SAR dataset [44]. The association steps are: feature selection of common attributes between remote sensing images and AIS, computation of the joint position-dimension-course cost, optimal allocation via the improved JVC algorithm, threshold-based decision, and output of results (successful association, dark ship, or unmatched AIS signal).</p>
+  </section>
+
+  <section>
+    <h2>3. Study Area and Data</h2>
+    <p>The study area lies between Laotieshan Cape at the southern end of Dalian City, Liaoning Province, and the Shandong Peninsula, where the Bohai Strait connects the Yellow Sea and the Bohai Sea at only 105 km wide from north to south — known as the "Throat of the Bohai." The region is a pivotal economic hub with high traffic density, making it ideal for detection testing.</p>
+    <p>Association produces three possible outcomes: successful image-AIS match (normal navigation), an imaged ship with no corresponding AIS signal (a dark ship requiring monitoring), or an AIS signal with no imaged counterpart (possibly false-alarm AIS data or limited image resolution). Ship names are anonymised in the published results, retaining only ship type.</p>
+  </section>
+
+  <section>
+    <h2>4. Results</h2>
+    <p>The detection model achieved an average precision (AP50) of 0.986 on the optical dataset and 0.903 on the SAR dataset, outperforming horizontal-box baselines, mainly thanks to the accurate course representation of oriented boxes. The multi-feature joint cost association accuracy reached 91.74% in optical-to-AIS matching.</p>
+    <p>Bohai Strait experiments show the day-night collaborative framework effectively detects dark ships in dense scenes, with night-time SAR data filling the blind spots of optical imagery under clouds. Fusing the course feature improved discrimination between adjacent vessels that were mismatched when relying on position alone.</p>
+  </section>
+
+  <section>
+    <h2>5. Discussion</h2>
+    <p>Association performance was measured with the association rate (ratio of associated points to the maximum associable) and association accuracy (correctness of matches). Comparisons show the multi-feature joint cost outperforms single-feature (position-only) methods, especially in crowded fairways where inter-vessel distances are similar [7,31,34].</p>
+    <p>The paper also discusses failure cases: vessels with AIS signals but no imaged counterpart, which are not counted as dark ships. Causes include AIS coverage extending beyond radar detection range (areas obscured by bridges or mountains), AIS accuracy affected by equipment status, and limited image resolution. Remedies proposed include fusing additional sources and improving spatio-temporal alignment accuracy.</p>
+  </section>
+
+  <section>
+    <h2>6. Conclusions</h2>
+    <p>This study presented an improved multi-feature association method between remote sensing imagery and AIS data for dark ship detection, combining oriented-box detection (YOLOv11n-OBB), a joint position-dimension-course cost function, the improved JVC algorithm, and an optical-SAR collaborative framework. Results demonstrated high detection and association accuracy in real Bohai Strait trials.</p>
+    <p>Future work includes extending coverage to other sea areas, integrating high-revisit satellites for near-continuous monitoring, improving course estimation for small vessels, and deeper investigation of unassociated AIS signals to support counter-IUU-fishing and anti-smuggling efforts.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected)</h2>
+    <ul dir="ltr">
+      <li>[1] M. S. Prasad et al., "Dark Ship Detection: SAR Images," in Proc. XXVI Int. Conf. on Soft Computing and Measurements (SCM), St. Petersburg, Russia, 2023, pp. 341&ndash;344.</li>
+      <li>[2] F. S. Paolo et al., "Satellite Mapping Reveals Extensive Industrial Activity at Sea," Nature, vol. 625, pp. 85&ndash;91, 2024.</li>
+      <li>[7] M. Rodger and R. Guida, "Classification-Aided SAR and AIS Data Fusion for Space-Based Maritime Surveillance," Remote Sens., vol. 13, 104, 2021.</li>
+      <li>[31] N. Sandirasegaram and P. W. Vachon, "Validating Targets Detected by SAR Ship Detection Engines," Can. J. Remote Sens., vol. 43, pp. 451&ndash;454, 2017.</li>
+      <li>[34] Z. Liu et al., "Moving Ship Optimal Association for Maritime Surveillance: Fusing AIS and Sentinel-2 Data," IEEE Trans. Geosci. Remote Sens., vol. 60, 5635218, 2022.</li>
+      <li>[35] R. Khanam and M. Hussain, "YOLOv11: An Overview of the Key Architectural Enhancements," arXiv:2410.17725, 2024.</li>
+      <li>[36] D. F. Crouse, "On Implementing 2D Rectangular Assignment Algorithms," IEEE Trans. Aerosp. Electron. Syst., vol. 52, pp. 1679&ndash;1696, 2016.</li>
+      <li>[44] China Platform of Earth Observation System (CPEOS), Gaofen satellite series introductions. Available online: https://www.cpeos.org.cn (accessed on 3 April 2025).</li>
+      <li>... [full reference list available in original paper]</li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/rs17132201">10.3390/rs17132201</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

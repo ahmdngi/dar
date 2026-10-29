@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نحو قرار معزز بالنماذج اللغوية: مسح التعلم المعزز لتفادي تصادم السفن — DAR</title>
+<meta name="description" content="Wu et al. survey reinforcement learning for ship collision avoidance (2014–present): single/multi-agent methods, COLREGs compliance, and an LLM-enhanced hierarchical architecture. Bilingual AR/EN.">
+<link rel="canonical" href="https://dararchive.com/papers/rl-collision-avoidance-survey-jmse/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Towards LLM Enhanced Decision: A Survey on Reinforcement Learning Based Ship Collision Avoidance</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نحو قرار معزز بالنماذج اللغوية الكبيرة: مسح حول تفادي تصادم السفن القائم على التعلم المعزز</h2>
+
+  <div class="paper-meta">
+    <span>👤 Yizhou Wu, Jin Liu, Xingye Li, Junsheng Xiao, Tao Zhang, Haitong Xu, Lei Zhang</span>
+    <span>📄 J. Mar. Sci. Eng. (JMSE), 2025 · Vol. 13(12), 2275 · 16 pp</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse13122275">10.3390/jmse13122275</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يستعرض هذا المسح الشامل أعمال التعلم المعزز (RL) في تفادي تصادم السفن (SCA) من عام 2014 حتى اليوم، محللًا الأساليب المصممة لنموذجي الوكيل الواحد والتعاون متعدد الوكلاء. وبينما أظهرت الأبحاث السابقة مزايا التعلم المعزز في القدرة على التكيف البيئي واتخاذ القرار الذاتي والتحسين عبر الإنترنت مقارنة بأساليب التحكم التقليدية، تعالج هذه الدراسة بشكل منهجي التحسينات الخوارزمية وتحديات التنفيذ والأدوار الوظيفية لتقنيات التعلم المعزز في تفادي التصادم، مثل شبكة Q العميقة (DQN)، والتحسين القريب لسياسة الوكيل (PPO)، والتعلم المعزز متعدد الوكلاء (MARL). كما تُبرز كيف تعالج هذه التقنيات تحديات حرجة تشمل تفادي العوائق الديناميكية، والامتثال لاتفاقية الأنظمة الدولية لمنع التصادم في البحر (COLREGs)، والتنسيق في سيناريوهات الحركة الكثيفة، مع التأكيد على قيود مستمرة مثل الافتراضات المثالية وقضايا قابلية التوسع والمتانة في البيئات غير المؤكدة. وتشمل المساهمات تحليلًا منظمًا للتطور التقني الحديث، وبنية هرمية قائمة على النماذج اللغوية الكبيرة (LLM) تدمج طبقات الإدراك والاتصال واتخاذ القرار والتنفيذ لأنظمة تفادي التصادم المستقبلية، مع إعطاء الأولوية لتطوير أطر قابلة للتوسع والتكيف تضمن ملاحة ذاتية متينة ومتوافقة تنظيميًا في البيئات البحرية الواقعية المعقدة.</p>
+    <p><strong>الكلمات المفتاحية:</strong> التعلم المعزز؛ تفادي تصادم السفن؛ التعلم المعزز متعدد الوكلاء؛ النماذج اللغوية الكبيرة؛ الامتثال لـ COLREGs.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>لطالما شكلت حوادث تصادم السفن تحديًا رئيسيًا للسلامة البحرية، بعواقب كارثية تتجاوز الخسائر الاقتصادية المباشرة بكثير: فوفقًا للمنظمة البحرية الدولية قد يتجاوز متوسط خسائر التصادم الكبير الواحد 30 مليون دولار أمريكي، وتتسبب الحوادث البحرية بنحو 2000 وفاة سنويًا حول العالم، كما أن التصادمات مسؤولة عن نحو 12% من التلوث النفطي البحري. ومع تزايد كثافة الحركة البحرية وتعقيدها، أصبح تطوير أنظمة تفادي تصادم ذاتية وموثوقة ضرورة ملحة للملاحة الذاتية.</p>
+    <p>أظهر التعلم المعزز، ولا سيما التعلم المعزز العميق، مزايا مميزة على الطرق التقليدية القائمة على القواعد والتحسين: فهو يتعلم سياسات القرار بالتجربة والتفاعل المباشر مع البيئة بدلًا من الاعتماد على نماذج محددة مسبقًا، مما يمنحه قدرة على التكيف البيئي واتخاذ القرار الذاتي والتحسين المستمر عبر الإنترنت. وقد طُبقت خوارزميات مثل DQN وPPO وDDPG وMARL على نطاق واسع في سيناريوهات تفادي التصادم، من البيئات الساكنة البسيطة إلى سيناريوهات السفن المتعددة الديناميكية الملتزمة بقواعد COLREGs [27].</p>
+    <p>ورغم هذا التقدم، لا يزال النشر العملي محدودًا: إذ تعتمد معظم الأساليب على افتراضات مثالية (إدراك مثالي، ونماذج سفن متجانسة، وبيئات تفاعل ساكنة)، وتواجه صعوبات في قابلية التوسع واتخاذ القرار الآني والمتانة في ظل الاضطرابات الواقعية كالرياح والتيارات وضجيج المستشعرات. ينظم هذا المسح الأدبيات من 2014 حتى اليوم عبر محورين — الوكيل الواحد ومتعدد الوكلاء — ويحلل الخوارزميات والتحسينات والأدوار الوظيفية، ثم يشخص القيود المفتوحة ويقترح اتجاهًا مستقبليًا يتمثل في دمج النماذج اللغوية الكبيرة مع التعلم المعزز لبناء بنية هرمية موحدة تدمج الإدراك والاستدلال والامتثال التنظيمي.</p>
+  </section>
+
+  <section>
+    <h2>2. منهجية المسح</h2>
+    <p>اعتمدت الدراسة استراتيجية بحث منهجية في قواعد ببليوغرافية رئيسية (Web of Science وIEEE Xplore وGoogle Scholar وغيرها) باستخدام كلمات مفتاحية تجمع بين التعلم المعزز وتفادي تصادم السفن والملاحة الذاتية والامتثال لـ COLREGs، للفترة من 2014 حتى 2025. وشملت معايير الإدراج الدراسات المحكمة التي تقدم أساليب تعلم معزز لتفادي التصادم مع تفاصيل منهجية وتحقق تجريبي أو محاكاة، بينما استُبعدت الأعمال الوصفية البحتة والتقارير غير المحكمة والدراسات التي تستخدم التعلم المعزز استخدامًا هامشيًا.</p>
+    <p>وبعد إزالة التكرار والفرز حسب الصلة واللغة وتوافر النص الكامل، صُنفت الدراسات المختارة وفق إطار تحليلي ثنائي المحور: أولًا حسب نموذج الوكيل (وكيل واحد مقابل متعدد الوكلاء، وبيئات تعاونية مقابل غير تعاونية)، وثانيًا حسب العائلة الخوارزمية (Q-learning والأساليب العميقة القائمة على القيمة مثل DQN وDDQN، وأساليب تدرج السياسة والممثل–الناقد مثل PPO وDDPG، وأساليب MARL مثل MADDPG وQMIX). كما حُللت دوال المكافأة وتصميم فضاءات الحالة والفعل وآليات دمج قواعد COLREGs لاستخلاص اتجاهات التطور التقني.</p>
+  </section>
+
+  <section>
+    <h2>3. تفادي التصادم أحادي الوكيل</h2>
+    <p>يُعد تفادي التصادم أحادي الوكيل أساس الملاحة البحرية الذاتية، إذ يركز على تمكين سفينة واحدة من إدراك محيطها بشكل مستقل والمناورة بأمان عبر ضبط الاتجاه والسرعة لتقليل مخاطر التصادم مع العوائق الساكنة والديناميكية. وقد استفادت الأبحاث المبكرة من خوارزميات التعلم المعزز التقليدية (Q-learning وSARSA) للتغلب على محدودية الأساليب القائمة على القواعد في البيئات المعقدة متعددة العوامل، ومنها خوارزمية AABSRL القائمة على SARSA للمركبات السطحية غير المأهولة في البيئات الساكنة تحت اضطرابات الرياح والتيارات.</p>
+    <p>ومع ظهور التعلم المعزز العميق، تقدم المجال نحو سيناريوهات واقعية بعوائق متحركة وامتثال تنظيمي: فقد طُبقت DQN وDDQN مع إعادة تشغيل الخبرة ذات الأولوية في فضاءات فعل منفصلة [28]، بينما عالجت أساليب الممثل–الناقد المستمرة (DDPG وPPO) فضاءات الفعل المستمرة للتحكم في الدفة والدفع. وأظهرت دراسات مثل Sawada وآخرون [30] باستخدام LSTM قدرة على التعامل مع الرصد الجزئي، بينما دمجت أساليب أخرى آليات الانتباه لمحاكاة سلوك تفادي شبيه بالبشري، وحسّنت دمج مؤشرات مخاطر التصادم (DCPA/TCPA) الامتثال لقواعد COLREGs في المواجهة والتقاطع والتجاوز.</p>
+    <p>ورغم نضج أساليب الوكيل الواحد في البيئات المبسطة، فإنها تعاني فجوة تعميم: فالأداء الجيد في المحاكاة المثالية لا ينتقل بسهولة إلى البيئات البحرية الديناميكية واسعة النطاق، بسبب الاعتماد على افتراضات الإدراك المثالي وتجانس نماذج السفن وإهمال الاضطرابات الواقعية، إضافة إلى صعوبة القرار الآني الحرج للسلامة في ظل بيانات استشعار ضجيجة وغير متجانسة والتعقيد الحسابي للشبكات العميقة.</p>
+  </section>
+
+  <section>
+    <h2>4. تفادي التصادم متعدد الوكلاء</h2>
+    <p>يعالج تفادي التصادم متعدد الوكلاء (MARL) سيناريوهات الحركة الكثيفة حيث يجب على عدة سفن ذاتية التنسيق فيما بينها. في البيئات التعاونية، تشترك الوكلاء في المعلومات (عبر اتصالات سفينة–لسفينة) وتتعلم سياسات مشتركة أو منسقة تحقق وعيًا ظرفيًا جماعيًا ومناورات متسقة [31]، ومن أمثلتها أساليب MADDPG والتعلم المعزز العميق متعدد الوكلاء للملاحة الديناميكية وتعيين المناطق للمركبات السطحية غير المأهولة، والتحكم في التشكيل وتفادي العوائق تحت قيادة افتراضية.</p>
+    <p>أما في البيئات غير التعاونية — وهي الأقرب للواقع حيث تختلط سفن ذاتية بسفن تقليدية يقودها البشر — فيجب على الوكيل استنتاج نوايا الآخرين دون افتراض تعاونهم. وقد طُورت نماذج رصد جزئي متعدد السفن قائمة على التعلم المعزز العميق، وخوارزميات تطور تفاضلي مدمجة مع الامتثال لـ COLREGs للتصادم الديناميكي متعدد السفن [45]، وأساليب موجهة للتعلم متعدد الوكلاء للملاحة الديناميكية والتقاط الأهداف. وتبدأ العملية النموذجية بإدراك الخطر لدى الوكيل ومشاركته مع المتعاونين، ثم دمج التخطيط المساري مع قواعد COLREGs لتقييم المخاطر وتنفيذ مناورة إفساح الطريق عند اللزوم.</p>
+    <p>غير أن أساليب MARL الحالية صُممت غالبًا على افتراضات اتصال غير واقعية، وتفتقر إلى القدرة الاستدلالية اللازمة لتوقع نوايا الوكلاء غير المتعاونين، مما يؤدي في كثير من الأحيان إلى مناورات متحفظة أو متضاربة في سيناريوهات الحركة الكثيفة الواقعية. كما أن قابلية التوسع مع عدد السفن، ومتانة السياسات أمام اللايقين الواقعي، وتعقيد النمذجة التفاعلية التكيفية، تبقى تحديات مفتوحة تحد من النشر العملي.</p>
+  </section>
+
+  <section>
+    <h2>5. التحديات والاتجاهات المستقبلية</h2>
+    <p>رغم التقدم المشجع في إطاري الوكيل الواحد ومتعدد الوكلاء، تبقى الأساليب الحالية محدودة جوهريًا في قابلية التوسع والتكيف والمتانة أمام تعقيدات البيئات البحرية الواقعية، إذ يعتمد أداؤها بشدة على افتراضات مبسطة وشروط استشعار مثالية ونماذج تفاعل ساكنة. ويمكن تلخيص القيود الرئيسية في: فجوة قابلية التوسع والتعميم (الفشل في الانتقال من الإعدادات المبسطة إلى البيئات الديناميكية واسعة النطاق)، وقيود القرار الآني (صعوبة اتخاذ قرار حرج للسلامة في الزمن الحقيقي مع بيانات ضجيجة وتعقيد حسابي)، وقصور التكيف البيئي (إهمال الرياح والتيارات وضجيج المستشعرات وتبسيط القواعد التنظيمية إلى مكافآت ساكنة)، وضعف التعاون في MARL (افتراضات اتصال مثالية وغياب استنتاج النوايا).</p>
+    <p>وتشير هذه القيود إلى أن الأساليب الحالية تقترب من حدود قدرتها على معالجة التعقيد المعرفي لاتخاذ القرار البحري الواقعي، مما يستلزم نموذجًا جديدًا يدمج الإدراك والاستدلال والتنظيم بطريقة موحدة وقابلة للتفسير والتكيف. وقد برزت النماذج اللغوية الكبيرة اتجاهًا بحثيًا واعدًا: إذ أظهر إطار AIS-LLM قدرة على دمج السلاسل الزمنية لنظام AIS مع الاستدلال الدلالي للتنبؤ بالمسارات وكشف الشذوذ وتقييم مخاطر التصادم مع توليد تفسيرات مفهومة بشريًا [46]، وأثبتت تجارب Agyei وآخرون في 22 سيناريو مواجهة معياري قدرة النماذج اللغوية على تفسير COLREGs وتوليد قرارات متوافقة [47]، بينما أظهرت أعمال Ku وآخرون إمكانية الاستدلال عالي الدقة لنماذج خفيفة الوزن تحت قيود حاسوبية واتصالات غير متصلة [48].</p>
+    <p>ويمثل دمج النماذج اللغوية مع التعلم المعزز (كما في إطار LLM-Coach [49] ببنية ثنائية الوكيل حيث تُستخدم المعرفة المنطقية والتنظيمية المستمدة من النموذج اللغوي لتعزيز تجريد الخصائص وتشكيل المكافأة) تكاملًا متكاملًا: يعزز النموذج اللغوي التعلم المعزز في فهم المشهد وتحديد المخاطر والامتثال للقواعد، بينما يعوض التعلم المعزز قصور النماذج اللغوية في توليد الأفعال والاستقرار العددي والتكيف الديناميكي عبر التفاعل البيئي وتحسين السياسة الموجه بالتغذية الراجعة.</p>
+    <p>وبناءً على ذلك يقترح المسح بنية هرمية قائمة على النماذج اللغوية تدمج أربع طبقات — الإدراك والاتصال واتخاذ القرار والتنفيذ — لتوجيه أنظمة تفادي التصادم المستقبلية نحو أطر قابلة للتوسع والتكيف تضمن ملاحة ذاتية متينة ومتوافقة تنظيميًا وقابلة للتفسير في البيئات البحرية المعقدة، مع إعطاء الأولوية للتحقق الواقعي، والتعامل مع اللايقين، والتكامل مع أطر الحوكمة البحرية الحالية.</p>
+  </section>
+
+  <section>
+    <h2>6. الخاتمة</h2>
+    <p>استعرضت هذه الدراسة بشكل منهجي عقدًا من أبحاث التعلم المعزز في تفادي تصادم السفن (2014–2025) عبر نموذجي الوكيل الواحد ومتعدد الوكلاء، موثقةً التطور من Q-learning التقليدية إلى أساليب DQN وPPO وMARL، وآليات دمج قواعد COLREGs في فضاءات الحالة والفعل ودوال المكافأة، والدور الوظيفي لكل عائلة خوارزمية في معالجة العوائق الديناميكية والتنسيق في الحركة الكثيفة.</p>
+    <p>وخلصت إلى أن التحديات الجوهرية — الافتراضات المثالية وقابلية التوسع والقرار الآني والتكيف البيئي والتعاون الواقعي — تتطلب تحولًا نموذجيًا نحو وكلاء مدمجين يجمعون الفهم الدلالي للنماذج اللغوية الكبيرة مع التحسين السياسي للتعلم المعزز، واضعةً بذلك أساسًا متينًا لأنظمة ملاحة ذاتية أكثر أمانًا ومتانة وقابلية للتفسير في البيئات البحرية المعقدة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>This comprehensive review examines the works of reinforcement learning (RL) in ship collision avoidance (SCA) from 2014 to the present, analyzing the methods designed for both single-agent and multi-agent collaborative paradigms. While prior research has demonstrated RL's advantages in environmental adaptability, autonomous decision-making, and online optimization over traditional control methods, this study systematically addresses the algorithmic improvements, implementation challenges, and functional roles of RL techniques in SCA, such as Deep Q-Network (DQN), Proximal Policy Optimization (PPO), and Multi-Agent Reinforcement Learning (MARL). It also highlights how these technologies address critical challenges in SCA, including dynamic obstacle avoidance, compliance with the Convention on the International Regulations for Preventing Collisions at Sea (COLREGs), and coordination in dense traffic scenarios, while underscoring persistent limitations such as idealized assumptions, scalability issues, and robustness in uncertain environments. Contributions include a structured analysis of recent technological evolution, and a Large Language Model (LLM) based hierarchical architecture integrating perception, communication, decision-making, and execution layers for future SCA systems, which prioritizes the development of scalable, adaptive frameworks that ensure robust and compliant autonomous navigation in complex, real-world maritime environments.</p>
+    <p><strong>Keywords:</strong> reinforcement learning; ship collision avoidance; multi-agent reinforcement learning; large language model; COLREGs compliance.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Vessel collision incidents have long been a major challenge for maritime safety, with catastrophic consequences far beyond direct economic losses: according to the International Maritime Organization, a single major collision can cause average losses exceeding USD 30 million, maritime accidents claim roughly 2,000 lives annually worldwide, and collisions account for about 12% of marine oil pollution. As maritime traffic grows denser and more complex, developing reliable autonomous collision avoidance systems has become an urgent necessity for autonomous navigation.</p>
+    <p>Reinforcement learning, especially deep RL, has shown distinctive advantages over traditional rule-based and optimization methods: it learns decision policies through trial and interaction with the environment rather than relying on predefined models, giving it environmental adaptability, autonomous decision-making, and continuous online optimization. Algorithms such as DQN, PPO, DDPG, and MARL have been widely applied to collision avoidance scenarios, from simple static environments to dynamic multi-vessel scenarios compliant with COLREGs [27].</p>
+    <p>Despite this progress, practical deployment remains limited: most approaches rely on idealized assumptions (perfect perception, homogeneous vessel models, static interaction models) and struggle with scalability, real-time decision-making, and robustness under real-world disturbances such as wind, currents, and sensor noise. This survey organizes the literature from 2014 to the present along two axes — single-agent and multi-agent — analyzes algorithms, improvements, and functional roles, then diagnoses open limitations and proposes a future direction: integrating large language models with RL into a unified hierarchical architecture combining perception, reasoning, and regulatory compliance.</p>
+  </section>
+
+  <section>
+    <h2>2. Survey Methodology</h2>
+    <p>The study adopted a systematic search strategy across major bibliographic databases (Web of Science, IEEE Xplore, Google Scholar, and others) using keywords combining reinforcement learning with ship collision avoidance, autonomous navigation, and COLREGs compliance, covering 2014–2025. Inclusion criteria covered peer-reviewed studies presenting RL methods for collision avoidance with methodological detail and experimental or simulation validation, while purely descriptive works, non-peer-reviewed reports, and studies using RL only marginally were excluded.</p>
+    <p>After deduplication and screening by relevance, language, and full-text availability, selected studies were classified under a two-axis analytical framework: first by agent paradigm (single-agent vs. multi-agent; collaborative vs. non-collaborative environments), and second by algorithmic family (Q-learning and value-based deep methods such as DQN and DDQN, policy-gradient and actor–critic methods such as PPO and DDPG, and MARL methods such as MADDPG and QMIX). Reward functions, state/action space design, and COLREGs integration mechanisms were also analyzed to extract technological evolution trends.</p>
+  </section>
+
+  <section>
+    <h2>3. Single-Agent Collision Avoidance</h2>
+    <p>Single-agent SCA is the foundation of autonomous maritime navigation, focusing on enabling an individual vessel to independently perceive its surroundings and maneuver safely by adjusting heading and speed to minimize collision risk with static and dynamic obstacles. Early research leveraged traditional RL algorithms (Q-learning, SARSA) to overcome the limitations of rule-based methods in complex multi-factor environments, including the SARSA-based AABSRL algorithm for unmanned surface vehicles in static environments under wind and current disturbances.</p>
+    <p>With the advent of deep RL, the field advanced toward realistic scenarios with moving obstacles and regulatory compliance: DQN and DDQN with prioritized experience replay were applied in discrete action spaces [28], while continuous actor–critic methods (DDPG, PPO) addressed continuous rudder and thrust control. Studies such as Sawada et al. [30] with LSTM handled partial observability, others integrated attention mechanisms to emulate human-like avoidance, and incorporation of collision-risk indicators (DCPA/TCPA) improved COLREGs compliance in head-on, crossing, and overtaking situations.</p>
+    <p>Despite the maturity of single-agent methods in simplified settings, they suffer a generalization gap: good performance in idealized simulation does not transfer easily to large-scale dynamic maritime environments, due to reliance on perfect-perception assumptions, homogeneous vessel models, neglect of real-world disturbances, and the difficulty of real-time safety-critical decisions under noisy heterogeneous sensing data and deep-network computational complexity.</p>
+  </section>
+
+  <section>
+    <h2>4. Multi-Agent Collision Avoidance</h2>
+    <p>Multi-agent SCA addresses dense-traffic scenarios where several autonomous vessels must coordinate. In collaborative environments, agents share information (via vessel-to-vessel communication) and learn joint or coordinated policies achieving collective situational awareness and consistent maneuvers [31], exemplified by MADDPG methods, multi-agent deep RL for dynamic navigation and area assignment of USVs, and formation control with obstacle avoidance under virtual leadership.</p>
+    <p>In non-collaborative environments — closer to reality, where autonomous ships mix with human-operated conventional vessels — the agent must infer others' intentions without assuming cooperation. Partially observable multi-ship models based on deep RL, differential-evolution RL with COLREGs compliance for dynamic multi-ship avoidance [45], and guided multi-agent RL for dynamic navigation and target capture have been developed. A typical process begins with risk perception by one agent and sharing with cooperating partners, then fusing trajectory planning with COLREGs rules to assess risk and execute a give-way maneuver when needed.</p>
+    <p>Current MARL approaches, however, are usually designed on unrealistic communication assumptions and lack the reasoning ability to infer non-collaborative agents' intentions, frequently resulting in conservative or conflicting maneuvers in real dense-traffic scenarios. Scalability with vessel count, policy robustness under real-world uncertainty, and adaptive interaction modeling complexity remain open challenges limiting practical deployment.</p>
+  </section>
+
+  <section>
+    <h2>5. Challenges and Future Directions</h2>
+    <p>Despite encouraging progress in single- and multi-agent frameworks, current approaches remain fundamentally limited in scalability, adaptability, and robustness against real-world maritime complexity, with performance heavily dependent on simplified assumptions, idealized sensing, and static interaction models. Key limitations are: the scalability and generalization gap (failure to move from simplified settings to large-scale dynamic environments), real-time decision constraints (difficulty of real-time safety-critical decisions with noisy data and computational complexity), insufficient environmental adaptation (neglect of wind, currents, sensor noise, and reduction of regulatory rules to static rewards), and deficient MARL collaboration (idealized communication assumptions and missing intention inference).</p>
+    <p>These limitations suggest current RL approaches are reaching their capacity limits for the cognitive complexity of real-world maritime decision-making, requiring a new paradigm integrating perception, reasoning, and regulation in a unified, interpretable, adaptive manner. LLMs have emerged as a promising direction: the AIS-LLM framework fused AIS time-series with semantic reasoning for trajectory prediction, anomaly detection, and collision-risk assessment with human-understandable explanations [46]; Agyei et al. validated LLM interpretation of COLREGs and compliant decision generation across 22 standardized encounter scenarios [47]; and Ku et al. showed lightweight LLMs can reason accurately under constrained onboard compute and offline communication [48].</p>
+    <p>Integrating LLMs with RL (as in the LLM-Coach [49] dual-agent architecture, where LLM-derived commonsense and regulatory knowledge enhance feature abstraction and reward shaping) creates a compelling synergy: the LLM enhances RL in scene comprehension, risk identification, and rule compliance, while RL compensates for LLM weaknesses in action generation, numerical stability, and dynamic adaptability through environmental interaction and feedback-driven policy optimization.</p>
+    <p>The survey therefore proposes an LLM-based hierarchical architecture integrating four layers — perception, communication, decision-making, and execution — to steer future SCA systems toward scalable, adaptive frameworks ensuring robust, compliant, interpretable autonomous navigation in complex maritime environments, prioritizing real-world validation, uncertainty handling, and integration with existing maritime governance frameworks.</p>
+  </section>
+
+  <section>
+    <h2>6. Conclusions</h2>
+    <p>This study systematically surveyed a decade of RL research in ship collision avoidance (2014–2025) across single- and multi-agent paradigms, documenting the evolution from traditional Q-learning to DQN, PPO, and MARL methods, mechanisms for embedding COLREGs rules into state/action spaces and reward functions, and the functional role of each algorithmic family in handling dynamic obstacles and dense-traffic coordination.</p>
+    <p>It concludes that the core challenges — idealized assumptions, scalability, real-time decisions, environmental adaptation, and realistic collaboration — demand a paradigm shift toward integrated agents combining LLM semantic understanding with RL policy optimization, laying a foundation for safer, more robust, and more interpretable autonomous navigation systems in complex maritime environments.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected)</h2>
+    <ol dir="ltr">
+      <li>Y. Wu et al., "Towards LLM Enhanced Decision: A Survey on Reinforcement Learning Based Ship Collision Avoidance," <em>J. Mar. Sci. Eng.</em>, vol. 13, no. 12, 2275, 2025.</li>
+      <li>[27] L. Zhao and M. I. Roh, "COLREGs-compliant multiship collision avoidance based on deep reinforcement learning," <em>Ocean Eng.</em>, vol. 191, 106436, 2019.</li>
+      <li>[30] R. Sawada, K. Sato, and T. Majima, "Automatic ship collision avoidance using deep reinforcement learning with LSTM in continuous action spaces," <em>J. Mar. Sci. Technol.</em>, vol. 26, pp. 509–524, 2021.</li>
+      <li>[28] P. Zhai, Y. Zhang, and W. Shaobo, "Intelligent ship collision avoidance algorithm based on DDQN with prioritized experience replay under COLREGs," <em>J. Mar. Sci. Eng.</em>, vol. 10, 585, 2022.</li>
+      <li>[31] C. Chen et al., "A novel ship collision avoidance awareness approach for cooperating ships using multi-agent deep reinforcement learning," <em>J. Mar. Sci. Eng.</em>, vol. 9, 1056, 2021.</li>
+      <li>[45] Y. Shen, Z. Liao, and D. Chen, "Differential evolution deep reinforcement learning algorithm for dynamic multiship collision avoidance with COLREGs compliance," <em>J. Mar. Sci. Eng.</em>, vol. 13, 596, 2025.</li>
+      <li>[46] H. Park et al., "AIS-LLM: A unified framework for maritime trajectory prediction, anomaly detection, and collision risk assessment with explainable forecasting," <em>arXiv:2508.07668</em>, 2025.</li>
+      <li>[47] K. Agyei, P. Sarhadi, and W. Naeem, "Large language model-based decision-making for COLREGs and the control of autonomous surface vehicles," <em>Proc. European Control Conf. (ECC)</em>, Thessaloniki, 2025.</li>
+      <li>[48] J. Ku et al., "Enhancing autonomous ship communication: a cost-effective and high-accuracy LLM framework using decision trees and RAG," <em>Proc. ICAIIC</em>, Fukuoka, 2025.</li>
+      <li>[49] H. Yifan et al., "LLM Coach: Reward shaping for reinforcement learning-based navigation agent," <em>Proc. ICAIS &amp; ISAS</em>, Xi'an, 2025.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse13122275">10.3390/jmse13122275</a> · License: CC BY 4.0 · <a href="paper.pdf">PDF</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

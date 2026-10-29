@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الاستشعار عن بعد الساتلي لتحديد سفن الصيد ومراقبتها: مقارنة وتحليل — DAR</title>
+<meta name="description" content="Satellite Remote Sensing for Fishing Vessel Identification and Monitoring: A Comparative Analysis of Modalities and a Review of Datasets — Arabic translation (DAR)">
+<link rel="canonical" href="https://dararchive.com/papers/fishing-vessel-rs-review/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Satellite Remote Sensing for Fishing Vessel Identification and Monitoring: A Comparative Analysis of Modalities and a Review of Datasets</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">الاستشعار عن بعد الساتلي لتحديد سفن الصيد ومراقبتها: تحليل مقارن للأنماط ومراجعة لمجموعات البيانات</h2>
+
+  <div class="paper-meta">
+    <span>👤 Tao He, Weifeng Zhou, Tianfei Cheng, Fei Wang</span>
+    <span>📄 Remote Sens, 2026 · Vol. 18(17), 3000</span>
+    <span>🔗 <a href="https://doi.org/10.3390/rs18173000">10.3390/rs18173000</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>مع تزايد أنشطة الصيد العالمية، جذبت شفافية بيانات المصايد اهتمامًا متزايدًا، إذ تمكّن الشفافية أصحاب المصلحة من لعب دور أكبر في ضمان أن تكون المصايد قانونية وأخلاقية ومستدامة. ويمكن لتحسين شفافية بيانات سفن الصيد أن يدعم مراقبة السفن بفعالية ويعزز سلامة المصايد. تقدم هذه الورقة مراجعة منهجية لأنماط الاستشعار عن بعد الساتلية ومجموعات البيانات المتاحة حاليًا لتحديد سفن الصيد ومراقبتها، وفق إرشادات PRISMA 2020 [13] وباستراتيجية بحث مزدوجة المسار لاسترجاع الأدبيات وفرزها وتوليفها.</p>
+    <p>تستعرض المراجعة آليات التصوير والخصائص التقنية ومصادر البيانات لأنماط الرادار ذي الفتحة التركيبية (SAR) والصور البصرية والاستشعار بضوء الليل (NTL)، وتقدم مقارنة متعددة الأبعاد من حيث حساسية الكشف والمتانة البيئية والدقة الزمانية-المكانية، مع جرد منهجي لمجموعات البيانات العامة (مصادرها وأحجامها ودقتها وسماتها). وتخلص إلى أن تكامل المصادر متعددة المستشعرات هو مفتاح المراقبة المستمرة في جميع الأحوال [83]، وأن ندرة مجموعات بيانات NTL المخصصة لسفن الصيد تمثل فجوة مهمة للتطوير المستقبلي.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تدعم شفافية البيانات الجهود العالمية لمكافحة الصيد غير القانوني وغير المبلغ عنه وغير المنظم [2,3]، إذ تكشف بيانات الأقمار الصناعية أنماط الصيد الصناعي غير الموثق على نطاق واسع [4]. غير أن أنظمة التعريف الآلي وحدها غير كافية، لأن السفن غير المتعاونة تُطفئ أجهزتها [2]، ما يجعل الاستشعار عن بعد الساتلي أداة تكميلية حاسمة للمراقبة المستقلة.</p>
+    <p>تختلف منصات الاستشعار اختلافًا كبيرًا في الدقة المكانية والزمانية والاعتماد على الإضاءة والمتانة أمام التداخل، وتحدد آليات التصوير وخصائصها اختيار خوارزميات الكشف اللاحقة وأداءها. تهدف هذه المراجعة إلى تجميع المعرفة عبر الأنماط الثلاثة الرئيسية (SAR والبصري وNTL) ومقارنتها موضوعيًا وتوثيق مجموعات البيانات المتاحة لتوجيه البحوث المستقبلية.</p>
+  </section>
+
+  <section>
+    <h2>2. المنهجية</h2>
+    <p>أُجريت المراجعة وفق إرشادات PRISMA 2020 [13] باستراتيجية بحث مزدوجة المسار: المسار الأول يستهدف أدبيات الكشف عن سفن الصيد عبر الأنماط المختلفة، والمسار الثاني يستهدف مجموعات البيانات العامة. شمل البحث قواعد بيانات علمية رئيسية بمعايير إدراج واستبعاد محددة مسبقًا (الصلة بسفن الصيد، والمراجعة من الأقران، وتوفر النص الكامل).</p>
+    <p>خضعت السجلات المسترجعة لفرز العناوين والملخصات ثم تقييم النص الكامل، واستُخلصت البيانات في جداول منظمة توثق النمط والمستشعر والدقة ومنطقة الدراسة وطريقة الكشف. كما صُنفت مجموعات البيانات حسب النمط والحجم والدقة المكانية وفئات السفن المشمولة، مع توثيق صيغ الإبلاغ الأصلية (مشاهد، أزواج، رقائق، صور) دون مساواة مباشرة بين الوحدات المختلفة.</p>
+  </section>
+
+  <section>
+    <h2>3. مصادر بيانات الاستشعار عن بعد</h2>
+    <p>تنقسم البيانات المستخدمة في كشف سفن الصيد إلى ثلاث فئات رئيسية. أولًا، صور الرادار ذي الفتحة التركيبية (SAR) التي تعمل في جميع الأحوال الجوية ليلًا ونهارًا عبر سحب مثل سنتينل-1 وغاوفن-3، وتمتاز بقدرة اختراق السحب [66] لكنها تعاني من بقع الضجيج (speckle) وصعوبة تمييز الأنواع. ثانيًا، الصور البصرية عالية الدقة (من أقمار مثل غاوفن وبرامج الأرض الافتراضية) التي توفر تفاصيل غنية للتصنيف لكنها مقيدة بضوء النهار والسحب [56,69].</p>
+    <p>ثالثًا، بيانات ضوء الليل (NTL) من مستشعرات مثل VIIRS/DNB [37,38] ولuojia1-01 التي تلتقط أضواء سفن الصيد الليلية (خاصة سفن الحبار) [71,72] بتغطية يومية عالمية لكن بدقة مكانية خشنة (500–750 م). وتُعد بيانات NTL مكملًا فريدًا يكشف النشاط الليلي الذي تفوته الأنماط الأخرى، رغم ندرة مجموعات البيانات المخصصة له.</p>
+  </section>
+
+  <section>
+    <h2>4. التحليل المقارن للأنماط</h2>
+    <p>تقارن الورقة الأنماط عبر ثلاثة أبعاد جوهرية. من حيث حساسية الكشف: تتفوق الصور البصرية عالية الدقة في تمييز الأنواع والأحجام، بينما يتفوق SAR في الكشف الموثوق واسع النطاق، ويتفوق NTL في رصد النشاط الليلي عبر مساحات شاسعة. ومن حيث المتانة البيئية: يعمل SAR في السحب والمطر والليل [66]، بينما تتعطل الأنماط البصرية ليلًا [69] وتحت الغطاء السحبي [56]، ويتأثر NTL بضوء القمر والسحب [67,68].</p>
+    <p>ومن حيث الأداء التشغيلي واسع النطاق: توفر مستشعرات NTL تحديثات يومية عالمية مثالية للمسح الأولي، بينما يوفر SAR توازنًا بين التغطية والدقة للمراقبة الروتينية، وتُحجز الصور البصرية عالية الدقة للتأكيد والتصنيف. وتخلص المقارنة إلى أن التكامل متعدد المستشعرات — لا أي نمط منفرد — هو السبيل لمراقبة مستمرة في جميع الأحوال [83]، وأن دمج البيانات المكانية والزمانية والمسارية يعزز الدقة والاستمرارية.</p>
+  </section>
+
+  <section>
+    <h2>5. مجموعات البيانات الحالية لسفن الصيد</h2>
+    <p>توثق المراجعة جردًا منهجيًا لمجموعات البيانات العامة: مجموعات SAR (مثل xView3-SAR الواسعة [97])، ومجموعات بصرية عالية الدقة (مثل FAIR1M بأكثر من 15 ألف صورة و35 فئة [113]، وVHRShips بأكثر من 6300 صورة [114])، ومجموعات NTL (منتج VIIRS اليومي العالمي [75] ودقة 500–750 م، ولuojia1-01 بـ104 صور ودقة 130 م [53]).</p>
+    <p>تكشف المقارنة عن تفاوت كبير في الوحدات واستراتيجيات التوسيم [95] وصيغ الإبلاغ، ما يعيق المقارنة المباشرة ويحد من تعميم النماذج عبر المستشعرات والمناطق الجغرافية والظروف البيئية. كما تبرز ندرة مجموعات بيانات NTL المخصصة لسفن الصيد رغم التقدم الكبير في تقنيات الاستشعار الليلي، ما يمثل أولوية واضحة لتطوير مجموعات بيانات مستقبلية.</p>
+  </section>
+
+  <section>
+    <h2>6. الاستنتاجات والآفاق</h2>
+    <p>تقدم هذه المراجعة أول توليف منهجي يجمع بين مقارنة الأنماط (SAR والبصري وNTL) وجرد مجموعات البيانات لسفن الصيد: آليات التصوير والخصائص التقنية، ومقارنة ثلاثية الأبعاد (الحساسية والمتانة والدقة)، وتوثيق المصادر والأحجام والدقات. وتؤكد أن تكامل المصادر متعددة المستشعرات هو مفتاح المراقبة البحرية المستمرة.</p>
+    <p>تشمل الاتجاهات المستقبلية أطر دمج متعددة الوسائط أكثر متانة تعالج مواءمة البيانات غير المتجانسة [93] وعدم اكتمال الرصد [94] وانتشار عدم اليقين، وتحسين تعميم النماذج عبر المستشعرات والمناطق، وتوظيف التعلم العميق متعدد الوسائط والنماذج التأسيسية وأطر الكشف الموجهة الطرف-لطرف [96]، لدعم إدارة مصايد مستدامة وكشف الصيد غير القانوني بذكاء واستمرارية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>With the increase in global fishing activities, the transparency of fishery data has drawn increasing attention. Data transparency enables stakeholders to play a greater role in ensuring that fisheries are legal, ethical, and sustainable. Improving the transparency of fishing vessel data can effectively support vessel monitoring and enhance fishery safety. This paper presents a systematic review of satellite remote sensing modalities and datasets currently available for fishing vessel identification and monitoring. Conducted in accordance with the PRISMA 2020 guidelines [13], this study employs a dual-track search strategy to retrieve, screen, and synthesize academic literature.</p>
+    <p>The review systematically examines the imaging mechanisms, technical characteristics, and data sources of Synthetic Aperture Radar (SAR), optical imagery, and Nighttime Light (NTL) remote sensing modalities, provides a multi-dimensional comparison in terms of detection sensitivity, environmental robustness, and spatiotemporal resolution, and compiles a systematic inventory of public datasets (sources, scales, resolutions, features). It concludes that multi-sensor data fusion is the key to persistent all-weather maritime supervision [83], and that the scarcity of dedicated NTL fishing vessel datasets marks an important area for future dataset development.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Data transparency supports global efforts against illegal, unreported, and unregulated (IUU) fishing [2,3], with satellite data revealing extensive undocumented industrial fishing [4]. Yet AIS alone is insufficient, since non-cooperative vessels switch off their transponders [2], making satellite remote sensing a crucial complementary tool for independent monitoring.</p>
+    <p>Remote sensing platforms vary significantly in spatial and temporal resolution, illumination dependence, and robustness to interference, and their imaging mechanisms directly determine the selection and performance of downstream detection algorithms. This review aims to consolidate knowledge across the three major modalities (SAR, optical, NTL), compare them objectively, and document available datasets to guide future research.</p>
+  </section>
+
+  <section>
+    <h2>2. Methodology</h2>
+    <p>The review followed PRISMA 2020 [13] with a dual-track search strategy: the first track targeting fishing vessel detection literature across modalities, the second targeting public datasets. Major scientific databases were searched with pre-defined inclusion and exclusion criteria (fishing-vessel relevance, peer review, full-text availability).</p>
+    <p>Retrieved records underwent title/abstract screening and full-text assessment, with data extracted into structured tables documenting modality, sensor, resolution, study region, and detection method. Datasets were classified by modality, scale, spatial resolution, and covered vessel categories, preserving original reporting formats (scenes, pairs, chips, images) without direct cross-unit comparison.</p>
+  </section>
+
+  <section>
+    <h2>3. Different Remote Sensing Data Sources</h2>
+    <p>Data used in fishing vessel detection falls into three major categories. First, SAR imagery operating in all weather, day and night, via constellations such as Sentinel-1 and Gaofen-3, offering cloud penetration [66] but suffering from speckle noise and type-discrimination difficulty. Second, high-resolution optical imagery (from satellites such as Gaofen and virtual-globe programmes) providing rich detail for classification but constrained by daylight and clouds [56,69].</p>
+    <p>Third, Nighttime Light (NTL) data from sensors such as VIIRS/DNB [37,38] and Luojia1-01 capturing the lights of night-fishing vessels (notably squid jiggers) [71,72] with daily global coverage but coarse spatial resolution (500–750 m). NTL is a unique complement revealing night-time activity missed by other modalities, despite scarce dedicated datasets.</p>
+  </section>
+
+  <section>
+    <h2>4. Comparative Analysis of Modalities</h2>
+    <p>The paper compares modalities across three core dimensions. Detection sensitivity: high-resolution optical excels at type and size discrimination, SAR at reliable wide-area detection, and NTL at night-time activity mapping over vast areas. Environmental robustness: SAR operates through clouds, rain, and darkness [66], while optical fails at night [69] and under cloud cover [56], and NTL is affected by moonlight and clouds [67,68].</p>
+    <p>Large-scale operational performance: NTL sensors provide daily global updates ideal for first-pass screening, SAR balances coverage and resolution for routine monitoring, and high-resolution optical is reserved for confirmation and classification. The comparison concludes that multi-sensor fusion — not any single modality — enables persistent all-weather monitoring [83], and that integrating spatial, temporal, and trajectory information boosts accuracy and continuity.</p>
+  </section>
+
+  <section>
+    <h2>5. Existing Remote Sensing Datasets for Fishing Vessels</h2>
+    <p>The review documents a systematic inventory of public datasets: SAR collections (such as the large-scale xView3-SAR [97]), high-resolution optical sets (FAIR1M with 15,000+ images across 35 categories [113], VHRShips with 6,300+ images [114]), and NTL products (daily global VIIRS [75] at 500–750 m, Luojia1-01 with 104 images at 130 m [53]).</p>
+    <p>The comparison reveals wide variation in units, annotation strategies [95], and reporting formats, hindering direct comparison and limiting model generalisation across sensors, regions, and environments. It also highlights the scarcity of dedicated NTL fishing vessel datasets despite major advances in night-time sensing — a clear priority for future dataset development.</p>
+  </section>
+
+  <section>
+    <h2>6. Conclusions and Outlook</h2>
+    <p>This review provides the first systematic synthesis combining modality comparison (SAR, optical, NTL) with a dataset inventory for fishing vessels: imaging mechanisms and technical characteristics, a three-dimensional comparison (sensitivity, robustness, resolution), and documentation of sources, scales, and resolutions. It confirms multi-sensor fusion as the key to continuous maritime supervision.</p>
+    <p>Future directions include more robust multimodal fusion frameworks addressing heterogeneous data alignment [93], incomplete observations [94], and uncertainty propagation; improved model generalisation across sensors and regions; and leveraging multimodal deep learning, foundation models, and end-to-end oriented detection [96] to support sustainable fisheries management and intelligent IUU detection.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected)</h2>
+    <ul dir="ltr">
+      <li>[2] M. D. Arifin et al., "Review of Automatic Identification System: Application, Challenge and Limitations," Int. J. Mar. Eng. Innov. Res., vol. 9, pp. 464&ndash;475, 2024.</li>
+      <li>[3] R. Seguin et al., "Global Patterns and Drivers of Untracked Industrial Fishing in Coastal Marine Protected Areas," Science, vol. 389, pp. 396&ndash;401, 2025.</li>
+      <li>[4] F. S. Paolo et al., "Satellite Mapping Reveals Extensive Industrial Activity at Sea," Nature, vol. 625, pp. 85&ndash;91, 2024.</li>
+      <li>[13] M. J. Page et al., "The PRISMA 2020 Statement: An Updated Guideline for Reporting Systematic Reviews," BMJ, vol. 372, n71, 2021.</li>
+      <li>[37] S. Zhang, "Research on Fishing Dynamic Changes in the South China Sea Using Nighttime Light Data," Master's Thesis, Nanjing University, Nanjing, China, 2017.</li>
+      <li>[38] G. Guo, "Detection Algorithm for Operating Pelagic Light-Fishing Boats in the Northwestern Pacific and Its Fishing Ground Analysis Based on NPP/VIIRS Low Light Imaging Data," Master's Thesis, Shanghai Ocean University, Shanghai, China, 2018.</li>
+      <li>[53] H. Hu et al., "Exploring Deep Learning Techniques for the Extraction of Lit Fishing Vessels from Luojia1-01," Ecol. Indic., vol. 159, 111682, 2024.</li>
+      <li>[56] J. Li et al., "A New Ship Detection Algorithm in Optical Remote Sensing Images Based on Improved R3Det," Remote Sens., vol. 14, 5048, 2022.</li>
+      <li>[66] X. Cheng et al., "Application of Artificial Intelligence in the Study of Fishing Vessel Behavior," Fishes, vol. 8, 516, 2023.</li>
+      <li>[67] W. C. Straka et al., "Utilization of the Suomi NPP VIIRS Day/Night Band for Arctic Ship Tracking and Fisheries Management," Remote Sens., vol. 7, 2015.</li>
+      <li>[68] M. E. Tsuda et al., "Automated VIIRS Boat Detection Based on Machine Learning and Its Application to Monitoring Fisheries in the East China Sea," Remote Sens., vol. 15, 2911, 2023.</li>
+      <li>[69] J. Li et al., "An Improved S2A-Net Algorithm for Ship Object Detection in Optical Remote Sensing Images," Remote Sens., vol. 15, 4559, 2023.</li>
+      <li>[71] L. Luo et al., "Spatiotemporal Pattern Analysis of Potential Light Seine Fishing Areas in the East China Sea Using VIIRS Day/Night Band Imagery," Int. J. Remote Sens., vol. 40, pp. 1460&ndash;1480, 2019.</li>
+      <li>[72] H. Li et al., "Satellite Observation of the Marine Light-Fishing and Its Dynamics in the South China Sea," J. Mar. Sci. Eng., vol. 9, 1394, 2021.</li>
+      <li>[75] Y. Li et al., "Nighttime Fishing Vessel Observation in Bohai Sea Based on VIIRS Fishing Vessel Detection Product (VBD)," Fish. Res., vol. 258, 106539, 2023.</li>
+      <li>[83] A. Kurekin et al., "Use of Sentinel-1 and Sentinel-2 for Monitoring Illegal Fishing Off Ghana," in Proc. IGARSS 2018, IEEE, 2018.</li>
+      <li>[93] B. Jayaswal and S. K. Ghosh, "A Knowledge Discovery Framework for Maritime Intelligence on Dark Vessels," in Proc. COMSNETS 2025, IEEE, 2025, pp. 969&ndash;973.</li>
+      <li>[94] J. Deng et al., "Small Fishing Boat Classification and Recognition Method Based on GASF Temporal Graph Coding and EMPViT Model," Sci. Rep., vol. 15, 4619, 2025.</li>
+      <li>[95] B. Xing et al., "The Study of Fishing Vessel Behavior Identification Based on AIS Data: A Case Study of the East China Sea," J. Mar. Sci. Eng., vol. 11, 1093, 2023.</li>
+      <li>[96] C. Zhang et al., "EOOD: End-to-End Oriented Object Detection," Neurocomputing, vol. 621, 129251, 2025.</li>
+      <li>[97] F. Paolo et al., "xView3-SAR: Detecting Dark Fishing Activity Using Synthetic Aperture Radar Imagery," in Adv. Neural Inf. Process. Syst., vol. 35, pp. 37604&ndash;37616, 2022.</li>
+      <li>[113] X. Sun et al., "FAIR1M: A Benchmark Dataset for Fine-Grained Object Recognition in High-Resolution Remote Sensing Imagery," ISPRS J. Photogramm. Remote Sens., vol. 184, pp. 116&ndash;130, 2022.</li>
+      <li>[114] S. K&#305;z&#305;lkaya et al., "VHRShips: An Extensive Benchmark Dataset for Scalable Deep Learning-Based Ship Detection Applications," ISPRS Int. J. Geo-Inf., vol. 11, 445, 2022.</li>
+      <li>... [full reference list available in original paper]</li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/rs18173000">10.3390/rs18173000</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مواءمة إنترنت الأشياء الصناعية مع معايير IEC 62443 — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Mapping of Industrial IoT to IEC 62443 Standards</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مواءمة إنترنت الأشياء الصناعية مع معايير IEC 62443</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ivan Cindrić, Marko Jurčević, Tamara Hadjina</span>
+    <span>📄 Sensors, 2025 · Vol. 25, 728</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s25030728">10.3390/s25030728</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>أدى الاعتماد المتزايد على إنترنت الأشياء الصناعية (IIoT) إلى تحسينات كبيرة في الكفاءة التشغيلية، لكنه جلب معه تحديات جديدة للأمن السيبراني. ولمواجهة هذه التحديات ظهرت عبر السنين مجموعة من المعايير، أشهرها سلسلة ISA/IEC 62443 المستخدمة تقليديًا لتأمين أنظمة التحكم والأتمتة الصناعية. تبحث هذه الورقة في مدى قابلية تطبيق متطلبات هذه السلسلة على بيئة إنترنت الأشياء الصناعية، متطلبًا بمتطلب، لتوفير فهم أفضل للمشكلات المصاحبة لذلك. [8]</p>
+    <p>تخلص الدراسة إلى أن البنية العامة للمعيار قابلة للتطبيق على إنترنت الأشياء الصناعية، لكن توجد فجوات مهمة في مجالات مثل منهجية التدقيق، والتحقق من الترقيع، والتطوير الآمن، وأمن الوسائط، وإجراءات الإيقاف عن الخدمة، وإدارة التغيير. ويحدد الفصل الأخير فرصًا للبحوث المستقبلية، بما فيها تصليب الأنظمة بالتقنيات الحديثة وتوسيع المعيار أو إنشاء معيار أشمل يغطي إنترنت الأشياء الصناعية.</p>
+  </section>
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تشهد الصناعة تحولًا رقميًا متسارعًا تقوده أجهزة الاستشعار المتصلة والحوسبة الطرفية والخدمات السحابية، وقد أصبح إنترنت الأشياء الصناعية العمود الفقري للمصانع الذكية والبنى التحتية الحرجة. غير أن كل جهاز متصل جديد يوسع سطح الهجوم، وتظهر باستمرار حوادث تستغل ضعف الأجهزة الميدانية وقلة تحديثها. [1] [2]</p>
+    <p>تقدم سلسلة ISA/IEC 62443 الإطار المرجعي الأشهر لأمن أنظمة التحكم الصناعي (IACS)، بمتطلبات منظمة عبر دورة الحياة كاملة. لكن هذه السلسلة صُممت أصلًا لبيئات التكنولوجيا التشغيلية (OT) التقليدية، فيبقى السؤال مفتوحًا: هل تصلح متطلباتها كما هي لبيئة إنترنت الأشياء الصناعية ذات الأجهزة المحدودة الموارد والاتصالات اللاسلكية والنطاقات الواسعة؟ تجيب هذه الورقة عن هذا السؤال بمواءمة منهجية لكل متطلب مع واقع إنترنت الأشياء الصناعية. [8]</p>
+  </section>
+  <section>
+    <h2>2. مقارنة متطلبات الأمن بين IIoT وIoT وOT وIT</h2>
+    <p>تُبنى المقارنة على ثلاثية الأمن CIA: فالسرية (Confidentiality) تعني حماية البيانات من الوصول غير المصرح به، وهي حرجة في بيئات إنترنت الأشياء الصناعية حيث تحمل الشبكات اللاسلكية بيانات تشغيلية حساسة؛ لكن التشفير القوي يصطدم بمحدودية قدرات الأجهزة. أما السلامة (Integrity) فتعني منع التعديل غير المصرح به للبيانات والأوامر، وهي أساس التشغيل الآمن والموثوق، إذ يمكن لأي عبث بالأوامر الصادرة إلى المشغلات أن يسبب أضرارًا فيزيائية. [9] وأما التوافر (Availability) فيعني بقاء الخدمات عاملة، وهو متطلب حرج لأن التوقف يعني خسائر مالية مباشرة ومخاطر سلامة.</p>
+    <p>تختلف الأولويات بين البيئات: تركز تقنية المعلومات (IT) على السرية أولًا، بينما تضع التكنولوجيا التشغيلية (OT) التوافر والسلامة في المقدمة. وتجمع بيئة إنترنت الأشياء الصناعية أسوأ العالمين: أجهزة محدودة مثل إنترنت الأشياء الاستهلاكية، ومتطلبات سلامة وتوافر صارمة مثل أنظمة التحكم التقليدية (DCS وPLC وSCADA)، مع اعتماد كثيف على بروتوكولات لاسلكية مثل LoRa وZigbee وNB-IoT. كما أن معالجة الحوادث السيبرانية تختلف جذريًا، إذ لا يمكن إيقاف خط إنتاج لإجراء التحقيق الجنائي الرقمي كما يُفعل في أنظمة تقنية المعلومات. [2] [3]</p>
+  </section>
+  <section>
+    <h2>3. نظرة عامة على ISA/IEC 62443</h2>
+    <p>تنقسم سلسلة ISA/IEC 62443 إلى أربع مجموعات وثائق: الوثائق العامة التي تحدد المفاهيم والنماذج والمصطلحات؛ ومجموعة السياسات والإجراءات التي تتناول برنامج أمن نظام التحكم الصناعي وإدارة المخاطر وإدارة التصحيحات؛ ووثائق النظام التي تحدد متطلبات الأمن لمناطق وقنوات النظام؛ ووثائق المكونات التي تركز على أمن المنتجات الفردية ومتطلبات التطوير الآمن؛ إضافة إلى منهجيات التقييم لاختبار مستويات الأمان. [8]</p>
+    <p>تُجمع المتطلبات في الدراسة وفق تشابهها الموضوعي وتُقسم إلى مجموعات تغطي جوانب مثل إدارة الأصول، وإدارة مخاطر الأمن السيبراني، والتقسيم الشبكي، والتشفير، وإدارة الهوية، والتصليب، والتطوير الآمن. ولكل متطلب استُخدمت تركيبات ومرادفات متعددة للبحث في الأدبيات للحصول على الحلول والتقييمات المتاحة في سياق إنترنت الأشياء الصناعية.</p>
+  </section>
+  <section>
+    <h2>4. الأعمال ذات الصلة</h2>
+    <p>تناولت دراسات سابقة أمن إنترنت الأشياء الصناعية من زوايا متفرقة: بروتوكولات المصادقة خفيفة الوزن، وأمن الاتصالات اللاسلكية، وتقييم المخاطر في أنظمة SCADA. كما اقترحت أعمال أخرى أطرًا للامتثال لمعيار IEC 62443 في أنظمة التحكم التقليدية، مع أدوات لتحليل المخاطر وتقسيم المناطق والقنوات. [3] [11]</p>
+    <p>غير أن ما يميز هذه الورقة أنها الأولى — بحسب علم المؤلفين — التي تأخذ كل متطلبات السلسلة بشكل منهجي وتسقطها واحدًا واحدًا على بيئة إنترنت الأشياء الصناعية، موثقةً لكل متطلب ما ينطبق منه وما يعجز عنه وما يحتاج إلى تكييف، بدل الاكتفاء بتطبيق انتقائي لبعض الضوابط.</p>
+  </section>
+  <section>
+    <h2>5. مواءمة متطلبات IEC 62443 مع إنترنت الأشياء الصناعية (أ)</h2>
+    <p><strong>جرد الأصول ونظام الأمن السيبراني:</strong> يجب تحديد جميع مكونات نظام التحكم الصناعي وتجميع الأجهزة في مناطق وقنوات. في بيئة إنترنت الأشياء الصناعية يتضخم هذا التحدي مع آلاف الأجهزة المتنقلة والمؤقتة، فيلزم الاكتشاف الآلي للأصول والتقسيم الدقيق (micro-segmentation) الذي يقيد الوصول داخل كل مقطع شبكي، إضافة إلى توثيق نقاط تخزين البيانات وتدفقاتها عبر النظام. [66]</p>
+    <p><strong>تقييم المخاطر ومنهجية التدقيق:</strong> يجب تحديد أدوات تحليل المخاطر جيدًا مع إرشادات واضحة، وتشمل منهجية التدقيق تعريف الأساليب والمقاييس وإجراء التدقيق. تفتقر المنهجيات الحالية إلى إرشادات للتقييم الرسمي للمخاطر عبر دورة الحياة الكاملة لأجهزة إنترنت الأشياء الصناعية، كما أن تكرار إعادة التقييم ومعاييرها يحتاج إلى ضبط يراعي ديناميكية هذه البيئات. [11]</p>
+    <p><strong>إدارة التغيير والدفاع المتعمق:</strong> يجب إنشاء نظام لإدارة التغيير وصيانته لجميع المكونات، واعتماد نموذج الدفاع المتعمق بطبقات حماية متعددة. لكن البحوث حول إدارة التغيير تفتقر إلى إرشادات توثيق التغييرات وتتبعها والتحقق منها في أساطيل ضخمة من الأجهزة، وهو ما يمثل فجوة بحثية واضحة. [59]</p>
+  </section>
+  <section>
+    <h2>5. مواءمة المتطلبات (ب)</h2>
+    <p><strong>التقسيم والأجهزة اللاسلكية وأنظمة السلامة:</strong> يجب أن تستند إجراءات التقسيم الشبكي إلى بنية المناطق والقنوات، وأن يُشفَّر الاتصال اللاسلكي بآليات تشفير معتمدة مثل معيار AES مع مولد أرقام عشوائية عتادي، مع إمكانية الفصل الفيزيائي عبر شريحة أو بوابة مخصصة. وتحتاج بروتوكولات مثل WirelessHART وZigbee إلى عناية خاصة لوجود ثغرات معروفة في بعض تطبيقاتها. [72] [73]</p>
+    <p><strong>الأمن الفيزيائي واستمرارية الأعمال:</strong> يجب إنشاء محيط أمني فيزيائي ضد الوصول غير المصرح به، ووضع إجراءات للنسخ الاحتياطي والاسترداد تتماشى مع خطة استمرارية الأعمال واختبارها دوريًا. وتُعد هذه المتطلبات قابلة للتطبيق عمومًا، مع ضرورة تكييف إجراءات النسخ الاحتياطي مع الأجهزة الميدانية المنتشرة جغرافيًا. [4]</p>
+    <p><strong>السياسات وإجراءات الترقيع وتدريب الأفراد:</strong> يجب ألا تُضعف أي إجراءات أمنية الوظائف الأساسية للنظام، وأن توثَّق إجراءات الترقيع مع الأوصاف والتحذيرات والآثار المحتملة. لكن لا توجد إرشادات مباشرة للتحقق من سلامة عملية الترقيع في أجهزة إنترنت الأشياء الصناعية، كما أن سياسات كلمات المرور والتوعية تحتاج إلى صياغة تناسب المشغلين الميدانيين. [11]</p>
+  </section>
+  <section>
+    <h2>5. مواءمة المتطلبات (ج)</h2>
+    <p><strong>أمن الاتصالات بين الأجهزة وإدارة الهوية:</strong> يجب التحقق من أصالة البيانات المرسلة من الجهاز المُرسل لدى الطرف المستقبل، وفرض سياسات كلمات مرور بحد أدنى للقوة والتحديث الدوري. وتُقترح حلول مثل طريقة EMSDE للتشفير المتماثل الحديث المعزز لتناسب الأجهزة المحدودة، مع اعتماد المصادقة المتبادلة بين الأجهزة. [105]</p>
+    <p><strong>أمن الوسائط والتصليب والتطوير الآمن:</strong> يجب أن يحدد التصليب العمليات اللازمة لإزالة البرمجيات والخدمات غير الضرورية، وأن يُخفف التهديدات عبر ممارسات التطوير الآمن. لكن البحوث حول التطوير الآمن لا تكفي للإجابة عن مدى كفاية الممارسات الحالية، والبحوث حول معالجة الوسائط محدودة ولم يُعثر على حل محدد لأمن الوسائط القابلة للإزالة في هذه البيئات. [4]</p>
+    <p><strong>أمن الأسرار المشفرة وإجراءات الاختبار والإيقاف عن الخدمة:</strong> يجب حماية المفاتيح والأسرار المشفرة طوال دورة حياتها، واختبار الضوابط الأمنية دوريًا. وتفتقر إجراءات الإيقاف عن الخدمة إلى إطار للتعامل مع أعداد ضخمة من الأجهزة المتقادمة، بما فيها مسح البيانات الحساسة وإعادة التدوير الآمن — وهي فجوة حرجة في بيئات تُستبدل فيها الأجهزة باستمرار. [120] [121]</p>
+  </section>
+  <section>
+    <h2>6. الاتجاهات المستقبلية</h2>
+    <p>تركز المنهجية المقترحة في الأدبيات على التقنيات الحديثة للتصليب وإدارة الثغرات، لكن المجالات الحرجة التي كشفها التحليل — التدقيق الرسمي، والتحقق من الترقيع، والتطوير الآمن، وأمن الوسائط، والتوثيق الآلي لإدارة التغيير — تحتاج إلى أبحاث مفصلة وموحدة ومنهجية. ولهذا يجب إما إنشاء معيار أوسع يغطي إنترنت الأشياء الصناعية صراحة، أو توسيع سلسلة IEC 62443 الحالية بملاحق خاصة بها. [105]</p>
+    <p>تشمل البحوث المستقبلية المقترحة: تطوير إجراءات تدقيق رسمية لأجهزة إنترنت الأشياء الصناعية، وأطر تحقق من سلامة الترقيع عن بُعد، ومعايير توثيق آلي للتغييرات في الأساطيل الضخمة، وحلول مسح آمن للبيانات عند الإيقاف عن الخدمة، ودمج التقنيات الحديثة مثل المصادقة المعتمدة على العتاد والحوسبة السرية في متطلبات التصليب. [73]</p>
+  </section>
+  <section>
+    <h2>7. الاستنتاجات</h2>
+    <p>تُظهر المواءمة المنهجية أن سلسلة ISA/IEC 62443 توفر أساسًا صلبًا لتأمين إنترنت الأشياء الصناعية، إذ تنطبق أغلبية متطلباتها — إدارة الأصول، والدفاع المتعمق، والتقسيم، والتشفير، وإدارة الهوية، واستمرارية الأعمال — على هذه البيئة مع تكييفات تقنية محدودة. ويمكن تلخيص الاستنتاجات في أن البنية العامة للمعيار صالحة، لكن التفاصيل التنفيذية تحتاج إلى تخصيص. [8]</p>
+    <p>في المقابل، تبقى فجوات جوهرية بلا تغطية كافية: منهجيات التدقيق الرسمية، والتحقق من الترقيع، والتطوير الآمن المثبت، وأمن الوسائط، وإجراءات الإيقاف عن الخدمة واسعة النطاق، وتوثيق إدارة التغيير. [59] [120] وسد هذه الفجوات — عبر توسيع المعيار أو معيار جديد — هو شرط تحويل إنترنت الأشياء الصناعية إلى بيئة آمنة قابلة للاعتماد في البنى التحتية الحرجة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>The increasing adoption of the Industrial Internet of Things (IIoT) has led to significant improvements in operational efficiency but has also brought new challenges for cybersecurity. To address these challenges, a number of standards have been introduced over the years. One of the best-known series of standards for this purpose is ISA/IEC 62443, traditionally used for securing industrial automation and control systems. This paper examines the applicability of the ISA/IEC 62443 series of standards to the IIoT environment, requirement by requirement, to provide a better understanding of the problems involved. [8]</p>
+    <p>The study concludes that the overall structure of the standard is applicable to the IIoT, but that important gaps remain in areas such as audit methodology, patching verification, secure development, media security, decommissioning procedures, and change management. The final chapter outlines opportunities for future research, including hardening with modern technologies and extending the standard — or creating a broader one — that explicitly covers the IIoT. [105]</p>
+  </section>
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Industry is undergoing rapid digital transformation driven by connected sensors, edge computing, and cloud services, with the Industrial IoT becoming the backbone of smart factories and critical infrastructure. Yet every newly connected device expands the attack surface, and incidents exploiting weak, rarely updated field devices keep appearing. [1] [2]</p>
+    <p>The ISA/IEC 62443 series provides the best-known reference framework for industrial automation and control system (IACS) security, with requirements organized across the full lifecycle. However, the series was originally designed for traditional operational technology (OT) environments, so an open question remains: do its requirements apply as-is to the IIoT environment of resource-constrained devices, wireless links, and massive scale? This paper answers that question by systematically mapping each requirement onto IIoT reality. [8]</p>
+  </section>
+  <section>
+    <h2>2. Security Requirements' Comparison for IIoT, IoT, OT, and IT</h2>
+    <p>The comparison is built on the CIA triad: confidentiality means protecting data from unauthorized access, critical in IIoT settings where wireless networks carry sensitive operational data — yet strong cryptography strains constrained devices. Integrity means preventing unauthorized modification of data and commands, the foundation of safe and reliable operation, since any tampering with actuator commands can cause physical damage. [9] Availability means keeping services running, a critical requirement because downtime causes direct financial losses and safety risks.</p>
+    <p>Priorities differ across environments: information technology (IT) puts confidentiality first, while operational technology (OT) ranks availability and integrity highest. The IIoT combines the worst of both worlds: constrained devices like consumer IoT, strict safety and availability demands like legacy control systems (DCS, PLC, SCADA), and heavy reliance on wireless protocols such as LoRa, Zigbee, and NB-IoT. Cyber-incident handling also differs radically, since a production line cannot simply be halted for forensic investigation as in IT systems. [2] [3]</p>
+  </section>
+  <section>
+    <h2>3. ISA/IEC 62443 Overview</h2>
+    <p>The ISA/IEC 62443 series is divided into four document groups: general documents defining concepts, models, and terminology; the policies and procedures group covering the IACS security program, risk management, and patch management; system documents specifying security requirements for zones and conduits; and component documents focusing on individual product security and secure development requirements — plus an evaluation methodology group for testing security levels. [8]</p>
+    <p>In this study, requirements are combined based on their thematic similarity and divided into groups covering aspects such as asset management, cybersecurity risk management, network segmentation, cryptography, identity management, hardening, and secure development. For each requirement, a number of combinations and synonyms were used to survey the literature for solutions and assessments available in the IIoT context.</p>
+  </section>
+  <section>
+    <h2>4. Related Work</h2>
+    <p>Prior studies have addressed IIoT security from scattered angles: lightweight authentication protocols, wireless communication security, and risk assessment in SCADA systems. Other works proposed IEC 62443 compliance frameworks for legacy control systems, with tools for risk analysis and zone-and-conduit partitioning. [3] [11]</p>
+    <p>What distinguishes this paper is that it is the first — to the authors' knowledge — to take the full set of series requirements systematically and project them one by one onto the IIoT environment, documenting for each requirement what applies, what falls short, and what needs adaptation, instead of settling for a selective application of a few controls.</p>
+  </section>
+  <section>
+    <h2>5. Mapping IEC 62443 Requirements onto IIoT (A)</h2>
+    <p><strong>Asset inventory and cybersecurity system:</strong> all IACS components must be identified and devices grouped into zones and conduits. In IIoT settings this challenge explodes with thousands of mobile, transient devices, requiring automated asset discovery and micro-segmentation that restricts access within each network segment, plus documentation of data storage points and data flows across the system. [66]</p>
+    <p><strong>Risk assessment and audit methodology:</strong> risk analysis tools must be well defined with clear guidance, and audit methodology must define methods and metrics. Current methodologies lack guidance for formal risk assessment across the full lifecycle of IIoT devices, and the frequency of reassessment and its criteria need calibration for such dynamic environments. [11]</p>
+    <p><strong>Change management and defense in depth:</strong> a change management system must be created and maintained for all components, and the defense-in-depth model applied with multiple protective layers. Yet change-management research lacks guidelines for documenting, tracking, and verifying changes across huge device fleets — a clear research gap. [59]</p>
+  </section>
+  <section>
+    <h2>5. Mapping the Requirements (B)</h2>
+    <p><strong>Segmentation, wireless devices, and safety instrumented systems:</strong> network segmentation procedures must rest on a zones-and-conduits architecture, and wireless communication must be encrypted with approved mechanisms such as AES combined with a hardware-based random number generator, with physical separation possible via a dedicated chip or gateway. Protocols such as WirelessHART and Zigbee need special care given known vulnerabilities in some implementations. [72] [73]</p>
+    <p><strong>Physical security and business continuity:</strong> a physical security perimeter must be established against unauthorized access, and backup and recovery procedures aligned with the business continuity plan and tested regularly. These requirements are generally applicable, with backup procedures needing adaptation to geographically dispersed field devices. [4]</p>
+    <p><strong>Policies, patching procedure, and personnel training:</strong> no security measure may impair the essential functions of the system, and patching procedures must be documented with descriptions, warnings, and possible consequences. But there are no direct guidelines on verifying the integrity of the patching process on IIoT devices, and password policies and awareness need phrasing suited to field operators. [11]</p>
+  </section>
+  <section>
+    <h2>5. Mapping the Requirements (C)</h2>
+    <p><strong>Device-to-device security and identity management:</strong> authentic data sent by a sending device must be validated as authentic by the receiver, with password policies enforcing minimum strength and regular updates. Solutions such as the EMSDE (Enhanced Modern Symmetric Data Encryption) method are proposed to fit constrained devices, alongside mutual device authentication. [105]</p>
+    <p><strong>Media security, hardening, and secure development:</strong> hardening must define the processes for removing unnecessary software and services, and threats mitigated through secure development practices. But secure-development research is insufficient to answer whether current practices suffice, and media-handling research is limited, with no specific solution found for removable-media security in these environments. [4]</p>
+    <p><strong>Cryptographic secret security, testing, and decommissioning:</strong> keys and cryptographic secrets must be protected throughout their lifecycle, and security controls tested periodically. Decommissioning procedures lack a framework for handling huge numbers of aging devices, including wiping sensitive data and safe recycling — a critical gap in environments where devices are continuously replaced. [120] [121]</p>
+  </section>
+  <section>
+    <h2>6. Future Directions</h2>
+    <p>Methodologies discussed in the literature focus on modern technologies for hardening and vulnerability management, but the critical areas revealed by the analysis — formal auditing, patch verification, secure development, media security, and automated change-management documentation — need detailed, formal, standardized research. For this reason, either a broader standard explicitly covering the IIoT must be created, or the existing IEC 62443 series extended with dedicated annexes.</p>
+    <p>Proposed future research includes: developing formal audit procedures for IIoT devices, frameworks for verifying remote patching integrity, automated change-documentation standards for massive fleets, secure data-wiping solutions at decommissioning, and integrating modern technologies such as hardware-rooted authentication and confidential computing into hardening requirements. [73]</p>
+  </section>
+  <section>
+    <h2>7. Conclusions</h2>
+    <p>The systematic mapping shows that the ISA/IEC 62443 series provides a solid foundation for securing the IIoT: most requirements — asset management, defense in depth, segmentation, encryption, identity management, business continuity — apply to this environment with limited technical adaptation. The findings can be summarized as: the standard's overall architecture is sound, but implementation details need tailoring. [8]</p>
+    <p>In contrast, substantial gaps remain uncovered: formal audit methodologies, patching verification, proven secure development, media security, large-scale decommissioning procedures, and change-management documentation. [59] [120] Closing these gaps — by extending the standard or creating a new one — is a prerequisite for turning the IIoT into a trustworthy environment for critical infrastructure.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Serpanos, D. Industrial Internet of Things: Trends and Challenges. <em>Computer</em> 2024, <em>57</em>, 124–128. https://doi.org/10.1109/MC.2023.3331552.</li>
+      <li>[2] Bajramovic, E.; Gupta, D.; Guo, Y.; Waedt, K.; Bajramovic, A. Security Challenges and Best Practices for IIoT. In Proceedings of the INFORMATIK 2019, Kassel, Germany, 23–26 September 2019.</li>
+      <li>[3] Dhirani, L.; Armstrong, E.; Newe, T. Industrial IoT, Cyber Threats, and Standards Landscape: Evaluation and Roadmap. <em>Sensors</em> 2021, <em>21</em>, 3901. https://doi.org/10.3390/s21113901.</li>
+      <li>[4] Mekala, S.H.; Baig, Z.; Anwar, A.; Zeadally, S. Cybersecurity for Industrial IoT (IIoT): Threats, countermeasures, challenges and future directions. <em>Comput. Commun.</em> 2023, <em>208</em>, 294–320.</li>
+      <li>[8] International Society of Automation. ISA/IEC 62443 Series of Standards; International Society of Automation: Research Triangle Park, NC, USA, 2024.</li>
+      <li>[9] Reshan, A.; Saleh, M. IoT-based Application of Information Security Triad. <em>Int. J. Interact. Mob. Technol.</em> 2021, <em>15</em>, 61–76.</li>
+      <li>[11] Alotaibi, B. A Survey on Industrial Internet of Things Security: Requirements, Attacks, AI-Based Solutions, and Edge Computing Opportunities. <em>Sensors</em> 2023, <em>23</em>, 7470.</li>
+      <li>[59] Sugandi, L.; Kurniawan, Y.; Kosasih Asalla, L. Change Management Strategy for Organization in the Era of Industry 4.0. <em>Int. J. Recent Technol. Eng.</em> 2020, <em>8</em>, 3629–3634.</li>
+      <li>[66] Arifeen, M.; Petrovski, A.; Petrovski, S. Automated Microsegmentation for Lateral Movement Prevention in Industrial Internet of Things (IIoT). In Proceedings of SIN 2021, Edinburgh, UK, 15–17 December 2021.</li>
+      <li>[72] Bahri, N.; Saadaoui, S.; Tabaa, M.; Sadik, M.; Medromi, H. Wireless Technologies and Applications for Industrial Internet of Things: A Review. In Advances on Smart and Soft Computing; Springer: Berlin/Heidelberg, Germany, 2021.</li>
+      <li>[73] Mahmood, N.; Marchenko, N.; Gidlund, M.; Popovski, P. Wireless Networks and Industrial IoT Applications, Challenges and Enablers; Springer: Berlin/Heidelberg, Germany, 2021.</li>
+      <li>[105] Suresh, S.; Priyadarsini, J. Design of Maintaining Data Security on IoT Data Transferred Through IoT Gateway System to Cloud Storage. <em>Int. J. Comput. Netw. Appl.</em> 2022, <em>9</em>, 135–149.</li>
+      <li>[120] Shirvani, G.; Ghasemshirazi, S. Towards Sustainable IoT: Challenges, Solutions, and Future Directions for Device Longevity. arXiv 2024, arXiv:2405.16421.</li>
+      <li>[121] Rahman, L.; Ozcelebi, T.; Lukkien, J. Understanding IoT Systems: A Life Cycle Approach. <em>Procedia Comput. Sci.</em> 2018.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s25030728">10.3390/s25030728</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

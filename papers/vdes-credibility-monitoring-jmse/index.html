@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نهج مراقبة مصداقية وصلة بيانات VDES ونظام برمجي بطريقة الكشف المدمجة — DAR</title>
+<meta name="description" content="Wang et al. propose a VDES data-link credibility monitoring approach combining radio-interference detection (MD5/HMAC) with spoofing-source localization, plus C/S monitoring software. Bilingual AR/EN.">
+<link rel="canonical" href="https://dararchive.com/papers/vdes-credibility-monitoring-jmse/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Credibility Monitoring Approach and Software Monitoring System for VHF Data Exchange System Data Link Based on a Combined Detection Method</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نهج مراقبة مصداقية وصلة بيانات نظام تبادل البيانات بالتردد العالي جدًا ونظام برمجي للمراقبة بطريقة كشف مدمجة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Xiaoye Wang, Leyun Fu, Weichen Wang, Qing Hu</span>
+    <span>📄 J. Mar. Sci. Eng. (JMSE), 2024 · Vol. 12(10), 1751 · 57 pp</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse12101751">10.3390/jmse12101751</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>نظرًا لسرعة نقل البيانات الأعلى وبروتوكولات الاتصال الأكثر تعقيدًا في نظام VDES، أصبحت الثغرات في بنيته التحتية لوصلة البيانات أكثر وضوحًا. ولضمان موثوقية نقل بيانات VDES، تقترح هذه الورقة نهج مراقبة مصداقية قائمًا على طريقة الكشف المدمجة — كشف التداخل الراديوي وتحديد مصدر الانتحال وتوطينه — مع التركيز على ثغرات وصلة البيانات الرئيسية الموضحة في دليل IALA G1181 لسلامة قناة VDES VDL. وتتحقق المراقبة الآلية عبر برمجية مراقبة وصلة بيانات VDES، المبنية على بنية ثلاثية الطبقات ونموذج العميل/الخادم (C/S). وتتحقق البرمجية من تقنيات المراقبة والبرمجية في مواجهة سيناريوهات تداخل متنوعة. ويعزز عرض نتائج المراقبة وتنبيهات الإنذار والبيانات ذات الصلة عبر الواجهة الأمامية فهم مصداقية وصلة بيانات VDES. ويدعم هذا الإطار المراقبة والكشف الفعالين للثغرات مثل التداخل الراديوي ومصادر الانتحال.</p>
+    <p><strong>الكلمات المفتاحية:</strong> VDES؛ وصلة البيانات؛ المصداقية؛ نهج المراقبة؛ نظام المراقبة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>لضمان سلامة الحركة البحرية ومواكبة الطلب المتزايد على الاتصالات البحرية، تحولت المنظمة الدولية للمساعدات الملاحية البحرية (IALA) في 22 أغسطس 2024 من منظمة غير حكومية إلى منظمة حكومية دولية (IGO) باتفاقية صادقت عليها 34 دولة حتى الآن. وفي سياق تطوير VDES بوصفه خليفة AIS [4]، أصدرت IALA الدليل G1181 [16] الخاص بسلامة قناة VDES VDL، الذي يصنف تهديدات الثغرات — ومنها التداخل الراديوي ومصادر الانتحال والإشارات غير المصرح بها والأجهزة المارقة وسوء الإعداد وهجمات حجب الخدمة والبروتوكول — مما يستلزم منهجية مراقبة مصداقية مخصصة.</p>
+    <p>تنبع خطورة الثغرات من خاصيتين في VDES: سرعة النقل الأعلى وتعقيد البروتوكول اللذان يوسعان سطح الهجوم مقارنة بـ AIS، وانعدام التشفير في الرسائل التي تبثها محطات VDES الشاطئية مما يسهل انتحالها وبث رسائل مزيفة [24]. وتستعرض الورقة الأعمال السابقة في أمن AIS/VDES (كشف الانتحال، وتشفير المفتاح العام [24]، وتحسين بروتوكولات MAC [35]) لتخلص إلى غياب حل مراقبة آلي متكامل لوصلة بيانات VDES. وتتمثل مساهماتها في: (1) نهج مدمج يجمع كشف التداخل الراديوي القائم على خصائص الرسائل مع تحديد مصدر الانتحال وتوطينه بمطابقة المسافات؛ (2) برمجية مراقبة ببنية ثلاثية الطبقات ونموذج C/S؛ (3) تحقق تجريبي شامل عبر سيناريوهات تداخل متنوعة.</p>
+  </section>
+
+  <section>
+    <h2>2. نهج مراقبة مصداقية وصلة بيانات VDES</h2>
+    <p>يتناول النهج فئتين رئيسيتين من تهديدات الثغرات وفق الشكل 2 في الورقة، مقترحًا استراتيجية مراقبة تعاونية تجمع كشف التداخل الراديوي مع تحديد مصدر الانتحال وتوطينه (الشكل 3). وتنشأ تهديدات التداخل الراديوي من التداخل الجوي وتداخل القنوات المجاورة والإشعاع الكهرومغناطيسي والبث الزائف من الأجهزة عالية القدرة. ويُكشف التداخل عبر أربع آليات: التحقق من توافق صيغة البرقية (فشل تحليل الرسالة المستلمة يدل على تداخل)، والتحقق من شرعية متغيرات البرقية (مقارنة المتغيرات المستخرجة مع قاعدة بيانات البرقيات الموزعة AIS/VDES التي جمعها الفريق البحثي مع الجهات البحرية — وأي عدم تطابق مع برقيات المحطة الشاطئية الشرعية يشير إلى تداخل)، والتحقق من سلامة محتوى البرقية، والتحقق من اتساق الإرسال والاستقبال.</p>
+    <p>يستخدم التحقق من سلامة المحتوى خوارزمية MD5 لمقارنة البصمة الهاشية للرسالة المستلمة مع البرقيات الشرعية المخزنة في قاعدة بيانات VDES الأصلية: فتطابق الهاش يعني سلامة المحتوى. وتُظهر الورقة أن MD5 أكثر كفاءة لهذه المهمة من SHA1 وSHA256. أما اتساق الإرسال والاستقبال فيُتحقق منه بخوارزمية HMAC عبر مقارنة رسائل إدارة الوصلة التي تبثها المحطة الشاطئية في عبارات TDB مع عبارات حالة VEM المستلمة عبر إعادة البث التلقائي من السفن: فأي انقطاع في الاتساق يكشف تهديد تداخل راديوي.</p>
+    <p>وعند رصد تداخل، تُحسب مسافة انتشار إشارة VDES بنموذج فقدان مسار الإشارة VHF في البيئات البحرية المعقدة (بدقة أظهرت انحرافًا 3.3% فقط عن القياسات)، وتُحسب مسافة السفينة–إلى–الشاطئ من معلومات المواقع في الرسائل، ثم تُقارن المسافتان (تحليل مطابقة المسافات) لكشف مصادر الانتحال المحتملة: فالتباين الكبير بين المسافة المحسوبة من قوة الإشارة والمسافة الجغرافية المعلنة يدل على مصدر مزيف.</p>
+    <p>وإذا كُشف انتحال، تُطبق خوارزمية توطين تعتمد على محطتي مراقبة (أ وب بإحداثيات معلومة) لتثليث موقع المصدر المزيف بدقة، وقد تحقق من فعاليتها تجريبيًا في بيئة محاكاة بلغة C# (الشكل 17 في الورقة). وتُدمج هذه المكونات الأربعة — الصيغة والمتغيرات والسلامة والاتساق ثم المطابقة والتوطين — في خط أنابيب قرار متسلسل: أي فشل في مرحلة يعني وصلة غير موثوقة ويطلق التحقيق في الانتحال.</p>
+  </section>
+
+  <section>
+    <h2>3. تصميم برمجية مراقبة مصداقية وصلة البيانات</h2>
+    <p>بُني نظام مراقبة سلامة وصلة بيانات VDES كنظام تفاعلي إنسان–حاسوب بنموذج C/S وبنية طبقية تشمل طبقة الاتصالات وطبقة المعالجة وطبقة العرض. وتضم البرمجية ثلاث وحدات رئيسية: وحدة اتصالات VDES (تستخدم اتصالات socket لاستقبال رسائل VDES الخام من المحطات الشاطئية وإرسال الأوامر)، ووحدة معالجة رسائل VDES (تحليل الرسائل واستخراج المتغيرات والاستعلام في قاعدة بيانات الرسائل الخام وتنفيذ اختبارات MD5/HMAC)، ووحدة مراقبة سلامة الوصلة (تطبيق منطق القرار المتسلسل، وحساب مسافات الانتشار والمطابقة، وتوطين مصادر الانتحال).</p>
+    <p>وتعرض الواجهة الأمامية حالة مراقبة وصلة VDES وتنبيهات الإنذار وسجلات مواقع مصادر الانتحال بصريًا (خرائط وجداول ومخططات)، مما يعزز فهم المشغلين للمصداقية ويدعم اتخاذ القرار. ويوضح الشكل 22 في الورقة التدفق الخوارزمي الكلي: تهيئة ← تحليل الرسالة المستلمة ← التحقق من الصيغة ← استخراج المتغيرات وتخزينها ← التحقق من السلامة (MD5) ← التحقق من الاتساق (HMAC) ← الحكم على المصداقية ← كشف الانتحال وتوطينه عند اللزوم.</p>
+  </section>
+
+  <section>
+    <h2>4. التحقق من النتائج التجريبية وتحليلها</h2>
+    <p>اختُبرت فعالية كشف التداخل الراديوي القائم على خصائص الرسائل عبر أربعة اختبارات: توافق صيغة الرسائل (رسالة «!AIVEM,1,1,0,A,46:tkW1vLohh...» فشل تحليلها في قاعدة البيانات الخام — مما أثبت وجود تداخل)، وشرعية متغيرات الرسائل (رسالة ثانية حُللت بنجاح لكن متغيراتها كـ MMSI والموضع لم تطابق برقيات المحطة الشرعية — مما كشف تداخلًا رغم سلامة الصيغة)، وسلامة المحتوى (MD5)، واتساق الإرسال والاستقبال (HMAC) — وأثبتت جميعها قدرة الأسلوب على كشف ثغرات التداخل الراديوي في وصلة بيانات VDES.</p>
+    <p>كما اختُبرت قدرة تحديد مصادر الانتحال وتوطينها: فعند حقن رسائل مزيفة بمواقع معلنة كاذبة، كشفت مقارنة مسافة الانتشار المحسوبة بنموذج فقدان المسار VHF مع مسافة السفينة–إلى–الشاطئ المستمدة من الرسالة تباينًا دالًا على الانتحال، ثم نجحت خوارزمية التوطين بمحطتي المراقبة في تحديد موقع المصدر المزيف بدقة قريبة من الموقع الحقيقي المحقون، مما يثبت فعالية تحليل مطابقة المسافات.</p>
+    <p>وخلص التحليل إلى أن البرمجية ترصد وجود التداخل الراديوي أو مصادر الانتحال في وصلة بيانات VDES بفعالية عبر سيناريوهات متنوعة، وأن الجمع بين الكشف القائم على الخصائص والتوطين القائم على المسافات يتفوق على أي منهما منفردًا في تقليل الإنذارات الكاذبة. ومن القيود: الاعتماد على اكتمال قاعدة بيانات البرقيات الشرعية، وحساسية نموذج الانتشار للظروف البحرية القاسية، وعدم تغطية تهديدات أخرى في الدليل G1181 ستُعالج مستقبلًا.</p>
+  </section>
+
+  <section>
+    <h2>5. الخاتمة</h2>
+    <p>اقترحت الورقة نهج مراقبة مصداقية قائمًا على كشف التداخل الراديوي مدمجًا مع تحديد مصدر الانتحال وتوطينه، في سياق فئتي الثغرات الرئيسيتين في دليل IALA G1181 [16]: يتحقق النظام من توافق صيغة الرسائل، ويقارن المتغيرات المستخرجة مع البرقيات الشرعية للمحطة الشاطئية، ويتحقق من سلامة المحتوى بخوارزمية MD5 (الأكفأ من SHA1 وSHA256 لهذه المهمة)، ويفحص اتساق رسائل إدارة الوصلة (TDB مقابل VEM) بخوارزمية HMAC. وعند رصد تداخل، تُحسب مسافة انتشار الإشارة بنموذج فقدان VHF في البيئات البحرية المعقدة وتُقارن مع مسافة السفينة–إلى–الشاطئ لكشف الانتحال، ثم تُوطن المصادر بخوارزمية تحديد دقيقة — كل ذلك مدعومًا ببرمجية مراقبة بنموذج C/S تشمل وحدات الاتصالات والمعالجة ومراقبة السلامة، مع عرض مرئي للحالة والتنبيهات وسجلات المواقع.</p>
+    <p>غير أن الورقة لم تغط تهديدات أخرى في الدليل G1181 — كالإشارات غير المصرح بها والأجهزة المارقة وسوء إعداد الأجهزة وهجمات حجب الخدمة والبروتوكول — وستعزز المنهجية مستقبلًا مراقبة هذه التهديدات وتكثيف رصد ثغرات وصلة VHF. وتكتسي النتائج أهمية لتعزيز سلامة الحركة البحرية وتحسين كفاءة الشحن ومنع الحوادث البحرية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Due to VDES's higher data transmission speed and complex communication protocols, vulnerabilities within its data link infrastructure are more pronounced. To ensure the reliability of VDES data transmission, this manuscript proposes a credibility monitoring approach based on the combined detection method of radio interference detection and spoofing source identification and localization, focusing on key data link vulnerabilities outlined in the IALA G1181 VDES VDL Integrity Guide. Automated monitoring is achieved through VDES data link monitoring software, which is based on a three-tier architecture and a Client/Server (C/S) model. The software validates monitoring techniques and software against various interference scenarios. Visualization of monitoring results, alarm notifications, and relevant data through the front-end interface enhances understanding of VDES data link credibility. This framework supports effective surveillance and detection of vulnerabilities, such as radio interference and spoofing sources.</p>
+    <p><strong>Keywords:</strong> VDES; data link; credibility; monitoring approach; monitoring system.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>To ensure maritime traffic safety and address growing maritime communication demands, the International Organization for Marine Aids to Navigation (IALA) officially transformed on 22 August 2024 from a Non-governmental Organization (NGO) into an Intergovernmental Organization (IGO) under a convention ratified or acceded to by 34 states to date. As VDES develops into the successor of AIS [4], IALA issued the G1181 guide on VDES VDL integrity [16], classifying vulnerability threats — including radio interference, spoofing sources, unauthorized signaling, misbehaving devices, misconfiguration, and DoS/protocol attacks — which demand a dedicated credibility-monitoring methodology.</p>
+    <p>The severity stems from two VDES properties: higher transmission speed and protocol complexity, which widen the attack surface relative to AIS, and the lack of encryption in messages broadcast by VDES base stations, which eases spoofing with forged messages [24]. The paper reviews prior AIS/VDES security work (spoofing detection, public-key encryption [24], MAC protocol improvements [35]) and finds no integrated automated monitoring solution for the VDES data link. Its contributions are: (1) a combined approach fusing message-characteristic radio-interference detection with distance-matching spoofing-source identification and localization; (2) monitoring software with a three-tier architecture and C/S model; (3) comprehensive experimental validation across diverse interference scenarios.</p>
+  </section>
+
+  <section>
+    <h2>2. VDES Data Link Credibility Monitoring Approach</h2>
+    <p>The approach addresses two primary vulnerability-threat categories, proposing a collaborative strategy combining radio interference detection with spoofing source identification and localization. VDES data-link radio-interference threats originate from atmospheric interference, adjacent-channel interference, electromagnetic radiation, and pseudo-transmission from high-power devices. Interference is detected through four mechanisms: telegram format compliance verification (failure to parse a received message indicates interference), telegram parameter legitimacy verification (comparing extracted parameters against the AIS/VDES distributed telegram database curated with maritime authorities — any mismatch with the shore station's legitimate telegrams signals interference), telegram content integrity verification, and transmission/reception consistency verification.</p>
+    <p>Content integrity uses the MD5 algorithm to compare the hash of a received message against legitimate telegrams in the original VDES database: matching hashes mean intact content. The paper shows MD5 is more efficient for this task than SHA1 and SHA256. Transmission/reception consistency is checked with the HMAC algorithm by comparing link-management messages broadcast by the base station in TDB statements against VEM status statements received via shipborne automatic retransmission: any consistency break exposes a radio-interference threat.</p>
+    <p>Upon detecting interference, the VDES signal propagation distance is computed with a VHF transmission-loss model for complex sea-surface environments (validated to only 3.3% deviation from measurements), and the ship-to-shore distance is derived from location information in the messages; the two distances are then compared (distance matching analysis) to expose spoofing sources: a large gap between the signal-derived distance and the claimed geographic distance indicates a forged source.</p>
+    <p>If spoofing is detected, a localization algorithm based on two monitoring stations (A and B at known coordinates) triangulates the spoofing source accurately, validated experimentally in a C# simulation environment. These four components — format, parameters, integrity, consistency, then matching and localization — form a sequential decision pipeline: failure at any stage marks the link untrustworthy and triggers spoofing investigation.</p>
+  </section>
+
+  <section>
+    <h2>3. Design of Software for Monitoring VDES Data Link Credibility</h2>
+    <p>A VDES data-link integrity monitoring system was built as a human–computer interactive system with a C/S model and a layered architecture spanning communication, processing, and presentation layers. The software comprises three key modules: a VDES communication module (socket connections receiving raw VDES messages from base stations and sending commands), a VDES message processing module (message parsing, parameter extraction, raw-message database queries, MD5/HMAC tests), and a link integrity monitoring module (sequential decision logic, propagation-distance computation and matching, spoofing-source localization).</p>
+    <p>The front-end interface visualizes the VDES link monitoring status, alarm notifications, and spoofing-source location records (maps, tables, charts), enhancing operators' credibility understanding and decision support. The algorithmic flowchart shows the full pipeline: initialization → received-message parsing → format verification → parameter extraction and storage → integrity verification (MD5) → consistency verification (HMAC) → credibility judgment → spoofing detection and localization when needed.</p>
+  </section>
+
+  <section>
+    <h2>4. Verification and Analysis of Experimental Results</h2>
+    <p>The message-characteristic radio-interference detection was validated through four tests: message format compliance (a "!AIVEM,1,1,0,A,46:tkW1vLohh…" message failed parsing against the raw database — proving interference), message parameter legitimacy (a second message parsed fine but its parameters such as MMSI and position mismatched the station's legitimate telegrams — exposing interference despite valid format), content integrity (MD5), and transmission/reception consistency (HMAC) — all demonstrating the method's ability to detect VDES data-link radio-interference vulnerabilities.</p>
+    <p>Spoofing-source identification and localization were also tested: when forged messages with false claimed positions were injected, comparing the path-loss-model propagation distance against the message-derived ship-to-shore distance revealed a telling discrepancy indicating spoofing, and the two-station localization algorithm pinpointed the forged source close to the true injected location — proving the effectiveness of distance matching analysis.</p>
+    <p>Analysis concludes the software effectively surveils VDES data-link radio interference or spoofing sources across scenarios, and that combining characteristic-based detection with distance-based localization outperforms either alone in cutting false alarms. Limitations include dependence on the legitimate-telegram database's completeness, propagation-model sensitivity to extreme sea states, and uncovered G1181 threats to be addressed next.</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>This paper proposes a credibility monitoring approach based on radio interference detection incorporating spoofing source identification and localization, in the context of the two major data-link vulnerability classes in the IALA G1181 [16] VDES VDL Integrity Guide. The system parses received messages using its VDES message database to verify format compliance; compares extracted parameters with the base station's legitimate parameters; verifies content integrity with MD5 (more efficient than SHA1/SHA256 for this task); and checks TDB-vs-VEM link-management consistency with HMAC. Upon detecting interference, signal propagation distance is computed with a VHF loss model for complex sea surfaces and compared against ship-to-shore distance to detect spoofing, then sources are accurately located — all supported by C/S monitoring software with communication, processing, and integrity modules plus visual status, alerts, and location records.</p>
+    <p>However, the paper has not covered other G1181 threats — unauthorized signaling, misbehaving devices, incorrect device configuration, DoS and protocol attacks — and the methodology will next strengthen monitoring of these threats and intensify VHF data-link vulnerability surveillance. The findings matter for enhancing maritime traffic safety, shipping efficiency, and accident prevention.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected)</h2>
+    <ol dir="ltr">
+      <li>X. Wang et al., "A Credibility Monitoring Approach and Software Monitoring System for VHF Data Exchange System Data Link Based on a Combined Detection Method," <em>J. Mar. Sci. Eng.</em>, vol. 12, no. 10, 1751, 2024.</li>
+      <li>[16] IALA, "G1181 VDES VDL Integrity Guide," 2023.</li>
+      <li>[4] R. Raulefs, "Overview of the VHF Data Exchange System," <em>Proc. OCEANS 2022</em>, Hampton Roads, VA, USA, 2022.</li>
+      <li>[24] G. Wimpenny et al., "Securing the Automatic Identification System (AIS): Using public key cryptography," 2022.</li>
+      <li>[35] L. Zhang et al., "An improved MAC protocol design in VHF Data Exchange System (VDES)," 2023.</li>
+      <li>Z. Wu et al., "Application Prospects and Challenges of VDES in Smart Fisheries," <em>J. Mar. Sci. Eng.</em>, vol. 13, no. 2, 250, 2025.</li>
+      <li>[34] W. Shim et al., "A New Link Adaptation Technique for Very High Frequency Data Exchange System in Future Maritime Communication," <em>Electronics</em>, vol. 13, no. 2, 323, 2024.</li>
+      <li>IMO, "E-Navigation Strategy Implementation Plan — Update 1," MSC.1/Circ.1595, 2018.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse12101751">10.3390/jmse12101751</a> · License: CC BY 4.0 · <a href="paper.pdf">PDF</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

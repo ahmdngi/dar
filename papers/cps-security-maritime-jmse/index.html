@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أمن الأنظمة السيبرانية-الفيزيائية للأصول البحرية — DAR</title>
+<meta name="description" content="Cyber Physical Systems Security for Maritime Assets — Arabic translation (DAR)">
+<link rel="canonical" href="https://dararchive.com/papers/cps-security-maritime-jmse/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Cyber Physical Systems Security for Maritime Assets</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">أمن الأنظمة السيبرانية-الفيزيائية للأصول البحرية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Iosif Progoulakis, Paul Rohmeyer, Nikitas Nikitakos</span>
+    <span>📄 JMSE, 2021 · Vol. 9(12), 1384</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse9121384">10.3390/jmse9121384</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يُعد تكامل عناصر تكنولوجيا المعلومات (IT) والتكنولوجيا التشغيلية (OT) والعنصر البشري في الأصول البحرية حاسمًا لتشغيلها وأدائها بكفاءة وأمان. ويحدد هذا التكامل الأنظمة السيبرانية-الفيزيائية، ويشمل عددًا من مكونات وأنظمة ووظائف IT وOT التي تنطوي على مسارات اتصال متعددة ومتنوعة تتطور تقنيًا وتشغيليًا جنبًا إلى جنب مع تهديدات سيبرانية موثوقة.</p>
+    <p>تصف هذه الورقة تهديدات ومخاطر الأمن السيبراني وعددًا من سيناريوهات الاختراق الأمني المعروفة لإبراز تطور الأنظمة السيبرانية-الفيزيائية في المجال البحري وثغراتها الناشئة. وتحاجج بأن أدوات تقييم المخاطر من خارج الصناعة البحرية — مثل منهجية API STD 780 [76] لتقييم المخاطر الأمنية (SRA) ومنهجية تحليل ربطة العنق (Bow Tie) [77] — يمكن أن تساعد مالك الأصل على تقييم البنية التحتية، وأن ضوابط مستمدة من إطار NIST للأمن السيبراني (CSF) [21] ونموذج MITRE ATT&CK للتهديدات [89] يمكن أن ترفع التكامل الأمني السيبراني للأصول البحرية، مع التقييم الدوري للفعالية والاستثمار في العامل البشري والتواصل بين أصحاب المصلحة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>أدت الثورة الصناعية الرابعة [1] إلى دمج عميق بين الأنظمة الفيزيائية والحوسبة والاتصالات في الموانئ والسفن، فأصبحت الأصول البحرية أنظمة سيبرانية-فيزيائية بامتياز: محركات وسفن ومحطات تُدار عبر شبكات IT وOT متداخلة. ومع هذا التكامل، اتسعت مسارات الهجوم المحتملة من الشبكات المؤسسية إلى أنظمة التحكم الصناعية على متن السفن.</p>
+    <p>تهدف هذه الورقة إلى رسم خريطة شاملة لأمن الأنظمة السيبرانية-الفيزيائية البحرية: طبيعتها، وتهديداتها، ومبادرات الصناعة والحكومات، ومنهجيات تحليل المخاطر القابلة للاستعارة من قطاعات أخرى، وتصميم الضوابط الأمنية. وتخاطب مالكي الأصول والمشغلين وصناع السياسة ممن يحتاجون نهجًا عمليًا يتجاوز الامتثال الشكلي.</p>
+  </section>
+
+  <section>
+    <h2>2. الجوانب السيبرانية-الفيزيائية للقطاع البحري</h2>
+    <p>يتسم الأصل البحري الحديث بطبقات متداخلة: أنظمة الملاحة والاتصالات، وأنظمة الدفع والطاقة، وأنظمة مناولة البضائع، والأنظمة المؤسسية — كلها مترابطة عبر مسارات اتصال متنوعة (ساتلية ولاسلكية وسلكية ووسائط قابلة للإزالة). وتتفاوت هذه الأنظمة في حداثتها ومستوى تحديثها، إذ تعمل سفن كثيرة بأنظمة قديمة جنبًا إلى جنب مع تقنيات حديثة.</p>
+    <p>يضيف الطابع الدولي للعمليات البحرية تعقيدًا: تختلف مستويات النضج التقني والاستعداد عبر الولايات القضائية، وقد تستوعب الرحلة الواحدة آليات متعددة لنقل البيانات تشمل USB والبريد الإلكتروني والشبكات الساحلية، كل منها سطح هجوم محتمل. كما أن الحماية الفيزيائية المحدودة للسفن والمنصات تجعل مسار المهاجم ذا الحضور الفيزيائي تهديدًا واقعيًا.</p>
+  </section>
+
+  <section>
+    <h2>3. التهديدات والثغرات السيبرانية</h2>
+    <p>تعكس المخاطر السيبرانية تهديدات للسرية والسلامة والتوافر، وتتجلى في الثغرات الدائمة في الأنظمة والمكونات المعمارية. وتستعرض الورقة سجل اختراقات واقعية: هجوم الفدية NotPetya الذي كلف شركة ميرسك مئات الملايين [5]، وهجمات فدية على موانئ (سان دييغو) [7] وشركات (كلاركسون) [8]، وحوادث GPS المضلل (circle spoofing) [10] التي نقلت مواقع السفن آلاف الأميال، واختراقات عبر قراصنة أخلاقيين كشفوا أنظمة سفن مفتوحة على مصراعيها [11].</p>
+    <p>وتُظهر دراسة القطاعات الأخرى (النفط والغاز والصناعات التحويلية) أنماط تهديد قابلة للانتقال إلى المجال البحري نظرًا لتشابه بنية أنظمة التحكم الصناعية (ICS). وتشمل نواقل الهجوم الشائعة الهندسة الاجتماعية والتصيد [13]، والوسائط القابلة للإزالة، والوصول عن بُعد للموردين، والبرمجيات غير المُرقعة، واستغلال الثقة بين شبكات IT وOT المتصلة.</p>
+  </section>
+
+  <section>
+    <h2>4. المبادرات الأمنية للقطاع البحري</h2>
+    <p>تغطي الجوانب السيبرانية-الفيزيائية في المجال البحري منشورات وتوجيهات ومعايير عديدة من الصناعة والحكومات. على مستوى المنظمات الدولية، أصدرت المنظمة البحرية الدولية القرار MSC.428(98) [18] عام 2017 والتوجيه MSC-FAL.1/Circ.3 [19]، اللذين يقتضيان دمج إدارة المخاطر البحرية في أنظمة الإدارة الأمنية للسفن وفق أهداف ومتطلبات المدونة الدولية لإدارة السلامة (ISM).</p>
+    <p>إلى جانب ذلك، توفر أطر مثل NIST CSF [21] وإرشادات BIMCO [20] وISO/IEC 27001 [28] وIEC 62443 [30] أدوات للحوكمة وإدارة المخاطر وأمن الأنظمة الصناعية، بينما تعالج بنود التأمين البحري (مثل شرط الاستبعاد السيبراني CL 380 [71] والتعميمات ذات الصلة) أبعاد المسؤولية والتغطية. غير أن معظم هذه المبادرات — كما تحاجج الورقة — تركز على الامتثال التنظيمي مع اهتمام محدود بالبنية التحتية والتقنية التشغيلية القائمة فعلًا.</p>
+  </section>
+
+  <section>
+    <h2>5. منهجيات تحليل المخاطر</h2>
+    <p>تقترح الورقة استعارة منهجيتين ناضجتين من خارج الصناعة البحرية. الأولى منهجية تقييم المخاطر الأمنية (SRA) وفق معيار API STD 780 (2013) [76] المطور أساسًا لقطاعات النفط والغاز والكيماويات، والقابل للتطبيق على تقييم مخاطر التهديدات الأمنية الفيزيائية المتنوعة للمنشآت والأصول — بما فيها الأصول البحرية — نظرًا لتشابهها مع بنية أنظمة التحكم الصناعية.</p>
+    <p>والثانية منهجية تحليل ربطة العنق (Bow Tie) [77] التي تربط بصريًا بين الأسباب والحوادث والعواقب عبر حواجز وقائية وتخفيفية، مع إبراز عوامل التدهور — وفي مقدمتها العامل البشري (مشغل HMI ومعرفته بالأنظمة) الذي يمكن أن يُضعف أي حاجز. وتُظهر الورقة بمثال عملي (عرض بيانات تشغيلية خاطئة عبر واجهة المحرك HMI يؤدي لعطل المحرك وتوقفه) كيف يكشف التحليل مسارات الفشل ويوجه تخصيص إجراءات التخفيف.</p>
+  </section>
+
+  <section>
+    <h2>6. معالجة المخاطر وتصميم الضوابط</h2>
+    <p>تدعو الورقة إلى تصميم ضوابط أمنية مستمدة من تكييف إطار NIST CSF [21] ونموذج MITRE ATT&CK للتهديدات [89]، بما يغطي الوظائف الخمس (التحديد والحماية والكشف والاستجابة والتعافي). ويتطلب التصميم إشرافًا مستمرًا بتقنيات المراقبة المستمرة وبرامج تدقيق وتقييم صارمة، بما فيها اختبار الضوابط اليدوي والآلي واختبار الاختراق لمحاكاة الخصوم.</p>
+    <p>كما توفر الضوابط التقنية للمراقبة أساسًا لنشر بنى إدارة الأحداث والمعلومات الأمنية (SIEM) للتعامل مع تدفقات البيانات عالية التردد، مع وعود الذكاء الاصطناعي وتعلم الآلة في التنقل عبر هذا الكم. ويشدد المؤلفون على أن الضوابط — مهما كانت مصدرها — تتطلب تقييمًا دوريًا لفعاليتها وقابليتها للتطبيق، إذ لا تعكس المعايير المحايدة صناعيًا أبعاد المخاطر البحرية الخاصة.</p>
+  </section>
+
+  <section>
+    <h2>7. المناقشة والاستنتاجات</h2>
+    <p>تخلص الورقة إلى أن مالكي الأصول البحرية بحاجة للاستثمار في الوعي السيبراني العام بأصولهم وعملياتهم بنهج شمولي يشمل أنظمتي IT وOT معًا على مستوى الشركة والأصول البحرية. ويُعد تحسين التواصل بين أصحاب المصلحة وزيادة المرونة الأمنية التشغيلية والتقنية وتعزيز الوعي التشغيلي ركائز مترابطة لا تُجدي فرادى.</p>
+    <p>وفي الاعتبار المحوري للعنصر البشري في الأنظمة السيبرانية-الفيزيائية، يجب تعزيز المهارات السيبرانية للعاملين في المجال البحري — من أطقم السفن إلى الإدارة التنفيذية — باستثمار كبير في التدريب على جميع المستويات. فالعوامل البشرية (استخدام المشغلين للأنظمة ومعرفتهم بها) تقع في قلب إدارة المخاطر، وأي حاجز وقائي أو تخفيفي يمكن أن يتدهور بإهمالها.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>The integration of IT, OT, and human factor elements in maritime assets is critical for their efficient and safe operation and performance. This integration defines cyber physical systems and involves a number of IT and OT components, systems, and functions that involve multiple and diverse communication paths that are technologically and operationally evolving along with credible cyber security threats.</p>
+    <p>These cyber security threats and risks as well as a number of known security breach scenarios are described in this paper to highlight the evolution of cyber physical systems in the maritime domain and their emerging cyber vulnerabilities. Current industry and governmental standards and directives attempt to enforce regulatory compliance and reinforce asset cyber security integrity with limited focus on the existing OT infrastructure. The use of outside-of-the-maritime-industry security risk assessment tools and processes, such as the API STD 780 [76] Security Risk Assessment (SRA) and the Bow Tie Analysis [77] methodologies, can assist the asset owner in assessing IT and OT infrastructure for cyber and physical security vulnerabilities and allocating proper mitigation measures given their similarities to ICS infrastructure. The application of cyber security controls deriving from the adaptation of the NIST CSF [21] and the MITRE ATT&amp;CK Threat Model [89] can further increase the cyber security integrity of maritime assets, assuming they are periodically evaluated for effectiveness and applicability. Training investment, stakeholder communication, and resilience complete the prescription.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Industry 4.0 [1] has deeply fused physical systems, computing, and communications in ports and ships, making modern maritime assets cyber-physical systems par excellence: engines, vessels, and terminals operated through intertwined IT and OT networks. With this integration, potential attack paths have expanded from corporate networks to onboard industrial control systems.</p>
+    <p>This paper aims to comprehensively map maritime cyber-physical systems security: its nature, threats, industry and government initiatives, risk analysis methodologies borrowable from other sectors, and security control design. It addresses asset owners, operators, and policymakers needing a practical approach beyond formal compliance.</p>
+  </section>
+
+  <section>
+    <h2>2. Cyber-Physical Security Aspects for the Maritime Sector</h2>
+    <p>The modern maritime asset features interwoven layers: navigation and communication systems, propulsion and power systems, cargo handling systems, and corporate systems — all connected via diverse communication paths (satellite, wireless, wired, removable media). These systems vary in vintage and patch level, with many vessels operating legacy systems alongside modern technology.</p>
+    <p>The international character of maritime operations adds complexity: technical sophistication and preparedness vary across jurisdictions, and a single voyage may accommodate data transfer via USB, email, and shoreside networks, each a potential attack surface. Limited physical protection of vessels and rigs also makes the physically present attacker a realistic threat path.</p>
+  </section>
+
+  <section>
+    <h2>3. Cyber Security Threats and Vulnerabilities</h2>
+    <p>Cyber security risk reflects threats to the confidentiality, integrity, and availability of systems and data, manifesting in ever-present vulnerabilities. The paper reviews real breach history: the NotPetya ransomware costing Maersk hundreds of millions [5], ransomware attacks on ports (San Diego) [7] and companies (Clarksons) [8], GPS circle-spoofing moving ship positions thousands of miles [10], and ethical hackers finding ship systems wide open [11].</p>
+    <p>Other industries (oil and gas, manufacturing) exhibit transferable threat patterns given similar industrial control system (ICS) architectures. Common attack vectors include social engineering and phishing [13], removable media, supplier remote access, unpatched software, and exploitation of trust between connected IT and OT networks.</p>
+  </section>
+
+  <section>
+    <h2>4. Cyber Security Initiatives for the Maritime Sector</h2>
+    <p>The cyber-physical aspects of maritime security are covered by numerous industry and government publications, directives, guidelines, and standards. Internationally, IMO released Resolution MSC.428(98) [18] in 2017 and Guidance MSC-FAL.1/Circ.3 [19], requiring maritime risk management within vessels' safety management systems in accordance with ISM Code objectives.</p>
+    <p>Alongside these, frameworks such as the NIST CSF [21], BIMCO guidelines [20], ISO/IEC 27001 [28], and IEC 62443 [30] provide governance, risk management, and industrial systems security tools, while marine insurance clauses (such as the Cyber Attack Exclusion Clause CL 380 [71] and related circulars) address liability and coverage. Most of these initiatives, the paper argues, focus on regulatory compliance with limited attention to the actually deployed OT infrastructure.</p>
+  </section>
+
+  <section>
+    <h2>5. Risk Analysis Methods for Cyber-Physical Security</h2>
+    <p>The paper proposes borrowing two mature methodologies from outside the maritime industry. The first is the Security Risk Assessment (SRA) methodology per API STD 780 (2013) [76], developed primarily for oil, gas, and chemical sectors and applicable to assessing diverse physical-security threats to facilities and assets — including maritime assets — given their ICS similarities.</p>
+    <p>The second is Bow Tie Analysis [77], which visually links causes, incidents, and consequences through preventive and mitigative barriers, exposing degradation factors — foremost the human factor (HMI operator use and knowledge) that can degrade any barrier. A worked example (incorrect operational data displayed through the engine HMI leading to engine malfunction and stoppage) shows how the analysis reveals failure paths and guides mitigation allocation.</p>
+  </section>
+
+  <section>
+    <h2>6. Risk Treatment — Design of Cyber Security Controls</h2>
+    <p>The paper calls for security controls adapted from the NIST CSF [21] and the MITRE ATT&amp;CK Threat Model [89], covering the five functions (Identify, Protect, Detect, Respond, Recover). Control design requires ongoing oversight with continuous monitoring technologies and robust audit and assessment programmes, including manual and automated controls testing and penetration testing to simulate adversaries.</p>
+    <p>Technical monitoring controls also underpin SIEM architectures for managing high-frequency event data streams, with AI and machine learning offering promise in navigating the volume. The authors stress that controls — whatever their source — require periodic evaluation of operational effectiveness and applicability, since industry-neutral standards do not reflect maritime-specific risk dimensions.</p>
+  </section>
+
+  <section>
+    <h2>7. Discussion and Conclusions</h2>
+    <p>The paper concludes that maritime asset owners must invest in general cyber awareness of their assets and operations through a holistic approach covering both OT and IT systems at corporate and asset levels. Improved stakeholder communication, increased operational and technical resilience, and stronger operational awareness are interdependent pillars.</p>
+    <p>Given the central human-element interface in cyber-physical systems, reinforcing cybersecurity skills for maritime personnel — from vessel crews to executives — is paramount, with significant training investment across the hierarchy. Human factors (operator use and knowledge of systems) sit at the heart of risk management: any preventive or mitigative barrier can degrade through their neglect.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected)</h2>
+    <ul dir="ltr">
+      <li>[1] I. Zarzuelo et al., "Industry 4.0 in the Port and Maritime Industry: A Literature Review," J. Ind. Inf. Integration, 2020.</li>
+      <li>[5] L. Mathews, "NotPetya Ransomware Attack Cost Shipping Giant Maersk Over $200 Million," Forbes, 2017.</li>
+      <li>[7] A. Nguyen, "Port of San Diego Hit with Ransomware," NBC San Diego, 2019.</li>
+      <li>[8] M. Schuler, "Clarkson Plc Reveals Details of 2017 Cyber Security Incident," gCaptain, 2018.</li>
+      <li>[10] D. Goward, "New GPS 'circle spoofing' moves ship locations thousands of miles," GPS World, 2021.</li>
+      <li>[11] D. Bush, "Ethical hacker says ships are wide open to cyber attack," Lloyd's List, 2021.</li>
+      <li>[13] USCG, "Cyberattack Impacts MTSA Facility Operations," MSIB 10-19, 2019.</li>
+      <li>[18] IMO, "Resolution MSC.428(98): Maritime Cyber Risk Management in Safety Management Systems," London, 2017.</li>
+      <li>[19] IMO, "MSC-FAL.1/Circ.3: Guidelines on Maritime Cyber Risk Management," London, 2017.</li>
+      <li>[20] BIMCO et al., "Guidelines on Cyber Security Onboard Ships," v3.0, 2021.</li>
+      <li>[21] NIST, "Framework for Improving Critical Infrastructure Cybersecurity (CSF)." Available online: https://www.nist.gov/cyberframework</li>
+      <li>[28] ISO/IEC 27001:2013, "Information Technology &mdash; Security Techniques &mdash; Information Security Management Systems &mdash; Requirements," Geneva, 2013.</li>
+      <li>[30] IEC 62443-3-3:2013, "Industrial Communication Networks &mdash; Network and System Security &mdash; Part 3-3," Geneva, 2013.</li>
+      <li>[71] M. E. Alifragki, "Cyber-Attacks: The New Type of Piracy in the Maritime World," Master's Thesis, Univ. of Piraeus, 2019.</li>
+      <li>[76] API STD 780, "Security Risk Assessment Methodology for the Petroleum and Petrochemical Industries," 2013.</li>
+      <li>[77] CCPS / Energy Institute, "Bow Ties in Risk Management: A Concept Book for Process Safety," Wiley, 2018.</li>
+      <li>[89] MITRE Corporation, "MITRE ATT&amp;CK Framework." Available online: <a href="https://attack.mitre.org">https://attack.mitre.org</a></li>
+      <li>... [full reference list available in original paper]</li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse9121384">10.3390/jmse9121384</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

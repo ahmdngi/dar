@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تحسين قرار تفادي التصادم متعدد السفن بتعلم معزز عميق ملتزم بـ COLREGs — DAR</title>
+<meta name="description" content="Xie et al. develop a COLREGs-compliant deep reinforcement learning method for multi-vessel collision avoidance with a staged reward design, validated in an enhanced Imazu environment. Bilingual AR/EN.">
+<link rel="canonical" href="https://dararchive.com/papers/multivessel-colregs-drl-jmse/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Optimizing Multi-Vessel Collision Avoidance Decision Making for Autonomous Surface Vessels: A COLREGs-Compliant Deep Reinforcement Learning Approach</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تحسين اتخاذ قرار تفادي التصادم متعدد السفن للسفن السطحية الذاتية: نهج تعلم معزز عميق ملتزم بقواعد COLREGs</h2>
+
+  <div class="paper-meta">
+    <span>👤 Weidong Xie, Longhui Gang, Mingheng Zhang, Tong Liu, Zhixun Lan</span>
+    <span>📄 J. Mar. Sci. Eng. (JMSE), 2024 · Vol. 12(3), 372 · 29 pp</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse12030372">10.3390/jmse12030372</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يُعد اتخاذ قرار تفادي التصادم الآلي للسفن تحديًا حرجًا في تطوير السفن الذاتية ومحورًا رئيسيًا للبحث في مجال السلامة البحرية، إذ تقلل استراتيجيات تفادي التصادم الفعالة والمنهجية بشكل كبير من مخاطر التصادم وتضمن الملاحة الآمنة. تطور هذه الدراسة أسلوبًا آليًا لاتخاذ قرار تفادي التصادم متعدد السفن قائمًا على التعلم المعزز العميق (DRL)، وتنشئ نموذجًا لسلوك السفن في اتخاذ القرار. وعند تصميم دالة المكافأة لفضاء الفعل المستمر، التُزمت معايير «اتفاقية الأنظمة الدولية لمنع التصادم في البحر» (COLREGs)، مع مراعاة مخاطر التصادم في مختلف حالات المواجهة، وممارسات الملاحة الواقعية، والتعقيدات الملاحية. ولتمكين الخوارزمية من التمييز الدقيق بين مرحلة تفادي التصادم ومرحلة استئناف الملاحة في حالات المواجهة المتنوعة، أُدرج «اتخاذ قرار تفادي التصادم» و«اتخاذ قرار استعادة المسار» كمتغيرات حالة في تصميم مجموعة الحالات، وعُرّفت دوال الهدف الخاصة بكل منهما. ولتعزيز أداء الخوارزمية، دُمجت تقنيات مثل استنساخ السلوك والشبكات المتبقية (residual networks) ووحدات المعالجة المتوازية ثنائية النواة (CPU-GPU). ومن خلال تجارب محاكاة في بيئة Imazu التدريبية المحسّنة، تأكدت عملية الأسلوب مع مراعاة تأثيرات الرياح والتيارات المحيطية، وأظهرت النتائج أن الخوارزمية المقترحة تحقق اتخاذ قرار فعال لتفادي التصادم في طيف من حالات مواجهة السفن، مما يدل على كفاءتها وقدرات تعميم متينة.</p>
+    <p><strong>الكلمات المفتاحية:</strong> اتخاذ قرار تفادي التصادم الآلي؛ حالات مواجهة متعددة السفن؛ التعلم المعزز العميق؛ COLREGs.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>مع عولمة الاقتصاد العالمي، ازداد عدد السفن المستخدمة في النقل البحري بشكل كبير، مما جعل الممرات المائية أكثر ازدحامًا ورفع احتمالات التصادم. ورغم أن اتفاقية COLREGs [1] وضعت قواعد ملزمة لتفادي التصادم، فإن تطبيقها الآلي على السفن الذاتية يبقى صعبًا في المواجهات متعددة السفن، حيث تتفاعل عدة سفن هدف مع السفينة المعنية (OS) في آن واحد وتتداخل التزامات الإفساح والثبات.</p>
+    <p>قدمت الأساليب التقليدية (الحقول الكامنة الاصطناعية، والتحسين، والأنظمة الخبيرة) حلولًا جزئية، لكنها تعاني ضعف التكيف مع البيئات الديناميكية والحاجة إلى نمذجة دقيقة مسبقة. في المقابل، يتعلم التعلم المعزز العميق سياسات القرار بالتجربة المباشرة، وقد أظهرت دراسات سابقة (كخوارزميات DQN وDDPG وPPO [24، 30]) نجاحًا في سيناريوهات سفينة–لسفينة، غير أن معظمها اقتصر على مواجهات ثنائية ولم يعالج التعقيد الكامل للمواجهات متعددة السفن مع الامتثال الصارم لـ COLREGs واستئناف الملاحة بعد المناورة.</p>
+    <p>تعالج هذه الورقة هذه الفجوة عبر أسلوب تفادي تصادم متعدد السفن قائم على خوارزمية PPO [24] بفضاء فعل مستمر، يسهم بثلاث نقاط: (1) تصميم مجزأ لدالة المكافأة يميز مرحلة تفادي التصادم عن مرحلة استئناف الملاحة مع دمج مخاطر التصادم وحالات المواجهة وقواعد الملاحة؛ (2) إدراج متغيرات قرار التفادي واستعادة المسار في مجموعة الحالات؛ (3) تحسينات خوارزمية (استنساخ السلوك، والشبكات المتبقية، والمعالجة المتوازية CPU-GPU) مع التحقق في بيئة Imazu [41] المحسنة تحت تأثير الرياح والتيارات. وتنظم بقية الورقة على النحو التالي: القسم 2 يستعرض عملية تفادي التصادم ونموذج نطاق السفينة، والقسم 3 يعرض الأسلوب، والقسم 4 يحلل المحاكاة، والقسم 5 يخلص إلى النتائج.</p>
+  </section>
+
+  <section>
+    <h2>2. عملية تفادي التصادم: COLREGs ونموذج نطاق السفينة</h2>
+    <p>تحلل الورقة قواعد COLREGs ذات الصلة (القواعد 13–17 [1]: التجاوز، والمواجهة المباشرة، والتقاطع، والتزامات السفينة المفسحة والسفينة الثابتة) لاشتقاق سلوكيات ملاحية قابلة للترميز في دالة المكافأة، بحيث يُكافأ الالتزام بالقاعدة المناسبة لكل حالة مواجهة ويُعاقب مخالفتها. كما تُستخدم مؤشرات مخاطر التصادم الكلاسيكية (DCPA وTCPA ومسافة الاقتراب) لقياس الخطر كميًا عبر الزمن.</p>
+    <p>ويُبنى نموذج نطاق السفينة [35] (ship domain) — المنطقة الآمنة المحيطة بالسفينة التي يجب ألا يقتحمها الآخرون — على نموذج Goodwin الإهليلجي مع تكييف أبعاده حسب طول السفينة وسرعتها وحالة المواجهة، ليكون حدًا موضوعيًا لتقييم نجاح التفادي: فاختراق النطاق يعني فشل المناورة ويستوجب جزاءً في دالة المكافأة.</p>
+    <p>وتُدمج هذه المكونات في إطار قرار مرحلي: تراقب السفينة المعنية باستمرار مؤشر مخاطر التصادم، فإذا تجاوز عتبة دخلت مرحلة التفادي وطبقت مكافآت الامتثال والخطر، وإذا زال الخطر انتقلت إلى مرحلة استئناف الملاحة حيث تُكافأ العودة الفعالة إلى المسار والوجهة، مع آلية حكم مدمجة تقرر متى يكون الاستئناف آمنًا في المواجهات متعددة السفن.</p>
+  </section>
+
+  <section>
+    <h2>3. الأسلوب: نمذجة التعلم المعزز العميق ودالة المكافأة</h2>
+    <p>صُمم وكيل PPO [24] بفضاء فعل مستمر (تغير الدفة والدفع) وفضاء حالة يشمل الموضع والسرعة والاتجاه النسبية للسفن الهدف، ومؤشرات DCPA/TCPA، وحالة COLREGs للمواجهة، ومتغيرات «قرار التفادي» و«قرار استعادة المسار» التي تميز المرحلتين. واعتُمدت شبكات ممثل–ناقد بمعمارية متبقية (residual) مع تهيئة متعامدة وقص التدرج، وتوزيع بيتا محدود لإخراج الأفعال، وتطبيع المزايا (GAE)، وتوسيط مكافأة لدقة التدريب.</p>
+    <p>جوهر الأسلوب هو دالة المكافأة المجزأة normalized إلى النطاق [−1, 1]: (1) مكافأة مؤشر مخاطر التصادم (CRI) المبنية على DCPA/TCPA واختراق نطاق السفينة؛ (2) مكافأة حالة المواجهة التي تكافئ السلوك المطابق لقاعدة COLREGs المناسبة (إفساح يمينًا في التقاطع، وتغير يميني في المواجهة المباشرة، وحظر التجاوز الخطر)؛ (3) مكافأة الهدف والتصادم التي تكافئ التقدم نحو الوجهة وتعاقب التصادم بشدة؛ (4) مكافأة قواعد الملاحة التي تعاقب السرعات والمنعطفات غير الآمنة؛ (5) مكافأة الاستئناف التي تكافئ العودة الفعالة إلى المسار المخطط بعد زوال الخطر. وفي المواجهات متعددة السفن يُجمع مجموع المكافآت عبر السفن الهدف كهدف تحسين لتدريب الشبكة.</p>
+    <p>وعُزز التدريب بثماني حيل تحسين: تطبيع المزايا وحساب الحالة، وإخراج الأفعال بتوزيع بيتا، وضبط epsilon لمحسن Adam عند 1×10⁻⁵، والتهيئة المتعامدة، وقص التدرج، وإعادة قياس المكافأة، وحد أنتروبيا السياسة للاستكشاف، وتضاؤل معدل التعلم الخطي — إضافة إلى استنساخ السلوك لتسريع البداية ووحدة معالجة متوازية CPU-GPU لتسريع المحاكاة. ودُرب الوكيل 4000 حلقة في بيئة Imazu المحسنة (22 حالة مواجهة معيارية موسعة إلى سيناريوهات متعددة السفن مع رياح وتيارات).</p>
+    <p>وللمقارنة العادلة، قُيمت ثلاثة وكلاء: PPO الكلاسيكية، وPPO بوحدة متوازية ثنائية النواة، وخوارزمية PPO-Max المقترحة بالوحدة المتوازية، حيث أظهرت منحنيات المكافأة أن PPO-Max حققت أسرع تقارب وأعلى مكافأة تراكمية وأدنى معدل تصادم عبر حالات Imazu، مما يؤكد فعالية دمج حالات المواجهة والعوامل الملاحية في دالة المكافأة لتوجيه السفينة المعنية نحو الامتثال لـ COLREGs.</p>
+  </section>
+
+  <section>
+    <h2>4. المحاكاة والنتائج والمناقشة</h2>
+    <p>صُممت تجارب التفادي على مشكلة Imazu [41] — مجموعة الحالات المعيارية لاختبار قرارات تفادي التصادم — بعد تحسينها لتشمل مواجهات متعددة السفن وتأثيرات الرياح والتيارات المحيطية. وقورن أداء الوكلاء الثلاثة عبر منحنيات المكافأة ومعدلات التصادم والامتثال للقواعد، فانخفض معدل التصادم لجميع الوكلاء بعد 4000 حلقة تدريب، مع تفوق واضح لخوارزمية PPO-Max في سرعة التقارب والاستقرار.</p>
+    <p>أظهرت النتائج أن الأسلوب المقترح يتعامل بفعالية مع مختلف حالات المواجهة (المواجهة المباشرة، والتقاطع من اليمين واليسار، والتجاوز، والمواجهات الثلاثية) [27]، ملتزمًا بالتزامات الإفساح والثبات الصحيحة ومستأنفًا الملاحة بكفاءة بعد زوال الخطر. كما أظهرت الاختبارات قدرة تعميم جيدة على سيناريوهات لم تُرَ أثناء التدريب، بفضل دمج ممارسات الملاحة الواقعية وتعقيداتها في تصميم المكافأة والحالة.</p>
+    <p>وتناقش الورقة أن التحسينات (استنساخ السلوك للتوجيه المبكر، والشبكات المتبقية لاستقرار التدريب العميق، والتوازي CPU-GPU للكفاءة) كانت حاسمة للأداء، وأن التطبيع إلى [−1, 1] وازن تأثير المكافآت المتنافسة. ومن القيود: الاعتماد على بيئة محاكاة مثالية جزئيًا، وافتراض معلومات كاملة عن السفن الهدف، والحاجة إلى تحقق واقعي على متن سفن فعلية مع ضجيج المستشعرات وحركة بشرية غير متوقعة.</p>
+  </section>
+
+  <section>
+    <h2>5. الخاتمة</h2>
+    <p>قدمت الدراسة أسلوب تفادي تصادم للسفن بخوارزمية DRL ذات فضاء فعل مستمر، مع دوال مكافأة مصممة لمختلف حالات المواجهة بما يتوافق مع COLREGs، ومراعاة مخاطر التصادم والأعراف الملاحية الواقعية واستئناف الملاحة. وفي المواجهات متعددة السفن، تضمن آلية حكم لتقييم الخطر وتقرير استئناف الملاحة، مدعومة بمتغير استئناف الملاحة الأحدث ضمن مجموعة الحالات.</p>
+    <p>حسّنت الدراسة خوارزمية DRL بتقنيات استنساخ السلوك والشبكات المتبقية والمعالجة المتوازية CPU-GPU، فتعزز الأداء والكفاءة التشغيلية بشكل كبير. وأكدت نتائج مشكلة Imazu فعالية دمج حالات المواجهة والعوامل ذات الصلة في دالة المكافأة لتوجيه السفينة المعنية نحو الامتثال لـ COLREGs، وتخطط الأعمال المستقبلية للتحقق الواقعي ودمج معلومات استشعار غير مكتملة وضجيجة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Automatic collision avoidance decision making for vessels is a critical challenge in the development of autonomous ships and has become a central point of research in the maritime safety domain. Effective and systematic collision avoidance strategies significantly reduce the risk of vessel collisions, ensuring safe navigation. This study develops a multi-vessel automatic collision avoidance decision-making method based on deep reinforcement learning (DRL) and establishes a vessel behavior decision model. When designing the reward function for continuous action spaces, the criteria of the "Convention on the International Regulations for Preventing Collisions at Sea" (COLREGs) were adhered to, taking into account the vessel's collision risk under various encounter situations, real-world navigation practices, and navigational complexities. Furthermore, to enable the algorithm to precisely differentiate between collision avoidance and the navigation resumption phase in varied vessel encounter situations, this paper incorporated "collision avoidance decision making" and "course recovery decision making" as state parameters in the state set design, from which the respective objective functions were defined. To further enhance the algorithm's performance, techniques such as behavior cloning, residual networks, and CPU-GPU dual-core parallel processing modules were integrated. Through simulation experiments in the enhanced Imazu training environment, the practicality of the method, taking into account the effects of wind and ocean currents, was corroborated. The results demonstrate that the proposed algorithm can perform effective collision avoidance decision making in a range of vessel encounter situations, indicating its efficiency and robust generalization capabilities.</p>
+    <p><strong>Keywords:</strong> automatic collision avoidance decision making; multi-ship encounter situations; deep reinforcement learning; COLREGs.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>With the globalization of the world economy, the number of ships used for marine transportation has increased significantly, leading to more congested waterways and higher collision likelihood. Although COLREGs [1] established binding collision-avoidance rules, their automated application on autonomous vessels remains difficult in multi-vessel encounters, where several target ships interact with the own ship (OS) simultaneously and give-way/stand-on obligations overlap.</p>
+    <p>Traditional approaches (artificial potential fields, optimization, expert systems) offered partial solutions but suffer weak adaptation to dynamic environments and demand precise prior modeling. Deep reinforcement learning, by contrast, learns decision policies through direct trial, and prior studies (DQN, DDPG, PPO algorithms [24, 30]) succeeded in ship-to-ship scenarios — yet most were limited to pairwise encounters and did not address the full complexity of multi-vessel encounters with strict COLREGs compliance and post-maneuver navigation resumption.</p>
+    <p>This paper fills the gap with a multi-vessel avoidance method based on the PPO algorithm [24] with a continuous action space, contributing three points: (1) a staged reward design separating the avoidance phase from the navigation-resumption phase while fusing collision risk, encounter situations, and navigation rules; (2) inclusion of avoidance-decision and course-recovery-decision variables in the state set; (3) algorithmic enhancements (behavior cloning, residual networks, CPU-GPU parallel processing) validated in an enhanced Imazu environment [41] under wind and currents. The remainder is organized as follows: Section 2 reviews the avoidance process and ship domain model, Section 3 presents the method, Section 4 analyzes simulations, and Section 5 concludes.</p>
+  </section>
+
+  <section>
+    <h2>2. Collision Avoidance Process: COLREGs and the Ship Domain Model</h2>
+    <p>The paper analyzes the relevant COLREGs rules (Rules 13–17 [1]: overtaking, head-on, crossing, give-way and stand-on obligations) to derive encodable navigational behaviors for the reward function, rewarding compliance with the applicable rule per encounter situation and penalizing violations. Classical collision-risk indicators (DCPA, TCPA, approach distance) quantify risk over time.</p>
+    <p>A ship domain model — the safety zone around a vessel others must not violate — is built on Goodwin's [35] elliptical model with dimensions adapted to ship length, speed, and encounter situation, serving as an objective criterion for maneuver success: domain penetration means maneuver failure and incurs a reward penalty.</p>
+    <p>These components are fused into a staged decision framework: the OS continuously monitors the collision risk index, entering the avoidance phase with compliance/risk rewards once a threshold is crossed, and switching to the navigation-resumption phase once risk clears, where efficient return to route and destination is rewarded — with an embedded judgment mechanism deciding when resumption is safe in multi-ship encounters.</p>
+  </section>
+
+  <section>
+    <h2>3. Method: DRL Modeling and Reward Design</h2>
+    <p>A PPO agent [24] was designed with a continuous action space (rudder and thrust changes) and a state space covering relative position, speed, and heading of target ships, DCPA/TCPA indicators, the COLREGs encounter status, and the "avoidance decision" and "course recovery decision" variables distinguishing the two phases. Residual actor–critic networks with orthogonal initialization and gradient clipping, a bounded Beta distribution for action outputs, advantage normalization (GAE), and reward scaling were adopted for training accuracy.</p>
+    <p>The core is the staged reward function normalized to [−1, 1]: (1) a collision risk index (CRI) reward built on DCPA/TCPA and ship-domain penetration; (2) an encounter-situation reward for behavior matching the applicable COLREGs rule (starboard give-way in crossing, starboard alteration head-on, prohibiting dangerous overtaking); (3) a target-and-collision reward for progress toward destination with heavy collision penalties; (4) a navigation-rules reward penalizing unsafe speeds and turns; (5) a resumption reward for efficient return to the planned route after risk clears. In multi-ship encounters, summed rewards across target ships serve as the network-training optimization objective.</p>
+    <p>Training was boosted with eight optimization tricks: advantage/state normalization, Beta-distributed action outputs, Adam eps of 1×10⁻⁵, orthogonal initialization, gradient clipping, reward scaling, a policy-entropy term for exploration, and linear learning-rate decay — plus behavior cloning for a warm start and CPU-GPU parallel processing to accelerate simulation. The agent was trained for 4,000 episodes in the enhanced Imazu environment (the 22 standard encounter cases extended to multi-vessel scenarios with wind and currents).</p>
+    <p>For fair comparison, three agents were evaluated: classic PPO, PPO with a dual-core parallel module, and the proposed PPO-Max with the parallel module; reward curves showed PPO-Max achieving the fastest convergence, highest cumulative reward, and lowest collision rate across Imazu cases — confirming that embedding encounter situations and navigational factors into the reward function guides the OS toward COLREGs compliance.</p>
+  </section>
+
+  <section>
+    <h2>4. Simulation, Results, and Discussion</h2>
+    <p>Avoidance experiments were designed on the Imazu problem [41] — the benchmark case set for testing collision-avoidance decisions — enhanced with multi-vessel encounters and wind/ocean-current effects. The three agents were compared via reward curves, collision rates, and rule compliance; all agents' collision rates fell after 4,000 training episodes, with PPO-Max clearly superior in convergence speed and stability.</p>
+    <p>Results show the proposed method handles diverse encounter situations effectively (head-on, starboard/port crossing, overtaking, three-ship encounters) [27], honoring correct give-way/stand-on obligations and resuming navigation efficiently after risk clears. Tests also showed good generalization to scenarios unseen during training, thanks to embedding real-world navigation practices and complexities into the reward and state design.</p>
+    <p>The paper discusses that the enhancements (behavior cloning for early guidance, residual networks for deep-training stability, CPU-GPU parallelism for efficiency) were critical to performance, and that normalization to [−1, 1] balanced competing reward terms. Limitations include reliance on a partly idealized simulation environment, assumed complete target-ship information, and the need for real-world validation aboard actual vessels with sensor noise and unpredictable human traffic.</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>The present study proposes a ship collision-avoidance method using a DRL algorithm with a continuous action space. To ensure optimal performance, appropriate reward functions were designed for different encounter situations in compliance with COLREGs. Furthermore, the reward function was tailored to account for ship collision-avoidance risks, actual ship navigation norms, and navigation resumption. In multi-ship encounters, the approach incorporates a judgment mechanism to assess ship danger and determine whether navigation should be resumed, supported by the latest navigation-resumption variable in the algorithm's state set.</p>
+    <p>The study innovated improvements to the DRL algorithm — behavior cloning, residual networks, and CPU-GPU dual-core parallel processing — significantly enhancing performance and operational efficiency. Results on the Imazu problem confirm the effectiveness of incorporating encounter situations and relevant factors into the reward function, guiding the OS to adhere to COLREGs; future work plans real-world validation with incomplete, noisy sensing information.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected)</h2>
+    <ol dir="ltr">
+      <li>W. Xie et al., "Optimizing Multi-Vessel Collision Avoidance Decision Making for Autonomous Surface Vessels: A COLREGs-Compliant Deep Reinforcement Learning Approach," <em>J. Mar. Sci. Eng.</em>, vol. 12, no. 3, 372, 2024.</li>
+      <li>[15] C. J. C. H. Watkins and P. Dayan, "Q-learning," <em>Mach. Learn.</em>, vol. 8, pp. 279–292, 1992.</li>
+      <li>[24] J. Schulman et al., "Proximal policy optimization algorithms," <em>arXiv:1707.06347</em>, 2017.</li>
+      <li>[41] Y. Imazu and T. Koyama, "The determination of collision avoidance action," <em>J. Japan Inst. Navigation</em>, vol. 70, 1984 (Imazu problem benchmark).</li>
+      <li>[35] E. M. Goodwin, "A statistical study of ship domains," <em>J. Navig.</em>, vol. 26, p. 130, 1973.</li>
+      <li>[27] L. Zhao and M. I. Roh, "COLREGs-compliant multiship collision avoidance based on deep reinforcement learning," <em>Ocean Eng.</em>, vol. 191, 106436, 2019.</li>
+      <li>[30] R. Sawada, K. Sato, and T. Majima, "Automatic ship collision avoidance using deep reinforcement learning with LSTM in continuous action spaces," <em>J. Mar. Sci. Technol.</em>, vol. 26, pp. 509–524, 2021.</li>
+      <li>[1] IMO, "Convention on the International Regulations for Preventing Collisions at Sea (COLREGs)," 1972.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse12030372">10.3390/jmse12030372</a> · License: CC BY 4.0 · <a href="paper.pdf">PDF</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
