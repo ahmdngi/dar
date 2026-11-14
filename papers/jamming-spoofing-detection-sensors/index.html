@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recent Advances on Jamming and Spoofing Detection in GNSS — DAR</title>
+<meta name="description" content="Recent Advances on Jamming and Spoofing Detection in GNSS: Arabic/English bilingual research viewer.">
+<link rel="canonical" href="https://dararchive.com/papers/jamming-spoofing-detection-sensors/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Recent Advances on Jamming and Spoofing Detection in GNSS</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التطورات الحديثة في كشف التشويش والانتحال في الأنظمة العالمية للملاحة بالأقمار الصناعية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Katarina Radoš, Marta Brkić, Dinko Begušić</span>
+    <span>📄 Sensors 2024, 24, 4210</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s24134210">10.3390/s24134210</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يجعل الاهتمام المتزايد بتطوير خدمات الملاحة وتحديد المواقع ودمجها في طيف واسع من المستقبلات عرضةً لهجمات أمنية مثل التشويش على الأنظمة العالمية للملاحة بالأقمار الصناعية (GNSS) وانتحال إشاراتها. ويوفر توافر الأجهزة الرخيصة، بما فيها الراديوهات المعرفة بالبرمجيات (SDR)، منصات ميسورة widely لتنفيذ هذه الهجمات. والكشف المبكر عن تداخلات التشويش والانتحال ضروري للتخفيف من آثارها وتجنب تدهور الخدمة. تقدم هذه المراجعة استعراضًا شاملًا ومنهجيًا لأساليب كشف تداخلات التشويش والانتحال في GNSS، مع تصنيف الأساليب المختارة وفق بارامتراتها وسماتها والتركيز على التطورات الحديثة. ورغم الإبلاغ عن أساليب كشف كثيرة، ما تزال جهود تطوير أساليب جديدة أكثر كفاءة مستمرة، مدفوعةً بالنمو السريع للهجمات وعددها وما تشكله من مخاطر أمنية عالية.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>يُعد التزامن المستقر والدقيق مفتاح شبكات الهاتف النقال وخدمات الملاحة معًا، وGNSS مصدر رئيسي لإشارات المرجعية — لكن الانتشار المتزايد للملاحة بالأقمار الصناعية يجلب تهديدات متزايدة كهجمات خبيثة تستهدف هذه الأنظمة [1]. وقبل التطورات الحديثة في تقنيات الاتصالات والمعلومات، كان هذا التداخل يتطلب معرفة ومعدات متطورة؛ أما اليوم فيمكن لأي شخص تقريبًا تنفيذ هذه الهجمات بمعدات رخيصة وتعليمات متاحة، وأكثرها شيوعًا راديو رخيص معرف بالبرمجيات مثل USRP أو HackRF One أو LimeSDR.</p>
+    <p>التشويش هو تداخل متعمد يهدف إلى جعل الإشارة المطلوبة غير مفهومة أو مزيفة وفق ISO 24246 [2]: أي بث طاقة تردد راديوي عالية عند ترددات عمل GNSS أو قربها. والانتحال، وفق ETSI TS 103 246-5 [3]، هو بث إشارات تهدف إلى خداع معالجة الموقع أو التوقيت لإصدار تقارير كاذبة. وتنظم هذه المراجعة المجال كالتالي: مبادئ التشويش والانتحال (القسم 2)، وأساليب كشف الانتحال (القسم 3)، والكشف المشترك للتشويش والانتحال (القسم 4)، والمناقشة مع الاستنتاجات.</p>
+  </section>
+
+  <section>
+    <h2>2. مبادئ التشويش والانتحال في GNSS</h2>
+    <p>يبث المنتحِل إشارات مزيفة تشبه الأصلية لكن بقدرة أعلى، مخادعًا المستقبل لالتقاط الأقمار الكاذبة وتتبعها — فيستولي على حله الملاحي ويزيف موقعه. أما المشوِّش فيتداخل مع إشارات الأقمار الأصلية قرب نطاقات L1 وL2 وL5، مانعًا جمع الإشارات الحقيقية وتتبعها.</p>
+    <p>التشويش هو البث المتعمد لإشارات عالية القدرة على تردد الضحية لحرمانه من الملاحة بـGNSS [32]، مثقلًا المستقبلات حتى تفقد قفل الأقمار ويصبح النظام غير فعال أو متدهورًا في المنطقة المشوشة. وبما أن أجهزة كثيرة تبث قرب ترددات GNSS، فالتداخل غير المقصود ممكن أيضًا — والتشويش أكثر إشكالية من الانتحال لأن مشوشات GPS أبسط بكثير في الصنع من أجهزة الانتحال [32]. وتستعرض تقنيات التشويش لتهديدات الملاحة بالأقمار الصناعية في [33].</p>
+  </section>
+
+  <section>
+    <h2>أنواع هجمات الانتحال</h2>
+    <p>يستخدم الهجوم المبسّط محاكي إشارات GNSS لبث إشارات مزيفة غير متزامنة [34،35]: رخيص وسهل، لكنه سهل الكشف لأن القدرة العالية اللازمة لالتقاط المستقبل غير متزامنة مع الكوكبة، منتجةً قفزات في حلول الموقع-السرعة-الزمن — عادةً بعد تشويش الإشارة الأصلية أولًا لإجبار إعادة الالتقاط [37]. أما هجوم الوسيط (القائم على المستقبل) فيراقب بارامترات الإشارات الأصلية ويولّد إشارات مزيفة متزامنة تتبع الإشارات الحقيقية؛ وقد ثبتت جدواه، بما فيها تغيير موقع المستقبل دون إنذارات أو انقطاعات في PVT [6].</p>
+    <p>يستخدم الهجوم المتطور عدة منتحلين منسقين من المستوى الوسيط يبثون من زوايا مختلفة، مهزِمًا فحوص زاوية الوصول — لكن بتعقيد أكبر بكثير من تزامن الباثّات، غير مناسب للسيناريوهات اللحظية وغير مجدٍ اقتصاديًا [37]. وتؤطر معالجات أوسع هذه الفئات ضمن مسوحات الانتحال [4،5،8]، وتحليلات تركز على المهاجم [4]، وأساسيات انتحال GNSS وكشفه [36]، والانتحال متعدد الطبقات المُظَهَر ضد المستقبلات عالية الدقة [38].</p>
+  </section>
+
+  <section>
+    <h2>3. تصنيف الكشف وأساليب معالجة الإشارة</h2>
+    <p>ينقسم كشف الانتحال إلى أساليب معالجة الإشارة — مراقبة ذروة الارتباط [23]، والأساليب القائمة على القدرة [24]، ومعالجة المصفوفات الهوائية [25] — وأساليب بتات البيانات — زمن الوصول [20]، واتجاه الوصول [21]، وتحليل رسائل NMEA [22] — وفحوص التموضع القائمة على المسافات الزائفة [26،27]، والبصمة الترددية الراديوية [28–31]، وأساليب تعلم الآلة والتعلم العميق؛ وكثير منها يخدم أيضًا كشف التشويش والسيناريوهات المدمجة. وترسّخ توصيف انحياز الساعة بالمستقبلات الرخيصة [20] وصياغات زمن الوصول [20] فرع بتات البيانات.</p>
+    <p>تكتسب مراقبة ذروة الارتباط (SQM) دقةً عبر طريقة محسنة قائمة على اختبار كولموغوروف-سميرنوف تراقب مخارج الارتباط، محسّنةً الكشف تحت مزايا قدرة مختلفة بحساسية عالية ومتانة عبر أنماط الانتحال وتعقيد منخفض في سيناريوهات TEXBAT [42]. ويرفع كاشف طاقة القناة التربيعية الشاذة باستخدام تقدير مستوى الضوضاء الكشف الإجمالي 20% على الأقل عندما يتجاوز C/N0 قيمة 32 ديسيبل-هرتز، متفوقًا على SQM التقليدية في سيناريوهات TEXBAT المفرطة القدرة والديناميكية دون تعديل ارتباطات النطاق الأساسي [43]. وتشمل النتائج المتممة الكشف البياني اللاحق للارتباط [41] وإلغاء ذروة الارتباط المنتحلة للتخفيف [40].</p>
+  </section>
+
+  <section>
+    <h2>الأساليب القائمة على القدرة والمصفوفات الهوائية</h2>
+    <p>مراقبة قوة الإشارة هي أبسط سبل الكشف: فالإشارات المنتحلة والمشوشة تنفصل عن الأصلية بمتوسط قدرة عالٍ وتشوه ارتباطي، مما يتيح التصنيف بتعلم الآلة إلى أصيلة أو متعددة المسارات أو منتحلة أو مشوشة كضمانة ملاحية قوية [44]. وتشمل المراصد الراسخة فعالية التدابير المضادة لقوة الإشارة وقدرة الضوضاء وC/N0 [46] وكشف إعادة البث المحسّن بالنسبة مع تباين الحامل-إلى-الضوضاء المتحرك [47]. وتوحّد المراجعات ثغرات GNSS وتدابيرها المضادة [45].</p>
+    <p>تضيف معالجة المصفوفات الهوائية تمييزًا مكانيًا: مخطط متعدد الهوائيات للكشف المبكر عن الانتحال الوسيط والتخفيف منه [49]، ومقارنة اتجاه الوصول المقاس بالمتوقع بمستقبلات متعددة الهوائيات [53]، وثلاثة هوائيات خطية رخيصة للكشف اللحظي الميسور [51]، ومصفوفة سداسية تراقب الذرى المترابطة مع خوارزمية محاصرة الفضاء الجوي [52]، ومصفوفات أولية مشتركة بإزاحة زمنية صغيرة [50]، ودمج المصفوفة المتحركة لأطوار الحامل أحادية الفرق لتحديد مصدر التداخل [54]، والتحليل الإحصائي القائم على TDOA [55]. وتوسّع العائلة مكونات لوحات رخيصة [56]، وهوائيات دوارة مفردة بزاوية تقاطع اتجاه الوصول [57]، وكواشف IPNN بالهوائي الدوار [58]، والتحديد المباشر لموضع مصدر الهجوم [59]، مع توحيد النهج بالكشف والتخفيف المتتابعين بمساعدة اتجاه الوصول [53].</p>
+  </section>
+
+  <section>
+    <h2>بتات البيانات والمسافات الزائفة والبصمة وأساليب التعلم</h2>
+    <p>تستغل أساليب بتات البيانات محتوى الملاحة: فتحليل رسائل NMEA يكشف الانتحال من رسائل المستقبل [22]، بما فيها الكشف بفروق التأخير الصغيرة عبر KNN [23] وإطار MANA البحري لكشف الشذوذ على مجاري NMEA 0183 لانتحال GPS في الشبكات البحرية [60]. وتضيف صياغات الاستشعار المضغوط سبيلًا آخر لبتات البيانات [21]. وتقارن أساليب المسافات الزائفة القياسات عبر المستقبلات: فيصل تحليل الفروق المزدوجة بين مستقبلَين إلى كشف 99.99% مع إنذار كاذب 0.001 [61]، بينما تراقب شبكة كشف الانتحال منطقةً عبر TDOA بنسبة المسافة الزائفة التفاضلية إلى تردد الحامل [26]، مدعومةً بخوارزميات فروق المسافات الزائفة [27].</p>
+    <p>تُطبَّق البصمة الترددية الراديوية، الشائعة في إنترنت الأشياء والواي فاي والشبكات الخلوية، على تحديد هوية المنتحِل في GNSS عبر سمات ما قبل الارتباط وما بعده على بيانات ميدانية حقيقية [30]، ودراسات السمات المؤسسة على مجموعات البيانات [29]، وتوحيد المسوحات لتقنيات العينات قبل الارتباط [28]، وسمات شبيهة بالضوضاء بالمشفرات الذاتية الالتفافية [31]، ومخططات استخراج RF المتينة [72]. ويمتد تعلم الآلة والتعلم العميق عبر التحقق الخاضع للإشراف على بيانات إعادة بث وانتحال حقيقية [13،16،62]، والمراجعات المنهجية للتقنيات [63]، وكواشف الطائرات القائمة على الأشجار [64] والقائمة على الحالات [65]، والكشف الأعمى متعدد الهوائيات باللقطات [66]، وتقييم قابلية الهواتف الذكية [67]، وأجهزة المصفوفات بفروق C/N0 [68]، وتهديدات المحاكيات الرخيصة [69]، والمعالجة الإحصائية للهواتف الذكية [70]، والتموضع المرن بالمعلومات الجانبية [71].</p>
+    <p>الأداء المُبلغ قوي لكنه مشروط: تصنيف التشويش المفرد بـCNN قرب 100% [85]؛ وكواشف الشبكات العصبية متعددة الطبقات [82]؛ وLSTM-CNN بدقة 100% دون خبو لكن أضعف مع الخبو [83]؛ ومراقبة لحظية بآلة المتجهات التوأم بتدريب على مستوى المللي ثانية وتصنيف على مستوى الميكروثانية [84]؛ ومخططات CNN بالنقل والدمج [88]؛ وMLP المضبوطة بأسراب الجسيمات بتحسن 2% و4% على المصنف البايزي متعدد الفرضيات وقاعدة بايز المثلى [101]. ويدرّب التعلم الموحد مصنفات المشوشات محليًا على كل جهاز لخصوصية البيانات على صور طيفية تحت ستة أنواع مشوشات [87].</p>
+  </section>
+
+  <section>
+    <h2>4. الكشف المشترك للتشويش والانتحال</h2>
+    <p>بما أن التشويش والانتحال هما التهديدان الرئيسيان لـGNSS ويعتمد كشفهما على البارامترات نفسها، تميّز الأساليب المشتركة بينهما عبر مراصد مقترنة: فإذا انخفض كل من AGC وC/N0 معًا رجُح التشويش؛ وإذا انخفض AGC وبقي C/N0 ثابتًا رجُح الانتحال؛ وثبات AGC يوحي بالتوهين لا بالتداخل [76]. وتطبق حلول أندرويد هذا المنطق ببارامترات الموقع الأصلية في تطبيق GNSSAlarm، فتتحول المؤشرات إلى الأصفر للتداخل وإلى الأحمر للتحذير من هجوم انتحال [77،78].</p>
+    <p>تُضفي مخططات مراقبة AGC مع C/N0 طابعًا رسميًا على القاعدة نفسها — فيرجح الانتحال عندما ينخفض AGC بينما يثبت C/N0 أو يرتفع — مع التنبيه إلى أن AGC وحده يرفع تحذيرًا فقط ويجب اقترانه مع C/N0 [78]. ويعالج مخطط القمع ثنائي المرحلة بالمصفوفة الهوائية التهديدين معًا، مركزًا أولًا على إزالة التشويش [79]، مع بدائل القمع المشترك القائمة على المصفوفات [80]. ويوسّع التعهيد الجماعي التغطية عبر قياسات الهواتف الذكية الخام [89]، والكشف السريع عن المشوشات وتحديد مواقعها [90،91]، والاستشعار التشاركي بالهواتف النقالة [93،94]، وأطر تقييم تهديدات الطرق [95]، والتحقق المخبري لخوارزميات الكشف وتحديد الاتجاه [97].</p>
+  </section>
+
+  <section>
+    <h2>5. المناقشة والاستنتاجات</h2>
+    <p>ينضج التصنيف بتعلم الآلة للمشوشات في نطاقات GNSS [81] والكشف اللحظي عن التشويش بتقدير الموقع عبر SDR [98] الأدوات العملية، بما فيها تقييمات تهديد التشويش على الملاحة من منظور بحري [99] وكشف انتحال GPS للطائرات عبر SVM [100]. فالملاحة الجوية للطائرات مهددة في البعدين معًا، إذ تحقق النمذجة متعددة المخرجات متعددة الفئات معدلات كشف MLP قدرها 98.9% لتصنيف التشويش ودلالة المصدر [86]. ويستند التقييم المعياري إلى بطارية اختبار الانتحال في تكساس [73]، وبطارية أوك ريدج OAKBAT [74]، ومجموعة بيانات SatGrid للآثار الحقيقية والمنتحلة [75].</p>
+    <p>تخلص المراجعة إلى أن التصنيف وفق البارامترات والسمات يرشد اختيار الحل الأنسب لأغراض وقيود محددة. ويستمر تطوير أساليب جديدة أكثر كفاءة — مدفوعًا بالنمو السريع للهجمات والمخاطر الأمنية العالية — عبر معالجة الإشارة وبتات البيانات والمسافات الزائفة والبصمة والأساليب القائمة على التعلم والمشتركة والتعهيدية، مع توفير مجموعات البيانات وبطاريات الاختبار المرجعَ للبحوث المستقبلية.</p>
+  </section>
+
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Increased interest in developing and integrating navigation and positioning services into a wide range of receivers makes them susceptible to security attacks such as Global Navigation Satellite Systems (GNSS) jamming and spoofing attacks. The availability of low-cost devices including software-defined radios (SDRs) provides wide accessibility of affordable platforms for performing these attacks. Early detection of jamming and spoofing interference is essential for mitigation and avoidance of service degradation. This survey offers a comprehensive, systematic review of methods for detecting GNSS jamming and spoofing interference, categorizing and classifying selected methods by parameters and features with a focus on recent advances. Although many detection methods have been reported, significant research toward new and more efficient methods remains ongoing, driven by the rapid growth and number of attacks posing high security risks.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Stable, precise synchronization is key for mobile networks and navigation services alike, and GNSS is a major source of reference signals — yet the growing use of satellite navigation brings growing threats such as malicious attacks targeting these systems [1]. Before recent advances in communication and information technologies, such interference required sophisticated knowledge and equipment; today almost anyone can perform these attacks with cheap equipment and available instructions, most commonly a low-cost software-defined radio such as USRP, HackRF One, or LimeSDR.</p>
+    <p>Jamming is deliberate interference intended to render a wanted signal unintelligible or falsified, per ISO 24246 [2]: transmission of high radio-frequency power at or near GNSS operating frequencies. Spoofing, per ETSI TS 103 246-5 [3], is the transmission of signals intended to deceive location or timing processing into false reporting. This review organizes the field as follows: jamming and spoofing principles (Section 2), spoofing detection methods (Section 3), combined jamming-and-spoofing detection (Section 4), and discussion with conclusions.</p>
+  </section>
+
+  <section>
+    <h2>2. GNSS jamming and spoofing principles</h2>
+    <p>The spoofer transmits fake signals resembling authentic ones but at higher power, tricking the receiver into acquiring and tracking the false satellites — taking over its navigation solution and falsifying its location. The jammer instead interferes with authentic satellite signals near the L1, L2, and L5 bands, preventing collection and tracking of genuine signals.</p>
+    <p>Jamming is the intentional transmission of high-power signals at the victim frequency to deny GNSS navigation [32], overloading receivers until they lose satellite lock and rendering the system ineffective or degraded across the jammed area. Because many devices transmit near GNSS frequencies, unintentional interference is also possible — and jamming is even more problematic than spoofing since GPS jammers are far simpler to build than spoofing devices [32]. Jamming technology spanning satellite-navigation threats is surveyed in [33].</p>
+  </section>
+
+  <section>
+    <h2>Spoofing attack types</h2>
+    <p>A simplistic attack uses a GNSS signal simulator to broadcast unsynchronized fake signals [34,35]: cheap and easy, but readily detectable because the high power needed to capture the receiver is unsynchronized with the constellation, producing jumps in position-velocity-time solutions — typically after first jamming the authentic signal to force re-acquisition [37]. An intermediate (receiver-based) attack monitors authentic parameters and generates synchronized fakes following the true signals; feasibility has been proven, including changing receiver position without alarms or PVT discontinuities [6].</p>
+    <p>A sophisticated attack uses several coordinated intermediate spoofers transmitting from different angles, defeating angle-of-arrival checks — but with far greater complexity from inter-transmitter synchronization, unsuitable for real-time scenarios and uneconomical [37]. Broader treatments frame these classes within spoofing surveys [4,5,8], attacker-focused analyses [4], GNSS spoofing and detection fundamentals [36], and demonstrated multi-layer spoofing against high-precision receivers [38].</p>
+  </section>
+
+  <section>
+    <h2>3. Detection taxonomy and signal-processing methods</h2>
+    <p>Spoofing detection divides into signal-processing methods — correlation-peak monitoring [23], power-based methods [24], antenna-array processing [25] — data-bit methods — time of arrival [20], direction of arrival [21], NMEA message analysis [22] — pseudorange-based positioning checks [26,27], radio-frequency fingerprinting [28–31], and machine/deep-learning methods; many also serve jamming detection and combined scenarios. Clock-bias characterization with low-cost receivers [20] and time-of-arrival formulations [20] anchor the data-bit branch.</p>
+    <p>Correlation-peak (SQM) monitoring gains accuracy through a Kolmogorov–Smirnov-test-based enhanced method that monitors correlator outputs, improving detection under different power advantages with great sensitivity, robustness across spoofing modes, and low complexity on TEXBAT scenarios [42]. An abnormal quadrature-channel energy detector using noise-level estimation raises overall detection by at least 20% when C/N0 exceeds 32 dB-Hz, outperforming traditional SQM in overpowered and dynamic TEXBAT scenarios without baseband-correlator modification [43]. Complementary results include post-correlation graphical detection [41] and spoofing correlation-peak cancellation for mitigation [40].</p>
+  </section>
+
+  <section>
+    <h2>Power-based and antenna-array methods</h2>
+    <p>Signal-strength monitoring is the simplest detection avenue: spoofed and jammed signals separate from authentic ones by high average power and correlation distortion, enabling ML classification into authentic, multipath, spoofed, or jammed classes as a powerful navigation safeguard [44]. Established observables include signal-strength, noise-power, and C/N0 countermeasure effectiveness [46] and improved ratio-plus-carrier-to-noise moving-variance meaconing detection [47]. Reviews consolidate GNSS vulnerabilities and countermeasures [45].</p>
+    <p>Antenna-array processing adds spatial discrimination: a multi-antenna scheme for early detection and mitigation of intermediate spoofing [49], DoA comparison of measured versus expected directions with multi-antenna receivers [53], three low-cost collinear antennas for affordable real-time detection [51], six-array monitoring with airspace-trapping peak tracking [52], coprime arrays with small time offsets [50], moving-array fusion of single-difference carrier phases for interference localization [54], and statistical TDOA-based analysis [55]. Low-cost board components [56], single rotating antennas with intersection-angle DoA [57], rotating-antenna IPNN detectors [58], and direct-position-determination localization [59] extend the family, with sequential DoA-assisted detection and mitigation unifying the approach [53].</p>
+  </section>
+
+  <section>
+    <h2>Data-bit, pseudorange, fingerprinting, and learning methods</h2>
+    <p>Data-bit methods exploit navigation content: NMEA-sentence analysis detects spoofing from receiver messages [22], including KNN-based small-delay detection [23] and the maritime MANA framework performing anomaly detection on NMEA 0183 streams for GPS spoofing in ship networks [60]. Compressed-sensing formulations add another data-bit avenue [21]. Pseudorange methods compare measurements across receivers: double-difference analysis between two receivers reaches 99.99% detection with 0.001 false-alarm rate [61], while spoofing network monitoring over an area uses differential pseudorange-to-carrier-frequency-ratio TDOA [26], complemented by pseudorange-difference algorithms [27].</p>
+    <p>Radio-frequency fingerprinting, widespread in IoT, Wi-Fi, and cellular contexts, is applied to GNSS spoofer identification via pre- and post-correlation features on real-field data [30], dataset-grounded RF-feature studies [29], survey consolidation of pre-correlation sample techniques [28], convolutional-autoencoder noise-like features [31], and robust RF-extraction schemes [72]. Machine and deep learning span supervised validation on real meaconing and spoofing data [13,16,62], systematic technique reviews [63], tree-based [64] and instance-based [65] UAS detectors, blind multi-antenna snapshot detection [66], smartphone vulnerability assessment [67], C/N0-difference array instrumentation [68], low-cost simulator threats [69], smartphone statistical processing [70], and side-information resilient positioning [71].</p>
+    <p>Reported performance is strong but conditional: single-jamming CNN classification near 100% [85]; multi-layer NN detectors [82]; LSTM-CNN reaching 100% without fading but weaker with fading [83]; twin-SVM real-time monitoring at millisecond training and microsecond classification speed [84]; CNN transfer-learning concatenation schemes [88]; and PSO-tuned MLP improving 2% and 4% over multi-hypothesis Bayesian and Bayes-optimal classifiers [101]. Federated learning trains jammer classifiers locally per device for privacy-preserving data use on spectrogram images under six jammer types [87].</p>
+  </section>
+
+  <section>
+    <h2>4. Jamming and spoofing combination detection</h2>
+    <p>Because jamming and spoofing are the main GNSS threats and their detection relies on the same parameters, joint methods distinguish them through paired observables: if both AGC and C/N0 decrease, jamming is likelier; if AGC decreases while C/N0 stays constant, spoofing is likelier; constant AGC suggests attenuation rather than interference [76]. Android-based solutions implement this logic with original location parameters in the GNSSAlarm application, turning indicators yellow for interference and red for spoofing attack warnings [77,78].</p>
+    <p>AGC-plus-C/N0 observation schemes formalize the same rule — spoofing likely when AGC falls while C/N0 holds or rises — while noting AGC alone only raises a warning and must pair with C/N0 [78]. A two-stage antenna-array suppression scheme handles both threats, focusing first on jamming removal [79], with array-based joint suppression alternatives [80]. Crowdsourcing extends coverage through smartphone raw measurements [89], fast jammer detection and localization [90,91], participatory sensing with mobile phones [93,94], road-threat evaluation frameworks [95], and in-lab validation of detection and direction-finding algorithms [97].</p>
+  </section>
+
+  <section>
+    <h2>5. Discussion and conclusions</h2>
+    <p>Jamming classification via machine learning in GNSS bands [81] and real-time SDR-based jamming detection with position estimation [98] mature the practical toolkit, including maritime-perspective assessments of the GNSS jamming threat to navigation [99] and SVM-based GPS spoofing detection for UAVs [100]. UAV navigation itself is compromised in both dimensions, with multi-output multiclass modeling achieving 98.9% MLP detection rates for jamming classification and source indication [86]. Standardized evaluation rests on the Texas Spoofing Test Battery [73], the Oak Ridge OAKBAT battery [74], and the SatGrid genuine-and-spoofing trace dataset [75].</p>
+    <p>The review concludes that categorization by parameters and features guides selection of the most appropriate solution for specific purposes and constraints. Ongoing development of new, more efficient methods continues — driven by rapid attack growth and high security risks — spanning signal processing, data-bit, pseudorange, fingerprinting, learning-based, combined, and crowdsourced approaches, with datasets and test batteries providing the reference for future research.</p>
+  </section>
+
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Novatel. What Are Global Navigation Satellite Systems? Available online: https://novatel.com/tech-talk/an-introduction-tognss/what-are-global-navigation-satellite-systems-gnss (accessed on 15 October 2023).</li>
+      <li>[2] ISO 24246:2022(en); Space Systems—Requirements for Global Navigation Satellite System (GNSS) Positioning Augmentation Centers. Available online: https://www.iso.org/obp/ui#home (accessed on 9 June 2024).</li>
+      <li>[3] ETSI TS 103 246-5 V1.1.1 (2016-01) and V1.3.1 (2020-10). Satellite Earth Stations and Systems (SES). GNSS-Based Location Systems, Part 5: Performance Test Specification. Available online: https://portal.etsi.org/Services/editHelp/Search/FAQs/TEDDI (accessed …</li>
+      <li>[4] Psiaki, M.L.; Humphreys, T.E.; Stauffer, B. Attackers can spoof navigation signals without our knowledge. Here is how to fight back GPS lies. IEEE Spectr. 2016, 53, 26–53. https://doi.org/10.1109/MSPEC.2016.7524168.</li>
+      <li>[5] Wu Z.; Zhang Y.; Yang Y.; Liang C; Liu R. Spoofing and Anti-Spoofing Technologies of Global Navigation Satellite System: A Survey. IEEE Access 2020, 8, 165444–165496. https://doi.org/10.1109/ACCESS.2020.3022294.</li>
+      <li>[6] Humphreys, T.E.; Ledvina, B.M.; Psiaki, M.L.; O’Hanlon, B.W.; Kintner, P.M. Assessing the Spoofing Threat: Development of a Portable GPS Civilian Spoofer. In Proceedings of the 21st International Technical Meeting of the Satellite Division of the Institute of …</li>
+      <li>[7] Humphreys, T.E. Detection Strategy for Cryptographic GNSS Anti-Spoofing. IEEE Trans. Aerosp. Electron. Syst. 2013, 49, 1073–1090. https://doi.org/10.1109/TAES.2013.6494400.</li>
+      <li>[8] Meng, L.; Yang, L.; Yang, W.; Zhang, L. A Survey of GNSS Spoofing and Anti-Spoofing Technology. Remote Sens. 2022, 14, 4826. https://doi.org/10.3390/rs14194826.</li>
+      <li>[9] Turner, M.; Wimbush, S.; Enneking, C.; Konovaltsev, A. Spoofing Detection by Distortion of the Correlation Function. In Proceedings of the 2020 IEEE/ION Position, Location and Navigation Symposium (PLANS), Portland, OR, USA, 20–23 April 2020; pp. 566–574. …</li>
+      <li>[10] Khoei, T.T.; Gasimova, A.; Ahajjam, M.A.; Shamaileh, K.A.; Devabhaktuni, V.; Kaabouch, N. A Comparative Analysis of Supervised and Unsupervised Models for Detecting GPS Spoofing Attack on UAVs. In Proceedings of the 2022 IEEE International Conference on …</li>
+      <li>[11] Shafique, A.; Mehmood, A.; Elhadef, M. Detecting Signal Spoofing Attack in UAVs Using Machine Learning Models. IEEE Access 2021, 9, 93803–93815. https://doi.org/10.1109/ACCESS.2021.3089847.</li>
+      <li>[12] Gallardo, F.; Yuste, A. P. SCER Spoofing Attacks on the Galileo Open Service and Machine Learning Techniques for End-User Protection. IEEE Access 2020, 8, 85515–85532. https://doi.org/10.1109/ACCESS.2020.2992119.</li>
+      <li>[13] Semanjski, S.; Semanjski, I.; De Wilde, W.; Gautama, S. Use of Supervised Machine Learning for GNSS Signal Spoofing Detection with Validation on Real-World Meaconing and Spoofing Data—Part II. , 20, 1806. https://doi.org/10.3390/s20071806.</li>
+      <li>[14] Chen, Z.; Li, J.; Li, J.; Zhu, X.; Li, C. GNSS Multiparameter Spoofing Detection Method Based on Support Vector Machine. IEEE Sens. J. 2022, 22, 17864–17874. https://doi.org/10.1109/JSEN.2022.3193388.</li>
+      <li>[15] Radoš, K,; Brki´c, M.; and Beguši´c, D. GNSS Signal Classification based on Machine Learning Methods. In Proceedings of the 2024 47th MIPRO ICT and Electronics Convention (MIPRO), Opatija, Croatia, 20–24 May 2024; accepted.</li>
+      <li>[16] Semanjski, S.; Semanjski, I.; De Wilde, W.; Muls, A. Use of Supervised Machine Learning for GNSS Signal Spoofing Detection with Validation on Real-World Meaconing and Spoofing Data—Part I. , 20, 1171. https://doi.org/10.3390/s20041171.</li>
+      <li>[17] Elango, A.; Ujan, S.; Ruotsalainen, L. Disruptive GNSS Signal detection and classification at different Power levels Using Advanced Deep-Learning Approach. In Proceedings of the 2022 International Conference on Localization and GNSS (ICL-GNSS), Tampere, …</li>
+      <li>[18] Borhani-Darian, P.; Li, H.; Wu, P.; Closas, P. Detecting GNSS spoofing using deep learning. EURASIP J. Adv. Signal Process. 2024, 2024, 14. https://doi.org/10.1186/s13634-023-01103-1.</li>
+      <li>[19] Marchand, M.; Toumi, A.; Seco-Granados, G.; López-Salcedo, J. A. Machine Learning Assessment of Anti-Spoofing Techniques for GNSS Receivers. In Proceedings of the WIPHAL 2023: Work-in-Progress in Hardware and Software for Location Computation, CEUR Workshop …</li>
+      <li>[20] Truong, V.; Vervisch-Picois, A.; Rubio Hernan, J.; Samama, N. Characterization of the Ability of Low-Cost GNSS Receiver to Detect Spoofing Using Clock Bias. , 23, 2735. https://doi.org/10.3390/s23052735.</li>
+      <li>[21] Yang, Q.; Chen, Y. A GPS Spoofing Detection Method Based on Compressed Sensing. In Proceedings of the 2022 IEEE International Conference on Signal Processing, Communications and Computing (ICSPCC), Xian, China, 25–27 October 2022; pp. 1–5. …</li>
+      <li>[22] Lee, D.-K.; Miralles, D.; Akos, D.; Konovaltsev, A.; Kurz, L.; Lo, S.; Nedelkov, F. Detection of GNSS Spoofing using NMEA Messages. In Proceedings of the European Navigation Conference (ENC), Dresden, Germany, 23–24 November 2020; pp. 1–10.</li>
+      <li>[23] Li, J.; Li, W.; He, S.; Dai, Z.; Fu, Q. Research on Detection of Spoofing Signal with Small Delay Based on KNN. In Proceedings of the 2020 IEEE 3rd International Conference on Electronics Technology (ICET), Chengdu, China, 8–12 May 2020; pp. 625–629. …</li>
+      <li>[24] Jafarnia-Jahromi, A.; Broumandan, A.; Nielsen, J.; Lachapelle, G. GPS vulnerability to spoofing threats and a review of antispoofing techniques. Int. J. Navig. Observ. 2012, 2012, 127072. https://doi.org/10.1155/2012/127072.</li>
+      <li>[25] Lee, Y.-S.; Yeom, J. S.; Jung,B. C. A Novel Array Antenna-Based GNSS Spoofing Detection and Mitigation Technique. In Proceedings of the 2023 IEEE 20th Consumer Communications &amp; Networking Conference (CCNC), Las Vegas, NV, USA, 8–11 January 2023; pp. 489–492. …</li>
+      <li>[26] Zhang, Z.; Zhan, X. GNSS Spoofing Network Monitoring Based on Differential Pseudorange. , 16, 1771. https://doi.org/10.3390/s16101771.</li>
+      <li>[27] Liu, K.; Wu, W.; Wu, Z.; He, L.; Tang, K. Spoofing Detection Algorithm Based on Pseudorange Differences. , 18, 3197. https://doi.org/10.3390/s18103197.</li>
+      <li>[28] Wang,W.; Aguilar Sanchez,I.; Caparra, G.; McKeown, A.; Whitworth, T.; Lohan, E.S. A Survey of Spoofer Detection Techniques via Radio Frequency Fingerprinting with Focus on the GNSS Pre-Correlation Sampled Data. , 21, 3012. https://doi.org/10.3390/s21093012.</li>
+      <li>[29] Morales-Ferre, R.; Wang, W.; Sanz-Abia, A.; Lohan, E.-S. Identifying GNSS Signals Based on Their Radio Frequency (RF) Features—A Dataset with GNSS Raw Signals Based on Roof Antennas and Spectracom Generator. Data 2020, 5, 18. …</li>
+      <li>[30] Wang, W.; Lohan, E. S.; Sanchez, I. A.; Caparra, G. Pre-correlation and post-correlation RF fingerprinting methods for GNSS spoofer identification with real-field measurement data. In Proceedings of the 10th Workshop on Satellite Navigation Technology …</li>
+      <li>[31] Zhang, X.; Huang, Y.; Tian, Y.; Lin, M.; An, J. Noise-Like Features-Assisted GNSS Spoofing Detection Based on Convolutional Autoencoder. IEEE Sens. J. 2023, 23, 25473–25486. https://doi.org/10.1109/JSEN.2023.3311799.</li>
+      <li>[32] Mukherji, V.; AKS Chandele, Lt. Gen. GNSS Jamming: An Omnipresent Threat. Geospatial World. Available online: https: //www.geospatialworld.net/prime/special-features/gnss-jamming-an-omnipresent-threat/ (accessed on 25 June 2023).</li>
+      <li>[33] Li, X.; Chen, L.; Lu, Z.; Wang, F.; Liu, W.; Xiao, W.; Liu, P. Overview of Jamming Technology for Satellite Navigation. Machines 2023, 11, 768. https://doi.org/10.3390/machines11070768.</li>
+      <li>[34] Songala, K.K.; Ammana, S.R.; Ramachandruni, H.C.; Achanta, D.S. Simplistic Spoofing of GPS Enabled Smartphone. In Proceedings of the 2020 IEEE International Women in Engineering (WIE) Conference on Electrical and Computer Engineering (WIECONECE), Bhubaneswar, …</li>
+      <li>[35] Radoš, K.; Brki´c, M.; and Beguši´c, D. Vulnerability of Smartphones on GNSS Simplistic Spoofing Attack. In Proceedings of the 2024 47th MIPRO ICT and Electronics Convention (MIPRO), Opatija, Croatia, 20–24 May 2024; accepted.</li>
+      <li>[36] Psiaki, M.L.; Humphreys, T.E. GNSS Spoofing and Detection. Proc. IEEE 2016, 104, 1258–1270. https://doi.org/10.1109/JPROC.2016.2526658.</li>
+      <li>[37] Garbin Manfredini, E. Signal Processing Techniques for GNSS Anti-Spoofing Algorithms. Ph.D. Thesis, Polytechnic University of Turin, Torino, Italy, 2017. https://doi.org/10.6092/polito/porto/2672749.</li>
+      <li>[38] Broumandan, A.; Kennedy, S.; Schleppe, J. Demonstration of a Multi-Layer Spoofing Detection Implemented in a High Precision GNSS Receiver. In Proceedings of the 2020 IEEE/ION Position, Location and Navigation Symposium (PLANS), Portland, OR, USA, 20–23 April …</li>
+      <li>[39] Li, J.; Zhu, X.; Ouyang, M.; Li, W.; Chen, Z.; Fu, Q. GNSS Spoofing Jamming Detection Based on Generative Adversarial Network. IEEE Sens. J. 2021, 21, 22823–22832. https://doi.org/10.1109/JSEN.2021.3105404.</li>
+      <li>[40] Yang, B.; Tian, M.; Ji, Y.; Cheng, J.; Xie, Z.; Shao, S. Research on GNSS Spoofing Mitigation Technology Based on Spoofing Correlation Peak Cancellation. IEEE Commun. Lett. 2022, 26, 3024–3028. https://doi.org/10.1109/LCOMM.2022.3204944.</li>
+      <li>[41] Fang, J.; Yue, J.; Xu, B.; Hsu, L.-T. A post-correlation graphical way for continuous GNSS spoofing detection. Measurement 2023, 216, 112974. https://doi.org/10.1016/j.measurement.2023.112974.</li>
+      <li>[42] Zhou, W.; Lv, Z.; Li, G.; Jiao, B.; Wu, W. Detection of Spoofing Attacks on Global Navigation Satellite Systems Using Kolmogorov–Smirnov Test-Based Signal Quality Monitoring Method. IEEE Sens. J. 2024, 24, 10474–10490. …</li>
+      <li>[43] Wang, J.; Tang, X.; Ma, P.; Wu, J.; Ma, C.; Sun, G. GNSS Spoofing Detection Using Q Channel Energy. Remote Sens. 2023, 15, 5337. https://doi.org/10.3390/rs15225337.</li>
+      <li>[44] Yakkati, R. R.; Pardhasaradhi, B.; Zhou, J.; Cenkeramaddi, L. R. A Machine Learning based GNSS Signal Classification. In Proceedings of the 2022 IEEE International Symposium on Smart Electronic Systems (iSES), Warangal, India, 18–22 December 2022; pp. …</li>
+      <li>[45] Zidan, J.; Adegoke, E. I.; Kampert, E.; Birrell, S. A.; Ford, C. R.; Higgins, M. D. GNSS Vulnerabilities and Existing Solutions: A Review of the Literature. IEEE Access 2021, 9, 153960–153976. https://doi.org/10.1109/ACCESS.2020.2973759.</li>
+      <li>[46] Jafarnia-Jahromi, A.; Broumandan, A.; Nielsen, J.; Lachapelle, G. GPS spoofer countermeasure effectiveness based on using signal strength noise power and C/N0 observables. Int. J. Satellite Commun. Netw. 2012, 30, 181–191. https://doi.org/10.1002/sat.1012.</li>
+      <li>[47] Zhu, X.; Lu, Z.; Hua, T.; Yang, F.; Tu, G.; Chen, X. A Novel GPS Meaconing Spoofing Detection Technique Based on Improved Ratio Combined with Carrier-to-Noise Moving Variance. Electronics 2022, 11, 738. https://doi.org/10.3390/electronics11050738.</li>
+      <li>[48] Pardhasaradhi, B.; Yakkati,R. R.; Cenkeramaddi, L. R. Machine Learning-Based Screening and Measurement to Measurement Association for Navigation in GNSS Spoofing Environment. IEEE Sens. J. 2022, 22, 23423–23435. https://doi.org/10.1109/JSEN.2022.3214349.</li>
+      <li>[49] Magiera, J. A Multi-Antenna Scheme for Early Detection and Mitigation of Intermediate GNSS Spoofing. , 19, 2411. https://doi.org/10.3390/s19102411.</li>
+      <li>[50] Zhao, Y.; Shen, F.; Xu, D.; Meng, Z. A Coprime Array-Based Technique for Spoofing Detection and DoA Estimation in GNSS. IEEE Sens. J. 2022, 22, 22828–22835. https://doi.org/10.1109/JSEN.2022.3211024.</li>
+      <li>[51] Chen, J.; Wang, X.; Fang, Z.; Jiang, C.; Gao, M.; Xu, Y. A Real-Time Spoofing Detection Method Using Three Low-Cost Antennas in Satellite Navigation. Electronics 2024, 13, 1134. https://doi.org/10.3390/electronics13061134.</li>
+      <li>[52] Yang, H.; Jin, R.; Xu, W.; Che, L.; Zhen, W. Satellite Navigation Spoofing Interference Detection and Direction Finding Based on Array Antenna. , 23, 1604. https://doi.org/10.3390/s23031604.</li>
+      <li>[53] Meurer, M.; Konovaltsev, A.; Appel, M.; Cuntz, M. Direction-of-Arrival Assisted Sequential Spoofing Detection and Mitigation. In Proceedings of the 2016 International Technical Meeting of the Institute of Navigation, Hyatt Regency Monterey, Monterey, CA, USA, …</li>
+      <li>[54] Liu, R.; Yang, Z.; Chen, Q.; Liao, G.; Zhu, Q. Localization of GNSS Spoofing Interference Source Based on a Moving Array Antenna. Remote Sens. 2023, 15, 5497. https://doi.org/10.3390/rs15235497.</li>
+      <li>[55] Zhang Z., Zhan X. Statistical analysis of spoofing detection based on TDOA. IEEJ Trans. Elec. Electron. Eng. 2018, 13, 840–850. https://doi.org/10.1002/tee.22637.</li>
+      <li>[56] Mao, P.; Yuan, H.; Chen, X.; Gong, Y.; Li, S.; Li, R.; Luo, R.; Zhao, G.; Fu, C.; Xu, J. A GNSS Spoofing Detection and Direction-Finding Method Based on Low-Cost Commercial Board Components. Remote Sens. 2023, 15, 2781. https://doi.org/10.3390/rs15112781.</li>
+      <li>[57] Chen, S.; Ni, S.; Lei, T.; Cheng, L.; Song, X. GNSS Spoofing Detection via the Intersection Angle between Two Directions of Arrival in a Single Rotating Antenna. , 24, 1116. https://doi.org/10.3390/s24041116.</li>
+      <li>[58] Chang, H.; Pang, C.; Zhang, L.; Guo, Z. Rotating Single-Antenna Spoofing Signal Detection Method Based on IPNN. , 22, 7141. https://doi.org/10.3390/s22197141.</li>
+      <li>[59] Xie, J.; Liu, Q.; Wang, L.; Gong, Y.; Zhang, Z. Localizing GNSS Spoofing Attacks Using Direct Position Determination. IEEE Sens. J. 2022, 22, 15323–15333. https://doi.org/10.1109/JSEN.2022.3179557.</li>
+      <li>[60] Spravil, J.; Hemminghaus, C.; von Rechenberg, M.; Padilla, E.; Bauer, J. Detecting Maritime GPS Spoofing Attacks Based on NMEA Sentence Integrity Monitoring. J. Mar. Sci. Eng. 2023, 11, 928. https://doi.org/10.3390/jmse11050928.</li>
+      <li>[61] Xiao, L.; Li, X.; Wang, G. GNSS Spoofing Detection Using Pseudo-range Double Differences between Two Receivers. In Proceedings of the 2019 IEEE 7th International Conference on Computer Science and Network Technology (ICCSNT), Dalian, China, 19–20 October …</li>
+      <li>[62] Semanjski, S.; Muls, A.; Semanjski, I.; De Wilde, W. Use and Validation of Supervised Machine Learning Approach for Detection of GNSS Signal Spoofing. In Proceedings of the 2019 International Conference on Localization and GNSS (ICL-GNSS), Nuremberg, Germany, …</li>
+      <li>[63] Siemuri, A.; Selvan, K.; Kuusniemi, H.; Valisuo, P.; Elmusrati, M. S. A Systematic Review of Machine Learning Techniques for GNSS Use Cases. IEEE Trans. Aerosp. Electron. Syst. 2022, 58, 5043–5077. https://doi.org/10.1109/TAES.2022.3219366.</li>
+      <li>[64] Aissou, G.; Slimane, H.O.; Benouadah, S.; Kaabouch, N. Tree-based Supervised Machine Learning Models for Detecting GPS Spoofing Attacks on UAS. In Proceedings of the 2021 IEEE 12th Annual Ubiquitous Computing, Electronics &amp; Mobile Communication Conference …</li>
+      <li>[65] Aissou, G.; Benouadah, S.; El Alami, H.; Kaabouch, N. Instance-based Supervised Machine Learning Models for Detecting GPS Spoofing Attacks on UAS. In Proceedings of the 2022 IEEE 12th Annual Computing and Communication Workshop and Conference (CCWC), Las …</li>
+      <li>[66] Rossouw van der Merwe, J.; Nikolikj, A.; Kram, S.; Lukcin, I.; Nadzinski, G.; Rügamer, A.; Felber, W. Blind Spoofing Detection for Multi-Antenna Snapshot Receivers using Machine-Learning Techniques. In Proceedings of the 33rd International Technical Meeting …</li>
+      <li>[67] Rustamov, A.; Gogoi, N.; Minetto, A.; Dovis, F. Assessment of the Vulnerability to Spoofing Attacks of GNSS Receivers Integrated in Consumer Devices. In Proceedings of the 2020 International Conference on Localization and GNSS (ICL-GNSS), Tampere, Finland, …</li>
+      <li>[68] Liu, J.; Chen, F.; Xie, Y.; Ge, B.; Lu, Z.; Sun, G. Robust Spoofing Detection for GNSS Array Instrumentation Based on C/N0 Difference Measurements. IEEE Trans. Instrum. Meas. 2023, 72, 8507211. https://doi.org/10.1109/TIM.2023.3328684.</li>
+      <li>[69] Huang, L.; Yang, Q. Low-cost GPS simulator GPS spoofing by SDR. In Proceedings of the DEFCON, Las Vegas, NV, USA, 6–9 August 2015.</li>
+      <li>[70] Rustamov, A.; Minetto, A.; Dovis, F. Improving GNSS Spoofing Awareness in Smartphones via Statistical Processing of Raw Measurements. IEEE Open J. Commun. Soc. 2023, 4, 873–891. https://doi.org/10.1109/OJCOMS.2023.3260905.</li>
+      <li>[71] Ceccato, S.; Formaggio, F.; Caparra, G.; Laurenti, N.; Tomasin, S. Exploiting side-information for resilient GNSS positioning in mobile phones. In Proceedings of the 2018 IEEE/ION Position, Location and Navigation Symposium (PLANS), Monterey, CA, USA, 23–26 …</li>
+      <li>[72] Chengjun, G; Zhongpei, Y. Robust RF Fingerprint Extraction Scheme for GNSS Spoofing Detection. Proceedings of the 36th International Technical Meeting of the Satellite Division of the Institute of Navigation (ION GNSS+ 2023), Denver, Colorado, 11–15 September …</li>
+      <li>[73] Humphreys, T. E.; Bhatti, J. A.; Shepard, D. P.; Wesson, K. D. The Texas Spoofing Test Battery: Toward a Standard for Evaluating GPS Signal Authentication Techniques. In Proceedings of the 25th International Technical Meeting of the Satellite Division of the …</li>
+      <li>[74] Albright, A.; Powers, S.; Bonior, J.; Combs, F. Oak Ridge Spoofing and Interference Test Battery (OAKBAT)—GPS; Oak Ridge National Laboratory (ORNL): Oak Ridge, TN, USA, 2020. https://doi.org/10.13139/ORNLNCCS/1664429.</li>
+      <li>[75] Foruhandeh, M.; Mohammed, A. Z.; Kildow, G.; Gerdes, R.; Berges, R. SatGrid Dataset, Realtime Genuine and Spoofing Traces of GPS Signals Collected at Different Geographical Locations, Times and Environmental Conditions; Dataset; University Libraries, Virginia …</li>
+      <li>[76] Manfredini, E. G.; Akos, D. M.; Chen, Y.-H.; Lo, S.; Walter, T.; Enge, P. Effective GPS Spoofing Detection Utilizing Metrics from Commercial Receivers. In Proceedings of the 2018 International Technical Meeting of The Institute of Navigation, Reston, …</li>
+      <li>[77] Spens, N.; Lee, D.-K.; Nedelkov, F.; Akos, D. Detecting GNSS Jamming and Spoofing on Android Devices. NAVIGATION J. Inst. Navig. Sept. 2022, 69, navi.537. https://doi.org/10.33012/navi.537.</li>
+      <li>[78] Spens, N.; Lee, D.-K.; Akos, D. An application for detecting GNSS jamming and spoofing. In Proceedings of the 34th International Technical Meeting of the Satellite Division of the Institute of Navigation (ION GNSS+), St. Louis, MO, USA, 20–24 September 2021; …</li>
+      <li>[79] Zhang, J.; Cui, X.; Xu, H.; Lu, M. A Two-Stage Interference Suppression Scheme Based on Antenna Array for GNSS Jamming and Spoofing. , 19, 3870. https://doi.org/10.3390/s19183870</li>
+      <li>[80] Hu, Y.; Bian, S.; Li, B.; Zhou, L. A Novel Array-Based Spoofing and Jamming Suppression Method for GNSS Receiver. IEEE Sens. J. 2018, 18, 2952–2958. https://doi.org/10.1109/JSEN.2018.2797309</li>
+      <li>[81] Morales Ferre, R.; de la Fuente, A.; Lohan, E.S. Jammer Classification in GNSS Bands via Machine Learning Algorithms. , 19, 4841. https://doi.org/10.3390/s19224841.</li>
+      <li>[82] Shafiee, E.; Mosavi, M. R.; Moazedi, M. Detection of Spoofing Attack using Machine Learning based on Multi-Layer Neural Network in Single-Frequency GPS Receivers. J. Navig. 2018, 71, 169–188. https://doi.org/10.1017/S0373463317000558</li>
+      <li>[83] Kartchner, D. R.; Palmer, R.; Jayaweera, S. K. Satellite navigation anti-spoofing using deep learning on a receiver network. In Proceedings of the 2021 IEEE Cognitive Communications for Aerospace Applications Workshop, Cleveland, OH, USA, 21–23 June 2021; pp. …</li>
+      <li>[84] Li, W.; Huang, Z.; Lang, R.; Qin, H.; Zhou, K.; Cao, Y. A Real-Time Interference Monitoring Technique for GNSS Based on a Twin Support Vector Machine Method. , 16, 329. https://doi.org/10.3390/s16030329</li>
+      <li>[85] Wu, Z.; Zhao, Y.; Yin, Z.; Luo, H. Jamming signals classification using convolutional neural network. In Proceedings of the 2017 IEEE International Symposium on Signal Processing and Information Technology (ISSPIT), Bilbao, Spain, 18–20 December 2017; pp. …</li>
+      <li>[86] Alkhatib M.; McCormick, M.; Williams, L.; leon, A.; Camerano, L.; Al Shamaileh, K.; Devabhaktuni, V.; Kaabouch, N. Classification and Source Location Indication of Jamming Attacks Targeting UAVs via Multi-output Multiclass Machine Learning Modeling. In …</li>
+      <li>[87] Wu, P.; Calatrava, H.; Imbiriba, T.; Closas, P. Jammer classification with Federated Learning. In Proceedings of the 2023 IEEE/ION Position, Location and Navigation Symposium (PLANS), Monterey, CA, USA, 24–27 April 2023; pp. 228–234. …</li>
+      <li>[88] Swinney, C.J.; Woods, J.C. GNSS Jamming Classification via CNN, Transfer Learning &amp; the Novel Concatenation of Signal Representations. In Proceedings of the 2021 International Conference on Cyber Situational Awareness, Data Analytics and Assessment (CyberSA), …</li>
+      <li>[89] Miralles, D.; Levigne, N.; Akos, D. M.; Blanch, J.; Lo, S. Android Raw GNSS Measurements as the New Anti-Spoofing and Anti-Jamming Solution. In Proceedings of the 31st International Technical Meeting of the Satellite Division of the Institute of Navigation …</li>
+      <li>[90] Scott, L. J911: The case for fast jammer detection and location using crowdsourcing approaches. In Proceedings of the 24th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS 2011), Portland, OR, USA, 19–23 …</li>
+      <li>[91] Axell, E.; Eklöf, F. M.; Johansson, P.; Alexandersson, M.; Akos, D. M. Jamming Detection in GNSS Receivers: Performance Evaluation of Field Trials. J. Inst. Navig. 2015, 62, 73–82. https://doi.org/10.1002/navi.74.</li>
+      <li>[92] Strizic, L.; Akos, D. M.: Lo, S. Crowdsourcing GNSS Jammer Detection and Localization. In Proceedings of the 2018 International Technical Meeting of The Institute of Navigation, Reston, Virginia, 29 January–1 February 2018; pp. 626–641. …</li>
+      <li>[93] Olsson, G. K.; Axell, E.; Larsson, E. G.; Papadimitratos, P. Participatory Sensing for Localization of a GNSS Jammer. In Proceedings of the 2022 International Conference on Localization and GNSS (ICL-GNSS), Tampere, Finland, 7–9 June 2022. …</li>
+      <li>[94] Olsson, G. K.; Nilsson, S.; Axell, E.; Larsson, E. G.; Papadimitratos, P. Using Mobile Phones for Participatory Detection and Localization of a GNSS Jammer. In Proceedings of the 2023 IEEE/ION Position, Location and Navigation Symposium (PLANS), Monterey, CA, …</li>
+      <li>[95] Yozevitch, R.; Marbel, R.; Flysher, N.; Ben-Moshe, B. Save Our Roads from GNSS Jamming: A Crowdsource Framework for Threat Evaluation. , 21, 4840. https://doi.org/10.3390/s21144840.</li>
+      <li>[96] Osman, A.; Moussa, M.M.E.; Tamazin, M.; Korenberg, M.J.; Noureldin, A. DOA Elevation and Azimuth Angles Estimation of GPS Jamming Signals Using Fast Orthogonal Search. IEEE Trans. Aerosp. Electron. Syst. 2020, 56, 3812–3821. …</li>
+      <li>[97] Morales Ferre, R.; Richter, P.; De La Fuente, A.; Lohan, E. S. In-lab validation of jammer detection and direction finding algorithms for GNSS. In Proceedings of the 2019 International Conference on Localization and GNSS (ICL-GNSS), Nuremberg, Germany, 4–6 …</li>
+      <li>[98] Thanakan, K.; Sapphaniran, K.; Palasarn, T.; Supnithi, P.; Phakphisut, W.; Sakorn, C. Real-Time Jamming Detection and Position Estimation via Software-Defined Radio (SDR). In Proceedings of the 2021 18th International Conference on Electrical …</li>
+      <li>[99] Medina, D.; Lass, C.; Marcos, E. P.; Ziebold, R.; Closas, P.; García, J. On GNSS Jamming Threat from the Maritime Navigation Perspective. In Proceedings of the 2019 22th International Conference on Information Fusion (FUSION), Ottawa, ON, Canada, 2–5 July …</li>
+      <li>[100] Panice, G.; Luongo, S.; Gigante, G.; Pascarella, D.; Di Benedetto, C.; Vozella, A.; Pescape, A. A SVM-based detection approach for GPS spoofing attacks to UAV. In Proceedings of the 2017 23rd International Conference on Automation and Computing (ICAC), …</li>
+      <li>[101] Tohidi, S.; Mosavi, M.R. Effective detection of GNSS spoofing attack using a multi-layer perceptron neural network classifier trained by PSO. In Proceedings of the 2020 25th International Computer Conference, Computer Society of Iran (CSICC), Teheran, Iran, …</li>
+    </ol>
+
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s24134210">10.3390/s24134210</a> · License: CC BY 4.0 · <a href="paper.pdf">PDF</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

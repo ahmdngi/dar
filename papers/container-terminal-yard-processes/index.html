@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بناء نظام التوأم الرقمي لساحة محطة الحاويات — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Container Terminal Digital Twin Yard System Construction</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">بناء نظام التوأم الرقمي لساحة محطة الحاويات</h2>
+
+  <div class="paper-meta">
+    <span>👤 Xueqiang Du, Chengji Liang, Ning Zhao, Beng Xuan</span>
+    <span>📄 Processes, 2023 · Vol. 11, 2223</span>
+    <span>🔗 <a href="https://doi.org/10.3390/pr11072223">10.3390/pr11072223</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يفرض ارتفاع إنتاجية محطات الحاويات متطلبات إنتاج وتشغيل جديدة تعجز المحطات التقليدية عن تلبيتها. ويؤدي بناء ساحة توأم رقمي إلى رفع طاقة المحطة وتحسين عمليات التشغيل. تبني هذه الورقة نظام ساحة توأم رقمي يتكون من الفضاء الفيزيائي والفضاء الافتراضي والبيانات والخدمات والوكلاء الأذكياء؛ وتفصل تقنيات التوأم الرقمي الأساسية؛ وتتخذ عمليتي تسليم الحاويات وشحنها حالتين — بإعادة تنظيم اختناق عمليات التسليم واستهدافه — لتحسين كفاءة الإنتاج.</p>
+  </section>
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>مع توسع القطاع البحري، يتطلب نمو الإنتاجية طاقة محطات أعلى، والساحة — مورد الإنتاج الأساسي — تحتاج بإلحاح لتشغيل ذكي يزيل الاختناقات. ومحطات الحاويات أنظمة لوجستية متقطعة نموذجية بأنواع أعمال متنوعة وعمليات معقدة، ما يزال التخطيط (التخصيص وخطط الأرصفة) والجدولة (الإرسال والتفريغ) يحتاجان تدخلًا بشريًا. ويوفر التوأم الرقمي — الكيان الفيزيائي والفضاء الافتراضي والوصلة بينهما [1]، موسعًا بأبعاد تاو الخمسة: الفيزيائي والافتراضي والمتصل والبيانات والخدمات [2–4] — مسار 'الافتراضي يعزز الفيزيائي': المحاكاة واتخاذ القرار والتحسين افتراضيًا قبل الفعل فيزيائيًا.</p>
+    <p>يتركز البحث الحالي على التصنيع الذكي والصناعة 4.0 [9–11] باهتمام أقل بتوائم محطات الحاويات، رغم أن أطر إدارة الموانئ [12] وتحليلات المحطات الآلية [13] وحالة ميناء تشينغداو [14] ونمذجة المحطات [15] وتوائم الطاقة وجدولة الرافعات [22–25] تُظهر زخمًا. وإسهام الورقة هو نظام متكامل على مستوى الساحة يضيف وكيل قرار ذكي — وهو أكبر فارق عن توائم الصناعة 4.0 — مع استراتيجيات تنفيذ مُتحقق منها على عمليتي التسليم والشحن.</p>
+  </section>
+  <section>
+    <h2>2. الأعمال ذات الصلة</h2>
+    <p>أصل غريفز التوأم (فيزيائي وافتراضي ووصلة) [1]؛ وحدد تاو وآخرون أبعاده الصناعية الخمسة وتقنياته الأساسية [2–4]. وتشمل الدراسات التطبيقية توائم ثلاثية الأبعاد مُدربة بـAdaBoost [5] وتوائم محركات السفن بمايا/يونتي [6] وأطر توأم الأمن السيبراني-الفيزيائي [7] ومنصات تصور ساحات المواد الخطرة [8] وتوائم عابرة المجالات من المفاعلات الحيوية [9] إلى محامل محركات الطائرات [10]، مع تأكيد كازاوا وآخرين على التكامل للصناعة 4.0 [11]. وتغطي الأعمال المينائية إدارة الموانئ الذكية ذات الطبقات الخمس [12] ومتطلبات المحطات الآلية [13] ومحاكاة الساحات بالأحداث المتقطعة [18] وقياس أهداف الحاويات [19] وتوائم الرافعات [20] ومحاكاة النقل [21] وتخصيص الموارد في ميناء يانغشان [23].</p>
+  </section>
+  <section>
+    <h2>3. إطار ساحة التوأم الرقمي</h2>
+    <h3>3.1. نظام البنية: DTY = (الفضاء الفيزيائي، الافتراضي، البيانات، الخدمات، الوكيل الذكي)</h3>
+    <p>تتكون ساحة التوأم الرقمي (DTY) من الفضاء الفيزيائي (جسور الساحة والرافعات الشوكية والشاحنات الداخلية/الخارجية والحاويات والموارد المكانية) والفضاء الافتراضي (نماذج مُسقطة تحاكي الوكيل الذكي) والبيانات (بيانات الفيزيائي والافتراضي والخدمات والوكيل التي تقود الحلقة) والخدمات (أنظمة TOS وصيانة الرافعات YMS والتحكم عن بعد YRCS والحجز DRS واللوحات LPRS وأرقام الحاويات CIS) والوكيل الذكي الموجه لعمليات الساحة والمُحسن ذاتيًا عبر التكامل — وتُصاغ DTY = (PS, VS, DD, SS, IA) (1). يُسقط الفيزيائي في الافتراضي؛ وتنتشر تغيرات الحالة؛ وتُطابق الخدمات أنظمة الإنتاج مع الاحتياجات وتُوجه الوكيل؛ فيحسب الوكيل فوق البيانات وحالة الفيزيائي ويحاكي افتراضيًا ويكرر حتى القرار الأفضل ويعيده عبر الخدمات للفيزيائي، ثم يقارن بيانات ما بعد التنفيذ ليُحسن ذاتيًا — حلقة 'الافتراضي يعزز الفيزيائي' (الشكل 1). والوكيل الذكي المضاف هو السمة المميزة عن توائم الصناعة 4.0.</p>
+    <h3>3.2. التقنيات الأساسية</h3>
+    <p>تتشابك خمس تقنيات: (1) بناء النموذج المكاني — تحمل الكيانات وحدات استشعار وشبكة لتلقي التعليمات والإبلاغ عن الحالة، مصنفة حسب المعدة بترميز لوني لموانئ التفريغ (الشكل 2)؛ (2) تكرار الفضاء الافتراضي وعرضه؛ (3) الدمج الديناميكي لأنظمة الخدمات؛ (4) مستودع البيانات الموحد للبيانات الفيزيائية والتجارية والنموذجية؛ (5) تحسين قرار الوكيل الذكي. ويدمج المستودع بيانات نموذج الساحة وعمليات التفريغ وخطط التخصيص وسوابق الحاويات وعمليات الشحن ليحاكي الوكيل عمليات البوابة والساحة والجسر ويحكم على الجدوى ويعيد الحساب عند التعذر ويعيد نتائج الحجز عبر TOS/DRS للعميل.</p>
+  </section>
+  <section>
+    <h2>4. تحسين عملية الإنتاج</h2>
+    <h3>4.1. عملية تسليم الحاويات</h3>
+    <p>التسليم — استلام العميل حاويته بعد وصول البضاعة — يسير حاليًا بتدفق بسيط (الشكل 7): حجز DRS بنوافذ ساعتين يختارها العميل؛ وفحص البوابة بنموذج الموعد أو التعرف على اللوحات؛ وانتظار عقابي للمتأخرين؛ وإسناد رافعة الساحة من المجدول الموقعي. ورغم حوسبته واتصاله عبر خدمات المحطة، يُهدر وقت انتظار الشاحنات الخارجية ويتفاعل بدل أن يستبق. وتحت التوأم (الشكل 8)، يصبح خط DRS+TOS تنبؤيًا عبر ثلاث مراحل: عند الحجز يحسب الوكيل وقت التسليم الأمثل من حالات كيانات الساحة/الجسر، ويحاكي عمليات البوابة/الساحة/الجسر فوق بيانات النموذج والتفريغ والتخصيص والسوابق والشحن المدمجة، ويكرر حتى الجدوى ويؤكد مع العميل؛ وعند التشغيل تُطلق بيانات مركبة البوابة نمذجة ديناميكية ومحاكاة موجهة من TOS وتعليمات رافعات، مع منطقة عازلة تمتص عشوائية الوصول؛ وعند المغادرة يؤكد التعرف على اللوحات وأرقام الحاويات [19] الإفراج بينما يعيد الوكيل المحاكاة فوق البيانات المدمجة بعوامل الخطأ، مُحدثًا ملفات العملاء لشحذ القرارات المقبلة.</p>
+    <h3>4.2. عملية الشحن</h3>
+    <p>تُحسن الحلقة التوأمية نفسها الشحن: تُغذي خطط التستيف والتخصيص الفضاء الافتراضي، ويُسلسل الوكيل حركات رافعات الساحة والشاحنات الداخلية مقابل حالات المعدات الحية، وتُغلق بيانات الدورات المحاكاة مقابل الفعلية حلقة التعلم — مخفضة تنقل الرافعات غير المنتج وخمول الشاحنات كما يخفض إعادة تنظيم التسليم طوابير البوابات. ومع نتائج الجدولة الواعية بالطاقة [22، 24] وأنظمة المراقبة [25]، تتحول الساحة من تنسيق يدوي قائم على الخبرة إلى تنفيذ قائم على البيانات مُتحقق منه مسبقًا.</p>
+  </section>
+  <section>
+    <h2>5. الاستنتاجات</h2>
+    <p>تفتقر ساحات المحطات للذكاء، وتبقى الوحدات الذكية رهينة خبرة الموظفين وميولهم الشخصية؛ فتُقدم ساحة التوأم الرقمي ذكاء المحطة مع تقليل أخطاء المهارة اليدوية، وكشف اختناقات الإنتاج ورفع الكفاءة. ويُظهر بناء الإطار واستراتيجيات التنفيذ وتحليلا التسليم/الشحن معًا نهجًا علميًا لبنية الساحة التوأمية. وينبغي للمحطات المستقبلية تبني وكلاء قرار أقدر وربط أنظمة مساعدة — كتفتيش الطرق لتتبع الشاحنات المغادرة لحظيًا — لجدولة التسليم مسبقًا وتقليل انتظار الشاحنات ورفع كفاءة الخدمة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Rising container-terminal throughput imposes new production and operation requirements that traditional terminals can no longer meet. Constructing a digital twin yard raises terminal capacity and optimizes operating processes. This paper builds a digital-twin yard system composed of physical space, virtual space, data, services and intelligent agents; elaborates the core digital-twin technologies; and uses the container delivery and loading processes as cases — reorganizing and targeting the delivery-operation bottleneck — to improve production efficiency.</p>
+  </section>
+  <section>
+    <h2>1. Introduction</h2>
+    <p>As the marine sector expands, throughput growth demands higher terminal capacity, and the yard — the core production resource — urgently needs intelligent operation to clear bottlenecks. Container terminals are typical discrete logistics systems with diverse business types and complex processes, where planning (allocation, berth plans) and scheduling (dispatching, unloading) still need manual intervention. The digital twin — physical entity, virtual space and their connection [1], extended by Tao et al. into physical, virtual, connected, data and services dimensions [2–4] — offers a 'virtual promotes physical' path: simulate, decide and optimize in the virtual space before acting physically.</p>
+    <p>Current research concentrates on smart manufacturing and Industry 4.0 [9–11] with less attention to container-terminal twins, though port-management frameworks [12], automated-terminal analyses [13], Qingdao-port cases [14], container-terminal modeling [15] and energy/crane scheduling twins [22–25] show momentum. This paper's contribution is a complete yard-level system adding an intelligent decision agent — the biggest difference from Industry 4.0 twins — plus implementation strategies validated on delivery and loading operations.</p>
+  </section>
+  <section>
+    <h2>2. Related Work</h2>
+    <p>Grieves originated the twin (physical, virtual, connection) [1]; Tao et al. defined its industrial five dimensions and core technologies [2–4]. Applied studies include AdaBoost-trained 3D twins [5], Maya/Unity ship-engine twins [6], cyber-physical security twin frameworks [7], hazmat-yard visualization platforms [8], and cross-domain twins from bioreactors [9] to aeroengine bearings [10], with Kazała et al. stressing integration for Industry 4.0 [11]. Port-specific work spans five-layer intelligent-port management (physical/data/model/service/application) with technical, data-security and management challenges [12], automated-terminal requirements [13], discrete-event yard simulation [18], container-target measurement [19], crane twins [20], transport simulation [21], and Yangshan-port resource allocation [23].</p>
+  </section>
+  <section>
+    <h2>3. Digital Twin Yard Framework</h2>
+    <h3>3.1. Architecture system: DTY = (PS, VS, DD, SS, IA)</h3>
+    <p>The digital twin yard (DTY) comprises physical space (PS: yard bridges, forklifts, internal/external trucks, containers, space resources), virtual space (VS: mapped models simulating the intelligent agent), data (DD: physical, virtual, service and agent data driving the loop), services (SS: TOS, Yard Crane Maintenance YMS, remote-control YRCS, reservation DRS, license-plate LPRS and container-number CIS systems), and the intelligent agent (IA) directing yard operations and self-optimizing through PS/VS/data/service integration — formalized as DTY = (PS, VS, DD, SS, IA) (1). PS maps into VS; state changes propagate; SS fits production systems to business needs and instructs the IA; the IA computes over DD plus PS state, simulates in VS, iterates to the best decision, returns it via SS to PS, then compares post-execution data to self-optimize — a true 'virtual promotes physical' loop (Figure 1). The added decision-making IA is the system's signature difference from Industry 4.0 twins.</p>
+    <h3>3.2. Core technologies</h3>
+    <p>Five technologies interlock: (i) spatial model construction — entities carry sensing plus network modules for passive instruction-taking and active status reporting, typed by equipment with discharge-port color coding (Figure 2); (ii) virtual-space iteration and display; (iii) dynamic service-system fusion; (iv) the data warehouse unifying physical, business and model data; and (v) intelligent-agent decision optimization. The warehouse fuses yard-model data, unloading operations, allocation plans, container histories and loading operations so the agent can simulate gate, yard and bridge operations, judge feasibility, recalculate when infeasible, and feed reservation results back through TOS/DRS to the customer.</p>
+  </section>
+  <section>
+    <h2>4. Production Process Optimization</h2>
+    <h3>4.1. Container delivery operation</h3>
+    <p>Delivery — the customer collecting a container after cargo arrival — currently runs on a simple flow (Figure 7): DRS reservation with self-selected 2 h windows; gate check by appointment form or plate recognition; punishment-zone waiting for late arrivals; yard-crane assignment by the site scheduler. Though computerized and connected through terminal services, it wastes external-truck waiting time and reacts rather than anticipates. Under the twin (Figure 8), the DRS+TOS pipeline becomes predictive across three stages: at reservation, the IA computes the optimal delivery time from yard/bridge entity states, simulates gate/yard/bridge operations over fused model, unloading, allocation, history and loading data, iterates to feasibility, and confirms with the customer; at operation, gate vehicle data trigger dynamic remodeling, TOS-directed simulation and crane instructions, with a buffer zone absorbing arrival randomness; at departure, plate plus container-number recognition [19] confirm release while the IA re-simulates over fused physical/business/model data with error factors, updating customer profiles to sharpen future decisions.</p>
+    <h3>4.2. Loading operation process</h3>
+    <p>The same twin loop optimizes loading: stowage and allocation plans feed the virtual space, the IA sequences yard-crane and internal-truck moves against live equipment states, and simulated versus actual cycle data close the learning loop — cutting unproductive crane travel and truck idle time just as the delivery reorganization cuts gate queues. Together with energy-aware scheduling results [22, 24] and monitoring systems [25], the twin turns the yard from experience-driven manual coordination into data-driven, pre-validated execution.</p>
+  </section>
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>Terminal yards lack intelligence, and intelligent modules stay hostage to staff experience and personal inclination; the digital twin yard advances terminal intelligence while cutting manual-skill errors, exposing production bottlenecks and raising efficiency. Framework construction, implementation strategies, and the delivery/loading analyses jointly demonstrate a scientific approach to twin-yard architecture. Future terminals should adopt more capable decision agents and link auxiliary systems — e.g., highway inspection tracking outbound trucks in real time — to schedule deliveries ahead, cut truck waiting and lift service efficiency.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Grieves, M. Digital twin: Manufacturing excellence through virtual factory replication. White Pap. 2014, 1, 1–7.</li>
+      <li>[2] Tao, F. et al. Digital twin in industry: State-of-the-art. IEEE Trans. Ind. Inform. 2018, 15, 2405–2415.</li>
+      <li>[3] Tao, F. et al. Digital twin driven prognostics and health management. Cirp Ann. 2018, 67, 169–172.</li>
+      <li>[4] Tao, F. et al. Digital twin modeling. J. Manuf. Syst. 2022, 64, 372–389.</li>
+      <li>[5] Li, Y. et al. Automated container terminal production via an AdaBoost-based digital twin framework. J. Adv. Transp. 2021, 2021, 1–16.</li>
+      <li>[6] Wang, K. et al. Digital twin-driven approach for process management towards ship industry. Processes 2022, 10, 1083.</li>
+      <li>[7] Jakovlev, S. et al. Intelligent digital twins framework for secure container terminal operations. Proc. ITMS 2021, Riga; pp. 1–4.</li>
+      <li>[8] Oliveira, L. et al. Digital Twin for Monitoring Containerized Hazmat Cargo in Port Areas. Proc. CISTI 2022, Madrid; pp. 1–4.</li>
+      <li>[9] Zhao, B. et al. BioDT: An Integrated Digital-Twin-Based Framework for Intelligent Biomanufacturing. Processes 2023, 11, 1213.</li>
+      <li>[10] Li, Y. et al. Life Cycle of Aeroengine Mainshaft Bearing Based on Digital Twin. Processes 2023, 11, 1768.</li>
+      <li>[11] Kazała, R. et al. Enabling Open-Source Technology for Production Systems by Applying Digital Twinning. Processes 2021, 10, 21.</li>
+      <li>[12] Wang, K. et al. Multi-aspect applications and challenges of digital twin-driven management in global smart ports. Case Stud. Transp. Policy 2021, 9, 1298–1312.</li>
+      <li>[13] Yang, A. et al. Towards intuitive visualisation goals for ACT operation optimisation. Marit. Policy Manag. 2023, 1–22.</li>
+      <li>[14] Yang, W. et al. A digital twin framework for large comprehensive ports: Qingdao Port. Int. J. Adv. Manuf. Technol. 2022, 1–18.</li>
+      <li>[15] Wang, Y. et al. Digital twin modeling method for container terminal in port. Proc. ASME IDETC 2022, St. Louis; V002T02A036.</li>
+      <li>[16] Zong, C.; Wan, Z. Container ship cell guide accuracy check. Brodogradnja 2022, 73, 23–35.</li>
+      <li>[17] Koroleva, E. et al. Digital maritime container terminal. Proc. E3S Web Conf. 2020, Vol. 203, 05004.</li>
+      <li>[18] Bielli, M. et al. Object oriented model for container terminal distributed simulation. Eur. J. Oper. Res. 2006, 175, 1731–1751.</li>
+      <li>[19] Mi, C. et al. 3-D measurement method for container handling target. J. Mar. Sci. Eng. 2022, 10, 1961.</li>
+      <li>[20] Szpytko, J.; Duarte, Y.S. Digital twins model for cranes in container terminal. IFAC-PapersOnLine 2019, 52, 25–30.</li>
+      <li>[21] Derse, O.; Göçmen, E. Simulation modelling for container transportation. Int. Sci. Vocat. Stud. J. 2018, 2, 19–28.</li>
+      <li>[22] Gao, Y. et al. Digital twin-based approach for optimizing operation energy consumption at automated container terminals. J. Clean. Prod. 2023, 385, 135782.</li>
+      <li>[23] Ding, Y. et al. Real-time monitoring and resource allocation: Yangshan Port digital twin. J. Adv. Transp. 2023, 2023, 6909801.</li>
+      <li>[24] Zhao, N. et al. Digital-twin driven energy-efficient multi-crane scheduling. J. Clean. Prod. 2022, 336, 130175.</li>
+      <li>[25] Zhou, Y. et al. Digital twin-based operation status monitoring for port cranes. Sensors 2022, 22, 3216.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/pr11072223">10.3390/pr11072223</a> · License: CC BY 4.0 · PDF: <a href="paper.pdf">paper.pdf</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

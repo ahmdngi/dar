@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>طريقة مركبة قائمة على الرؤية للفحص البُعدي لأختام زيت المحرك بعد التجميع — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Composite Vision-Based Method for Post-Assembly Dimensional Inspection of Engine Oil Seals</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">طريقة مركبة قائمة على الرؤية للفحص البُعدي لأختام زيت المحرك بعد التجميع</h2>
+
+  <div class="paper-meta">
+    <span>👤 Yu Li, Jing Zhao, Xingyu Gao, Weiming Li, Rongtong Jin, Guohao Tang, Yang Huang, Shuibiao Chen</span>
+    <span>📄 Machines, 2025 · Vol. 13, 261</span>
+    <span>🔗 <a href="https://doi.org/10.3390/machines13040261">10.3390/machines13040261</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يتسم الفحص اليدوي لأبعاد تجميع أختام زيت المحرك بالبطء والذاتية، ويصعب أتمتة الكشف المباشر عن فروق الارتفاع بعد التجميع. تقترح هذه الورقة طريقة مركبة قائمة على الرؤية للفحص البُعدي بعد التجميع تتيح قياسًا ثلاثي الأبعاد غير تلامسي ومباشر للأختام المركبة على المحرك. تُحصل مراكز القطع الناقص ومحاوره الكبرى/الصغرى بالتطابق التدريجي للقوالب والمربعات الصغرى؛ وبعد التحجيم على المحاور، تُجزأ الصورة بالعتبة بين القمة والوادي إلى قناع منطقة اهتمام حلقي يُبسط الصورة. ثم تحسب تقنية قياس الأطوار بإزاحة الطور رباعية الخطوات ثلاثية الترددات مع خوارزمية RANSAC محسنة لملاءمة المستويات فرق الارتفاع بين الحلقتين الداخلية والخارجية وعمق الكبس بدقة مع رفض المناطق غير المستهدفة. وتُظهر التجارب تفوق الطريقة على القياس اليدوي في السرعة بكثير، بانحرافات نسبية محصورة في 0.33% و1.45%، ومعدل نجاح كشف 96.35% على 1415 عينة، وحل عملي موثوق للمراقبة اللحظية للتجميع بإمكانات صناعية قوية.</p>
+  </section>
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تُعد أختام زيت المحرك عناصر إحكام حرجة تمنع تسرب الزيت ودخول الغبار؛ وجودة تجميع ختم عمود المرفق تؤثر مباشرة في عمر المحرك وأدائه، فدقة الكشف بعد التجميع حرجة [1]. وتُقاس أربع مناطق من الخارج للداخل — مقعد الختم والحلقة الخارجية المطاطية والحلقة الداخلية المعدنية ونهاية عمود المرفق — بثلاثة ارتفاعات: D1 (نهاية العمود إلى الحلقة الداخلية) وD2 وD3 (المقعد إلى الحلقة الخارجية). ومع ذلك ما يزال فحص ما بعد التجميع يعتمد على القياس اليدوي التلامسي البطيء الذاتي الأخطاء. وتستهدف معظم أعمال الأختام الجودة قبل التجميع — الإحكام الهيكلي ونتوءات الحلقة [2] والاستدارة [3] وخدوش السطح [4] — أو التحليل التصميمي كتحسين التسرب بالعناصر المحددة وديناميكا الموائع [1] وتشخيصات أختام العمود [5]، بينما يعالج التجميع بالعنقدة الإنتروبية والفروق الحلقية [6] وكشف العيوب بمعالجة الصور [7، 8] الأختام غير المجمعة أيضًا.</p>
+    <p>تحفز منهجيات الضوء الهيكلي ثلاثية الأبعاد (مداس الإطارات [11] وفجوات جلد الطائرات [12] وفجوات أبواب المقصورة [14] وتجاويف لوحة القيادة [17] ومخاريط كابلات الجهد [16] وارتخاء البراغي [15]) نهجًا مركبًا يدمج استخراج منطقة الاهتمام مع قياس الأطوار بإزاحة الطور [18، 19] وفك الالتفاف متعدد الترددات [20] ومطابقة القوالب [22، 23] والمعايرة [24، 25]. وإسهام الورقة هو خط متكامل مباشر — مطابقة تدريجية للقوالب وتقنيع حلقي لمنطقة الاهتمام وإعادة بناء ثلاثية الأبعاد بإزاحة الطور وملاءمة مستويات RANSAC معدلة — مُتحقق منه مقابل اليدوي والبدائل على خط محركات حقيقي.</p>
+  </section>
+  <section>
+    <h2>2. المبدأ</h2>
+    <h3>2.1. أساسيات قياس الأطوار بإزاحة الطور</h3>
+    <p>قياس الأطوار بإزاحة الطور (PSP) طريقة ضوء هيكلي فعّالة [18، 19]: تُسقط أنماط هامشية جيبية على سطح الختم فتتشوه بتضاريسه وتلتقطها كاميرا CCD؛ ويستعيد فك التضمين الطور، ويعطي تحويل الطور-إلى-ارتفاع الإحداثيات ثلاثية الأبعاد (الشكل 2). ومقارنة بقياس فورييه والتموج والتداخل الضوئي الأبيض والليزر زمن الطيران، يوفر PSP دقة ومتانة أعلى — بكلفة إسقاطات متعددة يُحسنها مخطط الترددات الثلاثة والخطوات الأربع للسرعة.</p>
+    <h3>2.2. مطابقة القوالب التدريجية المتعددة</h3>
+    <p>يبدأ التموضع الدقيق للحلقتين بالمطابقة التدريجية للقوالب [22، 23]: مطابقة من الخشن للدقيق عبر المقاييس والتدوير تجد الختم، وملاءمة القطع الناقص بالمربعات الصغرى تستخرج المركز والمحاور، والتوسيع المتحجم محوريًا يحدد الحلقة، والعتبة بين القمة والوادي تجزئ قناع المنطقة الحلقية — كابتة الخلفية والمناطق غير المستهدفة قبل إعادة البناء. وتُسترشد تنقيحات الملاءمة بسمات حواف المنطقة [21] وتحليل الشكل بالمكونات الرئيسية [26].</p>
+    <h3>2.3. إعادة البناء الثلاثي المركب مع RANSAC المعدلة</h3>
+    <p>يفك مخطط إزاحة الطور ثلاثي الترددات رباعي الخطوات الطور المطلق دون التباس [18، 20]، منتجًا سحب نقاط كثيفة لداخل مبيت الحدافة؛ وتتبع معايرة المسقط منهجيات تحويل الطور [25] مع طريقة تشانغ المرنة [24] كمرجع. ثم تلائم خوارزمية RANSAC المحسنة مستويات مناطق الاهتمام الأربع بمتانة — مُخفضة وزن القيم الشاذة من الانعكاسات والاحتجابات — ويعطي حساب المسافة بين المستويات الملاءمة D1/D2/D3 وعمق الكبس، مع تنقيحات دون البكسل مستوحاة من التعرف على البصمات بالضوء الهيكلي [27].</p>
+  </section>
+  <section>
+    <h2>3. التجارب والنتائج</h2>
+    <h3>3.1. إعداد التجربة</h3>
+    <p>رُتبت الحساسات (مسقط وكاميرات لوحية) على خط تجميع المحركات: تُسقط خريطة بلا هامش و12 خريطة هامشية (ثلاثة ترددات × أربع خطوات) لكل فحص؛ وتكتمل إعادة البناء الثلاثية الكاملة لداخل مبيت الحدافة في 17.655 ثانية بـ118,001 نقطة. وبما أن محور الكاميرا لا يبقى عموديًا تمامًا على السطح، تميل السحابة الخام عن مستوي XOY — مما يبرر نهج ملاءمة المستويات بدل المقاطع.</p>
+    <h3>3.2. تحليل القياس ومقارنة الطرق</h3>
+    <p>مقابل ثلاثة بدائل [14، 15، 27]، تتفوق الطريقة المقترحة حاسمًا (الشكل 11): فتقاطع المقطع في الطريقة I [14] يفشل حيث الفروق التدرجية صغيرة والنقاط المتناثرة تضخم أخطاء الارتفاع المحلية؛ والترشيح المباشر في الطريقة II [27] لا يفصل الهدف عن سحب التداخل المتداخلة ارتفاعًا ومكانًا؛ وملاءمة المستوى للعنقود الغالب ثم التدوير للتوازي مع XOY تُبقي انحيازًا متبقيًا. وحدها الخط المركب — قناع المنطقة الحلقية مع RANSAC المعدلة — يعزل المناطق الأربع بنظافة، مُبقيًا الانحرافات النسبية لفرق الارتفاع وعمق الكبس ضمن 0.33% و1.45% على 1415 عينة بنسبة نجاح 96.35%.</p>
+  </section>
+  <section>
+    <h2>4. المناقشة والاستنتاجات</h2>
+    <p>تتفوق طريقة الرؤية المركبة لفحص أختام الزيت بعد التجميع — المطابقة التدريجية للقوالب للمنطقة الحلقية وإزاحة الطور ثلاثية الترددات للإعمار وRANSAC المعدلة لملاءمة المستويات — على القياس اليدوي في السرعة بكثير مع تلبية متطلبات التكرارية والموثوقية: فانحرافات فرق الارتفاع وعمق الانضغاط المقاسة ضمن 0.3323% و1.4461%، والقياس الآلي على 1415 وحدة يبلغ نجاح 98.16% مقابل تفاوت تجميع 0.2 مم، مما يثبت موثوقية الخط الحقيقي. وتبقى قيود: فالحساسات عالية الدقة والحوسبة الثقيلة ترفع التكاليف على المنشآت الصغيرة/المتوسطة، والإضاءة القاسية أو الأسطح المعقدة (كاختلاف المعاملات الحرارية) قد تسبب عدم تطابق.</p>
+    <p>ستخفض الأعمال المستقبلية التكاليف بمساقط أصغر وكاميرات لوحية، وتُقصر الحوسبة عبر التوازي/الخطية لتحسين المنطقة مع إعادة بناء المناطق الأربع معًا، وتضيف تعويض الإضاءة والتكيف البيئي (كإزالة فرط التعرض بشرائط متعددة التعريض)، وتدمج الذكاء الاصطناعي/تعلم الآلة للتجزئة الدقيقة لمنطقة الختم [4] — موسعة الفحص الكفء الموثوق لسيناريوهات صناعية أوسع.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Manual inspection of engine oil-seal assembly dimensions is slow and subjective, and automating online detection of post-assembly height discrepancies is difficult. This paper proposes a composite vision-based method for post-assembly dimensional inspection enabling non-contact, online three-dimensional measurement of oil seals already installed on the engine. Center points and major/minor axes are obtained by ellipse fitting with progressive template matching and least squares; after scaling along the axes, the image is segmented by peak–valley thresholding into an annular ROI mask that reduces complexity. Three-frequency four-step phase-shifting profilometry with an improved RANSAC plane-fitting algorithm then accurately computes inner/outer-ring height difference and press-in depth while rejecting non-target regions. Experiments show the method far outperforms manual measurement in speed, with relative deviations of height difference and press-in depth confined within 0.33% and 1.45%, a 96.35% detection success rate over 1415 samples, and a practical, reliable solution for real-time assembly monitoring with strong industrial potential.</p>
+  </section>
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Engine oil seals are critical mechanical seals preventing oil leakage and dust ingress; crankshaft-seal assembly quality directly affects engine life and performance, so post-assembly detection accuracy is critical [1]. Four zones are measured from outside in — oil-seal seat, rubber outer ring, metal inner ring, crankshaft end — with three heights D1 (crankshaft end to inner ring), D2 and D3 (seat to outer ring). Yet post-assembly inspection still relies on contact-based manual measurement with long inspection times and large subjective errors. Most existing oil-seal work targets pre-assembly quality — structural sealing, outer-ring burrs [2], roundness [3], surface scratches [4] — or design-stage analysis such as Park et al.'s finite-element/CFD leakage optimization [1] and Bzura et al.'s crankshaft-seal diagnostics [5], while entropy-rate clustering and ring-band differencing [6] and image-processing defect detection [7, 8] likewise address unassembled seals.</p>
+    <p>Structured-light 3D methods (tire tread [11], aircraft skin gaps [12], cabin-door gaps [14], dashboard concavities [17], HV-cable cones [16], bolt loosening [15]) motivate a composite approach fusing ROI extraction with phase-shifting profilometry [18, 19] and multi-frequency unwrapping [20], template matching [22, 23] and calibration [24, 25]. The paper's contribution is a full online pipeline — progressive template matching, annular ROI masking, three-frequency four-step PSP reconstruction, and modified-RANSAC plane fitting — validated against manual and alternative methods on a real engine line.</p>
+  </section>
+  <section>
+    <h2>2. Principle</h2>
+    <h3>2.1. Basics of phase-shifting profilometry</h3>
+    <p>Phase-shifting profilometry (PSP) is an active structured-light method [18, 19]: sinusoidal/cosinusoidal fringe patterns are projected onto the seal surface, deform with its topography, and are captured by a CCD camera; demodulation recovers phase, phase-to-height mapping yields 3D coordinates (Figure 2). Versus Fourier-transform profilometry, moiré, white-light interferometry and ToF laser ranging, PSP offers superior accuracy and robustness — at the cost of multiple pattern projections, which the three-frequency four-step scheme optimizes for speed.</p>
+    <h3>2.2. Multiple progressive template matching</h3>
+    <p>Accurate inner/outer-ring localization starts with progressive template matching [22, 23]: coarse-to-fine matching over scales and rotations finds the seal, least-squares ellipse fitting extracts center and axes, axis-scaled expansion defines the annulus, and peak–valley thresholding segments the annular ROI mask — suppressing background and non-target regions before reconstruction. ROI edge line features [21] and PCA shape analysis [26] inform the fitting refinements.</p>
+    <h3>2.3. Composite 3D reconstruction with modified RANSAC</h3>
+    <p>Three-frequency four-step phase shifting unwraps absolute phase without ambiguity [18, 20], producing dense point clouds of the flywheel-housing interior; projector calibration follows phase-mapping methods [25] with Zhang's flexible technique [24] as reference. The improved RANSAC plane-fitting algorithm then fits the four ROI region planes robustly — down-weighting outliers from reflections and occlusions — and distance calculation between fitted planes yields D1/D2/D3 and the press-in depth, with fingerprint-recognition structured-light refinements [27] informing sub-pixel handling.</p>
+  </section>
+  <section>
+    <h2>3. Experiments and Results</h2>
+    <h3>3.1. Experimental setup</h3>
+    <p>Sensors (projector plus board-level cameras) are arranged on the engine assembly line: one fringe-free map and 12 three-frequency four-step fringe maps are projected per inspection; full 3D reconstruction of the flywheel-housing interior completes in 17.655 s with 118,001 points. Because the camera axis cannot stay perfectly normal to the surface, the raw cloud tilts off the XOY plane — motivating the plane-fitting (rather than cross-section) approach.</p>
+    <h3>3.2. Measurement analysis and method comparison</h3>
+    <p>Against three alternatives [14, 15, 27], the proposed method wins decisively (Figure 11): Method I's cross-section intersection [14] fails where gradient differences are small and sparse points inflate local height errors; Method II's straight pass-through filtering [27] cannot separate target from interference clouds overlapping in height and space; plane-fitting the dominant cluster then rotating to XOY-parallel still leaves residual bias. Only the composite pipeline — annular ROI mask plus modified RANSAC — isolates all four regions cleanly, holding relative deviations of height difference and press-in depth within 0.33% and 1.45% across 1415 samples at 96.35% success.</p>
+  </section>
+  <section>
+    <h2>4. Discussion and Conclusions</h2>
+    <p>The composite vision method for post-assembly oil-seal inspection — progressive template matching for the annular ROI, three-frequency four-step phase shifting for reconstruction, modified RANSAC for plane fitting — far exceeds manual measurement in speed while meeting repeatability and reliability demands: measured height-difference and compression-depth deviations lie within 0.3323% and 1.4461%, and automatic measurement over 1415 units reaches 98.16% success against the 0.2 mm assembly tolerance, proving real-line reliability. Limitations remain: high-precision sensors and heavy computation raise costs for small/medium enterprises, and extreme lighting or complex workpiece surfaces (e.g., differing heat treatments) can cause mismatch.</p>
+    <p>Future work will cut costs with smaller projectors and board-level cameras, shorten compute via parallel/linear ROI optimization with simultaneous four-region rebuilding, add light-compensation and environmental adaptation (e.g., multi-exposure stripe removal of overexposure), and incorporate AI/ML for precise seal-area segmentation [4] — extending efficient, reliable inspection to broader industrial scenarios.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Park, W. et al. Oil-Sealing Performance Evaluation of Labyrinth Seal. Lubricants 2023, 11, 400.</li>
+      <li>[2] Jiang, L.; Zhang, X. Inspection algorithm based on Gaussian filtering for oil seal spring. Opt. Eng. 2014, 53, 102–108.</li>
+      <li>[3] Wu, Z.J. et al. An Online Visual Inspection System for Oil-Seal Dimension. Appl. Mech. Mater. 2012, 130–134, 3548–3552.</li>
+      <li>[4] Xia, G.F.; Yu, Z.L. Oil Seal Defect Detection Method Based on Deep Learning. J. Mech. Electr. Eng. 2023, 40, 69–75.</li>
+      <li>[5] Bzura, P. Diagnostic Model of Crankshaft Seals. Pol. Marit. Res. 2019, 26, 39–46.</li>
+      <li>[6] Liu, J. et al. Oil seal defect detection based on entropy rate clustering and ring-band differencing. Modul. Mach. Tool 2018, 8, 90–92.</li>
+      <li>[7] Zhang, G. et al. Image processing in oil seal defect detection. Inf. Technol. Informat. 2020, 11, 72–73.</li>
+      <li>[8] Shi, L.; Yu, Z.L. Oil seal defect detection based on image processing. J. Changchun Univ. Sci. Technol. 2021, 44, 48–54.</li>
+      <li>[9] Del Olmo, A. et al. Tool wear monitoring of high-speed broaching. Mech. Syst. Signal Process. 2022, 172, 109003.</li>
+      <li>[10] Aldekoa, I. et al. Early detection of tool wear in electromechanical broaching machines. Mech. Syst. Signal Process. 2023, 204, 110773.</li>
+      <li>[11] Xu, L.; Pang, M. Tire tread depth measurement based on structured light. Laser J. 2022, 43, 179–183.</li>
+      <li>[12] Xu, D.S.; Du, F.Z. Gap and step measurement of aircraft skin seams based on line structured light. Aerosp. Manuf. Technol. 2017, 5, 77–81.</li>
+      <li>[13] Yu, S. et al. Depth Measurement Error Analysis of Structured Light Depth Imager. Photonics 2024, 11, 396.</li>
+      <li>[14] Zhao, H. et al. Aircraft cabin door gap measurement based on planar structured light. Sci. Technol. Eng. 2024, 24, 1045–1051.</li>
+      <li>[15] Li, S.Y. et al. Bolt loosening angle measurement based on 3D point cloud. Automat. Constr. 2024, 168, 105785.</li>
+      <li>[16] Zheng, Z.H. et al. Dimensional measurement of anti-stress cone of HV cable joints based on 3D point cloud. Meas. Sci. Technol. 2023, 34, 115009.</li>
+      <li>[17] Wang, C.Y. et al. Measurement of concave polygon of automotive dashboard based on planar structured light. J. Appl. Opt. 2023, 43, 143–149.</li>
+      <li>[18] Wang, J. et al. Noise-induced phase error comparison in multi-frequency phase-shifting profilometry. Opt. Laser Technol. 2023, 159, 109034.</li>
+      <li>[19] Yan, H. et al. Microscopic fringe projection profilometry: A review. Opt. Lasers Eng. 2020, 135, 106192.</li>
+      <li>[20] Tomislav, P. et al. Selection of optimal frequencies in multiple-frequency fringe projection profilometry. Opt. Lasers Eng. 2023, 163, 107455.</li>
+      <li>[21] Duan, S.S. ROI edge image straight line feature for belt deviation detection. China Min. Mag. 2024, 33, 162–167.</li>
+      <li>[22] Han, Y. Reliable Template Matching for Image Detection in Vision Sensor Systems. Sensors 2021, 21, 8176.</li>
+      <li>[23] Wang, S.C. et al. Automatic laser profile recognition and fast tracking using deep learning and template matching. Measurement 2021, 169, 108362.</li>
+      <li>[24] Zhang, Z.Y. A flexible new technique for camera calibration. IEEE Trans. Pattern Anal. Mach. Intell. 2000, 22, 1330–1334.</li>
+      <li>[25] Liu, Y. et al. Improved Projector Calibration by Phase Mapping Based on Fringe Projection Profilometry. Sensors 2023, 23, 1142.</li>
+      <li>[26] Shui, W.Y. et al. A PCA-Based method for craniofacial relationship and sexual dimorphism. Comput. Biol. Med. 2017, 90, 33–49.</li>
+      <li>[27] Huang, J. et al. Fingerprint Precision Recognition Based on Structured Light. J. Appl. Opt. 2025, in press.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/machines13040261">10.3390/machines13040261</a> · License: CC BY 4.0 · PDF: <a href="paper.pdf">paper.pdf</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-Layer AI Sensor System for Real-Time GPS Spoofing Detection and Encrypted UAS Control — DAR</title>
+<meta name="description" content="Multi-Layer AI Sensor System for Real-Time GPS Spoofing Detection and Encrypted UAS Control: Arabic/English bilingual research viewer.">
+<link rel="canonical" href="https://dararchive.com/papers/gps-spoofing-ai-sensors/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Multi-Layer AI Sensor System for Real-Time GPS Spoofing Detection and Encrypted UAS Control</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نظام حسي متعدد الطبقات بالذكاء الاصطناعي لكشف انتحال GPS لحظيًا والتحكم المشفر في الطائرات غير المأهولة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ayoub Alsarhan, Bashar S. Khassawneh, Mahmoud AlJamal, Zaid Jawasreh, Nayef H. Alshammari, Sami Aziz Alshammari, Rahaf R. Alshammari</span>
+    <span>📄 Sensors 2026, 26, 843</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s26030843">10.3390/s26030843</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تؤدي الأنظمة الجوية غير المأهولة دورًا متزايد الأهمية في التطبيقات المدنية والدفاعية، لكن اعتمادها الكبير على إشارات النظام العالمي للملاحة بالأقمار الصناعية (GNSS) غير المشفرة، ولا سيما GPS، يجعلها شديدة التعرض لهجمات انتحال الإشارات بما تحمله من مخاطر تشغيلية وأمنية جسيمة. تقدم هذه الورقة إطار عمل حسيًا شاملًا متعدد الطبقات مدعومًا بالذكاء الاصطناعي يتيح كشف الانتحال لحظيًا مع اتصالات قيادة وتحكم (C2) آمنة في منصات الطائرات الخفيفة. وتُعزَّز موثوقية القياسات عبر خط معالجة مُحسَّن يشمل مؤشر انحراف GPS الجديد (GDI)، وتطبيعًا إحصائيًا متينًا، وزيادة عينات مقيدة بالعناقيد، وتقليل ضوضاء قائم على مرشح كالمان، وترشيح الرباعيات، مما يحسّن قابلية فصل الشذوذ تحت التلاعب العدائي. وعلى هذه السمات، يولّد نهج البحث المعماري القابل للتفاضل (DARTS) شبكات عصبية خفيفة مُحسّنة للكشف السريع على متن الطائرة. وللقيادة والتحكم الآمنتين، يدمج الإطار طبقة تشفير منخفضة الكمون باستخدام PRESENT-128 ومصادقة CMAC، بإضافة 1.79 مللي ثانية فقط و0.51 مللي جول. وأظهرت التقييمات دقة كشف 99.99% ودرجة F1 قدرها 0.999 وAUC قدره 0.9999، مما يؤكد صلاحية النشر في بيئات الطائرات المقيدة الموارد.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>الأنظمة الجوية غير المأهولة منصات سيبرانية-فيزيائية غنية بالحساسات انتقلت من أدوات دفاعية متخصصة إلى أصول حرجة في الرصد البيئي واللوجستيات والاستجابة للطوارئ والزراعة الدقيقة [1،2]. وتقوم قدراتها على هياكل خفيفة ومعالجة مدمجة ووصلات لاسلكية، ترتكز على مستقبلات GNSS — وأبرزها GPS — التي توفر دقة موقعية عالية بطاقة منخفضة وتوافر عالمي [3،4]. واستقلالية الطائرات مسألة استشعار أساسًا: إذ يجب اكتساب القياسات متعددة الوسائط وترشيحها ودمجها والتصرف بناءً عليها لحظيًا في ظل قيود صارمة على الطاقة والكتلة والكمون [5].</p>
+    <p>يخلق هذا الاعتماد على إشارات GNSS المفتوحة منخفضة الطاقة سطح هجوم موثقًا جيدًا. فبثوث GPS المدنية غير مشفرة وسهلة التغلب عليها أو محاكاتها، مما يعرّض الملاحة للتداخل والتلاعب المتعمدين [6]. ومن أخطر التهديدات انتحال GPS، حيث تدفع إشارات مزيفة شبيهة بالأقمار الصناعية إلى حل ملاحي مزوَّر يُدهور التوجيه والتحكم بصمت دون إطلاق إنذارات [7،8]. وبخلاف التشويش، يقوّض الانتحال السلامة لا التوافر، مخاطرًا بانتهاكات المجال الجوي وفساد المهام أو فقدان المركبة [9،10]، مع تقارير ميدانية عن قفزة حادة من نحو 260 ألف حادثة عام 2023 إلى أكثر من 430 ألفًا عام 2024 [11،12].</p>
+    <p>قد تكون الدفاعات التقليدية كالمصفوفات متعددة الهوائيات والاحتياطية بالقصور الذاتي فعالة لكنها غير عملية غالبًا للمنصات الصغيرة المقيدة التكلفة والطاقة [13]. ويوفر الاستشعار المدعوم بالذكاء الاصطناعي مسارًا برمجيًا يتوافق مع ميزانيات موارد الطائرات: إذ يمكن لنماذج تعلم الآلة والتعلم العميق تعلّم بصمات الانتحال القياسية ميدانيًا، مما يتيح الكشف على متن الطائرة دون تعديلات عتادية [14،15]. لذا يستهدف الإطار المقترح أربعة قيود مستمرة — اختلال الفئات، وضوضاء القياسات، والتصميم المعماري اليدوي، وروابط القيادة غير الآمنة — عبر معالجة مخصصة للمجال وشبكات مُحسّنة بـDARTS وتشفير خفيف موثّق.</p>
+  </section>
+
+  <section>
+    <h2>2. الأعمال ذات الصلة</h2>
+    <p>أظهرت نماذج تعلم الآلة التقليدية مثل آلات المتجهات الداعمة والغابات العشوائية والانحدار اللوجستي أداءً تنافسيًا على شذوذ القياسات. وسجّل إطار خفيف لا يتطلب تعديلات عتادية معدل كشف 96.67% مع كمون 0.024 ميكروثانية لكل تنبؤ للانحدار اللوجستي على بيانات انتحال ساكنة وديناميكية [21]. ويطبق PerDet كشف انتحال GPS للطائرات بتعلم الآلة باستخدام بيانات الإدراك [18]، وحقق إطار متعدد الحساسات قائم على الإدراك باستخدام بيانات متكاملة من مقاييس التسارع والجيروسكوب والبارومتر مع الغابات العشوائية وآلات المتجهات الداعمة دقة تصل إلى 99.69% [18]. لكن هذه الأساليب تواجه صعوبة متكررة في التكيف مع تقنيات الانتحال المتطورة أو التعميم عبر البيئات المتنوعة.</p>
+    <p>تعالج مناهج التعلم العميق قيود هندسة السمات والقابلية للتكيف: إذ رفعت شبكات LSTM مع الخوارزميات الجينية لضبط الفرط-بارامترات درجات F1 إلى 93.39% [15]. وتؤثر جودة البيانات وارتباط السمات واختيار النماذج الديناميكي بقوة في الدقة، إذ تجاوزت نماذج الغابات العشوائية وCART نسبة 99.9% مع اختيار السمات التجميعي والتحسين البايزي [29،30]. وبالنسبة للطائرات المدمجة، يظل زمن الاستدلال والتعقيد الحسابي عائقًا، وتؤكد الدراسات المسحية غياب التحقق اللحظي وندرة البيانات والمتطلبات الحسابية المرتفعة وضعف التعميم على الظروف العدائية — مما يحفز نماذج توازن بين الكفاءة والأداء في بيئات الطائرات المقيدة الموارد [31،32].</p>
+  </section>
+
+  <section>
+    <h2>3. المنهجية ومجموعة البيانات</h2>
+    <p>تستخدم المنهجية تصميمًا تجريبيًا متعدد المراحل: خط أساس لتعلم الآلة للأداء التأسيسي؛ وخط تعزيز مخصص للمجال لتحسين قابلية فصل الفئات وجودة البيانات؛ وبحث معماري قابل للتفاضل لتحديد آلي لشبكات خفيفة عالية الأداء للنشر اللحظي. وتبني كل مرحلة على سابقتها نحو نظام آمن جاهز للمحاكاة يُقيَّم عبر مصنفات متعددة. وتستخدم التجارب مجموعة بيانات هجمات الطائرات العامة [33] التي تضم قراءات GPS مزدوجة وبيانات اتجاه بالرباعيات وقياسات موسومة سليمة ومُنتحَلة.</p>
+    <p>يوحّد خط المعالجة سبع عمليات: (1) حساب مؤشر انحراف GPS من عدم الاتساق المكاني بين المجرَيين [37]؛ و(2) عتبة التباين بإزالة السمات ذات التباين دون 10⁻⁶ (من 84 قناة إلى 49)؛ و(3) تطبيع Z المتين بالوسيط والمدى الربيعي للحفاظ على القيم الشاذة ذات الصلة بالانتحال؛ و(4) زيادة عينات SMOTE المقيدة بالعناقيد للفئة الأقل عبر الاستيفاء داخل العنقود؛ و(5) ترشيح كالمان لمحاور GPS الموضعية لإزالة الضوضاء؛ و(6) تنعيم سافيتزكي-غولاي (من الدرجة 2 ونافذة 11) لمركبات الرباعيات؛ و(7) تدقيق السمات بالاحتفاظ بالأعلى ارتباطًا بالوسم مع المتغيرات الحرجة للمجال كالطابع الزمني والرباعيات ودقة GPS والارتفاع والتضاريس.</p>
+  </section>
+
+  <section>
+    <h2>المعالجة: مؤشر الانحراف والموازنة وإزالة الضوضاء</h2>
+    <p>يقيس مؤشر انحراف GPS عدم الاتساق بين مصدري GPS كمعيار إقليدي لفروق خطوط العرض والطول والارتفاع، مُنعَّمًا بمتوسط متحرك من نافذة 5 [37]. وأثناء الانتحال، يُتلاعَب بأحد المجرَيين خبثًا، منتجًا قفزات مفاجئة في المؤشر وتوزيعات ملتوية يمينًا تجعل الشذوذ ظاهرًا. ثم يعادل التطبيع المتين مقادير السمات مع الحفاظ على القيم الشاذة، مما يثبّت تقارب النماذج.</p>
+    <p>يُعالَج اختلال الفئات بـSMOTE المقيدة بالعناقيد: عنقدة k-means للفئة الأقل ثم استيفاء داخل العنقود يولّد عينات انتحال اصطناعية متوافقة مع العناقيد الأصلية، كما تؤكد إسقاطات PCA حيث تتداخل العينات الاصطناعية مع التوزيع الحقيقي المُنتحَل. ويرشّح التكرار التنبؤي-التحديثي لكالمان كل محور موضعي لـGPS، محافظًا على اتجاهات المسار مع تقليل الضوضاء، بينما يقلل تنعيم الرباعيات الاهتزاز مع الاحتفاظ بالديناميكيات الدورانية.</p>
+    <p>يجمع تدقيق السمات النهائي بين ترشيح ارتباط بيرسون والخبرة المجالية: فالطابع الزمني يلتقط تقدم الرحلة وتوقيت الأحداث؛ والرباعيات q_0–q_3 ترمّز السلوك الدوراني وعدم الاستقرار؛ وalt_x وalt_ellipsoid_x يعكسان تقلبات الارتفاع الشاذة؛ وeph_x وepv_x يمثلان تدهور دقة GPS؛ وterrain_alt يكشف حقن الارتفاع الكاذب نسبةً إلى سطح الأرض. واحتُفظ بالمتغيرات الحرجة للمجال بغض النظر عن الارتباط الخطي لأنها تحمل سياقًا حركيًا ذا صلة عملياتية بمظاهر الانتحال.</p>
+  </section>
+
+  <section>
+    <h2>مرحلة التعلم المُحسّنة بـDARTS</h2>
+    <p>نظرًا لتزايد تطور هجمات انتحال GPS في بيئات الطائرات، يجب أن تكون النماذج الذكية دقيقة وخفيفة وفعالة حسابيًا للتشغيل اللحظي. فالشبكات العصبية الاصطناعية التقليدية المعتمدة على التصميم المعماري اليدوي أو الضبط الشاق للفرط-بارامترات غير فعالة وضعيفة التوسع للأنظمة الجوية المتغيرة ديناميكيًا [39]. لذا يوظف الإطار البحث المعماري القابل للتفاضل، الذي يرخي الخيارات التصميمية المتقطعة — دوال التفعيل واتصالات الطبقات وأعداد الخلايا — إلى بارامترات قابلة للتفاضل تُحسَّن مع أوزان النموذج عبر تحسين ثنائي المستوى بالتدرج، خلافًا لنماذج التعلم المعزز أو التطوري.</p>
+    <p>تتنوع خمسة تكوينات بحث (DARTS-1 إلى DARTS-5) في حقب التدريب (50–150) وأحجام الدفعات وفضاءات البحث ومعدلات التعلم واضمحلال الأوزان ونسب التحقق وأعداد العقد وقيود الكمون، مع التقطيع لاختيار البنية المدمجة النهائية. وتراقب طبقة المتابعة الآنية ديناميكيات المؤشر وثقة النموذج: فتُحدَّث المكونات الخفيفة كإحصاءات التطبيع وعتبات القرار فور انزياح التوزيع، بينما يعيد التكيف الأعمق تشغيل DARTS على قياسات المهام الجديدة للحصول على شبكة مدمجة محدثة — مما يُبقي الكاشف فعالًا أمام استراتيجيات الانتحال المتطورة دون إعادة تدريب ثقيلة على متن الطائرة أثناء الرحلة.</p>
+  </section>
+
+  <section>
+    <h2>الاستجابة الآمنة لحظيًا: PRESENT-128 وCMAC</h2>
+    <p>تقترن مرحلة الاستجابة الآمنة ذكاء الكشف بالحماية المشفرة والاستجابة الديناميكية والاتصال الموثّق. تُحشى الحمولة M = [الوسم، الطابع الزمني، الدرجة، معرّف الطائرة] إلى محاذاة 64 بت، وتُقسَّم إلى كتل 64 بت، وتُشفَّر بـPRESENT-128 في وضع CBC: جدول مفاتيح من 32 جولة، وتسلسل XOR، و31 تكرارًا من إضافة مفتاح الجولة والاستبدال بصناديق-S رباعية البت وطبقة التبديل للانتشار مع التبييض النهائي. ويطبّق التوثيق وسم CMAC محسوبًا بنواة PRESENT على النص المشفر، مقتطعًا إلى 64 بت.</p>
+    <p>تحافظ هذه الطبقة الخفيفة على السرية والسلامة بإضافة 1.79 مللي ثانية فقط و0.51 مللي جول، متفوقة على AES-128 وChaCha20 في قياسات المؤلفين. وعبر خمس تجارب مستقلة في ظروف عتادية وبرمجية متطابقة، بلغ متوسط زمني التشفير وفك التشفير نحو 0.83 مللي ثانية لكل منهما — قرابة نصف AES-128 وأقل بكثير من ChaCha20 — مع سلوك شديد الاستقرار وتباين زمني ضئيل، وهي خاصية حرجة للأنظمة السيبرانية-الفيزيائية اللحظية.</p>
+  </section>
+
+  <section>
+    <h2>4. النتائج</h2>
+    <p>تربط تتبعية قياسات الحساسات كل مرحلة بمدخلاتها: مجريا GPS المزدوجان والطوابع الزمنية يغذيان حساب المؤشر؛ وجميع القنوات الرقمية تغذي عتبة التباين والقياس المتين؛ والسمات المقيسة والوسوم تغذي موازنة C-SMOTE؛ والمحاور الموضعية تغذي إزالة ضوضاء كالمان؛ وقنوات الرباعيات تغذي تنعيم سافيتزكي-غولاي؛ ومتجه السمات المدقق يغذي شبكة DARTS-ANN للتنبؤ بحالة الانتحال مع درجة ثقة، يليه تشفير رسائل القيادة والتحكم وتوثيقها.</p>
+    <p>حققت الشبكات المُحسّنة بـDARTS كشفًا شبه مثالي: دقة 99.99% ودرجة F1 قدرها 0.999 وAUC قدره 0.9999. وبينما استقرت المصنفات الأساسية مع C-SMOTE قرب دقة 99.5%، رمّزت التمثيلات الكامنة المدمجة المعبرة التبعيات اللاخطية بين بارامترات الملاحة والقصور الذاتي، رافعةً الدقة والاستدعاء فوق 0.999 مع تعميم قوي تشهد به الفجوات الصغيرة بين التدريب والاختبار. وتؤكد معدلات الإيجابيات الكاذبة دون 0.002 في DARTS-4 وDARTS-5 الموثوقية عبر نوافذ اختبار طويلة وسلوكيات انتحال متنوعة، حيث تكون حدود القرار الثابتة للمصنفات الحتمية أكثر حساسية لانزياحات التوزيع.</p>
+  </section>
+
+  <section>
+    <h2>تحليل النشر والاستنتاجات</h2>
+    <p>تُظهر المقارنة الموجهة للنشر أن دراسات الرحلات الحقيقية على منصات Pixhawk وPX4/u-blox سجلت كمون استدلال 1.81–1.94 مللي ثانية [18] دون أرقام للطاقة أو الذاكرة، وشبكات DNN الموجهة لـTinyML (64–32–4) بكمون 1.84 مللي ثانية دون اتصال مع بيانات المدد المستدامة [26]، والنماذج التجميعية ونماذج محاكاة CARLA بكمون 2.13 مللي ثانية [22،23]، وبنى CTDNN-Spoof المدمجة بكمون تنافسي [26]. ويسجل نظام الطائرة الطرفية في هذا العمل كمون 1.79 مللي ثانية مع طاقة 0.51 مللي جول لشبكة DARTS-ANN على قياسات لحظية — محققًا قيود الزمن الحقيقي لمتحكمات الطيران مع توثيق ميزانية الطاقة على متن الطائرة التي أغفلتها الدراسات السابقة.</p>
+    <p>يقدم الإطار أساسًا قابلًا للنشر والتوسع لكشف الانتحال المرن لحظيًا والاستقلالية الآمنة: فطبقات الاستشعار المخصصة للمجال تكشف التناقضات العدائية، ويوفر DARTS بنى تكيفية خفيفة، ويؤمّن PRESENT-128 مع CMAC روابط القيادة بتكلفة ضئيلة. ويضعه المؤلفون نظامًا حسيًا مدعومًا بالذكاء الاصطناعي يوفر ملاحة متينة وآمنة لمواجهة انتحال GPS في المركبات الجوية المستقلة العاملة في ظل ميزانيات صارمة للطاقة والكتلة والكمون.</p>
+  </section>
+
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Unmanned Aerial Systems (UASs) play an increasingly critical role in civilian and defense applications, but their reliance on unencrypted Global Navigation Satellite System (GNSS) signals, particularly GPS, makes them highly susceptible to spoofing attacks with severe operational and safety consequences. This paper introduces a comprehensive AI-driven multi-layer sensor framework enabling simultaneous real-time spoofing detection and secure command-and-control (C2) communication in lightweight UAS platforms. Telemetry reliability is enhanced through a refined preprocessing pipeline with a novel GPS Drift Index (GDI), robust statistical normalization, cluster-constrained oversampling, Kalman-based noise reduction, and quaternion filtering, improving anomaly separability under adversarial manipulation. On this feature space, a differentiable architecture search (DARTS) approach dynamically generates lightweight neural networks optimized for fast onboard detection. For secure C2, the framework integrates a low-latency cryptographic layer using PRESENT-128 encryption and CMAC authentication, adding only 1.79 ms latency and 0.51 mJ energy cost. Evaluations report 99.99% detection accuracy, an F1-score of 0.999, and an AUC of 0.9999, validating deployment in real-world resource-constrained UAS environments.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Unmanned Aerial Systems are sensor-rich cyber-physical platforms that have transitioned from niche defense tools to mission-critical assets in environmental monitoring, logistics, emergency response, and precision agriculture [1,2]. Their capabilities rest on lightweight airframes, embedded processing, and wireless links, anchored by GNSS receivers — most notably GPS — providing high positional accuracy at low power with global availability [3,4]. UAS autonomy is fundamentally a sensing problem: multi-modal measurements must be acquired, filtered, fused, and acted upon in real time under tight energy, mass, and latency constraints [5].</p>
+    <p>This reliance on open, low-power GNSS signals creates a well-documented attack surface. Civilian GPS broadcasts are unencrypted and easily overpowered or emulated, exposing navigation to intentional interference and manipulation [6]. Among the most consequential threats is GPS spoofing, in which falsified satellite-like signals induce a forged navigation solution that silently degrades guidance and control without triggering alarms [7,8]. Compared with jamming, spoofing undermines integrity rather than availability, risking airspace violations, mission corruption, or loss of the vehicle [9,10], with field reports indicating a sharp rise from roughly 260,000 incidents in 2023 to more than 430,000 in 2024 [11,12].</p>
+    <p>Traditional defenses such as multi-antenna arrays and inertial redundancy can be effective but are often impractical for small, cost- and power-constrained platforms [13]. AI-enabled sensing offers a software-centric pathway aligned with UAS resource budgets: machine learning and deep learning models can learn telemetry signatures of spoofing in situ, enabling onboard detection without hardware modifications [14,15]. The proposed framework therefore targets four persistent constraints — class imbalance, noisy telemetry, manual architecture design, and insecure command links — through domain-specific preprocessing, DARTS-optimized networks, and lightweight authenticated encryption.</p>
+  </section>
+
+  <section>
+    <h2>2. Related works</h2>
+    <p>Conventional machine learning models such as Support Vector Machines, Random Forests, and Logistic Regression have shown competitive performance on telemetry anomalies. A lightweight ML framework requiring no hardware changes reported a 96.67% detection rate with 0.024 µs per-prediction latency for Logistic Regression on static and dynamic spoofing datasets [21]. PerDet applies machine-learning-based UAV GPS spoofing detection using perception data [18], and a multi-sensor perception-based ML framework utilizing complementary accelerometer, gyroscope, and barometer data with Random Forests and SVMs achieved up to 99.69% accuracy [18]. Yet these methods frequently struggle to adapt to evolving spoofing techniques or generalize across diverse environments.</p>
+    <p>Deep-learning approaches address feature-engineering and adaptability limits: LSTM networks combined with Genetic Algorithms for hyperparameter tuning raised F1-scores to 93.39% [15]. Dataset quality, feature correlation, and dynamic model selection strongly affect accuracy, with Random Forest and CART models exceeding 99.9% when combined with ensemble feature selection and Bayesian optimization [29,30]. For embedded UAV use, inference time and computational complexity remain challenging, and survey-based studies stress the lack of real-time validation, dataset scarcity, high computational demands, and poor generalization to adversarial conditions — motivating models that balance efficiency and performance in resource-constrained UAV environments [31,32].</p>
+  </section>
+
+  <section>
+    <h2>3. Methodology and dataset</h2>
+    <p>The methodology uses a multi-phase experimental design: a baseline machine-learning pipeline for foundational performance; a domain-specific enhancement pipeline improving class separability and data quality; and differentiable architecture search to automatically identify high-performing lightweight networks for real-time deployment. Each stage builds on the previous one toward a secure, simulation-ready system evaluated across multiple classifiers. Experiments use the public UAV Attack Dataset [33], containing dual-GPS readings, quaternion orientation data, and labeled benign and spoofed telemetry.</p>
+    <p>The preprocessing pipeline unifies seven operations: (1) GPS Drift Index computation from dual-stream spatial inconsistency [37]; (2) variance thresholding removing features with variance below 10⁻⁶ (reducing 84 channels to 49); (3) robust Z-score normalization using median and interquartile range to preserve spoofing-relevant outliers; (4) cluster-constrained SMOTE oversampling of the minority class via intra-cluster interpolation; (5) Kalman filtering of GPS positional axes for denoising; (6) Savitzky–Golay smoothing (polynomial order 2, window 11) of quaternion components; and (7) feature audit retaining top label-correlated features plus domain-critical timestamp, quaternion, GPS-accuracy, altitude, and terrain variables.</p>
+  </section>
+
+  <section>
+    <h2>Preprocessing: drift index, balancing, and denoising</h2>
+    <p>The GPS Drift Index measures inconsistency between two GPS sources as the Euclidean norm of their latitude, longitude, and altitude differences, smoothed with a moving average of window 5 [37]. During spoofing, one stream is maliciously altered, producing abrupt GDI spikes and right-skewed distributions that make anomalies visible. Robust normalization then equalizes feature magnitudes while preserving outliers, stabilizing model convergence.</p>
+    <p>Class imbalance is addressed with cluster-constrained SMOTE: k-means clustering of the minority class followed by intra-cluster interpolation generates synthetic spoofed samples aligned with original spoofed clusters, as confirmed by PCA projections where synthetic samples overlap the real spoofed distribution. Kalman prediction–update recursion filters each GPS positional axis, preserving trajectory trends while reducing noise, and quaternion smoothing reduces jitter while retaining rotational dynamics.</p>
+    <p>The final feature audit combines Pearson correlation filtering with domain expertise: timestamp captures flight progression and event timing; quaternions q_0–q_3 encode rotational behavior and instability; alt_x and alt_ellipsoid_x reflect abnormal altitude fluctuations; eph_x and epv_x represent degraded GPS precision; and terrain_alt exposes false altitude injection relative to ground level. Domain-critical variables were retained regardless of linear correlation because they carry kinematic context operationally relevant to spoofing manifestations.</p>
+  </section>
+
+  <section>
+    <h2>DARTS-optimized learning stage</h2>
+    <p>Because GPS spoofing attacks in UAV environments are increasingly sophisticated, intelligent models must be accurate, lightweight, and computationally efficient for real-time operation. Traditional ANNs relying on manual architecture design or laborious hyperparameter tuning are ineffective and poorly scalable for dynamically changing UAV systems [39]. The framework therefore employs differentiable architecture search, which relaxes discrete design choices — activation functions, layer connections, neuron counts — into differentiable parameters optimized in tandem with model weights through bilevel gradient optimization, unlike reinforcement-learning or evolutionary search paradigms.</p>
+    <p>Five search configurations (DARTS-1 to DARTS-5) vary training epochs (50–150), batch sizes, search spaces, learning rates, weight decay, validation splits, node counts, and latency constraints, with discretization selecting the final compact architecture. The online monitoring layer tracks GDI dynamics and model confidence: lightweight components such as normalization statistics and decision thresholds update immediately on distribution shift, while deeper adaptation re-runs DARTS on newly collected mission telemetry to obtain an updated compact ANN — keeping the detector effective under evolving spoofing strategies without heavy onboard retraining during flight.</p>
+  </section>
+
+  <section>
+    <h2>Real-time secure response: PRESENT-128 and CMAC</h2>
+    <p>The secure response stage couples detection intelligence with cryptographic protection, dynamic response, and authenticated communication. The payload M = [label, timestamp, score, UAV_ID] is padded to 64-bit alignment, split into 64-bit blocks, and encrypted with PRESENT-128 in CBC mode: 32-round key schedule, XOR chaining, 31 iterations of round-key addition, 4-bit S-box substitution, and permutation-layer diffusion with final whitening. Authentication applies a CMAC tag computed with the PRESENT core over the ciphertext, truncated to 64 bits.</p>
+    <p>This lightweight layer preserves confidentiality and integrity while adding only 1.79 ms latency and 0.51 mJ energy cost, outperforming AES-128 and ChaCha20 in the authors’ benchmarks. Across five independent trials under identical hardware and software conditions, mean encryption and decryption times of approximately 0.83 ms each were nearly half those of AES-128 and significantly below ChaCha20, with highly stable behavior and minimal temporal variation — a critical property for real-time cyber-physical systems.</p>
+  </section>
+
+  <section>
+    <h2>4. Results</h2>
+    <p>Sensor-measurement traceability links every stage to its inputs: dual-GPS streams and timestamps feed GDI computation; all numeric channels feed variance thresholding and robust scaling; scaled features and labels feed C-SMOTE balancing; positional axes feed Kalman denoising; quaternion channels feed Savitzky–Golay smoothing; and the audited feature vector feeds the DARTS-ANN for spoofing-state prediction with confidence scoring, followed by C2 message encryption and authentication.</p>
+    <p>The DARTS-optimized networks achieved near-perfect detection: 99.99% accuracy, F1-score 0.999, and AUC 0.9999. While baseline classifiers with C-SMOTE plateaued near 99.5% accuracy, the compact expressive latent representations encoded nonlinear cross-dependencies between navigation and inertial parameters, lifting precision and recall above 0.999 with strong generalization evidenced by small train–test gaps. False positive rates below 0.002 in DARTS-4 and DARTS-5 confirm reliability over long test windows and across diverse spoofing behaviors, where fixed decision boundaries of deterministic classifiers are more sensitive to distribution shifts.</p>
+  </section>
+
+  <section>
+    <h2>Deployment analysis and conclusions</h2>
+    <p>Deployment-oriented comparison shows real-flight studies on Pixhawk and PX4/u-blox platforms reporting 1.81–1.94 ms inference latencies [18] without energy or memory figures, TinyML-targeted DNNs (64–32–4) at 1.84 ms offline without sustained-duration data [26], stacked ensembles and CARLA-simulation models at 2.13 ms [22,23], and CTDNN-Spoof compact architectures with competitive latency [26]. This work’s edge-UAV system reports 1.79 ms latency with 0.51 mJ energy for a DARTS-ANN on real-time telemetry — meeting flight-controller real-time constraints while documenting the onboard power budget prior studies omit.</p>
+    <p>The framework delivers a deployable, scalable foundation for resilient real-time spoofing detection and secure autonomy: domain-specific sensing layers expose adversarial inconsistencies, DARTS supplies lightweight adaptive architectures, and PRESENT-128 with CMAC secures command links at negligible cost. The authors position it as an AI-enabled sensor system offering robust, secure navigation for countering GPS spoofing in autonomous aerial vehicles operating under strict energy, mass, and latency budgets.</p>
+  </section>
+
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Srivastav, A.; Shandilya, S.; Ortiz-Rodriguez, F. Introduction to Drones, UAVs, and Their Applications. In AI, Cybersecurity and Data Science for Drone and Unmanned Aerial Vehicles; Chapman and Hall/CRC: Boca Raton, FL, USA, 2026; pp. 1–41. https://doi.org/10.3390/s26030843</li>
+      <li>[2] Shuaibu, A.S.; Mahmoud, A.S.; Sheltami, T.R. A review of last-mile delivery optimization: Strategies, technologies, drone integration, and future trends. Drones 2025, 9, 158.</li>
+      <li>[3] Alotaibi, A.; Chatwin, C.; Birch, P. Evaluating global navigation satellite system (GNSS) constellation performance for unmanned aerial vehicle (UAV) Navigation Precision. J. Comput. Commun. 2024, 12, 39–62.</li>
+      <li>[4] Senhaji-Mouhaddib, I.; Bouzakri, S.; Lagrat, I. Advanced autonomous navigation technologies for uavs: Challenges and opportunities. In Proceedings of the 2024 4th International Conference on Innovative Research in Applied Science, Engineering and Technology (IRASET), Fez, Morocco, 16-17 May 2024; …</li>
+      <li>[5] Sapkota, R.; Roumeliotis, K.I.; Karkee, M. UAVs Meet Agentic AI: A Multidomain Survey of Autonomous Aerial Intelligence and Agentic UAVs. arXiv 2025, arXiv:2506.08045.</li>
+      <li>[6] Mina, T.Y. Toward the Next Generation of GPS Signals: New Codes and Navigation Security; Stanford University, Stanford, CA, USA, 2023.</li>
+      <li>[7] Eltoukhy, A.E. Electronic Warfare Cyberattacks, Countermeasures, and Modern Defensive Strategies of UAV Avionics: A Survey IEEE Access 2025, 13, 68660–68681.</li>
+      <li>[8] Nweze, O.A. Utilizing Deep Learning Models to Detect Jamming and Spoofing Attacks on Unmanned Aerial Vehicles; The George Washington University: Washington, DC, USA, 2025.</li>
+      <li>[9] Charitou, N. Understanding and Mitigating GPS Spoofing Attacks in Shipping. Master’s Thesis, University of Piraeus Piraeus, Greece, 2025.</li>
+      <li>[10] Chowdhury, A.A.N. Machine Learning and Statistical Methods for GNSS Spoofing Detection: A Systematic Review and Deep Reinforcement Learning Simulation. Master’s Thesis, University of Vaasa, Vaasa, Finland, 2025.</li>
+      <li>[11] IATA. GPS Jamming and Spoofing Rise Sharply; IATA: Montreal, QC, Canada, 2025.</li>
+      <li>[12] Indian Express. How GPS Interference Threatens Global Transportation; Indian Express: Nodia, India, 2024.</li>
+      <li>[13] Priyadarshani, R.; Park, K.H.; Ata, Y.; Alouini, M.S. Jamming intrusions in extreme bandwidth communication: A comprehensive overview. IEEE Open J. Commun. Soc. 2025, 6, 7125–7149.</li>
+      <li>[14] Maynard, L. Advanced Machine Learning and Low-Dimensionality Projection Techniques for Enhanced GNSS Interference and Spoofing Detection. Ph.D. Thesis, University of Colorado, Colorado Springs, CO, USA, 2025.</li>
+      <li>[15] Al-Sabbagh, A.; El-Bokhary, A.; El-Koussa, S.; Jaber, A.; Elkhodr, M. Enhancing UAV Security Against GPS Spoofing Attacks Through a Genetic Algorithm-Driven Deep Learning Framework. Information 2025, 16, 115.</li>
+      <li>[16] Yang, Z.; Zhang, Y.; Jie, Z.; Yang, Y.; Yufei, J.; Song, H.; Tiejun, L.; Sun, Q.; An, J. AI-Driven Safety and Security for UAVs: From Machine Learning to Large Language Models. Drones 2025, 9, 392.</li>
+      <li>[17] Agyapong, R.A.; Nabil, M.; Nuhu, A.R.; Rasul, M.I.; Homaifar, A. Efficient detection of GPS spoofing attacks on unmanned aerial vehicles using deep learning. In Proceedings of the 2021 IEEE Symposium Series on Computational Intelligence (SSCI), 5–7 December 2021, Orlando, FL, USA; IEEE: Piscataway, …</li>
+      <li>[18] Wei, X.; Wang, Y.; Sun, C. PerDet: Machine-learning-based UAV GPS spoofing detection using perception data. Remote Sens. 2022, 14, 4925.</li>
+      <li>[19] The Times of India. Sharp Rise in GPS Jamming, Spoofing Over Conflict Zones; The Times of India: Mumbai, India, 2025.</li>
+      <li>[20] SandboxAQ. The Growing Threat to GPS That Policymakers Can’t Ignore; SandboxAQ: Palo Alto, CA, USA, 2024.</li>
+      <li>[21] Nayfeh, M.; Li, Y.; Al Shamaileh, K.; Devabhaktuni, V.; Kaabouch, N. Machine learning modeling of GPS features with applications to UAV location spoofing detection and classification. Comput. Secur. 2023, 126, 103085.</li>
+      <li>[22] Shabbir, M.; Kamal, M.; Ullah, Z.; Khan, M.M. Securing Autonomous Vehicles against GPS Spoofing Attacks: A Deep Learning Approach. IEEE Access 2023, 11, 105513–105526. https://doi.org/10.1109/ACCESS.2023.3319514.</li>
+      <li>[23] Almutairy, F.; Š´ceki´c, L.; Matar, M.; Elmoudi, R.; Wshah, S. Detection and Mitigation of GPS Spoofing Attacks on Phasor Measurement Units Using Deep Learning. Int. J. Electr. Power Energy Syst. 2023, 151, 109160. https://doi.org/10.1016/j.ijepes.20 23.109160.</li>
+      <li>[24] Dang, Y.; Benzaïd, C.; Yang, B.; Taleb, T.; Shen, Y. Deep-ensemble-learning-based GPS spoofing detection for cellular-connected UAVs. IEEE Internet Things J. 2022, 9, 25068–25085.</li>
+      <li>[25] Eshmawi, A.; Umer, M.; Ashraf, I.; Park, Y. Enhanced machine learning ensemble approach for securing small unmanned aerial vehicles from GPS spoofing attacks. IEEE Access 2024, 12, 27344–27355.</li>
+      <li>[26] Almadhor, A.; Baili, J.; Alsubai, S.; Al Hejaili, A.; Kulhanek, R.; Abbas, S. CTDNN-Spoof: Compact tiny deep learning architecture for detection and multi-label classification of GPS spoofing attacks in small UAVs. Sci. Rep. 2025, 15, 6656.</li>
+      <li>[27] Alanazi, A. SSRL-UAVs: A Self-Supervised Deep Representation Learning Approach for GPS Spoofing Attack Detection in Small Unmanned Aerial Vehicles. Drones 2024, 8, 515.</li>
+      <li>[28] Alhoraibi, L.; Alghazzawi, D.; Alhebshi, R. Detection of GPS Spoofing Attacks in UAVs Based on Adversarial Machine Learning Model. , 24, 6156.</li>
+      <li>[29] Talaei Khoei, T.; Ismail, S.; Shamaileh, K.A.; Devabhaktuni, V.K.; Kaabouch, N. Impact of dataset and model parameters on machine learning performance for the detection of GPS spoofing attacks on unmanned aerial vehicles. Appl. Sci. 2022, 13, 383. https://doi.org/10.3390/s26030843</li>
+      <li>[30] Talaei Khoei, T.; Ismail, S.; Kaabouch, N. Dynamic selection techniques for detecting GPS spoofing attacks on UAVs. , 22, 662.</li>
+      <li>[31] Rahman, M.H.; Sejan, M.A.S.; Aziz, M.A.; Tabassum, R.; Baik, J.I.; Song, H.K. A Comprehensive Survey of Unmanned Aerial Vehicles Detection and Classification Using Machine Learning Approach: Challenges, Solutions, and Future Directions. Remote Sens. 2024, 16, 879. https://doi.org/10.3390/rs16050879.</li>
+      <li>[32] Teixeira, K.; Miguel, G.; Silva, H.S.; Madeiro, F. A survey on applications of unmanned aerial vehicles using machine learning. IEEE Access 2023, 11, 117582–117621.</li>
+      <li>[33] Whelan, J.; Sangarapillai, T.; Minawi, O.; Almehmadi, A.; El-Khatib, K. UAV Attack Dataset; IEEE: Piscataway, NJ, USA, 2020. https://doi.org/10.21227/00dg-0d12.</li>
+      <li>[34] AlJamal, O.S.; AlJamal, M.; Alsarhan, A.; Aljaidi, M.; Okour, S.; Al-Aiash, I.; Al-Qerem, A.; Al Daoud, E.; Elrashidi, A. Design and Simulation of a Network Infrastructure for a Multi-Branch Organization Using Cisco Packet Tracer. In Proceedings of the 2024 25th International Arab Conference on …</li>
+      <li>[35] Alquran, R.; Al Jamal, M.; Aljaidi, M.; AL-Jamal, M.; Khassawneh, B.; Alsarhan, A.; Alidmat, O.; Samara, G.; Almatarneh, S. Machine Learning as the Shield: Mitigating ARP Poisoning Attacks in Software Defined Networks. In Proceedings of the 2024 25th International Arab Conference on Information …</li>
+      <li>[36] Al-Makkawi, T.; Alsarhan, A.; Al-Na’amneh, Q.; Aljaidi, M.; Almaiah, M.A.; AlJamal, M.; Alqura’n, R.; Aljawarneh, M. OpenSource Forensics Tools for Recovery of Deleted Data in Unconventional Ways. In Cryptography, Biometrics, and Anonymity in Cybersecurity Management; IGI Global Scientific …</li>
+      <li>[37] Hu, J.; Ammar, M.; Hussain, B.Z.; Kim, J.; Khan, I. Reinforcement Learning Driven Integrated Detection and Mitigation of UAV GPS Spoofing Attacks. IEEE Internet Things J. 2025, 12, 36926–36941.</li>
+      <li>[38] Aljamal, M.; Alsarhan, A.; Aljaidi, M.; Mughaid, A.; Al-Jamal, W.; Twairesh, A.E. Securing the Mobile Future: An Extensive Analysis of the Threat Landscape from Mobile Devices User Perspectives. Int. J. Interact. Mob. Technol. 2025, 19, 8.</li>
+      <li>[39] AlJamal, M.; Alquran, R.; Aljaidi, M.; AlJamal, O.S.; Alsarhan, A.; Al-Aiash, I.; Samara, G.; BaniSalman, M.; Khouj, M. Harnessing ML and NLP for Enhanced Cybersecurity: A Comprehensive Approach for Phishing Email Detection. In Proceedings of the 2024 25th International Arab Conference on …</li>
+      <li>[40] Abualhaj, M.M.; Abu-Shareha, A.A.; Hiari, M.O.; Alrabanah, Y.; Al-Zyoud, M.; Alsharaiah, M.A. A Paradigm for DoS Attack Disclosure Using Machine Learning Techniques. Int. J. Adv. Comput. Sci. Appl. 2022, 13, 192–200.</li>
+      <li>[41] AlJamal, M.; Alquran, R.; Alsarhan, A.; Aljaidi, M.; Alhmmad, M.; Al-Jamal, W.; Albalawi, N. A Robust Machine Learning Model for Detecting XSS Attacks on IoT over 5G Networks. Future Internet 2024, 16, 482.</li>
+      <li>[42] Alalousi, A.; Razif, R.; AbuAlhaj, M.; Anbar, M.; Nizam, S. A preliminary performance evaluation of K-means, KNN and EM unsupervised machine learning methods for network flow classification. Int. J. Electr. Comput. Eng. 2016, 6, 778.</li>
+    </ol>
+
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s26030843">10.3390/s26030843</a> · License: CC BY 4.0 · <a href="paper.pdf">PDF</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

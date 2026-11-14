@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تطبيق إنترنت الأشياء في طاقة الرياح — التحقق من نماذج قدرة التوربينات باستخدام بيانات سكادا المفتوحة — DAR</title>
+<meta name="description" content="Application of the Internet of Things in Wind Energy — Validation of Wind Turbine Power Models Using Open SCADA Data">
+<link rel="canonical" href="https://dararchive.com/papers/wind-iot-validation-energies/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Application of the Internet of Things in Wind Energy — Validation of Wind Turbine Power Models Using Open SCADA Data</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تطبيق إنترنت الأشياء في طاقة الرياح — التحقق من نماذج قدرة التوربينات باستخدام بيانات سكادا المفتوحة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Patryk Mirosław Radek, Kinga Konieczna, Hanna Syrotyuk, Serhiy Syrotyuk, Vadym Ptashnyk, Vladyslav Klymchuk, Taras Stanytskyy, Alla Zhelyeznyak, Illia Dudko, Kamila Klimek, Zbigniew Jarosz, Magdalena Kapłan, Barbara Dybek, Grzegorz Wałowski</span>
+    <span>📄 Energies, 2026 · Vol. 19, No. 21, 5201</span>
+    <span>🔗 <a href="https://doi.org/10.3390/en19215201">10.3390/en19215201</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تطرح هذه المقالة أسئلة: ما هو إنترنت الأشياء، وكيف تعمل مزارع الرياح، ولماذا يستحق دمج إنترنت الأشياء مع الطاقة المتجددة [2]، [3]. وتسلط الضوء على مراقبة معايير تشغيل توربينات الرياح، وأتمتة العمليات وتحسينها، والتنبؤ بالأعطال والصيانة التنبؤية [4]، [10]. وتُعرض أمثلة على أنظمة مزارع الرياح التي تستخدم إنترنت الأشياء، إضافة إلى التقنيات والمنصات المستخدمة في المراقبة [27]، [40]. ومن خلال تحديد تحديات وقيود إدارة البيانات، تُرسم ملامح مستقبل إنترنت الأشياء في طاقة الرياح [20]. ويوضح تحليل ثانوي لقياسات توربين كيلمارش دور تعلم الآلة في الطبقة التحليلية لنظام إنترنت الأشياء [23]. وتقيّم الدراسة ما إذا كان نموذج القدرة المختار باستخدام بيانات سابقة يحتفظ بأفضليته على منحنى القدرة التجريبي البسيط في فترة تشغيل لاحقة [24]، [25]. وتبرز النتائج أهمية التحقق الزمني وتقييم الأخطاء الكبيرة ومراقبة تغطية الفترات [33]. وتقدّر الحسابات القدرة ضمن فترة القياس نفسها ولا تتنبأ بالإنتاج المستقبلي، كما أنها لا تُظهر القدرة على توقع الأعطال.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <h3>1.1. المراقبة والتحكم في توربينات الرياح عبر إنترنت الأشياء</h3>
+    <p>في مزارع الرياح الحديثة، يُجهَّز كل توربين بمنظومة قياس متعددة الحساسات تشمل مقاييس الاهتزاز للتنبؤ بأعطال المحامل والأعمدة، ومقاييس شدة الرياح واتجاهها لتحسين زاوية الهجوم للريش، والمزدوجات الحرارية لمراقبة ارتفاع حرارة المكونات، وحساسات الرطوبة لحماية الإلكترونيات والريش [16]، [21]. ويتيح دمج مصادر البيانات هذه تقدير الحالة والاندماج الحسي لمنظومة تحويل طاقة الرياح الممكّنة بإنترنت الأشياء [21].</p>
+    <p>وتعمل هندسة إنترنت الأشياء ذات الأربع طبقات — الاستشعار، والشبكة، والتحليل، والتطبيق — على تنظيم تدفق البيانات من القياس إلى دعم القرار، مع تطبيقات تشمل المراقبة اللحظية والصيانة التنبؤية وتكامل الشبكة [3]. وقد استُخدمت شبكات LoRa WAN واسعة النطاق في نماذج أولية لمراقبة التوربينات بما يلائم النشر الميداني [40].</p>
+    <h3>1.2. فوائد تطبيق إنترنت الأشياء في أنظمة طاقة الرياح</h3>
+    <p>يمتد نطاق التنسيق ليشمل المستوى المحلي للتوربين، ومستوى المزرعة عبر تجميع البيانات، والمستوى النظامي عبر التوائم الرقمية التي تدعم الصيانة التنبؤية، والمستوى الاستراتيجي عبر تحليلات دورة الحياة والذكاء البيئي والمناخي [2]، [20]. وتُظهر المراجعات أن التوائم الرقمية التنبؤية أصبحت إطارًا مركزيًا لمراقبة حالة التوربينات وتحسينها [2].</p>
+    <p>ويمكن لتعلم الآلة المدمج مع إنترنت الأشياء أن يحسّن التنبؤ بالطاقة وكشف الأعطال الذكي وتحسين المقوّمات في مولدات الرياح [10]، [16]. كما يتيح التعلم الموحّد (Federated Learning) مشاركة معلومات الحالة عبر الأساطيل مع الحفاظ على الخصوصية [17]، وتدعم أساليب المراقبة اللحظية الموحدة عناقيد مزارع الرياح الصناعية [41].</p>
+  </section>
+
+  <section>
+    <h2>2. المواد والطرق</h2>
+    <h3>2.1. مصدر البيانات وضبط الجودة</h3>
+    <p>استُمدت المشاهدات من بيانات سكادا أرشيفية بت resolution عشر دقائق صادرة عن توربين كيلمارش 1، وهي بيانات ثانوية عامة برخصة CC BY 4.0 [23]. وشملت الإشارات الأصلية التاريخ والوقت للتقسيم الزمني، وسرعة الرياح كمتنبئ، والقدرة الفعلية كمتغير مستهدف، إضافة إلى درجة الحرارة واتجاه الرياح كمدخلات مساعدة.</p>
+    <p>وفي مرحلة الحساب الحالية، خضعت قياسات القدرة السالبة والصفرية ومعالجة الفجوات لضبط الجودة قبل النمذجة. وقد حُذفت الفترات غير الصالحة تشغيليًا حتى لا تُشوّه منحنى القدرة التجريبي أو مقاييس الخطأ [33].</p>
+    <h3>2.2. النماذج ومعايير التقييم</h3>
+    <p>قُورنت أربعة تكوينات: منحنى قدرة تجريبي مُجمَّع كخط أساس قابل للتفسير، ونموذج تعزيز تدرجي هستوغرامي (HGB) يستخدم سرعة الرياح فقط، ونموذج HGB كامل يضيف درجة الحرارة واتجاه الرياح (عبر sin θ وcos θ)، ونموذج غابة عشوائية كامل [24]، [25]. واستُخدم HGB بتكوين 250 تكرارًا ومعدل تعلم 0.05 وبحد أقصى 15 ورقة و40 سجلًا على الأقل لكل ورقة [25].</p>
+    <p>وحُسبت MAE وRMSE وR² ومتوسط الخطأ المتبقي، مع تطبيع RMSE بالقدرة الاسمية 2050 kW. واستُبعد MAPE لأن القدرة قد تكون صفرًا أو سالبة. وكان RMSE هو المعيار الحاسم في اختيار النموذج [24]، [25].</p>
+  </section>
+
+  <section>
+    <h2>3. النتائج والمناقشة</h2>
+    <h3>3.1. التحقق الزمني وأداء النماذج</h3>
+    <p>اختار التحققُ الأولي نموذجَ HGB الكامل: إذ بلغ RMSE فيه 112.92 kW مقابل 122.35 kW للمنحنى المُجمَّع، أي بتحسن 7.71%. لكن في الاختبار اللاحق (أكتوبر–ديسمبر) سجّل HGB الكامل RMSE قدره 170.02 kW مع R² عند 0.934 ومتوسط خطأ +32.51 kW، بينما حقق المنحنى المُجمَّع أدنى RMSE في الاختبار. وتُظهر هذه المقارنة التشخيصية أن الأفضلية المختارة على بيانات سابقة قد لا تصمد أمام انزياح التوزيع الزمني [33].</p>
+    <p>وبمقارنة HGBwind مع HGBfull يمكن تقييم الأثر المشترك لإضافة درجة الحرارة والاتجاه فقط، إذ بقيت الفروق المعمارية الأخرى ثابتة. وأظهرت المتغيرات الوسيطة (v,T) و(v,sin θ,cos θ) إسهامات كل إشارة على حدة.</p>
+    <p>وبلغ nRMSE لنموذج HGB الكامل 8.29%، مع تباين شهري واضح: 71.88 kW في أكتوبر، و114.77 kW في نوفمبر، وارتفاع أكبر في ديسمبر، مما يعكس عدم استقرار الخطأ عبر الزمن [33].</p>
+    <h3>3.2. نطاق الثمالة وتغطيته</h3>
+    <p>عُايرت ثمالات سبتمبر المطلقة عند الكمّ التجريبي لتشكيل نطاق تنبؤ P ± q بقيمة q = 101.45 kW. وبلغت التغطية في الاختبار 82.79%، أي دون الاسمية 95%، ثم تدهورت شهريًا إلى 90.69% و83.59% و74.37%. ولا يشكل ذلك ضمان تغطية غير مشروط بنسبة 95% في ظل الاعتماد الزمني واحتمال انزياح التوزيع، بل تقييمًا تجريبيًا للتغطية [33].</p>
+    <p>وتوضح قاعدة التجاوزات — التي تتطلب ثلاث تجاوزات متتالية بفاصل 10 دقائق بالضبط — كيفية تحويل النطاق إلى منطق إنذار عملي، مع أن أسباب التجاوزات الفردية لم تُحقَّق في هذه الدراسة. ويُقترح تقييم التغطية separately حسب سرعة الرياح ومستوى التنبؤ والحالة التشغيلية الموثقة، مع تفصيل التجاوزات فوق الحد وتحته [33].</p>
+    <h3>3.3. الدلالات على إنترنت الأشياء: التقدير مقابل التنبؤ</h3>
+    <p>تُقدَّر القدرة ضمن فترة القياس نفسها بعد توفر قياساتها، دون أفق تنبؤ محدد؛ لذا لا يُعد هذا التحليل تنبؤًا بالإنتاج المستقبلي ولا إثباتًا للقدرة على توقع الأعطال. وللادعاء بالصيانة التنبؤية يلزم سجلات أعطال أو تدخلات خدمية موثقة، ومعلومات عن القيود والحالات التشغيلية، وإشارات تشخيصية (كالاهتزاز وحرارة المكونات ومعايير علبة التروس) مع اتجاهاتها التاريخية، وتقييم زمن الاستباق ومعدلات خطأ التصنيف على بيانات مستقلة [33].</p>
+    <p>ومع ذلك، فإن تطبيق تحليلات مماثلة داخل بنية إنترنت الأشياء مفيد محتملًا: إذ يغذي النموذج والتحقق الزمني ومراقبة التغطية الطبقةَ التحليلية، بينما يبقى التنسيق على مستوى الأسطول وتخطيط الصيانة تطبيقات مستقبلية، والقرارات الاستراتيجية حول العائد والتكلفة رهن دراسات نشر فعلية [3]، [33].</p>
+  </section>
+
+  <section>
+    <h2>4. التطبيقات الصناعية والأسس المعمارية</h2>
+    <h3>4.1. منصات وتقنيات إنترنت الأشياء في مزارع الرياح</h3>
+    <p>تُستخدم منصات مثل MindSphere من سيمنز كنظم تشغيل مفتوحة لإنترنت الأشياء في سياقات الطاقة [27]، إلى جانب حلول مراقبة الحالة التجارية مثل KK Wind Solutions وOrbiSCADA وأنظمة الشركات المصنعة الكبرى مثل Vestas [33]. وتوفر هذه المنصات طبقات التكامل التي تربط بيانات سكادا التشغيلية بالتحليلات المتقدمة.</p>
+    <p>وعلى مستوى الاتصال، تدعم حلول الحوسبة الطرفية والضبابية والسحابية الصيانة التنبؤية في إنترنت الأشياء الصناعي، مع موازنة زمن الاستجابة والتكلفة [41]. وتُظهر الأطر القائمة على الترميز التلقائي الهجين إمكانات الكشف المبكر عن الأعطال في التوربينات [33].</p>
+    <h3>4.2. التحديات والقيود وقابلية التكرار</h3>
+    <p>تشمل التحديات إدارة كميات البيانات الضخمة، والتهديدات السيبرانية للشبكات الذكية ومولدات الرياح ونقاط ضعف شبكات الإمداد [13]، والحاجة إلى كشف العبث في الحساسات الصناعية عبر مقاربات كشف الشذوذ [14]. كما أن قابلية نقل نماذج التنبؤ قصير الأجل عبر المواقع محدودة وتتطلب معايرة دقيقة [33].</p>
+    <p>ولم يُحقق في أسباب التجاوزات الفردية، ولم تُستخدم قياسات أولية بل تحليل ثانوي لبيانات عامة من كيلمارش [23]. وتُعد البيانات الطاقية وتفاصيل المعالجة متاحة للتكرار، بما يدعم التحقق المستقل للمنهجية [23]، [33].</p>
+  </section>
+
+  <section>
+    <h2>5. الخاتمة</h2>
+    <p>أظهرت الدراسة أن نموذجًا مختارًا بناءً على فترة تحقق سابقة قد يتفوق على منحنى القدرة التجريبي في تلك الفترة (بتحسن 7.71% في RMSE)، لكنه قد يفقد أفضليته في فترة اختبار لاحقة مع انزياح التوزيع [24]، [25]، [33]. وحافظ نطاق الثمالة المعاير على تغطية تجريبية بلغت 82.79% دون الاسمية 95%، مع تدهور شهري يعكس عدم استقرار الخطأ [33].</p>
+    <p>وتؤكد النتائج أن التحقق الزمني وتقييم الأخطاء الكبيرة ومراقبة تغطية الفترات ممارسات أساسية قبل أي نشر لإنترنت الأشياء التحليلي في طاقة الرياح [3]، [33]. أما الادعاءات المتعلقة بالصيانة التنبؤية فتبقى رهن بيانات أعطال موثقة وتقييم مستقل، وهو اتجاه مستقبلي أكثر منه نتيجة قائمة [33].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>The article asks what the Internet of Things is, how wind farms operate, and why integrating IoT with renewable energy is worthwhile [2], [3]. It highlights monitoring of wind turbine operating parameters, process automation and optimization, and failure prediction and predictive maintenance [4], [10]. Examples of wind farm systems utilizing the Internet of Things are presented, as well as technologies and platforms used in monitoring [27], [40]. By identifying the challenges and limitations of data management, the future of the Internet of Things in wind energy is outlined [20]. A secondary analysis of measurements from the Kelmarsh turbine illustrates machine learning in the analytical layer of an IoT system [23]. The study assesses whether a power model selected using earlier data retains an advantage over a simple empirical power curve in a later operating period [24], [25]. The results highlight temporal validation, large-error assessment, and interval coverage monitoring [33]. The calculations estimate power within the same measurement interval and do not forecast future production, nor do they demonstrate an ability to anticipate faults.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <h3>1.1. IoT-Enabled Monitoring and Control of Wind Turbines</h3>
+    <p>In modern wind farms, each turbine is equipped with a multi-sensor measurement system including accelerometers for bearing and shaft failure prediction, anemometers for blade angle-of-attack optimization, thermocouples for component overheating monitoring, and humidity sensors for electronics and blade protection [16], [21]. Fusing these data sources enables state estimation and sensor fusion for the IoT-enabled wind energy conversion system [21].</p>
+    <p>The four-level IoT architecture — sensing, network, analytics, and application layers — organizes data flow from measurement to decision support, with applications spanning real-time monitoring, predictive maintenance, and grid integration [3]. Long-range LoRa WAN networks have been prototyped for turbine monitoring suited to field deployment [40].</p>
+    <h3>1.2. Benefits of Implementing IoT Technology in Wind Energy Systems</h3>
+    <p>Coordination spans the turbine level, the farm level through data aggregation, the system level through digital twins supporting predictive maintenance, and the strategic level through lifecycle analytics and environmental intelligence [2], [20]. Reviews show predictive digital twins have become a central framework for turbine condition monitoring and optimization [2].</p>
+    <p>Machine learning integrated with IoT can improve energy prediction, intelligent fault detection, and rectifier optimization in wind generators [10], [16]. Federated learning enables fleet-wide sharing of condition information while preserving privacy [17], and federated real-time monitoring methods support industrial wind farm clusters [41].</p>
+  </section>
+
+  <section>
+    <h2>2. Materials and Methods</h2>
+    <h3>2.1. Data Provenance and Quality Control</h3>
+    <p>The observations are derived from archival 10 min SCADA data exported from the Kelmarsh 1 turbine, public secondary data under CC BY 4.0 [23]. Original signals included date-time for temporal partitioning, wind speed as predictor, active power as target, plus temperature and wind direction as auxiliary inputs.</p>
+    <p>Measurements of negative power, zero power, and gap handling underwent quality control before modelling. Operationally invalid intervals were removed so as not to distort the empirical power curve or error metrics [33].</p>
+    <h3>2.2. Models and Evaluation Criteria</h3>
+    <p>Four configurations were compared: an empirical binned power curve as an interpretable baseline, a histogram-based gradient boosting (HGB) model using only wind speed, a full HGB model adding temperature and wind direction (via sin θ and cos θ), and a full Random Forest model [24], [25]. HGB used 250 iterations, learning rate 0.05, at most 15 leaves, and at least 40 records per leaf [25].</p>
+    <p>MAE, RMSE, R², and mean residual error were computed, with RMSE normalized by the 2050 kW rated power. MAPE was omitted because power can be zero or negative. RMSE was the decisive model-selection criterion [24], [25].</p>
+  </section>
+
+  <section>
+    <h2>3. Results and Discussion</h2>
+    <h3>3.1. Temporal Validation and Model Performance</h3>
+    <p>Preliminary validation selected the full HGB model: its RMSE was 112.92 kW versus 122.35 kW for the binned curve, a 7.71% improvement. In the later test (October–December), however, full HGB recorded an RMSE of 170.02 kW with R² of 0.934 and mean residual +32.51 kW, while the binned curve achieved the lowest test RMSE. This diagnostic comparison shows an advantage selected on earlier data may not survive temporal distribution shift [33].</p>
+    <p>Comparing HGB wind with HGB full isolates the combined effect of adding temperature and direction, holding other architectural differences fixed. Intermediate variants (v,T) and (v,sin θ,cos θ) showed each signal's individual contribution.</p>
+    <p>Full HGB reached an nRMSE of 8.29%, with marked monthly variation: 71.88 kW in October, 114.77 kW in November, and higher still in December, reflecting error instability over time [33].</p>
+    <h3>3.2. Residual Band and Its Coverage</h3>
+    <p>September absolute residuals were calibrated at the empirical quantile to form a P ± q prediction band with q = 101.45 kW. Test coverage was 82.79%, below the nominal 95%, degrading monthly to 90.69%, 83.59%, and 74.37%. Under temporal dependence and possible distribution shift this is no unconditional 95% coverage guarantee, but an empirical coverage assessment [33].</p>
+    <p>The exceedance rule — requiring at least three consecutive exceedances exactly 10 min apart — illustrates how the band converts into practical alarm logic, though causes of individual exceedances were not investigated here. Coverage should be evaluated separately by wind speed, prediction level, and verified operational status, with exceedances above and below the band broken out [33].</p>
+    <h3>3.3. Implications for IoT: Estimation Versus Forecasting</h3>
+    <p>Power is estimated within the same measurement interval only after its measurements become available, with no forecast horizon defined; this analysis is therefore neither a prediction of future production nor a demonstration of fault-anticipation ability. Credible predictive-maintenance claims would require verified failure or service-intervention records, operational-constraint information, diagnostic signals (e.g., vibration, component temperatures, gearbox parameters) with historical trends, and lead-time and classification-error evaluation on independent data [33].</p>
+    <p>Applying similar analytics within IoT infrastructure is nonetheless potentially useful: model, temporal validation, and coverage monitoring feed the analytics layer, while fleet-level coordination and maintenance planning remain future applications, and strategic yield-and-cost decisions await deployment studies [3], [33].</p>
+  </section>
+
+  <section>
+    <h2>4. Industrial Applications and Architectural Foundations</h2>
+    <h3>4.1. IoT Platforms and Technologies in Wind Farms</h3>
+    <p>Platforms such as Siemens MindSphere serve as open IoT operating systems in energy contexts [27], alongside commercial condition-monitoring solutions such as KK Wind Solutions and OrbiSCADA and major-manufacturer systems such as Vestas [33]. These platforms provide the integration layers linking operational SCADA data to advanced analytics.</p>
+    <p>At the connectivity level, edge, fog, and cloud computing solutions support predictive maintenance in the Industrial IoT, balancing latency and cost [41]. Hybrid autoencoder-based frameworks show early-fault-detection potential in wind turbines [33].</p>
+    <h3>4.2. Challenges, Limitations, and Reproducibility</h3>
+    <p>Challenges include managing massive data volumes, cyber threats to smart grids and wind generators with supply-network vulnerabilities [13], and the need for tamper detection in industrial sensors via anomaly-detection approaches [14]. Short-term forecasting model portability across sites is limited and demands careful calibration [33].</p>
+    <p>Causes of individual exceedances were not investigated, and no primary measurements were taken — a secondary analysis of public Kelmarsh data [23]. Energy data and processing details are available for reproducibility, supporting independent verification of the methodology [23], [33].</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>The study demonstrated that a model selected on an earlier validation period can beat the empirical power curve in that period (7.71% RMSE improvement) yet lose its edge in a later test period under distribution shift [24], [25], [33]. The calibrated residual band held an empirical coverage of 82.79%, below the nominal 95%, with monthly decay reflecting error instability [33].</p>
+    <p>The findings confirm temporal validation, large-error assessment, and interval coverage monitoring as essential practices before any analytical-IoT deployment in wind energy [3], [33]. Predictive-maintenance claims remain contingent on documented failure data and independent evaluation — a future direction rather than an established result [33].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[2] Kandemir, E.; Hasan, A.; Kvamsdal, T.; Alaliyat, S.A.-A. Predictive digital twin for wind energy systems: A literature review. Energy Inf. 2024, 7, 68.</li>
+      <li>[3] Syrotyuk, S.; Skliar, O.; Ptashnyk, V.; Klymchuk, V.; Wałowski, G. Four-level internet of things architecture for wind energy systems: Monitoring, optimization, and grid integration. Sci. Bull. TSAТU 2026, 1, 123–137.</li>
+      <li>[4] Bošnjaković, M.; Martinović, M.; Đokić, K. Application of Artificial Intelligence in Wind Power Systems. Appl. Sci. 2025, 15, 2443.</li>
+      <li>[10] Yang, F.; Wang, D. IoT-enabled intelligent fault detection and rectifier optimization in wind power generators. Alex. Eng. J. 2025, 116, 129–140.</li>
+      <li>[13] Fursov, I.; Yamkovyi, K.; Shmatko, O. Smart Grid and wind generators: An overview of cyber threats and vulnerabilities of power supply networks. Radioelectron. Comput. Syst. 2022, 4, 50–63.</li>
+      <li>[14] Villegas-Ch, W.; Govea, J.; Jaramillo-Alcazar, A. Tamper Detection in Industrial Sensors: An Approach Based on Anomaly Detection. Sensors 2023, 23, 8908.</li>
+      <li>[16] Emexidis, C.; Gkonis, P. The Integration of Internet of Things and Machine Learning for Energy Prediction of Wind Turbines. Appl. Sci. 2024, 16, 10276.</li>
+      <li>[17] Jenkel, L.; Jonas, S.; Meyer, A. Towards Fleet-wide Sharing of Wind Turbine Condition Information through Privacy-preserving Federated Learning. arXiv 2022, arXiv:2212.03529.</li>
+      <li>[20] Clifton, A.; Barber, S.; Bray, A.; Enevoldsen, P.; Fields, J.; Sempreviva, A.M.; Williams, L.; Quick, J.; Purdue, M.; Totaro, P.; et al. Grand challenges in the digitalisation of wind energy. Wind Energy Sci. 2023, 8, 947–974.</li>
+      <li>[21] Noor-A-Rahim, M.; Khyam, M.O.; Li, X.; Pesch, D. Sensor Fusion and State Estimation of IoT Enabled Wind Energy Conversion System. Sensors 2019, 19, 71566.</li>
+      <li>[23] Plumley, C. Kelmarsh Wind Farm Data. Version 0.0.3. Dataset Released by Cubico Sustainable Investments Under CC BY 4.0; Zenodo: Geneva, Switzerland, 2022.</li>
+      <li>[24] Breiman, L. Random Forests. Mach. Learn. 2001, 45, 5–32.</li>
+      <li>[25] Friedman, J.H. Greedy Function Approximation: A Gradient Boosting Machine. Ann. Stat. 2001, 29, 1189–1232.</li>
+      <li>[26] IEC 61425-25-1:2017; Wind Energy Generation Systems—Part 25-1: Communications for Monitoring and Control of Wind Power Plants. IEC: Geneva, Switzerland.</li>
+      <li>[27] Siemens 2025. MindSphere—Système D'Exploitation IoT Ouvert—Siemens FR.</li>
+      <li>[31] Akbarzadeh, S.; Allahverdi, A. Machine Learning Approaches for Wind Turbine Predictive Maintenance: An Interoperational SCADA Data Analysis. In Proceedings of the Artificial Intelligence, Potsdam, Germany, 16–19 September 2025.</li>
+      <li>[33] Wang, S.; Vidal, Y.; Pozo, F. Recent advances in wind turbine condition monitoring using SCADA data: A state-of-the-art review. Reliab. Eng. Syst. Saf. 2026, 267, 111838.</li>
+      <li>[40] Mikhaylov, K.; Moiz, A.; Pouttu, A.; Martín Rapún, J.M.; Gascon, S.A. LoRa WAN for Wind Turbine Monitoring: Prototype and Practical Deployment. In Proceedings of the 2018 10th International Congress on Ultra Modern Telecommunications and Control Systems.</li>
+      <li>[41] Wei, K.; Wu, Z.; Si, C.; Zhang, A.; Mu, C.; Song, Y. Federated Real-time Monitoring Method for Industrial IoT Devices and Its Application in Wind Farm Cluster. IEEE Internet Things J. 2026, 13, 40491–40507.</li>
+      <li>[full reference list available in the original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/en19215201">10.3390/en19215201</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

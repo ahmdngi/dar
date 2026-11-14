@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الأنظمة السيبرانية-الفيزيائية: خط الدفاع الأخير — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Cyber–Physical Systems: The Last Defense</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">الأنظمة السيبرانية-الفيزيائية: خط الدفاع الأخير</h2>
+
+  <div class="paper-meta">
+    <span>👤 Frank J. Furrer</span>
+    <span>📄 Appl. Sci., 2026 · Vol. 16, 3467</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app16073467">10.3390/app16073467</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>إن تطوير النظام السيبراني-الفيزيائي (CPS) وتطويره وتشغيله عملية شاملة عابرة للمجالات تغطي الحوسبة والبرمجيات والواجهات الفيزيائية والتفاعل البشري وهندسة السلامة والأمن — ويجب أن تضمن التكامل المفاهيمي عبر جميع العناصر. ومع ذلك ففي كل مرحلة يمكن أن تتسرب ثغرات إلى النظام بسبب الإهمال أو الأخطاء أو نقص المهارة أو الأعمال الخبيثة [6–8]، وقد تسبب هذه العيوب الكامنة إخفاقات وقت التشغيل وأضرارًا وخسائر في الأرواح وحوادث سلامة أو حوادث أمنية. ومن سبل التخفيف الواعدة كشف الشذوذ وقت التشغيل بالذكاء الاصطناعي/تعلم الآلة. يقدم هذا الدرس التعليمي المفاهيم الأساسية لكشف الشذوذ بالذكاء الاصطناعي وآليات التدخل المقابلة — وهي دفاعات آلية أخيرة ضد الإخفاقات والأعطال والأنشطة الخبيثة. ويبقى في المستوى المفاهيمي مخاطبًا طلاب الدراسات العليا والباحثين الداخلين إلى هذا المجال.</p>
+  </section>
+  <section>
+    <h2>1. المقدمة والسياق</h2>
+    <p>تربط الأنظمة السيبرانية-الفيزيائية الحوسبة بالعمليات الفيزيائية بإحكام، وتغطي الأسس الراسخة مبادئها [1] ومنهجيات تصميمها [2] وسلامة الأنظمة وأمنها [3، 9–11] والظهور [4]. وتبقى المقاربات الشاملة لأمن هذه الأنظمة اتجاهًا بحثيًا مفتوحًا [5]. ويكمل هذا الدرس أعمال المؤلف السابقة في سلامة الأنظمة [10، 12] وبنى السلامة والأمن [49] بمنظور وقت التشغيل: فمهما بلغ الحرص في التطوير، تبلغ ثغرات متبقية مرحلة النشر، فيحتاج النظام إلى خط دفاع أخير يكشف السلوك الشاذ مباشرة ويتدخل لحظيًا قبل وقوع الضرر.</p>
+  </section>
+  <section>
+    <h2>2. عبارة الاستحالة</h2>
+    <p>تبدأ قصة السلامة والأمن من 'عبارة الاستحالة' (مقتبسة من [13]): إذ يستحيل إزالة كل ثغرة أثناء التطوير والتطور، فيحتوي النظام المنشور حتمًا على عيوب غير مُخففة قد تُشعل حوادث. والنتيجة معمارية — يجب أن يكون خط الدفاع الأخير مراقبة وقت التشغيل مع تدخل آلي ولحظي ما أمكن. وكشف الشذوذ، خاصة بالذكاء الاصطناعي/تعلم الآلة، هو التقنية الممكّنة: فالشذوذ المكتشف ملاحظة تنحرف جوهريًا عن السلوك الطبيعي المتعلم، وتُوسم كغير معتادة مقارنة بأغلبية البيانات فتستوجب التدخل.</p>
+  </section>
+  <section>
+    <h2>3. سلوك الأنظمة ومراقبة وقت التشغيل</h2>
+    <p>ينقسم سلوك النظام وقت التشغيل إلى فئتين: مرغوب (آمن ومأمون ومطابق للمواصفات وملتزم بالقوانين ومنضبط زمنيًا ومتحمل للأخطاء وجدير بالثقة) مقابل غير مرغوب (غير آمن وغير مأمون وغير مفهوم وغير جدير بالثقة ومضطرب). وبعد بذل كل جهد تطويري معقول لإزالة الثغرات القابلة للكشف، يجب حماية نظام التشغيل من الفئة غير المرغوبة.</p>
+    <p>وليست مراقبة وقت التشغيل جديدة: فالتشخيص الذاتي (OBD) يُشرف على السيارات منذ زمن [14]، وأسست التحقق وقت التشغيل [15] ومراقبة سلامة السيارات [16–18] وشاشات الأمن [19، 20] هذا التخصص. وإسهام الدرس هو تأطير كشف الشذوذ بالذكاء الاصطناعي/تعلم الآلة [21–23] فوق تدفقات المعلومات كالفيديو والليدار والرادار والمسارات ومتواليات الحساسات [24] كحساس عام لخط الدفاع الأخير.</p>
+  </section>
+  <section>
+    <h2>4. الرصد-التحليل-التدخل</h2>
+    <p>تتكون بنية خط الدفاع الأخير من أربعة عناصر: نظام التشغيل المنشور في بيئته؛ وعنصر كشف الشذوذ (عتاد/برمجيات)؛ وعنصر تخطيط التدخل؛ وكتل تنفيذ التدخل. وينقسم الكشف إلى جزء ثابت — خوارزميات مبرمجة تقارن المرصودات (قيم الحساسات والمشغلات والسرعة والموضع) بالمواصفات والقواعد والسياسات والنماذج والسجلات والبيانات التشغيلية [15] — وجزء ديناميكي بالذكاء الاصطناعي يستهلك تدفقات المعلومات الحية [24].</p>
+    <h3>التحليل والتدخل</h3>
+    <p>يُصنف التحليل الشذوذ (إيجابي كاذب مقابل عطل حقيقي أو هجوم أو انحراف) بتقنيات من معالجة الإشارات [30، 31] إلى الكشف القائم على تعلم الآلة [21–23، 29]؛ ويعتمد التدريب على الإشراف الموسوم [25] أو البيانات الاصطناعية [26–28]. ثم ينفذ التدخل استجابات مخططة مسبقًا ولحظية ما أمكن — من الرجوع للحالة الآمنة إلى تسليم المشغل — مُغلقًا حلقة MAPE-K (رصد-تحليل-تخطيط-تنفيذ بالمعرفة [53، 54]) التي تقوم عليها أيضًا القشرة الواقية.</p>
+  </section>
+  <section>
+    <h2>5. خوارزميات تعلم الآلة</h2>
+    <p>تخدم نماذج تعلم الآلة الثلاثة خط الدفاع الأخير: التعلم الموجه وغير الموجه (بما فيها الأدلة التمهيدية [36]) لنماذج الكشف، والتعلم المعزز [32] — الذي يناسب تحسين السياسات طويلة الأفق [39، 40] قرارات المسارات — للسلوك الذاتي المقيد. وفهم أساسيات التعلم العميق [34] وتعلم الآلة الآمن والمتين [60–62] شرط مسبق، لأن الكاشف نفسه يصبح حرجًا للسلامة.</p>
+  </section>
+  <section>
+    <h2>6. السلامة والأمن: خط الدفاع الأخير</h2>
+    <h3>6.1. مثال السلامة: تجنب الاصطدام الذاتي</h3>
+    <p>هندسة سلامة الذكاء الاصطناعي وقت التشغيل تخصص فتي بلا منهجية موحدة بعد، لذا يُظهر الدرس قوتها عبر عينة مفاهيمية (ليست تجربة): تجنب اصطدام السفن ذاتيًا [37، 38]. فمع ازدحام الحركة وسفن أكبر وأسرع ونقص البحارة، تحتاج السفن أتمتة تصل للاستقلال الكامل؛ ويحسب التعلم المعزز العميق المقيد [32، 39] مسارات خالية من الاصطدام خاضعة لقواعد COLREG الإلزامية للمنظمة البحرية الدولية [41، 42]، داعمًا البحار أو متجاوزًا له عبر القشرة الواقية.</p>
+    <h3>6.2. مثال الأمن: كشف التسلل على MIL-STD-1553</h3>
+    <p>وبالمثل، يُعرض أمن الذكاء الاصطناعي وقت التشغيل عبر كشف تسلل غير موجه على ناقل MIL-STD-1553 [43، 44] — وهو ناقل محلي قائم على الرسائل منذ 1973 وما يزال حرجًا في منصات كـF-35، وثغراته المعروفة لا تُصلح بتغيير البروتوكول، فالكشف المتين إلزامي. وتُجسد إحصاءات الشذوذ بأسلوب CUSUM [45–47] على حركة الناقل الكاشف؛ وتمكن مجموعات البيانات لهذه النواقل [43، 44] من التدريب.</p>
+  </section>
+  <section>
+    <h2>7. القشرة الواقية وسطح الهجوم والذكاء الاصطناعي المتين</h2>
+    <p>تُغلف 'القشرة الواقية' — مفهوم 'الملاك الحارس للذكاء الاصطناعي' للانس إليوت [48] بصيغة تقنية [49] — النظام الحرج بعتاد وبرمجيات إضافية تكشف الشذوذ وتحلله وتستجيب له وقت التشغيل؛ وأصبح الإشراف على أنظمة الذكاء الاصطناعي وقت التشغيل ممارسة فضلى مقبولة [50–52]، وتنظمه بنية قشرة بمفهوم MAPE-K. ومع ذلك يوسع تعلم الآلة سطح الهجوم [55–58]: فالتلاعب العدائي والواجهات الموسعة (تحليل بأسلوب FMEA [56] وإدارة نواقل الهجوم [57]) والنماذج المعتمة تستلزم قابلية التفسير (XAI [59]) ومنهجيات التعلم المتين [62، 63]، مع انضباط التطبيقات عالية المخاطر [64] وفكر سلامة الذكاء المتجسد [52، 61].</p>
+  </section>
+  <section>
+    <h2>8. القوانين والأدلة الجنائية والتحديات والأخلاقيات</h2>
+    <p>يُحَد النشر بالقانون — أنظمة المسؤولية للفاعلين الخوارزميين [33] وقانون الاتحاد الأوروبي للذكاء الاصطناعي [67، 68] — وباحتياجات الأدلة الجنائية بعد الحوادث. ويُثمن الدرس تعلم الآلة كضروري للسلامة والأمن مع سرد تحديات مفتوحة: التحقق من الكاشف، وضمانات الزمن الحقيقي، والمتانة العدائية، وندرة البيانات، ومخاطر التعقيد — فإضافة قشرة تزيد تعقيد النظام، لذا يجب تطويرها هي نفسها بعناية فائقة للسلامة والأمن مع مراقبة السلوكيات الناشئة.</p>
+    <p>أما السؤال الأخلاقي الختامي — من يتحمل المسؤولية عندما يتجاوز خط الدفاع الذاتي البشر — فلا إجابة تقنية له: تؤطره نقدات التقنية العسكرية [65] وتحذيرات مخاطر الذكاء الاصطناعي [66] وأدبيات المساءلة، لكن موقف الدرس هو التواضع الهندسي: استقلالية شفافة ومقيدة وخاضعة للإشراف تبقى تدخلاتها قابلة للتدقيق.</p>
+  </section>
+  <section>
+    <h2>9. الاستنتاجات</h2>
+    <p>تتحكم الأنظمة السيبرانية-الفيزيائية اليوم في تطبيقات حرجة قد تسبب مباشرة أضرار سلامة أو أمنًا، لذا تتطلب الممارسات الفضلى بشكل متزايد مراقبة وقت التشغيل مع تدخل لحظي. ويشكل كشف الشذوذ — سيناريوهات مبرمجة مسبقًا معززة بالذكاء الاصطناعي — مع التصنيف والتخفيف والعتاد والبرمجيات والحساسات والعمليات، القشرة الواقية التي تمنع الحوادث أو تخففها. ويجب أن تتحقق الأعمال المستقبلية من الكواشف وتضمن الاستجابة اللحظية وتُحصن ضد الخصوم وتُبقي القشرة نفسها آمنة ومأمونة وقابلة للتدقيق.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Developing, evolving and operating a cyber–physical system (CPS) is a cross-domain, holistic process covering computation, software, physical interfaces, human interaction, and safety and security engineering — and it must assure conceptual integrity across all elements. Yet at every stage, vulnerabilities can enter the system through negligence, mistakes, lack of skill or malice [6–8], and these dormant flaws can cause runtime failures, damage, loss of life, safety accidents or security incidents. A promising mitigation is runtime anomaly detection with artificial intelligence/machine learning. This tutorial introduces the fundamental AI/ML anomaly-detection concepts and the corresponding intervention mechanisms — automated last-line defenses against failures, faults, malfunctions and malicious activity. It stays conceptual, addressing advanced students and researchers entering the field.</p>
+  </section>
+  <section>
+    <h2>1. Introduction and Context</h2>
+    <p>Cyber–physical systems tightly couple computation with physical processes, and established foundations cover their principles [1], design methods [2], system safety and security [3, 9–11], and emergence [4]. Holistic approaches to CPS security remain an open research direction [5]. This tutorial complements the author's earlier system-safety work [10, 12] and safety/security architectures [49] with a runtime perspective: no matter how careful development is, residual vulnerabilities reach deployment, so the system needs a last defense that detects anomalous behavior online and intervenes in real time before harm occurs.</p>
+  </section>
+  <section>
+    <h2>2. Impossibility Statement</h2>
+    <p>The safety/security storyline starts from the 'Impossibility Statement' (adapted from [13]): it is impossible to eliminate every vulnerability during development and evolution, so the deployed runtime CPS necessarily contains unmitigated flaws that may trigger accidents or incidents. The consequence is architectural — the last defense must be runtime monitoring with automatic, preferably real-time, intervention. Anomaly detection, especially with AI/ML, is the enabling technique: a detected anomaly is an observation deviating significantly from learned normal behavior, flagged as unusual relative to the majority of data and therefore requiring intervention.</p>
+  </section>
+  <section>
+    <h2>3. CPS Behavior and Runtime Monitoring</h2>
+    <p>Runtime CPS behavior falls into two categories: desired (safe, secure, specification-conformant, law-abiding, timely, fault-tolerant, trustworthy) versus undesired (unsafe, insecure, incomprehensible, untrustworthy, erratic). Once every reasonable development effort has removed detectable vulnerabilities, the runtime system must still be protected against the undesired category.</p>
+    <p>Runtime monitoring is not new: On-Board Diagnostics (OBD) has long supervised automobiles [14], and runtime verification [15], automotive safety monitoring [16–18] and security monitors [19, 20] established the discipline. The tutorial's contribution is framing AI/ML anomaly detection [21–23] over information streams such as video, LIDAR, radar, trajectories and sensor sequences [24] as the generic last-defense sensor.</p>
+  </section>
+  <section>
+    <h2>4. Monitor–Analyze–Intervene</h2>
+    <p>The last-defense architecture has four elements: the deployed runtime CPS in its environment; the anomaly-detection element (hardware/software); the intervention-planning element; and the intervention-execution blocks. Detection splits into a static part — programmed algorithms comparing observables (sensor/actuator values, speed, position) against specifications, rules, policies, models, logs and operational data [15] — and a dynamic AI/ML part consuming live information streams [24].</p>
+    <h3>Analyze and Intervene</h3>
+    <p>Analysis classifies anomalies (false positive versus genuine fault, attack or drift) using techniques from signal processing [30, 31] to ML-based detection [21–23, 29]; training depends on labeled supervision [25] or synthetic data [26–28]. Intervention then executes pre-planned, preferably real-time, responses — from safe-state fallback to operator handover — closing the MAPE-K-style loop (Monitor-Analyze-Plan-Execute with Knowledge [53, 54]) that also underlies the protective shell.</p>
+  </section>
+  <section>
+    <h2>5. Machine Learning Algorithms</h2>
+    <p>All three ML paradigms serve the last defense: supervised and unsupervised learning (including kickstart guides [36]) for detection models, and reinforcement learning [32] — whose long-horizon policy optimization [39, 40] suits trajectory decisions — for constrained autonomous behavior. Understanding deep learning fundamentals [34] and safe/robust ML [60–62] is prerequisite, since the detector itself becomes safety-critical.</p>
+  </section>
+  <section>
+    <h2>6. Safety and Security: Last Defense</h2>
+    <h3>6.1. Safety example: autonomous collision avoidance</h3>
+    <p>AI/ML runtime safety is a young discipline with no consolidated methodology yet, so the tutorial demonstrates power through a conceptual (not experimental) sample: autonomous ship collision avoidance [37, 38]. Facing denser traffic, larger faster vessels and mariner shortages, ships need automation up to full autonomy; constrained deep reinforcement learning [32, 39] computes collision-free trajectories subject to the mandatory IMO COLREG collision regulations [41, 42], either supporting the mariner or overriding via the protective shell.</p>
+    <h3>6.2. Security example: MIL-STD-1553 intrusion detection</h3>
+    <p>Likewise young, AI/ML runtime security is shown through unsupervised intrusion detection on the MIL-STD-1553 bus [43, 44] — a message-based local bus standard since 1973, still critical in platforms like the F-35, whose known vulnerabilities cannot be fixed by protocol change, making robust detection mandatory. CUSUM-style anomaly statistics [45–47] on bus traffic exemplify the detector; dataset collections for such buses [43, 44] enable training.</p>
+  </section>
+  <section>
+    <h2>7. Protective Shell, Attack Surface and Robust AI</h2>
+    <p>The 'protective shell' — Lance Eliot's 'AI Guardian Angel Bot' concept [48] in technical form [49] — wraps the mission-critical CPS with extra hardware/software that detects, analyzes and responds to anomalies at runtime; supervising AI/ML systems at runtime is now accepted best practice [50–52], and a MAPE-K-conceptualized shell architecture organizes it. Yet ML widens the attack surface [55–58]: adversarial manipulation, expanded interfaces (FMEA-style analysis [56], attack-vector management [57]) and opaque models demand explainability (XAI [59]) and robust ML methods [62, 63], plus high-risk-application discipline [64] and embodied-AI safety thinking [52, 61].</p>
+  </section>
+  <section>
+    <h2>8. Laws, Forensics, Challenges and Ethics</h2>
+    <p>Deployment is bounded by AI law — liability regimes for algorithmic actants [33] and the EU AI Act [67, 68] — and by forensics needs after incidents. The tutorial values ML as indispensable for safety/security while listing open challenges: detector verification, real-time guarantees, adversarial robustness, data scarcity, and complexity risk — since adding a shell increases system complexity, it must itself be developed with utmost safety/security care, watching emergent behavior.</p>
+    <p>The closing ethical question — who bears responsibility when an autonomous last defense overrides humans — has no technical answer: military-tech critiques [65], AI-risk warnings [66] and accountability literature frame it, but the tutorial's stance is engineering humility: transparent, constrained, supervised autonomy whose interventions remain auditable.</p>
+  </section>
+  <section>
+    <h2>9. Conclusions</h2>
+    <p>Today's CPSs control mission-critical applications that can directly cause safety or security harm, so best practice increasingly demands runtime monitoring with real-time intervention. Anomaly detection — preprogrammed scenarios augmented by AI/ML — with classification, mitigation, hardware, software, sensors and processes, forms the protective shell preventing or mitigating accidents and incidents. Future work must verify detectors, guarantee real-time response, harden against adversaries and keep the shell itself safe, secure and auditable.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Alur, R. Principles of Cyber-Physical Systems; MIT Press: Cambridge, MA, USA, 2015.</li>
+      <li>[5] Fitzgerald, J.; Morisset, C. Holistic Approaches to CPS Security? Res. Dir. Cyber-Phys. Syst. 2024, 2, e2.</li>
+      <li>[6] Papow, J. Glitch — The Hidden Impact of Faulty Software; Prentice Hall, 2010.</li>
+      <li>[10] Furrer, F.J. Safety and Security of Cyber-Physical Systems; Springer Vieweg, 2022.</li>
+      <li>[13] Kopetz, H. An Architecture for Safe Driving Automation. In Principles of Systems Design; LNCS Vol. 13660; Springer, 2022.</li>
+      <li>[14] Banish, G. OBD-I &amp; OBD-II — Diagnosis, Repair, and Emissions Compliance; CarTech, 2023.</li>
+      <li>[15] Bartocci, E.; Falcone, Y. (Eds.) Lectures on Runtime Verification; Springer, 2018 (LNCS 10457).</li>
+      <li>[21] Mehrotra, K.G. et al. Anomaly Detection Principles and Algorithms; Springer, 2019.</li>
+      <li>[25] Sarkis. Training Data for Machine Learning; O'Reilly, 2023.</li>
+      <li>[26] Nikolenko, S.I. Synthetic Data for Deep Learning; Springer, 2021.</li>
+      <li>[32] Bilgin, E. Mastering Reinforcement Learning with Python; Packt, 2020.</li>
+      <li>[33] Beckers, A.; Teubner, G. Three Liability Regimes for AI; HART Publishing, 2023.</li>
+      <li>[34] Prince, S.J.D. Understanding Deep Learning; MIT Press, 2023.</li>
+      <li>[37] Hashimoto, H. et al. AI-based Automatic Collision Avoidance System. ClassNK Tech. J. 2021, 3, 41–51.</li>
+      <li>[38] Shen, H. et al. Automatic collision avoidance of multiple ships based on deep Q-learning. Appl. Ocean Res. 2019, 86, 268–288.</li>
+      <li>[41] IMO. COLREG — Preventing Collisions at Sea; IMO: London, 1972.</li>
+      <li>[43] Hadeer, A. et al. Datasets for Intrusion Detection in MIL-STD-1553. In AI for CPS Hardening; Springer, 2022.</li>
+      <li>[48] Eliot, L. AI Guardian Angel Bots; LBE Press, 2016.</li>
+      <li>[49] Furrer, F.J. Safe and secure system architectures for CPS. Inform. Spektrum 2023, 46, 96–103.</li>
+      <li>[53] Lalanda, P. et al. Autonomic Computing; Springer, 2013.</li>
+      <li>[54] IBM. Architectural Blueprint for Autonomic Computing, 4th ed.; 2006.</li>
+      <li>[59] Simon, C. Deep Learning and XAI Techniques for Anomaly Detection; Packt, 2023.</li>
+      <li>[67] Windholz, N. The EU AI Act Handbook; Carl Hanser Verlag, 2025.</li>
+      <li>... [full reference list (68 entries) available in the original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app16073467">10.3390/app16073467</a> · License: CC BY 4.0 · PDF: <a href="paper.pdf">paper.pdf</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

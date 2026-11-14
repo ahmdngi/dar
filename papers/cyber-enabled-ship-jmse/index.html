@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إدارة مخاطر الأمن السيبراني للسفينة الممكّنة سيبرانيًا — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Managing Cyber Security Risks of the Cyber-Enabled Ship</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">إدارة مخاطر الأمن السيبراني للسفينة الممكّنة سيبرانيًا</h2>
+
+  <div class="paper-meta">
+    <span>👤 Georgios Kavallieratos, Sokratis Katsikas</span>
+    <span>📄 J. Mar. Sci. Eng., 2020 · Vol. 8, 768</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse8100768">10.3390/jmse8100768</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يتمثل أحد جوانب التحول الرقمي في صناعة الشحن (الشحن 4.0) في الرقمنة المتزايدة للأنظمة على متن السفن مع تنامي الأتمتة والاستقلالية، وذلك بدمج تقنية المعلومات مع تقنية التشغيل في أنظمة سيبرانية-فيزيائية (CPSs) تعتمد عليها سلامة تشغيل السفن المعاصرة والمستقبلية. وتزيد هذه الأنظمة المترابطة تعرض السفينة للهجمات السيبرانية. تستفيد هذه الورقة من منهجيتي STRIDE وDREAD لتقييم المخاطر السيبرانية للأنظمة السيبرانية-الفيزيائية على السفن الرقمية نوعيًا وكميًا، وتقترح ضوابط أساسية للأمن السيبراني مختارة بمنهجية — تأخذ في الاعتبار متطلبات الأمن والمخاطر والهجمات المحتملة والضوابط القائمة — من ملحق أنظمة التحكم الصناعية (ICS) لدليل NIST لأمن أنظمة التحكم الصناعية. وتدعم النتائج اتخاذ القرار وتصميم البنية الأمنية للسفينة الممكنة سيبرانيًا.</p>
+  </section>
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تكاد جميع السفن اليوم رقمية جزئيًا، ومع ذلك تواجه الصناعة تحولًا رقميًا كاملًا يشمل سفنًا بلا طاقم في فئتين — المشغلة عن بعد والمستقلة — ويُطلق على كلتيهما السفن الممكنة سيبرانيًا (C-ES) [1، 2]. والسفينة الممكنة سيبرانيًا نظام بيئي سيبراني-فيزيائي: السفينة نفسها، ومركز تحكم بري (SCC)، ووصلات الاتصال بينهما، والسفن القريبة. ويزيد دمج تقنية المعلومات وتقنية التشغيل في أنظمة سيبرانية-فيزيائية المخاطر السيبرانية ويُنوعها حتمًا، لأن عمليات صُممت أصلًا دون اعتبار للأمن السيبراني أصبحت متاحة لأنظمة معلومات خارجية عبر واجهات نادرًا ما تكون آمنة [3]. وقد وقعت بالفعل حوادث سيبرانية على السفن [5–7] وتتزايد بوتيرة مقلقة [8] مهددة سلامة البشر والعمليات والبضائع — ومع القيمة المالية للقطاع [9] والمهاجمين الأكفاء [10] يصبح تعزيز أمن هذه السفن ملحًا. والخطوة الأولى هي فهم المخاطر السيبرانية وتحليلها وإدارتها، مما سيقود إلى بنية أمنية بضوابط مناسبة.</p>
+    <p>المخاطر هي 'أثر عدم اليقين على الأهداف' [11، 13]: فالمخاطر السيبرانية تجمع بين احتمالية التهديد ومدى الثغرة وحجم الأثر. وتشمل عملية ISO 31000 [13] تحديد السياق وتقييم المخاطر واختيار الضوابط وخطة المعالجة والتواصل والمراقبة. تطبق هذه الورقة منهجيتي STRIDE [17] وDREAD [18] على الأنظمة السيبرانية-الفيزيائية للبنية المرجعية للسفينة الممكنة سيبرانيًا [16] — أتمتة المحرك (EAS)، وأتمتة الجسر (BAS)، ومركز التحكم البري، والمراقبة والتحكم الذاتي للمحرك (AEMC)، وكفاءة المحرك (EES)، والتفاعل الصيانوي (MIS)، وأنظمة الملاحة، ووحدة التحكم الذاتي (ASC)، والواجهة البشرية، ودعم المناورة عن بعد (RMSS)، ومعالجة الطوارئ (EmH)، وAIS وECDIS وGMDSS، إضافة إلى تجنب الاصطدام والرادار والدوائر التلفزيونية ووحدة الاستشعار المتقدمة والطيار الآلي ومسجل بيانات الرحلة وإدارة البضائع ومسجل بيانات المحرك — ثم تختار ضوابط أساسية للأنظمة الأكثر عرضة للخطر.</p>
+  </section>
+  <section>
+    <h2>2. الأعمال ذات الصلة</h2>
+    <p>لا تستطيع منهجيات مخاطر تقنية المعلومات العامة تقييم مخاطر الأنظمة السيبرانية-الفيزيائية بدقة لأنها يجب أن تضيف السلامة كعامل أثر يتجاوز السرية والسلامة والتوافر [3، 19]، وتؤكد المراجعات البحرية [20] هذه الفجوة. فركزت منهجية Rødseth وآخرين للسفن غير المأهولة على تحديد المخاطر مع إغفال الأمن السيبراني [21]؛ وإطار MaCRA لتام وآخرين يساعد على فهم المخاطر لا تقييم أنظمة محددة [4، 22]؛ وقيّم Svilicic وآخرون مخاطر ECDIS [23]؛ وتغطي دراسات متخصصة العبّارات الذاتية [24] والسفن الذكية [25] وثغرات الجسر المتكامل من 59 حادثًا [26] ومرونة الملاحة المتكاملة [27] والملاحة النسبية الآمنة [28] وتقييم AIS [29] وهجمات إثبات المفهوم على أنظمة الملاحة [30]. وبما أن اختيار الضوابط للأنظمة السيبرانية-الفيزيائية ما يزال تجريبيًا [31–34]، فإن الاختيار المنهجي القائم على المعايير من ملحق NIST لأنظمة التحكم الصناعية [43] يسد فجوة واضحة.</p>
+  </section>
+  <section>
+    <h2>3. تقييم المخاطر النوعي</h2>
+    <h3>3.1. منهجية STRIDE</h3>
+    <p>منهجية STRIDE — الانتحال والعبث والتنصل وكشف المعلومات والحرمان من الخدمة ورفع الامتيازات — التي طورها كونفيلدر وغارغ (1999) ووصفها شوستاك [17]، تحلل التهديدات مقابل أهداف الأصالة والسلامة وعدم التنصل والسرية والتوافر والتخويل. وهي قابلة للاستخدام منذ مرحلة التصميم، فتدعم الأمن بالتصميم [35] وطُبقت في بيئات غنية بالأنظمة السيبرانية-الفيزيائية مشابهة للسفينة الممكنة سيبرانيًا [14، 36، 37].</p>
+    <h3>3.2. تطبيق STRIDE على أنظمة السفينة الممكنة سيبرانيًا</h3>
+    <p>بناءً على نمذجة التهديدات المعدلة وسيناريوهات الهجوم للمؤلفين [2]، يغطي التقييم النوعي أربعة عشر نظامًا (EAS وBAS وSCC وAEMC وEES وMIS وأنظمة الملاحة وASC والواجهة البشرية وRMSS وEmH وAIS وECDIS وGMDSS) إضافة إلى تجنب الاصطدام والرادار والدوائر التلفزيونية ووحدة الاستشعار المتقدمة والطيار الآلي من البنية المرجعية [16]، وكذلك مسجل بيانات الرحلة وإدارة البضائع ومسجل بيانات المحرك، مع جداول كاملة للأثر/الاحتمالية/المخاطر في الملحق أ. ويُدرج الأثر: مرتفع (ضرر مالي جسيم أو ضرر بنيوي أو فقدان أرواح) أو متوسط (ضرر أو تعطيل أو عقوبات أو خرق معلومات) أو منخفض (تأخير غير حرج)؛ والاحتمالية: محتملة جدًا (مهاجمون أكفاء متحفزون ولا ضوابط ومكشوف للإنترنت) أو متوسطة أو نادرة — وقُدرت القيم من الأدبيات وخبرة المؤلفين.</p>
+  </section>
+  <section>
+    <h2>4. تقييم المخاطر الكمي</h2>
+    <h3>4.1. منهجية DREAD</h3>
+    <p>منهجية DREAD [18] — الضرر وقابلية التكرار وقابلية الاستغلال والأنظمة المتأثرة وقابلية الاكتشاف — تكمل STRIDE: فالضرر مع الأنظمة المتأثرة يمثلان الأثر، بينما تُجمع قابلية التكرار والاستغلال والاكتشاف لتمثل الاحتمالية. وهي تستبدل تقديرات الاحتمالية المربكة بمكونات مُسجلة ذات معنى، مما يجعلها مناسبة لتوصيل المخاطر شبه الكمية لصناع القرار غير التقنيين.</p>
+    <h3>4.2. تطبيق DREAD على أنظمة السفينة الممكنة سيبرانيًا</h3>
+    <p>باستخدام المعادلات (1)–(3) — الأثر كمتوسط الضرر والأنظمة المتأثرة، والاحتمالية كمتوسط قابلية التكرار والاستغلال والاكتشاف، والمخاطر كمتوسطهما — يُسجل كل سيناريو هجوم من STRIDE بمرتفع (3) أو متوسط (2) أو منخفض (1) وفق معايير مكيفة للأنظمة السيبرانية-الفيزيائية [38] (الجداول 2–4). وتأتي أعلى مخاطر المحرك ومركز التحكم البري من الانتحال والحرمان من الخدمة؛ وتبلغ أنظمة الجسر ذروتها في الانتحال والعبث والحرمان من الخدمة، مع العبث/كشف المعلومات متوسطين والتنصل/رفع الامتيازات منخفضين.</p>
+  </section>
+  <section>
+    <h2>5. المناقشة: الكمي مقابل النوعي</h2>
+    <p>بتحويل درجات DREAD إلى مستويات (منخفض ≤1 ومتوسط ≤2 ومرتفع ≤3) وإسناد أعلى مخاطر لكل نظام، لا يوجد أي نظام مدروس منخفض المخاطر، وتتصدر ECDIS وGMDSS ووحدة التحكم الذاتي وAIS عند 2.5 و2.42 (الجدول 5)؛ ويتفق المستويان النوعي والكمي في معظم الأنظمة، وتعكس الانحرافات ذاتية التقييم النوعي — وكلاهما يصنف أنظمة الملاحة بين الأكثر عرضة على متن السفن. وبما أن الأنظمة المترابطة تتشارك المخاطر عبر الثغرات الموروثة القابلة للاستغلال كنقاط انطلاق [38]، فإن اعتماد AIS المتبادل مع ECDIS والرادار ووحدة الاستشعار ينشر مخاطره العالية عبر الجسر.</p>
+  </section>
+  <section>
+    <h2>6. معالجة المخاطر السيبرانية واختيار الضوابط</h2>
+    <p>وفق ISO 27005 [11]، تتطلب المعالجة ضوابط أساسية لكل مكون موحدة لبيئة السفينة الممكنة سيبرانيًا. ويعيد النهج المقترح ذو العمليات الست (الشكل 2) استخدام تحليلات البيئة [16] والتهديدات [2] والمتطلبات [39] السابقة ويركز هنا على التقييم واختيار الضوابط (القسم 5.1). ويستمد الاختيار من الملحق G لدليل NIST لأمن أنظمة التحكم الصناعية [43] — وهو تكييف جزئي للكتالوجات الفيدرالية [41، 42] بإرشادات خاصة بالأنظمة الصناعية — باستخدام سبعة معايير مكيفة [44]: نوع النظام، والجوانب الأمنية، والتهديدات، والبدائل، وقيمة النظام من تحليل مسار الهجوم [38]، واحتمالية التهديد من القسمين 3–4، وتغطية المخاطر. فمثلًا، انتحال AIS (نظام ملاحي؛ سلامة/توافر [39]؛ انتحال/عبث/حرمان؛ قيمة عالية [38]؛ محتمل جدًا؛ لا بدائل) يقود إلى عائلة ضوابط IA-3 لتحديد هوية الأجهزة ومصادقتها.</p>
+  </section>
+  <section>
+    <h2>7. التطبيق على AIS وECDIS وGMDSS</h2>
+    <p>تطبق الجداول 6–8 العملية على الأنظمة الثلاثة الأكثر عرضة على متن السفن. فبالنسبة لـAIS: الانتحال (متوسط) يقابله مصادقة IA-3؛ والعبث (مرتفع) يقابله التحكم بمنافذ الإدخال/الإخراج SC-41 وسلامة البرمجيات SI-7؛ والتنصل (مرتفع) يقابله IA-3 وضوابط فيزيائية PE-3/PE-6 وAC-2 وعدم التنصل AU-10 وجرد CM-8؛ وكشف المعلومات (مرتفع) يقابله التشفير SC-12/SC-13؛ والحرمان من الخدمة (متوسط) يقابله CA-9 ونسخ CP-9 الاحتياطية والطاقة PE-9 وSC-5؛ ورفع الامتيازات (مرتفع) يقابله CA-9 وPE-6. وبالنسبة لـECDIS: الانتحال (مرتفع) يتطلب قصر الاستخدام على المخولين عبر IA-3 وSC-41 والطوابع الزمنية AU-8 وCA-5؛ والعبث (متوسط) يضيف مراجعة التدقيق AU-6؛ والتنصل (متوسط) يستخدم CA-9 وAU-8 والضوابط الفيزيائية؛ والكشف (مرتفع) يستخدم SC-13/SC-28 مع IA-3/SC-41؛ والحرمان (مرتفع) يستخدم CA-9 ومعالجة الحوادث IR-4 وSC-5؛ ورفع الامتيازات (منخفض) يستخدم IA-3 وAC-7. وبالنسبة لـGMDSS: خطر الانتحال المرتفع يتطلب التحقق من إشارات الاستغاثة لدى جهات خارجية، مع عائلات مماثلة مكيفة لكل تهديد.</p>
+  </section>
+  <section>
+    <h2>8. الاستنتاجات</h2>
+    <p>حُللت المخاطر السيبرانية للأنظمة السيبرانية-الفيزيائية للسفينة الممكنة سيبرانيًا بمنهجية نوعيًا (STRIDE) وكميًا (DREAD)، وحُددت ضوابط أساسية مناسبة للأنظمة الثلاثة الأكثر عرضة على متن السفن عبر نهج منظم قائم على المعايير. وستبني الأعمال المستقبلية على هذه النتائج لتصميم البنية الأمنية لنسخ السفن الممكنة سيبرانيًا.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>One aspect of Shipping 4.0 digital transformation is increased digitization of on-board systems with growing automation and autonomy, achieved by integrating Information Technology with Operation Technology into Cyber-Physical Systems (CPSs) on which safe operation of contemporary and future vessels depends. Such interconnected systems increase the vessel's exposure to cyberattacks. This paper leverages the STRIDE and DREAD methodologies to qualitatively and quantitatively assess cyber risk of CPSs on digitalized ships, and proposes baseline cybersecurity controls selected systematically — considering security requirements, risks, possible attacks and existing controls — from the Industrial Control Systems (ICS) overlay of the NIST Guide to ICS Security. The results support decision-making and security-architecture design for the cyber-enabled ship.</p>
+  </section>
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Almost all ships today are partly digitalized, yet the industry faces full digital transformation including crew-less vessels in two categories — remotely operated and autonomous — both termed cyber-enabled ships (C-ES) [1, 2]. The C-ES is a cyber-physical ecosystem: the vessel itself, a Shore Control Center (SCC), the communication links between them, and nearby ships. IT/OT integration into CPSs unavoidably increases and diversifies cyber risk, because operations once designed with no cybersecurity in mind become accessible to outward-facing information systems through rarely secure interfaces [3]. Ship-side incidents have already occurred [5–7] and are increasing alarmingly [8], threatening human safety, operations and cargo — while the sector's financial value [9] and capable attackers [10] make strengthening C-ES security urgent. The first step is to understand, analyze and manage cyber risks, which will drive a security architecture with appropriate controls.</p>
+    <p>Risk is 'the effect of uncertainty on objectives' [11, 13]: cyber risk combines threat likelihood, vulnerability extent and impact magnitude. The ISO 31000 process [13] comprises context establishment, risk assessment, control selection and treatment planning, communication, and monitoring. This paper applies STRIDE [17] and DREAD [18] to the CPSs of the C-ES reference architecture [16] — Engine Automation (EAS), Bridge Automation (BAS), SCC, Autonomous Engine Monitoring and Control (AEMC), Engine Efficiency (EES), Maintenance Interaction (MIS), Navigation Systems, Autonomous Ship Controller (ASC), HMI, Remote Maneuvering Support (RMSS), Emergency Handling (EmH), AIS, ECDIS and GMDSS, plus Collision Avoidance, Radar, CCTV, Advanced Sensor Module, Auto Pilot, VDR, Cargo Management and Engine Data Logger — and then selects baseline controls for the most vulnerable systems.</p>
+  </section>
+  <section>
+    <h2>2. Related Work</h2>
+    <p>General-purpose IT risk methods cannot accurately assess CPS risks because CPS assessment must add safety as an impact factor beyond confidentiality, integrity and availability [3, 19], and maritime reviews [20] confirm the gap. Rødseth et al. focused an unmanned-ship method on hazard identification with cybersecurity largely unaddressed [21]; Tam et al.'s MaCRA framework aids understanding of maritime cyber risk rather than assessing specific systems [4, 22]; Svilicic et al. assessed ECDIS ship cyber risks [23]; and system-specific studies cover autonomous ferries [24], smart ships [25], IBS vulnerabilities from 59 accidents [26], shipboard INS resilience [27], secure relative navigation [28], AIS evaluation [29] and INS proof-of-concept attacks [30]. Since control selection for CPSs remains largely empirical [31–34], this work's systematic criteria-based selection from the NIST ICS overlay [43] fills a clear gap.</p>
+  </section>
+  <section>
+    <h2>3. Qualitative Risk Assessment</h2>
+    <h3>3.1. STRIDE</h3>
+    <p>STRIDE — Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege — developed by Kohnfelder and Garg (1999) and described by Shostack [17], analyzes threats against the objectives of Authenticity, Integrity, Non-repudiation, Confidentiality, Availability and Authorization. Usable from the design phase, it supports security-by-design [35] and has been applied in CPS-rich ecosystems similar to the C-ES [14, 36, 37].</p>
+    <h3>3.2. STRIDE for the C-ES CPSs</h3>
+    <p>Building on the authors' modified STRIDE threat modeling and attack scenarios [2], the qualitative assessment covers fourteen C-ES CPSs (EAS, BAS, SCC, AEMC, EES, MIS, NavS, ASC, HMI, RMSS, EmH, AIS, ECDIS, GMDSS) plus Collision Avoidance, Radar, CCTV, ASM and Auto Pilot from the reference architecture [16], and additionally VDR, Cargo Management and EDL, with full Impact/Likelihood/Risk tables in Appendix A. Impact is graded High (major financial damage, infrastructure harm or loss of life), Medium (damage, disruption, sanctions or information breach) or Low (non-critical delay); likelihood is Very Likely (motivated capable attackers, no controls, internet-exposed), Moderate or Rare — values set from literature and author expertise.</p>
+  </section>
+  <section>
+    <h2>4. Quantitative Risk Assessment</h2>
+    <h3>4.1. DREAD</h3>
+    <p>DREAD [18] — Damage, Reproducibility, Exploitability, Affected users/systems, Discoverability — complements STRIDE: Damage plus Affected systems represent Impact, while Reproducibility, Exploitability and Discoverability sum to Likelihood. It replaces confusing probability ratings with meaningful scored components, making it suitable for communicating semi-quantitative risk to non-technical decision-makers.</p>
+    <h3>4.2. DREAD for the C-ES CPSs</h3>
+    <p>Using Formulas (1)–(3) — Impact as the mean of Damage and Affected systems, Likelihood as the mean of Reproducibility, Exploitability and Discoverability, and Risk as their mean — each STRIDE attack scenario is scored High (3), Medium (2) or Low (1) per CPS-adapted criteria [38] (Tables 2–4). Highest engine/SCC risks come from Spoofing and Denial of Service; bridge systems peak on Spoofing, Tampering and Denial of Service, with Tampering/Information disclosure medium and Repudiation/Elevation low.</p>
+  </section>
+  <section>
+    <h2>5. Discussion: Quantitative versus Qualitative</h2>
+    <p>Converting DREAD scores to levels (Low ≤1, Medium ≤2, High ≤3) and assigning each CPS its maximum risk shows no studied CPS at low risk, with ECDIS, GMDSS, ASC and AIS highest at 2.5 and 2.42 (Table 5); qualitative and quantitative levels agree for most systems, deviations reflecting qualitative subjectivity — and both mark navigational systems among the most vulnerable on-board CPSs. Because interconnected CPSs share risks through inherited vulnerabilities usable as stepping stones [38], AIS's interdependence with ECDIS, Radar and ASM propagates its high risk across the bridge.</p>
+  </section>
+  <section>
+    <h2>6. Cyber Risk Treatment and Control Selection</h2>
+    <p>Following ISO 27005 [11], treatment needs baseline controls per component, consolidated for the C-ES environment. The proposed six-sub-process approach (Figure 2) reuses prior environmental [16], threat [2] and requirements [39] analyses and focuses here on assessment plus Control Selection (Section 5.1). Selection draws from the NIST Guide to ICS Security Appendix G overlay [43] — a partial tailoring of the federal control catalogues [41, 42] with ICS-specific guidance — using seven adapted criteria [44]: C1 kind of CPS, C2 security aspects, C3 threats, C4 control alternatives, C5 CPS value from attack-path analysis [38], C6 threat likelihood from Sections 3–4, and C7 risk coverage. For example, AIS spoofing (navigational CPS; integrity/availability [39]; spoofing/tampering/DoS; high value [38]; very likely; no alternatives) leads to the IA-3 Device Identification and Authentication control family.</p>
+  </section>
+  <section>
+    <h2>7. Application to AIS, ECDIS and GMDSS</h2>
+    <p>Tables 6–8 apply the process to the three most vulnerable on-board systems. For AIS, spoofing (medium) maps to IA-3 authentication; tampering (high) to SC-41 port/I/O access and SI-7 software integrity; repudiation (high) to IA-3, PE-3/PE-6 physical controls, AC-2, AU-10 non-repudiation and CM-8 inventory; information disclosure (high) to SC-12/SC-13 cryptography; denial of service (medium) to CA-9, CP-9 backups, PE-9 power and SC-5; and elevation of privilege (high) to CA-9 and PE-6. For ECDIS, spoofing (high) requires restricted authorized use via IA-3, SC-41, AU-8 timestamps and CA-5; tampering (medium) adds AU-6 audit review; repudiation (medium) uses CA-9, AU-8 and physical controls; disclosure (high) uses SC-13/SC-28 plus IA-3/SC-41; DoS (high) uses CA-9, IR-4 incident handling and SC-5; elevation (low) uses IA-3 and AC-7. For GMDSS, high spoofing risk requires verification of distress signals by external actors, with analogous tailored families per threat.</p>
+  </section>
+  <section>
+    <h2>8. Conclusions</h2>
+    <p>Cyber risks of the C-ES CPSs were systematically analyzed both qualitatively (STRIDE) and quantitatively (DREAD), and appropriate baseline controls were identified for the three most vulnerable on-board CPSs through a structured criteria-based approach. Future work will build on these results to design the security architecture of C-ES instances.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Cross, J.; Meadow, G. Autonomous ships 101. J. Ocean Technol. 2017, 12, 23–27.</li>
+      <li>[2] Kavallieratos, G.; Katsikas, S.; Gkioulos, V. Cyber-attacks against the autonomous ship. LNCS Vol. 11387; Springer, 2018; pp. 20–36.</li>
+      <li>[3] BIMCO et al. The Guidelines on Cyber Security Onboard Ships; BIMCO: Bagsværd, Denmark, 2018.</li>
+      <li>[4] Tam, K.; Jones, K. Cyber-risk assessment for autonomous ships. Proc. Cyber Security 2018, Oxford, UK; pp. 1–8.</li>
+      <li>[8] Cyber Attacks on Maritime OT Systems Increased 900% in Last Three Years. Safety4Sea, 2020.</li>
+      <li>[9] Kessler, G.; Craiger, J.; Haass, J. A Taxonomy Framework for Maritime Cyber Security: AIS Demonstration. TransNav 2018, 12, 429.</li>
+      <li>[10] Katsikas, S.K. Cyber security of the autonomous ship. Proc. 3rd ACM Workshop on CPS Security, Abu Dhabi, 2017; pp. 55–56.</li>
+      <li>[11] ISO. ISO/IEC 27005:2018 Information Security Risk Management; Geneva, 2018.</li>
+      <li>[13] ISO. ISO 31000:2018 Risk management — Guidelines; Geneva, 2018.</li>
+      <li>[16] Kavallieratos, G.; Katsikas, S.; Gkioulos, V. Modelling Shipping 4.0: A Reference Architecture for the Cyber-Enabled Ship. Proc. ACIIDS 2020, Phuket; pp. 202–217.</li>
+      <li>[17] Shostack, A. Threat Modeling: Designing for Security; Wiley, 2014.</li>
+      <li>[18] Microsoft. Chapter 3 — Threat Modeling. MSDN, 2010.</li>
+      <li>[20] You, B. et al. Review on Cyber Security Risk Assessment for Maritime Transportation. Proc. ICTPA 2017, Houston.</li>
+      <li>[21] Rødseth, Ø.J.; Burmeister, H.C. Risk assessment for an unmanned merchant ship. TransNav 2015, 9, 357–364.</li>
+      <li>[22] Tam, K.; Jones, K. MaCRA: A model-based framework for maritime cyber-risk assessment. WMU J. Marit. Aff. 2019, 18, 129–163.</li>
+      <li>[23] Svilicic, B. et al. Assessing ship cyber risks: ECDIS security. WMU J. Marit. Aff. 2019, 18, 509–520.</li>
+      <li>[29] Balduzzi, M.; Pasta, A.; Wilhoit, K. A Security Evaluation of AIS. Proc. ACSAC 2014; pp. 436–445.</li>
+      <li>[38] Kavallieratos, G.; Katsikas, S. Attack Path Analysis for Cyber-Physical Systems. Proc. CyberICPS 2020, Guildford.</li>
+      <li>[39] Kavallieratos, G. et al. Shipping 4.0: Security requirements for the Cyber-Enabled Ship. IEEE Trans. Ind. Inform. 2020, 16, 6617–6625.</li>
+      <li>[43] Stouffer, K. et al. Guide to Industrial Control Systems (ICS) Security. NIST SP 800-82, 2015.</li>
+      <li>... [full reference list (44 entries) available in the original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse8100768">10.3390/jmse8100768</a> · License: CC BY 4.0 · PDF: <a href="paper.pdf">paper.pdf</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
