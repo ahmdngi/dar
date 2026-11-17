@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التحقق من دقة مواقع AIS باستخدام الليدار — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Validation of AIS Position Accuracy Using Lidar</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التحقق من دقة مواقع نظام التعريف الآلي (AIS) باستخدام الليدار</h2>
+
+  <div class="paper-meta">
+    <span>👤 Erik Bauer, Alexander Büchel, Christian Denker, Moritz Oberjatzas, Rupak Paul</span>
+    <span>📄 J. Mar. Sci. Eng., 2026 · Vol. 14, 1879</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse14201879">10.3390/jmse14201879</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تُستخدم بيانات نظام التعريف الآلي (AIS) على نطاق واسع لمراقبة حركة السفن ودعم الملاحة والبحوث البحرية، لكن مواقع AIS المُبلغ عنها لا تمثل بالضرورة بدن السفينة بدقة. ولم يُحدَّد كميًا بعدُ مدى الاتساق الهندسي بين تمثيلات السفن المشتقة من AIS وخطوط الأبدان المرصودة بشكل مستقل. تقيّم هذه الدراسة هندسة السفن المشتقة من AIS باستخدام نظام ليزر مسح ضوئي (ليدار) شاطئي كمرجع هندسي مستقل. جمعت حملة ميدانية متزامنة على نهر هونته في ألمانيا بين الليدار الشاطئي وAIS وأجهزة استقبال GNSS متعددة. عُوير الليدار باستخدام أهداف مرجعية GNSS بتقنية RTK، وأُعيد بناء هندسة سفن AIS من المواقع والاتجاهات ونقاط مرجعية الهوائي والأبعاد الساكنة، وطُوبقت مع خطوط الأبدان المشتقة من الليدار. عبر 69 مرورًا للسفن، بلغ الانحراف الجانبي وسيطًا 0.62م والنسبة المئوية 95 للقيمة المطلقة 4.68م، بينما بلغ الانحراف الطولي وسيطًا −1.81م والنسبة 95 للقيمة المطلقة 12.41م. تسهم فروق توقيت AIS على جانب الاستقبال بأقل من 0.5م في الظروف المدروسة، ولا تفسّر الانحرافات السائدة. تشير النتائج إلى أن الفروق المرصودة طولية في الغالب، وتتأثر بتأثيرات التموضع الديناميكي وتناقضات التمثيل الهندسي للسفن في AIS، بما فيها تعريفات النقاط المرجعية وبيانات السفن الساكنة. حُددت حالتان نادرتان بانحرافات ~50م كشذوذات خاصة بالسفن مرتبطة بمعلومات AIS ساكنة خاطئة. تُظهر الدراسة أن الليدار الشاطئي المعايَر يوفر مرجعًا هندسيًا مستقلًا لتقييم الاتساق المكاني لتمثيلات السفن المشتقة من AIS في الممرات المائية الداخلية.</p>
+  </section>
+
+  <section>
+    <h2>I. المقدمة</h2>
+    <p>تُستخدم بيانات AIS على نطاق واسع لمراقبة حركة السفن ودعم الملاحة وإدارة الممرات المائية والبحوث البحرية [1]. وفي كثير من التطبيقات التشغيلية والعلمية، تُعامل مواقع AIS كتمثيلات موثوقة لموقع السفينة لاشتقاق المسارات وكثافات الحركة وحالات اللقاء ومناطق الإشغال الهندسية [2]، [3]. غير أن تقارير مواقع AIS لا تصف بدن السفينة مباشرةً: رسائل AIS الديناميكية تبلغ عن موضع نقطة مرجعية التموضع المثبتة على متن السفينة، بينما تحدد معلومات AIS الساكنة أبعاد السفينة ونقطة مرجع الهوائي [4]. وبالتالي يبقى الاتساق الهندسي بين تمثيلات السفن المشتقة من AIS والشكل الفعلي للسفينة مصدرًا مهمًا لعدم اليقين.</p>
+    <p>تناولت دراسات سابقة دقة مواقع AIS من زوايا مختلفة: فحص Jankowski وآخرون [2] فروق AIS-رادار مبرزين أن الرادار يرصد موضع هدف مكتشف بينما يبلغ AIS عن النقطة المرجعية لهوائي GNSS/AIS؛ وأظهر Fukuda وآخرون [5] أن جزءًا كبيرًا من خطأ AIS الظاهري قد ينشأ من فروق زمنية بين زمن التقدير الموضعي على المتن وزمن استقبال AIS، وأن تصحيح انزياح الزمن يقلل هذه الأخطاء بقوة عبر مقارنتها بمسارات RTK-GPS المرجعية. وتبيّن هذه الدراسات أن انحرافات AIS لا تُفسَّر كأخطاء تموضع GNSS محضة، بل قد تنشأ من تعريفات النقاط المرجعية أو آثار التوقيت أو بيانات AIS الساكنة أو خصائص النظام المرجعي المستقل.</p>
+    <p>يوفّر الليدار دقة مدى عالية وسحب نقاط ثلاثية الأبعاد كثيفة، ممكنًا رصدًا تفصيليًا لهندسة السفن وخطوط الأبدان من منصات شاطئية في ظروف بيئية ملائمة — رصدًا هندسيًا مستقلًا عن إرسالات AIS، فيصلح مرجعًا مستقلًا لتقييم مواضع نقاط AIS والاتساق الهندسي لتمثيلات السفن المشتقة منها. ورغم دراسات سابقة عن دقة AIS وإعادة بناء المسارات وتوقيت الرسائل والدمج مع أنظمة رصد مستقلة كالرادار [2]، [3]، فإن المقارنة المباشرة لأشكال السفن المعاد بناؤها من AIS مع خطوط أبدان الليدار المقاسة بشكل مستقل لم تُدرس منهجيًا بعد. لذا تهدف الدراسة لتقييم الاتساق الموضعي والهندسي لتمثيلات سفن AIS بمقارنة نماذج الأبدان المشتقة من AIS مع رصد خطوط الليدار كمرجع مستقل، مركزةً على سفن الممرات الداخلية العاملة على نهر هونته بألمانيا، ضمن مشروع ASSIST البحثي لأنظمة المساندة الملاحية. وتعالج ثلاثة أسئلة: (1) هل يوفّر الليدار الشاطئي مرجعًا هندسيًا دقيقًا بما يكفي للتحقق من مواقع AIS في ممر مائي مقيّد؟ (2) أي آليات عدم اليقين — تعريفات النقاط المرجعية، بيانات AIS الساكنة، السلوك الديناميكي لـ GNSS، أو زمن استجابة AIS — تهيمن على الانحرافات المرصودة؟ (3) هل يميّز التطابق القائم على الليدار الانحرافات النمطية عن الشذوذات النادرة الخاصة بكل حالة والناجمة عن بيانات AIS ساكنة خاطئة؟</p>
+  </section>
+
+  <section>
+    <h2>II. الوضع الراهن للبحوث</h2>
+    <p>يستعرض القسم أعمال التموضع بـ GNSS وأنظمة المراجع [6]–[9]، ومعايير SOLAS [10] والمبادئ التوجيهية التشغيلية لـ AIS على متن السفن [11]، ومواضع AIS وهندسة السفن ومعلومات الاتجاه وزمن الاستجابة [4]، [5]، [12]–[14]، والرصد الراداري للسفن وحدوده في تقييم دقة AIS [2]، [21]، والرصد الهندسي بالليدار — المسح بالليزر للأبدان دعمًا للمحاكاة الهيدروديناميكية [15]، وأنظمة الالتحام المساندة بالليزر [16]–[18]، وكشف السفن ذاتية القيادة وتتبعها بالليدار [19]، ومعايرة الماسحات الليزرية الأرضية [20] — لتحديد الفجوة البحثية: غياب دراسة منهجية تقارن أشكال AIS المعاد بناؤها مباشرةً مع خطوط أبدان الليدار المقاسة.</p>
+    <p>تتمثل المساهمات الرئيسية في: تطوير إطار مطابقة AIS-ليدار متزامن؛ والتقييم الكمي لهندسة سفن AIS بنظام مرجعي معايَر بالليدار؛ وتقييم عدم يقين توقيت AIS على جانب الاستقبال باستخدام رسائل AIS نفسها المشمولة في تحليل المطابقة؛ والمقارنة السياقية لانحرافات AIS المشتقة من الليدار مع مواقع السفن المشتقة من الرادار.</p>
+  </section>
+
+  <section>
+    <h2>III. الإطار المنهجي</h2>
+    <p>تتبع الدراسة استراتيجية تحقق هرمية لفصل مساهمات عدم اليقين: أولًا، تُثبَّت موثوقية النظام المرجعي المستقل عبر تجربة GNSS ساكنة بنقاط RTK عند علامة جيوديسية رسمية، ثم تُستخدم النقاط المرجعية المعتمدة لمعايرة مستشعر الليدار الشاطئي وتحويل سحابة النقاط إلى نظام إحداثيات جغرافية (شرق–شمال) مع عدم يقين موضعي مُحدَّد كميًا — مجيبةً السؤال الأول حول كفاية الليدار مرجعًا للتحقق من AIS. ثانيًا، تُحلَّل آليات عدم اليقين المؤثرة على مواقع AIS المُرسلة بمعزل عن المقارنة الهندسية: تجربة GNSS ديناميكية تختبر استقرار التموضع على المتن في ظروف تشغيل واقعية (حركة السفينة وتعدد المسارات البنْيوي)، وتحليل توقيت AIS بمقارنة زمن شق الرسالة مع الطابع الزمني للاستقبال المحلي وتحويل الإزاحة الزمنية إلى إزاحة مكانية مكافئة باستخدام سرعة السفينة [5].</p>
+    <p>ثالثًا، تُعاد بناء أبدان سفن AIS من الرسائل الساكنة (الموضع المُبلغ، الاتجاه، الأبعاد، إزاحات الهوائي) وتُحاذى مع خطوط الأبدان المستخرجة من سحابة النقاط المعايَرة — أي تقييم اتساق الشكل لا مجرد مقارنة نقطة بنقطة — مما يكشف الإزاحات المنهجية الناجمة عن تعريفات مرجعية خاطئة لهوائي AIS أو أبعاد غير صحيحة أو تناقضات الاتجاه أو آثار التوقيت. تُشتق إحصاءات الانحراف النهائية من الإزاحات الطولية والجانبية والدورانية في نظام إحداثيات السفينة، وتُفسَّر شرطيًا بمصادر عدم اليقين المُحدَّدة: الانحرافات الصغيرة سلوك AIS نمطي، والتشتت المتزايد أثناء الحركة آثار GNSS ديناميكية، والإزاحات الطولية السائدة المرتبطة بالتأخير آثار زمنية، وعدم التطابق الهندسي المستمر شذوذات بيانات ساكنة خاصة بالسفينة. وقد دُعمت البرمجة بأدوات ذكاء اصطناعي (Claude Sonnet 5 وChatGPT-5.6) مع مراجعة واختبار وتحقق بشري كامل من المؤلفين لجميع الشيفرات.</p>
+  </section>
+
+  <section>
+    <h2>IV. معايرة الليدار</h2>
+    <p>أُجريت المعايرة بنظام مرجعي GNSS يشمل مستقبلات RTK متعددة الدرجات (بما فيها مستقبلات منخفضة التكلفة) عند أهداف مرجعية مساحية، محققةً تقاربًا سريعًا واستقرارًا على مستوى السنتيمتر بعد ~14 ثانية للمستقبل الممكّن بـ RTK. أظهر تحليل انتشار عدم اليقين أن المركبة الزاوية تصبح المساهمة السائدة عند المدى الأكبر، بحد أقصى لعدم يقين إحداثيات النقاط ~0.085–0.086م عند مسافة 150م — أي ضمن النطاق الديسيمتري — مع بواقي صغيرة في المسافة والزاوية من الأهداف المرجعية الأربعة.</p>
+    <p>ومع عدم يقين المطابقة اليدوية المحافظ (0.05م)، يبلغ عدم اليقين المعياري المدمج للمرجع الليداري وإجراء المطابقة ~0.10م — أي ~4% من الجذر التربيعي لمتوسط مربعات الانحراف الجانبي (2.29م) و~2% من الطولي (6.39م). لذا لا يمكن عزو الفروق المرصودة إلى سلسلة قياس الليدار أو إجراء المطابقة اليدوي، ويثبت النهج دقة هندسية كافية لحل انحرافات AIS المدروسة — مجيبًا السؤال الأول بالإيجاب.</p>
+  </section>
+
+  <section>
+    <h2>V. مصادر عدم اليقين في مواقع AIS المرسلة</h2>
+    <p>أظهرت تجارب GNSS الساكنة والديناميكية أن الدقة قصيرة المدى والضبط المطلق غير مترابطين بالضرورة: مستقبل RTK سريع التقارب ومستقر، بينما تُظهر تكوينات Furuno المستقلة وSBAS تقلبات زمنية أكبر وسجلات NMEA غير صالحة أحيانًا، والمستقبل البسيط (Mouse) مستقر قصير المدى رغم انحياز موضعي منهجي — لذا فمؤشرات الجودة المُبلغة من المستقبل غير كافية وحدها لتوصيف الدقة الهندسية الحقيقية، وتدعم النتائج قرار عدم استخدام مستقبل ملاحي تقليدي مرجعًا وحيدًا للتحقق من AIS. وتُظهر التجارب الديناميكية أن انحرافات التموضع قد تكون أبرز في اتجاه حركة السفينة، بما يتسق مع السيادة الطولية المرصودة لاحقًا.</p>
+    <p>أظهر تحليل التوقيت أن تأخيرات رسائل AIS على جانب الاستقبال تُحدث إزاحة طولية قابلة للقياس، لكنها بقيت دون 0.5م حتى عند السرعة القصوى المسموحة في الظروف المدروسة — غير كافية لتفسير الانحرافات الطولية السائدة في نتائج المطابقة، رغم احتمال أهميتها عند سرعات أعلى أو ظروف استقبال مختلفة. إضافةً إلى ذلك، كشفت مقارنة البيانات المحلية المسجلة مع مزود خدمة بيانات AIS عن فروق توقيت تتجاوز 5 ثوانٍ يُدخلها المزود، مما قد يفسّر نتائج Fukuda وآخرين [5].</p>
+  </section>
+
+  <section>
+    <h2>VI. مطابقة خطوط AIS-ليدار والنتائج</h2>
+    <p>نُفّذت حملة قياس ميدانية متزامنة (ليدار شاطئي + AIS + GNSS) وأُعيد بناء أجسام AIS المستطيلة من الموضع والاتجاه والأبعاد وإزاحات الهوائي، مع ترشيح سحابة النقاط وإجراء مطابقة يدوية (تحسين متزامن للإزاحة الجانبية والدوران باستخدام الجانب البابوري للبدن، ثم إزاحة طولية حتى تطابق مقدمة AIS أقصى المقدمة المرئية)، وتحليل عدم يقين، وتقييم إحصائي. من 71 مرورًا مقيّمًا، أظهر ممرّان إزاحات طولية غير معقولة ~50م فأُبقيا منفصلين كحالتين استثنائيتين، وحُللت المجموعة المرشحة (69) للانحرافات النمطية.</p>
+    <p>أظهرت المجموعة المرشحة وسيطًا جانبيًا 0.62م ونسبة 95 للقيمة المطلقة 4.68م، ووسيطًا طوليًا −1.81م ونسبة 95 للقيمة المطلقة 12.41م، بجذر تربيعي لمتوسط المربعات 2.29م جانبيًا و6.39م طوليًا — أي أن انحرافات AIS طولية في الغالب لا جانبية. وتؤثر الحالتان الاستثنائيتان على الإحصاءات الطولية أساسًا (RMS الطولي من 6.39 إلى 10.39م بإدراجهما) بينما يبقى الوسيط شبه ثابت، مما يدل على نمط خطأ نمطي متين مع قيم متطرفة نادرة لكنها مهمة عملياتيًا — متسقًا مع آليات GNSS الديناميكية وآثار تكوين AIS (أبعاد مقدمة/مؤخرة خاطئة، تحديثات متأخرة أثناء الحركة). وبقيت الانحرافات الدورانية صغيرة (وسيط 0°، RMS قدره 1.4°، نسبة 95 قدرها 3.3°)، أي أن عدم التطابق انتقالي في الغالب لا دوراني، فاختُتم أن 95% من الممرات تُظهر عدم تطابق جانبي دون ~5م وطوليًا مطلقًا دون ~12.5م.</p>
+    <p>كشف التحليل الفردي للحالات المشتبهة أن الإزاحة ~50م ليست من إجراء المطابقة بل من معلومات إزاحة هوائي AIS ساكنة خاطئة على الأرجح: تطابق سحابة النقاط جدار السفينة جيدًا بينما يزاح مستطيل AIS بنحو نصف طول السفينة بثبات عبر المرور كله — متسق مع هوائي مثبت فعليًا قرب المؤخرة بينما تبلغ الرسالة الساكنة عن موضع أقرب للمقدمة، إذ تُترجم أي إدخال خاطئ لمسافات A وB وC وD مباشرةً إلى إزاحة منهجية لبدن السفينة المعاد بناؤه، بما تدعمه أعمال سابقة عن كشف تناقضات مرجع GNSS من الحركة والهندسة [12]. ومن القيود: الاعتماد الجزئي على المشغّل، ورصد الجانب المرئي فقط، وتقريب البدن المستطيل (تُضعف هندسة المقدمة المعقدة ورذاذ المقدمة والظروف البيئية موثوقية محاذاة المقدمة) — وهي قيود تُؤخذ في تفسير الإحصاءات دون إبطال مفهوم التحقق.</p>
+  </section>
+
+  <section>
+    <h2>VII. الفروق الموضعية بين AIS والرادار</h2>
+    <p>حُللت مواقع السفن المشتقة من الرادار كمقارنة تكميلية لتوضيح رتبة فروق AIS-المستشعرات: تُبرز المقارنة حدود استخدام المواضع المشتقة من الرادار مرجعًا لدقة AIS كما في Jankowski وآخرين [2]، إذ قد تعكس فروق AIS-رادار فروقًا في خصائص المستشعر وتعريفات النقاط المرجعية وسلوك التتبع، ولغياب مرجع هندسي مستقل لقياسات الرادار في هذه الدراسة لا يمكن عزو الفروق المرصودة لأي نظام وحده أو تأويلها كمقياس دقة مطلق.</p>
+  </section>
+
+  <section>
+    <h2>VIII. النقاش</h2>
+    <p>يثبت النهج أن استخدام خط بدن مشتق من الليدار مرجعًا أساسيًا يقلل الاعتماد على مواضع مرجعية متحيزة على المتن — على عكس دراسات التحقق التي تعتمد مستقبل GNSS آخر مرجعًا. فموثوقية المرجع الليداري مؤكدة بالمعايرة وانتشار عدم اليقين (المركبة الزاوية سائدة عند المدى الأكبر، بحد أقصى ~0.086م عند 150م)، وهي أصغر بكثير من انحرافات AIS المرصودة، فلا تُعزى الفروق بشكل معقول إلى سلسلة قياس الليدار. وتدعم تجارب GNSS قرار تجنب مستقبل الملاحة التقليدي مرجعًا وحيدًا، مع إبراز أن الدقة والضبط غير مترابطتين.</p>
+    <p>يكشف التباين الاتجاهي سيادة طولية واضحة (RMS جانبي 2.29م مقابل 6.39م طوليًا) لا تُعزى حصرًا لتعريف نقطة مرجع AIS: فالتجارب الديناميكية تُظهر انحرافات أبرز في اتجاه الحركة، لكن مساهمة توقيت جانب الاستقبال (<0.5م) غير كافية، فتُعزى البقية لمزيج عدم يقين التموضع وآثار هندسية لتمثيل AIS (الفروق بين نقطة المرجع المُبلغة والهندسة الفيزيائية، أخطاء الأبعاد الساكنة، أخطاء التكوين الخاصة بالسفينة) — مع انحرافات دورانية صغيرة (RMS قدره 1.4°) تؤكد الطابع الانتقالي. وتُظهر متانة المطابقة أن إدراج الممرين الاستثنائيين يرفع RMS الطولي كثيرًا بينما يتغير الوسيط هامشيًا: أي أن النزعة المركزية متينة والحالات المتطرفة شذوذات معزولة لكنها مهمة عملياتيًا يصعب كشفها بمقارنات المسارات وحدها.</p>
+    <p>تشير النتائج إلى أن خطأ AIS عامًا مفترضًا بحدود 50م قد يكون متحفظًا بإفراط لأغلبية الممرات في سيناريو الممر الداخلي المدروس، لكن AIS ليس تمثيلًا موثوقًا عالميًا للهندسة الحقيقية — خاصة طوليًا. ويوفّر الجمع بين استشعار الليدار عالي الدقة وانتشار عدم اليقين الصريح والمطابقة الهندسية إطارًا كميًا لتقييم أداء AIS مستقلًا بدرجة كبيرة عن تكوينات المستشعرات على المتن، وقابلًا للنقل لمناطق أخرى، وأساسًا واعدًا لدراسات اتساق النقاط المرجعية وجودة البيانات الساكنة وأنظمة التتبع متعددة المستشعرات. وعمليًا، يتطلب النشر معايرة بنقاط مساحية مستقلة وتحققًا دوريًا من وضعية المستشعر ورؤية كافية للبدن (المطر والرذاذ والضباب يُدهور الخطوط) وتزامنًا زمنيًا دقيقًا، مع اعتبار AIS والليدار مصدرين متكاملين (هوية وديناميكيات معيارية مقابل رصد هندسي مستقل) واستخدام الانحرافات بينهما مؤشر جودة للمعالجة اللاحقة — علمًا أن المطابقة الحالية للتحقق دون الاتصال، بينما يتطلب النشر الفوري استخراجًا وتسجيلًا آليين (كـ ICP) بعد معالجة وقيود مناسبة.</p>
+  </section>
+
+  <section>
+    <h2>IX. الخاتمة</h2>
+    <p>قدّمت الدراسة إطارًا ليداريًا شاطئيًا للتحقق الهندسي من تمثيلات السفن المشتقة من AIS في بيئة ممر مائي داخلي، جامعًا بين نظام مرجعي معايَر بالليدار وقياسات RTK-GNSS وبيانات AIS وإجراء مطابقة يعيد بناء هندسة AIS المُبلغة من الأبعاد الساكنة ومعلومات النقاط المرجعية — ممكنًا مقارنة مواضع وامتدادات AIS مباشرةً مع الهندسة الفيزيائية المرصودة لا مع نظام ملاحة أو تتبع آخر. ويُظهر عدم اليقين (~0.10م معياري مدمج) مرجعًا هندسيًا مستقلًا دقيقًا بما يكفي (السؤال الأول)، بينما تسهم زمنية جانب الاستقبال بأقل من 0.5م طوليًا فلا تفسّر السيادة الطولية.</p>
+    <p>وبخصوص السؤال الثاني، تهيمن تأثيرات التموضع الديناميكي وآثار التمثيل الهندسي (تعريفات النقاط المرجعية، أخطاء الأبعاد الساكنة، أخطاء تكوين الهوائي الخاصة بالسفن) على الانحرافات المرصودة — جانبيًا وسيط 0.62م (95% دون ~5م)، وطوليًا وسيط −1.81م (95% دون ~12.5م) — مع حالتين نادرتين ~50م تُعزى لمعلومات ساكنة خاطئة (السؤال الثالث). وتشمل المساهمات الإطار المتزامن والتقييم الكمي والمقارنة السياقية مع الرادار وجدول مساهمات الأخطاء (الجدول 10)، مع توصيات بنقل الإطار لمناطق أخرى ودراسة اتساق النقاط المرجعية وجودة البيانات الساكنة والتتبع متعدد المستشعرات مستقبلًا.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Automatic Identification System (AIS) data are widely used for vessel traffic monitoring, navigation support, and maritime research, but AIS-reported positions do not necessarily represent the physical vessel hull accurately. The geometric consistency between AIS-derived vessel representations and independently observed hull contours remains insufficiently quantified. This study evaluates AIS-derived vessel geometry using a shore-based Light Detection and Ranging (Lidar) system as an independent geometric reference. A synchronized field campaign on the River Hunte, Germany, combines shore-based Lidar, AIS, and multiple GNSS receivers. The Lidar system is calibrated using RTK-GNSS reference targets. AIS vessel geometries are reconstructed from reported positions, headings, antenna-reference points, and static vessel dimensions and are matched with Lidar-derived hull contours. Across 69 vessel passages, the lateral deviation has a median of 0.62 m and a 95th percentile absolute deviation of 4.68 m, while the longitudinal deviation has a median of −1.81 m and a 95th percentile absolute deviation of 12.41 m. Receiver-side AIS timing differences contribute less than 0.5 m under the investigated conditions and therefore do not explain the dominant deviations. The results indicate that the observed discrepancies are predominantly longitudinal and are influenced by dynamic positioning effects and inconsistencies in the geometric representation of vessels in AIS, including reference-point definitions and static vessel data. Two rare cases with deviations of approximately 50 m are identified as vessel-specific anomalies associated with erroneous static AIS information. The study demonstrates that calibrated shore-based Lidar can provide an independent geometric reference for assessing the spatial consistency of AIS-derived vessel representations in inland waterways.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>AIS data are widely used for vessel traffic monitoring, navigation support, waterway management, and maritime research [1]. In many operational and scientific applications, AIS positions are treated as reliable representations of vessel location and are used to derive trajectories, traffic densities, encounter situations, or geometric occupancy areas [2,3]. However, AIS position reports do not directly describe the physical vessel hull. Dynamic AIS messages report the position of the configured onboard positioning reference point, while static AIS information specifies vessel dimensions and the antenna reference point [4]. Consequently, the geometric consistency between AIS-derived vessel representations and the actual vessel shape remains an important source of uncertainty.</p>
+    <p>Previous studies address AIS position uncertainty from different perspectives. Jankowski et al. (2021) [2] investigate AIS-Radar discrepancies and highlight that AIS and Radar may refer to different spatial representations of a vessel: Radar observations approximate a detected target position, whereas AIS reports the GNSS/AIS antenna reference point. Fukuda et al. (2025) [5] show that a substantial part of apparent AIS position error can result from temporal discrepancies between the actual onboard position-estimation time and the AIS reception time. By comparing AIS data with RTK-GPS reference trajectories, they demonstrate that time-shift correction can strongly reduce these apparent errors. These studies show that AIS deviations cannot be interpreted as pure GNSS position errors; they may instead originate from reference-point definitions, timing effects, static AIS data, or the characteristics of the independent reference system.</p>
+    <p>Lidar provides high ranging accuracy and dense three-dimensional point clouds, enabling detailed observation of vessel geometry and hull contours from shore-based measurement platforms under suitable environmental conditions. The resulting geometric observations are independent of AIS transmissions and can therefore provide an independent geometric reference for evaluating both AIS point positions and the geometric consistency of AIS-derived vessel representations. While previous studies investigate AIS position accuracy, trajectory reconstruction, message timing, and fusion with independent observation systems such as Radar [2,3], the direct comparison of AIS-reconstructed vessel shapes with independently measured Lidar hull contours has not yet been systematically investigated. The objective of this paper is therefore to evaluate the positional and geometric consistency of AIS vessel representations by comparing AIS-derived hull models with Lidar-based contour observations used as an independent geometric reference. The study focuses on inland vessels operating on the River Hunte in Germany. AIS vessel dimensions, heading, and antenna-reference information are used to reconstruct vessel hull rectangles, which are subsequently matched against hull contours extracted from terrestrial Lidar measurements. The measurements are conducted as part of the ASSIST research project on sensor-assisted assistance concepts for inland waterway operations. The study addresses three research questions: (1) Can a shore-based Lidar system provide a sufficiently accurate geometric reference for validating AIS vessel positions in a constrained waterway? (2) Which uncertainty mechanisms — reference-point definitions, static AIS vessel data, dynamic GNSS behavior, or AIS latency — dominate the observed AIS position deviations? (3) Can Lidar-based contour matching distinguish typical AIS position deviations from rare case-specific anomalies caused by erroneous AIS static data or antenna-reference definitions?</p>
+  </section>
+
+  <section>
+    <h2>2. State of the Art</h2>
+    <p>This section reviews GNSS-based vessel positioning and reference systems [6]–[9], SOLAS requirements [10] and operational guidelines for onboard AIS use [11], AIS position, vessel geometry, heading information and timing uncertainty [4], [5], [12]–[14], radar-based vessel observation and its limitations for AIS accuracy assessment [2], [21], and Lidar-based geometric vessel observation — laser scanning of hulls supporting hydrodynamic simulations [15], laser-assisted berthing support systems [16]–[18], Lidar-based detection and tracking for autonomous surface vehicles [19], and terrestrial laser scanner calibration [20] — identifying the research gap: no systematic study directly comparing reconstructed AIS shapes with measured Lidar hull contours.</p>
+    <p>The main contributions of this work are: the development of a synchronized AIS-Lidar contour-matching framework; the quantitative evaluation of AIS-derived vessel geometry with a calibrated Lidar reference system; the assessment of receiver-side AIS timing uncertainty using the same AIS messages included in the contour-matching analysis; and the contextual comparison of Lidar-based AIS deviations with Radar-derived vessel positions.</p>
+  </section>
+
+  <section>
+    <h2>3. Methodical Framework</h2>
+    <p>This study follows a hierarchical validation strategy to separate uncertainty contributions: first, the reliability of the independent reference system is established through a static RTK-GNSS experiment at an official geodetic control point. The validated RTK reference points are subsequently used to calibrate the shore-based Lidar sensor and transform the Lidar point cloud into a georeferenced East–North coordinate system with quantified positional uncertainty — addressing the first research question on whether the Lidar system provides a sufficiently accurate geometric reference for AIS validation. Second, uncertainty mechanisms affecting AIS-transmitted vessel positions are analyzed independently of the geometric comparison: a dynamic GNSS experiment investigates onboard positioning stability under realistic operating conditions (vessel motion and infrastructure-induced multipath), while receiver-side AIS timing is evaluated by comparing AIS message slot times with local reception timestamps, converting the temporal offset into an equivalent spatial displacement using vessel velocity [5].</p>
+    <p>Third, AIS vessel hulls are reconstructed from static messages (reported position, heading, dimensions, antenna offsets) and aligned with hull contours extracted from the calibrated point cloud — a shape-consistency assessment rather than a simple point-to-point comparison — revealing systematic offsets from erroneous AIS antenna-reference definitions, incorrect dimensions, heading inconsistencies, or timing effects. Final deviation statistics derive from longitudinal, lateral, and rotational offsets in the vessel-fixed coordinate system, interpreted conditionally on the quantified uncertainty sources: small deviations as typical AIS behavior, increased scatter during motion as dynamic GNSS effects, predominantly longitudinal timing-correlated offsets as latency artifacts, and persistent geometric mismatches as vessel-specific static-data anomalies. AI tools (Claude Sonnet 5 and ChatGPT-5.6) supported programming of all software implementations, with all AI-assisted code reviewed, tested, and validated by the authors.</p>
+  </section>
+
+  <section>
+    <h2>4. Lidar Calibration</h2>
+    <p>Calibration used a GNSS reference system with multiple-grade receivers (including low-cost units) at surveyed reference targets, achieving rapid convergence and centimeter-level stability after approximately 14 s for the RTK-enabled receiver. Uncertainty propagation showed the angular component becoming dominant at larger ranges, with a maximum point-coordinate uncertainty of approximately 0.085–0.086 m at 150 m — within the decimeter range — and small distance/angle residuals from the four reference targets.</p>
+    <p>Together with the conservative manual contour-matching uncertainty (0.05 m), the combined standard uncertainty of the Lidar reference and matching procedure is approximately 0.10 m — about 4% of the lateral RMS deviation (2.29 m) and 2% of the longitudinal RMS (6.39 m). The observed discrepancies are therefore not dominated by the Lidar measurement chain or the manual matching procedure, and the approach provides sufficient geometric accuracy to resolve the investigated AIS deviations — answering the first research question affirmatively.</p>
+  </section>
+
+  <section>
+    <h2>5. Uncertainty Sources in AIS-Transmitted Vessel Positions</h2>
+    <p>Static and dynamic GNSS experiments showed that short-term precision and absolute accuracy are not necessarily correlated: the RTK receiver converges rapidly and stays stable, while Furuno standalone and SBAS configurations exhibit larger temporal fluctuations and occasional invalid NMEA records, and the simple (Mouse) receiver is stable short-term despite a systematic positional bias — so receiver-reported quality indicators alone are insufficient to characterize true geometric accuracy, supporting the decision to avoid a conventional navigation-grade GNSS receiver as the sole AIS validation reference. Dynamic experiments further show positioning deviations can be more pronounced in the vessel motion direction, consistent with the longitudinal dominance observed later.</p>
+    <p>Timing analysis showed receiver-side AIS message delays introduce measurable longitudinal displacement, but under the investigated conditions it remained below 0.5 m even at the maximum permitted vessel speed — insufficient to explain the dominant longitudinal deviations in the matching results, though potentially relevant at higher speeds or different reception conditions. Additionally, comparing locally recorded AIS data with an AIS data service provider revealed the provider can introduce timing differences exceeding 5 s, which may explain the findings of Fukuda et al. (2025) [5].</p>
+  </section>
+
+  <section>
+    <h2>6. AIS-Lidar Contour Matching and Results</h2>
+    <p>A synchronized field measurement campaign (shore Lidar + AIS + GNSS) was conducted, AIS hull rectangles reconstructed from position, heading, dimensions, and antenna offsets, with point-cloud filtering and a manual matching procedure (simultaneous optimization of lateral translation and rotation using the port-side hull, then longitudinal translation until the AIS bow coincides with the foremost visible bow), uncertainty analysis, and statistical evaluation. Of 71 evaluated passages, two showed implausibly large longitudinal offsets of approximately 50 m and were retained separately as exceptional cases, with the filtered dataset (n = 69) characterizing typical deviations.</p>
+    <p>The filtered dataset shows a lateral median of 0.62 m with a 95th-percentile absolute value of 4.68 m, and a longitudinal median of −1.81 m with a 95th-percentile absolute value of 12.41 m, with RMS values of 2.29 m laterally and 6.39 m longitudinally — i.e., AIS deviations are predominantly longitudinal rather than lateral. The two exceptional cases mainly affect longitudinal statistics (longitudinal RMS from 6.39 to 10.39 m when included) while the median remains nearly unchanged, indicating a robust typical error pattern with rare but operationally relevant outliers — consistent with dynamic GNSS mechanisms and AIS configuration effects (incorrect bow/stern dimensions in static AIS data, delayed position updates during motion). Rotational deviations stayed small (median 0°, RMS 1.4°, 95th percentile 3.3°), so the mismatch is predominantly translational rather than rotational; 95% of evaluated passages show lateral mismatch below approximately 5 m and absolute longitudinal mismatch below approximately 12.5 m.</p>
+    <p>Individual case analysis of the suspected antenna-offset errors suggests the ~50 m offsets stem not from the matching procedure but plausibly from incorrect static AIS antenna-offset information: the Lidar point cloud aligns well with the vessel side wall while the AIS-derived rectangle is displaced by roughly half the vessel length, nearly constantly throughout the passage — consistent with an antenna physically installed near the stern while the static message reports a position much closer to the bow, since AIS hull reconstruction is entirely based on the transmitted A, B, C, D distances, supported by prior work detecting GNSS-reference inconsistencies from vessel motion and geometry [12]. Limitations include partial operator dependence, consideration of only the visible side, and the rectangular AIS hull approximation (complex bow geometries, bow waves, spray, and adverse conditions may reduce bow-alignment reliability) — considered in interpreting the statistics without invalidating the validation concept.</p>
+  </section>
+
+  <section>
+    <h2>7. AIS-Radar Positional Discrepancies</h2>
+    <p>Radar-derived vessel positions were analyzed as a supplementary comparison to contextualize the magnitude of AIS-sensor discrepancies: the comparison highlights the limitations of using Radar-derived positions as a reference for AIS accuracy assessment, as done by Jankowski et al. (2021) [2], since AIS-Radar discrepancies may reflect sensor characteristics, reference-point definitions, and tracking behavior, and with no independent geometric reference available for the Radar measurements in this study the observed differences cannot be attributed to either system alone or interpreted as an absolute accuracy measure.</p>
+  </section>
+
+  <section>
+    <h2>8. Discussion</h2>
+    <p>The approach proves that using a Lidar-derived hull contour as the primary reference reduces dependency on potentially biased onboard reference positions — unlike AIS validation studies relying on another GNSS receiver as reference. Lidar reference reliability is confirmed by calibration and uncertainty propagation (angular component dominant at range, maximum ~0.086 m coordinate uncertainty at 150 m), substantially smaller than the observed AIS deviations, so the discrepancies cannot plausibly be explained by the Lidar measurement chain. The GNSS experiments support avoiding a conventional navigation-grade receiver as the sole validation reference, highlighting that precision and accuracy are not necessarily correlated.</p>
+    <p>The comparison reveals pronounced directional asymmetry (lateral RMS 2.29 m vs. 6.39 m longitudinal) not attributable exclusively to the AIS reference-point definition: dynamic experiments show deviations more pronounced in the motion direction, but the receiver-side timing contribution (&lt;0.5 m) is insufficient, so the remainder likely results from a combination of positioning uncertainty and geometric effects of the AIS vessel representation (differences between the reported AIS reference point and physical geometry, static-dimension inaccuracies, vessel-specific configuration errors) — with small rotational deviations (1.4° RMS) confirming the predominantly translational mismatch. The contour-matching robustness is demonstrated by retaining the two exceptional passages: their inclusion raises longitudinal RMS substantially while medians change marginally, i.e., robust central tendency with isolated but operationally relevant anomalies that trajectory-only comparisons would struggle to detect.</p>
+    <p>The results indicate that an assumed generic AIS position error on the order of 50 m may be overly conservative for most passages in the investigated inland-waterway scenario, yet AIS cannot be regarded as a universally reliable representation of true vessel geometry — particularly longitudinally. The combination of high-resolution Lidar sensing, explicit uncertainty propagation, and geometric contour-matching provides a transferable quantitative AIS performance assessment framework largely independent of onboard sensor configurations, and a basis for reference-point consistency, static-data quality, and multisensory tracking studies. For deployment, a Lidar-based AIS validation system requires calibration with independently surveyed reference points, periodic sensor-pose checks, adequate hull visibility (rain, spray, fog degrade contours), and precise time synchronization, treating AIS and Lidar as complementary sources (standardized identity/dynamics vs. independent geometric observation) with their deviations as quality indicators for downstream processing — noting the current procedure is offline validation, while real-time deployment needs automated extraction and registration (e.g., ICP) after suitable preprocessing and constraints.</p>
+  </section>
+
+  <section>
+    <h2>9. Conclusions</h2>
+    <p>This study presents a shore-based Lidar framework for geometric validation of AIS-derived vessel representations in an inland-waterway environment, combining a calibrated Lidar reference system with RTK-GNSS measurements, AIS data, and a contour-matching procedure reconstructing reported AIS geometry from static dimensions and reference-point information — enabling direct comparison of AIS-derived positions and extents with observed physical vessel geometry rather than with another navigation or tracking system. The uncertainty analysis (~0.10 m combined standard uncertainty) demonstrates a sufficiently accurate independent geometric reference (first research question), while receiver-side timing contributes less than 0.5 m longitudinally and cannot account for the dominant deviations.</p>
+    <p>Regarding the second research question, dynamic positioning effects and geometric representation effects (reference-point definitions, static-dimension errors, vessel-specific antenna configuration errors) dominate the observed deviations — laterally a 0.62 m median (95% below ~5 m), longitudinally a −1.81 m median (95% below ~12.5 m) — with two rare ~50 m cases attributed to erroneous static information (third research question). Contributions include the synchronized framework, quantitative evaluation, contextual Radar comparison, and the error-contribution summary (Table 10), with recommendations to transfer the framework to other areas and study reference-point consistency, static-data quality, and multisensory tracking in the future.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Tu, E.; Zhang, G.; Rachmawati, L.; Rajabally, E.; Huang, G.-B. Exploiting AIS Data for Intelligent Maritime Navigation: A Comprehensive Survey From Data to Methodology. IEEE Trans. Intell. Transp. Syst. 2018, 19, 1559–1582.</li>
+      <li>[2] Jankowski, D.; Lamm, A.; Hahn, A. Determination of AIS Position Accuracy and Evaluation of Reconstruction Methods for Maritime Observation Data. IFAC-PapersOnLine 2021, 54, 97–104.</li>
+      <li>[3] Qu, J.; Liu, R.W.; Guo, Y.; Lu, Y.; Su, J.; Li, P. Improving Maritime Traffic Surveillance in Inland Waterways Using the Robust Fusion of AIS and Visual Data. Ocean Eng. 2023, 275, 114198.</li>
+      <li>[4] ITU-R M.1371: Technical Characteristics for VHF Automatic Identification System Using Time Division Multiple Access in the Maritime Mobile Service.</li>
+      <li>[5] Fukuda, G.; Tamaru, H.; Kubo, N.; Shoji, R. A Study on AIS Positional Error Analysis and Transmission Frequency Requirements of Attitude Data for Future Vessel Monitoring. J. Navig. 2025, 77, 677–694.</li>
+      <li>[6] Elsheikh, M.; Iqbal, U.; Noureldin, A.; Korenberg, M. The Implementation of Precise Point Positioning (PPP): A Comprehensive Review. Sensors 2023, 23, 8874.</li>
+      <li>[7] Li, X.; Barriot, J.-P.; Lou, Y.; Zhang, W.; Li, P.; Shi, C. Towards Millimeter-Level Accuracy in GNSS-Based Space Geodesy: A Review of Error Budget for GNSS Precise Point Positioning. Surv. Geophys. 2023, 44, 1691–1780.</li>
+      <li>[8] Lin, Y.-P.; Huang, C.-J.; Chen, S.-H.; Doong, D.; Kao, C.C. Development of a GNSS Buoy for Monitoring Water Surface Elevations in Estuaries and Coastal Areas. Sensors 2017, 17, 172.</li>
+      <li>[9] Zhou, B.; Watson, C.; Beardsley, J.; Legresy, B.; King, M.A. Development of a GNSS/INS Buoy Array in Preparation for SWOT Validation in Bass Strait. Front. Mar. Sci. 2023, 9, 1093391.</li>
+      <li>[10] International Maritime Organization. SOLAS: Consolidated Edition, 2024; IMO: London, UK, 2024.</li>
+      <li>[11] International Maritime Organization. Revised Guidelines for the Onboard Operational Use of Shipborne AIS. In Proc. 29th IMO Assembly, London, UK, 23 November–2 December 2015.</li>
+      <li>[12] Banys, P.; Heymann, F.; Engler, E.; Noack, T. Motion-Based Consistency Audit of the Onboard GNSS Reference as Reported by Static AIS Data. Sci. J. Marit. Univ. Szczec. 2015, 44, 49–56.</li>
+      <li>[13] Harati-Mokhtari, A.; Wall, A.; Brooks, P.; Wang, J. Automatic Identification System (AIS): Data Reliability and Human Error Implications. J. Navig. 2007, 60, 373–389.</li>
+      <li>[14] Meyers, S.D.; Yilmaz, Y.; Luther, M.E. Some Methods for Addressing Errors in Static AIS Data Records. Ocean Eng. 2022, 264, 112367.</li>
+      <li>[15] Lovas, T.; Somogyi, Á.J.; Simongáti, G. Laser Scanning Ship Hulls to Support Hydrodynamic Simulations. Period. Polytech. Civ. Eng. 2021, 66, 291–297.</li>
+      <li>[16] Yu, Y.; Zhao, B.; Zhu, H.; Yang, L. Berthing Support System Using Laser and Marine Hydrometeorological Sensors. In Proc. IEEE ITOEC 2017, Chongqing, China, 2017; pp. 69–72.</li>
+      <li>[17] Mentjes, J.; Wiards, H.; Feuerstack, S. A Shore-Based, Vessel-Independent Berthing Assistant System Using LiDAR Sensors. J. Mar. Sci. Eng. 2022, 10, 385.</li>
+      <li>[18] Lan, J.; Zheng, M.; Chu, X.; Liu, C.; Ding, S. A High-Precision Ship Positioning Method in the Lock Chamber Based on LiDAR. Ocean Eng. 2024, 306, 118033.</li>
+      <li>[19] Xie, Y.; Nanlal, C.; Liu, Y. Reliable LiDAR-Based Ship Detection and Tracking for Autonomous Surface Vehicles in Busy Maritime Environments. Ocean Eng. 2024, 312, 119288.</li>
+      <li>[20] Shi, S.; Muralikrishnan, B.; Sawyer, D.S. Terrestrial Laser Scanner Calibration and Performance Evaluation Using the Network Method. Opt. Lasers Eng. 2020, 134, 106298.</li>
+      <li>[21] Bole, A.G.; Wall, A.D.; Norris, A. Radar and ARPA Manual; Elsevier: Amsterdam, The Netherlands, 2014.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse14201879">10.3390/jmse14201879</a> · License: CC BY 4.0 · <a href="./paper.pdf">PDF</a></p>
+  <p>Translation © DAR — Arabic Research Archive · <a href="https://github.com/ahmdngi/dar">GitHub</a></p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

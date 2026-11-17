@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الذكاء الاصطناعي في البحر، العام السادس: SatShipAI — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">AI at Sea, Year Six: Performance Evaluation, Failures, and Insights from the Operational Meta-Analysis of SatShipAI, a Sensor-Fused Maritime Surveillance Platform</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">الذكاء الاصطناعي في البحر، العام السادس: تقييم الأداء والإخفاقات والرؤى من التحليل التشغيلي الشامل لمنصة SatShipAI للمراقبة البحرية متعددة المستشعرات</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ioannis Nasios, Konstantinos Vogklis</span>
+    <span>📄 Electronics, 2025 · Vol. 14, 3648</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics14183648">10.3390/electronics14183648</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>بعد ست سنوات من تشغيلها، قدّمت منصة SatShipAI — وهي منصة عملياتية تجمع نماذج الذكاء الاصطناعي مع صور الرادار ذي الفتحة التركيبية Sentinel-1 وبيانات نظام التعريف الآلي (AIS) — مراقبة بحرية متينة حول الدنمارك. يُظهر التحليل الشامل للمخرجات والسجلات والمراجعات اليدوية المؤرشفة استقرار أداء كشف السفن وتصنيفها عبر الزمن، بما في ذلك نجاح التطبيق عبر المستشعرات على بيانات SAR في النطاق X دون إعادة تدريب. شملت التحديات التشغيلية الرئيسية تأخر ملفات المدار، وحدود الكشف قرب الشاطئ، والبنى التحتية الناشئة مثل مزارع الرياح. أثبتت المنصة قيمة خاصة في كشف السفن «المظلمة» البعيدة عن الشاطئ خارج تغطية AIS، مما دعم الأمن البحري وإدارة الحركة والاستجابة للطوارئ. تُظهر هذه النتائج جدوى أنظمة الذكاء الاصطناعي الجيومكانية طويلة الأمد وقدرتها على التكيف، وتقدم إرشادات عملية لبنى المراقبة الذاتية المستقبلية.</p>
+  </section>
+
+  <section>
+    <h2>I. المقدمة</h2>
+    <p>تقدّم استخدام الذكاء الاصطناعي في الأنظمة الهندسية الواقعية بسرعة في السنوات الأخيرة، لكن عمليات النشر طويلة الأمد لا تزال قليلة التوثيق نسبيًا. تقدّم هذه المقالة رؤى من منصة SatShipAI، وهي منصة عملياتية مدعومة بالذكاء الاصطناعي تعمل منذ ست سنوات، وتعالج صور SAR من القمر Sentinel-1 لمهام المراقبة البحرية مثل كشف السفن وتصنيف أنواعها وتقدير أطوالها. وعلى عكس الدراسات التي تركز على معايير معزولة أو على أحدث أداء نموذجي، يركّز هذا العمل على التطبيق المستدام للذكاء الاصطناعي في بيئة تشغيلية حية، مع إبراز تقييم الأداء ومرونة المنظومة وحالات الفشل والرؤى المكتسبة عبر الزمن.</p>
+    <p>تعمل المنصة على المياه المحيطة بالدنمارك لأغراض العرض: عند توفر منتج Sentinel-1 جديد تُفعَّل خط المعالجة الأساسي لكشف السفن بسرعة، ثم يُنفَّذ خط ثانوي بعد نحو ثلاثة أيام عند صدور بيانات AIS التاريخية من السلطات البحرية الدنماركية، مما يتيح التحقق المتقاطع من الكشوفات وتحديد السفن «المظلمة» التي لا تبث AIS وتقييم أداء النماذج [30]، [36]. تنتج المنصة نتائجها في أقل من 10 دقائق، بما يشمل مخرجات KML متوافقة مع أدوات التصور مثل Google Earth، مع أداء مستقر للنماذج المنشورة يعزز متانة المنظومة وموثوقيتها.</p>
+    <p>وعلى عكس دراسات أو منصات كثيرة تركز على تطبيقات وحيدة الاستخدام أو تحليلات بأثر رجعي، تعمل SatShipAI باستمرار وبشكل ذاتي وتنتج نتائج شبه فورية. يتيح هذا النشر المستمر تحليلًا معمقًا للموثوقية التشغيلية وأنماط الفشل وانحراف النماذج والأداء في ظل ظروف بيئية متغيرة. الدافع وراء النشر هو توثيق الدروس والتحديات المتكررة وأنماط الأداء عبر ست سنوات، تمهيدًا لتطوير نسخة محسّنة من المنصة، وبمشاركة الخبرات العملية مع مجتمع البحث [1].</p>
+  </section>
+
+  <section>
+    <h2>II. الذكاء الاصطناعي في المراقبة البحرية</h2>
+    <p>استفادت المراقبة البحرية كثيرًا من تقدم الذكاء الاصطناعي خلال العقد الماضي، لا سيما عبر تطبيق التعلم العميق على صور الاستشعار عن بعد [2]–[29]. يوفّر الرادار ذو الفتحة التركيبية (SAR) والتصوير البصري الكهروضوئي قدرات متكاملة: يصوّر SAR سطح المحيط ليلًا ونهارًا عبر الغيوم، ما يجعله مثاليًا للمراقبة واسعة النطاق في جميع الأحوال، بينما يقدّم التصوير البصري تفاصيل بصرية عالية الدقة في الظروف الصافية. تاريخيًا، اعتمد كشف السفن على تقنيات كلاسيكية مثل عتبة CFAR [4] أو المويجات ثنائية الأبعاد [13] والتحليل اليدوي، التي عانت من معدلات إنذار كاذب مرتفعة وضجيج بيئي.</p>
+    <p>مثّل إدخال كاشف YOLO في 2015 [14] وتطوره اللاحق عبر YOLOv3 [15] وYOLOv5 معايير جديدة للكشف، وأصبحت هذه النماذج شائعة لكشف السفن في صور SAR والصور البصرية [16]–[18]. غير أن أطر YOLO ليست مصممة أصلًا لصور الأقمار الصناعية: فهي مقيدة بالتدريب على صور RGB ثلاثية النطاقات ولا تستوعب البيانات الوصفية مثل زاوية السقوط أو بيانات الطقس، وتقتصر على الكشف والمربعات المحيطة دون تقدير خصائص السفن مثل الطول والنوع والاتجاه والسرعة. تناولت دراسات قليلة الجمع بين قوة الكشف الحديثة واستخلاص الخصائص المفصلة للسفن [19]–[24]، وأكدت مراجعة متخصصة [25] الحاجة إلى نماذج مصممة لخصوصيات صور SAR، إذ لم يتناول أي من 177 ورقة حلّلتها الكشفَ الموحد واستخلاص الخصائص معًا.</p>
+  </section>
+
+  <section>
+    <h2>III. منصة SatShipAI</h2>
+    <p>بُنيت المنصة حول خطي معالجة: خط أساسي يُفعَّل فور توفر منتج Sentinel-1 جديد ويشمل المعالجة المسبقة لبيانات SAR، والكشف بالنماذج، والتصنيف، وتقدير الطول، ثم المعالجة اللاحقة والترشيح المكاني وتوليد المخرجات والأرشفة؛ وخط ثانوي للمطابقة المتقاطعة مع بيانات AIS التاريخية بعد نحو ثلاثة أيام. اعتمدت المنصة عند إنشائها (2018–2020) أساليب حديثة آنذاك: خط معالجة محكم مبني على نصوص Python 3.8 نمطية لتنسيق استيعاب البيانات وتصحيح ملفات المدار والاستدلال بالنموذج وتوليد المخرجات، مما ضمن الاستقرار وقابلية إعادة الإنتاج عبر ست سنوات من التشغيل المتواصل.</p>
+    <p>لزيادة المتانة وتقليل تباين التنبؤات، اعتمدت المنظومة استراتيجية تجميع من نموذجين: كاشف سفن من نوع RetinaNet (بعمود فقري ResNet-50) مع مصنفات CNN (InceptionV3 وDenseNet201) لتحديد نوع السفينة وتقدير الطول. عززت هذه المقاربة، مع توسيع الاختبار زمنيًا والترشيح المكاني، دقةً متسقة عبر مشاهد وظروف بيئية متنوعة، وأضاف التحقق المتقاطع مع بيانات AIS طبقة تحقق إضافية قللت الإيجابيات الكاذبة وعززت الموثوقية العملية.</p>
+    <p>تشمل أوضاع المنظومة ومخرجاتها الكشف والتصنيف وتقدير الطول مع مخرجات تصورية (KML)، وتستبعد خطوة المعالجة اللاحقة مناطق مزارع الرياح البحرية المعروفة للحد من الكشف الخاطئ. وبما أن المنصة طُوّرت ضمن مشروع مستمر وليست برمجية مفتوحة المصدر، لا يمكن كشف بعض تفاصيل التنفيذ بالكامل؛ لذا تركّز الورقة على منهجية التقييم والنتائج القابلة للقياس والفائدة العملية، وتسهم المنصة مستقبلًا في مشروع MUSIT للمسارات المستدل عليها متعددة المستشعرات [1].</p>
+  </section>
+
+  <section>
+    <h2>IV. التقييم الشامل للمنظومة</h2>
+    <p>يُظهر الجدول 4 إحصاءات سنوية من المطابقة المتقاطعة بين مخرجات النماذج وبيانات AIS عبر 2231 منتجًا ساتليًا: بلغت نسبة المطابقة الإجمالية 61.49%، والسفن المظلمة 29.41%، ودقة التصنيف نحو 60.37%، مع متوسط خطأ مطلق في الطول 14.32م. ظلّت الدقة بين 59 و62%، وهو مستوى متسق مع دراسات SAR المماثلة في الظروف التشغيلية؛ فالمعايير المنشورة على مجموعات منظّمة مثل OpenSARShip [37] أو FUSAR-Ship [38] تبلغ 70–85% عند توازن الفئات، وتنخفض إلى 56–59% في إعداد ست فئات [41]–[44]، بينما تتجاوز 90% فقط في إعدادات مختارة بعناية مع إشارات مساعدة مثل AIS أو آثار الاستيقاظ [40]. وبلغت الدقة 59.16% في الإعداد السداسي و80% تقريبًا في الثلاثي في دراسة Wang وآخرين [9].</p>
+    <p>أظهرت المراجعة اليدوية طويلة الأمد أن الكشف فعّال للغاية — بمستوى المحلل البشري أحيانًا — مع سهولة كشف السفن الكبيرة وصعوبة الصغيرة نظرًا لدقة Sentinel-1 المكانية (~10م). يصعب الكشف قرب الشاطئ خاصة داخل الموانئ بسبب ازدحام السفن والبنى التحتية، وتُصنَّف توربينات الرياح البحرية أحيانًا خطأً كسفن. ومن أبرز نقاط القوة كشف السفن البعيدة عن الشاطئ حيث تغيب بيانات AIS، إذ يوفّر النموذج وسيلة المراقبة الوحيدة هناك. وقد تكون المقاييس الآلية متحيزة سلبًا لأن حواف صور SAR تحمل معلومات محدودة بينما تشمل بيانات AIS سفنًا في تلك المناطق، ورُصدت حالات يظهر فيها الشعاع الواحد ككشف «مظلم» و«غير مطابق» معًا، مما يستدعي خوارزمية دمج أمتن [30].</p>
+    <p>قيّم تقييم خارجي النماذجَ — المدرّبة حصريًا على النطاق C — على صور SAR في النطاق X الذي يختلف في خصائص التشتت الخلفي والدقة المكانية المرتفعة عادةً والحساسية للظروف الجوية [45]. ورغم ذلك، حقق كشف السفن دقة متسقة مع الاحتياجات التشغيلية، وبقيت الإيجابيات الكاذبة والكشوفات الفائتة ضمن حدود مقبولة دون إعادة تدريب، مما يبرز قابلية التعميم عبر المستشعرات وإمكانية التطبيق الأوسع في أطر المراقبة متعددة المستشعرات.</p>
+    <p>نجمت معظم الإخفاقات عن اضطرابات في الحصول على المنتجات الساتلية وملفات المدار المصاحبة، لا سيما الانتقال من نقطة الوصول القديمة إلى catalogue.dataspace.copernicus.eu وتغيّر بروتوكولات الاعتماد، مع تحدٍّ مزمن في توفر ملفات المدار الضرورية للتموضع الدقيق. وأثّر فشل القمر Sentinel-1B كثيرًا إذ بقي Sentinel-1A وحيدًا لنصف سعة الاكتساب، قبل أن يعيد Sentinel-1C التوازن جزئيًا. كما تغيّرت مصادر بيانات AIS وبروتوكولاتها ثلاث مرات على الأقل خلال ست سنوات. ونمت مزارع الرياح في بحر البلطيق خارج مناطق الاستبعاد، فصُنّفت بعض التوربينات خطأً كسفن، مما يؤكد ضرورة تحديث أقنعة الاستبعاد دوريًا. أما على مستوى الإشراف البشري، فاقتصر على التحقق اليدوي من المخرجات الشاذة (دقائق لكل حالة) ومعالجة أعطال نادرة (سنويًا تقريبًا، حتى ساعات)، مع غياب تنبيه آلي عن توقف التحديثات — وهو ما يتطلب لوحة متابعة مركزية وتنبيهات استباقية.</p>
+  </section>
+
+  <section>
+    <h2>V. النقاش والآفاق</h2>
+    <p>تكمن أهمية الدراسة في كونها من الدراسات الطولية القليلة جدًا لنظام مراقبة بحرية مدعوم بالذكاء الاصطناعي في ظروف تشغيلية فعلية، إذ وثّقت ست سنوات من الأداء المستقر والمرونة والقابلية للتكيف. ومن الدروس الجوهرية أن بيانات AIS — رغم مركزيتها في التحقق وكشف السفن — غير مكتملة ومتأخرة وغير متسقة غالبًا، خاصة للسفن الصغيرة والمناطق البحرية البعيدة، مما يبرز الحاجة إلى منهجيات دمج أمتن ومصادر AIS متعددة، ويُظهر كيف تكشف الدراسات طويلة الأمد معرفةً خفية عن الدراسات القصيرة.</p>
+    <p>تتجاوز التطبيقات العملية المعايير التقنية: فرغم تأخر توفر صور SAR (~سبع ساعات بعد الالتقاط)، يوفّر الاستيعاب الآلي والكشف الآني للمعلومات في بيئات تندر فيها البيانات الفورية أو تنعدم — خاصة حيث تُعطَّل إشارات AIS أو تُزوَّر أو تغيب. تدعم المخرجات صناعة القرار في أمن الحدود ومراقبة الصيد غير المشروع عبر إعادة توجيه الدوريات والتخطيط للاعتراض، وتُحسّن جدولة الأرصفة وتخصيص الموارد في الموانئ، وتساعد في تنسيق البحث والإنقاذ عبر الوعي الظرفي واسع النطاق، وتمكّن التحليل الزمني لأنماط الحركة من كشف الشذوذ ودعم النمذجة التنبؤية عند دمجها مع بيانات أوقيانوغرافية وأرصاد جوية.</p>
+    <p>تشمل الآفاق ترقيات تقنية ودمج مستشعرات موسّع ودمج بيانات محسّن — بما فيها المسارات المستدل عليها متعددة المستشعرات ضمن مشروع MUSIT [1] — مع موازنة متطورة بين الإشراف البشري والأتمتة. كما حظيت المنصة بحضور خارجي في مناقشات سياساتية مثل «سياسات الاقتصاد الأخضر» [46] وأدلة مفتوحة المصدر ومنشورات المركز الوطني الفرنسي للبحث العلمي ومدونات تقنية، مما يعكس اهتمام الممارسين والباحثين وصنّاع السياسات على حد سواء.</p>
+  </section>
+
+  <section>
+    <h2>VI. الخاتمة</h2>
+    <p>عبر ست سنوات من التشغيل المتواصل، أثبتت منصة SatShipAI إمكانية دمج الذكاء الاصطناعي بموثوقية في مهام المراقبة البحرية في ظروف واقعية: كشف وتصنيف وتقدير أطوال السفن باستمرار عبر بيئات متنوعة، مع رؤى قيّمة عن السفن «المظلمة» خارج تغطية AIS، وقدرة على التكيف عبر المستشعرات (النطاق X) دون إعادة تدريب بفضل التصميم النمطي واستراتيجية التجميع. وأظهرت المنصة مرونة ملحوظة رغم اختناقات متكررة — تأخر ملفات المدار وتعطل الأقمار وعدم استقرار AIS — مما كشف أهمية التكرار والتحديث المستمر لأقنعة الاستبعاد (مزارع الرياح) والمراقبة الصحية الآلية للمنظومة.</p>
+    <p>تُبرز SatShipAI التوازن المستمر بين الاستقلالية والتدخل البشري: فبينما عملت المنصة غالبًا دون تدخل يدوي، ظلت مهام حاسمة — حل الشذوذ وتحديث الاعتماديات والتحقق من الكشوفات الكاذبة — تتطلب خبرة بشرية، مما يؤكد ضرورة الشفافية والإشراف في الذكاء الاصطناعي الموثوق للمجالات عالية المخاطر. تقدّم هذه الدراسة من التقييمات الطولية القليلة لأنظمة الرصد الأرضي بالذكاء الاصطناعي، وتبيّن أن النضج التشغيلي لا يقتصر على الأداء الخوارزمي بل يشمل المرونة والقابلية للتكيف والتعاون بين الإنسان والذكاء الاصطناعي، مع دروس في الدمج مع AIS تمهّد لمنصات الجيل التالي المستدامة والشفافة والقابلة للتطور.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Six years after its deployment, SatShipAI, an operational platform combining AI models with Sentinel-1 synthetic aperture radar imagery and AIS data, has provided robust maritime surveillance around Denmark. A meta-analysis of archived outputs, logs, and manual reviews shows stable vessel detection and classification performance over time, including successful cross-sensor application to X-band SAR data without retraining. Key operational challenges included orbit file delays, nearshore detection limits, and emerging infrastructure such as wind farms. The platform proved particularly valuable for detecting offshore "dark" vessels beyond AIS coverage, informing maritime security, traffic management, and emergency response. These findings demonstrate the feasibility, resilience, and adaptability of long-term AI-geospatial systems, offering practical guidance for future autonomous monitoring infrastructure.</p>
+  </section>
+
+  <section>
+    <h2>I. Introduction</h2>
+    <p>The integration of artificial intelligence into real-world engineering systems has progressed rapidly in recent years, yet long-term deployments remain relatively underexplored. This article presents insights from SatShipAI, an end-to-end AI-powered platform that has operated for six years, processing Copernicus Sentinel-1 SAR satellite imagery for maritime surveillance tasks such as ship detection, type classification, and length estimation. Unlike studies that emphasize isolated benchmarks or state-of-the-art model performance, this work focuses on the sustained application of AI in a live operational setting, highlighting performance evaluation, system-level resilience, failure cases, and insights revealed over time.</p>
+    <p>The platform focuses on the waters surrounding Denmark for demonstration purposes: when a new Sentinel-1 product becomes available, the primary processing pipeline is triggered for rapid vessel detection, followed by a secondary pipeline about three days later once historical AIS data are released by Danish maritime authorities. This enables cross-verification of detections, identification of "dark" vessels without AIS signals, and evaluation of model performance [30], [36]. The platform produces results in under 10 minutes, including KML outputs compatible with visualization tools such as Google Earth, with consistent performance of the deployed models reinforcing system robustness and reliability.</p>
+    <p>In contrast to many studies or platforms focused on single-use applications or retrospective analysis, SatShipAI operates continuously and autonomously, producing near-real-time results. This persistent deployment enables in-depth analysis of operational reliability, failure modes, model drift, and performance under changing environmental conditions. Publication is motivated by the need to consolidate lessons, recurring challenges, and performance patterns observed over six years ahead of developing an upgraded platform version, sharing practical experience with the research community [1].</p>
+  </section>
+
+  <section>
+    <h2>II. AI in Maritime Surveillance</h2>
+    <p>Maritime surveillance has greatly benefited from AI advances over the past decade, particularly through deep learning applied to remote sensing imagery [2]-[29]. SAR and electro-optical imaging provide complementary capabilities: SAR images the ocean surface day and night and through clouds, making it ideal for wide-area all-weather surveillance, while optical imagery offers high-resolution visual detail in clear conditions. Historically, ship detection relied on classical techniques such as CFAR thresholding [4] or 2D wavelets [13] and manual analysis, which suffered from high false-alarm rates and environmental noise.</p>
+    <p>The 2015 introduction of the YOLO detector [14] and its evolution through YOLOv3 [15] and YOLOv5 set new detection benchmarks, and these models became widely used for ship detection in SAR and optical imagery [16]-[18]. However, YOLO frameworks are not inherently designed for satellite imagery: they are constrained to three-band RGB training and cannot incorporate metadata such as incidence angle or weather data, and they are limited to detection and bounding boxes without estimating ship characteristics like length, type, heading, and speed. Few studies combined modern detection power with detailed ship feature extraction [19]-[24], and a specialized review [25] stressed the need for SAR-specific models — none of the 177 papers it analyzed addressed unified detection and feature extraction together.</p>
+  </section>
+
+  <section>
+    <h2>III. The SatShipAI Platform</h2>
+    <p>The platform is built around two processing pipelines: a primary pipeline triggered on each new Sentinel-1 product covering SAR preprocessing, model-based detection, classification, length estimation, post-processing, spatial filtering, and output generation with archiving; and a secondary pipeline for cross-matching with historical AIS data about three days later. At inception (2018-2020) the platform adopted then-state-of-the-art methods: a tight processing pipeline of modular Python 3.8 scripts orchestrating data ingestion, orbit file correction, SAR preprocessing, model inference, and output generation, ensuring stability and reproducibility across six years of continuous operation.</p>
+    <p>To increase robustness and reduce prediction variance, the system relies on a two-model ensemble strategy: a RetinaNet-based ship detector (ResNet-50 backbone) with CNN classifiers (InceptionV3 and DenseNet201) for ship type identification and length estimation. This approach, combined with test-time augmentation and spatial filtering, ensured consistent accuracy across diverse scenes and environmental conditions, while cross-validation of detections with AIS data added a verification layer that reduced false positives and enhanced practical reliability.</p>
+    <p>Platform modes and outputs include detection, classification, and length estimation with visualization outputs (KML), and post-processing excludes known offshore wind farm areas to reduce false detections. Since the platform was developed within an ongoing project and is not open-source software, certain implementation details cannot be fully disclosed; the paper therefore focuses on evaluation methodology, measurable results, and practical utility, with future contributions to the MUSIT multi-sensor inferred trajectories project [1].</p>
+  </section>
+
+  <section>
+    <h2>IV. Comprehensive System Assessment</h2>
+    <p>Table 4 presents yearly statistics from cross-matching AI model outputs with AIS data across 2,231 satellite products: an overall match rate of 61.49%, dark vessels 29.41%, classification accuracy around 60.37%, and a length mean absolute error of 14.32 m. Accuracy between 59 and 62% is consistent with comparable SAR studies under operational conditions; published benchmarks on curated datasets such as OpenSARShip [37] or FUSAR-Ship [38] report 70-85% with balanced classes, dropping to 56-59% in the six-class setting [41]-[44], while accuracies above 90% occur only in carefully selected settings with auxiliary cues such as AIS or wake signatures [40]. Wang et al. reported 59.16% in the six-class setting and near-80% in the three-class setup [9].</p>
+    <p>Long-term manual review showed highly effective detection — sometimes at human-analyst level — with larger vessels easier to detect and small vessels challenging given Sentinel-1's ~10 m resolution. Nearshore detection is significantly harder, especially inside harbors with dense vessel clustering and port infrastructure, and offshore wind turbines are sometimes misclassified as vessels. A key strength is detecting vessels far offshore where AIS data are absent, where the model often provides the only surveillance means. Automated metrics may be negatively biased since SAR image edges carry limited information while AIS data still cover those regions, and cases were observed where a single ship appeared as both a "dark" and an "unmatched" detection, calling for a more robust fusion algorithm [30].</p>
+    <p>An external evaluation tested the models — trained exclusively on C-band — on X-band SAR imagery, which differs in backscatter characteristics, typically higher spatial resolution, and atmospheric sensitivity [45]. Despite this, vessel detection achieved accuracy consistent with operational needs, with false positives and missed detections within acceptable limits and no retraining required, highlighting cross-sensor generalizability and potential for broader application in multi-sensor surveillance frameworks.</p>
+    <p>Most operational failures stemmed from disruptions in satellite product acquisition and associated orbit files, notably the migration from the legacy access point to catalogue.dataspace.copernicus.eu with changed authentication protocols, plus the chronic challenge of orbit file availability essential for accurate geolocation. The unexpected Sentinel-1B failure halved acquisition capacity with only Sentinel-1A operating, before Sentinel-1C partially restored coverage. AIS data sources and protocols changed at least three times over six years. Baltic Sea wind farm growth outpaced exclusion zones, causing occasional turbine-as-ship false positives and underscoring the need for periodic mask updates. Human oversight was limited to manual verification of anomalous outputs (minutes per case) and rare failure resolution (roughly yearly, up to hours), with no automated alerting on stalled updates — requiring a centralized status dashboard and proactive notifications.</p>
+  </section>
+
+  <section>
+    <h2>V. Discussion and Perspectives</h2>
+    <p>The study's significance lies in being one of very few longitudinal studies of an AI-driven maritime surveillance system under real operational conditions, documenting six years of steady performance, robustness, and adaptability. A key lesson concerns AIS integration: while central to verification and ship detection, AIS reports are often incomplete, lagged, or inconsistent, especially for small vessels and offshore regions — highlighting the need for stronger fusion methodologies and multiple AIS sources, and showing how long-term deployment reveals knowledge hidden from short-term studies.</p>
+    <p>Practical applications extend beyond technical benchmarks: despite SAR image availability delays (~seven hours post-acquisition), automated ingestion and AI-based detection provide timely intelligence where real-time data are scarce or unreliable — especially where AIS signals are disabled, spoofed, or absent. Outputs support border-security and illegal-fishing decision-making via patrol redirection and interdiction planning, improve berthing schedules and resource deployment in ports, aid search-and-rescue coordination through wide-area situational awareness, and enable temporal movement-pattern analysis for anomaly detection and predictive modeling when fused with oceanographic and meteorological data.</p>
+    <p>Perspectives include technical upgrades, expanded sensor integration, and improved data fusion — including multi-sensor inferred trajectories within the MUSIT project [1] — with an evolving balance between human oversight and automation. The platform also gained external visibility in policy discussions such as "Green Economy Policies" [46], open-source directories, French National Centre for Scientific Research posts, and technical blogs, reflecting practitioner, researcher, and policymaker interest alike.</p>
+  </section>
+
+  <section>
+    <h2>VI. Conclusions</h2>
+    <p>Over six years of continuous operation, the SatShipAI platform demonstrated that AI can be reliably integrated into maritime surveillance workflows under real-world conditions: sustained vessel detection, classification, and length estimation across diverse environments, with valuable insights into "dark" vessels beyond AIS coverage, and cross-sensor adaptability (X-band) without retraining thanks to modular design and ensemble processing. The platform showed notable resilience despite recurring bottlenecks — orbit file delays, satellite outages, AIS instabilities — revealing the importance of redundancy, continuous exclusion-mask updates (wind farms), and automated system health monitoring for long-term reliability.</p>
+    <p>SatShipAI highlights the ongoing balance between autonomy and human intervention: while the platform largely operated without manual input, critical tasks — anomaly resolution, dependency updates, false-detection verification — still required human expertise, underscoring the necessity of transparency and oversight for trustworthy AI in high-stakes monitoring domains. This study is among the few longitudinal evaluations of an AI-based Earth observation system, showing that operational maturity extends beyond algorithmic performance to resilience, adaptability, and human-AI collaboration, with AIS-mapping lessons paving the way for sustainable, transparent, evolvable next-generation platforms.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references with original numbering; the full list of 46 references is available in the original paper (<a href="https://doi.org/10.3390/electronics14183648">10.3390/electronics14183648</a>).</p>
+    <ol dir="ltr">
+      <li>[1] Ray, C.; Troupiotis-Kapeliaris, A.; Kontopoulos, I.; Andronikou, V.; Nasios, I.; et al. Multi-Sensor Inferred Trajectories (MUSIT) for Vessel Mobility. In Proc. OCEANS 2025 Brest, 16–19 June 2025.</li>
+      <li>[2] Awais, C.M.; Reggiannini, M.; Moroni, D.; Salerno, E. A Survey on SAR Ship Classification Using Deep Learning. arXiv 2025, arXiv:2503.11906.</li>
+      <li>[4] El-Darymli, K.; Gierull, C.; Biron, K. Deep Learning vs. K-CFAR for Ship Detection in Spaceborne SAR Imagery. In Proc. IGARSS 2024, Athens, Greece, 7–12 July 2024.</li>
+      <li>[9] Wang, C.; Pei, J.; Luo, S.; Huo, W.; Huang, Y.; Zhang, Y.; Yang, J. SAR ship target recognition via multiscale feature attention and adaptive-weighed classifier. IEEE Geosci. Remote Sens. Lett. 2023, 20, 1–5.</li>
+      <li>[14] Redmon, J.; Divvala, S.; Girshick, R.; Farhadi, A. You Only Look Once: Unified, Real-Time Object Detection. arXiv 2015, arXiv:1506.02640.</li>
+      <li>[15] Redmon, J.; Farhadi, A. YOLOv3: An Incremental Improvement. arXiv 2018, arXiv:1804.02767.</li>
+      <li>[16] Er, M.J.; Zhang, Y.; Chen, J.; Gao, W. Ship detection with deep learning: A survey. Artif. Intell. Rev. 2023, 56, 11825–11865.</li>
+      <li>[17] Li, J.; Xu, C.; Su, H.; Gao, L.; Wang, T. Deep Learning for SAR Ship Detection: Past, Present and Future. Remote Sens. 2022, 14, 2712.</li>
+      <li>[21] Paolo, F.; Lin, T.T.T.; Gupta, R.; Goodman, B.; Patel, N.; Kuster, D.; Dunnmon, J. xView3-SAR: Detecting Dark Fishing Activity Using SAR Imagery. In Proc. NeurIPS 2022 Datasets and Benchmarks Track.</li>
+      <li>[22] Global Fishing Watch. Emerging Technology Gives First Ever Global View of Hidden Vessels. Washington, DC, USA, 2022.</li>
+      <li>[24] ICEYE. Combining SAR with AI &amp; Optical Imagery to Support Maritime Awareness. ICEYE Official Blog, Helsinki, Finland, 2023.</li>
+      <li>[25] European Commission CORDIS. Throwing a Wider Net to Close Gaps in Civilian Maritime Surveillance (COMPASS2020). Brussels, Belgium, 2021.</li>
+      <li>[27] Marti, C.; Ouerhani, N.; Bruzzone, L. Ranking Ship Detection Methods Using SAR Images Based on Machine Learning and AI. J. Mar. Sci. Eng. 2023, 11, 1916.</li>
+      <li>[28] Zhang, T.; Zhang, X.; Ke, X.; Zhan, X.; Shi, J.; Wei, S.; et al. LS-SSDD-v1.0: A Deep Learning Dataset Dedicated to Small Ship Detection from Large-Scale Sentinel-1 SAR Images. Remote Sens. 2020, 12, 2997.</li>
+      <li>[30] Reggiannini, M.; Bedini, L. Multi-Sensor Satellite Data Processing for Marine Traffic Understanding. Electronics 2019, 8, 152.</li>
+      <li>[36] Kongsberg Satellite Services (KSAT). Maritime Monitoring Services with Satellite-Based AIS and SAR. 2023.</li>
+      <li>[37] Huang, L.; Liu, B.; Li, B.; Guo, W.; Yu, W.; Zhang, Z.; Yu, W. OpenSARShip: A dataset dedicated to Sentinel-1 ship interpretation. IEEE J. Sel. Top. Appl. Earth Obs. Remote Sens. 2017, 11, 195–208.</li>
+      <li>[38] Hou, X.; Ao, W.; Song, Q.; Lai, J.; Wang, H.; Xu, F. FUSAR-Ship: Building a high-resolution SAR-AIS matchup dataset of Gaofen-3. Sci. China Inf. Sci. 2020, 63, 140303.</li>
+      <li>[41] Zhang, T.; Zhang, X. A polarization fusion network with geometric feature embedding for SAR ship classification. Pattern Recognit. 2022, 123, 108365.</li>
+      <li>[45] Tings, B.; Velotto, D. Comparison of ship wake detectability on C-band and X-band SAR. Int. J. Remote Sens. 2018, 39, 4451–4468.</li>
+      <li>[46] Cavallo, M.; Culver, J.K.; Rau, C. Green economy policies. Where we are. 2022.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics14183648">10.3390/electronics14183648</a> · License: CC BY 4.0 · <a href="./paper.pdf">PDF</a></p>
+  <p>Translation © DAR — Arabic Research Archive · <a href="https://github.com/ahmdngi/dar">GitHub</a></p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

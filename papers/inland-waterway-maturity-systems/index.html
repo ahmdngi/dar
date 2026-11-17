@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نموذج نضج رقمي قطاعي خاص بالنقل عبر الممرات المائية الداخلية — DAR</title>
+<meta name="description" content="DMM-IWT: a sector-specific digital maturity model for inland waterway transport across four areas (customer service, system management, ship maintenance, navigation), validated on Oder and Rhine case studies with benchmarking comparison.">
+<link rel="canonical" href="https://dararchive.com/papers/inland-waterway-maturity-systems/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>window.i18n={ar:{nav_browse:"تصفح",nav_search:"بحث",nav_submit:"تقديم"},en:{nav_browse:"Browse",nav_search:"Search",nav_submit:"Submit"}};</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo"><img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle"><small>Arabic Research Archive</small></a>
+  <div class="nav-links"><a href="../../" data-i18n="nav_browse">Browse</a><a href="../../search.html" data-i18n="nav_search">Search</a><a href="../../submit.html" data-i18n="nav_submit">Submit</a><a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a></div>
+</nav>
+<div class="container paper-view">
+<div class="paper-header">
+  <h1 dir="ltr">A Sector-Specific Digital Maturity Model for Inland Waterway Transport</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نموذج نضج رقمي قطاعي خاص بالنقل عبر الممرات المائية الداخلية</h2>
+  <div class="paper-meta">
+    <span>👤 Agnieszka A. Tubis, Emilia T. Skupień, Kasper K. Jędrzychowski, Hubert Jędrzychowski</span>
+    <span>📄 Systems, 2025 · Vol. 13, 347</span>
+    <span>🔗 <a href="https://doi.org/10.3390/systems13050347">10.3390/systems13050347</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">جنباً إلى جنب</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">مقارنة</span></button>
+  </div>
+</div>
+<div id="paper-content" class="paper-body">
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تعرض هذه المقالة نموذج نضج رقمي قطاعيًا (DMM) لتقييم التحول الرقمي في النقل عبر الممرات المائية الداخلية (IWT) — وهو نمط نقل حيوي لكنه غير مستغل بالكامل، ويمكن للرقمنة أن تعزز كفاءته وسلامته وتنافسيته. يقترح النموذج تقييم النضج الرقمي في أربعة مجالات رئيسية: (1) خدمة العملاء: إدارة الطلبات ومناولة البضائع؛ (2) إدارة النظام والامتثال التنظيمي؛ (3) الصيانة التشغيلية للسفن؛ (4) إدارة العمليات التشغيلية (الملاحة والاتصالات). وطُبّق النموذج على نظامي نهري الأودر والراين الأوروبيين للتحقق من وظائفه وإجراء المقارنة المعيارية.</p>
+  </section>
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>يؤدي التطوير المكثف لأنظمة النقل إلى استخدام شبه كامل لطاقة بعض المقاطع وما يترتب عليه من ازدحام، ما يزيد التركيز على التنمية المستدامة واستخدام جميع أنماط النقل ومنها الممرات المائية الداخلية التي تنقل نحو 5.6% من البضائع الأوروبية [1] — حصة صغيرة لكنها ذات أقل أثر بيئي لكل طن-كم من البضائع [2]، وهي الأنسب لنقل المواد الخطرة [3] والأقل تقييدًا للبضائع كبيرة الحجم، وامتداد طبيعي لنقل البضائع من الموانئ البحرية إلى الداخل [4].</p>
+    <p>أدخلت ثورة الصناعة 4.0 حلولًا رقمية حسّنت العمليات التشغيلية جذريًا عبر أتمتة عمليات مختارة ورقمنة تبادل المعلومات والوثائق، وأصبح التحول الرقمي اليوم يغيّر العمليات والمنتجات ونماذج الأعمال وتنظيم الأنظمة كاملة لتوظيف قدرات التقنيات الرقمية. وكما في الصناعات الأخرى يعزز التحول الرقمي في النقل التنافسية والسلامة وظروف العمل، مع تركيز خاص في الملاحة الداخلية على الرسم الرقمي للخرائط والاتصالات (سفينة-لسفينة وسفينة-لبنية تحتية) ورقمنة تبادل المعلومات مع الإدارات.</p>
+  </section>
+  <section>
+    <h2>2. الخلفية النظرية</h2>
+    <p>يشير النضج الرقمي إلى مدى دمج المؤسسات للتقنيات الرقمية لتعزيز العمليات التشغيلية [5]، ويطوّر باحثون وإدارات حكومية وشركات استشارية نماذج نضج رقمي عامة ومراعية لخصوصيات قطاعات صناعية واقتصادية مختارة [6]. وتُصمَّم هذه النماذج عادة لتقييم النضج الرقمي لمؤسسات مفردة (كأبعاد الجاهزية للصناعة 4.0 [7]–[9]) لكنها قد تنطبق أيضًا على سلاسل إمداد أو أنظمة كاملة [10]–[13]، وغالبًا ما يركّز الباحثون في النماذج أحادية المؤسسة على مجال مختار من أعمالها (كاللوجستيات الداخلية [14]–[16]) — وهو نهج مبرر في حالات مختارة لكنه تقييم محدود بشدة لأنه يغفل البعد الاستراتيجي والشامل المنسوب حاليًا للتحول الرقمي.</p>
+    <p>تتناول معظم المنشورات التحول الرقمي للنقل على مستوى عالٍ من العمومية، أما النماذج المراعية لخصوصيات النقل المائي فتشير عادة إلى النقل البحري [26]–[28] أو تركز حصرًا على البنية التحتية للموانئ — كنماذج نضج الموانئ الذكية [29]–[31]، والصناعة 4.0 في الموانئ [32]، والتوأم الرقمي للموانئ [33]، والبلوك تشين في اللوجستيات البحرية [34] — بينما يبقى النقل المائي الداخلي نظامًا معقدًا يتطلب تقييم نضج رقمي شاملًا يراعي خصوصيات النمط وتحديات مناولة البضائع المرتبطة به [13]، [19]، [22].</p>
+  </section>
+  <section>
+    <h2>3. المنهجية</h2>
+    <p>يهدف البحث الجاري إلى تطوير أداة تقييم نضج رقمي لمنظومة النقل المائي الداخلي تصوغ أبعاد التقييم من منظور مستخدم النظام النهري، ويتطلب ذلك الإجابة عن سبعة أسئلة بحثية: س1: ما الذي يؤثر في كفاءة وفاعلية مناولة البضائع لدى الناقل النهري؟ س2: ما مجالات منظومة الممرات المائية المحددة لمستوى الخدمة المقدمة للعميل؟ س3: ما مجالات التعاون بين شركات الشحن والإدارات اللازمة لمناولة الشحن بكفاءة؟ س4: ما المعلومات التي تحتاجها شركات الشحن عن حالة أسطولها لتنفيذ استراتيجيات صيانة فعالة؟ س5: ما المعلومات اللازمة أثناء عمليات الشحن؟ س6: هل المجالات والاحتياجات المعلوماتية المحددة مرقمنة حاليًا وكيف؟ س7: كيف ينبغي أن يتم التحول الرقمي في المجالات المبرزة من المستوى الأساسي (غياب الرقمنة) إلى التحول المتقدم باستخدام أحدث التقنيات؟</p>
+    <p>بُني النموذج (DMM-IWT) على دراسات أدبيات التحول الرقمي وتطوير نماذج النضج، واعتُمدت خبرة المؤلفين الأكاديميين — المتخصصين في نماذج النضج الرقمي وتحسين الممرات المائية الداخلية [13]، [19]، [22] — مع خبرة المؤلفين الآخرين من كبار الخبراء في الملاحة الداخلية للتحقق من الافتراضات، فجاءت مجالات التقييم وتفسير مستويات النضج الخمسة مكيّفة مع الخصائص المحددة للقطاع المدروس.</p>
+  </section>
+  <section>
+    <h2>مجالات التقييم الأربعة ومستويات النضج الخمسة</h2>
+    <h3>1. خدمة العملاء (الطلبات ومناولة البضائع)</h3>
+    <p>تضم المجموعة الأولى معالجة طلبات العملاء (التواصل وتبادل الوثائق) ومناولة البضائع (التحديد والتتبع ومعلومات موعد التسليم)، وتشمل قنوات التواصل وتتبع الطلبات والتكامل مع الأنظمة الرقمية كالمواقع والتطبيقات وإدارة علاقات العملاء (CRM). تبدأ العمليات بالتواصل اليدوي والوثائق الورقية، ثم تتحسن عبر المنصات الشبكية وأنظمة CRM وتقنية RFID، وفي أعلى مستوى تحقق الأتمتة والذكاء الاصطناعي والتتبع القائم على إنترنت الأشياء خدمة عملاء متكاملة لحظيًا.</p>
+    <h3>2. إدارة النظام والامتثال التنظيمي</h3>
+    <p>تضم المجموعة الثانية ثقافة إدارة النظام المرقمنة ومراقبة الامتثال للوائح (عبر إدارات الممرات المائية والملاحة الداخلية) وبيانات مراقبة حركة السفن، وتركز على إدارة الوثائق والامتثال التنظيمي والتعاون بين شركات الشحن والسلطات لضمان استيفاء السفن للمتطلبات القانونية والتشغيلية. تبدأ بوثائق ورقية غير رسمية وتواصل بطيء، ثم تتحسن تدريجيًا بالسجلات الرقمية والإجراءات المعيارية والمنصات الإلكترونية، وصولًا إلى الامتثال المعزز بالذكاء الاصطناعي والإبلاغ الآلي وتتبع السفن لحظيًا لتبسيط الرقابة التنظيمية.</p>
+    <h3>3. الصيانة التشغيلية للسفن</h3>
+    <p>تضم المجموعة الثالثة حالة المحرك وسوائل التشغيل ومراقبة المكونات والفترات بين الإصلاحات وأنظمة مكافحة الحريق وأنظمة تحميل السفن، وتتناول استراتيجيات صيانة السفن (الفحص والإصلاح والتدابير الوقائية) لضمان الموثوقية التشغيلية. تبدأ الصيانة تفاعلية بسجلات يدوية وإصلاحات عند الأعطال، ثم تُدخَل الفحوص المهيكلة والمراقبة المعتمدة على تقنية المعلومات والتحليلات التنبؤية، وفي المرحلة الأكثر تقدمًا يدمج الذكاء الاصطناعي وبيانات المستشعرات لحظيًا والتشخيص الآلي للصيانة الاستباقية.</p>
+    <h3>4. إدارة العمليات التشغيلية</h3>
+    <p>تضم المجموعة الرابعة الملاحة المستخدمة والتواصل مع الإدارة وخدمات مناولة البضائع، وتتناول أدوات الملاحة ودمج الاتصال الرقمي مع السلطات وأتمتة تبادل المعلومات. يبدأ التطور بأدوات ملاحة أساسية وتواصل يدوي، ثم يتقدم بدمج الرادار وAIS وECDIS والتطبيقات الجوالة، وفي أعلى مستوى يحقق تبادل البيانات الآلي بالكامل والملاحة المعززة بالذكاء الاصطناعي واتخاذ القرار التنبؤي الكفاءة التشغيلية والسلامة، عبر تبنٍّ تدريجي من العمليات اليدوية المنفصلة إلى الأتمتة والتكامل والقدرات التنبؤية بما يتوافق مع المعايير والممارسات العالمية.</p>
+  </section>
+  <section>
+    <h2>4. التحقق من النموذج</h2>
+    <p>يتطلب التحقق من نموذج النضج الرقمي للملاحة الداخلية مراعاة بيئة التشغيل والشركات ضمن نظام بيئي معقد تشكّله البنية التحتية واللوائح ومستويات الرقمنة — وهي اختلافات تؤثر في قدرة ملاك السفن على تبنّي التقنيات الرقمية. ولأغراض التحليل قُسّمت أوروبا إلى منطقتين: أوروبا الغربية (الراين والأنهار المتصلة) وأوروبا الشرقية (إلبه والأودر وفيستولا)، بما يعكس فروق الهيدرولوجيا والموارد المائية وأنواع السفن المؤثرة في الملاحة والطاقة النقلية [38]: فتتمتع مناطق الراين والماين والدانوب بموارد مائية كبيرة وإمداد مستقر يدعم سفنًا أكبر (غواطس 2.8–4 م وتخليص رأسي 7.2 م على الأقل [39])، ما يجعلها من أكثر أنظمة الملاحة الداخلية تطورًا بتكامل فعال في سلاسل الإمداد الدولية ومركزًا للابتكار.</p>
+    <h3>4.1. دراسة حالة — الملاحة الداخلية في الأودر</h3>
+    <p>الأودر نهر دولي بطول 854.3 كم (742 كم داخل بولندا) يجري عبر تشيكيا وبولندا ويشكّل حدودًا طبيعية بين بولندا وألمانيا من التقائه بالنايسه اللوساطية، ويصب في بحيرة دابيه وبحيرة شتشين المتصلة ببحر البلطيق — وهو ثاني أطول أنهار بولندا وأهم طرقها النقلية. وتنقسم أقسامه الملاحية بين أودر علوي حر (درجة Ia سياحي أساسًا) وأودر علوي مقنّن مع قناتي غليفيتسه وكيندزيzyn (درجة III/II) وأودر أوسط منظم (درجة II) وأودر سفلي منظم (درجة III ثم Vb)؛ وتتولى مجالس إدارة المياه الإقليمية الثلاثة (غليفيتسه وفروتسواف وشتشين) البنية التحتية وإشعارات الملاحة والمسح الهيدروغرافي والحماية من الفيضانات وكسر الجليد، بينما تشرف مكاتب الملاحة الداخلية (فروتسواف وشتشين) المجهزة بسفن حديثة ومفتشين مؤهلين على السلامة، وتقتصر خدمات معلومات النهر (RIS) المتوافقة مع المعايير على نطاق شتشين (العقدة المائية والأودر الغربي والشرقي والأودر من كم 580 إلى 704.1) [40].</p>
+    <p>قيّمت شركة شحن عاملة على الأودر بالمستويات: خدمة العملاء II (هاتف وبريد إلكتروني، وثائق ورقية معيارية، موظف مخصص)، وإدارة النظام III (توثيق رقمي وتوقيع رقمي، عضوية جمعية ملاك السفن البولنديين، قاعدة بيانات السفن الإلكترونية، خرائط رقمية، RIS وAIS ونظام WIR الوطني)، وصيانة السفن II (صيانة تفاعلية عند الأعطال وعمرات شاملة كل خمس سنوات أثناء المسوحات الدورية، سجلات ورقية، معدات إطفاء أساسية، تخطيط تحميل يدوي)، والملاحة والاتصالات II (رادار وAIS وECDIS حسب تفضيلات القباطنة، هاتف جوال وVHF، تذاكر الأهوسة عبر WIR دون تكامل).</p>
+    <h3>4.2. دراسة حالة — الملاحة الداخلية في الراين</h3>
+    <p>الراين من أهم أنهار أوروبا بطول 1233 كم (865 كم في ألمانيا) يجري عبر سويسرا وليختنشتاين والنمسا وألمانيا وفرنسا وهولندا من جبال الألب السويسرية إلى بحر الشمال بدلتا واسعة، وهو صالح للملاحة من بازل إلى المصب (886 كم). وقد شكّلت الأعمال التنظيمية (الأهداب والسدود) نظامه الهيدرولوجي فقللت الفيضانات وحسّنت الملاحة باستقرار منسوب المياه، وتتمتع حوضه بوفرة مائية من الأمطار والثلوج وذوبان الجليد تدعم سفنًا كبيرة في مياه مستقرة.</p>
+    <p>قيّمت شركة راينية بالمستويات: خدمة العملاء IV (طلبات عبر تطبيق ويب وجوال متكامل مع CRM، تتبع RFID لحظي، نظام تبادل معلومات ISS بين العميل والمالك والسفينة)، وإدارة النظام IV (تداول وثائق إلكترونية ومنصات رقمية للعمليات الذاتية كمناولة البضائع الخطرة، تفتيش عبر تطبيق جوال، مركزية ألمانية للفحص كل 3 أشهر شرطيًا وEBIS كل 6 أشهر، مراقبة RIS/AIS شاملة)، وصيانة السفن II (فحوص مخططة مدعومة بتحليلات كمية ونظام ISS لمواعيد الفحص وتغيير الزيوت والشهادات الإلكترونية، لكن إنذار الغاز لا يرسل تنبيهات آلية)، والملاحة والاتصالات III (رادار وAIS وECDIS ومساعد توجيه، برمجيات Navigo وRadar pilot وTrack pilot، إبلاغ عبر BICS المتكامل مع RIS مع بقاء VHF عند الأهوسة والحدود).</p>
+  </section>
+  <section>
+    <h2>5. المناقشة</h2>
+    <p>يعالج النموذج المقترح (DMM-IWT) الاعتراضات المبرزة في مراجعات الأدبيات حول عمومية نماذج النضج [21]، [35]، إذ خُصّصت مجالات التقييم وتفسير المستويات للخصائص المحددة لمنظومة النقل المائي الداخلي — البنية التحتية وخصائص المشاركين ومتطلبات عملية النقل. وطُبّق النموذج على نظامي الملاحة الأوروبيين فمكّن من تقييم الحالة الراهنة وأساس للمقارنة المعيارية، وجاءت المستويات (الجدول 2): الراين — خدمة العملاء IV، إدارة النظام IV، صيانة السفن II، الملاحة والاتصالات III؛ مقابل الأودر — II وIII وII وII على الترتيب.</p>
+    <p>يُفسَّر التفاوت عبر عوامل مؤسسية وبنيوية أوسع: فتتمتع منطقة الراين بإطار قانوني وإداري راسخ يدعم ويفرض استخدام الأدوات الرقمية (RIS وBICS وEBIS)، بينما ما تزال الرقمنة على الأودر في طور التطور وإجراءاتها الرقمية اختيارية أو انتقائية غالبًا، كما أن الاستثمار في البنية التحتية الرقمية على الراين أعلى بكثير بما يمكّن تكاملًا أشمل — مع ملاحظة تقارب النظامين في صيانة السفن (المستوى II) بما يشير إلى مجال تطوير مشترك عبر القطاع.</p>
+  </section>
+  <section>
+    <h2>6. الخاتمة</h2>
+    <p>طُوّر نموذج DMM-IWT استنادًا إلى دراسات التحول الرقمي وتطوير نماذج النضج، وجاءت مجالاته وتفسير مستوياته مكيّفة مع الخصائص المحددة للقطاع المدروس، وتحقق الخبراء إيجابيًا من وظائفه عبر نظامي الممرات المائية المثالين. والنموذج أداة تحليلية متعددة الوظائف تصلح لثلاثة استخدامات على الأقل: (1) تقييم الحالة الراهنة؛ (2) أداة للتحليل المقارن المعياري؛ (3) أساس لوضع إرشادات تطوير منظومة النقل. لذا فإن عرضه ونتائج تطبيقه العملية محل اهتمام ممثلي الجهات الحكومية ومنظمي النقل ومنفذيه وبقية المشاركين في عمليات النقل النهري، ومادة بحثية للباحثين لتطوير مفاهيم DMM مخصصة لأنظمة نقل أخرى وحلول خاصة بمشغلي النقل النهري.</p>
+    <p>ويمثّل DMM-IWT المعروض امتدادًا لبحوث سابقة للمؤلفين، وسيكون أساسًا لبحوث لاحقة لتكييف الأداة المطورة مع خصائص أنظمة نقل أخرى وتحسين عمليات مناولة البضائع في الشحن النهري. وفي الخطوات اللاحقة سيتيح التحقق الإيجابي للنموذج توسيع تطبيقه واختبار قابلية نقله قطاعيًا.</p>
+  </section></div>
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>This article presents a sector-specific digital maturity model (DMM) to assess digital transformation in inland waterway transport (IWT) — a crucial yet underutilized mode whose efficiency, safety, and competitiveness digitalization can enhance. The model evaluates digital maturity across four key areas: (1) Customer Area: order and cargo handling; (2) System Management and regulatory compliance; (3) Operational ship maintenance; (4) Operational process management (navigation and communication). The model was applied to the European Oder and Rhine river systems to validate its functionality and enable benchmarking.</p>
+  </section>
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Intensive development of transport systems is pushing some sections to near-full capacity with resulting congestion, increasing emphasis on sustainable development and the use of all transport modes including inland waterway transport, which carries about 5.6% of European cargo [1] — a small share but with the lowest environmental impact per tonne of cargo [2], best adapted to hazardous-materials transport [3] and least constrained for oversized goods, and a natural extension of seaport-hinterland transport [4].</p>
+    <p>The Industry 4.0 revolution introduced digital solutions that significantly improved operational processes by automating selected operations and digitizing information and document exchange; today digital transformation changes processes, products, business models, and whole-system organization to exploit digital technologies' capabilities. As in other industries, transport digitalization enhances competitiveness, safety, and working conditions, with inland navigation particularly focused on digital mapping and communication (ship-to-ship and ship-to-infrastructure) and digitizing information exchange with administrations.</p>
+  </section>
+  <section>
+    <h2>2. Theoretical Background</h2>
+    <p>Digital maturity denotes the extent to which organizations integrate digital technologies to enhance operational processes [5]; researchers, government departments, and consultancies develop universal digital maturity models as well as sector-specific ones [6]. These models are typically designed to assess single organizations' digital maturity (e.g., Industry 4.0 readiness dimensions [7]–[9]) but can also apply to entire supply chains or systems [10]–[13]; single-organization models often focus on a selected business area (e.g., internal logistics [14]–[16]) — justified in selected cases but severely limited, since it neglects the strategic, comprehensive dimension currently attributed to digital transformation.</p>
+    <p>Most publications address transport digital transformation at a high level of generality, while waterborne-specific models usually concern maritime transport [26]–[28] or focus exclusively on port infrastructure — smart-port maturity models [29]–[31], Industry 4.0 in ports [32], port digital twinning [33], blockchain in maritime logistics [34] — whereas IWT remains a complex system requiring a comprehensive digital-maturity assessment accounting for the mode's specificities and associated cargo-handling challenges [13], [19], [22].</p>
+  </section>
+  <section>
+    <h2>3. Methodology</h2>
+    <p>The ongoing research aims to develop a digital-maturity assessment tool for the inland waterway transport system formulating assessment dimensions from the river-system user's perspective, requiring answers to seven research questions: Q1: What influences efficient, effective cargo handling by a river carrier? Q2: Which inland-waterway system areas determine the transport service level offered to the customer? Q3: Which shipping-company–authority cooperation areas are required for efficient freight handling? Q4: What fleet-condition information do shipping companies need for effective maintenance strategies? Q5: What information is needed during freight operations? Q6: Are the identified areas and information needs currently digitized, and how? Q7: How should digital transformation proceed in the highlighted areas from baseline (no digitalization) to advanced transformation using the latest technologies?</p>
+    <p>The DMM-IWT model was built on digital-transformation and maturity-model literature, drawing on the academic authors' expertise in digital maturity models and inland-waterway improvement [13], [19], [22], verified by the other authors as senior inland-navigation experts — so assessment areas and the five maturity-level interpretations are tailored to the studied sector's specific characteristics.</p>
+  </section>
+  <section>
+    <h2>Assessment Areas and the Five Maturity Levels</h2>
+    <h3>1. Customer Service Area (Order and Cargo Handling)</h3>
+    <p>The first parameter group covers customer order handling (communication and document exchange) and cargo handling (identification, tracking, delivery-time information), including communication channels, order tracking, and integration with digital systems such as websites, mobile apps, and CRM. Processes start with manual communication and paper documentation, improve via web platforms, CRM, and RFID, and at the highest level automation, AI, and IoT-based tracking deliver real-time, fully integrated customer service.</p>
+    <h3>2. System Management and Regulatory Compliance</h3>
+    <p>The second parameter group covers digitized system-administration culture, regulatory-compliance monitoring (via waterway and inland-navigation administrations), and vessel-traffic monitoring data — focusing on document management, regulatory compliance, and shipping-company–authority cooperation ensuring vessels meet legal and operational requirements. It starts with informal paper documentation and slow communication, gradually improving through digital records, standardized procedures, and online platforms, culminating in AI-driven compliance, automated reporting, and real-time vessel tracking streamlining regulatory oversight.</p>
+    <h3>3. Operational Ship Maintenance</h3>
+    <p>The third parameter group covers engine condition, operating fluids, component monitoring, intervals between repairs, fire-safety systems, and ship-loading systems — addressing ship maintenance strategies (inspections, repairs, preventive measures) ensuring operational reliability. Maintenance starts reactive with manual records and failure-driven repairs, then structured inspections, IT-based monitoring, and predictive analytics are introduced; the most advanced stage integrates AI, real-time sensor data, and automated diagnostics for proactive maintenance.</p>
+    <h3>4. Operational Process Management</h3>
+    <p>The fourth parameter group covers navigation in use, communication with the administration, and cargo-handling services — addressing navigation tools, digital communication integration with authorities, and information-exchange automation. Evolution starts with basic navigation tools and manual communication, advances by integrating radar, AIS, ECDIS, and mobile applications, and at the highest level fully automated data exchange, AI-assisted navigation, and predictive decision-making deliver operational efficiency and safety — a gradual progression from manual disconnected processes to automation, integration, and predictive capabilities consistent with global standards and best practice.</p>
+  </section>
+  <section>
+    <h2>4. Model Validation</h2>
+    <p>Validating the inland-navigation digital maturity model requires considering operating environments and companies within a complex ecosystem shaped by infrastructure, regulations, and digitalization levels — differences affecting shipowners' ability to adopt digital technologies. Europe was divided into Western Europe (Rhine and connected rivers) and Eastern Europe (Elbe, Oder, Vistula), reflecting hydrological, water-resource, and vessel-type differences influencing navigation and capacity [38]: Rhine, Main, and Danube regions enjoy large water resources and stable supply supporting bigger vessels (2.8–4 m drafts, at least 7.2 m vertical clearance [39]), making this one of Europe's most developed inland navigation systems with efficient international supply-chain integration and an innovation hub.</p>
+    <h3>4.1. Case Study—Inland Navigation on the Oder</h3>
+    <p>The Oder is an 854.3 km international river (742 km in Poland) flowing through Czechia and Poland and forming the Poland–Germany border from its Lusatian Neisse confluence, emptying into Lake Dąbie and the Szczecin Lagoon connected to the Baltic Sea — Poland's second-longest river and most important transport route. Navigable sections range from upper free-flowing Oder (Class Ia, mostly tourism) to canalized upper Oder with the Gliwice and Kędzierzyn canals (Class III/II), regulated middle Oder (Class II), and regulated lower Oder (Class III then Vb); three Regional Water Management Boards (Gliwice, Wrocław, Szczecin) handle infrastructure, navigation notices, hydrography, flood protection, and icebreaking, while Inland Navigation Offices (Wrocław, Szczecin) with modern vessels and qualified inspectors oversee safety, and standards-compliant River Information Services (RIS) are implemented only in the Szczecin area (water node, Western/Eastern Oder, Oder km 580–704.1) [40].</p>
+    <p>A shipping company operating on the Oder was assessed at: Customer Service II (telephone and email, standardized paper documents, dedicated employee); System Management III (digital documentation and signatures, Polish Shipowners Association membership, electronic Ship Database, digital maps, RIS, AIS, and the national WIR system); Ship Maintenance II (reactive failure-driven repairs with general overhauls every five years at class surveys, paper records, basic fire equipment, manual load planning); and Navigation and Communication II (radar, AIS, ECDIS per captains' preferences, mobile phone and VHF, WIR lock ticketing without integration).</p>
+    <h3>4.2. Case Study—Inland Navigation on the Rhine</h3>
+    <p>The Rhine is one of Europe's most important rivers at 1,233 km (865 km in Germany), flowing through Switzerland, Liechtenstein, Austria, Germany, France, and the Netherlands from the Swiss Alps to a wide North Sea delta, navigable from Basel to its mouth (886 km). Regulation works (groynes and weirs) shaped its hydrological regime, reducing flooding and improving navigation through stable water levels, and its catchment enjoys abundant rainfall, snow, and meltwater supporting large vessels in stable waters.</p>
+    <p>A Rhine company was assessed at: Customer Service IV (web and mobile app ordering integrated with CRM, real-time RFID tracking, ISS information exchange between customer, owner, and vessel); System Management IV (electronic document circulation and digital self-service platforms such as dangerous-goods handling, mobile-app inspections, German centralized checks every 3 months by police and EBIS every 6 months, comprehensive RIS/AIS monitoring); Ship Maintenance II (planned inspections with quantitative analyses and ISS scheduling of inspections, oil changes, and electronic certificates — though gas detection sends no automatic alerts); and Navigation and Communication III (radar, AIS, ECDIS, steering assistance, Navigo, Radar pilot, and Track pilot software, BICS reporting integrated with RIS with VHF still required at locks and borders).</p>
+  </section>
+  <section>
+    <h2>5. Discussion</h2>
+    <p>The proposed DMM-IWT model addresses objections raised in literature reviews about maturity-model generality [21], [35], with assessment areas and level interpretations tailored to IWT system specifics — infrastructure, participant characteristics, and transport-process requirements. Applied to the two European navigation systems, the model assessed current states as a benchmarking basis, yielding (Table 2): Rhine — Customer Service IV, System Management IV, Ship Maintenance II, Navigation and Communication III; versus Oder — II, III, II, II respectively.</p>
+    <p>The gap is explained by broader institutional and infrastructural factors: the Rhine enjoys a long-established legal-administrative framework actively supporting and enforcing digital-tool use (RIS, BICS, EBIS), while Oder digitalization is still developing with digital procedures often optional or selective; Rhine digital-infrastructure investment is also significantly higher, enabling more comprehensive integration — noting both systems converge at Ship Maintenance (Level II), indicating a shared sector-wide development area.</p>
+  </section>
+  <section>
+    <h2>6. Conclusions</h2>
+    <p>DMM-IWT was developed from digital-transformation and maturity-model literature, with areas and level interpretations tailored to the studied sector's specifics, and experts positively validated its functionality on the two example waterway systems. The model is a multifunctional analysis tool usable in at least three areas: (1) assessing the current state; (2) benchmarking analysis; (3) developing transport-system development guidelines. Its presentation and practical application results should thus interest governmental representatives, transport organizers and implementers, other river-transport process participants, and researchers developing DMM concepts for other transport systems and inland-shipping-operator solutions.</p>
+    <p>The presented DMM-IWT extends the authors' previous research and will ground follow-up work adapting the tool to other transport systems' specifics and improving inland-shipping cargo-handling processes. The model's positive validation will subsequently enable wider application and testing of its sectoral transferability.</p>
+  </section></div>
+</div><!-- /paper-content -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Modal Split of Inland Freight Transport. Eurostat. (accessed on 20 January 2025).</li>
+      <li>[2] Plotnikova, E.; Vienažindien˙e, M.; Slavinskas, S. Development of Inland Waterway Transport as a Key to Ensure Sustainability: A Case Study of Lithuania. <em>Sustainability</em> 2022, <em>14</em>, 10532.</li>
+      <li>[3] Huang, X.; Wen, Y.; Zhang, F.; Sui, Z.; Cheng, X. A comprehensive risk assessment framework for inland waterway transportation of dangerous goods. <em>J. Mar. Sci. Eng.</em> 2021, <em>9</em>, 858.</li>
+      <li>[4] Kotowska, I.; Ma´nkowska, M.; Pluci´nski, M. Planning the development of inland shipping in the seaport-hinterland transport: A case study of the Oder River in Poland. <em>Sci. J. Marit. Univ. Szczec.</em> 2019, <em>58</em>, 84–92.</li>
+      <li>[5] Thordsen, T.; Murawski, M.; Bick, M. How to measure digitalization? A critical evaluation of digital maturity models. In <em>Responsible Design, Implementation and Use of ICT–I3E 2020</em>.</li>
+      <li>[6] Perera, S.; Jin, X.; Das, P.; Gunasekara, K.; Samaratunga, M. A strategic framework for digital maturity of design and construction. <em>J. Ind. Inf. Integr.</em> 2023, <em>31</em>, 100413.</li>
+      <li>[7] Antony, J.; Sony, M.; McDermott, O. Conceptualizing Industry 4.0 readiness model dimensions. <em>TQM J.</em> 2023, <em>35</em>, 577–596.</li>
+      <li>[9] Schumacher, A.; Erol, S.; Sihn, W. A maturity model for assessing Industry 4.0 readiness and maturity of manufacturing enterprises. <em>Procedia CIRP</em> 2016, <em>52</em>, 161–166.</li>
+      <li>[10] Ehie, I.; Ferreira, L.M.D.F. Conceptual development of supply chain digitalization framework. <em>IFAC-PapersOnLine</em> 2019, <em>52</em>, 2338–2342.</li>
+      <li>[11] Ho, W.R.; Tsolakis, N.; Dawes, T.; Dora, M.; Kumar, M. A digital strategy development framework for supply chains. <em>IEEE Trans. Eng. Manag.</em> 2022, <em>70</em>, 2493–2506.</li>
+      <li>[13] Skupie´n, E.T. The maturity model as a tool for assessing transportation systems on the example of inland navigation. <em>Sustainability</em> 2025, <em>17</em>, 1577.</li>
+      <li>[15] Ole´sków-Szłapka, J.; Stachowiak, A. The framework of Logistics 4.0 maturity model. In <em>ISPEM 2018</em>; Burduk, A., et al., Eds.</li>
+      <li>[16] Facchini, F.; Ole´sków-Szłapka, J.; Ranieri, L.; Urbinati, A. A maturity model for Logistics 4.0. <em>Sustainability</em> 2019, <em>12</em>, 86.</li>
+      <li>[19] Tubis, A.A.; Koli´nski, A.; Poturaj, H. Digital maturity of logistics processes assessed in the areas of technological support. <em>Appl. Sci.</em> 2024, <em>14</em>, 7893.</li>
+      <li>[22] Tubis, A.A. Digital maturity assessment model for the organizational and process dimensions. <em>Sustainability</em> 2023, <em>15</em>, 15122.</li>
+      <li>[26] Gulen, M.F.; et al. An integrated SWOT-based interval type-2 fuzzy AHP and TOPSIS methodology for digital transformation strategy selection in maritime safety. <em>Ocean Eng.</em> 2025.</li>
+      <li>[29] Resende, L.M.; et al. Assessing digitalization maturity in port environments. <em>Aust. J. Marit. Ocean Aff.</em> 2024.</li>
+      <li>[30] Boullauazan, Y.; Sys, C.; Vanelslander, T. Developing and demonstrating a maturity model for smart ports. <em>Marit. Policy Manag.</em> 2023, <em>50</em>, 447–465.</li>
+      <li>[31] Charlampowicz, J.; Karas, A. Smart ports process maturity model — Theoretical framework. <em>Eur. Res. Stud. J.</em> 2024, <em>XXVII</em>, 893–903.</li>
+      <li>[32] de la Peña Zarzuelo, I.; Freire Soeane, M.J.; López Bermúdez, B. Industry 4.0 in the port and maritime industry: A literature review. <em>J. Ind. Inf. Integr.</em> 2020, <em>20</em>, 100173.</li>
+      <li>[38] European Agreement on Main Inland Waterways of International Importance (AGN), Geneva, 19 January 1996, Annex III.</li>
+      <li>[39] ELWIS — Electronic Waterway Information Service (Germany). (accessed on 20 January 2025).</li>
+      <li>[40] Wody Polskie — State Water Holding Polish Waters. (accessed on 20 January 2025).</li>
+      <li>[full] Full reference list [1]–[40] in the original paper: <a href="https://doi.org/10.3390/systems13050347">doi:10.3390/systems13050347</a> (see also [8] Haryanti et al.; [12] Klötzer &amp; Pflaum; [14] Zoubek &amp; Simon; [17] Comuzzi &amp; Patel; [18] Proença &amp; Borbinha; [20] Schumacher et al. 2019; [21] Carrijo et al.; [23]–[25] Hein-Pensel et al.; Angreani et al.; Hellweg et al.; [27]–[28] Cicek et al.; Al Mazroui et al.; [33]–[37] Klar et al.; Hamidi et al.; Remane et al.; Asadamraji et al.; Varol et al.).</li>
+    </ol>
+  </section>
+</div>
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/systems13050347">10.3390/systems13050347</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive · <a href="paper.pdf">Download original PDF</a></p>
+</footer>
+</div>
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side'); el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side'); el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div'); pair.className = 'compare-section';
+      var enCol = document.createElement('div'); enCol.className = 'compare-en';
+      var enLabel = document.createElement('div'); enLabel.className = 'section-label'; enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel); enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div'); arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div'); arLabel.className = 'section-label'; arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel); arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol); pair.appendChild(arCol); container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') { document.documentElement.dir = 'rtl'; document.documentElement.lang = 'ar'; }
+  else { document.documentElement.dir = 'ltr'; document.documentElement.lang = 'en'; }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

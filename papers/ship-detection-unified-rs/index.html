@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نموذج موحد لكشف السفن واستخلاص خصائصها في صور SAR — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Unified Detection and Feature Extraction of Ships in Satellite Images</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">كشف موحد للسفن واستخلاص خصائصها في صور الأقمار الصناعية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Kristian Aalling Sørensen, Peder Heiselberg, Henning Heiselberg</span>
+    <span>📄 Remote Sens., 2024 · Vol. 16, 4719</span>
+    <span>🔗 <a href="https://doi.org/10.3390/rs16244719">10.3390/rs16244719</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تُبرز الأهمية المتزايدة للمراقبة البحرية — لا سيما مراقبة السفن المظلمة — الحاجة إلى نماذج كشف متقدمة تتجاوز التموضع البسيط للسفن. تركز المقاربات الحالية إما على الكشف أو على استخلاص الخصائص، تاركةً فجوة في الأساليب الموحدة القادرة على تقديم خصائص مفصلة للسفن. تعالج هذه الدراسة الفجوة بتطوير نموذج موحد لكشف السفن وتمييزها من صور الرادار ذي الفتحة التركيبية، يقدّر خصائص مثل الطول الحقيقي والعرض الحقيقي والاتجاه. صُمم النموذج لكشف سفن بأحجام متفاوتة مع تقدير خصائصها في آنٍ واحد، وأظهرت النتائج التجريبية دقة كشف عالية باستدعاء 87.7% ودرجة F1 قدرها 93.5%، مع تقدير فعّال لأبعاد السفن بخطأ متوسط 1.4 ± 16.2م للطول و1.5 ± 4.5م للعرض. كان تقدير الاتجاه صعبًا للسفن الصغيرة لكنه دقيق للكبيرة، إذ وقع 50% من تقديرات الاتجاه ضمن 15 درجة من الخطأ. يقدّم هذا النهج الموحد فوائد عملية للعمليات البحرية، خاصة حيث يلزم الكشف والمعلومات التفصيلية معًا — كالتنبؤ بمواقع السفن المستقبلية أو تحديد هوياتها.</p>
+  </section>
+
+  <section>
+    <h2>I. المقدمة</h2>
+    <p>يُبرز التركيز المتزايد على المناطق البحرية النائية تحديات الحفاظ على وعي ظرفي بحري فعّال: حماية البنى التحتية الحرجة [1]، [2]، وإنفاذ اللوائح في القطب الشمالي والمناطق البحرية المحمية [3]، [4]، ومكافحة الصيد غير القانوني الذي يهدد المصايد والنظم البيئية [5]–[7]. ويتمثل تحدٍّ خاص في السفن غير المتعاونة («السفن المظلمة») التي تعمل دون بث معلومات تموضع مثل AIS — إذ قد تُشوَّش إرسالاتها [8] أو تُنتحَل [9] أو تُعطَّل عمدًا [10] — مما يجعل أنظمة المراقبة الفضائية غير التعاونية حاسمة للصورة البحرية الموثوقة: تحديد السفن ومواقعها وهوياتها أو خصائصها (الحجم أو الاتجاه) وتقييم ما إذا كانت مظلمة، وهو أمر جوهري لصنع القرار.</p>
+    <p>تاريخيًا، اعتمد كشف السفن واستخلاص خصائصها على العمل اليدوي أو خوارزميات بسيطة أو تعلم آلي أساسي — مثل الخصائص المصممة يدويًا في [11] — ثم اتجهت المقاربات لعملية من مرحلتين: كشف أولي بأساليب تقليدية مثل CFAR [12] أو المويجات ثنائية الأبعاد [13]، يليه تصنيف بشبكة عصبية التفافية. ورغم تفوقها على التقنيات التقليدية، فهي بطيئة غالبًا (خاصة مع النوافذ المنزلقة)، ويتطلب استخلاص خصائص السفن (الطول والعرض) مرحلة إضافية. ومنذ 2012، طُبقت الشبكات العصبية على الكشف والتصنيف والتجزئة والمحولات البصرية، لكن كل بنية لها مزاياها وعيوبها حسب المهمة.</p>
+    <p>مثّل إدخال YOLO في 2015 [14] وتطوره عبر YOLOv3 [15] وYOLOv5 تقدمًا كبيرًا، وأصبح شائعًا لكشف السفن في الصور البصرية وSAR [16]–[18]، لكن أطر YOLO غير مصممة أصلًا لصور الأقمار الصناعية: مقيدة بالتدريب على RGB ثلاثي النطاقات، ولا تستوعب البيانات الوصفية (زاوية السقوط، بيانات الطقس)، وتقتصر على الكشف والمربعات المحيطة دون خصائص السفن. عالجت دراسات جزئية الفجوة — Wang وآخرون [19] للسفن الصغيرة، وZhou وYin [21] بكاميرات شاطئية، وRen وآخرون [23] للطول والعرض في سيناريو سفينة وحيدة، وHeiselberg وآخرون [24] للسرعة والاتجاه — وأكدت مراجعة [25] الحاجة لنماذج مصممة لخصوصيات SAR: فمن 177 ورقة حلّلتها، لم تتناول أي ورقة الكشفَ الموحد واستخلاص الخصائص معًا، بينما اقتصر النهج الموحد الوحيد [26] على تصنيف الصورة وتقدير الطول لصورة 80×80 بسفينة واحدة دون كشف أو تموضع.</p>
+  </section>
+
+  <section>
+    <h2>II. البيانات والنموذج</h2>
+    <p>طُوّر كاشف سفن موحد ومستخرج خصائص يقدّر مباشرةً بارامترات السفن من صور SAR، مدمجًا الكشف واستخلاص الخصائص. توفر مستشعرات SAR قدرات تصوير متسقة بغض النظر عن الطقس أو الإضاءة، وهي مناسبة للمراقبة المستمرة خاصة في القطب الشمالي [13]، لكن حركة السفن تُحدث إزاحة سمتية تُعقّد الكشف، ويُدهور ضجيج البقع (speckle) بنية السفينة في الصورة، مع تأثيرات إضافية للاتجاه [24] وزاوية السقوط [36] والتداخل الراداري [37] وحالة البحر [38] — حتى أن السفينة نفسها قد تظهر بمربعات محيطة مختلفة تمامًا، مما يجعل المربعات مقدّرًا ضعيفًا للأبعاد الحقيقية.</p>
+    <p>استُخدمت مجموعة OpenSARShip [36] — مقتطفات Sentinel-1 IW (GRD بدقة مكانية 20×22م ودقة بكسل 10×10م) مع شروح AIS (MMSI، السرعة، الاتجاه، الطول، العرض) وبيانات وصفية (الطوابع الزمنية، الإحداثيات، زوايا السقوط) — بعد تنظيفها بمعايير (الأطوال 5–458م، الأعراض 3–150م، استبعاد القيم غير الفيزيائية وأحادية النطاق وأخطاء XML) لتصل إلى 7838 عينة بوسيط طول/عرض عند المئينيات 33 و66 (95 و116 و153م؛ 16 و19 و24م). اعتمد النموذج كشفًا أحادي المرحلة بعمود فقري التفافي ورقبة وروؤس متعددة المهام: رأس تصنيف لكل خلية، ورأس اتجاه بمكونات الجيب وجيب التمام المفككة، ورأس طول وعرض مع عدم اليقين (GaussianNLL [50]، [51])، ورأس مربعات محيطة (DIoU [52])، مع دمج البيانات الوصفية، وموازنة خسائر المهام، وتحسين AdamW [53] مع SGDR [54]، وتعزيز mixup [55] وSelect-Mosaic [56]، وتقييم بمقاييس [57].</p>
+    <p>صُمم النموذج ليعمل على صور ساتلية بأحجام اعتباطية: درّب على رقع OpenSARShip المركزة بسفينة واحدة، لكن الحشو العشوائي أثناء التدريب أجبره على تعلم الكشف والتموضع معًا، فأمكنه كشف سفن متعددة في صور كبيرة غير مسبوقة — كما في صورة Sentinel-1 IW قرب جزر فارو — دون إنذارات كاذبة على اليابسة (مع بعض الإيجابيات على الشواطئ التي لم يتعلّمها، وتُعالج بقناع يابسة أو بيانات أكثر تنوعًا).</p>
+  </section>
+
+  <section>
+    <h2>III. نتائج الكشف</h2>
+    <p>عند عتبة احتمال 0.5 حقق النموذج استدعاءً 87.8% ودرجة F1 قدرها 93.5% على مجموعة الاختبار، و87.3% و77.5% عند عتبة 0.9، بمتوسط F1 قدره 90.5% عبر العتبات (0.5–0.95)، مما يدل على المتانة. كان الأداء متسقًا تقريبًا عبر الأطوال بفضل المقاييس المتعددة المصممة لأحجام مختلفة: F1 قدره 94.7% للسفن بطول 55م، و95.7% عند 55م في تحليل المقاييس، و100% للسفن بطول 245م، مع انخفاضات عند 80م و200–205م (62.5%) تتوافق مع حدود المقاييس عند percentiles 33 و66 (53م و195م) — ويُقترح حلّها بمقاييس إضافية أو عتبات من نطاق متوازن (132م و264م). تساعد أعقاب السفن (wakes) الكشفَ، لكن السفن الصغيرة السريعة المزاحة دوبلريًا عن أعقابها أصعب كشفًا، خاصة مع اقتصاص الرقعة الذي يستبعد الأعقاب.</p>
+    <p>يتفوق هذا الأداء على دراسات سابقة على OpenSARShip ([26] بدقة 87.8%، و[36] بدقة 76%)، بينما حققت دراسات ركّزت على تحسين الكشف وحده درجات أعلى — مثل Raj وآخرين [59] بدرجة 0.979 لكن على رقع 40×40 متمركزة السفينة دائمًا (حيث يحقق أي نموذج بديهي دقة مثالية)، ودراسات SSDD [32] وLS-SSDD [62] وHRSID [33] بنماذج YOLOv3 [15]، [60] وYOLOv5 [61] — غير أن تلك النماذج لا تعمّم جيدًا على بيانات الأقمار متعددة الأطياف والبيانات الوصفية [63]، ولا تستخرج خصائص السفن. لذا يضحّي النهج الموحد بقليل من F1 (ربما بسبب الخصائص المشتركة من العمود الفقري) مقابل قابلية التطبيق الميداني للكشف والتوصيف معًا.</p>
+  </section>
+
+  <section>
+    <h2>IV. نتائج تقدير الخصائص</h2>
+    <p>بلغ متوسط الخطأ ± الانحراف المعياري 3.1 ± 15.6م للطول (MAE قدره 10.7م، MAPE قدرها 7.9%) و0.1 ± 3.7م للعرض (MAE قدره 2.3م، MAPE قدرها 10.4%) — أي دون الدقة المكانية لـ SAR — مقارنةً بـ Ren وآخرين [23] (MAE قدره 7.9م للطول و2.3م للعرض على 390 عينة فقط بسفن فوق 28م، بمنهجية بلوغ غير واضحة) وDechesne وآخرين [26] (14.56 ± 39.98م). تُظهر التقديرات آثار المقاييس (التقليل عند المقياس 1 والمبالغة عند 2 قرب 90م)، مع عدم يقين مُمذج من رتبة الانحراف المعياري المحسوب (~20م عند السفن، و~350م حيث لا سفينة)، مما يتيح استخدام عدم اليقين للاستدلال التشغيلي — كما في كشف سفينة فارو بطول 199 ± 23م وعرض 30 ± 2.9م.</p>
+    <p>تركّزت أخطاء الاتجاه قرب 0 درجة مع غموض مؤخرة/مقدمة (~180 درجة) خاصة للسفن الصغيرة الشبيهة بالنقاط دون توجه ظاهر [24]: وقع 50% من الأخطاء ضمن 15 درجة و66% ضمن 25 درجة، وبخطأ دون 10 درجات لنصف العينات في التحليل اللاحق — دقيق للسفن الكبيرة ومرتبط عكسيًا بالحجم كما هو متوقع. تُعد التقديرات الاتجاهية والسرعية [24]، [49] أساسية للتنبؤ بمواقع السفن المستقبلية عند تكليف صور ساتلية عالية الدقة لاحقًا [64]، بينما يعمل الطول كمُعرّف شبيه بطول الإنسان، وتُعد الأبعاد مؤشر أهمية (السفن الأكبر أكثر صلة عملياتيًا).</p>
+  </section>
+
+  <section>
+    <h2>V. النقاش والخاتمة</h2>
+    <p>يعالج هذا البحث فجوة حرجة في المراقبة البحرية — الحماية الحدودية ومكافحة الأنشطة غير القانونية وسلامة الطرق — حيث تركز البحوث إما على الكشف أو استخلاص الخصائص لا كليهما [25]، [58]، بينما تتطلب السيناريوهات الواقعية سفنًا متعددة في الصورة الواحدة ومعلومات تتجاوز الوجود والموقع. يدمج النموذج الموحد الكشف والتصنيف والتموضع والتوصيف في نموذج واحد (73MB يعمل على حاسب محمول قياسي) بدل تدفقات متعددة النماذج [13]، [24]، [26]، مقللًا تعقيد التدريب والتحديث والنشر ومحسّنًا الأداء عبر التعلم المشترك للخصائص على غرار YOLO [15] — مع بقاء النماذج المتخصصة ضرورية للتحليلات المعقدة كتحديد الهوية [63].</p>
+    <p>يكمن قيد رئيسي في مجموعة OpenSARShip: سفينة واحدة في كل رقعة دون خلفيات متنوعة (جليد [13]، [60]، [38]، مطر، توربينات)، لذا لا تُطبَّق النتائج مباشرة على السيناريوهات الواقعية، ويتطلب التقييم التشغيلي الكامل تدريبًا على بيانات أكثر تنوعًا تشمل إنذارات كاذبة وبيئات وظروف إضافية [29]–[33]، وربما فصل التمثيلات أو المعالجة الخاصة بكل مهمة لتقليل تراكم الأخطاء عبر الخصائص المشتركة. كما استُخدمت بيانات GRD (بكسل منتظم 10م) دون SLC الأعلى دقة (3×22م) لأنها تتطلب تكييفات معمارية (تمدد غير متناظر)، علمًا أن النموذج نفسه قابل للنقل لمستشعرات بدقات مشابهة (ICEYE، Capella، RCM) مع إعادة تدريب بالنقل.</p>
+    <p>خلاصةً، يقدّم النموذج الموحد كشفًا (استدعاء 87.7%، F1 قدرها 93.5%) وتقديرًا للأبعاد (1.4 ± 16.2م طولًا، 1.5 ± 4.5م عرضًا) والاتجاه (50% ضمن 15 درجة) بدقة عالية عبر أحجام السفن، جسرًا بين قوة الكشف الحديثة والتوصيف المفصل للسفن. توصي الدراسة بالنماذج الموحدة للإعدادات التشغيلية ما لم تتطلب المهمة تحليلًا معقدًا، مع بحث مستقبلي يوسّع البيانات والفئات والخلفيات، ويضيف فروعًا (النوع، السرعة) بحذر من مقايضة تعدد المهام، ويخفّض البارامترات [58] للحوسبة الطرفية لدى المشغّلين البحريين.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>The increasing importance of maritime surveillance, particularly in monitoring dark ships, highlights the need for advanced detection models that go beyond simple ship localisation. Current approaches largely focus on either detection or feature extraction, leaving a gap in unified methods capable of providing detailed ship characteristics. This study addresses this gap by developing a unified model for ship detection and characterisation from Synthetic Aperture Radar images, estimating features such as true length, true breadth, and heading. The model is designed to detect ships of varying sizes while simultaneously estimating their characteristics, and experimental results show a high detection accuracy, with a recall of 87.7% and an F1-score of 93.5%. The model also effectively estimates ship dimensions, with mean errors of 1.4 ± 16.2 m for length and 1.5 ± 4.5 m for breadth. Estimating the heading proved challenging for smaller ships, but was accurate for larger ships. A total of 50% of the heading estimates were within 15 degrees of error. This unified approach offers practical benefits for maritime operations. It is especially useful in situations where both ship detection and detailed information are needed, such as predicting future ship positions or identifying ships.</p>
+  </section>
+
+  <section>
+    <h2>I. Introduction</h2>
+    <p>Increased focus on remote maritime regions highlights the challenges of maintaining effective maritime situational awareness: protecting critical infrastructure [1], [2], enforcing regulations in, e.g., the Arctic or Marine Protected Areas [3], [4], and countering illegal fishing threatening fisheries and ecosystems [5]–[7]. A particular challenge arises from non-cooperative ships — "dark ships" operating without transmitting positional information such as AIS data, whose transmissions may be jammed [8], spoofed [9], disrupted, or deliberately deactivated [10]. Space-based non-cooperative surveillance is therefore critical for a reliable maritime picture: identifying ships, determining locations, identities or characteristics (size, heading), and assessing whether ships of interest are dark — essential for decision-making.</p>
+    <p>Historically, ship detection and feature extraction were performed manually, with simple algorithms, or basic machine learning — e.g., handcrafted features in [11] — evolving into two-stage pipelines: initial detection with traditional methods such as CFAR [12] or 2D wavelets [13], followed by CNN classification. Though outperforming conventional techniques, these are often slow (especially sliding-window approaches), and extracting ship features (length, breadth) requires an additional stage. Since 2012, neural networks have been applied to detection, classification, segmentation, and vision transformers, each architecture with task-dependent advantages and disadvantages.</p>
+    <p>The 2015 introduction of YOLO [14] and its evolution through YOLOv3 [15] and YOLOv5 marked major progress and became widely used for ship detection in optical and SAR imagery [16]–[18], but YOLO frameworks are not inherently designed for satellite imagery: constrained to three-band RGB training, unable to incorporate metadata (incidence angle, weather data), and limited to detection and bounding boxes without ship characteristics. Partial studies addressed the gap — Wang et al. [19] for small ships, Zhou and Yin [21] with shore cameras, Ren et al. [23] for length/breadth in single-ship scenarios, Heiselberg et al. [24] for speed/orientation — and a review [25] stressed SAR-specific models: of 177 papers analyzed, none addressed unified detection and feature extraction together, while the only unified approach [26] was limited to image classification and length estimation on 80×80 single-ship images without detection or localization.</p>
+  </section>
+
+  <section>
+    <h2>II. Data and Model</h2>
+    <p>A unified ship detector and feature extractor was developed that directly estimates ship-specific parameters from SAR images, integrating detection and feature extraction. SAR sensors provide consistent imaging regardless of weather or lighting, suitable for continuous monitoring particularly in the Arctic [13], but ship motion causes azimuth displacement complicating detection, speckle noise degrades ship structure, with additional effects from orientation [24], incidence angle [36], radar interference [37], and sea state [38] — such that the same ship can show entirely different bounding boxes, making boxes poor estimators of true dimensions.</p>
+    <p>The OpenSARShip dataset [36] was used — Sentinel-1 IW subsets (GRD at 20×22 m spatial resolution, 10×10 m pixel spacing) with AIS annotations (MMSI, speed, heading, length, breadth) and metadata (timestamps, coordinates, incidence angles) — cleaned by criteria (lengths 5–458 m, breadths 3–150 m, excluding non-physical values, single-band, and XML errors) down to 7,838 samples with length/breadth medians at 33rd/66th percentiles (95, 116, 153 m; 16, 19, 24 m). The model adopts one-stage detection with a convolutional backbone, neck, and multi-task heads: per-cell classification, heading via decomposed sine/cosine components, length/breadth with uncertainty (GaussianNLL [50], [51]), bounding boxes (DIoU [52]), metadata fusion, task-loss balancing, AdamW optimization [53] with SGDR [54], mixup [55] and Select-Mosaic [56] augmentation, and metrics per [57].</p>
+    <p>The model was designed for arbitrarily sized satellite images: trained on centered single-ship OpenSARShip chips, random padding during training forced joint detection-and-localization learning, enabling detection of multiple ships in large unseen images — as in a Sentinel-1 IW image near the Faroe Islands — with no false alarms on land (some shoreline positives that were never learned, addressable with a land mask or more diverse data).</p>
+  </section>
+
+  <section>
+    <h2>III. Detection Results</h2>
+    <p>At a 0.5 probability threshold the model achieved 87.8% recall and a 93.5% F1-score on the test set, 87.3% and 77.5% at 0.9, averaging 90.5% F1 across thresholds (0.5–0.95), demonstrating robustness. Performance was nearly consistent across lengths thanks to multi-scale heads tailored to different sizes: 94.7% F1 for 55 m ships, 95.7% at 55 m in the scale analysis, 100% for 245 m ships, with dips at 80 m and 200–205 m (62.5%) aligning with scale boundaries at the 33rd/66th percentiles (53 m, 195 m) — solvable with extra scales or balanced-range thresholds (132 m, 264 m). Ship wakes aid detection, but fast small ships Doppler-shifted away from their wakes are harder to detect, especially with chip cropping that excludes wakes.</p>
+    <p>This outperforms prior OpenSARShip studies ([26] at 87.8%, [36] at 76% accuracy), while detection-only studies report higher scores — e.g., Raj et al. [59] at 0.979 F1 but on 40×40 always-centered chips (where any trivial model scores perfectly), and SSDD [32], LS-SSDD [62], HRSID [33] studies with YOLOv3 [15], [60] and YOLOv5 [61] models — yet those models generalize poorly to multi-spectral satellite data with metadata [63] and extract no ship features. The unified approach thus trades a small F1 reduction (perhaps from shared backbone features) for field applicability covering detection plus characterization.</p>
+  </section>
+
+  <section>
+    <h2>IV. Feature Estimation Results</h2>
+    <p>Mean error ± SD reached 3.1 ± 15.6 m for length (10.7 m MAE, 7.9% MAPE) and 0.1 ± 3.7 m for breadth (2.3 m MAE, 10.4% MAPE) — below SAR spatial resolution — versus Ren et al. [23] (7.9 m length and 2.3 m breadth MAE on only 390 samples of ships over 28 m, via an unclear sub-resolution methodology) and Dechesne et al. [26] (14.56 ± 39.98 m). Estimates show scale effects (underestimation at scale 1, overestimation at scale 2 near 90 m), with modeled uncertainty on the order of the computed SD (~20 m at ships, ~350 m where no ship), enabling operational use of uncertainty — as in the Faroe detection at 199 ± 23 m length and 30 ± 2.9 m breadth.</p>
+    <p>Heading errors centered near 0 degrees with stern/bow ambiguity (~180 degrees), especially for point-like small ships without visible orientation [24]: 50% of errors within 15 degrees and 66% within 25 degrees, under 10 degrees for half the samples in later analysis — accurate for large ships and inversely size-correlated as expected. Orientation and speed estimates [24], [49] are essential for predicting future ship positions when tasking later high-resolution acquisitions [64], while length acts as an identifier akin to human height, and dimensions indicate operational significance (larger ships more relevant).</p>
+  </section>
+
+  <section>
+    <h2>V. Discussion and Conclusions</h2>
+    <p>This research addresses a critical maritime surveillance gap — border protection, illegal-activity interdiction, route safety — where research targets either detection or feature extraction, not both [25], [58], while real scenarios involve multiple ships per image and information beyond presence and location. The unified model integrates detection, classification, localization, and characterization in one model (73 MB, runnable on a standard laptop) instead of multi-model workflows [13], [24], [26], reducing training, updating, and deployment complexity while improving performance through shared feature learning à la YOLO [15] — with specialized models still needed for complex analyses like identification [63].</p>
+    <p>A key limitation is OpenSARShip: one ship per chip without diverse backgrounds (ice [13], [60], [38], rain, turbines), so results do not transfer directly to real scenarios; full operational evaluation requires training on more diverse data with false alarms, environments, and conditions [29]–[33], possibly decoupling representations or task-specific processing to reduce error accumulation across shared features. GRD data (uniform 10 m pixels) were used over higher-resolution SLC (3×22 m) since the latter needs architectural adaptation (asymmetric scaling), though the same model transfers to similar-resolution sensors (ICEYE, Capella, RCM) with transfer-learning retraining.</p>
+    <p>In conclusion, the unified model delivers detection (87.7% recall, 93.5% F1) and dimension estimation (1.4 ± 16.2 m length, 1.5 ± 4.5 m breadth) plus heading (50% within 15 degrees) at high accuracy across ship sizes, bridging modern detection power with detailed ship characterization. The study recommends unified models for operational settings unless task complexity demands otherwise, with future work expanding data, classes, and backgrounds, cautiously adding branches (type, speed) given multi-task trade-offs, and reducing parameters [58] for edge computing by maritime operators.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references with original numbering; the full list of 71 references is available in the original paper (<a href="https://doi.org/10.3390/rs16244719">10.3390/rs16244719</a>).</p>
+    <ol dir="ltr">
+      <li>[8] Siegert, G.; Banys, P.; Hoth, J.; Heymann, F. Counteracting the Effects of GNSS Jamming in a Maritime Multi-Target Scenario by Fusing AIS with Radar Data. In Proc. ITM 2017, Monterey, CA, USA, 30–31 January 2017.</li>
+      <li>[9] Androjna, A.; Perkovič, M.; Pavic, I.; Mišković, J. AIS Data Vulnerability Indicated by a Spoofing Case-Study. Appl. Sci. 2021, 11, 5015.</li>
+      <li>[11] Heiselberg, H. A Direct and Fast Methodology for Ship Recognition in Sentinel-2 Multispectral Imagery. Remote Sens. 2016, 8, 1033.</li>
+      <li>[12] Li, N.; Pan, X.; Yang, L.; Huang, Z.; Wu, Z.; Zheng, G. Adaptive CFAR Method for SAR Ship Detection. Sensors 2022, 22, 8116.</li>
+      <li>[13] Heiselberg, P.; Sørensen, K.A.; Heiselberg, H.; Andersen, O.B. SAR Ship–Iceberg Discrimination in Arctic Conditions Using Deep Learning. Remote Sens. 2022, 14, 2236.</li>
+      <li>[14] Redmon, J.; Divvala, S.; Girshick, R.; Farhadi, A. You Only Look Once: Unified, Real-Time Object Detection. arXiv 2015, arXiv:1506.02640.</li>
+      <li>[15] Redmon, J.; Farhadi, A. YOLOv3: An Incremental Improvement. arXiv 2018, arXiv:1804.02767.</li>
+      <li>[19] Wang, J.; Lin, Y.; Guo, J.; Zhuang, L. SSS-YOLO: Towards more accurate detection for small ships in SAR image. Remote Sens. Lett. 2021, 12, 93–102.</li>
+      <li>[23] Ren, Y.; Li, X.; Xu, H. A Deep Learning Model to Extract Ship Size From Sentinel-1 SAR Images. IEEE Trans. Geosci. Remote Sens. 2022, 60, 5203414.</li>
+      <li>[24] Heiselberg, P.; Sørensen, K.; Heiselberg, H. Ship velocity estimation in SAR images using multitask deep learning. Remote Sens. Environ. 2023, 288, 113492.</li>
+      <li>[25] Li, J.; Xu, C.; Su, H.; Gao, L.; Wang, T. Deep Learning for SAR Ship Detection: Past, Present and Future. Remote Sens. 2022, 14, 2712.</li>
+      <li>[26] Dechesne, C.; Lefèvre, S.; Vadaine, R.; Hajduch, G.; Fablet, R. Ship Identification and Characterization in Sentinel-1 SAR Images with Multi-Task Deep Learning. Remote Sens. 2019, 11, 2997.</li>
+      <li>[28] Ren, S.; He, K.; Girshick, R.; Sun, J. Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks. arXiv 2016, arXiv:1506.01497.</li>
+      <li>[32] Zhang, T.; Zhang, X.; Li, J.; Xu, X.; Wang, B.; Zhan, X.; Xu, Y.; Ke, X.; Zeng, T.; Su, H.; et al. SAR Ship Detection Dataset (SSDD): Official Release and Comprehensive Data Analysis. Remote Sens. 2021, 13, 3690.</li>
+      <li>[36] Huang, L.; Liu, B.; Li, B.; Guo, W.; Yu, W.; Zhang, Z.; Yu, W. OpenSARShip: A Dataset Dedicated to Sentinel-1 Ship Interpretation. IEEE J. Sel. Top. Appl. Earth Obs. Remote Sens. 2018, 11, 195–208.</li>
+      <li>[39] Sørensen, K.A.; Veicherts, M.; Pedersen, H.; Heiselberg, P.; Heiselberg, H. RF, SAR, and AIS Data Fusion for Improved Arctic Maritime Surveillance. SSRN 4873035, 2024.</li>
+      <li>[46] Tian, Z.; Shen, C.; Chen, H.; He, T. FCOS: Fully Convolutional One-Stage Object Detection. arXiv 2019, arXiv:1904.01355.</li>
+      <li>[48] Lin, T.Y.; Goyal, P.; Girshick, R.; He, K.; Dollár, P. Focal Loss for Dense Object Detection. arXiv 2018, arXiv:1708.02002.</li>
+      <li>[49] Sørensen, K.A.; Heiselberg, P.; Heiselberg, H. Probabilistic Maritime Trajectory Prediction in Complex Scenarios Using Deep Learning. Sensors 2022, 22, 2058.</li>
+      <li>[58] Sørensen, K.A.; Heiselberg, P.; Heiselberg, H. Lightweight SAR Ship Detection. In Proc. IGARSS 2023, Pasadena, CA, USA, 16–21 July 2023.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/rs16244719">10.3390/rs16244719</a> · License: CC BY 4.0 · <a href="./paper.pdf">PDF</a></p>
+  <p>Translation © DAR — Arabic Research Archive · <a href="https://github.com/ahmdngi/dar">GitHub</a></p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

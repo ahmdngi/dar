@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مطابقة الترددات الراديوية الساتلية مع AIS لتحديد السفن — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Frequency-Based Analysis of Matching Accuracy Between Satellite Radio Frequency and AIS Data for Ship Identification</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تحليل ترددي لدقة المطابقة بين بيانات الترددات الراديوية الساتلية وبيانات AIS لتحديد السفن</h2>
+
+  <div class="paper-meta">
+    <span>👤 Chan-Su Yang, Sree Juwel Kumar Chowdhury</span>
+    <span>📄 J. Mar. Sci. Eng., 2025 · Vol. 13, 191</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse13020191">10.3390/jmse13020191</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يمكن للسفن تعطيل نظام التعريف الآلي (AIS) لتعمل دون كشف وربما تنخرط في أنشطة غير قانونية، لذا تُستخدم بيانات الترددات الراديوية (RF) الساتلية بشكل متزايد لتحديد مثل هذه السفن. تقيّم هذه الدراسة دقة المطابقة بين بيانات RF وAIS حسب التردد والمسافة: جُمعت بيانات RF في 22 و25 سبتمبر و7 ديسمبر 2023، وفُصلت إلى التردد-1 (3.024–3.077 GHz) والتردد-2 (9.3734–9.4249 GHz)، وطُبقت ست عتبات مسافة (2 و3 و6 و8 و13 و18 كم). بلغ متوسط معدلات المطابقة 95% و92% و92% لمجموعات التواريخ الثلاثة على التوالي، وانخفضت المعدلات مع المسافة — ففي 22 سبتمبر بلغ أعلى متوسط مطابقة 47% عند 2 كم وأدناها 0.9% عند 18 كم — وتفوّق التردد-2 على التردد-1 باستمرار، خاصة عند المسافات الأطول، مظهرًا اتجاهًا أكثر استقرارًا في دقة المطابقة.</p>
+  </section>
+
+  <section>
+    <h2>I. المقدمة</h2>
+    <p>يُعد النقل البحري للبضائع مكونًا حاسمًا في التجارة العالمية، إذ يمثل نحو 90% من الشحن الدولي [1]، مع أكثر من 50,000 سفينة تجوب المحيطات يوميًا [2]؛ لذا يفرض تعقيد الحركة وحجمها المرتفع طلبًا كبيرًا على أنظمة مراقبة متقدمة لضمان السلامة وتعزيز الأمن وحماية البيئة. ومن أبرز موارد المراقبة نظامُ AIS والرادار ذو الفتحة التركيبية (SAR). اعتمدت المنظمة البحرية الدولية (IMO) نظام AIS لتعزيز المراقبة وتقليل مخاطر الاصطدام [4]، وألزمته منذ 2004 على جميع السفن الدولية بوزن 300 طن فأكثر وجميع سفن الركاب [5]، إذ تبث كل سفينة مجهزة هويتها (MMSI) وخطوط العرض والطول والمسار والاتجاه والسرعة [7] عبر موجات عالية التردد إلى محطات ساحلية [8].</p>
+    <p>لتوسيع التغطية طُوّرت أقمار منخفضة المدار لاستقبال رسائل AIS (S-AIS) [8]، متجاوزةً حدود الأنظمة الأرضية بتغطية عالمية تدعم التخطيط البحري المكاني [9]. وأسهم النمو السريع في حجم بيانات AIS زمانيًا ومكانيًا في تطبيقات واسعة: تحليل أنماط الحركة وسلوك السفن وكشف الشذوذ والمراقبة المستمرة [3]، [10]، [11]، والتنبؤ بالمسارات [12]، وتقييم مخاطر الاصطدام [13]، وتصنيف السفن [14]. كما تُستخدم بيانات SAR ليلًا ونهارًا وفي جميع الأحوال الجوية [15]، مع أساليب الكشف بالنوافذ والتعلم العميق مثل R-CNN وSSD وYOLO [16]–[18]، وتُستخدم بيانات AIS مصدرًا تكميليًا للتحقق من الكشوفات [15].</p>
+    <p>لكن السفن قد تعطّل AIS فتصبح «سفنًا مظلمة» ربما ضالعة في أنشطة غير قانونية، إضافة إلى انتحال AIS عبر التلاعب المتعمد بمعلومات التتبع (سفن شبح ورسائل استغاثة كاذبة) لإخفاء هويات وعمليات السفن الضالعة في الصيد غير القانوني وغسل الهوية والتهريب والتهرب من العقوبات [19]. ولمعالجة ذلك تُستخدم بيانات RF الساتلية بشكل متزايد [20]: فبيانات RF تقيس الإشعاع الكهرومغناطيسي عبر طيف واسع (9 kHz–300 GHz) [21]، وتلتقط أنظمة الكشف RF الانبعاثات المرتبطة برادارات الملاحة الأساسية للسلامة وتجنب الاصطدام [22]، موفرةً تتبعًا موثوقًا للسفن غير المتعاونة ليلًا ونهارًا وبغض النظر عن الطقس — كما في دراسة Unseenlabs التي وجدت 65% من السفن بإشارات RF وAIS معًا مقابل 35% تبحر دون AIS [20]، ودراسة HawkEye 360 لسفينة توقفت عن بث AIS سبعة أيام ورُصدت عبر RF في ميناء طرطوس [20].</p>
+  </section>
+
+  <section>
+    <h2>II. منطقة الدراسة والبيانات</h2>
+    <p>اختيرت المنطقة المحيطة بالبحر الأصفر والجزء الغربي من مضيق كوريا (119°–130° شرقًا، 30°–38° شمالًا) ميدانًا للدراسة، وهي ممر اقتصادي حيوي يربط كوريا بدول آسيوية أخرى ومحور رئيسي في شبكة آسيا والمحيط الهادئ اللوجستية تحاذيه طرق ملاحية دولية رئيسية. جُمعت بيانات RF من Unseenlabs في 22 و25 سبتمبر و7 ديسمبر 2023 (سبع مجموعات: S22-RF1 حتى S22-RF3، وS25-RF1 حتى S25-RF3، وD07-RF)؛ وبكوكبة من سبعة أقمار تحقق Unseenlabs زمن إعادة زيارة ست ساعات تقريبًا ودقة تموضع ضمن ميل بحري واحد [21]. تضمنت البيانات معرف السفينة وتردد الإرسال والإحداثيات والموثوقية والدقة، عبر طيف 3.024–9.4249 GHz، بينما جُمعت بيانات AIS (Spire Maritime) للتواريخ نفسها ضمن نافذة ثلاث ساعات قبل وبعد أزمنة RF.</p>
+    <p>صُنّفت بيانات RF حسب النطاق الترددي: التردد-1 (3.024–3.077 GHz) والتردد-2 (9.3734–9.4249 GHz)، موافِقين لرادارات السفن من النطاق S (~3 GHz للكشف بعيد المدى والأهداف الكبيرة) والنطاق X (~9 GHz للتصوير عالي الدقة والأهداف الصغيرة كسفن الصيد) التي تحملها معظم السفن معًا للتكامل [24]. وللمحاذاة الزمنية استُكملت بيانات AIS كل 30 دقيقة بالاستيفاء الخطي مع حساب المواقع بالحساب الميت (DR)، ثم طُبقت عتبات مسافة متزايدة تدريجيًا (2 و3 و6 و8 و13 و18 كم) كحد أقصى مقبول للمطابقة المنطقية بين موقعي RF وAIS، مع حساب المسافة بمعادلة هافرساين [23].</p>
+  </section>
+
+  <section>
+    <h2>III. المنهجية</h2>
+    <p>تبدأ خوارزمية المطابقة لكل نقطة RF بتحديد مواقع AIS الواقعة ضمن عتبة المسافة المعرفة، ثم تُحسب المسافة بين كل نقطة RF ومواقع AIS الأصلية والمستكملة بمعادلة هافرساين لتكميم التقارب المكاني، وتُسند المطابقة الناجحة عند تحقق شرط العتبة. فُصلت البيانات إلى التردد-1 والتردد-2 وطُبقت الخوارزمية البسيطة القائمة على المسافة على كل نطاق ترددي، ثم حُللت معدلات المطابقة الناتجة عبر المجموعات والعتبات [23].</p>
+    <p>اعتمد التصميم ست عتبات (2 و3 و6 و8 و13 و18 كم) لكشف كيف تتدهور المطابقة مع المسافة، مع مقارنة أداء نطاق S-band مقابل X-band في كل مجموعة على حدة، مما يتيح عزل أثر التردد عن أثر ظروف الاكتساب اليومية.</p>
+  </section>
+
+  <section>
+    <h2>IV. النتائج</h2>
+    <p>في مجموعة S22-RF1 (1103 سجلات: 498 في التردد-1 و605 في التردد-2) نجحت مطابقة 1027 سفينة (452 بنسبة 90% في التردد-1، و575 بنسبة 95% في التردد-2) بمعدل إجمالي 93%. توزعت المطابقات على المسافات في التردد-1: 49% عند 2 كم، و12% عند 3 كم، و15% عند 6 كم، و10% عند 8 كم، و3% عند 13 كم، و0.8% عند 18 كم؛ وفي التردد-2: 43% و15% و19% و12% و2% و1% على التوالي. وفي S22-RF2 (805 سجلات) نجحت مطابقة 782 سفينة بمعدل إجمالي 97% (566 بنسبة 97% في التردد-1، و216 بنسبة 97% في التردد-2). وبلغت المعدلات الإجمالية عبر المجموعات السبع: 92% و97% و97% (سبتمبر-22) و88% و95% و93% (سبتمبر-25) و92% (ديسمبر-7).</p>
+    <p>أظهرت مجموعة S25-RF1 أصغر الفروق بين الترددين (42% عند 2 كم و1% عند 18 كم لكليهما)، بينما تفوّق التردد-2 في S25-RF3 عند المسافات فوق 6 كم (25% مقابل 17% عند 6 كم)، وفي مجموعة D07-RF تفوّق التردد-2 عبر جميع المسافات (21% مقابل 18% عند 2 كم). وفي المتوسطات: S22-RF1 (50% و14% و18% و12% و2% و1%)، وS22-RF2 (45% و19% و20% و9% و1% و0.5%)، وS22-RF3 (46% و17% و23% و6% و2% و0.9%)، وS25-RF1 (42% و14% و20% و7% و2% و1%)، وS25-RF2 (42% و21% و19% و7% و2% و1%)، وS25-RF3 (33% و17% و24% و11% و3% و1%)، وD07-RF1 (20% و12% و25% و13% و14% و6%).</p>
+    <p>يُظهر الاتجاه العام انخفاض معدلات المطابقة مع المسافة في كلا الترددين: معدلات مرتفعة عند المسافات القصيرة (2 كم) تشير إلى استقرار الإشارة قرب النطاق، ثم انخفاض حاد عند المسافات المتوسطة والطويلة (8 كم فأكثر) يعكس أثر توهين الإشارة. وحقق التردد-2 أداءً أكثر استقرارًا ومتانة عبر معظم المجموعات خاصة عند المسافات الأطول، بانحدار تدريجي في الدقة مقابل التدهور الأسرع للتردد-1.</p>
+  </section>
+
+  <section>
+    <h2>V. النقاش</h2>
+    <p>يُستخدم AIS على نطاق واسع للسلامة البحرية عبر بث مواقع السفن [6]–[8]، لكن انقطاع الإرسال — عمدًا أو عرضًا — يتيح التشغيل غير المكتشف، وهنا توفر بيانات RF وسيلة موثوقة للتحقق من مواقع AIS. قيّمت الدراسة أداء المطابقة في البحر الأصفر وغرب مضيق كوريا عبر التردد والمسافة: ففي S22-RF1 بلغت ذروة التردد-1 (54% عند 2 كم) مقابل 46% للتردد-2 مع دقة أعلى للأخير عند المسافات الطويلة (1% مقابل 0.8% عند 18 كم)؛ وتشابه الأداء عند المسافات القصيرة في S22-RF2 مع تفوق التردد-2 وانحدار ألطف عند المسافات الأطول.</p>
+    <p>تتسق النتائج مع دراسات الرصد الفضائي للسفن المظلمة [20]–[22] ومنهجية المطابقة السابقة [23]: التردد-2 (X-band) أنسب للمراقبة بعيدة المدى لاستقراره عند المسافات الكبيرة، بينما التردد-1 (S-band) أنسب للتطبيقات قصيرة المدى لدقته الأعلى قرب النطاق. وتشير الفروق بين المجموعات (مثل انخفاض S25-RF1 إلى 88%) إلى تأثر المطابقة بظروف الاكتساب اليومية وكثافة الحركة، مما يستدعي معايرة خاصة بكل مشهد عملياتي.</p>
+  </section>
+
+  <section>
+    <h2>VI. الخاتمة</h2>
+    <p>قيّمت الدراسة أداء المطابقة بين بيانات RF وAIS حسب التردد عبر مجموعات البحر الأصفر وغرب مضيق كوريا، بمتوسطات إجمالية 92% و97% و97% و88% و95% و93% و92% للمجموعات السبع. تفوّق التردد-2 (9.37–9.41 GHz) عمومًا على التردد-1 (3.04–3.08 GHz) خاصة عند المسافات الأطول بانحدار دقة أكثر استقرارًا، بينما أظهر التردد-1 قوة أكبر عند المسافات القصيرة. وبناءً عليه، يُفترض أن التردد-2 أكثر فاعلية لمراقبة السفن بعيدة المدى، والتردد-1 أنسب للتطبيقات قصيرة المدى لدقته الأعلى قرب النطاق.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Vessels can deactivate their Automatic Identification System (AIS) to operate undetected and potentially engage in illegal activities. To address this, satellite-based radio frequency (RF) data are increasingly being used for identifying such vessels. This study evaluates the matching accuracy among RF and AIS data based on the frequency and distance. RF data were acquired on 22 September, 25 September, and 7 December 2023. According to the frequency range, the dataset was separated into frequency-1 (3.024–3.077 GHz) and frequency-2 (9.3734–9.4249 GHz). Six distance thresholds (2 km, 3 km, 6 km, 8 km, 13 km, and 18 km) were employed for the matching process. The results depicted that the average matching rates were 95%, 92%, and 92% for the RF dataset on 22 September, 25 September, and 7 December, respectively. Additionally, the results revealed that the matching rates decreased with distance, e.g., for the RF dataset on 22 September, the average highest matching rate (47%) was found at a 2 km distance and the minimum matching rate (0.9%) was observed at an 18 km distance. Furthermore, the analysis delineated that frequency-2 consistently exceeded frequency-1, particularly at longer distances, showing a more stable trend in matching accuracy.</p>
+  </section>
+
+  <section>
+    <h2>I. Introduction</h2>
+    <p>Maritime freight transport is a critical component of global trade, accounting for approximately 90% of international freight transport [1], with over 50,000 vessels navigating the world's oceans daily [2]; the complexity and high volume of maritime operations therefore emphasize the need for advanced surveillance systems ensuring safety, security, and environmental protection. Among surveillance resources, AIS and Synthetic Aperture Radar (SAR) are recognized as the most efficient components of vessel traffic monitoring. The International Maritime Organization (IMO) introduced AIS to enhance maritime surveillance and reduce collision risks [4], mandating AIS equipment since 2004 on all international vessels of 300 gross tonnage or more and all passenger ships [5], with each equipped vessel broadcasting its identity (MMSI), latitude, longitude, course, heading, and speed [7] via VHF radio waves to onshore stations [8].</p>
+    <p>To broaden coverage, low Earth orbit satellites were developed to receive AIS messages, a system referred to as satellite-based AIS (S-AIS) [8], overcoming ground-system limitations with global coverage supporting marine spatial planning [9]. The rapid growth in AIS data volume contributed to wide applications: traffic pattern analysis, ship behavior, anomaly detection, and continuous monitoring [3], [10], [11], trajectory prediction [12], collision risk assessment [13], and ship-type classification [14]. SAR data are also increasingly used for maritime surveillance given high-resolution all-weather day-and-night imaging [15], with window-based detection and deep learning methods such as R-CNN, SSD, and YOLO [16]–[18], while AIS data serve as a complementary source for verifying detections [15].</p>
+    <p>However, vessels may deactivate AIS to become 'dark vessels' potentially involved in illegal activities, and AIS spoofing — deliberate manipulation of tracking information (ghost ships, false distress messages) — conceals identities of vessels engaged in IUU fishing, identity laundering, smuggling, and sanctions evasion [19]. To track such vessels, satellite-based RF data are increasingly used [20]: RF data measure electromagnetic radiation across a broad spectrum (9 kHz–300 GHz) [21], and RF detection systems capture emissions associated with navigation radars essential for safe navigation and collision avoidance [22], providing dependable tracking of non-cooperative vessels regardless of weather or time of day — as in the Unseenlabs case study finding 65% of vessels with both RF and AIS signals versus 35% navigating without AIS [20], and the HawkEye 360 case of a vessel ceasing AIS transmission for seven days yet detected via RF at Tartus Port [20].</p>
+  </section>
+
+  <section>
+    <h2>II. Study Area and Data</h2>
+    <p>The region encompassing the Yellow Sea and the western part of the Korea Strait (119°–130°E, 30°–38°N) was selected as the study area, a vital economic corridor connecting Korea with other Asian nations and a key hub in the Asia-Pacific logistics network adjacent to major international maritime routes. RF data from Unseenlabs were collected on 22 September, 25 September, and 7 December 2023 (seven datasets: S22-RF1 through S22-RF3, S25-RF1 through S25-RF3, and D07-RF); with a seven-satellite constellation, Unseenlabs achieves roughly a six-hour revisit interval with geolocation accuracy within one nautical mile [21]. The data comprised vessel ID, transmission frequency, coordinates, reliability, and accuracy across 3.024–9.4249 GHz, while AIS data (Spire Maritime) for the same dates covered a three-hour window before and after the RF timestamps.</p>
+    <p>RF data were separated by frequency range: frequency-1 (3.024–3.077 GHz) and frequency-2 (9.3734–9.4249 GHz), corresponding to shipboard S-band (~3 GHz for long-range detection of large targets) and X-band (~9 GHz for high-resolution imaging of smaller targets such as fishing vessels) radars that most vessels carry together for complementary coverage [24]. For temporal alignment, AIS data were interpolated at 30-minute intervals via linear interpolation with dead reckoning (DR) positions calculated, then progressively increasing distance thresholds (2, 3, 6, 8, 13, and 18 km) were applied as the maximum acceptable distance for a logical RF–AIS match, with distances computed using the haversine equation [23].</p>
+  </section>
+
+  <section>
+    <h2>III. Methodology</h2>
+    <p>For each RF data point, the matching process is initiated by identifying AIS positions falling within the defined distance threshold; the distance between each RF point and both original and interpolated AIS positions is then calculated with the haversine distance equation to quantify spatial proximity, and a successful match is assigned when the threshold condition holds. The data were separated into frequency-1 and frequency-2 and the simple distance-based matching algorithm was applied to each frequency range, with resulting matching rates analyzed across datasets and thresholds [23].</p>
+    <p>The design employed six thresholds (2, 3, 6, 8, 13, and 18 km) to reveal how matching degrades with distance, comparing S-band versus X-band performance within each dataset separately, thereby isolating the frequency effect from day-specific acquisition conditions.</p>
+  </section>
+
+  <section>
+    <h2>IV. Results</h2>
+    <p>In the S22-RF1 dataset (1,103 ship records: 498 at frequency-1, 605 at frequency-2), 1,027 ships were successfully matched (452 at 90% for frequency-1; 575 at 95% for frequency-2) at a 93% overall rate. Distance breakdown for frequency-1: 49% at 2 km, 12% at 3 km, 15% at 6 km, 10% at 8 km, 3% at 13 km, and 0.8% at 18 km; for frequency-2: 43%, 15%, 19%, 12%, 2%, and 1% respectively. In S22-RF2 (805 records), 782 ships were matched at 97% overall (566 at 97% for frequency-1; 216 at 97% for frequency-2). Overall rates across the seven datasets were 92%, 97%, 97% (22 September), 88%, 95%, 93% (25 September), and 92% (7 December).</p>
+    <p>The S25-RF1 dataset showed the slightest inter-frequency differences (42% at 2 km and 1% at 18 km for both), while frequency-2 exceeded frequency-1 in S25-RF3 beyond 6 km (25% vs. 17% at 6 km) and in D07-RF1 across all distances (21% vs. 18% at 2 km). Averages: S22-RF1 (50%, 14%, 18%, 12%, 2%, 1%), S22-RF2 (45%, 19%, 20%, 9%, 1%, 0.5%), S22-RF3 (46%, 17%, 23%, 6%, 2%, 0.9%), S25-RF1 (42%, 14%, 20%, 7%, 2%, 1%), S25-RF2 (42%, 21%, 19%, 7%, 2%, 1%), S25-RF3 (33%, 17%, 24%, 11%, 3%, 1%), and D07-RF1 (20%, 12%, 25%, 13%, 14%, 6%).</p>
+    <p>The overall trend shows matching rates decreasing with distance for both frequencies: high rates at short distances (2 km) indicating signal stability at close range, then sharp declines at intermediate and long ranges (8 km and beyond) reflecting signal attenuation. Frequency-2 exhibited more stable, robust performance across most datasets, particularly at longer distances, with a gradual accuracy decline versus frequency-1's faster degradation.</p>
+  </section>
+
+  <section>
+    <h2>V. Discussion</h2>
+    <p>AIS is a widely utilized system for maritime safety through vessel position transmission [6]–[8], but signal interruption — intentional or unintentional — enables undetected operation, where RF data provide a reliable way to verify AIS positions. This study evaluated matching performance in the Yellow Sea and western Korea Strait across frequency and distance: in S22-RF1, frequency-1 peaked at 54% at 2 km versus 46% for frequency-2 with higher long-range accuracy for the latter (1% vs. 0.8% at 18 km); in S22-RF2 both performed similarly at short distances while frequency-2 exceeded frequency-1 at longer distances with a gentler decline.</p>
+    <p>The results align with space-based dark-vessel monitoring studies [20]–[22] and the prior matching methodology [23]: frequency-2 (X-band) suits long-range vessel monitoring given its stability at greater distances, while frequency-1 (S-band) suits short-range applications given higher close-range accuracy. Inter-dataset differences (e.g., S25-RF1 down to 88%) indicate matching sensitivity to daily acquisition conditions and traffic density, calling for scene-specific operational calibration.</p>
+  </section>
+
+  <section>
+    <h2>VI. Conclusions</h2>
+    <p>This study evaluated the matching performance between RF and AIS data based on frequency across Yellow Sea and western Korea Strait datasets, with overall averages of 92%, 97%, 97%, 88%, 95%, 93%, and 92% for the seven datasets. Frequency-2 (9.37–9.41 GHz) generally outperformed frequency-1 (3.04–3.08 GHz), particularly at longer distances with a more stable accuracy decline, while frequency-1 showed stronger performance at shorter distances. Based on the analysis, frequency-2 may be more effective for long-range vessel monitoring, while frequency-1 could suit short-range applications given its higher close-range accuracy.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Sheng, P.; Yin, J. Extracting shipping route patterns by trajectory clustering model based on Automatic Identification System data. Sustainability 2018, 10, 2327.</li>
+      <li>[2] Rong, H.; Teixeira, A.P.; Soares, C.G. Ship trajectory uncertainty prediction based on a gaussian process model. Ocean Eng. 2019, 182, 499–511.</li>
+      <li>[3] Yan, Z.; Song, X.; Zhong, H.; Yang, L.; Wang, Y. Ship classification and anomaly detection based on spaceborne AIS data considering behavior characteristics. Sensors 2022, 22, 7713.</li>
+      <li>[4] International Maritime Organization. Adoption of New and Amended Performance Standards. 1998.</li>
+      <li>[5] International Maritime Organization. Strategic Plan for the Organization (for Six-Year Period 2012 to 2017); Resolution A 1037(27); IMO: London, UK, 2011; pp. 3–4.</li>
+      <li>[6] Harati-Mokhtari, A.; Wall, A.; Brookes, P.; Wang, J. Automatic identification system (AIS): A human factors approach. J. Navig. 2007, 60, 373–389.</li>
+      <li>[7] Chen, X.; Liu, Y.; Achutan, K.; Zhang, X. A ship movement classification based on Automatic Identification System (AIS) data using convolution neural network. Ocean Eng. 2020, 218, 108182.</li>
+      <li>[8] Hong, D.-B.; Yang, C.-S.; Kim, T.-H. Investigation of passing ships in inaccessible areas using satellite-based AIS (S-AIS) data. Korean J. Remote Sens. 2018, 34, 579–590.</li>
+      <li>[9] Metcalfe, K.; Bréheret, N.; Chauvet, E.; Collins, T.; Curran, B.K.; Parnell, R.J.; Turner, R.A.; Witt, M.J.; Godley, B.J. Using satellite AIS to improve our understanding of shipping and fill gaps in ocean observation data to support marine spatial planning. J. Appl. Ecol. 2018, 55, 1834–1845.</li>
+      <li>[10] Fournier, M.; Casey Hilliard, R.; Rezaee, S.; Pelot, R. Past, present, and future of the satellite-based AIS: Areas of applications (2004–2016). WMU J. Marit. Aff. 2018, 17, 311–345.</li>
+      <li>[11] Venskus, J.; Treigys, P.; Bernatavičiene, J.; Tamulevičius, G.; Medvedev, V. Real-Time Maritime Traffic Anomaly Detection Based on Sensors and History Data Embedding. Sensors 2019, 19, 3782.</li>
+      <li>[12] Wang, C.M.; Li, Y.; Min, L.; Chen, J.; Lin, Z.; Su, S.; Zhang, Y.; Chen, Q.; Chen, Y.; Duan, X.; et al. Intelligent marine area supervision based on AIS and radar fusion. Ocean Eng. 2023, 285, 115373.</li>
+      <li>[13] Zhao, L.; Fu, X. A novel index for real-time ship collision risk assessment based on velocity obstacle considering dimension data from AIS. Ocean Eng. 2021, 240, 109913.</li>
+      <li>[14] Shin, D.-W.; Yang, C.-S. Classification of ship type from combination of HMM–DNN–CNN models based on ship trajectory features. Remote Sens. 2024, 16, 4245.</li>
+      <li>[15] Graziano, M.D.; Renga, A.; Moccia, A. Integration of AIS data and single-channel SAR images by SAR-based ship velocity estimation for maritime situational awareness. Remote Sens. 2019, 11, 2196.</li>
+      <li>[16] Shin, D.-W.; Yang, C.-S.; Chowdhury, S.J.K. Enhancement of small ship detection using polarimetric combination from Sentinel-1 imagery. Remote Sens. 2024, 16, 1198.</li>
+      <li>[17] Kang, M.; Ji, K.; Leng, X.; Lin, Z. Contextual region-based CNN with multilayer fusion for SAR ship detection. Remote Sens. 2017, 9, 860.</li>
+      <li>[18] Chang, Y.-L.; Anagaw, A.; Chang, L.; Wang, Y.C.; Hsiao, C.-Y.; Lee, W.-H. Ship detection based on YOLOv2 for SAR imagery. Remote Sens. 2019, 11, 786.</li>
+      <li>[19] Louart, M.; Szkolnik, J.-J.; Boudraa, A.-O.; Le Lann, J.-C.; Roy, F.L. Detection of AIS messages falsifications and spoofing by checking messages compliance with TDMA protocol. Digit. Signal Process. 2023, 136, 103983.</li>
+      <li>[20] Dark Shipping Solutions, 2024. Dark Vessel Detection with Satellite-Based RF Tracking.</li>
+      <li>[21] Travis Turgeon, 2023. Radio Frequency Collection: Securing the Maritime Domain.</li>
+      <li>[22] SatMagazine, 2023. Focus: Unseenlabs, A European Leader in RF Signals Detection from Space for Maritime Surveillance.</li>
+      <li>[23] Yang, C.-S.; Cho, J. Matching method for ship identification using satellite-based radio frequency sensing data. Korean J. Remote Sens. 2024, 40, 219–228.</li>
+      <li>[24] Marine Radar Onboard Ships: An Overview.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse13020191">10.3390/jmse13020191</a> · License: CC BY 4.0 · <a href="./paper.pdf">PDF</a></p>
+  <p>Translation © DAR — Arabic Research Archive · <a href="https://github.com/ahmdngi/dar">GitHub</a></p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

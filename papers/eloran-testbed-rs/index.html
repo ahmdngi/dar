@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إثبات جدوى نظام eLoran الكوري بوصفه بنية مرنة لتحديد المواقع والملاحة والتوقيت في منصة اختبار — DAR</title>
+<meta name="description" content="Demonstration of the Feasibility of the Korean eLoran System as a Resilient PNT in a Testbed">
+<link rel="canonical" href="https://dararchive.com/papers/eloran-testbed-rs/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Demonstration of the Feasibility of the Korean eLoran System as a Resilient PNT in a Testbed</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">إثبات جدوى نظام eLoran الكوري بوصفه بنية مرنة لتحديد المواقع والملاحة والتوقيت في منصة اختبار</h2>
+
+  <div class="paper-meta">
+    <span>👤 Pyo-Woong Son, Sul Gee Park, Younghoon Han, Kiyeol Seo, Tae Hyun Fang</span>
+    <span>📄 Remote Sens., 2023 · Vol. 15, 3586</span>
+    <span>🔗 <a href="https://doi.org/10.3390/rs15143586">10.3390/rs15143586</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>مع الاستخدام المتزايد لمعلومات المواقع، يزداد إلحاح تأمين التموضع المطلق — الذي اعتمد على أنظمة الملاحة بالأقمار الصناعية (GNSSs) كـGPS — ويُعد نظام الملاحة بعيدة المدى المحسّن (eLoran) البديل الأكثر نضجاً تقنياً [20]، [21]. وفي كوريا، طُوّرت تقنيات eLoran منذ 2016، واكتُملت عام 2021 منصة اختبار لتقييم الأداء في خدمة تجريبية. تحلل هذه الدراسة دقة تموضع الخدمة التجريبية لاستخدامها عند تعذّر GNSS، بالإبحار حتى 160 كم من مرسِل منصة إنتشون عبر مراحل الملاحة الأربع للمنظمة البحرية الدولية — الممر المائي الداخلي ومقاربة الميناء والساحلية والمحيطية. ونظراً لعدم توفير خريطة للعامل الثانوي الإضافي (ASF) في المنصة، تُقترح تقنية لتقدير ASF بالاعتماد على تموضع GPS التفاضلي (DGPS). وحقق نظام eLoran الكوري دقة تموضع مطلق بنحو 15 متراً باحتمال 95% في مرحلة مقاربة الميناء.</p>
+  </section>
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تزداد أهمية معلومات تحديد المواقع والملاحة والتوقيت (PNT) الموثوقة في التطبيقات [1]–[4]، وهي أساسية للقيادة الذاتية. وتدور أقمار GNSS على ارتفاع 20 ألف كم فوق الأرض، وتحسب المستقبِلات الموضع والزمن من إشاراتها؛ وبما أن GNSS يعمل في أي مكان تحت سماء مفتوحة، تعتمد عليه خدمات مواقع لا تُحصى [5]، [6]. وتواصل الدول توسيع تكوكباتها — GPS (الولايات المتحدة) وغاليليو (الاتحاد الأوروبي) وغلوناس (روسيا) وبايدو (الصين) [7]–[9] — وأطلقت كوريا مشروع نظام التموضع الكوري عام 2022 لمنطقة شبه الجزيرة [10].</p>
+    <p>غير أن إشارات GNSS ضعيفة للغاية وبنيتها مفتوحة، فهي عرضة للتشويش المتعمد وغير المتعمد: إذ هددت أجهزة تشويش GPS صغيرة يستخدمها سائقو الشاحنات منشآت وطنية حساسة كالمطارات، وحذّرت وكالة أوروبية من انقطاعات قرب أوكرانيا [13]، بينما تبلغ الكلفة الاقتصادية لتعطل GNSS حداً جسيماً [14]. وتشمل البدائل نظام R-Mode عبر بنية الترددات المتوسطة [15]–[17]، وقبل كل شيء eLoran — موضوع دراسة المرونة MarRINav [20] وأعمال eLoran الكورية السابقة [21] ووثيقة تعريف eLoran الصادرة عن ILA [24].</p>
+  </section>
+  <section>
+    <h2>2. آخر المستجدات في نظام eLoran الكوري</h2>
+    <p>الفرق الرئيسي عن Loran-C هو توقيت الإشارة: إذ تتبع المرسِلات الثانوية الآن زمن Loran المرتبط بزمن GPS والثواني الكبيسة بدل زمن وصول المحطة الرئيسية، متجاوزة أخطاء توقيت Loran-C الناجمة عن تغيرات الانتشار على خط الأساس — وجميع المرسِلات الكورية متزامنة ضمن 10 نانوثانية باستخدام ساعات السيزيوم ومستقبِلات توقيت GNSS. وتحمل قناة بيانات eLoran (LDC) بيانات التصحيح والتقويم؛ واعتمدت كوريا طريقة Eurofix (تضمين النبضات 3–8)، التي أظهر تحليل إشارات منصة إنتشون أنها تغطي مدى أوسع من طريقة النبضة التاسعة المستخدمة في الولايات المتحدة، بينما استخدمت بريطانيا Eurofix في مرحلة القدرة التشغيلية الأولية [25]، [26]. والقدرة المشعة الفعالة 150 كيلوواط في بوهانغ (هوائي 137 م) و50 كيلوواط في غوانغجو (122 م) و800 واط في منصة إنتشون (35 م)، مع دراسة محاكاة لمدى الدقة نُشرت عام 2021 للموقعين عاليي القدرة [28]؛ وكان متوقعاً نقل مرسِل إنتشون إلى جزيرة سوتشونغ بقدرة 8 كيلوواط لتغطية أوسع.</p>
+  </section>
+  <section>
+    <h2>2.1. نظام eLoran التفاضلي وتصحيح ASF</h2>
+    <p>تعاني إشارات eLoran المنتشرة أرضياً تأخيرات العامل الأولي (PF) والثانوي (SF) والعامل الثانوي الإضافي (ASF) بسبب التضاريس وخصائص الأرض؛ ويتبع PF وSF نماذج المسار البحري من نوع برونافس، بينما تبقى نماذج التنبؤ بـASF مثل BALOR محدودة بالتقلب البيئي [29]–[31]. وفي كوريا تبلغ تأخيرات PF وSF نحو 400–500 م بينما يصل ASF إلى 400–800 م [32]. ويقدم النظام الكوري خدمتين: تصحيح ASF الآني، المرصود في محطة تفاضلية ببيئة انتشار مشابهة والمُسلَّم عبر LDC، وخرائط ASF مكانية للقيم الثابتة زمنياً المسحوبة لكل خلية شبكية — وحققا معاً دقة بنحو 16 متراً في أبريل 2021 باستخدام خرائط مسح ديسمبر 2020 مع تصحيحات إنتشون الآنية [33].</p>
+  </section>
+  <section>
+    <h2>3. المواد والطريقة</h2>
+    <h3>3.1. المعدات</h3>
+    <p>استُخدمت في التجارب وحدة UrsaNav UN-151 — أكثر مستقبِلات eLoran التجارية تقدماً، والمستوفية للحد الأدنى من متطلبات RTCM SC-127 للمعدات البحرية [34]، بما فيها البحث متعدد GRI وقمع تداخل المعدلات المتقاطعة وتخفيف الموجات المستمرة وفك تضمين LDC — مع برنامج محدّث للإعداد الكوري. واستُخدم مستقبِل DGPS من طراز Samyoung DSPR-1400 على متن سفينة حكومية (97 طناً) — وهو إلزامي بموجب قانون السلامة البحرية الكوري للسفن فوق 20 طناً — كمرجع للموضع؛ ورغم مواصفة datasheet بنحو 3 أمتار، فقد حقق دقة أفضل من متر واحد في كامل التجربة تقريباً [4].</p>
+    <h3>3.2. موقع التجربة وتقدير ASF بالاعتماد على DGPS</h3>
+    <p>استضاف ميناء إنتشون — من أكبر موانئ كوريا — التجارب، ورُسمت مياهه على مراحل القرار A.915(22) الأربع للمنظمة البحرية الدولية: الممر المائي الداخلي «آرا» ومنطقة الميناء ضمن 20 كم والمنطقة الساحلية والمحيط. ويجب أن تحقق الملاحة الراديوية 10 أمتار بنسبة 95% في مقارب الموانئ والمياه الساحلية و100 متر في المحيطات بموجب القرار A.1046(27). ونظراً لندرة خرائط ASF وفقدان التصحيحات الآنية صلاحيتها فوق تضاريس كوريا المتغيرة، تقدّر الدراسة ASF من موضع DGPS الإلزامي: فمن معادلة زمن الوصول = زمن الانتشار + تأخير الإرسال + انزياح ساعة المستقبِل، يُفصَل حد الانتشار عبر دالة برونافس مضافاً إليه ASF المتغير والثابت زمنياً [32]، مع استيعاب خطأ ساعة المستقبِل في الحل — وهي طريقة تتبع قيود المعدلات المتقاطعة المبينة في تحليل سفر [35].</p>
+    <h3>3.3. طريقة إثبات دقة التموضع</h3>
+    <p>عُرّف خطأ التموضع مقابل مرجع DGPS بإحصاءات الشريحة 95% والقيمة العظمى، بافتراض عدم توفر التصحيح الآني ولا خرائط ASF، ضمن ثلاثة سيناريوهات: بلا تصحيح (كما في Loran-C)، وتصحيح ASF واحد بالاعتماد على DGPS في بداية المقطع، وتصحيحات متكررة بالاعتماد على DGPS بفواصل ثابتة (500 م/1 كم، أو 5 كم/10 كم في عرض البحر) بديلاً عن الخدمة القائمة على الخرائط.</p>
+  </section>
+  <section>
+    <h2>4. النتائج</h2>
+    <h3>4.1. الممر المائي الداخلي ومقاربة الميناء</h3>
+    <p>في الممر المائي الداخلي «آرا» (خارج المجال القريب 6 كم لمرسِل إنتشون، ذهاب وعودة ~10 كم)، بلغ الخطأ بلا تصحيح 585.13 م عند 95% (الأعظم 605.36 م)؛ وخفضه تصحيح واحد في البداية إلى 95.72 م (الأعظم 154.3 م)؛ وأعطت التصحيحات كل 500 م و1 كم 39.90 م و48.09 م (الأعظم 127.81 م في كل الحالات)؛ وستعطي خريطة ASF باستيفاء ثنائي الخطية 19.33 م، وتُعزى القيم العظمى 127.81 م إلى تدهور الإشارة تحت جسر مرور بري. وفي مقاربة الميناء، بلغ الخطأ بلا تصحيح 1062.98 م عند 95% (الأعظم 1446.27 م)؛ وأعطى تصحيح البداية فقط 103.78 م (الأعظم 1377.99 م)؛ وأعطت تصحيحات الفواصل 500 م و1 كم 26.06 م و43.75 م (عظمى ~1.3 كم)؛ وستعطي خريطة ASF مسحوبة 18.84 م عند 95%، ووقعت القيم العظمى الكبيرة تحت جسر إنتشون المؤدي إلى المطار.</p>
+    <h3>4.2. المنطقتان الساحلية والمحيطية</h3>
+    <p>في المنطقة الساحلية، حيث يتدهور التصحيح التفاضلي الآني عبر مسارات انتشار مختلفة، أعطى تصحيح DGPS في البداية فقط 128.36 م عند 95% (الأعظم 610.54 م)؛ وأعطت فواصل 500 م دقة 15.26 م (الأعظم 569.95 م)؛ وفواصل 1 كم 24.49 م (الأعظم 563.98 م) — مع أكبر الأخطاء في المضايق الضيقة بين الجزر حيث تسبب السواحل المعقدة تغيرات طور سريعة. وفي منطقة المحيط البعيد، كفت إشارة إنتشون 800 واط للملاحة لكن لا لفك رسائل LDC، فلم يتوفر تصحيح آني: وبلغ الخطأ بلا تصحيح 6880.49 م عند 95% (الأعظم 20,027.36 م)؛ وأعطى تصحيح البداية فقط 425.65 م (الأعظم 1362.56 م)؛ وفواصل 5 كم 135.32 م (الأعظم 13,723.68 م)؛ وفواصل 10 كم 171.45 م (الأعظم 13,670.91 م).</p>
+  </section>
+  <section>
+    <h2>5. الخاتمة</h2>
+    <p>تحققت الدراسة من نظام eLoran الأرضي الكوري عبر مراحل المنظمة البحرية الدولية الأربع، وأظهرت أن تقدير ASF بالاعتماد على DGPS يمكّن التموضع حيث لا تتوفر رسائل LDC ولا خرائط ASF. وبالإبحار قرب ميناء إنتشون، حقق النظام نحو 20 متراً في الممرات الداخلية و26 متراً في مقاربة الميناء و15 متراً في عرض الساحل بنسبة 95% باستخدام تقديرات ASF المعتمدة على DGPS بفواصل 500 م — وحتى في البحر المفتوح على بعد 80 كم من الساحل، نحو 135 متراً بتصحيحات فواصل 5 كم وبلا خريطة ASF. ومع تحسينات قدرة مرسِل منصة إنتشون وهندسته، يُتوقع أن يسهم eLoran إسهاماً كبيراً في توفير PNT مرن في البحر الغربي.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>With the growing use of location information, securing absolute positioning — which has depended on global navigation satellite systems (GNSSs) such as GPS — is increasingly urgent, and enhanced long-range navigation (eLoran) is the most technically mature backup [20], [21]. In Korea, eLoran technologies have been developed since 2016, and a testbed for performance evaluation in pilot service was completed in 2021. This study analyzes the position accuracy of the pilot service for use when GNSS is challenged, sailing up to 160 km from the Incheon testbed transmitter across the four IMO navigation stages — inland waterway, port approach, coastal, and ocean. Because no additional secondary factor (ASF) map is provided in the testbed, a differential GPS (DGPS) position-based ASF estimation technique is proposed. The Korean eLoran system achieved an absolute position accuracy of approximately 15 m at 95% probability in the port-approach stage.</p>
+  </section>
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Reliable positioning, navigation, and timing (PNT) information is increasingly crucial across applications [1]–[4], and is essential for autonomous driving. GNSS satellites orbit about 20,000 km above the Earth, and receivers compute position and time from their signals; because GNSS works anywhere under open sky, countless location-based services depend on it [5], [6]. Countries keep expanding their constellations — GPS (USA), Galileo (EU), GLONASS (Russia), BeiDou (China) [7]–[9] — and Korea launched its own Korean Positioning System project in 2022 for the peninsula region [10].</p>
+    <p>Yet GNSS signals are extremely weak and openly structured, hence vulnerable to intentional or unintentional interference: small GPS jammers used by truck drivers have threatened key national facilities such as airports, and outages near Ukraine drew a European agency warning [13], while the economic cost of a GNSS disruption is severe [14]. Alternatives include R-Mode over medium-frequency infrastructure [15]–[17], and above all eLoran — the subject of the MarRINav resilience study [20], prior Korean eLoran work [21], and the ILA eLoran definition document [24].</p>
+  </section>
+  <section>
+    <h2>2. Recent Updates on the Korean eLoran System</h2>
+    <p>The main difference from Loran-C is signal timing: secondary transmitters now follow Loran time tied to GPS time and leap seconds instead of the master-station arrival time, overcoming Loran-C timing errors from baseline propagation changes — and all Korean transmitters are synchronized within 10 ns using cesium clocks and GNSS timing receivers. The eLoran data channel (LDC) carries correction and almanac data; Korea adopted the Eurofix method (modulating the 3rd–8th pulses), which analysis of Incheon testbed signals showed covers a wider range than the 9th-pulse method used in the USA, while the UK used Eurofix during its initial operational capability phase [25], [26]. Effective radiated power is 150 kW at Pohang (137 m antenna), 50 kW at Gwangju (122 m), and 800 W at the Incheon testbed (35 m), with a 2021 range-accuracy simulation study published for the two high-power sites [28]; the Incheon transmitter was expected to move to Socheong Island at 8 kW for wider coverage.</p>
+  </section>
+  <section>
+    <h2>2.1. Differential eLoran and ASF Correction</h2>
+    <p>Ground-propagating eLoran signals suffer primary (PF), secondary (SF), and additional secondary factor (ASF) delays from terrain and ground characteristics; PF and SF follow Brunavs-type sea-path models, while ASF prediction models such as BALOR remain challenged by environmental variability [29]–[31]. In Korea, PF and SF delays are about 400–500 m while ASF reaches 400–800 m [32]. Korea’s system offers two services: real-time ASF correction, monitored at a differential station with a similar propagation environment and delivered over the LDC, and spatial ASF maps of surveyed time-invariant values per grid cell — which together achieved about 16 m accuracy in April 2021 using December 2020 survey maps with Incheon real-time corrections [33].</p>
+  </section>
+  <section>
+    <h2>3. Materials and Method</h2>
+    <h3>3.1. Equipment</h3>
+    <p>The tests used the UrsaNav UN-151 module — the most advanced commercial eLoran receiver, satisfying the RTCM SC-127 minimum requirements for marine eLoran equipment [34], including multi-GRI search, cross-rate interference suppression, continuous-wave mitigation, and LDC demodulation — with firmware updated for the Korean configuration. A Samyoung DSPR-1400 DGPS receiver aboard a 97-ton government vessel (mandatory under Korea’s ship safety law for vessels over 20 tons) served as the position reference; although specified at about 3 m, it delivered better than 1 m accuracy through almost the entire trial [4].</p>
+    <h3>3.2. Experimental Site and DGPS-Based ASF Estimation</h3>
+    <p>Incheon Port — among Korea’s largest — hosted the trials, with its waters mapped onto the four IMO Resolution A.915(22) stages: the Ara inland waterway, the port area within about 20 km, the coastal area, and the ocean. Radio navigation must achieve 10 m at 95% in harbor approaches and coastal waters and 100 m in oceans under Resolution A.1046(27). Because ASF maps are sparse and real-time corrections lose validity over Korea’s variable terrain, the study estimates ASF from the mandatory DGPS position: from TOA = propagation time + emission delay + receiver clock offset, the propagation term is split via the Brunavs function plus time-variant and time-invariant ASF [32], with receiver clock error absorbed in the solution — a method whose cross-rate limitations follow the Safar analysis [35].</p>
+    <h3>3.3. Positioning Accuracy Demonstration Method</h3>
+    <p>Positioning error was defined against the DGPS reference with 95th-percentile and maximum statistics, assuming neither real-time correction nor ASF maps were available, under three scenarios: no correction (Loran-C-like), a single DGPS-based ASF correction at the start of the leg, and repeated DGPS-based corrections at fixed intervals (500 m/1 km, or 5 km/10 km offshore) standing in for map-based service.</p>
+  </section>
+  <section>
+    <h2>4. Results</h2>
+    <h3>4.1. Inland Waterway and Port Approach</h3>
+    <p>In the Ara inland waterway (beyond the 6 km near-field of the Incheon transmitter, ~10 km round trip), uncorrected error was 585.13 m at 95% (max 605.36 m); a single start correction cut it to 95.72 m (max 154.3 m); corrections every 500 m and 1 km gave 39.90 m and 48.09 m (max 127.81 m in all cases); and a bilinear-interpolated ASF map would give 19.33 m, the 127.81 m maxima being attributed to signal degradation under a road-traffic bridge. In the port approach, uncorrected error was 1062.98 m at 95% (max 1446.27 m); start-only correction gave 103.78 m (max 1377.99 m); 500 m and 1 km interval corrections gave 26.06 m and 43.75 m (maxima ~1.3 km); and a surveyed ASF map would give 18.84 m at 95%, the large maxima occurring under the Incheon Bridge to the airport.</p>
+    <h3>4.2. Coastal and Ocean Areas</h3>
+    <p>In the coastal area, where real-time differential correction degrades through differing propagation paths, start-only DGPS correction gave 128.36 m at 95% (max 610.54 m); 500 m intervals gave 15.26 m (max 569.95 m); 1 km intervals gave 24.49 m (max 563.98 m) — with the largest errors in narrow inter-island straits where complex coastlines cause rapid phase changes. In the far ocean area, the 800 W Incheon signal sufficed for navigation but not for decoding LDC messages, so no real-time correction was available: uncorrected error reached 6880.49 m at 95% (max 20,027.36 m); start-only correction gave 425.65 m (max 1362.56 m); 5 km intervals gave 135.32 m (max 13,723.68 m); and 10 km intervals gave 171.45 m (max 13,670.91 m).</p>
+  </section>
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>The study validated the Korean terrestrial eLoran system across the four IMO phases and showed that DGPS-based ASF estimation enables positioning where LDC messages and ASF maps are unavailable. Sailing near Incheon Port, the system achieved about 20 m in inland waterways, 26 m in the port approach, and 15 m offshore at 95% using DGPS-based ASF estimates at 500 m intervals — and even in the open sea over 80 km from the coast, about 135 m with 5 km-interval corrections and no ASF map. With transmitter power and geometry improvements at the Incheon testbed, eLoran is expected to contribute significantly to resilient PNT in the West Sea.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] Dardanelli, G.; Maltese, A. On the accuracy of cadastral marks: Statistical analyses to assess the congruence among GNSS-based positioning and official maps. Remote Sens. 2022, 14, 4086.</li>
+      <li>[2] Lee, H.; Seo, J.; Kassas, Z.Z.M. Urban road safety: A satellite navigation perspective. IEEE Intell. Transp. Syst. Mag. 2022, 14, 94–106.</li>
+      <li>[3] Lee, Y. et al. Seamless Accurate Positioning in Deep Urban Area Based on Mode Switching Between DGNSS and Multipath Mitigation Positioning. IEEE Trans. Intell. Transp. Syst. 2023, 24, 5856–5870.</li>
+      <li>[4] Specht, C. Maritime DGPS System Positioning Accuracy as a Function of the HDOP in the Context of Hydrographic Survey Performance. Remote Sens. 2023, 15, 10.</li>
+      <li>[5] Lee, H. et al. Optimal parameter inflation to enhance the availability of single-frequency GBAS for intelligent air transportation. IEEE Trans. Intell. Transp. Syst. 2022, 23, 17801–17808.</li>
+      <li>[6] Park, K.; Seo, J. Single-antenna-based GPS antijamming method exploiting polarization diversity. IEEE Trans. Aerosp. Electron. Syst. 2021, 57, 919–934.</li>
+      <li>[7] Châtre, E.; Manteiga, M. Galileo Programme Status. In Proceedings of ION GNSS+ 2022, Denver, CO, USA, 19–23 September 2022; pp. 484–511.</li>
+      <li>[8] Kogure, S. Update of QZSS. In Proceedings of ION GNSS+ 2022, Denver, CO, USA, 19–23 September 2022; pp. 512–528.</li>
+      <li>[9] DeLaPena, C., Jr. Military Communications & Positioning, Navigation, and Timing Overview: GPS Update. In Proceedings of ION GNSS+ 2022, Denver, CO, USA, 19–23 September 2022; pp. 464–483.</li>
+      <li>[10] Kim, T. KPS & KASS Status Update, 62nd Meeting of the Civil GPS Service Interface Committee. 2022.</li>
+      <li>[13] Matteo, L. European Agency Warns of GNSS Outages Near Ukraine. 2022.</li>
+      <li>[14] Sadlier, G. et al. The Economic Impact on the UK of a Disruption to GNSS; Tech. Rep. 17.3254; London Economics: London, UK, 2017.</li>
+      <li>[15] Bronk, K. et al. Concept, signal design and measurement studies of the R-Mode Baltic system. Navigation 2021, 68, 465–483.</li>
+      <li>[16] Koch, P.; Gewies, S. Worldwide Availability of Maritime Medium-Frequency Radio Infrastructure for R-Mode-Supported Navigation. J. Mar. Sci. Eng. 2020, 8, 209.</li>
+      <li>[17] Rizzi, F.G. et al. Performance assessment of the medium frequency R-Mode Baltic testbed at sea near Rostock. Appl. Sci. 2023, 13, 1872.</li>
+      <li>[20] Shaw, G. MarRINav—Maritime Resilience and Integrity in Navigation. NAVISP-EL3-001. 2020.</li>
+      <li>[21] Son, P.-W.; Park, S.G.; Han, Y.; Seo, K. eLoran: Resilient positioning, navigation, and timing infrastructure in maritime areas. IEEE Access 2020, 8, 193708–193716.</li>
+      <li>[24] Enhanced Loran (eLoran). Definition Document, Version 0.1, ILA. 2007.</li>
+      <li>[25] Yang, C. et al. Experimental Study of a Signal Modulation Method to Improve eLORAN Data Channel Communications. Sensors 2020, 20, 6504.</li>
+      <li>[26] Offermans, G. et al. eLoran Initial Operational Capability in the United Kingdom—First Results. In Proceedings of ION ITM 2015, Dana Point, CA, USA, 26–28 January 2015; pp. 27–39.</li>
+      <li>[28] Rhee, J.H.; Kim, S.; Son, P.-W.; Seo, J. Enhanced accuracy simulator for a future Korean nationwide eLoran system. IEEE Access 2021, 9, 115042–115052.</li>
+      <li>[29] Lo, S.C. et al. Developing and validating the Loran temporal ASF bound model for aviation. Navigation 2012, 56, 9–21.</li>
+      <li>[31] Hargreaves, C. et al. Radio-navigation system coverage modelling software. In Proceedings of IAIN 2015, Prague, Czech Republic, 20–23 October 2015; pp. 1–7.</li>
+      <li>[32] Son, P.-W.; Rhee, J.H.; Seo, J. Novel multichain-based Loran positioning algorithm for resilient navigation. IEEE Trans. Aerosp. Electron. Syst. 2018, 54, 666–679.</li>
+      <li>[33] Son, P.-W.; Fang, T.H.; Park, S.G.; Han, Y.; Seo, K. Compensation method of eLoran signal’s propagation delay and performance assessment in the field experiment. J. Position. Navig. Timing 2022, 11, 23–28.</li>
+      <li>[34] RTCM SC-127; Minimum Performance Standards for Marine eLoran Receiving Equipment. RTCM: Washington, DC, USA, 2017.</li>
+      <li>[35] Safar, J. Analysis, Modelling and Mitigation of Cross-Rate Interference in Enhanced Loran. Ph.D. Thesis, Czech Technical University, Prague, Czech Republic, 2014.</li>
+      <li>[full reference list available in the original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/rs15143586">10.3390/rs15143586</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

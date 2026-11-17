@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نظام دعم تقييم مخاطر الاصطدام لدعم المشغّل عن بُعد للسفن ذاتية القيادة ومشغّل خدمة الحركة المرورية للسفن في بيئة متعددة السفن ضمن منطقة الخدمة — DAR</title>
+<meta name="description" content="Collision Risk Assessment Support System for MASS RO and VTSO Support in Multi-Ship Environment of Vessel Traffic Service Area">
+<link rel="canonical" href="https://dararchive.com/papers/mass-roc-collision-jmse/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Collision Risk Assessment Support System for MASS RO and VTSO Support in Multi-Ship Environment of Vessel Traffic Service Area</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نظام دعم تقييم مخاطر الاصطدام لدعم المشغّل عن بُعد للسفن ذاتية القيادة ومشغّل خدمة الحركة المرورية للسفن في بيئة متعددة السفن ضمن منطقة الخدمة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Yunja Yoo, Jin-Suk Lee</span>
+    <span>📄 J. Mar. Sci. Eng., 2021 · Vol. 9, 1143</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse9101143">10.3390/jmse9101143</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>بدأت المناقشات في المنظمة البحرية الدولية (IMO) بشأن إدخال السفن السطحية ذاتية القيادة البحرية (MASS) بجدية، واقترحت الرابطة الدولية للمساعدات الملاحية وسلطات المنارات (IALA) تقاسم صورة تشغيلية مشتركة للوعي الظرفي بالممر المائي ضمن بيئة خدمة الحركة المرورية للسفن (VTS) عند تطوير أنظمة دعم تشغيل MASS [1]، [8]. ونظراً لأن الاصطدامات في البحر ما تزال تمثل نسبة عالية من حوادث السفن، وقد تناولت دراسات كثيرة مخاطر الاصطدام بين السفن، تقيّم هذه الدراسة مخاطر الاصطدام باستخدام نطاق بحري مستمد من أحكام مشغّلي خدمة الحركة المرورية للسفن (VTSO)، وتقترح نظاماً آنياً لدعم تقييم مخاطر الاصطدام (RiASS) يحسّن الوعي الظرفي لمشغّلي VTSO والمشغّلين عن بُعد لسفن MASS (RO) إزاء حالات الاقتراب من الاصطدام في المياه المحلية. وأظهر تحليل المخاطر لسيناريوهات الاقتراب من الاصطدام في ميناء بوسان أن مسافة أقرب نقطة اقتراب (DCPA) والزمن المتبقي لها (TCPA) والمسافة بين السفن تقاربت ضمن 0.5 ميل بحري و10 دقائق و3 أميال بحرية على التوالي.</p>
+  </section>
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>أدرجت المنظمة البحرية الدولية سفن MASS في جدول الأعمال الرسمي للدورة التاسعة والتسعين للجنة السلامة البحرية (MSC) عام 2018 وأعدّت تمريناً لتحديد النطاق التنظيمي (RSE) لتشغيلها [1]–[6]. وحددت المناقشات أربع درجات للاستقلالية، من السفن ذات العمليات الآلية ودعم القرار حتى السفن المستقلة تماماً [1]. ويُدخل المستويان الثاني والثالث مفهوم المشغّل عن بُعد (RO) الذي يتحكم بسفينة MASS من مركز تحكم ساحلي، لذا يتطلب التشغيل عن بُعد تقنية لتقييم مخاطر الاصطدام تحدد خطر الاصطدام في البحر. وناقشت الرابطة الدولية IALA دعم عمليات MASS في كل مرحلة من عمل المنظمة، بما في ذلك مشروع مبدئي توجيهي لسفن MASS [8].</p>
+    <p>أُجري تقييم مخاطر الاصطدام في الغالب ضمن مناطق أمان قائمة على النطاق البحري. وحُللت العوامل البشرية والتنظيمية في الحوادث البحرية بأطر مثل HFACS [9]، ووُثّق الخطأ البشري في العمليات على نطاق واسع [10]–[14]. وأرسى النماذج الكلاسيكية للنطاق البحري كلٌّ من فوجي وتاناكا [15] وكولدويل [16] وغودوين [17]، ثم وُسّعت بنطاقات تجريبية قائمة على AIS [18] ونطاقات معايَرة تجريبياً للمياه الضيقة [19]. وتشمل الأعمال اللاحقة كشف التعارضات في الحركة المعقدة [29]، وتقييم مخاطر الاصطدام بالجمع بين الإجهاد البيئي ونماذج المخاطر [30]، ومخاطر الاصطدام المتصوَّرة في مياه الموانئ [33]، وتفادي الاصطدام القائم على AIS في الممرات المزدحمة [43]، ودمج السفن التقليدية مع MASS عبر خدمات VTS ومراكز تشغيل الأساطيل ومراكز التحكم الساحلية [44].</p>
+    <p>تنص القاعدة 22 من اللوائح الدولية لمنع الاصطدام في البحر (COLREGs) على أن الحد الأدنى لمدى رؤية الأضواء الجانبية للسفن التي يزيد طولها على 50 متراً هو 3 أميال بحرية [45]، [46]. لذا تقترح هذه الدراسة وحدة RiAS لتقييم مخاطر الاصطدام، وهي تحسب قيمة مؤشر مخاطر الاصطدام (CoRI) لكل زوج من السفن ضمن مسافة فصل دنيا قدرها 3 أميال في بيئة متعددة السفن، وتُطلق إنذاراً عند تجاوز القيمة المرجعية التي يحددها نظاما VTSO وRO. واشتُقّت نزعة المخاطرة لدى VTSO المستخدمة في النموذج من استبيان لتحديد مخاطر الاصطدام أُجري على 135 مشغّل VTSO يعملون في مراكز VTS الساحلية الكورية [47]، وطُبّقت القيمة نفسها على المشغّل عن بُعد لأن سفن MASS لم تدخل مرحلة التشغيل بعد.</p>
+  </section>
+  <section>
+    <h2>2. المنهجية</h2>
+    <p>يُقترح نموذج لتقييم مخاطر الاصطدام يقيّم مخاطر بيئة متعددة السفن في منطقة VTS ويدعم تحكم VTSO والمناورة عن بُعد من المشغّل RO. ويستند النموذج إلى عدد حالات التوليفات ضمن مسافة الفصل الدنيا بين السفينتين i وj، ويرسل إنذاراً إلى نظامي VTSO وRO إذا تجاوز ناتج مؤشر مخاطر الاصطدام القيمة المحددة. وتُوصف أدناه نماذج المخاطر وطريقة تقييم مخاطر الاصطدام في البيئات متعددة السفن.</p>
+    <h3>2.1. نموذج مخاطر الاصطدام</h3>
+    <p>استناداً إلى النطاق البحري عند موضع أقرب نقطة اقتراب، يُنتج نموذج CoRI الذي يقيّم به VTSO مخاطر المواجهات البحرية مؤشرات مخاطر لكل مواجهة بين سفينتين، ويقدّر في النهاية قيمة CoRI تعكس نزعة المخاطرة لدى VTSO. وتُصاغ مخاطرة المواجهة بين السفينة i والسفينة j لسيناريوهات المواجهة الأمامية والتقاطع والتجاوز انطلاقاً من المحامل النسبية؛ وتُقاس مخاطرة الاقتراب بمؤشر اقتراب يستخدم مسافة الأمان لنطاق VTSO عند موضع CPA؛ ويكمّل الصياغةَ مؤشرُ خطر للتقارب بين السفن، مع معاملات تحددها القيم القصوى للمخاطرة في المقدمة والمؤخرة ومستوى مخاطرة المواجهة.</p>
+    <h3>2.2. تقييم مخاطر الاصطدام</h3>
+    <p>نظراً لأن القاعدة 22 من COLREGs تحدد الحد الأدنى لرؤية الأضواء الجانبية للسفن التي يزيد طولها على 50 متراً بثلاثة أميال بحرية [45]، [46]، تحسب وحدة RiAS قيمة CoRI لجميع توليفات السفن ضمن مسافة فصل دنيا قدرها 3 أميال، وتُرجع قيمة إنذار 0 أو 1 تبعاً لتجاوز العتبة المرجعية لسلامة CoRI من عدمه. وعند وقوع الإنذار، يجوز لـVTSO وRO الأمر بإجراءات تفادي الاصطدام مثل تغيير المسار وحدود السرعة، مع مراعاة أداء المناورة وعلاقات المواجهة بين السفن.</p>
+  </section>
+  <section>
+    <h2>3. النتائج التحليلية</h2>
+    <p>استُخدمت بيانات الحركة البحرية لحالات مخاطر الاصطدام في منطقة VTS بميناء بوسان لتقييم مخاطر الاصطدام في بيئات متعددة السفن لثلاثة سيناريوهات اقتراب من الاصطدام بلغ فيها CoRI ما لا يقل عن 50% [29]. وجاءت بيانات الاقتراب من نظام الاستخلاص في VTS ميناء بوسان بتاريخ 27 يوليو 2018 [48]، [49]، وتغطي نحو 20 دقيقة من 05:33:05 إلى 05:53:35. وكانت السفن 1 و2 و5 و6 تدخل ميناء بوسان بالتتابع بينما عبرت السفينة 3، وهي قاطرة، منطقة الفصل في الممر الملاحي مسببة خطر اصطدام مع السفن الداخلة، فضبط VTSO ترتيب الدخول. وشاركت ست سفن — أربع سفن حاويات وسفينة ركاب وقاطرة — لتعطي 15 توليفة مواجهة وفق n!/k!(n−k)!.</p>
+    <h3>3.1. البيئة متعددة السفن ونتائج السيناريوهات</h3>
+    <p>كانت معظم السيناريوهات الخمسة عشر مواجهات تقاطع، باستثناء السيناريو رقم 7 (السفينتان 2 و4) والسيناريو رقم 13 (السفينتان 4 و5) اللذين كانا مواجهة أمامية، بينما تجاوزت السفينة 5 في السيناريوهين رقم 8 ورقم 15 عند مؤخرتي السفينتين 2 و6. وتطورت حالة الاقتراب من الاصطدام بالتتابع عبر السيناريو رقم 1 ثم رقم 6 ثم رقم 4، وركّز التحليل التفصيلي على هذه السيناريوهات القابلة للتمييز مخاطرياً والتي تجاوز فيها CoRI نسبة 50% [30]، [50]. ففي السيناريو رقم 1 استدارت السفينة 1 نحو الميمنة أولاً لتفادي السفينة 3 ثم واجهت السفينة 2 الداخلة إلى الميناء فاستدارت نحو الميسرة؛ وفي السيناريو رقم 6 تجاوزت السفينة 2 القاطرة بالاستدارة نحو الميسرة عند الدقيقة 42.5 تقريباً، حين انخفض مؤشر التقارب بين السفينتين بسرعة.</p>
+    <h3>3.2. تقارب DCPA وTCPA</h3>
+    <p>في نتائج DCPA، تقترب المسافة من 0.5 ميل بحري في الفترات التي تتجاوز فيها مخاطرة السيناريوهات رقم 1 ورقم 4 ورقم 6 نسبة 50%. وفي نتائج TCPA، يتقارب مؤشر التقارب نحو الصفر — ومن ثم نحو قيمة مخاطرة منخفضة — في الفترات التي يكون فيها TCPA سالباً. وإجمالاً، تقاربت قيم DCPA وTCPA والمسافة بين السفن ضمن 0.5 ميل بحري و10 دقائق و3 أميال بحرية على التوالي، مما يؤكد سلوك مؤشر المخاطر المقترح في حركة حقيقية.</p>
+  </section>
+  <section>
+    <h2>4. نظام دعم تقييم مخاطر الاصطدام</h2>
+    <h3>4.1. خوارزمية تقييم مخاطر الاصطدام</h3>
+    <p>تقيّم الخوارزمية مخاطر الاصطدام بين السفن في بيئة متعددة السفن انطلاقاً من عدد توليفات السفن، ومعلومات السفن الساكنة والحركية، ومسافة الفصل الدنيا، ومؤشر نموذج CoRI. فإذا كانت المسافة الدنيا 3 أميال بحرية فأقل وبلغ CoRI العتبة، أُطلق الإنذار مع رقم الزوج المعني ومستوى المخاطرة؛ وإلا فلا إنذار. وتشمل المدخلات الحركية الموضع والسرعة والمسار وزمن الحساب، إلى جانب البيانات الساكنة كالأبعاد ونوع السفينة، والعتبة المرجعية لسلامة CoRI التي يحددها VTSO.</p>
+    <h3>4.2. تكوين النظام</h3>
+    <p>يعرض النظام مؤشر مخاطر الاصطدام ومعلومات الوضع بين السفن ويُطلق إنذاراً عند تجاوز المؤشر العتبة التي حددها VTSO وRO. وعند الإنذار، يمكن للمشغّلين النقر للاطلاع على البيانات الساكنة للسفينة المستهدفة — النوع والأبعاد ونداء التعريف — والبيانات الحركية عند الزمن t مثل السرعة ومسافة الفصل وDCPA وTCPA، بينما تُعرض قيمة CoRI مع النطاق البحري عند موضع CPA لفهم بديهي لمنطقة الخطر المحلية. وحُددت القيمة المرجعية لتوليد الإنذار عند مخاطرة 50% فأعلى.</p>
+  </section>
+  <section>
+    <h2>5. المناقشة والخاتمة</h2>
+    <p>اقتُرحت طريقة لتقييم مخاطر الاصطدام ونظام دعم لتعزيز الوعي الظرفي لدى VTSO والمشغّل عن بُعد لسفن MASS عند التقاء السفن في مناطق VTS متعددة السفن. ونطاق VTSO المستخدم في النموذج مستمد إحصائياً من أحكام VTSO في المواجهات بالمياه الساحلية خارج منطقة VTS، لذا قد تكون منطقة الأمان المطبقة أكبر من منطقة الأمان الفعلية للممر الملاحي للميناء ومرساه؛ كما لم يعكس تحليل بوسان الخصائص البيئية الخاصة بالميناء. وعلاوة على ذلك، تحُقق من كفاءة النظام المقترح على مستوى النظام فقط، فلم يتأكد بعد تحسّن الوعي الظرفي الفعلي لدى VTSO ومشغّلي MASS عن بُعد، وحُللت ثلاثة سيناريوهات اقتراب فقط في ميناء واحد لا جميع حالات الخطر في كل الموانئ.</p>
+    <p>في أعقاب مناقشات المنظمة البحرية الدولية بشأن MASS، اقترحت IALA النظر في التفاعل بين VTS والتحكم بسفن MASS وتقاسم الوعي الظرفي بالممر المائي [8]. وينبغي أن تؤكد الأعمال المستقبلية فعالية النظام مع مشغّلي VTSO ومشغّلي MASS عن بُعد الحقيقيين، وأن توسّع التحليل ليشمل حالات مخاطر الاصطدام في مناطق VTS بموانئ أخرى بخصائصها البيئية المميزة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Discussions at the International Maritime Organization (IMO) on the introduction of maritime autonomous surface ships (MASS) began in earnest, and the International Association of Marine Aids to Navigation and Lighthouse Authorities (IALA) proposed sharing a common operating picture for situational awareness of the waterway within the vessel traffic service (VTS) environment when developing systems to support MASS operation [1], [8]. Because collisions at sea still account for a high share of ship accidents, and many studies have investigated ship-to-ship collision risk, this study evaluates collision risk using a ship domain derived from vessel traffic service operator (VTSO) judgments and proposes a real-time collision risk assessment support system (RiASS) that improves the situational awareness of VTSOs and MASS remote operators (ROs) regarding near-collision situations in local waters. A risk analysis of near-collision scenarios at Busan Port showed that the distance to the closest point of approach (DCPA), the time to CPA (TCPA), and the inter-ship distance converged within 0.5 nautical miles, 10 min, and 3 nautical miles, respectively.</p>
+  </section>
+  <section>
+    <h2>1. Introduction</h2>
+    <p>The IMO placed MASS on the official agenda of the 99th session of the Maritime Safety Committee (MSC) in 2018 and prepared a regulatory scoping exercise (RSE) for MASS operation [1]–[6]. The discussions defined four degrees of autonomy, from ships with automated processes and decision support up to fully autonomous ships [1]. Levels 2 and 3 introduce the remote operator (RO), who controls a MASS vessel from an onshore remote control centre, so remote operation requires collision risk assessment technology that determines the collision risk at sea. The IALA has discussed supporting MASS operations at each stage of the IMO work, including a draft MASS guideline [8].</p>
+    <p>Collision risk assessment has mostly been conducted in ship-domain-based safety areas. Human and organizational factors in maritime accidents have been analyzed with frameworks such as HFACS [9], and human error in operations has been widely documented [10]–[14]. Classical ship domain models were established by Fuji and Tanaka [15], Coldwell [16], and Goodwin [17], extended with AIS-based empirical domains [18] and empirically calibrated domains for confined waters [19]. Further work covers conflict detection in complex traffic [29], collision risk evaluation combining environmental stress and risk models [30], perceived collision risk in port waters [33], AIS-based avoidance in busy waterways [43], and the merging of conventional ships with MASS through VTS, fleet operation centres, and shore control centres [44].</p>
+    <p>Rule 22 of the International Regulations for Preventing Collisions at Sea (COLREGs) states that the minimum sidelight visibility for ships over 50 m is 3 nautical miles [45], [46]. This study therefore proposes RiAS, a collision risk assessment module that computes a collision risk index (CoRI) value for every vessel pair within a minimum separation distance of 3 miles in a multi-ship environment, and generates an alarm when the reference value set by the VTSO and RO systems is exceeded. The VTSO risk attitude used in the model was derived from a collision risk determination questionnaire administered to 135 VTSOs working at Korean coastal VTS centres [47], and the same attitude value was applied to the RO because MASS vessels are not yet in the operation stage.</p>
+  </section>
+  <section>
+    <h2>2. Methodology</h2>
+    <p>A collision risk assessment module is proposed that evaluates the collision risk of a multi-ship environment in the VTS area and supports VTSO control and remote evasion by the RO. The module is based on the number of combination cases within the minimum separation distance between ships i and j, and it sends an alarm to the VTSO and RO systems if the collision risk index output exceeds the set value. The risk models and the method for evaluating collision risk in multi-ship environments are described below.</p>
+    <h3>2.1. Collision Risk Model</h3>
+    <p>Based on the ship domain at the CPA position, the CoRI model by which the VTSO assesses the risk of ship encounters at sea yields risk indices for each inter-ship encounter and finally estimates a CoRI value reflecting the risk attitude of the VTSO. The encounter risk between ship i and ship j is formulated for head-on, crossing, and overtaking scenarios from the relative bearings; the proximity risk is quantified with an approaching index using the safety distance of the VTSO domain at the CPA position; and a ship-to-ship proximity hazard index completes the formulation, with coefficients set by the bow/stern maximum risk values and the encounter risk level.</p>
+    <h3>2.2. Collision Risk Assessment</h3>
+    <p>Because COLREGs Rule 22 sets the minimum sidelight visibility of ships over 50 m at 3 nautical miles [45], [46], the RiAS module computes a CoRI value for all vessel combinations within a 3-mile minimum separation distance and returns an alarm value of 0 or 1 depending on whether the CoRI safety reference threshold is exceeded. When an alarm occurs, the VTSO and RO may order collision avoidance actions such as course changes and speed limits, considering the maneuverability performance and encounter relationships between the ships.</p>
+  </section>
+  <section>
+    <h2>3. Analytic Results</h2>
+    <p>Ship traffic data for collision risk situations in the Busan Port VTS area were used to evaluate collision risk in multi-ship environments for three near-collision scenarios with CoRI of at least 50% [29]. The near-collision data came from the Busan Port VTS debriefing system for 27 July 2018 [48], [49], covering about 20 minutes from 05:33:05 to 05:53:35. Ships 1, 2, 5, and 6 were entering the port of Busan in sequence while ship 3, a tugboat, crossed the fairway separation zone and created a collision risk with the inbound ships, so the VTSO adjusted the entry order. Six vessels took part — four container ships, one passenger ship, and one tugboat — giving 15 encounter combinations from n!/k!(n−k)!.</p>
+    <h3>3.1. Multi-Ship Environment and Scenario Results</h3>
+    <p>Most of the 15 scenarios were crossing encounters, except scenario no. 7 (ships 2 and 4) and scenario no. 13 (ships 4 and 5), which were head-on, while in scenarios no. 8 and no. 15 ship 5 overtook at the sterns of ships 2 and 6. The near-collision situation developed sequentially through scenario no. 1, scenario no. 6, and scenario no. 4, and detailed analysis focused on these risk-recognizable scenarios with CoRI above 50% [30], [50]. In scenario no. 1, ship 1 first turned to starboard to avoid ship 3 but then faced ship 2 entering the port and turned to port; in scenario no. 6, ship 2 cleared the tugboat by turning to port at about 42.5 min, when the ship-to-ship proximity index dropped rapidly.</p>
+    <h3>3.2. DCPA and TCPA Convergence</h3>
+    <p>In the DCPA results, the DCPA is close to 0.5 NM in the intervals where the risk of scenarios no. 1, no. 4, and no. 6 exceeds 50%. In the TCPA results, the proximity index converges to zero — and hence to a low risk value — in the intervals where the TCPA is negative. Overall, the DCPA, TCPA, and inter-ship distance converged within 0.5 nautical miles, 10 min, and 3 nautical miles, respectively, confirming the proposed risk index behavior in real traffic.</p>
+  </section>
+  <section>
+    <h2>4. Collision Risk Assessment Support System</h2>
+    <h3>4.1. Collision Risk Assessment Algorithm</h3>
+    <p>The algorithm evaluates collision risk between ships in a multi-ship environment from the number of ship combinations, ship static and dynamic information, the minimum separation distance, and the CoRI model index. If the minimum distance is at most 3 NM and the CoRI reaches the threshold, the alarm is set with the corresponding ship pair number and risk level; otherwise no alarm is raised. The dynamic inputs are position, speed, course, and computation time, together with static data such as dimensions and ship type, and the CoRI safety reference threshold set by the VTSO.</p>
+    <h3>4.2. System Configuration</h3>
+    <p>The system expresses the collision risk index and ship-to-ship situation information and raises an alarm when the index exceeds the threshold set by the VTSO and RO. On an alarm, the operators can click through to the target ship static data — type, dimensions, and call sign — and the dynamic data at time t, such as speed, separation distance, DCPA, and TCPA, while the CoRI value is displayed together with the ship domain at the CPA position for an intuitive understanding of the local risk area. The reference value for alarm generation was set at a risk of 50% or higher.</p>
+  </section>
+  <section>
+    <h2>5. Discussion and Conclusions</h2>
+    <p>A collision risk assessment method and support system were proposed to enhance the situational awareness of the VTSO and MASS RO when ships meet in multi-ship VTS areas. The VTSO domain used in the model is statistically derived from VTSO encounter judgments in coastal waters outside the VTS area, so the applied safety zone may be larger than the actual safety zone of a port waterway and anchorage; the Busan analysis also did not reflect port-specific environmental characteristics. Moreover, the efficiency of the proposed system was verified only at the system stage, so the improved situational awareness of actual VTSOs and MASS ROs has not yet been confirmed, and only three near-collision scenarios at one port were analyzed rather than all risk situations at all ports.</p>
+    <p>Following the IMO discussions on MASS, the IALA proposed considering the interaction between VTS and MASS control and the sharing of waterway situational awareness [8]. Future work should confirm the effectiveness of the system with real VTSOs and MASS ROs and extend the analysis to collision risk situations in the VTS areas of other ports with their distinct environmental characteristics.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+      <li>[1] IMO. Regulatory Scoping Exercise for the Use of Maritime Autonomous Surface Ships (MASS)—Comments on the Regulatory Scoping Exercise; MSC 99/5; International Maritime Organization: London, UK, 2018.</li>
+      <li>[2] IMO. Regulatory Scoping Exercise for the Use of MASS—Recommendations on Identification of Potential Amendments to Existing IMO Instruments; MSC 99/5/3; International Maritime Organization: London, UK, 2018.</li>
+      <li>[3] IMO. Regulatory Scoping Exercise for the Use of MASS—Considerations on and Proposals for the Methodology; MSC 99/5/4; International Maritime Organization: London, UK, 2018.</li>
+      <li>[4] IMO. Regulatory Scoping Exercise for the Use of MASS—Considerations on Definitions for Levels and Concepts of Autonomy; MSC 99/5/6; International Maritime Organization: London, UK, 2018.</li>
+      <li>[5] IMO. Regulatory Scoping Exercise for the Use of MASS—Japan’s Perspective; MSC 99/5/9; International Maritime Organization: London, UK, 2018.</li>
+      <li>[6] IMO. Regulatory Scoping Exercise for the Use of MASS—Comments on Documents MSC 99/5, MSC 99/5/2, MSC 99/5/5, MSC 99/5/8 and MSC 99/5/9; MSC 99/5/11; International Maritime Organization: London, UK, 2018.</li>
+      <li>[8] IALA. IALA Guideline on Developments in Maritime Autonomous Surface Ships; ENAV27-8.1.2; International Association of Marine Aids to Navigation and Lighthouse Authorities: Paris, France, 2021.</li>
+      <li>[9] Chauvin, C.; Lardjane, S.; Morel, G.; Clostermann, J.-P.; Langard, B. Human and organisational factors in maritime accidents: Analysis of collisions at sea using the HFACS. Accid. Anal. Prev. 2013, 59, 26–37.</li>
+      <li>[10] Gale, H.; Patraiko, D. Improving navigational safety. Seaways 2007, 4–8.</li>
+      <li>[11] Grech, M.; Horberry, T.; Smith, A. Human error in maritime operations: Analyses of accident reports using the leximancer tool. In Proceedings of the Human Factors and Ergonomics Society Annual Meeting, Baltimore, MD, USA, 30 September–4 October 2002.</li>
+      <li>[12] Hetherington, C.; Flin, R.; Mearns, K. Safety in shipping: The human element. J. Saf. Res. 2006, 37, 401–411.</li>
+      <li>[13] Rothblum, A. Human error and maritime safety. In Proceedings of the Maritime Human Factors Conference, Linthicum, MD, USA, 13–14 March 2000.</li>
+      <li>[14] Wagenaar, W.A.; Groeneweg, J. Accidents at sea: Multiple causes and impossible consequences. Int. J. Man–Mach. Stud. 1987, 27, 587–598.</li>
+      <li>[15] Fuji, J.; Tanaka, K. Traffic capacity. J. Navig. 1971, 24, 543–552.</li>
+      <li>[16] Coldwell, T.G. Marine traffic behaviour in restricted waters. J. Navig. 1983, 36, 431–444.</li>
+      <li>[17] Goodwin, E.M. A statistical study of ship domains. J. Navig. 1975, 28, 328–344.</li>
+      <li>[18] Hansen, M.G.; Jensen, T.K.; Lehn-Schiøler, T.; Melchild, K.; Rasmussen, F.M.; Ennemark, F. Empirical ship domain based on AIS data. J. Navig. 2013, 66, 931–940.</li>
+      <li>[19] Wang, Y.; Chin, H.C. An empirically-calibrated ship domain as a safety criterion for navigation in confined waters. J. Navig. 2016, 69, 257–276.</li>
+      <li>[29] Westrenen, F.; Baldauf, M. Improving conflicts detection in maritime traffic: Case studies on the effect of traffic complexity on ship collisions. Proc. IMechE Part M: J. Eng. Marit. Environ. 2020, 234, 209–222.</li>
+      <li>[30] Yoo, Y.; Lee, J.-S. Evaluation of ship collision risk assessments using environmental stress and collision risk models. Ocean Eng. 2019, 191, 1–13.</li>
+      <li>[33] Chin, H.-C.; Debnath, A.K. Modeling perceived collision risk in port water navigation. Saf. Sci. 2009, 47, 1410–1416.</li>
+      <li>[43] Mou, J.M.; van der Tak, C.; Ligteringen, H. Study on collision avoidance in busy waterways by using AIS data. Ocean Eng. 2010, 37, 483–490.</li>
+      <li>[44] Baldauf, M.; Fischer, S. Merging conventionally navigating ships and MASS—Merging VTS, FOC and SCC? TransNav 2019, 13, 495–501.</li>
+      <li>[45] Cockcroft, A.N.; Lameijer, J.N.F. A Guide to the Collision Avoidance Rules: International Regulations for Preventing Collisions at Sea, 7th ed.; Elsevier: Croydon, UK, 2011; p. 108.</li>
+      <li>[46] IMO. International Regulations for Preventing Collisions at Sea; International Maritime Organization: London, UK, 1972.</li>
+      <li>[47] Lee, J.-S.; Song, C.-U. The situation awareness analysis of VTSOs in the close quarters situation. J. Navig. Port Res. 2018, 42, 25–30.</li>
+      <li>[48] KCG. Vessel Traffic Service System Configuration. Korea Coast Guard. Available online: http://www.kcg.go.kr (accessed on 12 September 2021).</li>
+      <li>[49] KCG. Guide to Vessel Traffic Service 2020. Korea Coast Guard. Available online: http://www.kcg.go.kr (accessed on 12 September 2021).</li>
+      <li>[50] Inoue, K. Evaluation method of ship-handling difficulty for navigation in restricted and congested waterways. J. Navig. 2000, 53, 167–180.</li>
+      <li>[full reference list available in the original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse9101143">10.3390/jmse9101143</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
