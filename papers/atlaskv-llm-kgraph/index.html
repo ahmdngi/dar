@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AtlasKV: تعزيز النماذج اللغوية الكبيرة برسوم معرفية بمقياس المليارات — DAR</title>
+<meta name="description" content="AtlasKV (Huang et al., ICLR 2026): parametric augmentation of LLMs with billion-scale knowledge graphs in under 20GB VRAM via KG2KV and HiKVP. Bilingual AR/EN viewer.">
+<link rel="canonical" href="https://dararchive.com/papers/atlaskv-llm-kgraph/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">AtlasKV: Augmenting LLMs with Billion-Scale Knowledge Graphs in 20GB VRAM</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">أطلس KV: تعزيز النماذج اللغوية الكبيرة برسوم معرفية بمقياس المليارات ضمن 20 غيغابايت من ذاكرة الفيديو</h2>
+
+  <div class="paper-meta">
+    <span>👤 Haoyu Huang, Hong Ting Tsang, Jiaxin Bai, Xi Peng, Gong Zhang, Yangqiu Song</span>
+    <span>📄 ICLR 2026 (conference paper) · arXiv:2510.17934</span>
+    <span>🔗 <a href="https://arxiv.org/abs/2510.17934">arXiv:2510.17934</a> · <a href="https://doi.org/10.48550/arXiv.2510.17934">10.48550/arXiv.2510.17934</a> · <a href="./paper.pdf">paper.pdf (original)</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>أظهر التوليد المعزز بالاسترجاع (RAG) نجاحًا في تعزيز النماذج اللغوية الكبيرة بالمعرفة الخارجية [3]، [4]. لكنه، بوصفه نموذجًا لا-معامليًا، يعتمد على وحدات استرجاع خارجية وسياق نصي مسترجع، مما يسبب زمن استدلال كبيرًا بسبب عمليات البحث المكلفة [5] والسياق الأطول [6]، [7]، [34] خاصة عند التوسع إلى أحجام معرفية ضخمة. تقدم هذه الورقة طريقة معاملية تُدعى AtlasKV تدمج الرسوم المعرفية بمقياس المليارات (مثل مليار ثلاثية) في النماذج اللغوية الكبيرة بتكلفة ذاكرة أقل من 20 غيغابايت من VRAM [11]، [13]. يُدخل AtlasKV خطتي KG2KV والتقليم الهرمي للمفتاح-القيمة (HiKVP) لدمج ثلاثيات الرسم المعرفي بتوسعٍ مع تعقيد زمني وذاكرة دون خطي، وتأريض معرفي قوي وقدرة تعميم عالية عبر آلية الانتباه الذاتية، دون وحدات استرجاع خارجية أو سياقات طويلة أو إعادة تدريب عند التكيف مع معرفة جديدة.</p>
+    <p>على ثلاثة مجموعات تقييم خارج التوزيع، يتفوق AtlasKV بفارق كبير على التعلم ضمن السياق وKBLaM وخطوط RAG المرجعية — فمثلًا يحقق دقة 40.0% (top-1) عند 10⁴ ثلاثية على ATLAS-CC-QKV مقابل 3.6% فقط لـKBLaM — بينما تبقى ذاكرة GPU الإجمالية شبه ثابتة حتى مليار ثلاثية. ولا يتطلب التدريب سوى 20 ألف عينة KGKV و3 آلاف خطوة على GPU واحدة بسعة 48 غيغابايت [27]، [28].</p>
+  </section>
+
+  <section>
+    <h2>I. المقدمة</h2>
+    <p>أظهرت النماذج اللغوية الكبيرة قدرات توليدية مثيرة عبر مهام متعددة [1]، إذ تتيح لها أحجام معاملها المتوسعة العمل كمخازن معرفية تُشفَّر فيها المعلومات الواقعية مباشرة داخل المعاملات [2]، [26]. ويُعد التوليد المعزز بالاسترجاع (RAG) حلًا أكثر كفاءة من حيث التكلفة لتعزيز قدرات هذه النماذج في المهام كثيفة المعرفة دون تغيير تمثيلها المعاملي [3]، [4]، إذ يسترجع عادةً مقاطع نصية [19] أو رسومًا فرعية [20]، [12] ذات صلة بالاستعلام من قاعدة معرفية خارجية لتكون سياقًا مسبقًا للاستجابة.</p>
+    <p>ورغم نجاحات RAG، فإنه يواجه قيودًا حرجة: فكما في الشكل 1(أ)، تعتمد هذه الطرق اللا-معاملية اعتمادًا كبيرًا على وحدات الاسترجاع الخارجية والسياق النصي المسبق، مما يسبب زمن استدلال كبيرًا بسبب عمليات البحث المكلفة مثل بحث الجار الأقرب [5]، [23] والسياق الأطول [6]، [7] خاصة عند التوسع إلى معرفة ضخمة جدًا.</p>
+    <p>في المقابل، تحقق الطرق المعاملية دمج المعرفة الخارجية دون وحدات استرجاع أو سياق طويل [8]، [11]، [7]. لكن تقنيات التكيف التقليدية مثل LoRA [9] والمحوِّلات [10] تتطلب إعادة تدريب النموذج عند التكيف مع توزيع معرفي جديد، مما يحدّ بشدة من سيناريوهات تطبيقها. أما النموذج المعاملي الجديد الذي قدمه KBLaM [11] فيشفِّر المعرفة الخارجية في تمثيلات معاملية من المفتاح-القيمة تُحقن في طبقات الانتباه الذاتي، محافظًا على مزايا الطرق المعاملية مع التكيف مع أي قاعدة معرفية جديدة دون تدريب. ومع ذلك، وجد المؤلفون تحديين حرجين يقيّدان تطبيقاته الواقعية: (1) غياب بيانات تدريب عالية الجودة — إذ يتطلب جمل استعلام-مفتاح-قيمة (Q-K-V) يُولَّد تخليقها المباشر من مستندات غير مهيكلة بمخططات ثابتة تنوعًا محدودًا في الاستعلامات وضعف تعميم خارج التوزيع؛ (2) ضعف قابلية التوسع — إذ يصبح العبء الحسابي والذاكري، رغم تعقيده الخطي، باهظًا عند التوسع إلى قواعد معرفية ضخمة.</p>
+    <p>لهذه الغاية يقترح المؤلفون AtlasKV: طريقة قابلة للتوسع تتيح تعزيزًا معرفيًا شاملًا للنماذج اللغوية الكبيرة برسوم معرفية بمقياس المليارات (مثل مليار ثلاثية) بتكلفة ذاكرة أقل من 20 غيغابايت، مع تأريض معرفي متفوق وتعميم قوي خارج التوزيع. ويتحقق ذلك بتصميمين مبتكرين: KG2KV الذي يحوِّل كل ثلاثية في الرسم المعرفي طبيعيًا إلى بيانات Q-K-V عالية الجودة للتدريب والاستدلال لتعزيز التعميم، وHiKVP الذي يقلِّل هرميًا العبء الحسابي والذاكري مع الحفاظ على دقة تأريض عالية أثناء الاستدلال. وتتلخص المساهمات في: اقتراح AtlasKV ذاته؛ وإدخال KG2KV وHiKVP كتصميمين متكاملين يعالجان تحدي البيانات والخوارزمية؛ وإثبات التفوق تجريبيًا على ICL وKBLaM وRAG مع دراسات استئصال شاملة.</p>
+  </section>
+
+  <section>
+    <h2>II. الأعمال ذات الصلة</h2>
+    <p>أما طرق التعزيز اللا-معاملية فأشهرها RAG [18]، [3]، [4] الذي يعزز النماذج اللغوية الكبيرة عبر مسترجِع خارجي يجلب السياق من قواعد معرفية نصية [19] أو رسوم معرفية [20]، [12]. وتعتمد المسترجِعات عادةً على محوِّلات جمل مُدرَّبة مسبقًا [21]، [22] أو على ضبط موجَّه بإشارة خرج النموذج [23]، فيبقى أداء النموذج مقيدًا بقدرات المسترجِع. وثمة تقدمات رسومية في RAG تتوسع بكفاءة أكبر، مثل E2GraphRAG الذي يبني فهارس ثنائية الاتجاه بين الكيانات والمقاطع [32] وLinearRAG الذي يبني رسمًا هرميًا بلا علاقات يتوسع خطيًا مع حجم المدونة [33]، لكنها تبقى ضمن نموذج التعلم ضمن السياق ويظل السياق الطويل المسترجع مصدر زمن استدلال كبير. وتعتمد طرق الإجابة عن الأسئلة على الرسوم المعرفية مثل RAR [36] وKnowGPT [24] أيضًا على تدريب المسترجِع أو موائم المسارات، بينما يستكشف KELP المطابقة الدلالية الكامنة لتحسين اختيار المسارات [35]، وكلها مقيدة بأداء المسترجِع وزمن الاستدلال.</p>
+    <p>وأما طرق التعزيز المعاملية فأكثر أصالة للنماذج اللغوية الكبيرة، إذ تُدمج ذاكرتها الداخلية بالتدريب المسبق والضبط الدقيق [25]، [2]، [26]. لكن المحاولات المبكرة مثل LoRA [9] والمحوِّلات [10] ما تزال تعاني من إعادة التدريب عند دمج معرفة جديدة، بينما يُحمِّل التوليد المعزز بالتخزين المؤقت (CAG) كل المستندات مسبقًا محسوبًا ذاكرة المفتاح-القيمة مقدمًا [17]، ويوفر MemDec وحدة ذاكرة خاصة بالمجال تعزز النماذج المجمدة دون تعديل معاملاتها [7]. ويُدخل KBLaM [11] نموذجًا معامليًا جديدًا يعزز المعرفة في طبقات الانتباه بتعقيد خطي مع تكيف بلا تدريب مع قواعد معرفية جديدة بعد التدريب الأولي.</p>
+  </section>
+
+  <section>
+    <h2>III. الخلفيات والتعريفات</h2>
+    <p>كما في معظم أعمال RAG الرسومية، تُستخدم الثلاثيات النصية (h, r, t) وحدةً معرفية أساسية، إذ تُعرَّف الرسوم المعرفية بأنها G={(h, r, t)} حيث h وt كيانات (مسماة أو مفاهيم أو أحداث) وr علاقات [31]، [13]، ويمكن استخراجها من النص غير المهيكل بأي طريقة استخراج رسوم معرفية قائمة [37]، [38]، [39]. تُدمج G في الورقة كمعرفة واقعية خارجية لتأريض الحقائق والإجابة عن الأسئلة، وعملية الاستخراج نفسها ليست محور العمل.</p>
+    <p>في كل طبقة انتباه ذاتي — المكوِّن الأساسي لعمود المحوِّل الفقري [16] — يُحسب الخرج عند الموضع n بالمعادلة (1) بتعقيد زمني O(N²·D) وذاكرة O(N·(N+D))، مما يسبب عبئًا كبيرًا كلما طال المدخل. أما الانتباه المستطيل في KBLaM فيعرِّف قاعدة المعرفة كمجموعة أزواج مفتاح-قيمة M عند كل طبقة، ويحسب الخرج المعزز بالمعادلة (2) بتعقيد زمني O((M+N)·N·D) وذاكرة O((M+N)·(N+D)) [11]، أي ينمو خطيًا مع M وهو أكفأ من الانتباه الذاتي المعياري، لكنه يبقى مشكلة حرجة عند توسع M بشدة. ويحسِّن AtlasKV ذلك إلى تعقيد زمني O((Ct·∛M+N)·N·D) وذاكرة O((Cm·∛M+N)·(N+D)) حيث Ct وCm ثابتان أصغر بكثير من M.</p>
+  </section>
+
+  <section>
+    <h2>IV. المنهجية: KG2KV وHiKVP</h2>
+    <p>نظرة عامة: يواجه تعزيز النماذج اللغوية الكبيرة بمعرفة خارجية ضخمة ومعقدة صعوبة في التعميم الضعيف والعبء الحسابي والذاكري غير المحتمل [11]، [24]. وللتغلب على ذلك يقترح AtlasKV ابتكارين: (1) KG2KV، نموذج دمج جديد يحوِّل ثلاثيات الرسم المعرفي طبيعيًا إلى بيانات Q-K-V محققًا تعميمًا محسنًا ودمجًا كفؤًا؛ (2) HiKVP، خوارزمية تقليم هرمي للمفتاح-القيمة تخفض العبء الحسابي والذاكري جذريًا مع الحفاظ على دقة تأريض عالية أثناء الاستدلال.</p>
+    <p>بناءً على ملاحظة أن كل ثلاثية يمكن تفكيكها طبيعيًا إلى سلاسل Q-K-V [15] تشبه بنيويًا متجهات Q-K-V في شبكات الانتباه الذاتي، يُدخل المؤلفون مفهوم KGKV وخط KG2KV لتحويل كل ثلاثية (h, r, t) إلى سلاسل Q-K-V ومتجهات تضمين جملية. فلكل ثلاثية يُحجب الرأس h أو الذيل t (كيان مسمى أو حدث أو مفهوم) ليكون الكيان المحجوب هو القيمة المطلوبة، وتُعاد كتابة العلاقة r إلى اسم وفق موضع الحجب بوصفها صفةً للكيان غير المحجوب — فمثلًا تُعاد كتابة «because» إلى «cause» عند حجب الذيل لتصبح المفتاح «the cause of …»، وإلى «result» المعكوسة عند حجب الرأس (الشكل 2). ولبيانات التدريب تُختار عادةً الكيانات المسماة مفاتيحَ للحجب، والكيانات الحدثية والعلاقات قيمًا للأسباب المفصلة في القسم 5.3. ثم تُضغط KGKVs وتُشفَّر بتضمينات جملية km وvm عبر مشفِّر جمل لتُدمج في طبقات الانتباه. كما تُبنى جملة الاستعلام بإضافة بوادئ استفهام متنوعة («What is …» و«Tell me …») إلى المفاتيح منعًا للفرط في التخصص على صيغة واحدة. وبالمقارنة مع التخليق المباشر بمخططات بشرية محدودة، تضمن العلاقات الهائلة في الرسوم المعرفية تنوع صفات الاستعلام، وبتكلفة رموز أقل لأن المدخل الوحيد للنموذج اللغوي هو موضع الحجب والعلاقة (قالب الموجه في الملحق H). وكما في الجدول 1، يحقق KG2KV نسبة تنوع 7.864% ومتوسط تكلفة 165.7 رمزًا مقابل 0.003% و349.9 رمزًا للتخليق، وتؤكد الملاحق G.1 وB.2 أن سلاسل المفاتيح الدقيقة بإعادة كتابة العلاقات أنفع من الدمج البسيط بلا إعادة كتابة.</p>
+    <p>وللتوسع أثناء الاستدلال، يُعنقد مفاتيح KGKVs هرميًا لتوزيع العبء على طبقات المفاتيح، مستلهمًا أعمالًا نظمت المعرفة النصية هرميًا بنجاح [19]، [13]. وبالتحديد، يُستخدم تقليل الأبعاد UMAP ثم نماذج الخليط الغاوسي (GMMs) لعنقدة المفاتيح هرميًا، بحيث يكون كل متجه مفتاح في الطبقة الأعلى تجميعًا لمتجهات الطبقة الأدنى. ويُثبَّت عدد الطبقات على 3 (وهو الحد الأدنى اللازم لتعريفات الطريقة، وقابل للزيادة)، وتُساوى أحجام العناقيد عند S=∛M لتقاسم العبء بالتساوي، فتُنتَج تضمينات المفاتيح الأساسية للطبقات الورقية والوسيطة والجذرية بالأبعاد ML=M وMI=⌊M^(2/3)⌋ وMR=⌈⌊M^(2/3)⌋·M^(−1/3)⌉ حيث DE بُعد خرج مشفِّر الجمل.</p>
+    <p>أثناء الضبط لا يُحتاج إلى تقليم أزواج KGKV بفضل قدرة التعميم المثبتة في القسم 5، إذ لا تلزم أحجام KGKV ضخمة للتدريب، وتُستبدل طريقة انتباه مكافئة بالانتباه المستطيل لتعزيز المعرفة. فعند الطبقة l والرمز n يُحسب الخرج بالمعادلة (3) كمجموع مرجح لمكوِّن الرسم المعرفي ومكوِّن التسلسل بأوزان λkg وλseq المعرفة في المعادلتين (4)–(5) من درجات الانتباه في (6)، والمتغيرات القابلة للتعلم θ الوحيدة هي رؤوس الاستعلام الخاصة بالرسم ورؤوس إسقاط المفتاح-القيمة، وتُحسَّن بهدف الانحدار الذاتي الأصلي في (7) حيث الخرج عند التمهيد وكل خطوة فك تشفير مزيج مرجح ديناميكيًا من قيم المكوِّنين (إثبات التكافؤ في الملحق C). وتُدمج KGKVs في انتباه النموذج كل 3 طبقات لكفاءة التدريب والاستدلال (الملحق A).</p>
+    <p>وأثناء الاستدلال لا يلزم عادةً سوى قيم KG قليلة ذات صلة بالاستعلام، وحقن المعرفة غير ذات الصلة يُدخل ضجيجًا، لذا يُستخدم خط التقليم الهرمي HiKVP (الشكل 3) لإيجاد أكثر KGKVs صلة بكفاءة، ويُحسب الانتباه بالمعادلة (8) على المفاتيح والقيم المقلَّمة عبر ثلاث خطوات: (1) تُرفع مفاتيح الطبقة الجذرية وحدها إلى GPU وتُحسب درجات انتباهها (9) ثم تُنتقى أعلى kR وتُسترجع مفاتيح الطبقة الوسيطة المرتبطة عبر فهرس ربط وتُعاد المفاتيح الجذرية إلى CPU؛ (2) تُرفع المفاتيح الوسيطة المنتقاة وتُحسب درجاتها (10) وتُقلَّم لاستخراج مفاتيح الطبقة الورقية ثم تُعاد الوسيطة إلى CPU؛ (3) تُرفع المفاتيح الورقية المنتقاة وتُنتقى أعلى kL من درجات سوفت-ماكس (11) وتُرفع قيمها المقلَّمة للحصول على الخرج النهائي. وتُنجز كل الخطوات بتعقيد زمني O((Ct·∛M+N)·N·D) وذاكرة O((Cm·∛M+N)·(N+D)) حيث Ct=1+kR+kI وCm=max(1,kR,kI) ثابتان (الاشتقاق الكامل في الملحق D)، والقيم الافتراضية العليا k هي 128 و64 و16 للطبقات الجذرية والوسيطة والورقية على الترتيب.</p>
+  </section>
+
+  <section>
+    <h2>V. التجارب</h2>
+    <p>إعدادات التجربة: التزامًا بإعدادات KBLaM [11]، يُقارَن AtlasKV بطرق لا-معاملية (التعلم ضمن السياق ICL، وهو النموذج الأساسي لطرق RAG) ومعاملية (KBLaM [11]) إضافة إلى التعلم الصفري كحدود مرجعية. وتُبنى مجموعة التدريب ATLAS-Wiki-QKV من ATLAS-Wiki — أحد رسوم عائلة ATLAS [13] بأكثر من 900 مليون عقدة و5.9 مليار حافة تضم كيانات حدثية ومسماة — لأنه كبير بما يكفي للتدريب والتقييم الشامل عبر أحجام رسوم متنوعة، إضافة إلى مجموعة Synthetic المستخدمة في KBLaM [11] للمقارنة. ولتقييم أقرب للواقع تُختبر كل الطرق خارج التوزيع على Enron [14] (المستخدمة في KBLaM) إضافة إلى ATLAS-CC-QKV وATLAS-Pes2o-QKV المبنيتين بطريقة KG2KV من ATLAS-CC وATLAS-Pes2o [13]، وهما أصعب بكثير من Enron لتعقيد رسومهما وتنوع صفات الاستعلام الفريدة القريبة من سيناريوهات العالم الحقيقي، مما يتيح تقييم قدرات التعميم. ويُستخدم النموذج LLaMA3.1-8B-Instruct [27] عمودًا فقريًا مع مشفِّر الجمل مفتوح المصدر all-MiniLM-L6-v2 [29]، [30] (ببعد 384) والمشفِّر المغلق text-embedding-3-large (ببعد 3072) عبر API، وتُهيَّأ الرؤوس الخاصة من نظيراتها مع تهيئة عشوائية لرؤوس الإسقاط، ويُدرَّب على 20 ألف ثلاثية فقط من ATLAS-Wiki (1.492 مليار ثلاثية) بمحسِّن AdamW [28] بخطوة 1×10⁻³ وتناقص جيبي إلى 1×10⁻⁵ لثلاثة آلاف تكرار بدفعات من 10 عينات، مع تضمين كل 3 طبقات وحساب كل التضمينات الأساسية دون اتصال (التفاصيل في الملحق A).</p>
+    <p>النتائج: يقارن الجدول 2 التعقيد الزمني والذاكري لـICL وRAG وCAG [17] وKBLaM [11] وAtlasKV، حيث تظهر الأجزاء القابلة للتضخم الهائل، ويُظهر الشكل 4 مقارنة ذاكرة GPU عند الاستدلال من ثلاثية واحدة إلى مليار ثلاثية: يتوسع AtlasKV مع HiKVP بثبات بينما تتفجر ذاكرة ICL وKBLaM، فيحقق دمج مليار ثلاثية بأقل من 20 غيغابايت. ويُظهر الجدول 3 دقة التأريض (ACC@1 وACC@5) بمشفِّر MiniLM عبر مجموعات التقييم الثلاث وأحجام الرسوم: يتفوق AtlasKV على KBLaM في كل الحالات، وبفارق أكبر على المجموعتين الأصعب — فعلى ATLAS-Pes2o-QKV عند 10² ثلاثية يحقق 87.3%/92.7% مقابل 16.4%/45.5% لـKBLaM، وعلى ATLAS-CC-QKV عند 10⁴ ثلاثية يحقق 40.0%/54.5% مقابل 3.6%/10.9% — بعشرين ألف عينة تدريب فقط و3 آلاف خطوة مقابل 20 ألف خطوة في KBLaM، مما يدل على أن KGKVs تجعل التدريب أكفأ. ويلاحَظ أيضًا أنه حتى مع HiKVP لا يوجد انخفاض كبير في الأداء ويبقى متفوقًا على KBLaM.</p>
+    <p>دراسة الاستئصال: لتحليل معقولية التصميم في القسم 4.1 تُجرى التجارب على المتغير بلا HiKVP لعزل أثر بيانات التدريب عن التقليم (الجدول 4): فالجمع بين الكيانات المسماة والحدثية معًا في KG2KV يساعد تعلم النموذج، وإسقاط أي نوع يخفض الدقة؛ وعند استخدام الكيانات الحدثية وحدها يكون الانخفاض هائلًا لشدة تعقيد دلالات سلاسل المفتاح والقيمة فيصعب على الرؤوس التعلم من الصفر، بينما إسقاط الحدثية (أي المسماة وحدها) انخفاضه أصغر لأن سلاسلها أقصر وأبسط دلاليًا، لكن تدهوره يثبت أن الدلالات المعقدة للحدثية ما تزال لازمة لتعلم أفضل. كما تُحلل حساسية إعادة كتابة العلاقات في الملحق B.2 (الإسقاط من التدريب أو الاختبار يخفض الدقة بمقدار مقبول، وهي مقايضة بين الدقة وتكلفة الرموز)، وتردد حقن المعرفة في B.3 (الحقن كل K=3 طبقات هو الأمثل، فالإفراط أو التفريط يضران)، واختيارات top-k في B.4، والتعميم عبر المشفرات في B.1 حيث يتفوق AtlasKV أيضًا بمشفِّر text-embedding-3-large.</p>
+    <p>تجارب موسعة وتحليل: يُظهر الجدول 10 فائدة تغطية المعرفة — فدرجة GPTScore على الأسئلة التي لا توجد إجاباتها إلا في الرسم الأكبر تقفز من 10.8 إلى 46.4 على ATLAS-CC-QKV ومن 13.6 إلى 50.7 على ATLAS-Pes2o-QKV، أي أن فائدة توسيع الرسم تفوق بكثير ضرر الضجيج. وتكشف ديناميكيات التدريب في الملحق E أن الخسارة على بيانات KGKV الصحيحة تنفصل انخفاضًا حادًا عن نظيرتها المعشاة (RandomKV) بعد خطوة معينة عبر ثلاثة مشفرات، مما يدل على أن النموذج يبدأ التعميم باسترجاع المعرفة ذات الصلة بدل الحفظ الغاشم بالمعاملات. وتُناقش المقايضات في الملحق F (الدقة مقابل التوسع عبر kR وkI؛ زمن الاستدلال مقابل التوسع في الجدول 11؛ الدقة مقابل تكلفة KG2KV)، وتعرض دراسة الحالة في الملحق G عينات Q-K-V للطريقتين (تنوع صفات الاستعلام في KG2KV مقابل محدوديتها في التخليق) ومثال سؤال-جواب (رأي المغرب) أجاب عنه AtlasKV وICL إجابة صحيحة بينما عجز KBLaM.</p>
+    <p>الخلاصة التجريبية: يحقق AtlasKV تأريضًا معرفيًا متفوقًا وتعميمًا قويًا خارج التوزيع مع توسع دون خطي في الذاكرة والزمن، مدعومًا بدراسات استئصال تثبت إسهام كل من KG2KV (التنوع والتعميم) وHiKVP (التوسع مع انخفاض طفيف) في الأداء النهائي.</p>
+  </section>
+
+  <section>
+    <h2>VI. الخاتمة والأخلاقيات وقابلية إعادة الإنتاج</h2>
+    <p>عرضت الورقة AtlasKV: إطارًا قابلًا للتوسع وفعالًا وعامًا لتعزيز النماذج اللغوية الكبيرة برسوم معرفية بمقياس المليارات ضمن ميزانيات ذاكرة منخفضة جدًا. فمقارنة بالطرق اللا-معاملية لا يحتاج إلى مسترجِعات خارجية ولا يعتمد على سياق طويل مسبق قد يسبب زمن استدلال كبيرًا، ومقارنة بالطرق المعاملية التقليدية يتكيف مع المعرفة الجديدة دون تدريب، ويتحقق ذلك عبر: (1) KG2KV الذي يحوِّل ثلاثيات الرسم طبيعيًا إلى بيانات Q-K-V محققًا تعميمًا محسنًا ودمجًا كفؤًا؛ (2) HiKVP الذي يقلِّم هرميًا المفتاح-القيمة ليخفض التكلفة الحسابية والذاكرية جذريًا مع الحفاظ على الأداء أثناء الاستدلال. ومن القيود: فقدان بنية الرسم (تسطيح كل ثلاثية كحقيقة مستقلة يعيق الاستدلال متعدد القفزات)؛ وانخفاض الدقة في HiKVP (مقايضة الدقة والتوسع عبر قيم top-k، ويمكن مستقبلًا تدريب رؤوس انتباه مختلفة عند طبقات HiKVP المختلفة)؛ والتكلفة النظامية في HiKVP (نقل I/O بين CPU وGPU يمكن تخفيضه بخوارزميات جدولة نظامية).</p>
+    <p>بيان الأخلاقيات: يؤكد المؤلفون الالتزام بمدونة أخلاقيات ICLR. لا يتضمن العمل مشاركين بشريين أو تدخلات، ويستخدم مجموعات بيانات عامة (عائلة ATLAS والاصطناعية وEnron) بموجب تراخيصها [13]، [11]، [14]، ويبني بيانات Q-K-V عبر KG2KV دون جمع بيانات شخصية جديدة أو محاولة كشف الهوية، ويلتزم بشروط مزودي النماذج وواجهاتها (LLaMA3.1-8B-Instruct وGPT-4o وGPT-4o-mini) دون رفع معلومات ملكية أو حساسة، ولا توجد تضارب مصالح غير معلنة، وأُجريت كل التجارب على GPU واحدة بسعة 48 غيغابايت مع تشجيع الإعدادات الموفرة للطاقة.</p>
+    <p>بيان قابلية إعادة الإنتاج: تُستخدم ثلاثة نماذج لغوية — LLaMA3.1-8B-Instruct [27] عمودًا فقريًا لـAtlasKV (متاح عبر Hugging Face)، وGPT-4o وGPT-4o-mini لتسجيل الصلة وإعادة كتابة العلاقات في KG2KV عبر استدعاءات OpenAI API (قوالب الموجه في الملحق H). وتُوصف إعدادات التدريب والتقييم وخطوات المعالجة في الملحق A، وكل مجموعات البيانات متاحة عبر موارد عامة [13]، [11]، [14]، وسيُفرج عن الشيفرة المصدرية بعد التقديم. وقد دُعم المؤلفون بمشروع منصة ITSP (ITS/189/23FP) من ITC في هونغ كونغ وAoE (AoE/E-601/24-N) وGRF (16205322) من RGC، وبدعم من هواوي.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Retrieval-augmented generation (RAG) has shown success in augmenting large language models (LLMs) with external knowledge [3], [4]. However, as a non-parametric paradigm, RAG relies on external retrieval modules and retrieved textual context, introducing substantial inference latency from expensive searches [5] and longer context [6], [7] at very large knowledge scales. This paper proposes AtlasKV, a parametric method that augments LLMs with billion-scale knowledge graphs (e.g. 1B triples) for less than 20GB of VRAM [11], [13]. AtlasKV introduces KG2KV and hierarchical key-value pruning (HiKVP) to integrate KG triples at scale with sub-linear time and memory complexity, strong knowledge grounding and generalization via the LLM's inherent attention mechanism, and no external retrievers, long context priors, or retraining when adapting to new knowledge.</p>
+    <p>On three out-of-distribution evaluation sets, AtlasKV substantially outperforms in-context learning, KBLaM, and RAG baselines — e.g. 40.0% top-1 accuracy at 10⁴ triples on ATLAS-CC-QKV versus only 3.6% for KBLaM — while total GPU memory stays nearly flat up to 1B triples. Training needs only 20K KGKV samples and 3K steps on a single 48GB GPU [27], [28].</p>
+  </section>
+
+  <section>
+    <h2>I. Introduction</h2>
+    <p>Large language models (LLMs) have demonstrated impressive generation abilities across tasks [1], with expanding parameter scales letting them function as knowledge stores encoding factual information directly into parameters [2], [26]. Retrieval-augmented generation (RAG) is a more cost-efficient solution for knowledge-intensive tasks that enhances these models without altering their parametric representation [3], [4], typically retrieving relevant text chunks [19] or subgraphs [20], [12] from an external knowledge base as context prior for the response.</p>
+    <p>Despite RAG's successes, it faces critical limitations: as in Figure 1(a), these non-parametric methods heavily rely on external retrieval modules and the textual context prior, causing substantial inference latency from expensive searches such as nearest-neighbor search [5], [23] and longer context [6], [7], [34], especially when scaling to very large knowledge.</p>
+    <p>In contrast, parametric approaches integrate external knowledge with no retrievers or long context prior [8], [11], [7]. Yet traditional adaptation techniques such as LoRA [9] and adapters [10] require retraining the model when adapting to a new knowledge distribution, severely limiting their application scenarios. The new parametric paradigm of KBLaM [11] encodes external knowledge into key-value parametric representations injected into self-attention layers, preserving parametric advantages while adapting to any new KB in a training-free manner. Nevertheless, the authors found two critical challenges restricting its real-world use: (1) lack of high-quality training data — it needs query-key-value (Q-K-V) sentences whose direct synthesis from unformatted documents with fixed schemas yields limited query diversity and poor out-of-distribution generalization; (2) poor scalability — computational and memory overhead becomes prohibitively high at very large KB/KG scales despite linear complexity.</p>
+    <p>To this end the authors propose AtlasKV: a scalable method enabling end-to-end augmentation of LLMs with billion-scale KGs (e.g. 1B triples) for less than 20GB VRAM, with superior knowledge grounding and strong out-of-distribution generalization. This is achieved by two innovative designs: KG2KV, which naturally converts each KG triple into high-quality Q-K-V data for training and inference to boost generalization, and HiKVP, which hierarchically reduces computational and memory overhead while maintaining high grounding accuracy at inference. Contributions are: AtlasKV itself; KG2KV and HiKVP as complementary designs addressing the data and algorithmic challenges; and experimental proof of superiority over ICL, KBLaM, and RAG with comprehensive ablations.</p>
+  </section>
+
+  <section>
+    <h2>II. Related Work</h2>
+    <p>Non-parametric augmentation is dominated by RAG [18], [3], [4], which enhances LLMs via an external retriever fetching context from textual KBs [19] or KGs [20], [12]. Retrievers usually rely on separately pretrained sentence transformers [21], [22] or tuning guided by the LLM's output signal [23], so model performance stays limited by retriever capabilities. Graph-based RAG advances scale more efficiently, e.g. E2GraphRAG building bidirectional indexes between entities and chunks [32] and LinearRAG building a relation-free hierarchical graph scaling linearly with corpus size [33], but they remain in the in-context-learning paradigm with retrieved long context as a major inference-latency source. KG-based QA methods such as RAR [36] and KnowGPT [24] likewise depend on training retrievers or path aligners, while KELP explores latent semantic matching to improve path-level selection [35] — all constrained by retriever performance and inference latency.</p>
+    <p>Parametric augmentation is more native to LLMs, whose internal memory is integrated by pretraining and supervised fine-tuning [25], [2], [26]. But early attempts like LoRA [9] and adapters [10] still suffer retraining when integrating new knowledge, while cache-augmented generation (CAG) preloads all documents computing the KV cache in advance [17], and MemDec provides a domain-specific memory module enhancing frozen LLMs without parameter changes [7]. KBLaM [11] introduces a new paradigm augmenting knowledge into attention layers with linear complexity and training-free adaptation to new KBs after initial training.</p>
+  </section>
+
+  <section>
+    <h2>III. Backgrounds and Definitions</h2>
+    <p>As in most graph-based RAG work, textual triples (h, r, t) are the basic knowledge unit, with KGs defined as G={(h, r, t)} where h and t are entities (named, concept, or event) and r relations [31], [13], extractable from unstructured text by any existing KG extraction method [37], [38], [39]. G is integrated as external factual knowledge for grounding facts and answering questions; the extraction process itself is not the paper's focus.</p>
+    <p>In each self-attention layer — the key component of the transformer backbone [16] — the output at token n is computed by Equation (1) with O(N²·D) time and O(N·(N+D)) memory, causing heavy overhead as inputs lengthen. Rectangular attention in KBLaM defines the KB as a set of M key-value pairs per layer and computes the augmented output by Equation (2) with O((M+N)·N·D) time and O((M+N)·(N+D)) memory [11] — linear in M and more efficient than standard self-attention, yet still a critical problem as M scales heavily. AtlasKV improves this to O((Ct·∛M+N)·N·D) time and O((Cm·∛M+N)·(N+D)) memory, where Ct and Cm are constants much smaller than M.</p>
+  </section>
+
+  <section>
+    <h2>IV. Methodology: KG2KV and HiKVP</h2>
+    <p>Overview: augmenting LLMs with super-large, complex external knowledge such as general KGs with billions of triples struggles with weak generalization and unbearable computational/memory overhead [11], [24]. To overcome this, AtlasKV proposes two innovations: (1) KG2KV, a new KG integration paradigm naturally converting KG triples into Q-K-V data for enhanced generalization and efficient integration; (2) HiKVP, a hierarchical key-value pruning algorithm dramatically cutting overhead while keeping high grounding accuracy at inference.</p>
+    <p>Building on the observation that every KG triple naturally decomposes into Q-K-V strings [15] sharing structure with Q-K-V vectors of self-attention networks, the authors introduce KGKV and the KG2KV pipeline transforming each triple (h, r, t) into Q-K-V strings and sentence-embedding vectors. For each triple, the head h or tail t (named, event, or concept entity) is masked to become the required value, and relation r is rewritten into a noun per the masked position as the attribute of the unmasked entity — e.g. "because" becomes "cause" for a tail-masked triple yielding the key "the cause of …", and reversed "result" for a head-masked triple (Figure 2). For training data, named entities are typically selected as keys to mask and event entities plus relations as values for the reasons detailed in Section 5.3. KGKVs are then compressed and encoded into sentence embeddings km and vm by a sentence encoder for integration into attention layers. Query sentences are built by adding varied questioning prefixes ("What is …", "Tell me …") to keys to avoid overfitting to one questioning style. Compared with direct synthesis under limited human-defined schemas, massive KG relations guarantee enquiry-attribute diversity at lower token cost, since the only LLM inputs are the masked position and relation (prompt template in Appendix H). As Table 1 shows, KG2KV holds a diversity ratio of 7.864% at 165.7 average tokens versus 0.003% at 349.9 for the synthetic method, and Appendices G.1 and B.2 confirm accurate rewritten key strings beat naive relation-plus-entity combinations.</p>
+    <p>For inference-time scalability, KGKV keys are hierarchically clustered to share burden across key layers, inspired by works successfully organizing textual chunks hierarchically [19], [13]. Specifically, UMAP reduces key dimensionality and Gaussian Mixture Models (GMMs) cluster keys hierarchically, each higher-layer key vector pooling lower-layer vectors. AtlasKV sets 3 layers (the minimum covering all needed definitions, extendable), with equal cluster sizes S=∛M to share burden evenly, yielding base embeddings for leaf, inter, and root layers with sizes ML=M, MI=⌊M^(2/3)⌋, MR=⌈⌊M^(2/3)⌋·M^(−1/3)⌉, where DE is the sentence encoder's output dimension.</p>
+    <p>During tuning, KGKV pairs need no pruning thanks to the generalization verified in Section 5, since large-scale KGKVs are unnecessary for training, and an equivalent attention replaces rectangular attention for augmentation. At layer l and token n the output follows Equation (3) as a weighted sum of KG and sequence components with weights λkg and λseq from Equations (4)–(5) over the logits in (6); the only learnable variables θ are the KG-specific query heads and key-value projection heads, optimized with the original autoregressive objective in (7), where output at prefilling and each decoding step is a dynamically weighted mix of both value parts (equivalence proven in Appendix C). KGKVs are integrated into LLM attention every 3 layers for efficient training and inference (Appendix A).</p>
+    <p>At inference, usually only a few KG values are relevant per query, and irrelevant knowledge injects noise, so the hierarchical key-value pruning (HiKVP) pipeline (Figure 3) efficiently finds the most relevant KGKVs, with attention computed by Equation (8) over pruned keys/values in three steps: (1) only root-layer projected keys sit in GPU memory, their attention scores computed (9), top-kR pruned and linked inter-layer keys fetched via a mapping index while roots offload to CPU; (2) selected inter-layer keys upload, scores computed (10), pruned to fetch linked leaf-layer keys while inter keys offload; (3) selected leaf keys upload and top-kL softmax scores selected directly (11), with pruned values uploaded to yield the final output. All steps run in O((Ct·∛M+N)·N·D) time and O((Cm·∛M+N)·(N+D)) memory with Ct=1+kR+kI and Cm=max(1,kR,kI) as constants (full derivation in Appendix D), defaulting top-k to 128, 64, and 16 for root, inter, and leaf layers respectively.</p>
+  </section>
+
+  <section>
+    <h2>V. Experiments</h2>
+    <p>Settings: following KBLaM [11], AtlasKV is compared against non-parametric methods (in-context learning, ICL — the basic RAG paradigm) and parametric ones (KBLaM [11]), plus zero-shot learning as bounds. The ATLAS-Wiki-QKV training set is built from ATLAS-Wiki — one of the ATLAS-family KGs [13] with 900M+ nodes and 5.9B edges of event and named entities — large enough to train and assess across KG sizes, plus the Synthetic set from KBLaM [11] for comparison. For real-world-like assessment all methods are tested out-of-distribution on Enron [14] (used in KBLaM) plus ATLAS-CC-QKV and ATLAS-Pes2o-QKV built via KG2KV from ATLAS-CC and ATLAS-Pes2o [13], which are far harder than Enron given complex KGs and diverse real-world-like enquiry attributes, enabling generalization assessment. The backbone is instruction-tuned LLaMA3.1-8B [27] with open-source all-MiniLM-L6-v2 [29], [30] (384-dim) and closed-source text-embedding-3-large (3072-dim) via API as sentence encoders; KG-specific query heads initialize from layer counterparts with random projection heads, trained on only 20K triples sampled from ATLAS-Wiki (1.492B triples) with AdamW [28] at 1×10⁻³ decaying to 1×10⁻⁵ over 3K iterations of batch size 10, injecting every 3 layers with all base embeddings computed offline (details in Appendix A).</p>
+    <p>Results: Table 2 compares time/memory complexity of ICL, RAG, CAG [17], KBLaM [11], and AtlasKV, flagging the potentially huge terms, and Figure 4 compares GPU memory at inference from 1 to 1B triples: AtlasKV with HiKVP scales steadily while ICL and KBLaM explode, integrating 1B triples under 20GB. Table 3 reports grounding accuracy (ACC@1, ACC@5) with the MiniLM encoder across all three OOD sets and KG sizes: AtlasKV beats KBLaM everywhere, by more on the harder sets — e.g. on ATLAS-Pes2o-QKV at 10² triples 87.3%/92.7% versus 16.4%/45.5%, and on ATLAS-CC-QKV at 10⁴ triples 40.0%/54.5% versus 3.6%/10.9% — with only 20K training samples and 3K steps against KBLaM's 20K steps, showing KGKVs make training more efficient. Notably, even with HiKVP there is no large performance drop and AtlasKV still beats KBLaM.</p>
+    <p>Ablation: to test the Section 4.1 design, variants with only the KG2KV component ("AtlasKV w/o HiKVP") isolate training-data effects from pruning (Table 4): combining named and event entities together in KG2KV aids learning, and dropping either hurts accuracy; event-only entities cause a huge drop since highly complex key/value semantics are hard for heads to learn from scratch, while named-only drops less because shorter, simpler strings are easier — yet its worse performance proves complex event semantics are still needed. Appendix B.2 analyzes relation-rewriting sensitivity (dropping it in train or test costs acceptable accuracy — an accuracy/token-cost trade-off), B.3 injection frequency (K=3 layers optimal; too frequent or sparse both hurt), B.4 top-k choices, and B.1 encoder generality where AtlasKV also wins with text-embedding-3-large.</p>
+    <p>Extended analysis: Table 10 shows knowledge-coverage benefits — GPTScore on questions answerable only in the larger sub-KG jumps from 10.8 to 46.4 on ATLAS-CC-QKV and 13.6 to 50.7 on ATLAS-Pes2o-QKV, i.e. scaling gains far outweigh large-scale noise. Appendix E training dynamics show loss on correct KGKV data diverging sharply downward from randomly paired (RandomKV) data after a specific step across three encoders, indicating the model starts generalizing via relevant-knowledge retrieval rather than brute-force parametric overfitting. Appendix F discusses trade-offs (accuracy vs scalability via kR/kI; latency vs scalability in Table 11; accuracy vs KG2KV cost), and Appendix G's case study shows Q-K-V samples (diverse KG2KV enquiry attributes versus limited synthetic ones) plus a sample Q&amp;A (MOROCCO's opinion) answered correctly by AtlasKV and ICL where KBLaM fails.</p>
+    <p>Experimental takeaway: AtlasKV delivers superior knowledge grounding and strong out-of-distribution generalization with sub-linear memory/time scaling, with ablations confirming KG2KV (diversity, generalization) and HiKVP (scaling at small cost) each contribute to final performance.</p>
+  </section>
+
+  <section>
+    <h2>VI. Conclusion, Ethics, and Reproducibility</h2>
+    <p>The paper presented AtlasKV: a scalable, effective, general framework augmenting LLMs with billion-scale KGs under very low GPU budgets. Unlike non-parametric methods it needs no external retrievers and no long context prior that would cause major latency; unlike traditional parametric methods it adapts to new knowledge training-free, via: (1) KG2KV naturally converting KG triples into Q-K-V data for enhanced generalization and efficient integration; (2) HiKVP hierarchically pruning key-values to cut compute/memory drastically while holding inference performance. Limitations remain: graph-structure loss (flattening each triple as an independent fact hinders multi-hop KG reasoning); HiKVP precision drops (accuracy/scalability trade-off via top-k values — future work may train different attention heads at different HiKVP layers); and systemic HiKVP cost (CPU-GPU I/O that system scheduling algorithms could reduce).</p>
+    <p>Ethics statement: the authors affirm adherence to the ICLR Code of Ethics. The work involves no human subjects or interventions, uses public datasets (ATLAS family, Synthetic, Enron) under their licenses [13], [11], [14], builds Q-K-V data via KG2KV without collecting new personal data or attempting deanonymization, complies with model/API providers' terms (LLaMA3.1-8B-Instruct, GPT-4o, GPT-4o-mini) without uploading proprietary or sensitive information, declares no undisclosed conflicts, ran all experiments on a single 48GB GPU, and encourages energy-efficient configurations.</p>
+    <p>Reproducibility: three LLMs are used — LLaMA3.1-8B-Instruct [27] as the AtlasKV backbone (available via Hugging Face), and GPT-4o / GPT-4o-mini for relevance scoring and KG2KV relation rewriting via OpenAI API calls (prompt templates in Appendix H). Training/evaluation settings and processing steps are described in Appendix A, all datasets are obtainable from public resources [13], [11], [14], and source code will be released after submission. The authors were supported by the ITSP Platform Research Project (ITS/189/23FP) of Hong Kong ITC, AoE (AoE/E-601/24-N), GRF (16205322) of Hong Kong RGC, and Huawei.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (condensed — numbered in order of first citation; the complete bibliography is in the original paper: <a href="./paper.pdf">paper.pdf</a>)</h2>
+    <h2 dir="rtl" style="font-family:'Amiri',serif">المراجع (مختصرة — مرقمة حسب ترتيب أول استشهاد؛ القائمة الكاملة في الورقة الأصلية: <a href="./paper.pdf">paper.pdf</a>)</h2>
+    <ol dir="ltr">
+      <li>Tom Brown et al. Language models are few-shot learners. <em>Advances in Neural Information Processing Systems</em>, 33, 2020.</li>
+      <li>Fabio Petroni et al. Language models as knowledge bases? <em>arXiv preprint arXiv:1909.01066</em>, 2019.</li>
+      <li>Yunfan Gao et al. Retrieval-augmented generation for large language models: a survey. <em>arXiv preprint arXiv:2312.10997</em>, 2023.</li>
+      <li>Wenqi Fan et al. A survey on RAG meeting LLMs. <em>Proc. 30th ACM SIGKDD</em>, pp. 6491–6501, 2024.</li>
+      <li>Urvashi Khandelwal et al. Generalization through memorization: nearest neighbor language models. <em>arXiv preprint arXiv:1911.00172</em>, 2019.</li>
+      <li>Ori Ram et al. In-context retrieval-augmented language models. <em>Transactions of the ACL</em>, 2023.</li>
+      <li>Jiaqi Cao et al. Memory decoder: a pretrained, plug-and-play memory for large language models. <em>arXiv preprint arXiv:2508.09874</em>, 2025.</li>
+      <li>Suchin Gururangan et al. Don't stop pretraining: adapt language models to domains and tasks. <em>arXiv preprint arXiv:2004.10964</em>, 2020.</li>
+      <li>Edward J. Hu et al. LoRA: low-rank adaptation of large language models. <em>ICLR</em>, 2022.</li>
+      <li>Shizhe Diao et al. LLaMA-Adapter: efficient fine-tuning of language models with zero-init attention. <em>arXiv</em>, 2023.</li>
+      <li>Xi Wang et al. KBLaM: knowledge base augmented language model. <em>arXiv preprint arXiv:2410.10450</em>, 2024.</li>
+      <li>Haoyu Huang et al. Retrieval-augmented generation with hierarchical knowledge. <em>arXiv preprint arXiv:2503.10150</em>, 2025.</li>
+      <li>Jiaxin Bai et al. AutoSchemaKG: autonomous knowledge graph construction through dynamic schema induction from web-scale corpora. <em>arXiv preprint arXiv:2505.23628</em>, 2025.</li>
+      <li>Bryan Klimt and Yiming Yang. The Enron corpus: a new dataset for email classification research. <em>ECML</em>, pp. 217–226, 2004.</li>
+      <li>Pat Verga et al. Facts as experts: adaptable and interpretable neural memory over symbolic knowledge. <em>arXiv preprint arXiv:2007.00849</em>, 2020.</li>
+      <li>Ashish Vaswani et al. Attention is all you need. <em>Advances in Neural Information Processing Systems</em>, 30, 2017.</li>
+      <li>Brian J. Chan et al. Don't do RAG: when cache-augmented generation is all you need for knowledge tasks. <em>Companion Proc. ACM Web Conference 2025</em>, pp. 893–897, 2025.</li>
+      <li>Patrick Lewis et al. Retrieval-augmented generation for knowledge-intensive NLP tasks. <em>Advances in Neural Information Processing Systems</em>, 33, 2020.</li>
+      <li>Parth Sarthi et al. RAPTOR: recursive abstractive processing for tree-organized retrieval. <em>ICLR</em>, 2024.</li>
+      <li>Darren Edge et al. From local to global: a GraphRAG approach to query-focused summarization. <em>arXiv preprint arXiv:2404.16130</em>, 2024.</li>
+      <li>Wenhui Wang et al. MiniLMv2: multi-head self-attention relation distillation for compressing pretrained transformers. <em>arXiv preprint arXiv:2012.15828</em>, 2020.</li>
+      <li>Gautier Izacard et al. Unsupervised dense information retrieval with contrastive learning (Contriever). <em>arXiv preprint arXiv:2112.09118</em>, 2021.</li>
+      <li>Weijia Shi et al. RePlug: retrieval-augmented black-box language models. <em>arXiv preprint arXiv:2301.12652</em>, 2023.</li>
+      <li>Qinggang Zhang et al. KnowGPT: knowledge graph based prompting for large language models. <em>Advances in Neural Information Processing Systems</em>, 37, 2024.</li>
+      <li>Mor Geva et al. Transformer feed-forward layers are key-value memories. <em>arXiv preprint arXiv:2012.14913</em>, 2020.</li>
+      <li>John X. Morris et al. How much do language models memorize? <em>arXiv preprint arXiv:2505.24832</em>, 2025.</li>
+      <li>Abhimanyu Dubey et al. The LLaMA 3 herd of models. <em>arXiv preprint arXiv:2407.21783</em>, 2024.</li>
+      <li>Ilya Loshchilov and Frank Hutter. Decoupled weight decay regularization (AdamW). <em>arXiv preprint arXiv:1711.05101</em>, 2017.</li>
+      <li>Nils Reimers and Iryna Gurevych. Sentence-BERT: sentence embeddings using Siamese BERT-networks. <em>EMNLP</em>, 2019.</li>
+      <li>Wenhui Wang et al. MiniLM: deep self-attention distillation for task-agnostic compression of pretrained transformers. <em>Advances in Neural Information Processing Systems</em>, 33, 2020.</li>
+      <li>Hongming Zhang et al. ASER: a large-scale eventuality knowledge graph. <em>Proc. Web Conference 2020</em>, pp. 201–211, 2020.</li>
+      <li>Yue Zhao et al. E2GraphRAG. 2025. (Cited in original paper.)</li>
+      <li>Yuxuan Zhuang et al. LinearRAG. 2025. (Cited in original paper.)</li>
+      <li>Nelson F. Liu et al. Lost in the middle: how language models use long contexts. <em>arXiv preprint arXiv:2307.03172</em>, 2023.</li>
+      <li>Haochen Liu et al. KELP. 2024. (Cited in original paper.)</li>
+      <li>Yijing Shen et al. RAR. 2025. (Cited in original paper.)</li>
+      <li>Gabor Angeli et al. Leveraging linguistic structure for open domain information extraction. <em>Proc. ACL-IJCNLP 2015 (Vol. 1)</em>, pp. 344–354, 2015.</li>
+      <li>Haoyu Huang et al. Can LLMs be good graph judge for knowledge graph construction? <em>arXiv preprint arXiv:2411.17388</em>, 2024.</li>
+      <li>Belinda Mo et al. KG-Gen: extracting knowledge graphs from plain text with language models. <em>arXiv preprint arXiv:2502.09956</em>, 2025.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://arxiv.org/abs/2510.17934">arXiv:2510.17934</a> (<a href="https://doi.org/10.48550/arXiv.2510.17934">doi</a>) · Full text: <a href="./paper.pdf">paper.pdf</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive · <a href="https://github.com/ahmdngi/dar">GitHub</a></p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
