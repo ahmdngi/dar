@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>النماذج اللغوية الكبيرة: تصنيف منظم ومراجعة للتحديات والقيود والحلول والاتجاهات المستقبلية — DAR</title>
+<meta name="description" content="Large Language Models: A Structured Taxonomy and Review of Challenges, Limitations, Solutions, and Future Directions — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/llm-taxonomy-review-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Large Language Models: A Structured Taxonomy and Review of Challenges, Limitations, Solutions, and Future Directions</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">النماذج اللغوية الكبيرة: تصنيف منظم ومراجعة للتحديات والقيود والحلول والاتجاهات المستقبلية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Pejman Peykani, Fatemeh Ramezanlou, Cristina Tanasescu, Sanly Ghanidel</span>
+    <span>📄 Appl. Sci., 2025 · Vol. 15, No. 14, Article 8103</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app15148103">10.3390/app15148103</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>حققت النماذج اللغوية الكبيرة، بوصفها من أبرز منجزات معالجة اللغة الطبيعية، تقدمًا كبيرًا في الفهم والتوليد [1، 47]. غير أن استخدامها الواسع يواجه تحديات تقنية واجتماعية وأخلاقية وقانونية. تحلل هذه المراجعة تلك التحديات تحليلًا شاملًا — قابلية تفسير النماذج والتحيزات في البيانات والمخرجات والأخلاقيات المتعلقة بالخصوصية وأمن البيانات والمتطلبات الحاسوبية العالية [199، 200، 202] — وكيف تؤثر في تطبيقاتها في الرعاية الصحية والقانون والإعلام والتعليم وغيرها [56، 69، 134، 170]. وتقترح حلولًا لتحسين المتانة والتحكم ضد مشكلات التحيز والجودة، وتستشرف أبحاث المستقبل للاستخدام المسؤول والفعال للتقنية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تُعد النماذج اللغوية الكبيرة من أكثر أدوات الذكاء الاصطناعي تحويلًا، إذ أعادت نماذج مثل GPT [3] وBERT [4] وLLaMA [5] وChatGPT [6] وPaLM [7] تشكيل التطبيقات الحديثة، وكلها مبنية على بنية المحولات المفصلية [2]. وبخلاف تعلم البشر اللغة الذي يتطور اجتماعيًا وتجريبيًا، تُبنى هذه النماذج على التحليل الإحصائي المحض لبيانات نصية ضخمة [21]: فالنموذج نموذج رياضي توليدي يتعلم التوزيع الإحصائي للرموز، وعمليته الأساسية هي التنبؤ بالرمز التالي [22، 23]. ومن ثم لا يستطيع التمييز بين الواقع والخيال والأعراف [24]، فلا يملك معرفة ولا اعتقادًا ولا فهمًا ولا وعيًا ذاتيًا — بل توليد متتاليات إحصائيًا فحسب [25].</p>
+    <p>تنتج هذه الطبيعة الإحصائية التوترات المركزية للمراجعة: فالمخرجات قد تكون دقيقة ومقنعة بالمعرفة بينما تبقى رياضية محضة [25]، والتعرض نفسه للتدريب الذي يعلّم القواعد والحقائق والاستدلال [26] يخبئ أيضًا التحيز وتسرب الخصوصية والهلوسة وتركّز الحوسبة. ومن ثم تنظم الورقة صعوبات النماذج في تصنيف منظم يمتد عبر الأبعاد التقنية والأخلاقية والقانونية ومجالات التطبيق، بهدف تمكين الاستخدام الأمثل والأخلاقي في العالم الحقيقي.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. التعريف: البنية والتدريب ومجموعات البيانات</h2>
+    <p>تُبنى النماذج عادة على تصميم المحولات بترميز-فك ترميز، حيث يحوّل المشفّر رموز المدخلات إلى تمثيلات مستمرة تُمرر إلى مفكك الشيفرة لتوليد النص [27، 28]. ويجمع المشفّر بين الانتباه الذاتي والطبقات الأمامية، معززة بالوصلات المتبقية والتطبيع الطبقي [27]، وقامت أعمال لاحقة بتوسيع هذه البنية وتحسينها عبر العائلات [29–33]. والتدريب خط متعدد المراحل معقد — جمع البيانات والمعالجة المسبقة والتدريب الأولي والضبط الدقيق والمواءمة البشرية [34] — يبدأ من مدونات متنوعة من الكتب والمقالات والموسوعات والأخبار ووسائل التواصل والمحادثات [2]، مع تحسين أساليب التغذية البشرية مثل InstructGPT لاتباع التعليمات وتقليل الهلوسة والسمية بشكل ملحوظ [54].</p>
+    <p>يعتمد التطوير على تنوع مجموعات البيانات وجودتها عبر خمس فئات: بيانات التدريب الأولي ومجموعات الضبط بالتعليمات وبيانات التفضيل وبيانات التقييم وبيانات معالجة اللغة التقليدية [38]. وترسّخ الموارد التقليدية المهام الكلاسيكية [38–41]، بينما تشكّل مجاميع التدريب الأولي والتعليمات والتفضيل القدرات وأنماط الفشل [42–53]. وعند الاستدلال تظهر قدرات مميزة: التعميم صفري-الطلقات والتعلم في السياق والاستجابات الدقيقة المنظمة [22]، إلى جانب التحليل والتوليد متعدد الوسائط عبر النص والصوت والصور في النماذج القادرة [20، 82].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. تحديات المجالات أولًا: الطب والمال والأعمال والصناعة</h2>
+    <p>في الطب تبشّر النماذج بتحويل تقديم الرعاية عبر المعرفة النصية الواسعة وتقنيات المعالجة [56]، لكنها تواجه عدم الاستقرار والتحيز وعجز التفسير والشفافية والتعرض للخصوصية والأمن وفجوات العدالة [56–68]، مع محاذير مثل الدين المعرفي من الكتابة المساعَدة بالذكاء [16]. وفي المال توثق المسوحات التقدم إلى جانب القيود والتعقيد وضعف التعميم وقصور التفسير والجدارة بالثقة ومخاطر الاختيار والتنفيذ وصعوبات تقييم الأداء [69–89]. وفي الأعمال تُبلغ دراسات إدارة العمليات عن فرص مقترنة بالتحيز وعدم الاستقرار وعوائق التنفيذ التنظيمي [90–96].</p>
+    <p>وفي الصناعة يمتد أكبر تجمع للتحديات عبر التنفيذ والمخاطر وأوجه عدم المساواة والموثوقية وحدود المعرفة الساكنة والسلامة والتهديدات الأمنية والجودة والاعتمادية والخصوصية وفجوات الفهم المتخصص [97–133، 22، 43، 47]. وتُظهر تطبيقات الروبوتات والتصنيع والاتصالات دخول النماذج بيئات إنتاج حقيقية [98–110]، غير أن مسوحات الهلوسة [103] وقيود الأجهزة للشركات الصغيرة [107، 108] ومسوحات الثغرات [107] تؤكد أن جاهزية النشر تتخلف عن عروض القدرات. وعبر المجالات الأربعة يتسق حكم المراجعة: الفوائد حقيقية لكنها مشروطة بالحوكمة والتحقق والإشراف البشري.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. تحديات المجالات ثانيًا: التعليم والبرمجة والقانون والإعلام وغيرها</h2>
+    <p>تمسح دراسات التعليم التدريس والتقييم المساعَدين بالنماذج مع الانتباه للغش والاعتماد المفرط وصدق التقييم [134–146، 1، 18، 27، 34]. وتقيّم بحوث البرمجة نماذج الكود منهجيًا [147] وتوثق فجوات التنوع اللغوي وحدود التوليد والتحسين ومخاطر الاعتمادية [147–169]. وتتساءل التحليلات القانونية عما إذا كانت النماذج قادرة على تطبيق القانون [170]، محذرة من مخاطر الخصوصية والمساءلة والتحيز ضد الأطراف والهلوسة [170–184]. ويضيف الإعلام والسياحة والفن والزراعة والطاقة أشكال فشل خاصة — من توترات التأليف وحقوق النشر [187–198] إلى فجوات الموثوقية والبيانات البصرية — بينما تتكرر التهديدات الشاملة في كل مكان: عجز التفسير وتسرب الخصوصية والتحيز والهلوسة.</p>
+    <p>تتقارب مراجعات الزراعة والطاقة على ندرة البيانات وفجوات النمذجة الفيزيائية والتحقق من السلامة [110–133]؛ ويثير استخدام المساعدة البحثية مخاطر قابلية الاستنساخ والنبرة المرجعية؛ وتبرز المجالات الإبداعية التوليد دون فهم ونزاعات حقوق النشر [187–198]. وتكمن قيمة التصنيف في هذا التخطيط تحديدًا: فالعيوب الأربعة نفسها — الغموض والتحيز وانعدام الأمن والتلفيق — تعاود الظهور برهانات مختلفة، لذا يجب معايرة التخفيفات لكل مجال لا حل واحد للجميع.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. التحديات والاعتبارات التقنية</h2>
+    <p>تتطلب الأحجام الهائلة وأعداد المعاملات وحدات معالجة رسومية وذاكرة وطاقة تستبعد المنظمات الصغيرة والدول محدودة الموارد [199، 200]، بينما يحدّ الاعتماد المحض على الانتباه الذاتي في المحولات من الذاكرة طويلة المدى وسلاسل الاستدلال والمدخلات المتعددة الأوجه [200]. وتنظّم مسوحات العدالة التحيز والقوالب النمطية عبر العائلات [202–204]، وتفهرس أبحاث الخصومة ديناميات الهجوم والدفاع القديمة والجديدة [205–207]، وترسم دراسات التباين والضغط والاستدلال الفعال الحدود الهندسية [201، 208، 210–212، 47، 82، 185]. ويحمل التصدي للاستخدام الخبيث ودمج البيانات المتباينة والبحوث متعددة الوسائط واللغات منخفضة الموارد والتعلم المستمر والاستخدام الأخلاقي والتفاعل البشري مشكلات مفتوحة مخصصة لكل منها.</p>
+    <p>والخيط الجامع للقسم أن التوسع ضريبة مزدوجة: يشتري القدرة بينما يركّز التكلفة والطاقة والغموض وسطح الهجوم. ومن ثم تقع مسوحات النماذج الموفرة للموارد [200] وتحليلات الاستدامة في قلب الأجندة التقنية لا على هامشها — فالكفاءة تحدد من يستطيع بناء هذه الأنظمة وتدقيقها ونشرها أصلًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الاتجاهات المستقبلية: التقنية والأخلاقية والقانونية</h2>
+    <p>تقنيًا، تهيمن قابلية التوسع والحوسبة والدمج متعدد الوسائط والكفاءة الواقعية: تصميم نماذج تخفض استهلاك الموارد دون فقدان الدقة، وحل المواءمة الدلالية عبر مدخلات النص والصورة والصوت [223–226]. ويوضح الاستدلال الموفّر للطاقة والمساعدات التعليمية متعددة الوسائط والتقدم الصحي والنماذج البصرية-اللغوية قليلة الطلقات الطريق [223–226]. وأخلاقيًا، تدفع مسوحات الاستدامة وتحليلات أثر التقديم وأطر البصمة الكربونية نحو التدريب والنشر الأخضر [227–229]. وقانونيًا، ترسم آليات الحفاظ على الخصوصية ومسوحات الخصوصية التفاضلية ملامح مستقبل حماية المستخدم [184، 230، 231].</p>
+    <p>والتوصية الختامية للمراجعة متعددة الأبعاد ومسؤولة اجتماعيًا: يجب تصميم التقدم التقني جنبًا إلى جنب مع الضمانات الأخلاقية والامتثال القانوني، وإلا تجاوز النشرُ المساءلة [184، 230، 231]. وتُعرض مجموعات التقييم المعيارية عالية الجودة وأدوات الحوكمة مثل أطر إدارة المخاطر كأولويات قريبة المدى للتبني الجدير بالثقة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. الاستنتاجات</h2>
+    <p>أدت النماذج دورًا تحويليًا عبر الرعاية الصحية والتعليم والإعلام والقانون والزراعة والصناعة والطاقة والبحث، غير أن التوسع السريع يجلب تحديات معقدة لا يحلها إصلاح واحد: غموض اتخاذ القرار والتحيز المعتمد على البيانات [47، 199، 200، 202] ومخاطر الخصوصية والأمن ومتطلبات البنية الثقيلة وفجوات المساءلة. والتصنيف المنظم — المجالات متقاطعة مع الأبعاد التقنية والأخلاقية والقانونية — هو الأداة المركزية للورقة للتعامل معها.</p>
+    <p>يتطلب التقدم المسؤول تطوير النماذج والتخفيفات وعلم التقييم والحوكمة معًا. ويجب أن يتحرك الباحثون والصناعة وصناع السياسات بتناغم ليبقى نشر هذه التقنية المجتمعية النطاق خاضعًا للمساءلة أمام من تؤثر فيهم [223–231].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Large language models (LLMs), among the most advanced achievements in natural language processing, have made significant progress in understanding and generation [1, 47]. Yet widespread use faces technical, social, ethical, and legal challenges. This review comprehensively analyzes those challenges — model interpretability, data and outcome biases, privacy and data-security ethics, and high computational demands [199, 200, 202] — and how they affect LLM applications in healthcare, law, media, education, and other fields [56, 69, 134, 170]. It proposes solutions for robustness and control against bias and quality problems, and looks to future research for responsible, effective use of the technology.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>LLMs are among the most transformative tools of artificial intelligence, with models such as GPT [3], BERT [4], LLaMA [5], ChatGPT [6], and PaLM [7] reshaping modern applications, all built on the Transformer milestone architecture [2]. Unlike human language learning, which develops socially and experientially, these models are built purely on statistical analysis of massive textual data [21]: an LLM is a generative mathematical model learning the statistical distribution of tokens, whose core operation is predicting the next token [22, 23]. It therefore cannot distinguish reality from fiction or convention [24], possessing neither knowledge, belief, understanding, nor self-awareness — only statistical sequence generation [25].</p>
+    <p>This statistical nature produces the central tensions of the review: outputs can be highly accurate and seemingly knowledgeable while remaining purely mathematical [25], and the same pretraining exposure that teaches grammar, facts, and reasoning [26] also bakes in bias, privacy leakage, hallucination, and compute concentration. The paper therefore organizes LLM difficulties into a structured taxonomy spanning technical, ethical, and legal dimensions across application domains, aiming to enable optimal and ethical real-world use.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Definition: Architecture, Training, and Datasets</h2>
+    <p>LLMs are typically built on the Transformer encoder–decoder design, in which the encoder turns input symbols into continuous representations passed to the decoder for text generation [27, 28]. The encoder combines self-attention with feed-forward layers, reinforced by residual connections and layer normalization [27], and subsequent work scaled and refined this backbone across model families [29–33]. Training is a complex multi-stage pipeline — data collection, preprocessing, pretraining, fine-tuning, and human alignment [34] — beginning from diverse corpora of books, articles, encyclopedias, news, social media, and conversations [2], with human-feedback methods such as InstructGPT markedly improving instruction-following and reducing hallucinations and toxicity [54].</p>
+    <p>Development depends on dataset diversity and quality across five categories: pretraining datasets, instruction fine-tuning sets, preference datasets, evaluation sets, and traditional NLP datasets [38]. Traditional resources anchor classical tasks [38–41], while pretraining corpora, instruction collections, and preference data each shape capabilities and failure modes [42–53]. At inference time, signature abilities emerge: zero-shot generalization, in-context learning, and structured accurate responses [22], alongside multimodal analysis and generation across text, sound, and images in capable models [20, 82].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Domain Challenges I: Medicine, Finance, Business, and Industry</h2>
+    <p>In medicine, LLMs promise transformation of care delivery through vast textual knowledge and NLP techniques [56], but face instability and bias, interpretability and transparency deficits, data-privacy and security exposure, and fairness gaps [56–68], with brain-level concerns such as cognitive debt from AI-assisted writing adding caution [16]. In finance, surveys document progress alongside limitations and complexity, weak generalizability, interpretability and trustworthiness shortfalls, selection and implementation hazards, and performance-evaluation difficulties [69–89]. In business, process-management studies report opportunities paired with bias, instability, and organizational-implementation barriers [90–96].</p>
+    <p>In industry, the largest challenge cluster spans implementation, risks and inequalities, reliability, static-knowledge limits, safety, security threats, quality and dependency, privacy, and specialized-understanding gaps [97–133, 22, 43, 47]. Robotics, manufacturing, and telecom applications show LLMs entering real production settings [98–110], yet hallucination surveys [103], device-level constraints for SMEs [107, 108], and vulnerability surveys [107] underline that deployment readiness lags behind capability demonstrations. Across all four domains, the review's verdict is consistent: benefits are real but conditioned on governance, validation, and human oversight.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Domain Challenges II: Education, Programming, Law, Media, and Beyond</h2>
+    <p>Education studies survey LLM tutoring and assessment with attention to cheating, over-reliance, and evaluation validity [134–146, 1, 18, 27, 34]. Programming research systematically evaluates code models [147] and documents language-diversity gaps, generation-and-refinement limits, and dependency risks [147–169]. Legal analyses ask whether LLMs can apply the law [170], flagging privacy, accountability, bias-against-parties, and hallucination hazards [170–184]. Media, tourism, art, agriculture, and energy each add domain-specific failure shapes — from authorship and copyright tensions [187–198] to reliability and visual-data gaps — while cross-cutting threats recur everywhere: interpretability deficits, privacy leakage, bias, and hallucination.</p>
+    <p>Agriculture and energy reviews converge on data scarcity, physical-modeling gaps, and safety validation [110–133]; research-assistance uses raise reproducibility and authoritative-tone risks; and creative fields surface generation-without-understanding and copyright disputes [187–198]. The taxonomy's value is precisely this mapping: the same four defects — opacity, bias, insecurity, and confabulation — reappear with different stakes, so mitigations must be domain-calibrated rather than one-size-fits-all.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Technical Challenges and Considerations</h2>
+    <p>Massive scale and parameter counts demand GPUs, memory, and power that exclude small organizations and resource-limited countries [199, 200], while Transformer-only reliance on self-attention limits long-term memory, chains of reasoning, and joint multifaceted inputs [200]. Fairness surveys systematize bias and stereotyping across model families [202–204], adversarial research catalogs old and new attack-and-defense dynamics [205–207], and heterogeneity, compression, and efficient-inference studies map the engineering frontier [201, 208, 210–212, 47, 82, 185]. Countering malicious use, integrating heterogeneous data, multimodal research, low-resource languages, continual learning, ethical use, and human interaction each carry dedicated open problems.</p>
+    <p>The section's through-line is that scale is a double tax: it buys capability while concentrating cost, energy, opacity, and attack surface. Resource-efficient LLM surveys [200] and sustainability analyses therefore sit at the center of the technical agenda, not its periphery — efficiency determines who can build, audit, and deploy these systems at all.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Future Directions: Technical, Ethical, and Legal</h2>
+    <p>Technically, scalability, compute, multimodal integration, and real-world efficiency dominate: designing models that cut resource use without losing accuracy, and solving semantic alignment across text, image, and audio inputs [223–226]. Energy-efficient inference, multimedia learning assistants, healthcare advances, and visual-language few-shot models illustrate the path [223–226]. Ethically, sustainability surveys, serving-impact analyses, and carbon-footprint frameworks push green training and deployment [227–229]. Legally, privacy-preserving mechanisms and differential-privacy surveys chart user-protection futures [184, 230, 231].</p>
+    <p>The review's closing recommendation is multidimensional and socially responsible: technical progress must be co-designed with ethical safeguards and legal compliance, or deployment will outrun accountability [184, 230, 231]. Standardized high-quality evaluation datasets and governance instruments such as risk-management frameworks are presented as near-term priorities for trustworthy adoption.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Conclusions</h2>
+    <p>LLMs have played a transformative role across healthcare, education, media, law, agriculture, industry, energy, and research, yet rapid expansion brings complex challenges no single fix resolves: opaque decision-making, data-driven bias [47, 199, 200, 202], privacy and security risks, heavy infrastructure demands, and accountability gaps. The structured taxonomy — domains crossed with technical, ethical, and legal dimensions — is the paper's central instrument for navigating them.</p>
+    <p>Responsible progress requires co-advancing models, mitigations, evaluation science, and governance together. Researchers, industry, and policymakers must move in concert so that deployment of this societal-scale technology remains answerable to the people it affects [223–231].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Full reference list as in the original paper (231 references), with original numbering. See the original publication for linked/DOI versions.</p>
+    <ol dir="ltr">
+      <li>[1] Bommasani, R.; Hudson, D.A.; Adeli, E.; Altman, R.; Arora, S.; von Arx, S.; Bernstein, M.S.; Bohg, J.; Bosselut, A.; Brunskill, E.; et al. On the opportunities and risks of foundation models. arXiv 2021, arXiv:2108.07258.</li>
+      <li>[2] Vaswani, A.; Shazeer, N.; Parmar, N.; Uszkoreit, J.; Jones, L.; Gomez, A.N.; Kaiser, Ł.; Polosukhin, I. Attention is all you need. In Proceedings of the Advances in Neural Information Processing Systems, Long Beach, CA, USA, 4–9 December 2017; Volume</li>
+      <li>[3] OpenAI; Achiam, J.; Adler, S.; Agarwal, S.; Ahmad, L.; Akkaya, I.; Aleman, F.L.; Almeida, D.; Altenschmidt, J.; Altman, S.; et al. Gpt-4 technical report. arXiv 2023, arXiv:2303.08774.</li>
+      <li>[4] Liu, Y.; Ott, M.; Goyal, N.; Du, J.; Joshi, M.; Chen, D.; Levy, O.; Lewis, M.; Zettlemoyer, L.; Stoyanov, V. Roberta: A robustly optimized bert pretraining approach. arXiv 2019, arXiv:1907.11692.</li>
+      <li>[5] Touvron, H.; Lavril, T.; Izacard, G.; Martinet, X.; Lachaux, M.-A.; Lacroix, T.; Rozière, B.; Goyal, N.; Hambro, E.; Azhar, F.; et al. Llama: Open and efficient foundation language models. arXiv 2023, arXiv:2302.13971.</li>
+      <li>[6] Biswas, S.S. Role of chat gpt in public health. Ann. Biomed. Eng. 2023, 51, 868–869.</li>
+      <li>[7] Driess, D.; Xia, F.; Sajjadi, M.S.M.; Lynch, C.; Chowdhery, A.; Ichter, B.; Wahid, A.; Tompson, J.; Vuong, Q.; Yu, T.; et al. Palm- e: An embodied multimodal language model. arXiv 2023, arXiv:2303.03378.</li>
+      <li>[8] Raiaan, M.A.K.; Mukta, S.H.; Fatema, K.; Fahad, N.M.; Sakib, S.; Mim, M.M.J.; Ahmad, J.; Ali, M.E.; Azam, S. A review on large language models: Architectures, applications, taxonomies, open issues and challenges. IEEE Access 2024, 12, 26839–26874.</li>
+      <li>[9] Cavnar, W.B.; Trenkle, J.M. N-gram-based text categorization. In Proceedings of SDAIR-94, 3rd Annual Symposium on Docu- ment Analysis and Information Retrieval, Las Vegas, NV, USA, 11–13 April 1994; Volume 161175; p. 14.</li>
+      <li>[10] Blunsom, P. Hidden Markov Models. Lect. Notes 2004, 15, 48.</li>
+      <li>[11] Mikolov, T.; Chen, K.; Corrado, G.; Dean, J. Efficient estimation of word representations in vector space. arXiv 2013, arXiv:1301.3781.</li>
+      <li>[12] Pennington, J.; Socher, R.; Manning, C.D. Glove: Global vectors for word representation. In Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP), Doha, Qatar, 25–29 October 2014; pp. 1532–1543.</li>
+      <li>[13] Mikolov, T.; Karafiát, M.; Burget, L.; Cernocký, J.; Khudanpur, S. Recurrent neural network based language model. In Proceed- ings of the Interspeech, Chiba, Japan, 26–30 September 2010; Volume 2, No. 3, pp. 1045–1048.</li>
+      <li>[14] Yu, Y.; Si, X.; Hu, C.; Zhang, J. A review of recurrent neural networks: LSTM cells and network architectures. Neural Comput. 2019, 31, 1235–1270.</li>
+      <li>[15] Brown, T.; Mann, B.; Ryder, N.; Subbiah, M.; Kaplan, J.D.; Dhariwal, P.; Neelakantan, A.; Shyam, P.; Sastry, G.; Askell, A.; et al. Language models are few-shot learners. In Proceedings of the Advances in Neural Information Processing Systems, Virtual, 6– 12 December 2020; Volume 33, pp. 1877–1901.</li>
+      <li>[16] Kosmyna, N.; Hauptmann, E.; Yuan, Y.T.; Situ, J.; Liao, X.-H.; Beresnitzky, A.V.; Braunstein, I.; Maes, P. Your brain on chatgpt: Accumulation of cognitive debt when using an ai assistant for essay writing task. arXiv 2025, arXiv:2506.08872.</li>
+      <li>[17] Magesh, V.; Surani, F.; Dahl, M.; Suzgun, M.; Manning, C.D.; Ho, D.E. Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools. J. Empir. Leg. Stud. 2025.</li>
+      <li>[18] Kasneci, E.; Sessler, K.; Küchemann, S.; Bannert, M.; Dementieva, D.; Fischer, F.; Gasser, U.; Groh, G.; Günnemann, S.; Hüller- meier, E.; et al. ChatGPT for good? On opportunities and challenges of large language models for education. Learn. Individ. Differ. 2023, 103, 102274.</li>
+      <li>[19] Weidinger, L.; Uesato, J.; Rauh, M.; Griffin, C.; Huang, P.-S.; Mellor, J.; Glaese, A.; Cheng, M.; Balle, B.; Kasirzadeh, A.; et al. Taxonomy of risks posed by language models. In Proceedings of the 2022 ACM Conference on Fairness, Accountability, and Transparency, Seoul, Republic of Korea, 21–24 June 2022; pp. 214–229. Appl. Sci. 2025, 15, 8103 45 of 53</li>
+      <li>[20] Li, Z.; Shi, Y.; Liu, Z.; Yang, F.; Liu, N.; Du, M. Quantifying multilingual performance of large language models across languages. arXiv 2024, arXiv:2404.11553.</li>
+      <li>[21] Wu, L.; Zheng, Z.; Qiu, Z.; Wang, H.; Gu, H.; Shen, T.; Qin, C.; Zhu, C.; Zhu, H.; Liu, Q.; et al. A survey on large language models for recommendation. World Wide Web 2024, 27, 60.</li>
+      <li>[22] Patil, R.; Gudivada, V. A review of current trends, techniques, and challenges in large language models (llms). Appl. Sci. 2024, 14, 2074.</li>
+      <li>[23] He, H.; Su, W.J. A Law of Next-Token Prediction in Large Language Models. arXiv 2024, arXiv:2408.13442.</li>
+      <li>[24] Bender, E.M.; Gebru, T.; McMillan-Major, A.; Shmitchell, S. On the dangers of stochastic parrots: Can language models be too big?. In Proceedings of the 2021 ACM Conference on Fairness, Accountability, and Transparency, Virtual, 3–10 March 2021; pp. 610–623.</li>
+      <li>[25] Zhu, Y.; Du, S.; Li, B.; Luo, Y.; Tang, N. Are Large Language Models Good Statisticians? arXiv 2024, arXiv:2406.07815.</li>
+      <li>[26] Almazrouei, E.; Alobeidli, H.; Alshamsi, A.; Cappelli, A.; Cojocaru, R.; Debbah, M.; Goffinet, É.; Hesslow, D.; Launay, J.; Ma- lartic, Q.; et al. The falcon series of open language models. arXiv 2023, arXiv:2311.16867.</li>
+      <li>[27] Naveed, H.; Khan, A.U.; Qiu, S.; Saqib, M.; Anwar, S.; Usman, M.; Akhtar, N.; Barnes, N.; Mian, A. A comprehensive overview of large language models. ACM Trans. Intell. Syst. Technol. 2023.</li>
+      <li>[28] Xu, W.; Hu, W.; Wu, F.; Sengamedu, S. DeTiME: Diffusion-enhanced topic modeling using encoder-decoder based LLM. arXiv 2023, arXiv:2310.15296.</li>
+      <li>[29] Han, K.; Xiao, A.; Wu, E.; Guo, J.; Xu, C.; Wang, Y. Transformer in transformer. Adv. Neural Inf. Process. Syst. 2021, 34, 15908– 15919.</li>
+      <li>[30] Mo, Y.; Qin, H.; Dong, Y.; Zhu, Z.; Li, Z. Large language model (llm) ai text generation detection based on transformer deep learning algorithm. arXiv 2024, arXiv:2405.06652.</li>
+      <li>[31] Singh, S.; Mahmood, A. The NLP cookbook: Modern recipes for transformer based deep learning architectures. IEEE Access 2021, 9, 68675–68702.</li>
+      <li>[32] Li, T.; El Mesbahi, Y.; Kobyzev, I.; Rashid, A.; Mahmud, A.; Anchuri, N.; Hajimolahoseini, H.; Liu, Y.; Rezagholizadeh, M. A short study on compressing decoder-based language models. arXiv 2021, arXiv:2110.08460.</li>
+      <li>[33] Shazeer, N.; Mirhoseini, A.; Maziarz, K.; Davis, A.; Le, Q.; Hinton, G.; Dean, J. Outrageously large neural networks: The sparsely-gated mixture-of-experts layer. arXiv 2017, arXiv:1701.06538.</li>
+      <li>[34] Chang, Y.; Wang, X.; Wang, J.; Wu, Y.; Yang, L.; Zhu, K.; Chen, H.; Yi, X.; Wang, C.; Wang, Y.; et al. A survey on evaluation of large language models. ACM Trans. Intell. Syst. Technol. 2024, 15, 39.</li>
+      <li>[35] Chowdhery, A.; Narang, S.; Devlin, J.; Bosma, M.; Mishra, G.; Roberts, A.; Barham, P.; Chung, H.W.; Sutton, C.; Gehrmann, S.; et al. Palm: Scaling language modeling with pathways. J. Mach. Learn. Res. 2023, 24, 11324–11436.</li>
+      <li>[36] Wu, Z.; Qiu, L.; Ross, A.; Akyürek, E.; Chen, B.; Wang, B.; Kim, N.; Andreas, J.; Kim, Y. Reasoning or reciting? Exploring the capabilities and limitations of language models through counterfactual tasks. In Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Mexico City, Mex- ico, 16–21 June 2024; Volume 1: Long Papers, pp. 1819–1862.</li>
+      <li>[37] Christiano, P.F.; Leike, J.; Brown, T.; Martic, M.; Legg, S.; Amodei, D. Deep reinforcement learning from human preferences. In Proceedings of the Advances in Neural Information Processing Systems, Long Beach, CA, USA, 4–9 December 2017; Volume</li>
+      <li>[38] Liu, Y.; Cao, J.; Liu, C.; Ding, K.; Jin, L. Datasets for large language models: A comprehensive survey. arXiv 2024, arXiv:2402.18041.</li>
+      <li>[39] Lhoest, Q.; del Moral, A.V.; Jernite, Y.; Thakur, A.; von Platen, P.; Patil, S.; Chaumond, J.; Drame, M.; Plu, J.; Tunstall, L.; et al. Datasets: A community library for natural language processing. arXiv 2021, arXiv:2109.02846.</li>
+      <li>[40] Song, Y.; Cui, C.; Khanuja, S.; Liu, P.; Faisal, F.; Ostapenko, A.; Indra Winata, G.; Fikri Aji, A.; Cahyawijaya, S.; Svetkov, Y.; et al. GlobalBench: A benchmark for global progress in natural language processing. arXiv 2023, arXiv:2305.14716.</li>
+      <li>[41] Kazemi, M.; Dikkala, N.; Anand, A.; Devic, P.; Dasgupta, I.; Liu, F.; Fatemi, B.; Awasthi, P.; Gollapudi, S.; Guo, D.; et al. Remi: A dataset for reasoning with multiple images. In Proceedings of the Advances in Neural Information Processing Systems, Van- couver, BC, Canada, 10–15 December 2024; Volume 37, pp. 60088–60109.</li>
+      <li>[42] Wang, H.; Li, J.; Wu, H.; Hovy, E.; Sun, Y. Pre-trained language models and their applications. Engineering 2023, 25, 51–65.</li>
+      <li>[43] Carlini, N.; Tramer, F.; Wallace, E.; Jagielski, M.; Herbert-Voss, A.; Lee, K.; Roberts, A.; Brown, T.; Song, D.; Erlingsson, Ú.; et al. Extracting training data from large language models. In Proceedings of the 30th USENIX Security Symposium (USENIX Security 21), Virtual, 11–13 August 2021; pp. 2633–2650. Appl. Sci. 2025, 15, 8103 46 of 53</li>
+      <li>[44] Qiu, X.; Sun, T.; Xu, Y.; Shao, Y.; Dai, N.; Huang, X. Pre-trained models for natural language processing: A survey. Sci. China Technol. Sci. 2020, 63, 1872–1897.</li>
+      <li>[45] Que, H.; Liu, J.; Zhang, G.; Zhang, C.; Qu, X.; Ma, Y.; Duan, F.; Bai, Z.; Wang, J.; Zhang, Y.; et al. D-cpt law: Domain-specific continual pre-training scaling law for large language models. In Proceedings of the Advances in Neural Information Processing Systems, Vancouver, BC, Canada, 10–15 December 2024; Volume 37, pp. 90318–90354.</li>
+      <li>[46] Gu, Y.; Tinn, R.; Cheng, H.; Lucas, M.; Usuyama, N.; Liu, X.; Naumann, T.; Gao, J.; Poon, H. Domain-specific language model pretraining for biomedical natural language processing. ACM Trans. Comput. Healthc. (HEALTH) 2021, 3, 2.</li>
+      <li>[47] Hadi, M.U.; Al Tashi, Q.; Qureshi, R.; Shah, A.; Muneer, A.; Irfan, M.; Zafar, A.; Shaikh, M.B.; Akhtar, N.; Hassan, S.Z.; et al. Large language models: A comprehensive survey of its applications, challenges, limitations, and future prospects. Authorea Prepr. 2023, 1, 1–26.</li>
+      <li>[48] Lee, K.; Ippolito, D.; Nystrom, A.; Zhang, C.; Eck, D.; Callison-Burch, C.; Carlini, N. Deduplicating training data makes language models better. arXiv 2021, arXiv:2107.06499.</li>
+      <li>[49] Zhang, S.; Dong, L.; Li, X.; Zhang, S.; Sun, X.; Wang, S.; Li, J.; Hu, R.; Zhang, T.; Wu, F.; et al. Instruction tuning for large language models: A survey. arXiv 2023, arXiv:2308.10792.</li>
+      <li>[50] Honovich, O.; Scialom, T.; Levy, O.; Schick, T. Unnatural instructions: Tuning language models with (almost) no human labor. arXiv 2022, arXiv:2212.09689.</li>
+      <li>[51] Ahmad, W.U.; Ficek, A.; Samadi, M.; Huang, J.; Noroozi, V.; Majumdar, S.; Ginsburg, B. OpenCodeInstruct: A Large-scale In- struction Tuning Dataset for Code LLMs. arXiv 2025, arXiv:2504.04030.</li>
+      <li>[52] Zhang, X.; Tian, C.; Yang, X.; Chen, L.; Li, Z.; Petzold, L.R. Alpacare: Instruction-tuned large language models for medical application. arXiv 2023, arXiv:2310.14558.</li>
+      <li>[53] Cui, G.; Yuan, L.; Ding, N.; Yao, G.; He, B.; Zhu, W.; Ni, Y.; Xie, G.; Xie, R.; Lin, Y.; et al. Ultrafeedback: Boosting language models with high-quality feedback. In Proceedings of the 41st International Conference on Machine Learning, Vienna, Austria, 21–27 July 2024.</li>
+      <li>[54] Ouyang, L.; Wu, J.; Jiang, X.; Almeida, D.; Wainwright, C.L.; Mishkin, P.; Zhang, C.; Agarwal, S.; Slama, K.; Ray, A.; et al. Training language models to follow instructions with human feedback. In Proceedings of the Advances in Neural Information Processing Systems, New Orleans, LA, USA, 28 November–9 December 2022; Volume 35, pp. 27730–27744.</li>
+      <li>[55] Chang, T.A.; Bergen, B.K. Language model behavior: A comprehensive survey. Comput. Linguist. 2024, 50, 293–350.</li>
+      <li>[56] Yang, R.; Tan, T.F.; Lu, W.; Thirunavukarasu, A.J.; Ting, D.S.W.; Liu, N. Large language models in health care: Development, applications, and challenges. Health Care Sci. 2023, 2, 255–263.</li>
+      <li>[57] Adeniran, A.A.; Onebunne, A.P.; William, P. Explainable AI (XAI) in healthcare: Enhancing trust and transparency in critical decision-making. World J. Adv. Res. Rev. 2024, 23, 2647–2658.</li>
+      <li>[58] Das, B.C.; Amini, M.H.; Wu, Y. Security and privacy challenges of large language models: A survey. ACM Comput. Surv. 2025, 57, 152.</li>
+      <li>[59] Huang, J.; Chang, K.C.C. Towards reasoning in large language models: A survey. arXiv 2022, arXiv:2212.10403.</li>
+      <li>[60] Lehman, E.; Jain, S.; Pichotta, K.; Goldberg, Y.; Wallace, B.C. Does BERT pretrained on clinical notes reveal sensitive data?. arXiv 2021, arXiv:2104.07762.</li>
+      <li>[61] Ribeiro, M.T.; Singh, S.; Guestrin, C. “Why should i trust you?” Explaining the predictions of any classifier. In Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, San Francisco, CA, USA, 13–17 August 2016; pp. 1135–1144.</li>
+      <li>[62] Thirunavukarasu, A.J.; Ting, D.S.J.; Elangovan, K.; Gutierrez, L.; Tan, T.F.; Ting, D.S.W. Large language models in medicine. Nat. Med. 2023, 29, 1930–1940.</li>
+      <li>[63] Esmaeilzadeh, P. Challenges and strategies for wide-scale artificial intelligence (AI) deployment in healthcare practices: A per- spective for healthcare organizations. Artif. Intell. Med. 2024, 151, 102861.</li>
+      <li>[64] Nazi, Z.A.; Peng, W. Large language models in healthcare and medical domain: A review. Informatics 2024, 11, 57.</li>
+      <li>[65] Daneshjou, R.; Vodrahalli, K.; Novoa, R.A.; Jenkins, M.; Liang, W.; Rotemberg, V.; Ko, J.; Swetter, S.M.; Bailey, E.E.; Gevaert, O.; et al. Disparities in dermatology AI performance on a diverse, curated clinical image set. Sci. Adv. 2022, 8, eabq6147.</li>
+      <li>[66] Hasanzadeh, F.; Josephson, C.B.; Waters, G.; Adedinsewo, D.; Azizi, Z.; White, J.A. Bias recognition and mitigation strategies in artificial intelligence healthcare applications. NPJ Digit. Med. 2025, 8, 154.</li>
+      <li>[67] Omar, M.; Sorin, V.; Agbareia, R.; Apakama, D.U.; Soroush, A.; Sakhuja, A.; Freeman, R.; Horowitz, C.R.; Richardson, L.D.; Nadkarni, G.N.; et al. Evaluating and addressing demographic disparities in medical large language models: A systematic re- view. Int. J. Equity Health 2025, 24, 57. Appl. Sci. 2025, 15, 8103 47 of 53</li>
+      <li>[68] Omiye, J.A.; Gui, H.; Rezaei, S.J.; Zou, J.; Daneshjou, R. Large language models in medicine: The potentials and pitfalls: A narrative review. Ann. Intern. Med. 2024, 177, 210–220.</li>
+      <li>[69] Nie, Y.; Kong, Y.; Dong, X.; Mulvey, J.M.; Poor, H.V.; Wen, Q.; Zohren, S. A survey of large language models for financial applications: Progress, prospects and challenges. arXiv 2024, arXiv:2406.11903.</li>
+      <li>[70] Rane, N.; Choudhary, S.; Rane, J. Explainable Artificial Intelligence (XAI) approaches for transparency and accountability in financial decision-making. SSRN Electron. J. 2023.</li>
+      <li>[71] Lu, G.; Guo, X.; Zhang, R.; Zhu, W.; Liu, J. BizFinBench: A Business-Driven Real-World Financial Benchmark for Evaluating LLMs. arXiv 2025, arXiv:2505.19457.</li>
+      <li>[72] Shoeybi, M.; Patwary, M.; Puri, R.; LeGresley, P.; Casper, J.; Catanzaro, B. Megatron-lm: Training multi-billion parameter lan- guage models using model parallelism. arXiv 2019, arXiv:1909.08053.</li>
+      <li>[73] Narayanan, D.; Shoeybi, M.; Casper, J.; LeGresley, P.; Patwary, M.; Korthikanti, V.A.; Vainbrand, D.; Kashinkunti, P.; Bernauer, J.; Catanzaro, B.; et al. Efficient large-scale language model training on gpu clusters using megatron-lm. In Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis, St. Louis, MO, USA, 14–19 November 2021; pp. 1–15.</li>
+      <li>[74] Araci, D. (). Finbert: Financial sentiment analysis with pre-trained language models. arXiv 2019, arXiv:1908.10063.</li>
+      <li>[75] Strubell, E.; Ganesh, A.; McCallum, A. Energy and policy considerations for modern deep learning research. In Proceedings of the AAAI Conference on Artificial Intelligence, New York, NY, USA, 7–12 February 2020; Volume 34, No. 09, pp. 13693–13696.</li>
+      <li>[76] Li, Y.; Wang, S.; Ding, H.; Chen, H. Large language models in finance: A survey. In Proceedings of the Fourth ACM International Conference on AI in Finance, New York, NY, USA, 27–29 November 2023; pp. 374–382.</li>
+      <li>[77] Chu, Z.; Guo, H.; Zhou, X.; Wang, Y.; Yu, F.; Chen, H.; Xu, W.; Lu, X.; Cui, Q.; Li, L.; et al. Data-centric financial large language models. arXiv 2023, arXiv:2310.17784.</li>
+      <li>[78] Phogat, K.S.; Puranam, S.A.; Dasaratha, S.; Harsha, C.; Ramakrishna, S. Fine-tuning Smaller Language Models for Question Answering over Financial Documents. arXiv 2024, arXiv:2408.12337.</li>
+      <li>[79] Qian, L.; Zhou, W.; Wang, Y.; Peng, X.; Yi, H.; Zhao, Y.; Huang, J.; Xie, Q.; Nie, J.-Y. Fino1: On the transferability of reasoning enhanced llms to finance. arXiv 2025, arXiv:2502.08127.</li>
+      <li>[80] Wu, S.; Irsoy, O.; Lu, S.; Dabravolski, V.; Dredze, M.; Gehrmann, S.; Kambadur, P.; Rosenberg, D.; Mann, G. BloombergGPT: A large language model for finance. arXiv 2023, arXiv:2303.17564.</li>
+      <li>[81] Wang, Y.; Wang, Y.; Liu, Y.; Bao, R.; Harimoto, K.; Sun, X. Proxy Tuning for Financial Sentiment Analysis: Overcoming Data Scarcity and Computational Barriers. In Proceedings of the Joint Workshop of the 9th Financial Technology and Natural Lan- guage Processing (FinNLP), the 6th Financial Narrative Processing (FNP), and the 1st Workshop on Large Language Models for Finance and Legal (LLMFinLegal), Abu Dhabi, United Arab Emirates, 19–20 January 2025; pp. 169–174.</li>
+      <li>[82] Wu, J.; Gan, W.; Chen, Z.; Wan, S.; Yu, P.S. Multimodal large language models: A survey. In Proceedings of the 2023 IEEE International Conference on Big Data (BigData), Sorrento, Italy, 15–18 December 2023; IEEE: New York, NY, USA, 2023; pp. 2247–2256.</li>
+      <li>[83] Mirishli, S. Regulating Ai In Financial Services: Legal Frameworks and Compliance Challenges. arXiv 2025, arXiv:2503.14541.</li>
+      <li>[84] Rao, V.; Sun, Y.; Kumar, M.; Mutneja, T.; Mukherjee, A.; Yang, H. LLMs Meet Finance: Fine-Tuning Foundation Models for the Open FinLLM Leaderboard. arXiv 2025, arXiv:2504.13125.</li>
+      <li>[85] Tavasoli, A.; Sharbaf, M.; Madani, S.M. Responsible Innovation: A Strategic Framework for Financial LLM Integration. arXiv 2025, arXiv:2504.02165.</li>
+      <li>[86] Huang, C.; Nourian, A.; Griest, K. Hidden technical debts for fair machine learning in financial services. arXiv 2021, arXiv:2103.10510.</li>
+      <li>[87] Liu, C.; Arulappan, A.; Naha, R.; Mahanti, A.; Kamruzzaman, J.; Ra, I.H. Large language models and sentiment analysis in financial markets: A review, datasets and case study. IEEE Access 2024, 12, 134041–134061.</li>
+      <li>[88] Abdelsamie, M.; Wang, H. Comparative analysis of LLM-based market prediction and human expertise with sentiment analysis and machine learning integration. In Proceedings of the 2024 7th International Conference on Data Science and Information Technology (DSIT), Nanjing, China, 20–22 December 2024; IEEE: New York, NY, USA, 2024; pp. 1–6.</li>
+      <li>[89] Zaremba, A.; Demir, E. ChatGPT: Unlocking the future of NLP in finance. Mod. Financ. 2023, 1, 93–98.</li>
+      <li>[90] Vidgof, M.; Bachhofner, S.; Mendling, J. Large language models for business process management: Opportunities and chal- lenges. In Proceedings of the International Conference on Business Process Management, Utrecht, The Netherlands, 11–15 Sep- tember 2023; Springer Nature: Cham, Switzerland, 2023; pp. 107–123. Appl. Sci. 2025, 15, 8103 48 of 53</li>
+      <li>[91] Fahland, D.; Fournier, F.; Limonad, L.; Skarbovsky, I.; Swevels, A.J. How well can large language models explain business processes?.arXiv 2024, arXiv:2401.12846.</li>
+      <li>[92] Nasseri, M.; Brandtner, P.; Zimmermann, R.; Falatouri, T.; Darbanian, F.; Obinwanne, T. Applications of large language models (LLMs) in business analytics–exemplary use cases in data preparation tasks. In Proceedings of the International Conference on Human-Computer Interaction, Copenhagen, Denmark, 23 July 2023; Springer Nature: Cham, Switzerland, 2023; pp. 182–198.</li>
+      <li>[93] Ferrara, E. Should chatgpt be biased? challenges and risks of bias in large language models. arXiv 2023, arXiv:2304.03738.</li>
+      <li>[94] Shen, S.; Logeswaran, L.; Lee, M.; Lee, H.; Poria, S.; Mihalcea, R. Understanding the capabilities and limitations of large language models for cultural commonsense. arXiv 2024, arXiv:2405.04655.</li>
+      <li>[95] Linkon, A.A.; Shaima, M.; Sarker, M.S.U.; Badruddowza; Nabi, N.; Rana, M.N.U.; Ghosh, S.K.; Rahman, M.A.; Esa, H.; Chow- dhury, F.R. Advancements and applications of generative artificial intelligence and large language models on business man- agement: A comprehensive review. J. Comput. Sci. Technol. Stud. 2024, 6, 225–232.</li>
+      <li>[96] Teubner, T.; Flath, C.M.; Weinhardt, C.; Van Der Aalst, W.; Hinz, O. Welcome to the era of chatgpt et al. the prospects of large language models. Bus. Inf. Syst. Eng. 2023, 65, 95–101.</li>
+      <li>[97] Raza, M.; Jahangir, Z.; Riaz, M.B.; Saeed, M.J.; Sattar, M.A. Industrial applications of large language models. Sci. Rep. 2025, 15, 13755.</li>
+      <li>[98] Wang, C.; Liu, Y.-Y.; Guo, T.-Z.; Li, D.-P.; He, T.; Li, Z.; Yang, Q.-W.; Wang, H.-H.; Wen, Y.-Y. Systems engineering issues for industry applications of large language model. Appl. Soft Comput. 2024, 151, 111165.</li>
+      <li>[99] Chen, S.; Piao, L.; Zang, X.; Luo, Q.; Li, J.; Yang, J.; Rong, J. Analyzing differences of highway lane-changing behavior using vehicle trajectory data. Phys. A: Stat. Mech. Its Appl. 2023, 624, 128980.</li>
+      <li>[100] Chen, X.; Wei, C.; Xin, Z.; Zhao, J.; Xian, J. Ship detection under low-visibility weather interference via an ensemble generative adversarial network. J. Mar. Sci. Eng. 2023, 11, 2065.</li>
+      <li>[101] Li, Y.; Zhao, H.; Jiang, H.; Pan, Y.; Liu, Z.; Wu, Z.; Shu, P.; Tian, J.; Yang, T.; Xu, S.; et al. Large language models for manufac- turing. arXiv 2024, arXiv:2410.21418.</li>
+      <li>[102] Chkirbene, Z.; Hamila, R.; Gouissem, A.; Devrim, U. Large Language Models (LLM) in Industry: A Survey of Applications, Challenges, and Trends. In Proceedings of the 2024 IEEE 21st International Conference on Smart Communities: Improving Quality of Life Using AI, Robotics and IoT (HONET), Doha, Qatar, 3–5 December 2024; IEEE: New York, NY, USA, 2024; pp. 229–234.</li>
+      <li>[103] Ji, Z.; Lee, N.; Frieske, R.; Yu, T.; Su, D.; Xu, Y.; Ishii, E.; Bang, Y.J.; Madotto, A.; Fung, P. Survey of hallucination in natural language generation. ACM Comput. Surv. 2023, 55, 248.</li>
+      <li>[104] Maatouk, A.; Piovesan, N.; Ayed, F.; De Domenico, A.; Debbah, M. Large language models for telecom: Forthcoming impact on the industry. IEEE Commun. Mag. 2024, 63, 62–68.</li>
+      <li>[105] Urlana, A.; Kumar, C.V.; Singh, A.K.; Garlapati, B.M.; Chalamala, S.R.; Mishra, R. LLMs with Industrial Lens: Deciphering the Challenges and Prospects—A Survey. arXiv 2024, arXiv:2402.14558.</li>
+      <li>[106] Wang, J.; Wu, Z.; Li, Y.; Jiang, H.; Shu, P.; Shi, E.; Hu, H.; Ma, C.; Liu, Y.; Wang, X.; et al. Large language models for robotics: Opportunities, challenges, and perspectives. J. Autom. Intell. 2025, 4, 52–64.</li>
+      <li>[107] Shayegani, E.; Mamun, M.A.A.; Fu, Y.; Zaree, P.; Dong, Y.; Abu-Ghazaleh, N. Survey of vulnerabilities in large language models revealed by adversarial attacks. arXiv 2023, arXiv:2310.10844.</li>
+      <li>[108] Yee, J.S.G.; Ng, P.C.; Wang, Z.; McLoughlin, I.; Ng, A.B.; See, S. On-Device LLMs for SMEs: Challenges and Opportunities. arXiv 2024, arXiv:2410.16070.</li>
+      <li>[109] Rane, N. ChatGPT and similar generative artificial intelligence (AI) for smart industry: Role, challenges and opportunities for industry 4.0, industry 5.0 and society 5.0. Chall. Oppor. Ind. 2023, 4.</li>
+      <li>[110] Zhu, H.; Qin, S.; Su, M.; Lin, C.; Li, A.; Gao, J. Harnessing large vision and language models in agriculture: A review. arXiv 2024, arXiv:2407.19679.</li>
+      <li>[111] Li, J.; Xu, M.; Xiang, L.; Chen, D.; Zhuang, W.; Yin, X.; Li, Z. Large language models and foundation models in smart agriculture: Basics, opportunities, and challenges. arXiv 2023, arXiv:2308.06668.</li>
+      <li>[112] Tzachor, A.; Devare, M.; Richards, C.; Pypers, P.; Ghosh, A.; Koo, J.; Johal, S.; King, B. Large language models and agricultural extension services. Nat. Food 2023, 4, 941–948.</li>
+      <li>[113] Vizniuk, A.; Diachenko, G.; Laktionov, I.; Siwocha, A.; Xiao, M.; Smoląg, J. A comprehensive survey of retrieval-augmented large language models for decision making in agriculture: Unsolved problems and research opportunities. J. Artif. Intell. Soft Comput. Res. 2025, 15, 115–146. Appl. Sci. 2025, 15, 8103 49 of 53</li>
+      <li>[114] Gong, R.; Li, X. The application progress and research trends of knowledge graphs and large language models in agriculture. Comput. Electron. Agric. 2025, 235, 110396.</li>
+      <li>[115] Rezayi, S.; Liu, Z.; Wu, Z.; Dhakal, C.; Ge, B.; Dai, H.; Mai, G.; Liu, N.; Zhen, C.; Liu, T.; et al. Exploring new frontiers in agri- cultural nlp: Investigating the potential of large language models for food applications. IEEE Trans. Big Data 2024, 11, 1235– 1246.</li>
+      <li>[116] Shaikh, T.A.; Rasool, T.; Veningston, K.; Yaseen, S.M. The role of large language models in agriculture: Harvesting the future with LLM intelligence. Prog. Artif. Intell. 2024, 14, 117–164.</li>
+      <li>[117] Li, H.; Wu, H.; Li, Q.; Zhao, C. A review on enhancing agricultural intelligence with large language models. Artif. Intell. Agric. 2025, 15, 671–685.</li>
+      <li>[118] Zhang, Y.; Fan, Q.; Chen, X.; Li, M.; Zhao, Z.; Li, F.; Guo, L. IPM-AgriGPT: A Large Language Model for Pest and Disease Management with a G-EA Framework and Agricultural Contextual Reasoning. Mathematics 2025, 13, 566.</li>
+      <li>[119] Banerjee, S.; Das, S.; Mondal, A.C. A Study of the Application Domain of a Large Language Models in the Agricultural Sector. Int. J. Innov. Res. Comput. Sci. Technol. 2024, 12, 74–78.</li>
+      <li>[120] Majumder, S.; Dong, L.; Doudi, F.; Cai, Y.; Tian, C.; Kalathi, D.; Ding, K.; Thatte, A.A.; Li, N.; Xie, L. Exploring the capabilities and limitations of large language models in the electric energy sector. Joule 2024, 8, 1544–1549.</li>
+      <li>[121] Marinakis, V. Big data for energy management and energy-efficient buildings. Energies 2020, 13, 1555.</li>
+      <li>[122] Madani, S.; Tavasoli, A.; Astaneh, Z.K.; Pineau, P.O. Large Language Models integration in Smart Grids. arXiv 2025, arXiv:2504.09059.</li>
+      <li>[123] Katamoura, S.; Aksoy, M.S.; AlKhamees, B. Privacy and Security in Artificial Intelligence and Machine Learning Systems for Renewable Energy Big Data. In Proceedings of the 2024 21st Learning and Technology Conference (L&T), Makkah, Saudi Ara- bia, 15–16 January 2024; IEEE: New York, NY, USA, 2024; pp. 209–214.</li>
+      <li>[124] Kaddour, J.; Harris, J.; Mozes, M.; Bradley, H.; Raileanu, R.; McHardy, R. Challenges and applications of large language models. arXiv 2023, arXiv:2307.10169.</li>
+      <li>[125] Rillig, M.C.; Ågerstrand, M.; Bi, M.; Gould, K.A.; Sauerland, U. Risks and benefits of large language models for the environment. Environ. Sci. Technol. 2023, 57, 3464–3466.</li>
+      <li>[126] Zhang, L.; Chen, Z. Opportunities and challenges of applying large language models in building energy efficiency and decar- bonization studies: An exploratory overview. arXiv 2023, arXiv:2312.11701.</li>
+      <li>[127] Liu, M.; Zhang, L.; Chen, J.; Chen, W.A.; Yang, Z.; Lo, L.J.; Wen, J.; O’Neill, Z. Large language models for building energy applications: Opportunities and challenges. In Building Simulation; Tsinghua University Press: Beijing, China, 2025; pp. 1–10.</li>
+      <li>[128] Miranda, M.; Ruzzetti, E.S.; Santilli, A.; Zanzotto, F.M.; Bratières, S.; Rodolà, E. Preserving privacy in large language models: A survey on current threats and solutions. arXiv 2024, arXiv:2408.05212.</li>
+      <li>[129] Ruan, J.; Liang, G.; Zhao, H.; Liu, G.; Sun, X.; Qiu, J.; Xu, Z.; Wen, F.; Dong, Z.Y. Applying large language models to power systems: Potential security threats. IEEE Trans. Smart Grid 2024, 15, 3333–3336.</li>
+      <li>[130] Buster, G. Large Language Models (LLMs) for Energy Systems Research; No. NREL/PR-6A20-87896; National Renewable Energy Laboratory (NREL): Golden, CO, USA, 2023.</li>
+      <li>[131] Li, J.; Yang, Y.; Sun, J. Risks of practicing large language models in smart grid: Threat modeling and validation. arXiv 2024, arXiv:2405.06237.</li>
+      <li>[132] Cheng, Y.; Zhou, X.; Zhao, H.; Gu, J.; Wang, X.; Zhao, J. Large Language Model for Low-Carbon Energy Transition: Roles and Challenges. In Proceedings of the 2024 4th Power System and Green Energy Conference (PSGEC), Shanghai, China, 22–24 Au- gust 2024; IEEE: New York, NY, USA, 2024; pp. 810–816.</li>
+      <li>[133] Zhang, L.; Chen, Z. Opportunities of applying Large Language Models in building energy sector. Renew. Sustain. Energy Rev. 2025, 214, 115558.</li>
+      <li>[134] Wang, S.; Xu, T.; Li, H.; Zhang, C.; Liang, J.; Tang, J.; Yu, P.S.; Wen, Q. Large language models for education: A survey and outlook. arXiv 2024, arXiv:2403.18105.</li>
+      <li>[135] Gan, W.; Qi, Z.; Wu, J.; Lin, J.C.W. Large language models in education: Vision and opportunities. In Proceedings of the 2023 IEEE International Conference on Big Data (BigData), Sorrento, Italy, 15–18 December 2023; IEEE: New York, NY, USA, 2023; pp. 4776–4785.</li>
+      <li>[136] Xu, H.; Gan, W.; Qi, Z.; Wu, J.; Yu, P.S. Large language models for education: A survey. arXiv 2024, arXiv:2405.13001.</li>
+      <li>[137] Yan, L.; Sha, L.; Zhao, L.; Li, Y.; Martinez-Maldonado, R.; Chen, G.; Li, X.; Jin, Y.; Gašević, D. Practical and ethical challenges of large language models in education: A systematic scoping review. Br. J. Educ. Technol. 2024, 55, 90–112. Appl. Sci. 2025, 15, 8103 50 of 53</li>
+      <li>[138] Abd-Alrazaq, A.; AlSaad, R.; Alhuwail, D.; Ahmed, A.; Healy, P.M.; Latifi, S.; Aziz, S.; Damseh, R.; Alabed Alrazak, S.; Sheikh, J. Large language models in medical education: Opportunities, challenges, and future directions. JMIR Med. Educ. 2023, 9, e48291.</li>
+      <li>[139] Milano, S.; McGrane, J.A.; Leonelli, S. Large language models challenge the future of higher education. Nat. Mach. Intell. 2023, 5, 333–334.</li>
+      <li>[140] Chu, J.; Zhang, Y.; Qu, C.; Fan, C.; Xie, G.; Liu, S.; Yu, L. Utilizing Large Language Models to Boost Innovative Research and Development in Enterprises. In Proceedings of the 2024 4th International Conference on Enterprise Management and Economic Development (ICEMED 2024), Jinan, China, 24–26 May 2024; Atlantis Press: Paris, France, 2024; pp. 392–400.</li>
+      <li>[141] Liu, Y.; Han, T.; Ma, S.; Zhang, J.; Yang, Y.; Tian, J.; He, H.; Li, A.; He, M.; Liu, Z.; et al. Summary of chatgpt-related research and perspective towards the future of large language models. Meta-Radiol. 2023, 1, 100017.</li>
+      <li>[142] Li, J.; Xu, J.; Huang, S.; Chen, Y.; Li, W.; Liu, J.; Lian, Y.; Pan, J.; Ding, L.; Zhou, H.; et al. Large language model inference acceleration: A comprehensive hardware perspective. arXiv 2024, arXiv:2410.04466.</li>
+      <li>[143] Zhang, Y.; Li, Y.; Cui, L.; Cai, D.; Liu, L.; Fu, T.; Huang, X.; Zhao, E.; Zhang, Y.; Chen, Y.; et al. Siren’s song in the AI ocean: A survey on hallucination in large language models. arXiv 2023, arXiv:2309.01219.</li>
+      <li>[144] Guo, K.; Utkarsh, A.; Ding, W.; Ondracek, I.; Zhao, Z.; Freeman, G.; Vishwamitra, N.; Hu, H. Moderating Illicit Online Image Promotion for Unsafe User Generated Content Games Using Large {Vision-Language} Models. In Proceedings of the 33rd USE- NIX Security Symposium (USENIX Security 24), Philadelphia, PA, USA, 14–16 August 2024; pp. 5787–5804.</li>
+      <li>[145] Tao, Y.; Viberg, O.; Baker, R.S.; Kizilcec, R.F. Cultural bias and cultural alignment of large language models. PNAS Nexus 2024, 3, pgae346.</li>
+      <li>[146] Zhang, Y.; Chen, X.; Jin, B.; Wang, S.; Ji, S.; Wang, W.; Han, J. A comprehensive survey of scientific large language models and their applications in scientific discovery. arXiv 2024, arXiv:2406.10833.</li>
+      <li>[147] Xu, F.F.; Alon, U.; Neubig, G.; Hellendoorn, V.J. A systematic evaluation of large language models of code. In Proceedings of the 6th ACM SIGPLAN International Symposium on Machine Programming, San Diego, CA, USA, 13 June 2022; pp. 1–10.</li>
+      <li>[148] Austin, J.; Odena, A.; Nye, M.; Bosma, M.; Michalewski, H.; Dohan, D.; Jiang, E.; Cai, C.; Terry, M.; Le, Q.; et al. Program syn- thesis with large language models. arXiv 2021, arXiv:2108.07732.</li>
+      <li>[149] Liventsev, V.; Grishina, A.; Härmä, A.; Moonen, L. Fully autonomous programming with large language models. In Proceedings of the Genetic and Evolutionary Computation Conference, Lisbon, Portugal, 15–19 July 2023; pp. 1146–1155.</li>
+      <li>[150] Miceli-Barone, A.V.; Barez, F.; Konstas, I.; Cohen, S.B. The larger they are, the harder they fail: Language models do not recog- nize identifier swaps in python. arXiv 2023, arXiv:2305.15507.</li>
+      <li>[151] Ziems, C.; Held, W.; Shaikh, O.; Chen, J.; Zhang, Z.; Yang, D. Can large language models transform computational social sci- ence? Comput. Linguist. 2024, 50, 237–291.</li>
+      <li>[152] Leinonen, J.; Hellas, A.; Sarsa, S.; Reeves, B.; Denny, P.; Prather, J.; Becker, B.A. Using large language models to enhance pro- gramming error messages. In Proceedings of the 54th ACM Technical Symposium on Computer Science Education V. 1, To- ronto, ON, Canada, 15–18 March 2023; pp. 563–569.</li>
+      <li>[153] Raihan, N.; Siddiq, M.L.; Santos, J.C.; Zampieri, M. Large language models in computer science education: A systematic litera- ture review. In Proceedings of the 56th ACM Technical Symposium on Computer Science Education V. 1, Pittsburgh, PA, USA, 26 February–1 March 2025; pp. 938–944.</li>
+      <li>[154] Krüger, T.; Gref, M. Performance of large language models in a computer science degree program. In Proceedings of the Euro- pean Conference on Artificial Intelligence, Kraków, Poland, 30 September–4 October 2023; Springer Nature: Cham, Switzerland, 2023; pp. 409–424.</li>
+      <li>[155] Abbas, M.; Jam, F.A.; Khan, T.I. Is it harmful or helpful? Examining the causes and consequences of generative AI usage among university students. Int. J. Educ. Technol. High. Educ. 2024, 21, 10.</li>
+      <li>[156] Murtaza, M.; Cheng, C.T.; Albahlal, B.M.; Muslam, M.M.A.; Raza, M.S. The impact of LLM chatbots on learning outcomes in advanced driver assistance systems education. Sci. Rep. 2025, 15, 7260.</li>
+      <li>[157] Lyu, M.R.; Ray, B.; Roychoudhury, A.; Tan, S.H.; Thongtanunam, P. Automatic programming: Large language models and beyond. ACM Trans. Softw. Eng. Methodol. 2024, 34, 140.</li>
+      <li>[158] Törnberg, P.; Valeeva, D.; Uitermark, J.; Bail, C. Simulating social media using large language models to evaluate alternative news feed algorithms. arXiv 2023, arXiv:2310.05984.</li>
+      <li>[159] Törnberg, P. Large language models outperform expert coders and supervised classifiers at annotating political social media messages. Soc. Sci. Comput. Rev. 2024, 08944393241286471. Appl. Sci. 2025, 15, 8103 51 of 53</li>
+      <li>[160] Qi, J. The Impact of Large Language Models on Social Media Communication. In Proceedings of the 2024 7th International Conference on Software Engineering and Information Management, Suva, Fiji, 23–25 January 2024; pp. 165–170.</li>
+      <li>[161] Yang, K.; Zhang, T.; Kuang, Z.; Xie, Q.; Huang, J.; Ananiadou, S. MentaLLaMA: Interpretable mental health analysis on social media with large language models. In Proceedings of the ACM Web Conference 2024, Singapore, 13–17 May 2024; pp. 4489– 4500.</li>
+      <li>[162] Peters, H.; Matz, S.C. Large language models can infer psychological dispositions of social media users. PNAS Nexus 2024, 3, pgae231.</li>
+      <li>[163] Lin, L.; Wang, L.; Guo, J.; Wong, K.F. Investigating bias in llm-based bias detection: Disparities between llms and human per- ception. arXiv 2024, arXiv:2403.14896.</li>
+      <li>[164] Myers, D.; Mohawesh, R.; Chellaboina, V.I.; Sathvik, A.L.; Venkatesh, P.; Ho, Y.-H.; Henshaw, H.; Alhawawreh, M.; Berdik, D.; Jararweh, Y. Foundation and large language models: Fundamentals, challenges, opportunities, and social impacts. Clust. Com- put. 2024, 27, 1–26.</li>
+      <li>[165] Augenstein, I.; Baldwin, T.; Cha, M.; Chakraborty, T.; Ciampaglia, G.L.; Corney, D.; DiResta, R.; Ferrara, E.; Hale, S.; Halevy, A.; et al. Factuality challenges in the era of large language models. arXiv 2023, arXiv:2310.05189.</li>
+      <li>[166] Kim, S.S.; Liao, Q.V.; Vorvoreanu, M.; Ballard, S.; Vaughan, J.W. “I’m Not Sure, But…”: Examining the Impact of Large Lan- guage Models' Uncertainty Expression on User Reliance and Trust. In Proceedings of the 2024 ACM Conference on Fairness, Accountability, and Transparency, Rio de Janeiro, Brazil, 3–6 June 2024; pp. 822–835.</li>
+      <li>[167] Yi, J.; Xu, Z.; Huang, T.; Yu, P. Challenges and Innovations in LLM-Powered Fake News Detection: A Synthesis of Approaches and Future Directions. arXiv 2025, arXiv:2502.00339.</li>
+      <li>[168] Chelli, M.; Descamps, J.; Lavoué, V.; Trojani, C.; Azar, M.; Deckert, M.; Raynier, J.L.; Clowez, G.; Boileau, P.; Ruetsch-Chelli, C. Hallucination rates and reference accuracy of ChatGPT and Bard for systematic reviews: Comparative analysis. J. Med. Internet Res. 2024, 26, e53164.</li>
+      <li>[169] Farquhar, S.; Kossen, J.; Kuhn, L.; Gal, Y. Detecting hallucinations in large language models using semantic entropy. Nature 2024, 630, 625–630.</li>
+      <li>[170] Marcos, H. Can large language models apply the law? AI Soc. 2024, 40, 3605–3614.</li>
+      <li>[171] Lai, J.; Gan, W.; Wu, J.; Qi, Z.; Yu, P.S. Large language models in law: A survey. AI Open 2024, 5, 181–196.</li>
+      <li>[172] Surden, H. ChatGPT, AI large language models, and law. Fordham Law Rev. 2023, 92, 1941.</li>
+      <li>[173] Homoki, P.; Ződi, Z. Large language models and their possible uses in law. Hung. J. Leg. Stud. 2024, 64, 435–455.</li>
+      <li>[174] Wang, J.; Zhao, H.; Yang, Z.; Shu, P.; Chen, J.; Sun, H.; Liang, R.; Li, S.; Shi, P.; Ma, L.; et al. Legal evalutions and challenges of large language models. arXiv 2024, arXiv:2411.10137.</li>
+      <li>[175] Dahl, M.; Magesh, V.; Suzgun, M.; Ho, D.E. Large legal fictions: Profiling legal hallucinations in large language models. J. Leg. Anal. 2024, 16, 64–93.</li>
+      <li>[176] Tuomi, A.; Tussyadiah, I.; Ascenção, M.P. Customized language models for tourism management: Implications and future re- search. Ann. Tour. Res. 2025, 110, 103863.</li>
+      <li>[177] Secchi, L. Knowledge Graphs and Large Language Models for Intelligent Applications in the Tourism Domain. Ph.D. Thesis, Università di Cagliari, Cagliari, Italy, 2024.</li>
+      <li>[178] Ren, R.; Yao, X.; Cole, S.; Wang, H. Are Large Language Models Ready for Travel Planning? arXiv 2024, arXiv:2410.17333.</li>
+      <li>[179] Wei, Q.; Yang, M.; Wang, J.; Mao, W.; Xu, J.; Ning, H. Tourllm: Enhancing llms with tourism knowledge. arXiv 2024, arXiv:2407.12791.</li>
+      <li>[180] Chu, M.; Chen, Y.; Gui, H.; Yu, S.; Wang, Y.; Jia, J. TraveLLaMA: Facilitating Multi-modal Large Language Models to Under- stand Urban Scenes and Provide Travel Assistance. arXiv 2025, arXiv:2504.16505.</li>
+      <li>[181] Diao, T.; Wu, X.; Yang, L.; Xiao, L.; Dong, Y. A novel forecasting framework combining virtual samples and enhanced Trans- former models for tourism demand forecasting. arXiv 2025, arXiv:2503.19423.</li>
+      <li>[182] Roumeliotis, K.I.; Tselikas, N.D.; Nasiopoulos, D.K. Leveraging Large Language Models in Tourism: A Comparative Study of the Latest GPT Omni Models and BERT NLP for Customer Review Classification and Sentiment Analysis. Information 2024, 15,</li>
+      <li>[183] Gu, S. The Future of Tourism: Examining the Potential Applications of Large Language Models. Qeios 2024.</li>
+      <li>[184] Chen, K.; Zhou, X.; Lin, Y.; Feng, S.; Shen, L.; Wu, P. A Survey on Privacy Risks and Protection in Large Language Models. arXiv 2025, arXiv:2505.01976.</li>
+      <li>[185] Zhang, J.; Ji, X.; Zhao, Z.; Hei, X.; Choo, K.K.R. Ethical considerations and policy implications for large language models: Guid- ing responsible development and deployment. arXiv 2023, arXiv:2308.02678. Appl. Sci. 2025, 15, 8103 52 of 53</li>
+      <li>[186] Deng, C.; Duan, Y.; Jin, X.; Chang, H.; Tian, Y.; Liu, H.; Wang, Y.; Gao, K.; Zou, H.P.; Jin, Y.; et al. Deconstructing the ethics of large language models from long-standing issues to new-emerging dilemmas. arXiv 2024, arXiv-2406.</li>
+      <li>[187] Ge, H.; Chen, X. Exploring Factors Influencing the Integration of AI Drawing Tools in Art and Design Education. ASRI. Arte y Sociedad. Rev. Investig. Artes Humanid. Digit. 2024, 108–128.</li>
+      <li>[188] Chakrabarty, T.; Laban, P.; Agarwal, D.; Muresan, S.; Wu, C.S. Art or artifice? large language models and the false promise of creativity. In Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems, Honolulu, HI, USA, 11–16 May 2024; pp. 1–34.</li>
+      <li>[189] Zhu, S.; Wang, Z.; Zhuang, Y.; Jiang, Y.; Guo, M.; Zhang, X.; Gao, Z. Exploring the impact of ChatGPT on art creation and collaboration: Benefits, challenges and ethical implications. Telemat. Inform. Rep. 2024, 14, 100138.</li>
+      <li>[190] Kocmi, T.; Federmann, C. Large language models are state-of-the-art evaluators of translation quality. arXiv 2023, arXiv:2302.14520.</li>
+      <li>[191] Giretti, A.; Durmus, D.; Vaccarini, M.; Zambelli, M.; Guidi, A.; di Meana, F.R. Integrating Large Language Models in Art and Design Education; International Association for Development of the Information Society: Lisbon, Portugal, 2023.</li>
+      <li>[192] Franceschelli, G.; Musolesi, M. On the creativity of large language models. AI Soc. 2024, 40, 3785–3795.</li>
+      <li>[193] Boisseau, É. Imitation and Large Language Models. Minds Mach. 2024, 34, 42.</li>
+      <li>[194] Chen, Z.; Chan, J. Large language model in creative work: The role of collaboration modality and user expertise. Manag. Sci. 2024, 70, 9101–9117.</li>
+      <li>[195] Xu, Y. Open Sharing and Cross-border Integration of Art Laboratory Resources Based on LLM and Virtual Reality. In Proceed- ings of the 2024 International Conference on Interactive Intelligent Systems and Techniques (IIST), Bhubaneswar, India, 4–5 March 2024; IEEE: New York, NY, USA, 2024; pp. 441–445.</li>
+      <li>[196] Roush, A.; Zakirov, E.; Shirokov, A.; Lunina, P.; Gane, J.; Duffy, A.; Basil, C.; Whitcomb, A.; Benedetto, J.; DeWolfe, C. LLM as an Art Director (LaDi): Using LLMs to improve Text-to-Media Generators. arXiv 2023, arXiv:2311.03716.</li>
+      <li>[197] Hristov, K. Artificial intelligence and the copyright dilemma. Idea 2016, 57, 431.</li>
+      <li>[198] Lu, Y.; Guo, C.; Dou, Y.; Dai, X.; Wang, F.Y. Could ChatGPT imagine: Content control for artistic painting generation via large language models. J. Intell. Robot. Syst. 2023, 109, 39.</li>
+      <li>[199] Johnson, S.; Hyland-Wood, D. A Primer on Large Language Models and their Limitations. arXiv 2024, arXiv:2412.04503.</li>
+      <li>[200] Bai, G.; Chai, Z.; Ling, C.; Wang, S.; Lu, J.; Zhang, N.; Shi, T.; Yu, Z.; Zhu, M.; Zhang, Y.; et al. Beyond efficiency: A systematic survey of resource-efficient large language models. arXiv 2024, arXiv:2401.00625.</li>
+      <li>[201] Wang, W.; Chen, W.; Luo, Y.; Long, Y.; Lin, Z.; Zhang, L.; Lin, B.; Cai, D.; He, X. Model compression and efficient inference for large language models: A survey. arXiv 2024, arXiv:2402.09748.</li>
+      <li>[202] Gallegos, I.O.; Rossi, R.A.; Barrow, J.; Tanjim, M.M.; Kim, S.; Dernoncourt, F.; Yu, T.; Zhang, R.; Ahmed, N.K. Bias and fairness in large language models: A survey. Comput. Linguist. 2024, 50, 1097–1179.</li>
+      <li>[203] Bai, Y.; Zhao, J.; Shi, J.; Xie, Z.; Wu, X.; He, L. Fairmonitor: A dual-framework for detecting stereotypes and biases in large language models. arXiv 2024, arXiv:2405.03098.</li>
+      <li>[204] Kotek, H.; Dockum, R.; Sun, D. Gender bias and stereotypes in large language models. In Proceedings of the ACM Collective Intelligence Conference, Delft, The Netherlands, 6–9 November 2023; pp. 12–24.</li>
+      <li>[205] Schwinn, L.; Dobre, D.; Günnemann, S.; Gidel, G. Adversarial attacks and defenses in large language models: Old and new threats. In Proceedings of the PMLR, April 2023; pp. 103–117.</li>
+      <li>[206] Jain, N.; Schwarzschild, A.; Wen, Y.; Somepalli, G.; Kirchenbauer, J.; Chiang, P.-Y.; Goldblum, M.; Saha, A.; Geiping, J.; Gold- stein, T. Baseline defenses for adversarial attacks against aligned language models. arXiv 2023, arXiv:2309.00614.</li>
+      <li>[207] Liao, Z.; Chen, K.; Lin, Y.; Li, K.; Liu, Y.; Chen, H.; Huang, X.; Yu, Y. Attack and defense techniques in large language models: A survey and new perspectives. arXiv 2025, arXiv:2505.00976.</li>
+      <li>[208] Zhang, Z.; Zhong, Y.; Ming, R.; Hu, H.; Sun, J.; Ge, Z.; Zhu, Y.; Jin, X. Disttrain: Addressing model and data heterogeneity with disaggregated training for multimodal large language models. arXiv 2024, arXiv:2408.04275.</li>
+      <li>[209] Ebrahimi, B.; Howard, A.; Carlson, D.J.; Al-Hallaq, H. ChatGPT: Can a natural language processing tool be trusted for radiation oncology use? Int. J. Radiat. Oncol. Biol. Phys. 2023, 116, 977–983.</li>
+      <li>[210] Zhang, D.; Yu, Y.; Dong, J.; Li, C.; Su, D.; Chu, C.; Yu, D. Mm-llms: Recent advances in multimodal large language models. arXiv 2024, arXiv:2401.13601.</li>
+      <li>[211] Jin, Y.; Li, J.; Liu, Y.; Gu, T.; Wu, K.; Jiang, Z.; He, M.; Zhao, B.; Tan, X.; Gan, Z.; et al. Efficient multimodal large language models: A survey. arXiv 2024, arXiv:2405.10739. Appl. Sci. 2025, 15, 8103 53 of 53</li>
+      <li>[212] Liang, Z.; Xu, Y.; Hong, Y.; Shang, P.; Wang, Q.; Fu, Q.; Liu, K. A Survey of Multimodel Large Language Models. In Proceedings of the 3rd International Conference on Computer, Artificial Intelligence and Control Engineering, Xi’an, China, 26–28 January 2024; pp. 405–409.</li>
+      <li>[213] Nguyen, X.P.; Aljunied, S.M.; Joty, S.; Bing, L. Democratizing LLMs for low-resource languages by leveraging their English dominant abilities with linguistically-diverse prompts. arXiv 2023, arXiv:2306.11372.</li>
+      <li>[214] Gurgurov, D.; Hartmann, M.; Ostermann, S. Adapting multilingual llms to low-resource languages with knowledge graphs via adapters. arXiv 2024, arXiv:2407.01406.</li>
+      <li>[215] Joshi, R.; Singla, K.; Kamath, A.; Kalani, R.; Paul, R.; Vaidya, U.; Chauhan, S.S.; Wartikar, N.; Long, E. Adapting Multilingual LLMs to Low-Resource Languages using Continued Pre-training and Synthetic Corpus. arXiv 2024, arXiv:2410.14815.</li>
+      <li>[216] Shi, H.; Xu, Z.; Wang, H.; Qin, W.; Wang, W.; Wang, Y.; Wang, Z.; Ebrahimi, S.; Wang, H. Continual learning of large language models: A comprehensive survey. ACM Comput. Surv. 2024.</li>
+      <li>[217] Wu, T.; Luo, L.; Li, Y.F.; Pan, S.; Vu, T.T.; Haffari, G. Continual learning for large language models: A survey. arXiv 2024, arXiv:2402.01364.</li>
+      <li>[218] Yang, Y.; Zhou, J.; Ding, X.; Huai, T.; Liu, S.; Chen, Q.; Xie, Y.; He, L. Recent advances of foundation language models-based continual learning: A survey. ACM Comput. Surv. 2025, 57, 112.</li>
+      <li>[219] Qiu, J.; Ke, Z.; Liu, B. Continual Learning Using Only Large Language Model Prompting. arXiv 2024, arXiv:2412.15479.</li>
+      <li>[220] Baeza-Yates, R.; Matthews, J. Statement on Principles for Responsible Algorithmic Systems; ACM Technology Policy Office: Wash- ington, DC, USA, 2022.</li>
+      <li>[221] Pasopati, R.U.; Bethari, C.P.; Nurdin, D.S.F.; Camila, M.S.; Hidayat, S.A. Ethical Consequentialism in Values and Principles of UNESCO’s Recommendation on the Ethics of Artificial Intelligence. Proc. Int. Conf. Relig. Sci. Educ. 2024, 3, 567–579.</li>
+      <li>[222] Anisuzzaman, D.M.; Malins, J.G.; Friedman, P.A.; Attia, Z.I. Fine-Tuning Large Language Models for Specialized Use Cases. Mayo Clin. Proc. Digit. Health 2025, 3, 100184.</li>
+      <li>[223] Kermani, A.; Zeraatkar, E.; Irani, H. Energy-efficient transformer inference: Optimization strategies for time series classification. arXiv 2025, arXiv:2502.16627.</li>
+      <li>[224] AlShaikh, R.; Al-Malki, N.; Almasre, M. The implementation of the cognitive theory of multimedia learning in the design and evaluation of an AI educational video assistant utilizing large language models. Heliyon 2024, 10, e25361.</li>
+      <li>[225] Nassiri, K.; Akhloufi, M.A. Recent advances in large language models for healthcare. BioMedInformatics 2024, 4, 1097–1143.</li>
+      <li>[226] Alayrac, J.-B.; Donahue, J.; Luc, P.; Miech, A.; Barr, I.; Hasson, Y.; Lenc, K.; Mensch, A.; Millican, K.; Reynolds, M.; et al. Fla- mingo: A visual language model for few-shot learning. Adv. Neural Inf. Process. Syst. 2022, 35, 23716–23736.</li>
+      <li>[227] Singh, A.; Patel, N.P.; Ehtesham, A.; Kumar, S.; Khoei, T.T. A survey of sustainability in large language models: Applications, economics, and challenges. In Proceedings of the 2025 IEEE 15th Annual Computing and Communication Workshop and Con- ference (CCWC), Las Vegas, NV, USA, 6–8 January 2025; IEEE: New York, NY, USA, 2025; pp. 8–14.</li>
+      <li>[228] Wu, Y.; Hua, I.; Ding, Y. Unveiling environmental impacts of large language model serving: A functional unit view. arXiv 2025, arXiv:2502.11256.</li>
+      <li>[229] Iftikhar, S.; Davy, S. Reducing Carbon Footprint in AI: A Framework for Sustainable Training of Large Language Models. In Proceedings of the Future Technologies Conference, London, UK, 14–15 November 2024; Springer Nature: Cham, Switzerland, 2024; pp. 325–336.</li>
+      <li>[230] Zhao, G.; Song, E. Privacy-Preserving Large Language Models: Mechanisms, Applications, and Future Directions. arXiv 2024, arXiv:2412.06113.</li>
+      <li>[231] Zhang, Y.; Lu, Y.; Liu, F. A systematic survey for differential privacy techniques in federated learning. J. Inf. Secur. 2023, 14, 111–</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app15148103">10.3390/app15148103</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

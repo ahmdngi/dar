@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التفضيل المباشر الواعي بالضوضاء (nrDPO) للتعلم المعزز بالملاحظات الاصطناعية — DAR</title>
+<meta name="description" content="Noise-Aware Direct Preference Optimization for RLAIF — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/noise-aware-dpo-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Noise-Aware Direct Preference Optimization for RLAIF</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التفضيل المباشر الواعي بالضوضاء (nrDPO) للتعلم المعزز بالملاحظات الاصطناعية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Alymzhan Toleu, Gulmira Tolegen, Alexandr Pak, Assel Jaxylykova</span>
+    <span>📄 Appl. Sci., 2025 · Vol. 15, 10328</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app151910328">10.3390/app151910328</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>ينتج التعلم المعزز بالملاحظات البشرية (RLHF) نماذج قوية تتبع التعليمات لكنه يعتمد على توسيم بشري بطيء ومكلف [4][7][8]؛ أما بديله الفعّال، التعلم بالملاحظات الاصطناعية (RLAIF)، فيعيد توسيم الأزواج بنماذج لغوية معلِّمة لكنه يحقن ضوضاء توسيم كبيرة — إذ قلب معلّما Llama-3.1 (بـ8B و70B) أكثر من نصف التفضيلات البشرية الأصلية. وفي ظل هذه الضوضاء يتدهور التحسين التفضيلي المباشر (DPO) [6] بشدة.</p>
+    <p>نقترح nrDPO وnrDPO-gated، وهما بديلان إسقاطيان لـDPO مقاومان للتفضيلات الضجيجية: يُعاد وزن كل زوج عبر (1) حد ثقة بالهامش من سياسة مرجعية مجمّدة بميل &gamma;، و(2) حد استقرار سياقي يعاقب التفضيلات التي تنقلب تحت السجلات المقتطعة (نافذة K)، و(3) تصحيح طولي (&lambda;) يكبح انحياز الإسهاب؛ ويتجاهل المتغير المبوَّب أيضًا الأزواج التي يقل هامشها المرجعي عن عتبة &tau;. فعلى 5k أزواج harmless-base بقلبات اصطناعية 30%، يتفوق nrDPO-gated على DPO التقليدي بـ+3.8% دقة تفضيل، وعلى إعادة توسيم RLAIF واقعية بـ5k هو الوحيد الذي يستعيد محاذاة تنافسية (&asymp;60% مقابل &asymp;49&ndash;50% لـDPO التقليدي)، مقتربًا من خطوط RLHF المرجعية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يوائم RLHF نماذج اللغة مع القيم البشرية عبر تدريب نموذج مكافأة على تفضيلات بشرية وتحسين السياسة بخوارزميات مثل PPO [4][11][12]، لكن التوسيم البشري بطيء ومكلف وصعب التوسع — خاصة للمحفزات متعددة الأدوار واللغات منخفضة الموارد. أزال التحسين التفضيلي المباشر (DPO) [6] نموذج المكافأة الصريح بإعادة صياغة هدف RLHF كخسارة تصنيفية، لكنه ورث الاعتماد نفسه على توسيمات نظيفة.</p>
+    <p>يستبدل RLAIF الموسِمين البشر بمعلمين لغويين، لكن إعادة التوسيم تقلب حصة كبيرة من التفضيلات (أكثر من 50% هنا)، فيفرط DPO التقليدي في ملاءمة الضوضاء وتنهار دقته التفضيلية. أما الإصلاحات المتينة السابقة فإما تصمم أهداف RLHF متينة للمكافأة توازن بين الأداء والمتانة [29] أو ترشّح العينات غير الموثوقة قبل تحديثات PPO [30]؛ بينما يحافظ nrDPO على بساطة DPO بأوزان لكل عينة مع بوابة صلبة اختيارية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة</h2>
+    <p>بدأ التعلم المعزز القائم على التفضيل بنمذجة المكافأة من مقارنات بشرية مع تنظيم KL نحو سياسة مرجعية (غالبًا مضبوطة إشرافيًا) [4][8]، ونضج إلى خط الأنابيب الثلاثي: تدريب مسبق&ndash;مكافأة&ndash;PPO وراء التلخيص واتباع التعليمات [11][12]. أغلق DPO [6] الحلقة دون أخذ عينات أو نموذج مكافأة منفصل، فصارت جودة التوسيم — لا آلية التحسين — القيدَ الحاكم.</p>
+    <p>تُهاجَم ضوضاء التفضيلات على جبهتين: تصاميم جهة الهدف مثل RLHF المتين للمكافأة [29] التي توازن بين الأداء وفساد المكافأة الأسوأ، ومرشحات جهة السياسة التي تسقط العينات غير الموثوقة قبل PPO [30]. ويضع المؤلفون nrDPO كمكمّل: فالوزن والتبويب يعملان داخل خسارة DPO نفسها، وقد تجمع الأعمال المستقبلية بينها وبين [29][30] وتختبر تعميمًا أوسع.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. النموذج</h2>
+    <p>بفرض ثلاثيات التفضيل (x, y<sub>w</sub>, y<sub>l</sub>)، يحسّن DPO التقليدي [6] خسارة تصنيفية على فجوة المكافأة الضمنية &Delta;&pi; &minus; &Delta;ref بين هامشي اللوغ-احتمال للسياسة والمرجع المجمّد. يضرب nrDPO خسارة كل زوج بوزن غير سالب w مُطبَّع لمتوسط دفعي واحد (المعادلة 4): w = &sigma;(&gamma;|&Delta;ref|) &middot; exp(&minus;|&Delta;ref &minus; &Delta;ref,K|) &middot; exp(&minus;&lambda;||y<sub>w</sub>| &minus; |y<sub>l</sub>||)، أي حد ثقة هامشي سيغمويدي وحد استقرار سياقي يقارن هامش السجل الكامل بهامش آخر-K وتصحيح طولي ضد انحياز الإسهاب.</p>
+    <p>يضيف nrDPO-gated بوابة صلبة تُبقي فقط الأزواج ذات &Delta;ref &gt; &tau; (الخوارزمية 1): فالأزواج منخفضة الثقة المرجح قلبها تُزال لا مجرد تخفيف وزنها. وعلى البيانات النظيفة قد تتجاهل البوابة إشارة مفيدة منخفضة الهامش وتتخلف عن غير المبوَّب، لكن تحت الضوضاء الشديدة أو إعادة توسيم RLAIF تكون البوابة هي ما يحفظ الدقة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. التجربة</h2>
+    <p>يستخدم التدريب مجموعات harmless-base / helpful-base الفرعية من HH-RLHF [7] (عينات نظيفة H-2k/5k؛ وH-5k-n10/n20/n30 بقلبات 10&ndash;30%؛ وRLAIF-2k/5k معاد توسيمها بمعلمي Llama-3.1-8B/70B)، مع التقييم على التقسيمات الاختبارية المقابلة (2312 زوج harmless و2354 helpful). ضُبطت فرط-الوسائط مرة واحدة على H-5k (نظيفة + ضوضاء 20%) وجُمّدت لبقية التجارب: ميل الهامش &gamma; &asymp; 1.5 (مكاسب 0.612 &rarr; 0.623&ndash;0.626 تحت الضوضاء)، نافذة السياق K = 32 (K = 64/128 يخفض 1&ndash;1.5 نقطة)، وزن الطول &lambda; = 2&times;10<sup>&minus;3</sup> تحت الضوضاء. والمقياس هو دقة التفضيل (PrefAcc) بفترات ثقة 95%.</p>
+    <p>على البيانات النظيفة، يستقر SFT عند 55&ndash;57%، ويبلغ DPO التقليدي 59.47%/64.79%/66.87% عند 2k/5k/10k، ويضيف nrDPO مكاسب صغيرة لكن دالة (+0.74% عند 5k بفترات غير متداخلة)، بينما تتجاهل البوابة إشارة مفيدة (51.73% عند 2k و62.37% عند 10k). وتحت الضوضاء الاصطناعية يهبط DPO التقليدي 62.98% &rarr; 58.52% من 10% إلى 30% قلبًا بينما يحافظ nrDPO-gated على &asymp;63% عند كل مستوى ويتصدر عمود 30% بـ+3.8%. وفي RLAIF تهبط النماذج غير المبوَّبة من 59&ndash;66% (توسيم بشري) إلى &asymp;44&ndash;46% (2k) و&asymp;48&ndash;50% (5k) — انهيار 10&ndash;16 نقطة — بينما يستعيد nrDPO-gated وحده &asymp;52.81% (2k-8B) و&asymp;60.12% (5k-8B بفترة 90%: 0.5843&ndash;0.6181 مقابل 0.4939 للتقليدي).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. المناقشة</h2>
+    <p>يساعد الوزن لأن هامش المرجع المجمّد إشارة ثقة جوهرية: فالأزواج كبيرة الهامش تنجو من قلبات إعادة التوسيم وتستحق التوكيد حتى على البيانات النظيفة، لذا لا يضر nrDPO أبدًا ويفيد قليلًا (+0.13&ndash;0.74%). ويساعد التبويب تحديدًا عندما تهيمن القلبات — فيبتر الذيل الملوث — ويضر عندما تكون البيانات نظيفة، لأن أزواج الهامش المنخفض تحمل إشارة تدرجية؛ وخيار المرجع SFT مقابل الأساسي مهم باعتدال عند الضوضاء المتوسطة لكن البوابة هي الغالبة عند الضوضاء الشديدة.</p>
+    <p>تكمّم مقارنة RLAIF مقابل RLHF ثمن ضوضاء المعلم: فخطوط الأنابيب المتماثلة تخسر 10&ndash;16 نقطة عند استبدال التوسيم البشري بتوسيم معلمي 8B/70B، والمتغير المبوَّب وحده يغلق معظم الفجوة. ويشير المؤلفون إلى التوافق (لا التعارض) مع أهداف المكافأة المتينة [29] والترشيح قبل PPO [30] كخطوات تالية قابلة للدمج هندسيًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. المحدودات والخاتمة</h2>
+    <p>المحدودات: يقتصر التقييم على محاذاة الضرر/الفائدة صغيرة النطاق (2k&ndash;10k أزواج) بتقسيمات HH-RLHF [7] ومعلمي Llama-3.1، فالتعميم إلى مجالات أوسع ومعلمين أكبر وحوارات متعددة الأدوار غير مختبر؛ وعتبة البوابة &tau; والقيم الافتراضية (K و&gamma; و&lambda;) ضُبطت على مدونة واحدة؛ ويبقى دمج الوزن/التبويب مع أهداف متينة بأسلوب [29][30] عملًا مستقبليًا.</p>
+    <p>ختامًا، يجعل nrDPO (الوزن الناعم لكل عينة) مع متغيره المبوَّب (الترشيح الصلب منخفض الهامش) نموذجَ DPO متينًا حيث يفشل حاليًا: فيطابق DPO التقليدي أو يتفوق عليه قليلًا على البيانات النظيفة الصغيرة، ويتدهور أبطأ بكثير تحت قلبات 10&ndash;30%، ويستعيد — بالبوابة — وحده محاذاة &asymp;60% من توسيمات RLAIF شديدة الضوضاء. والتوصيات العملية: قياس هامش معتدل (&gamma; &asymp; 1.5) واحتفاظ سياقي قصير (K = 32) ومرجع SFT عند الضوضاء المتوسطة والبوابة دائمًا تحت الضوضاء الشديدة أو RLAIF.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Reinforcement learning from human feedback (RLHF) produces powerful instruction-following models but depends on slow, costly human preference labeling [4][7][8]; its efficient alternative, reinforcement learning from AI feedback (RLAIF), relabels pairs with teacher LLMs yet injects substantial label noise — here, Llama-3.1 teachers (8B and 70B) flipped over half of the original human preferences. Under such noise, standard direct preference optimization (DPO) [6] degrades sharply.</p>
+    <p>We propose nrDPO and nrDPO-gated, drop-in DPO variants resilient to noisy preferences: each pair is reweighted by (i) a margin-confidence term from a frozen reference policy with slope &gamma;, (ii) a context-stability term penalizing preferences that flip under truncated histories (window K), and (iii) a length correction (&lambda;) curbing verbosity bias; the gated variant additionally discards pairs whose reference margin falls below a threshold &tau;. On 5k harmless-base pairs with 30% synthetic flips, nrDPO-gated beats vanilla DPO by +3.8% preference accuracy, and on a realistic 5k RLAIF relabeling it is the only variant that recovers competitive alignment (&asymp;60% vs. &asymp;49&ndash;50% for vanilla DPO), approaching RLHF baselines.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>RLHF aligns LLMs with human values by training a reward model on human-annotated preferences and optimizing the policy with algorithms like PPO [4][11][12], but human labeling is slow, costly, and hard to scale — especially for multi-turn prompts and low-resource languages. Direct preference optimization (DPO) [6] removed the explicit reward model by reparameterizing the RLHF objective into a classification-like loss, yet it inherits the same dependence on clean labels.</p>
+    <p>RLAIF replaces human annotators with LLM teachers, but teacher relabeling flips a large share of preferences (over 50% here), so vanilla DPO overfits the noise and its preference accuracy collapses. Prior robust fixes either design reward-robust RLHF objectives trading performance for robustness [29] or filter unreliable samples before PPO updates [30]; nrDPO instead keeps DPO's simplicity with per-sample weights plus an optional hard gate.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related Work</h2>
+    <p>Preference-based RL began with reward modeling from human comparisons regularized by KL divergence toward a reference (often supervised fine-tuned) policy [4][8], maturing into the three-stage pretrain&ndash;reward&ndash;PPO pipeline behind summarization and instruction following [11][12]. DPO [6] closed the loop without sampling or a separate reward model, which made label quality — rather than optimization machinery — the binding constraint.</p>
+    <p>Noise in preferences is attacked on two fronts: objective-side designs such as reward-robust RLHF [29] that trade performance against worst-case reward corruption, and policy-side filters that drop unreliable samples before PPO [30]. The authors position nrDPO as complementary: weighting plus gating operate inside the DPO loss itself, and future work may combine them with [29][30] and test broader generalization.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Model</h2>
+    <p>Given preference triples (x, y<sub>w</sub>, y<sub>l</sub>), vanilla DPO [6] optimizes a classification loss over the implicit reward gap &Delta;&pi; &minus; &Delta;ref between policy and frozen reference log-probability margins. nrDPO multiplies each pair's loss by a non-negative weight w normalized to unit batch mean (Eq. 4): w = &sigma;(&gamma;|&Delta;ref|) &middot; exp(&minus;|&Delta;ref &minus; &Delta;ref,K|) &middot; exp(&minus;&lambda;||y<sub>w</sub>| &minus; |y<sub>l</sub>||), i.e. a sigmoid margin-confidence term, a context-stability term comparing the full-history margin against the keep-last-K margin, and a length correction against verbosity bias.</p>
+    <p>nrDPO-gated adds a hard gate keeping only pairs with &Delta;ref &gt; &tau; (Algorithm 1): low-confidence, likely-flipped pairs are removed rather than merely down-weighted. On clean data the gate can discard useful low-margin signal and trail the ungated variant, but under severe noise or RLAIF relabeling the gate is what retains accuracy.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Experiment</h2>
+    <p>Training uses harmless-base / helpful-base subsets of HH-RLHF [7] (H-2k/5k clean samples; H-5k-n10/n20/n30 with 10&ndash;30% flips; RLAIF-2k/5k relabeled by Llama-3.1-8B/70B teachers), evaluated on the corresponding test splits (2312 harmless, 2354 helpful pairs). Hyperparameters tuned once on H-5k (clean + 20% noise) are frozen for all other runs: margin slope &gamma; &asymp; 1.5 (gains 0.612 &rarr; 0.623&ndash;0.626 under noise), context window K = 32 (K = 64/128 drops 1&ndash;1.5 pts), length weight &lambda; = 2&times;10<sup>&minus;3</sup> under noise. The metric is preference accuracy (PrefAcc) with 95% CIs.</p>
+    <p>On clean data, SFT sits at 55&ndash;57%, vanilla DPO reaches 59.47%/64.79%/66.87% at 2k/5k/10k, nrDPO adds small but significant gains (+0.74% at 5k, non-overlapping CIs), while gating discards useful signal (51.73% at 2k, 62.37% at 10k). Under synthetic noise, vanilla DPO falls 62.98% &rarr; 58.52% from 10% to 30% flips while nrDPO-gated holds &asymp;63% at every level and tops the 30% column by +3.8%. In RLAIF, ungated models drop from 59&ndash;66% (human labels) to &asymp;44&ndash;46% (2k) and &asymp;48&ndash;50% (5k) — a 10&ndash;16 point collapse — while nrDPO-gated alone recovers to &asymp;52.81% (2k-8B) and &asymp;60.12% (5k-8B, 90% CI 0.5843&ndash;0.6181 vs. vanilla 0.4939).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Discussion</h2>
+    <p>Weighting helps because the frozen reference margin is an intrinsic confidence signal: large-margin pairs survive relabeling flips and deserve emphasis even on clean data, which is why nrDPO never hurts and slightly helps (+0.13&ndash;0.74%). Gating helps exactly when flips dominate — it amputates the corrupted tail — and hurts when data are clean, since low-margin pairs still carry gradient signal; the SFT-vs-base reference choice matters moderately at mid noise but the gate dominates at severe noise.</p>
+    <p>RLAIF vs. RLHF quantifies the price of teacher noise: identical pipelines lose 10&ndash;16 points when human labels are swapped for 8B/70B teacher labels, and only the gated variant closes most of that gap. The authors note compatibility (not conflict) with reward-robust objectives [29] and pre-PPO filtration [30] as engineering-combinable next steps.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Limitations and Conclusions</h2>
+    <p>Limitations: evaluation is confined to small-scale harmlessness/helpfulness alignment (2k&ndash;10k pairs) with HH-RLHF [7] splits and Llama-3.1 teachers, so generalization to broader domains, larger teachers, and multi-turn dialogue is untested; the gate threshold &tau; and (K, &gamma;, &lambda;) defaults were tuned on one corpus; and combining weighting/gating with [29][30]-style robust objectives remains future work.</p>
+    <p>In conclusion, nrDPO (soft per-sample weighting) plus its gated variant (hard low-margin filtering) make DPO resilient where it currently fails: matching or slightly beating vanilla DPO on clean small data, degrading far more slowly under 10&ndash;30% label flips, and — with the gate — uniquely recovering &asymp;60% alignment from heavily-noised RLAIF labels. Practical defaults: moderate margin scaling (&gamma; &asymp; 1.5), short context retention (K = 32), an SFT reference at moderate noise, and always the gate under severe noise or RLAIF.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Key references are listed below with their original paper numbers (of 31 total). See the full paper for the complete list: https://doi.org/10.3390/app151910328.</p>
+    <ol dir="ltr">
+      <li>Tolegen, G.; Toleu, A.; Mussabayev, R. Enhancing Low-Resource NER via Knowledge Transfer from LLM. <i>Information</i> (MDPI), 2025.</li>
+      <li>Touvron, H.; Lavril, T.; Izacard, G.; Martinet, X.; Lachaux, M.-A.; Lacroix, T.; Rozi&egrave;re, B.; Goyal, N.; Hambro, E.; Azhar, F.; et al. Llama: Open and efficient foundation language models. arXiv 2023, arXiv:2302.13971.</li>
+      <li>Toleu, A.; Tolegen, G.; Ualiyeva, I. Fine-Tuning Large Language Models for Kazakh Text Simplification. 2025.</li>
+      <li>Christiano, P.F.; Leike, J.; Brown, T.; Martic, M.; Legg, S.; Amodei, D. Deep Reinforcement Learning from Human Preferences. In <i>Proc. NeurIPS 30</i>, Long Beach, CA, USA, 4&ndash;9 December 2017.</li>
+      <li>Huang, S.; Zhao, J.; Li, Y.; Wang, L. Learning Preference Model for LLMs via Automatic Preference Data. 2024.</li>
+      <li>Rafailov, R.; Sharma, A.; Mitchell, E.; Manning, C.D.; Ermon, S.; Finn, C. Direct Preference Optimization: Your Language Model is Secretly a Reward Model. In <i>Proc. NeurIPS 36</i>, New Orleans, LA, USA, 10&ndash;16 December 2023.</li>
+      <li>Bai, Y.; Jones, A.; Ndousse, K.; Askell, A.; Chen, A.; DasSarma, N.; Drain, D.; Fort, S.; Ganguli, D.; et al. Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback (HH-RLHF). arXiv 2022, arXiv:2204.05862.</li>
+      <li>Wirth, C.; Akrour, R.; Neumann, G.; F&uuml;rnkranz, J. A Survey of Preference-Based Reinforcement Learning Methods. <i>J. Mach. Learn. Res.</i> 2017, 18, 1&ndash;46.</li>
+      <li>Stiennon, N.; Ouyang, L.; Wu, J.; Ziegler, D.; Lowe, R.; Voss, C.; Radford, A.; Amodei, D.; Christiano, P.F. Learning to summarize with human feedback. In <i>Proc. NeurIPS 33</i>; Larochelle, H., Ranzato, M., Hadsell, R., Balcan, M.F., Lin, H., Eds.; Curran Associates, Inc.: Red Hook, NY, USA, 2020; Volume 33, pp. 3008&ndash;3021.</li>
+      <li>Ouyang, L.; Wu, J.; Jiang, X.; Almeida, D.; Wainwright, C.; Mishkin, P.; Zhang, C.; Agarwal, S.; Slama, K.; Ray, A.; et al. Training language models to follow instructions with human feedback (InstructGPT). In <i>Proc. NeurIPS 35</i>, New Orleans, LA, USA, 28 November&ndash;9 December 2022.</li>
+      <li>Yan, Y.; Lou, X.; Li, J.; Zhang, Y.; Xie, J.; Yu, C.; Wang, Y.; Yan, D.; Shen, Y. Reward-Robust RLHF in LLMs. 2025.</li>
+      <li>Zhang, C.; Shen, W.; Zhao, L.; Zhang, X.; Xu, X.; Dou, W.; Bian, J. Policy Filtration for RLHF to Mitigate Noise in Rewards. 2025.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app151910328">10.3390/app151910328</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

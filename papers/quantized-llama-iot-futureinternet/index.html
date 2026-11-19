@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تقييم نماذج Llama 2 المكمّمة لتوليد لغة سياسات الخصوصية في إنترنت الأشياء — DAR</title>
+<meta name="description" content="Evaluating Quantized Llama 2 Models for IoT Privacy Policy Language Generation — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/quantized-llama-iot-futureinternet/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Evaluating Quantized Llama 2 Models for IoT Privacy Policy Language Generation</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تقييم نماذج Llama 2 المكمّمة لتوليد لغة سياسات الخصوصية في إنترنت الأشياء</h2>
+
+  <div class="paper-meta">
+    <span>👤 Bhavani Malisetty, Alfredo J. Perez</span>
+    <span>📄 Future Internet, 2024 · Vol. 16, 224</span>
+    <span>🔗 <a href="https://doi.org/10.3390/fi16070224">10.3390/fi16070224</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يتسارع اعتماد إنترنت الأشياء باستمرار [1][2]، لكن سياسات الخصوصية تبقى طويلة ومبعثرة وصعبة الاستخدام للمستهلكين [16][17]، وتفاصيل إدارة البيانات فيها غالبًا غير مبينة بوضوح [11]. وبما أن حلول التبسيط وإعادة الهيكلة السابقة لم تستفد من أحدث الذكاء الاصطناعي، تطرح هذه الدراسة سؤال: هل تستطيع نماذج اللغة الكبيرة المكمّمة — القابلة للتشغيل على حواسيب المستهلك — توليد لغة سياسات خصوصية إنترنت الأشياء بمستوى النموذج الأساسي والسياسات المصوغة قانونيًا؟</p>
+    <p>باستخدام 30 سياسة إنترنت أشياء مختارة عشوائيًا من مجموعة Kuznetsov وآخرين [85] (626 ملفًا و50 كلمة مفتاحية) وأربع محفزات مصممة لهذا الغرض ونماذج Llama 2 Bloke الأساسية مقابل المكمّمة 4/5/8-بت دون ضبط دقيق، قُيّمت المخرجات بمقاييس ROUGE-Lsum [89] ودقة BERT [90] وتشابه جيب التمام لـWord2Vec [91] وGloVe [92]. بقيت وسيطات ROUGE-Lsum دون 0.3 (المرضي &asymp;0.4)، أي لا نسخ حرفي، لكن الدرجات الدلالية كانت عالية — دقة BERT &asymp;0.87 ووسيطات Word2Vec فوق 0.95 — دون فجوة دالة بين المكمّمة والأساسي. فـLlama 2 المكمّمة صالحة لتوليد سياسات الخصوصية وتحليلها على أجهزة المستهلك.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تَعِد إسقاطات نمو إنترنت الأشياء ومسوحاته [1][2][4][5] بمكاسب إنتاجية، لكن كل جهاز متصل — من متتبعات اللياقة إلى الأقفال الذكية — يوسّع سطح الهجوم وكشف البيانات، وتوثّق مسوحات التهديدات [6] ودراسات أمن شبكات الاستشعار [7] وتحليلات هجمات المتصفح [8] هذا الخطر. وسياسات الخصوصية هي الأداة القانونية المفترض أن تفصح عن الجمع والتخزين والاستخدام والمشاركة مع الأطراف الثالثة والموافقة والضمانات [11]، لكن المستهلكين نادرًا ما يقرؤونها كاملة قبل القبول.</p>
+    <p>تتعامل نماذج اللغة العصبية اليوم مع النصوص غير المهيكلة [29] والصوت [30] والفيديو [31] والصور [32]، وتُظهر عائلات النماذج من T5 [45] وBLOOM [46] إلى Pythia [47] والأنظمة الحوارية [44] نموًا سريعًا في القدرات — لكن شيئًا من ذلك لم يُوظَّف لتوليد سياسات خصوصية إنترنت الأشياء. وإسهام الورقة هو تقييم مضبوط: الأساسي مقابل ثلاث درجات مكمّمة من Llama 2 وأربع محفزات وأربعة مقاييس، مع نشر البيانات والشيفرات علنًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة</h2>
+    <p>تمتد خلفية النماذج اللغوية من جدول النماذج (الأنظمة الحوارية [44] وT5 [45] وBLOOM [46] وPythia [47]) إلى النمذجة العصبية للنص والصوت والفيديو والصور [29][30][31][32]. وعلى جهة السياسات، تشمل المشكلات المعروفة الإفصاحات المبعثرة صعبة العثور [16] ومحدودية حلول التبسيط وإعادة الهيكلة [17]، إلى جانب أدبيات أتمتة نشطة: دراسات تطور المقروئية والبنية [15] والتحقق من الاكتمال بالذكاء الاصطناعي [71] والمسوح المنهجية لتحليل السياسات الآلي [72] التي تؤطر نمو المجال وفرصه.</p>
+    <p>والفجوة المستهدفة دقيقة: فأعمال الأتمتة [71][72] تصنّف السياسات القائمة وتفحصها، لكن التقييم التوليدي للنماذج المكمّمة الحديثة على لغة سياسات إنترنت الأشياء كان مفقودًا. وتصميمهم — إكمال مقتطفات سياسات حقيقية ناقصة لا صياغة حرة — يختبر سيناريو المساعدة بالذات (التدقيق وسد الثغرات والشرح الموجه للمستهلك) حيث تهم النماذج العاملة على الجهاز.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. المنهجية</h2>
+    <p>جاءت البيانات من مجموعة Kuznetsov وآخرين لسياسات إنترنت الأشياء [85]: سياسات كبار المصنّعين المجموعة عبر Amazon وWalmart وبحث Google، والمصفاة إلى 626 ملفًا يحوي كل منها واحدة أو أكثر من 50 كلمة خصوصية (&laquo;iot device&raquo; و&laquo;smart device&raquo; و&laquo;connected device&raquo; إلخ). ويربط الشكل 1 خمس مراحل — الجمع والإعداد وتصميم المحفزات والنمذجة اللغوية والتصوير — واختارت التجربة 30 سياسة أجهزة عشوائيًا في أزواج نص (مقتطف ناقص للنموذج) / نص مرجعي (الأصل الكامل).</p>
+    <p>تتبع المحفزات اللبنات الست — المهمة والسياق والمثال والدور والتنسيق والنبرة [87][88] — لأن جودة المخرجات تتوقف على تصميم المحفز [86]: المحفز 1 (تحديد/استخراج السياسة الكاملة مع فحص الموافقة والأمن)، والمحفز 2 (الإكمال من نص ناقص)، والمحفز 3 (إكمال مقتطف مشترك)، والمحفز 4 (شخصية ذكاء إكمال سياسات الخصوصية لتوليف سياسات كاملة متماسكة). واستخدمت النمذجة اللغوية Llama 2 الأساسي دون ضبط دقيق مقابل Bloke 4-بت (8.14 GB / ذاكرة 10.64 GB) و5-بت (9.76 / 12.26 GB) و8-بت (13.83 / 16.33 GB)، بتجربة بايثون من VS Code 1.89.0 على خادم بذاكرة 2.0 TiB ومعالجي AMD EPYC 7513 وأربع بطاقات A100-80GB (وتكفي أجهزة المستهلك العادية للنماذج المكمّمة نفسها).</p>
+    <p>جمع التقييم بين مقاييس لفظية ودلالية (الجدول 5): ROUGE-Lsum [89] للتداخل اللفظي (الأقرب إلى 1 أفضل؛ &asymp;0.4 مرضٍ)، ودقة BERT [90] للمعنى السياقي، وتشابه جيب التمام لـWord2Vec [91] وGloVe [92] للدلالة التوزيعية — وتعرض المخططات الصندوقية الوسيط والمدى الربيعي والقيم الشاذة لكل محفز ونموذج.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. النتائج</h2>
+    <p>استقرت وسيطات ROUGE-Lsum (الشكل 2) دون 0.3 باستمرار عبر كل المحفزات والنماذج — تحت عتبة &asymp;0.4 المرضية — بصناديق ربيعية متداخلة (الأساسي أفضل قليلًا فقط) وبضع قيم شاذة فوق 0.5: فالنماذج تعيد الصياغة لا تنسخ صياغة السياسات. وروت دقة BERT (الشكل 3) القصة المكمّلة: كل النماذج فوق 0.8 بوسيطات قرب 0.87، والأساسي أقل تباينًا لكن بشواذ أكثر، دون فروق دالة بين النماذج.</p>
+    <p>تجاوزت وسيطات جيب تمام Word2Vec (الشكل 4) 0.95 بتوزيعات شبه متماثلة لـ5-بت و8-بت والأساسي (4-بت أكثر تباينًا قليلًا)؛ وتصرف GloVe (الشكل 5) بالمثل، مع قيم شاذة منخفضة لسياسات أخلصتها النماذج أقل. والخلاصة المشتركة: النماذج المكمّمة تطابق الأساسي — إخلاص دلالي عالٍ للغة سياسات إنترنت الأشياء المصوغة قانونيًا دون نسخ حرفي.</p>
+    <p>وذُكرت ثلاثة محدودات: لا تفصيل حسب الموضوع (قد تختلف صعوبة بيانات الجمع عن المشاركة مع الأطراف الثالثة)؛ ولا ضبط دقيق للنماذج المكمّمة على نصوص السياسات مما قد يرفع الدقة؛ ولا دراسات إدراك بشري لمفهومية النصوص المولدة لاتخاذ القرار الفعلي.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. الخاتمة</h2>
+    <p>قُيّمت نماذج Llama 2 الأساسية والمكمّمة 4/5/8-بت على إكمال نصوص سياسات إنترنت أشياء ناقصة بأربع محفزات، وسُجّلت بتشابه ROUGE-Lsum [89] ودقة BERT [90] وWord2Vec [91] وGloVe [92] من التداخل اللفظي إلى الترابط الدلالي. تولّد النماذج المكمّمة نصوصًا مشابهة لنصوص الأساسي — متماسكة وسياقية ومقارِنة للغة سياسات إنترنت الأشياء المصوغة قانونيًا — فتصلح لتوليد سياسات الخصوصية وتحليلها على أجهزة المستهلك دون تضحية جوهرية بالأداء، دعمًا لذكاء اصطناعي متاح وفعّال.</p>
+    <p>الأعمال المستقبلية: نماذج مكمّمة مضبوطة دقيقًا على مدونات السياسات، وتقنيات تكميم أخرى كالتدريب الواعي بالتكميم، وتقييم بشري للمخرجات، ونماذج أحدث مبنية لأجهزة المستهلك. البيانات والشيفرات: github.com/bhavanimalisetty/Evaluating-Quantized-LLaMA-Model-for-IoT-Privacy-Policy-Language؛ بتمويل من جائزة GRACA بجامعة نبراسكا أوماها؛ ولا تضارب مصالح.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Internet-of-Things adoption keeps accelerating [1][2], yet privacy policies remain long, scattered, and hard for consumers to use [16][17], with data-management details often underspecified [11]. Because prior simplification and restructuring aids never leveraged the latest AI, this study asks whether quantized large language models — runnable on consumer-grade machines — can generate IoT privacy-policy language comparable to the base model and to lawyer-crafted policies.</p>
+    <p>Using 30 randomly sampled IoT policies from the Kuznetsov et al. dataset [85] (626 files, 50 keywords), four purpose-built prompts, and zero-shot base vs. 4/5/8-bit Bloke Llama 2 models, outputs were scored with ROUGE-Lsum [89], BERT Precision [90], Word2Vec [91], and GloVe [92] cosine similarity. ROUGE-Lsum medians stayed below 0.3 (satisfactory &asymp; 0.4), i.e. no verbatim replication, but semantic scores were high — BERT precision &asymp; 0.87, Word2Vec medians above 0.95 — with no significant gap between quantized and base models. Quantized Llama 2 is therefore viable for IoT privacy-policy generation and analysis on consumer hardware.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>IoT growth projections and surveys [1][2][4][5] promise productivity gains, but every connected device — from fitness trackers to smart locks — widens the attack and data-exposure surface, with threat surveys [6], sensor-network security studies [7], and man-in-the-browser analyses [8] documenting the risk. Privacy policies are the legal instrument meant to disclose collection, storage, use, third-party sharing, consent, and safeguards [11], yet consumers rarely read them end to end before accepting.</p>
+    <p>Neural language models now handle unstructured text [29], audio [30], video [31], and images [32], and LLM families from T5 [45] and BLOOM [46] to Pythia [47] and conversational systems [44] show rapid capability growth — but none of this had been brought to IoT privacy-policy generation. The paper's contribution is a controlled evaluation: base vs. three quantized Llama 2 grades, four prompts, four metrics, with data and scripts released publicly.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related Work</h2>
+    <p>LLM background spans the model table (conversational systems [44], T5 [45], BLOOM [46], Pythia [47]) and neural text/audio/video/image modeling [29][30][31][32]. On the policy side, known problems include scattered, hard-to-find disclosures [16] and the limited reach of simplification/restructuring fixes [17], alongside an active automation literature: readability/structure evolution studies [15], completeness checking with AI [71], and systematic mappings of automated policy analysis [72] that frame the field's growth and open opportunities.</p>
+    <p>The gap the authors target is precise: automation work [71][72] classifies and checks existing policies, but generation-side evaluation of modern quantized LLMs on IoT policy language was missing. Their design — completion of real incomplete policy fragments rather than free-form drafting — tests exactly the assistive scenario (auditing, gap-filling, consumer-facing explanation) where on-device models matter.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Methodology</h2>
+    <p>Data came from the Kuznetsov et al. IoT policy dataset [85]: policies of major manufacturers harvested via Amazon, Walmart, and Google Search, filtered to 626 files each containing one or more of 50 privacy keywords (&ldquo;iot device&rdquo;, &ldquo;smart device&rdquo;, &ldquo;connected device&rdquo;, etc.). Figure 1 chains five stages — collection, preparation, prompt design, language modeling, visualization — and the experiment sampled 30 device policies at random into Text (incomplete fragment for the model) / Reference Text (complete original) pairs.</p>
+    <p>Prompts follow the six building blocks — task, context, exemplar, persona, format, tone [87][88] — since output quality hinges on prompt design [86]: Prompt 1 (locate/extract the full policy with consent &amp; security checks), Prompt 2 (complete from incomplete text), Prompt 3 (complete a shared excerpt section), Prompt 4 (Privacy-Policy-Completion-AI persona synthesizing coherent full policies). Language modeling used zero-shot base Llama 2 vs. Bloke 4-bit (8.14 GB / 10.64 GB RAM), 5-bit (9.76 / 12.26 GB), 8-bit (13.83 / 16.33 GB) with no fine-tuning, executed from a VS Code 1.89.0 Python script on a 2.0 TiB RAM, 2&times; AMD EPYC 7513, 4&times; A100-80GB server (consumer-grade hardware suffices for the quantized models themselves).</p>
+    <p>Evaluation paired lexical and semantic metrics (Table 5): ROUGE-Lsum [89] for n-gram overlap (closer to 1 better; &asymp;0.4 satisfactory), BERT Precision [90] for contextual meaning, and Word2Vec [91] / GloVe [92] cosine similarity for distributional semantics — boxplots report medians, interquartile ranges, and outliers per prompt and model.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Results</h2>
+    <p>ROUGE-Lsum (Figure 2) medians sat consistently below 0.3 across all prompts and models — under the &asymp;0.4 satisfactory bar — with overlapping interquartile boxes (base only slightly better) and a few &gt;0.5 outliers: models paraphrase rather than replicate policy wording. BERT Precision (Figure 3) told the complementary story: all models above 0.8 with medians near 0.87, the base model less variable but with more outliers, and no significant model differences.</p>
+    <p>Word2Vec cosine (Figure 4) medians exceeded 0.95 with near-identical distributions for 5-bit, 8-bit, and base (4-bit slightly more variable); GloVe (Figure 5) behaved similarly, with low-score outliers marking policies the models rendered less faithfully. Jointly: quantized models match the base model — high semantic fidelity to lawyer-crafted IoT policy language without verbatim copying.</p>
+    <p>Three limitations are stated: no per-theme breakdown (collection vs. third-party-sharing statements may differ in difficulty); no fine-tuning of the quantized models on policy text, which could raise accuracy; and no human-perception studies of the generated texts' comprehensibility for real decision-making.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Conclusions</h2>
+    <p>Base and 4/5/8-bit Llama 2 models were evaluated on completing incomplete IoT policy texts with four prompts, scored by ROUGE-Lsum [89], BERT Precision [90], Word2Vec [91], and GloVe [92] similarity from n-gram overlap to semantic coherence. Quantized models generate texts similar to the base model's — coherent, contextual, and comparable to legal-team IoT policy language — so they suit privacy-policy generation and analysis on consumer-grade devices without substantial performance compromise, advancing accessible, efficient AI.</p>
+    <p>Future work: fine-tuned quantized models on policy corpora, other quantization techniques such as quantization-aware training, human evaluation of outputs, and newer LLMs built for consumer devices. Data and scripts: github.com/bhavanimalisetty/Evaluating-Quantized-LLaMA-Model-for-IoT-Privacy-Policy-Language; funded by the University of Nebraska at Omaha GRACA Award; no conflicts of interest.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Key references are listed below with their original paper numbers (of 92 total). See the full paper for the complete list: https://doi.org/10.3390/fi16070224.</p>
+    <ol dir="ltr">
+      <li>Sharma, N.; Shamkuwar, M.; Singh, I. The History, Present and Future with IoT. In <i>Internet of Things and Big Data Analytics</i>; Springer: Cham, Switzerland, 2020.</li>
+      <li>Khan, R.; Khan, S.U.; Zaheer, R.; Khan, S. Future internet: The internet of things architecture, possible applications and key challenges. In <i>Proc. FIT 2012</i>, Islamabad, Pakistan, 17&ndash;19 December 2012.</li>
+      <li>Meneghello, F.; Calore, M.; Zucchetto, D.; Polese, M.; Zanella, A. IoT: Internet of threats? A survey of practical security vulnerabilities in real IoT devices. <i>IEEE Internet Things J.</i> 2019, 6, 8182&ndash;8201.</li>
+      <li>As cited on third-party data collection, usage, and user-data management disclosure gaps in IoT privacy policies.</li>
+      <li>Adhikari, A.; Das, S.; Dewri, R. Evolution of Composition, Readability, and Structure of Privacy Policies over Two Decades. <i>Proc. Priv. Enhancing Technol.</i> 2023, 3, 138&ndash;153.</li>
+      <li>Heino, T.; Rauti, S.; Carlsson, R. An assessment of privacy policies for smart home devices. In <i>Proc. MobiQuitous / Int. Conf. Computer Systems and Technologies</i>, 2024.</li>
+      <li>As cited on simplifying/restructuring privacy-policy language for consumers.</li>
+      <li>Ali, R.; Tang, O.Y.; Connolly, I.D.; Fridley, J.S.; Shin, J.H.; Sullivan, P.L.Z.; Cielo, D.; Oyelese, A.A.; Doberstein, C.E.; Telfeian, A.E.; et al. Performance of ChatGPT, GPT-4, and Google Bard on a neurosurgery oral boards preparation question bank. <i>Neurosurgery</i> 2022, 10, 1227.</li>
+      <li>Raffel, C.; Shazeer, N.; Roberts, A.; Lee, K.; Narang, S.; Matena, M.; Zhou, Y.; Li, W.; Liu, P.J. Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer (T5). <i>J. Mach. Learn. Res.</i> 2020, 21, 1&ndash;67.</li>
+      <li>Amaral, O.; Abualhaija, S.; Torre, D.; Sabetzadeh, M.; Briand, L.C. AI-enabled automation for completeness checking of privacy policies. <i>IEEE Trans. Softw. Eng.</i> 2021, 48, 4647&ndash;4674.</li>
+      <li>Del Alamo, J.M.; Guaman, D.S.; Garc&iacute;a, B.; Diez, A. A systematic mapping study on automated analysis of privacy policies. <i>Computing</i> 2022, 104, 2053&ndash;2076.</li>
+      <li>Kuznetsov, M.; et al. IoT privacy-policy dataset of smart-device manufacturers (626 files, 50 keywords), as used for policy text completion.</li>
+      <li>As cited on prompt design determining LLM output quality (task/context/persona/format/tone blocks).</li>
+      <li>Lin, C.-Y. ROUGE: A Package for Automatic Evaluation of Summaries. In <i>Proc. ACL Workshop on Text Summarization Branches Out</i>, Barcelona, Spain, 25&ndash;26 July 2004.</li>
+      <li>Zhang, T.; Kishore, V.; Wu, F.; Weinberger, K.Q.; Artzi, Y. BERTScore: Evaluating Text Generation with BERT. arXiv 2019, arXiv:1904.09675.</li>
+      <li>Church, K.W. Word2Vec. <i>Nat. Lang. Eng.</i> 2017, 23, 155&ndash;162.</li>
+      <li>Pennington, J.; Socher, R.; Manning, C.D. GloVe: Global Vectors for Word Representation. In <i>Proc. EMNLP 2014</i>, Doha, Qatar, 25&ndash;29 October 2014.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/fi16070224">10.3390/fi16070224</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

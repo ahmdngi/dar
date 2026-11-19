@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة النماذج اللغوية الكبيرة الموحدة للصناعة 4.0 — DAR</title>
+<meta name="description" content="A Review of Federated Large Language Models for Industry 4.0 — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/fedllm-industry40-sensors/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Review of Federated Large Language Models for Industry 4.0</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مراجعة النماذج اللغوية الكبيرة الموحدة للصناعة 4.0</h2>
+
+  <div class="paper-meta">
+    <span>👤 Feng Jing, Yujing Zhang, Mei Gao, Xiongtao Zhang, Huaizhe Zhou</span>
+    <span>📄 Sensors, 2026 · Vol. 26, No. 4, Article 1116</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s26041116">10.3390/s26041116</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تتصور الصناعة 4.0 منظومة تصنيع مترابطة وذاتية الاستقلال مبنية على إنترنت الأشياء الصناعي والأنظمة السيبرانية-الفيزيائية والذكاء الاصطناعي [1–8]. وتضيف النماذج اللغوية الكبيرة اتخاذ قرار دلاليًا ودمج المعرفة عبر المجالات والأتمتة الذكية — لكن قيود الخصوصية والأمن والتنظيم تعزل البيانات الصناعية وتعيق قابلية التوسع. ويجيب التعلم الموحد بتحسين لا مركزي للنماذج لا يكشف البيانات الخام أبدًا [19، 20]. وتغطي هذه المراجعة شاملًا أبحاث النماذج الموحدة الحديثة بتركيز على الجدوى الصناعية، مقارِنة التقنيات الممكّنة وتصاميم الأنظمة واستراتيجيات النشر — من أعباء الحوسبة والاتصالات والمزامنة واسعة النطاق إلى المتانة — وتختم بتحديات النشر في البيئات الصناعية المعقدة وأجندة بحثية مستقبلية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تهدف الصناعة 4.0 إلى ربط تصميم المنتجات والتصنيع والعمليات والصيانة في منظومة تكيفية واعية بذاتها وتتخذ قرارها بنفسها من إنترنت الأشياء الصناعي والأنظمة السيبرانية-الفيزيائية والذكاء الاصطناعي [1–8، 14، 17]. ويجب أن يقدم الذكاء قدرات موسعة واعية دلاليًا — والنماذج اللغوية هي المحرك المرشح — غير أن البيانات نفسها التي تجعلها قيّمة (سجلات الآلات وسجلات الجودة وآثار سلاسل التوريد ومعارف المشغلين) مقفلة خلف جدران الخصوصية والأمن والتنظيم. ويتطلب التدريب المركزي تجميع تلك البيانات، وهو ما تحظره التنظيمات الصناعية والمسؤولية والقانون.</p>
+    <p>ويحل التعلم الموحد المعضلة بنيويًا: يحسّن العملاء نموذجًا مشتركًا بينما لا تغادر البيانات الخام المصنع أبدًا [19، 20]. ويَعِد التطبيق على النماذج بذكاء خاص بكل مصنع دون تعريضه. لكن النماذج ذات المليارات من المعاملات تصطدم بواقع الحافة — متحكمات فقيرة الذاكرة وروابط متقطعة وأساطيل متباينة وخصوم. ومن ثم يؤطر المسح النماذج الموحدة للصناعة 4.0 كمشكلة ثلاثية الجبهات: أعباء الحوسبة والاتصالات والخصوصية والأمن والتباين [21–23، 28–30] — العمود الفقري المنظم لكل ما يلي.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. المنهجية</h2>
+    <p>يتبع المسح بروتوكولًا منهجيًا من ثلاث مراحل. يلقي التحديد شبكة واسعة على أدبيات النماذج الموحدة تمتد عبر أسس التعلم الموحد — التعلم اللامركزي الفعال اتصاليًا [19] وتقارب غير المتطابق التوزيع [20] والطرق المتسامحة مع التباين [28، 29] — ونطاق مسح النماذج [18]. ثم ترشّح معايير الإدراج والاستبعاد للجدوى الصناعية: يجب أن تعالج الأعمال نماذج المليارات تحت حوسبة مقيدة أو تحسينًا حافظًا للخصوصية أو توحيدًا متباينًا، مستبعدة التدريب المركزي المحض ودراسات الضغط غير الموحدة.</p>
+    <p>ويستخرج جمع البيانات، لكل عمل مشمول، عائلة التقنية (الضبط الفعال معاملاتيًا والتخفيف والتخصيص التكيفي والتقسيم وآلية الخصوصية ومعالج التباين) والسيناريو الصناعي (الصيانة التنبؤية وضبط الجودة وسلاسل التوريد والروبوتيات) والمفاضلات المُبلغ عنها في الأعباء والدقة والمتانة. ويقارن التجميع العائلات وجهًا لوجه بدل إعادة بحث المعايير الفردية، منتجًا تصنيف تقنيات القسم الرابع وخريطة أنظمة القسم الخامس [31، 59، 65، 83].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. المفاهيم الأساسية</h2>
+    <p>الصناعة 4.0 هي التحول من التحكم الإنتاجي المركزي إلى اتخاذ القرار الذكي الموزع عبر ربط الأجهزة والمصانع وسلاسل التوريد [14–16]، مع بنى الأنظمة السيبرانية-الفيزيائية التي تؤطر حلقة التصنيع [17]. وتدخل النماذج بوصفها الطبقة الدلالية — إذ تضعها الأدلة على نطاق المسح كمستدللات نصية عامة قابلة للتكيف مع مهام الفهم الصناعي [18]. ويدخل التعلم الموحد بوصفه طبقة التعاون: تحسين لامركزي بأسلوب FedAvg [19] بسلوك تقارب معروف لغير المتطابق [20]، ممددًا بمتغيرات متسامحة مع التباين وموجهة للحافة [28–30].</p>
+    <p>ومقترح النماذج الموحدة هو التقاطع: قدرة النماذج وخصوصية التعلم الموحد وتوزيع الصناعة. ويجلب كل زوج توترًا سيفككه المسح — فالنماذج تريد مجمعات بيانات مركزية بينما تحظر المصانع التجميع؛ والتعلم الموحد يريد تحديثات صغيرة كثيرة بينما النماذج مليارات المعاملات؛ والصناعة 4.0 تريد تحكمًا آنيًا بينما يضيف التوحيد جولات ومتأخرين وخصومًا. تضع الأسس المفردات؛ ويسعّر القسم الرابع التوترات [14–20].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. التحديات وتقنيات أعباء الحوسبة والاتصالات</h2>
+    <p>تنظّم ثلاث فئات من التحديات النشر. يهيمن عبء الحوسبة والاتصالات: فتحديثات النموذج الكامل بمليارات المعاملات عبر روابط صناعية نحيلة غير مجدية، مما يحفز حزمة تقنيات C2 كلها [21–23، 31]. وتتراوح تهديدات الخصوصية والأمن من العكس والاستخراج إلى التجميع الخبيث، وتتصدى لها آليات القسم الخامس [40، 59–64]. ويكسر التباين — الأجهزة والبيانات والنماذج — المتوسط الساذج ويتطلب التخصيص والعنقدة والتقطير [28، 29، 65–82].</p>
+    <p>ولأعباء C2، يتصدر الضبط الفعال معاملاتيًا: دراسات خفض الاتصالات للنماذج اللغوية المدربة مسبقًا [32]، وعائلات المحوّلات (النقل الفعال معاملاتيًا [33] وFedAdapter لمعالجة الجوال [35] والمتغيرات الممتدة [36])، وضبط البادئة والمطالبات (ضبط البادئة [37] والتوجه التخصيصي [38] وضبط المطالبات الصندوق-الأسود [39])، وسلالة LoRA — LoRA نفسها [45] والتكيف الواعي بالمقياس [44] والتجميع الانتقائي الموحد [47] والتصغير المتناوب المتين [48] والخطوط الآلية [49] والتخصيص التكيفي (SA-FedLoRA [50] والتخصيص المتباين [53] والتخصيص العشوائي [54]) والضبط متباين المهام [51]. وتضيف المسارات المكملة ضبط التعليمات الفعال بياناتيًا [55] والتقليم الموحد [56] والضبط المحلي جزئي-النموذج [57] والضبط اللامركزي منخفض الرتبة [58] والتنفيذ المقسّم (SplitLoRA [52]) — مع التعديل الديناميكي والاستراتيجيات التكيفية والتدريب الهرمي حافة-طرف-سحابة [112] لإغلاق الحلقة.</p>
+    <p>وحكم القسم الفرعي مقارِن لا مطلق: لا تهيمن طريقة فعالة واحدة على المحاور الثلاثة — كلفة الاتصالات والحفاظ على الدقة وتحمّل التباين. وتتفق مسوحات الضبط الموحد [34] والاستدلال الموحد [31] على أن استراتيجية التخصيص — أي المعاملات وأي العملاء وأي الجولات — أهم من بدائية المحوّل نفسها.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. تقنيات الخصوصية والأمن والتباين</h2>
+    <p>تكدّس تقنيات الخصوصية والأمن أربعة دفاعات. تتكيف الخصوصية التفاضلية من أسس التعلم العميق [59] إلى LoRA الموحدة [60]؛ وينتقل التشفير المتماثل من أسس المفتاح العام [61] إلى نشرات موحدة صحية-إنترنت-أشياء [62]؛ وتدعم بروتوكولات الحوسبة الآمنة متعددة الأطراف [63] التجميع الآمن العملي [64]؛ ويصلّب التجميع المقاوم للفاعلين الخبثاء (E21: Elsa [40]) جانب الخادم. وتخلص المقارنة إلى أن لا دفاع مجاني: التشويش يكلّف الدقة والتشفير يكلّف الحوسبة والتجميع يكلّف الجولات — والاختيار الصناعي تخصيص ميزانية عبر الثلاثة.</p>
+    <p>وتنقسم تقنيات التباين ثلاثًا. يُقابَل تباين الأجهزة بمسرّعات التخصيص والتعميم (التجميع المحلي التكيفي FedALA [65] والتخصيص السريع الموجه CLIP [66] والتحديثات اللامتزامنة الديناميكية [67] والنماذج المقسمة المقاومة للمتأخرين [68]). ويستند تباين البيانات إلى أسس تعدد المهام والتحسين والنقل [69–72] إضافة لمعالجات المطالبات والعنقدة والتعلم العلوي (ضبط المطالبات الاحتمالي [73] والتعلم الموحد المعنقد [74، 75] والتخصيص بالتعلم العلوي [76]). ويُجسَّر تباين النماذج — المحور الأصعب حيث لا يستطيع العملاء حتى مشاركة البنى — بالتقطير والنقل (FedGKD [77] والنقل المعرفي المتبادل [78] والمطالبات الناعمة القابلة للضبط [79] والطرق المتباينة الواعية بالتعميم [80] والنقل المعرفي المجمّع [81] والجسر من الأساس إلى المتباين [82]).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. التآزر بين النماذج والتعلم الموحد والأنظمة الصناعية</h2>
+    <p>التآزر ناشئ لكنه جنيني: تظهر النماذج في فهم النصوص الصناعية وإدارة دورة حياة المنتج، ويثبت التعلم الموحد نفسه في الصيانة التنبؤية وضبط الجودة وسيناريوهات سلاسل التوريد [83–99] — استشارة الأعطال [83] ووكلاء الصيانة [91] والتنبؤ بالعيوب [92] والتصنيع التعاوني [93] والفحص الإنتاجي المشترك [94–98] — غير أن النشر المشترك يبقى معظمه مختبريًا أو محاكيًا، مع الإقرار بأن المتحكمات والمحطات وأنظمة الفحص المتباينة هي فجوة الواقع.</p>
+    <p>وترسم أعمال الأنظمة طريق الإنتاج: FATE-LLM بدرجة صناعية [100] وحزم ضبط FederatedScope-LLM [101] والتدريب اللامركزي OpenFedLLM [102] والبنى الطرفية-المركزية للتصنيع الذكي [103] وتسريع الاستدلال على الجهاز (LLMCAD [104]) والتعلم المستمر الموحد للتوائم الرقمية (FCLLM-DT [105]). وتشير مستقبلات الاسترجاع-المعزز (البحث الموحد لـRAG [113] وRAG الموحدة متعددة المنتجات [114]) والتعلم المستمر التكيفي للأجهزة الطرفية المقيدة (SacFL [115]) إلى طبقة التكامل التالية — معرفة تتحدث حيث الآلات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. التحديات والاتجاهات المستقبلية</h2>
+    <p>تنظّم أربع جبهات الأجندة. التخفيف بدرجة صناعية: فوحدات الحافة الرسومية دون 16GB تجعل التقليم والتكميم التقليديين غير كافيين لنماذج المليارات، مما يتطلب تخصيصًا تكيفيًا وتصاميم متبقية منخفضة الرتبة (خبراء LoRA التكيفيون [106] والتكميم الواعي بـLoRA [107] والتكيف المتبقي الموحد [108]). والتباين الصناعي العميق: التخصيص الثابت سببيًا [109] والتقطير دون تجميع (FedSKD [110]) والهوامش المقطرة مزدوجة بالنماذج الأولية [111] تهاجم الحالة التي لا تتواءم فيها البيانات ولا البنى.</p>
+    <p>ويجلب النموذج الموحد الصناعي المعزز بالاسترجاع الاستردادَ إلى التوحيد (بحث موحد فعال [113] وسؤال-جواب متعدد المنتجات [114])، بينما يغلق نسيان الآلة والتعلم المستمر حلقة دورة الحياة — تعلم مستمر تكيفي للأجهزة المقيدة [115] ونسيان قابل للعكس بالكتابة فوق المعرفة [116]. والخيط الجامع: يجب أن يتعلم التوحيد وينسى ويسترجع وينحف على العتاد الصناعي، لا على صورة السحابة له.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">8. الاستنتاجات</h2>
+    <p>ينظّم المسح النماذج الموحدة للصناعة 4.0 عبر الأسس وتقنيات C2 وآليات الخصوصية والتباين والأنظمة الصناعية المبكرة والجبهات المفتوحة — مع التنبيه إلى أن المشهد يتحرك بسرعة وأن موضوعات مجاورة مثل ذكاء الحافة المستقل أو النماذج الصناعية المركزية [117] تحظى بعمق أقل. وتبقى أعباء الحوسبة والاتصالات والمزامنة واسعة النطاق ومتانة الأنظمة القيود الملزمة للتبني العملي [106، 109].</p>
+    <p>وحكمه الختامي تفاؤل مشروط: يمكن للنماذج الموحدة تقديم ذكاء خاص بالمصنع دون تعريضه، لكن فقط عبر التصميم المشترك للتخفيف وتحمّل التباين وتكامل الاسترجاع وحوكمة دورة الحياة. ومن ثم فأجندة المستقبل هندسة بقدر ما هي علم — بناء التوحيد الذي يستطيع المصنع تشغيله فعلًا [106–116].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Industry 4.0 envisions a highly connected, autonomous manufacturing ecosystem built on the Industrial Internet of Things, Cyber-Physical Systems, and AI [1–8]. LLMs add semantic-aware decision-making, cross-domain knowledge integration, and intelligent automation — but privacy, security, and regulatory constraints isolate industrial data and impede LLM scalability. Federated learning answers with decentralized LLM optimization that never exposes raw data [19, 20]. This review comprehensively covers recent federated-LLM research with a focus on industrial feasibility, comparing enabling techniques, system designs, and deployment strategies — from computation–communication overheads and large-scale synchronization to robustness — and closes with the challenges of Fed-LLM in complex industrial environments and a future research agenda.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Industry 4.0 aims to interconnect product design, manufacturing, operations, and maintenance into a self-aware, self-deciding, adaptive ecosystem of IIoT, CPS, and AI [1–8, 14, 17]. AI must deliver expanded, semantically aware capabilities — and LLMs are the candidate engine — yet the very data that would make them valuable (machine logs, quality records, supply-chain traces, operator knowledge) is locked behind privacy, security, and regulatory walls. Centralized training would require pooling that data, which industrial organization, liability, and law forbid.</p>
+    <p>Federated learning resolves the dilemma structurally: clients optimize a shared model while raw data never leaves the plant [19, 20]. Applied to LLMs, federation promises plant-specific intelligence without plant-specific exposure. But billion-parameter models collide with edge realities — VRAM-poor controllers, intermittent links, heterogeneous fleets, and adversaries. The review therefore frames Fed-LLM for Industry 4.0 as a three-front problem: computation and communication overhead, privacy and security, and heterogeneity [21–23, 28–30] — the organizing spine of everything that follows.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Methodology</h2>
+    <p>The review follows a systematic protocol in three stages. Identification casts a wide net over federated-LLM literature spanning the FL foundations — communication-efficient decentralized learning [19], non-IID convergence [20], and heterogeneity-tolerant methods [28, 29] — and the LLM survey scope [18]. Exclusion and inclusion criteria then filter for industrial feasibility: works must address billion-parameter models under constrained compute, privacy-preserving optimization, or heterogeneous federation, excluding pure centralized training and non-federated compression studies.</p>
+    <p>Data collection extracts, for each included work, the technique family (parameter-efficient tuning, sparsification, adaptive allocation, splitting, privacy mechanism, heterogeneity handler), the industrial scenario (predictive maintenance, quality control, supply chain, robotics), and reported trade-offs in overhead, accuracy, and robustness. The synthesis compares families head-to-head rather than relitigating individual benchmarks, yielding the technique taxonomy of Section 4 and the systems map of Section 5 [31, 59, 65, 83].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Foundational Concepts</h2>
+    <p>Industry 4.0 is the shift from centralized production control to distributed intelligent decision-making through device, factory, and supply-chain connectivity [14–16], with CPS architectures structuring the manufacturing loop [17]. LLMs enter as the semantic layer — survey-scale evidence positions them as general text reasoners adaptable to industrial understanding tasks [18]. FL enters as the collaboration layer: FedAvg-style decentralized optimization [19] with known non-IID convergence behavior [20], extended by heterogeneity-tolerant and edge-oriented variants [28–30].</p>
+    <p>The Fed-LLM proposition is the intersection: LLM capability, FL privacy, industrial distribution. Each pair brings a tension the review will unpack — LLMs want central data pools while plants forbid pooling; FL wants many small updates while LLMs are billions of parameters; Industry 4.0 wants real-time control while federation adds rounds, stragglers, and adversaries. Foundations set the vocabulary; Section 4 prices the tensions [14–20].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Challenges and C2-Overhead Techniques</h2>
+    <p>Three challenge classes structure deployment. Computation and communication overhead dominates: full-model updates of billion-parameter LLMs over thin industrial links are infeasible, motivating the entire C2 technique stack [21–23, 31]. Privacy and security threats range from inversion and extraction to malicious aggregation, countered by the mechanisms of Section 5 [40, 59–64]. Heterogeneity — devices, data, and models — breaks naive averaging and demands personalization, clustering, and distillation [28, 29, 65–82].</p>
+    <p>For C2 overhead, parameter-efficient fine-tuning leads: communication-reduction studies for pretrained language models [32], adapter families (parameter-efficient transfer [33], FedAdapter for mobile NLP [35], tensorized variants [36]), prefix and prompt tuning (prefix-tuning [37], personalization-oriented [38], black-box prompt tuning [39]), and the LoRA lineage — LoRA itself [45], scale-aware adaptation [44], federated selective aggregation [47], robust alternating minimization [48], automated pipelines [49], adaptive allocation (SA-FedLoRA [50], heterogeneous allocation [53], random allocation [54]), and task-heterogeneous fine-tuning [51]. Complementary tracks add data-efficient instruction tuning [55], federated pruning [56], partial-model local tuning [57], decentralized low-rank tuning [58], and split execution (SplitLoRA [52]) — with dynamic adjustment, adaptive strategies, and hierarchical end–edge–cloud training [112] closing the loop.</p>
+    <p>The subsection verdict is comparative rather than absolute: no single PEFT method dominates all three axes of communication cost, accuracy retention, and heterogeneity tolerance. Surveys of federated fine-tuning [34] and federated reasoning LLMs [31] concur that allocation strategy — which parameters, which clients, which rounds — matters more than the adapter primitive itself.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Privacy, Security, and Heterogeneity Techniques</h2>
+    <p>Privacy and security techniques layer four defenses. Differential privacy adapts from deep learning foundations [59] to federated LoRA [60]; homomorphic encryption carries from public-key foundations [61] to IoT-healthcare federated deployments [62]; secure multi-party computation protocols [63] underpin practical secure aggregation [64]; and malicious-actor-resistant aggregation (E21: Elsa [40]) hardens the server side. The comparison concludes no defense is free: noise costs accuracy, encryption costs compute, and aggregation costs rounds — industrial choice is a budget allocation across the three.</p>
+    <p>Heterogeneity techniques split three ways. Device heterogeneity is met by personalization and generalization accelerators (FedALA adaptive local aggregation [65], CLIP-oriented fast personalization [66], asynchronous dynamic updates [67], straggler-resilient split models [68]). Data heterogeneity draws on multi-task, optimization, and transfer foundations [69–72] plus prompt, clustered, and meta-learning handlers (probabilistic prompt-tuning [73], clustered FL [74, 75], meta-learned personalization [76]). Model heterogeneity — the hardest axis, where clients cannot even share architectures — is bridged by distillation and transfer (FedGKD [77], mutual knowledge transfer [78], soft-prompt messengers [79], generalization-aware heterogeneous methods [80], grouped transfer [81], foundation-to-heterogeneous bridging [82]).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. LLM–FL Synergies and Industrial Systems</h2>
+    <p>Synergies are emerging but embryonic: LLMs appear in industrial text understanding and product lifecycle management, FL proves itself in predictive maintenance, quality control, and supply-chain scenarios [83–99] — fault consultation [83], maintenance agents [91], defect prediction [92], collaborative manufacturing [93], shared-production inspection [94–98] — yet joint LLM–FL deployment remains mostly lab or simulation, with heterogeneous controllers, terminals, and inspection systems acknowledged as the reality gap.</p>
+    <p>Systems work maps the path to production: industrial-grade FATE-LLM [100], FederatedScope-LLM fine-tuning packages [101], OpenFedLLM decentralized training [102], edge-centric smart-manufacturing architectures [103], on-device inference acceleration (LLMCAD [104]), and federated continual learning for digital twins (FCLLM-DT [105]). Retrieval-augmented futures (federated search for RAG [113], multi-product federated RAG [114]) and self-adaptive continual learning for constrained end devices (SacFL [115]) point to the next integration layer — knowledge that updates where the machines are.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Challenges and Future Directions</h2>
+    <p>Four frontiers organize the agenda. Industrial-grade lightweighting: edge GPUs under 16 GB VRAM make conventional pruning and quantization insufficient for billion-parameter LLMs, demanding adaptive allocation and residual low-rank designs (adaptive LoRA experts [106], quantization-aware LoRA [107], federated residual adaptation [108]). Industrial deep heterogeneity: causally invariant personalization [109], aggregation-free distillation (FedSKD [110]), and dual-distilled margins with prototypes [111] attack the case where neither data nor architectures align.</p>
+    <p>RAG-enhanced industrial Fed-LLM brings retrieval into the federation (efficient federated search [113], multi-product QA [114]), while machine unlearning and continual learning close the lifecycle loop — self-adaptive continual learning for constrained devices [115] and reversible unlearning by knowledge overwriting [116]. The through-line: federation must learn, forget, retrieve, and slim down on industrial hardware, not in the cloud's image of it.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">8. Conclusions</h2>
+    <p>The review systematizes Fed-LLM for Industry 4.0 across foundations, C2 techniques, privacy and heterogeneity mechanisms, early industrial systems, and open frontiers — while noting the landscape moves fast and adjacent topics such as standalone edge intelligence or centralized industrial foundation models [117] receive less depth. Computation–communication overheads, large-scale synchronization, and system robustness remain the binding constraints on practical adoption [106, 109].</p>
+    <p>Its closing judgment is conditional optimism: federated LLMs can deliver plant-specific intelligence without plant-specific exposure, but only through co-design of lightweighting, heterogeneity tolerance, retrieval integration, and lifecycle governance. The future agenda is therefore engineering as much as science — building the federation the factory can actually run [106–116].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Full reference list as in the original paper (117 references), with original numbering. See the original publication for linked/DOI versions.</p>
+    <ol dir="ltr">
+      <li>[1] Jadhav, Y.; Farimani, A.B. Large Language Model Agent as a Mechanical Designer. arXiv 2024, arXiv:2404.17525. [CrossRef]</li>
+      <li>[2] Wu, Y.; Yang, H.; Wang, X.; Yu, H.; El Saddik, A.; Hossain, M.S. An effective FL system for Industrial IoT data streaming. Alex. Eng. J. 2024, 105, 414–422. [CrossRef]</li>
+      <li>[3] Chkirbene, Z.; Hamila, R.; Gouissem, A.; Devrim, U. Large language models (llm) in industry: A survey of applications, challenges, and trends. In Proceedings of the 2024 IEEE 21st International Conference on Smart Communities: Improving Quality of Life using AI, Robotics and IoT (HONET); IEEE: Piscataway, NJ, USA, 2024; pp. 229–234.</li>
+      <li>[4] Raza, M.; Jahangir, Z.; Riaz, M.B.; Saeed, M.J.; Sattar, M.A. Industrial applications of large language models. Sci. Rep. 2025, 15, 13755. [CrossRef]</li>
+      <li>[5] Cheng, Y.; Zhang, W.; Zhang, Z.; Zhang, C.; Wang, S.; Mao, S. Towards federated large language models: Motivations, methods, and future directions. IEEE Commun. Surv. Tutor. 2024, 27, 2733–2764. [CrossRef]</li>
+      <li>[6] Syed, M.A.B.; Rhaman, Q.; Sushil, S. Federated Learning in Manufacturing: A Systematic Review and Pathway to Industry 5.0. In Proceedings of the 2023 5th International Conference on Sustainable Technologies for Industry 5.0 (STI); IEEE: Piscataway, NJ, USA, 2023; pp. 1–6.</li>
+      <li>[7] Leng, J.; Li, R.; Xie, J.; Zhou, X.; Li, X.; Liu, Q.; Chen, X.; Shen, W.; Wang, L. Federated learning-empowered smart manufacturing and product lifecycle management: A review. Adv. Eng. Inform. 2025, 65, 103179. [CrossRef]</li>
+      <li>[8] Yang, H.; Liu, H.; Yuan, X.; Wu, K.; Ni, W.; Zhang, J.A.; Liu, R.P. Synergizing Intelligence and Privacy: A Review of Integrating Internet of Things, Large Language Models, and Federated Learning in Advanced Networked Systems. Appl. Sci. 2025, 15, 6587. [CrossRef]</li>
+      <li>[9] Ouerghemmi, C.; Ertz, M. Integrating Large Language Models into Digital Manufacturing: A Systematic Review and Research Agenda. Computers 2025, 14, 318. [CrossRef]</li>
+      <li>[10] Li, Y.; Zhao, H.; Jiang, H.; Pan, Y.; Liu, Z.; Wu, Z.; Shu, P.; Tian, J.; Yang, T.; Xu, S.; et al. Large language models for manufacturing. arXiv 2024, arXiv:2410.21418.</li>
+      <li>[11] Ouyang, W.; Liu, Q.; Mu, J.; AI-Dulaimi, A.; Jing, X.; Liu, Q. Communication-Efficient Federated Learning for Large-Scale Multiagent Systems in ISAC: Data Augmentation With Reinforcement Learning. IEEE Syst. J. 2024, 18, 1893–1904. [CrossRef]</li>
+      <li>[12] Hu, J.; Wang, D.; Wang, Z.; Pang, X.; Xu, H.; Ren, J.; Ren, K. Federated Large Language Model: Solutions, Challenges and Future Directions. IEEE Wirel. Commun. 2025, 32, 82–89. [CrossRef] https://doi.org/10.3390/s26041116 Sensors 2026, 26, 1116 30 of 34</li>
+      <li>[13] Wang, Z.; Wu, F.; Yu, F.; Zhou, Y.; Hu, J.; Min, G. Federated continual learning for edge-ai: A comprehensive survey. arXiv 2024, arXiv:2411.13740. [CrossRef]</li>
+      <li>[14] Nguyen, D.C.; Ding, M.; Pathirana, P.N.; Seneviratne, A.; Li, J.; Poor, H.V. Federated learning for internet of things: A comprehensive survey. IEEE Commun. Surv. Tutor. 2021, 23, 1622–1658. [CrossRef]</li>
+      <li>[15] Arisdakessian, S.; Wahab, O.A.; Mourad, A.; Otrok, H.; Guizani, M. A survey on IoT intrusion detection: Federated learning, game theory, social psychology, and explainable AI as future directions. IEEE Internet Things J. 2022, 10, 4059–4092. [CrossRef]</li>
+      <li>[16] Ullah, I.; Hassan, U.U.; Ali, M.I. Multi-level federated learning for industry 4.0-A crowdsourcing approach. Procedia Comput. Sci. 2023, 217, 423–435. [CrossRef]</li>
+      <li>[17] Lee, J.; Bagheri, B.; Kao, H.A. A cyber-physical systems architecture for industry 4.0-based manufacturing systems. Manuf. Lett. 2015, 3, 18–23. [CrossRef]</li>
+      <li>[18] Zhao, W.X.; Zhou, K.; Li, J.; Tang, T.; Wang, X.; Hou, Y.; Min, Y.; Zhang, B.; Zhang, J.; Dong, Z.; et al. A survey of large language models. arXiv 2023, arXiv:2303.18223.</li>
+      <li>[19] McMahan, B.; Moore, E.; Ramage, D.; Hampson, S.; y Arcas, B.A. Communication-efficient learning of deep networks from decentralized data. In Proceedings of the Artificial Intelligence and Statistics; PMLR: Cambridge, MA, USA, 2017; pp. 1273–1282.</li>
+      <li>[20] Li, X.; Huang, K.; Yang, W.; Wang, S.; Zhang, Z. On the convergence of fedavg on non-iid data. arXiv 2019, arXiv:1907.02189.</li>
+      <li>[21] Li, H.; Wang, R.; Jiang, M.; Liu, J. STAR-RIS Empowered Heterogeneous Federated Edge Learning with Flexible Aggregation. IEEE Internet Things J. 2025, 12, 28374–28389. [CrossRef]</li>
+      <li>[22] Fu, X.; Chen, Z.; Zhang, B.; Chen, C.; Li, J. Federated graph learning with structure proxy alignment. In Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining, Barcelona, Spain, 6–10 August 2024; pp. 827–838.</li>
+      <li>[23] Li, H.; Wang, R.; Wu, J.; Zhang, W. Federated edge learning via reconfigurable intelligent surface with one-bit quantization. In Proceedings of the GLOBECOM 2022—2022 IEEE Global Communications Conference; IEEE: Piscataway, NJ, USA, 2022; pp. 1055–1060.</li>
+      <li>[24] Melis, L.; Song, C.; De Cristofaro, E.; Shmatikov, V. Exploiting unintended feature leakage in collaborative learning. In Proceedings of the 2019 IEEE Symposium on Security and Privacy (SP); IEEE: Piscataway, NJ, USA, 2019; pp. 691–706.</li>
+      <li>[25] Zhu, L.; Liu, Z.; Han, S. Deep leakage from gradients. Adv. Neural Inf. Process. Syst. 2019, 32, 14774–14784.</li>
+      <li>[26] Yue, K.; Jin, R.; Wong, C.W.; Baron, D.; Dai, H. Gradient obfuscation gives a false sense of security in federated learning. In Proceedings of the 32nd USENIX security symposium (USENIX Security 23), Anaheim, CA, USA, 9–11 August 2023; pp. 6381–6398.</li>
+      <li>[27] Das, B.C.; Amini, M.H.; Wu, Y. Privacy risks analysis and mitigation in federated learning for medical images. In Proceedings of the 2023 IEEE International Conference on Bioinformatics and Biomedicine (BIBM); IEEE: Piscataway, NJ, USA, 2023; pp. 1870–1873.</li>
+      <li>[28] Pei, J.; Liu, W.; Li, J.; Wang, L.; Liu, C. A review of federated learning methods in heterogeneous scenarios. IEEE Trans. Consum. Electron. 2024, 70, 5983–5999. [CrossRef]</li>
+      <li>[29] Chen, C.; Liao, T.; Deng, X.; Wu, Z.; Huang, S.; Zheng, Z. Advances in robust federated learning: A survey with heterogeneity considerations. IEEE Trans. Big Data 2025, 11, 1548–1567. [CrossRef]</li>
+      <li>[30] Jiang, Y.; Wang, S.; Valls, V.; Ko, B.J.; Lee, W.H.; Leung, K.K.; Tassiulas, L. Model pruning enables efficient federated learning on edge devices. IEEE Trans. Neural Netw. Learn. Syst. 2022, 34, 10374–10386. [CrossRef]</li>
+      <li>[31] Wei, S.; Tong, Y.; Zhou, Z.; Xu, Y.; Gao, J.; Wei, T.; He, T.; Lv, W. Federated reasoning LLMs: A survey. Front. Comput. Sci. 2025, 19, 1912613. [CrossRef]</li>
+      <li>[32] Malaviya, S.; Shukla, M.; Lodha, S. Reducing communication overhead in federated learning for pre-trained language models using parameter-efficient finetuning. In Proceedings of the Conference on Lifelong Learning Agents; PMLR: Cambridge, MA, USA, 2023; pp. 456–469.</li>
+      <li>[33] Houlsby, N.; Giurgiu, A.; Jastrzebski, S.; Morrone, B.; De Laroussilhe, Q.; Gesmundo, A.; Attariyan, M.; Gelly, S. Parameter- efficient transfer learning for NLP. In Proceedings of the International Conference on Machine Learning; PMLR: Cambridge, MA, USA, 2019; pp. 2790–2799.</li>
+      <li>[34] Wu, Y.; Tian, C.; Li, J.; Sun, H.; Tam, K.; Zhou, Z.; Liao, H.; Guo, Z.; Li, L.; Xu, C. A survey on federated fine-tuning of large language models. arXiv 2025, arXiv:2503.12016. [CrossRef]</li>
+      <li>[35] Cai, D.; Wu, Y.; Wang, S.; Xu, M. FedAdapter: Efficient federated learning for mobile NLP. In Proceedings of the ACM Turing Award Celebration Conference-China 2023, Wuhan, China, 28–30 July 2023; pp. 27–28.</li>
+      <li>[36] Ghiasvand, S.; Yang, Y.; Xue, Z.; Alizadeh, M.; Zhang, Z.; Pedarsani, R. Communication-efficient and tensorized federated fine-tuning of large language models. In Proceedings of the Findings of the Association for Computational Linguistics: ACL 2025, Vienna, Austria, 27 July–August 2025; pp. 24192–24207.</li>
+      <li>[37] Li, X.L.; Liang, P. Prefix-tuning: Optimizing continuous prompts for generation. arXiv 2021, arXiv:2101.00190. [CrossRef]</li>
+      <li>[38] Sun, G.; Mendieta, M.; Luo, J.; Wu, S.; Chen, C. Fedperfix: Towards partial model personalization of vision transformers in feder- ated learning. In Proceedings of the IEEE/CVF International Conference on Computer Vision, Paris, France, 4–6 October 2023; pp. 4988–4998. https://doi.org/10.3390/s26041116 Sensors 2026, 26, 1116 31 of 34</li>
+      <li>[39] Sun, J.; Xu, Z.; Yin, H.; Yang, D.; Xu, D.; Chen, Y.; Roth, H.R. Fedbpt: Efficient federated black-box prompt tuning for large language models. arXiv 2023, arXiv:2310.01467.</li>
+      <li>[40] Rathee, M.; Shen, C.; Wagh, S.; Popa, R.A. Elsa: Secure aggregation for federated learning with malicious actors. In Proceedings of the 2023 IEEE Symposium on Security and Privacy (SP); IEEE: Piscataway, NJ, USA, 2023; pp. 1961–1979.</li>
+      <li>[41] Guo, T.; Guo, S.; Wang, J.; Tang, X.; Xu, W. Promptfl: Let federated participants cooperatively learn prompts instead of models–federated learning in age of foundation model. IEEE Trans. Mob. Comput. 2023, 23, 5179–5194. [CrossRef]</li>
+      <li>[42] Hoory, S.; Feder, A.; Tendler, A.; Erell, S.; Peled-Cohen, A.; Laish, I.; Nakhost, H.; Stemmer, U.; Benjamini, A.; Hassidim, A.; et al. Learning and evaluating a differentially private pre-trained language model. In Proceedings of the Findings of the Association for Computational Linguistics: EMNLP 2021, Virtual, 16–20 November 2021; pp. 1178–1189.</li>
+      <li>[43] Che, T.; Liu, J.; Zhou, Y.; Ren, J.; Zhou, J.; Sheng, V.; Dai, H.; Dou, D. Federated learning of large language models with parameter-efficient prompt tuning and adaptive optimization. In Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing, Singapore, 6–10 December 2023; pp. 7871–7888.</li>
+      <li>[44] Lester, B.; Al-Rfou, R.; Constant, N. The power of scale: Parameter-efficient adaptation for pretrained language models. In Proceed- ings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP), Punta Cana, Dominican Republic, 7–11 November 2021; pp. 3045–3059.</li>
+      <li>[45] Hu, E.J.; Shen, Y.; Wallis, P.; Allen-Zhu, Z.; Li, Y.; Wang, S.; Wang, L.; Chen, W. Lora: Low-rank adaptation of large language models. ICLR 2022, 1, 3.</li>
+      <li>[46] Zhang, J.; Vahidian, S.; Kuo, M.; Li, C.; Zhang, R.; Yu, T.; Wang, G.; Chen, Y. Towards building the federatedgpt: Federated instruction tuning. In Proceedings of the ICASSP 2024-2024 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP); IEEE: Piscataway, NJ, USA, 2024; pp. 6915–6919.</li>
+      <li>[47] Guo, P.; Zeng, S.; Wang, Y.; Fan, H.; Wang, F.; Qu, L. Selective aggregation for low-rank adaptation in federated learning. In Proceedings of the 2024 IEEE International Conference on Acoustics, Speech and Signal Processing, Seoul, Republic of Korea, 14–19 April 2024; pp. 6915–6919.</li>
+      <li>[48] Chen, S.; Ju, Y.; Dalal, H.; Zhu, Z.; Khisti, A. Robust federated finetuning of foundation models via alternating minimization of lora. arXiv 2024, arXiv:2409.02346. [CrossRef]</li>
+      <li>[49] Fang, Z.; Lin, Z.; Chen, Z.; Chen, X.; Gao, Y.; Fang, Y. Automated federated pipeline for parameter-efficient fine-tuning of large language models. arXiv 2024, arXiv:2404.06448. [CrossRef]</li>
+      <li>[50] Yang, Y.; Liu, X.; Gao, T.; Xu, X.; Wang, G. Sa-fedlora: Adaptive parameter allocation for efficient federated learning with lora tuning. arXiv 2024, arXiv:2405.09394.</li>
+      <li>[51] Bai, J.; Chen, D.; Qian, B.; Yao, L.; Li, Y. Federated fine-tuning of large language models under heterogeneous tasks and client resources. Adv. Neural Inf. Process. Syst. 2024, 37, 14457–14483.</li>
+      <li>[52] Lin, Z.; Hu, X.; Zhang, Y.; Chen, Z.; Fang, Z.; Chen, X.; Li, A.; Vepakomma, P.; Gao, Y. Splitlora: A split parameter-efficient fine-tuning framework for large language models. arXiv 2024, arXiv:2407.00952.</li>
+      <li>[53] Zhang, Z.; Hu, R.; Liu, P.; Xu, J. Fed-pilot: Optimizing LoRA Allocation for Efficient Federated Fine-Tuning with Heterogeneous Clients. arXiv 2024, arXiv:2410.10200.</li>
+      <li>[54] Su, S.; Li, B.; Xue, X. Fedra: A random allocation strategy for federated tuning to unleash the power of heterogeneous clients. In Proceedings of the European Conference on Computer Vision; Springer: Berlin/Heidelberg, Germany, 2024; pp. 342–358.</li>
+      <li>[55] Qin, Z.; Wu, Z.; He, B.; Deng, S. Federated data-efficient instruction tuning for large language models. In Proceedings of the Findings of the Association for Computational Linguistics: ACL 2025, Vienna, Austria, 27 July–1 August 2025; pp. 15550–15568.</li>
+      <li>[56] Bai, G.; Li, Y.; Li, Z.; Zhao, L.; Kim, K. Fedspallm: Federated pruning of large language models. In Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers), Albuquerque, NM, USA, 29 April–4 May 2025; pp. 8361–8373.</li>
+      <li>[57] Wu, F.; Li, Z.; Li, Y.; Ding, B.; Gao, J. Fedbiot: Llm local fine-tuning in federated learning without full model. In Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining, Barcelona, Spain, 25–29 August 2024; pp. 3345–3355.</li>
+      <li>[58] Ghiasvand, S.; Alizadeh, M.; Pedarsani, R. Decentralized Low-Rank Fine-Tuning of Large Language Models. arXiv 2025, arXiv:2501.15361.</li>
+      <li>[59] Abadi, M.; Chu, A.; Goodfellow, I.; McMahan, H.B.; Mironov, I.; Talwar, K.; Zhang, L. Deep learning with differential privacy. In Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security, Vienna, Austria, 24–28 October 2016; pp. 308–318.</li>
+      <li>[60] Liu, X.Y.; Zhu, R.; Zha, D.; Gao, J.; Zhong, S.; White, M.; Qiu, M. Differentially private low-rank adaptation of large language model using federated learning. ACM Trans. Manag. Inf. Syst. 2025, 16, 1–24. [CrossRef]</li>
+      <li>[61] Paillier, P. Public-key cryptosystems based on composite degree residuosity classes. In Proceedings of the International Conference on the Theory and Applications of Cryptographic Techniques; Springer: Berlin/Heidelberg, Germany, 1999; pp. 223–238.</li>
+      <li>[62] Zhang, L.; Xu, J.; Vijayakumar, P.; Sharma, P.K.; Ghosh, U. Homomorphic encryption-based privacy-preserving federated learning in IoT-enabled healthcare system. IEEE Trans. Netw. Sci. Eng. 2022, 10, 2864–2880. [CrossRef] https://doi.org/10.3390/s26041116 Sensors 2026, 26, 1116 32 of 34</li>
+      <li>[63] Yao, A.C. Protocols for secure computations. In Proceedings of the 23rd Annual Symposium on Foundations of Computer Science (SFCS 1982); IEEE: Piscataway, NJ, USA, 1982; pp. 160–164.</li>
+      <li>[64] Bonawitz, K.; Ivanov, V.; Kreuter, B.; Marcedone, A.; McMahan, H.B.; Patel, S.; Ramage, D.; Segal, A.; Seth, K. Practical secure aggregation for privacy-preserving machine learning. In Proceedings of the 2017 ACM SIGSAC Conference on Computer and Communications Security, Dallas, TX, USA, 30 October–3 November 2017; pp. 1175–1191.</li>
+      <li>[65] Zhang, J.; Hua, Y.; Wang, H.; Song, T.; Xue, Z.; Ma, R.; Guan, H. Fedala: Adaptive local aggregation for personalized federated learning. In Proceedings of the AAAI conference on artificial intelligence, Washington, DC, USA, 7–14 February 2023; Volume 37, pp. 11237–11244.</li>
+      <li>[66] Lu, W.; Hu, X.; Wang, J.; Xie, X. Fedclip: Fast generalization and personalization for clip in federated learning. arXiv 2023, arXiv:2302.13485. [CrossRef]</li>
+      <li>[67] Liu, J.; Jia, J.; Che, T.; Huo, C.; Ren, J.; Zhou, Y.; Dai, H.; Dou, D. Fedasmu: Efficient asynchronous federated learning with dynamic staleness-aware model update. In Proceedings of the AAAI Conference on Artificial Intelligence, Vancouver, BC, Canada, 20–27 February 2024; Volume 38, pp. 13900–13908.</li>
+      <li>[68] Li, S.; Yao, D.; Liu, J. FedVS: Straggler-resilient and privacy-preserving vertical federated learning for split models. In Proceedings of the International Conference on Machine Learning; PMLR: Cambridge, MA, USA, 2023; pp. 20296–20311.</li>
+      <li>[69] Zhang, Y.; Yang, Q. A survey on multi-task learning. IEEE Trans. Knowl. Data Eng. 2021, 34, 5586–5609. [CrossRef]</li>
+      <li>[70] Li, T.; Sahu, A.K.; Talwalkar, A.; Smith, V. Federated learning: Challenges, methods, and future directions. IEEE Signal Process. Mag. 2020, 37, 50–60. [CrossRef]</li>
+      <li>[71] Cho, Y.J.; Manoel, A.; Joshi, G.; Sim, R.; Dimitriadis, D. Heterogeneous ensemble knowledge transfer for training large models in federated learning. arXiv 2022, arXiv:2204.12703. [CrossRef]</li>
+      <li>[72] Reddi, S.; Charles, Z.; Zaheer, M.; Garrett, Z.; Rush, K.; Koneˇcn`y, J.; Kumar, S.; McMahan, H.B. Adaptive federated optimization. arXiv 2020, arXiv:2003.00295.</li>
+      <li>[73] Weng, P.Y.; Hoang, M.; Nguyen, L.; Thai, M.T.; Weng, L.; Hoang, N. Probabilistic federated prompt-tuning with non-IID and imbalanced data. Adv. Neural Inf. Process. Syst. 2024, 37, 81933–81958.</li>
+      <li>[74] Ghosh, A.; Chung, J.; Yin, D.; Ramchandran, K. An efficient framework for clustered federated learning. Adv. Neural Inf. Process. Syst. 2020, 33, 19586–19597. [CrossRef]</li>
+      <li>[75] Liu, B.; Ma, Y.; Zhou, Z.; Shi, Y.; Li, S.; Tong, Y. Casa: Clustered federated learning with asynchronous clients. In Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining, Barcelona, Spain, 25–29 August 2024; pp. 1851–1862.</li>
+      <li>[76] Fallah, A.; Mokhtari, A.; Ozdaglar, A. Personalized federated learning: A meta-learning approach. arXiv 2020, arXiv:2002.07948. [CrossRef]</li>
+      <li>[77] Yao, D.; Pan, W.; Dai, Y.; Wan, Y.; Ding, X.; Yu, C.; Jin, H.; Xu, Z.; Sun, L. FedGKD: Toward heterogeneous federated learning via global knowledge distillation. IEEE Trans. Comput. 2023, 73, 3–17. [CrossRef]</li>
+      <li>[78] Fan, T.; Ma, G.; Kang, Y.; Gu, H.; Song, Y.; Fan, L.; Chen, K.; Yang, Q. Fedmkt: Federated mutual knowledge transfer for large and small language models. In Proceedings of the 31st International Conference on Computational Linguistics, Dhabi, United Arab Emirates, 19–24 January 2025; pp. 243–255.</li>
+      <li>[79] Dong, C.; Xie, Y.; Ding, B.; Shen, Y.; Li, Y. Tunable soft prompts are messengers in federated learning. arXiv 2023, arXiv:2311.06805. [CrossRef]</li>
+      <li>[80] Zhang, X.; Wang, J.; Bao, W.; Zhang, Y.; Zhu, X.; Peng, H.; Zhao, X. Improving generalization and personalization in model- heterogeneous federated learning. IEEE Trans. Neural Netw. Learn. Syst. 2024, 36, 88–101. [CrossRef]</li>
+      <li>[81] He, C.; Annavaram, M.; Avestimehr, S. Group knowledge transfer: Federated learning of large cnns at the edge. Adv. Neural Inf. Process. Syst. 2020, 33, 14068–14080.</li>
+      <li>[82] Yu, S.; Muñoz, J.P.; Jannesari, A. Bridging the gap between foundation models and heterogeneous federated learning. arXiv 2023, arXiv:2310.00247. [CrossRef]</li>
+      <li>[83] Boonmee, A.; Wongsuwan, K.; Sukjai, P. Consultation on industrial machine faults with large language models. arXiv 2024, arXiv:2410.03223. [CrossRef]</li>
+      <li>[84] Su, C.; Yu, K.; Zhang, J.; Shao, M.; Bauer, D. Integrating Ontologies with Large Language Models for Enhanced Control Systems in Chemical Engineering. arXiv 2025, arXiv:2510.26898. [CrossRef]</li>
+      <li>[85] Kumar, S.; Kapoor, S.; Vardhan, H.; Zhao, Y. Generative AI for CAD Automation: Leveraging Large Language Models for 3D Modelling. arXiv 2025, arXiv:2508.00843.</li>
+      <li>[86] Wu, S.; Khasahmadi, A.H.; Katz, M.; Jayaraman, P.K.; Pu, Y.; Willis, K.; Liu, B. Cadvlm: Bridging language and vision in the generation of parametric cad sketches. In Proceedings of the European Conference on Computer Vision; Springer: Berlin/Heidelberg, Germany, 2024; pp. 368–384.</li>
+      <li>[87] Ni, J.; Yin, X.; Lu, X.; Li, X.; Wei, J.; Tong, R.; Tang, M.; Du, P. CADDesigner: Conceptual Design of CAD Models Based on General-Purpose Agent. arXiv 2025, arXiv:2508.01031. [CrossRef] https://doi.org/10.3390/s26041116 Sensors 2026, 26, 1116 33 of 34</li>
+      <li>[88] Makatura, L.; Foshey, M.; Wang, B.; HähnLein, F.; Ma, P.; Deng, B.; Tjandrasuwita, M.; Spielberg, A.; Owens, C.E.; Chen, P.Y.; et al. How can large language models help humans in design and manufacturing? arXiv 2023, arXiv:2307.14377. [CrossRef]</li>
+      <li>[89] Bandhana, A.; Vokˇrínek, J. AI-Driven Manufacturing: Surveying for Industry 4.0 and Beyond. In Proceedings of the Operations Research Forum; Springer: Berlin/Heidelberg, Germany, 2025; Volume 6, p. 145.</li>
+      <li>[90] Russell-Gilbert, A. RAAD-LLM: Adaptive Anomaly Detection Using LLMs and RAG Integration. Ph.D. Thesis, Mississippi State University, Starkville, MS, USA, 2025.</li>
+      <li>[91] Harbola, C.; Purwar, A. Prescriptive Agents based on RAG for Automated Maintenance (PARAM). arXiv 2025, arXiv:2508.04714.</li>
+      <li>[92] da Silveira Dib, M.A.; Prates, P.; Ribeiro, B. SecFL–Secure Federated Learning Framework for predicting defects in sheet metal forming under variability. Expert Syst. Appl. 2024, 235, 121139. [CrossRef]</li>
+      <li>[93] Deng, T.; Li, Y.; Liu, X.; Wang, L. Federated learning-based collaborative manufacturing for complex parts. J. Intell. Manuf. 2023, 34, 3025–3038. [CrossRef]</li>
+      <li>[94] Hegiste, V.; Legler, T.; Fridman, K.; Ruskowski, M. Federated object detection for quality inspection in shared production. In Proceedings of the 2023 Eighth International Conference on Fog and Mobile Edge Computing (FMEC); IEEE: Piscataway, NJ, USA, 2023; pp. 151–158.</li>
+      <li>[95] Nguyen, T.T.; Bekrar, A.; Le, T.M.; Artiba, A.; Chargui, T.; Trinh, T.T.H.; Snoun, A. Federated Learning-Based Framework: A New Paradigm Proposed for Supply Chain Risk Management. Eng. Proc. 2025, 97, 5.</li>
+      <li>[96] Shubyn, B.; Kostrzewa, D.; Grzesik, P.; Benecki, P.; Maksymyuk, T.; Sunderam, V.; Syu, J.H.; Lin, J.C.W.; Mrozek, D. Federated Learning for improved prediction of failures in Autonomous Guided Vehicles. J. Comput. Sci. 2023, 68, 101956. [CrossRef]</li>
+      <li>[97] Jiang, G.; Zhao, K.; Liu, X.; Cheng, X.; Xie, P. A federated learning framework for cloud–edge collaborative fault diagnosis of wind turbines. IEEE Internet Things J. 2024, 11, 23170–23185. [CrossRef]</li>
+      <li>[98] Landau, D.; de Pater, I.; Mitici, M.; Saurabh, N. Federated learning framework for collaborative remaining useful life prognostics: An aircraft engine case study. Future Gener. Comput. Syst. 2026, 174, 107945. [CrossRef]</li>
+      <li>[99] Ahn, J.; Lee, Y.; Kim, N.; Park, C.; Jeong, J. Federated learning for predictive maintenance and anomaly detection using time series data distribution shifts in manufacturing processes. Sensors 2023, 23, 7331. [CrossRef]</li>
+      <li>[100] Fan, T.; Kang, Y.; Ma, G.; Chen, W.; Wei, W.; Fan, L.; Yang, Q. Fate-llm: A industrial grade federated learning framework for large language models. arXiv 2023, arXiv:2310.10049. [CrossRef]</li>
+      <li>[101] Kuang, W.; Qian, B.; Li, Z.; Chen, D.; Gao, D.; Pan, X.; Xie, Y.; Li, Y.; Ding, B.; Zhou, J. Federatedscope-llm: A comprehensive package for fine-tuning large language models in federated learning. In Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining, Barcelona, Spain, 25–29 August 2024; pp. 5260–5271.</li>
+      <li>[102] Ye, R.; Wang, W.; Chai, J.; Li, D.; Li, Z.; Xu, Y.; Du, Y.; Wang, Y.; Chen, S. OpenFedLLM: Training Large Language Models on Decentralized Private Data via Federated Learning. In Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining; Association for Computing Machinery: New York, NY, USA, 2024. [CrossRef]</li>
+      <li>[103] Do˘gruluk, E.; Açıkgöz, H. Edge-Centric Federated Learning for LLMs in Smart Manufacturing: Architectures, Challenges, and Opportunities. In Proceedings of the 2025 4th International Conference on Innovative Mechanisms for Industry Applications (ICIMIA); IEEE: Piscataway, NJ, USA, 2025; pp. 1250–1256.</li>
+      <li>[104] Xu, D.; Yin, W.; Jin, X.; Zhang, Y.; Wei, S.; Xu, M.; Liu, X. Llmcad: Fast and scalable on-device large language model inference. arXiv 2023, arXiv:2309.04255. [CrossRef]</li>
+      <li>[105] Xia, Y.; Chen, Y.; Zhao, Y.; Kuang, L.; Liu, X.; Hu, J.; Liu, Z. Fcllm-dt: Enpowering federated continual learning with large language models for digital twin-based industrial iot. IEEE Internet Things J. 2024, 12, 6070–6081. [CrossRef]</li>
+      <li>[106] Wang, L.; Bian, J.; Zhang, L.; Xu, J. Adaptive LoRA Experts Allocation and Selection for Federated Fine-Tuning. arXiv 2025, arXiv:2509.15087. [CrossRef]</li>
+      <li>[107] Li, Y.; Yu, Y.; Liang, C.; He, P.; Karampatziakis, N.; Chen, W.; Zhao, T. LoftQ: LoRA-Fine-Tuning-Aware Quantization for Large Language Models. In Proceedings of the International Conference on Learning Representations (ICLR), Vienna, Austria, 7–11 May 2024.</li>
+      <li>[108] Yan, Y.; Feng, C.; Zuo, W.; Zhu, L.; Mong, R. Federated Residual Low-Rank Adaption of Large Language Models. In Proceedings of the International Conference on Learning Representations (ICLR), Singapore, 24–28 April 2025.</li>
+      <li>[109] Tang, X.; Guo, S.; Zhang, J.; Guo, J. Learning personalized causally invariant representations for heterogeneous federated clients. In Proceedings of the Twelfth International Conference on Learning Representations, Vienna, Austria, 7–11 May 2024.</li>
+      <li>[110] Weng, Z.; Cai, W.; Zhou, B. FedSKD: Aggregation-free Model-heterogeneous Federated Learning using Multi-dimensional Similarity Knowledge Distillation. arXiv 2025, arXiv:2503.18981.</li>
+      <li>[111] Siddika, F.; Hossen, M.A.; Zhang, W.; Sharma, A. Dual-Distilled Heterogeneous Federated Learning with Adaptive Margins for Trainable Global Prototypes. arXiv 2025, arXiv:2508.19009.</li>
+      <li>[112] Wu, Z.; Sun, s.; Wang, Y.; Liu, M.; Xu, k.; Pan, Q.; Gao, B.; Wen, T. Beyond Model Scale Limits: End-Edge-Cloud Federated Learning with Self-Rectified Knowledge Agglomeration. arXiv 2025, arXiv:2501.00693. https://doi.org/10.3390/s26041116 Sensors 2026, 26, 1116 34 of 34</li>
+      <li>[113] Guerraoui, R.; Kermarrec, A.; Petrescu, D.; Pires, R.; Randl, M.; de Vos M. Efficient federated search for retrieval-augmented gen- eration. In Proceedings of the 5th Workshop on Machine Learning and Systems, Rotterdam, The Netherlands, 30 March–3 April 2025; pp. 74–81.</li>
+      <li>[114] Shojaee, P.; Harsha, S.; Luo, D.; Maharaj, A.; Yu, T.; Li, Y. Federated retrieval augmented generation for multi-product question answering. In Proceedings of the 31st International Conference on Computational Linguistics: Industry Track, Abu Dhabi, United Arab Emirates, 19–24 January 2025; pp. 387–397.</li>
+      <li>[115] Zhong, Z.; Bao, W.; Wang, J.; Chen, J.; Lyu, L.; Wei, Y. SacFL: Self-Adaptive Federated Continual Learning for Resource- Constrained End Devices. IEEE Trans. Neural Netw. Learn. Syst. 2025, 36, 17169–17183. [CrossRef] [PubMed]</li>
+      <li>[116] Zhong, Z.; Bao, W.; Wang, J.; Zhang, S.; Zhou, J.; Lyu, L.; Bryan, L.; Wei, Y. Unlearning through Knowledge Overwriting: Reversible Federated Unlearning via Selective Sparse Adapter. In Proceedings of the 2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), Nashville, TN, USA, 11–15 June 2025.</li>
+      <li>[117] Yu, S.; Pablo, J.; Jannesari, A. Federated Foundation Models: Privacy-Preserving and Collaborative Learning for Large Models. arXiv 2024, arXiv:2305.11414. [CrossRef]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s26041116">10.3390/s26041116</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تنسيق الأنظمة متعددة الوكلاء القائمة على النماذج اللغوية الكبيرة: مسح للأطر وبروتوكولات الاتصال والأنماط الناشئة — DAR</title>
+<meta name="description" content="LLM-Based Multi-Agent Orchestration: A Survey of Frameworks, Communication Protocols, and Emerging Patterns — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/multiagent-orchestration-futureinternet/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">LLM-Based Multi-Agent Orchestration: A Survey of Frameworks, Communication Protocols, and Emerging Patterns</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تنسيق الأنظمة متعددة الوكلاء القائمة على النماذج اللغوية الكبيرة: مسح للأطر وبروتوكولات الاتصال والأنماط الناشئة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Yiwen Zhu, Lihe Liu, Jiaqian Yu, Di Zhang</span>
+    <span>📄 Future Internet, 2026 · Vol. 18, 326</span>
+    <span>🔗 <a href="https://doi.org/10.3390/fi18060326">10.3390/fi18060326</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تمكّن وكلاء النماذج اللغوية الكبيرة من أتمتة متعددة الخطوات متزايدة التعقيد، لكن تأليف عدة وكلاء في أنظمة متماسكة يطرح تحديات تنسيق ما زالت موثقة بشكل ناقص [1]، [2]. يدرس هذا المسح تنسيق الأنظمة متعددة الوكلاء القائمة على النماذج اللغوية من 2023 حتى أوائل 2026 (حد الأدبيات: مارس 2026)، مقترحًا تصنيفًا بثلاث طبولوجيات ومحور تكيّف واحد — طبولوجيات مركزية ولا مركزية وهرمية مع محور تحكم ديناميكي–تكيّفي — مؤسسًا على نظرية الأنظمة متعددة الوكلاء الكلاسيكية [18]، [41]، [42] والأدلة التجريبية الحديثة [26]، [27]، [28].</p>
+    <p>تُقارَن ستة أطر رائدة (LangGraph وCrewAI وAutoGen/إطار وكلاء مايكروسوفت وOpenAI Agents SDK وMetaGPT وDSPy) من حيث دقة إدارة الحالة وهيكل تكلفة الرموز واسترداد الأعطال وفلسفة التصميم [29]، [30]، [31]، [35]، [49]، [51]. وتُحلَّل حزمة البروتوكولات حول سبب شغل MCP (وكيل–إلى–أداة) وA2A (وكيل–إلى–وكيل) لطبقتين متكاملتين، وكيف يشير اندماج ACP–A2A إلى التقارب [54]، [55]، [56]، [57]، وأين يقع تصميم ANP للاكتشاف اللامركزي [58]. وتُقيَّم اعتبارات الإنتاج مقابل معايير منشورة، مع تمييز الأرقام المبلغ عنها من البائعين صراحة وفصلها عن القياسات المحكمة بتسلسل أدلّة، ويُختتَم المسح بثمانية تحديات مفتوحة وإطار تقييم سداسي الأبعاد لجودة التنسيق.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">أولًا. المقدمة</h2>
+    <p>تسارعت أبحاث الذكاء الاصطناعي بشكل حاد مدفوعة بالنماذج اللغوية الكبيرة مثل GPT وClaude وGemini وLLaMA: فأي نموذج مفرد يمكنه تحليل عقد أو إنتاج شيفرة عاملة أو تلخيص ورقة [21]. لكن سير العمل الواقعية — إطلاق منتج أو تحليل تجربة سريرية أو إعادة هيكلة عبر المستودعات — تتطلب استدلالًا مستدامًا عبر خطوات كثيرة وبيانات خارجية حية ومراجعة استنتاجات سابقة، وتحت هذا الضغط اتجه المجال نحو الذكاء الوكيلي، بتغليف النماذج بالأدوات والذاكرة وحلقات التخطيط [1]، [2]، [19]، [20].</p>
+    <p>يجعل الحجم التنسيق حتميًا: ففريق تطوير من مدير ومعماري ومطور ومختبر ومراجع يحتاج إدارة دقيقة للتبعيات ومشاركة المخرجات واسترداد الأعطال والمواءمة على المتطلبات — وهي المشكلة المحددة التي توجد الأطر والبروتوكولات لحلها [27]، [44]. يهاجمها MetaGPT بإجراءات تشغيل موحدة تُنتج مخرجات وسيطة منظمة في كل مرحلة، محققًا 85.9% على مهام برمجية من فئة HumanEval [27]. لكن إشارات الصناعة متباينة: تتوقع Gartner أن 40% من تطبيقات المؤسسات ستضم وكلاء مخصصي المهام بحلول 2026 [15] بينما تتوقع أيضًا إلغاء أكثر من 40% من مشاريع الذكاء الوكيلي بنهاية 2027 [16]، وتؤطر مسوحات صناعية واسعة النطاق التبني مقابل هذا الضجيج [13]، [14].</p>
+    <p>يسهم هذا المسح بما يلي: (1) تصنيف لأنماط التنسيق — ثلاث طبولوجيات تنسيق إضافة إلى محور تكيّف — مع إطار قرار للاختيار (القسم 4)؛ (2) مقارنة عملية لستة أطر من حيث إدارة الحالة وتكلفة الرموز وأنماط الفشل (القسم 5) [29]، [30]، [31]، [35]، [49]، [51]؛ (3) معالجة متكاملة لحزمة MCP/A2A/ANP واندماج ACP–A2A وتقارب AAIF (القسم 6) [39]، [40]، [54]–[59]؛ (4) اعتبارات تصميم بمستوى الإنتاج مع نتائج كمية (القسم 7)؛ (5) إطار تقييم سداسي الأبعاد وسبعة قطاعات تطبيقية وثمانية تحديات مفتوحة مؤسسة على المعايير (الأقسام 8–10). وتبقى النتائج حساسة للمهمة والمعيار والتنفيذ، وينبغي للقراء التحقق من حالة الأطر والبروتوكولات بعد حد مارس 2026.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">ثانيًا. الخلفية</h2>
+    <p>في الأساس، النموذج اللغوي الكبير شبكة عصبية مدربة على مدونات نصية ضخمة [21]. وقيوده حقيقية بالمثل: فقطرات التدريب تجمّد المعرفة، ولا يوجد وصول أصلي للبيانات الحية، ونوافذ السياق المحدودة تسقف نطاق الاستدلال. يفكك وانغ وآخرون الوكيل القائم على النماذج إلى دماغ (نواة الاستدلال/التخطيط) وإدراك (المدخلات والملاحظات) وذاكرة (سياق قصير المدى إضافة إلى مخازن متجهات خارجية طويلة المدى [22]) وفعل (استدعاءات API وتنفيذ الشيفرة والتراسل بين الوكلاء) [19]؛ ويآزر ReAct الاستدلال والفعل [3]، ويضيف Reflexion التعزيز اللفظي [4]، وتوسع سلسلة الأفكار وشجرة الأفكار والبحث الشجري عمق التخطيط [5]، [23]، [24].</p>
+    <p>تعود الأنظمة متعددة الوكلاء إلى أعمال الذكاء الموزع في الثمانينيات [18]: فقد أسهم البحث الكلاسيكي بلغات اتصال الوكلاء (FIPA-ACL [25]) وبروتوكول شبكة العقود ونماذج تنظيمية مثل الهولارشيات، ومُسِحت لاحقًا من منظور تعلم الآلة [41] ونظرية العمل الجماعي [42]. وتفترق الأنظمة القائمة على النماذج في ثلاثة جوانب: تواصل الوكلاء باللغة الطبيعية بدل الأنطولوجيات الرسمية — أكثر مرونة لكن أصعب تحققًا [8]؛ وقابلية توجيه السلوك زمن التشغيل عبر المطالبات والسياق — ميزة وخطر معًا (حساسية المطالبات والحقن [9]، [64]، [65])؛ وقدرات ناشئة يتيحها استدلال النماذج مثل مناظرات الوكلاء المحسِّنة للواقعية [26]، إلى جانب مجتمعات الوكلاء التوليدية [12] وفرق لعب الأدوار [28] ومسوحات آليات التعاون [9]، [10]، [11].</p>
+    <p>ينقسم أدب التنسيق إلى منظورين متكاملين: تنسيق سير العمل — توجيه مجموعة وكلاء ثابتة (أو دينامية التوجيه) عبر رسم مهام، حيث تهيمن تدفقات التحكم وتمرير الحالة والاسترداد، وتمثله LangGraph [29] وCrewAI [30] وإطار وكلاء مايكروسوفت [31]؛ والتنسيق على مستوى المنظمة — تشكيل الجماعة نفسها (أي الوكلاء موجودون، وأدوارهم، وكيف يجندون أو يتقاعدون أو يعيدون الهيكلة)، حيث تنتمي الأنظمة ذاتية التطور [48]، [61] والتوليد التلقائي للوكلاء [101]. ويُسند تعلم الأدوات [7] والتعزيز الاسترجاعي [6] كلا المنظورين.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">ثالثًا. منهجية المسح</h2>
+    <p>هذا مسح سردي منظم وليس مراجعة منهجية كاملة: فإيقاع المجال — حيث تحمل المسودات الأولية وتوثيق الأطر وتقارير الصناعة وزنًا جنبًا إلى جنب مع الأعمال المحكمة — يجعل آليات المراجعة المنهجية الصارمة (بروتوكول مسجل وفحص مزدوج وتدريج GRADE) غير عملية عند حد مارس 2026. بُحثت ست قواعد بيانات (Scopus وWeb of Science وIEEE Xplore وACM Digital Library وarXiv وGoogle Scholar) عن الفترة يناير 2022–مارس 2026، مع التركيز على الأنظمة المدعومة بالنماذج والمساس بالأنظمة الكلاسيكية [18] ومسوحات الوكيل المفرد [19]، [20].</p>
+    <p>ولأن الأدبيات تمزج بحوثًا محكمة ومسودات سريعة وإعلانات بائعين ومسوحات صناعية واسعة ونصوصًا تنظيمية ومعايير مفتوحة، فإن وسم «استشهاد» واحد يطمس فروقًا مهمة في قوة الدليل. لذا يطبق المسح تسلسل أدلة سداسي الوسوم، مُنقِّحًا مخطط الطبقات العام بتقسيم المواد الصناعية إلى أنواع فرعية يختلف وزنها المعرفي جوهريًا، مرتبة بقوة التحقق المستقل المتاح عادة — مع فصل قياسات المحكمين والمقيّمين الحكوميين عن أرقام البائعين المبلغ عنها، التي تُميَّز صراحة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">رابعًا. تصنيف أنماط التنسيق</h2>
+    <p>تشكّل كيفية تنسيق الوكلاء كل خاصية لاحقة — حدود قابلية التوسع وتحمل الأعطال وصعوبة التنقيح وتكلفة الرموز وملاءمة المهمة. تسرد المسوحات السابقة [8]، [10]، [11] الأنماط بشكل مسطح، خالطةً خيارين تصميميين مستقلين؛ ويفصلهما هذا المسح إلى طبولوجيا التنسيق (الرسم المعلن G = (V,E) لمسارات التراسل/التفويض المسموح بها: نجمة مركزية بمشرف، أو رسم أقران لا مركزي، أو شجرة هرمية) والتكيّف زمن التشغيل (ما إذا كانت الطبولوجيا تتطور أثناء التنفيذ)، وكلاهما مؤسس على نظرية الأنظمة الكلاسيكية [18]، [41]، [42] بدلالات جديدة في عصر النماذج.</p>
+    <p>تمنح الطبولوجيا المركزية (المشرف) الملكية لوكيل واحد يفكك المهام ويوزع العمال ويقرر الخطوات التالية عبر تدفق محوري برؤية شاملة [46]: تنفذها LangGraph كعقدة مشرف توجه عبر كائن الحالة المشتركة [29]، [46]، ويختار GroupChatManager في AutoGen المتحدث التالي بالمثل [35]. وتزيل الطبولوجيا اللامركزية (ند–لند) المنسق — فينشأ التوزيع من التفاوض والاختيار الذاتي على حالة محلية [47]: تدعم CrewAI التفويض بين الأقران [30]، وصُمم A2A لها، إذ ينشر الوكلاء بطاقات وكلاء ويفوضون عبر كائنات مهام منظمة دون سلطة مركزية [39]. وتنظم الطبولوجيا الهرمية المديرين فوق مستويات وسطى فوق عمال ورقيين، موسعةً الاتصال خطيًا داخل الشجرة بدل التربيعي [32]، كما في الرسوم المتداخلة لـ LangGraph.</p>
+    <p>يمتد محور التكيف من الثابت إلى ديناميكي التوجيه (عضوية ثابتة مع E_t ⊆ E لكل خطوة زمنية) إلى ذاتي التطور، مع كون التطور الذاتي والأفق الطويل خيطين متقاطعين [48]، [61]، [101]. وينتج عن شبكة 3×2 ستة تكوينات أساسية، توسعها أنظمة هجينة عابرة للخلايا وروابط بالنظرية الكلاسيكية [25]، [41]، [42]. ويرشد إطار قرار من خمسة أسئلة الاختيار: (1) بنية المهمة المعروفة تحبذ المركزي/الهرمي؛ (2) بعد ~10 وكلاء تصبح الهرمية ضرورية؛ (3) احتياجات تحمل الأعطال تحبذ اللامركزي/الهرمي؛ (4) ميزانيات الرموز المقيِّدة تحبذ الأنماط الهرمية بمخرجات منظمة؛ (5) التعاون عبر المؤسسات يحبذ التصاميم اللامركزية القائمة على A2A [39].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">خامسًا. أطر تنسيق الأنظمة متعددة الوكلاء</h2>
+    <p>تُرسَم الأطر على التصنيف ثنائي الأبعاد بفلسفة التصميم. تعامل LangGraph الرسم كآلة حالة: عقد مشرف وحواف شرطية ورسوم متداخلة وسير متعددة الوكلاء فوق كائن حالة مشتركة صريح [29]، [46]. وتجمع CrewAI فرق لعب أدوار من وكلاء بأدوار وأهداف وتفويض، بوساطة مدير أو بين الأقران [30]. ويعامل AutoGen — الآن إطار وكلاء مايكروسوفت — المحادثة كتنسيق: محادثات متعددة الوكلاء مع سياسة اختيار المتحدث GroupChatManager [31]، [35]. ويجعل OpenAI Agents SDK التسليم هو الأولي: نقل خفيف بين الوكلاء مع حواجز حماية [49].</p>
+    <p>يُرمِّز MetaGPT إجراءات تشغيل موحدة — وثائق متطلبات ومخططات UML ومواصفات واجهات — كمخرجات وسيطة منظمة لقطع الهلوسات المتتالية [27]، موسعًا بوكلاء تواصليين لتطوير البرمجيات [44] ومكاسب واقعية مدفوعة بالمناظرة [26]. ويُصرِّف DSPy استدعاءات النماذج التصريحية إلى خطوط ذاتية التحسين [51]، بينما تكمل المجموعة البارزة AgentScope [50] وOpenHands [52] وAgentVerse [32] ورسوم GPTSwarm القابلة للتحسين [33] وشبكات الوكلاء الديناميكية [34] ونظام Magentic-One العام [43]. وتدفع الأطر ذاتية التطور (EvoMAC [48] وREMAC [61] وAutoAgents [101] وMaAS [45] وOFA-MAS [102] وMasFACT [104]) نحو تنسيق على مستوى المنظمة يتعلم طبولوجيته، بأوليات قابلة للنقل [103].</p>
+    <p>تقارن المقارنة التحليلية ملامح تكلفة الرموز وأنماط الفشل: يركّز المشرفون المركزيون السياق (والتكلفة) في المحور؛ وتضاعف مفاوضات الأقران الرسائل؛ وتحد الأشجار الهرمية كليهما. وتكمّم أعمال كفاءة الرموز مثل AgentDiet (تقليل المسار [60]) وAgentDropout (إقصاء الوكلاء الديناميكي [62]) وOptima (تحسين الفعالية–الكفاءة [63]) هذه المقايضات، بينما تحذر جهود مؤشر التقييم [37] ونقد وهم المعايير (الحفظ مقابل الاستدلال في SWE-Bench [36]) من القراءة الساذجة للوحات الصدارة [53]، [71]–[73].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">سادسًا. بروتوكولات الاتصال</h2>
+    <p>تنفصل الحزمة الناشئة إلى ثلاث طبقات. بروتوكول MCP، الذي أطلقته Anthropic في نوفمبر 2024، هو الطبقة العمودية: معيار عميل–خادم («منفذ USB-C لتطبيقات الذكاء الاصطناعي») يتيح للمساعدات استدعاء أدوات خارجية عبر رسائل موحدة [40]، وتُبرِّع به لمؤسسة Agentic AI في ديسمبر 2025 [54]. وبروتوكول A2A من Google (2025) هو الطبقة الأفقية: ينشر الوكلاء بطاقات وكلاء تعلن القدرات ويتعاملون عبر كائنات مهام منظمة بين البائعين والأطر [39]، وأُطلِق تحت مؤسسة Linux في يونيو 2025 [55]. ودمج الاثنين سيكون ضارًا: فاستدعاء الأدوات وتفويض الوكلاء يخضعان لدلالات ثقة ودورة حياة واكتشاف مختلفة.</p>
+    <p>والتقارب جارٍ: انضم بروتوكول ACP من IBM [56] إلى A2A تحت LF AI & Data في أغسطس 2025 [57]، وباتت مسوحات التشغيل البيني تعالج MCP وACP وA2A وANP معًا [59]. وبروتوكول ANP هو طبقة الاكتشاف: تقترح ورقته البيضاء اكتشافًا لامركزيًا لشبكات الوكلاء المفتوحة [58]. كما تمكّن البروتوكولات منظمات الوكلاء ذاتية التطور بتوحيد كيفية إعلان الوكلاء وتجنيدهم وإعادة هيكلتهم — بينما تُظهر عدوى المطالبات (الحقن من نموذج إلى نموذج داخل الأنظمة [65]) ونقاط الضعف المنهجية بحجم HackAPrompt [64] وتحليل السلامة الطبولوجية (NetSafe [105]) ومكاشف توجيه سير العمل زمن التخطيط (FlowSteer [106]) سطح هجوم الحزمة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">سابعًا. اعتبارات التصميم بمستوى الإنتاج</h2>
+    <p>تحدد إدارة الحالة ما يتذكره كل وكيل: السياق قصير المدى مقابل مخازن المتجهات الخارجية طويلة المدى [22]، مع ضغط سير العمل طويلة الأفق (OdysseyBench [80] ووكلاء VOYAGER المفتوحون [79]) على الثبات والضغط وتقنيات تقليل المسار [60]. ويمر التخطيط وتفكيك المهام عبر الرسوم والمناظرات والبحث الشجري [5]، [23]، [24]، [26]؛ ويعتمد التعامل مع الأخطاء والاسترداد على إعادة توجيه المشرف وإعادة تفاوض الأقران [47] وحلقات التعزيز اللفظي [4]؛ وتتبع قابلية التوسع منحنى الطبولوجيا — تراسل أقران تربيعي مقابل تفويض شجري خطي [32].</p>
+    <p>يغلق الأمن والثقة الحلقة: فعدوى المطالبات عبر الوكلاء [65] ونقاط الضعف بحجم كسر الحماية [64] وأطر نمذجة تهديدات الأنظمة مثل MAESTRO [66] يجب تصميمها داخليًا لا إلحاقها لاحقًا. ويحكم الأرقام التشغيلية تحفظ صارم: فالادعاءات الكمية المنسوبة للمنتجات (مثل Q Developer [85] وNow Assist [90] ودراسات إنتاجية Copilot [67]، [68] وتجارب M365 [69]) بيانات بائعين مبلغ عنها ذاتيًا ضمن تسلسل الأدلة، متميزة عن قياسات المحكمين أو المقيّمين الحكوميين — وكذلك إعلانات من طراز «المساعد يعالج ثلثي الدردشات» [88]، [89] وإشارات التبني التحذيرية [91]، [92].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">ثامنًا. التقييم والتطبيقات والتحديات المفتوحة</h2>
+    <p>تغطي المعايير الترميز (SWE-bench [71] وSWE-agent [72] وSWE-Bench Verified [73] ولوحة الصدارة [53]) والمساعدة العامة (GAIA [74]) واستخدام الويب ونظام التشغيل (WebArena [75] وOSWorld [76]) وقدرة الوكلاء (AgentBench [77] وtau-bench [78]) وسير المكاتب طويلة الأفق (OdysseyBench [80]) — لكن فجوة تقييم تبقى: فلوحات الصدارة تقيس جودة التنسيق ذاتها قياسًا ناقصًا (وهم SWE-Bench [36])، وأنماط فشل الأنظمة متعددة الوكلاء في بداية التصنيف [81]، والتقييم بالمحكمين يحتاج إلى تحكيم [95]، والمتانة تحتاج اختبارات ضغط مثل GSM-Plus [82]، ويستهدف إطار المسح سداسي الأبعاد (الصحة والكفاءة والمتانة وجودة التنسيق والسلامة والقابلية للتكيف) إضافة إلى دراسة تجريبية على آثار عامة هذا الفراغ بالذات.</p>
+    <p>تمتد التطبيقات إلى سبعة قطاعات — هندسة البرمجيات (أدلة إنتاجية عصر Copilot [67]، [68]؛ وبيئات التطوير الوكيلية [83]، [84]) والعلوم (العالِم الذكي [86]؛ وأدوات الكيمياء [87]) وخدمة العملاء [88]، [89]، [90] والتعليم (FACET [97]؛ وأطر التدريس [98]) والأبراج الحرجة للسلامة (Polaris [93]؛ والذكاء التشخيصي [94]) واستخدام الحاسوب [96] — بينما تؤسس أعمال مسح معماريات الوكلاء [99] وواقع النشر [13]، [14] التوقعات. وتبقى ثمانية تحديات مفتوحة: الجسور البروتوكولية والتقارب؛ والأنظمة ذاتية التنظيم؛ وفراغ التقييم؛ وتحسين التكلفة على نطاق واسع؛ والثقة والسلامة والمواءمة [100]؛ والمنظمات ذاتية التطور؛ والتنسيق والتخطيط طويلا الأفق؛ وتعميم التنسيق المتعلَّم [102]–[104] — مع تأطير نظرية المواءمة [100] والتوليد التلقائي للوكلاء [101] لجبهة البحث.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">تاسعًا. الخاتمة</h2>
+    <p>إن تنسيق الأنظمة متعددة الوكلاء القائمة على النماذج اتجاه تصميمي نشط وليس نموذجًا مستقرًا: فتصنيف الطبولوجيات الثلاث/محور التكيف الواحد، المؤسس على النظرية الكلاسيكية [18]، [41]، [42] والمُتحقق مقابل أنظمة من المناظرة [26] وMetaGPT [27] إلى CAMEL [28] وAgentVerse [32] وGPTSwarm [33]، يمنح الممارسين خريطة للمجال؛ وتحول مقارنة الأطر [29]–[31]، [35]، [49]، [51] وتحليل البروتوكولات [39]، [40]، [54]–[59] الخريطة إلى قرارات اختيار؛ ويُبقي تسلسل الأدلة ادعاءات البائعين [85]، [88]–[90] مخصومة كما يجب مقابل القياس المستقل.</p>
+    <p>أما التجارب التشغيلية المبكرة، فيشير إطار القرار — بنية المهمة وعدد الوكلاء وتحمل الأعطال وميزانية الرموز والاحتياجات عبر المؤسسات — إلى خلية بداية في شبكة 3×2، مع كون الامتدادات الهجينة وذاتية التطور [48]، [61]، [101]–[104] خطوات لاحقة متى أمكن قياس جودة التنسيق بالأبعاد الستة المقترحة بدل معايير الوكيل المفرد الموروثة [36]، [81].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>LLM agents enable increasingly complex multi-step automation, but composing multiple agents into coherent systems introduces orchestration challenges that remain poorly documented [1], [2]. This survey examines LLM-based multi-agent orchestration from 2023 through early 2026 (literature cutoff March 2026), proposing a three-topology, one-adaptivity taxonomy — centralized, decentralized, and hierarchical topologies with a dynamic–adaptive axis — grounded in classical MAS theory [18], [41], [42] and recent empirical evidence [26], [27], [28].</p>
+    <p>Six leading frameworks (LangGraph, CrewAI, AutoGen/Microsoft Agent Framework, OpenAI Agents SDK, MetaGPT, and DSPy) are compared on state-management granularity, token-cost structure, failure recovery, and design philosophy [29], [30], [31], [35], [49], [51]. The protocol stack is analyzed around why MCP (agent-to-tool) and A2A (agent-to-agent) occupy complementary layers, how the ACP–A2A merger signals convergence [54], [55], [56], [57], and where ANP's decentralized-discovery design fits [58]. Production considerations are evaluated against published benchmarks, vendor-reported figures are explicitly marked and separated from peer-reviewed measurements by an evidence hierarchy, and the survey closes with eight open challenges and a six-dimension evaluation framework for coordination quality.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>AI research has accelerated sharply, driven by LLMs such as GPT, Claude, Gemini, and LLaMA: any single model can parse a contract, produce working code, or distill a paper [21]. Real-world workflows, however — a product launch, a clinical-trial analysis, a cross-repository refactor — demand sustained reasoning over many steps, live external data, and revision of earlier conclusions, and under this pressure the field has moved toward agentic AI, wrapping LLMs with tools, memory, and planning loops [1], [2], [19], [20].</p>
+    <p>Scale makes orchestration unavoidable: a development crew of manager, architect, developer, tester, and reviewer needs precise dependency management, artifact sharing, failure recovery, and requirement alignment — the specific problem frameworks and protocols exist to solve [27], [44]. MetaGPT attacks it with standardized operating procedures emitting structured intermediate outputs at each stage, reaching 85.9% on HumanEval-class software tasks [27]. Yet industry signals are mixed: Gartner predicts 40% of enterprise apps will feature task-specific agents by 2026 [15] while also predicting over 40% of agentic projects will be canceled by end of 2027 [16], and large-N industry surveys frame adoption against this hype [13], [14].</p>
+    <p>This survey contributes: (1) a taxonomy of orchestration patterns — three coordination topologies plus one adaptivity axis — with a selection decision framework (Section 4); (2) a practitioner-oriented comparison of six frameworks on state management, token cost, and failure modes (Section 5) [29], [30], [31], [35], [49], [51]; (3) an integrated treatment of the MCP/A2A/ANP protocol stack, the ACP–A2A merger, and AAIF convergence (Section 6) [39], [40], [54]–[59]; (4) production-grade design considerations with quantitative results (Section 7); and (5) a six-dimension evaluation framework, seven application sectors, and eight benchmark-grounded open challenges (Sections 8–10). Results remain task-, benchmark-, and implementation-sensitive, and readers should verify framework and protocol status current past the March 2026 cutoff.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Background</h2>
+    <p>At the bottom, an LLM is a neural network trained on massive text corpora [21]. Its constraints are equally real: training cutoffs freeze knowledge, there is no native live-data access, and finite context windows cap reasoning scope. Wang et al. decompose an LLM-based agent into Brain (reasoning/planning core), Perception (inputs and observations), Memory (short-term context plus long-term external vector stores [22]), and Action (API calls, code execution, inter-agent messaging) [19]; ReAct synergizes reasoning and acting [3], Reflexion adds verbal reinforcement [4], and chain-of-thought, tree-of-thoughts, and tree search extend planning depth [5], [23], [24].</p>
+    <p>Multi-agent systems trace to 1980s distributed-AI work [18]: classical research contributed agent communication languages (FIPA-ACL [25]), the contract-net protocol, and organizational models such as holarchies, later surveyed from a machine-learning perspective [41] and through teamwork theory [42]. LLM-based MASs depart in three ways: agents communicate in natural language rather than formal ontologies — more flexible but harder to verify [8]; behavior is steerable at runtime through prompts and context — both feature and risk (prompt sensitivity and injection [9], [64], [65]); and LLM reasoning enables emergent capabilities such as multi-agent debate improving factuality [26], alongside generative-agent societies [12], role-playing crews [28], and surveys of collaboration mechanisms [9], [10], [11].</p>
+    <p>Coordination literature splits into two complementary perspectives: workflow orchestration — routing a fixed (or routing-dynamic) agent set through a task graph, where control flow, state passing, and recovery dominate and LangGraph [29], CrewAI [30], and the Microsoft Agent Framework [31] are representative; and organization-level coordination — constituting the collective itself (which agents exist, what roles they hold, how they recruit, retire, or restructure), where self-evolving systems [48], [61] and automatic agent generation [101] belong. Tool learning [7] and retrieval augmentation [6] underpin both.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Survey Methodology</h2>
+    <p>This is a structured narrative survey, not a fully systematic review: the field's pace — where preprints, framework documentation, and industry reports carry weight alongside peer-reviewed work — makes strict systematic-review machinery (registered protocol, dual-reviewer screening, GRADE grading) impractical at the March 2026 cutoff. Six databases were searched (Scopus, Web of Science, IEEE Xplore, ACM Digital Library, arXiv, Google Scholar) over January 2022–March 2026, concentrating on LLM-backed systems while touching classical MAS [18] and single-agent surveys [19], [20].</p>
+    <p>Because the literature mixes peer-reviewed research, fast-moving preprints, vendor announcements, large-N industry surveys, regulatory text, and open standards, a single 'citation' label collapses important differences in evidence strength. The survey therefore applies a six-label evidence hierarchy throughout, refining the generic tier scheme by splitting industry material into subtypes whose epistemic weight differs materially, ordered by the strength of independent verification typically available — separating peer-reviewed and government-evaluator measurements from vendor-reported figures, which are explicitly marked.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Taxonomy of Orchestration Patterns</h2>
+    <p>How agents are coordinated shapes every downstream property — scalability limits, fault tolerance, debugging difficulty, token cost, and task suitability. Earlier surveys [8], [10], [11] list patterns flatly, conflating two independent design choices; this survey separates them into coordination topology (the declared graph G = (V, E) of permitted message-passing/delegation pathways: centralized star with a supervisor, decentralized peer graph, or hierarchical tree) and runtime adaptivity (whether the topology evolves during execution), both rooted in classical MAS theory [18], [41], [42] with new significance in the LLM era.</p>
+    <p>Centralized (supervisor) topology vests ownership in one agent that decomposes tasks, assigns workers, and decides next steps over a hub-and-spoke flow with a global task view [46]: LangGraph implements it as a supervisor node routing via the shared state object [29], [46], and AutoGen's GroupChatManager selects the next speaker analogously [35]. Decentralized (peer-to-peer) topology removes the coordinator — allocation emerges from negotiation and self-selection over local state [47]: CrewAI supports peer delegation (allow_delegation) [30], and A2A is designed for it, with agents publishing Agent Cards and delegating through structured task objects without central authority [39]. Hierarchical topology nests managers over mid-levels over leaf workers, scaling communication linearly within the tree rather than quadratically [32], e.g., LangGraph nested graphs.</p>
+    <p>The adaptivity axis spans static, routing-dynamic (fixed membership, E_t ⊆ E exercised per timestep), and self-evolving regimes, with self-evolving and long-horizon behavior as cross-cutting threads [48], [61], [101]. The 3×2 grid yields six base configurations, extended by hybrid cross-cell systems and connections to classical theory [25], [41], [42]. A five-question decision framework guides selection: (1) known task structure favors centralized/hierarchical; (2) beyond ~10 agents, hierarchical becomes necessary; (3) fault-tolerance needs favor decentralized/hierarchical; (4) binding token budgets favor hierarchical patterns with structured outputs; (5) cross-organizational collaboration favors A2A-based decentralized designs [39].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Frameworks for Multi-Agent Orchestration</h2>
+    <p>Frameworks map onto the 2D taxonomy by design philosophy. LangGraph treats the graph as a state machine: supervisor nodes, conditional edges, nested graphs, and multi-agent workflows over an explicit shared-state object [29], [46]. CrewAI assembles role-playing teams of agents with roles, goals, and delegation (allow_delegation), manager-mediated or peer-to-peer [30]. AutoGen — now the Microsoft Agent Framework — treats conversation as coordination: multi-agent conversations with a GroupChatManager speaker-selection policy [31], [35]. The OpenAI Agents SDK makes the handoff the primitive: lightweight agent-to-agent transfer with guardrails [49].</p>
+    <p>MetaGPT encodes standard operating procedures — requirements documents, UML diagrams, interface specifications — as structured intermediate artifacts to cut cascading hallucinations [27], extended by communicative agents for software development [44] and debate-driven factuality gains [26]. DSPy compiles declarative LM calls into self-improving pipelines [51], while AgentScope [50], OpenHands [52], AgentVerse [32], GPTSwarm's optimizable graphs [33], dynamic agent networks [34], and Magentic-One's generalist system [43] round out the notable set. Self-evolving frameworks (EvoMAC [48], REMAC [61], AutoAgents [101], MaAS [45], OFA-MAS [102], MasFACT [104]) push toward organization-level coordination that learns its own topology, with transferable priors [103].</p>
+    <p>Comparative analysis contrasts token-cost profiles and failure modes: centralized supervisors concentrate context (and cost) at the hub; peer negotiation multiplies messages; hierarchical trees bound both. Token-efficiency work such as AgentDiet (trajectory reduction [60]), AgentDropout (dynamic agent elimination [62]), and Optima (effectiveness–efficiency optimization [63]) quantifies the trade-offs, while evaluation-index efforts [37] and benchmark-illusion critiques (SWE-Bench memorization-vs-reasoning [36]) caution against naive leaderboard reading [53], [71]–[73].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Communication Protocols</h2>
+    <p>The emerging stack separates into three layers. MCP (Model Context Protocol), launched by Anthropic in November 2024, is the vertical layer: a client–server standard (the 'USB-C port for AI applications') letting assistants invoke external tools through standardized messages [40], donated to the Agentic AI Foundation in December 2025 [54]. A2A (Agent-to-Agent Protocol) from Google (2025) is the horizontal layer: agents publish Agent Cards advertising capabilities and interoperate through structured task objects across vendors and frameworks [39], launched under the Linux Foundation in June 2025 [55]. Collapsing the two would be harmful: tool invocation and inter-agent delegation obey different trust, lifecycle, and discovery semantics.</p>
+    <p>Convergence is underway: IBM's Agent Communication Protocol (ACP) [56] joined forces with A2A under LF AI & Data in August 2025 [57], and protocol-interoperability surveys now treat MCP, ACP, A2A, and ANP jointly [59]. ANP (Agent Network Protocol) is the discovery layer: a technical white paper proposes decentralized discovery for open agent networks [58]. Protocols also enable self-evolving agent organizations by standardizing how agents advertise, recruit, and restructure — while prompt-infection (LLM-to-LLM injection within MAS [65]), HackAPrompt-scale systemic weaknesses [64], topological safety analysis (NetSafe [105]), and planning-time workflow-steering exposures (FlowSteer [106]) show the stack's attack surface.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Production Design Considerations</h2>
+    <p>State management decides what each agent remembers: short-term context versus long-term external vector stores [22], with long-horizon workflows (OdysseyBench [80], VOYAGER-style open-ended agents [79]) stressing persistence, compaction, and trajectory-reduction techniques [60]. Task planning and decomposition route through graphs, debates, and tree search [5], [23], [24], [26]; error handling and recovery rely on supervisor re-routing, peer renegotiation [47], and verbal reinforcement loops [4]; scalability follows the topology's curve — quadratic peer messaging versus linear-tree delegation [32].</p>
+    <p>Security and trust close the loop: prompt-infection across agents [65], jailbreak-scale weaknesses [64], and MAS threat-modeling frameworks such as MAESTRO [66] must be designed in, not bolted on. A firm caveat governs deployment figures: quantitative claims attributed to products (e.g., Q Developer [85], Now Assist [90], Copilot productivity studies [67], [68], M365 pilots [69]) are self-reported vendor data under the survey's evidence hierarchy, distinct from peer-reviewed or government-evaluator measurements — as are assistant-handles-two-thirds-of-chats style announcements [88], [89], and cautionary adoption signals [91], [92].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">8. Evaluation, Applications, and Open Challenges</h2>
+    <p>Benchmarks cover coding (SWE-bench [71], SWE-agent [72], SWE-Bench Verified [73], leaderboard [53]), general assistance (GAIA [74]), web and OS use (WebArena [75], OSWorld [76]), agent ability (AgentBench [77], tau-bench [78]), and long-horizon office workflows (OdysseyBench [80]) — but an evaluation gap persists: leaderboards under-measure coordination quality itself (the SWE-Bench illusion [36]), multi-agent failure modes are only beginning to be taxonomized [81], judge-based scoring needs judging [95], robustness needs stress tests like GSM-Plus [82], and the survey's six-dimension framework (correctness, efficiency, robustness, coordination quality, safety, adaptability) plus an empirical study on public traces target exactly this vacuum.</p>
+    <p>Applications span seven sectors — software engineering (Copilot-era productivity evidence [67], [68]; agentic IDEs [83], [84]), science (AI Scientist [86]; chemistry tools [87]), customer service [88], [89], [90], education (FACET [97]; tutoring frameworks [98]), safety-critical constellations (Polaris [93]; diagnostic AI [94]), and computer use [96] — while survey work on agent architectures [99] and deployment realities [13], [14] grounds expectations. Eight open challenges remain: protocol bridging and convergence; self-organizing systems; the evaluation vacuum; cost optimization at scale; trust, safety, and alignment [100]; self-evolving organizations; long-horizon coordination and planning; and generalization of learned orchestration [102]–[104] — with alignment theory [100] and automatic agent generation [101] framing the research frontier.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">9. Conclusions</h2>
+    <p>LLM-based multi-agent orchestration is an active design direction, not a settled paradigm: the three-topology/one-adaptivity taxonomy, grounded in classical theory [18], [41], [42] and validated against systems from debate [26] and MetaGPT [27] to CAMEL [28], AgentVerse [32], and GPTSwarm [33], gives practitioners a map of the space; the framework comparison [29]–[31], [35], [49], [51] and protocol analysis [39], [40], [54]–[59] turn the map into selection decisions; and the evidence hierarchy keeps vendor claims [85], [88]–[90] properly discounted against independent measurement.</p>
+    <p>For early operational pilots, the survey's decision framework — task structure, agent count, fault tolerance, token budget, cross-organizational needs — points to a starting cell in the 3×2 grid, with hybrid and self-evolving extensions [48], [61], [101]–[104] as follow-ons once coordination quality can be measured with the proposed six dimensions rather than inherited single-agent benchmarks [36], [81].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references with original numbering as in the original paper (Future Internet 2026, 18, 326, https://doi.org/10.3390/fi18060326). Full list of 106+ entries available in the original paper PDF (paper.pdf).</p>
+    <ol dir="ltr">
+      <li>Brown, T. et al. Language Models Are Few-Shot Learners. NeurIPS 2020, 33, 1877–1901.</li>
+      <li>OpenAI. GPT-4 Technical Report. arXiv 2023, arXiv:2303.08774.</li>
+      <li>Yao, S. et al. ReAct: Synergizing Reasoning and Acting in Language Models. ICLR 2023.</li>
+      <li>Shinn, N. et al. Reflexion: Language Agents with Verbal Reinforcement Learning. NeurIPS 2023.</li>
+      <li>Wei, J. et al. Chain-of-Thought Prompting Elicits Reasoning in LLMs. NeurIPS 2022, 35, 24824–24837.</li>
+      <li>Lewis, P. et al. Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. NeurIPS 2020, 33, 9459–9474.</li>
+      <li>Qu, C. et al. Tool Learning with Large Language Models: A Survey. Front. Comput. Sci. 2025, 19, 198343.</li>
+      <li>Guo, T. et al. Large Language Model Based Multi-Agents: A Survey of Progress and Challenges. IJCAI 2024.</li>
+      <li>Talebirad, Y.; Nadiri, A. Multi-Agent Collaboration: Harnessing the Power of Intelligent LLM Agents. arXiv 2023, arXiv:2306.03314.</li>
+      <li>Tran, K.-T. et al. Multi-Agent Collaboration Mechanisms: A Survey of LLMs. arXiv 2025, arXiv:2501.06322.</li>
+      <li>Chen, S. et al. A Survey on LLM-Based Multi-Agent System. arXiv 2024, arXiv:2412.17481.</li>
+      <li>Park, J.S. et al. Generative Agents: Interactive Simulacra of Human Behavior. UIST 2023.</li>
+      <li>LangChain. State of AI Agents 2025. Dec 2025.</li>
+      <li>McKinsey & Company. The State of AI in 2025. 2025.</li>
+      <li>Gartner. 40% of Enterprise Apps Will Feature Task-Specific AI Agents by 2026. Aug 2025.</li>
+      <li>Gartner. Over 40% of Agentic AI Projects Will Be Canceled by End of 2027. Jun 2025.</li>
+      <li>Wooldridge, M. An Introduction to MultiAgent Systems, 2nd ed. Wiley, 2009.</li>
+      <li>Wang, L. et al. A Survey on Large Language Model Based Autonomous Agents. Front. Comput. Sci. 2024, 18, 186345.</li>
+      <li>Zhao, W.X. et al. A Survey of Large Language Models. Front. Comput. Sci. 2026, 20, 2012627.</li>
+      <li>Zhang, Z. et al. A Survey on the Memory Mechanism of LLM-Based Agents. ACM TOIS 2025, 43, 155.</li>
+      <li>FIPA. FIPA ACL Message Structure Specification. 2002.</li>
+      <li>Du, Y. et al. Improving Factuality and Reasoning Through Multiagent Debate. ICML 2024.</li>
+      <li>Hong, S. et al. MetaGPT: Meta Programming for a Multi-Agent Collaborative Framework. ICLR 2024.</li>
+      <li>Li, G. et al. CAMEL: Communicative Agents for 'Mind' Exploration of LLM Society. NeurIPS 2023.</li>
+      <li>LangChain. LangGraph: Agent Orchestration Framework. 2024–2025.</li>
+      <li>CrewAI. The Leading Multi-Agent Platform. 2024–2025.</li>
+      <li>Microsoft. Introducing Microsoft Agent Framework. Foundry Blog, Oct 2025.</li>
+      <li>Chen, W. et al. AgentVerse: Facilitating Multi-Agent Collaboration. ICLR 2024.</li>
+      <li>Zhuge, M. et al. GPTSwarm: Language Agents as Optimizable Graphs. ICML 2024.</li>
+      <li>Wu, Q. et al. AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation. 2024.</li>
+      <li>Liang, S. et al. The SWE-Bench Illusion. arXiv 2025, arXiv:2506.12286.</li>
+      <li>Google. Agent2Agent Protocol (A2A). 2025. https://github.com/a2aproject/A2A</li>
+      <li>Anthropic. Introducing the Model Context Protocol. Nov 2024.</li>
+      <li>Stone, P.; Veloso, M. Multiagent Systems: A Survey from a Machine Learning Perspective. Auton. Robot. 2000, 8, 345–383.</li>
+      <li>Tambe, M. Towards Flexible Teamwork. JAIR 1997, 7, 83–124.</li>
+      <li>Fourney, A. et al. Magentic-One: A Generalist Multi-Agent System. arXiv 2024.</li>
+      <li>Qian, C. et al. Communicative Agents for Software Development. ACL 2024.</li>
+      <li>LangChain. LangGraph Multi-Agent Workflows. Blog, 2024.</li>
+      <li>Abdelnabi, S. et al. LLM-Deliberation: Evaluating LLMs with Interactive Multi-Agent Negotiation Games. NeurIPS 2024.</li>
+      <li>Hu, Y. et al. Self-Evolving Multi-Agent Collaboration Networks for Software Development (EvoMAC). ICML 2024.</li>
+      <li>OpenAI. OpenAI Agents SDK. 2025.</li>
+      <li>Khattab, O. et al. DSPy: Compiling Declarative LM Calls into Self-Improving Pipelines. 2024.</li>
+      <li>SWE-Bench Leaderboard. https://www.swebench.com</li>
+      <li>Anthropic. Donating MCP; Establishing the Agentic AI Foundation. Dec 2025.</li>
+      <li>Linux Foundation. Agent2Agent Protocol Project. Press Release, 23 Jun 2025.</li>
+      <li>IBM Research. Agent Communication Protocol (ACP). 2025.</li>
+      <li>LF AI & Data. ACP Joins Forces with A2A. Aug 2025.</li>
+      <li>Chang, G. et al. Agent Network Protocol Technical White Paper. arXiv 2025, arXiv:2508.00007.</li>
+      <li>Ehtesham, A. et al. A Survey of Agent Interoperability Protocols: MCP, ACP, A2A, and ANP. arXiv 2025, arXiv:2505.02279.</li>
+      <li>Xiao, Y.-A. et al. Reducing the Cost of LLM Agents Through Trajectory Reduction (AgentDiet). arXiv 2025, arXiv:2509.23586.</li>
+      <li>Yuan, P. et al. REMAC: Self-Reflective and Self-Evolving Multi-Agent Collaboration. arXiv 2025, arXiv:2503.22122.</li>
+      <li>Wang, Z. et al. AgentDropout: Dynamic Agent Elimination for Token-Efficient Collaboration. 2025.</li>
+      <li>Chen, W. et al. Optima: Optimizing Effectiveness and Efficiency for LLM-Based MAS. ACL 2025.</li>
+      <li>Schulhoff, S. et al. Ignore This Title and HackAPrompt. 2023.</li>
+      <li>Lee, D.; Tiwari, M. Prompt Infection: LLM-to-LLM Prompt Injection within Multi-Agent Systems. arXiv 2024, arXiv:2410.07283.</li>
+      <li>Cloud Security Alliance. MAESTRO: Agentic AI Threat Modeling Framework. Feb 2025.</li>
+      <li>Peng, S. et al. The Impact of AI on Developer Productivity: Evidence from GitHub Copilot. arXiv 2023, arXiv:2302.06590.</li>
+      <li>Jimenez, C.E. et al. SWE-bench: Can Language Models Resolve Real-World GitHub Issues? ICLR 2024.</li>
+      <li>Yang, J. et al. SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering. 2024.</li>
+      <li>Mialon, G. et al. GAIA: A Benchmark for General AI Assistants. ICLR 2024.</li>
+      <li>Zhou, S. et al. WebArena: A Realistic Web Environment for Building Autonomous Agents. ICLR 2024.</li>
+      <li>Xie, T. et al. OSWorld: Benchmarking Multimodal Agents. 2024.</li>
+      <li>Liu, X. et al. AgentBench: Evaluating LLMs as Agents. ICLR 2024.</li>
+      <li>Yao, S. et al. tau-bench. ICML 2024.</li>
+      <li>Wang, G. et al. VOYAGER: An Open-Ended Embodied Agent with LLMs. TMLR 2024.</li>
+      <li>Wang, W. et al. OdysseyBench: Evaluating LLM Agents on Long-Horizon Office Workflows. arXiv 2025.</li>
+      <li>Cemri, M. et al. Why Do Multi-Agent LLM Systems Fail? 2025.</li>
+      <li>Amazon Web Services. Amazon Q Developer Product Page and Productivity Claims. 2024–2025. (self-reported vendor figures)</li>
+      <li>Lu, C. et al. The AI Scientist. arXiv 2024, arXiv:2408.06292.</li>
+      <li>Klarna. Klarna AI Assistant Handles Two-Thirds of Customer Service Chats. 2024. (self-reported)</li>
+      <li>Salesforce. Heathrow Airport Taps Salesforce Agentforce. Jun 2025. (self-reported)</li>
+      <li>ServiceNow. Now Assist and AI Agents for ITSM. 2025. (self-reported)</li>
+      <li>Zheng, L. et al. Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. NeurIPS 2023.</li>
+      <li>Ngo, R. et al. The Alignment Problem from a Deep Learning Perspective. ICLR 2024.</li>
+      <li>Chen, G. et al. AutoAgents: A Framework for Automatic Agent Generation. IJCAI 2024.</li>
+      <li>Li, S. et al. OFA-MAS: One-for-All MAS Topology Design. arXiv 2026.</li>
+      <li>Zhang, T. et al. Learning Transferable Topology Priors for Multi-Agent LLM Collaboration. arXiv 2026, arXiv:2605.1735x.</li>
+      <li>Yu, M. et al. NetSafe: Exploring the Topological Safety of Multi-Agent Systems. ACL Findings 2025.</li>
+      <li>Li, F. et al. FlowSteer: Prompt-Only Workflow Steering Exposes Planning-Time Vulnerabilities. arXiv 2026.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/fi18060326">10.3390/fi18060326</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

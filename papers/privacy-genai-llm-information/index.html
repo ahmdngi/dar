@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تقنيات الحفاظ على الخصوصية في الذكاء الاصطناعي التوليدي والنماذج اللغوية الكبيرة: مراجعة سردية — DAR</title>
+<meta name="description" content="Privacy-Preserving Techniques in Generative AI and Large Language Models: A Narrative Review — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/privacy-genai-llm-information/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Privacy-Preserving Techniques in Generative AI and Large Language Models: A Narrative Review</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تقنيات الحفاظ على الخصوصية في الذكاء الاصطناعي التوليدي والنماذج اللغوية الكبيرة: مراجعة سردية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Georgios Feretzakis, Konstantinos Papaspyridis, Aris Gkoulalas-Divanis, Vassilios S. Verykios</span>
+    <span>📄 Information, 2024 · Vol. 15, 697</span>
+    <span>🔗 <a href="https://doi.org/10.3390/info15110697">10.3390/info15110697</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>لقد غيّر الذكاء الاصطناعي التوليدي، بما فيه النماذج اللغوية الكبيرة، مشهد توليد البيانات والمحتوى الإبداعي، لكن هذا التقدم يثير مخاوف حرجة بشأن الخصوصية عندما تُدرَّب النماذج على بيانات حساسة [1]، [2]. تستعرض هذه المراجعة تقنيات الحفاظ على الخصوصية — الخصوصية التفاضلية والتعلم الفيدرالي والتشفير المتماثل العمليات والحساب متعدد الأطراف الآمن — التي تخفف مخاطر مثل هجمات الاستدلال العكسي وتسرب البيانات واستدلال العضوية المرتبطة بشكل خاص بالنماذج اللغوية الكبيرة [5]، [6]، [8].</p>
+    <p>كما تستكشف المراجعة حلولًا ناشئة تشمل تقنيات تعزيز الخصوصية والتشفير ما بعد الكمومي كاتجاهات مستقبلية [24]، [43]، [44]. وإدراكًا أن تحقيق الخصوصية المطلقة مستحيل رياضيًا، تؤكد المراجعة ضرورة مواءمة الضمانات التقنية مع الأطر القانونية والتنظيمية مثل اللائحة العامة لحماية البيانات وقانون الذكاء الاصطناعي الأوروبي لضمان الامتثال، مع الموازنة بين الأداء وقابلية التوسع والحفاظ على الخصوصية [42]، [48].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">أولًا. المقدمة</h2>
+    <p>أحدث الذكاء الاصطناعي التوليدي ثورة في إنشاء البيانات الاصطناعية والمحتوى الإبداعي عبر الرعاية الصحية والترفيه والتمويل، إذ دفعت نماذج مثل الشبكات التوليدية التنافسية والمشفرات التباينية والنماذج اللغوية الكبيرة حدود قدرات الذكاء الاصطناعي [1]. ولكن لأن هذه النماذج تُدرَّب غالبًا على مجموعات بيانات حساسة، فإنها تثير مخاوف كبيرة بشأن الخصوصية، إذ تمكّن من خروقات عبر الاستدلال العكسي وتسرب البيانات وهجمات خبيثة أخرى [2]، [31].</p>
+    <p>تركز الورقة على حماية خصوصية الأفراد الذين تُعالَج بياناتهم الحساسة أو تُخزَّن بواسطة أنظمة الذكاء الاصطناعي التوليدي — أي حماية معلومات التعريف الشخصية وغيرها من السمات الحساسة التي قد يسبب كشفها انتهاكات جسيمة [2]، [25]. وتشمل التهديدات هجمات الاستدلال العكسي وهجمات استدلال العضوية والحفظ غير المقصود للبيانات الذي قد يكشف معلومات شخصية، سواء من جهات خبيثة أو وصول داخلي غير مصرح به أو حتى كشف عرضي أثناء العمليات الروتينية [4]، [6]، [33].</p>
+    <p>تنشأ مخاطر الخصوصية في كل مرحلة من دورة حياة الذكاء الاصطناعي التوليدي — التدريب والاستدلال والضبط الدقيق — وكل مرحلة تتطلب تقنيات مستهدفة: فالتدريب على بيانات حساسة يكشف السجلات الخاصة عبر الحفظ، والاستدلال قد يسرب البيانات عبر المخرجات المولدة، والضبط الدقيق على بيانات حساسة خاصة بالمجال يحمل مخاطره الخاصة [10]، [31]. ويتطلب التعامل مع هذا المشهد مواجهة تنظيمية أيضًا: إذ يفرض قانون الذكاء الاصطناعي الأوروبي التزامات قائمة على المخاطر مع متطلبات صارمة للأنظمة عالية المخاطر مثل الرعاية الصحية، بينما تؤكد اللائحة العامة لحماية البيانات على حماية البيانات وموافقة المستخدم، ويدفعان معًا تطوير الذكاء الاصطناعي نحو آليات تحفظ الخصوصية [42]، [48].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">ثانيًا. المنظورات القانونية والتنظيمية</h2>
+    <p>بموجب اللائحة العامة لحماية البيانات، تعني البيانات الشخصية أي معلومات تتعلق بشخص طبيعي محدد أو قابل للتحديد، وتشمل المعرفات المباشرة مثل الأسماء والعناوين وغير المباشرة مثل عناوين بروتوكول الإنترنت والبيانات الحيوية [42]، [48]. وقابلية التحديد سياقية: فحتى البيانات التي تبدو مجهولة الهوية تُعد بيانات شخصية عندما تكون إعادة التحديد ممكنة في سياق معين، لذا فإن إخفاء الهوية — معالجة البيانات لمنع التحديد بشكل لا رجعة فيه — لا يمكن أن يكون مطلقًا رياضيًا في ظل هجمات الربط والمعلومات المساعدة.</p>
+    <p>تفرض اللائحة العامة لحماية البيانات، إلى جانب قانون HIPAA في الولايات المتحدة وقانون CCPA في كاليفورنيا، متطلبات صارمة على كيفية جمع البيانات الشخصية ومعالجتها وتخزينها، بينما يضيف قانون الذكاء الاصطناعي الأوروبي التزامات قائمة على المخاطر لأنظمة الذكاء الاصطناعي مع التأكيد على الشفافية والمساءلة والإشراف البشري [42]، [48]. وتساعد تقنيات الحفاظ على الخصوصية — الخصوصية التفاضلية والتعلم الفيدرالي والتشفير المتماثل والحساب الآمن متعدد الأطراف — المؤسسات على الامتثال عبر تقليل معالجة البيانات الشخصية وتعزيز أمن البيانات وتمكين التحليل دون كشف السجلات الفردية، بشرط تنفيذها بعناية لإثبات تدابير حماية معقولة [3]، [5].</p>
+    <p>يجب على المؤسسات الموازنة بين ابتكار الذكاء الاصطناعي التوليدي وحقوق الخصوصية والواجبات القانونية عبر تبني الخصوصية بالتصميم وإجراء تقييمات أثر حماية البيانات ومواكبة المعايير القانونية وأفضل الممارسات المتطورة [42]. ولأن نماذج مثل GPT وBERT وLLaMA وClaude وBard تُدرَّب على مجموعات بيانات ضخمة، فإنها تظل عرضة لتهديدات الحفظ والاستدلال العكسي والاستدلال التي لا يمكن للتنظيم وحده تحييدها [4]، [40].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">ثالثًا. نظرة عامة على مخاطر الخصوصية</h2>
+    <p>تحفظ النماذج الكبيرة بيانات التدريب ويمكن إجبارها على اجترارها: فقد أثبت كارليني وآخرون استخراج بيانات التدريب من النماذج اللغوية الكبيرة [31]، وأظهروا أن النماذج تتذكر أكثر مما ينبغي [33]، وتساءلوا عما إذا كانت الشبكات المواءمة مواءمة خصوميًا حقًا [4]. وتضخّم نماذج الانتشار الخطر نفسه — فالضبط الدقيق قد يضاعف تسرب الخصوصية التوليدي [10]، وتوثق دراسات مخصصة تهديدات الخصوصية في الانتشار المستقر [7].</p>
+    <p>تحدد هجمات استدلال العضوية ما إذا كان سجل معين قد شارك في التدريب: فقد أسس شوكر وآخرون الهجوم ضد نماذج تعلم الآلة [6]، ومدده هايز وآخرون إلى النماذج التوليدية عبر LOGAN [8]. وتهجمات التسميم مثل Nightshade تفسد نماذج تحويل النص إلى صورة بسموم خاصة بالمطالبات [9]، بينما تواجه التطبيقات الصحية ستة تحديات موثقة حول الخصوصية والثقة [11].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">رابعًا. التقنيات الأساسية للحفاظ على الخصوصية</h2>
+    <p>توفر الخصوصية التفاضلية ضمانات رسمية عبر حقن ضجيج معايَر: فقد أثبت نظام RAPPOR الاستجابات الترتيبية العشوائية القابلة للتجميع مع الحفاظ على الخصوصية على نطاق واسع [12]، وتمكّن التدفقات المعيارية ذات الخصوصية التفاضلية من توليد بيانات السجلات الصحية الاصطناعية [13]، وأسس أبادي وآخرون التعلم العميق بالخصوصية التفاضلية [30]، ويمدد إطار EW-Tune الضبط الدقيق التفاضلي الخصوصية إلى النماذج اللغوية الكبيرة [38]، وتكمله مخططات فيدرالية فعالة اتصاليًا بخصوصية تفاضلية متمايزة [37].</p>
+    <p>يُبقي التعلم الفيدرالي البيانات الخام على الأجهزة المحلية ويشارك تحديثات النماذج فقط، وهو نموذج مُسِح لتعلم الآلة المحافظ على الخصوصية [5] ورُوجِع لأنظمة الرعاية الصحية [15]، مع دمج التشفير المتماثل والخصوصية التفاضلية نحو نماذج فيدرالية آمنة [3]. وتشمل الحزم العملية PySyft [14] وTensorFlow Federated [16]، لتأمين تطبيقات مثل الاستشعار الجماعي عبر الجوال [1].</p>
+    <p>يتيح التشفير المتماثل العمليات الحساب مباشرة على النصوص المشفرة: فقد قُدِّم استخدامه للتشفير المالي بشكل منهجي [17]، ويوفر TFHE تشفيرًا متماثلًا كاملًا سريعًا فوق الطارة [18]، وتقدم مكتبة HElib مرجعًا للتصميم والتنفيذ [34]، وتتحقق التطبيقات العملية لتعلم الآلة المحافظ على الخصوصية من صحة النهج [47]. أما الحساب متعدد الأطراف الآمن، الذي أسسه ياو ببروتوكولات الحسابات الآمنة [19] ووسّعته أنظمة مثل Overdrive/SPDZ [20]، فيتيح لأطراف متباينة الثقة حساب دوال مشتركة دون كشف مدخلاتها.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">خامسًا. البيانات الاصطناعية وتقنيات التعزيز ودفاعات الحفظ</h2>
+    <p>يستبدل توليد البيانات الاصطناعية المحافظ على الخصوصية سجلات اصطناعية بالسجلات الحقيقية: إذ تنتج النماذج التوليدية آثار حركة مرور اصطناعية لتدريب أنظمة كشف اقتحام الشبكات [21]، وتفهرس مراجعة منهجية تقنيات توليد البيانات الاصطناعية بالذكاء التوليدي [32]، وتستهدف التدفقات المعيارية التفاضلية الخصوصية توليد السجلات الصحية [13]. وتشمل الأدوات المعززة للخصوصية المكملة Presidio من مايكروسوفت لكشف معلومات التعريف وإخفائها [22]، وARX لإخفاء هوية البيانات الطبية الحيوية [23]، وأطر خصوصية العدادات الذكية [24]، واستراتيجيات حماية بيانات روبوتات الدردشة [25].</p>
+    <p>يتمثل خط الدفاع الثاني في منع النماذج من الحفظ أصلًا: إذ يقترح هانز وآخرون تدريبًا بأسلوب السمكة الذهبية يتجنب الحفظ [26]، ويصوغ جينارت وآخرون جعل الذكاء الاصطناعي ينسى عبر حذف البيانات [27]، ويحسّن ميرشغ الله وآخرون الخصوصية والمنفعة معًا بالتنظيم الخصوصي [28]، ويحافظ تشن وآخرون على الخصوصية أثناء الضبط الدقيق عبر التسطيح [29]. وتقيّم معايير مثل LLM-PBE خصوصية البيانات في النماذج اللغوية الكبيرة [39]، وتستهدف أعمال الذكاء الاصطناعي الجدير بالثقة تأمين البيانات الحساسة فيها [41]، وترسم مسوحات واسعة هجمات الخصوصية ودفاعاتها واتجاهاتها المستقبلية [40].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">سادسًا. الاتجاهات الناشئة والتوجهات المستقبلية</h2>
+    <p>تبرز سلاسل الكتل كطبقة ثقة للذكاء الاصطناعي التوليدي: إذ تُحلَّل شبكات سلاسل الكتل الممكَّنة بالذكاء التوليدي من الأساسيات إلى دراسات الحالة [35]، ويُمسَح تكامل الذكاء الاصطناعي وسلاسل الكتل للحفاظ على الخصوصية [36]. وفي الوقت نفسه، يظل تطوير كفاءة تقنيات تعزيز الخصوصية ضروريًا لمواكبة توسع النماذج، إلى جانب الذكاء الاصطناعي المحافظ على الخصوصية لتوليد البيانات الاصطناعية [32] وتصاميم الخصوصية التفاضلية مع التعلم الفيدرالي للتطبيقات الآنية [1]، [37].</p>
+    <p>ستحدد ثلاث جبهات مسار المجال: دفاعات مخصصة ضد هجمات الخصوصية على النماذج اللغوية الكبيرة [4]، [39]، [40]؛ وأطر قانونية وأخلاقية تترجم المبادئ إلى التزامات قابلة للتدقيق [42]، [48]؛ وتشفير عصر الكم — الذكاء الاصطناعي مع التشفير الكمومي [43] والاختبار العدائي الذي يجمع الذكاء التوليدي مع بروتوكول BB84 وخوارزميات NIST المقاومة للكم [44]. كما يتجه الذكاء التوليدي إلى الشبكات نفسها، من الشبكات المتكاملة فضاء–جو–أرض [45] إلى وكلاء الأقمار الصناعية المدفوعين بالنماذج اللغوية مع نقل بمزيج الخبراء [46].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">سابعًا. الخاتمة</h2>
+    <p>تركّز النماذج التوليدية واللغوية الكبيرة البيانات الحساسة على نطاق غير مسبوق، معرضةً الأفراد لمخاطر الحفظ والاستدلال العكسي والاستدلال والتسميم وتسرب الضبط الدقيق التي لا تقضي عليها تقنية واحدة [4]، [6]، [8]، [9]، [10]. وتتمثل النتيجة الجوهرية للمراجعة في أن الخصوصية التفاضلية والتعلم الفيدرالي والتشفير المتماثل والحساب الآمن والبيانات الاصطناعية وتقنيات التعزيز ودفاعات الحفظ تشكل مجموعة أدوات متكاملة — يغطي كل منها نقاط ضعف الآخر — مؤسسة على نتائج من RAPPOR إلى TFHE إلى LLM-PBE [12]، [18]، [30]، [39].</p>
+    <p>ولأن الخصوصية المطلقة مستحيلة رياضيًا، يجب إقران الضمانات التقنية بالامتثال التنظيمي (اللائحة العامة لحماية البيانات وقانون الذكاء الاصطناعي الأوروبي) والرقابة الأخلاقية وحوكمة الخصوصية بالتصميم [42]، [48]. وتدعو النتائج إلى بحث مستدام لمواكبة تقنيات الحفاظ على الخصوصية لتوسع الذكاء التوليدي — خاصة في النماذج اللغوية الكبيرة — مع الالتزام بالمعايير التنظيمية والأخلاقية [40]، [41].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Generative AI, including large language models (LLMs), has transformed data generation and creative content, but progress raises critical privacy concerns when models are trained on sensitive data [1], [2]. This review surveys privacy-preserving techniques — differential privacy (DP), federated learning (FL), homomorphic encryption (HE), and secure multi-party computation (SMPC) — that mitigate risks such as model inversion, data leakage, and membership inference attacks particularly relevant to LLMs [5], [6], [8].</p>
+    <p>The review also explores emerging solutions including privacy-enhancing technologies and post-quantum cryptography as future directions [24], [43], [44]. Recognizing that achieving absolute privacy is mathematically impossible, it stresses aligning technical safeguards with legal and regulatory frameworks such as the GDPR and the EU AI Act to ensure compliance, balancing performance, scalability, and privacy preservation [42], [48].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">I. Introduction</h2>
+    <p>Generative AI has revolutionized synthetic data creation and creative content across healthcare, entertainment, and finance, with models such as GANs, VAEs, and LLMs pushing the boundaries of what AI can do [1]. Yet because these models are often trained on sensitive datasets, they raise substantial privacy concerns, enabling breaches through model inversion, data leakage, and other malicious attacks [2], [31].</p>
+    <p>The paper focuses on protecting the privacy of individuals whose sensitive data are processed or stored by generative AI systems — safeguarding personally identifiable information (PII) and other sensitive attributes whose exposure would cause serious violations [2], [25]. Threats include model inversion attacks, membership inference attacks, and unintended data memorization that can reveal personal information, originating from malicious actors, unauthorized internal access, or even inadvertent exposure during routine AI operations [4], [6], [33].</p>
+    <p>Privacy risks arise at every stage of the generative AI lifecycle — training, inference, and fine-tuning — each demanding targeted techniques: training on sensitive data exposes private records through memorization, inference can leak data through generated outputs, and fine-tuning on domain-specific sensitive data carries its own risks [10], [31]. Navigating this landscape also means confronting regulation: the EU AI Act imposes risk-based obligations with stringent requirements for high-risk systems such as healthcare, while the GDPR emphasizes data protection and user consent, jointly pushing AI development toward privacy-preserving mechanisms [42], [48].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">II. Legal and Regulatory Perspectives</h2>
+    <p>Under the GDPR, personal data means any information relating to an identified or identifiable natural person, spanning direct identifiers such as names and addresses and indirect ones such as IP addresses and biometric data [42], [48]. Identifiability is context-dependent: even seemingly anonymized data counts as personal data when re-identification is possible in a given context, so anonymization — processing data to irreversibly prevent identification — can never be mathematically absolute given linkage and auxiliary-information attacks.</p>
+    <p>The GDPR, together with HIPAA in the United States and the CCPA in California, imposes strict requirements on how personal data may be collected, processed, and stored, while the EU AI Act adds risk-based obligations for AI systems emphasizing transparency, accountability, and human oversight [42], [48]. Privacy-preserving techniques — DP, FL, HE, and SMPC — help organizations comply by minimizing personal-data processing, strengthening data security, and enabling analysis without exposing individual records, provided they are carefully implemented to demonstrate reasonable protective measures [3], [5].</p>
+    <p>Organizations must balance generative AI innovation against privacy rights and legal duties by adopting privacy-by-design, conducting Data Protection Impact Assessments (DPIAs), and tracking evolving legal standards and best practices [42]. Because models such as GPT (ChatGPT), BERT, LLaMA, Claude, and Bard are trained on massive datasets, they remain susceptible to memorization, inversion, and inference threats that regulation alone cannot neutralize [4], [40].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">III. Overview of Privacy Risks</h2>
+    <p>Large models memorize training data and can be forced to regurgitate it: Carlini et al. demonstrated training-data extraction from large language models [31], showed that models remember too much [33], and questioned whether aligned networks are truly adversarially aligned [4]. Diffusion models amplify the same risk — fine-tuning can magnify generative privacy leakage (Shake-to-Leak) [10], and dedicated studies document privacy threats in Stable Diffusion [7].</p>
+    <p>Membership inference attacks determine whether a given record participated in training: Shokri et al. established the attack against machine-learning models [6], and Hayes et al. extended it to generative models with LOGAN [8]. Poisoning attacks such as Nightshade corrupt text-to-image models with prompt-specific poisons [9], while healthcare deployments face six documented adoption challenges around privacy and trust [11].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">IV. Core Privacy-Preserving Techniques</h2>
+    <p>Differential privacy gives formal guarantees by injecting calibrated noise: RAPPOR demonstrated randomized aggregatable privacy-preserving ordinal responses at scale [12], differentially private normalizing flows enable privacy-preserving EHR data synthesis [13], Abadi et al. founded deep learning with differential privacy [30], and EW-Tune extends DP fine-tuning to large language models [38], complemented by communication-efficient FL schemes with differentiated DP [37].</p>
+    <p>Federated learning keeps raw data on local devices and shares only model updates, a paradigm surveyed for privacy-preserving machine learning [5] and reviewed for healthcare systems [15], with homomorphic encryption and DP combined toward secure federated paradigms [3]. Practical stacks include PySyft [14] and TensorFlow Federated [16], securing applications such as mobile crowdsensing [1].</p>
+    <p>Homomorphic encryption computes directly on ciphertexts: its use for financial cryptography is systematically introduced [17], TFHE provides fast fully homomorphic encryption over the torus [18], HElib offers a design and implementation reference [34], and practical privacy-preserving ML deployments validate the approach [47]. Secure multi-party computation, founded by Yao's protocols for secure computations [19] and scaled by systems such as Overdrive/SPDZ [20], lets mutually distrusting parties compute joint functions without revealing their inputs.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">V. Synthetic Data, PETs, and Memorization Defenses</h2>
+    <p>Privacy-preserving synthetic data generation substitutes artificial records for real ones: generative models produce synthetic traffic traces for training network intrusion detection systems [21], a systematic review catalogs GenAI synthetic-data techniques [32], and differentially private normalizing flows target EHR synthesis [13]. Complementary privacy-enhancing tooling includes Microsoft Presidio for PII detection and de-identification [22], ARX for anonymizing biomedical data [23], smart-meter privacy frameworks [24], and chatbot data-protection strategies [25].</p>
+    <p>A second line of defense stops models from memorizing in the first place: Hans et al. propose goldfish-style training that avoids memorizing [26], Ginart et al. formalize making AI forget through data deletion [27], Mireshghallah et al. jointly optimize privacy and utility with privacy regularization [28], and Chen et al. preserve privacy during LLM fine-tuning through flatness [29]. Benchmarks such as LLM-PBE assess data privacy in LLMs [39], Trustworthy-AI work targets securing sensitive data in LLMs [41], and broad surveys map LLM privacy attacks, defenses, and future directions [40].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">VI. Emerging Trends and Future Directions</h2>
+    <p>Blockchain is emerging as a trust layer for generative AI: GenAI-enabled blockchain networks are analyzed from fundamentals to case studies [35], and AI–blockchain integration is surveyed for privacy preservation [36]. At the same time, advancing the efficiency of PETs remains essential so protections keep pace with model scaling, alongside privacy-preserving AI for synthetic data generation [32] and DP-plus-FL designs for real-time applications [1], [37].</p>
+    <p>Three frontiers will decide the field's trajectory: dedicated defenses against LLM privacy attacks [4], [39], [40]; legal and ethical frameworks that translate principles into auditable obligations [42], [48]; and quantum-era cryptography — AI with quantum cryptography [43] and red-teaming that couples generative AI with the BB84 protocol and NIST-approved quantum-resistant algorithms [44]. Generative AI is also moving into networks themselves, from space–air–ground integrated networks [45] to LLM-driven satellite agents with mixture-of-experts transmission [46].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">VII. Conclusions</h2>
+    <p>Generative AI and LLMs concentrate sensitive data at unprecedented scale, exposing individuals to memorization, inversion, inference, poisoning, and fine-tuning leakage risks that no single technique eliminates [4], [6], [8], [9], [10]. The review's core finding is that DP, FL, HE, SMPC, synthetic data, PETs, and memorization defenses form a complementary toolkit — each covering weaknesses of the others — grounded in results from RAPPOR to TFHE to LLM-PBE [12], [18], [30], [39].</p>
+    <p>Because absolute privacy is mathematically impossible, technical safeguards must be paired with regulatory compliance (GDPR, EU AI Act), ethical oversight, and privacy-by-design governance [42], [48]. The findings call for sustained research so privacy-preserving techniques keep pace with generative AI scaling — especially in LLMs — while meeting regulatory and ethical standards [40], [41].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Full reference list of 48 entries as in the original paper (Information 2024, 15, 697, https://doi.org/10.3390/info15110697).</p>
+    <ol dir="ltr">
+      <li>Yang, Y. et al. Generative AI for Secure and Privacy-Preserving Mobile Crowdsensing. arXiv 2024, arXiv:2405.10521.</li>
+      <li>Baig, A. Generative AI Privacy: Issues, Challenges & How to Protect? Securiti.ai, 2024. (accessed 10 Sep 2024).</li>
+      <li>Aziz, R. et al. Exploring Homomorphic Encryption and Differential Privacy Towards Secure Federated Learning. Future Internet 2023, 15, 310.</li>
+      <li>Carlini, N. et al. Are Aligned Neural Networks Adversarially Aligned? NeurIPS 2024, 36.</li>
+      <li>Xu, R.; Baracaldo, N.; Joshi, J. Privacy-Preserving Machine Learning: Methods, Challenges and Directions. arXiv 2021, arXiv:2108.04417.</li>
+      <li>Shokri, R. et al. Membership Inference Attacks Against Machine Learning Models. IEEE SP 2017, pp. 3–18.</li>
+      <li>Cilloni, T.; Fleming, C.; Walter, C. Privacy Threats in Stable Diffusion Models. arXiv 2023, arXiv:2311.09355.</li>
+      <li>Hayes, J. et al. LOGAN: Membership Inference Attacks Against Generative Models. PoPETs 2019, 133–152.</li>
+      <li>Shan, S. et al. Nightshade: Prompt-Specific Poisoning Attacks on Text-to-Image Generative Models. arXiv 2023, arXiv:2310.13828.</li>
+      <li>Li, Z. et al. Shake to Leak: Fine-Tuning Diffusion Models Can Amplify the Generative Privacy Risk. SaTML 2024.</li>
+      <li>Templin, T. et al. Addressing 6 Challenges in Generative AI for Digital Health: A Scoping Review. PLOS Digit. Health 2024, 3, e0000503.</li>
+      <li>Erlingsson, Ú.; Pihur, V.; Korolova, A. RAPPOR: Randomized Aggregatable Privacy-Preserving Ordinal Response. ACM CCS 2014, pp. 1054–1067.</li>
+      <li>Su, B. et al. Privacy-Preserving Data Synthesis via Differentially Private Normalizing Flows (EHR). AAAI Summer Symposium 2023.</li>
+      <li>PySyft. OpenMined. https://github.com/OpenMined/PySyft (accessed 10 Oct 2024).</li>
+      <li>Gu, X. et al. A Review of Privacy Enhancement Methods for Federated Learning in Healthcare. IJERPH 2023, 20, 6539.</li>
+      <li>TensorFlow Federated. https://www.tensorflow.org/federated (accessed 12 Sep 2024).</li>
+      <li>Dhanaraj, R.K. et al. Introduction to Homomorphic Encryption for Financial Cryptography. Springer, 2023.</li>
+      <li>Chillotti, I. et al. TFHE: Fast Fully Homomorphic Encryption Over the Torus. J. Cryptol. 2020, 33, 34–91.</li>
+      <li>Yao, A. Protocols for Secure Computations. FOCS 1982, pp. 160–164.</li>
+      <li>Keller, M.; Pastro, V.; Rotaru, D. Overdrive: Making SPDZ Great Again. EUROCRYPT 2018.</li>
+      <li>Aceto, G. et al. Synthetic and Privacy-Preserving Traffic Trace Generation Using Generative AI Models for NIDS Training.</li>
+      <li>Microsoft Presidio. https://microsoft.github.io/presidio/ (accessed 23 Sep 2024).</li>
+      <li>Prasser, F. et al. ARX — A Comprehensive Tool for Anonymizing Biomedical Data. AMIA 2014, 984–993.</li>
+      <li>Kua, J. et al. Privacy Preservation in Smart Meters. Sensors 2023, 23, 3697.</li>
+      <li>Sebastian, G. Privacy and Data Protection in ChatGPT and Other AI Chatbots. IJSPPC 2023, 15, 1–14.</li>
+      <li>Hans, A. et al. Be Like a Goldfish, Don't Memorize! Mitigating Memorization in Generative LLMs. arXiv 2024.</li>
+      <li>Ginart, A.A. et al. Making AI Forget You: Data Deletion in Machine Learning. NeurIPS 2019, 33.</li>
+      <li>Mireshghallah, F. et al. Privacy Regularization: Joint Privacy-Utility Optimization in Language Models. arXiv 2021, arXiv:2103.07567.</li>
+      <li>Chen, T. et al. Privacy-Preserving Fine-Tuning of LLMs through Flatness. arXiv 2024, arXiv:2403.04124.</li>
+      <li>Abadi, M. et al. Deep Learning with Differential Privacy. ACM CCS 2016.</li>
+      <li>Carlini, N. et al. Extracting Training Data from Large Language Models. arXiv 2020, arXiv:2012.07805.</li>
+      <li>Goyal, M.; Mahmoud, Q.H. A Systematic Review of Synthetic Data Generation Techniques Using Generative AI. Electronics 2024, 13, 3509.</li>
+      <li>Song, C.; Ristenpart, T.; Shmatikov, V. Machine Learning Models That Remember Too Much. ACM CCS 2017.</li>
+      <li>Halevi, S.; Shoup, V. Design and Implementation of HElib. Cryptol. ePrint Arch. 2020.</li>
+      <li>Nguyen, C.T. et al. Generative AI-Enabled Blockchain Networks. arXiv 2024, arXiv:2401.15625.</li>
+      <li>Li, Z. et al. An Overview of AI and Blockchain Integration for Privacy-Preserving. arXiv 2023, arXiv:2305.03928.</li>
+      <li>Li, Y. et al. Communication-Efficient, Privacy-Preserving Federated Learning with Two-Stage Gradient Pruning and Differentiated DP. Sensors 2023, 23, 9305.</li>
+      <li>Behnia, R. et al. EW-Tune: Privately Fine-Tuning LLMs with Differential Privacy. IEEE ICDM 2022.</li>
+      <li>Li, Q. et al. LLM-PBE: Assessing Data Privacy in Large Language Models. Proc. VLDB Endow. 2024, 17, 3201–3214.</li>
+      <li>Li, H. et al. Privacy in Large Language Models: Attacks, Defenses and Future Directions. arXiv 2023, arXiv:2310.10383.</li>
+      <li>Feretzakis, G.; Verykios, V.S. Trustworthy AI: Securing Sensitive Data in LLMs. arXiv 2024, arXiv:2409.18222.</li>
+      <li>Al-kfairy, M. et al. Ethical Challenges and Solutions of Generative AI: An Interdisciplinary Perspective. Informatics 2024, 11, 58.</li>
+      <li>Radanliev, P. Artificial Intelligence and Quantum Cryptography. J. Anal. Sci. Technol. 2024, 15, 4.</li>
+      <li>Radanliev, P.; De Roure, D.; Santos, O. Red Teaming Generative AI/NLP, the BB84 Protocol and NIST Quantum-Resistant Algorithms. arXiv 2023, arXiv:2310.04425.</li>
+      <li>Zhang, R. et al. Generative AI for Space-Air-Ground Integrated Networks. IEEE Wireless Commun. 2024.</li>
+      <li>Zhang, R. et al. Generative AI Agents with LLM for Satellite Networks via Mixture of Experts Transmission. IEEE JSAC.</li>
+      <li>Brand, M.; Pradel, G. Practical Privacy-Preserving Machine Learning Using Homomorphic Encryption. IACR ePrint 2023/1320.</li>
+      <li>Krasadakis, P.; Sakkopoulos, E.; Verykios, V.S. A Survey on NLP with Focus on Legal Informatics and Low-Resource Languages. Electronics 2024, 13, 648.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/info15110697">10.3390/info15110697</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسح نماذج الانتشار: الطرق والتطبيقات — DAR</title>
+<meta name="description" content="A Survey of Diffusion Models: Methods and Applications — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/diffusion-models-survey-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Survey of Diffusion Models: Methods and Applications</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مسح نماذج الانتشار: الطرق والتطبيقات</h2>
+
+  <div class="paper-meta">
+    <span>👤 HaoYu Ma, Hon-Cheng Wong</span>
+    <span>📄 Appl. Sci., 2026 · Vol. 16, No. 5, Article 2482</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app16052482">10.3390/app16052482</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>برزت نماذج الانتشار بوصفها النموذج التوليدي الأحدث، متفوقة على شبكات GAN في توليد صور وفيديوهات وأصوات عالية الدقة [1، 9]. لكن إزالة التشويش التكرارية تفرض تكاليف حاسوبية وذاكرة ثقيلة تعيق النشر على أجهزة الحافة محدودة الموارد. وبخلاف المسوحات العامة الواسعة، تركز هذه المراجعة على نماذج الانتشار الفعالة والخفيفة: فتنظّم مفاضلة الجودة-التكلفة عبر تحسين المعاينة وضغط البنية وتقطير المعرفة [7، 18، 26–29]؛ وتستعرض التوليد القابل للتحكم والتطبيقات [8، 11، 12، 49–52، 69]؛ وتستكشف التكامل مع البنى الناشئة مثل مامبا [88] والتطور نحو محاكيات عالمية عامة الأغراض — خارطة طريق للذكاء الاصطناعي الأخضر تصل البحث بالاستخدام الواقعي.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>قبل الانتشار، هيمنت ثلاثة نماذج على التوليد البصري ومتعدد الوسائط: شبكات GAN الحادة والواقعية لكنها غير مستقرة وعرضة لانهيار الأنماط [1]؛ وVAE المؤسسة على الاستدلال التغايري [2]؛ والنماذج التدفقية ذات الإمكانات الدقيقة [3]. وجاء الاختراق عندما أظهرت DDPM أن دالة خسارة موجزة مع إزالة تشويش U-Net يمكن أن تتفوق على GAN في توليد الصور [6، 9، 15]، تلاها الانتشار الكامن للكفاءة عالية الدقة [8] والتوجيه غير المصنف لمواءمة المطالبات [10]. ويضع المسح نفسه إزاء المراجعات القائمة [4]: فبدل تغطية المنهجيات باتساع، يركز على حدود الكفاءة — تقدمات المعاينة والبنية والتقطير التي تقرر إمكانية تشغيل الانتشار خارج مراكز البيانات.</p>
+    <p>وينبع هذا التركيز من واقع النشر. فالاستدلال التكراري — عشرات إلى مئات تقييمات الشبكة لكل عينة — مع العمود الفقري الثقيل يجعل الاستخدام الآني والطرفي باهظًا، لذا فالانتشار الأخضر، أي الكفاءة دون فقدان الدقة، هو الحدود المحورية. وترسم منهجية المسح الأطر الأساسية [6–12، 15–18] وتسريع المعاينة [7، 10، 18، 26–29] والتوليد القابل للتحكم [11، 12، 33، 62] والتطبيقات [8، 49–52، 69] والتصاميم الخفيفة [74–83]، خاتمة بالتحديات [84–87] والاتجاهات [88، 89].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. المبادئ الأساسية لنماذج الانتشار</h2>
+    <p>يعرّف الانتشار عمليتين: سلسلة ماركوف أمامية ثابتة q(x_t|x_{t-1}) تضيف تدريجيًا تشويشًا غاوسيًا للبيانات، وعملية عكسية متعلمة p_θ(x_{t-1}|x_t) تزيل تشويش الكامن x_T تكراريًا عائدة إلى x_0 — النموذج البياني الموجه المقتبس من الصياغة المؤسِّسة [6]، المتجذرة بدورها في الديناميكا الحرارية غير المتزنة [5]. ويقلل التدريب دالة إزالة تشويش موجزة [6]، والتحسين خطوة-بخطوة للسلسلة العكسية هو ما ينتج عينات عالية الدقة بكلفة تقييمات شبكية عديدة.</p>
+    <p>وتحكم السلوك ثلاثة خيارات على مستوى العملية: الجدول الأمامي (سرعة إتلاف التشويش للإشارة)، ومعاملات العملية العكسية (التنبؤ بالتشويش أو البيانات أو السرعة — انظر تحليل فضاء التصميم [18])، وترجيح دالة الخسارة عبر الخطوات والفترات. وتتفاعل هذه الإعدادات مع خيارات فترات المعاينة وتصميم الحلول، وهو ما يستغله القسم الثالث للتسريع [26–29].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. المنهجيات: الأطر والمعاينة والتسريع</h2>
+    <p>شكّلت DDPM لهو وآخرين عام 2020 مفصل النماذج الحديثة: خسارة موجزة مع U-Net بترميز-فك ترميز ووصلات تخطٍّ، مناسبة استثنائيًا للبنية الصورية المحلية والشاملة [6، 15]. ومن سلاسل ماركوف المتقطعة عمّم المجال إلى المعادلات التفاضلية العشوائية والعادية المستمرة، مع معاينة DDIM الضمنية التي تخفض الخطوات [7] وفضاء التصميم الموضح [18] ومحولات DiT التي توسّع العمود الفقري [16] ومطابقة التدفق التي تعيد تأطير التوليد كنقل حقل متجهي [27]. وتضغط نماذج المسار المتسقة الاستدلال متعدد الخطوات [26]، بينما تهاجم هجائن الانتشار-GAN والحلول العددية الزائفة السرعة من زوايا مكملة [28، 29].</p>
+    <p>ويكمّل الإطارَ التوجيهُ والتكييف: فالتوجيه غير المصنف يوجّه التوليد دون مصنفات منفصلة [10]، ويضيف ControlNet تحكمًا مشروطًا لنماذج النص-إلى-صورة [11]، ويستغل تحرير مطالبة-لمطالبة الانتباه المتقاطع [12]، وتستخرج محوّلات T2I قدرة تحكم إضافية [33]، ويمتد التوليد المؤرض إلى التخطيطات المفتوحة [62]. ودرس القسم أن مكاسب الجودة تأتي الآن أقل من مزيلات تشويش أكبر وأكثر من مسارات وفترات وأوزان وواجهات تكييف أذكى.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. التوليد القابل للتحكم والتطبيقات</h2>
+    <p>يرسّخ النص-إلى-صورة خريطة التطبيقات: جعل الانتشار الكامن الدقة العالية فعالة [8]، وواءمت التسلسلات الهرمية الكامنة CLIP ومشفرات اللغة العميقة الدلالات [49، 17]، وتركّب الامتدادات المؤرضة مشاهد مفتوحة [62]. وتتبع استعادة الصور وتحريرها والتوليد ثنائي الأبعاد النمط نفسه — آليات قابلية التحكم (المحوّلات وضبط الانتباه والتأريض التخطيطي [11، 12، 33، 62]) تحوّل الأوليات الخام إلى أدوات موجهة. وتُنظَّم التقييمات والمعايير للشكل والأهداف وآليات التحكم جنبًا إلى جنب [33–47].</p>
+    <p>وخارج ثنائي الأبعاد، ينقل أخذ عينات التقطير بالدرجات الأوليات ثنائية الأبعاد إلى النص-إلى-ثلاثي-الأبعاد وتوليد المشاهد — DreamFusion [50] وMagic3D من الخشن إلى الدقيق [51] وSyncDreamer متعدد المشاهد [65] وفك تشابك الهندسة والمظهر في Fantasia3D [42] — بينما يوسّع توليد الفيديو النموذج زمنيًا (Make-A-Video [69] وDreamix [70] والتوليد المحاذي الكامن [71] وControlVideo دون تدريب [72]، إلى جانب الانتشار المشروط المقنع [67] ونمذجة الفيديو الطويل [68]) ويمتد الصوت من الكلام إلى الموسيقى (MusicLM [52] وAudioLDM [53] وDiffWave [54] وWaveGrad [73]). ودرس التطبيقات متسق: يفوز الانتشار حيث يلتقي التحسين التكراري مع التكييف القوي في مجال غني بالبيانات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. نماذج الانتشار الفعالة والخفيفة</h2>
+    <p>ينتظم الانتشار الأخضر في ثلاث عائلات تسريع: تحسين المعاينة (خطوات أقل وأذكى [7، 18، 26–29])، وضغط البنية (عمود فقري رشيق للتوليد [74] والكشف [75] ورفع الدقة [78]، بما فيها تصاميم MobileViT [74])، وتقطير المعرفة الذي ينقل أوليات النماذج الكبيرة إلى طلاب مدمجين. وتمتد التصاميم الخفيفة الآن عبر الاتصال الدلالي تحت القيود [76] والقياسات الحيوية [77] وتوليد حركة الشبكات [79] ومسارات القيادة الذاتية [80] والأحجام الطبية [81] وتمييز النوايا [82] واستعادة الأنسجة [83] — دليل على أن الانتشار المدمج أداة عامة لا تخصص ضيق.</p>
+    <p>ويستبدل تحسين الكفاءة الهيكلية والعمود الفقري شبكات U-Net الثقيلة والانتباه التربيعي بمعاملات أرشق [74، 75، 78، 79]؛ ويقلص التكميم وتعلم المجال الترددي عرض البتات ويستغل البنية الطيفية [76، 80، 81]؛ ويستخدم النموذج الخفيف المعزز بالتوليد الانتشار نفسه لتوليد إشارة تدريب للنماذج الصغيرة [77، 82، 83]. وتحليل المفاضلة صريح طوال الوقت: تشتري كل عائلة السرعة والذاكرة بكلفة دقة قابلة للقياس، والحدود تكمن في التوليفات لا في حيلة واحدة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. التحديات والقيود</h2>
+    <p>تحدّ ثلاثة أبعاد من النشر. تتصدرها التكلفة الحاسوبية والاستدامة البيئية: فالاستدلال التكراري الذي يقيّم الشبكات عشرات إلى مئات المرات لكل عينة يجعل الانتشار أعلى كلفة بكثير من GAN أو VAE أحادية المرور، مع دق تحليلات البصمة الكربونية للتدريب التوليدي الكبير ناقوس الخطر [84]. وتليها الملكية الفكرية وحقوق النشر ومصدر البيانات — فهجمات الاستخراج تسترجع بيانات التدريب من نماذج الانتشار [85]، مما يستدعي دفاعات مثل حماية الأسلوب [86]. ويغلق الثلاثي التحيز والسلامة وسوء الاستخدام: فأنظمة النص-إلى-صورة سهلة الوصول تضخّم القوالب وتتيح التوليد الضار [87].</p>
+    <p>ويشدد القسم على أن هذه ليست عقبات هندسية فحسب بل تقاطعات الكفاءة والقانون والأخلاق. فتتبع المصدر والتنسيق الواعي بالموافقة والواجهات المقاومة لسوء الاستخدام تُعرض كمتطلبات مصاحبة للحلول الأسرع: فالنموذج المكلف تشغيله أو المحفوف بالمخاطر تدريبه على بيانات مجمّعة أو السهل تسليحه لا يمكن أن يتخرج من قطعة أكاديمية إلى بنية تحتية منتشرة [84–87].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. الاتجاهات البحثية المستقبلية</h2>
+    <p>ستشكّل ثلاثة اتجاهات الجيل القادم. تنتقل البنى القابلة للتوسع من المحولات إلى نماذج فضاء الحالة: فبينما استبدلت محولات الانتشار U-Net في التوليد عالي الدقة، يخنق تعقيد الانتباه الذاتي التربيعي في طول المتتالية التوليد الطويل — وتقدم نماذج فضاء الحالة الانتقائية مثل مامبا نمذجة متتاليات بزمن خطي [88] كخليفة مرشح. ويتعمق التوليد متعدد الوسائط القابل للتحكم عبر تركيب النماذج الأساسية (أنماط Visual ChatGPT [89]). والهدف الأفقي محاكيات العالم: محركات توليدية عامة الأغراض تمتد قدراتها الناشئة خارج الصور إلى بيئات تفاعلية متماسكة زمنيًا.</p>
+    <p>والخيط المشترك العمومية عبر الكفاءة: بنى تتوسع خطيًا وتكييف يتركب عبر الوسائط ومحاكيات تطفئ كلفة تدريب واحدة عبر عوالم لاحقة عديدة. ويرث كل اتجاه قيد الذكاء الأخضر — فالعمومية التي لا تُحتمل كلفتها لا تُنشر [88، 89].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">8. الاستنتاجات</h2>
+    <p>تطورت نماذج الانتشار من طرائف نظرية إلى العمود الفقري للذكاء التوليدي الحديث، والأطروحة المركزية لهذا المسح أن مستقبلها في الذكاء الأخضر: الكفاءة دون فقدان الدقة. وتجمّع المراجعة المبادئ الأساسية [5، 6، 15] وآليات قابلية التحكم وتعدد الوسائط [8–12، 33، 49–52، 62، 69] والثلاثي الخفيف من الحلول والضغط والتقطير [74–83] — مجادِلة بالتحول الحتمي من الجودة بأي ثمن نحو توليد ميسور ومستدام.</p>
+    <p>ويتطلب تحقيق هذا التحول تقدمًا مشتركًا في الكلفة والمصدر والسلامة [84–87] ورهانات بنيوية خارج الانتباه التربيعي [88، 89]. وسد الفجوة بين البحث المتقدم والنشر العملي هو وجهة الخارطة: انتشار يعمل في كل مكان، ويستجيب للتكييف بأمانة، ويستحق بيانات تدريبه.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Diffusion models have emerged as the state-of-the-art generative paradigm, surpassing GANs in synthesizing high-fidelity images, videos, and audio [1, 9]. But iterative denoising imposes heavy compute and memory costs, blocking deployment on resource-constrained edge devices. Unlike broad general surveys, this review focuses on efficient and lightweight diffusion models: it systematizes the quality–cost trade-off across sampling optimization, architectural compression, and knowledge distillation [7, 18, 26–29]; reviews controllable generation and applications [8, 11, 12, 49–52, 69]; and explores integrations with emerging architectures such as Mamba [88] and evolution toward general-purpose world simulators — a roadmap for Green AI bridging research and real-world use.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Before diffusion, three paradigms dominated vision and cross-modal generation: GANs, sharp and realistic but unstable and prone to mode collapse [1]; VAEs, grounded in variational inference [2]; and flow-based models with exact likelihoods [3]. Diffusion models broke through when DDPMs showed a concise loss with U-Net denoising could surpass GANs on image synthesis [6, 9, 15], followed by latent diffusion for high-resolution efficiency [8] and classifier-free guidance for prompt alignment [10]. The survey positions itself against existing reviews [4]: rather than covering methodologies broadly, it concentrates on the efficiency frontier — the sampling, architectural, and distillation advances that decide whether diffusion can run outside the data center.</p>
+    <p>That focus is motivated by deployment reality. Iterative inference — tens to hundreds of network evaluations per sample — plus heavy backbones makes real-time and edge use prohibitive, so Green Diffusion, efficiency without fidelity loss, is the pivotal frontier. The paper's survey method maps fundamental frameworks [6–12, 15–18], sampling acceleration [7, 10, 18, 26–29], controllable generation [11, 12, 33, 62], applications [8, 49–52, 69], and lightweight designs [74–83], closing with challenges [84–87] and future directions [88, 89].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Basic Principles of Diffusion Models</h2>
+    <p>Diffusion defines two processes: a fixed forward Markov chain q(x_t|x_{t-1}) gradually adding Gaussian noise to data, and a learned reverse process p_θ(x_{t-1}|x_t) iteratively denoising latent x_T back to x_0 — the directed graphical model adapted from the foundational formulation [6], itself rooted in nonequilibrium thermodynamics [5]. Training minimizes a concise denoising objective [6], and the reverse chain's step-by-step refinement is what yields high-fidelity samples at the cost of many network evaluations.</p>
+    <p>Three process-level choices govern behavior: the forward schedule (how fast noise destroys signal), the reverse parameterization (predicting noise, data, or velocity — see design-space analysis [18]), and the training loss weighting across timesteps and intervals. These settings interact with sampling-interval choices and solver design, which Section 3 exploits for acceleration [26–29].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Methodologies: Frameworks, Sampling, and Acceleration</h2>
+    <p>The 2020 DDPM of Ho et al. marked the milestone of modern diffusion: concise loss plus the U-Net encoder–decoder with skip connections, exceptionally suited to local and global image structure [6, 15]. From discrete Markov chains the field generalized to continuous SDEs and ODEs, with DDIM implicit sampling cutting steps [7], the elucidated design space [18], DiT transformers scaling backbones [16], and flow matching reframing generation as vector-field transport [27]. Consistency trajectory models further compress multi-step reasoning [26], while Diffusion-GAN hybrids and pseudo-numerical manifold solvers attack speed from complementary angles [28, 29].</p>
+    <p>Guidance and conditioning complete the framework: classifier-free guidance steers generation without separate classifiers [10], ControlNet adds conditional control to text-to-image models [11], prompt-to-prompt editing exploits cross-attention [12], T2I-Adapters dig out further controllability [33], and grounded generation extends to open-set layouts [62]. The section's lesson is that quality gains now come less from bigger denoisers than from smarter trajectories, intervals, weights, and conditioning interfaces.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Controllable Generation and Applications</h2>
+    <p>Text-to-image anchors the application map: latent diffusion made high resolution efficient [8], CLIP-latent hierarchies and deep language encoders aligned semantics [49, 17], and grounded extensions compose open-set scenes [62]. Image restoration, editing, and two-dimensional generation follow the same pattern — controllability mechanisms (adapters, attention control, layout grounding [11, 12, 33, 62]) turning raw priors into directed tools. Evaluation and benchmarks for form, objectives, and control mechanisms are systematized alongside [33–47].</p>
+    <p>Beyond 2D, score-distillation sampling transfers 2D priors to text-to-3D and view synthesis — DreamFusion [50], Magic3D coarse-to-fine [51], SyncDreamer multiview synthesis [65], and geometry–appearance disentangling in Fantasia3D [42] — while video generation scales the paradigm temporally (Make-A-Video [69], Dreamix [70], latent-aligned synthesis [71], and training-free ControlVideo [72], alongside masked conditional diffusion [67] and long-video modeling [68]) and audio spans speech-to-music synthesis (MusicLM [52], AudioLDM [53], DiffWave [54], and WaveGrad [73]). The application lesson is consistent: diffusion wins where iterative refinement plus strong conditioning meets a data-rich domain.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Efficient and Lightweight Diffusion Models</h2>
+    <p>Green Diffusion organizes into three acceleration families: sampling optimization (fewer, smarter steps [7, 18, 26–29]), architectural compression (lean backbones for generation [74], detection [75], and super-resolution [78], including MobileViT-based designs [74]), and knowledge distillation transferring large-model priors into compact students. Lightweight designs now span semantic communication under resource constraints [76], biometrics [77], network-traffic synthesis [79], autonomous-driving trajectories [80], medical volumes [81], intent recognition [82], and histology restoration [83] — evidence that compact diffusion is a general tool, not a niche.</p>
+    <p>Structural efficiency and backbone optimization replace heavy U-Nets and quadratic attention with leaner operators [74, 75, 78, 79]; quantization and frequency-domain learning shrink bit-widths and exploit spectral structure [76, 80, 81]; and the generation-augmented lightweight paradigm uses diffusion itself to synthesize training signal for small models [77, 82, 83]. The trade-off analysis is explicit throughout: each family buys speed and memory at measurable fidelity cost, and the frontier lies in combinations rather than any single trick.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Challenges and Limitations</h2>
+    <p>Three dimensions limit deployment. Computational cost and environmental sustainability lead: iterative inference evaluating networks tens to hundreds of times per sample makes diffusion far costlier than single-pass GANs or VAEs, with carbon-footprint analyses of large generative training sounding the alarm [84]. Intellectual property, copyright, and data provenance follow — extraction attacks recover training data from diffusion models [85], prompting defenses such as style-mimicry protection [86]. Bias, safety, and misuse close the triad: easily accessible text-to-image systems amplify stereotypes and enable harmful synthesis [87].</p>
+    <p>The section stresses these are not mere engineering hurdles but intersections of efficiency, law, and ethics. Provenance tracking, consent-aware curation, and misuse-resistant interfaces are presented as co-requirements with faster solvers: a model too costly to run, too risky to train on scraped data, or too easy to weaponize cannot graduate from academic artifact to ubiquitous infrastructure [84–87].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Future Research Directions</h2>
+    <p>Three directions will shape the next generation. Scalable architectures move from Transformers to state-space models: while Diffusion Transformers replaced U-Nets in high-fidelity generation, quadratic self-attention complexity in sequence length chokes long-form synthesis — selective state-space models such as Mamba offer linear-time sequence modeling [88] as the candidate successor. Controllable multimodal synthesis deepens through foundation-model composition (Visual ChatGPT paradigms [89]). And the horizon goal is world simulators: general-purpose generative engines whose emergent capabilities extend beyond images into interactive, temporally coherent environments.</p>
+    <p>The common thread is generality through efficiency: architectures that scale linearly, conditioning that composes across modalities, and simulators that amortize one training cost across many downstream worlds. Each direction inherits the Green AI constraint — generality that cannot be afforded cannot be deployed [88, 89].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">8. Conclusions</h2>
+    <p>Diffusion models evolved from theoretical novelties to the backbone of modern generative AI, and this survey's central thesis is that their future lies in Green AI: efficiency without fidelity loss. The review synthesizes core principles [5, 6, 15], controllability and multimodal mechanisms [8–12, 33, 49–52, 62, 69], and the lightweight triad of solvers, compression, and distillation [74–83] — arguing the inevitable shift from quality-at-any-cost toward accessible, sustainable generation.</p>
+    <p>Realizing that shift demands co-progress on cost, provenance, and safety [84–87] and architectural bets beyond quadratic attention [88, 89]. Bridging high-end research and practical deployment is the roadmap's destination: diffusion that runs anywhere, answers to conditioning faithfully, and earns its training data.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Full reference list as in the original paper (89 references), with original numbering. See the original publication for linked/DOI versions.</p>
+    <ol dir="ltr">
+      <li>[1] Goodfellow, I.J.; Pouget-Abadie, J.; Mirza, M.; Xu, B.; Warde-Farley, D.; Ozair, S.; Courville, A.; Bengio, Y. Generative adversarial networks. Adv. Neural Inf. Process. Syst. 2014, 27, 2672–2680.</li>
+      <li>[2] Kingma, D.P.; Welling, M. Auto-encoding variational Bayes. arXiv 2022, arXiv:1312.6114.</li>
+      <li>[3] Dinh, L.; Sohl-Dickstein, J.; Bengio, S. Density estimation using Real NVP. arXiv 2017, arXiv:1605.08803.</li>
+      <li>[4] Weng, L. What Are Diffusion Models? lilianweng.github.io 2021. Available online: https://lilianweng.github.io/posts/2021-07- 11-diffusion-models/ (accessed on 10 December 2025).</li>
+      <li>[5] Sohl-Dickstein, J.; Weiss, E.A.; Maheswaranathan, N.; Ganguli, S. Deep unsupervised learning using nonequilibrium thermody- namics. arXiv 2015, arXiv:1503.03585.</li>
+      <li>[6] Ho, J.; Jain, A.; Abbeel, P. Denoising diffusion probabilistic models. Adv. Neural Inf. Process. Syst. 2020, 33, 6840–6851.</li>
+      <li>[7] Song, J.; Meng, C.; Ermon, S. Denoising diffusion implicit models. arXiv 2022, arXiv:2010.02502.</li>
+      <li>[8] Rombach, R.; Blattmann, A.; Lorenz, D.; Esser, P.; Ommer, B. High-resolution image synthesis with latent diffusion models. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), New Orleans, LA, USA, 18–24 June 2022; pp. 10684–10695.</li>
+      <li>[9] Dhariwal, P.; Nichol, A. Diffusion models beat GANs on image synthesis. Adv. Neural Inf. Process. Syst. 2021, 34, 11237–11252.</li>
+      <li>[10] Ho, J.; Salimans, T. Classifier-free diffusion guidance. arXiv 2022, arXiv:2207.12598.</li>
+      <li>[11] Zhang, L.; Rao, A.; Agrawala, M. Adding conditional control to text-to-image diffusion models. In Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV), Paris, France, 2–3 October 2023; pp. 1743–1754.</li>
+      <li>[12] Hertz, A.; Mokady, R.; Tenenbaum, J.; Aberman, K.; Pritch, Y.; Cohen-Or, D. Prompt-to-prompt image editing with cross attention control. arXiv 2022, arXiv:2208.01626.</li>
+      <li>[13] Yang, L.; Zhang, Z.; Song, Y.; Hong, S.; Xu, R.; Zhao, Y.; Zhang, W.; Cui, B.; Yang, M.-H. Diffusion models: A comprehensive survey of methods and applications. ACM Comput. Surv. 2023, 56, 1–39.</li>
+      <li>[14] Croitoru, F.-A.; Hondru, V.; Ionescu, R.T.; Shah, M. Diffusion models in vision: A survey. IEEE Trans. Pattern Anal. Mach. Intell. 2023, 45, 10850–10869.</li>
+      <li>[15] Ronneberger, O.; Fischer, P.; Brox, T. U-Net: Convolutional networks for biomedical image segmentation. In Medical Image Computing and Computer-Assisted Intervention—MICCAI 2015; Springer: Munich, Germany, 2015; pp. 234–241.</li>
+      <li>[16] Peebles, W.; Xie, S. Scalable diffusion models with transformers. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR); IEEE: Vancouver, BC, Canada, 2023; pp. 15357–15367.</li>
+      <li>[17] Saharia, C.; Chan, W.; Saxena, S.; Li, L.; Whang, J.; Denton, E.; Ghasemipour, S.K.S.; Ayan, B.K.; Mahdavi, S.S.; Lopes, R.G.; et al. Photorealistic text-to-image diffusion models with deep language understanding. arXiv 2022, arXiv:2205.11487.</li>
+      <li>[18] Karras, T.; Aittala, M.; Aila, T.; Laine, S. Elucidating the design space of diffusion-based generative models. Adv. Neural Inf. Process. Syst. 2022, 35, 27371–27386.</li>
+      <li>[19] Hang, T.; Gu, S.; Li, C.; Bao, J.; Chen, D.; Hu, H.; Geng, X.; Guo, B. Efficient diffusion training via min-SNR weighting strategy. arXiv 2024, arXiv:2303.09556.</li>
+      <li>[20] Song, Y.; Sohl-Dickstein, J.; Kingma, D.P.; Kumar, A.; Ermon, S.; Poole, B. Score-based generative modeling through stochastic differential equations. arXiv 2021, arXiv:2011.13456.</li>
+      <li>[21] Anderson, B.D.O. Reverse-time diffusion equation models. Stoch. Processes Their Appl. 1982, 12, 313–326.</li>
+      <li>[22] Hyvärinen, A. Estimation of non-normalized statistical models by score matching. J. Mach. Learn. Res. 2005, 6, 695–709.</li>
+      <li>[23] Lu, C.; Zhou, Y.; Bao, F.; Chen, J.; Li, C.; Zhu, J. DPM-Solver: A fast ODE solver for diffusion probabilistic model sampling in around 10 steps. In Proceedings of the 35th Conference on Neural Information Processing Systems (NeurIPS); Curran Associates, Inc.: New Orleans, LA, USA, 2022; pp. 5775–5787. https://doi.org/10.3390/app16052482 Appl. Sci. 2026, 16, 2482 22 of 24</li>
+      <li>[24] Bao, F.; Nie, S.; Xue, K.; Cao, Y.; Li, C.; Su, H.; Zhu, J. All are worth words: A ViT backbone for diffusion models. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), Vancouver, BC, Canada, 18–22 June 2023; pp. 15525–15535.</li>
+      <li>[25] Gao, S.; Zhou, P.; Cheng, M.-M.; Yan, S. MDTv2: Masked diffusion transformer is a strong image synthesizer. arXiv 2024, arXiv:2303.14389.</li>
+      <li>[26] Kim, D.; Lai, C.-H.; Liao, W.-H.; Murata, N.; Takida, Y.; Uesaka, T.; He, Y.; Mitsufuji, Y.; Ermon, S. Consistency trajectory models: Learning probability flow ODE trajectory of diffusion. arXiv 2024, arXiv:2310.02279.</li>
+      <li>[27] Lipman, Y.; Chen, R.T.Q.; Ben-Hamu, H.; Nickel, M.; Le, M. Flow matching for generative modeling. arXiv 2023, arXiv:2210.02747.</li>
+      <li>[28] Wang, Z.; Zheng, H.; He, P.; Chen, W.; Zhou, M. Diffusion-GAN: Training GANs with diffusion. In Proceedings of the International Conference on Learning Representations (ICLR), Kigali, Rwanda, 1–5 May 2023.</li>
+      <li>[29] Liu, L.; Ren, Y.; Lin, Z.; Zhao, Z. Pseudo numerical methods for diffusion models on manifolds. arXiv 2022, arXiv:2202.09778.</li>
+      <li>[30] Zhang, M.; Cai, Z.; Pan, L.; Hong, F.; Guo, X.; Yang, L.; Liu, Z. MotionDiffuse: Text-driven human motion generation with diffusion model. In Proceedings of the European Conference on Computer Vision (ECCV); Springer: Tel Aviv, Israel, 2022; pp. 616–633.</li>
+      <li>[31] Zhang, H.; Cao, L.; Ma, J. Text-DiFuse: An interactive multi-modal image fusion framework based on text-modulated diffusion model. arXiv 2024, arXiv:2410.23905.</li>
+      <li>[32] Hsiao, Y.-T.; Khodadadeh, S.; Duarte, K.; Lin, W.-A.; Qu, H.; Kwon, M.; Kalarot, R. Plug-and-play diffusion distillation. arXiv 2024, arXiv:2406.01954.</li>
+      <li>[33] Mou, C.; Wang, X.; Xie, L.; Wu, Y.; Zhang, J.; Qi, Z.; Shan, Y. T2I-Adapter: Learning adapters to dig out more controllable ability for text-to-image diffusion models. Proc. AAAI Conf. Artif. Intell. 2024, 38, 4296–4304.</li>
+      <li>[34] Ruiz, N.; Li, Y.; Jampani, V.; Pritch, Y.; Rubinstein, M.; Aberman, K. DreamBooth: Fine tuning text-to-image diffusion models for subject-driven generation. arXiv 2023, arXiv:2208.12242.</li>
+      <li>[35] Gal, R.; Alaluf, Y.; Atzmon, Y.; Patashnik, O.; Bermano, A.H.; Chechik, G.; Cohen-Or, D. An image is worth one word: Personalizing text-to-image generation using textual inversion. arXiv 2022, arXiv:2208.01618.</li>
+      <li>[36] Hu, E.J.; Shen, Y.; Wallis, P.; Allen-Zhu, Z.; Li, Y.; Wang, S.; Wang, L.; Chen, W. LoRA: Low-rank adaptation of large language models. arXiv 2021, arXiv:2106.09685.</li>
+      <li>[37] Vaccaro, M.; Friday, M.; Zaghi, A. Multi-agentic LLMs for personalizing STEM texts. Appl. Sci. 2025, 15, 7579.</li>
+      <li>[38] Li, H.; Lin, Y.; He, W.; Han, W.; Xu, X.; Xu, C.; Gao, E.; Zhao, H.; Gao, X. SANTO: A coarse-to-fine alignment and stitching method for spatial omics. Nat. Commun. 2024, 15, 6048.</li>
+      <li>[39] Han, L.; Li, Y.; Zhang, H.; Milanfar, P.; Metaxas, D.; Yang, F. SVDiff: Compact parameter space for diffusion fine-tuning. arXiv 2023, arXiv:2303.11305.</li>
+      <li>[40] Tewel, Y.; Gal, R.; Chechik, G.; Atzmon, Y. Key-locked rank one editing for text-to-image personalization. arXiv 2024, arXiv:2305.01644.</li>
+      <li>[41] Huang, Y.; Huang, J.; Liu, Y.; Yan, M.; Lv, J.; Liu, J.; Xiong, W.; Zhang, H.; Cao, L.; Chen, S. Diffusion model-based image editing: A survey. IEEE Trans. Pattern Anal. Mach. Intell. 2025, 47, 4409–4437.</li>
+      <li>[42] Chen, R.; Chen, Y.; Jiao, N.; Jia, K. Fantasia3D: Disentangling geometry and appearance for high-quality text-to-3D content creation. In Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV), Paris, France, 2–3 October 2023; pp. 22189–22199.</li>
+      <li>[43] Heusel, M.; Ramsauer, H.; Unterthiner, T.; Nessler, B.; Hochreiter, S. GANs trained by a two time-scale update rule converge to a local Nash equilibrium. Adv. Neural Inf. Process. Syst. 2018, 31, 265–277.</li>
+      <li>[44] Radford, A.; Kim, J.W.; Hallacy, C.; Ramesh, A.; Goh, G.; Agarwal, S.; Sastry, G.; Askell, A.; Mishkin, P.; Clark, J.; et al. Learning transferable visual models from natural language supervision. Proc. Mach. Learn. Res. 2021, 139, 8748–8761.</li>
+      <li>[45] Meng, C.; He, Y.; Song, Y.; Song, J.; Wu, J.; Zhu, J.-Y.; Ermon, S. SDEdit: Guided image synthesis and editing with stochastic differential equations. arXiv 2022, arXiv:2108.01073.</li>
+      <li>[46] Unterthiner, T.; van Steenkiste, S.; Kurach, K.; Marinier, R.; Michalski, M.; Gelly, S. Towards accurate generative models of video: A new metric and challenges. Adv. Neural Inf. Process. Syst. 2019, 32, 11967–11977.</li>
+      <li>[47] Downs, L.; Francis, A.; Koenig, N.; Kinman, B.; Hickman, R.; Reymann, K.; McHugh, T.B.; Vanhoucke, V. Google scanned objects: A high-quality dataset of 3D scanned household items. arXiv 2022, arXiv:2204.11918.</li>
+      <li>[48] Balaji, Y.; Nah, S.; Huang, X.; Vahdat, A.; Song, J.; Zhang, Q.; Kreis, K.; Aittala, M.; Aila, T.; Laine, S.; et al. eDiff-I: Text-to-image diffusion models with an ensemble of expert denoisers. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), Nashville, TN, USA, 18–22 June 2023; pp. 12079–12088.</li>
+      <li>[49] Ramesh, A.; Dhariwal, P.; Nichol, A.; Chu, C.; Chen, M. Hierarchical text-conditional image generation with CLIP latents. arXiv 2022, arXiv:2204.06125.</li>
+      <li>[50] Poole, B.; Jain, A.; Barron, J.T.; Mildenhall, B. DreamFusion: Text-to-3D using 2D diffusion. arXiv 2022, arXiv:2209.14988.</li>
+      <li>[51] Lin, C.-H.; Gao, J.; Tang, L.; Takikawa, T.; Zeng, X.; Huang, X.; Kreis, K.; Fidler, S.; Liu, M.-Y.; Lin, T.-Y. Magic3D: High-resolution text-to-3D content creation. arXiv 2023, arXiv:2211.10440. https://doi.org/10.3390/app16052482 Appl. Sci. 2026, 16, 2482 23 of 24</li>
+      <li>[52] Agostinelli, A.; Denk, T.I.; Borsos, Z.; Engel, J.; Verzetti, M.; Caillon, A.; Huang, Q.; Jansen, A.; Roberts, A.; Tagliasacchi, M.; et al. MusicLM: Generating music from text. arXiv 2023, arXiv:2301.11325.</li>
+      <li>[53] Liu, H.; Chen, Z.; Yuan, Y.; Mei, X.; Liu, X.; Mandic, D.; Wang, W.; Plumbley, M.D. AudioLDM: Text-to-audio generation with latent diffusion models. In Proceedings of the International Conference on Machine Learning (ICML), Honolulu, HI, USA, 23–29 July 2023; pp. 21450–21474.</li>
+      <li>[54] Kong, Z.; Ping, W.; Huang, J.; Zhao, K.; Catanzaro, B. DiffWave: A versatile diffusion model for audio synthesis. In Proceedings of the International Conference on Learning Representations (ICLR), Virtual, 3–7 May 2021.</li>
+      <li>[55] Fei, B.; Lyu, Z.; Pan, L.; Zhang, J.; Yang, W.; Luo, T.; Zhang, B.; Dai, B. Generative diffusion prior for unified image restoration and enhancement. arXiv 2023, arXiv:2304.01247.</li>
+      <li>[56] Wang, W.; Bao, J.; Zhou, W.; Chen, D.; Chen, D.; Yuan, L.; Li, H. SinDiffusion: Learning a diffusion model from a single natural image. arXiv 2022, arXiv:2211.12445.</li>
+      <li>[57] Choi, J.; Kim, S.; Jeong, Y.; Gwon, Y.; Yoon, S. ILVR: Conditioning method for denoising diffusion probabilistic models. In Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV), Montreal, QC, Canada, 10–17 October 2021; pp. 14347–14356.</li>
+      <li>[58] Zhang, R.; Isola, P.; Efros, A.A.; Shechtman, E.; Wang, O. The unreasonable effectiveness of deep features as a perceptual metric. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), Honolulu, HI, USA, 18–22 June 2018; pp. 586–595.</li>
+      <li>[59] Gu, S.; Chen, D.; Bao, J.; Wen, F.; Zhang, B.; Chen, D.; Yuan, L.; Guo, B. Vector quantized diffusion model for text-to-image synthesis. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), New Orleans, LA, USA, 21–24 June 2022; pp. 10686–10696.</li>
+      <li>[60] Yu, J.; Xu, Y.; Koh, J.Y.; Luong, T.; Baid, G.; Wang, Z.; Vasudevan, V.; Ku, A.; Yang, Y.; Ayan, B.K.; et al. Scaling autoregressive models for content-rich text-to-image generation. arXiv 2022, arXiv:2206.10789.</li>
+      <li>[61] Chang, H.; Zhang, H.; Barber, J.; Maschinot, A.J.; Lezama, J.; Jiang, L.; Yang, M.H.; Murphy, K.; Freeman, W.T.; Rubinstein, M.; et al. Muse: Text-to-image generation via masked generative transformers. arXiv 2023, arXiv:2301.00704.</li>
+      <li>[62] Li, Y.; Liu, H.; Wu, Q.; Mu, F.; Yang, J.; Gao, J.; Li, C.; Lee, Y.J. GLIGEN: Open-set grounded text-to-image generation. arXiv 2023, arXiv:2301.07093.</li>
+      <li>[63] Hinz, T.; Heinrich, S.; Wermter, S. Semantic object accuracy for generative text-to-image synthesis. IEEE Trans. Pattern Anal. Mach. Intell. 2022, 44, 1552–1565.</li>
+      <li>[64] Kim, S.; Jung, S.; Kim, B.; Choi, M.; Shin, J.; Lee, J. Towards safe self-distillation of internet-scale text-to-image diffusion models. arXiv 2023, arXiv:2307.05977.</li>
+      <li>[65] Liu, Y.; Lin, C.; Zeng, Z.; Long, X.; Liu, L.; Komura, T.; Wang, W. SyncDreamer: Generating multiview-consistent images from a single-view image. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), Seattle, WA, USA, 17–21 June 2024; pp. TBD.</li>
+      <li>[66] Zheng, X.-Y.; Pan, H.; Wang, P.-S.; Tong, X.; Liu, Y.; Shum, H.-Y. Locally attentional SDF diffusion for controllable 3D shape generation. ACM Trans. Graph. 2023, 42, 1–13.</li>
+      <li>[67] Voleti, V.; Jolicoeur-Martineau, A.; Pal, C. MCVD: Masked conditional video diffusion for prediction, generation, and interpolation. arXiv 2022, arXiv:2201.11793.</li>
+      <li>[68] Harvey, W.; Naderiparizi, S.; Masrani, V.; Weilbach, C.; Wood, F. Flexible diffusion modeling of long videos. arXiv 2022, arXiv:2205.11495.</li>
+      <li>[69] Singer, U.; Polyak, A.; Hayes, T.; Yin, X.; An, J.; Zhang, S.; Hu, Q.; Yang, H.; Ashual, O.; Gafni, O.; et al. Make-A-Video: Text-to-video generation without text-video data. arXiv 2022, arXiv:2209.14792.</li>
+      <li>[70] Molad, E.; Horwitz, E.; Valevski, D.; Acha, A.R.; Matias, Y.; Pritch, Y.; Leviathan, Y.; Hoshen, Y. Dreamix: Video diffusion models are general video editors. arXiv 2023, arXiv:2302.01329.</li>
+      <li>[71] Blattmann, A.; Rombach, R.; Ling, H.; Dockhorn, T.; Kim, S.W.; Fidler, S.; Kreis, K. Align your latents: High-resolution video synthesis with latent diffusion models. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), Vancouver, BC, Canada, 18–22 June 2023; pp. 22563–22575.</li>
+      <li>[72] Zhang, Y.; Wei, Y.; Jiang, D.; Zhang, X.; Zuo, W.; Tian, Q. ControlVideo: Training-free controllable text-to-video generation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), Vancouver, BC, Canada, 18–22 June 2023; pp. 1734–1743.</li>
+      <li>[73] Chen, N.; Zhang, Y.; Zen, H.; Weiss, R.J.; Norouzi, M.; Chan, W. WaveGrad: Estimating gradients for waveform generation. In Proceedings of the International Conference on Learning Representations (ICLR), Virtual, 3–7 May 2021.</li>
+      <li>[74] Liu, Y.; Sun, W. A lightweight diffusion model for image generation based on improved MobileViT. In Proceedings of the International Conference on Image Processing, Machine Learning and Pattern Recognition; ACM: Guangzhou, China, 2024; pp. 67–73. https://doi.org/10.3390/app16052482 Appl. Sci. 2026, 16, 2482 24 of 24</li>
+      <li>[75] Cai, W.; Gao, W.; Wang, X.; Di, X. Lightweight diffusion model for camouflaged object detection. In Proceedings of the 3rd International Conference on Artificial Intelligence, Internet of Things and Cloud Computing Technology (AIoTC), Wuhan, China, 13–15 September 2024; pp. 91–96.</li>
+      <li>[76] Grassucci, E.; Pignata, G.; Cicchetti, G.; Comminiello, D. Lightweight diffusion models for resource-constrained semantic communication. IEEE Wirel. Commun. Lett. 2025, 14, 2743–2747.</li>
+      <li>[77] Tao, Z.; Gao, Y.; Lin, S. Double branch lightweight finger vein recognition based on diffusion model. Int. J. Adv. Comput. Sci. Appl. 2024, 15. https://doi.org/10.14569/IJACSA.2024.0150147.</li>
+      <li>[78] An, T.; Xue, B.; Huo, C.; Xiang, S.; Pan, C. Efficient remote sensing image super-resolution via lightweight diffusion models. IEEE Geosci. Remote Sens. Lett. 2024, 21, 1–5.</li>
+      <li>[79] Li, F.; Wu, H.; Zhang, J. Lightweight diffusion model for synthesizing malicious network traffic. In Proceedings of the IEEE National Aerospace and Electronics Conference (NAECON), Dayton, OH, USA, 15–18 July 2024; pp. 409–413.</li>
+      <li>[80] Gao, R.; Kang, J.; Lai, B.; Xu, M.; Sun, G.; Zhang, T.; Zhang, W.; Yang, D. High-quality trajectory generation for autonomous driving: A lightweight federated learning-based diffusion model. In Proceedings of the IEEE Global Communications Conference (GLOBECOM), Cape Town, South Africa, 8–12 December 2024; pp. 1641–1646.</li>
+      <li>[81] Wilms, M.; Ahsan, A.O.; Ohara, E.Y.; Dagasso, G.; Macavoy, E.; Stanley, E.A.M.; Vigneshwaran, V.; Forkert, N.D. A lightweight 3D conditional diffusion model for self-explainable brain age prediction in adults and children. In Machine Learning in Clinical Neuroimaging—7th International Workshop, MLCN 2024; Bathula, D.R., Nirmala, A.B., Dvornek, N.C., Govindarajan, S.T., Habes, M., Kumar, V., Nebli, A., Wolfers, T., Xiao, Y., Eds.; Springer: Cham, Switzerland, 2024; pp. 57–67.</li>
+      <li>[82] Li, L.; Song, Y.; Quan, W.; Ni, P.; Wang, K. Lightweight intent recognition method based on diffusion model. Int. J. Comput. Intell. Syst. 2024, 17, 155.</li>
+      <li>[83] Wang, C.; He, Z.; He, J.; Ye, J.; Shen, Y. Histology image artifact restoration with lightweight transformer based diffusion model. In Artificial Intelligence in Medicine; Finkelstein, J., Moskovitch, R., Parimbelli, E., Eds.; Springer Nature Switzerland: Cham, Switzerland, 2024; pp. 81–89.</li>
+      <li>[84] Luccioni, A.S.; Viguier, S.; Ligozat, A.-L. Estimating the carbon footprint of Bloom, a 176B parameter language model. J. Mach. Learn. Res. 2023, 24, 1–15.</li>
+      <li>[85] Carlini, N.; Hayes, J.; Nasr, M.; Jagielski, M.; Sehwag, V.; Tramer, F.; Balle, B.; Ippolito, D.; Wallace, E. Extracting training data from diffusion models. In Proceedings of the USENIX Security Symposium, Anaheim, CA, USA, 9–11 August 2023.</li>
+      <li>[86] Shan, S.; Cryan, J.; Wenger, E.; Zheng, H.; Hanah, R.; Zhao, B.Y. Glaze: Protecting artists from style mimicry by text-to-image models. In Proceedings of the USENIX Security Symposium, Anaheim, CA, USA, 9–11 August 2023.</li>
+      <li>[87] Bianchi, F.; Kalluri, P.; Durmus, E.; Ladhak, F.; Cheng, M.; Nozza, D.; Hashimoto, T.; Jurafsky, D.; Zou, J.; Caliskan, A. Easily accessible text-to-image generation amplifies demographic stereotypes at large scale. arXiv 2023, arXiv:2211.03759.</li>
+      <li>[88] Gu, A.; Dao, T. Mamba: Linear-time sequence modeling with selective state spaces. arXiv 2023, arXiv:2312.00752.</li>
+      <li>[89] Wu, C.; Yin, S.; Qi, W.; Wang, X.; Tang, Z.; Duan, N. Visual ChatGPT: Talking, drawing and editing with visual foundation models. arXiv 2023, arXiv:2303.04671.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app16052482">10.3390/app16052482</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

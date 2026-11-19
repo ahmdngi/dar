@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>هجمات حقن المطالبات في النماذج اللغوية الكبيرة وأنظمة الوكلاء الذكية: مراجعة شاملة للثغرات ومتجهات الهجوم وآليات الدفاع — DAR</title>
+<meta name="description" content="Prompt Injection Attacks in Large Language Models and AI Agent Systems: A Comprehensive Review of Vulnerabilities, Attack Vectors, and Defense Mechanisms — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/prompt-injection-agents-information/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Prompt Injection Attacks in Large Language Models and AI Agent Systems: A Comprehensive Review of Vulnerabilities, Attack Vectors, and Defense Mechanisms</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">هجمات حقن المطالبات في النماذج اللغوية الكبيرة وأنظمة الوكلاء الذكية: مراجعة شاملة للثغرات ومتجهات الهجوم وآليات الدفاع</h2>
+
+  <div class="paper-meta">
+    <span>👤 Saidakhror Gulyamov, Said Gulyamov, Andrey Rodionov, Rustam Khursanov, Kambariddin Mekhmonov, Djakhongir Babaev, Akmaljon Rakhimjonov</span>
+    <span>📄 Information, 2026 · Vol. 17, 54</span>
+    <span>🔗 <a href="https://doi.org/10.3390/info17010054">10.3390/info17010054</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>غيّرت النماذج اللغوية الكبيرة تطبيقات الذكاء الاصطناعي بسرعة، لكن دمجها في أنظمة الإنتاج كشف عن ثغرات حرجة — في مقدمتها حقن المطالبات [3]، [4]، [7]. تجمع هذه المراجعة بحوث 2023–2025، محللة 45 مصدرًا رئيسيًا وتقارير أمنية صناعية وثغرات موثقة واقعيًا، وتغطي كسر الحماية المباشر والحقن غير المباشر عبر المحتوى الخارجي [12]، [13].</p>
+    <p>وسّع صعود أنظمة الوكلاء وبروتوكول سياق النموذج (MCP) أسطح الهجوم بشكل كبير، مستحدثًا تسميم الأدوات وسرقة بيانات الاعتماد [9]، [10]، [19]. وتشمل الحوادث الموثقة ثغرة تنفيذ الشيفرة عن بعد CVE-2025-53773 في GitHub Copilot [1]، [5]، [25] وثغرة CamoLeak لتسريب الأسرار (CVSS 9.6) [6] وكشف مفاتيح ترخيص Windows في ChatGPT [14]. وتُظهر البحوث أن خمس وثائق مصنوعة بعناية تكفي لحرف استجابات الذكاء الاصطناعي 90% من الوقت عبر تسميم الاسترجاع المعزز [28]. وتقترح المراجعة إطار PALADIN للدفاع المتعمق بخمس طبقات، مع تخفيفات مبنية على OWASP Top 10 لتطبيقات النماذج 2025 [13]، مع تحديد حدود جوهرية منها مشكلة الطبيعة العشوائية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">أولًا. المقدمة ومشهد التهديدات</h2>
+    <p>تسارع نشر النماذج اللغوية في الإنتاج منذ 2023، محوّلًا معالجة المعلومات المؤسسية — لكن خلافًا للبرمجيات التقليدية ذات التعليمات والمدخلات المنفصلة بوضوح، تعالج النماذج كل شيء كنص لغوي طبيعي، مما يخلق غموضًا جوهريًا يستغله المهاجمون [12]. وتحول المشهد من قلق نظري إلى خروقات موثقة: ففي 2025 عانى GitHub Copilot من CVE-2025-53773 الممكِّنة لتنفيذ الشيفرة عن بعد عبر حقن المطالبات [1]، [5]، [25]، [30]، إلى جانب تسريب أسرار من مستودعات خاصة [6]، [22]، [26]، [27]، [31].</p>
+    <p>تصنف OWASP حقن المطالبات كـ LLM01:2025، أعلى ثغرات تطبيقات النماذج، معتبرة إياه عيبًا معماريًا لا خلل تنفيذ [3]، [4]، [13]. يغير الحقن المباشر السلوك عبر مدخلات المستخدم؛ بينما يصل الحقن غير المباشر عبر مصادر خارجية — مواقع وملفات — مغيرًا السلوك دون وعي المستخدم [3]. وكسر الحماية متميز: فهو يستهدف حواجز السلامة تحديدًا، بينما يخرب الحقن السلوك على نطاق أوسع [2]، [3]. تصنف هذه المراجعة (يناير 2023–أكتوبر 2025، 45 مصدرًا أوليًا مختارًا لهجمات قابلة لإعادة الإنتاج أو دفاعات مُقيَّمة أو حوادث معترف بها رسميًا) الهجمات حسب المتجه، وتسهم بتصنيف كامل وتحليل حوادث وتقييم نقدي لسبب فشل كثير من الدفاعات أمام مهاجمين مصممين [12]، [13]، [41].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">ثانيًا. الخلفية: النماذج والمطالبات والوكلاء</h2>
+    <p>النماذج اللغوية الكبيرة شبكات محولات عميقة مدربة على مليارات الكلمات للتنبؤ بالرموز التالية؛ وتتراوح الأنظمة الرائدة (GPT-4 وClaude 3 وGemini 1.5 Pro) من عشرات المليارات إلى تريليونات المعاملات المحتملة [12]. يعالج الاستدلال المدخلات الكاملة كمتتاليات رموز، مولدًا المخرجات رمزًا برمز من توزيعات متعلمة — لذا قد تُنتج المطالبات المتطابقة استجابات مختلفة. والأهم أمنيًا أن النماذج لا تمتلك مفهومًا أصيلًا للـ«تعليمات» مقابل «البيانات»: فكل شيء يندمج في مطالبة واحدة، لذا فإن حدود الثقة التي تفرضها البرمجيات التقليدية بين الشيفرة الموثوقة والمدخلات غير الموثوقة غير موجودة أصليًا [12].</p>
+    <p>تحدد مطالبات النظام — الخفية عن المستخدمين — السلوك والسياق وصيغة المخرجات والقيود، لكنها غالبًا تضم مواد حساسة يفترض المطورون سريتها: مفاتيح API وعناوين داخلية وآليات أمنية ومنطق أعمال تنافسي [7]. ويكسر تسريب مطالبات النظام (LLM07:2025) تلك السرية، وتقدم المهاجمون من «كرر تعليماتك» الساذجة إلى استخراج متعدد الخطوات متطور [7]. وتفهرس أدلة هندسة المطالبات أسطح الهجوم وتقنيات السلامة التي يجب على المدافعين افتراض معرفة الخصوم بها مسبقًا [12]، [21].</p>
+    <p>يمثل التحول من روبوتات الدردشة إلى وكلاء معززين بالأدوات — نماذج تستدعي دوال (بحث ويب وتنفيذ شيفرة وبريد وقواعد بيانات وتحكم IoT) في حلقات إدراك–قرار–فعل — التغير المعماري الأهم، محوّلًا معالجات اللغة إلى منصات أتمتة عامة [9]، [10]. ويمنح MCP، معيار Anthropic المفتوح (نوفمبر 2024) («منفذ USB-C لتطبيقات الذكاء الاصطناعي»)، المساعدات واجهة أدوات شاملة عبر رسائل عميل–خادم، فيصبح «لخص رسائل الميزانية غير المقروءة» أمرًا لغويًا واحدًا [9]، [19]، [24]. ويمدد تفكيك المهام متعدد الوكلاء (وكلاء بحث وتخطيط وترميز) إضافة إلى بروتوكول A2A من Google (2025) القدرات — وسطح الهجوم: فبطاقات الوكلاء المبالغ فيها قد تحوّل العمل إلى وكلاء مارقين، والوكيل المخترق الواحد قد يسمم الشبكة بانتشار التعليمات [10].</p>
+    <p>يؤسس التوليد المعزز بالاسترجاع — المستخدم الآن في أكثر من 30% من تطبيقات ذكاء المؤسسات — النماذج على معرفة خارجية: تُضمَّن الوثائق كمتجهات دلالية وتُخزَّن في قواعد متجهات وتُحقن في السياق زمن الاستعلام، معالجًا قِدم التدريب وممكِّنًا أسئلة البيانات الخاصة [11]، [28]. لكن كل وثيقة مسترجعة محتوى بمرمى المهاجم: فتسميم قاعدة المعرفة يحول آلية التأصيل إلى متجه اختراق [11]، [28]، [29]، [36]. وتفشل دفاعات الفواصل («أحرف خاصة»، «تعليمات المستخدم تلي:») لأن المعالج نفسه يفسر النص الموثوق وغير الموثوق معًا [12].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">ثالثًا. التصنيف: الحقن المباشر وغير المباشر والقائم على الأدوات</h2>
+    <p>يتجاوز كسر الحماية المباشر قيود السلامة عبر مطالبات مستخدم مصنوعة. تفشل حيل «تجاهل التعليمات السابقة» المبكرة أمام رفض النماذج المدربة بـ RLHF، فانتقل المهاجمون إلى لعب الأدوار والافتراضيات والتلاعب العاطفي؛ وتجسد شخصيات «افعل أي شيء الآن» (DAN) استراتيجية السياق الخيالي [15]، [16]. ويُظهر التلاعب القائم على الألعاب النمط عمليًا: خدع باحث ChatGPT-4.0 لكشف أرقام Windows 10 التسلسلية عبر لعبة تخمين («استسلم» كمحفز كشف المفتاح)، مع مصطلحات مضمنة بوسوم HTML تتسلل عبر مرشحات الكلمات [14]، [17]. ويؤتمت لعب الأدوار مع التحسين العدائي البحث: يستخدم JudgeDeceiver طرق التدرج لاكتشاف متتاليات التجاوز [18]، وتحوّل المحادثات متعددة الأدوار السياق تدريجيًا مع الحفاظ على الاتساق الحواري [15]، [16].</p>
+    <p>يستغل التمويه فجوة الإدراك بين البشر والنماذج: فوسوم HTML وحيل Unicode وترميز base64 تخفي التعليمات عن المراجعين والمرشحات مع بقائها مقروءة آليًا — إذ احترم Claude تعليمات وسوم Unicode الخفية لأكثر من 14 شهرًا قبل معاملتها كثغرات [19]، وتكسر الأحرف صفرية العرض أنماط الكلمات المفتاحية، وقادت حمولات base64 بلواحق عشوائية كتابات وسوم SCADA ضد أنظمة صناعية [20]. والحقن غير المباشر أخطر لأن الضحايا يستخدمون الذكاء الاصطناعي فوق محتوى تحت سيطرة المهاجم: فصفحات الويب والوثائق والرسائل المسمومة تغير السلوك خفية، وكل موقع يُزار أو ملف يُعالَج متجه اختراق [3].</p>
+    <p>يستغل الحقن القائم على الأدوات قدرات الوكلاء نفسها. يزرع تسميم الأدوات في MCP تعليمات خبيثة في أوصاف الأدوات تُنفَّذ عند استدعائها [9]، [19]، [24]؛ وتعبر تعليمات Unicode الخفية طبقات الواجهة والAPI [19]؛ وتحول هجمات سحب البساط أداة حميدة سابقًا إلى خبيثة بعد كسب الثقة؛ وتنتشر عدوى المطالبات من نموذج إلى نموذج داخل الأنظمة متعددة الوكلاء [10]. ويرتب التحليل المقارن المتجهات حسب قابلية التوسع (PoisonedRAG: خمس وثائق وتلاعب 90% [28]) والثبات (استرداد على مستوى الجلسة مقابل المجموعة) والتهرب من الكشف (كاشفات متتبع الانتباه [34] وأدلة تحليل التنشيط مثل RevPRAG [35]) — لكنه يلتقي عند ثلاث فجوات: غياب نماذج تهديد رسمية للوكلاء وندرة بيانات التكرار الواقعية وضعف فهم الانتشار عبر السياقات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">رابعًا. الثغرات في أنظمة الوكلاء الذكية</h2>
+    <p>تمثل إخفاقات GitHub Copilot في 2025 دراسة الحالة النموذجية لأنظمة الوكلاء. سمحت CVE-2025-53773 (تنفيذ عن بعد في «وضع YOLO») ل حقن المطالبات بالتصعيد إلى اختراق كامل للنظام وتنفيذ شيفرة عن بعد [1]، [5]، [25]، [30]، مع استجابة بائع حادة — إزالة الوظيفة كليًا — تعكس صعوبة ترقيع هذه الفئة [27]، [32]. وسرّبت CamoLeak (CVSS 9.6) شيفرة مصدرية خاصة وأسرارًا من المستودعات [6]، [22]، [26]، [31]، بينما أظهرت فيروسات الذكاء الاصطناعي وشبكات ZombAI وكلاء محقونين يتكاثرون ذاتيًا عبر الجلسات [1]، [25]. وتؤكد أعمال تجريبية على الشيفرة المولدة من Copilot بشكل مستقل ضعفًا منهجيًا في المخرجات المولدة [43].</p>
+    <p>يكرر نظام Claude البيئي لـ MCP النمط على طبقة البروتوكول: حوّل حقن قضايا GitHub MCP متتبعات القضايا إلى قنوات أوامر [8]؛ ومنح تنفيذ الشيفرة في MCP Inspector (CVE-2025-49596) أدوات الفحص المستضافة مدى تنفيذ شيفرة؛ وأظهرت اختراقات التحكم الصناعي عبر MCP كتابات وسوم ضد التقنية التشغيلية، جاسرة مطالبات منشؤها تقنية المعلومات إلى التلاعب بالعمليات الفيزيائية [20]. وتعمم المتجهات عبر المنصات الدرس — فتصعيد الامتيازات يتبع حيثما يرث الوكلاء سلطة محيطة — وتختبر تحديات الفريق الأحمر التكيفية مثل LLMail-Inject من مايكروسوفت المدافعين ضد حمولات متطورة [23]. وتوثق تحليلات مخاطر أمن MCP [9]، [19] ومدونة MCP المعرضة [24] سطح استغلال يتسع مع كل أداة موصولة جديدة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">خامسًا. ثغرات أنظمة التوليد المعزز بالاسترجاع</h2>
+    <p>تسميم قاعدة المعرفة هو الثغرة الجذرية للتوليد المعزز: أثبت PoisonedRAG أن حفنة وثائق مصنوعة (خمس تكفي لتلاعب ~90%) توجه الاستجابات حسب الرغبة [28]، وتزرع المسترجعات ذات الأبواب الخلفية سلوكًا مشروطًا بالمحفز في مرحلة الاسترجاع نفسها [29]، وتتحقق حملات التسميم العملية من الهجمات من الطرف إلى الطرف [36]. ويحوّل استغلال قواعد المتجهات — التضمينات المعبوثة والتلاعب بالفهرس والتسرب عبر المستأجرين — المخزن إلى المهاجم، بينما تحوّل الثباتية القائمة على الذاكرة (ذاكرة محادثة أو ملف مسمومة تعبر الجلسات) الحقن اللحظي إلى اختراق طويل الأمد [28]، [29].</p>
+    <p>يقيّم التقييم المقارن متجهات الاسترجاع المعزز حسب قابلية التوسع ومدة الثبات (تعقيد الاسترداد على مستوى الجلسة مقابل تحديث المجموعة) والتهرب من الكشف مقابل أداء الكاشفات المبلغ — كاشفات متتبع الانتباه [34] وأدلة تحليل التنشيط (RevPRAG [35]) — بينما تذكّر مسوحات تقنيات الحقن [12]، [21] المدافعين باتساع فضاء الحمولات باستمرار. والخلاصة البنيوية: لأن الاسترجاع موجود لاستيراد محتوى غير موثوق بالتصميم، فإن كل نشر معزز يرث تعرضًا للحقن غير المباشر لا تزيله ضوابط المحيط [11]، [28].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">سادسًا. دراسات الحالة: ثغرات واقعية</h2>
+    <p>تصدرت أدوات التطوير تقارير الخروقات: تنفيذ Copilot عن بعد عبر الحقن حتى الاختراق الكامل [1]، [5]، [25]، [30]، وكشف المستودعات الخاصة وبيانات المستخدمين [22]، [26]، [31]، [32]، ورواية «الثرثار» عن تسريب Copilot Chat تحت مطالبات مصنوعة [27] — مع إرشادات التوثيق الآمن [33] ودراسات ضعف الشيفرة [43] تتتبع التداعيات. وقدم الذكاء التحاوري النظير الثقافي: كسر لعبة مفاتيح Windows الذي جعل ChatGPT يسلّم مفاتيح تنشيط مقرصنة [14]، [17]، مقابل دراسات كسر تجريبية [15]، [16] وهجمات محكم قائمة على التحسين [18].</p>
+    <p>تكمل الحالات عبر المجالات الصورة: عروض حقن مطالبات SCADA الكاتبة لوسوم أنظمة التحكم [20]، وعروض استغلال MCP/A2A الممتدة هجومًا ودفاعًا [10]، وتقارير تسميم الأدوات [9]، [19]، [24]، وقياسات تجاوز الحواجز التي تُظهر مراوغة الكاشفات نفسها على نطاق واسع [41] — بما فيها تحليلات اختراق مخترقي الذكاء الاصطناعي [42]. وتنقل مجتمعة حقن المطالبات من فضول مختبري إلى خطر تشغيلي عبر القطاعات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">سابعًا. آليات الدفاع والتخفيف</h2>
+    <p>يأتي التحقق من المدخلات والعزل أولًا: طهّر المحتوى غير الموثوق واعزله، وافرض أدنى الامتيازات على نطاقات الأدوات، واعزل مجاميع الاسترجاع عن قنوات التعليمات — إرشادات معيارية عبر أدلة الممارسين [12]، [21]، [33]. وتضيف الدفاعات المعمارية العزل الحمائي وبوابات التأكيد للإجراءات عالية المخاطر وفصل الامتيازات لئلا يرث الوكيل المخترق سلطة محيطة [9]، [19]، [24]؛ وتشدّد هندسة المطالبات للأمن مطالبات النظام والتسلسلات الهرمية للتعليمات مع افتراض استمرار محاولات الاستخراج [7]، [21].</p>
+    <p>تطبّق الكشف والمراقبة متتبعات الانتباه [34] وأدلة التنشيط [35] والفريق الأحمر التكيفي (LLMail-Inject [23]) فوق النشر؛ وتغلق دفاعات الاسترجاع الخاصة — مصدر المجموعة وفحوص سلامة التضمينات وتحصين المسترجعات ضد الأبواب الخلفية [29] والتقييم الواعي بالتسميم [36] — الحلقة على طبقة التخزين [11]، [28]. وتوحد أدلة تحصين الوكلاء قائمة التحقق لتأمين الوكلاء ضد الحقن [44]، بينما ترسم مسوحات تهديدات استغلال البروتوكولات سطح هجوم سير العمل الذي يجب على المدافعين تغطيته [45].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">ثامنًا. إطار OWASP وأفضل الممارسات الصناعية</h2>
+    <p>يعيد OWASP Top 10 لتطبيقات النماذج 2025 ترتيب مشهد المخاطر شاملًا، مع حقن المطالبات (LLM01) في القمة وتقنين تسريب مطالبات النظام (LLM07) وإضفاء الطابع الرسمي على مخاطر سلسلة التوريد وتسميم البيانات والوكالة المفرطة حولهما [3]، [4]، [7]، [13]. وتتتبع التحليلات الصناعية ما تغير عن الإصدارات السابقة وأي التخفيفات نضجت [4]، [7]. ورسالة الورقة: عامل قائمة OWASP كخط أساس لمتطلبات زمن البناء — نمذج تهديد كل حد مطالبة، وقيّد الوكالة لكل مهمة، وتحقق من مصدر كل بايت مسترجع أو معاد من أداة [3]، [13]، [33].</p>
+    <p>تلف ممارسة دورة حياة التطوير الآمنة الضوابط: مراجعات تصميم متوافقة مع OWASP، واختبار مركز على الحقن (بما فيه أجنحة الألعاب والتمويه ومتعددة الأدوار [14]–[18])، وإدارة تبعيات ومصدر الأدوات لخوادم MCP [9]، [19]، [24]، والإفصاح عن الحوادث مع الاعتراف الرسمي كعتبة دليل، ومدخلات حوكمة من أبحاث حوكمة الذكاء الاصطناعي [39] وتقييم الجدارة بالثقة [40] والدراسات السيبرانية القانونية [37]، [38]. والخيط الجامع هو الدفاع المتعمق لا أي مرشح مفرد — وهي الفرضية التي يصوغها PALADIN رسميًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">تاسعًا. التحديات المفتوحة والقيود الجوهرية</h2>
+    <p>تقاوم أربعة قيود الترقيع. مشكلة الطبيعة العشوائية: فالتوليد الاحتمالي يعني تباين المطالبات المتطابقة، فلا مرشح يقدم ضمانات حتمية [12]. ومفارقة المواءمة في أنظمة الوكلاء: فقابلية التوجيه زمن التشغيل نفسها التي تجعل الوكلاء مفيدين تجعلهم قابلين للتوجيه من المهاجمين [10]. والكشف كمسرح أمني: تُظهر قياسات المراوغة تجاوز الحواجز والكاشفات على نطاق واسع، مع أتمتة المهاجمين أسرع من تكيف الكاشفات [18]، [41]. ومقايضة القابلية للاستخدام–الأمن: فكل بوابة تأكيد أو تقييد نطاق أو إزالة وظيفة (كما في استجابة Copilot الحادة [27]) تفرض ضريبة على الاستخدام المشروع — وهو التوتر الذي تؤطره الدراسات القانونية للعقود والنظافة السيبرانية من الجانب البشري [37]، [38].</p>
+    <p>يجيب PALADIN بخمس طبقات حماية مُسقَطة على إطار OWASP: ضوابط مدخلات المحيط، والعزل المعماري وأدنى الامتيازات، وتسلسلات مطالبات محسنة، وكشف ومراقبة مستمرين، وسلامة الاسترجاع والمجموعة — كل منها مُسقَط على فئات OWASP المناظرة لتكون التغطية قابلة للتدقيق لا تمنيات [3]، [13]. ويجب أن تسعى الأعمال المستقبلية إلى التحقق الرسمي والأمن القابل للإثبات ومعماريات دفاعية جديدة ونماذج تعاون إنسان–ذكاء تُبقي المشغلين في الحلقة فعليًا وبحوث تنظيمية وسياساتية تحوّل الضوابط التقنية إلى التزامات واجبة النفاذ [13]، [39]، [40]، [44]، [45].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">عاشرًا. الخاتمة</h2>
+    <p>تخرج حقن المطالبات من حيل المطالبات إلى الثغرة المميزة لعصر الوكلاء: كسر الحماية المباشر [14]–[18] والحمولات غير المباشرة الخفية [3] وتسميم الأدوات وسحب البساط [9]، [19]، [24] والعدوى بين الوكلاء [10] وتسميم الاسترجاع بكفاءة خمس-وثائق-إلى-90% [28] تشكل سطح هجوم واحدًا متصلًا، تُصدقه ثغرة Copilot للتنفيذ عن بعد [1]، [5] وCamoLeak [6] وكتابات SCADA [20] ومراوغات الكاشفات المنهجية [41].</p>
+    <p>لا يكفي مرشح مفرد ضد ركيزة عشوائية قابلة للتوجيه — ومن هنا طبقات PALADIN الخمس القابلة للتدقيق المُسقَطة على OWASP 2025 [3]، [13]، مدعومة بعزل المدخلات وأدنى الامتيازات المعمارية والمطالبات المحسنة والمراقبة المستمرة [34]، [35] وسلامة المجموعة [11]، [28]، [29]، [36]. والدعوة الختامية للمراجعة هي نحو دفاعات قابلة للإثبات وتشارك إنسان–ذكاء وتنظيم يجعل الدفاع المتعمق إلزاميًا لا اختياريًا [39]، [40]، [44]، [45].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>LLMs have rapidly transformed AI applications, yet production integration has unveiled critical vulnerabilities — chief among them prompt injection [3], [4], [7]. This review synthesizes research from 2023 to 2025, analyzing 45 key sources, industry security reports, and documented real-world exploits, covering direct jailbreaking and indirect injection through external content [12], [13].</p>
+    <p>The rise of AI agent systems and the Model Context Protocol (MCP) has dramatically expanded attack surfaces, introducing tool poisoning and credential theft [9], [10], [19]. Documented incidents include GitHub Copilot's CVE-2025-53773 remote-code-execution flaw [1], [5], [25], the CamoLeak secret-exfiltration exploit (CVSS 9.6) [6], and ChatGPT's Windows license-key exposure [14]. Research shows just five crafted documents can skew AI responses 90% of the time via RAG poisoning [28]. The review proposes PALADIN, a five-layer defense-in-depth framework, with OWASP Top 10 for LLM Applications 2025-based mitigations [13], while identifying fundamental limits including the stochastic-nature problem.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction and Threat Landscape</h2>
+    <p>Production LLM deployment has accelerated since 2023, transforming organizational information processing — but unlike traditional software with cleanly separated instructions and inputs, LLMs process everything as natural-language text, creating a fundamental ambiguity attackers exploit [12]. The landscape shifted from theoretical concern to documented breach: in 2025 GitHub Copilot suffered CVE-2025-53773 enabling remote code execution through prompt injection [1], [5], [25], [30], alongside secret leakage from private repositories [6], [22], [26], [27], [31].</p>
+    <p>OWASP ranks prompt injection as LLM01:2025, the top LLM-application vulnerability, treating it as an architectural flaw rather than an implementation bug [3], [4], [13]. Direct injections alter behavior through user input; indirect injections arrive via external sources — websites, files — altering behavior without the user's awareness [3]. Jailbreaking is distinct: it specifically targets safety guardrails, while prompt injection subverts behavior more broadly [2], [3]. This review (January 2023–October 2025, 45 primary sources selected for reproducible attacks, evaluated defenses, or officially acknowledged incidents) categorizes attacks by vector and contributes a full taxonomy, incident analysis, and critical evaluation of why many defenses fail against determined attackers [12], [13], [41].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Background: Models, Prompts, and Agents</h2>
+    <p>LLMs are deep Transformer networks trained on billions of words to predict next tokens; frontier systems (GPT-4, Claude 3, Gemini 1.5 Pro) scale from tens of billions to potentially trillions of parameters [12]. Inference processes whole inputs as token sequences, generating outputs one token at a time from learned distributions — so identical prompts can yield different responses. Critically, LLMs have no inherent notion of 'instruction' versus 'data': everything merges into a single prompt, so trust boundaries that conventional software enforces between trusted code and untrusted input do not natively exist [12].</p>
+    <p>System prompts — invisible to end users — set behavior, context, output format, and constraints, yet often embed sensitive material developers assume confidential: API keys, internal URLs, security mechanisms, competitive business logic [7]. System-prompt leakage (LLM07:2025) breaks that confidentiality, and attackers have progressed from naive 'repeat your instructions' to sophisticated multi-step extraction [7]. Prompt-engineering guides catalog attack surfaces and safety techniques defenders must assume adversaries already know [12], [21].</p>
+    <p>The shift from chatbots to tool-augmented agents — LLMs calling functions (web search, code execution, email, databases, IoT control) in structured perceive–decide–act loops — is the most consequential architectural change, turning language processors into general-purpose automation platforms [9], [10]. MCP, Anthropic's November 2024 open standard ('USB-C port for AI applications'), gives assistants a universal tool interface via client–server messages (Claude Desktop, Cursor, lightweight tool servers), so 'summarize unread budget emails' becomes one natural-language command [9], [19], [24]. Multi-agent decomposition (research, planning, coding agents) plus Google's 2025 Agent2Agent (A2A) protocol extends capability — and attack surface: exaggerated Agent Cards can reroute work to rogue agents, and one compromised agent can poison the network as instructions propagate [10].</p>
+    <p>Retrieval-Augmented Generation — now in over 30% of enterprise AI applications — grounds models in external knowledge: documents are embedded as semantic vectors, stored in vector databases, and injected into context at query time, fixing training cutoffs and enabling proprietary-data QA [11], [28]. But every retrieved document is attacker-reachable content: knowledge-base poisoning turns the grounding mechanism into a compromise vector [11], [28], [29], [36]. Delimiter-style defenses ('special characters', 'user instructions follow:') fail because the same processor interprets trusted and untrusted text alike [12].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Taxonomy: Direct, Indirect, and Tool-Based Injection</h2>
+    <p>Direct jailbreaking overrides safety constraints via crafted user prompts. Early 'ignore previous instructions' ploys now fail against RLHF-trained refusals, so attackers moved to role-play, hypotheticals, and emotional manipulation; 'Do Anything Now' (DAN) personas typify the fictional-context strategy [15], [16]. Game-based manipulation shows the pattern concretely: a researcher duped ChatGPT-4.0 into revealing Windows 10 serials through a guessing game ('I give up' as the key-reveal trigger), with HTML-tag-embedded terms (<a href=x></a>Windows<a href=x></a>10) slipping past keyword filters [14], [17]. Role-play plus adversarial optimization automates the search: JudgeDeceiver uses gradient methods to discover bypass sequences [18], and multi-turn conversations gradually shift context while preserving conversational consistency [15], [16].</p>
+    <p>Obfuscation exploits the human–LLM perception gap: HTML tags, Unicode tricks, and base64 hide instructions from reviewers and filters while staying machine-readable — Claude honored hidden Unicode tag instructions for 14+ months before they were treated as vulnerabilities [19], zero-width characters fracture keyword patterns, and base64 payloads with random suffixes have driven SCADA tag writes against industrial systems [20]. Indirect injection is more dangerous still because victims merely use AI over attacker-controlled content: poisoned web pages, documents, and emails alter behavior invisibly, with every visited site or processed file a compromise vector [3].</p>
+    <p>Tool-based injection exploits agent capabilities themselves. Tool poisoning in MCP plants malicious instructions in tool descriptions that execute when agents invoke them [9], [19], [24]; hidden Unicode instructions ride through UI and API layers [19]; rug-pull attacks mutate a previously benign tool into a malicious one after trust is established; and prompt infection spreads LLM-to-LLM within multi-agent systems [10]. Comparative analysis ranks vectors by scalability (PoisonedRAG: five documents, 90% manipulation [28]), persistence (session- versus corpus-level recovery), and detection evasion (attention-tracker detectors [34], activation-analysis forensics such as RevPRAG [35]) — but converges on three gaps: no formal agent threat models, scarce real-world frequency data, and poorly understood cross-context propagation.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Vulnerabilities in AI Agent Systems</h2>
+    <p>GitHub Copilot's 2025 failures are the canonical agent-system case study. CVE-2025-53773 ('YOLO mode' RCE) let prompt injection escalate to full system compromise and remote code execution [1], [5], [25], [30], with blunt vendor response — removing functionality entirely — reflecting how hard the flaw class is to patch [27], [32]. CamoLeak (CVSS 9.6) exfiltrated private source code and secrets from repositories [6], [22], [26], [31], while AI viruses and ZombAI networks showed injected agents self-replicating across sessions [1], [25]. Empirical work on Copilot-generated code independently confirms systemic weakness in generated artifacts [43].</p>
+    <p>The Claude MCP ecosystem repeats the pattern at the protocol layer: GitHub MCP issue injection turned issue trackers into command channels [8]; MCP Inspector RCE (CVE-2025-49596) gave hosted inspection tooling code-execution reach; and industrial-control compromises via MCP demonstrated tag writes against operational technology, bridging IT-originated prompts into physical process manipulation [20]. Cross-platform vectors generalize the lesson — privilege escalation follows wherever agents inherit ambient authority — and adaptive red-team challenges such as Microsoft's LLMail-Inject benchmark defenders against evolving payloads [23]. MCP security-risk analyses [9], [19] and the vulnerable-MCP corpus [24] document an exploit surface that grows with every newly connected tool.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. RAG System Vulnerabilities</h2>
+    <p>Knowledge-base poisoning is RAG's root vulnerability: PoisonedRAG demonstrated that a handful of crafted documents (five suffices for ~90% manipulation) steer responses at will [28], backdoored retrievers implant trigger-conditioned behavior into the retrieval stage itself [29], and practical poisoning campaigns validate the attacks end-to-end [36]. Vector-database exploitation — tampered embeddings, index manipulation, cross-tenant leakage — turns the store into the attacker, while memory-based persistence (poisoned conversation or profile memory surviving across sessions) converts one-shot injection into long-term compromise [28], [29].</p>
+    <p>Comparative assessment scores RAG vectors on attack scalability, persistence duration (session-level versus corpus-update recovery complexity), and detection evasion against reported detector performance — attention-tracker detectors [34] and activation-analysis forensics (RevPRAG [35]) — while prompt-injection technique surveys [12], [21] remind defenders the payload space keeps widening. The structural conclusion: because retrieval exists to import untrusted content by design, every RAG deployment inherits indirect-injection exposure that perimeter controls cannot remove [11], [28].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Case Studies: Real-World Exploits</h2>
+    <p>Development tools led the breach reports: Copilot RCE via prompt injection to full compromise [1], [5], [25], [30], private-repo and user-data exposure [22], [26], [31], [32], and the Register's 'blabbermouth' account of Copilot Chat leaking under crafted prompts [27] — with secure-documentation guidance [33] and code-weakness studies [43] tracing the aftermath. Conversational AI supplied the cultural counterpart: the Windows-keys game jailbreak that made ChatGPT surrender pirated activation keys [14], [17], set against empirical jailbreak studies [15], [16] and optimization-based judge attacks [18].</p>
+    <p>Cross-domain cases complete the picture: SCADA prompt-injection demonstrations writing control-system tags [20], MCP/A2A exploit demonstrations spanning attack and defense [10], tool-poisoning write-ups [9], [19], [24], and guardrail-bypass empirics showing detectors themselves evaded at scale [41] — including analyses of hacking the AI hackers [42]. Together they move prompt injection from lab curiosity to cross-sector operational risk.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Defense Mechanisms and Mitigation</h2>
+    <p>Input validation and isolation come first: sanitize and sandbox untrusted content, enforce least-privilege tool scopes, and isolate retrieval corpora from instruction channels — standard guidance across practitioner playbooks [12], [21], [33]. Architectural defenses add sandboxing, confirmation gates for high-stakes actions, and privilege separation so a compromised agent cannot inherit ambient authority [9], [19], [24]; prompt-engineering-for-security hardens system prompts and instruction hierarchies while assuming extraction attempts are continuous [7], [21].</p>
+    <p>Detection and monitoring layer attention-trackers [34], activation forensics [35], and adaptive red-teaming (LLMail-Inject [23]) over the deployment; RAG-specific defenses — corpus provenance, embedding-integrity checks, retriever hardening against backdoors [29], and poisoning-aware evaluation [36] — close the loop on the storage layer [11], [28]. Agent-focused hardening guides consolidate the checklist for securing agents against injection [44], while protocol-exploit threat surveys map the workflow-level attack surface defenders must cover [45].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">8. OWASP Framework and Industry Best Practices</h2>
+    <p>OWASP Top 10 for LLM Applications 2025 comprehensively re-ranks the risk landscape, with prompt injection (LLM01) at the top, system-prompt leakage (LLM07) codified, and supply-chain, data-poisoning, and excessive-agency risks formalized around them [3], [4], [7], [13]. Industry analyses track what changed from prior editions and which mitigations matured [4], [7]. The paper's message: treat the OWASP list as a build-time requirements baseline — threat-model every prompt boundary, constrain agency per task, and verify provenance of every retrieved or tool-returned byte [3], [13], [33].</p>
+    <p>Secure-development lifecycle practice wraps the controls: OWASP-aligned design reviews, injection-focused testing (including game-based, obfuscated, and multi-turn suites [14]–[18]), dependency and tool-provenance management for MCP servers [9], [19], [24], incident disclosure with official acknowledgment as the evidence bar, and governance inputs from AI-governance [39], trustworthiness-evaluation [40], and cyber-law scholarship [37], [38]. The through-line is defense in depth rather than any single filter — the premise PALADIN formalizes.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">9. Open Challenges and Fundamental Limitations</h2>
+    <p>Four limits resist patching. The stochastic-nature problem: probabilistic generation means identical prompts can diverge, so no filter offers deterministic guarantees [12]. The alignment paradox in agent systems: the same runtime steerability that makes agents useful makes them steerable by attackers [10]. Detection as security theater: evasion empirics show guardrail and detector bypass at scale, with attackers automating faster than detectors adapt [18], [41]. And the usability–security trade-off: every confirmation gate, scope restriction, or functionality removal (as with Copilot's blunt response [27]) taxes legitimate use — the tension legal scholarship on contracts and cyber-hygiene frames from the human side [37], [38].</p>
+    <p>PALADIN answers with five protective layers mapped onto the OWASP framework: perimeter input controls, architectural isolation and least privilege, hardened prompt hierarchies, continuous detection and monitoring, and RAG/corpus integrity — each mapped to corresponding OWASP categories so coverage is auditable rather than aspirational [3], [13]. Future work must pursue formal verification and provable security, novel defensive architectures, human–AI collaboration models that keep operators meaningfully in the loop, and regulatory and policy research that converts technical controls into enforceable obligations [13], [39], [40], [44], [45].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">10. Conclusions</h2>
+    <p>Prompt injection has graduated from prompt trickery to the defining vulnerability of the agent era: direct jailbreaks [14]–[18], invisible indirect payloads [3], tool poisoning and rug pulls [9], [19], [24], agent-to-agent infection [10], and RAG poisoning at five-documents-to-90% efficiency [28] form one continuous attack surface, validated by Copilot RCE [1], [5], CamoLeak [6], SCADA writes [20], and systematic detector evasions [41].</p>
+    <p>No single filter suffices against a stochastic, steerable substrate — hence PALADIN's five auditable layers mapped to OWASP 2025 [3], [13], backed by input isolation, architectural least privilege, hardened prompts, continuous monitoring [34], [35], and corpus integrity [11], [28], [29], [36]. The review's closing call is for provable defenses, human–AI teaming, and regulation that makes defense-in-depth mandatory rather than optional [39], [40], [44], [45].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Full reference list of 45 entries as in the original paper (Information 2026, 17, 54, https://doi.org/10.3390/info17010054).</p>
+    <ol dir="ltr">
+      <li>Baran, G. GitHub Copilot RCE Vulnerability via Prompt Injection. Cybersecurity News, 14 Aug 2025.</li>
+      <li>Willison, S. Prompt Injection and Jailbreaking Are Not the Same Thing. Apr 2025. https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/</li>
+      <li>OWASP Top 10 for LLM Applications — LLM01: Prompt Injection. https://genai.owasp.org/llmrisk/llm01-prompt-injection/</li>
+      <li>Vongthongsri, K. OWASP Top 10 2025 for LLM Applications: What's New? Confident AI, 8 Aug 2025.</li>
+      <li>GitHub Copilot: Remote Code Execution via Prompt Injection. Embrace-the-Red, 2025.</li>
+      <li>CamoLeak: Critical GitHub Copilot Vulnerability Leaks Private Source Code. Legit Security, 2025. (CVSS 9.6)</li>
+      <li>AI Under the Microscope: What's Changed in the OWASP Top 10 for LLMs 2025. Qualys Blog, Nov 2024.</li>
+      <li>GitHub MCP Vulnerability Has Far-Reaching Consequences. Cybernews, 2025.</li>
+      <li>Errico, H. et al. Securing the Model Context Protocol (MCP). arXiv 2025, arXiv:2511.20920.</li>
+      <li>Lakshmanan, R. MCP Prompt Injection for Attack and Defense; A2A Rogue-Agent Routing. The Hacker News, Apr 2025.</li>
+      <li>Webster, I. RAG Data Poisoning: Key Concepts. Promptfoo, 4 Nov 2024.</li>
+      <li>Prompt Injection in LLMs: A Complete Guide. Evidently AI, 2025.</li>
+      <li>OWASP Top 10 for Large Language Model Applications v2025. PDF, 2025.</li>
+      <li>Tangermann, V. ChatGPT Gives Away Pirated Windows Activation Keys. Futurism, 11 Jul 2025.</li>
+      <li>Liu, Y. et al. Jailbreaking ChatGPT via Prompt Engineering: An Empirical Study. arXiv 2024.</li>
+      <li>Liu, Y. et al. A Hitchhiker's Guide to Jailbreaking ChatGPT via Prompt Engineering. 2024.</li>
+      <li>ChatGPT Leaks Windows Keys Including Wells Fargo License via Clever Game Prompt. Meterpreter.org, 2025.</li>
+      <li>Shi, J. et al. Optimization-Based Prompt Injection Attack to LLM-as-a-Judge. arXiv 2024, arXiv:2403.17710.</li>
+      <li>Model Context Protocol: Security Risks and Exploits. Embrace-the-Red, 2025.</li>
+      <li>Prompt Injection in Operational Technology: SCADA Attack Demonstration. veganmosfet.github.io, 14 Jul 2025.</li>
+      <li>Naminas, K. Prompt Injection: Top Techniques for LLM Safety. Label Your Data, 17 Sep 2024.</li>
+      <li>Constantin, L. GitHub Copilot Prompt Injection Flaw Leaked Sensitive Data from Private Repos. CSO Online, 8 Oct 2025.</li>
+      <li>Announcing the Adaptive Prompt Injection Challenge: LLMail-Inject. Microsoft MSRC, Dec 2024.</li>
+      <li>Vulnerable MCP: Security Vulnerabilities in Model Context Protocol. https://vulnerablemcp.info/</li>
+      <li>GitHub Copilot RCE Vulnerability Lets Attackers Execute Malicious Code. GBHackers, 2025.</li>
+      <li>GitHub Copilot Vulnerability Exposes User Data and Private Repositories. Cybersecurity News, 2025.</li>
+      <li>Page, C. GitHub Copilot Chat Turns Blabbermouth with Crafty Prompt Injection. The Register, 9 Oct 2025.</li>
+      <li>PoisonedRAG: Knowledge Poisoning Attacks to Retrieval-Augmented Generation. https://github.com/sleeepeer/PoisonedRAG</li>
+      <li>Clop, C.; Teglia, Y. Backdoored Retrievers for Prompt Injection Attacks on RAG. arXiv 2024, arXiv:2410.14479.</li>
+      <li>GitHub Copilot: Remote Code Execution via Prompt Injection (CVE-2025-53773). Medium/fordevsecops, 2025.</li>
+      <li>Ramirez, S. GitHub Copilot's Prompt Injection Flaw Sparks Security Concerns. SQ Magazine, 10 Oct 2025.</li>
+      <li>Divya. Simple Prompt Injection Lets Hackers Bypass OpenAI Guardrails Framework. GBHackers, 14 Oct 2025.</li>
+      <li>Claude Code Security Documentation. https://docs.claude.com/en/docs/claude-code/security</li>
+      <li>Hung, K.-H. et al. Attention Tracker: Detecting Prompt Injection Attacks in LLMs. ACL Findings 2024.</li>
+      <li>Tan, X. et al. RevPRAG: Revealing Poisoning Attacks in RAG through LLM Activation Analysis. arXiv 2024.</li>
+      <li>Zhang, B. et al. Practical Poisoning Attacks Against Retrieval-Augmented Generation. arXiv 2025, arXiv:2504.03957.</li>
+      <li>Gulyamov, S.; Jurayev, S. Cybersecurity Threats and Data Breaches: Legal Implication in Cyberspace Contracts. Young Sci. 2023, 1, 19–22.</li>
+      <li>Gulyamov, S.S.; Rodionov, A.A. Cyber Hygiene as an Effective Psychological Measure. Psychol. Law 2024, 14, 77–91.</li>
+      <li>Taeihagh, A. Governance of Artificial Intelligence. Policy Soc. 2021, 40, 137–157.</li>
+      <li>Nastoska, A. et al. Evaluating Trustworthiness in AI: Risks, Metrics, and Applications. Electronics 2025, 14, 2717.</li>
+      <li>Hackett, W. et al. Bypassing LLM Guardrails: An Empirical Analysis of Evasion Attacks. 2025.</li>
+      <li>Mayoral-Vilches, V.; Rynning, P. Cybersecurity AI: Hacking the AI Hackers via Prompt Injection. arXiv 2025, arXiv:2508.21669.</li>
+      <li>Fu, Y. et al. Security Weaknesses of Copilot-Generated Code in GitHub Projects. ACM TOSEM.</li>
+      <li>Ramakrishnan, B.; Balaji, A. Securing AI Agents Against Prompt Injection Attacks. arXiv 2025, arXiv:2511.15759.</li>
+      <li>Ferrag, M.A. et al. From Prompt Injections to Protocol Exploits: Threats in LLM-Powered AI Agent Workflows. arXiv 2025, arXiv:2506.232xx.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/info17010054">10.3390/info17010054</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

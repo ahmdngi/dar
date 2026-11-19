@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>توسيع نافذة السياق في نماذج اللغة الكبيرة عبر التعديل المقطعي للأساس في التضمينات الموضعية الدوارة — DAR</title>
+<meta name="description" content="Extending Context Window in Large Language Models with Segmented Base Adjustment for Rotary Position Embeddings — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/rope-context-extension-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Extending Context Window in Large Language Models with Segmented Base Adjustment for Rotary Position Embeddings</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">توسيع نافذة السياق في نماذج اللغة الكبيرة عبر التعديل المقطعي للأساس في التضمينات الموضعية الدوارة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Rui Li, Jianguo Xu, Zheng Cao, Hao-Tian Zheng, Hong-Gee Kim</span>
+    <span>📄 Appl. Sci., 2024 · Vol. 14, 3076</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app14073076">10.3390/app14073076</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>منذ تقديم بنية المحوّل (Transformer) [1]، جعلت قدرتها على التعلّم السياقي (ICL) [2] نافذةَ السياق — مدى الرموز التي يمكن للنموذج أخذها في الاعتبار دفعة واحدة — عاملًا حاسمًا في الأداء على المهام التي تتطلب تجميع معلومات موزعة عبر نصوص طويلة. ومع أن تقنيات مثل ALiBi [6] وLeX [7] تتيح الاستقراء الطولي، فإنها تخاطر بإضعاف الاعتماديات بعيدة المدى بسبب الاضمحلال الصريح، بينما تميّز التضمينات الموضعية الدوارة (RoPE) [11] المستخدمة في LLaMA [8] وGPT-NeoX [9] وPaLM [10] بين المديين الطويل والقصير عبر ترددات مثلثية متفاوتة دون اضمحلال صريح [11].</p>
+    <p>نقترح التعديل المقطعي للأساس في RoPE (SBA-RoPE): تُستقرأ الأبعاد عالية التردد التي غطت زوايا دورانها كامل المدى من 0 إلى 2&pi; أثناء التدريب المسبق مباشرةً، بينما تُستكمل الأبعاد منخفضة التردد التي تعلمت زوايا جزئية فقط، معاملةً استقراء الطول كمسألة توزيع خارجي (OOD) في مرحلة التنبؤ. وبضبط دقيق لنموذج Pythia-2.8B [15] على 10,000 عينة فقط من PG-19 [23]، حقق SBA-RoPE أدنى حيرة (perplexity) بين PI [12] وNTK [13] وYaRN [14] عند كل طول موسّع (مثل 4.363 عند 4k رموز لمعامل القياس s = 2، وأفضل الدرجات عبر المدى غير المرئي 5k&ndash;10k عند s = 4)، وأعلى دقة في استرجاع مفتاح المرور [25] (حتى 1.0 عند 7&ndash;8k عند s = 4).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>أحدث نموذج المحوّل منذ نشأته [1] ثورة في معالجة اللغة الطبيعية عبر الانتباه الذاتي، ومن أبرز سمات نماذج اللغة الكبيرة القائمة عليه التعلّمُ السياقي (ICL) [2]: التكيّف مع مهام جديدة دون إعادة تدريب عبر التكييف على أمثلة قليلة داخل سياق الإدخال. ومن ثمّ تحدد نافذة السياق أقصى مدى للعلاقات التي يمكن للنموذج استغلالها، فالنوافذ الأكبر تتيح فهمًا أغنى والنوافذ الأصغر تحدّ من التقاط الاعتماديات بعيدة المدى.</p>
+    <p>وخلافًا للنماذج المتكررة مثل RNN [3] وLSTM [4]، تعامل المحوّلاتُ الإدخالَ كمجموعة رموز غير مرتبة، لذا يحقن الترميز الموضعي معلومات الترتيب المفقودة؛ وقد حسّن التطور من الترميز المطلق إلى النسبي [5] التعميم عبر أطوال التسلسل المختلفة. وتعتمد نماذج رائدة كثيرة — LLaMA [8] وGPT-NeoX [9] وPaLM [10] — تضمينات RoPE [11] التي يجعل تطبيقها المباشر على الاستعلامات والمفاتيح وتوافقها مع الانتباه الوميضي وقابليتها للتوسع من توسيع نافذة سياقها مسألة محورية.</p>
+    <p>وتعاني طرق التوسيع الحالية من عيوب لكل منها: فالاستكمال الموضعي (PI) [12] يضغط المسافات بين الرموز ويشوّه السياق المحلي؛ والقياس الواعي بـNTK [13] قد ينتج زوايا دوران خارج النطاق باستقراء دون الأمثل؛ وYaRN [14] يجزّئ نهج NTK لكنه يضيف تعقيدًا ويتطلب ضبط فرط-وسائط لكل نموذج. يعالج SBA-RoPE هذه الحدود باستقراء الأبعاد عالية التردد المدرّبة بالكامل واستكمال الأبعاد منخفضة التردد المدرّبة جزئيًا فقط، متطلبًا ضبطًا دقيقًا محدودًا مع الحفاظ على الأداء داخل النافذة وتحسين التكيف مع السياقات الطويلة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الخلفية والمنهجية</h2>
+    <p>يُرمّز التضمين الموضعي الدوار (RoPE) [11] المواضع المطلقة عبر مصفوفات دوران مع إظهار الاعتماد على الموضع النسبي فقط: فدرجة الانتباه a(m, n) بين الاستعلام عند الموضع m والمفتاح عند الموضع n تعتمد حصرًا على الإزاحة النسبية m&minus;n. وتُسند إلى أبعاد التضمين المختلفة ترددات دوران متفاوتة &theta;<sub>j</sub>، فتكتسح الأبعاد عالية التردد كامل المدى 0&ndash;2&pi; مرات عديدة داخل نافذة التدريب المسبق بينما تغطي الأبعاد منخفضة التردد قوسًا جزئيًا فقط.</p>
+    <p>يجزّئ SBA-RoPE الأبعاد حسب أقصى زاوية دوران في التدريب المسبق نسبة إلى 2&pi;: فالأبعاد التي غطت الدورة كاملة — مجموعة التردد العالي — تُستقرأ لأن زواياها دُرّبت جيدًا والدورية تمنع انفجار الحيرة؛ والأبعاد التي تقل زواياها القصوى عن 2&pi; — مجموعتا التردد المنخفض والمتوسط — تُستكمل بتوزيع عبء الاستكمال بروح NTK [13] دون ضغط الترددات العالية كما يفعل PI [12] ودون ضبط مقطعي لكل بُعد كما في YaRN [14]. وعند الأبعاد الحدّية تتطابق الطريقة مع PI، فلا تُدخل زوايا خارجية جديدة في أي موضع.</p>
+    <p>يتطلب التنفيذ تعديل شيفرة التضمين فقط — دون مساس بحساب درجات الانتباه — فيمكن للنماذج القائمة على RoPE مثل LLaMA وLLaMA-2 وGPT-NeoX اعتماده ببضعة أسطر. وضبط المؤلفون Pythia-2.8B [15] (بنية GPT-NeoX [9]، مدرّب مسبقًا على Pile [16]) بهدف التنبؤ بالرمز التالي وخسارة الإنتروبيا المتقاطعة [19] ومحسّن AdamW [20] (&beta;<sub>1</sub>=0.9 و&beta;<sub>2</sub>=0.95 ومعدل 2&times;10<sup>&minus;5</sup> وإحماء 60 خطوة) والدقة المختلطة FP16 [21] وDeepSpeed ZeRO-3 [22] والانتباه الموفر للذاكرة من xFormers [17] في PyTorch [18]، على PG-19 [23] المقتطع إلى 4k رموز عبر 1250 خطوة (دفعة 8، ثماني بطاقات V100)، لمعاملي قياس s = 2 (نافذة 4k) وs = 4 (نافذة 8k).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. التجارب والنتائج</h2>
+    <p>قُيّمت نمذجة اللغة للتسلسلات الطويلة بحيرة النافذة المنزلقة (خطوة 256، وفق [6]) على مجموعة اختبار Proof-pile [24] بعشر عينات لا تقل عن 10k رموز. عند s = 2 (الجدول 1)، ترفع كل طرق التوسيع الحيرة داخل النافذة (1&ndash;2k) إلى حد ما — PI أكثرها من التمديد المتساوي لكل الأبعاد وفقدان معلومات التردد العالي — بينما يرتفع SBA-RoPE أقلها (5.016 عند 2k مقابل 5.227 لـPI و4.785 للنموذج الأصلي)؛ وفي المدى الموسّع 3&ndash;4k ينفجر النموذج الأصلي (79.499 عند 4k) بينما SBA-RoPE الأدنى عند كل طول (4.596 عند 3k و4.363 عند 4k)، ويبقى الأفضل حتى خارج النافذة عند 5k (10.233).</p>
+    <p>وعند s = 4 (الجدول 2)، بالتدريب على &le;4k رموز فقط والتقييم حتى 10k، يتصدر SBA-RoPE مجددًا: فهو الأدنى أو الثاني عند كل طول حتى 8k (مثل 4.506 عند 8192 مقابل 4.647 لـPI و18.220 لـNTK و4.577 لـYaRN)، بينما ينهار NTK داخل نافذته الموسّعة عند 7&ndash;8k (9.119/18.220) من زوايا دوران خارج النطاق، ويبقى SBA-RoPE الأفضل عبر المدى غير المرئي 5&ndash;10k — مظهرًا انتقالًا يتجاوز أطوال الضبط الدقيق.</p>
+    <p>يؤكد اختبار استرجاع مفتاح المرور [25] — استعادة مفتاح خماسي مخفي قرب بداية السياق، 20 محاولة لكل طول — الاستخدامَ الفعلي (لا مجرد حيرة منخفضة) للسياق. فعند s = 2 (الجدول 3) تعمل كل المتغيرات المضبوطة داخل النافذة، وSBA-RoPE الأفضل إلا عند 3k (0.90/0.60/0.85 عند 2k/3k/4k)؛ وعند s = 4 (الجدول 4) يطابق SBA-RoPE كل عمود أو يتصدره (0.95 عند 1k و0.95 عند 4k و1.0 عند 7k و8k و0.05 عند 9k)، جامعًا بين زوايا PI المحدودة وتوزيع عبء الاستكمال بأسلوب NTK، بينما ينهار PI بعد 8k ويفشل NTK/YaRN عند 6&ndash;8k.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. مناقشة النتائج</h2>
+    <p>يُظهر تحليل الحيرة أن SBA-RoPE يحافظ على الأداء داخل النافذة مع توسيعها: فالتدهور الطفيف عند 1&ndash;2k يعكس نجاح استقراء الأبعاد عالية التردد دون فقدان المعلومات المدرّبة مسبقًا، ونتائج s = 4 — الأداء القوي على سياقات 4&ndash;8k غير المرئية في التدريب — تدل على تعلّم انتقالي حقيقي لا حفظ للأطوال، وهي ميزة أساسية لتطبيقات المستندات الطويلة [23][24].</p>
+    <p>وتؤكد دقة مفتاح المرور ذلك: فالدقة العالية عبر كل النوافذ، خصوصًا عند s = 4، تُظهر انتباه النموذج عبر المسافات الطويلة دون فقدان الترابط الوظيفي. ويسرد المؤلفون مستفيدين ملموسين — تلخيص المستندات والإجابة عن أسئلة المستندات الطويلة — عبر فهم أشمل للمستند كله وتقليل فقدان المعلومات والتقاط أفضل للاعتماديات بعيدة المدى ودمج أمثل للمعلومات المتناثرة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. الخاتمة</h2>
+    <p>يوسّع SBA-RoPE نافذة سياق نماذج اللغة المدربة مسبقًا والقائمة على RoPE عبر تعديل مقطعي لقيم الأساس — باستقراء الأبعاد عالية التردد المدرّبة بالكامل واستكمال الأبعاد منخفضة التردد المدرّبة جزئيًا — مؤطّرًا كمسألة توزيع خارجي في مرحلة التنبؤ. وتجريبيًا يتفوق على PI [12] وNTK [13] وYaRN [14] في الحيرة واسترجاع مفتاح المرور [25] عبر أحجام النوافذ، بما فيها سياقات لم تُرَ أثناء الضبط الدقيق، مع تأثير طفيف على مهام النافذة الأصلية في منصة اختبار Pythia-2.8B [15].</p>
+    <p>تشمل الأعمال المستقبلية دمج SBA-RoPE مع بنيات أكثر واستكشاف نوافذ أكبر وسيناريوهات التعلّم بالقليل من الأمثلة ونشر الشيفرة المصدرية (بضعة أسطر للتضمين فقط). ويمكن توجيه الاستفسارات إلى المؤلف المراسل؛ ويعلن المؤلفون عدم وجود تضارب في المصالح.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Since the Transformer was introduced [1], its in-context learning (ICL) ability [2] has made the context window — the span of tokens a model can consider at once — a decisive factor in performance on tasks that require synthesis of information spread across long texts. While techniques such as ALiBi [6] and LeX [7] enable length extrapolation, they risk weak long-range dependencies from explicit long-range decay, whereas rotary position embeddings (RoPE) [11], used by LLaMA [8], GPT-NeoX [9], and PaLM [10], distinguish long and short ranges through varying trigonometric frequencies without explicit decay [11].</p>
+    <p>We propose Segmented Base Adjustment for RoPE (SBA-RoPE): high-frequency dimensions whose rotation angles fully covered 0 to 2&pi; during pre-training are directly extrapolated, while low-frequency dimensions that learned only partial angles are interpolated, treating length extrapolation as a prediction-stage out-of-distribution (OOD) problem. Fine-tuning Pythia-2.8B [15] on only 10,000 PG-19 [23] samples, SBA-RoPE achieves the lowest perplexity among PI [12], NTK [13], and YaRN [14] at every extended length (e.g., 4.363 at 4k tokens for scaling factor s = 2, and the best scores across the unseen 5k&ndash;10k range for s = 4), and the highest passkey-retrieval [25] accuracy (up to 1.0 at 7&ndash;8k for s = 4).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>The Transformer model since its inception [1] has revolutionized natural language processing through self-attention, and a pivotal feature of Transformer-based large language models is in-context learning (ICL) [2]: adapting to new tasks without retraining by conditioning on few-shot examples inside the input context. The context window therefore determines the maximum scope of relationships the model can leverage, with larger windows enabling richer understanding and smaller windows limiting the capture of long-range dependencies.</p>
+    <p>Unlike recurrent models such as RNN [3] and LSTM [4], Transformers treat input as an unordered token set, so position encoding injects the missing order information; the evolution from absolute to relative position encoding [5] improved generalization across sequence lengths. Many leading LLMs — LLaMA [8], GPT-NeoX [9], and PaLM [10] — adopt RoPE [11], whose direct application to queries and keys, compatibility with Flash Attention, and scalability make extending its context window a central problem.</p>
+    <p>Existing extension methods each have drawbacks: positional interpolation (PI) [12] compresses inter-token spacing and distorts local context; NTK-aware scaling [13] can produce out-of-bounds rotation angles with suboptimal extrapolation; and YaRN [14] partitions the NTK approach but adds complexity and per-model hyperparameter tuning. SBA-RoPE addresses these limits by extrapolating fully-trained high-frequency dimensions and interpolating only the partially-trained low-frequency ones, requiring only minimal fine-tuning while preserving in-window performance and improving long-context adaptability.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Background and Methods</h2>
+    <p>Rotary position embedding (RoPE) [11] encodes absolute positions through rotation matrices while exposing only relative position dependence: the attention score a(m, n) between query at position m and key at position n depends solely on the relative offset m&minus;n. Different embedding dimensions are assigned different rotation frequencies &theta;<sub>j</sub>, so that high-frequency dimensions sweep the full 0&ndash;2&pi; range many times within the pre-training window while low-frequency dimensions cover only a partial arc.</p>
+    <p>SBA-RoPE segments dimensions by their maximum pre-training rotation angle relative to 2&pi;. Dimensions whose angles fully covered the period — the high-frequency group — are extrapolated, since those angles were thoroughly trained and periodicity prevents a perplexity explosion; dimensions with maximum angles below 2&pi; — the low- and moderate-frequency groups — are interpolated, distributing the interpolation load in the NTK spirit [13] without compressing the high frequencies as PI [12] does and without per-dimension segment tuning as in YaRN [14]. For out-of-segment boundary dimensions the method coincides with PI, so no new OOD angles are introduced anywhere.</p>
+    <p>Implementation requires only embedding-code changes — attention-score computation is untouched — so existing RoPE-based models such as LLaMA, LLaMA-2, and GPT-NeoX can adopt it in a few lines of code. The authors fine-tuned Pythia-2.8B [15] (GPT-NeoX architecture [9], pre-trained on the Pile [16]) with the next-token objective and cross-entropy loss [19], AdamW [20] (&beta;<sub>1</sub>=0.9, &beta;<sub>2</sub>=0.95, lr 2&times;10<sup>&minus;5</sup>, 60-step warmup), FP16 mixed precision [21], DeepSpeed ZeRO-3 [22], and xFormers memory-efficient attention [17] in PyTorch [18], on PG-19 [23] truncated to 4k tokens over 1250 steps (batch 8, eight V100 GPUs), for scaling factors s = 2 (4k window) and s = 4 (8k window).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Experiments and Results</h2>
+    <p>Long-sequence language modeling was evaluated by sliding-window perplexity (stride 256, following [6]) on the Proof-pile test split [24], using 10 samples of at least 10k tokens. At s = 2 (Table 1), all extension methods raise in-window (1&ndash;2k) perplexity somewhat — PI most, from equal stretching of all dimensions and loss of high-frequency information — while SBA-RoPE rises least (5.016 at 2k vs. 5.227 for PI and 4.785 for the original model); in the extended 3&ndash;4k range the original model explodes (79.499 at 4k) while SBA-RoPE is lowest at every length (4.596 at 3k, 4.363 at 4k), and it remains best even beyond the window at 5k (10.233).</p>
+    <p>At s = 4 (Table 2), trained only on &le;4k tokens yet evaluated to 10k, SBA-RoPE again leads: it is lowest or second-lowest at every length through 8k (e.g., 4.506 at 8192 vs. 4.647 PI, 18.220 NTK, 4.577 YaRN), while NTK collapses inside its own extended window at 7&ndash;8k (9.119/18.220) from out-of-bounds rotation angles, and SBA-RoPE stays best over the never-seen 5&ndash;10k range — demonstrating transfer beyond the fine-tuning lengths.</p>
+    <p>Passkey retrieval [25] — recovering a hidden five-digit key placed near the context start, 20 trials per length — confirms effective (not merely low-perplexity) context use. At s = 2 (Table 3) all fine-tuned variants work inside the window, with SBA-RoPE best except at 3k (0.90/0.60/0.85 at 2k/3k/4k); at s = 4 (Table 4) SBA-RoPE matches or tops every column (0.95 at 1k, 0.95 at 4k, 1.0 at 7k and 8k, 0.05 at 9k), combining PI-style bounded angles with NTK-style distributed interpolation stress, while PI collapses past 8k and NTK/YaRN fail at 6&ndash;8k.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Discussion</h2>
+    <p>Perplexity analysis shows SBA-RoPE preserves in-window performance while extending the window: the minimal 1&ndash;2k degradation reflects successful extrapolation of high-frequency dimensions without loss of pre-trained information, and the s = 4 results — strong performance on 4&ndash;8k contexts never seen in training — evidence genuine transfer learning rather than memorized lengths, a key advantage for long-document applications [23][24].</p>
+    <p>Passkey accuracy corroborates this: high retrieval accuracy across all windows, especially s = 4, shows the model attends over long distances without functional incoherence. The authors list concrete beneficiaries — document summarization and long-document question answering — via improved whole-document understanding, reduced information loss, better long-distance dependency capture, and optimized integration of scattered information.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Conclusions</h2>
+    <p>SBA-RoPE extends the context window of pre-trained RoPE-based LLMs by segmentally adjusting base values — extrapolating fully-trained high-frequency dimensions and interpolating partially-trained low-frequency ones — framed as a prediction-stage OOD problem. Empirically it surpasses PI [12], NTK [13], and YaRN [14] on perplexity and passkey retrieval [25] across window sizes, including contexts never seen during fine-tuning, while minimally affecting original-window tasks on the Pythia-2.8B [15] testbed.</p>
+    <p>Future work includes integrating SBA-RoPE with more architectures, probing larger windows and few-shot learning scenarios, and releasing the (few-line, embedding-only) source code. Further inquiries may be directed to the corresponding author; the authors declare no conflicts of interest.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">All 25 references of the original paper are listed below with their original numbers. Full text: https://doi.org/10.3390/app14073076.</p>
+    <ol dir="ltr">
+      <li>Vaswani, A.; Shazeer, N.; Parmar, N.; Uszkoreit, J.; Jones, L.; Gomez, A.N.; Kaiser, L.; Polosukhin, I. Attention is All you Need. In <i>Advances in Neural Information Processing Systems</i>; Curran Associates, Inc.: Red Hook, NY, USA, 2017; Volume 30.</li>
+      <li>Dong, Q.; Li, L.; Dai, D.; Zheng, C.; Wu, Z.; Chang, B.; Sun, X.; Xu, J.; Sui, Z. A survey for in-context learning. arXiv 2022, arXiv:2301.00234.</li>
+      <li>Medsker, L.R.; Jain, L. Recurrent neural networks. <i>Des. Appl.</i> 2001, 5, 2.</li>
+      <li>Hochreiter, S.; Schmidhuber, J. Long short-term memory. <i>Neural Comput.</i> 1997, 9, 1735&ndash;1780.</li>
+      <li>Shaw, P.; Uszkoreit, J.; Vaswani, A. Self-Attention with Relative Position Representations. In <i>Proc. NAACL-HLT 2018 (Short Papers)</i>, New Orleans, LA, USA, 1&ndash;6 June 2018; pp. 464&ndash;468.</li>
+      <li>Press, O.; Smith, N.; Lewis, M. Train Short, Test Long: Attention with Linear Biases Enables Input Length Extrapolation. In <i>Proc. ICLR</i>, Virtual, 25&ndash;29 April 2022.</li>
+      <li>Sun, Y.; Dong, L.; Patra, B.; Ma, S.; Huang, S.; Benhaim, A.; Chaudhary, V.; Song, X.; Wei, F. A Length-Extrapolatable Transformer. arXiv 2022, arXiv:2212.10554.</li>
+      <li>Touvron, H.; Lavril, T.; Izacard, G.; Martinet, X.; Lachaux, M.A.; Lacroix, T.; Rozi&egrave;re, B.; Goyal, N.; Hambro, E.; Azhar, F.; et al. Llama: Open and efficient foundation language models. arXiv 2023, arXiv:2302.13971.</li>
+      <li>Black, S.; Biderman, S.; Hallahan, E.; Anthony, Q.; Gao, L.; Golding, L.; He, H.; Leahy, C.; McDonell, K.; Phang, J.; et al. GPT-NeoX-20B: An open-source autoregressive language model. arXiv 2022, arXiv:2204.06745.</li>
+      <li>Anil, R.; Dai, A.M.; Firat, O.; Johnson, M.; Lepikhin, D.; Passos, A.; Shakeri, S.; Taropa, E.; Bailey, P.; Chen, Z.; et al. PaLM 2 technical report. arXiv 2023, arXiv:2305.10403.</li>
+      <li>Su, J.; Lu, Y.; Pan, S.; Wen, B.; Liu, Y. RoFormer: Enhanced Transformer with Rotary Position Embedding. arXiv 2021, arXiv:2104.09864.</li>
+      <li>Chen, S.; Wong, S.; Chen, L.; Tian, Y. Extending context window of large language models via positional interpolation. arXiv 2023, arXiv:2306.15595.</li>
+      <li>bloc97. NTK-Aware Scaled RoPE Allows LLaMA Models to Have Extended (8k+) Context Size without any Fine-Tuning and Minimal Perplexity Degradation. 2023. Available online (Reddit r/LocalLLaMA).</li>
+      <li>Peng, B.; Quesnelle, J.; Fan, H.; Shippole, E. YaRN: Efficient context window extension of large language models. arXiv 2023, arXiv:2309.00071.</li>
+      <li>Biderman, S.; Schoelkopf, H.; Anthony, Q.G.; Bradley, H.; O'Brien, K.; Hallahan, E.; Khan, M.A.; Purohit, S.; Prashanth, U.S.; Raff, E.; et al. Pythia: A suite for analyzing large language models across training and scaling. In <i>Proc. ICML</i>, Honolulu, HI, USA, 23&ndash;29 July 2023; pp. 2397&ndash;2430.</li>
+      <li>Gao, L.; Biderman, S.; Black, S.; Golding, L.; Hoppe, T.; Foster, C.; Phang, J.; He, H.; Thite, A.; Nabeshima, N.; et al. The Pile: An 800GB dataset of diverse text for language modeling. arXiv 2020, arXiv:2101.00027.</li>
+      <li>Lefaudeux, B.; Massa, F.; Liskovich, D.; Xiong, W.; Caggiano, V.; Naren, S.; Xu, M.; Hu, J.; Tintore, M.; Zhang, S.; et al. xFormers: A Modular and Hackable Transformer Modelling Library. 2022. Available online: github.com/facebookresearch/xformers.</li>
+      <li>Paszke, A.; Gross, S.; Massa, F.; Lerer, A.; Bradbury, J.; Chanan, G.; Killeen, T.; Lin, Z.; Gimelshein, N.; Antiga, L.; et al. PyTorch: An Imperative Style, High-Performance Deep Learning Library. In <i>Proc. NeurIPS 33</i>, Vancouver, BC, Canada, 8&ndash;14 December 2019.</li>
+      <li>De Boer, P.T.; Kroese, D.P.; Mannor, S.; Rubinstein, R.Y. A tutorial on the cross-entropy method. <i>Ann. Oper. Res.</i> 2005, 134, 19&ndash;67.</li>
+      <li>Loshchilov, I.; Hutter, F. Decoupled weight decay regularization. arXiv 2017, arXiv:1711.05101.</li>
+      <li>Micikevicius, P.; Narang, S.; Alben, J.; Diamos, G.; Elsen, E.; Garcia, D.; Ginsburg, B.; Houston, M.; Kuchaiev, O.; Venkatesh, G.; et al. Mixed precision training. arXiv 2017, arXiv:1710.03740.</li>
+      <li>Rasley, J.; Rajbhandari, S.; Ruwase, O.; He, Y. DeepSpeed: System optimizations enable training deep learning models with over 100 billion parameters. In <i>Proc. KDD '20</i>, Virtual Event, 6&ndash;10 July 2020; pp. 3505&ndash;3506.</li>
+      <li>Rae, J.W.; Potapenko, A.; Jayakumar, S.M.; Hillier, C.; Lillicrap, T.P. Compressive Transformers for Long-Range Sequence Modelling. In <i>Proc. ICLR</i>, Virtually, 26 April&ndash;1 May 2020. (PG-19 dataset.)</li>
+      <li>Azerbayev, Z.; Ayers, E.; Piotrowski, B. Proof-Pile. Available online: github.com/zhangir-azerbayev/proof-pile.</li>
+      <li>Mohtashami, A.; Jaggi, M. Landmark Attention: Random-Access Infinite Context Length for Transformers. arXiv 2023, arXiv:2305.16300. (Passkey retrieval task.)</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app14073076">10.3390/app14073076</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

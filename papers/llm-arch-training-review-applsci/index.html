@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نماذج اللغة الكبيرة: من البنية الداخلية إلى التدريب الموزع والتكييف — مسح موحّد — DAR</title>
+<meta name="description" content="Large Language Models: From Internal Architecture to Distributed Training and Adaptation — A Unified Survey — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/llm-arch-training-review-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Large Language Models: From Internal Architecture to Distributed Training and Adaptation — A Unified Survey</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نماذج اللغة الكبيرة: من البنية الداخلية إلى التدريب الموزع والتكييف — مسح موحّد</h2>
+
+  <div class="paper-meta">
+    <span>👤 Lukac et al.</span>
+    <span>📄 Appl. Sci., 2026 · Vol. 16, 7849</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app16157849">10.3390/app16157849</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تفهرس المسوح القائمة مكونات نماذج اللغة بمعزل — فيغطي Minaee وآخرون [2] وRaiaan وآخرون [3] البنيات والتطبيقات، ويضيف Liu وآخرون [4] تركيزًا نظميًا — لكن لا يتتبع أي منها الاعتماديات الهندسية بين الطبقات: فتصميم المفردات يثبّت طول التسلسل، الذي يقيّد ذاكرة كل جهاز، التي تملي التوازي الممكن، الذي يحدد استراتيجية التكييف القابلة للنشر. يوحّد هذا المسح الآليات الداخلية (الترميز والانتباه والتفعيل والتطبيع) وهندسة التدريب الموزع (توازي البيانات/الموتر/خط الأنابيب والدقة المختلطة BF16/FP8 وإدارة الذاكرة ZeRO-Offload [43] وقوانين القياس [49][50]) والتكييف (الضبط الدقيق وLoRA/QLoRA [35][58] وRLHF وأنماط فشله [69][70] وDPO [71]/KTO [72] وRAG [64][65] وفك الترميز)، خاتمًا بإرشادات ضبط لأنظمة 7B و70B والتريليونية وبنيات MoE [78] والسياق الطويل والتصميم المشترك للعتاد وتحديات مصنفة بالأصل والشدة.</p>
+    <p>وخلاصته المحورية: القيد الحاكم هو عرض نطاق الذاكرة، وهو نفسه في كل طبقة — فاختيار التوازي أو نسق الدقة أو طريقة التكييف بناءً على عدد الوسائط وحده يُسعَّر خطأً مقابل أندر موارد الطبقة تحته. ولا يستطيع أي مسح منظم بالمكونات إعلان هذه الاقترانات؛ وهذا المسح منظم حولها.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>نمت نماذج اللغة من أنظمة التسلسل-إلى-التسلسل إلى نماذج توليدية بمليارات الوسائط مدرّبة على مدونات بتريليونات الرموز منذ المحوّل [1]. يضع الجدول 1 هذا المسح مقابل Minaee وآخرين [2] وRaiaan وآخرين [3] وLiu وآخرين [4] عبر الترميز والانتباه والتوازي وتحسين الذاكرة وقوانين القياس وفك الترميز والضبط الدقيق وRAG: فالأعمال السابقة تسجّل جيدًا في الأعمدة المفردة، لكن مصفوفة التغطية تسجّل ما يتناوله كل عمل لا ما تنظَّم حوله — ومحور التنظيم يحدد ما يستطيع المسح إعلانه أصلًا.</p>
+    <p>لذا يكشف كل قسم لا عمّا تفعله التقنية فحسب بل لماذا هي ضرورية وكيف تتفاعل مع بقية خط الأنابيب: الترميز مع توفير الذاكرة، وموضع التطبيع مع قابلية التدريب في العمق، والتوازي مع ميزانيات الاتصال، والدقة مع المدى الديناميكي، وقوانين القياس مع شروط فشلها، والتكييف مع الموارد التي تستهلكها كل طريقة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الآليات الداخلية</h2>
+    <p>للترميز تحت الكلمي تبعات نظامية: فجداول دمج BPE تتضمن أصلًا تجزئات عديدة للكلمة، وهو ما يستغله الإسقاط العشوائي BPE-dropout بتخطي الدمج عشوائيًا [9]، بينما يؤطّر SentencePiece [6] والتنظيم تحت الكلمي [5] فضاء التصميم نفسه محل الدراسة النظرية في [8]؛ ويترتب التفاوت متعدد اللغات مباشرة، إذ يُرمَّز المحتوى المتماثل بأطوال تختلف حتى 15 ضعفًا عبر اللغات [13] مكلفًا التكلفة وزمن الاستجابة والسياق الفعلي. ويبقى الانتباه بضرب النقاط المقيس [1] بأوزان تركيب محدبة للاستعلام&ndash;المفتاح، بينما استقرت التفعيلات عمليًا على GELU [17] وSwish، ومتغيرا GEGLU/SwiGLU يعطيان أفضل حيرة تدريب مسبق [18] واعتماد SwiGLU في LLaMA [19] (الجدول 2 مبني على [16]).</p>
+    <p>ولم يعد التطبيع سؤال دفعة-مقابل-طبقة [20]: فما يُحسب (RMSNorm) وأين يوضع (قبل-التطبيع مقابل بعد-التطبيع حول الاتصال المتبقي) هو ما يحكم قابلية تدريب مكدسات المحوّلات العميقة، والخطأ في أيهما يظهر لاحقًا كعدم استقرار لا تصلحه أي استراتيجية توازي — وهي أول تجليات نمط المسح: عيب الطبقة الدنيا يطفو كفشل في الطبقة العليا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. التدريب الموزع</h2>
+    <p>يكرر توازي البيانات الأوزان بمزامنة التجميع الكلي (الشكل 1) وهو حيادي العتاد [4]؛ ويجزّئ توازي الموتر (TMP) ضربات المصفوفات داخل الطبقة على غرار Megatron-LM [26] — بتجزئة صفية لـW<sub>A&times;B</sub> مع تجميع جزئيات، خافضًا ذاكرة الأوزان لكل جهاز بمعامل التجزئة n — بينما يوزّع توازي خط الأنابيب (PMP) [27][28] الطبقات على الأجهزة ويستعيد الاستغلال بالدفعات المصغرة وجداول 1F1B/المتداخلة [27][28][29][30]، رغم أن الفقاعة لا تُغلق تمامًا. والجماعيات على المسار الحرج (نحو 100 GB/s عبر ثمانية محولات InfiniBand [26]) تجعل الربط البيني لا العمليات هو المحدد العملي.</p>
+    <p>وتتبع الدقة المنطق نفسه: يخفض FP16 الحركة إلى النصف مقابل FP32 بمدى أضيق [31]؛ ويحتفظ BF16 بأسّ FP32 بنصف التخزين (انحرافات BLOOM تحت FP16 دفعت للتحول)؛ ويقسّم FP8 الأنساق حسب نوع الموتر (E4M3 للأوزان والتفعيلات وE5M2 للتدرجات [34]) مع قياس إلزامي لكل موتر. وتُكمل إدارة الذاكرة المكدس: فينقل ZeRO-Offload حالات المحسّن والتحديثات إلى CPU ببصمة GPU دنيا مثبتة في فئته [43] (مبنيًا على سلالة التوزيع واسع النطاق [42])، وتوازن نقاط التفتيش التفعيلية بين إعادة الحساب والذاكرة، وقواعد QLoRA المجمّدة 4-بت NF4 مع محوّلات عالية الدقة [35] تمهد للقسم 5.</p>
+    <p>وتختم قوانين القياس القسم بتحذير: جعل تحليل نمط Kaplan الوسائطَ المحورَ الحاكم [49]، لكن Chinchilla أعادت تقدير حد الأمثلية الحاسوبية نحو البيانات [50] — وكلاهما يتنبأ بخسارة الرمز التالي فقط لا بالاستدلال أو الترميز أو اتباع التعليمات، بينما يزيح التناثر ومزيج البيانات وطلب الاستدلال نسبة N-to-D المثلى كلها. فأي ضبط بنسبة Chinchilla مُوفَّر خطأً لأي نموذج متناثر أو محدود البيانات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. فك الترميز</h2>
+    <p>استراتيجية التوليد جزء من عقد نظام التدريب لا فكرة لاحقة: فالعينات دون تدريب إضافي (النواة وtop-k عبر مجالات ويكيبيديا/الأخبار/القصص [54]) تبادل تمريرة أمامية ثانية لكل خطوة بالجودة، بينما يهاجم فك الترميز التأملي [55] عنق الزجاجة التسلسلي نفسه — فنموذج مسودة خفيف يقترح رموزًا يتحقق منها الكبير بالتوازي — كاسبًا سرعة دون مقايضة جودة لا نقطة جودة مختلفة.</p>
+    <p>ويتفاعل الاختيار مع كل طبقة سابقة: فجودة نموذج المسودة تعتمد على المفردات المشتركة، وإنتاجية التحقق على مخطط التوازي، وزمن الاستجابة المتحقق على نسق الدقة — فلا يمكن اختيار فك الترميز مستقلًا عن القسمين 2&ndash;3.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. التكييف</h2>
+    <p>يتبادل الضبط الدقيق الإشرافي والتعليمي (الجدول 3، عن [57]) البيانات الموسومة والحوسبة بمعرفة مهمة عميقة لكنه لا يستوعب معلومات لاحقة للتشغيل؛ وتغطي الطرق الموفرة للوسائط (الجدول 4) فضاء التصميم — LoRA الأكثر اعتمادًا [58]؛ وQLoRA الذي يغيّر فئة الذاكرة لا الآلية عبر قواعد مجمدة 4-بت [35]؛ والمحوّلات [61]؛ وضبط البادئة [59] والموجه [60] — مع التحفظ أن كسور الوسائط المنشورة غير قابلة للمقارنة (LoRA مقابل GPT-3-175B بآدم، والمحولات مقابل BERT على GLUE، وضبط البادئة مقابل GPT-2/BART)، فلا مقارنة مضبوطة للخمسة معًا. وقد يتفوق ICL [2] على الضبط الدقيق في أنظمة البيانات الشحيحة [59] — وهو محور مختلف (توفر البيانات) لا ترتيب واحد.</p>
+    <p>والاختيار بين RAG والضبط الدقيق اختيار ملف تكلفة: فـRAG لا يحتاج تحديث أوزان ويتحدث لحظيًا لكنه رهين جودة الاسترجاع وزمن الفهرس؛ والفهرسة الهرمية (RAPTOR [64]، +20% دقة مطلقة عبر مستويات التجريد) ودراسات التقطيع [65] تصلح ما يُفهرس وكيف يُرتب، بينما تبادل متغيرات التفاعل المتأخر والتأمل الذاتي حجم الفهرس وتكلفة الاستدلال — دون أن يحل أيها التركيب. ثم يوائم RLHF [69] المخرجات عبر ضبط إشرافي &rarr; نموذج مكافأة &rarr; PPO بعقوبة KL، وتفضيل InstructGPT بـ1.3B على GPT-3 بـ175B [69] يثبت تعامد المحاذاة مع الحجم؛ لكن نموذج المكافأة وكيل، ويُظهر Gao وآخرون [70] أن ضغط التحسين يُدهور الحقيقة الأرضية بتنبؤية على امتداد قوانين القياس (Goodhart)، جاعلًا معامل KL ميزانية انحراف غير مرئية في إشارة التدريب — ومن هنا الدعوى الجوهرية للقسم 5.3.1.</p>
+    <p>ويزيل كل بديل عملة واحدة من عملتي RLHF (تكلفة التوسيم مقابل تعقيد PPO): فيحل DPO [71] مسألة RLHF بصيغة مغلقة بخسارة تصنيفية — دون أخذ عينات وقليل ضبط — لكنه يُبقي شرط البيانات المزدوجة؛ ويسقط KTO [72] الازدواج برؤى نظرية الاحتمالات؛ ويستبدل الذكاء الاصطناعي الدستوري قوائم الموسِمين بقوائم المبادئ (سطح فشل مختلف لا أصغر). ولا يزيل أيها مسألة الوكيل في 5.3.1 التي تنطبق على DPO كما على PPO.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. إرشادات الضبط</h2>
+    <p>يوطّد الجدول 6 قيود المسح المستنتجة في قيم استدلال افتراضية — لا توصيات مضبوطة، إذ لم يقس المؤلفون شيئًا هنا: فيتبع اختيار التوازي تحليل الاتصال في القسم 3 (6.1)، وقوائم الدقة المختلطة والذاكرة تُبقي الحوسبة بأنساق قادرة على الفاصلة العائمة بينما تبقى التضمينات والرؤوس وبوابات MoE والتطبيع عالية الدقة (6.2)، وأنظمة الحجم (6.3) تفصل نقاط تشغيل 7B (عقدة واحدة ملائمة لـPEFT) و70B (توازي متعدد العقد إلزامي وذاكرة بفئة QLoRA) والتريليونية (توازي خط الأنابيب والخبراء وميزانيات بدرجة FP8).</p>
+    <p>والقاعدة الحاكمة في كل صف: تُحمَّل كل قرار على أندر موارد الطبقة تحته — المفردات على الذاكرة، والتوازي على الربط البيني، والتكييف على ميزانية النشر.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. المناقشة</h2>
+    <p>تُجمَّع التحديات المفتوحة (الجدول 7) حسب طبقة المنشأ وتُدرَّج: مسألة هندسية / بحثية / حد جوهري — والتجميع حامل للعبء، لأن النمط المتكرر هو طفو عيوب الطبقة الدنيا كإخفاقات في العليا — مع مسارات تخفيف مستهدفة وبقاياها في الجدول 8 (مثل تجميع FP8 بمقياس دقيق 1&times;128 يُبقي بقايا دقة؛ وأقنعة التناثر أثناء التدريب المسبق جبهة مفتوحة [76][77]). وتقع المحاذاة والسلامة والأخلاق [57][69] وراء الحلول الهندسية: فرخص التغذية الراجعة لا ييسّر تحديد هدف ينجو من ضغط التحسين.</p>
+    <p>والاتجاهات الراهنة: يتجاوز MoE [78] الحوسبة — القيد الذي يجده القسم 3 غير حاكم — مفاقمًا القيد الحاكم (عرض نطاق الذاكرة وحركة الخبراء)؛ ويهاجم عمل السياق الطويل حركة ذاكرة التربيعية لا عملياتها (تجانب SRAM في FlashAttention: تسريع 15% لـBERT-large-512 و3&times; لـGPT-2-1K [81])؛ وتضاعف إدارة ذاكرة KV شبه عديمة الهدر في PagedAttention الإنتاجية 2&ndash;4&times; دون تقريب [85]؛ وتضغط كمّية النشر (GPTQ [86] وAWQ [87]) عنق الزجاجة نفسه. ولا شيء من ذلك مرئي من داخل فصل مكون واحد — وهي الحجة الختامية للمسح لصالح بنيته.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">8. الخاتمة والمختصرات</h2>
+    <p>ثلاث نتائج لا يُرى أيها عند معاملة الطبقات منفصلة: عرض نطاق الذاكرة يقيّد كل طبقة بالتساوي؛ وكل طريقة تُسعَّر مقابل أندر مورد في الطبقة تحتها؛ والتخفيف المطبق فوق طبقة العيب يُبقي البقية في مكانها. لذا يوصي المسح بقراءة البنية وأنظمة التدريب والتكييف كمسألة هندسية مقترنة واحدة — وينظّم 40 صفحة من الأدلة وقوائم الضبط والتحديات المدرجة لهذه الغاية، وجدول المختصرات (PEFT وPMP وTMP وPPO وQLoRA وRAG وRLAIF وRLHF وRMSNorm وRoPE وSFT وMoE وFP8 وBF16 وغيرها) مفرداته المشتركة.</p>
+    <p>ويكمن العمل المستقبلي في التدريب المسبق المتناثر المدمج مع التوازي والدقة [76][77] وتوسيع التقنيات المسحوحة لنوافذ أكبر وقليل الأمثلة وتحديد أهداف تنجو من التحسين — وهي الصعوبة التي يحددها المسح بأنها لا تهبط مع رخص التغذية الراجعة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Existing surveys catalogue LLM components in isolation — Minaee et al. [2] and Raiaan et al. [3] cover architectures and applications, Liu et al. [4] add systems emphasis — but none traces the engineering dependencies between layers: vocabulary design fixes sequence length, which constrains per-device memory, which dictates feasible parallelism, which determines which adaptation strategy is deployable. This survey unifies internal mechanisms (tokenisation, attention, activations, normalisation), distributed-training engineering (data/tensor/pipeline parallelism, BF16/FP8 mixed precision, ZeRO-Offload memory management [43], scaling laws [49][50]), and adaptation (fine-tuning, LoRA/QLoRA [35][58], RLHF and its failure modes [69][70], DPO [71]/KTO [72], RAG [64][65], decoding), closing with configuration guidance for 7B, 70B, and trillion-parameter regimes, MoE architectures [78], long-context and hardware co-design, and challenges graded by origin and severity.</p>
+    <p>Its central finding: the binding constraint is memory bandwidth, and it is the same at every layer — so a parallelism choice, a precision format, or an adaptation method selected on parameter count alone is mis-priced against whichever resource the tier beneath it has least of. No component-organised survey can state these couplings; this one is organised around them.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>LLMs have grown from sequence-to-sequence systems into generative models with billions of parameters trained on multi-trillion-token corpora since the Transformer [1]. Table 1 positions this survey against Minaee et al. [2], Raiaan et al. [3], and Liu et al. [4] across tokenisation, attention, parallelism, memory optimisation, scaling laws, decoding, fine-tuning, and RAG: prior work scores well on individual columns, but a coverage matrix records what each work addresses, not what it is organised around — and the organising axis determines what a survey can state at all.</p>
+    <p>Each section therefore exposes not only what a technique does but why it is necessary and how it interacts with the rest of the pipeline: tokenisation with memory provisioning, normalisation placement with trainability at depth, parallelism with communication budgets, precision with dynamic range, scaling laws with their failure conditions, and adaptation with the resources each method consumes.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Internal Mechanisms</h2>
+    <p>Subword tokenisation carries system-level consequences: BPE merge tables already imply many segmentations of a word, which BPE-dropout exploits by stochastically skipping merges [9], while SentencePiece [6] and subword regularisation [5] frame the same design space surveyed theoretically in [8]; multilingual disparity follows directly, with identical content tokenising up to 15&times; longer across languages [13], taxing cost, latency, and effective context. Attention remains scaled dot-product [1] with convex query&ndash;key combination weights, while activations have converged in practice on GELU [17] and Swish, with GEGLU/SwiGLU variants giving the best pre-training perplexities [18] and SwiGLU adopted in LLaMA [19] (Table 2 builds on [16]).</p>
+    <p>Normalisation is no longer a batch-vs-layer question [20]: what is computed (RMSNorm) and where it sits (pre-norm vs. post-norm residual placement) now governs trainability of deep Transformer stacks, and getting either wrong manifests downstream as instability that no parallelism strategy can fix — the first instance of the survey's lower-tier-defect-surfaces-as-upper-tier-failure pattern.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Distributed Training</h2>
+    <p>Data parallelism replicates weights with all-reduce synchronisation (Figure 1) and is hardware-agnostic [4]; tensor model parallelism (TMP) shards intra-layer matrix multiplies &agrave; la Megatron-LM [26] — row-sharded W<sub>A&times;B</sub> with all-gathered partials, cutting per-device weight memory by the partition factor n — while pipeline model parallelism (PMP) [27][28] stages layers across devices and recovers utilisation with micro-batching and 1F1B/interleaved schedules [27][28][29][30], though the bubble never fully closes. Collectives on the critical path (e.g., ~100 GB/s over eight InfiniBand adapters [26]) make interconnect, not FLOPs, the practical limiter.</p>
+    <p>Precision follows the same logic: FP16 halves traffic versus FP32 at narrower range [31]; BF16 keeps FP32's exponent with half the storage (BLOOM's FP16 divergences motivated the switch); FP8 splits formats per tensor type (E4M3 weights/activations, E5M2 gradients [34]) with mandatory per-tensor scaling. Memory management completes the stack: ZeRO-Offload relocates optimiser states and updates to CPU with provably minimal GPU footprint in its class [43] (building on large-scale distributed lineage [42]), activation checkpointing trades recompute for memory, and QLoRA-style 4-bit NF4 frozen bases with high-precision adapters [35] foreshadow Section 5.</p>
+    <p>Scaling laws close the section with a warning: Kaplan-style analysis made parameters the binding axis [49], but Chinchilla re-estimated the compute-optimal frontier toward data [50] — and both predict only next-token loss, not reasoning, coding, or instruction-following, while sparsity, data mixture, and inference demand all shift the optimal N-to-D ratio. A Chinchilla-ratio configuration is mis-provisioned for any sparse or data-limited model.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Decoding</h2>
+    <p>Generation strategy is part of the training-system contract, not an afterthought: zero-extra-training samplers (nucleus, top-k across Wikipedia/news/story domains [54]) trade a second forward pass per step for quality, while speculative decoding [55] attacks the sequential bottleneck itself — a lightweight draft model proposes tokens the large model verifies in parallel — gaining speed with no quality trade-off rather than a different quality point.</p>
+    <p>The choice interacts with every prior layer: draft-model quality depends on the vocabulary it shares, verification throughput on the parallelism layout, and realised latency on the precision format — decoding cannot be selected independently of Sections 2&ndash;3.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Adaptation</h2>
+    <p>Supervised and instruction fine-tuning (Table 3, after [57]) trade labelled data and compute for deep task knowledge but cannot absorb post-run information; parameter-efficient methods (Table 4) span the design space — LoRA, the most adopted, [58]; QLoRA, which changes the memory class rather than the mechanism via 4-bit frozen bases [35]; adapters [61]; prefix [59] and prompt tuning [60] — with the caveat that published parameter fractions are not comparable (LoRA vs. GPT-3-175B with Adam, adapters vs. BERT on GLUE, prefix-tuning vs. GPT-2/BART), so no controlled all-five comparison exists. ICL [2] can beat fine-tuning in low-data regimes [59] — a different axis (data availability), not a single ranking.</p>
+    <p>RAG vs. fine-tuning is a cost-profile choice: RAG needs no weight updates and refreshes in real time but is hostage to retrieval quality plus index-size latency; hierarchical indexing (RAPTOR [64], +20% absolute accuracy across abstraction levels) and chunking studies [65] fix what is indexed and how it is ranked, while late-interaction and self-reflection variants trade index size and inference cost — none dissolving the compound. RLHF [69] then aligns outputs via SFT &rarr; reward-model &rarr; PPO-with-KL-penalty, with 1.3B InstructGPT preferred over 175B GPT-3 [69] proving alignment orthogonal to scale; but the reward model is a proxy, and Gao et al. [70] show optimisation pressure degrades ground truth predictably along scaling laws (Goodhart), making the KL coefficient a budget on drift, invisible in the training signal — hence Section 5.3.1's core claim.</p>
+    <p>Alternatives each remove one RLHF currency (annotation cost vs. PPO complexity): DPO [71] solves the RLHF problem in closed form with a classification loss — no sampling, little tuning — but keeps the paired-data requirement; KTO [72] drops pairing via prospect-theory insights; Constitutional AI swaps annotator lists for principle lists (a different failure surface, not a smaller one). None removes the proxy problem of 5.3.1, which applies to DPO as much as to PPO.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Configuration Guidance</h2>
+    <p>Table 6 consolidates the survey's derived constraints into reasoning defaults — not tuned recommendations, since nothing here was measured by the authors: parallelism choice follows Section 3's communication analysis (6.1), mixed-precision and memory checklists keep compute in FP-capable formats while embeddings, heads, MoE gates, and normalisation stay high-precision (6.2), and scale regimes (6.3) separate 7B (single-node, PEFT-friendly), 70B (multi-node parallelism mandatory, QLoRA-class memory), and trillion-parameter (pipeline-plus-expert parallelism, FP8-grade budgets) operating points.</p>
+    <p>The governing rule at every row: each decision is charged against whichever resource the tier beneath it has least of — vocabulary against memory, parallelism against interconnect, adaptation against deployment budget.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Discussion</h2>
+    <p>Open challenges (Table 7) are grouped by origin tier and graded engineering-problem / research-problem / fundamental-limit — the grouping is load-bearing, because the recurring pattern is lower-tier defects surfacing as higher-tier failures — with targeted mitigation paths and their residuals in Table 8 (e.g., fine-grained 1&times;128-scaled FP8 accumulation still leaves precision residuals; sparse pre-training masks remain an open frontier [76][77]). Alignment, safety, and ethics [57][69] sit beyond engineering fixes: cheaper feedback does not ease specifying an objective that survives optimisation pressure.</p>
+    <p>Current trends: MoE [78] routes around compute — the constraint Section 3 finds non-binding — while aggravating the binding one (memory bandwidth and expert traffic); long-context work attacks the quadratic's memory traffic, not its operations (FlashAttention's SRAM tiling: 15% BERT-large-512, 3&times; GPT-2-1K speedups [81]); PagedAttention's near-zero-waste KV-cache management multiplies throughput 2&ndash;4&times; with zero approximation [85]; deployment quantisation (GPTQ [86], AWQ [87]) compresses the same bandwidth bottleneck. None of these is visible from within a single component chapter — which is the survey's closing argument for its own structure.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">8. Conclusions and Abbreviations</h2>
+    <p>Three findings, none visible when layers are treated separately: memory bandwidth binds every layer identically; every method is priced against the scarcest resource one tier down; and mitigation applied above the defect's tier leaves the residual in place. The survey therefore recommends reading architecture, training systems, and adaptation as one coupled engineering problem — and organises 40 pages of evidence, configuration checklists, and graded challenges to that end, with the abbreviation table (PEFT, PMP, TMP, PPO, QLoRA, RAG, RLAIF, RLHF, RMSNorm, RoPE, SFT, MoE, FP8, BF16, and others) as its shared vocabulary.</p>
+    <p>Future work lies in sparse pre-training integrated with parallelism and precision [76][77], larger-window and few-shot extensions of the surveyed techniques, and objective specifications that survive optimisation — the difficulty the survey identifies as not falling with feedback cost.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Key references are listed below with their original paper numbers (of 87 total). See the full paper for the complete list: https://doi.org/10.3390/app16157849.</p>
+    <ol dir="ltr">
+      <li>Vaswani, A.; Shazeer, N.; Parmar, N.; Uszkoreit, J.; Jones, L.; Gomez, A.N.; Kaiser, L.; Polosukhin, I. Attention is All you Need. In <i>Advances in Neural Information Processing Systems</i>; Curran Associates, Inc.: Red Hook, NY, USA, 2017; Volume 30.</li>
+      <li>Minaee, S.; Mikolov, T.; Nikzad, N.; Chenaghlu, M.; Socher, R.; Amatriain, X.; Gao, J. Large Language Models: A Survey. arXiv 2024, arXiv:2402.06196.</li>
+      <li>Raiaan, M.A.K.; Mukta, M.S.H.; Fatema, K.; Fahad, N.M.; Sakib, S.; Mim, M.M.J.; Ahmad, J.; Ali, M.E. A Review on Large Language Models. 2024.</li>
+      <li>Liu, Y.; He, H.; Han, T.; Zhang, X.; Liu, M.; Tian, J.; Zhang, Y.; Wang, J.; Gao, X.; Zhong, T.; et al. A Survey on Large Language Model Training and Inference Systems. 2024.</li>
+      <li>Kudo, T. Subword Regularization: Improving Neural Network Translation Models with Multiple Subword Candidates. In <i>Proc. ACL 2018</i>, Melbourne, Australia, 15&ndash;20 July 2018.</li>
+      <li>Kudo, T.; Richardson, J. SentencePiece: A Simple and Language Independent Subword Tokenizer and Detokenizer. In <i>Proc. EMNLP 2018 (System Demonstrations)</i>, Brussels, Belgium, 31 October&ndash;4 November 2018.</li>
+      <li>Kozma, L.; Voderholzer, J. Theoretical Analysis of Byte-Pair Encoding. arXiv 2024, arXiv:2411.08671.</li>
+      <li>Provilkov, I.; Emelianenko, D.; Voita, E. BPE-Dropout: Simple and Effective Subword Regularization. In <i>Proc. ACL 2020</i>, Online, 5&ndash;10 July 2020.</li>
+      <li>Petrov, A.; et al. Multilingual tokenisation disparity: same content tokenises up to 15&times; longer across languages, taxing cost, latency, and effective context.</li>
+      <li>Szanda&#322;a, T. Review and Comparison of Commonly Used Activation Functions for Deep Neural Networks. In <i>Bio-Inspired Neurocomputing</i>; Bhoi, A.K., Mallick, P.K., Liu, C.-M., Balas, V.E., Eds.; Studies in Computational Intelligence; Springer: Singapore, 2021; Volume 903.</li>
+      <li>Hendrycks, D.; Gimpel, K. Gaussian Error Linear Units (GELUs). arXiv 2016, arXiv:1606.08415.</li>
+      <li>Shazeer, N. GLU Variants Improve Transformer. arXiv 2020, arXiv:2002.05202. (GEGLU/SwiGLU pre-training perplexities.)</li>
+      <li>Touvron, H.; et al. LLaMA: Open and Efficient Foundation Language Models (SwiGLU adoption). arXiv 2023, arXiv:2302.13971.</li>
+      <li>Shoeybi, M.; Patwary, M.; Puri, R.; LeGresley, P.; Casper, J.; Catanzaro, B. Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism. arXiv 2019, arXiv:1909.08053. (Intra-layer tensor parallelism.)</li>
+      <li>Dettmers, T.; et al. QLoRA: Efficient Finetuning of Quantized LLMs (4-bit NF4 frozen base). In <i>Proc. NeurIPS 36</i>, New Orleans, LA, USA, 10&ndash;16 December 2023.</li>
+      <li>Dean, J.; Corrado, G.; Monga, R.; Chen, K.; Devin, M.; Mao, M.; Ranzato, M.A.; Senior, A.; Tucker, P.; Yang, K.; et al. Large Scale Distributed Deep Networks. In <i>Proc. NeurIPS 25</i>, Lake Tahoe, NV, USA, 3&ndash;6 December 2012.</li>
+      <li>Ren, J.; Rajbhandari, S.; Aminabadi, R.Y.; Ruwase, O.; Yang, S.; et al. ZeRO-Offload: Democratizing Billion-Scale Model Training. In <i>Proc. USENIX ATC '21</i>, Virtual, 14&ndash;16 July 2021. (Provably minimal GPU footprint in its offload class.)</li>
+      <li>Kaplan, J.; et al. Scaling Laws for Neural Language Models. arXiv 2020, arXiv:2001.08361. (Parameters as the binding axis.)</li>
+      <li>Hoffmann, J.; et al. Training Compute-Optimal Large Language Models (Chinchilla). arXiv 2022, arXiv:2203.15556.</li>
+      <li>Leviathan, Y.; Kalman, Y.; Matias, Y. Fast Inference from Transformers via Speculative Decoding. In <i>Proc. ICML</i>, Honolulu, HI, USA, 23&ndash;29 July 2023.</li>
+      <li>As adapted for the pre-training vs. fine-tuning comparison (Table 3).</li>
+      <li>Hu, E.J.; et al. LoRA: Low-Rank Adaptation of Large Language Models. In <i>Proc. ICLR</i>, Virtual, 25&ndash;29 April 2022.</li>
+      <li>Lester, B.; Al-Rfou, R.; Constant, N. The Power of Scale for Parameter-Efficient Prompt Tuning. In <i>Proc. EMNLP 2021</i>, Online and Punta Cana, Dominican Republic, 7&ndash;11 November 2021. (Prefix/prompt-tuning axis; low-data ICL comparison.)</li>
+      <li>Sarthi, P.; Abdullah, S.; Tuli, A.; Khanna, S.; Goldie, A.; Manning, C.D. RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval. In <i>Proc. ICLR</i>, Vienna, Austria, 7&ndash;11 May 2024. (+20% absolute accuracy.)</li>
+      <li>Shaukat, M.A.; Adnan, M.; Kuhn, C.C.N. A Systematic Investigation of Document Chunking Strategies. 2024.</li>
+      <li>Ouyang, L.; et al. Training language models to follow instructions with human feedback (InstructGPT: 1.3B preferred over 175B GPT-3). In <i>Proc. NeurIPS 35</i>, New Orleans, LA, USA, 28 November&ndash;9 December 2022.</li>
+      <li>Gao, L.; et al. Scaling Laws for Reward Model Overoptimization. In <i>Proc. ICML</i>, Honolulu, HI, USA, 23&ndash;29 July 2023. (Predictable Goodhart divergence.)</li>
+      <li>Rafailov, R.; et al. Direct Preference Optimization: Your Language Model is Secretly a Reward Model. In <i>Proc. NeurIPS 36</i>, New Orleans, LA, USA, 10&ndash;16 December 2023.</li>
+      <li>Ethayarajh, K.; et al. KTO: Model Alignment as Prospect-Theoretic Optimization. arXiv 2024, arXiv:2402.01306.</li>
+      <li>As cited on sparse pre-training masks as an open frontier.</li>
+      <li>Shazeer, N.; et al. Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer. In <i>Proc. ICLR</i>, Toulon, France, 24&ndash;26 April 2017.</li>
+      <li>Dao, T.; et al. FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness. In <i>Proc. NeurIPS 35</i>, New Orleans, LA, USA, 28 November&ndash;9 December 2022. (15% BERT-large-512; 3&times; GPT-2-1K.)</li>
+      <li>Kwon, W.; Li, Z.; Zhuang, S.; Sheng, Y.; Zheng, L.; Yu, C.H.; Gonzalez, J.E.; Zhang, H.; Stoica, I. Efficient Memory Management for Large Language Model Serving with PagedAttention. In <i>Proc. SOSP '23</i>, Koblenz, Germany, 23&ndash;26 October 2023. (2&ndash;4&times; throughput.)</li>
+      <li>Frantar, E.; Ashkboos, S.; Hoefler, T.; Alistarh, D. GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers. In <i>Proc. ICLR</i>, Kigali, Rwanda, 1&ndash;5 May 2023.</li>
+      <li>Lin, J.; Tang, J.; Tang, H.; Yang, S.; Chen, W.-M.; Wang, W.-C.; Xiao, G.; Dang, X.; Gan, C.; Han, S. AWQ: Activation-Aware Weight Quantization for LLM Compression and Acceleration. In <i>Proc. MLSys</i>, Santa Clara, CA, USA, 13&ndash;16 May 2024.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app16157849">10.3390/app16157849</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
