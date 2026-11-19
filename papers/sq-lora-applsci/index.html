@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQ-LoRA: ضغط نماذج اللغة الموفر للذاكرة عبر التكميم الموجه بالرتبة المستقرة — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">SQ-LoRA: Memory-Efficient Language Model Compression Through Stable-Rank-Guided Quantization for Edge Computing Applications</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">SQ-LoRA: ضغط نماذج اللغة الموفر للذاكرة عبر التكميم الموجه بالرتبة المستقرة لتطبيقات الحوسبة الطرفية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Seda Bayat Toksöz, Gültekin Işik</span>
+    <span>📄 Appl. Sci., 2026 · Vol. 16(4), 2113</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app16042113">10.3390/app16042113</a></span>
+    <span>📥 <a href="paper.pdf" target="_blank">PDF</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>نقدم SQ-LoRA (التكيف منخفض الرتبة المكمم الموجه بالرتبة المستقرة)، وهو إطار ضغط مؤسس نظريًا يحقق كفاءة غير مسبوقة عبر الدمج التآزري للتحلل منخفض الرتبة التكيفي والتناثر المنظم المسرّع عتاديًا والتكميم الهجين الذكي. تتمثل المساهمة الرئيسية في أول ربط رياضي صارم بين الرتبة المستقرة للمصفوفة واختيار رتبة LoRA المثلى (النظرية 1) بضمانات تقريب محدودة، مع تخصيص تكيفي للرتب وأن patterns تناثر 4:8 (تسريع ×2) وتكميم ثلاثي الطبقات (تخزين NormalFloat رباعي البت مع 3-بت/8-بت انتقائية). أظهر التقييم على أربعة معايير لمعالجة اللغة بصمة ذاكرة 320MB (خفض 96.7٪) وزمن استدلال 10ms (تحسن 91.7٪) ومتوسط دقة 82.0٪ (ضمن 0.15٪ من النموذج الكامل، بدلالة p &lt; 0.001)، مما يتيح النشر على أجهزة بذاكرة 2GB.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>أحدثت النماذج اللغوية القائمة على المحولات ثورة في معالجة اللغة [1]، لكن نشرها على الأجهزة الطرفية يظل صعبًا: إذ يتطلب BERT-base نحو 440MB وأكثر من 24 مليار عملية فاصلة عائمة لكل تمريرة [2]. وفي المقابل تتجه الحوسبة نحو الطرفية — إذ تتوقع IDC إنفاقًا عالميًا يقارب 261 مليار دولار في 2025 بنمو سنوي 13.8٪ [3] — لأن الاستدلال الطرفي يخفض زمن الاستجابة من 100ms إلى أقل من 10ms في القيادة الذاتية [4] ويحقق توافرية 99.7٪ في إنترنت الأشياء الصناعي مقابل 94.2٪ للسحابة [5]، ضمن قيود صارمة (ذاكرة دون 500MB وزمن دون 20ms وقدرة دون 5 واط).</p>
+    <p>تعالج أساليب الضغط الحالية جوانب منفصلة: فـ LoRA يخفض ذاكرة التدريب عبر تحديثات منخفضة الرتبة [6] برتب موحدة تتجاهل تعقيد الطبقات، والتكميم يخفض الدقة [7] لكن الضغط الشديد يدهور الأداء، وQLoRA يجمعهما للضبط الدقيق الموفر للذاكرة [8] دون فهم التفاعل بينهما، والتناثر غير المنظم يعيق التسريع العتادي [9]، والتطبيق التسلسلي للتقنيات يؤدي لتدهور ضربي (8.3٪ مقابل 2.1٪ للتقنيات المنفردة) [10]. وتسهم الورقة بأربع إضافات: الربط الرياضي بين الرتبة المستقرة ورتب LoRA، وإطار SQ-LoRA الموحد، والتحقق التجريبي الشامل، وتفاصيل التنفيذ القابلة للتبني المباشر.</p>
+  </section>
+
+  <section>
+    <h2>2. الأعمال ذات الصلة</h2>
+    <p>يستغل التحلل منخفض الرتبة البعد الجوهري المنخفض لأوزان الشبكات عبر ΔW=BA [6]، مع ضبط تكيفي للرتب في AdaLoRA [11] وDyLoRA [12] والتحليل النظري للأبعاد الجوهرية [13] وLoRA-GA [14]، لكن SQ-LoRA يؤسس اتصالًا مباشرًا بين الرتبة المستقرة والرتبة المثلى دون بحث مكلف. وفي التكميم، تطور المجال من التكميم اللاحق للتدريب [15] والتدريب الواعي بالتكميم [16] إلى LLM.int8() [17] وGPTQ [18] وQLoRA [8] وAWQ [19] وZeroQuant [20]، ويتقدم عليها التكميم الهجين ثلاثي الدقة بتوزيع التكيف داخل الطبقة الواحدة.</p>
+    <p>يعالج التناثر المنظم N:M قيود الأساليب غير المنظمة بدعم عتادي (2:4 من NVIDIA بتسريع ×2 نظري) [21]، مع أنماط 2:4 القابلة للتعلم [22] و4:8 الحافظة للرتبة [23] ومحاولات LLM-Pruner [24]؛ أما الضغط المدمج (الضغط العميق [10] وLoRAMoE [25] وS-LoRA [26] وDoRA [27] وSqueezeLLM [28]) فيطبق التقنيات تسلسليًا دون فهم التفاعلات. يتميز SQ-LoRA بالتأسيس الرياضي، والتكميم الهجين (NormalFloat رباعي البت أساسًا مع 3-بت للأغلبية و8-بت للقيم الشاذة)، ودمج التناثر 4:8، والتحسين الموحد الذي يتجنب التدهور الضربي بحدود تقريب مثبتة.</p>
+  </section>
+
+  <section>
+    <h2>3. المنهجية</h2>
+    <p>تُصاغ المشكلة كتقليل فقدان الدقة (1 − دقة المضغوط/دقة الأصل) خاضعًا لقيود: ذاكرة ≤ 0.5GB وزمن ≤ 10ms وتخزين ≤ 100MB ودقة ≥ 0.8 من الأصل — وهي عتبات مشتقة من منصات مثل Jetson Nano (2GB) ومعايير الجودة الدنيا للنشر الطرفي. ثم يؤسس التحليل النظري عبر الرتبة المستقرة sr(W)=‖W‖²F/‖W‖²₂، ليثبت النظرية 1 أن رتبة LoRA المثلى لخطأ نسبي ε محدودة أدنًى بسقف (1−ε²)⁻¹·sr(W)، مستدلًا عليها بمبرهنة Eckart–Young–Mirsky؛ فتتناسب الرتبة المطلوبة خطيًا مع الرتبة المستقرة وتربيعيًا مع متطلبات الدقة.</p>
+    <p>يدمج معمار SQ-LoRA ثلاثة مكونات: (1) حساب الرتبة المستقرة لكل طبقة وتخصيص الرتب التكيفي، (2) تناثر منظم 4:8 على أوزان الانتباه باحتفاظ أعلى 4 قيم من كل 8 (تناثر 50٪ متوافق عتاديًا)، (3) تكميم هجين ثلاثي الطبقات — 3-بت للأوزان ضمن 3σ و8-بت للقيم الشاذة خارجها مع قاعدة NF4 رباعية البت. ويثبت التحليل الشامل (النظرية 2) أن خطأ الخرج محدود بثابت Lipschitz مضروبًا في مجموع أخطاء LoRA والتناثر والتكميم، أي تراكم جمعي لا ضربي. وتتم عملية التدريب بثلاث مراحل: حساب الرتب، وتوليد أقنعة التناثر، والتكميم الهجين، ثم ضبط محولات LoRA (معدل تعلم 2×10⁻⁵ ودفعات فعالة 64).</p>
+  </section>
+
+  <section>
+    <h2>4. التقييم التجريبي</h2>
+    <p>نُفّذت التجارب بـ PyTorch 2.1 ونوى CUDA مخصصة على بطاقات A100، مع التحقق الطرفي على Jetson Nano (2GB) وRaspberry Pi 4 (8GB) ومحاكاة Snapdragon 888، باستخدام DistilBERT-base (66M بارامتر) على أربع مهام: تصنيف المشاعر SemEval-2018 [30] وSST-2 [31] وBoolQ [32] وMNLI [33] بمعالج DistilBERT وطول تسلسل 128. قورنت الطريقة مع الضبط الكامل وLoRA [6] وQLoRA [8] وAdaLoRA [11] والتقليم بالمقدار [34] وDoRA [27] وSqueezeLLM [28] عبر خمسة تشغيلات ببذور مختلفة.</p>
+    <p>حقق SQ-LoRA متوسط دقة 82.0٪ (±0.23) مقابل 82.15٪ للضبط الكامل (فرق غير دال، p=0.143) وذاكرة GPU 0.32GB وزمن 10.0ms — متفوقًا بدلالة (p &lt; 0.001) على QLoRA (0.85GB و42.3ms) وSqueezeLLM (0.78GB و38.5ms) وDoRA (1.18GB و57.5ms) [27،28]. وعلى مستوى المهام برزت SST-2 بدقة 92.2٪، وبقيت مصفوفات الالتباس قطرية بقوة مع أخطاء مركزة بين الفئات متقاربة الدلالة (كالسعادة-الحزن والحياد-الاستلزام)، بما يتسق مع الحد النظري للخطأ.</p>
+    <p>أظهر الاستئصال أن كل مكون أساسي: التكيف بالرتبة المستقرة يحسّن الدقة 0.92٪ ويخفض الذاكرة 24٪، والتناثر 4:8 يحقق خفض زمن 45٪، والتكميم الهجين يحفظ 1.69٪ دقة عن التكميم الموحد. وكشف تحليل الرتب الطبقية عن رتب مخصصة (التضمين 26، والاستعلام/المفتاح/القيمة 37، والتغذية الأمامية الوسيطة 47) بدل الرتبة الموحدة 8، وحققت كل الأجهزة الطرفية زمنًا دون 50ms (Jetson Nano ‏18.3ms و315MB و5.2W)، مما يؤكد الجاهزية للنشر الآني.</p>
+  </section>
+
+  <section>
+    <h2>5. النقاش والخلاصة</h2>
+    <p>تقتصر القيود على نماذج التشفير فقط دون فك التشفير، ومهام التصنيف والإجابة دون التوليد، مع آفاق في التناثر الديناميكي والبحث المعماري العصبي والتصميم المشترك عتاد-برمجيات. خلصت الورقة إلى أن SQ-LoRA يحقق خفض ذاكرة 96.7٪ وزمن 91.7٪ مع دقة ضمن 0.15٪ من النموذج الكامل عبر الدمج المبدئي للرتب التكيفية والتناثر المنظم والتكميم الهجين، ممكنًا نشر نماذج متطورة على أجهزة 2GB ومدعمًا ديمقراطية تقنيات الذكاء الاصطناعي — بدعم TÜBİTAK (منحة 125E598).</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>We introduce SQ-LoRA (Stable-rank Quantized Low-Rank Adaptation), a theoretically grounded compression framework achieving unprecedented efficiency through synergistic adaptive low-rank decomposition, hardware-accelerated structured sparsity, and intelligent hybrid quantization. Our primary contribution establishes the first rigorous mathematical connection between matrix stable rank and optimal LoRA rank selection (Theorem 1) with bounded approximation guarantees, with adaptive rank allocation, 4:8 sparsity patterns (2× acceleration), and a three-tier quantization scheme (4-bit NormalFloat storage with selective 3-/8-bit precision). Evaluation on four NLP benchmarks shows a 320MB memory footprint (96.7% reduction), 10ms inference latency (91.7% improvement), and 82.0% average accuracy (within 0.15% of full model, p &lt; 0.001), enabling deployment on 2GB devices.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Transformer language models revolutionized NLP [1], yet edge deployment remains hard: BERT-base needs ~440MB and over 24B FLOPs per pass [2]. Meanwhile compute shifts to the edge — IDC forecasts ~$261B global spending in 2025 at 13.8% CAGR [3] — since edge inference cuts latency from 100ms to under 10ms in autonomous driving [4] and reaches 99.7% availability in industrial IoT versus 94.2% for cloud [5], under strict budgets (memory &lt; 500MB, latency &lt; 20ms, power &lt; 5W).</p>
+    <p>Current compression covers isolated aspects: LoRA cuts training memory via low-rank updates [6] with uniform ranks ignoring layer complexity; quantization cuts precision [7] but aggressive compression degrades accuracy; QLoRA combines them for memory-efficient tuning [8] without understanding their interaction; unstructured sparsity blocks hardware speedup [9]; and sequential stacking causes multiplicative degradation (8.3% vs 2.1% for single techniques) [10]. The paper contributes fourfold: the stable-rank/rank-selection math, the unified SQ-LoRA framework, comprehensive empirical validation, and directly adoptable implementation details.</p>
+  </section>
+
+  <section>
+    <h2>2. Related Work</h2>
+    <p>Low-rank decomposition exploits the low intrinsic dimensionality of weights via ΔW=BA [6], with adaptive ranks in AdaLoRA [11] and DyLoRA [12], intrinsic-dimensionality theory [13], and LoRA-GA [14]; SQ-LoRA instead establishes a direct stable-rank-to-optimal-rank link without costly search. Quantization evolved from post-training [15] and quantization-aware training [16] to LLM.int8() [17], GPTQ [18], QLoRA [8], AWQ [19], and ZeroQuant [20]; the hybrid three-tier scheme advances them with intra-layer adaptive precision allocation.</p>
+    <p>Structured N:M sparsity addresses unstructured limits with hardware support (NVIDIA 2:4 at 2× theoretical speedup) [21], learnable 2:4 patterns [22], rank-preserving 4:8 [23], and LLM-Pruner attempts [24]; combined compression (deep compression [10], LoRAMoE [25], S-LoRA [26], DoRA [27], SqueezeLLM [28]) stacks techniques sequentially without interaction insight. SQ-LoRA is distinguished by its mathematical grounding, hybrid (4-bit NF base with 3-bit majority and 8-bit outliers) quantization, 4:8 sparsity integration, and unified optimization avoiding multiplicative degradation with proven approximation bounds.</p>
+  </section>
+
+  <section>
+    <h2>3. Methodology</h2>
+    <p>The problem is minimizing accuracy loss (1 − compressed/full accuracy) subject to memory ≤ 0.5GB, latency ≤ 10ms, storage ≤ 100MB, and accuracy ≥ 0.8× original — thresholds derived from platforms like Jetson Nano (2GB) and edge QoS practice. The theory builds on stable rank sr(W)=‖W‖²F/‖W‖²₂ to prove Theorem 1: the optimal LoRA rank for relative error ε is lower-bounded by ⌈(1−ε²)⁻¹·sr(W)⌉ via the Eckart–Young–Mirsky theorem; required rank scales linearly with stable rank and quadratically with accuracy demand.</p>
+    <p>The SQ-LoRA architecture fuses three components: (1) per-layer stable-rank computation with adaptive rank allocation, (2) 4:8 structured sparsity on attention weights keeping the top 4 of every 8 values (50% hardware-compatible sparsity), and (3) three-tier hybrid quantization — 3-bit for weights within 3σ, 8-bit for outliers beyond, on a 4-bit NF4 base. End-to-end analysis (Theorem 2) bounds output error by the Lipschitz constant times the sum of LoRA, sparsity, and quantization errors — additive, not multiplicative. Training runs in stages: rank computation, sparsity masking, hybrid quantization, then LoRA adapter tuning (lr 2×10⁻⁵, effective batch 64).</p>
+  </section>
+
+  <section>
+    <h2>4. Experimental Evaluation</h2>
+    <p>Experiments used PyTorch 2.1 with custom CUDA kernels on A100 GPUs, with edge validation on Jetson Nano (2GB), Raspberry Pi 4 (8GB), and a Snapdragon 888 emulation, using DistilBERT-base (66M params) on four tasks: SemEval-2018 emotion [30], SST-2 [31], BoolQ [32], and MNLI [33] with the DistilBERT tokenizer at length 128. Baselines spanned full tuning, LoRA [6], QLoRA [8], AdaLoRA [11], magnitude pruning [34], DoRA [27], and SqueezeLLM [28] over five seeds.</p>
+    <p>SQ-LoRA reached 82.0% average accuracy (±0.23) versus 82.15% for full tuning (non-significant, p=0.143) at 0.32GB GPU memory and 10.0ms — significantly (p &lt; 0.001) ahead of QLoRA (0.85GB, 42.3ms), SqueezeLLM (0.78GB, 38.5ms), and DoRA (1.18GB, 57.5ms) [27,28]. Per-task, SST-2 stood out at 92.2%, and confusion matrices stayed strongly diagonal with errors concentrated in semantically adjacent classes (Happy–Sad, Neutral–Entailment), consistent with the theoretical error bound.</p>
+    <p>Ablation showed every component essential: stable-rank adaptation gains 0.92% accuracy while cutting memory 24%, 4:8 sparsity gives 45% latency reduction, and hybrid quantization preserves 1.69% over uniform quantization. Layer-wise analysis assigned adaptive ranks (embedding 26, QKV 37, FFN-intermediate 47) instead of uniform 8, and all edge devices stayed under 50ms (Jetson Nano 18.3ms/315MB/5.2W), confirming real-time deployability.</p>
+  </section>
+
+  <section>
+    <h2>5. Discussion and Conclusions</h2>
+    <p>Limitations cover encoder-only models (not decoders), classification/QA tasks (not generation), with futures in dynamic sparsity, neural architecture search, and hardware–software co-design. SQ-LoRA achieves 96.7% memory and 91.7% latency reductions within 0.15% of full-model accuracy via principled adaptive ranks, structured sparsity, and hybrid quantization — enabling sophisticated NLP on 2GB devices and advancing AI democratization — supported by TÜBİTAK (grant 125E598).</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected — original numbering preserved)</h2>
+    <ol dir="ltr">
+      <li>[1] A. Vaswani et al., Attention is all you need, NeurIPS, 2017.</li>
+      <li>[2] J. Devlin et al., BERT, NAACL, 2019.</li>
+      <li>[3] IDC, Worldwide edge spending guide (13.8% CAGR to ~$380B by 2028), 2025.</li>
+      <li>[6] E. Hu et al., LoRA: low-rank adaptation of large language models, ICLR, 2022.</li>
+      <li>[7] A. Gholami et al., A survey of quantization methods, IJCV, 2022.</li>
+      <li>[8] T. Dettmers et al., QLoRA: efficient finetuning of quantized LLMs, NeurIPS, 2023.</li>
+      <li>[9] T. Hoefler et al., Sparsity in deep learning, JMLR, 2021.</li>
+      <li>[10] S. Han et al., Deep compression, ICLR, 2016.</li>
+      <li>[11] Q. Zhang et al., Adaptive budget allocation (AdaLoRA), ICLR, 2023.</li>
+      <li>[13] A. Aghajanyan et al., Intrinsic dimensionality, ACL, 2021.</li>
+      <li>[17–18] T. Dettmers et al., LLM.int8(); E. Frantar et al., GPTQ, 2022–2023.</li>
+      <li>[19–20] J. Lin et al., AWQ, MLSys, 2024; Y. Yao et al., ZeroQuant, NeurIPS, 2022.</li>
+      <li>[21] J. Pool &amp; C. Yu, Channel permutations for N:M sparsity, NeurIPS, 2021.</li>
+      <li>[27] S.-Y. Liu et al., DoRA, ICML, 2024.</li>
+      <li>[28] S. Kim et al., SqueezeLLM, ICML, 2024.</li>
+      <li>[30] M. Bravo-Marquez et al., SemEval-2018 Task 1: affect in tweets, 2018.</li>
+      <li>[31] R. Socher et al., SST-2 / recursive deep models, EMNLP, 2013.</li>
+      <li>[32] C. Clark et al., BoolQ, NAACL, 2019.</li>
+      <li>[33] A. Williams et al., MNLI, NAACL, 2018.</li>
+      <li>[34] J. Frankle &amp; M. Carbin, The lottery ticket hypothesis, ICLR, 2019.</li>
+      <li>... [full reference list available in the <a href="paper.pdf" target="_blank">original PDF</a>]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app16042113">10.3390/app16042113</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

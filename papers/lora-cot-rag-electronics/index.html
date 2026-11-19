@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تعزيز النماذج اللغوية الكبيرة للمجالات المتخصصة — DAR</title>
+<meta name="description" content="Enhancing Large Language Models for Specialized Domains — Electronics, 2025 · Vol. 14(10), 1961. Arabic/English bilingual viewer on DAR.">
+<link rel="canonical" href="https://dararchive.com/papers/lora-cot-rag-electronics/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Enhancing Large Language Models for Specialized Domains</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تعزيز النماذج اللغوية الكبيرة للمجالات المتخصصة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Yao He, Xuanbing Zhu, Donghan Li, Hongyu Wang</span>
+    <span>📄 Electronics, 2025 · Vol. 14(10), 1961</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics14101961">10.3390/electronics14101961</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+<section>
+    <h2>الملخص</h2>
+    <p>أظهرت النماذج اللغوية الكبيرة قدرات عامة مبهرة، لكن تطبيقها في مجالات متخصصة كالرعاية الصحية والقانون ما يزال محدودًا بسبب تحدّيين: الافتقار إلى المعرفة العميقة بالمجال، والعجز عن دمج تحديثات المعلومات الآنية. وتعالج هذه الورقة التحديين بإطار من مرحلتين (SensiLoRA-RAG): أولًا ضبط دقيق فعال بـ LoRA حساسة للمعاملات تكيّف النماذج مع المجالات المتخصصة ببيانات احترافية محدودة عالية الجودة؛ وثانيًا آلية استرجاع معزز بالتوليد بسلسلة التفكير تسترجع المعرفة الخارجية المحدّثة وتدمجها ديناميكيًا. وتُظهر التجارب في المجالين الطبي والقانوني تحسنًا كبيرًا في الدقة والملاءمة المجالية والقابلية للتكيف مقارنة بالأساليب المرجعية.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>النماذج اللغوية العامة أنظمة ذكاء اصطناعي مدرّبة على نصوص ضخمة لفهم اللغة البشرية وتوليدها — مثل GPT-4 [1] وClaude [2] وLLaMA [3]، [4] — متجاوزة النماذج اللغوية التقليدية [5]–[7] بحجمها وقدراتها. وتكمن ميزتها في التنوع والقابلية للتكيف، إذ يوجّه هندسة الموجهات استجاباتها دون تعديل البنية [1]. لكنها تواجه صعوبات في المجالات المتخصصة كالصحة والقانون ذات المعرفة سريعة التطور: فالأنظمة القانونية تصدر لوائح وأحكامًا جديدة باستمرار [8]، والطب ينتج نتائج وعلاجات جديدة [9]، بينما معارف النماذج ثابتة زمن التدريب ومتخلفة عن الواقع، ومليئة بالمصطلحات المعقدة التي تُساء تأويلها.</p>
+    <p>وعائق آخر أنها لا تحدّث معارفها ديناميكيًا دون إعادة تدريب مكلفة حوسبيًا. لذا يجمع الإطار المقترح التخصيص الفعال للمعاملات مع المعرفة الخارجية المحدّثة، بما يناسب سيناريوهات العالم الحقيقي عالية المخاطر.</p>
+  </section>
+
+  <section>
+    <h2>2. الأعمال ذات الصلة</h2>
+    <p>تطورت النماذج من تضمينات Word2Vec وGloVe عالية الجودة [6]، [7] إلى المحوّل نقطة التحول، حيث أظهر GPT-3 (175 مليار معامل) ظاهرة التعلم السياقي والتعميم الصفري والقليل الأمثلة دون ضبط [16]، مع التعلم المعزز بالتغذية البشرية [17] والنماذج المفتوحة مثل Vicuna [18]. ويعالج الضبط الفعال للمعاملات النسيان الكارثي وقيود الموارد بتجميد أغلب المعاملات وإضافة وحدات صغيرة قابلة للتدريب [25]، ومنها المهايئات [26]، والضبط المسبق المستمر [28]، وAdaLoRA التكيفية [29]، وLoRA [37]، وDyLoRA الديناميكية [38].</p>
+    <p>أما الاسترجاع المعزز بالتوليد فيخفف الهلوسة باسترجاع شظايا وثائقية بمطابقة الدلالة وإثراء الاستجابة [41]–[46]، ويتطور عبر ثلاثة أطوار: الساذج (إطار استرجع-اقرأ) [47]، والمتقدم، والمعياري — مع إعادة كتابة الاستعلام [47] وأفضل الممارسات [48] — بينما توثق مسوح الهلوسة المبادئ والتحديات [42] والمعايير الصينية [43].</p>
+  </section>
+
+  <section>
+    <h2>3. الأساسيات: النماذج اللغوية</h2>
+    <p>النماذج اللغوية الكبيرة شبكات عميقة على بنية المحوّل [56] تستخدم الانتباه الذاتي للتبعيات بعيدة المدى، وتتعلم الأنماط والمعارف بتوقع الرمز التالي: L = −Σ log P(xt | السابقة؛ θ) (المعادلة 1)، حيث θ معاملات النموذج.</p>
+  </section>
+
+  <section>
+    <h2>4.–4.1. LoRA الحساسة للمعاملات</h2>
+    <p>تعاني LoRA من قيدين حرجين: الاختيار اليدوي لرتبة المهمة، وإهمال اختلاف أنماط تفعيل المعاملات عبر المهام. ولمعالجتهما نقترح خوارزمية رتبة ديناميكية بنسبة المعاملات الحساسة بثلاث خطوات: اختيار المعاملات الحساسة، وتخصيص الرتبة الديناميكي، والضبط بـ LoRA. ولتحديد الحساسية — مستلهمين من [57] — نحسب درجة حساسية لكل معامل، ونوزع الرتب الأعلى على الطبقات/المعاملات الأكثر حساسية بدل التوزيع المتساوي.</p>
+    <p>وبهذا يتكيف التخصيص مع كل مهمة لاحقة تلقائيًا: رتب أكبر حيث الحساسية أعلى، ورتب أصغر حيث المعرفة العامة كافية — فيجمع بين كفاءة المعاملات وجودة التخصيص المجالي.</p>
+  </section>
+
+  <section>
+    <h2>4.2. الاسترجاع المعزز بسلسلة التفكير</h2>
+    <p>بناء مجموعات ضبط عالية الجودة مكلف وشاق، بينما تتوفر موارد نصية وفيرة يمكن استغلالها عبر قدرة النموذج على فهم السياق. نبني قاعدة معرفية من النصوص المتاحة، ونسترجع الشظايا ذات الصلة باستعلام المستخدم لإثراء الاستجابة. ولمعالجة الاستعلامات الموجزة أو المعقدة التي تفشل عند استخدامها مباشرة، نفككها إلى استعلامات فرعية ونخطط لمهام فرعية، مع توليد مسارات استدلال مرحلية تجمع بين الاسترجاع والفعل — على غرار ReAct [53] والذاكرة الذاتية [54] — فيتكيف النموذج مع المعرفة المحدّثة والسياق المجالي المعقد.</p>
+  </section>
+
+  <section>
+    <h2>5. التجارب</h2>
+    <p>قيّمنا LoRA الحساسة على مجموعتي الاستشارة القانونية متعددة الفئات crimekgassistant-52k (ثلاث عشرة فئة: زواج وأسرة، منازعات عمالية، حوادث مرور، ديون، جنائي، عقود، عقارات، إصابات، شركات، طبي، إخلاء، إداري، إنشاءات — أُعيد بناؤها عبر ChatGPT واعتُمدت لتدريب Xiezhi الصيني) والأسئلة الطبية Huatuo-65k، وقارنّا LoRA وAdaLoRA [39] وDyLoRA [38] وSensiLoRA بمقاييس BLEU وROUGE-1/2/L وBert-Sim ومسافة التحرير.</p>
+    <p>تفوقت SensiLoRA على المرجعيات في كل المقاييس اللغوية والدلالية: ففي المهمة القانونية تحسن BLEU/ROUGE بنحو 12%–37.5% على LoRA (BLEU من 3.51×10−82 إلى 4.15×10−82، وROUGE-1 من 1.60×10−4 إلى 2.20×10−4، وBert-Sim من 0.682 إلى 0.700، ومسافة التحرير من 207.3 إلى 172.7)، وفي المهمة الطبية تحسن كبير في BLEU (من 9.52×10−233 إلى 7.70×10−5) مع Bert-Sim 0.728. وأظهر الاستئصال بقيم α من 1100 إلى 1300 تفوقًا ثابتًا على LoRA، مؤكدًا متانة النهج لاختيارات المعامل.</p>
+  </section>
+
+  <section>
+    <h2>6. الخاتمة</h2>
+    <p>قدمنا SensiLoRA-RAG: ضبط LoRA حساس للمعاملات للتخصص الفعال ببيانات محدودة، واسترجاع معزز بسلسلة التفكير للمعرفة الآنية — فتحسّن الاحتفاظ المعرفي والقابلية للتكيف الآني معًا. وتشمل الأعمال المستقبلية التوسع لمجالات أبعد من الصحة والقانون.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+<section>
+    <h2>Abstract</h2>
+    <p>Large language models have shown impressive general-purpose capabilities, but their application in specialized domains such as healthcare and law remains limited by two major challenges: a lack of deep domain-specific knowledge and the inability to incorporate real-time information updates. This paper addresses both with a two-stage framework (SensiLoRA-RAG): first, parameter-sensitive LoRA fine-tuning that adapts models to specialized domains with limited high-quality professional data; second, a chain-of-thought retrieval-augmented generation mechanism that dynamically retrieves and integrates up-to-date external knowledge. Experiments in the medical and legal fields show significant gains in accuracy, domain relevance, and adaptability over baselines.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>General LLMs are AI systems trained on vast text to understand and generate human-like language — e.g. GPT-4 [1], Claude [2], LLaMA [3], [4] — far beyond traditional language models [5]–[7] in scale and capability. Their strength is versatility and adaptability, with prompt engineering steering responses without architectural change [1]. Yet they struggle in specialized domains such as healthcare and law with fast-evolving knowledge: legal systems constantly issue new regulations and rulings [8], medicine produces new findings and guidelines [9], while model knowledge is frozen at training time, lags reality, and misreads complex terminology.</p>
+    <p>A further drawback is the inability to update knowledge dynamically without costly retraining. The proposed framework therefore couples parameter-efficient specialization with up-to-date external knowledge, suited to high-stakes real-world settings.</p>
+  </section>
+
+  <section>
+    <h2>2. Related Works</h2>
+    <p>Models evolved from high-quality Word2Vec and GloVe embeddings [6], [7] to the Transformer turning point, where GPT-3 (175B parameters) exhibited in-context learning with zero- and few-shot generalization without fine-tuning [16], alongside RLHF [17] and open models such as Vicuna [18]. Parameter-efficient fine-tuning avoids catastrophic forgetting and resource limits by freezing most parameters and adding small trainable modules [25], including adapters [26], continuous prefix-tuning [28], adaptive AdaLoRA [29], LoRA [37], and dynamic DyLoRA [38].</p>
+    <p>Retrieval-augmented generation mitigates hallucination by retrieving document fragments via semantic matching to enrich responses [41]–[46], evolving through three stages — naive (Retrieve–Read) [47], advanced, and modular — with query rewriting [47] and best practices [48], while hallucination surveys document principles and challenges [42] and Chinese benchmarks [43].</p>
+  </section>
+
+  <section>
+    <h2>3. Preliminaries: LLM</h2>
+    <p>LLMs are deep networks on the Transformer architecture [56] using self-attention for long-range dependencies, learning patterns and facts via next-token prediction: L = −Σ log P(xt | previous; θ) (Eq. 1), where θ denotes model parameters.</p>
+  </section>
+
+  <section>
+    <h2>4.–4.1. Parameter-Sensitive LoRA</h2>
+    <p>LoRA suffers two critical limits: manual per-task rank selection and neglect of varying parameter-activation patterns across tasks. We propose a dynamic-rank algorithm driven by sensitive-parameter ratios in three steps: sensitive-parameter selection, dynamic rank allocation, and LoRA fine-tuning. For sensitivity — inspired by [57] — we compute a sensitivity score per parameter and assign higher ranks to the most sensitive layers/parameters instead of uniform allocation.</p>
+    <p>Allocation thus adapts automatically per downstream task: larger ranks where sensitivity is high, smaller where general knowledge suffices — combining parameter efficiency with domain-adaptation quality.</p>
+  </section>
+
+  <section>
+    <h2>4.2. Chain-of-Thought RAG</h2>
+    <p>High-quality fine-tuning datasets are costly to build, while abundant textual resources can be exploited through the model's context understanding. We build a knowledge base from available texts and retrieve relevant fragments for the user query to enrich responses. To handle concise or complex queries that fail when used directly, we decompose them into sub-queries with sub-task planning, generating staged reasoning traces that interleave retrieval and action — akin to ReAct and self-memory approaches [54] — adapting the model to updated knowledge and complex domain context.</p>
+  </section>
+
+  <section>
+    <h2>5. Experiments</h2>
+    <p>We evaluated sensitivity-LoRA on the multi-category legal-consultation set crimekgassistant-52k (thirteen case types: marriage and family, labor disputes, traffic accidents, credit and debts, criminal defense, contracts, real estate, infringement, company law, medical disputes, relocation, administrative litigation, construction — rebuilt via ChatGPT and used for the Chinese legal LLM Xiezhi) and the Huatuo-65k medical QA set, comparing LoRA, AdaLoRA [39], DyLoRA [38], and SensiLoRA on BLEU, ROUGE-1/2/L, Bert-Sim, and edit distance.</p>
+    <p>SensiLoRA beat the baselines on all linguistic and similarity metrics: on the legal task BLEU/ROUGE improved about 12%–37.5% over LoRA (BLEU 3.51×10−82 to 4.15×10−82, ROUGE-1 1.60×10−4 to 2.20×10−4, Bert-Sim 0.682 to 0.700, edit distance 207.3 to 172.7), with a large BLEU gain on the medical task (9.52×10−233 to 7.70×10−5, Bert-Sim 0.728). Ablation over α from 1100 to 1300 consistently beat LoRA, confirming robustness to the hyperparameter.</p>
+  </section>
+
+  <section>
+    <h2>6. Conclusions</h2>
+    <p>We presented SensiLoRA-RAG: parameter-sensitive LoRA fine-tuning for efficient specialization with limited data, plus chain-of-thought RAG for real-time knowledge — jointly improving knowledge retention and real-time adaptability. Future work extends beyond healthcare and law to wider domains.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+<li>[1] Achiam, J.; et al. GPT-4 technical report. arXiv 2023, arXiv:2303.08774.</li>
+      <li>[3] Touvron, H.; et al. LLaMA: Open and efficient foundation language models. arXiv 2023, arXiv:2302.13971.</li>
+      <li>[6] Goldberg, Y.; Levy, O. word2vec Explained. arXiv 2014, arXiv:1402.3722.</li>
+      <li>[16] Brown, T.; et al. Language models are few-shot learners. In Proc. NeurIPS, 2020.</li>
+      <li>[18] Chiang, W.L.; et al. Vicuna: An open-source chatbot impressing GPT-4. 2023.</li>
+      <li>[19] Dettmers, T.; et al. QLoRA: Efficient fine-tuning of quantized LLMs. In Proc. NeurIPS, 2023.</li>
+      <li>[26] Houlsby, N.; et al. Parameter-efficient transfer learning for NLP. In Proc. ICML, 2019.</li>
+      <li>[37] Hu, E.J.; et al. LoRA: Low-rank adaptation of large language models. arXiv 2021, arXiv:2106.09685.</li>
+      <li>[38] Valipour, M.; et al. DyLoRA: Parameter-efficient tuning of pre-trained models using dynamic search-free low-rank adaptation. arXiv 2022.</li>
+      <li>[39] Zhang, Q.; et al. AdaLoRA: Adaptive budget allocation for parameter-efficient fine-tuning. arXiv 2023.</li>
+      <li>[41] Gao, Y.; et al. Retrieval-augmented generation for large language models: A survey. arXiv 2023, arXiv:2312.10997.</li>
+      <li>[47] Ma, X.; et al. Query rewriting in retrieval-augmented language models. In Proc. EMNLP, 2023.</li>
+      <li>[54] Cheng, X.; et al. Lift yourself up: Retrieval-augmented generation with self-memory. In Proc. NeurIPS, 2023.</li>
+      <li>[56] Vaswani, A.; et al. Attention is all you need. In Proc. NeurIPS, 2017.</li>
+      <li>[57] He, H.; et al. Sensitivity-aware visual parameter-efficient fine-tuning. In Proc. ICCV, 2023.</li>
+      <li>[full reference list available in the original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics14101961">10.3390/electronics14101961</a> · License: CC BY 4.0 · <a href="./paper.pdf">PDF</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إعادة التفكير في التخزين المؤقت للإدخال/الإخراج لاستدلال النماذج اللغوية الكبيرة على المنصات المحمولة محدودة الموارد — DAR</title>
+<meta name="description" content="Rethinking I/O Caching for Large Language Model Inference on Resource-Constrained Mobile Platforms — Mathematics, 2025 · Vol. 13(22), 3689. Arabic/English bilingual viewer on DAR.">
+<link rel="canonical" href="https://dararchive.com/papers/llm-io-caching-math/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Rethinking I/O Caching for Large Language Model Inference on Resource-Constrained Mobile Platforms</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">إعادة التفكير في التخزين المؤقت للإدخال/الإخراج لاستدلال النماذج اللغوية الكبيرة على المنصات المحمولة محدودة الموارد</h2>
+
+  <div class="paper-meta">
+    <span>👤 Heejin Kim, Jeongha Lee, Hyokyung Bahn</span>
+    <span>📄 Mathematics, 2025 · Vol. 13(22), 3689</span>
+    <span>🔗 <a href="https://doi.org/10.3390/math13223689">10.3390/math13223689</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+<section>
+    <h2>الملخص</h2>
+    <p>أصبح استدلال النماذج اللغوية الكبيرة على الجهاز ممكنًا بفضل معالجات الرسوم والشبكات العصبية المحمولة، لكن الوصول المتكرر إلى ملفات الأوزان الضخمة يكشف اختناقات إدخال/إخراج حادة لا يمكن للحوسبة وحدها إخفاؤها [11]، [12]. وبينما ركزت الأعمال السابقة على التخزين المؤقت الداخلي للمفاتيح والقيم [15]، [16]، تسد هذه الورقة الفجوة في ذاكرة التخزين المؤقت لنظام التشغيل المضيف: فبتحليل التتبع على مستوى الملفات لتطبيقات محمولة حقيقية، تحدد ثلاثة أنماط وصول مميزة — مسوحات تتابعية لمرة واحدة عند التهيئة، ومجموعات ساخنة ثابتة (المجزئات والبيانات الوصفية والفهارس)، ووصولات حلقية متكررة إلى ملفات الأوزان. وبناءً عليها تقترح استراتيجيات تخزين واعية بالنماذج وقواعد تحجيم تربط حجم الحلقة وتغطية المجموعة الساخنة وعرض نطاق التخزين، وتقارن منصات الساعات الذكية بالهواتف لتحديد أحجام النماذج الممكنة على الجهاز.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>عاملت تطبيقات النماذج اللغوية مثل ChatGPT الأجهزة المحمولة تقليديًا كطرفيات غبية مع الاستدلال في السحابة [1]، [2]. لكن التقدم الحديث في معالجات المحمول [3]، [4] — مثل Apple A17 Pro [5] وSnapdragon 8 Gen 3 [6] وExynos من سامسونغ [7] — إضافة إلى نشرات على الجهاز مثل Llama عبر CoreML على iOS [8] وعروض ExecuTorch على أندرويد [9]، جعل الاستدلال الجزئي أو الكامل على الجهاز ممكنًا، ويزيده جاذبيةً الطلب على الخصوصية والتخصيص [10]. ومع ذلك تواجه الأجهزة المحمولة والقابلة للارتداء ميزانيات ضيقة للذاكرة وعرض النطاق والطاقة [11]، [12]، وتخلق القراءات المتكررة لملفات الأوزان الضخمة اختناقات لا تخفيها الإنتاجية وحدها؛ والحل في التحليل المنهجي للوصول [13]، [14].</p>
+    <p>فالتخزين المؤقت للمفاتيح والقيم حساس لترتيب الرموز ولا يقلل الوصول إلى ملفات الأوزان، والتخزين الدلالي يدفع تكلفة مطابقة التضمينات دون ضمان إعادة استخدام دقيقة على مستوى الإدخال/الإخراج. لذا تستهدف الورقة التخزين المؤقت على مستوى كتل الملفات، حيث تدير ذاكرة نظام التشغيل ملفات الأوزان ككتل إدخال/إخراج عادية بإعادة استخدام تطابقية دون اعتماد على ترتيب الرموز — وهي طبقة قلّت دراستها للاستدلال المحمول على الجهاز.</p>
+  </section>
+
+  <section>
+    <h2>2. الأعمال ذات الصلة</h2>
+    <p>يلغي التخزين الداخلي للمفاتيح والقيم الحوسبة الانتباهية الزائدة أثناء فك التشفير؛ فيقلل PagedAttention في vLLM تجزئة ذاكرة GPU ويمكّن مشاركة الكتل [17]، بينما تزيل EPIC الاعتماد على الموضع لتحسين زمن أول رمز [18]. ومن الامتدادات: Prompt Cache المعياري [19]، وCacheBlend المدمج للاسترجاع المعزز [20]، وRAGCache الهرمي [21]، والإخلاء الواعي بالحمل [16]، [22]، [23]، وMemServe المفكك [24]، وتقليل الذاكرة عبر SentenceKV [25] والتكميم الثنائي البت KIVI [15] وShadowKV [26] وKVzip [27] وKeepKV [28] وتحليل الحساسية [29] والتحسين المشترك للتخزين والجدولة [30].</p>
+    <p>أما التخزين الدلالي الخارجي فيعيد استخدام المدخلات والمخرجات حسب المعنى: فيخزن GPTCache أزواج الاستعلام–الاستجابة في فهرس تضميني [31]، ويخصص MeanCache التخزين على العميل [32]، ويعنقد SCALM سجلات المحادثات [33]، ويعالج ContextCache الحوارات متعددة الأدوار [34]، مع تضمينات مضبوطة مجاليًا [35] وإخلاء متعلم [36] وMinCache الهجين [37] والتخزين التوليدي [38]. وبخلاف الخطين، تدرس الورقة التخزين على مستوى كتل الملفات في طبقة نظام التشغيل — إعادة استخدام تطابقية خارج زمن تشغيل النموذج — وتلاحظ فشل LRU القياسية مع المراجع الحلقية [46]، ما يحفز سياسات مقاومة للمسح مثل LeCaR [47].</p>
+  </section>
+
+  <section>
+    <h2>3. خصائص الوصول إلى الملفات في أحمال النماذج</h2>
+    <p>جُمعت التتبعات بأداة strace في لينكس مع محلل مخصص بدقة كتل 4 كيلوبايت على هاتف Galaxy S22 (معالج ثماني النوى، Adreno 730، ذاكرة 8 غيغابايت، تخزين UFS بسعة 256 غيغابايت) [39]، مع تأكيد أنماط مماثلة على تهيئات أخرى. واستخدمت أحمال الجهاز تطبيقي AI Notes وAI Translate [40] وتطبيقي MediaPipe [41] على أندرويد 14؛ بينما غطت تتبعات الاستدلال البعيد تطبيقات Copilot وPerplexity وClaude وGemini كعملاء نحيفين.</p>
+    <p>يُظهر الاستدلال على الجهاز باستمرار ثلاث سمات: مسوحات تتابعية للتهيئة، ومجموعات ساخنة صغيرة ثابتة، ووصولات حلقية إلى ملفات الأوزان الكبيرة. أما الاستدلال البعيد فتهيمن عليه الوصولات التتابعية مع دفعات كتابة–قراءة–كتابة حول رفع الموجه وتخزين النتائج، إضافة إلى كتل ساخنة صغيرة ثابتة (بيانات وصفية/فهارس) — دون حلقات أوزان منظمة.</p>
+  </section>
+
+  <section>
+    <h2>3.1–3.2. تفاصيل الجهاز مقابل البعيد</h2>
+    <p>في AI Notes، تقرأ البداية الكتل 0–7500 تتابعيًا (ملفات تهيئة لمرة واحدة يجب إخلاؤها سريعًا لتجنب التلويث)؛ وقرب الكتلة 7500 توجد منطقة مرجعية دائمة تحوي جداول المجزئ وبيانات النموذج الوصفية وملفات الفهارس (مجموعة ساخنة يجب الاحتفاظ بها)؛ وتُظهر الكتل 10,000–15,000 حلقة كتابة دورية من محرك الكتابة اليدوية؛ والكتل 15,000–25,000 حلقة قراءة دورية على ملفات أوزان الترجمة الآلية. ويُظهر AI Translate البنية نفسها بحجم أصغر. أما تتبعات Copilot وPerplexity فتهيمن عليها الوصولات التتابعية مع إعادة مراجع احتمالية لا حلقات منظمة.</p>
+  </section>
+
+  <section>
+    <h2>4. نموذج ذاكرة التخزين المؤقت وتبعاته</h2>
+    <p>بخلاف ذاكرة المفاتيح والقيم المقيمة في GPU والتي تتغير مع طول الموجه والجلسة، تتحدد ذاكرة المضيف بالنموذج وتبقى مستقرة عبر المدخلات. وتتفكك الوصولات إلى المكونات الثلاثة المرصودة: المسوحات لمرة واحدة (تُخلى سريعًا)، والمجموعات الساخنة كالمجزئات والبيانات الوصفية (تُثبَّت بالكامل — أقل من 4 ميغابايت في التتبعات)، وحلقات ملفات الأوزان (تُصان لتجنب التوقف). وتُخلي LRU القياسية كتل الحلقة قبل إعادة استخدامها مسببة إدخال/إخراج متكررًا [46]، لذا يلزم إدارة مقاومة للمسح؛ ومع حجم المجموعة الساخنة S وعرض النطاق BW والتأخير المقبول T، يكون حجم الحلقة المستدام N = S + BW × T (المعادلة 1).</p>
+    <p>تحتمل أجهزة فئة الساعات الذكية (1–2 غيغابايت ذاكرة، ~64 ميغابايت فعليًا للنموذج، وeMMC بفعالية ~100 ميغابايت/ث) حلقات بحجم N ≈ 70 ميغابايت — فيتسع لـ AI Notes (~60 ميغابايت) وAI Translate (~2 ميغابايت) دون النماذج الحديثة فوق 500 ميغابايت [42]–[45] — ومن ثم تُستخدم نماذج مصغرة مكممة مع تفريغ هرمي إلى هاتف مقترن. أما الهواتف (ذاكرة 256–512 ميغابايت) فتحتمل حلقات ~356–612 ميغابايت، وتتضاءل المكاسب بعد ~500 ميغابايت/ث من عرض نطاق التخزين.</p>
+  </section>
+
+  <section>
+    <h2>5. الخاتمة</h2>
+    <p>تميز الورقة أحمال الجهاز عن الأحمال السحابية عبر تحليل الإدخال/الإخراج على مستوى الملفات، وتثبت نمط المسح/المجموعة الساخنة/الحلقة، وتشتق نموذج تخزين واعيًا بالنماذج: تثبيت الساخن، وحماية مقاطع الحلقة، وإخلاء مسوحات المرة الواحدة. ويُظهر تحليل العتاد أن الساعات لا تتسع إلا للنماذج المصغرة أو التفريغ الهرمي بينما تحتمل الهواتف استدلالًا أوسع على الجهاز. ويُعزى نمط الحلقة المتكرر إلى إعادة استخدام أوزان المحوّل؛ وتُترك البنى الأخرى لأعمال مستقبلية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+<section>
+    <h2>Abstract</h2>
+    <p>On-device LLM inference is increasingly feasible thanks to mobile GPUs and NPUs, but repeated accesses to large weight files expose severe I/O bottlenecks that compute alone cannot mask [11], [12]. While prior work focused on internal KV caching [15], [16], this paper closes the gap on the host OS buffer cache: using file-level trace analysis of real mobile LLM applications, it identifies three characteristic access patterns — one-time sequential scans at initialization, persistent hot sets (tokenizers, metadata, indices), and recurring loop accesses to model weight files. Guided by these observations it proposes LLM-aware buffer-cache strategies and cache-sizing rules relating loop size, hot-set coverage, and storage bandwidth, and compares smartwatch-class with smartphone-class platforms to delimit feasible on-device model sizes.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>LLM applications such as ChatGPT traditionally treated mobile devices as dummy terminals with inference in the cloud [1], [2]. Recent mobile GPU/NPU advances [3], [4] — Apple A17 Pro [5], Snapdragon 8 Gen 3 [6], Samsung Exynos [7] — plus on-device deployments such as CoreML-based Llama 3/3.1 on iOS [8] and ExecuTorch demos on Android [9], make partial or full on-device inference feasible, an appeal heightened by privacy and personalization demands [10]. Yet mobile and wearable devices face tight memory, storage-bandwidth, and energy budgets [11], [12], and repeated reads of massive weight files create I/O bottlenecks that throughput alone cannot hide; systematic access analysis is the remedy [13], [14].</p>
+    <p>KV caching is sensitive to token order and cannot reduce accesses to large weight files, and semantic caching pays embedding-matching costs without guaranteeing exact I/O reuse. The paper therefore targets system-level file-block caching, where the OS buffer cache manages weight files as regular I/O blocks with exact-match reuse and no token-order dependence — a layer little studied for mobile on-device inference.</p>
+  </section>
+
+  <section>
+    <h2>2. Related Work</h2>
+    <p>Inference-internal KV caching eliminates redundant attention computation during decoding; PagedAttention in vLLM cuts GPU-memory fragmentation and enables block sharing [17], while EPIC removes position dependence to improve time-to-first-token [18]. Extensions include modular Prompt Cache [19], chunk-fused CacheBlend for RAG [20], hierarchical RAGCache [21], workload-aware and provider-trace eviction [16], [22], [23], disaggregated MemServe [24], and memory reduction via SentenceKV [25], 2-bit KIVI quantization [15], ShadowKV offloading [26], KVzip reconstruction [27], KeepKV merging [28], sensitivity analysis [29], and joint cache-scheduling optimization [30].</p>
+    <p>External semantic caching reuses inputs/outputs by meaning: GPTCache stores query–response pairs in an embedding index [31], MeanCache personalizes client-side caching [32], SCALM clusters chat logs [33], ContextCache handles multi-turn dialogue [34], with domain-tuned embeddings [35], learning-based eviction [36], hybrid MinCache [37], and generative caching [38]. Distinct from both lines, this work studies file-block caching at the OS buffer-cache layer — exact-match reuse outside the model runtime — and notes standard LRU fails on loop references [46], motivating scan-resistant policies such as LeCaR [47].</p>
+  </section>
+
+  <section>
+    <h2>3. File-Access Characteristics of LLM Workloads</h2>
+    <p>Traces were captured with Linux strace plus a custom parser at 4 KB block granularity on a Samsung Galaxy S22 (octa-core CPU, Adreno 730 GPU, 8 GB RAM, 256 GB UFS) [39], with similar patterns confirmed on other configurations. On-device workloads used Samsung AI Notes and AI Translate [40] and Google MediaPipe Text Embedder and Text Classification [41] on Android 14; remote-inference traces covered Copilot, Perplexity, Claude, and Gemini as thin clients.</p>
+    <p>On-device inference consistently shows three features: initialization sequential scans, persistent small hot sets, and looped accesses to large weight files. Remote inference is instead dominated by sequential accesses with bursts of write–read–write around prompt upload and result storage, plus persistent small hot blocks (metadata/indices) — but no structured weight loops.</p>
+  </section>
+
+  <section>
+    <h2>3.1–3.2. On-Device vs Remote Detail</h2>
+    <p>In AI Notes, startup reads blocks 0–7500 sequentially (one-shot configuration files that should be evicted quickly to avoid pollution); near block 7500 a persistently referenced region holds tokenizer tables, LLM metadata, and index files (must-retain hot set); blocks 10,000–15,000 show a periodic write loop from the handwriting engine; and 15,000–25,000 show a periodic read loop over neural-machine-translation weight files. AI Translate shows the same structure at smaller scale. Copilot and Perplexity traces are sequential-dominated with probabilistic re-references rather than structured loops.</p>
+  </section>
+
+  <section>
+    <h2>4. Buffer Cache Model and Implications</h2>
+    <p>Unlike the GPU-resident KV cache, which varies with prompt length and session, the host buffer cache is set by the model and stable across inputs. File accesses decompose into the three observed components: one-time scans (evict fast), hot sets such as tokenizers/metadata/indices (pin fully — under 4 MB in the traces), and weight-file loops (sustain to avoid I/O stalls). Standard LRU evicts loop blocks before reuse and causes repeated I/O [46], so scan-resistant management is required; with hot-set size S, bandwidth BW, and tolerable fetch delay T, the sustainable loop size is N = S + BW × T (Equation 1).</p>
+    <p>Smartwatch-class devices (1–2 GB RAM, about 64 MB realistically for LLM, eMMC effective about 100 MB/s) sustain about N ≈ 70 MB loops — fitting AI Notes (about 60 MB) and AI Translate (about 2 MB) but not state-of-the-art LLMs over 500 MB [42]–[45] — hence quantized micro-LLMs plus hierarchical offload to a paired phone. Smartphone-class devices (256–512 MB cache) sustain about 356–612 MB loops, and larger gains flatten beyond about 500 MB/s of storage bandwidth.</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>The paper distinguishes on-device from cloud-backed LLM workloads through file-level I/O analysis, establishes the scan / hot-set / loop pattern, and derives an LLM-aware buffer-cache model: pin hot sets, protect loop segments, and evict one-time scans. Hardware analysis shows smartwatches fit only micro-models or hierarchical offload while smartphones sustain broader on-device inference. The recurring loop pattern is attributed to Transformer weight reuse; other architectures are left to future work.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+<li>[5] Apple A17 Pro 3 nm iPhone 15 Pro. Available online (accessed 12 Oct 2025).</li>
+      <li>[8] Apple Machine Learning Research. Core ML On-Device Llama. Available online (accessed 12 Oct 2025).</li>
+      <li>[11] Wang, Z.; et al. MNN-LLM: A generic framework for fast LLM deployment on mobile devices. In Proc. ACM MM Asia Workshops, 2024.</li>
+      <li>[15] Liu, Z.; et al. KIVI: Asymmetric 2-bit quantization for KV cache. arXiv 2024, arXiv:2402.02750.</li>
+      <li>[16] Wang, J.; et al. Characterizing and optimizing KV-cache at a large cloud provider. arXiv 2025.</li>
+      <li>[17] Kwon, W.; et al. Efficient memory management for LLM serving with PagedAttention. In Proc. SOSP, 2023.</li>
+      <li>[19] Gim, I.; et al. Prompt Cache: Modular reuse for low-latency inference. In Proc. MLSys, 2024.</li>
+      <li>[20] Yao, J.; et al. CacheBlend: LLM serving for RAG with cached knowledge fusion. In Proc. EuroSys, 2025.</li>
+      <li>[21] Jin, C.; et al. RAGCache: Efficient caching for retrieval-augmented generation. ACM Trans. Comput. Syst. 2025.</li>
+      <li>[31] Bang, F. GPTCache: An open-source semantic cache for LLM applications. In Proc. NLP-OSS, 2023.</li>
+      <li>[32] Gill, W.; et al. MeanCache: Semantic caching for LLM web services. In Proc. IPDPS, 2025.</li>
+      <li>[39] Samsung Mobile Press. Galaxy S22. Available online (accessed 12 Oct 2025).</li>
+      <li>[46] Kim, J.; et al. A low-overhead high-performance unified buffer management scheme exploiting sequential and looping references. In Proc. OSDI, 2000.</li>
+      <li>[47] Vietri, G.; et al. Driving cache replacement with ML-based LeCaR. In Proc. HotStorage, 2018.</li>
+      <li>[full reference list available in the original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/math13223689">10.3390/math13223689</a> · License: CC BY 4.0 · <a href="./paper.pdf">PDF</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

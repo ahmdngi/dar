@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>من الوهم إلى البصيرة: مسح تصنيفي لتقنيات التخفيف من هلوسات النماذج اللغوية الكبيرة — DAR</title>
+<meta name="description" content="From Illusion to Insight: A Taxonomic Survey of Hallucination Mitigation Techniques in LLMs — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/hallucination-taxonomy-ai/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">From Illusion to Insight: A Taxonomic Survey of Hallucination Mitigation Techniques in LLMs</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">من الوهم إلى البصيرة: مسح تصنيفي لتقنيات التخفيف من هلوسات النماذج اللغوية الكبيرة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ioannis Kazlaris, Efstathios Antoniou, Konstantinos Diamantaras, Charalampos Bratsas</span>
+    <span>📄 AI, 2025 · Vol. 6, 260</span>
+    <span>🔗 <a href="https://doi.org/10.3390/ai6100260">10.3390/ai6100260</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تُظهر النماذج اللغوية الكبيرة قدرات توليدية مذهلة لكنها تبقى عرضة للهلوسات — مخرجات طليقة لكنها غير دقيقة أو غير مؤسسة أو متعارضة مع المادة المصدر. ولمعالجة غياب المسوحات المؤسسة منهجيًا، تقدم هذه الورقة تصنيفية جديدة موجهة بالمنهج لاستراتيجيات التخفيف في النماذج النصية، تنظم أكثر من 300 دراسة في ست فئات مبدئية: مناهج التدريب والتعلم، والتعديلات المعمارية، وتحسين المدخلات والموجهات، وضبط الجودة بعد التوليد، ومناهج التفسير والتشخيص، والتنسيق القائم على الوكلاء [1]، [3]، [31].</p>
+    <p>وتتجاوز رسم المجال، تحدد المراجعة تحديات مستمرة مثل غياب معايير تقييم موحدة وصعوبات النسب في الأنظمة متعددة المناهج وهشاشة مناهج الاسترجاع عندما تكون المصادر مشوشة أو قديمة. وتبرز اتجاهات ناشئة تشمل الضبط الدقيق المؤسس على المعرفة وخطوط الاسترجاع-التوليد الهجينة المدمجة مع وكلاء استدلال ذاتي التأمل، مقدمة إطارًا منهجيًا لنشر موثوق وحساس للسياق في مجالات عالية المخاطر مثل الرعاية الصحية والقانون والدفاع.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تقوض الهلوسات الثقة في النماذج اللغوية حيث تكون الموثوقية أهم: فأخطاء الاستخراج الطبي تتسرب إلى سجلات المرضى [6]، وتُظهر النماذج السريرية أنماط فشل مؤثرة [7]، وتلفق أدوات البحث القانوني المراجع [8]، [9]، وتظهر تناقضات دعم القرار حتى في محاكاة الأزمات العسكرية [11]. وتجادل أعمال نظرية بأن الهلوسة ملازمة جزئيًا للنماذج المعايرة [12]، [13]، ويحث بعض المؤلفين المجال على قبولها وإدارتها بدل توقع إزالتها [14].</p>
+    <p>ترسم المسوحات القائمة المجال من زوايا متكاملة [1]، [2]، [3]، [31]، لكن القليل منها ينظم التخفيفات حسب المرحلة المنهجية التي تتدخل فيها. وتتمثل مساهمة هذا المسح في تصنيفية موجهة بالمنهج تغطي كامل الخط: من بيانات التدريب والأهداف، عبر المعمارية والموجهات، إلى التحقق بعد التوليد والتشخيص الداخلي وتنسيق الوكلاء — مع المعايير والآثار العملية والتحديات المفتوحة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. فهم الهلوسات</h2>
+    <p>الهلوسة مخرج طليق غير دقيق أو غير مؤسس أو متعارض مع المصدر. وتميز الأطر المستنيرة نفسيًا أخطاء شبيهة بالتلفيق عن مخاطر التضليل لمعايرة التخفيفات [32]، بينما تحذر نقدات مفاهيمية من أن التعريفات الفضفاضة تعيق القياس [33]. ويفصل المسح الهلوسات الجوهرية (أخطاء واقعية تناقض المصدر) عن الخارجية (إضافات غير قابلة للتحقق)، مع أنماط فشل الإخلاص مقابل الواقعية.</p>
+    <p>وتمتد الأسباب الكامنة عبر البيانات والنموذج وعملية فك التشفير: فالمقاطع المكررة أو المحفوظة تثير الاسترجاع الحرفي [34]، [35]؛ وتحيزات الاستدلال الاستقرائية وقت الاستدلال تحدث أخطاء في مهام التفكير [36]؛ وتفهرس مراجعات إزالة التحيز مصادر الخطأ المتفاعلة [37]؛ وتُظهر دراسات النسب بين البيانات والنموذج إسهام كليهما كما في المحادثات [39]؛ وتربط تحليلات التوسع السعة والتعميم بميل الهلوسة [38]، [40]، مع أطر عدائية تعامل بعض الهلوسات كسمات لا عيوب [41].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. الأعمال ذات الصلة</h2>
+    <p>تتقارب المسوحات السابقة على خطورة المشكلة وتتباعد في التنظيم: فهارس تخفيف شاملة [1] ونظرات عامة للنماذج الأساسية [2] ومعالجات المبادئ والتصنيف مع أسئلة مفتوحة [3] ومراجعات واسعة للتوليد الطبيعي [31]. وتؤسس جهود موجهة بالمعايير مثل LegalBench التقييم في مهام التفكير المهنية [10]. ويتميز هذا المسح بربط كل عائلة تقنية بمرحلة الخط التي تعدلها، مما يمكّن مقارنة عادلة للتدخلات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. منهجية المراجعة والتصنيفية والمساهمات</h2>
+    <p>يفرز بروتوكول المراجعة مدونة كبيرة متعددة السنوات بمعايير إدراج صريحة وينظمها في ست فئات: (1) مناهج التدريب والتعلم؛ (2) التعديلات المعمارية؛ (3) تحسين المدخلات والموجهات؛ (4) ضبط الجودة بعد التوليد؛ (5) التفسير والتشخيص؛ (6) التنسيق القائم على الوكلاء. والنتائج الرئيسية: لا تكفي مرحلة واحدة — تتركز المكاسب حيث يجتمع التأسيس التدريبي وجودة الاسترجاع والتحقق والضبط التأملي؛ ويبقى النسب في الحزم متعددة المناهج مشكلة قياس مفتوحة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5.1 مناهج التدريب والتعلم</h2>
+    <p>تبقى المواءمة بالتغذية البشرية أساس نماذج اتباع التعليمات [15]، بينما تقلل الأهداف التباينية هلوسة المحادثات [16] وتنعم متغيرات التقطير المعرفي مخرجات الطالب [78]، [79]. ويدفع التقطير التعاوني العصبي-الرمزي استدلال النماذج الصغيرة [83]، وتحول التسميعات المعززة بالهلوسة الأخطاء إلى إشارة تدريب [42]، وتعيد تحليلات الطبقات الإبداعية تأطير بعض الهلوسات كاستكشاف توليدي [43]. ويبرز الضبط الدقيق المؤسس على المعرفة كاتجاه موحد يربط التدريب بمصادر قابلة للتحقق.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5.2 التعديلات المعمارية</h2>
+    <p>استراتيجية فك التشفير رافعة من الدرجة الأولى: يؤطر فك التشفير التبايني التوليد كأمثلة ضد نماذج أضعف [17]، ويفك التشفير الواعي بالسياق يكبح الهلوسات في التلخيص الموجه بالاستعلام [29]. ويؤسس تعزيز الاسترجاع المخرجات على مدونات خارجية، بدءًا من RAG للمهام كثيفة المعرفة [18] وأنظمة الحوار مثل LaMDA [19]. وتقيد التنقيحات المتمحورة على الانتباه والتمثيلات المعرفية والآليات المتخصصة (بما فيها تقليم المرشحين المرجح بالإخلاص) التوليد نحو المحتوى المدعوم.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5.3 تحسين المدخلات والموجهات</h2>
+    <p>تشكل الموجهات الاستدلال قبل توليد أي رمز: يستخرج التسلسل الاستدلالي (CoT) الاستنتاج التدريجي [20]، ويجمع الاتساق الذاتي عبر مسارات استدلال معاينة [21]، وتضبط الموجهات المنظمة أو التكرارية المهام متعددة الخطوات. ويوجه التكييف السياقي وتحسين السياق (اختيار الأدلة وترتيبها) وتصميم موجه النظام المتعمد النماذج نحو سلوك مؤسس ومخلص للتعليمات دون مساس بالأوزان.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5.4 ضبط الجودة بعد التوليد</h2>
+    <p>يلتقط التحقق بعد التوليد ما يفوّت التأسيس: مدققات ذاتية جاهزة تتحقق من المخرجات [22] وحلقات تصحيح ذاتي تصلح المسودات تكراريًا [23] ودراسات تصميم تشاركي تترجم هذه الفحوص إلى سير عمل للمستخدمين [24]. ويؤسس التحقق الخارجي الادعاءات على المصادر، بينما تسجل تقديرات عدم اليقين — وأبرزها الإنتروبيا الدلالية فوق عناقيد المعنى [25] — وكاشفات الحالة الداخلية مثل INSIDE [26]، مع تحليلات قابلية الإجابة للحالات المفرطة الثقة [30]، المخرجات للامتناع الانتقائي والتنقيح.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5.5 مناهج التفسير والتشخيص</h2>
+    <p>تفتح التشخيصات الصندوق الأسود: يكشف سبر الحالة الداخلية الهلوسات من التنشيطات [26]، [30]؛ وتحدد تحليلات الخلايا والطبقات مواضع انحراف الواقعية؛ وتعيد مناهج النسب الادعاءات إلى مصادر التدريب أو السياق. وتعمل هذه الأدوات كأدوات تقييم وإشارات للامتناع أو إعادة فك التشفير أو إعادة الاسترجاع المستهدف.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5.6 التنسيق القائم على الوكلاء</h2>
+    <p>تلفظ الوكلاء التأمليون المنفردون استدلالهم ويراجعونه، كما في التعزيز اللفظي بأسلوب Reflexion [28]، بينما ترسم مسوحات التفكير الفوقي التعزيز متعدد الوكلاء للتداول [27]. وتفكك المعماريات النمطية متعددة الوكلاء التوليد والاسترجاع والتحقق والنقد إلى أدوار متعاونة؛ وتمثل خطوط الاسترجاع-التوليد الهجينة المدمجة مع وكلاء الاستدلال الذاتي التأمل الطليعة، جامعة بين الأدلة المؤسسة والتدقيق الذاتي التكراري.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. معايير تقييم الهلوسات</h2>
+    <p>تحول المعايير الحكايات إلى قياسات: تختبر الأجنحة المؤسسة مهنيًا مثل LegalBench التفكير القانوني تحت توزيعات واقعية [10]، بينما تسبر مسابر المعرفة المرجعية هل تعرف النماذج متى تهلوس المراجع [4]. وترسم دراسات الواقعية التجريبية معدلات الخطأ عبر النماذج والمجالات [5]. ويبقى نقد المسح المركزي — ما تزال معايير التقييم الموحدة عبر المجالات غائبة، ويعقد النسب متعدد المناهج ادعاءات الترتيب.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. الآثار العملية</h2>
+    <p>يتطلب التشغيل في المجالات عالية المخاطر دفاعات متعددة الطبقات: يجب أن تجمع نشرات الرعاية الصحية ضمانات الاستخراج الطبي [6] مع الوعي بأنماط فشل النماذج الأساسية [7]؛ وتتطلب النشرات القانونية التحقق من الاستشهادات ضد أنماط المراجع الملفقة الموثقة عمليًا [8]، [9]؛ والاستخدامات الدفاعية يجب أن تحسب التناقض تحت الضغط [11]. وفي الاسترجاع يسأل المسح هل يساعد RAG أم يضر: يحسن التأسيس الواقعية فقط عندما تكون المصادر حديثة وموثوقة ومنسوبة صحيحًا — فالمدونات المشوشة أو القديمة تنشر الخطأ. وتكمل المفاضلات الحاسوبية الصورة: يشتري التحقق والاتساق متعدد العينات وحلقات الوكلاء الموثوقية بزمن وتكلفة يجب تقديرهما لكل نشر.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">8.–9. النقاش والتحديات</h2>
+    <p>يوازن النقاش الموسع إجماعًا ناضجًا: لا يمكن إزالة الهلوسة كليًا [12]، [13]، [14]، لذا يجب أن توجه المسوحات النشر المعاير بالمخاطر. وتشمل التحديات المستمرة غياب المعايير الموحدة وصعوبات النسب عندما يتفاعل التدريب والاسترجاع والموجهات والتحقق وهشاشة الاسترجاع تحت المصادر المشوشة أو القديمة — مع ديناميات الحفظ والتكرار في بيانات التدريب [34]، [35]، [36].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">10. الاستنتاجات</h2>
+    <p>ينظم هذا المسح التصنيفي أكثر من 300 دراسة لتخفيف الهلوسات في ست فئات موجهة بالمنهج عبر التدريب والمعمارية والموجهات وضبط ما بعد التوليد والتشخيص والوكلاء [1]، [3]، [31]. ورسالته الدائمة: يتطلب النشر الموثوق في الصحة والقانون والدفاع تأسيسًا وتحققًا وضبطًا تأمليًا مجتمعًا — مع المعايير الموحدة ومناهج النسب والمتانة للمصادر المشوشة كمعالم تالية للمجال، متجهًا نحو الضبط المؤسس على المعرفة وخطوط الاسترجاع-التوليد الهجينة مع وكلاء الاستدلال الذاتي التأمل.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Large Language Models (LLMs) exhibit remarkable generative capabilities but remain vulnerable to hallucinations — outputs that are fluent yet inaccurate, ungrounded, or inconsistent with source material. To address the lack of methodologically grounded surveys, this paper introduces a novel method-oriented taxonomy of hallucination mitigation strategies in text-based LLMs, organizing over 300 studies into six principled categories: Training and Learning Approaches, Architectural Modifications, Input/Prompt Optimization, Post-Generation Quality Control, Interpretability and Diagnostic Methods, and Agent-Based Orchestration [1], [3], [31].</p>
+    <p>Beyond mapping the field, the review identifies persistent challenges such as the absence of standardized evaluation benchmarks, attribution difficulties in multi-method systems, and the fragility of retrieval-based methods when sources are noisy or outdated. It highlights emerging directions including knowledge-grounded fine-tuning and hybrid retrieval–generation pipelines integrated with self-reflective reasoning agents, providing a methodological framework for reliable, context-sensitive LLM deployment in high-stakes domains such as healthcare, law, and defense.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Hallucinations undermine trust in LLMs precisely where reliability matters most: medical extraction errors propagate into patient records [6], clinical foundation models exhibit consequential failure modes in healthcare [7], legal research tools fabricate authorities [8], [9], and decision-support inconsistencies appear even in military crisis simulations [11]. Theoretical work argues hallucination is partly innate to calibrated language models [12], [13], with some authors urging the field to accept and manage it rather than expect elimination [14].</p>
+    <p>Existing surveys map the terrain from complementary angles [1], [2], [3], [31], but few organize mitigations by the methodological stage at which they intervene. This survey's contribution is a method-oriented taxonomy spanning the full pipeline — from training data and objectives, through architecture and prompting, to post-generation verification, internal diagnostics, and agent orchestration — together with benchmarks, practical implications, and open challenges.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Understanding Hallucinations</h2>
+    <p>A hallucination is a fluent model output that is inaccurate, ungrounded, or inconsistent with the source. Psychology-informed framings distinguish confabulation-like errors from misinformation risks to calibrate mitigations [32], while conceptual critiques warn that loose definitions hinder measurement [33]. The survey separates intrinsic hallucinations (factuality errors contradicting the source) from extrinsic ones (unverifiable additions), alongside faithfulness versus factuality failure modes.</p>
+    <p>Underlying causes span the data, the model, and the decoding process: duplicated or memorized training passages trigger regurgitation [34], [35]; inference-time inductive biases induce errors on reasoning tasks [36]; debiasing reviews catalog interacting sources of error [37]; dataset-versus-model attribution studies show both contribute, as in conversational settings [39]; and scaling analyses connect capacity, generalization, and hallucination propensity [38], [40], with adversarial framings treating some hallucinations as features rather than bugs [41].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Related Works</h2>
+    <p>Prior surveys converge on the severity of the problem while diverging in organization: comprehensive mitigation catalogs [1], foundation-model overviews [2], principles-and-taxonomy treatments with open questions [3], and broad natural-generation reviews [31]. Benchmark-oriented efforts such as LegalBench ground evaluation in professional reasoning tasks [10]. This survey differentiates itself by anchoring every family of techniques to the pipeline stage it modifies, enabling apples-to-apples comparison of interventions.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Review Methodology, Taxonomy, and Contributions</h2>
+    <p>The review protocol screens a large multi-year corpus of hallucination studies with explicit inclusion criteria and organizes them into six categories: (1) training and learning approaches; (2) architectural modifications; (3) input/prompt optimization; (4) post-generation quality control; (5) interpretability and diagnostics; and (6) agent-based orchestration. Key findings: no single stage suffices — gains concentrate where training grounding, retrieval quality, verification, and reflective control combine; and attribution in multi-method stacks remains an open measurement problem.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5.1 Training and Learning Approaches</h2>
+    <p>Alignment via human feedback remains the foundation of instruction-following models [15], while contrastive objectives reduce conversational hallucination [16] and knowledge-distillation variants smooth student outputs [78], [79]. Neural-symbolic collaborative distillation advances small-model reasoning [83], hallucination-augmented recitations turn errors into training signal [42], and creativity-oriented analyses of decoding layers reframe some hallucinations as generative exploration [43]. Knowledge-grounded fine-tuning emerges as a unifying direction that binds training to verifiable sources.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5.2 Architectural Modifications</h2>
+    <p>Decoding strategy is a first-order lever: contrastive decoding frames generation as optimization against weaker models [17], and context-aware decoding suppresses hallucinations in query-focused summarization [29]. Retrieval augmentation grounds outputs in external corpora, originating with RAG for knowledge-intensive tasks [18] and dialogue systems such as LaMDA [19]. Attention-centric refinements, knowledge representations, and specialized mechanisms (including faithfulness-weighted pruning of candidates) further constrain generation toward supported content.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5.3 Input and Prompt Optimization</h2>
+    <p>Prompting shapes reasoning before a token is generated: chain-of-thought elicits stepwise inference [20], self-consistency aggregates over sampled reasoning paths [21], and structured or iterative prompting disciplines multi-step tasks. In-context conditioning, context optimization (selecting and ordering evidence), and deliberate system-prompt design steer models toward grounded, instruction-faithful behavior without touching weights.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5.4 Post-Generation Quality Control</h2>
+    <p>Verification after generation catches what grounding misses: plug-and-play self-checkers fact-check outputs [22], self-correction loops iteratively repair drafts [23], and participatory-design studies translate these checks into user-facing workflows [24]. External fact-checking grounds claims against sources, while uncertainty estimation — notably semantic entropy over meaning clusters [25] — and internal-state detectors such as INSIDE [26], complemented by answerability analyses of over-confident states [30], score outputs for selective abstention and refinement.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5.5 Interpretability and Diagnostic Approaches</h2>
+    <p>Diagnostics open the black box: internal-state probing detects hallucinations from activations [26], [30]; neuron- and layer-level analyses localize where factuality diverges; and attribution-based methods trace claims back to training or context sources. These tools double as evaluation instruments and as signals for abstention, re-decoding, or targeted re-retrieval.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5.6 Agent-Based Orchestration</h2>
+    <p>Single reflective agents verbalize and revise their reasoning, as in Reflexion-style verbal reinforcement [28], while meta-thinking surveys chart multi-agent reinforcement for deliberation [27]. Modular multi-agent architectures decompose generation, retrieval, verification, and criticism into cooperating roles; hybrid retrieval–generation pipelines integrated with self-reflective reasoning agents represent the frontier, pairing grounded evidence with iterative self-audit.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Benchmarks for Evaluating Hallucinations</h2>
+    <p>Benchmarks convert anecdotes into measurements: professional-grounded suites such as LegalBench test legal reasoning under realistic task distributions [10], while reference-knowledge probes ask whether models know when they hallucinate citations [4]. Empirical factuality studies map error rates across models and domains [5]. The survey's central critique stands — standardized, cross-domain evaluation benchmarks are still missing, and multi-method attribution complicates leaderboard claims.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Practical Implications</h2>
+    <p>Operationalization in high-stakes domains demands layered defenses: healthcare deployments must pair medical extraction safeguards [6] with awareness of foundation-model failure modes [7]; legal deployments require citation verification against the fabricated-authority patterns documented in practice [8], [9]; and defense-adjacent uses must account for inconsistency under pressure [11]. On retrieval, the survey asks whether RAG helps or harms: grounding improves factuality only when sources are fresh, trustworthy, and correctly attributed — noisy or outdated corpora propagate error. Computational trade-offs complete the picture: verification, multi-sample consistency, and agent loops buy reliability at latency and cost that must be budgeted per deployment.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">8.–9. Discussion and Challenges</h2>
+    <p>The extended discussion weighs a maturing consensus: hallucination cannot be eliminated wholesale [12], [13], [14], so surveys should guide risk-calibrated deployment. Persistent challenges include the absence of standardized benchmarks, attribution difficulties when training, retrieval, prompting, and verification interact, and retrieval fragility under noisy or outdated sources — compounded by memorization and duplication dynamics in training data [34], [35], [36].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">10. Conclusions</h2>
+    <p>This taxonomic survey organizes over 300 hallucination-mitigation studies into six method-oriented categories spanning training, architecture, prompting, post-generation control, diagnostics, and agents [1], [3], [31]. Its enduring message: reliable LLM deployment in healthcare, law, and defense requires combined grounding, verification, and reflective control — with standardized benchmarks, attribution methods, and robustness to noisy sources as the field's next milestones, pointing toward knowledge-grounded fine-tuning and hybrid retrieval–generation pipelines with self-reflective reasoning agents.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed reference list preserving original numbering (36 of 346 entries); see the original paper for the full bibliography.</p>
+    <ol dir="ltr">
+      <li>Tonmoy, S.M.T.I.; et al. A comprehensive survey of hallucination mitigation techniques in large language models. <em>arXiv</em> 2024, arXiv:2401.01313.</li>
+      <li>Rawte, V.; Sheth, A.; Das, A. A survey of hallucination in large foundation models. <em>arXiv</em> 2023, arXiv:2309.05922.</li>
+      <li>Huang, L.; et al. A survey on hallucination in large language models: Principles, taxonomy, challenges, and open questions. <em>ACM Trans. Inf. Syst.</em> 2024, 43, 1–55.</li>
+      <li>Agrawal, A.; et al. Do language models know when they're hallucinating references? <em>arXiv</em> 2023, arXiv:2305.18248.</li>
+      <li>Li, J.; et al. The dawn after the dark: An empirical study on factuality hallucination in large language models. <em>arXiv</em> 2024, arXiv:2401.03205.</li>
+      <li>Garcia-Carmona, A.M.; et al. Enhanced medical data extraction: Leveraging LLMs for accurate retrieval of patient information. <em>JMIR AI</em> 2024.</li>
+      <li>Kim, Y.; et al. Medical hallucinations in foundation models and their impact on healthcare. <em>arXiv</em> 2025, arXiv:2502.13859.</li>
+      <li>Magesh, V.; et al. Hallucination-free? Assessing the reliability of leading AI legal research tools. <em>arXiv</em> 2024, arXiv:2405.20362.</li>
+      <li>Dahl, M.; et al. Large legal fictions: Profiling legal hallucinations in large language models. <em>J. Leg. Anal.</em> 2024, 16, 64–93.</li>
+      <li>Guha, N.; et al. LegalBench: A collaboratively built benchmark for measuring legal reasoning in large language models. <em>Proc. NeurIPS D&B</em> 2023.</li>
+      <li>Shrivastava, A.; et al. Measuring free-form decision-making inconsistency of language models in military crisis simulations. <em>arXiv</em> 2024, arXiv:2410.13204.</li>
+      <li>Kalai, A.T.; Vempala, S.S. Calibrated language models must hallucinate. <em>arXiv</em> 2023, arXiv:2311.14648.</li>
+      <li>Xu, Z.; Jain, S.; Kankanhalli, M. Hallucination is inevitable: An innate limitation of large language models. <em>arXiv</em> 2024, arXiv:2401.11817.</li>
+      <li>Banerjee, S.; et al. LLMs will always hallucinate, and we need to live with this. <em>arXiv</em> 2024, arXiv:2409.05746.</li>
+      <li>Ouyang, L.; et al. Training language models to follow instructions with human feedback. <em>arXiv</em> 2022, arXiv:2203.02155.</li>
+      <li>Sun, W.; et al. Contrastive learning reduces hallucination in conversations. <em>arXiv</em> 2022, arXiv:2212.10400.</li>
+      <li>Li, X.L.; et al. Contrastive decoding: Open-ended text generation as optimization. <em>arXiv</em> 2022, arXiv:2212.09146.</li>
+      <li>Lewis, P.; et al. Retrieval-augmented generation for knowledge-intensive NLP tasks. <em>arXiv</em> 2020, arXiv:2005.11401.</li>
+      <li>Thoppilan, R.; et al. LaMDA: Language models for dialog applications. <em>arXiv</em> 2022, arXiv:2201.08239.</li>
+      <li>Wei, J.; et al. Chain-of-thought prompting elicits reasoning in large language models. <em>arXiv</em> 2022, arXiv:2201.11903.</li>
+      <li>Wang, X.; et al. Self-consistency improves chain of thought reasoning in language models. <em>arXiv</em> 2023, arXiv:2203.11171.</li>
+      <li>Li, M.; et al. Self-checker: Plug-and-play modules for fact-checking with large language models. <em>arXiv</em> 2023, arXiv:2305.14623.</li>
+      <li>Welleck, S.; et al. Generating sequences by learning to self-correct. <em>arXiv</em> 2022, arXiv:2211.00053.</li>
+      <li>Farquhar, S.; et al. Detecting hallucinations in large language models using semantic entropy. <em>Nature</em> 2024, 630, 625–630.</li>
+      <li>Chen, C.; et al. INSIDE: LLMs' internal states retain the power of hallucination detection. <em>arXiv</em> 2024, arXiv:2402.03744.</li>
+      <li>Bilal, A.; et al. Meta-thinking in LLMs via multi-agent reinforcement learning: A survey. <em>arXiv</em> 2025, arXiv:2504.14520.</li>
+      <li>Shinn, N.; et al. Reflexion: Language agents with verbal reinforcement learning. <em>arXiv</em> 2023, arXiv:2303.11366.</li>
+      <li>Xu, Z. Context-aware decoding reduces hallucination in query-focused summarization. <em>arXiv</em> 2023, arXiv:2312.14335.</li>
+      <li>Slobodkin, A.; et al. The curious case of hallucinatory (un)answerability. <em>arXiv</em> 2023, arXiv:2310.01676.</li>
+      <li>Ji, Z.; et al. Survey of hallucination in natural language generation. <em>ACM Comput. Surv.</em> 2023, 55, 1–38.</li>
+      <li>Berberette, E.; et al. Redefining 'hallucination' in LLMs: Towards a psychology-informed framework. <em>arXiv</em> 2024, arXiv:2402.01769.</li>
+      <li>Lee, K.; et al. Deduplicating training data makes language models better. <em>arXiv</em> 2021, arXiv:2107.06499.</li>
+      <li>Carlini, N.; et al. Quantifying memorization across neural language models. <em>arXiv</em> 2022, arXiv:2202.07646.</li>
+      <li>McKenna, N.; et al. Sources of hallucination by large language models on inference tasks. <em>arXiv</em> 2023, arXiv:2305.14552.</li>
+      <li>Li, J.; et al. Banishing LLM hallucinations requires rethinking generalization. <em>arXiv</em> 2024, arXiv:2406.03950.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/ai6100260">10.3390/ai6100260</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

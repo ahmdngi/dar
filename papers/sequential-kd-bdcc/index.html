@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ضغط نماذج كفء وقابل للضبط عبر التقطير المعرفي المتسلسل والتقليم — DAR</title>
+<meta name="description" content="Efficient and Controllable Model Compression through Sequential Knowledge Distillation and Pruning — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/sequential-kd-bdcc/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Efficient and Controllable Model Compression through Sequential Knowledge Distillation and Pruning</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">ضغط نماذج كفء وقابل للضبط عبر التقطير المعرفي المتسلسل والتقليم</h2>
+
+  <div class="paper-meta">
+    <span>👤 Leila Malihi, Gunther Heidemann</span>
+    <span>📄 Big Data Cogn. Comput., 2023 · Vol. 7, 154</span>
+    <span>🔗 <a href="https://doi.org/10.3390/bdcc7030154">10.3390/bdcc7030154</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يُعد النشر الكفء للنماذج محورًا رئيسيًا في التعلم العميق. تدرس هذه الدراسة التآزر بين التقطير المعرفي وتقليم الشبكات لتحقيق أمثل كفاءة وتحسين التعميم [1]، [4]، [10]. يجمع إطار مبتكر بين التقطير والتقليم والضبط الدقيق لتحقيق ضغط معزز مع ضبط درجة الاكتناز، مقيَّمًا على CIFAR-10 وCIFAR-100 [21] بمعماريات ResNet وDenseNet وEfficientNet.</p>
+    <p>يُعاير الضغط عبر إجراء قابل للضبط، منتجًا نماذج بدرجات ضغط مختلفة مع بقائها مساوية الدقة أو أفضل — كما يوضح متغيران مضغوطان من ResNet-101 ببصمتي ResNet-50 وResNet-18. وفي معظم الحالات تُظهر نماذج الطالب المقطرة والمقلّمة دقة مماثلة أو متفوقة على المقطرة فقط مع معاملات أقل بكثير.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يُعد تصغير النماذج وزيادة كفاءتها تحديًا رئيسيًا في التعلم العميق، خاصة عند النشر في بيئات محدودة الموارد [1]، [10]. ينقل التقطير المعرفي المعرفة من معلم كبير إلى طالب مدمج [1]، بينما يزيل التقليم الأوزان الزائدة [4]، [10]، [11]. وبدل معاملتهما كبديلين، تسلسل هذا العمل بينهما — تقطير ثم تقليم ثم ضبط دقيق — فيصبح الضغط أقوى وقابلًا للضبط معًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة</h2>
+    <p>ينشأ التقطير المعرفي من النقل معلم-طالب [1]، موسعًا بالتقطير التمثيلي التبايني [2] والحفاظ على التشابه [3] ونقل الانتباه [5] والزخم المتبقي ذاتي الإشراف [6] والمعايرة الدلالية عبر الطبقات [7] والتقطير المعلوماتي التغايري [8] ومخططات إعادة استخدام مصنف المعلم [9]. وتشمل أسس التقليم الضرر الدماغي الأمثل [4] والضغط العميق بالتقليم والتكميم وترميز هوفمان [10] وتقدير الأهمية [11] وتقليم المرشحات التقريبي [13] وفرضية تذكرة اليانصيب [14] وتحليل المعيار-الأصغر-أقل-إفادة [22] وتقليم المرشحات للشبكات الالتفافية [23].</p>
+    <p>وتجمع المناهج المدمجة التقطير في شبكات مقلمة [15] وتقرن تقليم الأوزان بالتقطير [16] وتضغط نماذج إعادة التعرف [17] وتجمع التقليم والتقطير للمحولات [18] وتوحد الثلاثة في PQK [19] وتقطر تدريجيًا عبر جداول تقليم [20] — مع أطر الإطلاق لتدريب الشبكات المدمجة [12] كخط مكمل.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. المواد والمناهج</h2>
+    <p>يعيد التقطير المعرفي البسيط (SimKD) استخدام مصنف المعلم التمييزي أثناء استدلال الطالب ويدرب مرمّز الطالب بمحاذاة سماته مع المعلم، محافظًا على جودة القرار تحت الضغط [9]. ثم يُخلخل التقليم غير المنظم L1 الشبكة في ثلاث خطوات: فرز الأوزان بمعيار L1، واختيار العتبة الموافقة لنسبة التقليم المستهدفة، وتصفير الأوزان دونها. وتكيّف مرحلة ضبط دقيق أخيرة النموذج المضغوط مع خصائص البيانات مثل CIFAR-10/100 [21].</p>
+    <p>والتسلسل مقصود: التقطير أولًا ينقل المعرفة الداكنة إلى الطالب [1]، والتقليم ثانيًا يزيل التكرار الذي يكشفه النقل، والضبط الدقيق ثالثًا يستعيد أي دقة مفقودة. ويميز مفهوم «نقطة التحول» نسبة التقليم التي يتغير عندها سلوك الدقة، مانحًا الممارسين مقبض معايرة مفسّرًا وقابلًا للضبط بين معدل الضغط والأداء.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. التجارب</h2>
+    <p>البيانات والأسس: CIFAR-10 وCIFAR-100 [21] مع أزواج معلم-طالب عبر عائلات ResNet وDenseNet وEfficientNet؛ وتشمل أسس التقطير AT [5] وVID [8] وCRD [2] وSRRL [6] وSemCKD [7] وSimKD [9]. وتتبع تفاصيل التدريب التعزيز والجدولة المعيارية لنظام CIFAR، مع إعادة استخدام مصنف المعلم في الطالب كما تملي SimKD تمامًا [9].</p>
+    <p>تُظهر نتائج التقطير طلاب SimKD منافسين أو متفوقين على بدائل مثل CRD [2] وVID [8] وSemCKD [7]. وتمسح نتائج التقليم نطاقات نسبية واسعة: تصمد الدقة حتى نقطة التحول قبل التراجع، وتؤكد منحنيات ما بعد الضبط أن الطلاب المقطرة والمقلّمة تطابق أو تتجاوز دقة المقطرة فقط بمعاملات أقل بكثير — بما فيها ضغطات ResNet-101 → ResNet-50/ResNet-18 الرئيسية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. المناقشة</h2>
+    <p>يهدد التقليم قبل التقطير بالتخلص من السعة التي يحتاجها الطالب لاستيعاب المعلم، ولهذا يفوز ترتيب التقطير-ثم-التقليم: يُحدد التكرار بعد نقل المعرفة [1]، [15]، [16]. ويحول تحليل نقطة التحول التقليم من مقامرة إلى إجراء معاير — تكشف المسوحات النسبية الواسعة هضابًا مستقرة تليها انتقالات حادة، ويزيح الضبط الدقيق الحد باستمرار للخارج. لذا يمكن ضبط معدل الضغط عمدًا مع الحفاظ على الأداء أو زيادته.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الاستنتاجات</h2>
+    <p>يقدم إطار التقطير-التقليم-الضبط المتسلسل ضغطًا معززًا وقابلًا للضبط: تُضغط المعرفة المقطرة [1]، [9] بالتقليم غير المنظم L1 [4]، [10]، [11] وتُرسخ بالضبط الدقيق، مع آلية نقطة التحول للتحكم في الاكتناز. وعبر CIFAR-10/100 [21] وظهور متنوعة، يطابق الطلاب المقطرة والمقلّمة نظراءهم المقطرة فقط أو يتفوقون عليهم بمعاملات أقل بكثير — بما فيها ResNet-101 مضغوطة إلى مقياسي ResNet-50 وResNet-18.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. البحث المستقبلي</h2>
+    <p>تشمل الامتدادات الطبيعية متغيرات التقليم المنظم التي تحافظ على كثافة ملائمة للعتاد، والتحسين المشترك لجدول التقطير-التقليم بدل التسلسل الثابت، ومعايرة نقاط التحول عبر بيانات أكبر وظهور المحولات (بناءً على ضغط المحولات المشترك [18] وخطوط PQK الموحدة [19]، [20])، وأنظمة التعلم المستمر حيث يجب أن يصمد الضغط أمام انزياح التوزيع.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Efficient model deployment is a key focus in deep learning. This study investigates the synergy between knowledge distillation and network pruning to achieve optimal efficiency and improved generalization [1], [4], [10]. An innovative framework combines distillation, pruning, and fine-tuning to achieve enhanced compression while providing control over the degree of compactness, evaluated on CIFAR-10 and CIFAR-100 [21] with ResNet, DenseNet, and EfficientNet architectures.</p>
+    <p>Compression is calibrated through a controllable procedure, producing models with different degrees of compression while remaining equally accurate or better — demonstrated by two compressed variants of ResNet-101 matching ResNet-50 and ResNet-18 footprints. In most cases, the pruned and distilled student models exhibit comparable or superior accuracy to distilled-only students while using significantly fewer parameters.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Making models smaller and more efficient is a major deep-learning challenge, especially when deploying to resource-constrained settings [1], [10]. Knowledge distillation transfers knowledge from a large teacher to a compact student [1], while pruning removes redundant weights [4], [10], [11]. Rather than treating them as alternatives, this work sequences them — distill, then prune, then fine-tune — so compression becomes both stronger and controllable.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related Works</h2>
+    <p>Knowledge distillation originates with teacher–student transfer [1], extended by contrastive representation distillation [2], similarity-preserving distillation [3], attention transfer [5], self-supervised residual momentum [6], cross-layer semantic calibration [7], variational information distillation [8], and reused-teacher-classifier schemes [9]. Pruning foundations include optimal brain damage [4], deep compression with pruning, quantization, and Huffman coding [10], importance estimation [11], oracle filter pruning [13], the lottery ticket hypothesis [14], smaller-norm-less-informative analysis [22], and filter pruning for efficient ConvNets [23].</p>
+    <p>Combined approaches distill into pruned networks [15], couple weight pruning with distillation [16], compress re-identification models [17], jointly prune and distill transformers [18], unify pruning, quantization, and distillation in PQK [19], and progressively distill through pruning schedules [20] — with launching-style frameworks for training compact networks [12] as a complementary line.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Materials and Methods</h2>
+    <p>Simple Knowledge Distillation (SimKD) reuses the teacher's discriminative classifier during student inference and trains the student encoder by aligning its features with the teacher's, preserving decision quality under compression [9]. L1 unstructured pruning then sparsifies the network in three steps: sort weights by L1 norm, select the threshold corresponding to the target pruning percentage, and zero out weights below it. A final fine-tuning stage adapts the compressed model to dataset specifics such as CIFAR-10/100 characteristics [21].</p>
+    <p>The sequencing is deliberate: distilling first transfers dark knowledge into the student [1], pruning second removes the redundancy the transfer exposes, and fine-tuning third recovers any lost accuracy. A distinctive 'breakpoint' concept marks the pruning percentage at which accuracy behavior changes, giving practitioners an interpretable, controllable calibration dial over compression rate versus performance.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Experiments</h2>
+    <p>Datasets and baselines: CIFAR-10 and CIFAR-100 [21] with teacher–student pairs across ResNet, DenseNet, and EfficientNet families; distillation baselines span AT [5], VID [8], CRD [2], SRRL [6], SemCKD [7], and SimKD [9]. Training details follow standard augmentation and scheduling for the CIFAR regime, with the teacher classifier reused in the student exactly as SimKD prescribes [9].</p>
+    <p>Distillation results show SimKD-trained students (e.g., ≈51.87 AT-level and ≈51.87 SimKD on the CIFAR-100 table scale reported) competing with or beating alternatives such as CRD [2], VID [8], and SemCKD [7]. Pruning results sweep wide percentage ranges: accuracy holds through the breakpoint before declining, and post-fine-tuning curves confirm that pruned-and-distilled students match or exceed distilled-only accuracy with far fewer parameters — including the headline ResNet-101 → ResNet-50/ResNet-18 compressions.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Discussion</h2>
+    <p>Pruning before distillation risks discarding the very capacity the student needs to absorb the teacher, which is why the distill-then-prune order wins: redundancy is identified after knowledge has been transferred [1], [15], [16]. The breakpoint analysis turns pruning from a gamble into a calibrated procedure — wide percentage sweeps reveal stable plateaus followed by sharp transitions, and fine-tuning consistently shifts the frontier outward. Compression rate can therefore be dialed deliberately while maintaining or even increasing performance.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Conclusions</h2>
+    <p>The sequential distill–prune–fine-tune framework delivers enhanced, controllable compression: distilled knowledge [1], [9] is compacted by L1 unstructured pruning [4], [10], [11] and consolidated by fine-tuning, with the breakpoint mechanism providing control over compactness. Across CIFAR-10/100 [21] and diverse backbones, pruned-and-distilled students match or beat distilled-only counterparts with significantly fewer parameters — including ResNet-101 compressed to ResNet-50 and ResNet-18 scales.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Future Research</h2>
+    <p>Natural extensions include structured pruning variants that preserve hardware-friendly density, joint optimization of the distillation–pruning schedule rather than fixed sequencing, calibration of breakpoints across larger datasets and transformer backbones (building on joint transformer compression [18] and unified PQK-style pipelines [19], [20]), and continual-learning regimes where compression must survive distribution shift.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Complete reference list with original numbering (all 23 entries).</p>
+    <ol dir="ltr">
+      <li>Hinton, G.E.; Vinyals, O.; Dean, J. Distilling the knowledge in a neural network. <em>arXiv</em> 2015, arXiv:1503.02531.</li>
+      <li>Tian, Y.; Krishnan, D.; Isola, P. Contrastive representation distillation. <em>arXiv</em> 2022, arXiv:1910.10699.</li>
+      <li>Tung, F.; Mori, G. Similarity-preserving knowledge distillation. In <em>Proc. ICCV</em>, Seoul, Republic of Korea, 27 October–2 November 2019.</li>
+      <li>LeCun, Y.; Denker, J.; Solla, S. Optimal brain damage. In <em>Proc. NeurIPS</em>; Morgan-Kaufmann: Burlington, MA, USA, 1989; Vol. 2.</li>
+      <li>Zagoruyko, S.; Komodakis, N. Paying more attention to attention. <em>arXiv</em> 2017, arXiv:1612.03928.</li>
+      <li>Pham, T.X.; et al. Self-supervised visual representation learning via residual momentum. <em>arXiv</em> 2022, arXiv:2211.09861.</li>
+      <li>Chen, D.; et al. Cross-layer distillation with semantic calibration. In <em>Proc. AAAI</em>, Online, 2–9 February 2021.</li>
+      <li>Ahn, S.; et al. Variational information distillation for knowledge transfer. In <em>Proc. CVPR</em>, Long Beach, CA, USA, 15–20 June 2019.</li>
+      <li>Chen, D.; et al. Knowledge distillation with the reused teacher classifier. In <em>Proc. CVPR</em>, New Orleans, LA, USA, 18–24 June 2022.</li>
+      <li>Han, S.; Mao, H.; Dally, W.J. Deep compression: Compressing deep neural networks with pruning, trained quantization and Huffman coding. <em>arXiv</em> 2016, arXiv:1510.00149.</li>
+      <li>Molchanov, P.; et al. Importance estimation for neural network pruning. In <em>Proc. CVPR</em>, Long Beach, CA, USA, 15–20 June 2019.</li>
+      <li>Zhou, G.; et al. Rocket launching: A universal and efficient framework for training well-performing light net. In <em>Proc. AAAI</em>, New Orleans, LA, USA, 2–7 February 2018.</li>
+      <li>Ding, X.; et al. Approximated oracle filter pruning for destructive CNN width optimization. In <em>Proc. ICML</em>, Long Beach, CA, USA, 9–15 June 2019.</li>
+      <li>Frankle, J.; Carbin, M. The lottery ticket hypothesis: Finding sparse, trainable neural networks. In <em>Proc. ICML</em>, Long Beach, CA, USA, 9–15 June 2019.</li>
+      <li>Chen, L.; et al. Knowledge from the original network: Restore a better pruned network with knowledge distillation. <em>Complex Intell. Syst.</em> 2022, 8, 709–718.</li>
+      <li>Aghli, N.; Ribeiro, E. Combining weight pruning and knowledge distillation for CNN compression. In <em>Proc. CVPRW</em>, Nashville, TN, USA, 19–25 June 2021.</li>
+      <li>Xie, H.; et al. Model compression via pruning and knowledge distillation for person re-identification. <em>J. Ambient Intell. Human. Comput.</em> 2021, 12, 2149–2161.</li>
+      <li>Cui, B.; Li, Y.; Zhang, Z. Joint structured pruning and dense knowledge distillation for efficient transformer model compression. <em>Neurocomputing</em> 2021, 458, 56–69.</li>
+      <li>Kim, J.; Chang, S.; Kwak, N. PQK: Model compression via pruning, quantization, and knowledge distillation. <em>arXiv</em> 2021, arXiv:2106.14681.</li>
+      <li>Wang, R.; et al. Progressive multi-level distillation learning for pruning network. <em>Complex Intell. Syst.</em> 2023.</li>
+      <li>Krizhevsky, A. Learning multiple layers of features from tiny images. University of Toronto: Toronto, ON, Canada, 2009.</li>
+      <li>Ye, J.; et al. Rethinking the smaller-norm-less-informative assumption in channel pruning. <em>arXiv</em> 2018, arXiv:1802.00124.</li>
+      <li>Li, H.; et al. Pruning filters for efficient ConvNets. <em>arXiv</em> 2017, arXiv:1608.08710.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/bdcc7030154">10.3390/bdcc7030154</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

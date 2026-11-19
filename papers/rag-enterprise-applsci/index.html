@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التوليد المعزز بالاسترجاع (RAG) والنماذج اللغوية الكبيرة (LLMs) لإدارة المعرفة المؤسسية وأتمتة المستندات: مراجعة أدبية منهجية — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Retrieval-Augmented Generation (RAG) and Large Language Models (LLMs) for Enterprise Knowledge Management and Document Automation: A Systematic Literature Review</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التوليد المعزز بالاسترجاع (RAG) والنماذج اللغوية الكبيرة (LLMs) لإدارة المعرفة المؤسسية وأتمتة المستندات: مراجعة أدبية منهجية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ehlullah Karakurt, Akhan Akbulut</span>
+    <span>📄 Appl. Sci. 2026, 16(1), 368</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app16010368">10.3390/app16010368</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يُعيد دمج التوليد المعزز بالاسترجاع (RAG) مع النماذج اللغوية الكبيرة (LLMs) تشكيل إدارة المعرفة المؤسسية، غير أن فهم توظيفها في سير العمل الواقعية ما يزال محدودًا. تقدم هذه الدراسة مراجعة أدبية منهجية (SLR) لثلاث وستين دراسة أولية عالية الجودة اختيرت بعد فرز صارم، لتقييم كيفية معالجة هذه التقنيات للتحديات المؤسسية العملية.</p>
+    <p>استرشادًا بتسعة أسئلة بحثية تغطي المنصات ومجموعات البيانات والخوارزميات ومقاييس التحقق، تخلص المراجعة إلى أن التبني المؤسسي ما يزال تجريبيًا إلى حد كبير: إذ تستخدم 63.6% من التطبيقات نماذج قائمة على GPT، وتعتمد 80.5% على أطر استرجاع معيارية مثل FAISS أو Elasticsearch. وتبرز فجوة مهمة بين المختبر والسوق؛ فبينما تُتحقق مهام الاسترجاع والتصنيف الفرعية بشكل روتيني بالتحقق المتقاطع من نوع k-fold بنسبة 93.6%، يعتمد تقييم التوليد على مجموعات تثبيت ثابتة، وأقل من 15% من الدراسات تعالج قيود التكامل الآني اللازمة للنشر الإنتاجي.</p>
+    <p>ترسم الدراسة هذه الفروق بصورة منهجية وتقدم خارطة طريق قائمة على البيانات لسد الفجوة بين النماذج الأكاديمية الأولية والتطبيقات المؤسسية المتينة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>في عصر التحول الرقمي، تغمر المؤسسات كميات هائلة من المعلومات غير المهيكلة، من الأدلة التقنية والسياسات التنظيمية ونصوص دعم العملاء إلى الويكي الداخلية وسجلات الوسائط المتعددة [1–3]. ويتعين على الشركات، ولا سيما في المالية والرعاية الصحية، تنظيم المعرفة واسترجاعها ودمجها للامتثال للوائح وتسريع الابتكار وتحسين رضا العملاء [4–6]. وتواجه أنظمة إدارة المعرفة التقليدية، التي تعتمد على البحث بالكلمات المفتاحية أو التصنيف اليدوي، صعوبة في التعامل مع البيانات سريعة التطور أو الاستعلامات المعقدة، كما لوحظ في الأرشيفات المؤسسية القديمة [1،7،8].</p>
+    <p>وما تزال سير عمل أتمتة المستندات، بما فيها توليد العقود وكتابة التقارير ومواءمة السياسات، مقيدة بالعمليات الكثيفة العمالة ومخاطر الأخطاء والقوالب الجامدة [9–11]. وقد حسّنت التطورات الأخيرة في النماذج اللغوية الكبيرة، مثل GPT وPaLM وLLaMA، إلى جانب نظيراتها مفتوحة المصدر مثل OPT وGPT-NeoX وBLOOM، فهم اللغة الطبيعية وتوليدها، مما حفّز إقرانها بآليات استرجاع تُرسّخ المخرجات في المحتوى المؤسسي الخاص.</p>
+    <p>تسأل هذه المراجعة لذلك كيف تُبنى تركيبات RAG وLLM وتُقيَّم وتُنشر فعليًا في إدارة المعرفة المؤسسية وأتمتة المستندات، وأين تقصر الأدلة عن متطلبات الإنتاج.</p>
+  </section>
+
+  <section>
+    <h2>2. الخلفية والأعمال ذات الصلة</h2>
+    <p>رغم أن النماذج اللغوية الكبيرة تُظهر طلاقة مثيرة للإعجاب، فإن استخدامها المؤسسي تعوقه الهلوسات ونقص المعرفة الخاصة بالمجال وحدود القطع الثابتة للتدريب [23،34،44]. ويعالج التوليد المعزز بالاسترجاع هذه القيود بفصل قاعدة المعرفة عن أوزان النموذج: إذ يحدد المسترجِع مقاطع المستندات ذات الصلة عبر التشابه المتجهي الكثيف أو مطابقة الكلمات المفتاحية المتناثرة من مدونة مؤسسية، ثم تُكيَّف نافذة سياق النموذج اللغوي بالمقاطع المسترجعة أثناء التوليد [2،19،54].</p>
+    <p>يؤطر المؤلفون عمليات النشر المؤسسية عبر سلسلة قيمة RAG–المؤسسة من خمس مراحل: المدخلات (مصادر البيانات الخاصة وقيود البنية التحتية، RQ1–RQ2)، والاسترجاع (الفهرسة الكثيفة مقابل المتناثرة وآليات الاسترجاع، RQ3–RQ4)، والتوليد (هياكل النماذج اللغوية واستراتيجيات التوجيه، RQ8)، والتحقق (فحوص الوقائعية وزمن الاستجابة والمصدر، RQ5–RQ6)، والأثر التجاري (المكاسب التشغيلية مثل العائد على الاستثمار وتوفير الوقت بما يتجاوز المقاييس الأكاديمية، RQ9).</p>
+    <p>تركز المسوحات القائمة على التصنيفات المعمارية العامة أو توليد المحتوى الإبداعي؛ وكما تُظهر مقارنتها للمراجعات السابقة، لا يستهدف أي منها القيود الخاصة بإدارة المعرفة المؤسسية وأتمتة المستندات. تسد هذه الدراسة تلك الفجوة عبر التحليل المنهجي للانتقال من المختبر إلى السوق، وتحديدًا الخصوصية وزمن الاستجابة والتحقق من القيمة التجارية في البيئات المؤسسية [1،3،56].</p>
+  </section>
+
+  <section>
+    <h2>3. منهجية البحث</h2>
+    <p>تتبع الدراسة منهجية المراجعة الأدبية المنهجية بثلاث مراحل — التخطيط والإجراء والإبلاغ — ببروتوكولات مصممة لتقليل التحيز وتحسين الشفافية [58]. وصيغت تسعة أسئلة بحثية تغطي مصادر البيانات والمنهجيات الخوارزمية ومعايير التقييم والتحديات العملية [19،58]، وتُرجمت إلى سلاسل بحث منطقية.</p>
+    <p>بُحثت ست قواعد بيانات رئيسية (IEEE Xplore وACM Digital Library وSpringerLink وScienceDirect وWiley Online Library وGoogle Scholar) عن دراسات منشورة بين 2015 و2025 [19،26]. وشملت المعايير الدراسات المحكّمة باللغة الإنجليزية ذات النتائج التجريبية والأوصاف التفصيلية لمنهجية RAG وLLM فقط، مما أتاح عملية اختيار شفافة وقابلة لإعادة الإنتاج [57،58].</p>
+    <p>خفّض الفرز الصارم وتقييم الجودة المدونة إلى 63 دراسة أولية عالية الجودة. وتغطي الأسئلة التسعة: المنصات (RQ1)، ومجموعات البيانات (RQ2)، ونماذج التعلم (RQ3)، والبنى والخوارزميات (RQ4)، ومقاييس التقييم (RQ5)، ومنهجيات التحقق (RQ6)، ومقاييس البرمجيات (RQ7)، وأفضل التكوينات أداءً (RQ8)، والتحديات والفجوات (RQ9).</p>
+  </section>
+
+  <section>
+    <h2>4. النتائج: المنصات والبيانات ونماذج التعلم (RQ1–RQ3)</h2>
+    <p>في المنصات (RQ1)، تفضل 66.2% من الدراسات البالغ عددها 63 البنى السحابية الأصلية التي تستغل خدمات المتجهات المدارة وموارد GPU/TPU المرنة، بينما تستخدم 19.5% مراكز بيانات محلية للسيادة والامتثال، ويستكشف نحو 10–11% الحوسبة الطرفية أو التنفيذ على الجهاز مع ضغط النماذج لزمن استجابة منخفض وتشغيل دون اتصال، ويعتمد 3–4% بنى هجينة توزع الأحمال عبر حدود الثقة [75].</p>
+    <p>في مجموعات البيانات (RQ2)، تهيمن مستودعات GitHub العامة (54–54.5%)، تليها المدونات الصناعية المخصصة (16.9–17.4%)، والمستودعات الخاصة المفهرسة عبر خطوط محلية (15.6–15.9%)، والمعايير الأكاديمية (12.7–13%)، ومنها MS MARCO للاسترجاع [96]، وSQuAD [22]، وNatural Questions [46]، وHotpotQA [53]، وTriviaQA [55] للفهم، إضافة إلى BEIR للتقييم الاسترجاعي صفري الأمثلة [43] [1،35]. ويساعد الاعتماد على المدونات العامة قابلية إعادة الإنتاج لكنه يعرّض لانزياح المجال وتسرب البيانات وانجراف المفاهيم، مما يحفز الاسترجاع الحافظ للخصوصية والتكيف مع المجال [42،45–47،95].</p>
+    <p>في نماذج التعلم (RQ3)، يهيمن التعلم الخاضع للإشراف هيمنة ساحقة (92.1–92.2%)، بينما تبقى المناهج غير الخاضعة للإشراف (3.9–4.8%) وشبه الخاضعة (3.2–3.9%) هامشية، مما يشير إلى فرص في التدريب الذاتي التبايني والتكيف قليل الأمثلة لبيئات مؤسسية شحيحة الوسوم [7،29،36،37].</p>
+  </section>
+
+  <section>
+    <h2>5. النتائج: البنى والمقاييس والتحقق (RQ4–RQ7)</h2>
+    <p>في البنى (RQ4)، تبقى المتعلمات التقليدية (Naïve Bayes وSVM والانحدار اللوجستي وأشجار القرار) حاضرة أساسًا كخطوط أساس أو مصنِّفات ومرتِّبات مساعدة [3،7]، بينما تأتي القدرة التوليدية من متغيرات RAG القائمة على المحولات: RAG Sequence (36 ذكرًا) وRAG Token (28) وHybrid RAG (18). وتتصدر الفهرسة بالمتجهات الكثيفة مع FAISS أو Annoy (62 ذكرًا)، تليها BM25/TF-IDF (45) وفهرسة الرسوم المعرفية (20) [1–3،7].</p>
+    <p>في المقاييس (RQ5)، تهيمن درجات التصنيف التقليدية: الدقة والاستدعاء والدقة الكلية في 80.5–81% من الدراسات، وRecall@K/Precision@K في 72.7–73%، وROUGE/BLEU في 44.2–44.4%، بينما تتضمن 19–19.5% فقط أحكامًا بشرية، ويقيس 15.6–15.9% الأثر التجاري مثل كفاءة سير العمل [17،31،32]. وأظهر نشر نادر لروبوت محادثة مصرفي زيادة حل المشكلات بنسبة 25% مع تقليل زمن الاستجابة [5].</p>
+    <p>في التحقق (RQ6)، تستخدم 93.6% من الدراسات التحقق المتقاطع k-fold — غالبًا لوحدات الاسترجاع والمصنفات المساعدة — بينما تُقيَّم المكونات التوليدية حصريًا تقريبًا بتقسيمات التثبيت (25.4–26%)، ويبلغ نحو 13% فقط عن دراسات حالة حية أو تجارب ميدانية [16،17،31]. وفي مقاييس البرمجيات (RQ7)، تعد المقاييس كائنية التوجه الأكثر شيوعًا (31.7%)، بينما تندر المقاييس الإجرائية والويب والعمليات والأداء [5،9،17،22،31،32].</p>
+  </section>
+
+  <section>
+    <h2>6. النتائج: أفضل التكوينات والتحديات (RQ8–RQ9)</h2>
+    <p>تجمع أفضل التكوينات أداءً (RQ8) بين RAG Token وBART المضبوط للإجابة المؤسسة على المعرفة (حتى 87% مطابقة تامة، وهلوسات أقل بنسبة 35% عن خط أساس GPT-3)، وRAG Sequence مع GPT-3.5 صفري الأمثلة لتوليد بنود العقود (ملاءمة بشرية 92%، +45% عن الأنظمة القالبية)، والاسترجاع الهجين الكثيف مع الرسم المعرفي وT5-Large لتلخيص السياسات (0.62 ROUGE-L، +20% عن الاسترجاع الكثيف الصرف)، وRoBERTa المعزز بالاسترجاع لتأليف الأدلة (−40% زمن تحرير، 85% صحة إجرائية)، وFlan-T5 المضبوط بالتوجيه للصياغة المالية (0.58 BLEU و0.65 ROUGE-L) [5،17،22،31،58،76،94]. ويظهر RAG Token في 7 من أفضل 16 تكوينًا مُبلغًا (44%) [31].</p>
+    <p>تهيمن خمسة تحديات متكررة (RQ9): الهلوسة والاتساق الوقائعي (47.6%)، وخصوصية البيانات وأمنها (38.1%)، وزمن الاستجابة وقابلية التوسع (31.7%)، والتكيف مع المجال والتعلم الانتقالي (23.8%)، وصعوبة قياس الأثر التجاري (15.9%) [17،32–34،41–45،47،48،95،98،101]. ويعالج 38.1% فقط من الدراسات التشفير أو التحكم بالوصول أو الاسترجاع الموحد؛ وقليل منها يقترح تحسينات زمن استجابة شاملة مثل البحث التقريبي عن أقرب جار أو النماذج المضغوطة أو الاسترجاع غير المتزامن لاستجابات دون 100 مللي ثانية [24،32،33،48،67،102].</p>
+    <p>والأهم أن التحليل التقاطعي يُظهر أن 80% من عمليات النشر الحية لدراسات الحالة استخدمت باستمرار مقاييس الأثر التجاري، مما يؤكد تلازم التقييم الواقعي ومؤشرات الأداء التشغيلية — رغم ندرة هذه العمليات.</p>
+  </section>
+
+  <section>
+    <h2>7. المناقشة</h2>
+    <p>تبرز قاعدة عملية: استخدام الاسترجاع على مستوى التسلسل للاستدلال التوليدي المفتوح، وطرق مستوى الرمز للمهام الاستخراجية ضيقة النطاق مثل البحث عن الحقول، بما يتسق مع التباين بين RAG Sequence وRAG Token [31] ومع نتائج هجينة تُظهر أن المتجهات الكثيفة المكمَّلة برسوم معرفية تحسّن الدقة في السياقات المهيكلة [25،27،28]. وتهيمن البيئات السحابية الأصلية (66.2%)، لكن البيئات المحلية والطرفية والبنى الهجينة النادرة (3.9%) تنبئ بتوليد موزع مُجزأ عبر حدود الثقة [42،43،47،48،75].</p>
+    <p>وللفجوة الحرجة بين المختبر والسوق ثلاثة أوجه. أولًا، قد يبالغ التحقق المتقاطع k-fold (93.6%) في تقدير الأداء عندما لا تكون البيانات مستقلة ومتطابقة التوزيع [17،31]. ثانيًا، تهيمن المقاييس التقنية بينما تندر الدراسات البشرية (19.5%) ومقاييس الأثر التجاري (15.6%)، رغم أن عمليات النشر الحية التي تقيس مؤشرات التشغيل تُظهر قيمة حقيقية [17،98]. ثالثًا، يعالج أقل من 15% من الدراسات التكامل الآني، وتغيب إلى حد كبير قياسات توزيعات زمن الاستجابة وتغطية المصدر ورضا المستخدم.</p>
+    <p>وللتبني المؤسسي، توصي المراجعة بالاسترجاع الحافظ للخصوصية على المخازن الخاصة (تضمينات مشفرة، بحث موحد/متجهي)، والتكيف المتين مع المجال لسد الفجوات العامة–الخاصة [42،45–47،95]، ومعايير صناعية موحدة تعكس مهام أتمتة المستندات الواقعية لا الأسئلة الأكاديمية وحدها [17،31،98].</p>
+  </section>
+
+  <section>
+    <h2>8. القيود والبحوث المستقبلية</h2>
+    <p>ترث المراجعة حدود مدونتها: تهيمن بيانات GitHub العامة (54.5%) بينما يقل تمثيل المصادر الخاصة والصناعية، والوسوم الخاضعة للإشراف شبه شاملة، ويتركز التحقق على مهام الاسترجاع الفرعية لا التوليد الشامل [42،47]. ويعكس الانحياز النشري نحو مؤتمرات 2023–2024 سرعة المجال لكنه يعكس أيضًا عدم نضجه لادعاءات الإنتاج.</p>
+    <p>تتبع ذلك خمسة اتجاهات: تضمينات الخصوصية التفاضلية والحساب متعدد الأطراف الآمن لفهارس RAG [41–43،47]؛ وبنى منخفضة زمن الاستجابة بالبحث التقريبي عن أقرب جار والنماذج المضغوطة والاسترجاع غير المتزامن [24،32،33،48،67،102]؛ والاسترجاع التضميني غير الخاضع للإشراف والضبط شبه الخاضع لخفض تكاليف التوسيم [7،36،37]؛ والذاكرة المهيكلة الديناميكية بمخازن هجينة متجهية–رسمية تُحافَظ على اتساقها عبر الزمن؛ ومعايير شاملة تُقرن الدقة/الاستدعاء وROUGE/BLEU برضا المستخدم وكفاءة العمليات ومقاييس الامتثال [17،31،98].</p>
+  </section>
+
+  <section>
+    <h2>9. الخاتمة</h2>
+    <p>تثبت هذه المراجعة المنهجية لثلاث وستين دراسة مُقيَّمة الجودة أن بحوث RAG وLLM المؤسسية متمركزة سحابيًا (66.2%)، ومعتمدة على GitHub (54.5%)، وخاضعة للإشراف افتراضيًا تقريبًا (92.1%)، ومُقيَّمة بمقاييس تقليدية (80.5%) وتحقق k-fold (93.6%) — بينما يبقى التقييم البشري (19.5%) وقياس الأثر التجاري (15.9%) وأدلة النشر الحي (13%) شحيحة [17].</p>
+    <p>وتتمثل المساهمة المركزية في رسم خريطة قائمة على البيانات للفجوة بين المختبر والسوق مع خارطة طريق قابلة للتنفيذ: يجب التوفيق بين الاسترجاع السحابي المرن وقيود السيادة وزمن الاستجابة والامتثال عبر تصاميم محلية وطرفية وهجينة [42،43،47،48،75]؛ وسد فجوات البيانات العامة–الخاصة بالاسترجاع الحافظ للخصوصية والتكيف مع المجال [42،45–46،95]؛ وترقية التقييم من الدرجات الأكاديمية الثابتة إلى مؤشرات تشغيلية تُقاس ميدانيًا [17].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Enterprise knowledge management is being reshaped by the integration of Retrieval-Augmented Generation (RAG) with Large Language Models (LLMs), yet understanding of their deployment in real-world workflows remains limited. This study presents a systematic literature review (SLR) of 63 high-quality primary studies selected after rigorous screening to evaluate how these technologies address practical enterprise challenges.</p>
+    <p>Guided by nine research questions covering platforms, datasets, algorithms, and validation metrics, the review finds enterprise adoption still largely experimental: 63.6% of implementations use GPT-based models and 80.5% rely on standard retrieval frameworks such as FAISS or Elasticsearch. A significant lab-to-market gap emerges: while retrieval and classification sub-tasks are routinely validated with k-fold cross-validation (93.6%), generative evaluation relies on static hold-out sets, and fewer than 15% of studies address the real-time integration constraints of production deployment.</p>
+    <p>The study maps these disparities systematically and offers a data-driven roadmap for bridging academic prototypes and robust enterprise applications.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>In the era of digital transformation, organizations are inundated with vast amounts of unstructured information, from technical manuals, regulatory policies, and customer support transcripts to internal wikis and multimedia logs [1–3]. Businesses, especially in finance and healthcare, must organize, retrieve, and integrate knowledge to comply with regulations, accelerate innovation, and improve customer satisfaction [4–6]. Traditional knowledge management systems, which rely on keyword searches or manual categorization, struggle to handle rapidly evolving data or complex queries, as observed in legacy corporate archives [1,7,8].</p>
+    <p>Document automation workflows, including contract generation, report writing, and policy alignment, remain hampered by labor-intensive processes, error risks, and rigid templates [9–11]. Recent advances in LLMs, such as GPT, PaLM, and LLaMA, alongside open-source counterparts such as OPT, GPT-NeoX, and BLOOM, have improved natural language understanding and generation, motivating their pairing with retrieval mechanisms that ground outputs in proprietary enterprise content.</p>
+    <p>This review therefore asks how RAG and LLM combinations are actually built, evaluated, and deployed in enterprise knowledge management and document automation, and where the evidence falls short of production requirements.</p>
+  </section>
+
+  <section>
+    <h2>2. Background and Related Work</h2>
+    <p>While LLMs demonstrate impressive fluency, their enterprise use is hindered by hallucinations, lack of domain-specific knowledge, and static training cutoffs [23,34,44]. RAG addresses these limitations by decoupling the knowledge base from model weights: a retriever identifies relevant document chunks via dense vector similarity or sparse keyword matching from a corporate corpus, and the retrieved passages condition the LLM context window during generation [2,19,54].</p>
+    <p>The authors frame enterprise deployments through an RAG–enterprise value chain of five stages: Input (proprietary data sources and infrastructure constraints, RQ1–RQ2), Retrieval (dense versus sparse indexing and retrieval mechanisms, RQ3–RQ4), Generation (LLM backbones and prompting strategies, RQ8), Validation (factuality, latency, and provenance checks, RQ5–RQ6), and Business Impact (operational gains such as ROI and time savings beyond academic metrics, RQ9).</p>
+    <p>Existing surveys concentrate on general architectural taxonomies or creative content generation; as their comparison of prior reviews shows, none targets the specific constraints of enterprise knowledge management and document automation. This study fills that gap by systematically analyzing the lab-to-market transition, specifically privacy, latency, and business value verification in corporate environments [1,3,56].</p>
+  </section>
+
+  <section>
+    <h2>3. Research Methodology</h2>
+    <p>The study follows a systematic literature review methodology with three stages — planning, conducting, and reporting — with protocols designed to minimize bias and improve transparency [58]. Nine research questions were formulated covering data sources, algorithmic approaches, evaluation criteria, and practical challenges [19,58], and translated into Boolean search strings.</p>
+    <p>Six major databases were searched (IEEE Xplore, ACM Digital Library, SpringerLink, ScienceDirect, Wiley Online Library, and Google Scholar) for studies published between 2015 and 2025 [19,26]. Only peer-reviewed English-language studies with empirical results and detailed descriptions of the RAG and LLM method were included, yielding a transparent and reproducible selection process [57,58].</p>
+    <p>Rigorous screening and quality assessment reduced the corpus to 63 high-quality primary studies. The nine questions span platforms (RQ1), datasets (RQ2), learning paradigms (RQ3), architectures and algorithms (RQ4), evaluation metrics (RQ5), validation approaches (RQ6), software metrics (RQ7), best-performing configurations (RQ8), and challenges and gaps (RQ9).</p>
+  </section>
+
+  <section>
+    <h2>4. Results: Platforms, Data, and Learning Paradigms (RQ1–RQ3)</h2>
+    <p>On platforms (RQ1), 66.2% of the 63 studies favor cloud-native infrastructures exploiting managed vector services and elastic GPU/TPU resources, while 19.5% use on-premises data centers for sovereignty and compliance, about 10–11% explore edge or on-device execution with model compression for low latency and offline operation, and 3–4% adopt hybrid topologies splitting workloads across trust boundaries [75].</p>
+    <p>On datasets (RQ2), public GitHub repositories dominate (54–54.5%), followed by custom industrial corpora (16.9–17.4%), proprietary repositories indexed through on-premises pipelines (15.6–15.9%), and academic benchmarks (12.7–13%), including MS MARCO for retrieval [96], SQuAD [22], Natural Questions [46], HotpotQA [53], and TriviaQA [55] for comprehension, plus BEIR for zero-shot retrieval evaluation [43] [1,35]. Reliance on public corpora aids reproducibility but risks domain shift, data leakage, and concept drift, motivating privacy-preserving retrieval and domain adaptation [42,45–47,95].</p>
+    <p>On learning paradigms (RQ3), supervised learning dominates overwhelmingly (92.1–92.2%), with unsupervised (3.9–4.8%) and semi-supervised (3.2–3.9%) approaches marginal, pointing to opportunities in contrastive self-training and few-shot adaptation for label-scarce enterprise settings [7,29,36,37].</p>
+  </section>
+
+  <section>
+    <h2>5. Results: Architectures, Metrics, and Validation (RQ4–RQ7)</h2>
+    <p>On architectures (RQ4), traditional learners (Naïve Bayes, SVM, Logistic Regression, Decision Trees) persist mainly as baselines or auxiliary rankers and classifiers [3,7], while generative capacity comes from Transformer-based RAG variants: RAG Sequence (36 mentions), RAG Token (28), and Hybrid RAG (18). Dense-vector indexing with FAISS or Annoy leads (62 mentions), followed by BM25/TF-IDF (45) and knowledge-graph indexing (20) [1–3,7].</p>
+    <p>On metrics (RQ5), classical classification scores dominate: precision/recall/accuracy in 80.5–81% of studies, Recall@K/Precision@K in 72.7–73%, and ROUGE/BLEU in 44.2–44.4%, while only 19–19.5% include human judgments and 15.6–15.9% measure business impact such as workflow efficiency [17,31,32]. A rare banking chatbot deployment increased issue resolution by 25% with reduced response times [5].</p>
+    <p>On validation (RQ6), 93.6% of studies use k-fold cross-validation — mostly for retrieval modules and auxiliary classifiers — while generative components are evaluated almost exclusively with hold-out splits (25.4–26%), and only about 13% report live case studies or field trials [16,17,31]. On software metrics (RQ7), object-oriented metrics are most common (31.7%), with procedural, web, process, and performance metrics rare [5,9,17,22,31,32].</p>
+  </section>
+
+  <section>
+    <h2>6. Results: Best Configurations and Challenges (RQ8–RQ9)</h2>
+    <p>The best-performing configurations (RQ8) pair RAG Token with fine-tuned BART for knowledge-grounded QA (up to 87% exact match, 35% fewer hallucinations than the GPT-3 baseline), RAG Sequence with zero-shot GPT-3.5 for contract-clause generation (92% human-rated relevance, +45% over template systems), Hybrid dense-plus-knowledge-graph retrieval with T5-Large for policy summarization (0.62 ROUGE-L, +20% over pure dense retrieval), retrieval-enhanced RoBERTa for manual synthesis (−40% editing time, 85% procedural correctness), and prompt-tuned Flan-T5 for financial drafting (0.58 BLEU, 0.65 ROUGE-L) [5,17,22,31,58,76,94]. RAG Token appears in 7 of the 16 top-reported configurations (44%) [31].</p>
+    <p>Five recurring challenges dominate (RQ9): hallucination and factual consistency (47.6%), data privacy and security (38.1%), latency and scalability (31.7%), domain adaptation and transfer learning (23.8%), and difficulty measuring business impact (15.9%) [17,32–34,41–45,47,48,95,98,101]. Only 38.1% of studies address encryption, access control, or federated retrieval; few propose end-to-end latency optimizations such as approximate nearest-neighbor search, compressed LLMs, or asynchronous retrieval for sub-100 ms responses [24,32,33,48,67,102].</p>
+    <p>Crucially, cross-tabulation shows 80% of the live case-study deployments consistently used Business Impact metrics, underscoring that real-world evaluation and operational KPIs go together — yet such deployments remain rare.</p>
+  </section>
+
+  <section>
+    <h2>7. Discussion</h2>
+    <p>A practical guideline emerges: use sequence-level retrieval for open-ended generative reasoning and token-level methods for narrowly scoped extractive tasks such as field lookup, consistent with the RAG Sequence versus RAG Token contrast [31] and with hybrid findings where dense vectors complemented by knowledge graphs improve precision in structured contexts [25,27,28]. Cloud-native settings dominate (66.2%), but on-premises, edge, and the still-rare hybrid topologies (3.9%) foreshadow distributed RAG partitioned across trust boundaries [42,43,47,48,75].</p>
+    <p>The critical lab-to-market gap has three faces. First, k-fold cross-validation (93.6%) can overestimate performance when data are not independent and identically distributed [17,31]. Second, technical metrics dominate while human studies (19.5%) and business impact metrics (15.6%) remain rare, even though live deployments that measure operational KPIs demonstrate real value [17,98]. Third, fewer than 15% of studies address real-time integration, and telemetry on latency distributions, provenance coverage, and user satisfaction is largely absent.</p>
+    <p>For enterprise adoption, the review recommends privacy-preserving retrieval over proprietary stores (encrypted embeddings, federated/vector search), robust domain adaptation to bridge public–private gaps [42,45–47,95], and standardized industrial benchmarks reflecting real document-automation tasks rather than academic QA alone [17,31,98].</p>
+  </section>
+
+  <section>
+    <h2>8. Limitations and Future Research</h2>
+    <p>The review inherits the limits of its corpus: public GitHub data dominate (54.5%) while proprietary and industrial sources are underrepresented, supervised labels are nearly universal, and validation is concentrated on retrieval sub-tasks rather than end-to-end generation [42,47]. Publication bias toward conference venues in 2023–2024 reflects the field's speed but also its immaturity for production claims.</p>
+    <p>Five directions follow: differential-privacy embeddings and secure multi-party computation for RAG indices [41–43,47]; low-latency architectures with approximate nearest-neighbor search, compressed LLMs, and asynchronous retrieval [24,32,33,48,67,102]; unsupervised embedding-based retrieval and semi-supervised fine-tuning to cut labeling costs [7,36,37]; dynamic structured memory with hybrid vector-graph stores kept consistent over time; and holistic benchmarks pairing precision/recall and ROUGE/BLEU with user satisfaction, process efficiency, and compliance metrics [17,31,98].</p>
+  </section>
+
+  <section>
+    <h2>9. Conclusions</h2>
+    <p>This systematic review of 63 quality-assessed studies establishes that enterprise RAG and LLM research is cloud-centric (66.2%), GitHub-dependent (54.5%), supervised almost by default (92.1%), and evaluated with classical metrics (80.5%) and k-fold validation (93.6%) — while human evaluation (19.5%), business impact measurement (15.9%), and live deployment evidence (13%) remain scarce [17].</p>
+    <p>The central contribution is a data-driven map of the lab-to-market gap together with an actionable roadmap: elastic cloud retrieval must be reconciled with sovereignty, latency, and compliance constraints through on-premises, edge, and hybrid designs [42,43,47,48,75]; public–private data gaps must be closed with privacy-preserving retrieval and domain adaptation [42,45–47,95]; and evaluation must graduate from static academic scores to operational KPIs measured in the field [17].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ul dir="ltr">
+      <li>[1] Mallen, A.; Asai, A.; Zhong, V.; et al. When Not to Trust Language Models: Investigating Effectiveness of Parametric and Non-Parametric Memories. In Proc. ACL 2023; pp. 9802–9822.</li>
+      <li>[2] Lazaridou, A.; et al. Internet-augmented language models through few-shot prompting for open-domain question answering. arXiv 2022, arXiv:2203.05115.</li>
+      <li>[3] Yao, S.; et al. ReAct: Synergizing Reasoning and Acting in Language Models. In Proc. ICLR 2023.</li>
+      <li>[5] Ma, X.; et al. Query Rewriting for Retrieval-Augmented Large Language Models. In Proc. EMNLP 2023; pp. 5303–5315.</li>
+      <li>[7] Khattab, O.; et al. DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines. In Proc. ICLR 2024.</li>
+      <li>[17] Ji, Z.; et al. Survey of Hallucination in Natural Language Generation. ACM Comput. Surv. 2023, 55, 1–38.</li>
+      <li>[19] Gao, Y.; et al. Retrieval-Augmented Generation for Large Language Models: A Survey. arXiv 2023, arXiv:2312.10997.</li>
+      <li>[22] Rajpurkar, P.; et al. SQuAD: 100,000+ Questions for Machine Comprehension of Text. In Proc. EMNLP 2016.</li>
+      <li>[25] Shi, W.; et al. REPLUG: Retrieval-Augmented Black-Box Language Models. In Proc. EMNLP 2023.</li>
+      <li>[26] Mialon, G.; et al. Augmented Language Models: A Survey. arXiv 2023, arXiv:2302.07842.</li>
+      <li>[31] Asai, A.; et al. Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection. In Proc. ICLR 2024.</li>
+      <li>[43] Thakur, N.; et al. BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models. In Proc. NeurIPS 2021.</li>
+      <li>[46] Kwiatkowski, T.; et al. Natural Questions: A Benchmark for Question Answering Research. Trans. Assoc. Comput. Linguist. 2019, 7, 453–466.</li>
+      <li>[53] Yang, Z.; et al. HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering. In Proc. EMNLP 2018.</li>
+      <li>[55] Joshi, M.; et al. TriviaQA: A Large Scale Distantly Supervised Challenge Dataset for Reading Comprehension. In Proc. ACL 2017.</li>
+      <li>[57] Zhao, P.; et al. Retrieval-Augmented Generation for AI-Generated Content: A Survey. arXiv 2024, arXiv:2305.08001.</li>
+      <li>[58] Han, B.; Susnjak, T.; Mathrani, A. Automating Systematic Literature Reviews with Retrieval-Augmented Generation: A Comprehensive Overview. 2024.</li>
+      <li>[75] Khattab, O.; Zaharia, M. ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT. In Proc. SIGIR 2021.</li>
+      <li>[96] Bajaj, P.; et al. MS MARCO: A Human Generated MAchine Reading COmprehension Dataset. arXiv 2016, arXiv:1611.09268.</li>
+      <li>[98] Chen, J.; et al. Benchmarking Large Language Models in Retrieval-Augmented Generation. In Proc. AAAI 2024.</li>
+      <li>[full reference list available in the original paper]</li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app16010368">10.3390/app16010368</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

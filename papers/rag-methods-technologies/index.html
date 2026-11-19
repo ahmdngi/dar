@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التوليد المعزز بالاسترجاع للنماذج اللغوية الكبيرة: مسح منهجي — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Retrieval Augmented Generation for Large Language Models: A Methodological Survey</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التوليد المعزز بالاسترجاع للنماذج اللغوية الكبيرة: مسح منهجي</h2>
+
+  <div class="paper-meta">
+    <span>👤 Vasileios P. Rekkas, Nicholas Vretos</span>
+    <span>📄 Technologies 2026, 14(11), 715</span>
+    <span>🔗 <a href="https://doi.org/10.3390/technologies14110715">10.3390/technologies14110715</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>حققت النماذج اللغوية الكبيرة (LLMs) اختراقات كبرى في معالجة اللغة الطبيعية (NLP)، لكنها ما تزال محدودة بتوليد نصوص هلوسية والاعتماد على معرفة داخلية ثابتة وقابلية تفسير محدودة. وقد برز التوليد المعزز بالاسترجاع (RAG) بوصفه بنية هجينة تُقرن القدرات التوليدية للنماذج اللغوية الكبيرة باسترجاع المعرفة الخارجية، مما يحسّن الدقة والملاءمة حيث تلزم معرفة واسعة ومفصلة وحديثة.</p>
+    <p>بالبحث في Scopus وIEEE Xplore ومكتبة ACM الرقمية — مع استخدام Google Scholar للتحقق من الاستشهادات المرجعية فقط — يغطي هذا المسح المنهجي 191 مقالًا محكّمًا منشورًا بين يناير 2024 وأبريل 2026. ويلخص المسح المناهج المعمارية الرئيسية للتوليد المعزز بالاسترجاع واستراتيجيات النشر ومقاييس التقييم، ويدرس القضايا المفتوحة والاتجاهات المستقبلية للمجال.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>جعل الذكاء الاصطناعي التوليدي (GenAI) المخرجات الشبيهة بالبشر متعددة الوسائط — نصوصًا وصورًا وصوتًا — بارزة في معالجة اللغة الطبيعية، إذ مكّنت النماذج اللغوية الكبيرة القائمة على المحولات والمدربة على مدونات واسعة الاستخدام العام عبر الرعاية الصحية والمالية والبحث والقانون والتعليم [1،2]. وبالمقارنة مع الشبكات المتكررة والالتفافية، تحقق النماذج اللغوية الكبيرة أداءً أقوى ومعالجة متوازية مع تدريب أكثر كفاءة للمهام التسلسلية [1].</p>
+    <p>ورغم هذا النجاح، ما تزال النماذج تواجه حدودًا حرجة عند النشر: فالتوليد الاحتمالي ينتج هلوسات، والمعرفة المعاملية تتجمد عند زمن التدريب، وتبقى مبررات القرارات معتمة. ويجيب التوليد المعزز بالاسترجاع باسترجاع مقاطع ذات صلة من فهرس خارجي عند الاستدلال وتكييف التوليد عليها، مما يرسّخ المخرجات في أدلة قابلة للتحقق.</p>
+    <p>تغطي المسوحات السابقة جزءًا فقط من الصورة: يركز Hindi وآخرون على التوليد المعزز بالاسترجاع في التقنية القانونية [1]، وLi وآخرون على التطبيقات التعليمية [2]، وGao وآخرون على تطور بنى التوليد من الساذجة إلى المتقدمة إلى النمطية [8] — لكن التنوع السريع منذ أصبح الاسترجاع المعزز بالبحث مكوّنًا معياريًا في أنظمة النماذج المنشورة قد تجاوز هذه الأطر. يرسم هذا المسح لذلك البنية المنهجية لأدبيات التوليد الحديثة عبر خمسة أسئلة بحثية حول العائلات المعمارية وتوزيعها وآلياتها ومقايضاتها وممارسات التقييم والمشكلات المفتوحة.</p>
+  </section>
+
+  <section>
+    <h2>2. معايير الاشتمال والتصنيف المقترح</h2>
+    <p>تحدد خمسة أسئلة بحثية النطاق: يسأل RQ1 عن البعد المعماري الذي تبتكر فيه أنظمة التوليد المحكمة أساسًا؛ وRQ2 عن توزيع الدراسات البالغ عددها 191 عبر العائلات والفئات الفرعية والمجالات؛ وRQ3 عن الآليات والمنافع والمقايضات المميزة لكل عائلة؛ وRQ4 عن مقاييس التقييم المُبلغة وجوانب الجودة غير المقاسة؛ وRQ5 عن المشكلة المفتوحة التي تتركها كل عائلة.</p>
+    <p>تتبع المراجعة امتداد PRISMA لمسوحات النطاق (PRISMA-ScR) [22]، وهو امتداد لبيان PRISMA 2020 [23]، مفضَّل على إرشادات Kitchenham لهندسة البرمجيات [24] لأن المدونة تمتد عبر منافذ سريرية وهندسية واجتماعية. حُدد البروتوكول قبل البحث دون تسجيل؛ ولا تنطبق بنود PRISMA الخاصة بمقاييس الأثر وتقييم مخاطر التحيز والتحليل التلوي على هذا الرسم الهيكلي. أُجريت عمليات البحث تكراريًا من يناير إلى أبريل 2026، مع بحث توحيدي أخير في 27 أبريل 2026؛ وبلغت سجلات قواعد البيانات 659 (Scopus 359 وIEEE Xplore 151 وACM Digital Library 149)، واستُكملت بتتبع الاستشهادات فقط.</p>
+    <p>حصلت كل دراسة على عائلة أولية واحدة بالضبط وفق عشر قواعد إسناد: تنضم مساهمات التقطيع والتضمين والاسترجاع الهجين والمعايرة إلى التوليد المحسَّن الاسترجاع؛ وإعادة كتابة الاستعلام والتفكيك والتصحيح الذاتي والتخطيط إلى التوليد المنسَّق؛ والذاكرة الخارجية الرسمية أو المهيكلة إلى توليد الذاكرة المهيكلة؛ والتأسيس المشترك للنص وغير النص إلى التوليد متعدد الوسائط؛ وأعمال الخصوصية والتخويل والمتانة إلى التوليد المحكوم؛ والتوليد المضمَّن في سير عمل قرار أو تحكم أوسع إلى التوليد التركيبي للمهام، مع حسم التعادل بالقاعدة التي يؤدي حذفها إلى محو هوية الورقة.</p>
+  </section>
+
+  <section>
+    <h2>3. تصنيف مجالات التطبيق</h2>
+    <p>أُسندت كل دراسة من الدراسات البالغ عددها 191 إلى مجال تطبيق واحد بالضبط. تشكل الأعمال العامة وعابرة المجالات المجموعة الأكبر (55 دراسة)، تليها التطبيقات الهندسية والتصنيعية والصناعية (41)، والتشييد والمباني والبيئات الحضرية (24)، والأمن السيبراني والخصوصية والأمن (16)، والتعليم والمكتبات والعمل الأكاديمي (15)، والطاقة والكهرباء والاتصالات والشبكات (8)، والقانون والحوكمة والقطاع العام (8)، وعلوم الأرض والبيئة والزراعة والغذاء (8)، والمالية والأعمال والتأمين (7)، والثقافة والتراث والمجتمع (4)، والتصميم والدعم الإبداعي (3).</p>
+    <p>يُظهر التحليل التقاطعي مع العائلات المنهجية تركزات مميزة: تهيمن الرعاية الصحية والطب الحيوي على التوليد المحسَّن الاسترجاع (16 من 41 دراسة)، مما يعكس المتطلبات السريرية لاسترجاع الأدلة الدقيق، بينما تتركز عائلات سير العمل المضمَّنة في البيئات الهندسية والتشغيلية حيث يجب أن يخدم الاسترجاع مهمة قرار أو تحكم لاحقة.</p>
+  </section>
+
+  <section>
+    <h2>4. إحصاءات التصنيف</h2>
+    <p>لا يهيمن اتجاه واحد على الأدبيات: تحوز التعديلات الموجهة لسير العمل والمدمجة في المهام الحصة الأكبر (التوليد التركيبي للمهام، 59 دراسة، 30.9%)، يليه التوليد المحسَّن الاسترجاع بـ41 دراسة (21.5%)، وتوليد الذاكرة المهيكلة بـ34 (17.8%)، والتوليد المنسَّق بـ27 (14.1%)، والتوليد متعدد الوسائط بـ18 (9.4%)، والتوليد المحكوم بـ12 (6.3%).</p>
+    <p>وبالقراءة المقارنة، تُقايض العائلات الجودة بالتكلفة في مراحل مختلفة: يدفع التوليد المحسَّن الاسترجاع مرة واحدة عند الفهرسة (التقطيع وتكييف التضمين) إضافة إلى تكاليف إعادة الترتيب أو الدمج لكل استعلام؛ ويدفع التوليد المنسَّق لكل استعلام في جولات التخطيط والتكرار؛ ويدفع توليد الذاكرة المهيكلة مقدمًا لبناء الرسوم والأنطولوجيات وصيانتها؛ ويدفع التوليد المحكوم في أعباء الامتثال والمتانة. ولا يتوقف أي استنتاج للمراجعة على كون التوليد التركيبي للمهام هو الأكبر — بل الخلاصة أن التوليد يُعامَل كمكوّن أنظمة نمطي لا كخطوة استرجاع-ثم-توليد واحدة.</p>
+  </section>
+
+  <section>
+    <h2>5. التوليد المعزز بالاسترجاع (RAG)</h2>
+    <p>يجمع التوليد المعزز بالاسترجاع بين استرجاع المعلومات والنماذج التوليدية: فخلافًا لأنظمة الاسترجاع التقليدية التي لا تولّد نصوصًا، أو النماذج اللغوية التي تعتمد على بيانات تدريب ثابتة وحدها، يسترجع التوليد المستندات ذات الصلة من فهرس خارجي ويكيّف التوليد عليها. ويحافظ خط الأنابيب على منطق استرجاع–تأريض–توليد عبر ثلاث مراحل — الفهرسة والاسترجاع والتوليد — بينما تُعيد الأنظمة الحديثة تصميم طبقة الاسترجاع عبر التحكم في الاستعلام والذاكرة المهيكلة والتأريض متعدد الوسائط وقيود الحوكمة وتكامل سير العمل [35،43،51،61،62].</p>
+    <p>وتعد جودة الاسترجاع أساسية، لأن الاسترجاع الرديء ينتج توليدًا رديئًا. وقد تطور الاسترجاع الحديث من الطرق المتناثرة مثل BM25 وTF-IDF إلى التضمينات الكثيفة القائمة على المحولات مثل DPR [63]، ثم إلى الاسترجاع الهجين والمعزز بالرسوم المعرفية. تلتقط المتجهات الكثيفة الدلالات بينما تحفظ الإشارات المتناثرة المطابقة الدقيقة؛ ويحدد دمجها وإعادة ترتيبها وترشيح ملاءمتها ما يراه المولّد.</p>
+  </section>
+
+  <section>
+    <h2>6. مقاييس تقييم أنظمة التوليد المعزز بالاسترجاع</h2>
+    <p>يجب أن يقيّم التقييم الكامل للتوليد المعزز بالاسترجاع على نحو مشترك وحدة الاسترجاع ووحدة التوليد وخط الأنابيب الشامل: لا فقط ما إذا كان المسترجِع يعيد أدلة ذات صلة، بل ما إذا كانت الإجابة مؤرَّضة ومتوافقة دلاليًا مع المراجع وكفؤة تشغيليًا ومفيدة لدعم القرار اللاحق [30،54،59،61،65،77–79]. وتتبع أبعاد التوليد الخاصة — دقة السياق واستدعاء السياق وملاءمة السياق والوفاء وملاءمة الإجابة وصحة الإجابة وتشابه الإجابة ومعدل الهلوسة واستهلاك الرموز وزمن التوليد وزمن الاستجابة والتكلفة — الإطار المرجعي الحر الذي قدمه RAGAS [80]، المستشهَد به هنا كخلفية [30،35،59،61،79،81–83].</p>
+    <p>توصّف ست مجموعات من المقاييس أداء النظام معًا: مقاييس مستوى المسترجِع لتحديد الأدلة وترتيبها؛ ومقاييس مستوى المولّد للتأريض وملاءمة الإجابة وسلوك الهلوسة؛ والمقاييس المرجعية المعجمية والدلالية للتداخل النصي والتوافق؛ ومقاييس المهام اللاحقة للفعالية التطبيقية؛ ومقاييس الهلوسة والمتانة والكفاءة لإخفاقات التأريض وزمن الاستجابة واستهلاك الرموز وبصمة الذاكرة والتكلفة؛ والمقاييس المتمحورة حول الإنسان للجودة المحكومة خبيريًا مع موثوقية الاتفاق بين المقيّمين. غير أن استخدام المقاييس عبر المدونة مجزأ: فنادرًا ما تجمع الدراسات بين دقة الاسترجاع ووفاء التوليد والمنفعة اللاحقة والجاهزية التشغيلية وثقة الخبراء في تصميم واحد.</p>
+  </section>
+
+  <section>
+    <h2>7. المناقشة: العائلات المنهجية الست</h2>
+    <p>يُحسّن التوليد المحسَّن الاسترجاع (41 دراسة) خطوط اللقطة الواحدة عبر التقطيع والتجزئة الواعية بالبنية، وتكييف التضمين ومواءمة الاسترجاع، والدمج المتناثر–الكثيف–الهجين، وإعادة الترتيب والتنقيح، وجهود المعايرة الكبيرة، مع تصدر الرعاية الصحية والطب الحيوي (16 من 41). ويُدخل التوليد المنسَّق (27 دراسة) سياسات استرجاع صريحة: تخطيط الاستعلام وتفكيكه وتوجيهه؛ والاسترجاع التكراري والتكيفي؛ والتحكم التأملي والتصحيحي الذاتي الذي يقرر متى يلزم الاسترجاع وينقّح الأدلة المتعارضة [36،40،132–134]؛ والتنسيق الوكيلي أو متعدد الوكلاء [37،78].</p>
+    <p>يُعيد توليد الذاكرة المهيكلة (34 دراسة) تصميم الركيزة الخارجية: أنظمة GraphRAG والرسوم المعرفية التي تحفظ الطوبولوجيا الصريحة لدلالات المؤسسات والاستدلال متعدد القفزات [41،45،61،141–160]؛ والاسترجاع المؤسَّس على الأنطولوجيات والقواعد، بما فيه مساعدة الصيانة القائمة على OWL والجمع الموسع بين قواعد المجال واسترجاع الرسم لدى Xiong وآخرين [42،139،161،162]؛ وبنى المتجه–الرسم والفهارس المزدوجة التي تحفظ مسارات وصول مكمِّلة، مثل بيانات المباني Brick-schema [43] وفهارس التصنيع الهجينة [73] واسترجاع المباني بالرسوم الخصائصية مع هلوسات مخفَّضة [74]؛ وتجميع الأدلة الهجينة المهيكلة متعددة القفزات [44،140].</p>
+    <p>يوائم التوليد متعدد الوسائط (18 دراسة) النص مع الصور أو الفيديو أو التخطيط أو الأدلة المكانية حيث تتوزع الملاءمة عبر الوسائط [47،49،50،91،165–170]. ويفرض التوليد المحكوم (12 دراسة) الخصوصية والأمن والتخويل والامتثال في الاسترجاع، دارسًا مقاومة التسميم والنسيان والمتانة [51،52،53،79،176]. ويضمّن التوليد التركيبي للمهام (59 دراسة) الاسترجاع في خطوط أوسع يكون ناتجها قرارًا مهيكلًا أو نتيجة قابلة للتنفيذ أو توصية أو تسلسل تحكم — من التنقيح وإصلاح Verilog عبر المواصفات [192،193] إلى فرز الثغرات المؤسَّس على الإصلاحات السابقة [158] — حيث تكمن القيمة في جعل كل إجابة قابلة للتتبع إلى مصادرها.</p>
+  </section>
+
+  <section>
+    <h2>8. القضايا المفتوحة والاتجاهات المستقبلية</h2>
+    <p>لا ينبغي معاملة الاسترجاع دائمًا كخطوة ثابتة واحدة: فإعادة كتابة الاستعلام والتوجيه والاسترجاع التكراري والتصحيح الذاتي والتحكم الوكيلي تحسّن البيئات الصعبة لكنها ترفع تعقيد النظام وتكلفته [33،35،40،78]. ويتمثل اتجاه رئيسي في سياسات تنسيق كفؤة ومحكومة تقرر متى يلزم الاسترجاع وكم جولة مبررة وكيف تُحل الأدلة المتعارضة. ويُبلغ التركيب عن استراتيجيات معمارية فقط — دون تحليل تلوي أو تقييم مخاطر التحيز — لذا لا يمكنه إثبات تفوق التوليد منهجيًا على خطوط الأساس المعاملية المضبوطة، وهي فجوة جوهرية بذاتها.</p>
+    <p>وقد يُدهور الاسترجاع المخرجات أيضًا عبر أدلة غير ذات صلة أو قديمة أو متناقضة، بينما قد تُحقن مستندات مسمومة في قاعدة المعرفة وتُكشف معلومات حساسة في السياق المسترجع [51،53،176]. وتقيّد استراتيجية البحث العمومية: فلم تُصنَّف سوى مقالات الدوريات والمجلات، واستُخدمت أوراق المؤتمرات كخلفية، ويجعل حد 27 أبريل 2026 من هذا لقطةً لأدبيات سريعة الحركة. وتبقى الذاكرة المهيكلة مكلفة البناء والصيانة والتحديث [42،43،45]؛ وتبقى المواءمة متعددة الوسائط عبر النص والصورة والفيديو والتخطيط صعبة [47،50،62]؛ ويجب أن يفي الاسترجاع المحكوم بالخصوصية والأمن والامتثال والمتانة معًا [51،52،79]؛ ويبقى التقييم مجزأً، محتاجًا تصاميم معايرة تقيّم جودة الاسترجاع والتأريض والمنفعة وزمن الاستجابة وثقة الإنسان معًا [30،59].</p>
+  </section>
+
+  <section>
+    <h2>9. الخاتمة</h2>
+    <p>أصبح التوليد المعزز بالاسترجاع وسيلة معتمدة على نطاق واسع لتأريض مخرجات النماذج اللغوية الكبيرة في المعرفة الخارجية، واستخدامه عبر المجالات اتجاه سريع التوسع. وتُظهر المدونة أن التوليد يُعامَل كمكوّن أنظمة نمطي — محسَّن ومنسَّق ومهيكل ومتعدد الوسائط ومحكوم ومدمج في المهام — لا كتحسين واحد للإجابة عن الأسئلة.</p>
+    <p>وتُظهر هذه المراجعة كذلك أن تقييم التوليد يجب أن يجمع مقاييس مستوى المسترجِع ومستوى المولّد والمرجعية ومهام ما بعد الاسترجاع والتشغيلية أو المتمحورة حول الإنسان بدل الاعتماد على مقياس واحد. ورغم بقاء تحديات رئيسية — موثوقية الاسترجاع وتجزؤ التقييم والمواءمة متعددة الوسائط والنشر الواعي بالحوكمة — يبقى التوليد اتجاهًا نشطًا سريع التطور لتأريض الذكاء الاصطناعي التوليدي في المعرفة الخارجية، وتحدد المشكلات المفتوحة هنا أين يجب إثبات موثوقيته تاليًا.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Large language models (LLMs) have driven major breakthroughs in natural language processing (NLP), yet they remain limited by hallucinated text, reliance on static internal knowledge, and limited interpretability. Retrieval-augmented generation (RAG) has emerged as a hybrid architecture coupling the generative capabilities of LLMs with external knowledge retrieval, improving accuracy and relevance where extensive, detailed, and up-to-date knowledge is needed.</p>
+    <p>Searching Scopus, IEEE Xplore, and the ACM Digital Library — with Google Scholar used only for backward and forward citation checking — this methodological survey covers 191 peer-reviewed journal articles published between January 2024 and April 2026. It summarizes the main RAG architectural approaches, deployment strategies, and evaluation metrics, and examines open issues and future directions for the field.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Generative artificial intelligence (GenAI) has made multimodal human-like output — text, images, and audio — prominent in NLP, with transformer-based LLMs trained on extensive corpora enabling general-purpose use across healthcare, finance, research, law, and education [1,2]. Compared with recurrent and convolutional networks, LLMs achieve stronger performance and parallel processing with more efficient sequence-to-sequence training [1].</p>
+    <p>Despite this success, LLMs still face critical limits in deployment: probabilistic generation produces hallucinations, parametric knowledge freezes at training time, and decision rationales remain opaque. RAG answers by retrieving relevant passages from an external index at inference time and conditioning generation on them, grounding outputs in verifiable evidence.</p>
+    <p>Prior surveys each cover only part of the picture: Hindi et al. focus on legal-technology RAG [1], Li et al. on educational applications [2], and Gao et al. on the naive–advanced–modular evolution of RAG architectures [8] — but rapid diversification since search augmentation became standard in deployed LLM systems has outgrown these framings. This review therefore maps the methodological structure of the recent RAG literature through five research questions on architectural families, their distribution, mechanisms and trade-offs, evaluation practice, and open problems.</p>
+  </section>
+
+  <section>
+    <h2>2. Inclusion Criteria and Proposed Taxonomy</h2>
+    <p>Five research questions define the scope: RQ1 asks along which architectural dimension peer-reviewed RAG systems principally innovate; RQ2 how the 191 studies distribute across families, subcategories, and domains; RQ3 which mechanisms, benefits, and trade-offs characterize each family; RQ4 which evaluation metrics are reported and which quality aspects stay unmeasured; and RQ5 which open problem each family leaves behind.</p>
+    <p>The review follows the PRISMA extension for scoping reviews (PRISMA-ScR) [22], an extension of the PRISMA 2020 statement [23], preferred over Kitchenham's software-engineering guidelines [24] because the corpus spans clinical, engineering, and social-science venues. The protocol was defined before searching but not registered; PRISMA items on effect measures, risk-of-bias assessment, and meta-analysis do not apply to this structural mapping. Searches ran iteratively from January to April 2026, with the final consolidating search on 27 April 2026; database records totaled 659 (Scopus 359, IEEE Xplore 151, ACM Digital Library 149), supplemented only by citation snowballing.</p>
+    <p>Each study received exactly one primary family under ten assignment rules: contributions on chunking, embeddings, hybrid retrieval, or benchmarking join Retrieval-Optimized RAG; query rewriting, decomposition, self-correction, or planning join Orchestrated RAG; graph or otherwise structured external memory joins Structured-Memory RAG; joint text plus non-text grounding joins Multimodal-Grounded RAG; privacy, authorization, or robustness-centric work joins Governed RAG; and RAG embedded in a broader decision or control workflow joins Task-Compositional RAG, with ties broken by the rule whose removal would erase the paper's identity.</p>
+  </section>
+
+  <section>
+    <h2>3. Application-Domain Categorization</h2>
+    <p>The 191 studies were each assigned to exactly one application domain. General-purpose and cross-domain work forms the largest group (55 studies), followed by engineering, manufacturing, and industrial applications (41), construction, buildings, and urban settings (24), cybersecurity, privacy, and security (16), education, libraries, and scholarly work (15), energy, power, telecom, and networks (8), law, governance, and the public sector (8), geoscience, environment, agriculture, and food (8), finance, business, and insurance (7), culture, heritage, and society (4), and design and creative support (3).</p>
+    <p>Cross-tabulation with the methodological families shows distinctive concentrations: healthcare and biomedicine dominate Retrieval-Optimized RAG (16 of 41 studies), reflecting clinical demands for precise evidence retrieval, while workflow-embedded families concentrate in engineering and operational settings where retrieval must serve a downstream decision or control task.</p>
+  </section>
+
+  <section>
+    <h2>4. Taxonomy Statistics</h2>
+    <p>The literature is not dominated by a single direction: workflow-oriented and task-integrated modifications hold the largest share (Task-Compositional RAG, 59 studies, 30.9%), with Retrieval-Optimized RAG at 41 studies (21.5%), Structured-Memory RAG at 34 (17.8%), Orchestrated RAG at 27 (14.1%), Multimodal-Grounded RAG at 18 (9.4%), and Governed RAG at 12 (6.3%).</p>
+    <p>Read comparatively, the families trade quality for cost at different stages: Retrieval-Optimized RAG pays once at indexing (segmentation, embedding adaptation) plus per-query reranking or fusion costs; Orchestrated RAG pays per query in planning and iteration rounds; Structured-Memory RAG pays upfront to build and maintain graphs and ontologies; and Governed RAG pays in compliance and robustness overhead. No conclusion of the review depends on Task-Compositional RAG being the largest family — the finding is that RAG is treated as a modular systems component rather than a single retrieve-then-generate step.</p>
+  </section>
+
+  <section>
+    <h2>5. Retrieval-Augmented Generation (RAG)</h2>
+    <p>RAG combines information retrieval with generative models: unlike traditional retrieval systems that cannot generate text, or LLMs that rely solely on static training data, RAG retrieves relevant documents from an external index and conditions generation on them. The pipeline preserves a retrieve–ground–generate logic across three stages — indexing, retrieval, and generation — while recent systems redesign the retrieval layer through query control, structured memory, multimodal grounding, governance constraints, and workflow integration [35,43,51,61,62].</p>
+    <p>Retrieval quality is foundational, since poor retrieval produces poor generation. Modern retrieval evolved from sparse methods such as BM25 and TF-IDF to dense transformer-based embeddings such as DPR [63], and onward to hybrid and knowledge-graph-enhanced retrieval. Dense vectors capture semantics while sparse signals preserve exact matching; their fusion, reranking, and relevance filtering determine what the generator sees.</p>
+  </section>
+
+  <section>
+    <h2>6. Evaluation Metrics for RAG Systems</h2>
+    <p>A complete RAG evaluation must jointly assess the retrieval module, the generation module, and the end-to-end pipeline: not only whether the retriever returns relevant evidence, but whether the answer is grounded, semantically aligned with references, operationally efficient, and useful for downstream decision support [30,54,59,61,65,77–79]. The RAG-specific dimensions — context precision, context recall, context relevance, faithfulness, answer relevance, answer correctness, answer similarity, hallucination rate, token consumption, generation time, latency, and cost — follow the reference-free framework introduced by RAGAS [80], cited here as background [30,35,59,61,79,81–83].</p>
+    <p>Six metric groups together characterize system performance: retriever-level metrics for evidence identification and ranking; generator-level metrics for grounding, answer relevance, and hallucination behavior; reference-based lexical and semantic metrics for textual overlap and agreement; downstream-task metrics for application effectiveness; hallucination, robustness, and efficiency metrics for grounding failures, latency, token use, memory footprint, and cost; and human-centered metrics for expert-judged quality with inter-rater reliability. Yet metric usage across the corpus is fragmented: studies rarely combine retrieval fidelity, generation faithfulness, downstream utility, operational readiness, and expert trust in one design.</p>
+  </section>
+
+  <section>
+    <h2>7. Discussion: The Six Methodological Families</h2>
+    <p>Retrieval-Optimized RAG (41 studies) improves one-shot pipelines through chunking and structure-aware segmentation, embedding adaptation and retrieval alignment, sparse–dense–hybrid fusion, reranking and refinement, and large benchmarking efforts, with healthcare and biomedicine the leading domain (16 of 41). Orchestrated RAG (27 studies) introduces explicit retrieval policies: query planning, decomposition, and routing; iterative and adaptive retrieval; self-reflective and self-corrective control that decides when retrieval is needed and revises conflicting evidence [36,40,132–134]; and agentic or multiagent orchestration [37,78].</p>
+    <p>Structured-Memory RAG (34 studies) redesigns the external substrate: GraphRAG and knowledge-graph systems that preserve explicit topology for enterprise semantics and multihop reasoning [41,45,61,141–160]; ontology- and rule-grounded retrieval, including OWL-based maintenance assistance and the extensive domain-rule combination of Xiong et al. [42,139,161,162]; vector-graph and dual-index architectures keeping complementary access paths, such as Brick-schema building data [43], hybrid manufacturing indexes [73], and property-graph building retrieval with reduced hallucinations [74]; and structured-hybrid multihop evidence assembly [44,140].</p>
+    <p>Multimodal-Grounded RAG (18 studies) aligns text with images, video, layout, or spatial evidence where relevance spreads across modalities [47,49,50,91,165–170]. Governed RAG (12 studies) enforces privacy, security, authorization, and compliance in retrieval, studying poisoning resistance, unlearning, and robustness [51,52,53,79,176]. Task-Compositional RAG (59 studies) embeds retrieval in broader pipelines whose output is a structured decision, executable result, recommendation, or control sequence — from debugging and Verilog repair over specifications [192,193] to vulnerability triage grounded in prior fixes [158] — where the value lies in making every answer traceable to its sources.</p>
+  </section>
+
+  <section>
+    <h2>8. Open Issues and Future Directions</h2>
+    <p>Retrieval should not always be treated as a single static step: query rewriting, routing, iterative retrieval, self-correction, and agentic control improve difficult settings but raise system complexity and cost [33,35,40,78]. A key direction is efficient, well-controlled orchestration policies deciding when retrieval is needed, how many rounds are justified, and how conflicting evidence is resolved. The synthesis reports architectural strategies only — without meta-analysis or risk-of-bias assessment — so it cannot establish that RAG systematically beats tuned parametric baselines, itself a substantive gap.</p>
+    <p>Retrieval can also degrade output through irrelevant, outdated, or contradictory evidence, while poisoned documents may be injected into the knowledge base and sensitive information exposed in retrieved context [51,53,176]. The search strategy constrains generality: only journal and magazine articles were classified, conference papers served as background, and the 27 April 2026 cutoff makes this a snapshot of a fast-moving literature. Structured memory remains expensive to build, maintain, and update [42,43,45]; multimodal alignment across text, image, video, and layout stays hard [47,50,62]; governed retrieval must satisfy privacy, security, compliance, and robustness jointly [51,52,79]; and evaluation stays fragmented, needing benchmark designs that assess retrieval quality, grounding, utility, latency, and human trust together [30,59].</p>
+  </section>
+
+  <section>
+    <h2>9. Conclusions</h2>
+    <p>RAG has become a widely adopted means of grounding LLM outputs in external knowledge, and its use across domains is a rapidly expanding trend. The corpus shows RAG treated as a modular systems component — optimized, orchestrated, structured, multimodal, governed, and task-integrated — rather than a single enhancement for question answering.</p>
+    <p>This review further demonstrates that RAG evaluation must combine retriever-level, generator-level, reference-based, downstream-task, and operational or human-centered metrics rather than depending on any single measure. Although key challenges remain — retrieval reliability, evaluation fragmentation, multimodal alignment, and governance-aware deployment — RAG remains an active and rapidly developing direction for grounding generative AI in external knowledge, and the open problems identified here define where its reliability must next be established.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ul dir="ltr">
+      <li>[1] Hindi, M.; et al. Enhancing the Precision and Interpretability of Retrieval-Augmented Generation (RAG) in Legal Technology: A Survey. IEEE Access 2025, 13, 46171–46189.</li>
+      <li>[2] Li, Z.; et al. Retrieval-augmented generation for educational application: A systematic survey. Comput. Educ. Artif. Intell. 2025.</li>
+      <li>[8] Gao, Y.; et al. Retrieval-Augmented Generation for Large Language Models: A Survey. arXiv 2023, arXiv:2312.10997.</li>
+      <li>[22] Tricco, A.C.; et al. PRISMA Extension for Scoping Reviews (PRISMA-ScR): Checklist and Explanation. Ann. Intern. Med. 2018, 169, 467–473.</li>
+      <li>[23] Page, M.J.; et al. The PRISMA 2020 statement: An updated guideline for reporting systematic reviews. BMJ 2021, 372, n71.</li>
+      <li>[24] Kitchenham, B.; et al. Systematic literature reviews in software engineering — A systematic literature review. Inf. Softw. Technol. 2009, 51, 7–15.</li>
+      <li>[35] Xiong, Y.; et al. Frameworks for knowledge-conflict resolution in RAG. Neurocomputing 2025.</li>
+      <li>[40] Xiong, Y.; Chen, Y.; Zhang, H. ICR: A Framework for Resolving Knowledge Conflicts in Retrieval-Augmented Generation. Neurocomputing 2025, 664, 132139.</li>
+      <li>[42] Xiong, X.; et al. DR-RAG: Domain-Rule-based Retrieval-Augmented Generation for aviation digital model design. Adv. Eng. Inform. 2025, 68, 103688.</li>
+      <li>[43] Li, M.; Wang, Z. BuildingGPT: Query building semantic data using LLMs and vector-graph RAG. Build. Environ. 2025, 287, 113855.</li>
+      <li>[47] Wen, C.; et al. Remote Sensing Retrieval-Augmented Generation: bridging remote sensing imagery and knowledge with a multimodal dataset. 2025.</li>
+      <li>[51] Chang, Y.; et al. SafeRAG: Secure Cloud-Based RAG for LLM-Empowered Voice Assistants. IEEE Trans. Netw. Sci. Eng. 2026, 13, 6211–6224.</li>
+      <li>[59] Pires, D.; et al. Retrieval-Augmented Generation Assistant for Anatomical Pathology Laboratories. Emerg. Sci. J. 2025, 9, 3116–3128.</li>
+      <li>[63] Karpukhin, V.; et al. Dense Passage Retrieval for Open-Domain Question Answering. In Proc. EMNLP 2020.</li>
+      <li>[80] Es, S.; James, J.; Espinosa Anke, L.; Schockaert, S. RAGAs: Automated Evaluation of Retrieval Augmented Generation. In Proc. EACL 2024.</li>
+      <li>[full reference list available in the original paper]</li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/technologies14110715">10.3390/technologies14110715</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

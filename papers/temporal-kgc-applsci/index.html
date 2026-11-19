@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسح موجز حول إكمال الرسوم المعرفية الزمنية القائم على التعلم العميق — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Brief Survey on Deep Learning-Based Temporal Knowledge Graph Completion</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مسح موجز حول إكمال الرسوم المعرفية الزمنية القائم على التعلم العميق</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ningning Jia, Cuiyou Yao</span>
+    <span>📄 Appl. Sci. 2024, 14(19), 8871</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app14198871">10.3390/app14198871</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>يستدل إكمال الرسوم المعرفية الزمنية (TKGC) على الحقائق المفقودة من الموجودة في رسم معرفي زمني، حيث حققت الطرق القائمة على التعلم العميق أداءً هو الأحدث. ولرسم خريطة الوضع البحثي الراهن وتعزيز التطوير، يلخص هذا المسح طرق TKGC القائمة على التعلم العميق لأول مرة.</p>
+    <p>ويفصّل الخلفية — تعريف المهمة ومجموعات البيانات المعيارية وبروتوكول التقييم — ثم يقسّم الطرق إلى ثماني فئات حسب التقنية الجوهرية، ويقارن أداءها، ويحدد الاتجاهات المستقبلية.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تمثل الرسوم المعرفية معلومات العالم الحقيقي كحقائق مهيكلة في صورة ثلاثية (كيان الفاعل، العلاقة، كيان المفعول)، مثل (باراك أوباما، رئيس_لـ، الولايات المتحدة). ويخدم محتواها الغني الإجابة عن الأسئلة [1] والتوصية [2] وأنظمة الحوار [3] وغيرها. لكن حتى الرسوم ذات مليارات الحقائق مثل Freebase [4] تبقى بعيدة عن الاكتمال — إذ يفتقد أكثر من 75% من كيانات الأشخاص جنسية معروفة [4،5] — مما يعوق هذه التطبيقات. يعالج إكمال الرسوم المعرفية (KGC) ذلك باستدلال ثلاثيات جديدة من الموجودة، لكنه يفترض رسومًا ثابتة لا تتغير حقائقها.</p>
+    <p>وفي الواقع، الحقائق مؤرخة: فالرئاسات تبدأ وتنتهي والانتماءات تتغير. ويؤدي إرفاق الأزمنة الصالحة بالحقائق إلى الرسوم المعرفية الزمنية (TKGs)، ويتطلب إكمالها نماذج تستدل على نحو مشترك على البنية والزمن. وقد برزت طرق TKGC متنوعة، وتتصدر القائمة القائمة على التعلم العميق. جُمعت الأوراق المرشحة بالبحث في Google Scholar عن إكمال الرسوم المعرفية الزمنية (مع التوقف بعد أول 100 نتيجة لانحراف المواضيع)، مقتصرة على أعمال ما بعد 1 يناير 2018 لتتبع أحدث الاتجاهات. ويقسّم هذا المسح الطرق إلى ثماني فئات حسب خوارزمية التعلم العميق الجوهرية، مبرزًا التفاصيل التقنية والمنطق الكامن.</p>
+  </section>
+
+  <section>
+    <h2>2. الخلفية: المهمة ومجموعات البيانات والتقييم</h2>
+    <p>الرسم المعرفي الزمني رسم موجه متعدد العلاقات بحواف مؤرخة موسومة، يُعبَّر عنه بأنه G = (F | E, R, T) بمجموعات الكيانات والعلاقات والأزمنة والحقائق F ⊂ E × R × E × T؛ وكل حقيقة رباعية (s, r, o, t). ويحدد الطابع الزمني متى تكون الحقيقة صالحة. وتنقسم الحقائق إلى حقائق متقطعة صالحة عند نقطة زمنية (s, r, o, tp) وحقائق متصلة صالحة عبر فترة [13]. وتتبع ذلك ثلاث مهام فرعية: التنبؤ بالكيان والتنبؤ بالعلاقة والتنبؤ بالزمن.</p>
+    <p>وثماني مجموعات بيانات معيارية هي المعتمدة، بين رسوم نقطية الزمن (ICEWS14 بـ6,869 كيانًا و72,826 حقيقة تدريب؛ وICEWS05-15 بـ10,094 كيانًا و368,962 حقيقة تدريب؛ وICEWS18؛ وGDELT بـ2.7 مليون حقيقة تدريب على 500 كيان فقط) ورسوم فترية الزمن (YAGO11k وYAGO15k وWikidata12k وWIKI) [6،7،16]. وتُشتق مجموعات ICEWS الفرعية من أخبار مرقمنة ووسائط اجتماعية ومصادر أخرى جمعتها أنظمة الإنذار المبكر المتكامل بالأزمات.</p>
+    <p>يبني التقييم رباعيات مفسدة لكل مهمة فرعية — باستبدال كيانات الفاعل أو المفعول (Cs وCo) أو العلاقات (Cr) أو الأزمنة (Ct) — ويرتّب الرباعية الصحيحة بدالة التسجيل، ويُبلغ متوسط الرتبة وMRR وHits@N [17–49]. والأهم أن ثلاثة إعدادات تتعايش: الإعداد الخام، والإعداد المرشَّح الثابت الموروث من الإكمال الثابت [17]، ومتغير مرشَّح زمنيًا [58]؛ وتسجّل الطريقة نفسها درجات مختلفة تحت كل منها، لذا يجب ذكر الإعدادات عند المقارنة.</p>
+  </section>
+
+  <section>
+    <h2>3. طرق إكمال الرسوم الزمنية بالتعلم العميق (1)</h2>
+    <p>تستغل الطرق القائمة على LSTM التكرار عبر الزمن: يدمج García-Durán وNiepert الأزمنة في العلاقات، (s, r, o, t) ← (s, r+t, o)، ويرمّزان العلاقات المدمجة بشبكة LSTM، ويمددان TransE الثابت [17] وDISTMULT [19] إلى TA-TransE وTA-DISTMULT [27،28]. وتلفّ الطرق القائمة على CNN البنية المحلية: يقترح Liu وآخرون CATKGC الواعي بالسياق بوحدتي اختيار سياق وتفاعل زمني منفصلتين، مرمّزين السياق بشبكة التفافية ومتعلمين الاتساق الزمني عبر طبقة متصلة كليًا [29،30].</p>
+    <p>ترمّز الطرق القائمة على CapsNet علاقات الجزء–الكل عبر كبسولات وتوجيه ديناميكي بدالة ضغط تحد أطوال المخرجات [21]؛ ويبني BiQCap تضمينًا كبسوليًا ثنائي الكواترنيون للإكمال الزمني [34]. وترجّح طرق الانتباه التاريخ ذا الصلة: يعيد Bai وآخرون هيكلة الرسم الزمني إلى سلاسل متعددة علاقية بآلية انتباه موجهة للعلاقة، ويحصلون على سمات الكيانات عبر DE-SimplE [58]، ويسجّلون الحقائق بدالة SimplE الثابتة [22،35]؛ وتمتد متغيرات الانتباه الذاتي [59] وخلفاؤها [36،55–57] على هذا الخط.</p>
+  </section>
+
+  <section>
+    <h2>4. طرق إكمال الرسوم الزمنية بالتعلم العميق (2)</h2>
+    <p>تجمّع الطرق القائمة على GNN الجوارات بتمرير الرسائل على العقد والحواف [60–63]: يرى TGAP الأزمنة خصائص للعلاقات بين الكيانات في مشفر–مفكك يجمع الرباعيات ذات الصلة بالاستعلام بشبكة زمنية [37]، بينما تنمذج الخلفاء الهرمية وفائقة الرسوم البنى عالية الرتبة [38،39]. وتطبق الطرق القائمة على GCN تجميعًا شبه التفافي مع تحديثات لاخطية [64،65]: يقطّع TeMP الرسم الزمني إلى لقطات ثابتة ويبني تضمينات كيانات معتمدة على الزمن على بُعدين بنيوي وزمني، مستخرجًا السمات المحلية لكل لقطة بتمرير الرسائل [40–44].</p>
+    <p>وتفرض الطرق القائمة على GAN — وهنا شبكات الانتباه الرسمية — أوزانًا متعلمة αvu على الجيران أثناء التجميع [66]: يفصل IAGAT السمات الذاتية عن الزمنية للكيانات، متعلمًا التضمينات الذاتية بالانتباه ومحصّلًا تضمينات متطورة زمنيًا بالدوران في الفضاء العقدي [45–47]. وتصوغ طرق نماذج اللغة الإكمال كتنبؤ مقنّع: يبني SToKE شجرة تطور حدثية لكل استعلام، ويتعلم التبعيات الزمنية والبنيوية بمصفوفات مخصصة، ويضبط BERT [70] على الكيان المفقود [48]؛ ويعيد Luo وآخرون صياغة الإكمال كضبط النماذج اللغوية الكبيرة مع التوليد على سلسلة تاريخية، مع تكييف Llama-2-7b-CoH وVicuna-7b-CoH عبر التكييف منخفض الرتبة [49،69–71].</p>
+  </section>
+
+  <section>
+    <h2>5. مقارنة الأداء</h2>
+    <p>تُقارَن النتائج المُبلغة على ICEWS05-15، المجموعة العامة الأغنى معلوماتيًا زمنيًا، مع إظهار إعدادات التقييم صراحة لأن الأرقام الخام والمرشحة ثابتًا والمرشحة زمنيًا تختلف [58]. تتصدر عائلتا الانتباه والشبكات الرسمية: يبلغ SANe 67.4 وخلفه SANe+ 60.5 [31،32]؛ ويسجل HyGNet فائق الرسم 66.7 وSTRGNN القائم على التجوال 56.8 [38،39]؛ ومن طرق GCN يسجل MtGCN 56.6 وTAL-TKGC 55.3 وTHOR 22.6 [41،43،44].</p>
+    <p>وتتخلف مداخل GAN ونماذج اللغة عن المتصدرين لكنها تُظهر اتجاه الموجة: DEGAT عند 50.3 [46] وT-GAE عند 72.4 [47] وLlama-2-7b-CoH عند 60.5 مقابل Vicuna-7b-CoH عند 38.6 فقط [49،74،75]. ويؤكد التباين أن البنية وإعداد التقييم يحددان معًا الرتبة المُبلغة — فالمقارنات عبر الإعدادات دون ضبط مضللة.</p>
+  </section>
+
+  <section>
+    <h2>6. الخاتمة والاتجاهات المستقبلية</h2>
+    <p>حقق إكمال الرسوم الزمنية القائم على التعلم العميق أداءً هو الأحدث، وتقسيمه إلى ثماني عائلات تقنية يوضح كيف تُمثَّل المعلومات الزمنية وتُستغَل — مستقلة أو مدمجة بالكيانات أو بالعلاقات.</p>
+    <p>وتبقى اتجاهات مهمة. يستحق الإكمال الزمني قليل الأمثلة الاهتمام لأن علاقات الرسوم الزمنية تتبع توزيعًا طويل الذيل بعلاقات كثيرة لا تحمل سوى حفنة رباعيات؛ ومتغيرات المثال الواحد والصفر أمثلة حالات خاصة، وتوجد مناهج مبكرة [72،73]، ويمكن لأفكار الإكمال الثابت قليل الأمثلة [74] — ولا سيما الطرق القائمة على النماذج اللغوية والقواعد — أن تمد بقدرة تمثيلية مع قابلية تفسير. وتتجاوز ذلك أصناف الإكمال الأوسع — الثابت والزمني وما بعدهما — التي ما يزال تلاقحها في بدايته.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Temporal knowledge graph completion (TKGC) infers missing facts from existing ones in a temporal knowledge graph, where deep learning-based methods have achieved state-of-the-art performance. To map the current research status and promote further development, this survey summarizes deep learning-based TKGC methods for the first time.</p>
+    <p>It details the background — task definition, benchmark datasets, and evaluation protocol — then divides the methods into eight categories by core technique, compares their performance, and outlines future directions.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Knowledge graphs represent real-world information as structured facts in triple form (subject entity, relation, object entity), e.g., (Barack Obama, PresidentOf, USA). Their rich content serves question answering [1], recommendation [2], dialogue systems [3], and more. Yet even billion-fact graphs such as Freebase [4] remain far from complete — over 75% of person entities lack a known nationality [4,5] — which hampers these applications. Knowledge graph completion (KGC) addresses this by inferring new triples from existing ones, but it assumes static graphs whose facts never change.</p>
+    <p>In reality, facts are timestamped: presidencies begin and end, affiliations change. Attaching valid times to facts yields temporal knowledge graphs (TKGs), and completing them requires models that jointly reason over structure and time. Various TKGC methods have emerged, with deep learning-based ones leading performance. Candidate papers were found by searching Google Scholar for temporal knowledge graph completion (stopping past the first 100 results as topics drifted), restricted to works published after 1 January 2018 to track the latest trends. This survey uses the core deep learning algorithm to subdivide the methods into eight categories, highlighting technical details and underlying logic.</p>
+  </section>
+
+  <section>
+    <h2>2. Background: Task, Datasets, and Evaluation</h2>
+    <p>A temporal knowledge graph is a multi-relational directed graph with labeled timestamped edges, expressed as G = (F | E, R, T) with entity, relation, and timestamp sets and facts F ⊂ E × R × E × T; each fact is a quadruple (s, r, o, t). The timestamp marks when the fact is valid. Facts split into discrete facts valid at a time point, (s, r, o, tp), and continuous facts valid over a time period [13]. Three subtasks follow: entity prediction, relation prediction, and time prediction.</p>
+    <p>Eight benchmark datasets are standard, spanning point-time graphs (ICEWS14 with 6,869 entities and 72,826 training facts; ICEWS05-15 with 10,094 entities and 368,962 training facts; ICEWS18; GDELT with 2.7M training facts over only 500 entities) and interval-time graphs (YAGO11k, YAGO15k, Wikidata12k, WIKI) [6,7,16]. ICEWS subsets derive from digitized news, social media, and other sources compiled by Integrated Crisis Early Warning Systems.</p>
+    <p>Evaluation builds corrupted quadruples per subtask — replacing subject or object entities (Cs, Co), relations (Cr), or timestamps (Ct) — ranks the true quadruple by the scoring function, and reports Mean Rank, MRR, and Hits@N [17–49]. Crucially, three settings coexist: the raw setting, the static filtered setting inherited from static KGC [17], and a time-wise filtered variant [58]; the same method scores differently under each, so settings must be stated when comparing.</p>
+  </section>
+
+  <section>
+    <h2>3. Deep Learning-Based TKGC Methods (I)</h2>
+    <p>LSTM-based methods exploit recurrence over time: Garcia-Durán and Niepert merge timestamps into relations, (s, r, o, t) → (s, r+t, o), encode the merged relations with an LSTM, and extend the static TransE [17] and DISTMULT [19] into TA-TransE and TA-DISTMULT [27,28]. CNN-based methods convolve local structure: Liu et al. propose context-aware CATKGC with separate context-selection and temporal-interaction modules, encoding context with a CNN and learning temporal consistency through a fully connected layer [29,30].</p>
+    <p>CapsNet-based methods encode part–whole relations through capsules and dynamic routing with a squash function bounding output lengths [21]; BiQCap builds a biquaternion capsule embedding for TKGC [34]. Attention-based methods weight relevant history: Bai et al. restructure the TKG into relational multi-chains with a relation-oriented attention mechanism, obtain entity features via DE-SimplE [58], and score facts with the static SimplE function [22,35]; self-attention variants [59] and diurnal successors [36,55–57] extend this line.</p>
+  </section>
+
+  <section>
+    <h2>4. Deep Learning-Based TKGC Methods (II)</h2>
+    <p>GNN-based methods aggregate neighborhoods by message passing over nodes and edges [60–63]: TGAP views timestamps as properties of relations between entities in an encoder–decoder that gathers query-related quadruples with a temporal GNN [37], while hierarchical and hypergraph successors model higher-order structure [38,39]. GCN-based methods apply convolution-like aggregation with nonlinear updates [64,65]: TeMP discretizes the TKG into static snapshots and builds time-dependent entity embeddings along structural and temporal dimensions, extracting local features per snapshot through message passing [40–44].</p>
+    <p>GAN-based methods — here graph attention networks — impose learned weights αvu on neighbors during aggregation [66]: IAGAT separates inherent from temporal entity attributes, learning inherent embeddings with attention and obtaining temporal-evolving embeddings through rotation in complex space [45–47]. Language-model methods formulate TKGC as masked prediction: SToKE builds an event evolution tree per query, learns temporal and structural dependencies with dedicated matrices, and fine-tunes BERT [70] on the missing entity [48]; Luo et al. recast completion as LLM fine-tuning plus generation along a historical chain, with Llama-2-7b-CoH and Vicuna-7b-CoH adapted via Low-Rank Adaptation [49,69–71].</p>
+  </section>
+
+  <section>
+    <h2>5. Performance Comparison</h2>
+    <p> Reported results are compared on ICEWS05-15, the public set with the richest temporal information, keeping evaluation settings explicit since raw, static-filtered, and time-wise-filtered numbers differ [58]. Attention and GNN families lead: SANe reaches 67.4 and its successor SANe+ 60.5 [31,32]; the hypergraph HyGNet scores 66.7 and the walk-based STRGNN 56.8 [38,39]; among GCN methods MtGCN records 56.6, TAL-TKGC 55.3, and THOR 22.6 [41,43,44].</p>
+    <p>GAN and language-model entries trail the leaders but show the trend's direction: DEGAT at 50.3 [46], T-GAE at 72.4 [47], Llama-2-7b-CoH at 60.5 but Vicuna-7b-CoH at only 38.6 [49,74,75]. The spread confirms that architecture and evaluation setting jointly determine reported rank — cross-setting comparisons without adjustment mislead.</p>
+  </section>
+
+  <section>
+    <h2>6. Conclusions and Future Directions</h2>
+    <p>Deep learning-based TKGC has achieved state-of-the-art performance, and subdividing it into eight technical families clarifies how temporal information is represented and exploited — independently, fused with entities, or fused with relations.</p>
+    <p>Important directions remain. Few-shot TKGC deserves attention because TKG relations obey a long-tail distribution with many relations holding only a handful of quadruples; one-shot and zero-shot variants are special cases, early approaches exist [72,73], and static few-shot ideas [74] — especially LLM- and rule-based methods — can supply representational power with interpretability. Beyond that lie broader KGC varieties — static, temporal, and beyond — whose cross-fertilization is only beginning.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ul dir="ltr">
+      <li>[4] Bollacker, K.; et al. Freebase: A collaboratively created graph database for structuring human knowledge. In Proc. SIGMOD 2008.</li>
+      <li>[13] Lai, Y.; et al. Block term decomposition with distinct time granularities for temporal knowledge graph completion. Expert Syst. Appl. 2022, 201, 117036.</li>
+      <li>[22] Kazemi, S.M.; Poole, D. SimplE Embedding for Link Prediction in Knowledge Graphs. In Proc. NeurIPS 2018.</li>
+      <li>[27] García-Durán, A.; Niepert, M. Learning Sequence Encoders for Temporal Knowledge Graph Completion. In Proc. EMNLP 2018.</li>
+      <li>[29] Liu, Y.; et al. Context-Aware Temporal Knowledge Graph Embedding (CATKGC). In Proc. WISE 2019.</li>
+      <li>[34] Zhang, S.; et al. BiQCap: A Biquaternion and Capsule Network-Based Embedding Model for TKGC. In Proc. DASFAA 2021.</li>
+      <li>[35] Bai, L.; et al. RoAN: A relation-oriented attention network for temporal knowledge graph completion. Eng. Appl. Artif. Intell. 2023, 123, 106308.</li>
+      <li>[37] Jung, J.; Jung, J.; Kang, U. Learning to walk across time for interpretable temporal knowledge graph completion. In Proc. KDD 2021.</li>
+      <li>[40] Wu, J.; et al. TeMP: Temporal Message Passing for Temporal Knowledge Graph Completion. In Proc. EMNLP 2020.</li>
+      <li>[45] Chen, K.; et al. Focus on Inherent Attributes for Temporal Knowledge Graph Completion (IAGAT). In Proc. IJCNN 2021.</li>
+      <li>[48] Gao, Y.; et al. Learning Joint Structural and Temporal Contextualized Knowledge Embeddings for TKGC (SToKE). In Proc. Findings of EMNLP 2022.</li>
+      <li>[49] Luo, R.; et al. Chain of History: Learning and Forecasting with LLMs for TKGC. arXiv 2024, arXiv:2401.06072.</li>
+      <li>[58] Goel, R.; et al. Diachronic Embedding for Temporal Knowledge Graph Completion. In Proc. AAAI 2020.</li>
+      <li>[72] Bai, L.; et al. FTMF: Few-shot temporal knowledge graph completion based on meta-optimization. World Wide Web 2023, 26, 1243–1270.</li>
+      <li>[73] Gong, X.; et al. Temporal-Relational Matching Network for Few-Shot TKGC. In Proc. DASFAA 2023.</li>
+      <li>[74] Ma, H.; Wang, D.Z. A Survey on Few-shot Knowledge Graph Completion with Structural and Commonsense Knowledge. arXiv 2023, arXiv:2301.01172.</li>
+      <li>[full reference list available in the original paper]</li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app14198871">10.3390/app14198871</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

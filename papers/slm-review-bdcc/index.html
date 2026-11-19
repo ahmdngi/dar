@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أحدث النماذج اللغوية الصغيرة واتجاهاتها المستقبلية: مراجعة منهجية — DAR</title>
+<meta name="description" content="State of the Art and Future Directions of Small Language Models: A Systematic Review — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/slm-review-bdcc/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">State of the Art and Future Directions of Small Language Models: A Systematic Review</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">أحدث النماذج اللغوية الصغيرة واتجاهاتها المستقبلية: مراجعة منهجية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Flavio Corradini, Matteo Leonesi, Marco Piangerelli</span>
+    <span>📄 Big Data Cogn. Comput., 2025 · Vol. 9, 189</span>
+    <span>🔗 <a href="https://doi.org/10.3390/bdcc9070189">10.3390/bdcc9070189</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>برزت النماذج اللغوية الصغيرة كمجال دراسة حرج في معالجة اللغة الطبيعية، جاذبة اهتمامًا متزايدًا من الأكاديميا والصناعة. تقدم هذه المراجعة المنهجية تحليلًا قابلًا للتكرار للنماذج الصغيرة بعد 2023، بالاعتماد على 70 دراسة إنجليزية منشورة بين يناير 2023 ويناير 2025، حُددت عبر Scopus وIEEE Xplore وWeb of Science وACM Digital Library، مع التركيز أساسًا على نماذج حتى 7 مليارات معامل [8]، [11]، [12]، [13]، [15].</p>
+    <p>تدرس المراجعة اتجاهات النشر والمؤسسات المساهمة وتوافر البيانات العامة؛ والمعماريات السائدة ومناهج الضغط والتحسين؛ ومعايير التقييم والمعايير الصناعية الناشئة بحكم الأمر الواقع؛ والتحديات الراهنة مع الحلول المقترحة. وتدعم البيانات المنسقة البحث الجاري والمستقبلي في هذا المجال سريع التطور.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>أظهرت النماذج الكبيرة أن التوسع يقود القدرة [2]، [4]، لكنه يُخرج نشر الحافة والأجهزة والمقيد بالتكلفة. وأظهرت النماذج الصغيرة مبكرًا أن الحجم ليس كل شيء: فالنماذج الصغيرة متعلمة بالقليل أيضًا [8]، وترسم المسوحات اللاحقة منظومة ناضجة تشمل المعماريات ووصفات التدريب وحالات الاستخدام [11]، [12]، [13]، [21]. ويلتقي اهتمام الصناعة والأكاديميا على نماذج كفؤة تحتفظ بالاستدلال واتباع التعليمات وتعمل تحت ميزانيات ذاكرة وزمن ضيقة.</p>
+    <p>نطاق هذه المراجعة النماذج الصغيرة بعد 2023 (أساسًا ≤7B معامل)، مجيبة أربعة أسئلة بحثية عن أنواع المنشورات والتطبيقات (RQ1) والمعماريات والضغط (RQ2) والمعايير (RQ3) والتحديات (RQ4) — عبر بروتوكول موجه بـ PRISMA [15] مع تجميع كمي للاتجاهات والمناهج والتقييمات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. منهجية المراجعة</h2>
+    <p>يتبع البروتوكول بيان PRISMA 2020 [15] في خمس خطوات: (1) بحث آلي في Scopus وIEEE Xplore وWeb of Science وACM Digital Library؛ (2) إزالة المكرر بإسقاط 381 سجلًا؛ (3) فرز العناوين والملخصات؛ (4) فرز النص الكامل مع التوسع المرجعي؛ (5) استخراج منظم للبيانات يجيب الأسئلة الأربعة. ويتركز الإدراج على دراسات محكمة إنجليزية عن النماذج الصغيرة بين يناير 2023 ويناير 2025؛ وتُخفف مخاطر الفرز الأحادي بخيارات تصميم مستنيرة بأدبيات موثوقية الفرز [17]، [18].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. خلفية النماذج اللغوية الصغيرة</h2>
+    <p>تعرّف المراجعة النماذج الصغيرة إجرائيًا حول نظام ≤7B الذي أشاعه LLaMA [45] وMistral 7B [16] وGemma [25] وQwen2 [46] وTinyLlama [24] وPhi-3 [10]. وتستعرض الأسس المحول [2] والتدريب المسبق التوليدي [3] وتطبيع الطبقات [26] وبيانات ضبط التعليمات مثل FLAN [37]. وتتبع مبادئ الضغط والتخفيض — تقليم العمق/العرض والتقطير والتكميم — معالجات ضغط المحول المخصصة [27].</p>
+    <p>تُستعرض آليات الانتباه والشبكات الأمامية والتطبيع مع الوصلات المتبقية كروافع تعمل عليها مناهج الضغط. ويوسع التكييف الكفء المعامل (مثل التحليل منخفض الرتبة مع التكميم [56]) والتصاميم المرنة [35] حد الكفاءة، بينما تقيد تحليلات سعة التوسع ما يمكن للنماذج الصغيرة تخزينه [20].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. السؤال الأول: أنواع المنشورات والتطبيقات والتوافر</h2>
+    <p>تقدم منشورات النماذج نماذج صغيرة جديدة أو متغيرات رئيسية (TinyLlama [24] وOrca 2 [47] وTinyStories [44] وGPT-wee [48] وجهود متعددة اللغات [31]، [43])؛ وتدفع منشورات المناهج الاستخدام والفهم — تحويل اللغة إلى SQL بتعاون النماذج [29] ونمذجة صيغ الجداول بـ FLAME [41] وتركيب الكلام بالانتباه الخطي [42] ونمذجة البروتينات بـ ProtFlash [38] ومساعدة تحقيقات الشرطة بـ LAPIS [32]. وتتركز مجالات التطبيق على الاستدلال والبرمجة والتعليم والمساعدات الصحية [14]، [33] والروبوتيات [58] وتحليلات الاستدامة [102] والتوصيات [103]، [106].</p>
+    <p>التوافر العام قوي: معظم النماذج المسحوبة تنشر الأوزان وكثيرها ينشر وصفات البيانات. وتشير النتائج السياقية إلى قيادة الأكاديميا الاستكشاف بينما تقود الصناعة إصدارات النشر (Phi [10]، [89] وGemma [25] وFalcon [90])؛ وتؤكد الآثار النظرية الانفتاح كمسرّع المجال؛ وتحث الخلاصات على معايير مشاركة المخرجات لاستدامة قابلية التكرار.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. السؤال الثاني: المعماريات والضغط والتحسين</h2>
+    <p>يهيمن التقطير المعرفي، واقعًا في 43% من تطبيقات المناهج المسحوبة — نقل الاستدلال الرياضي [49]، [50] وخبرة الإشراف الضعيف [30] والتقييم الذاتي والتفكير الشامل [51] والاستدلال للإجابة كثيفة المعرفة [52] والضبط بالمحاكي [101] ونقل رؤى المعلم عمومًا [53]. ويبقى DistilBERT السابقة الترميزية المعيارية [28]. ويخفض التكميم الدقة (مثل FP32→INT8) بتكلفة دقة متواضعة؛ ويتفوق التقليم مع الضبط الكفء في الأنظمة المستهدفة، مكملًا بالاستدلال الهجين حافة-سحابة [100] وتصاميم الأجهزة دون المليار مثل MobileLLM [39] والنشر الموفر للطاقة على المتحكمات [60].</p>
+    <p>الآثار النظرية والعملية: ينقل التقطير أنماط الاستدلال لا اللوجتات فقط؛ وتفاضل خيارات الضغط بين الدقة والزمن والذاكرة حسب المهمة؛ وتوصي الخلاصات بمطابقة المنهج مع ظرف النشر بدل الافتراض الواحد.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. السؤال الثالث: المعايير</h2>
+    <p>تقيس التقييمات المعيارية التقدم في الفهم والاستدلال والبرمجة والرياضيات؛ وتفهرس المراجعة المعايير الأكثر ذكرًا وترسم القدرات التي يضغط عليها كل منها. النتائج سياقيًا: تهيمن معايير الاستدلال على ادعاءات النماذج الصغيرة، مع تقطير مسائل الرياضيات اللفظية [30] وتعلم المهام المتعددة بالمحولات [59] كأهداف تمثيلية؛ وتحذر الآثار النظرية من حساسية درجات النماذج الصغيرة للموجهات والمعايرة [55]، [96]؛ وتدعو الخلاصات للإبلاغ عن بروتوكولات التقييم مع الدرجات، بما فيها قدرات التصحيح الذاتي [110] والقدرة الاستدلالية [70].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. السؤال الرابع: المجالات الصعبة</h2>
+    <p>بينما تزداد النماذج الصغيرة قدرة وكفاءة، يُظهر فحص الأدلة فجوات مستمرة: التعميم خارج توزيعات التدريب، وندرة البيانات للمجالات المتخصصة، والهلوسات في النماذج المدمجة (بما فيها متعددة الوسائط [80])، وقابلية توسع التدريب والخدمة [92]، وقابلية تفسير القرارات المضغوطة. ويُظهر رسم مجالات التطبيق تركز التحديات حيث متطلبات الموثوقية أعلى — الرعاية الصحية وتقييم التعليم [99] واللغات منخفضة الموارد [31]، [43].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">8. الاتجاهات المستقبلية والحلول الجديدة</h2>
+    <p>تحول المراجعة التحديات إلى أجندة موجهة بالحلول: تعزيز التعميم عبر تقطير الاستدلال [47]، [49]، [50]، [52]؛ وتجاوز ندرة البيانات بخطوط اصطناعية وضعيفة الإشراف [30]؛ وتخفيف الهلوسات بالأهداف التباينية والتحققية [80]؛ وتحسين قابلية التوسع بالخدمة الواعية بباريتو [92] والهجائن حافة-سحابة [100]؛ وتطوير قابلية التفسير عبر تحليلات التدريب النمطي [84] وشفافية مخاليط الخبراء [85] والإثراء المعرفي المتعدد [95].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">9. محدوديات الدراسة</h2>
+    <p>حدود النطاق والتعريف: يستبعد تعريف النماذج الصغيرة المتمحور حول ≤7B أعمالًا متوسطة ذات صلة، ويجمد نافذة يناير 2023–يناير 2025 مجالًا سريع الحركة. تحيز البحث والاختيار: أربع قواعد مع التوسع المرجعي لا تستنفد الأدبيات الرمادية، ويقصي قيد الإنجليزية تقدمًا بغيرها. محدوديات التحليل: التباين في الإبلاغ عبر 70 دراسة يقيد دقة التحليل الفوقي، وتحفظات حساسية المعايير [55] تقيد المقارنات بين النماذج.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">10. الاستنتاجات</h2>
+    <p>أربع خلاصات ختامية: (1) تتباعد إسهامات الأكاديميا والصناعة — الاستكشاف مقابل إصدارات النشر [10]، [25]، [90]؛ (2) تتقارب المعماريات الكفؤة على وصفات التقطير أولًا مع التكميم والتقليم كمكملات [27]، [28]، [56]؛ (3) تؤكد المعايير أبعاد الاستدلال والذكاء المسؤول، مع دخول المعايرة والتصحيح الذاتي الإبلاغ المعياري [55]، [70]، [110]؛ (4) تُرسم تحديات البحث على مسارات حل واضحة في التعميم والبيانات وضبط الهلوسة وقابلية التوسع وقابلية التفسير — أجندة عملية لجيل النماذج الصغيرة التالي.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Small Language Models (SLMs) have emerged as a critical area of study within natural language processing, attracting growing attention from both academia and industry. This systematic literature review provides a reproducible analysis of SLMs post-2023, drawing on 70 English-language studies published between January 2023 and January 2025, identified through Scopus, IEEE Xplore, Web of Science, and ACM Digital Library, and focusing primarily on SLMs with up to 7 billion parameters [8], [11], [12], [13], [15].</p>
+    <p>The review examines publication trends, contributing institutions, and public dataset availability; prevailing architectures and compression/optimization methods; evaluation criteria and emerging de facto industry standards; and current challenges with proposed solutions. The curated data support ongoing and future research in this rapidly evolving field.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Large models demonstrated that scale drives capability [2], [4], yet scale prices out edge, on-device, and cost-sensitive deployments. Small models showed early that size is not everything: small LMs are also few-shot learners [8], and subsequent surveys chart a maturing SLM ecosystem spanning architectures, training recipes, and use cases [11], [12], [13], [21]. Industry–academia interest converges on efficient models that retain reasoning, follow instructions, and run under tight memory and latency budgets.</p>
+    <p>This review's scope is SLMs post-2023 (primarily ≤7B parameters), asking four research questions on publication types and applications (RQ1), architectures and compression (RQ2), benchmarks (RQ3), and challenges (RQ4) — answered through a PRISMA-guided protocol [15] with quantitative synthesis of trends, methods, and evaluations.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Review Methodology</h2>
+    <p>The protocol follows the PRISMA 2020 statement [15] in five steps: (1) automated database search across Scopus, IEEE Xplore, Web of Science, and ACM Digital Library; (2) duplicate removal, eliminating 381 records; (3) title and abstract screening; (4) full-text screening with snowballing; and (5) structured data extraction addressing the four research questions. Inclusion centers on English-language peer-reviewed studies on SLMs published January 2023–January 2025; single-reviewer screening risks are mitigated by design choices informed by screening-reliability literature [17], [18].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Small Language Model Background</h2>
+    <p>The review defines SLMs operationally around the ≤7B-parameter regime popularized by LLaMA [45], Mistral 7B [16], Gemma [25], Qwen2 [46], TinyLlama [24], and Phi-3 [10]. Fundamentals recap the Transformer [2], generative pre-training [3], layer normalization [26], and instruction-tuning data such as FLAN [37]. Compression and reduction principles — depth/width pruning, distillation, quantization — follow dedicated Transformer-compression treatments [27].</p>
+    <p>Attention mechanisms, feed-forward networks, and normalization with residual connections are reviewed as the levers that compression methods act upon. Parameter-efficient adaptation (e.g., low-rank plus quantized decomposition [56]) and elastic model designs [35] extend the efficiency frontier, while capacity-scaling analyses bound what small models can store [20].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. RQ1: Publication Types, Applications, and Availability</h2>
+    <p>Model-focused publications introduce new SLMs or major variants (TinyLlama [24], Orca 2 [47], TinyStories [44], GPT-wee [48], LTM-adjacent multilingual efforts [31], [43]); method-focused publications advance use and understanding — NL2SQL with SLM–LLM cooperation [29], spreadsheet-formula modeling with FLAME [41], speech synthesis with linear attention [42], protein modeling with ProtFlash [38], and police-investigation assistance with LAPIS [32]. Application domains concentrate on reasoning, code, education, healthcare assistants [14], [33], robotics [58], sustainability analytics [102], and recommendations [103], [106].</p>
+    <p>Public availability is strong: most surveyed models release weights, and many release data recipes. Contextualized findings note academia leading exploration while industry drives deployment-grade releases (Phi [10], [89], Gemma [25], Falcon [90]); theoretical implications stress openness as the field's accelerant; takeaways urge artifact-sharing norms to sustain reproducibility.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. RQ2: Architectures, Compression, and Optimization</h2>
+    <p>Knowledge distillation dominates, occurring in 43% of surveyed method applications — imparting mathematical reasoning [49], [50], weak-supervision expertise [30], self-evaluation and comprehensive thinking [51], reasoning for knowledge-intensive QA [52], emulator-based fine-tuning [101], and teacher-insight transfer generally [53]. DistilBERT remains the canonical encoder precedent [28]. Quantization lowers precision (e.g., FP32→INT8) with modest accuracy cost; pruning with parameter-efficient fine-tuning excels in targeted regimes, complemented by hybrid edge–cloud inference [100], on-device sub-billion designs such as MobileLLM [39], and energy-efficient microcontroller deployment [60].</p>
+    <p>Theoretical and practical implications: distillation transfers reasoning patterns, not just logits; compression choices trade accuracy, latency, and memory differently per task; synthesis takeaways recommend matching the method to the deployment envelope rather than defaulting to a single recipe.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. RQ3: Benchmarks</h2>
+    <p>Standardized assessments gauge progress in comprehension, reasoning, code, and math; the survey catalogs the most-mentioned benchmarks and maps which capabilities each stresses. Findings in context: reasoning benchmarks dominate SLM claims, with math-word-problem distillation [30] and multi-task adapter learning [59] as representative evaluation targets; theoretical implications caution that small-model scores are sensitive to prompting and calibration [55], [96]; synthesis takeaways call for reporting evaluation protocols alongside scores, including self-correction abilities [110] and reasoning capacity [70].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. RQ4: Challenging Areas</h2>
+    <p>While SLMs grow more capable and efficient, examination of the evidence surfaces persistent gaps: generalization beyond training distributions, data scarcity for specialized domains, hallucinations in compact models (including multimodal settings [80]), scalability of training and serving [92], and interpretability of compressed decisions. Application-area mapping shows challenges concentrating where reliability demands are highest — healthcare, education assessment [99], and low-resource languages [31], [43].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">8. Future Directions and New Solutions</h2>
+    <p>The review converts challenges into a solution-oriented agenda: enhancing generalization via reasoning distillation [47], [49], [50], [52]; overcoming data scarcity with synthetic and weakly supervised pipelines [30]; mitigating hallucinations through contrastive and verification objectives [80]; improving scalability with Pareto-aware serving [92] and edge–cloud hybrids [100]; and advancing interpretability via modular training analyses [84], mixture-of-experts transparency [85], and multiplex-knowledge enrichment [95].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">9. Limitations of the Study</h2>
+    <p>Scope and definitional boundaries: the ≤7B-centered SLM definition excludes relevant mid-scale work, and the January 2023–January 2025 window freezes a fast-moving field. Search and selection bias: four databases plus snowballing cannot exhaust grey literature, and English-language restriction filters non-English advances. Analysis limitations: heterogeneous reporting across 70 studies constrains meta-analytic precision, and benchmark-sensitivity caveats [55] qualify cross-model comparisons.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">10. Conclusions</h2>
+    <p>Four closing takeaways: (1) academia and industry diverge in contribution — exploration versus deployment-grade releases [10], [25], [90]; (2) efficient architectures converge on distillation-first recipes with quantization and pruning as complements [27], [28], [56]; (3) benchmarks emphasize reasoning and responsible-AI dimensions, with calibration and self-correction entering standard reporting [55], [70], [110]; and (4) research challenges map to clear solution pathways in generalization, data, hallucination control, scalability, and interpretability — a workable agenda for the next SLM generation.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed reference list preserving original numbering (40 of 111 entries); see the original paper for the full bibliography.</p>
+    <ol dir="ltr">
+      <li>Vaswani, A.; et al. Attention is all you need. <em>arXiv</em> 2023, arXiv:1706.03762.</li>
+      <li>Radford, A.; Narasimhan, K. Improving language understanding by generative pre-training. 2018.</li>
+      <li>Naveed, H.; et al. A comprehensive overview of large language models. <em>arXiv</em> 2024, arXiv:2307.06435.</li>
+      <li>Schick, T.; Schütze, H. It's not just size that matters: Small language models are also few-shot learners. In <em>Proc. NAACL 2021</em>.</li>
+      <li>Touvron, H.; et al. Llama 2: Open foundation and fine-tuned chat models. <em>arXiv</em> 2023, arXiv:2307.09288.</li>
+      <li>Abdin, M.; et al. Phi-3 technical report: A highly capable language model locally on your phone. <em>arXiv</em> 2024, arXiv:2404.14219.</li>
+      <li>Lu, Z.; et al. Small language models: Survey, measurements, and insights. <em>arXiv</em> 2024, arXiv:2409.15790.</li>
+      <li>Wang, F.; et al. A comprehensive survey of small language models in the era of large language models. <em>arXiv</em> 2024, arXiv:2408.08245.</li>
+      <li>Nguyen, C.V.; et al. A survey of small language models. <em>arXiv</em> 2024, arXiv:2410.20011.</li>
+      <li>Page, M.J.; et al. The PRISMA 2020 statement: An updated guideline for reporting systematic reviews. <em>BMJ</em> 2021, 372, n71.</li>
+      <li>Jiang, A.Q.; et al. Mistral 7B. <em>arXiv</em> 2023, arXiv:2310.06825.</li>
+      <li>Lieberum, J.L.; et al. Large language models for conducting systematic reviews: On the road to automation? 2024.</li>
+      <li>DeepSeek Team. DeepSeek-V3 technical report. <em>arXiv</em> 2025, arXiv:2412.19437.</li>
+      <li>Allen-Zhu, Z.; Li, Y. Physics of language models: Part 3.3, knowledge capacity scaling laws. <em>arXiv</em> 2024, arXiv:2404.05405.</li>
+      <li>Zhang, P.; et al. TinyLlama: An open-source small language model. <em>arXiv</em> 2024, arXiv:2401.02385.</li>
+      <li>Gemini Team. Gemma: Open models based on Gemini research and technology. <em>arXiv</em> 2024, arXiv:2403.08295.</li>
+      <li>Ba, J.L.; Kiros, J.R.; Hinton, G.E. Layer normalization. <em>arXiv</em> 2016, arXiv:1607.06450.</li>
+      <li>Tang, Y.; et al. A survey on transformer compression. <em>arXiv</em> 2024, arXiv:2402.05964.</li>
+      <li>Sanh, V.; et al. DistilBERT, a distilled version of BERT: Smaller, faster, cheaper and lighter. <em>arXiv</em> 2019, arXiv:1910.01108.</li>
+      <li>Fan, J.; et al. Combining small language models and large language models for zero-shot NL2SQL. <em>Proc. VLDB Endow.</em> 2024.</li>
+      <li>Lin, Q.; et al. From large to tiny: Distilling and refining mathematical expertise for math word problems. 2024.</li>
+      <li>Corrêa, N.K.; et al. TeenyTinyLlama: Open-source tiny language models trained in Brazilian Portuguese. <em>Mach. Learn. Appl.</em> 2024, 16, 100558.</li>
+      <li>Zhang, C.; Wang, B.; Song, D. On elastic language models. <em>ACM Trans. Inf. Syst.</em> 2024, 42, 3677375.</li>
+      <li>Liu, Z.; et al. MobileLLM: Optimizing sub-billion parameter language models for on-device use cases. <em>Proc. ICML</em> 2024.</li>
+      <li>Eldan, R.; Li, Y. TinyStories: How small can language models be and still speak coherent English? <em>arXiv</em> 2023, arXiv:2305.07759.</li>
+      <li>Touvron, H.; et al. LLaMA: Open and efficient foundation language models. <em>arXiv</em> 2023, arXiv:2302.13971.</li>
+      <li>Yang, A.; et al. Qwen2 technical report. <em>arXiv</em> 2024, arXiv:2407.10671.</li>
+      <li>Mitra, A.; et al. Orca 2: Teaching small language models how to reason. <em>arXiv</em> 2023, arXiv:2311.11045.</li>
+      <li>Bunzeck, B.; Zarrieß, S. GPT-wee: How small can a small language model really get? In <em>Proc. CoNLL-BabyLM</em> 2023.</li>
+      <li>Zhu, X.; et al. Distilling mathematical reasoning capabilities into small language models. <em>Neural Netw.</em> 2024, 179, 106594.</li>
+      <li>Kang, M.; et al. Knowledge-augmented reasoning distillation for small language models. <em>Adv. Neural Inf. Process. Syst.</em> 2023, 36.</li>
+      <li>Liu, X.; et al. LIT-CAB: Lightweight language model calibration over short- and long-form responses. In <em>Proc. ICLR</em> 2024.</li>
+      <li>Guo, H.; et al. LQ-LoRA: Low-rank plus quantized matrix decomposition for efficient language model finetuning. In <em>Proc. ICLR</em> 2024.</li>
+      <li>Scherer, M.; et al. Deeploy: Enabling energy-efficient deployment of small language models on heterogeneous microcontrollers. 2024.</li>
+      <li>Srivastava, G.; et al. Towards reasoning ability of small language models. <em>arXiv</em> 2025, arXiv:2502.11569.</li>
+      <li>Kim, J.; et al. CODE: Contrasting self-generated description to combat hallucination in large multi-modal models. <em>arXiv</em> 2024, arXiv:2406.01920.</li>
+      <li>Almazrouei, E.; et al. The Falcon series of open language models. <em>arXiv</em> 2023, arXiv:2311.16867.</li>
+      <li>Hao, Z.; et al. Hybrid SLM and LLM for edge-cloud collaborative inference. <em>ACM</em> 2024.</li>
+      <li>Han, H.; et al. Small language model can self-correct. In <em>Proc. AAAI</em> 2024; pp. 18162–18170.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/bdcc9070189">10.3390/bdcc9070189</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

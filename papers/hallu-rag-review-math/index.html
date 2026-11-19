@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التخفيف من الهلوسة في النماذج اللغوية الكبيرة المعززة بالاسترجاع: مراجعة — DAR</title>
+<meta name="description" content="Hallucination Mitigation for Retrieval-Augmented Large Language Models: A Review — Mathematics, 2025 · Vol. 13(5), 856. Arabic/English bilingual viewer on DAR.">
+<link rel="canonical" href="https://dararchive.com/papers/hallu-rag-review-math/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Hallucination Mitigation for Retrieval-Augmented Large Language Models: A Review</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التخفيف من الهلوسة في النماذج اللغوية الكبيرة المعززة بالاسترجاع: مراجعة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Wan Zhang, Jing Zhang</span>
+    <span>📄 Mathematics, 2025 · Vol. 13(5), 856</span>
+    <span>🔗 <a href="https://doi.org/10.3390/math13050856">10.3390/math13050856</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+<section>
+    <h2>الملخص</h2>
+    <p>يستفيد التوليد المعزز بالاسترجاع (RAG) من نقاط قوة الاسترجاع والنماذج التوليدية لمعالجة المعرفة الآنية والمجالية، لكن قيود مكوناته قد تسبب الهلوسة — أو بتعبير أدق التلفيق — في المخرجات، ما دفع بحوثًا واسعة لمعالجتها. تركز هذه المراجعة على الهلوسة في النماذج اللغوية الكبيرة المعززة بالاسترجاع: أولًا تدرس أسبابها في المهام الفرعية لمرحلتي الاسترجاع والتوليد، ثم تقدم عرضًا شاملًا لتقنيات التخفيف المقابلة في إطار موجَّه وكامل، وتستقصي تقليل أثرها عبر الكشف والتصحيح، وتختتم باتجاهات مستقبلية واعدة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تقدمت النماذج اللغوية الكبيرة — مثل GPT-4 [1] وLLaMA [2] وGemini [3] — سريعًا في معالجة اللغة، متعلمة التمثيلات الإحصائية من بيانات ضخمة ومتكيفة مع المهام بالضبط الدقيق، ومستخدمة في التحليل الدلالي [4] والتوليد [5] والاستدلال [6]. لكن اعتمادها على معاملات ثابتة يجعلها تنتج مخرجات غير ملائمة أو مخالفة للحقائق خارج حدود معارفها، وهي ظاهرة الهلوسة التي تقوّض الموثوقية وتسبب أضرارًا جسيمة في السيناريوهات الدقيقة. ويهدف الاسترجاع المعزز [7] إلى سد فجوات المعرفة بمعلومات خارجية لتحسين الاستجابات المجالية وتقليل الهلوسة، رغم أن قيود مكوناته نفسها تولّد الهلوسة — ومن هنا أهمية تحليل الأسباب الجذرية لكل مرحلة.</p>
+    <p>تتميز هذه المراجعة بتركيزها على منظومة RAG حصرًا، بخلاف مسوح الهلوسة العامة في النماذج المرئية اللغوية [9] وغيرها [10]–[14]، وتميز بدقة بين الهلوسة والتلفيق: فالهلوسة استعارة توحي بإدراك حسي لا تملكه النماذج، بينما التلفيق — المستعار من الطب النفسي [17] — هو اختلاق لا واعٍ لسد فجوات الذاكرة، كما يجادل Smith وآخرون [16]، مع جذور المفهوم في علم النفس [15]. ويعرض القسم 2 خط الأنابيب الكلاسيكي والتعاريف وتصنيفات الظاهرة وتقنيات التوجيه الشائعة، ثم تحلل الأقسام 3–6 الأسباب والحلول لكل مرحلة.</p>
+  </section>
+
+  <section>
+    <h2>2. المفاهيم والتعاريف</h2>
+    <p>في خط الأنابيب النموذجي يُدخِل المستخدم سؤالًا إخباريًا آنيًا لا تحويه معاملات النموذج، فيُعالَج مسبقًا ويُمرَّر للسترجع بمحركات خارجية (BM25 أو TF-IDF أو نماذج عصبية للاسترجاع الكثيف/المتناثر) من صفحات الويب أو المدونات أو القواعد المعرفية؛ ويشمل الاسترجاع الكثيف تشفير المستندات والاستعلامات بنماذج تضمين مدربة مسبقًا. وتُحسَّن نماذج الاسترجاع بإشارات النموذج التوليدي كما في REPLUG [31] الذي يغذي المستندات المسترجعة إلى نموذج صندوق أسود مجمد ويحسّن الاسترجاع بمخرجاته.</p>
+    <p>أما هندسة الموجهات فتوجّه النموذج لاستجابات أعلى جودة بتصميم المدخلات — ببساطة وكفاءة وعمومية وقابلية تفسير متفوقة على تعديل البنية أو الضبط، وبمتطلبات حوسبية وبيانية دنيا — مع ضبط وتكييف سريعين عبر النماذج، ومن تقنياتها برنامج الأفكار (PoT) [26] لتوليد الشيفرات وعمليات القواعد المعرفية متعددة القفزات.</p>
+  </section>
+
+  <section>
+    <h2>3. أسباب الهلوسة في منظومة الاسترجاع</h2>
+    <p>تؤدي عملية الاسترجاع — المسؤولة عن جلب السياق الخارجي — إلى الهلوسة من أربع زوايا: مشكلات مصدر البيانات (رداءة الجودة وقدمها وأحاديتها، إذ تعتمد المصادر منخفضة الجودة على مواد غير موثقة أو متحيزة)، ومشكلات الاستعلام (الغامض والمعقد)، ومشكلات المسترجع (دقة الحبيبات والتضمين)، واستراتيجيات الاسترجاع (الاسترجاع غير الضروري الذي يدخل معرفة متعارضة مع معاملات النموذج).</p>
+    <p>أما مرحلة التوليد — المسؤولة عن دمج المعلومات المسترجعة مع المدخلات — فتهلوس من خمسة جوانب: ضجيج السياق (معلومات غير ذات صلة أو مجزأة من فشل الاسترجاع)، وتعارض المعرفة (بين المعاملات الداخلية والخارجية)، وضعف استغلال المعلومات الوسطى (لعنة المنتصف في السياقات الطويلة)، ومشكلات المحاذاة (الإخلاص للسياق وللاستعلام)، وحدود القدرات.</p>
+  </section>
+
+  <section>
+    <h2>4. حلول فشل الاسترجاع</h2>
+    <p>لموثوقية المصدر توفر البيانات المنظمة — كالرسوم المعرفية المبنية من مصادر موثقة متجددة — معرفة دقيقة؛ فيجمع KnowledGPT المعياري [49] بين النماذج والقواعد المعرفية مولدًا شيفرة Python 3.8 ببرنامج الأفكار [26] لعمليات القواعد والاسترجاع متعدد القفزات، مع قاعدة معرفية شخصية (PKB) وتمثيلات متعددة. ولمشكلات الاستعلام: التوسيع والتفكيك؛ فيولّد query2doc [55] مستندات زائفة مساعدة من عينات قليلة لإزالة الغموض، ويفكك STROM [66] الموضوعات المعقدة إلى وجهات نظر عبر مقالات ويكيبيديا مشابهة مع محاكاة حوارات مؤلفين-خبراء وتخطيط مهام فرعية.</p>
+    <p>ولصلاحية المسترجع: تضييق الفجوة الدلالية بإرفاق البيانات الوصفية بالكتل (أرقام الصفحات والمؤلفين والملخصات والأسئلة الافتراضية) [71]، وتقسيم القاعدة لأقسام [72]، وضبط التضمين للمجالات — REPLUG [31]، وGRIT بتعليم التمثيل التوليدي للمهام المزدوجة مع التخزين المؤقت [81]، وتعزيز التضمينات الصندوق الأسود [82]. وللاستراتيجيات: تقييم ضرورة الاسترجاع بوسوم خاصة [83]، والاسترجاع الموجه بالمعرفة الذاتية SKR [84] الذي يقارن الأداء مع الاسترجاع وبدونه ويستدعي الموارد الخارجية عند الحاجة فقط.</p>
+  </section>
+
+  <section>
+    <h2>5. حلول قصور التوليد</h2>
+    <p>لتقليل ضجيج السياق يُعاد ترتيب المرشحات والاحتفاظ بأعلاها كما في RichRAG [57] الذي يبني حوض مرشحات متنوعًا ثم يحسّن المرتب بضبط دقيق بإشراف (SFT) بدالة تغطية تتماشى مع تفضيلات النموذج. ولموازنة تعارض المعرفة: محاذاة السياق الموثوق [27] بإعادة الصياغة عبر وجهة نظر الراوي والأمثلة المضادة، وتشجيع الشك في السياق الضعيف لصالح المعرفة المعاملية [101]، [102]، أو فصل الإجابات [103]، أو دمجهما لتحسين الوقائعية [104]. ولاستغلال المعلومات الوسطى يضغط SoftPromptComp [105] النص الطويل بتلخيص دلالي غني يُدمج عبر موجهات ناعمة.</p>
+    <p>ولحل المحاذاة: الإخلاص للسياق بعزو المخرجات إليه — كما في إطار ALCE [107] الذي يولّد نصًا باستشهادات عبر استراتيجيات VANILLA وSUMM وSNIPPET وINLINESEARCH، والتوليد المخطط [108] — والإخلاص للاستعلام بإطار MixAlign [111] الذي يكشف عدم التطابق الدلالي والسياقي والمنطقي ويولّد أسئلة توضيحية تفاعلية، وLLM-Augmenter [112] الذي ينقّح الموجهات بتغذية راجعة. وللموارد الخارجية: ReAct [113] الذي يولّد مسارات استدلال وأفعال بالتناوب مع التفاعل البيئي، وART [114].</p>
+  </section>
+
+  <section>
+    <h2>6. التخفيف بعد كشف الهلوسة</h2>
+    <p>رغم تحسين المكونات تبقى الهلوسة حتمية، فيُخفَّف أثرها بالكشف والتصحيح: يكشف النهج النشط [115] المفاهيم المفتاحية في الجمل المولدة ويولّد أسئلة تحقق لها، ويسترجع المعرفة عبر الويب والمعاملات للإجابة عنها وكشف الهلوسة، ثم يصلح الجمل بالأدلة المسترجعة ويلحقها بسياق التوليد. ويحقق إطار EVER [116] ذلك بثلاث مراحل (توليد وتحقق وتصحيح)، مصنفًا الهلوسة داخلية وخارجية: يصحح الأولى ويعيد كتابة الثانية مع إعادة التحقق، ويُعلّم المستخدم عند استمرار الخارجية.</p>
+  </section>
+
+  <section>
+    <h2>7. الخاتمة</h2>
+    <p>حققت هذه المراجعة في ظاهرة الهلوسة في منظومة RAG: أسباب كل مهمة فرعية في كل مرحلة، وطرق التخفيف المقابلة، وتقنيات الكشف والتصحيح اللاحقة، مع تلخيص المقاييس والقواعد والتحديات في الجدول 4. ومن قيود تقنيات التوجيه رغم شيوعها: ضعف التعميم والحاجة لتكرارات ضبط مضنية، وقيود طول الموجه [94]، والاعتماد على قدرات التضمين [82] والتوليد [99].</p>
+    <p>ورغم التقدم الكبير تبقى الهلوسة مثار قلق — خاصة مع توسع الاسترجاع متعدد الوسائط (صور وصوت وفيديو وشيفرة) الذي يثري السياق ويعقد مصادره — ما يتطلب تعزيز موثوقية المصادر، وتقييم ضرورة الاسترجاع، ومحاذاة السياق والاستعلام، وكشفًا وتصحيحًا نشطين.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+<section>
+    <h2>Abstract</h2>
+    <p>Retrieval-augmented generation (RAG) leverages the strengths of information retrieval and generative models to enhance the handling of real-time and domain-specific knowledge. Despite its advantages, limitations within RAG components may cause hallucinations, or more precisely termed confabulations in generated outputs, driving extensive research to address these limitations and mitigate hallucinations. This review focuses on hallucination in retrieval-augmented large language models (LLMs). We first examine the causes of hallucinations from different sub-tasks in the retrieval and generation phases. Then, we provide a comprehensive overview of corresponding hallucination mitigation techniques, offering a targeted and complete framework for addressing hallucinations in retrieval-augmented LLMs. We also investigate methods to reduce the impact of hallucination through detection and correction. Finally, we discuss promising future research directions for mitigating hallucinations in retrieval-augmented LLMs.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>In recent years, large language models such as GPT-4 [1], LLaMA [2], and Gemini [3] have rapidly advanced natural language processing, learning statistical representations from vast data and adapting to tasks via fine-tuning, and serving semantic analysis [4], text generation [5], and reasoning [6]. Yet reliance on fixed parameters yields task-irrelevant or factually inconsistent outputs beyond their knowledge boundary — hallucinations that undermine reliability and cause severe harm in precision scenarios. Retrieval-augmented generation [7] aims to fill knowledge gaps with external information to improve domain responses and cut hallucinations, though its own component limits generate hallucinations — hence the need to analyze each stage's root causes.</p>
+    <p>This review is distinguished by focusing exclusively on the RAG paradigm, unlike general hallucination surveys on vision-language models [9] and others [10]–[14], and by separating hallucination from confabulation: hallucination misleadingly implies sensory perception models lack, while confabulation — borrowed from psychiatry [17] — is the unconscious fabrication of false memories to fill gaps, as argued by Smith et al. [16], with the concept rooted in psychology [15]. Section 2 covers the classical pipeline, definitions, phenomenon taxonomies, and common prompting techniques, while Sections 3–6 analyze causes and remedies per stage.</p>
+  </section>
+
+  <section>
+    <h2>2. Concepts and Definitions</h2>
+    <p>In the typical pipeline a user asks about recent news absent from model parameters; the question is pre-processed and passed to retrievers using external engines (BM25, TF-IDF, or neural dense/sparse retrieval) over web pages, corpora, knowledge bases, or databases. Dense retrieval encodes documents and queries with pre-trained embedding models. Retrievers are improved with generative-model signals as in REPLUG [31], which prepends retrieved documents to frozen black-box LLM input and optimizes retrieval from its outputs.</p>
+    <p>Prompt engineering directs the model toward higher-quality responses by input design — with simplicity, efficiency, generality, and interpretability advantages over architecture change or fine-tuning and minimal compute/data needs — with rapid cross-model adaptation, including Program-of-Thought (PoT) [26] for code generation and multi-hop knowledge-base operations.</p>
+  </section>
+
+  <section>
+    <h2>3. Hallucination Causes in the RAG Process</h2>
+    <p>The retrieval process — responsible for fetching external context — causes hallucinations from four angles: data-source problems (low quality, obsolescence, singleness, relying on unverified or biased material), query problems (ambiguous and complex queries), retriever problems (search granularity, embedding), and retrieval-strategy problems (unnecessary retrieval injecting knowledge conflicting with model parameters).</p>
+    <p>The generation phase — integrating retrieved information with user input — hallucinates from five aspects: context noise (irrelevant, redundant, or fragmented context from retrieval failure), knowledge conflicts (internal parameters vs external knowledge), middle-information underuse (the lost-in-the-middle curse in long contexts), alignment problems (context faithfulness and query faithfulness), and capability boundaries.</p>
+  </section>
+
+  <section>
+    <h2>4. Solutions to Retrieval Failure</h2>
+    <p>For source reliability, structured data — knowledge graphs built from verified, constantly updated sources — deliver accurate knowledge; the modular KnowledGPT [49] combines LLMs with knowledge bases, generating Python 3.8 code via Program-of-Thought [26] for KB operations and multi-hop retrieval, with a personalized knowledge base (PKB) and multiple representation forms. For query problems: expansion and decomposition — query2doc [55] generates helpful pseudo-documents from few-shot prompts to disambiguate, and STROM [66] decomposes complex topics into perspectives via similar Wikipedia articles with simulated author–expert dialogues and sub-task planning.</p>
+    <p>For retriever validity: narrowing the semantic gap with metadata attachments to chunks (page numbers, authors, summaries, hypothetical questions) [71], partitioning the database [72], and domain-adapted embedding tuning — REPLUG [31], GRIT generative representational instruction tuning for dual tasks with caching [81], and black-box embedding enhancement [82]. For strategies: judging retrieval necessity with special tags [83], and self-knowledge-guided SKR [84], which compares performance with and without retrieval enhancement and calls external resources only when needed.</p>
+  </section>
+
+  <section>
+    <h2>5. Solutions to Generation Deficiency</h2>
+    <p>To cut context noise, candidates are re-ranked keeping the top-k, as in RichRAG [57], which builds a diverse candidate pool then optimizes the ranker with supervised fine-tuning under a coverage utility aligned with LLM preferences. To balance knowledge conflicts: aligning trusted context [27] via narrator-viewpoint opinion prompts and counterfactual demonstrations, encouraging skepticism of weak context for parametric knowledge [101], [102], or disentangled answers [103], or fusing both for factuality [104]. To use middle information, SoftPromptComp [105] compresses long text via semantic summarization fused through soft prompts.</p>
+    <p>For alignment: context faithfulness by attributing outputs — the ALCE framework [107] generating text with citations via VANILLA, SUMM, SNIPPET, and INLINESEARCH prompting, and plan-based generation [108] — and query faithfulness via MixAlign [111], which detects semantic, contextual, structural, and logical mismatches and generates interactive clarifying questions, and LLM-Augmenter [112] revising prompts from response feedback. For external resources: ReAct [113], alternating reasoning traces with environment-interacting actions, and ART [114].</p>
+  </section>
+
+  <section>
+    <h2>6. Mitigation After Hallucination Detection</h2>
+    <p>Despite component optimization, hallucinations remain inevitable, so impact is reduced via detection and correction: the active approach [115] identifies key concepts in generated sentences, creates verification questions, retrieves web and parametric knowledge to answer them and detect hallucinations, then repairs sentences with retrieved evidence appended to the generation context. The EVER framework [116] does this in three stages (generation, verification, correction), splitting hallucinations into internal and external: correcting the former and rewriting the latter with re-verification, flagging the user if external illusion persists.</p>
+  </section>
+
+  <section>
+    <h2>7. Conclusions</h2>
+    <p>This review investigated hallucination in the RAG paradigm: each sub-task's causes at each stage, corresponding mitigation methods, and post-hoc detection and correction techniques, summarizing metrics, datasets, and challenges in Table 4. Limits of popular prompt techniques include weak generalization with laborious tuning iterations, prompt-length restrictions [94], and dependence on embedding [82] and generative [99] capabilities.</p>
+    <p>Despite major progress, hallucination remains a serious concern — especially as multimodal retrieval-augmented LLMs extend sources to images, audio, video, and code, enriching context while complicating its provenance — demanding source reliability, retrieval-necessity judgment, context/query alignment, and active detection and correction.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+<li>[1] Achiam, J.; et al. GPT-4 technical report. arXiv 2023, arXiv:2303.08774.</li>
+      <li>[2] Touvron, H.; et al. LLaMA: Open and efficient foundation language models. arXiv 2023, arXiv:2302.13971.</li>
+      <li>[3] Team, G.; et al. Gemini: A family of highly capable multimodal models. arXiv 2023.</li>
+      <li>[7] Kim, H.J.; et al. Self-generated in-context learning: Leveraging auto-regressive language models (self-memory context). 2023.</li>
+      <li>[9] Liu, F.; et al. Hallucination in large visual language models: evaluation, causes, and mitigation.</li>
+      <li>[16] Smith, J.; et al. On confabulation vs hallucination terminology for LLMs.</li>
+      <li>[26] Chen, W.; et al. Program of Thoughts (PoT) prompting for code-assisted reasoning.</li>
+      <li>[27] Zhou, K.; et al. Opinion-based prompting and counterfactual demonstrations for context–memory conflicts.</li>
+      <li>[31] Shi, W.; et al. REPLUG: Retrieval and plug-in tuning of black-box language models. 2023.</li>
+      <li>[49] KnowledGPT: Modular retrieval-augmented LLM combining LLMs with knowledge bases and multi-hop retrieval.</li>
+      <li>[55] Wang, L.; et al. Query2doc: Query expansion with large language models. In Proc. EMNLP, 2023.</li>
+      <li>[57] RichRAG: Diverse candidate pooling with coverage-utility ranker optimization for rich-context retrieval.</li>
+      <li>[71] Gao, Y.; et al. Metadata attachment for narrowing the question–answer semantic gap in chunked retrieval.</li>
+      <li>[83] Asai, A.; et al. Self-RAG: Learning to retrieve, critique, and generate with retrieval-necessity tags.</li>
+      <li>[84] Wang, Y.; et al. SKR: Self-knowledge-guided retrieval enhancement.</li>
+      <li>[105] Wang, Y.; et al. SoftPromptComp: Long-text compression via semantic summarization with soft prompts.</li>
+      <li>[107] Gao, T.; et al. ALCE: Enabling LLMs to generate text with citations (enabling verifiable output).</li>
+      <li>[111] Zhang, Y.; et al. MixAlign: Knowledge-alignment via interactive clarifying questions.</li>
+      <li>[113] Yao, S.; et al. ReAct: Synergizing reasoning and acting in language models. In Proc. ICLR, 2023.</li>
+      <li>[115] Varshney, N.; et al. Active hallucination detection and mitigation via verification questions.</li>
+      <li>[116] Kang, H.; et al. EVER: Real-time verification and rectification of hallucinations (generation–verification–correction).</li>
+      <li>[full reference list available in the original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/math13050856">10.3390/math13050856</a> · License: CC BY 4.0 · <a href="./paper.pdf">PDF</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

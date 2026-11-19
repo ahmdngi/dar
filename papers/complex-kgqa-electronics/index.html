@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التقدم في الإجابة عن الأسئلة المعقدة على الرسوم المعرفية: مسح شامل — DAR</title>
+<meta name="description" content="Advancements in Complex Knowledge Graph Question Answering: A Survey — Electronics, 2023 · Vol. 12(21), 4395. Arabic/English bilingual viewer on DAR.">
+<link rel="canonical" href="https://dararchive.com/papers/complex-kgqa-electronics/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Advancements in Complex Knowledge Graph Question Answering: A Survey</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التقدم في الإجابة عن الأسئلة المعقدة على الرسوم المعرفية: مسح شامل</h2>
+
+  <div class="paper-meta">
+    <span>👤 Yiqing Song, Wenfa Li, Guiren Dai, Xinna Shang</span>
+    <span>📄 Electronics, 2023 · Vol. 12(21), 4395</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics12214395">10.3390/electronics12214395</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+<section>
+    <h2>الملخص</h2>
+    <p>تهدف الإجابة عن الأسئلة المعقدة على الرسوم المعرفية إلى الإجابة عن أسئلة اللغة الطبيعية المعقدة باستخدام الرسوم المعرفية، وهي مهمة ما تزال فيها الأنظمة الحالية متأخرة كثيرًا عن نجاحها في الأسئلة البسيطة [10]. يصنف هذا المسح الطرق الحديثة في عائلتين رئيسيتين حسب تمثيل الرسم وبنائه — الطرق القائمة على المقياس البياني والطرق القائمة على الشبكات العصبية البيانية [13]، [25] — ويغطي أيضًا تأثير ChatGPT والاستدلال المشترك بين نماذج اللغة المدربة مسبقًا والرسوم المعرفية [45]، [46]، [48]. كما يجمع إنجازات السنوات الثلاث الماضية، ويستعرض موارد الرسوم وقواعد البيانات مع مقاييس الموثوقية والمتانة، ويحدد آفاقًا مستقبلية مثل تعدد اللغات والتعلم التزايدي [60]، [61]، [68].</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>الرسم المعرفي قاعدة بيانات منظمة لإدارة المعرفة تصف مفاهيم العالم الحقيقي وكياناته وعلاقاتها، ويُستعلَم عنها إما بصيغة الثلاثيات (الموضوع–العلاقة–الكائن) [1] أو بصيغة نصية. وتحسّن الإجابة عن الأسئلة على الرسوم المعرفية محركات البحث ودعم القرار في المجالات — ومنها الأنظمة الطبية والعسكرية والبصرية [2]–[5] — وتُبنى على رسوم واسعة مثل Freebase [6] وDBpedia [7] وWikidata [8] وYAGO [9]. وتنقسم المهام إلى أسئلة بسيطة تُجاب من ثلاثية واحدة [10]، وأسئلة معقدة تتطلب علاقات غير مباشرة ومسارات متعددة القفزات وقيودًا نوعية وكمية على حقائق كثيرة.</p>
+    <p>تندرج تحديات الأسئلة المعقدة في فئتين: الأسئلة ذات القيود، والأسئلة متعددة القفزات العلائقية. ورغم نضج البحث في الأسئلة البسيطة، ما تزال الإجابة عن الأسئلة المعقدة صعبة، ما حفّز تيارًا متزايدًا من الطرق الجديدة التي ينظمها هذا المسح ويقارن بينها.</p>
+  </section>
+
+  <section>
+    <h2>2. الأساسيات</h2>
+    <p>يصف الرسم المعرفي المفاهيم والكيانات وثلاثيات العلاقات [17]، ويُنمذَج وفق إطار وصف الموارد (RDF) [18]: فكل عبارة هي ثلاثية (موضوع–محمول–كائن)، مثل ⟨JackieChan, people.marriage.spouse, FungGiuLam⟩. وتتبع الرسوم المفتوحة الكبيرة مثل Freebase [6] وDBpedia [7] هذا الإطار وتُستعلَم بلغات منظمة مثل SPARQL [19]. وصوريًا، الرسم هو G من الثلاثيات ⟨s, r, o⟩؛ ويُجاب عن سؤال اللغة الطبيعية q بإيجاد الجواب الصحيح داخل G، وتتكون بيانات التدريب من أزواج سؤال–جواب مع تثبيت رموز التضمين للكيانات والعلاقات وأبعادها مسبقًا.</p>
+  </section>
+
+  <section>
+    <h2>3. نظرة عامة على الطرق</h2>
+    <p>ينظم المسح بحوث الإجابة المعقدة الحديثة في ثلاث مجموعات: الطرق القائمة على النموذج البياني المتري، والطرق القائمة على الشبكات العصبية البيانية، والنموذج الجامع بين نماذج اللغة المدربة مسبقًا والرسوم المعرفية. وتختلف الأوليان في كيفية تمثيل الرسم وبنائه؛ بينما تجسر الثالثة بين فهم النصوص غير المنظمة والاستدلال البياني المنظم.</p>
+  </section>
+
+  <section>
+    <h2>3.1. الطرق القائمة على المقياس البياني</h2>
+    <p>تضمّن الطرق القائمة على المقياس البياني ثلاثيات الرسم في فضاء متجه مستمر منخفض الأبعاد يحفظ الكيانات والعلاقات [13]: فيصبح كل كيان نقطة في الفضاء وكل علاقة عملية مثل الإسقاط أو الإزاحة [25]. وتتعلم دالة تقييم تقيس معقولية الثلاثية على تضمينات مركبة، عبر ثلاث خطوات — تضمين الكيانات والعلاقات، وتعريف دالة التقييم، وتعلم التمثيلات [25]. وبمعطى السؤال والرسم، يتعلم خط الأنابيب تضمين السؤال، ويحدد الكيانات المحورية والقيود، ويتعلم تضمينات الكيانات والعلاقات، ثم يستدل للوصول إلى الجواب.</p>
+  </section>
+
+  <section>
+    <h2>3.2. الطرق القائمة على الشبكات العصبية البيانية</h2>
+    <p>تسترجع الطرق القائمة على الشبكات العصبية البيانية رسمًا فرعيًا خاصًا بالموضوع — عادة الكيانات على بعد قفزة واحدة من الكيان المحوري وروابطها، وهو ما يكفي للأسئلة البسيطة — وتشفّر السؤال والمرشحين كمتجهات كثيفة منخفضة الأبعاد. وتقيّم دوال الترتيب المرشحين [36]، [37]، وتولّد شبكة الذاكرة الجواب النهائي [38]، وتحسّن آليات الانتباه متعددة الأعمدة دقة الترتيب [39]، [40]. ويتكون خط الأنابيب من أربع وحدات: تحليل السؤال (استخراج الكيان المحوري والإشارات الضمنية، وأحيانًا تفكيك السؤال إلى أسئلة فرعية [41])، واستخراج الرسم الفرعي، والتمثيل، وترتيب الأجوبة.</p>
+    <p>واقترح Chen وآخرون توليد الأسئلة من المعرفة لتقوية خط الأنابيب هذا [32]؛ ومن القيود الملحوظة أن التفكيكات التي تراعي علاقات القفزة الواحدة فقط يكون أداؤها محدودًا في المسائل متعددة القفزات [41].</p>
+  </section>
+
+  <section>
+    <h2>3.3. الاستدلال المشترك بين نماذج اللغة والرسوم المعرفية</h2>
+    <p>أصبح التدريب المسبق لنماذج اللغة على مدونات ضخمة بأهداف غير خاضعة للإشراف ثم ضبطها للمهام اللاحقة النموذج السائد في معالجة اللغة [45]، وحققت النماذج المبنية على المحوّل — BERT [46] ومتغيراته [47] وسلسلة GPT [48] — النجاح الأكبر. وعند تطبيقها على الإجابة المعرفية، يضيف خط الأنابيب المشترك كشف الإشارات، وربط الكيانات، وكشف العلاقات والقيود، والاستدلال المشترك، معالجًا التحدي الجوهري المتمثل في ردم الفجوة الدلالية بين أسئلة اللغة الطبيعية والبيانات المنظمة.</p>
+    <p>ويقر المسح أيضًا بتأثير ChatGPT الذي دفع إلى استخدام الرسوم المعرفية مصدرًا معرفيًا للمساعدة في الإجابة عن الأسئلة المعقدة وتأصيل النماذج التوليدية.</p>
+  </section>
+
+  <section>
+    <h2>4. الموارد والتقييم</h2>
+    <p>تخدم الرسوم العامة — Freebase [6] وDBpedia [7] وWikidata [8] وYAGO [9] — الأسئلة المفتوحة، بينما تخدم ConceptNet [23] أسئلة الحس السليم وتخدم رسوم المجالات [59] المهام الفرعية والمسابقات. ومن قواعد البيانات التمثيلية GrailQA (64,331 سؤالًا مع استعلامات SPARQL، تختبر التعميم المطابق والتركيبي والصفري) [60] وKQA Pro (نحو 120 ألف سؤال باستدلال متعدد القفزات ومقارنات وعمليات مجموعات، مع استعلامات KoPL وSPARQL) [61].</p>
+    <p>وتُقاس الموثوقية بالدقة ونسبة الصواب وHits@K والاستدعاء وF1 على مجموعات الأجوبة المتوقعة مقابل المرجعية. وتُقيَّم المتانة عبر ثلاثة مستويات تعميم اقترحها Gu وآخرون [60]: التعميم المطابق التوزيع، والتركيبي (إعادة تركيب الكيانات والعلاقات المعروفة لمسائل جديدة)، والصفري.</p>
+  </section>
+
+  <section>
+    <h2>5. الاتجاهات والخاتمة</h2>
+    <p>التحدي الجوهري في المجال هو قدرة النماذج على التعميم. ومن المسائل المفتوحة: الإجابة متعددة اللغات، إذ تستهدف معظم الأنظمة الإنجليزية؛ والتعلم التزايدي الذي يحدّث تمثيلات العقد مع تغير الرسم — مثل طريقة التقطير المعرفي لـ Tian وآخرين التي تنقل المعرفة الميزاتية من نماذج اللغة إلى النموذج التزايدي [68]؛ وتحسين سرعة الاستجابة وكفاءتها للتطبيقات الآنية.</p>
+    <p>وخلاصةً، يعرّف المسح مهمة الإجابة المعقدة، وينظم الطرق السائدة القائمة على المقياس البياني والشبكات البيانية والمشتركة مع نماذج اللغة، ويجمع الموارد الحديثة وممارسات التقييم، ويرسم آفاق البحث للمجتمع العلمي.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+<section>
+    <h2>Abstract</h2>
+    <p>Complex question answering over knowledge graphs (C-KGQA) seeks to answer complex natural-language questions using knowledge graphs, a task where current systems still lag far behind their success on simple questions [10]. This survey groups recent methods into two mainstream families defined by how they represent and construct the graph — graph-metric (GM)-based methods and graph neural network (GNN)-based methods [13], [25] — and additionally covers the influence of ChatGPT and joint pre-trained language model plus knowledge graph (PLM+KG) reasoning [45], [46], [48]. It further compiles research achievements of the past three years, reviews knowledge-graph and dataset resources with reliability and robustness evaluation metrics, and outlines future prospects such as multilingual QA and incremental learning [60], [61], [68].</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>A knowledge graph (KG) is a structured database for knowledge management that describes real-world concepts, entities, and their relationships, queried either as subject–relation–object triples [1] or as text. KG question answering (KGQA) improves search engines and domain decision-making — including medical, military, and visual QA systems [2]–[5] — and is built over large-scale graphs such as Freebase [6], DBpedia [7], Wikidata [8], and YAGO [9]. Tasks split into simple questions, answerable from a single triple such as one subject–relation–object fact [10], and complex questions, which require indirect relations, multi-hop paths, and qualitative or quantitative constraints over many facts.</p>
+    <p>Complex-question challenges fall into two complexity classes: questions with constraints and questions involving multiple hops of relations. Despite maturing research on simple KGQA, answering such questions remains difficult, motivating the growing stream of novel methods this survey organizes and compares.</p>
+  </section>
+
+  <section>
+    <h2>2. Preliminaries</h2>
+    <p>A KG describes concepts, entities, and relation triples [17], modeled under the Resource Description Framework (RDF) [18]: every statement is a subject–predicate–object (SPO) triple. Large open KGs such as Freebase [6] and DBpedia [7] follow RDF and are queried with structured languages such as SPARQL [19]. Formally, the graph is G of triples; a natural-language question q is answered by finding the correct answer in G, and training data consist of question–answer pairs with embedding notation for entities, relations, and their dimensions fixed in advance.</p>
+  </section>
+
+  <section>
+    <h2>3. Methods Overview</h2>
+    <p>The survey organizes recent C-KGQA research into three groups: graph-metric model (GMM)-based methods, GNN-based methods, and a combination paradigm that joins pre-trained language models with knowledge graphs (PLM+KG). The first two differ in how they represent and construct the graph; the third bridges unstructured text understanding with structured graph reasoning.</p>
+  </section>
+
+  <section>
+    <h2>3.1. Graph-Metric-Based Methods</h2>
+    <p>GM-based methods embed KG triples into a continuous low-dimensional vector space that preserves entities and relations [13]: each entity becomes a point in vector space and each relation an operation such as projection or translation [25]. They learn a scoring function measuring triple plausibility over complex embeddings, proceeding in three steps — embedding entities and relations, defining the scoring function, and learning their representations [25]. Given a question and a KG, the pipeline learns the question embedding, identifies topic entities and constraint embeddings, learns KG entity/relation embeddings, and reasons to the answer.</p>
+  </section>
+
+  <section>
+    <h2>3.2. Graph Neural Network (GNN)-Based Methods</h2>
+    <p>GNN-based methods retrieve a topic-specific subgraph — typically entities one hop from the topic entity plus their links, enough for simple questions — and encode the question and candidate answers as low-dimensional dense vectors. Ranking functions score the candidates [36], [37], a memory network generates the final answer [38], and attention mechanisms with multi-column modules improve ranking accuracy [39], [40]. The standard pipeline has four modules: question parsing (extracting the topic entity and implicit mentions, sometimes decomposing the question into sub-questions [41]), subgraph extraction, representation, and answer ranking.</p>
+    <p>Chen et al. proposed generating questions from knowledge to strengthen this pipeline [32]; a noted limitation is that decompositions considering only single-hop relations perform poorly on multi-hop problems [41].</p>
+  </section>
+
+  <section>
+    <h2>3.3. Joint Reasoning of PLM+KG</h2>
+    <p>Pre-training language models on large corpora with unsupervised objectives and then fine-tuning them on downstream tasks has become a dominant NLP paradigm [45], with Transformer-based models — BERT [46] and its variants [47], and the GPT series [48] — achieving the greatest success. Applied to KGQA, the PLM+KG pipeline adds mention detection, entity linking, relation and constraint detection, and joint reasoning, directly addressing the core challenge of bridging the semantic gap between natural-language questions and structured data.</p>
+    <p>The survey further acknowledges the influence of ChatGPT, which has spurred using knowledge graphs as a knowledge source to help answer complex questions and ground generative models.</p>
+  </section>
+
+  <section>
+    <h2>4. Resources and Evaluation</h2>
+    <p>General-purpose graphs — Freebase [6], DBpedia [7], Wikidata [8], YAGO [9] — serve open-domain QA, while ConceptNet [23] serves commonsense questions and domain graphs [59] serve subtasks and competitions. Representative datasets include GrailQA (64,331 questions with SPARQL/S-expressions, testing i.i.d., compositional, and zero-shot generalization) [60] and KQA Pro (about 120k questions with multi-hop reasoning, attribute comparison, and set operations, providing KoPL and SPARQL queries) [61].</p>
+    <p>Reliability is measured with precision, accuracy, Hits@K, recall, and F1 over predicted versus gold answer sets. Robustness is assessed through three generalization levels proposed by Gu et al. [60]: i.i.d., compositional (recombining known entities and relations for new problems), and zero-shot generalization.</p>
+  </section>
+
+  <section>
+    <h2>5. Trends and Conclusions</h2>
+    <p>The bottleneck challenge of the field is model generalization. Open problems include multilingual question answering, since most systems target English; incremental learning that updates node representations as the graph changes — e.g. Tian et al.'s knowledge-distillation method transferring feature knowledge from PLMs to the incremental model [68]; and real-time optimization of response speed and efficiency.</p>
+    <p>In conclusion, the survey defines the C-KGQA task, organizes mainstream GM-based, GNN-based, and PLM+KG methods, compiles recent resources and evaluation practice, and maps research prospects for the community.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+<li>[1] Balažević, I.; Allen, C.; Hospedales, T.M. Tucker: Tensor factorization for knowledge graph completion. arXiv 2019, arXiv:1901.09590.</li>
+      <li>[6] Bollacker, K.; et al. Freebase: A collaboratively created graph database for structuring human knowledge. In Proc. ACM SIGMOD, 2008.</li>
+      <li>[7] Lehmann, J.; et al. DBpedia — A large-scale, multilingual knowledge base extracted from Wikipedia. Semant. Web 2015.</li>
+      <li>[8] Pellissier Tanon, T.; Vrandečić, D.; et al. From Freebase to Wikidata: The great migration. In Proc. WWW, 2016.</li>
+      <li>[9] Suchanek, F.M.; Kasneci, G.; Weikum, G. YAGO: A core of semantic knowledge. In Proc. WWW, 2007.</li>
+      <li>[10] Bordes, A.; et al. Large-scale simple question answering with memory networks (single-triple questions). arXiv 2015.</li>
+      <li>[18] Resource Description Framework (RDF): subject–predicate–object (SPO) triple model.</li>
+      <li>[19] SPARQL structured graph query language for RDF.</li>
+      <li>[23] Speer, R.; Chow, J.; Havasi, C. ConceptNet 5.5: An open multilingual graph of general knowledge. In Proc. AAAI, 2017.</li>
+      <li>[32] Chen, Y.; et al. Question generation from knowledge bases.</li>
+      <li>[38] Sukhbaatar, S.; et al. End-to-end memory networks. In Proc. NeurIPS, 2015.</li>
+      <li>[46] Devlin, J.; et al. BERT: Pre-training of deep bidirectional transformers for language understanding. In Proc. NAACL, 2019.</li>
+      <li>[48] Brown, T.; et al. Language models are few-shot learners (GPT-3). In Proc. NeurIPS, 2020.</li>
+      <li>[60] Gu, Y.; et al. Beyond IID: three levels of generalization for question answering on knowledge bases (GrailQA). In Proc. WWW, 2021.</li>
+      <li>[61] Cao, S.; et al. KQA Pro: A dataset with explicit compositional programs for complex QA over knowledge bases. 2022.</li>
+      <li>[68] Tian, Z.; et al. Knowledge distillation for incremental learning in KGQA.</li>
+      <li>[full reference list available in the original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics12214395">10.3390/electronics12214395</a> · License: CC BY 4.0 · <a href="./paper.pdf">PDF</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

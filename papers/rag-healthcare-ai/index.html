@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التوليد المعزز بالاسترجاع في الرعاية الصحية: مراجعة شاملة — DAR</title>
+<meta name="description" content="Retrieval-Augmented Generation (RAG) in Healthcare: A Comprehensive Review — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/rag-healthcare-ai/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Retrieval-Augmented Generation (RAG) in Healthcare: A Comprehensive Review</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التوليد المعزز بالاسترجاع في الرعاية الصحية: مراجعة شاملة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Fnu Neha, Deepshikha Bhati, Deepak Kumar Shukla</span>
+    <span>📄 AI, 2025 · Vol. 6, 226</span>
+    <span>🔗 <a href="https://doi.org/10.3390/ai6090226">10.3390/ai6090226</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يعزز التوليد المعزز بالاسترجاع (RAG) النماذج اللغوية الكبيرة عبر دمج استرجاع المعرفة الخارجية لتحسين الاتساق الواقعي والحد من الهلوسات. ورغم الاهتمام المتزايد، يبقى استخدامه في الرعاية الصحية مجزأً. تقدم هذه الورقة مراجعة منهجية للأدبيات وفق إرشادات PRISMA، تجمع 30 دراسة محكّمة حول RAG في المجالات السريرية، مع التركيز على الدعم التشخيصي وتلخيص السجلات الصحية الإلكترونية والإجابة عن الأسئلة الطبية [8]، [10].</p>
+    <p>نلخص المتغيرات المعمارية (الساذجة والمتقدمة والنمطية) وندرس نشرها عبر هذه التطبيقات [23]. وتشمل التحديات المستمرة ضجيج الاسترجاع وانزياح المجال وزمن التوليد ومحدودية قابلية التفسير. وتُقارن استراتيجيات التقييم باستخدام مقاييس معيارية ومقاييس سريرية خاصة — FactScore وRadGraph-F1 وMED-F1 — وهي حاسمة للدقة الواقعية والصلاحية الطبية والأهمية السريرية [68]، [69]. يوجه هذا التجميع الباحثين ومقدمي الرعاية وصناع السياسات نحو تطوير أنظمة ذكاء اصطناعي موثوقة وقابلة للتفسير ومتوافقة سريريًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>كانت أنظمة المعالجة اللغوية المبكرة في الرعاية الصحية قائمة على القواعد، معتمدة على المنطق الرمزي ومطابقة الأنماط والأنطولوجيات التي يحددها الخبراء لفرز الأعراض والترميز الطبي واستخراج المعلومات [12]. ورغم فعاليتها في البيئات الضيقة، عانت مع اللغة الغامضة وكانت حساسة لاختلافات التوثيق السريري [13]. ثم أتاحت البنى المتكررة فالمحول (Transformer) [15] تمثيلات سياقية، تلتها نماذج متخصصة مثل BERT [5] وBioBERT [6] وClinicalBERT [7].</p>
+    <p>أظهرت النماذج اللغوية العامة وعدًا في الإجابة عن الأسئلة الطبية [2]، لكنها ما تزال تهلوس وتتخلف عن الإرشادات الحالية. يؤسس RAG التوليد على أدلة مسترجعة وقت الاستدلال [8]، وتُظهر أطر صحية خاصة مثل RAG in Health Care [9] تحسن التواصل واتخاذ القرار عبر معالجة محدوديات النماذج. تسترشد هذه المراجعة بهدفين: RO1 — تقييم فعالية RAG في دعم سير العمل السريري وتعزيز قابلية التفسير؛ RO2 — تحديد الفجوات واقتراح اتجاهات بحثية مستقبلية متوافقة مع الاحتياجات السريرية والسلامة وقابلية التفسير.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. منهجية البحث</h2>
+    <p>تتبع المراجعة إرشادات PRISMA بمعايير إدراج واستبعاد صريحة: دراسات محكّمة تطبق RAG على مهام سريرية مع تقييم موثق. تم الاسترجاع والفرز عبر البحث في القواعد، وإزالة المكرر، وفرز العناوين والملخصات، وفرز النص الكامل مع تحقق متقاطع للبيانات المستخرجة. وطُورت تصنيفية تنظم الأدبيات حسب المهمة السريرية ومتغير RAG واستراتيجية الاسترجاع ومقياس التقييم.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. الخلفية والأسس</h2>
+    <p>يجمع RAG بين مسترجِع ومولّد: عند الاستعلام تُجلب مقاطع ذات صلة من مدونة خارجية ويُشرط عليها أثناء التوليد [8]. يستخدم الاسترجاع المتفرق الكلاسيكي TF-IDF [19] وBM25 [20]؛ أما الكثيف مثل DPR [21] فيرمّز الاستعلامات والمقاطع في فضاءات تضمين مشتركة. ومن المولدات الأساسية T5 [22]، بينما أنتج التكييف المجالي BioGPT [3] وBioBERT [6] وClinicalBERT [7] وClinicalT5 [18] وClinicalGPT [29].</p>
+    <p>تتراوح متغيرات RAG من الساذج (استرجاع ثم قراءة بتمريرة واحدة) إلى المتقدم (إعادة كتابة الاستعلام وإعادة الترتيب والاسترجاع التكراري) والتصاميم النمطية التي تعيد تشكيل الاسترجاع والتوليد والذاكرة كمكونات قابلة للتركيب [23]. ومن التطبيقات واسعة النطاق ATLAS للتعلم بالقليل [25] وRETRO للاسترجاع من تريليونات الرموز [26]. وتعتمد المدونات الصحية غالبًا على موارد مثل MIMIC-IV [17].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. الأعمال ذات الصلة</h2>
+    <p>يغطي RAG السريري العام التلخيص ودعم القرار والتأسيس على الإرشادات [32]، [63]. وتشمل الوكلاء الحواريون مساعدي الأمراض المعدية [31] وأنظمة رعاية الخروج بآليات ذاكرة [33] ودعم الصحة النفسية بتحليل المشاعر [47] وإدارة أمراض الغدة الدرقية [48] والمساعدات العلاجية متعددة الوسائط [44] والفرز التشخيصي بـ BioMistral [46]. وتستهدف النماذج التخصصية أمراض الكلى [49] والكبد [50] والأذن والأنف والحنجرة [51] وتقييم الغلوكوما [37] وتخصيص الأورام [66].</p>
+    <p>تدمج أعمال الإشارات تخطيط القلب وبيانات الأجهزة القابلة للارتداء للتشخيص الصفري [52] وقرارات علاج آلام أسفل الظهر [53]. وتشمل الأطر الواعية بالرسوم والأنطولوجيات MedRAG بالاستدلال الرسومي [27] وBioRAG [28] وMedical Graph RAG [55] وGraphRAG للتلخيص [56] والاسترجاع الرسومي المتين [54]. وتجمع البنى الآمنة البلوك تشين مع RAG لإرشادات الأطفال [60] وإدارة بيانات إنترنت الأشياء الطبية [59]. ويتقدم سؤال-جواب الأشعة عبر RadioRAG بالاسترجاع المباشر [61] ودعم مجموعات التشخيص DRG [62].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. التطبيقات</h2>
+    <p>يستخدم المساعد التشخيصي RAG لتأسيس التشخيصات التفريقية على الإرشادات والحالات المشابهة [35]، [38]. ويضغط تلخيص السجلات وملاحظات الخروج السجلات الطولية في موجزات سريرية بارزة [63]. وتشمل الإجابة الطبية المعايير العامة [71]، [72] ومدونات الحوار مثل MedDialog [73]. وتقدم وكلاء تثقيف المرضى إرشادات شخصية للياقة والتغذية والعلاج [41]، [65]. وتربط مطابقة التجارب السريرية معايير الأهلية بملفات المرضى، وتُؤتمت مراجعات الأدبيات الطبية بخطوط RAG [67]. وتُظهر التصاميم الموفرة للموارد أداءً مماثلًا بسياق أقل [42].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. التقييم: المقاييس والمعايير</h2>
+    <p>تُحكم جودة التوليد بمقاييس التطابق والدلالة المعيارية، بينما يُقاس ملاءمة الاسترجاع بمقاييس ترتيب موجهة للاستدعاء على المدونات السريرية. والاتساق الواقعي هو المحور الحاسم: يوفر FactScore تقييمًا ذريًا دقيقًا لواقعية النصوص الطويلة [68]؛ ويستخرج RadGraph-F1 الكيانات والعلاقات السريرية من تقارير الأشعة للتسجيل المستهدف [69]؛ وتقيس MED-F1 والمتغيرات المكيفة الصلاحية الطبية. وتضيف أطر السلامة السريرية ومعدل الهلوسة فحوصًا موجهة للنشر [64].</p>
+    <p>تشمل مجموعات المعايير صور CheXpert الصدرية بتسميات عدم اليقين [70] وأسئلة MedQA من امتحانات الترخيص [71] وملخصات PubMedQA الطبية [72] وحوارات MedDialog واسعة النطاق [73]. وتكمل مسوحات تقييم RAG [10]، [11] التكييفات السريرية مثل سؤال-جواب nutrigenetics [39] وتحويل النص إلى SQL الوبائي فوق السجلات [40].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. التحديات والقيود</h2>
+    <p>يعاني الاسترجاع في السياقات السريرية من الضجيج — مقاطع غير ذات صلة أو منخفضة الجودة تضلل التوليد — ومن انزياح المجال عندما تواجه النماذج توزيعات تختلف عن تدريبها. ويقيد زمن الاستجابة الاستخدام السريري الآني؛ وتبقى قابلية التفسير ونسب المصادر ضعيفة مما يقوض ثقة الأطباء. وتقيد الخصوصية والامتثال والحوكمة تدفقات البيانات، بينما تستمر اختناقات التقييم لأن المقاييس العامة تفوّت الصلاحية السريرية [64].</p>
+    <p>تعيق محدوديات تعدد الوسائط الاستدلال المشترك على النصوص والصور والإشارات؛ وتثقل تكاليف البنية والقابلية للتوسع النشر؛ ويتطلب انجراف المعرفة تحديثًا مستمرًا مع تطور الإرشادات؛ ويهدد غياب الإشراف البشري بأتمتة غير آمنة؛ ويهدد التحيز وفجوات العدالة الرعاية المنصفة. ويترك نطاق المراجعة المحدود بالقواعد المدرجة والاستخراج المتحقق منه مخاطر متبقية عند تفسير النتائج.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">8. النقاش والاتجاهات المستقبلية</h2>
+    <p>يؤسس دمج الرسوم المعرفية الاسترجاع على أنطولوجيات منظمة، محسنًا الدقة وقابلية التفسير [27]، [55]، [56]. ويقاوم التعلم المستمر مع الاسترجاع الديناميكي انجراف المعرفة مع تغير الإرشادات. ويجب أن يستدل RAG متعدد الوسائط استدلالًا مشتركًا على الملاحظات والصور والإشارات الحيوية [52]، [61]. ويمكّن RAG الموحد والخصوصي الاسترجاع اللامركزي دون مركزية السجلات الحساسة [59]، [60].</p>
+    <p>يجب أن تجمع أطر التقييم الخاصة بالمهام المقاييس المعيارية مع السريرية مثل RadGraph-F1 وMED-F1 [68]، [69]. ويُبقي RAG البشري-في-الحلقة الأطباء مدققين للأدلة المسترجعة والخطط المولدة [36]. وتحتاج البيئات منخفضة الموارد خطوطًا موفرة [42]. ويجب أن يُظهر RAG القابل للتفسير المصادر وسلاسل الاستدلال، ويتكامل في سير العمل السريري، ويدقق التحيز والعدالة باستمرار.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">9. الاستنتاجات</h2>
+    <p>يعزز RAG النماذج اللغوية بالاسترجاع الخارجي لتحسين الاتساق الواقعي والحد من الهلوسات، لكن النشر الصحي يبقى مجزأً. بتجميع 30 دراسة، ترسم هذه المراجعة المعماريات الساذجة والمتقدمة والنمطية على الدعم التشخيصي وتلخيص السجلات والإجابة الطبية [8]، [23]؛ وتقارن المقاييس المعيارية والسريرية بقيادة FactScore وRadGraph-F1 وMED-F1 [68]، [69]؛ وتفهرس التحديات من ضجيج الاسترجاع وزمن الاستجابة إلى الخصوصية والانجراف والعدالة. يرسي هذا التجميع أساس حلول صحية قائمة على RAG موثوقة وقابلة للتفسير ومتوافقة سريريًا.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Retrieval-Augmented Generation (RAG) enhances large language models (LLMs) by integrating external knowledge retrieval to improve factual consistency and reduce hallucinations. Despite growing interest, its use in healthcare remains fragmented. This paper presents a systematic literature review (SLR) following PRISMA guidelines, synthesizing 30 peer-reviewed studies on RAG in clinical domains, focusing on diagnostic support, electronic health record (EHR) summarization, and medical question answering [8], [10].</p>
+    <p>We synthesize the architectural variants (naive, advanced, and modular) and examine their deployment across these applications [23]. Persistent challenges include retrieval noise, domain shift, generation latency, and limited explainability. Evaluation strategies are compared using both standard metrics and clinical-specific metrics — FactScore, RadGraph-F1, and MED-F1 — which are critical for factual accuracy, medical validity, and clinical relevance [68], [69]. This synthesis guides researchers, providers, and policymakers in developing reliable, interpretable, and clinically aligned AI systems.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Early NLP systems in healthcare were rule-based, relying on symbolic logic, pattern matching, and expert-defined ontologies for symptom triage, medical coding, and information extraction [12]. Although effective in narrow settings, they struggled with ambiguous language and were sensitive to variations in clinical documentation [13]. Recurrent architectures and then the Transformer [15] enabled contextual representations, followed by domain models such as BERT [5], BioBERT [6], and ClinicalBERT [7].</p>
+    <p>Generalist LLMs showed promise on medical question answering [2], but still hallucinate and lag behind current guidelines. RAG grounds generation in retrieved evidence at inference time [8], and healthcare-specific frameworks such as RAG in Health Care [9] demonstrate improved communication and decision-making by addressing LLM limitations. This review is guided by two objectives: RO1 — assess the effectiveness of RAG in supporting clinical workflows and enhancing interpretability; RO2 — identify gaps and propose future RAG research directions aligned with clinical needs, safety, and explainability.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Research Methodology</h2>
+    <p>The review follows PRISMA with explicit inclusion and exclusion criteria: peer-reviewed studies applying RAG to clinical tasks with reported evaluation. Data retrieval and screening proceeded through database search, duplicate removal, title/abstract screening, and full-text screening with cross-verification of extracted data. A taxonomy was developed organizing the literature by clinical task, RAG variant, retrieval strategy, and evaluation metric.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Background and Fundamentals</h2>
+    <p>RAG couples a retriever with a generator: given a query, relevant passages are fetched from an external corpus and conditioned on during generation [8]. Classical sparse retrieval uses TF-IDF [19] and BM25 [20]; dense retrieval such as DPR [21] encodes queries and passages into shared embedding spaces. Foundational generators include T5 [22], while domain adaptation produced BioGPT [3], BioBERT [6], ClinicalBERT [7], ClinicalT5 [18], and ClinicalGPT [29].</p>
+    <p>RAG variants range from naive (single retrieve-then-read pass) to advanced (query rewriting, re-ranking, iterative retrieval) and modular designs that reconfigure retrieval, generation, and memory as composable components [23]. Large-scale instantiations include ATLAS few-shot retrieval LMs [25] and RETRO-style retrieval from trillions of tokens [26]. Healthcare corpora frequently build on resources such as MIMIC-IV [17].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Related Work</h2>
+    <p>General clinical RAG covers summarization, decision support, and guideline grounding [32], [63]. Conversational agents span infectious-disease assistants [31], discharge-care systems with memory mechanisms [33], mental-health support with sentiment analysis [47], thyroid-disease management [48], therapy-oriented multimodal assistants [44], and diagnostic triage with BioMistral [46]. Specialty models target nephrology [49], liver disease [50], otolaryngology [51], glaucoma assessment [37], and oncology personalization [66].</p>
+    <p>Signal-oriented work integrates ECG and wearable data for zero-shot diagnosis [52] and low-back-pain treatment decisions [53]. Graph- and ontology-aware frameworks include MedRAG knowledge-graph reasoning [27], BioRAG [28], Medical Graph RAG [55], GraphRAG query-focused summarization [56], and robust graph retrieval [54]. Secure architectures combine blockchain with RAG for pediatric guidelines [60] and IoMT data management [59]. Radiology-specific QA advances through RadioRAG online retrieval [61] and DRG assignment support [62].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Applications</h2>
+    <p>Diagnostic assistance uses RAG to ground differential diagnoses in guidelines and similar cases [35], [38]. EHR and discharge-note summarization compresses longitudinal records into clinically salient briefs [63]. Medical question answering spans general benchmarks [71], [72] and dialogue corpora such as MedDialog [73]. Patient education agents deliver personalized fitness, dietary, and therapy guidance [41], [65]. Clinical-trial matching links eligibility criteria to patient profiles, and biomedical literature synthesis is increasingly automated with RAG pipelines [67]. Resource-efficient designs show comparable performance with less context [42].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Evaluation: Metrics and Benchmarks</h2>
+    <p>Generation quality is judged by standard overlap and semantic metrics, while retrieval relevance is measured by recall-oriented ranking metrics over clinical corpora. Factual consistency is the decisive axis: FactScore provides fine-grained atomic evaluation of long-form factuality [68]; RadGraph-F1 extracts clinical entities and relations from radiology reports for targeted scoring [69]; MED-F1 and clinically adapted variants measure medical validity. Clinical safety and hallucination-rate frameworks add deployment-oriented checks [64].</p>
+    <p>Benchmark datasets include CheXpert chest radiographs with uncertainty labels [70], MedQA licensing-exam questions [71], PubMedQA biomedical abstracts [72], and MedDialog large-scale dialogues [73]. Domain surveys of RAG evaluation [10], [11] complement clinical adaptations such as nutrigenetics QA [39] and epidemiological text-to-SQL over EHRs [40].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Challenges and Limitations</h2>
+    <p>Retrieval in clinical contexts suffers from noise — irrelevant or low-quality passages that mislead generation — and domain shift when models meet distributions unlike their training data. Latency constrains real-time bedside use; explainability and source attribution remain weak, undermining clinician trust. Privacy, compliance, and governance restrict data flows, while evaluation bottlenecks persist because generic metrics miss clinical validity [64].</p>
+    <p>Multimodal limitations hinder joint reasoning over text, images, and signals; infrastructure and scalability costs burden deployment; knowledge drift demands continual updating as guidelines evolve; the lack of human-in-the-loop oversight risks unsafe automation; and bias with fairness gaps threatens equitable care. An SLR scope bounded by included databases and cross-verified extraction leaves residual risks when interpreting results.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">8. Discussion and Future Directions</h2>
+    <p>Knowledge-graph integration grounds retrieval in structured ontologies, improving precision and explainability [27], [55], [56]. Continual learning with dynamic retrieval counters knowledge drift as guidelines change. Multimodal RAG must jointly reason over notes, images, and biosignals [52], [61]. Federated and privacy-preserving RAG enables decentralized retrieval without centralizing sensitive records [59], [60].</p>
+    <p>Task-specific evaluation frameworks should combine standard metrics with clinical measures such as RadGraph-F1 and MED-F1 [68], [69]. Human-in-the-loop RAG keeps clinicians as verifiers of retrieved evidence and generated plans [36]. Low-resource settings need resource-efficient pipelines [42]. Explainable RAG must surface sources and reasoning chains, integrate into clinical workflows, and audit bias and fairness continuously.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">9. Conclusions</h2>
+    <p>RAG enhances LLMs with external retrieval to improve factual consistency and reduce hallucinations, yet healthcare deployment remains fragmented. Synthesizing 30 studies, this review maps naive, advanced, and modular architectures onto diagnostic support, EHR summarization, and medical QA [8], [23]; contrasts standard and clinical metrics led by FactScore, RadGraph-F1, and MED-F1 [68], [69]; and catalogs challenges from retrieval noise and latency to privacy, drift, and fairness. The synthesis lays the groundwork for reliable, interpretable, and clinically aligned RAG-based healthcare solutions.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed reference list preserving original numbering; see the original paper for the full 73-entry bibliography.</p>
+    <ol dir="ltr">
+      <li>Singhal, K.; et al. Toward expert-level medical question answering with large language models. <em>Nat. Med.</em> 2025, 31, 943–950.</li>
+      <li>Luo, R.; et al. BioGPT: generative pre-trained transformer for biomedical text generation and mining. <em>Briefings Bioinform.</em> 2022, 23, bbac409.</li>
+      <li>Devlin, J.; et al. BERT: Pre-training of deep bidirectional transformers for language understanding. In <em>Proc. NAACL-HLT 2019</em>, Minneapolis, MN, USA, 2–7 June 2019; Vol. 1, pp. 4171–4186.</li>
+      <li>Lee, J.; et al. BioBERT: A pre-trained biomedical language representation model for biomedical text mining. <em>Bioinformatics</em> 2020, 36, 1234–1240.</li>
+      <li>Huang, K.; Altosaar, J.; Ranganath, R. ClinicalBERT: Modeling clinical notes and predicting hospital readmission. <em>arXiv</em> 2019, arXiv:1904.05342.</li>
+      <li>Lewis, P.; et al. Retrieval-augmented generation for knowledge-intensive NLP tasks. <em>Adv. Neural Inf. Process. Syst.</em> 2020, 33.</li>
+      <li>Ng, K.K.Y.; Matsuba, I.; Zhang, P.C. RAG in health care: a novel framework for improving communication and decision-making by addressing LLM limitations. <em>NEJM AI</em> 2025, 2, AIra2400380.</li>
+      <li>Gao, Y.; et al. Retrieval-augmented generation for large language models: A survey. <em>arXiv</em> 2023, arXiv:2312.10997.</li>
+      <li>Gaur, M. Knowledge-Infused Learning. Ph.D. Thesis, University of South Carolina, Columbia, SC, USA, 2022.</li>
+      <li>Spasic, I.; Nenadic, G. Clinical text data in machine learning: Systematic review. <em>JMIR Med. Inform.</em> 2020, 8, e17984.</li>
+      <li>Vaswani, A.; et al. Attention is all you need. In <em>Adv. Neural Inf. Process. Syst.</em> 2017, 31.</li>
+      <li>Johnson, A.E.; et al. MIMIC-IV, a freely accessible electronic health record dataset. <em>Sci. Data</em> 2023, 10, 1.</li>
+      <li>Lu, Q.; Dou, D.; Nguyen, T. ClinicalT5: A generative language model for clinical text. In <em>Proc. Findings of EMNLP 2022</em>, Abu Dhabi, UAE, 7–11 December 2022.</li>
+      <li>Amati, G. BM25. In <em>Encyclopedia of Database Systems</em>; Springer: Cham, Switzerland, 2009; pp. 257–260.</li>
+      <li>Karpukhin, V.; et al. Dense Passage Retrieval for Open-Domain Question Answering. In <em>Proc. EMNLP 2020</em>, Virtual, 16–20 November 2020; pp. 6769–6779.</li>
+      <li>Raffel, C.; et al. Exploring the limits of transfer learning with a unified text-to-text transformer. <em>J. Mach. Learn. Res.</em> 2020, 21, 5485–5551.</li>
+      <li>Gao, Y.; Xiong, Y.; Wang, M.; Wang, H. Modular RAG: Transforming RAG systems into lego-like reconfigurable frameworks. <em>arXiv</em> 2024, arXiv:2407.21059.</li>
+      <li>Izacard, G.; et al. Atlas: Few-shot learning with retrieval augmented language models. <em>J. Mach. Learn. Res.</em> 2023, 24, 1–43.</li>
+      <li>Borgeaud, S.; et al. Improving language models by retrieving from trillions of tokens. In <em>Proc. ICML 2022</em>, Baltimore, MD, USA, 17–23 July 2022.</li>
+      <li>Zhao, X.; et al. MedRAG: Enhancing retrieval-augmented generation with knowledge graph-elicited reasoning for healthcare copilot. In <em>Proc. ACM Web Conference 2025</em>, Sydney, Australia, 28 April–2 May 2025.</li>
+      <li>Wang, C.; et al. BioRAG: A RAG-LLM framework for biological question reasoning. <em>arXiv</em> 2024, arXiv:2408.01107.</li>
+      <li>Wang, G.; et al. ClinicalGPT: large language models finetuned with diverse medical data and comprehensive evaluation. <em>arXiv</em> 2023, arXiv:2306.09968.</li>
+      <li>Kirubakaran, S.S.; et al. A RAG-based medical assistant especially for infectious diseases. In <em>Proc. ICICV 2024</em>, India.</li>
+      <li>Yang, Y.; et al. Improving the RAG-based personalized discharge care system by introducing the memory mechanism. In <em>Proc. ICRSE 2025</em>.</li>
+      <li>Xu, R.; et al. Evaluation of the integration of retrieval-augmented generation in large language model for breast cancer nursing care responses. <em>Sci. Rep.</em> 2024, 14, 30794.</li>
+      <li>Aminan, M.I.; et al. GlaucoRAG: A retrieval-augmented large language model for expert-level glaucoma assessment. <em>medRxiv</em> 2025.</li>
+      <li>Cheetirala, S.N.; et al. Less context, same performance: A RAG framework for resource-efficient LLM clinical prediction. 2024.</li>
+      <li>Shafi, F.R.; Hossain, M.A. LLM-therapist: a RAG-based multimodal behavioral therapist as healthcare assistant. In <em>Proc. GLOBECOM 2024</em>, Cape Town, South Africa, 8–12 December 2024.</li>
+      <li>Sinha, K.; et al. Healthcare diagnostic RAG-based chatbot triage enabled by BioMistral-7B. In <em>Proc. ICETI 2024</em>.</li>
+      <li>Nayinzira, J.P.; Adda, M. SentimentCareBot: retrieval-augmented generation chatbot for mental health support. <em>Procedia Comput. Sci.</em> 2024, 251, 334–341.</li>
+      <li>Miao, J.; et al. Integrating retrieval-augmented generation with large language models in nephrology. <em>Medicina</em> 2025.</li>
+      <li>Yu, H.; Guo, P.; Sano, A. Zero-shot ECG diagnosis with large language models and retrieval-augmented generation. In <em>Proc. ML4H Symposium, PMLR</em>, New Orleans, LA, USA, 10 December 2023.</li>
+      <li>Wu, J.; et al. Medical graph RAG: Towards safe medical large language model via graph retrieval-augmented generation. <em>arXiv</em> 2024, arXiv:2408.04187.</li>
+      <li>Edge, D.; et al. From local to global: A graph RAG approach to query-focused summarization. <em>arXiv</em> 2024, arXiv:2404.16130.</li>
+      <li>Su, C.; et al. Hybrid RAG-empowered multi-modal LLM for secure data management in Internet of Medical Things. <em>IEEE Internet Things J.</em> 2024.</li>
+      <li>Jabarulla, M.Y.; et al. MedBlock-Bot: A blockchain-enabled RAG system for pediatric clinical guidelines. In <em>Proc. 2025</em>.</li>
+      <li>Tayebi Arasteh, S.; et al. RadioRAG: Online retrieval-augmented generation for radiology question answering. <em>Radiology</em> 2024.</li>
+      <li>Alkhalaf, M.; Yu, P.; Yin, M.; Deng, C. Applying generative AI with retrieval augmented generation to summarize clinical information from EHRs. <em>J. Biomed. Inform.</em> 2024, 156, 104662.</li>
+      <li>Asgari, E.; et al. A framework to assess clinical safety and hallucination rates of LLMs for medical text summarisation. <em>NPJ Digit. Med.</em> 2025, 8.</li>
+      <li>Zarfati, M.; et al. Retrieval-augmented generation: Advancing personalized care and research in oncology. <em>Eur. J. Cancer</em> 2025, 220, 115341.</li>
+      <li>Min, S.; et al. FactScore: Fine-grained atomic evaluation of factual precision in long form text generation. <em>arXiv</em> 2023, arXiv:2305.16634.</li>
+      <li>Jain, S.; et al. RadGraph: Extracting clinical entities and relations from radiology reports. <em>arXiv</em> 2021, arXiv:2110.11624.</li>
+      <li>Irvin, J.; et al. CheXpert: A large chest radiograph dataset with uncertainty labels and expert comparison. <em>Proc. AAAI</em> 2019, 33, 590–597.</li>
+      <li>Jin, D.; et al. What disease does this patient have? A large-scale open domain question answering dataset from medical exams. <em>Appl. Sci.</em> 2021, 11, 6421.</li>
+      <li>Jin, Q.; et al. PubMedQA: A dataset for biomedical research question answering. <em>arXiv</em> 2019, arXiv:1909.06146.</li>
+      <li>He, X.; et al. MedDialog: Two large-scale medical dialogue datasets. <em>arXiv</em> 2020, arXiv:2004.03329.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/ai6090226">10.3390/ai6090226</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

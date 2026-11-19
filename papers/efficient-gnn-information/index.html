@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسح الشبكات العصبية البيانية فعالة الحوسبة للأنظمة القابلة لإعادة التشكيل — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Survey of Computationally Efficient Graph Neural Networks for Reconfigurable Systems</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مسح الشبكات العصبية البيانية فعالة الحوسبة للأنظمة القابلة لإعادة التشكيل</h2>
+
+  <div class="paper-meta">
+    <span>👤 Habib Taha Kose, Jose Nunez-Yanez, Robert Piechocki, James Pope</span>
+    <span>📄 Information, 2024 · Vol. 15(7), 377</span>
+    <span>🔗 <a href="https://doi.org/10.3390/info15070377">10.3390/info15070377</a></span>
+    <span>📥 <a href="paper.pdf" target="_blank">PDF</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تستعرض هذه الورقة أحدث التطورات في التكميم والتسريع berbasis مصفوفات البوابات القابلة للبرمجة (FPGA) للشبكات العصبية البيانية (GNNs)، مبرزة قدرات الأنظمة القابلة لإعادة التشكيل على تقديم حلول مخصصة في بيئات تتسم بالتناثر الشديد وضرورة إدارة الحمل الديناميكي، ودور التكميم في خفض المتطلبات الحوسبية ومتطلبات الذاكرة عبر الحساب بنقاط ثابتة والصيغ المتجهية المبسطة [1،2،30]. يركز المسح على الأجهزة منخفضة الطاقة محدودة الموارد بدل المسرعات العامة، ويناقش الفجوات البحثية والعقبات والاتجاهات المستقبلية، بما فيها الحاجة لدمج التكميم مع مسرعات FPGA في تطبيقات الأنظمة المدمجة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تتفوق الشبكات العصبية البيانية على نماذج التعلم العميق التقليدية في البيانات غير الإقليدية كالشبكات الاجتماعية [3] والروابط الجزيئية [4] والتجارة الإلكترونية [5]، وقد تبنتها شركات كبرى مثل Google [16] وAmazon [17] وAlibaba [6]؛ لكن ضخامة البيانات وتعقيد الروابط وعدم انتظام البنية البيانية تفرض كلفة حوسبية عالية لا تلبيها الأطر العامة مثل DGL [17] وPyG [22] في تطبيقات الحافة وإنترنت الأشياء [1،19–21].</p>
+    <p>أثبتت مسرعات FPGA والتكميم منخفض البتات جدواها في الشبكات التقليدية [26،27] لكن أبحاثها في GNNs ما تزال ناقصة [21،25،28،29]، رغم أن مرونة مكونات FPGA تتيح تخصيص النماذج العصبية لمتطلبات محددة وخفض استهلاك الطاقة [30–33]. يستعرض المسح أساليب التكميم ومسرعات FPGA القابلة للتطبيق المباشر أو المستقبلي على الأجهزة المدمجة، والتصاميم التي تجمع التقنيتين، بمنهجية بحث في MDPI وIEEE Xplore وACM بالكلمات المفتاحية GNN/GCN والمسرعات القابلة لإعادة التشكيل والتكميم.</p>
+  </section>
+
+  <section>
+    <h2>2. الخلفية: نماذج الشبكات العصبية البيانية</h2>
+    <p>تتعلم نماذج GNN عبر مرحلتي التجميع (جمع سمات الجيران) والدمج (بناء مصفوفة السمات عالية المستوى) ضمن إطار تمرير الرسائل MPNN، وتشمل المتغيرات الأساسية: الشبكات الالتفافية البيانية GCNs [73] بصيغتها المطبّعة، وشبكات التماثل البيانية GINs [74] القادرة على اختبار Weisfeiler–Lehman، وشبكات الانتباه البيانية GATs [75] التي توزن أهمية الجيران، وGraphSAGE [13] بإطاره الاستقرائي القابل للتوسع ودوال التجميع بالتجميع الأقصى وLSTM.</p>
+    <p>يؤثر ترتيب مرحلتي التجميع والدمج على كفاءة النظام، إذ أظهر Tian وآخرون [25] أن اعتماد ترتيب CoAg يحسّن الكفاءة. وتُعد الشبكات الطيفية والمكانية والمتكررة والمشفّرات البيانية والمولّدة والهرمية والموحدة (Federated) تصنيفًا موسعًا للمتغيرات حسب التطبيق، مع جدول للمصطلحات والرموز يوثق مكونات مثل مصفوفة التجاور ومصفوفة السمات والأوزان ومعاملات الانتباه.</p>
+  </section>
+
+  <section>
+    <h2>3. تكميم الشبكات العصبية البيانية</h2>
+    <p>يقلل التكميم حجم النموذج ومتطلباته الحوسبية بتمثيل البارامترات ببتات أقل، وهو حاسم لمنصات FPGA حيث يتفوق الحساب الصحيح على حساب الفاصلة العائمة [21،34–36]. يشمل التكميم القياسي أساليب منتظمة وغير منتظمة وموقعة وغير موقعة ومتماثلة وغير متماثلة وثابتة وديناميكية — والأخير يعيد معايرة المجالات لكل مدخل بدقة أعلى وكلفة أكبر — بينما يطابق التكميم المتجهي كل متجه لأقرب كلمة مرجعية بمسافة إقليدية، فيحفظ البنية بضغط أعلى وكلفة تنفيذ أكبر على FPGA.</p>
+    <p>تشمل دراسات التكميم للتدريب على GPU أساليب Tango [77] وAdaQP [79] الذي يخفض حركة الاتصال بالتدريب الموزع، وGCINT [80] وQGTC [81] لنوى Tensor، وBiFeat [82] الذي يجمع التكميم القياسي والمتجهي بتسريع حتى ثلاثة أضعاف. وللأجهزة المقيدة بالطاقة، خفف Eliasof وآخرون [83] أثر البتات المنخفضة جدًا عبر تحويل Haar المويجي، واقترح Dai وآخرون [84] التكميم المقطعي، وZhu وآخرون [85] التكميم المختلط الدقة بإدراك الجمع، وWang وآخرون [86] بنية QLR-BT/SMP، وLiu وآخرون EXACT [87] بالإسقاط العشوائي مع تحسين Eliassen وآخرين [88] بالتكميم الكتلي، إضافة إلى VQ-GNN [89] وSGQuant [90].</p>
+  </section>
+
+  <section>
+    <h2>4. مسرعات الأجهزة القائمة على FPGA</h2>
+    <p>تتفوق المسرعات القائمة على الأجهزة — ومنها GPU-CPU [99–101] وASIC [29،102–108] وFPGA [21،31،34،109] — على الحوسبة التقليدية في تدريب GNNs واستدلالها بفضل التوازي ووحدات الحوسبة المخصصة وزمن الاستجابة المنخفض. فعلى مستوى ASIC، يعالج HyGCN [102] الطبيعة المزدوجة للتجميع غير المنتظم والدمج المنتظم بمحركين مخصصين، ويعيد EnGN [29] ترتيب المراحل باستراتيجية DASR، بينما تحسّن GRIP [108] وRubik [105] وGCNAX [106] زمن الاستجابة وكفاءة الطاقة، ويلاحظ أن حلول FPGA مثل AWB-GCN وFP-GNN تتخلف أداءً أحيانًا لكنها تُفضَّل لمرونتها وتوافقها.</p>
+    <p>تعالج مسرعات FPGA تحديات عدم توازن الحمل وتناثر البيانات: فيعيد AWB-GCN [21] توزيع المهام ديناميكيًا على عناصر المعالجة، ويستغل ACE-GCN [111] التناثر وتشابه الجوار من الدرجة الأولى، ويحسّن I-GCN [112] موقعية البيانات بخوارزمية التجزيّر (islanding)، ويقترح Lin وآخرون [113] التخطيط المقسّم مع HLS على Alveo U200، وZhang وآخرون [114] التحسين المشترك للخوارزمية والمعمارية، وSPA-GCN [115] التخطيط العميق للرسوم الصغيرة، وBlockGNN التدوير الكتلي مع FFT، وGui وآخرون [116] أخذ العينات CONCAT، وLi وآخرون [117] معمارية LSD-GNN، وGraph-OPU [118] التراكب القابل للبرمجة.</p>
+    <p>تجمع الأساليب غير المتجانسة CPU-FPGA بين الحوسبة العامة والتخصص العتادي للتطبيقات الكبيرة [28]، كما في التدريب بأخذ عينات الجوار لـ Zhang وآخرين [28] ومنصات Xilinx Versal ACAP في H-GCN [110]؛ ومع أن هذه الهياكل لا تناسب الأنظمة المدمجة، فهي مفضلة للتطبيقات واسعة النطاق بفضل الإنتاجية العالية وكفاءة الطاقة.</p>
+  </section>
+
+  <section>
+    <h2>5. النقاش والخلاصة</h2>
+    <p>يخلص المسح إلى أن التكميم أثناء التدريب والاستدلال يعالج التعقيد والذاكرة بفعالية، وأن القياسي منه يسود الأنظمة المدمجة لسهولته وحسابه الصحيح، بينما يحقق المتجهي نسب ضغط أعلى، وأن الدقة المختلطة تحافظ على الدقة بكلفة عتادية إضافية، وأن دقة 16 و8 بت قابلة للتحقيق ببتات 4 و2 بت. لكن دراسات FPGA للنماذج البيانية ما تزال ناقصة لتغطية تعقيدات الأنظمة المدمجة، والتركيز منصب على الاستدلال دون التدريب، والمعايير المشتركة محدودة التوسع عبر المجالات.</p>
+    <p>تشمل الاتجاهات المستقبلية دمج التكميم القياسي والمتجهي، وبناء نماذج GNN مكممة بالكامل بالحساب الصحيح، واعتماد التمثيلات منخفضة البتات العدوانية، وتسريع التدريب للرسوم الديناميكية، والجمع مع أخذ العينات وإعادة الترتيب والتقطير المعرفي. ولأول مرة — على حد علم المؤلفين — يقدم المسح تصنيفًا للتكميم المطور لـ GNNs مع مقارنة النتائج المنشورة، مؤكدًا أن دمج التكميم مع مسرعات FPGA غير مستكشف بما يكفي لتطبيقات الأجهزة المدمجة رغم نتائجه الواعدة لكفاءة الطاقة والأداء.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>This survey reviews recent developments in quantization and FPGA-based acceleration for graph neural networks (GNNs), highlighting reconfigurable systems' ability to deliver customized solutions under high sparsity and dynamic load-management demands, and quantization's role in reducing compute and memory demands via fixed-point arithmetic and streamlined vector formats [1,2,30]. It focuses on low-power, resource-limited devices over general accelerators, and discusses research gaps, obstacles, and future directions, including the need to combine quantization with FPGA accelerators in embedded applications.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>GNNs outperform classical deep learning on non-Euclidean data such as social networks [3], molecular bonds [4], and e-commerce [5], adopted by majors like Google [16], Amazon [17], and Alibaba [6]; yet massive data, connection complexity, and irregular graph structure impose heavy compute costs that generic frameworks like DGL [17] and PyG [22] cannot meet for edge and IoT applications [1,19–21].</p>
+    <p>Low-bit quantization and FPGA accelerators proved valuable for classical networks [26,27] but remain understudied for GNNs [21,25,28,29], even though FPGA flexibility enables tailoring neural models to specific demands while cutting power [30–33]. The survey reviews quantization and FPGA accelerators directly or prospectively applicable to embedded devices, and designs combining both, via MDPI/IEEE Xplore/ACM searches on GNN/GCN, reconfigurable hardware, and quantization keywords.</p>
+  </section>
+
+  <section>
+    <h2>2. Background: GNN Models</h2>
+    <p>GNNs learn through aggregation (gathering neighbor features) and combination (building high-level feature matrices) within the message-passing MPNN framework; core variants include GCNs [73] in normalized form, GINs [74] reaching Weisfeiler–Lehman power, GATs [75] weighting neighbor importance, and GraphSAGE [13] with its scalable inductive framework and max-pooling/LSTM aggregators.</p>
+    <p>Ordering of aggregation and combination affects system efficiency, with Tian et al. [25] showing CoAg ordering improves it. Spectral, spatial, recurrent, autoencoder, generative, hierarchical, and federated variants form an extended application-based taxonomy, with a notation table documenting adjacency/feature matrices, weights, and attention coefficients.</p>
+  </section>
+
+  <section>
+    <h2>3. GNN Quantization</h2>
+    <p>Quantization shrinks model size and compute by representing parameters with fewer bits — critical for FPGAs where integer arithmetic beats floating point [21,34–36]. Scalar quantization spans uniform/non-uniform, signed/unsigned, symmetric/asymmetric, and static/dynamic schemes — the latter recalibrating ranges per input at higher accuracy and cost — while vector quantization maps each vector to its nearest Euclidean codeword, preserving structure at higher compression but greater FPGA cost.</p>
+    <p>GPU-training quantization studies include Tango [77], AdaQP [79] cutting distributed-training traffic, GCINT [80] and QGTC [81] for Tensor cores, and BiFeat [82] combining scalar and vector quantization for up to 3× speedup. For energy-constrained devices, Eliasof et al. [83] eased ultra-low-bit impact via Haar wavelets, Dai et al. [84] proposed segmented quantization, Zhu et al. [85] addition-aware mixed precision, Wang et al. [86] the QLR-BT/SMP architecture, Liu et al. EXACT [87] via random projection improved by Eliassen et al. [88] with block quantization, plus VQ-GNN [89] and SGQuant [90].</p>
+  </section>
+
+  <section>
+    <h2>4. FPGA-Based Hardware Accelerators</h2>
+    <p>Hardware accelerators — GPU-CPU [99–101], ASIC [29,102–108], FPGA [21,31,34,109] — beat conventional compute on GNN training and inference via parallelism, custom units, and low latency. At ASIC level, HyGCN [102] tackles hybrid irregular-aggregation/regular-combination execution with dedicated engines, EnGN [29] reorders stages via DASR, while GRIP [108], Rubik [105], and GCNAX [106] improve latency and energy efficiency; FPGA solutions like AWB-GCN and FP-GNN sometimes lag in raw performance but are preferred for flexibility and compatibility.</p>
+    <p>FPGA accelerators address load imbalance and data sparsity: AWB-GCN [21] dynamically redistributes tasks across PEs, ACE-GCN [111] exploits sparsity and first-order subgraph similarity, I-GCN [112] improves locality via islanding, Lin et al. [113] propose partition-centric mapping with HLS on Alveo U200, Zhang et al. [114] algorithm–architecture co-optimization, SPA-GCN [115] deep pipelining for small graphs, BlockGNN block-circulant matrices with FFT, Gui et al. [116] CONCAT sampling, Li et al. [117] LSD-GNN architecture, and Graph-OPU [118] a programmable overlay.</p>
+    <p>CPU-FPGA heterogeneous approaches combine general-purpose compute with hardware specialization for large-scale use [28], as in Zhang et al.'s neighbor-sampling training [28] and Xilinx Versal ACAP platforms in H-GCN [110]; though unsuited to embedded systems, they are preferred for large-scale applications given high throughput and energy efficiency.</p>
+  </section>
+
+  <section>
+    <h2>5. Discussion and Conclusions</h2>
+    <p>The survey concludes that training/inference quantization effectively addresses complexity and memory, scalar schemes dominate embedded systems for simplicity and integer arithmetic, vector schemes give higher compression, mixed precision preserves accuracy at extra hardware cost, and 16/8-bit accuracy is reachable at 4/2 bits. Yet FPGA studies of GNNs remain insufficient for embedded complexity, focus sits on inference over training, and shared benchmarks scale poorly across domains.</p>
+    <p>Futures include combining scalar and vector quantization, fully quantized integer GNNs, aggressive low-bit representations, training acceleration for dynamic graphs, and pairing with sampling, reordering, and knowledge distillation. To the authors' knowledge this is the first survey taxonomizing GNN-developed quantization with published-result comparisons, stressing that quantization-plus-FPGA integration is underexplored for embedded applications despite promising energy and performance results.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected — original numbering preserved)</h2>
+    <ol dir="ltr">
+      <li>[1] M. M. Bronstein et al., Geometric deep learning: going beyond Euclidean data, IEEE Signal Process. Mag., 2017.</li>
+      <li>[2] J. Zhou et al., Graph neural networks: a review of methods and applications, AI Open, 2020.</li>
+      <li>[13] W. Hamilton et al., Inductive representation learning on large graphs (GraphSAGE), NeurIPS, 2017.</li>
+      <li>[21] T. Geng et al., AWB-GCN: a work-efficient accelerator (dynamic workload rebalancing), FPGA, 2020.</li>
+      <li>[25] T. Tian et al., CoAg ordering for GNN system efficiency.</li>
+      <li>[28] Z. Zhang et al., CPU-FPGA heterogeneous GNN training with neighbor sampling.</li>
+      <li>[29] T. Chen et al., EnGN: dimension-aware GNN accelerator with DASR/RER dataflow.</li>
+      <li>[36] L. B. Saad &amp; B. Beferull-Lozano, Degree-Quant: quantization in GCNs, EUSIPCO, 2021.</li>
+      <li>[73] T. Kipf &amp; M. Welling, Semi-supervised classification with graph convolutional networks (GCN), ICLR, 2017.</li>
+      <li>[74] K. Xu et al., How powerful are graph neural networks? (GIN), ICLR, 2019.</li>
+      <li>[75] P. Veličković et al., Graph attention networks (GAT), ICLR, 2018.</li>
+      <li>[77] H. Tang et al., Tango: GPU GNN training with on-the-fly quantization.</li>
+      <li>[79] J. Liu et al., AdaQP: adaptive quantization for distributed GNN training.</li>
+      <li>[82] Y. Bi et al., BiFeat: feature quantization (SQ/VQ) with up to 3× speedup.</li>
+      <li>[83] M. Eliasof et al., Haar-wavelet QAT for ultra-low-bit GNNs.</li>
+      <li>[87] Y. Liu et al., EXACT: random-projection activation compression.</li>
+      <li>[89] Y. Ding et al., VQ-GNN: vector-quantized convolution/feature matrices.</li>
+      <li>[90] F. Wu et al., SGQuant: multi-granularity quantization for energy-limited devices.</li>
+      <li>[102] M. Yan et al., HyGCN: hybrid aggregation/combination accelerator.</li>
+      <li>[106] A. Sarkar et al., GCNAX: flexible dataflow with systematic design-space exploration.</li>
+      <li>[108] R. Kiningham et al., GRIP: latency/energy-efficient GNN inference.</li>
+      <li>[111] R. Romero et al., ACE-GCN: sparsity/power-law-aware embedding.</li>
+      <li>[112] T. Geng et al., I-GCN: islanding for locality and redundant-computation reduction.</li>
+      <li>[115] A. Auten et al., SPA-GCN: deeply pipelined small-graph acceleration.</li>
+      <li>[118] S. Li et al., Graph-OPU: software-programmable FPGA overlay for GNNs.</li>
+      <li>... [full reference list available in the <a href="paper.pdf" target="_blank">original PDF</a>]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/info15070377">10.3390/info15070377</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>موجهات أفضل، فائدة أفضل: مراجعة منهجية وتقييم تجريبي لتقنيات التوجيه المنظم في النماذج اللغوية الكبيرة — DAR</title>
+<meta name="description" content="Better Prompts, Better Usefulness: A Systematic Review and Experimental Evaluation of Structured Prompting Techniques in Large Language Models — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/structured-prompting-bdcc/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Better Prompts, Better Usefulness: A Systematic Review and Experimental Evaluation of Structured Prompting Techniques in Large Language Models</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">موجهات أفضل، فائدة أفضل: مراجعة منهجية وتقييم تجريبي لتقنيات التوجيه المنظم في النماذج اللغوية الكبيرة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Alessia Cantini, Andrea De Mauro</span>
+    <span>📄 Big Data Cogn. Comput., 2026 · Vol. 10, 224</span>
+    <span>🔗 <a href="https://doi.org/10.3390/bdcc10070224">10.3390/bdcc10070224</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>أصبحت النماذج اللغوية الكبيرة بسرعة مكونات مركزية في أنظمة الحوسبة المعرفية والعمل المعرفي المعان بالذكاء الاصطناعي [18]، [19]، [22]. لكن فعالية مخرجاتها لا تعتمد على قدرات النموذج فقط بل على بنية الموجه [4]، [5]، [23]، [24]. تدرس هذه الدراسة كيف تؤثر تقنيات التوجيه المنظم على الفائدة المدركة للمخرجات في مهام الأعمال [1]، [2]، [3].</p>
+    <p>تحدد مراجعة منهجية وفق PRISMA [29] استراتيجيات تحسين الموجهات وتصنفها وتجمعها، منتجة تصنيفية تميز تقنيات مواءمة المهمة (مثل الموجه الأحادي والقليل الأمثلة) عن تقنيات شفافية الاستدلال (مثل التسلسل الاستدلالي). ثم تقيّم دراسة تجريبية مضبوطة يقيّم فيها عاملو المعرفة مخرجات مولدة عبر مهام تحليلية وتلخيصية؛ وتُظهر نمذجة التأثيرات المختلطة الخطية أن التوجيه المنظم يزيد الفائدة المدركة بدلالة، مع أعلى الدرجات للتكييف القائم على الأمثلة مع السقالة الاستدلالية الصريحة، بينما الأثر المعدّل لتكرار استخدام الذكاء التوليدي غير دال إحصائيًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يعيد الذكاء التوليدي تشكيل العمل المعرفي، مع أدلة ميدانية على آثار الإنتاجية [2] ومفارقات يخلق فيها المساعدون السيئو التكامل أعباء جديدة [3]. وتعتمد المنظمات على النماذج في الصياغة والتحليل والتواصل [21]، لكن جودة المخرجات تتباين بشدة مع كيفية التوجيه [4]، [5]. فغدت هندسة الموجهات تخصصًا مدروسًا بتصنيفياته [23]، [24] ومقاييس كفاءته [87] وتدخلاته التدريبية [88].</p>
+    <p>تطرح الورقة سؤالًا عمليًا: أي بنى موجهات تزيد فعلًا الفائدة التي يدركها مستخدمو الأعمال؟ وتجيب بمرحلتين — رسم فضاء الاستراتيجيات بمراجعة منهجية، ثم اختبار تقنيات ممثلة تجريبيًا مع عاملي المعرفة في مهام الأعمال.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة</h2>
+    <p>يمتد الذكاء التوليدي في سياقات الأعمال عبر التبني والتعاون وآثار الأداء [1]، [15]، [16]، [17]، مع تحسين التوجيه الواعي بالبلاغة جودة التواصل التجاري [9]. وتغطي بحوث هندسة الموجهات فهارس التقنيات [4]، [5]، [14] وأطر التقييم [85] والتكييفات المجالية من توليد البيانات المنظمة [10] إلى الشيفرة الآمنة [12] وثغرات البرمجيات [11] والتوصيات [50]. وتؤطر النظرات الشاملة [18]، [19] ودراسات التعاون إنسان-ذكاء [21] الجانب البشري للتفاعل.</p>
+    <p>تُظهر تطبيقات التوجيه الموجهة للأعمال اتساعًا: الترميز في بحوث الإدارة [48] وتقييم مقاومة التغيير [49] والاستدلال الإحصائي في البحوث الطبية [90] ودلالات نماذج العمليات [70]. وتضيق هذه الدراسة العدسة على مقارنة مضبوطة لبنى الموجهات في الفائدة المدركة — نتيجة محورية لقبول التقنية ونادرًا ما تُعزل تجريبيًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. المواد والمناهج</h2>
+    <p>تتبع المراجعة المنهجية PRISMA 2020 [29]: استراتيجية بحث موثقة ومعايير إدراج/استبعاد ومنهج فرز واستخراج بيانات وتقييم جودة، مدعومة بممارسة تحليل المحتوى النوعي [81]، [82]. وتجمع المراجعة بحوث التوجيه في تقنيات أساسية وتقنيات مواءمة المهمة وتقنيات شفافية المخرجات، منظمة في نموذج مفاهيمي.</p>
+    <p>تحدد التجربة حالات استخدام الأعمال (مهام تحليلية وتلخيصية) وتختار تقنيات التوجيه وتبني الموجهات وتجمع تقييمات الفائدة من عاملي المعرفة بالمعاينة المريحة — استراتيجية موثقة مزاياها وحدودها في أدبيات المعاينة [83]، [84]. وتلتقط القياسات الفائدة المدركة للمخرجات؛ وتختبر نماذج التأثيرات المختلطة الخطية H1 (تؤثر تقنيات التوجيه بدلالة في الفائدة المدركة) مقابل H2 (يعدّل تكرار استخدام الذكاء التوليدي علاقة التقنية-الفائدة).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. نتائج المراجعة: تصنيفية التوجيه</h2>
+    <p>تؤسس تقنيات التوجيه الأساسية المقارنة: موجهات الصفرية والتعليمات الدنيا [65]، [68] الموثقة إشارات تقييمها الضعيفة في البيئات عالية المخاطر [44]. وتكيّف تقنيات مواءمة المهمة النموذج على صيغة المهمة: التوجيه الأحادي [47] والقليل الأمثلة عبر المجالات من التجارب إلى الرسوم المعرفية للصيانة [38]، [43]، [45] وتوجيه الدور الذي يسند شخصيات خبيرة (مثل التوجيه السريري [42] وتشخيص الشبكية [41]).</p>
+    <p>وتُظهر تقنيات شفافية المخرجات الاستدلال: التوجيه بالتسلسل الاستدلالي [53]، [56]، [57] مع تقييمات مقارنة عبر البيانات والنماذج [69] وتجميع الاتساق الذاتي [77] والتوجيه بسلسلة التحقق. وتمتد أدلة CoT المجالية عبر تشخيص الإنتان [34] وأمراض الكلى [35] والإجابة الطبية [55] وتحليل الثغرات [51] وكشف الاكتئاب [54] وتصنيف المشاعر [61] وتصحيح التعليم [46]، [47] وإصلاح الشيفرة [52] — مبررة بنية التصنيفية ثنائية الفرع: مواءمة المهمة مقابل شفافية الاستدلال.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. النتائج التجريبية</h2>
+    <p>قيّم عاملو المعرفة مخرجات متعددة دون التعرض لجميع شروط التوجيه، تقليلًا للإجهاد؛ وتسبق فحوص الموثوقية وإعداد البيانات النمذجة، مع إحصاءات وصفية تلخص الفائدة المدركة لكل تقنية. يدعم اختبار الفرضيات عبر النماذج المختلطة H1: ترفع التقنيات المنظمة الفائدة بدلالة فوق الأسس — القليل-الأمثلة + CoT ‏(β = 1.522، p &lt; 0.001) والأحادي + CoT ‏(β = 1.553، p &lt; 0.001) والأحادي ‏(β = 0.741، p &lt; 0.001) (جدول A7). وتؤكد المقارنات الثنائية أعلى الدرجات لدمج التكييف القائم على الأمثلة مع السقالة الاستدلالية الصريحة.</p>
+    <p>ولا تُدعم H2: لا يُظهر الدور المعدّل لتكرار استخدام الذكاء التوليدي تفاعلًا دالًا (CoT × التكرار p = 0.245؛ القليل-الأمثلة × التكرار p = 0.999؛ القليل + CoT × التكرار p = 0.331؛ الأحادي × التكرار p = 0.593؛ الأحادي + CoT × التكرار p = 0.596؛ جدول A13)، واختبار نسبة الإمكان للمعدّلية غير دال (جدول A15) — ففوائد تصميم الموجهات المنظمة ثابتة عبر مستويات الخبرة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. المناقشة</h2>
+    <p>تعمل بنية الموجه كآلية واجهة معرفية عملية: توائم الأمثلة النموذج مع صيغة المهمة بينما تجعل خطوات الاستدلال الصريحة الاستنتاج قابلًا للتدقيق، ويتفوق دمجهما على كل منهما وحده. ونتيجة الإعدام المعدّلية مهمة — يساعد التوجيه المنظم المبتدئين وكثيري الاستخدام على حد سواء، اتساقًا مع بحوث كفاءة التوجيه التي تُظهر فجوات مهارية قابلة للتدريب [87]، [88] ومع أدبيات الحذر التقييمي التي تحث على قياس دقيق للعمل المعان بالنماذج [85]، [44].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. المساهمات الإدارية</h2>
+    <p>يكسب المديرون إرشادات مؤسسة على الأدلة: فرض قوالب موجهات مثبتة بالأمثلة وصريحة الاستدلال لسير العمل التحليلي والتلخيصي؛ والاستثمار في تدريب التوجيه بدل افتراض أن تكرار الاستخدام يغني عن جودة التصميم [87]، [88]؛ وتقييم مخرجات العمل المعان بالنماذج بقواعد منظمة، إذ تستجيب الفائدة المدركة لبنية الموجه أكثر من أقدمية المستخدم مع أدوات الذكاء التوليدي.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">8. الآثار النظرية</h2>
+    <p>تضع النتائج بنية الموجه كسابق للفائدة المدركة في قبول الحوسبة المعرفية: تشكل هيكلة المدخلات أحكام الفائدة مستقلة عن خبرة الاستخدام، منقحة نماذج التفاعل إنسان-ذكاء [1]، [21]. وتقدم التصنيفية المصدقة ثنائية الفرع (مواءمة المهمة مقابل شفافية الاستدلال) [23]، [24] سقالة مقتصدة لأعمال تجريبية مستقبلية عن فعالية التوجيه [8]، [13]، [85].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">9. المحدوديات والبحث المستقبلي</h2>
+    <p>تحد المعاينة المريحة لعاملي المعرفة من قابلية التعميم رغم مزاياها الموثقة [83]، [84]؛ ورأى المشاركون مجموعات فرعية من الشروط، مقيدًا الاستدلال داخل-الفرد. ويجب أن تكرر الأعمال المستقبلية عبر الصناعات والمهام (مستفيدة من اتساع المراجعة [30]–[80])، وتختبر التوجيه التكيفي والمخصص، وتربط الفائدة المدركة بجودة القرار الموضوعية — موسعة بحوث التوجيه من الإدراك إلى الأداء.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">10. الاستنتاجات</h2>
+    <p>يزيد التوجيه المنظم بدلالة الفائدة المدركة لمخرجات النماذج في مهام الأعمال التحليلية والتلخيصية، مع أفضل أداء للتكييف القائم على الأمثلة مع السقالة الاستدلالية الصريحة؛ ولا يعدّل تكرار استخدام الذكاء التوليدي الأثر. وتمنح التصنيفية المؤسسة على PRISMA لمواءمة المهمة مقابل شفافية الاستدلال [29]، مع التقديرات التجريبية، الممارسين إرشادات مؤسسة والباحثين سقالة مختبرة للتفاعل إنسان-ذكاء في الحوسبة المعرفية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Large Language Models (LLMs) have rapidly become central components of cognitive computing systems and AI-assisted knowledge work [18], [19], [22]. However, the effectiveness of LLM-generated outputs depends not only on model capabilities but also on prompt structure [4], [5], [23], [24]. This study investigates how structured prompting techniques influence perceived output usefulness in business-oriented tasks [1], [2], [3].</p>
+    <p>A systematic literature review following PRISMA guidelines [29] identifies, classifies, and synthesizes prompt enhancement strategies, yielding a taxonomy distinguishing task-alignment techniques (e.g., one-shot and few-shot prompting) from reasoning-transparency techniques (e.g., chain-of-thought prompting). A controlled experimental study then has knowledge workers evaluate LLM-generated outputs across analytical and summarization tasks; linear mixed-effects modeling shows structured prompting significantly increases perceived usefulness, with example-based conditioning combined with explicit reasoning scaffolding scoring highest, while the moderating effect of GenAI usage frequency is not statistically significant.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Generative AI reshapes knowledge work, with field evidence of productivity effects [2] alongside ironies in which poorly integrated assistants create new burdens [3]. Organizations increasingly rely on LLMs for drafting, analysis, and communication [21], yet output quality varies widely with how users prompt [4], [5]. Prompt engineering has consequently grown into a studied discipline with its own taxonomies [23], [24], competence scales [87], and training interventions [88].</p>
+    <p>This paper asks a practical question: which prompt structures actually increase the usefulness business users perceive? It answers in two stages — first mapping the strategy space through a systematic review, then testing representative techniques experimentally with knowledge workers on business tasks.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related Work</h2>
+    <p>Generative AI in business contexts spans adoption, collaboration, and performance effects [1], [15], [16], [17], with rhetoric-aware prompting improving business communication quality [9]. Prompt engineering research covers technique catalogs [4], [5], [14], evaluation frameworks [85], and domain adaptations from structured data generation [10] to secure code [12], software vulnerabilities [11], and recommendations [50]. Comprehensive LLM overviews [18], [19] and AI–human collaboration studies [21] frame the human side of the interaction.</p>
+    <p>Business-oriented prompting applications demonstrate breadth: management research annotation [48], resistance-to-change assessment [49], statistical reasoning in medical research [90], and process-model semantics [70]. This study narrows the lens to a controlled comparison of prompt structures on perceived usefulness — an outcome central to technology acceptance but rarely isolated experimentally.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Materials and Methods</h2>
+    <p>The systematic literature review (SLR) follows PRISMA 2020 [29]: a documented search strategy, inclusion/exclusion criteria, screening method, data extraction, and quality assessment, supported by qualitative content-analysis practice [81], [82]. The review synthesizes prompting research into baseline techniques, task-alignment techniques, and output-transparency techniques, organized in a conceptual model.</p>
+    <p>The experiment identifies business use cases (analytical and summarization tasks), selects prompting techniques, constructs prompts, and collects usefulness ratings from knowledge workers via convenience sampling — a strategy whose merits and limits are documented in the sampling literature [83], [84]. Measurements capture perceived output usefulness; linear mixed-effects models test H1 (prompting techniques significantly influence perceived usefulness) against H2 (GenAI usage frequency moderates the technique–usefulness relationship).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. SLR Results: A Prompting Taxonomy</h2>
+    <p>Baseline prompting techniques anchor the comparison: zero-shot and minimal-instruction prompts [65], [68], whose weak assessment signals are documented in high-stakes settings [44]. Task-alignment techniques condition the model on the task format: one-shot prompting [47], few-shot prompting across domains from trials to maintenance knowledge graphs [38], [43], [45], and role prompting that assigns expert personas (e.g., clinical prompting [42], retinal diagnosis [41]).</p>
+    <p>Output-transparency techniques externalize reasoning: chain-of-thought prompting [53], [56], [57] with comparative evaluations across datasets and models [69], self-consistency aggregation [77], and chain-of-verification prompting. Domain evidence for CoT spans sepsis diagnosis [34], nephrology [35], medical QA [55], vulnerability analysis [51], depression detection [54], sentiment classification [61], education scoring [46], [47], and code repair [52] — motivating the taxonomy's two-branch structure of task alignment versus reasoning transparency.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Empirical Results</h2>
+    <p>Knowledge workers evaluated multiple AI-generated outputs without seeing all prompting conditions, reducing fatigue; reliability checks and data preparation precede modeling, with descriptive statistics summarizing perceived usefulness per technique. Hypothesis testing via linear mixed-effects models supports H1: structured techniques significantly raise usefulness over baselines — Few-shot + CoT (β = 1.522, p &lt; 0.001), One-shot + CoT (β = 1.553, p &lt; 0.001), and One-shot (β = 0.741, p &lt; 0.001) (Table A7). Pairwise comparisons confirm the combination of example-based conditioning with explicit reasoning scaffolding scores highest.</p>
+    <p>H2 is not supported: the moderating role of GenAI usage frequency shows no significant interaction (CoT × Frequency p = 0.245; Few-shot × Frequency p = 0.999; Few-shot + CoT × Frequency p = 0.331; One-shot × Frequency p = 0.593; One-shot + CoT × Frequency p = 0.596; Table A13), and the likelihood-ratio moderation test is non-significant (Table A15) — benefits of structured prompt design prove robust across experience levels.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Discussion</h2>
+    <p>Prompt structure functions as a practical cognitive interface mechanism: examples align the model to task format while explicit reasoning steps make inference auditable, and their combination outperforms either alone. The null moderation result matters — structured prompting helps novices and frequent GenAI users alike, consistent with prompt-competence research showing trainable skill gaps [87], [88] and with evaluation-caution literature urging careful measurement of LLM-assisted work [85], [44].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Managerial Contributions</h2>
+    <p>Managers gain evidence-based guidelines: mandate example-anchored, reasoning-explicit prompt templates for analytical and summarization workflows; invest in prompt training rather than assuming usage frequency substitutes for design quality [87], [88]; and evaluate LLM-assisted outputs with structured rubrics, since perceived usefulness responds to prompt structure more than to user tenure with GenAI tools.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">8. Theoretical Implications</h2>
+    <p>The findings position prompt structure as an antecedent of perceived usefulness in cognitive-computing acceptance: structuring inputs shapes usefulness judgments independently of usage experience, refining human–AI interaction models [1], [21]. The validated two-branch taxonomy (task alignment vs. reasoning transparency) [23], [24] offers a parsimonious scaffold for future experimental work on prompting effectiveness [8], [13], [85].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">9. Limitations and Future Research</h2>
+    <p>Convenience sampling of knowledge workers limits generalizability despite its documented merits [83], [84]; participants saw subsets of conditions, constraining within-subject inference. Future work should replicate across industries and tasks (drawing on the SLR's breadth [30]–[80]), test adaptive and personalized prompting, and link perceived usefulness to objective decision quality — extending prompting research from perception to performance.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">10. Conclusions</h2>
+    <p>Structured prompting significantly increases the perceived usefulness of LLM outputs in business analytical and summarization tasks, with example-based conditioning plus explicit reasoning scaffolding performing best; GenAI usage frequency does not moderate the effect. The PRISMA-grounded taxonomy of task-alignment versus reasoning-transparency techniques [29], together with the experimental estimates, gives practitioners evidence-based guidelines and researchers a tested scaffold for human–AI interaction in cognitive computing.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed reference list preserving original numbering (36 of 91 entries); see the original paper for the full bibliography.</p>
+    <ol dir="ltr">
+      <li>Bankins, S.; et al. A multilevel review of artificial intelligence in organizations. <em>J. Organ. Behav.</em> 2024, 45, 159–182.</li>
+      <li>Brynjolfsson, E.; Li, D.; Raymond, L.R. Generative AI at work. <em>Q. J. Econ.</em> 2025, 140, 889–942.</li>
+      <li>Simkute, A.; et al. Ironies of generative AI. <em>Int. J. Hum. Comput. Interact.</em> 2025, 41, 2898–2919.</li>
+      <li>Sikha, V.K.; et al. Mastering prompt engineering. <em>J. Eng. Appl. Sci. Technol.</em> 2023, 5, 1–8.</li>
+      <li>Nugroho, H.S.; Shaferi, I. Analysis of prompt engineering effectiveness in stock recommendation by ChatGPT. <em>ICSEMA Proc.</em> 2025, 1, 1755–1763.</li>
+      <li>Wang, J. Improving ChatGPT's competency in generating effective business communication messages. <em>J. Tech. Writ. Commun.</em> 2024, 54, 369–395.</li>
+      <li>Elnashar, A.; et al. Enhancing structured data generation with GPT-4o. <em>Front. Artif. Intell.</em> 2025, 8, 1558938.</li>
+      <li>Son, M.; Lee, S. Advancing multimodal large language models: Optimizing prompt engineering strategies. <em>Appl. Sci.</em> 2025, 15, 3992.</li>
+      <li>Chowdhury, S.; et al. AI-employee collaboration and business performance. 2024.</li>
+      <li>Naveed, H.; et al. A comprehensive overview of large language models. <em>ACM Trans. Intell. Syst. Technol.</em> 2025, 16, 1–72.</li>
+      <li>Raiaan, M.A.K.; et al. A review on large language models: Architectures, applications, taxonomies, open issues and challenges. <em>IEEE Access</em> 2024.</li>
+      <li>Fui-Hoon Nah, F.; et al. Generative AI and ChatGPT: Applications, challenges, and AI-human collaboration. <em>J. Inf. Technol. Case Appl. Res.</em> 2023, 25, 277–304.</li>
+      <li>Liu, Y.Y.; et al. A comprehensive taxonomy of prompt engineering techniques for large language models. <em>Front. Comput. Sci.</em> 2026, 20, 2003601.</li>
+      <li>Liu, X.; et al. Prompting frameworks for large language models: A survey. <em>ACM Comput. Surv.</em> 2026, 58, 1–38.</li>
+      <li>Page, M.J.; et al. The PRISMA 2020 statement. <em>BMJ</em> 2021, 372, n71.</li>
+      <li>Zhang, W.; et al. A sepsis diagnosis method based on chain-of-thought reasoning using LLMs. <em>Biocybern. Biomed. Eng.</em> 2025, 45, 269–277.</li>
+      <li>Miao, J.; et al. Chain of thought utilization in LLMs and application in nephrology. <em>Medicina</em> 2024, 60, 148.</li>
+      <li>Agbareia, R.; et al. Multimodal LLMs for retinal disease diagnosis via OCT: Few-shot versus single-shot learning. <em>Ther. Adv. Ophthalmol.</em> 2025, 17.</li>
+      <li>Shah, K.; et al. Large language model prompting techniques for advancement in clinical medicine. <em>J. Clin. Med.</em> 2024, 13, 5101.</li>
+      <li>Qi, X.; et al. Few-shot and chain-of-thought prompting for equipment maintenance knowledge graph construction. <em>SSRN</em> 2025.</li>
+      <li>Šuster, S.; et al. Zero- and few-shot prompting of generative LLMs provides weak assessment of risk of bias in clinical trials. <em>Res. Synth. Methods</em> 2024, 15, 988–1000.</li>
+      <li>Lee, G.-G.; et al. Applying LLMs and chain-of-thought for automatic scoring. <em>Comput. Educ. Artif. Intell.</em> 2024, 6, 100213.</li>
+      <li>Carlson, N.A.; Burbano, V. The use of LLMs to annotate data in management research. <em>Strateg. Manag. J.</em> 2026, 47, 699–725.</li>
+      <li>Mao, W.; et al. Reinforced prompt personalization for recommendation with LLMs. <em>ACM Trans. Inf. Syst.</em> 2025, 43, 1–27.</li>
+      <li>Chen, Y.; et al. GPTVD: Vulnerability detection and analysis method based on LLM's chain of thoughts. <em>Autom. Softw. Eng.</em> 2026, 33, 3.</li>
+      <li>Darwiyanto, E.; et al. A comparative study of LLMs with chain-of-thought prompting for automated program repair. <em>IAES Int. J. Artif. Intell.</em> 2025, 14, 4579–4589.</li>
+      <li>Jeon, S.; Kim, H.-G. A comparative evaluation of chain-of-thought-based prompt engineering techniques for medical question answering. <em>Comput. Biol. Med.</em> 2025, 196, 110614.</li>
+      <li>Hebenstreit, K.; et al. A comparison of chain-of-thought reasoning strategies across datasets and models. <em>PeerJ Comput. Sci.</em> 2024, 10, e1999.</li>
+      <li>Zhang, Z.; et al. Igniting language intelligence: The hitchhiker's guide from chain-of-thought reasoning to language agents. <em>ACM Comput. Surv.</em> 2025.</li>
+      <li>Mayring, P. Qualitative content analysis: Theoretical background and procedures. Springer: Dordrecht, The Netherlands, 2015.</li>
+      <li>Hsieh, H.-F.; Shannon, S.E. Three approaches to qualitative content analysis. <em>Qual. Health Res.</em> 2005, 15, 1277–1288.</li>
+      <li>Stratton, S.J. Population research: Convenience sampling strategies. <em>Prehospital Disaster Med.</em> 2021, 36, 373–374.</li>
+      <li>Jager, J.; et al. More than just convenient: The scientific merits of homogeneous convenience samples. <em>Monogr. Soc. Res. Child Dev.</em> 2017, 82, 13–30.</li>
+      <li>Abeysinghe, B.; Circi, R. The challenges of evaluating LLM applications. In <em>Proc. First Workshop on LLM Evaluation</em> 2024.</li>
+      <li>Gibreel, O.; Arpaci, I. Development and validation of the prompt engineering competence scale (PECS). <em>Inf. Dev.</em> 2025.</li>
+      <li>Garg, A.; et al. Enhancing data analysis and programming skills through structured prompt training. <em>Comput. Educ. Artif. Intell.</em> 2025, 8.</li>
+      <li>Vilakati, S. Prompt engineering for accurate statistical reasoning in LLMs in medical research. <em>Front. Artif. Intell.</em> 2025, 8, 1658316.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/bdcc10070224">10.3390/bdcc10070224</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

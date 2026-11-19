@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مزيج الخبراء الديناميكي للحوسبة التكيفية في محولات مستوى الحرف — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Dynamic Mixture of Experts for Adaptive Computation in Character-Level Transformers</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مزيج الخبراء الديناميكي للحوسبة التكيفية في محولات مستوى الحرف</h2>
+
+  <div class="paper-meta">
+    <span>👤 Zhigao Huang, Musheng Chen, Shiyan Zheng</span>
+    <span>📄 Information, 2025 · Vol. 16(6), 483</span>
+    <span>🔗 <a href="https://doi.org/10.3390/info16060483">10.3390/info16060483</a></span>
+    <span>📥 <a href="paper.pdf" target="_blank">PDF</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تتحدى هذه الورقة الافتراض السائد بأن مزيج الخبراء (MoE) يحسّن كفاءة الحوسبة باستمرار، عبر تقييم منهجي لمتغيراته في نماذج المحولات. ينفذ المؤلفون ثلاثة أساليب — MoE الأساسي، والتوجيه top-k، والتوجيه المقيد بعامل السعة — ويكشفون عن مفاضلات حرجة: تحافظ نماذج MoE على تحقق مقارن للخط الأساسي لكنها تتطلب زمن تدريب أطول بنحو 50٪ وسرعة استدلال أبطأ حتى 56٪، مع بقاء استخدام الخبراء غير متوازن رغم تقنيات موازنة الحمل [10–12]. تقدم النتائج دليلًا تجريبيًا على أن مكاسب MoE الحوسبية تعتمد بشدة على حجم النموذج وطبيعة المهمة، موجهةً تصميم البنى التكيفية العصبية تحت قيود حوسبية مختلفة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>أحدثت نماذج المحولات [1] ثورة في معالجة اللغة الطبيعية عبر نماذج تأسيسية مثل BERT [2] وGPT-3 [5] وPaLM [6] وLLaMA [7]، لكن التوجه نحو تكبير الحجم يخلق تحديات حوسبية خصوصًا للنشر في البيئات محدودة الموارد [8]، مما حفز الاهتمام بتقنيات تحافظ على الأداء مع تحسين الكفاءة [4،9]. اكتسب مزيج الخبراء اهتمامًا لقدرته على توسيع سعة النموذج بزيادة طفيفة في التكلفة عبر توجيه ديناميكي لشبكات فرعية متخصصة [10،11]، كما في GShard [13] وSwitch Transformers [11] وMixtral 8x7B [14].</p>
+    <p>لكن سردية الكفاءة تعتمد على افتراضات قد لا تصمد عالميًا: إهمال كلفة التوجيه أمام حسابات الخبراء، وكبر الخبراء بما يكفي لجعل التفعيل المتناثر موفرًا، وقدرة العتاد على استغلال التناثر، وعدم إلغاء مكاسب موازنة الحمل للمزايا النظرية. كما رُكزت الأدبيات على التدريب الموزع متعدد المسرعات والنمذجة على مستوى الكلمة، تاركة فجوة حول قابلية التطبيق عبر المقاييس والتمثيلات الدقيقة [17،18]. تعالج الورقة ذلك بتقييم منهجي لمتغيرات MoE في مكون FFN لمحولات صغيرة على مستوى الحرف باستخدام مجموعة شكسبير، مع تكافؤ عدد البارامترات تقريبًا.</p>
+  </section>
+
+  <section>
+    <h2>2. الأعمال ذات الصلة</h2>
+    <p>منذ تقديم المحولات [1] ونماذج مثل BERT [2] وRoBERTa [3] وTransformer-XL [34]، عولجت تحديات الكفاءة عبر تعديلات معمارية وتقريبات الانتباه [36،37]، بينما حظي مكون FFN باهتمام أقل رغم كلفته الكبيرة. قُدّم MoE أصلًا كتقنية تعلم آلي [12] ثم طُوّر للشبكات العميقة عبر البوابات المتناثرة [10]، وطُبّق على المحولات الكبيرة في GShard [13] وSwitch [11] وGLAM [38]، مع بدائل مثل Base Layers [24] وطبقات التجزئة [39] وMixture-of-Tokens [41] وأنظمة DeepSpeed-MoE [15،16].</p>
+    <p>ينتقد المؤلفون قابلية التعميم عبر المقاييس: ففي النماذج الكبيرة تصبح كلفة التوجيه مهملة أمام حسابات الخبراء الضخمة، بينما تهيمن في النماذج الصغيرة؛ كما تختلف أنماط التدريب الموزع جذريًا عن سيناريوهات الجهاز الواحد [23،26،32]. أما نمذجة مستوى الحرف — بمعالجة تسلسلات أطول وحبيبات أدق بعد RNNs الأوائل [46] — فتناسب الأنماط اللغوية المقيدة مثل نصوص شكسبير، ولم يُستكشف تقاطعها مع MoE في النماذج الصغيرة من قبل، وهو ما يملؤه هذا العمل مع تحليل المفاضلات كفاءة-أداء وسلوك الموجه.</p>
+  </section>
+
+  <section>
+    <h2>3. الخلفية والمنهجية</h2>
+    <p>يتكون المحول [1] من طبقات انتباه ذاتي متعدد الرؤوس وشبكات أمامية مغذاة ببعد توسعة 4d ودالة GELU [47]، ويستبدل العمل طبقة التوسعة W1 بأربعة خبراء (Ei بأبعاد d×d) مع إبقاء طبقة الإسقاط W2 مشتركة للحفاظ على تكافؤ البارامترات، وشبكة توجيه خطية تُنتج درجات لكل رمز. تشمل آليات التوجيه: MoE الأساسي بتوزيع سوفت-ماكس المرجح على الخبراء الأربعة، وtop-k (k=2) الذي يفعّل الخبيرين الأعلى درجة فقط، والتوجيه المقيد بعامل السعة CF (0.5 و1.0) الذي يحد أقصى الرموز لكل خبير ويُقنّع الفائض عن السعة.</p>
+    <p>يستهدف العمل نمذجة اللغة على مستوى الحرف (مفردات ~65 حرفًا) بتعظيم الإمكانية الشرطية للحرف التالي، على بنية nanoGPT [48] ببعد تضمين 384 وست طبقات وست رؤوس انتباه وسياق 256 حرفًا، وبمحسّن AdamW وتدريب 5000 تكرار. صُممت التجارب الخمسة (الخط الأساسي، وMoE الأساسي، وTop-2، والسعة 0.5 و1.0) بتدرج متصاعد في تعقيد التوجيه لعزل أثر كل تعديل، مع زيادة بارامترات الموجه ~1٪ فقط عن الخط الأساسي.</p>
+  </section>
+
+  <section>
+    <h2>4. الإعداد التجريبي والنتائج</h2>
+    <p>دُرّبت النماذج من الصفر على مجموعة شكسبير (~مليون حرف، 65 حرفًا مميزًا، مقسمة 90/10) المختارة لثراء أنماطها اللغوية الهرمية (شعر ونثر وحوار وإرشادات مسرحية) وتوازنها بين التعقيد وقابلية المعالجة، مع ثلاث بذور عشوائية ومقاييس الخسارة والزمن والسرعة وأنماط استخدام الخبراء. أظهرت جميع متغيرات MoE كلفة حوسبية كبيرة: زمن تدريب أطول بنحو 50–60٪ (434–463 ثانية مقابل 287.9)، وسرعة استدلال منخفضة حتى 56٪ (195–251 رمزًا/ثانية مقابل 441.3)، لسيطرة حسابات الموجه وانتقاء الخبراء وأنماط الوصول للذاكرة الأقل كفاءة من مصفوفة FFN الكبيرة الواحدة.</p>
+    <p>على مستوى الأداء، حافظت المتغيرات على تحقق مقارن للخط الأساسي (ضمن ±0.2٪: 1.4718–1.4764 مقابل 1.4739) رغم خسائر تدريب أعلى بنحو 18٪، مما يوحي بتأثير تنظيمي؛ وحقق Top-k والسعة تحسنًا طفيفًا (0.14٪) بكلفة حوسبية أكبر، فكان الخط الأساسي أفضل توازن. كشف تحليل الموجه عن تخصص ناشئ (الخبير 2 يستقبل ~40٪ في الإعداد الأساسي) يخففه top-k وتوازنُه عوامل السعة (0.5 الأكثر انتظامًا)، مع تدرج تخصص الحوار وعلامات الترقيم نحو خبير والكلمات الوظيفية نحو آخر، وتطور الأوزان تدريجيًا أثناء التدريب.</p>
+    <p>واللافت أن فجوة التدريب-التحقق أصبحت سالبة لدى MoE (تحقق 1.472 مقابل تدريب ~1.61) مقابل +0.087 للخط الأساسي، وفُسّر ذلك بمنافسة الخبراء كإسقاط ضمني، وتنافس السعة الذي يفرض تمثيلات قوية، وعشوائية القرارات المتقطعة المانعة للحفظ — مع تفوق 2–4٪ على الأنماط النادرة وتدهور ألطف خارج التوزيع. تشمل القيود مجموعة شكسبير الواحدة والنموذج الصغير والعتاد المستخدم وغياب التقييم النوعي والتركيز على FFN دون الانتباه [40،41]، بينما تشمل الآفاق التوجيه خفيف الوزن والهرمي والسعات التكيفية والتشارك عبر الطبقات والتوجيه الواعي بالأنماط [25،43،49،50].</p>
+  </section>
+
+  <section>
+    <h2>5. الخلاصة</h2>
+    <p>خلصت الدراسة إلى أن MoE في محولات الحرف الصغيرة يحافظ على التحقق لكنه لا يقدم مزايا واضحة أداءً أو كفاءة: زمن تدريب أطول ~50٪ واستدلال أبطأ حتى 56٪، مع تأثير تنظيمي وتخصص ناشئ قد يفيد سيناريوهات معينة رغم الكلفة. توصي الورقة باستكشاف عتبات الحجم الحرجة، وتطبيق MoE على الانتباه، وتحسين الكفاءة عبر التوجيه التقريبي وتقليم الخبراء والتصميم الواعي بالعتاد، مؤكدة ضرورة التقييم التجريبي قبل نقل تقنيات النماذج العملاقة إلى السياقات الصغيرة [29–33].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>This paper challenges the prevailing assumption that Mixture of Experts (MoE) consistently improves computational efficiency through a systematic evaluation of its variants in Transformer models. The authors implement three approaches — base MoE, top-k routing, and capacity-factored routing — and reveal critical trade-offs: MoE models maintain baseline-comparable validation yet require ~50% longer training and up to 56% slower inference, with expert utilization remaining uneven despite load-balancing techniques [10–12]. The findings provide empirical evidence that MoE's computational benefits depend heavily on model scale and task type, guiding adaptive neural architecture design under different computational constraints.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Transformers [1] revolutionized NLP through foundational models such as BERT [2], GPT-3 [5], PaLM [6], and LLaMA [7], but the scaling trend creates computational challenges especially for resource-constrained deployment [8], spurring interest in efficiency-preserving techniques [4,9]. Mixture of Experts gained attention for scaling capacity at modest cost via dynamic routing to specialized subnetworks [10,11], as in GShard [13], Switch Transformers [11], and Mixtral 8x7B [14].</p>
+    <p>Yet the efficiency narrative rests on assumptions that may not hold universally: negligible routing overhead versus expert compute, experts large enough for sparse activation to save compute, hardware that exploits sparsity, and load-balancing that does not erase theoretical gains. Literature has also focused on multi-accelerator distributed training and word-level modeling, leaving a gap on applicability across scales and granularities [17,18]. This paper addresses it with a systematic evaluation of MoE variants in the FFN of small character-level Transformers on the Shakespeare dataset, at approximately equal parameter counts.</p>
+  </section>
+
+  <section>
+    <h2>2. Related Works</h2>
+    <p>Since Transformers [1] and models like BERT [2], RoBERTa [3], and Transformer-XL [34], efficiency challenges were tackled via architectural modifications and attention approximations [36,37], while the FFN received less attention despite its large cost. MoE originated as an ML technique [12], was advanced for deep nets via sparse gating [10], and applied to giant Transformers in GShard [13], Switch [11], and GLAM [38], with alternatives such as Base Layers [24], hash layers [39], Mixture-of-Tokens [41], and DeepSpeed-MoE systems [15,16].</p>
+    <p>The authors critique cross-scale generalization: in huge models routing cost is negligible next to massive expert compute, while it dominates in small models; distributed training patterns also differ fundamentally from single-device scenarios [23,26,32]. Character-level modeling — longer sequences and finer granularity after early RNNs [46] — suits constrained linguistic patterns like Shakespeare's plays, and its intersection with MoE at small scale was unexplored; this work fills it, analyzing efficiency–performance trade-offs and router behavior.</p>
+  </section>
+
+  <section>
+    <h2>3. Background and Methodology</h2>
+    <p>The Transformer [1] stacks multi-head self-attention and feed-forward layers with 4d expansion and GELU activation [47]; this work replaces the expansion layer W1 with four experts (Ei of size d×d) while keeping the projection W2 shared to preserve parameter parity, plus a linear router scoring each token. Routing mechanisms include: base MoE with softmax-weighted distribution over all four experts, top-k (k=2) activating only the two highest-scoring experts, and capacity-factored routing (CF 0.5 and 1.0) capping tokens per expert and masking overflow.</p>
+    <p>The work targets character-level modeling (~65-character vocabulary) by maximizing next-character likelihood, on a nanoGPT [48] backbone with embedding dim 384, 6 layers, 6 heads, and 256-char context, using AdamW for 5000 iterations. The five runs (baseline, base MoE, Top-2, Capacity 0.5 and 1.0) progress in routing sophistication to isolate each modification, with the router adding only ~1% parameters over baseline.</p>
+  </section>
+
+  <section>
+    <h2>4. Experimental Setup and Results</h2>
+    <p>Models were trained from scratch on the Shakespeare dataset (~1M characters, 65 unique chars, 90/10 split) chosen for rich hierarchical linguistic patterns (verse, prose, dialogue, stage directions) balancing complexity and tractability, with three random seeds and loss/time/speed/expert-usage metrics. All MoE variants showed large computational cost: ~50–60% longer training (434–463s vs 287.9s) and up to 56% lower inference speed (195–251 vs 441.3 tokens/s), attributed to router compute, expert selection, and less efficient memory access than one large FFN matrix.</p>
+    <p>On performance, variants kept baseline-comparable validation (within ±0.2%: 1.4718–1.4764 vs 1.4739) despite ~18% higher training losses, suggesting regularization; Top-k and capacity variants gained slightly (0.14%) at greater cost, leaving the baseline the best balance. Router analysis revealed emergent specialization (Expert 2 receiving ~40% in base), eased by top-k and balanced by capacity factors (0.5 most uniform), with dialogue/punctuation drifting to one expert and function words to another, and weights diverging progressively during training.</p>
+    <p>Notably, the train–validation gap turned negative for MoE (validation ~1.472 vs training ~1.61) versus +0.087 for baseline, explained by expert competition as implicit dropout, capacity competition forcing robust representations, and discrete-decision stochasticity blocking memorization — with 2–4% gains on rare patterns and gentler out-of-distribution degradation. Limitations include the single Shakespeare dataset, small model, hardware dependence, no qualitative evaluation, and FFN-only focus excluding attention [40,41]; futures span lightweight/hierarchical routing, adaptive capacities, cross-layer sharing, and pattern-aware routing [25,43,49,50].</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>The study concludes that MoE in small character-level Transformers preserves validation but offers no clear performance or efficiency advantage: ~50% longer training and up to 56% slower inference, with a regularization effect and emergent specialization that may suit specific scenarios despite the cost. It recommends exploring critical scale thresholds, MoE on attention, efficiency via approximate routing, expert pruning, and hardware-aware design, stressing empirical evaluation before porting giant-model techniques to small contexts [29–33].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected — original numbering preserved)</h2>
+    <ol dir="ltr">
+      <li>[1] A. Vaswani et al., Attention is all you need, NeurIPS, 2017.</li>
+      <li>[2] J. Devlin et al., BERT, NAACL, 2019.</li>
+      <li>[5] T. Brown et al., Language models are few-shot learners (GPT-3), NeurIPS, 2020.</li>
+      <li>[6] A. Chowdhery et al., PaLM, JMLR / ICML, 2022.</li>
+      <li>[7] H. Touvron et al., LLaMA, ICML, 2023.</li>
+      <li>[10] N. Shazeer et al., Outrageously large neural networks: the sparsely-gated MoE layer, ICLR, 2017.</li>
+      <li>[11] W. Fedus et al., Switch Transformers, JMLR, 2022.</li>
+      <li>[12] R. Jacobs et al., Adaptive mixtures of local experts, Neural Comput., 1991.</li>
+      <li>[13] D. Lepikhin et al., GShard, ICLR, 2021.</li>
+      <li>[14] A. Q. Jiang et al., Mixture-of-experts with expert choice routing (Mixtral), NeurIPS, 2023.</li>
+      <li>[15–16] S. Rajbhandari et al. / Z. Liu et al., DeepSpeed-MoE, ICML, 2022–2023.</li>
+      <li>[24] M. Lewis et al., Base layers, ICML, 2021.</li>
+      <li>[32] A. Komatsuzaki et al., Sparse upcycling, ICLR, 2022.</li>
+      <li>[34] Z. Dai et al., Transformer-XL, ACL, 2019.</li>
+      <li>[41] T. Chen &amp; M. Chen, Mixture-of-tokens, ICLR, 2023.</li>
+      <li>[46] I. Sutskever et al., Generating text with RNNs, ICML, 2011.</li>
+      <li>[47] D. Hendrycks &amp; K. Gimpel, GELU, arXiv:1606.08415, 2016.</li>
+      <li>[48] A. Karpathy, nanoGPT, GitHub, 2022.</li>
+      <li>... [full reference list available in the <a href="paper.pdf" target="_blank">original PDF</a>]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/info16060483">10.3390/info16060483</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>النهوض بالنماذج اللغوية الكبيرة متعددة الوسائط: تحسين استراتيجيات الهندسة الموجهة — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Advancing Multimodal Large Language Models: Optimizing Prompt Engineering Strategies for Enhanced Performance</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">النهوض بالنماذج اللغوية الكبيرة متعددة الوسائط: تحسين استراتيجيات الهندسة الموجهة لأداء معزز</h2>
+
+  <div class="paper-meta">
+    <span>👤 Minjun Son, Sungjin Lee</span>
+    <span>📄 Appl. Sci., 2025 · Vol. 15(7), 3992</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app15073992">10.3390/app15073992</a></span>
+    <span>📥 <a href="paper.pdf" target="_blank">PDF</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تستقصي هذه الدراسة استراتيجيات الهندسة الموجهة (PE) للتخفيف من الهلوسة في النماذج اللغوية الكبيرة متعددة الوسائط (MLLMs)، عبر خمس تقنيات: التعلم في السياق (ICL) [17] وسلسلة التفكير (CoT) [18] والاستدلال خطوة بخطوة (SSR) وشجرة التفكير (ToT) [19] والتوليد المعزز بالاسترجاع (RAG) [20]، مطبقةً على معايير متنوعة المجالات. وبناءً على النتائج يقترح المؤلفون استراتيجية الهندسة الموجهة الجشعة (Greedy PES) لاختيار الأمثل لكل مجموعة بيانات ونموذج، بتقييم شامل (BLEU وROUGE وMETEOR وS-BERT وMoverScore وCIDEr) ودرجة تجميعية مرجحة. أظهرت النتائج أن الأمثل يختلف باختلاف البيانات والنموذج: فالمهام العامة تستفيد من ICL وToT وRAG، والرياضية من ICL وSSR وToT، والعلمية من RAG وSSR — بتحسن إجمالي 184.3٪ في التعليق العام و90.3٪ في VQA الرياضي و49.1٪ في VQA العلمي.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>تتكون بنية MLLMs من ثلاثة مكونات [1]: مشفّر وسائط مدرب مسبقًا (كـ CLIP [2] الذي يربط الرؤية باللغة)، ونموذج لغوي كبير أساسي (GPT [3–5] وLlama [6،7] وGemini [8] وMistral [9]) كمحرك استدلال، ومحول عبر الوسائط يدمج السمات البصرية مع التمثيلات اللغوية. وتُحسَّن عبر التدريب المسبق والضبط بالتعليمات والضبط بالمواءمة — بما فيه التعلم المعزز من التغذية البشرية RLHF [10] الذي يقلل الهلوسة [11] — لكن الهلوسة تبقى التحدي الأبرز حين لا يتطابق المولّد مع المدخل البصري [12]، متفاقمةً بفجوات المواءمة بين الوسائط [13] التي قد ترفع البارامترات دون تحسين الأداء.</p>
+    <p>وللتخفيف من الهلوسة وتعزيز الأداء طُورت تقنيات هندسة موجهة للنماذج اللغوية [14–16]، لكن MLLMs تتطلب تصميمًا يدمج المعلومات البصرية: فـ ICL [17] يقدم أمثلة سياقية، وCoT [18] يوجه الحل عبر شروح نصية، وSSR [19] يفرض تحليلًا بصريًا مكانيًا منظمًا، وToT [19] يعدد مسارات إدراكية بديلة، وRAG [20] يسترجع معرفة خارجية للأدلة. وبما أن أبحاث التخفيف ركزت على النصوص دون المنهجة متعددة الوسائط، تهدف الدراسة لاستراتيجية موجهة مثلى ترفع رضا المستخدم ودقته بأقل موارد حوسبية دون ضبط دقيق إضافي للمشفرات أو المحولات.</p>
+  </section>
+
+  <section>
+    <h2>2. الأعمال ذات الصلة ونماذج النظام</h2>
+    <p>تناولت الأبحاث المعمارية مكونات MLLMs [1،15] (المشفرات والإسقاطات والهياكل والمواءمة) ومنهجيات التدريب (المسبق والتعليمات والمواءمة) [1]، مع بقاء المواءمة الكاملة بين المشفرات تحديًا يولّد هلوسة بثلاثة أنماط مميزة [12]، واستراتيجيات PE [14–16] وأطر تقييم تجربة المستخدم [11،33–35]. قيّمت الدراسة أربعة نماذج حديثة: Phi [21،22] وLlama [23] وPixtral [24] وQwen [25،26]، باختبار أثر التقنيات الخمس عبر بناها المختلفة لاستخلاص رؤى تجريبية حول فعاليتها.</p>
+    <p>اعتمد التقييم ستة مقاييس (BLEU وROUGE وMETEOR وS-BERT وMoverScore وCIDEr) وست مجموعات معايير: MSCOCO [31] (5000 عينة اختبار للاسترجاع) وFlickr30k [32] (31800 عينة للتعليق) وnocaps [30] (4500 تحقق و10600 اختبار للأجسام الجديدة) وScienceQA [29] (12700 تدريب و4240 تحقق و4240 اختبار) وMathVista [27] (5140 اختبارًا) وCVBench [28] (2640 اختبارًا)، بما يغطي الفهم العام والاستدلال العلمي والرياضي.</p>
+  </section>
+
+  <section>
+    <h2>3. استراتيجية الهندسة الموجهة الجشعة</h2>
+    <p>تحدد Greedy PES التوليفة المثلى (النموذج m والتقنية p) لكل مجموعة بيانات d بتعظيم الدرجة التجميعية المرجحة عبر المقاييس، مع أوزان تعكس المدى الديناميكي لكل مقياس وأهميته. شملت التقنيات: الأساسي B وICL وCoT وSSR وToT وRAG الأساسي R(B) والهجينة R(C) وR(S) وR(T) التي تعيد صياغة المعرفة المسترجعة وفق CoT وToT وSSR على التوالي.</p>
+    <p>وُلّدت الاستجابات بدرجة حرارة 0.1 وtop-P ‏0.9 على Llama-3.2-11B وPhi-3.5-4.2B وPixtral-12B وQwen2-VL-7B باستخدام حوسبة H100، مع استرجاع RAG عبر تضمين CLIP [2] وقاعدة ChromaDB بتشابه جيبي لأقرب صورة ونصها قبل الصورة الهدف. حُللت الأقسام 7.1–7.6 لكل مجموعة بيانات ثم استُخلصت استراتيجية التحسين لكل نموذج، مع أمثلة موجهات مفصلة (B وI وC وR(B) وS وT وR(C)) وتحليل مقارن لمخرجات كل نموذج.</p>
+  </section>
+
+  <section>
+    <h2>4. نتائج المحاكاة</h2>
+    <p>في مهام التعليق العامة (MSCOCO وFlickr30k وnocaps)، حقق Qwen-2 أعلى خط أساسي، لكن Greedy PES اختار Phi-3.5 مع RAG لـ MSCOCO (رغم أنه الأصغر بـ 4.2B بارامتر) وQwen-2 مع ToT لـ Flickr30k وnocaps — بينما نافس Phi-3.5 الصغير في BLEU وROUGE، مما يؤكد كفاءته الموفرة للموارد في البيئات المقيدة عتاديًا. وأظهر تحليل MSCOCO أن ToT الأفضل لمقياس CIDEr مع Qwen-2، وأن تحسن BLEU لـ Qwen-2 بـ Greedy PES قارب عشرة أضعاف.</p>
+    <p>وفي الاستدلال العلمي (ScienceQA)، تفوق Qwen-2 أساسًا لكن الأمثل أصبح Phi-3.5 مع RAG أو مع ICL+SSR، مؤكدًا أن استرجاع المعرفة الخارجية والاستدلال المنظم (RAG وSSR) أنسب المسائل العلمية. وفي MathVista الرياضي، كان Phi-3.5 الأفضل أساسًا ثم انتقل الأمثل إلى Qwen-2 مع ToT الذي يدعم الحل متعدد الخطوات بالفرضيات التكرارية، بينما فضّل CVBench البصري Phi-3.5 مع ICL لدمج الأمثلة المتنوعة في الفهم دقيق الحبيبات.</p>
+    <p>إجمالًا حققت Greedy PES تحسينات 184.3٪ للتعليق العام و90.3٪ لـ VQA الرياضي و49.1٪ لـ VQA العلمي (وبلغت 132.3٪ و78.1٪ و37.3٪ و49.1٪ و90.3٪ و489.7٪ عبر المعايير الستة)، مؤكدةً أن PE المنظمة تعظم الأداء بمواءمة الاستدلال متعدد الوسائط مع خصائص كل مجموعة. وكشف تحليل الأمثلة أن كل تقنية تُبرز مكامن قوة وضعف مختلفة: تفوق Phi-3.5 مع B وC، وLlama 3.2 مع I وS، وPixtral مع C وR(C)، وQwen 2 مع T وR.</p>
+  </section>
+
+  <section>
+    <h2>5. التطبيقات والخلاصة</h2>
+    <p>تفتح MLLMs تطبيقات واسعة: VQA [27] والتعليق الطبي [52،53] والحوارات متعددة الوسائط [54،55] والاستدلال الروبوتي [56] وتلخيص المستندات القانونية [38] وأنظمة تعليم الرياضيات [15،27]؛ لكن النشر الحقيقي يواجه كلفة Greedy PES الاستكشافية الشاملة غير الملائمة للأجهزة المحمولة والمدمجة [57،58]، وتتفاوت فعالية كل تقنية (ICL [60] وCoT [15] وSSR وToT [19] وRAG [20]) عبر المجالات — فـ ToT للاستدلال المنظم وRAG للمعرفة الخارجية [59] — مما يستلزم منتقي موجهات تكيفيًا [59] وقواعد إرشادية وتقطير الموجهات [58].</p>
+    <p>خلصت الدراسة إلى أن الأمثل يختلف باختلاف البيانات والنموذج: العامة تستفيد من ICL وToT وRAG، والرياضية من ICL وSSR وToT، والعلمية من RAG وSSR؛ وأن Qwen-2 الأقوى دون PE بينما ينافسه Phi-3.5 الأصغر مع PES الأمثل، مما يبرز قدرة الهندسة الموجهة على تمكين النماذج الصغيرة. توفر Greedy PES إطارًا تجريبيًا لاختيار الاستراتيجيات، مع حاجة مستقبلية لتحسين خفيف الوزن وتكيفي المجال.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>This study investigates prompt engineering (PE) strategies to mitigate hallucination in multimodal large language models (MLLMs), across five techniques: in-context learning (ICL) [17], chain of thought (CoT) [18], step-by-step reasoning (SSR), tree of thought (ToT) [19], and retrieval-augmented generation (RAG) [20], applied to diverse-domain benchmarks. From the findings the authors propose the greedy prompt engineering strategy (Greedy PES) selecting the optimum per dataset and model, with comprehensive metrics (BLEU, ROUGE, METEOR, S-BERT, MoverScore, CIDEr) and a weighted aggregate score. Results show the optimum varies by dataset and model: general tasks gain most from ICL, ToT, and RAG; mathematical from ICL, SSR, and ToT; scientific from RAG and SSR — with overall gains of 184.3% for general captioning, 90.3% for math VQA, and 49.1% for science VQA.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>MLLM architecture comprises three components [1]: a pre-trained modality encoder (e.g., CLIP [2] bridging vision and language), a core large language model (GPT [3–5], Llama [6,7], Gemini [8], Mistral [9]) as reasoning engine, and a cross-modality transformer fusing visual features with linguistic representations. They improve via pre-training, instruction tuning, and alignment tuning — including RLHF [10] which reduces hallucination [11] — but hallucination remains the key challenge when outputs mismatch visual input [12], worsened by cross-modal alignment gaps [13] that may add parameters without performance gain.</p>
+    <p>To mitigate hallucination, PE techniques were developed for LLMs [14–16], but MLLMs need visually integrated design: ICL [17] supplies contextual examples, CoT [18] guides solving via textual explanations, SSR [19] enforces structured spatial visual analysis, ToT [19] explores multiple cognitive pathways, and RAG [20] retrieves external knowledge for evidence. Since mitigation research centered on text without multimodal systematics, this study targets an optimal PE strategy raising user satisfaction and accuracy at minimal compute, without extra fine-tuning of encoders or transformers.</p>
+  </section>
+
+  <section>
+    <h2>2. Related Works and System Models</h2>
+    <p>Architectural research covered MLLM components [1,15] (encoders, projectors, backbones, alignment) and training methodologies (pre-training, instruction, alignment) [1], with full encoder alignment still a challenge producing three hallucination types [12], alongside PE strategies [14–16] and UX evaluation frameworks [11,33–35]. The study evaluated four state-of-the-art models — Phi [21,22], Llama [23], Pixtral [24], and Qwen [25,26] — testing the five techniques across their architectures for empirical effectiveness insights.</p>
+    <p>Evaluation used six metrics (BLEU, ROUGE, METEOR, S-BERT, MoverScore, CIDEr) and six benchmarks: MSCOCO [31] (5,000 test samples for retrieval), Flickr30k [32] (31,800 captioning samples), nocaps [30] (4,500 validation / 10,600 test for novel objects), ScienceQA [29] (12,700 train / 4,240 val / 4,240 test), MathVista [27] (5,140 test), and CVBench [28] (2,640 test) — spanning general understanding plus scientific and mathematical reasoning.</p>
+  </section>
+
+  <section>
+    <h2>3. The Greedy Prompt Engineering Strategy</h2>
+    <p>Greedy PES identifies the optimal combination (model m, technique p) per dataset d by maximizing the weighted aggregate score across metrics, with weights reflecting each metric's dynamic range and importance. Techniques covered: base B, ICL, CoT, SSR, ToT, basic RAG R(B), and hybrids R(C), R(S), R(T) reformulating retrieved knowledge per CoT, ToT, and SSR respectively.</p>
+    <p>Responses were generated at temperature 0.1 and top-P 0.9 on Llama-3.2-11B, Phi-3.5-4.2B, Pixtral-12B, and Qwen2-VL-7B using H100 compute, with RAG retrieval via CLIP [2] embeddings and a ChromaDB base by cosine similarity of the nearest image plus its caption ahead of the target image. Sections 7.1–7.6 analyze each dataset then derive per-model optimization strategies, with detailed prompt examples (B, I, C, R(B), S, T, R(C)) and comparative per-model output analysis.</p>
+  </section>
+
+  <section>
+    <h2>4. Simulation Results</h2>
+    <p>On general captioning (MSCOCO, Flickr30k, nocaps), Qwen-2 led the baseline, but Greedy PES selected Phi-3.5 with RAG for MSCOCO (despite being smallest at 4.2B params) and Qwen-2 with ToT for Flickr30k and nocaps — while small Phi-3.5 rivaled on BLEU and ROUGE, confirming its resource-efficient suitability for hardware-constrained settings. MSCOCO analysis showed ToT best for CIDEr with Qwen-2, and Qwen-2's BLEU improving nearly tenfold under Greedy PES.</p>
+    <p>On scientific reasoning (ScienceQA), Qwen-2 led at baseline but the optimum shifted to Phi-3.5 with RAG or ICL+SSR, confirming external-knowledge retrieval and structured reasoning (RAG, SSR) suit science best. On mathematical MathVista, Phi-3.5 led at baseline then the optimum moved to Qwen-2 with ToT supporting iterative-hypothesis multi-step solving, while visual CVBench favored Phi-3.5 with ICL for fusing diverse examples into fine-grained understanding.</p>
+    <p>Overall Greedy PES delivered 184.3% gains for general captioning, 90.3% for math VQA, and 49.1% for science VQA (132.3%, 78.1%, 37.3%, 49.1%, 90.3%, 489.7% across the six benchmarks), confirming structured PE maximizes performance by aligning multimodal reasoning with dataset traits. Prompt-example analysis showed each technique exposes different strengths: Phi-3.5 with B and C, Llama 3.2 with I and S, Pixtral with C and R(C), Qwen 2 with T and R.</p>
+  </section>
+
+  <section>
+    <h2>5. Applications and Conclusions</h2>
+    <p>MLLMs open wide applications: VQA [27], medical captioning [52,53], multimodal dialogue [54,55], robotic reasoning [56], legal document summarization [38], and math education [15,27]; but real deployment faces Greedy PES's exhaustive-search cost, ill-suited to mobile/embedded devices [57,58], and per-technique effectiveness (ICL [60], CoT [15], SSR/ToT [19], RAG [20]) varies by domain — ToT for structured reasoning, RAG for external knowledge [59] — requiring adaptive prompt selectors [59], heuristic rules, and prompt distillation [58].</p>
+    <p>The study concludes the optimum varies by data and model: general tasks gain from ICL, ToT, and RAG; math from ICL, SSR, and ToT; science from RAG and SSR; with Qwen-2 strongest without PE while smaller Phi-3.5 rivals it under optimal PES, highlighting PE's power to enable small models. Greedy PES offers an empirical strategy-selection framework, with future need for lightweight, domain-adaptive optimization.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected — original numbering preserved)</h2>
+    <ol dir="ltr">
+      <li>[1] Y. Fu et al., A survey of MLLM architecture and training (encoder/LLM/cross-modality transformer).</li>
+      <li>[2] A. Radford et al., CLIP: contrastive language–image pre-training.</li>
+      <li>[3–5] OpenAI, GPT family (GPT-3/4 iterations).</li>
+      <li>[6–7] H. Touvron et al., LLaMA 1/2.</li>
+      <li>[10–11] RLHF alignment tuning and hallucination reduction.</li>
+      <li>[12] Three types of multimodal hallucination (existence/attribute/relationship).</li>
+      <li>[14–16] Prompt engineering for LLMs.</li>
+      <li>[17] ICL: in-context learning.</li>
+      <li>[18] CoT: chain of thought.</li>
+      <li>[19] SSR / ToT: step-by-step and tree-of-thought reasoning.</li>
+      <li>[20] RAG: retrieval-augmented generation.</li>
+      <li>[21–22] Microsoft, Phi models (Phi-3.5).</li>
+      <li>[23] Meta, Llama (Llama-3.2-11B).</li>
+      <li>[24] Mistral AI, Pixtral-12B.</li>
+      <li>[25–26] Alibaba, Qwen (Qwen2-VL-7B).</li>
+      <li>[27] MathVista benchmark.</li>
+      <li>[28] CVBench benchmark.</li>
+      <li>[29] ScienceQA benchmark.</li>
+      <li>[30] nocaps benchmark.</li>
+      <li>[31] MSCOCO 2014 5K benchmark.</li>
+      <li>[32] Flickr30k benchmark.</li>
+      <li>... [full reference list available in the <a href="paper.pdf" target="_blank">original PDF</a>]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app15073992">10.3390/app15073992</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

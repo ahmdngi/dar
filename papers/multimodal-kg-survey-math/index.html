@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسح حول الرسوم المعرفية متعددة الوسائط: البناء والإكمال والتطبيقات — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Survey on Multimodal Knowledge Graphs: Construction, Completion and Applications</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مسح حول الرسوم المعرفية متعددة الوسائط: البناء والإكمال والتطبيقات</h2>
+
+  <div class="paper-meta">
+    <span>👤 Yong Chen, Xinkai Ge, Shengli Yang, Linmei Hu, Jie Li, Jinwen Zhang</span>
+    <span>📄 Mathematics 2023, 11(8), 1815</span>
+    <span>🔗 <a href="https://doi.org/10.3390/math11081815">10.3390/math11081815</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>تصف الرسوم المعرفية كيانات العالم الحقيقي ومفاهيمه وعلاقاتها بصيغة مهيكلة، وتوسّعها الرسوم المعرفية متعددة الوسائط (MMKGs) ببيانات في وسائط تتجاوز النص مثل الصور. ومع انتشار الموارد متعددة الوسائط على الإنترنت، جذبت بحوث الرسوم متعددة الوسائط اهتمامًا متزايدًا عبر البناء والإكمال والتطبيق.</p>
+    <p>يستعرض هذا المسح التطورات في ثلاثة مجالات — الرسوم المعرفية مفتوحة متعددة الوسائط، وتقنيات البناء والإكمال (المفصَّلة عبر التعرف على الكيانات المسماة واستخراج العلاقات واستخراج الأحداث)، والتطبيقات النموذجية مثل أنظمة التوصية والتجارة الإلكترونية — آملًا تقديم مرجع مفيد للبحوث المستقبلية.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>يمكن النظر إلى الرسم المعرفي كتمثيل مهيكل للحقائق مُعبَّر عنه بثلاثيات وقائعية من رأس ومحمول وذيل وفق نموذج RDF [1]، حيث الرأس والذيل كيانان والمحمول نوع العلاقة؛ وبالمقابل، الرسم المعرفي رسم متعدد العلاقات عقدُه كيانات وحوافُه الموجهة علاقات. ومن الأغراض العامة إلى الخاصة بالمجال، تنظم الرسوم المعرفية المعلومات الهائلة على الإنترنت وتديرها وتمكّن خدمات ذكية مثل أنظمة التوصية [2] وأنظمة الحوار [3] والبحث الدلالي [4].</p>
+    <p>والرسوم المعرفية التقليدية نصية المحور، لكن معرفة العالم الحقيقي متعددة الوسائط بطبيعتها: فصور المنتجات ولقطات المراقبة والمسوحات الطبية تحمل حقائق لا يستطيع النص التعبير عنها. لذا يَعِد ربط الكيانات بالصور والوسائط الأخرى بتمثيلات أغنى وقدرات لاحقة جديدة، مما يحفز هذا المسح المخصص لبناء الرسوم متعددة الوسائط وإكمالها وتطبيقاتها.</p>
+  </section>
+
+  <section>
+    <h2>2. الرسوم المعرفية المفتوحة متعددة الوسائط</h2>
+    <p>يُعرَّف الرسم المعرفي التقليدي بأنه G = {E, R, F}، بكيانات E وعلاقات R وحقائق F كثلاثيات (h, r, t)؛ ويربط الرسم متعدد الوسائط الكيانات E ببيانات في وسائط غير نصية مثل الصور [20]. وتعتمد الرسوم القائمة تصميمين: تمثيل البيانات متعددة الوسائط كقيم سمات للكيانات، أو ترقية العناصر متعددة الوسائط إلى كيانات مرتبطة بالمفاهيم عبر علاقات مخصصة [20].</p>
+    <p>اقترح Liu وآخرون MMKG للتنبؤ بالروابط ومطابقة الكيانات معًا: فخلافًا للرسوم السابقة، يحمل سمات عددية وصورًا لكل كيان إضافة إلى محاذاة بين أزواج الرسوم، متجسدًا في DBpedia15K وYAGO15K كنظيرين لـDBpedia وYAGO ومبنيًا على مخطط Freebase15K [7،15،21،22،23]. وبنى Ferrada وآخرون IMGpedia من نحو 14.7 مليون صورة من Wikimedia Commons، محسوبين واصفات بصرية (المدرجات الرمادية ومدرجات التدرجات الموجهة وتخطيط الألوان) لاشتقاق علاقات التشابه البصري، مُعبَّرًا عنها بـRDF عبر أنطولوجيا خفيفة مخصصة ومربوطة بـDBpedia [14].</p>
+    <p>وأسس Wang وآخرون Richpedia بضخ موارد بصرية–علائقية في الرسوم العامة: 30,638 كيان Wikidata عن المدن والمعالم والمشاهير مع 2,883,162 كيان صور من Wikipedia وزحف الويب، جُمعت وعُولجت ورُبطت علائقيًا في ثلاث مراحل [16]. ويوسّع ImageGraph قاعدة FB15K بـ1,330 نوع علاقة و14,870 كيانًا و829,931 صورة مزحوفة من الويب مرفقة كسمات، مُزالة الغموض عبر URIs ويكيبيديا (مثل Springfield_(Massachusetts,_United_States)) وبحد أقصى 25 صورة لكل كيان [24]. وأصدر Alberts وآخرون VisualSem بـ89,896 عقدة و1,342,764 لمعًا متعدد اللغات و938,100 صورة، منطلِقًا من فئات ImageNet الألف لمسابقة ILSVRC عبر واجهة BabelNet [25،26،27،28].</p>
+  </section>
+
+  <section>
+    <h2>3. بناء الرسوم المعرفية متعددة الوسائط</h2>
+    <p>ينقسم البناء — اكتساب المعرفة من النص والوسائط الأخرى — إلى التعرف على الكيانات واستخراج العلاقات واستخراج الأحداث. يصنّف التعرف على الكيانات المسماة (NER) الإشارات في النص والأشياء البصرية في الصور أو الفيديو إلى فئات مثل الشخص والمكان والمنظمة [29]، خادمًا الاسترجاع [30،31] وبناء قواعد المعرفة [32] والإجابة عن الأسئلة [33] والترجمة الآلية [34]. وتغطي الأساليب النصية التطورات الكلاسيكية والعصبية في التوسيم التسلسلي [35–38،46–54]، بينما يدمج التعرف متعدد الوسائط الأدلة النصية والبصرية، مستغلًا الصور لإزالة غموض الإشارات التي يتركها النص وحده غامضة [55–68].</p>
+    <p>يكتشف استخراج العلاقات العلاقات بين الكيانات: تغطي الطرق النصية النماذج الخاضعة للإشراف والبعيدة والعصبية [51،70،81،86–89]، بينما يؤرّض الاستخراج متعدد الوسائط العلاقات في نصوص وصور مقترنة [69،90–93]. ويذهب استخراج العلاقات البصرية وتأريضها أبعد، كاشفًا الأشياء ومحمولاتها مباشرة في الصور — ومنها تمرير الرسائل التكراري على الرسوم المشهدية [97] وتعلم العلاقات البصرية طويلة الذيل [98] وفهم العبارات المرجعية [99] — رابطًا البكسلات بمحمولات الرسم [94–96،100–105].</p>
+    <p>يحدد استخراج الأحداث الأحداث المنمطة بمشاركيها: تغطي المناهج النصية كشف المحفزات وتوسيم الحجج [107–109]، بينما توائم الطرق متعددة الوسائط السرد النصي مع المشاهد البصرية، لأن الصور غالبًا تكشف مشاركين ومواقع وأدوات يغفلها النص [11،112–116]. وتملأ تيارات الاكتساب الثلاثة معًا الكيانات والعلاقات والأحداث بالأدلة متعددة الوسائط.</p>
+  </section>
+
+  <section>
+    <h2>4. إكمال الرسوم المعرفية متعددة الوسائط</h2>
+    <p>يتنبأ الإكمال بالكيانات أو العلاقات المفقودة وينقّب عن حقائق مجهولة. يحل ربط الكيانات الغموض المعجمي بربط الإشارات النصية بكيانات الرسم، ممكنًا تعمير قاعدة المعرفة [17،117]. ويتبع الربط النصي بنية عامة: توليد المرشحين بمطابقة الصيغة السطحية أو توسيع الأسماء البديلة أو البحث بالاحتمال القبلي [118–124]؛ وترميز السياق–الإشارة؛ وترميز الكيان؛ وترتيب الكيانات [22،51،118،132،136،142].</p>
+    <p>يضيف ربط الكيانات متعدد الوسائط أدلة بصرية — صور سياق الإشارة والكيانات المرشحة — لإزالة الغموض حيث لا يكفي النص، وهو شرط مسبق لبناء قواعد متعددة الوسائط واسعة النطاق [12،13،17،22،64،144–151]. وتجاوز الربط، يُضمّن تعلم تمثيل المعرفة الكيانات والعلاقات: يغطي التعلم النصي عائلات التسجيل الإزاحية والتحليلية والعصبية [154–162]، بينما يدمج التعلم متعدد الوسائط الثلاثيات البنيوية بسمات بصرية وعددية ونصية بحيث تتجاور في فضاء التضمين الكيانات المتشابهة مظهرًا أو سمات [10،12،15،22،102،158،160،163–190].</p>
+  </section>
+
+  <section>
+    <h2>5. تطبيقات الرسوم المعرفية متعددة الوسائط</h2>
+    <p>في أنظمة التوصية — أنظمة الترشيح المعلوماتية التي تتنبأ بتقييمات العملاء أو تفضيلاتهم — تخفف الرسوم المعرفية تناثر البيانات ومشكلات البداية الباردة، لكن معظم الأعمال السابقة تتجاهل الصور والأوصاف التي يفحصها المتسوقون فعلًا؛ وتسد الرسوم متعددة الوسائط تلك الفجوة بتأريض التوصيات في مرئيات المنتجات ومراجعاتها [18]. وفي التجارة الإلكترونية، حيث يزن المشترون الصور والأوصاف والمراجعات معًا، تربط الرسوم متعددة الوسائط العناصر والسمات وملاحظات المستخدم في تمثيلات موحدة [19].</p>
+    <p>وفي الطب الحيوي، تدمج الرسوم متعددة الوسائط التصوير والنص السريري والعلاقات الجزيئية لدعم التشخيص والاكتشاف [191،192]. وفي كشف الأخبار الزائفة، يفضح الاتساق عبر الوسائط بين الادعاءات النصية والصور المرفقة تلاعبات تفوتها فحوصات الوسيط الواحد [193،194].</p>
+  </section>
+
+  <section>
+    <h2>6. الخاتمة</h2>
+    <p>استعرض هذا المسح تطورات الرسوم المعرفية متعددة الوسائط عبر الرسوم المفتوحة وتقنيات البناء والإكمال والتطبيقات النموذجية. فُصّلت تقنيات البناء عبر التعرف على الكيانات المسماة واستخراج العلاقات واستخراج الأحداث، وعُدّدت التطبيقات عبر أنظمة التوصية والتجارة الإلكترونية والطب الحيوي وكشف الأخبار الزائفة. ويأمل المؤلفون أن يقدم هذا التركيب مرجعًا مفيدًا لتيسير البحوث المستقبلية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Knowledge graphs describe real-world entities, concepts, and their relations in structured form, and multimodal knowledge graphs (MMKGs) extend them with data in modalities beyond text, such as images. As multimodal resources proliferate on the Internet, MMKG research has attracted growing attention across construction, completion, and application.</p>
+    <p>This survey reviews advances in three areas — open multimodal knowledge graphs, construction and completion technologies (elaborated through named entity recognition, relation extraction, and event extraction), and typical applications such as recommender systems and e-commerce — hoping to provide a useful reference for future research.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>A knowledge graph can be viewed as a structured representation of facts expressed as factual triples of head, predicate, and tail under the RDF model [1], with head and tail as entities and predicate as the relation type; equivalently, a KG is a multi-relational graph whose nodes are entities and whose directed edges are relations. From general to domain-specific purposes, KGs organize and manage massive information on the Internet and enable intelligent services such as recommender systems [2], dialogue systems [3], and semantic search [4].</p>
+    <p>Traditional KGs are text-centric, yet real-world knowledge is inherently multimodal: product images, surveillance footage, and medical scans carry facts text cannot express. Associating entities with images and other modalities therefore promises richer representations and new downstream capabilities, motivating this dedicated survey of multimodal KG construction, completion, and applications.</p>
+  </section>
+
+  <section>
+    <h2>2. Open Multimodal Knowledge Graphs</h2>
+    <p>A traditional KG is defined as G = {E, R, F}, with entities E, relations R, and facts F as (h, r, t) triples; a multimodal KG associates entities E with data in non-text modalities such as images [20]. Existing MMKGs adopt two designs: representing multimodal data as attribute values of entities, or promoting multimodal items to entities linked to concepts through dedicated relations [20].</p>
+    <p>Liu et al. proposed MMKG for joint link prediction and entity matching: unlike earlier graphs, it carries numerical features and images for every entity plus alignments between graph pairs, instantiated as DBpedia15K and YAGO15K counterparts of DBpedia and YAGO and built on the Freebase15K blueprint [7,15,21,22,23]. Ferrada et al. built IMGpedia from about 14.7 million Wikimedia Commons images, computing visual descriptors (gray histograms, histograms of oriented gradients, color layout) to derive visual-similarity relations, expressed in RDF through a custom lightweight ontology and linked to DBpedia [14].</p>
+    <p>Wang et al. established Richpedia by infusing visual–relational resources into general KGs: 30,638 Wikidata entities on cities, sights, and celebrities joined with 2,883,162 image entities from Wikipedia and web crawls, collected, processed, and relation-linked in three stages [16]. ImageGraph extends FB15K with 1,330 relation types, 14,870 entities, and 829,931 web-crawled images attached as attributes, disambiguated via Wikipedia URIs (e.g., Springfield_(Massachusetts,_United_States)) and capped at the top 25 images per entity [24]. Alberts et al. released VisualSem with 89,896 nodes, 1,342,764 multilingual glosses, and 938,100 images, seeded from the 1,000 ImageNet ILSVRC classes through the BabelNet API [25,26,27,28].</p>
+  </section>
+
+  <section>
+    <h2>3. Multimodal Knowledge Graph Construction</h2>
+    <p>Construction — knowledge acquisition from text and other modalities — divides into entity recognition, relation extraction, and event extraction. Named entity recognition (NER) classifies mentions in text and visual objects in images or video into categories such as person, location, and organization [29], serving retrieval [30,31], knowledge-base construction [32], question answering [33], and machine translation [34]. Text-based NER spans classical and neural sequence-labeling advances [35–38,46–54], while multimodal NER fuses textual and visual evidence, exploiting images to disambiguate mentions that text alone leaves uncertain [55–68].</p>
+    <p>Relation extraction discovers relations between entities: text-based methods cover supervised, distant, and neural paradigms [51,70,81,86–89], while multimodal extraction grounds relations in paired text and images [69,90–93]. Visual relation extraction and grounding go further, detecting objects and their predicates directly in images — iterative message passing over scene graphs [97], long-tail visual relation learning [98], and referring-expression comprehension [99] among them — linking pixels to KG predicates [94–96,100–105].</p>
+    <p>Event extraction identifies typed events with participants: text-based approaches cover trigger detection and argument labeling [107–109], while multimodal methods align textual narratives with visual scenes, since images often reveal participants, locations, and instruments the text omits [11,112–116]. Together, these three acquisition streams populate entities, relations, and events with multimodal evidence.</p>
+  </section>
+
+  <section>
+    <h2>4. Multimodal Knowledge Graph Completion</h2>
+    <p>Completion predicts missing entities or relations and mines unknown facts. Entity linking resolves lexical ambiguity by mapping textual mentions to KG entities, enabling knowledge-base population [17,117]. Text-based linking follows a general architecture: candidate generation by surface-form matching, alias expansion, or prior-probability lookup [118–124]; context–mention encoding; entity encoding; and entity ranking [22,51,118,132,136,142].</p>
+    <p>Multimodal entity linking adds visual evidence — images of the mention context and of candidate entities — to disambiguate cases where text is insufficient, a prerequisite for large-scale multimodal base construction [12,13,17,22,64,144–151]. Beyond linking, knowledge representation learning embeds entities and relations: text-based KRL covers translational, decompositional, and neural scoring families [154–162], while multimodal KRL fuses structural triples with visual, numerical, and textual features so that entities sharing appearance or attributes lie closer in the embedding space [10,12,15,22,102,158,160,163–190].</p>
+  </section>
+
+  <section>
+    <h2>5. Multimodal Knowledge Graph Applications</h2>
+    <p>In recommender systems — information-filtering systems predicting customer ratings or preferences — KGs alleviate data sparsity and cold-start problems, but most prior work ignores images and descriptions that shoppers actually inspect; multimodal KGs close that gap by grounding recommendations in product visuals and reviews [18]. In e-commerce, where buyers weigh images, descriptions, and reviews together, multimodal graphs link items, attributes, and user feedback into unified representations [19].</p>
+    <p>In biomedicine, multimodal graphs integrate imaging, clinical text, and molecular relations to support diagnosis and discovery [191,192]. In fake news detection, cross-modal consistency between text claims and attached images exposes manipulations that single-modality checks miss [193,194].</p>
+  </section>
+
+  <section>
+    <h2>6. Conclusions</h2>
+    <p>This survey reviewed multimodal knowledge graph advances across open MMKGs, construction and completion technologies, and typical applications. Construction techniques were elaborated through named entity recognition, relation extraction, and event extraction, and applications were enumerated across recommender systems, e-commerce, biomedicine, and fake news detection. The authors hope this synthesis provides a useful reference for facilitating future research.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ul dir="ltr">
+      <li>[1] Klyne, G.; Carroll, J.J. Resource Description Framework (RDF): Concepts and Abstract Syntax — W3C Recommendation, 10 February 2004.</li>
+      <li>[2] Zhang, F.; et al. Collaborative Knowledge Base Embedding for Recommender Systems. In Proc. KDD 2016.</li>
+      <li>[14] Ferrada, S.; et al. IMGpedia: A Linked Dataset with Content-Based Descriptions of Wikimedia Images. In Proc. ISWC 2017.</li>
+      <li>[15] Liu, Y.; et al. MMKG: Multi-modal Knowledge Graphs for Recommendation Explanations. 2019.</li>
+      <li>[16] Wang, M.; et al. Richpedia: A Large-Scale, Comprehensive Multi-Modal Knowledge Graph. 2020.</li>
+      <li>[20] Zhu, X.; et al. Multi-Modal Knowledge Graph Construction and Application: A Survey. arXiv 2022, arXiv:2202.05786.</li>
+      <li>[24] Liu, Y.; et al. ImageGraph: A Multirelational Graph with Images. 2019.</li>
+      <li>[25] Alberts, H.; et al. VisualSem: A High-quality Knowledge Graph with Multilingual Node Embeddings. 2021.</li>
+      <li>[29] Nadeau, D.; Sekine, S. A survey of named entity recognition and classification. Lingvisticae Investigationes 2007, 30, 3–26.</li>
+      <li>[117] Shen, W.; Wang, J.; Han, J. Entity Linking with a Knowledge Base: Issues, Techniques, and Solutions. IEEE Trans. Knowl. Data Eng. 2015, 27, 443–460.</li>
+      <li>[118] Cucerzan, S. Large-Scale Named Entity Disambiguation Based on Wikipedia Data. In Proc. EMNLP-CoNLL 2007.</li>
+      <li>[191] Pingali, S.; et al. Multimodal Graph-based Transformer Framework for Biomedical Relation Extraction. 2022.</li>
+      <li>[192] Zhang, J.; et al. Graph-BERT: Only attention is needed for learning graph representations. arXiv 2020, arXiv:2001.05140.</li>
+      <li>[193] Zhang, H.; et al. Multi-Modal Knowledge-Aware Event Memory Network for Social Media Rumor Detection. 2021.</li>
+      <li>[194] Wang, Y.; et al. Fake News Detection via Knowledge-Driven Multimodal Graph Convolutional Networks. 2021.</li>
+      <li>[full reference list available in the original paper]</li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/math11081815">10.3390/math11081815</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

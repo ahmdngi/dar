@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ضبط دقيق فعال للنماذج اللغوية الكبيرة عبر مقدّر تدرج منخفض الرتبة — DAR</title>
+<meta name="description" content="Efficient Fine-Tuning of Large Language Models via a Low-Rank Gradient Estimator — Applied Sciences, 2025 · Vol. 15(1), 82. Arabic/English bilingual viewer on DAR.">
+<link rel="canonical" href="https://dararchive.com/papers/lora-gradient-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Efficient Fine-Tuning of Large Language Models via a Low-Rank Gradient Estimator</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">ضبط دقيق فعال للنماذج اللغوية الكبيرة عبر مقدّر تدرج منخفض الرتبة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Luoming Zhang, Zhenyu Lou, Yangwei Ying, Cheng Yang, Hong Zhou</span>
+    <span>📄 Applied Sciences, 2025 · Vol. 15(1), 82</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app15010082">10.3390/app15010082</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+<section>
+    <h2>الملخص</h2>
+    <p>نقدم مقدّر التدرج منخفض الرتبة (LoGE) لتسريع حوسبة زمن الضبط الدقيق للمحوّلات، وخاصة النماذج اللغوية الكبيرة. وبخلاف طرق الضبط الفعالة للمعاملات التي تقلل عدد المعاملات القابلة للتدريب فحسب، يقلل LoGE أيضًا الحمل الحوسبي لحسابات تدرج التفعيل عبر تفكيك الأوزان المدربة مسبقًا واستخدام مصفوفات منخفضة الرتبة أثناء التمريرة الخلفية. ويتضمن حلًا فعالًا لتحديد الفضاءات الكامنة الحساسة والمهمة قبل التدريب، وبما أنه لا يغير بنية الشبكة يمكن دمجه بسهولة في النماذج القائمة. وأثبتت التجارب الشاملة أنه مع نموذج LLaMA المجهز بـ LoRA يحقق LoGE تسريعًا يصل إلى 1.3× مع دقة مستقرة.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>أظهرت النماذج اللغوية الكبيرة [1]–[7] قدرات استثنائية في مهام الفهم [8] وأصبحت عماد أنظمة المحادثة الرائدة [7]، وأصبح ضبطها للمهام اللاحقة شائعًا. ورغم صغر بيانات الضبط مقارنة بالتدريب المسبق، يكافئ حمله الحوسبي التدريب المسبق مع تعدد المهام؛ فمثلًا ضبط LLaMA-65B [5] على 10 مليارات رمز لثلاثمئة مهمة لاحقة يولّد نحو 24 طنًا من ثاني أكسيد الكربون. وتقلل طرق الضبط الفعالة للمعاملات [9]–[19] — ومنها المحوّل منخفض الرتبة LoRA [17] الذي يمثل تحديث الأوزان بجداء مصفوفتين منخفضتي الرتبة ويدمجهما أثناء الاستدلال دون حمل إضافي — عدد المعاملات القابلة للتدريب وحوسبة تدرجات الأوزان، لكنها ما تزال تتطلب عمليات مصفوفية كاملة الرتبة للتمريرات الأمامية وتدرجات التفعيل.</p>
+    <p>لمعالجة ذلك نقترح LoGE الذي يستخدم حوسبة منخفضة الرتبة أثناء التمريرة الخلفية مع الحفاظ على حوسبة كاملة الرتبة أثناء الأمامية. والفكرة الجوهرية هي الاستفادة من البنية منخفضة الرتبة للوزن W نفسه لا من تقريب تحديث الوزن؛ فنفكك الأوزان كاملة الرتبة إلى مصفوفتين (B وA) ونستخدمهما لحساب تدرج المدخلات، ونثبّت إحداهما (عادة B) لتجنب التحديثات كاملة الرتبة والحفاظ على استقرار التدريب.</p>
+  </section>
+
+  <section>
+    <h2>2. الأعمال ذات الصلة</h2>
+    <p>أصبحت النماذج اللغوية الكبيرة [1]–[7] النموذج السائد محققة نتائج عليا في مهام كثيرة [20]، [21] ومشكّلة أساس أنظمة المحادثة [22]، لكن أحجامها — مثل GPT-3 بـ 175 مليار معامل تحتاج ~350 غيغابايت بذاكرة FP16 — تجعل الضبط الفعال ضروريًا. تعالج طرق الضبط الفعالة [9]–[13] ذلك بإضافة وحدات مهايئة بين الطبقات مع تجميد أغلب المعاملات، ومنها LoRA [17] ومتغيراته، وQLoRA المكمم [23]، وChild Tuning [18]، وSPT [19]، لكنها جميعًا تُبقي حوسبة التمريرة الخلفية كاملة الرتبة للتفعيلات.</p>
+  </section>
+
+  <section>
+    <h2>3. الخلفية</h2>
+    <p>في التدريب كامل الرتبة، يُحدَّث الوزن W0 بمجموع التدرجات Gt (المعادلة 1)، وتتطلب التمريرة الخلفية عمليات كاملة الرتبة: تدرج المخرجات وتدرج الأوزان (المعادلة 2) بحوالي 4bmn عملية فاصلة، ومع أمثل Adam تُخزَّن التدرجات وحالات الأمثلية M وV بحجم 3mn إضافية. أما LoRA فينمذج التحديث التراكمي للوزن المدرب مسبقًا بجداء مصفوفتين منخفضتي الرتبة: W = W0 + BA (المعادلة 3)، ما يقلل معاملات التدريب دون تقليل حوسبة تدرج التفعيل.</p>
+  </section>
+
+  <section>
+    <h2>4.–4.2. طريقة LoGE واختيار الفضاء البارز</h2>
+    <p>بما أن الوزن الأمثل قد لا يكون منخفض الرتبة، تحافظ أعمال سابقة [31]، [32] على الوزن كامل الرتبة مع تحديث تقريبي ديناميكي منخفض الرتبة؛ ويقدّر LoGE الوزن كامل الرتبة بتقريب منخفض الرتبة أثناء الخلفية مع إبقائه كاملًا أثناء الأمامية. وتحديث الوزن بدلتا المكونين δW = (B+δB)(A+δA) − BA يتطلب تخزينًا كامل الرتبة، لذا — مستلهمين من [17] — نثبّت مصفوفة واحدة ونحدّث الأخرى، فيبقى التحديث منخفض الرتبة وتنخفض ذاكرة حالات الأمثلية والتدرجات.</p>
+    <p>وللضبط الدقيق يجب تحديد الأوزان الحساسة لبيانات المهمة؛ وبروح Child Tuning [18] نصمم مقياسًا يجمع القيم المفردة وأهمية التدرج، ونقرّب أهمية التدرج بتدرج المصفوفة A بعد خطوة انحدار واحدة، مع تشتيت U وΣ وV لتجنب حوسبة التفكيك الكامل المكلفة. وتُظهر التجارب أن التهيئة بأكبر K قيمة مفردة هي الأفضل، بما يتوافق مع ملاحظة Hu وآخرين [13] حول التداخل مع المتجهات المفردة العليا.</p>
+  </section>
+
+  <section>
+    <h2>4.3–4.4. الذاكرة والحوسبة وQLoGE</h2>
+    <p>بما أن LoGE يقيّد المعاملات القابلة للتدريب بمصفوفة منخفضة الرتبة، تنخفض ذاكرة حالات الأمثلية والتدرجات إلى 3nr، وإجمالي الذاكرة للطبقات الخطية (دون التفعيلات) إلى mn + mr + 5nr، وتنخفض حوسبة تدرج المدخلات من bmn إلى bmr + bnr + nr، وتقل تكاليف اتصال البث التدرجي في التدريب الموزع. وفي مثال LLaMA-7B برتبة 128 تنخفض عمليات الفاصلة للطبقة الخطية من ~100.67M بالتدريب الكامل إلى ~73.4M مع LoRA وأقل مع LoGE. ولتعزيز كفاءة الذاكرة نكمم الأوزان المجمدة (QLoGE)؛ فالتكميم يضيف حمل فك تكميم عند الحوسبة الأمامية وحساب تدرج التفعيل، ويزيل LoGE جزءًا كبيرًا منه بتقليل المعاملات القابلة للتدريب.</p>
+  </section>
+
+  <section>
+    <h2>5. التجارب</h2>
+    <p>قيّمنا الطريقة على نماذج صغيرة (OPT-1.3B وOPT-2.7B [34]) مضبوطة على محادثات كاملة من Self-Instruct [35] وAlpaca [36]، وعلى نماذج أكبر (LLaMA2-7B وLLaMA2-13B [5]، [6]) ببيانات OASST1 [38] وAlpaca [36]، مع تقييم خماسي الأمثلة على MMLU [37] وفق معيار QLoRA [23]، إضافة إلى RoBERTa-large على جزء من GLUE [45].</p>
+    <p>على OPT كان أداء LoGE وLoRA متقاربًا (مع تفوق LoGE في OPT-1.3B)، وبذاكرة أعلى قليلًا لتخزين ثلاث مصفوفات A وB وC مع قابلية تدريب A فقط، وبتطبيق LoGE على طبقات قليلة حفاظًا على الأداء. وعلى LLaMA2-7B في المهام المعقدة تفوق LoGE بزمن تدريب أقل وتقارب أسرع وخسارة أصغر باستمرار، إذ تبدأ معاملات LoRA عشوائيًا بينما تبدأ تقريبات LoGE متوافقة مع اتجاه التقارب الصحيح، وتفوق أيضًا على متغيري LoRA [46]، [47]. وحقق QLoGE دقة مماثلة لـ QLoRA في MMLU مع تسريع يصل إلى 1.3× وزيادة ذاكرة ~20% (7B) و~10% (13B) بسبب الرتبة الأعلى اللازمة لدقة التدرج. وعلى GLUE حقق تسريعًا طفيفًا مع تحسن في المجموعات الصغيرة مثل MRPC بفضل تهيئة SVD.</p>
+  </section>
+
+  <section>
+    <h2>5.3. دراسات الاستئصال</h2>
+    <p>بمقياس الحيرة (الأقل أفضل) ولمعاملة ضبط α بين 0.1 و10 على OPT-1.3B، كان الأداء الأمثل مع أكبر القيم المفردة، بينما الاعتماد على مساهمة التدرج وحده كان دون الأمثل — بخلاف Child Tuning [18] وSPT [19] — لاعتمادنا على مصفوفات منخفضة الرتبة لتقدير تدرج المدخلات. وتكلفة SVD زهيدة (612 ثانية من 40,032 لـ LLaMA-7B أي 1.53%، و1420 من 45,520 لـ 13B أي 3.11%) ويبقى صاف التسريع ~20%، بينما رتبة 16 — حتى لو ساوت LoRA — تسبب أخطاء تقدير تدرج كبيرة.</p>
+  </section>
+
+  <section>
+    <h2>6.–7. القيود والخاتمة</h2>
+    <p>من القيود ضعف الفعالية على النماذج الصغيرة (أقل من مليار معامل) الأكثر تأثرًا بضغط التدرج منخفض الرتبة؛ وتشمل الأعمال المستقبلية التدريب من الصفر، وتحسين النماذج الصغيرة، والضبط الفعال على أجهزة الحافة للتعلم المستمر.</p>
+    <p>وخلاصةً، يدمج LoGE ضغط النموذج في تحديثات الأوزان منخفضة الرتبة — تقريب منخفض الرتبة خلفيًا وأوزان كاملة أماميًا — فيخفض تكلفة حوسبة الطبقة الخطية بنحو 60% ويسرّع الضبط بنحو 20% دون فقدان الأداء، ويختصر QLoGE زمن الضبط المكمم بنحو 30%، متقدمًا بمجال الضبط على أجهزة الحافة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+<section>
+    <h2>Abstract</h2>
+    <p>In this paper, we present a Low-Rank Gradient Estimator (LoGE) to accelerate the fine-tune-time computation of transformers, especially large language models (LLMs). Unlike Parameter-Efficient Fine-Tuning (PEFT) methods, which primarily aim to minimize the number of fine-tuning parameters, LoGE also significantly reduces the computational load of activation gradient calculations by decomposing pre-trained weights and utilizing low-rank matrices during the backward pass. Our approach includes an effective solution for identifying sensitive and important latent subspaces before training, and since it does not alter the network structure it integrates easily into existing models. On LLaMA with LoRA, LoGE achieves up to a 1.3× speedup while maintaining graceful accuracy.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Large language models [1]–[7] have shown exceptional capabilities in language understanding tasks [8] and become the backbone of leading chat systems [7], making downstream fine-tuning popular. Although fine-tuning datasets are far smaller than pre-training ones, the compute rivals pre-training across many tasks — e.g. fine-tuning LLaMA-65B [5] on a 10B-token dataset for 300 tasks generates about 24 tons of CO2. Parameter-efficient methods [9]–[19] — including Low-Rank Adapter (LoRA) [17], which represents weight updates as a product of two low-rank matrices merged at inference with no extra overhead — cut trainable parameters and weight-gradient compute, but still require full-rank matrix operations for forward passes and activation gradients.</p>
+    <p>We therefore propose LoGE, which uses low-rank computation in the backward pass while keeping full-rank computation in the forward pass. The key idea is to exploit the low-rank structure of the weight W itself rather than approximating the update: decomposing full-rank weights into low-rank matrices (B and A) to compute the input gradient, while fixing one matrix (typically B) to avoid full-rank updates and keep training stable.</p>
+  </section>
+
+  <section>
+    <h2>2. Related Work</h2>
+    <p>LLMs [1]–[7] lead NLP with top results on many tasks [20], [21] and underpin chat systems [22], but sizes such as GPT-3's 175B parameters (about 350 GB in FP16) demand efficient tuning. PEFT methods [9]–[13] add adapter modules between frozen layers, including LoRA [17] and variants, quantized QLoRA [23], Child Tuning [18], and SPT [19] — yet all keep full-rank backward computation for activations.</p>
+  </section>
+
+  <section>
+    <h2>3. Background</h2>
+    <p>In naive full-rank training the weight W0 is updated by accumulated gradients Gt (Eq. 1), and the backward pass needs full-rank operations for output and weight gradients (Eq. 2) at about 4bmn FLOPs, with Adam storing gradients plus optimizer states M, V at 3mn extra memory. LoRA instead models the accumulated update of the pre-trained weight as a product of two low-rank matrices: W = W0 + BA (Eq. 3), cutting trainable parameters without reducing activation-gradient compute.</p>
+  </section>
+
+  <section>
+    <h2>4.–4.2. LoGE Method and Salient-Space Selection</h2>
+    <p>Since the optimal weight may not be low-rank, prior works [31], [32] keep full-rank weights with dynamic low-rank update approximations; LoGE estimates the full-rank weight with a low-rank approximation during the backward pass while keeping it full-rank forward. Updating both factors (δW = (B+δB)(A+δA) − BA) needs full-rank storage, so — inspired by [17] — we fix one low-rank matrix and train the other, keeping the update low-rank and shrinking optimizer-state and gradient memory.</p>
+    <p>Fine-tuning must target weights sensitive to the downstream data; in the spirit of Child Tuning [18] we combine singular-value magnitude with gradient importance, approximating the latter from matrix A's gradient after one descent step while sparsifying U, Σ, VT to avoid costly full decomposition. Top-K largest singular values initialize best, consistent with Hu et al. [13] on overlap with top singular vectors.</p>
+  </section>
+
+  <section>
+    <h2>4.3–4.4. Memory, Computation, and QLoGE</h2>
+    <p>Limiting trainable parameters to a low-rank matrix cuts optimizer-state and gradient memory to 3nr, total linear-layer memory (excluding activations) to mn + mr + 5nr, input-gradient compute from bmn to bmr + bnr + nr, plus lower gradient-broadcast costs in distributed training. For LLaMA-7B at rank 128, per-linear-layer FLOPs fall from about 100.67M (full training) to 73.4M with LoRA and lower with LoGE. To boost memory efficiency we quantize frozen weights (QLoGE); quantization adds dequantization overhead in forward and activation-gradient computation, which LoGE largely removes via fewer trainable parameters.</p>
+  </section>
+
+  <section>
+    <h2>5. Experiments</h2>
+    <p>We evaluated on small models (OPT-1.3B and OPT-2.7B [34]) fine-tuned on full conversations from Self-Instruct [35] and Alpaca [36], and larger ones (LLaMA2-7B and LLaMA2-13B [5], [6]) on OASST1 [38] and Alpaca [36], with five-shot MMLU evaluation [37] following the QLoRA benchmark [23], plus RoBERTa-large on a GLUE subset [45].</p>
+    <p>On OPT, LoGE and LoRA performed nearly identically (LoGE better on OPT-1.3B), with slightly higher memory for storing three matrices A, B, C (only A trainable), applying LoGE to few layers to preserve performance. On LLaMA2-7B complex tasks LoGE won with shorter training, faster early convergence, and persistently lower loss — LoRA starts from random initialization while LoGE starts aligned with the correct direction — also beating two LoRA variants [46], [47]. QLoGE matched QLoRA on MMLU with up to 1.3× speedup at about 20% (7B) and 10% (13B) extra memory from the higher rank needed for gradient accuracy. On GLUE it gave slight speedups and better small-subset (MRPC) results thanks to SVD initialization.</p>
+  </section>
+
+  <section>
+    <h2>5.3. Ablation Studies</h2>
+    <p>Under perplexity (lower is better) with combination temperature α from 0.1 to 10 on OPT-1.3B, top singular values initialized best, while gradient-contribution-only selection underperformed — unlike Child Tuning [18] and SPT [19] — because low-rank matrices estimate input gradients. SVD cost is negligible (612s of 40,032s for LLaMA-7B, 1.53%; 1420s of 45,520s for 13B, 3.11%) leaving about 20% net speedup, while rank 16 — even matching LoRA — causes large gradient-estimation errors.</p>
+  </section>
+
+  <section>
+    <h2>6.–7. Limitations and Conclusions</h2>
+    <p>A key limitation is reduced effectiveness on small models (under 1B parameters), most affected by low-rank gradient compression; future work includes training from scratch, improving small-model accuracy, and efficient on-edge fine-tuning for lifelong learning.</p>
+    <p>In conclusion, LoGE fuses model compression into low-rank weight-update approximations — low-rank backward, full-rank forward — cutting linear-layer compute by about 60% and fine-tuning time by about 20% without performance loss, with QLoGE shortening quantized fine-tuning by about 30%, advancing fine-tuning on edge devices.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ol dir="ltr">
+<li>[1] Devlin, J.; et al. BERT: Pre-training of deep bidirectional transformers for language understanding. In Proc. NAACL, 2019.</li>
+      <li>[5] Touvron, H.; et al. LLaMA: Open and efficient foundation language models. arXiv 2023, arXiv:2302.13971.</li>
+      <li>[6] Touvron, H.; et al. LLaMA 2: Open foundation and fine-tuned chat models. arXiv 2023, arXiv:2307.09288.</li>
+      <li>[7] Bubeck, S.; et al. Sparks of artificial general intelligence: Early experiments with GPT-4. arXiv 2023, arXiv:2303.12712.</li>
+      <li>[9] Houlsby, N.; et al. Parameter-efficient transfer learning for NLP. In Proc. ICML, 2019.</li>
+      <li>[13] Hu, E.J.; et al. LoRA: Low-rank adaptation of large language models. In Proc. ICLR, 2022.</li>
+      <li>[17] Hu, E.J.; et al. LoRA: Low-rank adaptation of large language models (low-rank update formulation). 2021.</li>
+      <li>[18] Xu, R.; et al. Child Tuning: Layer-wise task-sensitive fine-tuning (sensitive-subspace principle). 2021.</li>
+      <li>[23] Dettmers, T.; et al. QLoRA: Efficient fine-tuning of quantized LLMs. In Proc. NeurIPS, 2024.</li>
+      <li>[31] Lialin, V.; et al. ReLoRA: High-rank training through low-rank updates. In Proc. WANT@NeurIPS, 2023.</li>
+      <li>[32] Zhao, J.; et al. GaLore: Memory-efficient training by gradient low-rank projection. arXiv 2024, arXiv:2403.03507.</li>
+      <li>[34] Zhang, S.; et al. OPT: Open pre-trained transformer language models. arXiv 2022, arXiv:2205.01068.</li>
+      <li>[35] Wang, Y.; et al. Self-Instruct: Aligning language models with self-generated instructions. arXiv 2022.</li>
+      <li>[36] Taori, R.; et al. Stanford Alpaca: An instruction-following LLaMA model. 2023.</li>
+      <li>[37] Hendrycks, D.; et al. Measuring massive multitask language understanding (MMLU). In Proc. ICLR, 2021.</li>
+      <li>[38] Köpf, A.; et al. OpenAssistant conversations (OASST1). In Proc. NeurIPS, 2024.</li>
+      <li>[45] Wang, A.; et al. GLUE: A multi-task benchmark and analysis platform for NLU. In Proc. ICLR, 2019.</li>
+      <li>[full reference list available in the original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app15010082">10.3390/app15010082</a> · License: CC BY 4.0 · <a href="./paper.pdf">PDF</a></p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

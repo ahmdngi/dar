@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة لإكمال الرسوم المعرفية — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Review of Knowledge Graph Completion</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مراجعة لإكمال الرسوم المعرفية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Mohamad Zamini, Hassan Reza, Minou Rabiei</span>
+    <span>📄 Information 2022, 13(8), 396</span>
+    <span>🔗 <a href="https://doi.org/10.3390/info13080396">10.3390/info13080396</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>أثبتت طرق استخراج المعلومات فعاليتها في استخراج الثلاثيات من البيانات المهيكلة أو غير المهيكلة، ويشكّل تنظيم هذه الثلاثيات في صورة (الكيان الرأس، العلاقة، الكيان الذيل) بناء الرسوم المعرفية (KGs). غير أن معظم الرسوم المعرفية الحالية غير مكتملة، لذا يُستحسن التنبؤ بالروابط المفقودة لاستخدامها في المهام اللاحقة.</p>
+    <p>اقتُرحت مؤخرًا مناهج مختلفة لتعلم التمثيل تُضمّن الكيانات والعلاقات معًا في فضاء متجهي منخفض الأبعاد للتنبؤ بالثلاثيات المجهولة من الثلاثيات المرئية. وبحسب ما إذا كانت الثلاثيات تُعالَج مستقلة أم معتمدة، تقسّم هذه المراجعة الإكمال إلى تعلم التمثيل التقليدي — حيث تُعالَج كل ثلاثية مستقلة — وتعلم التمثيل بالشبكات العصبية الرسمية (GNN)، حيث تراعي الثلاثيات أيضًا جوارها المحلي، وتناقش كليهما بالتفصيل.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>يكون الرسم موجهًا عندما تهم رتبة العقد وغير موجه خلاف ذلك؛ والرسم المعرفي متعدد ثنائيات غير متجانس — موجه، مع السماح بعدة حواف بين عقدتين — يولّد فيه الفاعل المعرفة بربط عناصر الرسم بأشياء العالم الحقيقي وأفعاله. والرسم المعرفي، المسمى أيضًا قاعدة معرفة، تمثيل مهيكل للحقائق يربط الكيانات والعلاقات والأوصاف الدلالية، رابطًا أشياء غير متجانسة في فضاء موحد. وخلافًا لقواعد المعرفة الجامدة المتجانسة ذات المخططات المستقرة، تُعرَّف الرسوم المعرفية بصرامة أقل، مما يجعلها أكثر قابلية للتوسع [1].</p>
+    <p>توضح عمليات النشر الصناعية في خمس شركات تقنية قيمة الرسوم المعرفية وآلام نموها على نطاق واسع [2]، بينما تُظهر مشاريع مجتمعية مثل DBpedia [4] وFreebase [5] وYAGO [6] وWikidata [7] — إلى جانب Cyc [3] — كيف تُجمَّع الرسوم الوقائعية الكبيرة. وتدعم الإكمال أربعة عناصر حاسمة لنماذج تعلم الآلة: تمثيل الكيانات والعلاقات، ودالة التسجيل التي تقيس معقولية الثلاثية، وهدف التدريب، ومعالجة الأمثلة السالبة.</p>
+    <p>ولأن الرسوم الحقيقية تفتقد أعدادًا هائلة من الحقائق الصحيحة، يرسم تعلم تمثيل المعرفة (KRL)، أو تضمين الرسم المعرفي (KGE)، الكيانات والعلاقات في فضاء متجهي متصل: يصبح كل كيان h نقطة، وكل علاقة r عملية مثل الإزاحة أو الإسقاط، وتُقيّم دالة تقييم معقولية كل ثلاثية في كل تكرار تدريبي.</p>
+  </section>
+
+  <section>
+    <h2>2. الإكمال التقليدي للرسوم المعرفية</h2>
+    <p>الاستدلال المنطقي الصوري التقليدي ليس سهلًا ولا متينًا على الرسوم المعرفية واسعة النطاق، لذا اقتُرحت بدلًا منه نماذج تضمين تحسب العلاقات الدلالية بين الكيانات. تعامل النماذج الإزاحية العلاقات كإزاحات فوق تمثيلات الكيانات وتستخدم تسجيلًا قائمًا على المسافة: يضع TransE [9] الكيانات والعلاقات في الفضاء نفسه وينمذج أنماط الانعكاس والتركيب، لكن متجهًا واحدًا لكل علاقة لا يستطيع معالجة علاقات واحد-للكثير أو كثير-للواحد أو كثير-للكثير [10،19] — فالعلاقة WriterOf مثلًا ستدمج كتبًا متميزة لج. ك. رولينغ في تمثيلات متشابهة. وتمنح الامتدادات العلاقات فضاءاتها ودوال تسجيلها الخاصة: يُسقط TransH على مستويات فائقة للعلاقة [10]، ويستخدم TransR فضاءين منفصلين للكيانات والعلاقات [19]، ويستخدم TransD مصفوفات رسم ديناميكية [20]، ويضيف TransM خصائص رسم علاقية [21]، ويركّب TransW تضمينات الكلمات [22].</p>
+    <p>تلتقط نماذج التحليل التنسوري تفاعلات أغنى عبر الضرب التنسوري: يتبع RESCAL منهج التعلم العلائقي الإحصائي بمصفوفة لكل علاقة [25،26]، لكن معاملاته البالغة O(d²) لكل علاقة تدعو للإفراط في الملاءمة ولم يُختبر على بيانات عالية تعدد العلاقات [27]. يُبسط DistMult النموذج بمصفوفات قطرية ثنائية الخطية [11]، خافضًا المعاملات إلى O(d) لكل علاقة، لكنه لا يعالج سوى العلاقات المتماثلة؛ ويمتد ComplEx إلى الفضاء العقدي للأنماط غير المتماثلة [12]، ويُحلل TuckER بتنسور نواة مشترك [31].</p>
+    <p>تُسجّل النماذج العصبية الثلاثيات بلاخطيات متعلمة: يجمع SME بين دالتي الرأس–العلاقة والذيل–العلاقة بالضرب النقطي تحت طاقة تُسند طاقات منخفضة للثلاثيات المعقولة [27]، بينما توسط الشبكة التنسورية العصبية (NTN) متجهات الكلمات لكل كيان وتطبق طبقة تنسورية ثنائية الخطية عبر الأبعاد [35]. وتوسّع النماذج الالتفافية هذه الأفكار: يُعيد ConvE تشكيل تضمينات الكيان–العلاقة ويلفّها بمعاملات أقل بكثير من DistMult أو R-GCN مع معالجة العقد عالية الدرجة الداخلية [15،28]؛ ويولّد HypER مرشحات خاصة بالعلاقة عبر طبقة متصلة كليًا [36]؛ ويزيد InteractE التفاعلات الملتقطة عبر إعادة التشكيل المبدّلة والالتفاف الدائري [37]؛ ويطبق ConvKB الالتفاف على تضمينات الثلاثيات [39]. وتبقى جميعها ضحلة نسبيًا وتستدعي دراسة أعمق.</p>
+  </section>
+
+  <section>
+    <h2>3. الشبكات العصبية الرسمية للإكمال</h2>
+    <p>يحتاج التعلم العميق على البيانات المهيكلة رسميًا تمثيلات تتجاوز المدخلات الإقليدية: تنشر الشبكات العصبية الرسمية حالات الكيانات تكراريًا حتى التوازن — موسَّعة بوحدات متكررة مبوَّبة [42] — وتتعلم كل كيان بتجميع سمات الجيران [43]. وتجمع الطبقات المكدسة جوارات متعددة القفزات، وتتعلم بعض المتغيرات تضمينات العلاقات أيضًا. وتنقسم الالتفافات الرسمية إلى مناهج طيفية على الأساس الذاتي للابلاسي ومناهج مكانية تعاين جوارات ثابتة الحجم [49].</p>
+    <p>تعمل نماذج الالتفاف الرسمي كمشفرات–مفككات تجمّع الجوارات المحلية: تُنعّم GCNs التمثيلات عبر الرسم كله عبر الطبقات، ملتقطة الجيران المباشرين أو على بعد K قفزات [50]، مستخدمة معلومات المحلية كسمات [51] — رغم أن GCNs الخام تناسب الرسوم غير الموجهة بلا علاقات. وتشمل الامتدادات العلائقية R-GCN للبيانات متعددة العلاقات [15]، وCompGCN بالمؤثرات القائمة على التركيب [16]، وTransGCN الذي يُقرن افتراضات التحويل بالالتفاف [17]، ومتغيرات واعية بالبنية مثل RA-GCN [54]، إلى جانب تحليلات تتساءل متى تفيد الشبكات الرسمية الإكمال حقًا [52].</p>
+    <p>تتكيف نماذج الانتباه مع الجوارات غير المتوقعة بترجيح الجيران المهمين: تُسند شبكات الانتباه الرسمية أهمية غير متساوية أثناء تمرير الرسائل وتتوازى عبر أزواج العقدة–الجار [49]. وتشمل متغيرات الإكمال KBGAT [18] وRAGAT [56] والانتباه الواعي بالبنية المحلية [58] وانتباه الرسم العلائقي r-GAT [57] والانتباه المفكك في DisenKGAT [59] وانتباه العلاقات غير المتجانسة في HARN [60]. وتضع مقارنات Hits@10 المُبلغة HARN في الصدارة (60.0)، متقدمًا على LSA-GAT [49،60] وDisenKGAT [59] وRAGAT [56] وTransE-GCN [17].</p>
+    <p>تقدم نماذج اللغة المدربة مسبقًا مسارًا مكمِّلًا: فالبناء الخاضع للإشراف (Wikidata وFreebase) مكلف، ونماذج اللغة وحدها تلتقط الحقائق ضعيفًا من النص المتناثر. يُحسّن KEPLER على نحو مشترك هدفي تضمين المعرفة ونمذجة اللغة بترميز أوصاف الكيانات بنموذج مدرب مسبقًا [62]؛ ويعامل KG-BERT الثلاثيات كمتتاليات نصية للإكمال [61]؛ وتدرس أعمال الاستكشاف نماذج اللغة مباشرة كقواعد معرفة [63–66].</p>
+  </section>
+
+  <section>
+    <h2>4. التحديات في الرسوم المعرفية</h2>
+    <p>تبقى تحديات كثيرة دون حل: قابلية التوسع لرسوم بحجم الويب، وإزالة غموض الكيانات، واستخراج المعرفة من مصادر غير متجانسة وغير مهيكلة، وإدارة المعرفة المتطورة. تفترض معظم الأعمال الحالية رسومًا ثابتة متجمدة في الزمن، بينما يدرس اتجاه واعد خوارزميات الرسوم الديناميكية التي تقبل حواف جديدة عبر زمن متصل.</p>
+    <p>وما يزال تعلم التمثيل يعاني مع الرسوم متعددة اللغات، وتبقى المعرفة متعددة المصادر ومتعددة الوسائط قليلة الدراسة. وغالبًا ما تكون الرسوم الواقعية منخفضة الجودة، وبناء رسوم خاصة بالمجال مرهق. وتستهدف معظم التضمينات الرسوم الأنطولوجية لا الرسوم المفتوحة (OKGs): فالرسوم الأنطولوجية مُقنَّنة، لكن المفتوحة ليست كذلك — فدونالد ترامب والرئيس ترامب وترامب تدل على الكيان نفسه بألفاظ مختلفة — وربط هذه الألفاظ (OKGIT [65] ونمذجة الأنواع الكامنة [66]) ما يزال عملًا مبكرًا.</p>
+  </section>
+
+  <section>
+    <h2>5. الخاتمة</h2>
+    <p>تمثل الرسوم المعرفية العلاقات الواقعية بفعالية، ويعبّر تضمين الرسم المعرفي عن كل مكون من مكوناتها بصيغة متجهية لكشف الخصائص الكامنة. بدأت طرق الإكمال بالنماذج القائمة على الإزاحة وتقدمت نحو دوال تسجيل متزايدة التعبيرية، مصنفة هنا في عائلات إزاحية وتحليلية وعصبية والتفافية.</p>
+    <p>وخلافًا للمسوحات السابقة التي ركزت على نماذج التضمين وحدها، تضيف هذه المراجعة دمجها مع الشبكات العصبية الرسمية للتنبؤ بالروابط. تُظهر النتائج أن النماذج المبكرة مثل TransE سريعة الحساب لكنها قليلة التعبيرية، بينما تشتري دوال التسجيل الأكثر تعقيدًا التعبيرية بتكلفة حسابية أعلى — وهي المقايضة المستمرة التي يجب أن يجتازها المجال.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Information extraction methods have proven effective at extracting triples from structured or unstructured data, and organizing such triples in the form of (head entity, relation, tail entity) constitutes the construction of knowledge graphs (KGs). Yet most current knowledge graphs are incomplete, so predicting missing links is desirable for using KGs in downstream tasks.</p>
+    <p>Different representation-learning approaches have recently been proposed that embed both entities and relations into a low-dimensional vector space to predict unknown triples from visited ones. According to whether triples are treated independently or dependently, this review divides completion into conventional representation learning — where each triple is processed independently — and graph neural network (GNN) representation learning, where triples additionally consider their local neighborhood, and discusses both in detail.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>A graph is directed when node order matters and undirected otherwise; a knowledge graph is a heterogeneous multi-digraph — directed, with multiple edges allowed between two nodes — in which an agent generates knowledge by relating graph elements to real-world objects and actions. A KG, also called a knowledge base, is a structured representation of facts linking entities, relationships, and semantic descriptions, connecting heterogeneous objects in a unified space. Unlike rigidly structured, homogeneous knowledge bases with stable schemas, KGs are less rigidly defined, which makes them more scalable [1].</p>
+    <p>Industrial deployments at five technology companies illustrate both the value and the growing pains of KGs at scale [2], while community projects such as DBpedia [4], Freebase [5], YAGO [6], and Wikidata [7] — alongside Cyc [3] — show how large factual graphs are assembled. Four crucial elements of machine learning models underpin completion: the representation of entities and relations, the scoring function measuring triple plausibility, the training objective, and the handling of negative examples.</p>
+    <p>Because real graphs miss vast numbers of true facts, knowledge representation learning (KRL), or knowledge graph embedding (KGE), maps entities and relations into a continuous vector space: each entity h becomes a point, each relation r an operation such as translation or projection, and an evaluation function scores each triple's plausibility at every iteration of training.</p>
+  </section>
+
+  <section>
+    <h2>2. Conventional Knowledge Graph Completion</h2>
+    <p>Traditional formal-logic reasoning is neither tractable nor robust on large-scale KGs, so embedding models that compute semantic relations between entities have been proposed instead. Translational models treat relations as translations over entity representations and use distance-based scoring: TransE [9] places entities and relations in the same space and models inversion and composition patterns, but a single vector per relation cannot handle one-to-many, many-to-one, or many-to-many relations [10,19] — the relation WriterOf, for instance, would collapse distinct books by J. K. Rowling into similar representations. Extensions give relations their own spaces and scoring functions: TransH projects onto relation hyperplanes [10], TransR uses separate entity and relation spaces [19], TransD uses dynamic mapping matrices [20], TransM adds relational mapping properties [21], and TransW composes word embeddings [22].</p>
+    <p>Tensor decompositional models capture richer interactions through tensor products: RESCAL follows a statistical relational learning approach with a matrix per relation [25,26], but its O(d²) parameters per relation invite overfitting and it was never tested on highly multi-relational data [27]. DistMult simplifies RESCAL with bilinear diagonal matrices [11], cutting parameters to O(d) per relation, yet handles only symmetric relations; ComplEx extends to complex space for asymmetric patterns [12], and TuckER factorizes with a shared core tensor [31].</p>
+    <p>Neural network models score triples with learned nonlinearities: SME combines head–relation and tail–relation functions by dot product under an energy assigning low energies to plausible triples [27], while the neural tensor network (NTN) averages word vectors per entity and applies a bilinear tensor layer across dimensions [35]. Convolutional models scale these ideas: ConvE reshapes and convolves entity–relation embeddings with far fewer parameters than DistMult or R-GCN while handling high-indegree nodes [15,28]; HypER generates relation-specific filters through a fully connected layer [36]; InteractE increases captured interactions via permuted reshaping and circular convolution [37]; and ConvKB applies convolution over triple embeddings [39]. All remain relatively shallow and invite deeper study.</p>
+  </section>
+
+  <section>
+    <h2>3. Graph Neural Networks for Completion</h2>
+    <p>Deep learning on graph-structured data needs representations beyond Euclidean inputs: GNNs propagate entity states iteratively to equilibrium — extended with gated recurrent units [42] — and learn each entity by aggregating neighbor features [43]. Stacked layers gather multi-hop neighborhoods, and some variants learn relation embeddings as well. Graph convolutions split into spectral approaches on the Laplacian eigenbasis and spatial approaches sampling fixed-size neighborhoods [49].</p>
+    <p>Graph convolutional models work as encoder–decoders aggregating local neighborhoods: GCNs smooth representations over the whole graph across layers, capturing immediate or K-hop neighbors [50], using locality information as attributes [51] — though vanilla GCNs suit undirected graphs without relations. Relational extensions include R-GCN for multi-relational data [15], CompGCN with composition-based operators [16], TransGCN coupling transformation assumptions with convolution [17], and structure-aware variants such as RA-GCN [54], alongside analyses questioning when GNNs truly help completion [52].</p>
+    <p>Attention models adapt to unpredictable neighborhoods by weighting important neighbors: graph attention networks assign unequal importance during message passing and parallelize across node–neighbor pairs [49]. Completion-specific variants include KBGAT [18], RAGAT [56], local-structure-aware attention [58], relational graph attention r-GAT [57], disentangled attention in DisenKGAT [59], and heterogeneous relation attention in HARN [60]. Reported Hits@10 comparisons place HARN at the top (60.0), ahead of LSA-GAT [49,60], DisenKGAT [59], RAGAT [56], and TransE-GCN [17].</p>
+    <p>Pre-trained language models offer a complementary path: supervised construction (Wikidata, Freebase) is costly, and PLMs alone capture facts poorly from sparse text. KEPLER jointly optimizes knowledge embedding and language modeling objectives by encoding entity descriptions with a pre-trained model [62]; KG-BERT treats triples as textual sequences for completion [61]; and probing studies examine language models directly as knowledge bases [63–66].</p>
+  </section>
+
+  <section>
+    <h2>4. Challenges in Knowledge Graphs</h2>
+    <p>Many challenges remain unsolved: scalability to web-scale graphs, entity disambiguation, knowledge extraction from heterogeneous and unstructured sources, and managing evolving knowledge. Most current works assume static graphs frozen in time, while a promising direction studies dynamic graph algorithms that admit new edges over continuous time.</p>
+    <p>Representation learning still struggles with multilingual KGs, and multi-source, multi-modal knowledge remains understudied. Real-world graphs are often low quality, and building domain-specific graphs is cumbersome. Most embeddings target ontological KGs rather than open KGs (OKGs): ontological graphs are canonicalized, but OKGs are not — Donald Trump, President Trump, and Trump denote the same entity under different mentions — and linking such mentions (OKGIT [65], latent type modeling [66]) is still early work.</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>Knowledge graphs effectively represent real-world relationships, and knowledge graph embedding expresses every KG component in vector form to expose latent properties. Completion methods began with translation-based models and advanced toward increasingly expressive scoring functions, classified here into translational, decompositional, neural network-based, and convolutional families.</p>
+    <p>Unlike prior surveys focused only on embedding models, this review adds their integration with graph neural networks for link prediction. Results show early models such as TransE compute fast but express little, while more complex scoring functions buy expressiveness at higher computational cost — the persistent trade-off the field must navigate.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <ul dir="ltr">
+      <li>[2] Noy, N.; et al. Industry-scale Knowledge Graphs: Lessons and Challenges. Queue 2019, 17, 48–75.</li>
+      <li>[4] Auer, S.; et al. DBpedia: A nucleus for a web of open data. In Proc. ESWC 2007; pp. 722–735.</li>
+      <li>[5] Bollacker, K.; et al. Freebase: A collaboratively created graph database. In Proc. SIGMOD 2008.</li>
+      <li>[7] Vrandečić, D.; Krötzsch, M. Wikidata: A free collaborative knowledgebase. Commun. ACM 2014, 57, 78–85.</li>
+      <li>[9] Bordes, A.; et al. Translating embeddings for modeling multi-relational data. In Proc. NeurIPS 2013.</li>
+      <li>[10] Wang, Z.; et al. Knowledge graph embedding by translating on hyperplanes. In Proc. AAAI 2014.</li>
+      <li>[11] Yang, B.; et al. Embedding entities and relations for learning and inference in knowledge bases. arXiv 2014, arXiv:1412.6575.</li>
+      <li>[12] Trouillon, T.; et al. Complex embeddings for simple link prediction. In Proc. ICML 2016.</li>
+      <li>[15] Schlichtkrull, M.; et al. Modeling relational data with graph convolutional networks. In Proc. ESWC 2018.</li>
+      <li>[16] Vashishth, S.; et al. Composition-based multi-relational graph convolutional networks. arXiv 2019, arXiv:1911.03082.</li>
+      <li>[18] Nathani, D.; et al. Learning attention-based embeddings for relation prediction in knowledge graphs. arXiv 2019, arXiv:1906.01671.</li>
+      <li>[19] Lin, Y.; et al. Learning entity and relation embeddings for knowledge graph completion. In Proc. AAAI 2015.</li>
+      <li>[25] Nickel, M.; Tresp, V.; Kriegel, H.-P. A three-way model for collective learning on multi-relational data. In Proc. ICML 2011.</li>
+      <li>[28] Dettmers, T.; et al. Convolutional 2d knowledge graph embeddings. In Proc. AAAI 2018.</li>
+      <li>[31] Balažević, I.; Allen, C.; Hospedales, T.M. Tucker: Tensor factorization for knowledge graph completion. arXiv 2019, arXiv:1901.09590.</li>
+      <li>[35] Socher, R.; et al. Reasoning with neural tensor networks for knowledge base completion. In Proc. NeurIPS 2013.</li>
+      <li>[37] Vashishth, S.; et al. InteractE: Improving convolution-based KG embeddings by increasing feature interactions. In Proc. CIKM 2020.</li>
+      <li>[39] Nguyen, D.Q.; et al. A novel embedding model for knowledge base completion based on convolutional neural network. In Proc. ACL 2016.</li>
+      <li>[42] Li, Y.; et al. Gated graph sequence neural networks. arXiv 2015, arXiv:1511.05493.</li>
+      <li>[49] Veličković, P.; et al. Graph attention networks. arXiv 2017, arXiv:1710.10903.</li>
+      <li>[56] Liu, X.; et al. RAGAT: Relation aware graph attention network for knowledge graph completion. IEEE Access 2021, 9, 20840–20849.</li>
+      <li>[59] Wu, J.; et al. DisenKGAT: Knowledge Graph Embedding with Disentangled Graph Attention Networks. 2021.</li>
+      <li>[60] Li, Z.; et al. Learning knowledge graph embedding with heterogeneous relation attention networks. IEEE Trans. Neural Netw. Learn. Syst. 2021.</li>
+      <li>[61] Yao, L.; Mao, C.; Luo, Y. KG-BERT: BERT for knowledge graph completion. arXiv 2019, arXiv:1909.03193.</li>
+      <li>[62] Wang, X.; et al. KEPLER: A Unified Model for Knowledge Embedding and Pre-trained Language Representation. 2020.</li>
+      <li>[full reference list available in the original paper]</li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/info13080396">10.3390/info13080396</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

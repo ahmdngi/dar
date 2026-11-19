@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التقطير المعرفي الهرمي لضغط النماذج ونقلها بكفاءة — DAR</title>
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+
+/* Comparison mode */
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Hierarchical Knowledge Distillation for Efficient Model Compression and Transfer: A Multi-Level Aggregation Approach</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التقطير المعرفي الهرمي لضغط النماذج ونقلها بكفاءة: نهج التجميع متعدد المستويات</h2>
+
+  <div class="paper-meta">
+    <span>👤 Titinunt Kitrungrotsakul, Preeyanuch Srichola</span>
+    <span>📄 Information, 2026 · Vol. 17(1), 70</span>
+    <span>🔗 <a href="https://doi.org/10.3390/info17010070">10.3390/info17010070</a></span>
+    <span>📥 <a href="paper.pdf" target="_blank">PDF</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2>الملخص</h2>
+    <p>أحدثت نماذج اللغة البصرية الكبيرة تحولًا في مهام الاستشعار عن بعد مثل تصنيف الصور وكشف الأجسام واسترجاع الصورة-النص [1،2]، لكن متطلباتها الحوسبية تعيق نشرها في البيئات محدودة الموارد. يخفف التقطير المعرفي هذه المشكلة بنقل المعرفة من معلم قوي إلى طالب مدمج أو مطابق معماريًا [3]. نقدم في هذه الورقة التقطير المعرفي الهرمي متعدد المقاطع (HIMS_KD)، وهو إطار متعدد المراحل يقطّر المعرفة من المعلم إلى نماذج مساعدة متخصصة في التمثيلات منخفضة ومتوسطة وعالية المستوى ثم يجمعها في الطالب النهائي، مع دمج محاذاة السمات ومحاذاة اللوجت المساعدة وخسارة خاضعة للإشراف. تُظهر التجارب على مجموعتي RSITMD وRSICD [46،47] أن HIMS_KD يحسّن الاسترجاع والتصنيف صفري-الطلقات، ويخفض تكلفة النشر عند استخدام طالب مدمج مع الحفاظ على دقة قوية.</p>
+  </section>
+
+  <section>
+    <h2>1. المقدمة</h2>
+    <p>أصبح الاستشعار عن بعد لا غنى عنه في مراقبة البيئة والزراعة الدقيقة والتخطيط الحضري وإدارة الكوارث، وقد برزت نماذج اللغة البصرية بوصفها أدوات أساسية تدمج المعلومات البصرية والنصية لاستيعاب أغنى للمشهد [1،2]، محققة تحسينات في تصنيف المشاهد وكشف الأجسام واسترجاع الصورة-النص. ورغم ذلك، يظل نشرها في البيئات الحقيقية محدودة الموارد صعبًا بسبب متطلبات الحوسبة والذاكرة العالية.</p>
+    <p>برز التقطير المعرفي حلًا عمليًا ينقل المعرفة من نموذج مفرط البارامترات (المعلم) إلى نموذج أصغر (الطالب) [3]، لكن التقنيات التقليدية [4،5] التي تحاذي اللوجت أو السمات الوسيطة قد لا تستغل كامل السمات متعددة المستويات للمعلم نظرًا لمحدودية سعة الطالب. ولمعالجة ذلك استُكشفت النماذج المساعدة كوسطاء يصقلون جوانب محددة من معرفة المعلم قبل تمريرها [6]، وبناءً عليه نقترح HIMS_KD الذي يجزّئ المعلم إلى كتل سمات متميزة (منخفضة كالحواف، ومتوسطة كأجزاء الأجسام، وعالية كالمفاهيم الدلالية) ثم يجمعها في الطالب.</p>
+  </section>
+
+  <section>
+    <h2>2. الأعمال ذات الصلة</h2>
+    <p>طُبّق التقطير المعرفي [4] على نطاق واسع لضغط النماذج التأسيسية الكبيرة بما فيها النماذج اللغوية [7] والبصرية [8] ومتعددة الوسائط [9،10]، عبر مطابقة التمثيلات الخفية [11] وتوزيعات الانتباه [12] ومعلومات التقارب [13]؛ واقترح CLIP-KD عدة أساليب لتقطير نماذج CLIP الطلابية الصغيرة عبر العلاقات والسمات والتدرجات من معلم CLIP كبير [14،15]، لكن المحاذاة المباشرة بين المعلم والطالب تظل محدودة، وأظهرت الأعمال السابقة أن إدخال نماذج مساعدة وسيطة يحسّن التقطير عند اتساع فجوة السعة [6].</p>
+    <p>وفي الاستشعار عن بعد، بُنيت مجموعات بيانات ضخمة مقترنة بالصور والنصوص [16،17] ودُرّبت نماذج متخصصة مثل RemoteCLIP [21] وGeoChat [23] وLLaVA المكيّفة [24]، بينما أدخلت أعمال النماذج المساعدة مثل TAKD [6] وSleepKD [26] وDGKD [25] وسطاء متعددين بين المعلم والطالب؛ غير أن الأخطاء قد تتراكم في التقطير التسلسلي، وهو ما يخففه DGKD بالتقطير المباشر من المعلم والمساعدين معًا إلى الشبكة الهدف [25].</p>
+  </section>
+
+  <section>
+    <h2>3. المنهجية: إطار HIMS_KD</h2>
+    <p>يهدف التقطير إلى نقل المعرفة السماتية من نموذج إلى آخر لتعزيز التعميم، وفق صياغة الخسارة التقليدية التي توازن بين خسارتي التسميات الناعمة (من المعلم) والصلبة (الحقيقة الأرضية). يتكون HIMS_KD من مكونين: تعلّم المساعدين، حيث تُنقل معرفة المعلم إلى نماذج مساعدة متعددة يتعلم كل منها مستوى هرميًا مختلفًا، وتعلّم الطالب الذي يجمع المعرفة من المعلم والمساعدين معًا ليستفيد من التمثيلات منخفضة وعالية المستوى بكفاءة. قسّم المؤلفون عمود ViT الفقري إلى ثلاثة مقاطع متساوية العمق (I = 3) تتوافق مع المستويات المنخفضة والمتوسطة والعالية.</p>
+    <p>يُدرَّب كل نموذج مساعد بخسارة مركبة تجمع محاذاة السمات بالمعيار L2 مع سمات كتلة المعلم، ومحاذاة اللوجت المساعدة عبر إسقاط التشابه مع تضمينات نصوص SkyScript [17]، وخسارة الإنتروبيا المتقاطعة مع التسميات الحقيقية. أما الطالب فيُبنى بالهيكل المقسّم نفسه لتتوافق كتله مع المستويات المساعدة، ويُدرَّب بمحاذاة سمات مع المساعدين، وتباعد KL بين توزيعات المعلم والطالب، وخسارة إنتروبيا متقاطعة مع التسميات الحقيقية.</p>
+  </section>
+
+  <section>
+    <h2>4. النتائج التجريبية</h2>
+    <p>أُجريت التجارب على التدريب باستخدام RemoteCLIP-ViT-L/14 [21] كمعلم على بيانات SkyScript [17] (ثماني بطاقات NVIDIA A40، 32 حقبة، دفعات 512)، مع طالبين: ViT-L/14 بالحجم نفسه لعزل أثر التدريب الهرمي (HIMS_KD2)، وطالب مدمج ViT-B/32 لدراسة الضغط. في التصنيف صفري-الطلقات على ثمانية معايير عامة (AID [27] وEuroSAT [28] وfMoW [29] وMillion-AID [30] وPatternNet [31] وRESISC45 [32] وRSI-CB [33]) حقق HIMS_KD تحسنًا متوسطًا بنحو 4–7٪ على الطرز السابقة، متجاوزًا CLIP الأصلي [15] وRemoteCLIP [21] ومتغيرات SkyScript [17].</p>
+    <p>ومع الطالب المدمج ViT-B/32 تفوق HIMS_KD على KD-Logit [4] وKD-Feature [5] وKD-TAKD [6] وDGKD [25] في معظم المعايير (مثل 49.20٪ على EuroSAT و79.61٪ على PatternNet و69.47٪ على AID)، محققًا دقة 58.89٪ وزمن استدلال 38ms مقابل 56–58ms للبدائل. وفي استرجاع الصورة-النص على RSITMD [46] وRSICD [47] تجاوز الطالب CLIP ViT-B/32 في الاستدعاء عند K=5 وK=10 (مثل 73.49٪ مقابل 69.87٪ للنص-إلى-صورة على RSITMD) رغم تراجع طفيف عند R@1 يُعزى لتنعيم حدود القرار.</p>
+    <p>أظهرت دراسة الاستئصال أن استخدام ثلاثة مساعدين يغطون المستويات المنخفضة والمتوسطة والعالية معًا يحقق أفضل دقة (58.89٪، و61.88٪ بسعة أكبر)، وأن الجمع بين تقطير اللوجت والسمات مع الإشراف يتفوق على كل مكون منفردًا. ويُعزى التراجع على fMoW وPatternNet في إعداد الحجم الكامل إلى محدودية المعلم الأساسي نفسه، مما يؤكد أن فعالية المعلم تحدد سقف نتائج التقطير.</p>
+  </section>
+
+  <section>
+    <h2>5. الخلاصة</h2>
+    <p>قدمنا HIMS_KD، وهو إطار تقطير هرمي يوظف نماذج مساعدة وسيطة تلتقط السمات منخفضة ومتوسطة وعالية المستوى ثم تجمعها في طالب مدمج، محققًا أداءً تنافسيًا بكفاءة حوسبية محسّنة في التصنيف صفري-الطلقات والاسترجاع متعدد الوسائط [46،47]. تشمل الاتجاهات المستقبلية دمج الأتمتة بالذكاء الاصطناعي ومنصات دمج المستشعرات والتعمق في العامل البشري، بينما تدعم البيانات المتاحة علنًا (RSICD وRSITMD) قابلية إعادة الإنتاج.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2>Abstract</h2>
+    <p>Large-scale vision-language models have transformed remote sensing tasks such as image classification, object detection, and image–text retrieval [1,2], but their computational demands hinder deployment in resource-constrained environments. Knowledge distillation (KD) mitigates this by transferring knowledge from a strong teacher to a compact or architecturally matched student [3]. We introduce Hierarchical Multi-Segment Knowledge Distillation (HIMS_KD), a multi-stage framework that distills teacher knowledge into assistant models specialized in low-, mid-, and high-level representations and then aggregates them into the final student, integrating feature alignment, auxiliary similarity-logit alignment, and supervised loss. Experiments on RSITMD and RSICD [46,47] show that HIMS_KD improves retrieval and zero-shot classification while reducing deployment cost with a compact student at strong accuracy.</p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>Remote sensing has become indispensable for environmental monitoring, precision agriculture, urban planning, and disaster management, and vision-language models have emerged as essential tools integrating visual and textual information for richer scene interpretation [1,2], improving scene classification, object detection, and image–text retrieval. Yet deploying them in real-world, resource-limited settings remains difficult due to high compute and memory requirements.</p>
+    <p>Knowledge distillation has emerged as a practical solution transferring knowledge from an over-parameterized teacher to a smaller student [3], but conventional techniques [4,5] aligning logits or intermediate features may not fully exploit the teacher's rich multi-level features given the student's limited capacity. Assistant models have therefore been explored as intermediaries refining specific aspects of teacher knowledge before passing it on [6]; building on this, we propose HIMS_KD, which segments the teacher into distinct feature blocks (low-level edges, mid-level object parts, high-level semantics) and aggregates them into the student.</p>
+  </section>
+
+  <section>
+    <h2>2. Related Work</h2>
+    <p>Knowledge distillation [4] has been widely applied to compress large foundation models including LLMs [7], visual models [8], and multimodal models [9,10], by matching hidden representations [11], attention distributions [12], and affinity information [13]; CLIP-KD proposed several approaches to distill small student CLIP models via relationships, features, and gradients from a large CLIP teacher [14,15], but direct teacher–student alignment remains limited, and prior work showed intermediate assistants improve distillation under large capacity gaps [6].</p>
+    <p>In remote sensing, large-scale image–text datasets [16,17] and specialized models such as RemoteCLIP [21], GeoChat [23], and adapted LLaVA [24] were built, while assistant-based works such as TAKD [6], SleepKD [26], and DGKD [25] introduced intermediaries between teacher and student; however, errors can accumulate in sequential distillation, which DGKD mitigates by distilling directly from teacher and assistants to the target network [25].</p>
+  </section>
+
+  <section>
+    <h2>3. Methodology: The HIMS_KD Framework</h2>
+    <p>Distillation transfers feature knowledge between models to improve generalization, under the conventional loss balancing soft labels (from the teacher) and hard labels (ground truth). HIMS_KD has two components: assistant learning, transferring teacher knowledge into multiple assistants each learning a different hierarchical level, and student learning aggregating knowledge from teacher and assistants to acquire low- and high-level representations efficiently. The authors partition the ViT backbone into three equal-depth segments (I = 3) for low/mid/high levels.</p>
+    <p>Each assistant is trained with a composite loss combining L2 feature alignment with teacher-block features, auxiliary similarity-logit alignment via projection against SkyScript text embeddings [17], and cross-entropy with true labels. The student mirrors the same partitioned structure so its blocks match assistant levels, trained with feature alignment to assistants, KL divergence between teacher and student distributions, and cross-entropy with true labels.</p>
+  </section>
+
+  <section>
+    <h2>4. Experimental Results</h2>
+    <p>Experiments train on SkyScript [17] with RemoteCLIP-ViT-L/14 [21] as teacher (8× NVIDIA A40, 32 epochs, batch 512), with two students: same-size ViT-L/14 isolating the hierarchical-training effect (HIMS_KD2), and a compact ViT-B/32 for compression. On zero-shot classification over eight public benchmarks (AID [27], EuroSAT [28], fMoW [29], Million-AID [30], PatternNet [31], RESISC45 [32], RSI-CB [33]), HIMS_KD gained roughly 4–7% on average over prior models, surpassing original CLIP [15], RemoteCLIP [21], and SkyScript variants [17].</p>
+    <p>With the compact ViT-B/32 student, HIMS_KD beat KD-Logit [4], KD-Feature [5], KD-TAKD [6], and DGKD [25] on most benchmarks (e.g., 49.20% on EuroSAT, 79.61% on PatternNet, 69.47% on AID), reaching 58.89% accuracy at 38ms inference versus 40–45ms for alternatives. On RSITMD [46] and RSICD [47] image–text retrieval, the student surpassed CLIP ViT-B/32 at recall K=5 and K=10 (e.g., 73.49% vs 69.87% text-to-image on RSITMD) despite a slight R@1 drop attributed to smoothed decision boundaries.</p>
+    <p>Ablations show three assistants covering low/mid/high levels together give the best accuracy (58.89%, 61.88% with larger capacity), and combining logit and feature distillation with supervision beats each component alone. The lag on fMoW and PatternNet in the full-size setting traces to limits of the base teacher itself, confirming teacher quality bounds distillation outcomes.</p>
+  </section>
+
+  <section>
+    <h2>5. Conclusions</h2>
+    <p>We presented HIMS_KD, a hierarchical distillation framework using intermediary assistants that capture low-, mid-, and high-level features and aggregate them into a compact student, achieving competitive performance with improved computational efficiency on zero-shot classification and multimodal retrieval [46,47]. Future directions include AI-driven automation, sensor-fusion platforms, and deeper human-factor study, while the publicly available RSICD and RSITMD data support reproducibility.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References (selected — original numbering preserved)</h2>
+    <ol dir="ltr">
+      <li>[1] X. Li et al., Vision-language models in remote sensing: current progress and future trends, IEEE Geosci. Remote Sens. Mag., 2024.</li>
+      <li>[2] J. Li et al., Deep learning in multimodal remote sensing data fusion: a comprehensive review, arXiv:2205.01380, 2022.</li>
+      <li>[3] J. Gou et al., Knowledge distillation: a survey, Int. J. Comput. Vision, 2021.</li>
+      <li>[4] G. Hinton, O. Vinyals, J. Dean, Distilling the knowledge in a neural network, arXiv:1503.02531, 2015.</li>
+      <li>[5] A. Romero et al., FitNets: hints for thin deep nets, arXiv:1412.6550, 2015.</li>
+      <li>[6] S. I. Mirzadeh et al., Improved knowledge distillation via teacher assistant, AAAI, 2020.</li>
+      <li>[13] K. Wu et al., TinyCLIP: CLIP distillation via affinity mimicking and weight inheritance, ICCV, 2023.</li>
+      <li>[14] C. Yang et al., CLIP-KD: an empirical study of CLIP model distillation, CVPR, 2024.</li>
+      <li>[15] A. Radford et al., Learning transferable visual models from natural language supervision (CLIP), ICML, 2021.</li>
+      <li>[17] Z. Wang et al., SkyScript: a large and semantically diverse vision-language dataset for remote sensing, arXiv:2312.12856, 2023.</li>
+      <li>[21] F. Liu et al., RemoteCLIP: a vision language foundation model for remote sensing, IEEE TGRS, 2023.</li>
+      <li>[23] K. Kuckreja et al., GeoChat, CVPR, 2024.</li>
+      <li>[25] W. Son et al., Densely guided knowledge distillation using multiple teacher assistants, ICCV, 2021.</li>
+      <li>[26] H. Liang et al., Teacher assistant-based KD on single-channel sleep EEG, IJCAI, 2023.</li>
+      <li>[27–33] Public RS classification benchmarks: AID, EuroSAT, fMoW, Million-AID, PatternNet, RESISC45 (NWPU), RSI-CB.</li>
+      <li>[34] F. Faghri et al., VSE++: improving visual-semantic embeddings, arXiv:1707.05612, 2018.</li>
+      <li>[37] G. Hoxha et al., Toward remote sensing image retrieval under a deep image captioning perspective, IEEE JSTARS, 2020.</li>
+      <li>[44] Q. Ma et al., Direction-oriented visual–semantic embedding for RS image–text retrieval, IEEE TGRS, 2024.</li>
+      <li>[46] Z. Yuan et al., Exploring a fine-grained multiscale method for cross-modal RS image retrieval (RSITMD), IEEE TGRS, 2022.</li>
+      <li>[47] X. Lu et al., Exploring models and data for RS image caption generation (RSICD), IEEE TGRS, 2017.</li>
+      <li>... [full reference list available in the <a href="paper.pdf" target="_blank">original PDF</a>]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/info17010070">10.3390/info17010070</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+
+  // Remove comparison wrappers if any
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+
+  // Show/hide content
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+
+  document.getElementById('paper-content').classList.remove('side-by-side');
+
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    // Section-by-section comparison
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+
+  // Update html dir
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  // Update toggle button labels
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
