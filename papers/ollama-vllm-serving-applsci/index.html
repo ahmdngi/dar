@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قياس أداء أولاما وvLLM لخدمة النماذج اللغوية المتزامنة: تقييم متعدد السيناريوهات للأداء وقابلية التوسع — DAR</title>
+<meta name="description" content="Benchmarking Ollama and vLLM for Concurrent LLM Serving: A Multi-Scenario Evaluation of Performance and Scalability — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/ollama-vllm-serving-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Benchmarking Ollama and vLLM for Concurrent LLM Serving: A Multi-Scenario Evaluation of Performance and Scalability</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">قياس أداء أولاما وvLLM لخدمة النماذج اللغوية المتزامنة: تقييم متعدد السيناريوهات للأداء وقابلية التوسع</h2>
+
+  <div class="paper-meta">
+    <span>👤 Betül Ay, Yunus Emre Demirdağ</span>
+    <span>📄 Appl. Sci. 2026, Vol. 16(11), 5435</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app16115435">10.3390/app16115435</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يطرح خدمة النماذج اللغوية الكبيرة لعدد كبير من المستخدمين المتزامنين تحديات جسيمة في زمن الاستجابة والإنتاجية وقابلية التوسع. تقدم هذه الورقة معياراً منهجياً وقابلاً لإعادة الإنتاج لإطاري خدمة شائعين، أولاما وvLLM، تحت أحمال متزامنة، عبر مقارنة مضبوطة على معالج رسومي واحد من طراز NVIDIA H100 بسعة 80 غيغابايت بالأوزان نفسها للنموذج (Qwen3-4B) وتكوينات الاستدلال نفسها [29]. وقيّم الإطاران بخمسة مجموعات بيانات معيارية مفتوحة عبر أربعة سيناريوهات: الإجابة عن الأسئلة الأساسية، والاستدلال المعقد، والتفاعل بالبث، واختبار الإجهاد، تحت مستويات تزامن متصاعدة [31]، [32]، [33]، [34]، [35].</p>
+    <p>أظهرت التجارب تفوق vLLM بوضوح عبر السيناريوهات الأربعة، محققاً معدل نجاح 100% للطلبات، وإنتاجية أعلى بـ20–29 مرة، وزمن P95 أقل بـ8–19 مرة، مع أول رمز خلال 0.5–3.5 ثانية وثبات حتى 100 مستخدم متزامن. أما أولاما فاحتاج 54–122 ثانية للرمز الأول، وبلغ عنق الزجاجة للتزامن قرب 10 مستخدمين، وسجل معدل خطأ 13–30.06% تحت الأحمال الثقيلة. وأظهر كلا الإطارين نمواً ملحوظاً في الذاكرة خلال اختبارات التحمل الممتدة، ما يستلزم مراقبة دقيقة في النشر طويل الأمد. وخلاصةً، يناسب vLLM الخدمة عالية التزامن، بينما يبقى أولاما خياراً عملياً للتدفقات المحلية الخفيفة أو التطويرية.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>أصبحت النماذج اللغوية الكبيرة من أهم التطورات في الذكاء الاصطناعي، إذ تستخدم في فهم اللغة وتوليد النصوص والإجابة عن الأسئلة وتركيب الشيفرات وأنظمة دعم القرار [1]. ومع انتقالها من أدوات بحثية إلى حلول إنتاجية عملية، صار النشر الفعال والقابل للتوسع والمنخفض زمن الاستجابة مسألة بحثية وهندسية مهمة [2]، [3]. وطُورت تقنيات لتقليل حجم النماذج وتحسين كفاءة المعاملات وتسريع الاستدلال، مثل التكييف منخفض الرتبة (LoRA) [4]، وتقطير النماذج [5]، والتكميم [6].</p>
+    <p>ومع نضج منظومة الخدمة، ظهرت حلول لتفكيك مرحلتي التهيئة وفك الترميم [7]، ومكتبات المحولات [8]، ومحركات الاستدلال واسعة النطاق [9]، وتحسين الاستدلال الفوري [10]، وأطر النشر المحلية مثل أولاما [11]. وتستعرض مسوح حديثة التطورات والفرص في خدمة استدلال النماذج [1]، [2]، [12]، مع جدولة واعية بالموارد [13]، وانتباه فعال ذاكرياً [14]، وتوليد عالي الإنتاجية بمعالج واحد [15]، ودراسات شاملة للتكميم [16]. وتتموضع هذه الدراسة كأول مقارنة مضبوطة منهجية بين أولاما وvLLM على العتاد نفسه والأوزان نفسها عبر أربعة سيناريوهات تزامن متصاعدة.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة</h2>
+    <p>قارنت دراسات سابقة أنظمة الخدمة بطرق مختلفة: تحليل مقارن بين vLLM وHuggingFace TGI [17]، ومعيار استدلال على مسرعات الذكاء الاصطناعي [18]، وأنظمة خدمة موزعة مبكرة مثل Orca بجدولة على مستوى التكرار [19]، وSarathi-Serve لموازنة الإنتاجية وزمن الاستجابة [20]، وSplitWise بتقسيم المراحل [21]، وSGLang لبرامج النماذج [22]، وفك الترميم التخميني متعدد الرؤوس مثل Medusa [23] وEAGLE [24]. ودُرس الاستدلال المستدام على الحافة وقياس النماذج المكممة من حيث الطاقة والدقة وزمن الاستجابة [25]، [26]، [27]، [28].</p>
+    <p>تختلف هذه الدراسة بأنها تعزل أثر الإطار نفسه: النموذج نفسه (Qwen3-4B [29])، والمعاملات نفسها، ومجموعات البيانات نفسها، والعتاد نفسه، مع بروتوكول إعادة إنتاج صارم. وبينما ركزت الأعمال السابقة على مسرعات أو عائلات نماذج مختلفة [17]، [18]، تقيس هذه الورقة التدهور تحت التزامن المتزايد مباشرة، بما يشمل زمن الرمز الأول ونجاح الطلبات ونمو الذاكرة أثناء التحمل، وهي أبعاد حاسمة لقرارات النشر الإنتاجي [36].</p>
+  </section>
+  <section>
+    <h2 dir="rtl">3. المنهجية وبيئة التجربة</h2>
+    <p>أُجريت جميع التجارب على خادم عالي الأداء بمعالج Intel Xeon Platinum 8470 وحمل خمول نحو 9%، وذاكرة DDR5 بسعة 233.8 غيبيبايت (3.533 غيبيبايت مستخدمة عند الأساس)، ومعالج رسومي واحد NVIDIA H100 بسعة 80 غيغابايت وقدرة قصوى 700 واط عند حالة الأداء P0، مع خط أساس نظيف أكده فحص NVIDIA-SMI. وعمل الخادم بنظام Ubuntu 24.04.3 LTS ولغة Python 3.11 وDocker 29.2.1، مع مشغل 580.126.09 وحزمة CUDA 13.0، والإصدارين أولاما 0.24.0 وvLLM 0.17.0، ومكتبات Hugging Face Transformers 4.57.6 وhuggingface_hub 0.36.2، وأدوات المراقبة psutil وGPUtil.</p>
+    <p>ضُبط كلا الإطارين بأوزان Qwen3-4B نفسها [29] ومعاملات العينات نفسها ليكون الفارق في التصميم الداخلي فقط (التجميع، وإدارة ذاكرة KV، وإدارة ذاكرة GPU). شُغّل أولاما بنموذج qwen3:4b-q8_0 بصيغة GGUF على المنفذ 11436 بإعداد افتراضي يختار تلقائياً 1–4 طلبات متوازية (Ollama_Num_Parallel = 4) [11] وسياق 4096 رمزاً ونموذج واحد محمل، وذاكرة KV بدقة FP16 على خلفية llama.cpp الافتراضية [30]. وشُغّل vLLM بنموذج Qwen/Qwen3-4B على المنفذ 8002 مع استخدام ذاكرة GPU بنسبة 0.90 وحد أقصى 64 تسلسلاً متزامناً (max_num_seqs = 64).</p>
+    <p>طُبق إجراء ثابت قبل كل تجربة: جلب مسبق للأوزان والبيانات، وعدم تنشيط أكثر من إطار واحد، وتهدئة 60 ثانية بين الإطارين (مع مسح ذاكرة الصفحة عند اللزوم)، وتهدئة 15 ثانية بين السيناريوهات، وإحماء 30 ثانية قبل القياس وتهدئة 30–120 ثانية بعده مع استبعاد قياساتها. وفُحصت حرارة GPU قبل كل سيناريو (الانتظار 60 ثانية فوق 70°م)، وسُجلت خلال القياس بين 30–32°م دون اختناق حراري. وجُمعت موارد النظام كل ثانية، ووُثقت كل المعاملات ووسوم الإصدارات وتثبيتات المراجعات في ملفات بيئة منظمة لضمان إعادة الإنتاج الكاملة.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">4. بروتوكول القياس والسيناريوهات</h2>
+    <p>عُرّفت كل المقاييس من منظور العميل: زمن الاستجابة الشامل (t4 − t0 من إرسال الطلب إلى اكتمال البث)، وزمن الرمز الأول (TTFT) من الطلب إلى أول رمز غير فارغ، والإنتاجية (طلبات أو رموز ناجحة لكل وحدة زمن)، ومعدل الخطأ (الطلبات الفاشلة أو المنتهية المهلة)، وقيم P50 وP75 وP90 وP95 وP99 وP99.9 [36]. وحُسب زمن الاستجابة وTTFT من الطلبات الناجحة فقط، مع احتساب الفاشلة في معدل الخطأ. وشملت مقاييس الاستدلال دقة تقريبية للرياضيات والشيفرات ومتعدد القفزات، ومقاييس البث (TTFT، والرموز/ثانية، وإكمال المحادثات)، وموارد العتاد، ومقاييس الإجهاد (نقطة الانهيار، وتدهور الإنتاجية، ونمو الذاكرة أثناء التحمل).</p>
+    <p>صُممت أربعة سيناريوهات على عينات حتمية فرعية (بذرة Dataset_Seed = 0) من خمسة مجموعات مفتوحة مثبتة المراجعة: (1) الأساسي بإجابة قصيرة من TriviaQA [31] (100 عينة)؛ (2) الاستدلال المعقد بالرياضيات من GSM8K [32] وتوليد الشيفرات من HumanEval [33] ومتعدد القفزات من HotpotQA [34]؛ (3) البث والمحادثة متعددة الأدوار من MT-Bench [35] (32 دوراً)؛ (4) الإجهاد وقابلية التوسع حتى 100 مستخدم (و150 محادثة في البث). ووُحدت معاملات العينات (حرارة 0.7، وtop-p 0.9، وtop-k 50، وبذرة 0)، ونُفذت الخطوط كاملة بسكريبت واحد مع تصدير المقاييس إلى CSV وجداول جاهزة للنشر.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">5. النتائج: الأداء الأساسي والاستدلال المعقد</h2>
+    <p>في السيناريو الأساسي (TriviaQA) حافظ vLLM على معدل نجاح 100% عند كل مستويات التزامن مع إنتاجية 9.9–13.3 طلب/ثانية وزمن P95 مستقر دون 10 ثوانٍ، بينما تجمدت إنتاجية أولاما عند نحو 0.45 طلب/ثانية وتدهور زمن إكماله من 21 ثانية عند 10 مستخدمين إلى 100 ثانية عند 100 مستخدم، مع معدل خطأ 13–13.3% عند 100 مستخدم بسبب انتهاء المهلات. وبلغ زمن الرمز الأول P95 لأولاما 54–122 ثانية عبر السيناريوهات مقابل 0.5–3.5 ثانية فقط لـvLLM، ما يكشف هيمنة انتظار الطوابير في أولاما.</p>
+    <p>في سيناريو الاستدلال المعقد (GSM8K وHumanEval وHotpotQA) تكرر النمط نفسه: نجاح كامل لـvLLM وإنتاجية أعلى بـ20–29 مرة وزمن P95 أقل بـ8–19 مرة. وسجل أولاما دقة تقريبية صفرية عند التزامن العالي، لكنها ناتجة عن اقتطاع انتهاء المهلات وحدود التقييم التقريبي لا عن إجابات خاطئة خالصة، بينما تشير درجات الجودة التقريبية للمخرجات المكتملة (اتساق 0.74–0.76 وجودة 0.63) إلى تقارب جودة المخرجات، أي أن قصور أولاما معماري في الخدمة لا في النموذج نفسه.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">6. النتائج: البث والإجهاد والمقارنة الشاملة</h2>
+    <p>في سيناريو البث والمحادثة (MT-Bench) حافظ vLLM على نجاح 100% وإكمال مستقر للمحادثات، بينما سجل أولاما معدل خطأ 30.06% عند 150 محادثة متزامنة وارتفع إلى 61% عند أعلى الأحمال، مع تدهور إكمال المحادثات. وفي اختبار الإجهاد حتى 100 مستخدم بقي تدهور vLLM بعد 100 مستخدم زيادة تدريجية في زمن الاستجابة لا فشلاً، ما يمنح مشغلي القدرة إشارة إنذار مبكر واضحة، بينما اتبع تدهور أولاما نمط الحمل الهيكلي: امتلاء سريع للطوابير بعد حد التوازي (~10 مستخدمين) ثم هيمنة الانتظار وانتهاء المهلات.</p>
+    <p>عبر السيناريوهات الأربعة مجتمعة: إنتاجية vLLM أعلى بـ20–29 مرة، وزمن P95 أقل بـ8–19 مرة، ونجاح 100% مقابل أخطاء مهلة 13–30.06% لأولاما تحت الأحمال الثقيلة. استخدم أولاما معالجاً مركزياً أكثر قليلاً (9–10% مقابل 4–6%) ومعالجاً رسومياً أقل بكثير (15–17% مقابل 35–69%)، ما يدل على استغلال ناقص لمعالج H100 مقابل تجميع مستمر وPagedAttention [3] وتنفيذ FP8 أصلي في vLLM. ونمت الذاكرة خلال 3600 ثانية تحمل بنحو 5602 ميغابايت لأولاما و14219 ميغابايت لـvLLM، لكن الأخير عالج نحو 33 ضعف الطلبات، فبصمته لكل طلب أدنى بكثير مع استراتيجية KV-cache المضغوطة، وإن وجب مراقبة النمو المطلق في التشغيل الطويل [42].</p>
+  </section>
+  <section>
+    <h2 dir="rtl">7. المناقشة</h2>
+    <p>النتائج حاسمة من منظور النشر: vLLM هو الخيار الأفضل لأنظمة الإنتاج المتزامنة والبث وأحمال الإجهاد، بإنتاجية 9.9–13.3 طلب/ثانية وزمن متوقع دون 10 ثوانٍ حتى 100 مستخدم ونجاح 100%، ما يناسب المساعدات التفاعلية والدعم الفوري ووكلاء الاستدلال. أما أولاما فحده الفعال نحو 10 مستخدمين، لكن إعداده البسيط وصيغة GGUF وتكاليفه التشغيلية المنخفضة تجعله مناسباً للمساعدات الشخصية والنمذجة التطويرية والنشر الطرفي والإعدادات قليلة التعقيد التشغيلي.</p>
+    <p>تشخيصياً، يبدو تدهور أولاما نابعاً من تشبع الطوابير الداخلية ومحدودية التوازي وغياب التجميع المستمر على مستوى الاستدلال، إذ يتطابق حده الفعال (~10 مستخدمين) مع فتحات التوازي المضبوطة، والتطابق العادل لمثل هذه الإعدادات محل اعتبار معترف به في تقييم أنظمة الخدمة [43]. وعلى النقيض حافظ vLLM على جدولة مستقرة وتجميع مستمر، ما يؤكد أن استراتيجية التجميع وإدارة KV والجدولة هي العوامل الحاسمة للتوسع، اتساقاً مع أعمال الجدولة على مستوى التكرار [19] والتجميع المسبق المقسم [20]. ويتسق ارتفاع كفاءة GPU مع مكاسب التوليد بـFP8 على معالجات Hopper [41]، ومع دراسات مستقلة قارنت vLLM بمنافس مختلف (TGI) وعائلة نماذج مختلفة (LLaMA-2) وعتاد مختلف (A100) وأظهرت التفوق نفسه عبر التجميع المستمر وPagedAttention [17].</p>
+    <p>من حيث المفاضلة بين الموارد والأداء: يحوّل vLLM العتاد إلى قدرة خدمية أعلى بكثير بمعالج مركزي مماثل أو أقل، بينما يُبقي أولاما البصمة التشغيلية بسيطة. لذا يجب أن يطابق الاختيار بيئة الهدف: أولاما للموارد المحدودة والطلب المنخفض، وvLLM للإنتاج عالي الإنتاجية والحساس لزمن الاستجابة مع ذاكرة GPU كافية ومراقبة مستمرة للنمو طويل الأمد.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">8. القيود والخاتمة</h2>
+    <p>لهذه الدراسة قيود واجبة الذكر: أولاً، عائلة نموذج واحدة (Qwen3-4B) وإعداد عتادي واحد (H100 واحد)، فالمسار الأصلي FP8 متاح فقط على معالجات Hopper والأحدث وقد يتقلص الفارق على العتاد الأقدم، وقد يختلف أداء أولاما النسبي حيث تكون مسارات GGUF أكثر تنافسية. ثانياً، سيناريوهات مضبوطة من خمسة مجموعات (TriviaQA وGSM8K وHumanEval وHotpotQA وMT-Bench) لا تمثل بالضرورة مزيج حركة الإنتاج الحقيقي متعدد المستأجرين. ثالثاً، مقاييس الجودة التقريبية (الدقة والاتساق والاحتفاظ بالسياق) تقريبية لا تغني عن التقييم البشري أو BERTScore [44] أو الحكم بالنموذج. رابعاً، القياس من جانب العميل يدمج الشبكة والطوابير والتهيئة وفك الترميم دون فصلها، ما يحد من دقة الإسناد رغم عدالة المقارنة.</p>
+    <p>خلاصةً، لنموذج واحد على معالج رسومي واحد، يتفوق vLLM بشكل كبير في خدمة التزامن العالي: نجاح 100%، وإنتاجية أعلى بـ20–29 مرة، وزمن P95 أقل بـ8–19 مرة، ورمز أول خلال 0.5–3.5 ثانية حتى 100 مستخدم. ويبقى أولاما عملياً للتدفقات المحلية الخفيفة أو أحادية المستخدم والتطوير. ويجب أن تعطي الأعمال المستقبلية الأولوية لنماذج أكبر وتكميمات متنوعة وعتاد مختلف وحركة إنتاج حقيقية، مع أتمتة اكتشاف التهديدات وتكامل المراقبة طويلة الأمد لنمو الذاكرة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Serving LLMs to many concurrent users gives rise to significant challenges for latency, throughput, and scalability. This paper presents a systematic and reproducible benchmark of two widely used LLM serving frameworks, Ollama and vLLM, under concurrent workloads, via a controlled comparison on a single NVIDIA H100 80 GB GPU with the same model weights (Qwen3-4B) and inference configurations [29]. We evaluated both frameworks with five open benchmark datasets across four scenarios: baseline question answering, complex reasoning, streaming interaction, and stress testing, under rising concurrency levels [31], [32], [33], [34], [35].</p>
+    <p>Our experiments show that vLLM clearly outperforms Ollama across all four scenarios, achieving a 100% request success rate, 20–29 times higher throughput, and 8–19 times lower P95 latency, producing the first token within 0.5–3.5 s and remaining stable at up to 100 concurrent users. Ollama, by contrast, required 54–122 s for the first token, hit a concurrency bottleneck near 10 users, and exhibited a timeout-based error rate of 13–30.06% under heavier loads. Notably, both frameworks demonstrated significant memory growth during extended endurance tests, necessitating careful monitoring in long-running deployments. Overall, vLLM is highly suitable for high-concurrency serving, while Ollama remains a practical choice for lightweight, local, or developmental workflows.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>LLMs have become one of the most important advances in AI, used in natural language understanding, text generation, question answering, code synthesis, and decision-support systems [1]. As they moved from research tools to practical production solutions, efficient, scalable, low-latency deployment became a key research and engineering problem [2], [3]. Techniques to shrink models, improve parameter efficiency, and speed up inference were developed, such as LoRA [4], model distillation [5], and quantization [6].</p>
+    <p>As the serving stack matured, solutions appeared for disaggregating prefill and decode [7], transformer libraries [8], large-scale inference engines [9], real-time inference optimization [10], and local deployment frameworks such as Ollama [11]. Recent surveys map advances and opportunities in inference serving [1], [2], [12], with resource-aware scheduling [13], memory-efficient attention [14], single-GPU high-throughput generation [15], and comprehensive quantization studies [16]. This study is positioned as the first systematic controlled comparison of Ollama and vLLM on identical hardware and weights across four escalating-concurrency scenarios.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">2. Related Works</h2>
+    <p>Prior studies compared serving systems in different ways: a comparative analysis of vLLM vs. HuggingFace TGI [17], inference benchmarking on AI accelerators [18], early distributed serving systems such as Orca with iteration-level scheduling [19], Sarathi-Serve for the throughput–latency tradeoff [20], Splitwise with phase splitting [21], SGLang for language-model programs [22], and multi-head speculative decoding such as Medusa [23] and EAGLE [24]. Sustainable edge inference and quantized-model evaluation in terms of energy, accuracy, and latency were also studied [25], [26], [27], [28].</p>
+    <p>This study differs by isolating the effect of the framework itself: the same model (Qwen3-4B [29]), the same sampling parameters, the same datasets, and the same hardware, under a strict reproducibility protocol. While prior work focused on different accelerators or model families [17], [18], this paper directly measures degradation under rising concurrency, including time-to-first-token, request success, and endurance memory growth — dimensions critical to production deployment decisions [36].</p>
+  </section>
+  <section>
+    <h2 dir="ltr">3. Methodology and Experimental Environment</h2>
+    <p>All experiments ran on a high-performance server with an Intel Xeon Platinum 8470 CPU at about 9% idle load, 233.8 GiB of DDR5 RAM (3.533 GiB used at baseline), and a single NVIDIA H100 80 GB GPU (700 W max, P0 state), with a clean baseline confirmed via NVIDIA-SMI. The server ran Ubuntu 24.04.3 LTS, Python 3.11, and Docker 29.2.1, with driver 580.126.09 and CUDA Toolkit 13.0, Ollama 0.24.0 and vLLM 0.17.0 under test, plus Hugging Face Transformers 4.57.6, huggingface_hub 0.36.2, and psutil/GPUtil resource monitoring.</p>
+    <p>Both frameworks were configured with the same Qwen3-4B weights [29] and sampling parameters so that differences come only from internal design (batching, KV-cache management, GPU memory handling). Ollama ran the qwen3:4b-q8_0 GGUF model on port 11436 with defaults auto-selecting 1–4 parallel requests (Ollama_Num_Parallel = 4) [11], a 4096-token context, a single loaded model, and FP16 KV-cache on the default llama.cpp backend [30]. vLLM ran Qwen/Qwen3-4B on port 8002 with GPU memory utilization 0.90 and at most 64 concurrent sequences (max_num_seqs = 64).</p>
+    <p>A fixed pre-run procedure was applied before every experiment: prefetching weights and datasets, a single active framework, a 60 s cooldown between frameworks (plus page-cache clearing when needed), a 15 s cooldown between scenarios, and a 30 s warm-up plus 30–120 s cooldown around each measurement, all excluded from reported results. GPU temperature was checked before each scenario (holding 60 s above 70 °C) and logged at 30–32 °C during runs with no thermal throttling. System resources were sampled about once per second, and all parameters, version tags, and revision pins were recorded in structured environment files for full reproducibility.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">4. Metrics, Statistics, and Scenarios</h2>
+    <p>All metrics were defined from the client perspective: end-to-end latency (t4 − t0, request to completed stream), time-to-first-token (TTFT, request to first non-empty token), throughput (successful requests or tokens per unit time), error rate (failed or timed-out requests), and P50/P75/P90/P95/P99/P99.9 percentiles [36]. Latency and TTFT were computed from successful requests only, with failed ones counted in the error rate. Reasoning metrics used heuristic accuracy for math, code, and multi-hop QA; streaming metrics covered TTFT, tokens/s, and conversation completion; hardware metrics covered CPU/GPU/RAM; and stress metrics covered breaking point, throughput drop, and endurance memory growth.</p>
+    <p>Four scenarios were built on deterministic subsamples (Dataset_Seed = 0) from five pinned open datasets: (1) baseline short-form QA from TriviaQA [31] (100 samples); (2) complex reasoning — math from GSM8K [32], code from HumanEval [33], multi-hop QA from HotpotQA [34]; (3) streaming multi-turn dialog from MT-Bench [35] (32 turns); (4) stress and scalability up to 100 users (150 conversations for streaming). Sampling was unified (temperature 0.7, top-p 0.9, top-k 50, seed 0), and a single shell script ran the whole pipeline with metrics exported to CSV and paper-ready tables.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">5. Results: Baseline and Complex Reasoning</h2>
+    <p>In the baseline scenario (TriviaQA), vLLM held a 100% success rate at all concurrency levels with 9.9–13.3 req/s throughput and stable sub-10 s P95 latency, while Ollama throughput stagnated near 0.45 req/s and its mean completion time degraded from 21 s at 10 users to 100 s at 100 users, with a 13–13.3% error rate at 100 users from timeouts. P95 TTFT reached 54–122 s for Ollama across scenarios versus only 0.5–3.5 s for vLLM, revealing queue-waiting dominance in Ollama.</p>
+    <p>In complex reasoning (GSM8K, HumanEval, HotpotQA) the pattern repeated: full success for vLLM with 20–29× higher throughput and 8–19× lower P95 latency. Ollama recorded 0.00 heuristic accuracy at high concurrency, but this stems from timeout truncation and heuristic-scoring limits rather than purely wrong answers, while heuristic quality scores on completed outputs (coherence 0.74–0.76, quality 0.63) indicate comparable output quality — i.e., Ollama’s deficit is architectural (serving), not in the model itself.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">6. Results: Streaming, Stress, and Overall Comparison</h2>
+    <p>In streaming/dialog (MT-Bench), vLLM kept 100% success with stable conversation completion, while Ollama logged a 30.06% error rate at 150 concurrent conversations, rising to 61% at peak load with degraded completion. In stress testing to 100 users, vLLM degraded gracefully beyond 100 users as gradual latency growth rather than failure, giving capacity planners a clear early-warning signal, whereas Ollama followed a structural-overload pattern: queues filled quickly past its parallelism limit (~10 users), then waiting dominated and timeouts appeared.</p>
+    <p>Across all four scenarios: 20–29× higher throughput for vLLM, 8–19× lower P95 latency, and 100% success versus 13–30.06% timeout errors for Ollama under heavy load. Ollama used slightly more CPU (9–10% vs. 4–6%) but far less GPU (15–17% vs. 35–69%), indicating underuse of the H100 versus continuous batching, PagedAttention [3], and native FP8 execution in vLLM. Memory grew over the 3600 s endurance window by about 5602 MB for Ollama and 14,219 MB for vLLM, but vLLM processed roughly 33× more requests, so its per-request footprint is far lower with its compact KV-cache strategy — though absolute growth must still be monitored in long-running use [42].</p>
+  </section>
+  <section>
+    <h2 dir="ltr">7. Discussion</h2>
+    <p>The deployment implications are clear: vLLM is the better choice for production systems with concurrent serving, streaming, or stress-heavy demands, with 9.9–13.3 req/s throughput, predictable sub-10 s latency up to 100 users, and 100% success — suited to chatbots, live support assistants, and interactive reasoning agents. Ollama, with an effective limit near 10 users, still fits personal assistants, developer prototyping, edge deployment, and low-operational-complexity settings thanks to simple setup, GGUF format, and low overhead.</p>
+    <p>Diagnostically, Ollama’s degradation appears to come from internal queue saturation, limited parallel handling, and the lack of continuous batching at inference level: its effective concurrency limit (~10 users in stress) matches its configured parallel slots, and matching such parallelism settings across frameworks is a recognized baseline-fairness concern in serving evaluation [43]. vLLM, by contrast, kept stable scheduling and continuous batching under the same load, confirming that batching strategy, KV-cache management, and request scheduling are the decisive factors for scalable inference — consistent with iteration-level scheduling [19] and chunked-prefill work [20]. The GPU-efficiency gap is consistent with FP8 decode-throughput gains on Hopper-class GPUs [41] and with independent studies comparing vLLM against a different competitor (TGI), model family (LLaMA-2), and hardware (A100) that report the same advantage via continuous batching and PagedAttention [17].</p>
+    <p>On the resource-vs-performance tradeoff: vLLM converts hardware into far more serving capacity at similar or lower CPU cost, while Ollama keeps the operational footprint simple. Framework choice should therefore match the target environment: Ollama for resource-limited, low-demand settings, and vLLM for performance-driven production with sufficient GPU memory and continuous monitoring of long-term growth.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">8. Limitations and Conclusions</h2>
+    <p>This study has limitations worth noting: first, a single model family (Qwen3-4B) on one hardware setup (a single H100), so the native FP8 path available only on Hopper-class and newer GPUs may narrow the gap on older hardware, and Ollama’s relative standing may differ where its GGUF path is more competitive. Second, controlled scenarios from five datasets (TriviaQA, GSM8K, HumanEval, HotpotQA, MT-Bench) do not fully represent real production traffic mixes or multi-tenant behavior. Third, heuristic quality metrics (accuracy, coherence, context retention) are approximate proxies, not substitutes for human annotation, BERTScore [44], or LLM-as-judge evaluation. Fourth, client-side measurement merges network, queuing, prefill, and decode without separating them, limiting attribution granularity despite fair comparison.</p>
+    <p>In conclusion, for a single model on a single GPU, vLLM is far superior for high-concurrency serving: 100% success, 20–29× higher throughput, 8–19× lower P95 latency, and first tokens within 0.5–3.5 s up to 100 users. Ollama remains practical for lightweight, local, single-user, or development flows. Future work should prioritize larger models, diverse quantization formats, different hardware, and real production traffic, alongside automation of threat detection and long-term memory-growth monitoring.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed selection of 19 references (original numbers preserved). See the original paper for the full list of 44 references: https://doi.org/10.3390/app16115435</p>
+    <ol dir="ltr">
+      <li>[1] Pan, J.; Li, G. A survey of LLM inference systems. arXiv 2025, arXiv:2506.21901.</li>
+      <li>[2] Zhou, Z.; et al. A survey on efficient inference for large language models. arXiv 2024, arXiv:2404.14294.</li>
+      <li>[3] Kwon, W.; et al. Efficient memory management for large language model serving with PagedAttention. In Proc. SOSP ’23; pp. 611–626.</li>
+      <li>[4] Hu, E.J.; et al. LoRA: Low-rank adaptation of large language models. In Proc. ICLR 2022.</li>
+      <li>[7] Zhong, Y.; et al. DistServe: Disaggregating prefill and decoding for goodput-optimized LLM serving. In Proc. OSDI ’24.</li>
+      <li>[11] Ollama Contributors. Ollama: Local Large Language Models. Available online: https://github.com/ollama (accessed on 10 August 2025).</li>
+      <li>[14] Dao, T.; et al. FlashAttention: Fast and memory-efficient exact attention with IO-awareness. Adv. Neural Inf. Process. Syst. 2022, 35, 16344–16359.</li>
+      <li>[17] Kolluru, S. Comparative analysis of large language model inference serving systems: A performance study of vLLM and HuggingFace TGI. arXiv 2025, arXiv:2511.17593.</li>
+      <li>[19] Yu, G.I.; et al. Orca: A distributed serving system for transformer-based generative models. In Proc. OSDI ’22.</li>
+      <li>[20] Agrawal, A.; et al. Taming throughput-latency tradeoff in LLM inference with Sarathi-Serve. In Proc. OSDI ’24.</li>
+      <li>[29] Yang, A.; et al. Qwen3 technical report. arXiv 2025, arXiv:2505.09388.</li>
+      <li>[30] ggml-org. llama.cpp: LLM Inference in C/C++. Available online: https://github.com/ggml-org/llama.cpp (accessed on 10 August 2025).</li>
+      <li>[31] Joshi, M.; Choi, E.; Weld, D.S.; Zettlemoyer, L. TriviaQA: A large scale distantly supervised challenge dataset for reading comprehension. In Proc. ACL 2017; pp. 1601–1611.</li>
+      <li>[35] Zheng, L.; et al. Judging LLM-as-a-judge with MT-Bench and Chatbot Arena. Adv. Neural Inf. Process. Syst. 2023, 36, 46595–46623.</li>
+      <li>[36] Dean, J.; Barroso, L.A. The tail at scale. Commun. ACM 2013, 56, 74–80.</li>
+      <li>[41] NVIDIA. Llama-Nemotron: Efficient reasoning models. arXiv 2025, arXiv:2505.00949.</li>
+      <li>[42] Memory pressure and fragmentation under sustained high-concurrency serving; dynamic scheduling and migration techniques (see original paper for full citation).</li>
+      <li>[43] Parallelism-configuration matching as a baseline-fairness concern in inference-serving evaluation (see original paper for full citation).</li>
+      <li>[44] Zhang, T.; Kishore, V.; Wu, F.; Weinberger, K.Q.; Artzi, Y. BERTScore: Evaluating text generation with BERT. arXiv 2019, arXiv:1904.09675.</li>
+    </ol>
+  </section>
+</div>
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app16115435">10.3390/app16115435</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أداء النماذج اللغوية الكبيرة في اللغات منخفضة الموارد: اختيار النموذج الأمثل لدعم اندماج المهاجرين باللغة اليونانية — DAR</title>
+<meta name="description" content="LLM Performance in Low-Resource Languages: Selecting an Optimal Model for Migrant Integration Support in Greek — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/greek-lowresource-futureinternet/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">LLM Performance in Low-Resource Languages: Selecting an Optimal Model for Migrant Integration Support in Greek</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">أداء النماذج اللغوية الكبيرة في اللغات منخفضة الموارد: اختيار النموذج الأمثل لدعم اندماج المهاجرين باللغة اليونانية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Alexandros Tassios, Stergios Tegos, Christos Bouas, Konstantinos Manousaridis, Maria Papoutsoglou, Maria Kaltsa, Eleni Dimopoulou, Thanassis Mavropoulos, Stefanos Vrochidis, Georgios Meditskos</span>
+    <span>📄 Future Internet, 2025</span>
+    <span>🔗 <a href="https://doi.org/10.3390/fi17060235">10.3390/fi17060235</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تُدمج النماذج اللغوية الكبيرة باطراد في روبوتات الدردشة، لكن قدرات النماذج يجب أن تُوزن بعناية عند اللغات منخفضة الموارد والمجالات المتخصصة [1،2]. تعرض هذه الورقة تقييمًا شاملًا لستة نماذج في سياق روبوت SALLY المصمم لمساعدة المهاجرين على الاندماج، بهدف اختيار النموذج الأقدر على معالجة اليونانية وتوليدها مع تقديم معلومات دقيقة تلبي احتياجات المهاجرين [3،4]. وبالجمع بين تقييم الخبراء البشري والتقييمات الذاتية الآلية للنماذج وفق معيار مشترك، وجدت الدراسة تفوق Claude 3.7 Sonnet وGemini 2.0 Flash عبر جميع المعايير مع تصدر Claude 3.7 Sonnet كمرشح رائد. وتتوافق التقييمات الآلية المخصصة مع الأحكام البشرية، مما يوفر خيارًا أوليًا منخفض الكلفة لأصحاب المصلحة لاختيار النماذج وفق متطلبات المستخدمين والمجال.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تشغل النماذج اللغوية الكبيرة تطبيقات محادثة متزايدة الطلاقة [1]، لكن الأداء يتراجع بشدة لدى اللغات منخفضة الموارد كاليونانية حيث بيانات التدريب شحيحة وتُوثق آثار التمييز اللغوي [2]. وبالنسبة للمهاجرين الذين يتنقلون بين الأنظمة الادارية اليونانية — تصاريح الإقامة واجراءات اللجوء والوصول للرعاية الصحية — فتقنية اللغة غير الدقيقة ليست عيبًا تجميليًا بل حاجزًا أمام الخدمات [4]. لذلك يحتاج روبوت SALLY، خدمة الدردشة الواعية دلاليًا للمهاجرين [3]، الى نموذج مختار على أدلة يونانية مؤصلة بالمجال لا على معايير انجليزية عامة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الخلفية</h2>
+    <p>يُظهر تقييم النماذج متعددة اللغات تخلفًا منهجيًا في اللغات منخفضة الموارد، مع حساسية النماذج مفتوحة ومغلقة المصدر على حد سواء لنظام التلقين [5]. واستخدام النماذج كمقيمين جذاب لكنه هش: فقد تحابي المقيمات مخرجاتها [19] وتتعثر في اتباع تعليمات التقييم [15] وتخلط بين معايير جودة التوليد المتميزة [18]، بينما تجمع منصات التفضيل مثل Chatbot Arena الأحكام البشرية بنطاق واسع [10]. وفي النشر الحساس اجتماعيًا تلتقي هذه الحدود التقنية بحدود أخلاقية: فرسم أخلاقيات الذكاء الاصطناعي التوليدي [6] ومخاطر التلاعب [7] والتحيز في ادارة المعلومات [8] كلها تحج باشراف خبراء المجال، وتُظهر أبحاث تعليم المهاجرين في اليونان أن سياق الاندماج متطلب تربويًا [9].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. المنهجية</h2>
+    <p>قورنت ستة نماذج — Claude 3.7 Sonnet وGPT-4o وGemini 2.0 Flash وGrok 2 وDeepSeek V3 وLlama 3.3 70B — وفق أربعة معايير تعكس وظائف SALLY الأساسية: فهم المقروء (تفسير قواعد اللجوء وأهلية الرعاية الصحية ومتطلبات الإقامة من مقتطفات قانونية بحوالي 300 كلمة)، والتلخيص (تقطير سياسة بحوالي 500 كلمة إلى موجز عملي بحوالي 50 كلمة)، والنحو والتركيب (يونانية دقيقة حسنة البنية لروبوت ثنائي اللغة يخدم المهاجرين)، وتحليل المشاعر (كشف القلق والاحباط والفروق العاطفية الدقيقة لاستجابات متعاطفة). وكان المحتوى أصيلًا من بوابة وزارة الهجرة واللجوء اليونانية، وحصل البروتوكول على موافقة أخلاقية من جامعة أرسطو. وقيم خبراء بشريون في المساعدة الاجتماعية والتقنية المخرجات، وقيم كل نموذج أيضًا ذاتيًا جميع المخرجات وفق المعيار نفسه المستنير الى الخبراء — تصميم مزدوج بشري–آلي يختبر ما اذا كان التقييم الآلي الرخيص يغني عن حكم الخبراء المكلف.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. النتائج</h2>
+    <p>وضع التقييم البشري Claude 3.7 Sonnet أولًا في كل معيار بيونانية متسقة عالية الجودة: النحو والتركيب (M = 4.78، SD = 0.28)، وفهم المقروء (M = 4.32، SD = 0.46)، وتحليل المشاعر (M = 4.41، SD = 0.61)، والتلخيص (M = 4.11، SD = 0.78). وجاء GPT-4o منافسًا قويًا في النحو (4.21) والفهم (4.05) لكنه أضعف بوضوح في المشاعر (2.94)، وهو قيد للتفاعل المتعاطف. وكاد يطابق Gemini 2.0 Flash كلود في المشاعر (4.23) مع نحو متين، رغم تباين تلخيصه أكثر (3.58). وتفوق Grok 2 على Llama 3.3 70B في عدة مجالات بما فيها المشاعر (3.88 متقدمًا على GPT-4o) لكنه غير متسق؛ وفاجأ DeepSeek V3 في التلخيص (3.70 قريبًا من 3.64 لدى جروك) لكنه تأخر في النحو والمشاعر؛ وتذيل Llama 3.3 70B الترتيب بتباين عالٍ.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. المناقشة والاستنتاجات</h2>
+    <p>يهم اكتساح كلود وظيفيًا: فدقة النحو تُبقي روبوت الدردشة ثنائي اللغة المواجه للمهاجرين موثوقًا باليونانية، ودقة الفهم تؤسس الإجابات في النصوص الرسمية المعقدة، وقوة المشاعر تمكن استجابات متناغمة مع القلق والاحباط. ويعد Gemini 2.0 Flash البديل الموثوق بنقاط قوة متوازنة، بينما تحد فجوة مشاعر GPT-4o وعدم اتساق جروك وضيق تميز التلخيص لدى DeepSeek V3 وتباين Llama 3.3 70B من ملاءمتها لـSALLY [5،10]. ويوحي التوافق اللافت بين التقييمين البشري والذاتي الآلي بأن التقييم الآلي يصلح فرزًا أوليًا منخفض الكلفة — مع ابقاء تحفظات تحيز المقيمين [15،18،19] الخبراء في الحلقة. وتتمثل مساهمات الورقة في معيار يوناني مؤصل بالمجال؛ واطار تقييم هجين بشري–آلي؛ وبعد عاطفي مصمم لتواصل المهاجرين؛ ومهام مشتقة من مصادر حكومية رسمية [3،4،9] بدل الاختبارات العامة.</p>
+    <p>وسيوازن اختيار النموذج النهائي بين نتائج الأداء هذه والموارد الحاسوبية والكلفة وسهولة التكامل مع مزيد من الاختبار المخصص باليونانية لتحسين الاختيار. وتشمل القيود لقطة النماذج الستة وتصميم المعيار الوحيد وتحيزات التقييم الذاتي التي يجب أن يقيسها التحقق الاستباقي — لكن كقالب اختيار مواجه لأصحاب المصلحة للنشر منخفض الموارد الحساس اجتماعيًا، يقدم التقييم المزدوج قالبًا قابلًا للتكرار.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Large language models are increasingly embedded in chatbots, but model capabilities must be weighed carefully for low-resource languages and specialized domains [1,2]. This paper reports a comprehensive evaluation of six LLMs in the context of SALLY, a chatbot agent designed to assist migrants with integration, with the aim of selecting the model that best processes and generates Greek while providing accurate information for migrant needs [3,4]. Combining expert human assessment with automated LLM self-evaluations under a shared rubric, the study finds Claude 3.7 Sonnet and Gemini 2.0 Flash superior across all criteria, with Claude 3.7 Sonnet the leading candidate. Automated custom evaluations align with human judgments, offering a viable low-cost preliminary option for stakeholders choosing models for user and domain requirements.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>LLMs power increasingly fluent conversational applications [1], yet performance drops markedly for low-resource languages such as Greek, where training data is thin and linguistic discrimination effects have been documented [2]. For migrants navigating Greek administrative systems — residency permits, asylum procedures, healthcare access — inaccurate language technology is not a cosmetic flaw but a barrier to services [4]. SALLY, a semantically conscious conversation-based chatbot service for migrants [3], therefore needs a model chosen on Greek-language, domain-grounded evidence rather than generic English benchmarks.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Background</h2>
+    <p>Multilingual LLM evaluation shows systematic underperformance on low-resource languages, with open- and closed-source models alike sensitive to prompting regime [5]. Using LLMs as evaluators is attractive but fragile: evaluators may favor their own generations [19], struggle to follow evaluation instructions [15], and confuse distinct generation-quality criteria [18], while preference platforms such as Chatbot Arena aggregate human judgments at scale [10]. In socially sensitive deployments these technical limits meet ethical ones: generative-AI ethics mapping [6], manipulation risks [7], and bias in information management [8] all argue for domain-expert oversight, and migrant-education research in Greece [9] shows the integration context is pedagogically demanding.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Method</h2>
+    <p>Six models were compared — Claude 3.7 Sonnet, GPT-4o, Gemini 2.0 Flash, Grok 2, DeepSeek V3, and Llama 3.3 70B — against four criteria reflecting SALLY's core functions: Reading Comprehension (interpreting asylum rules, healthcare eligibility, residency requirements from 300-word legal excerpts), Summarization (distilling 500-word policy into 50-word actionable briefs), Grammar & Syntax (accurate, well-structured Greek for a bilingual chatbot serving migrants), and Sentiment Analysis (detecting anxiety, frustration, and emotional nuance for empathetic responses). Content was authentic, drawn from the Greek Ministry of Migration and Asylum portal, and the protocol received ethics approval from Aristotle University of Thessaloniki. Human experts in social assistance and technology evaluated outputs, and each model additionally self-evaluated all outputs under the same expert-informed rubric — a dual human–machine design that tests whether cheap automated evaluation can stand in for expensive expert judgment.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Results</h2>
+    <p>Human evaluation placed Claude 3.7 Sonnet first on every criterion with consistent, high-quality Greek: Grammar & Syntax (M = 4.78, SD = 0.28), Reading Comprehension (M = 4.32, SD = 0.46), Sentiment Analysis (M = 4.41, SD = 0.61), and Summarization (M = 4.11, SD = 0.78). GPT-4o was a strong runner-up in Grammar (4.21) and Comprehension (4.05) but notably weaker in Sentiment (2.94), a limitation for empathetic interaction. Gemini 2.0 Flash nearly matched Claude in Sentiment (4.23) with solid Grammar, though its Summarization (3.58) varied more. Grok 2 beat Llama 3.3 70B in several areas including Sentiment (3.88, ahead of GPT-4o) but was inconsistent; DeepSeek V3 surprised in Summarization (3.70, near Grok's 3.64) yet lagged in Grammar and Sentiment; Llama 3.3 70B trailed throughout with high variability.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Discussion and conclusions</h2>
+    <p>Claude 3.7 Sonnet's sweep matters functionally: grammar precision keeps a bilingual migrant-facing chatbot credible in Greek, comprehension accuracy grounds answers in complex official texts, and sentiment strength enables responses attuned to anxiety and frustration. Gemini 2.0 Flash is the credible alternative with balanced strengths, while GPT-4o's sentiment gap, Grok 2's inconsistency, DeepSeek V3's narrow summarization edge, and Llama 3.3 70B's variability limit their SALLY fit [5,10]. The striking alignment between human and machine self-evaluations suggests automated assessment can serve as a low-cost preliminary screen — with the caveats on evaluator bias [15,18,19] keeping experts in the loop. The paper's contributions are a Greek-language, domain-grounded benchmark; a hybrid human–machine evaluation framework; an emotion dimension built for migrant communication; and tasks derived from official governmental sources [3,4,9] rather than generic tests.</p>
+    <p>The final model choice will balance these performance results against computational resources, cost, and integration ease, with further Greek-specific testing to refine the selection. Limitations include the six-model snapshot, the single-rubric design, and self-evaluation biases that prospective validation must still quantify — but as a stakeholder-facing selection method for low-resource, socially sensitive deployment, the dual evaluation offers a replicable template.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references; original numbering preserved. Full list in the original paper (paper.pdf).</p>
+    <ol dir="ltr">
+      <li>[1] Raiaan, M.A.K.; et al. A review on large Language Models. <i>IEEE Access</i> 2024, <i>12</i>, 26839–26874.</li>
+      <li>[2] Dong, G.; et al. Evaluating and Mitigating Linguistic Discrimination in Large Language Models. <i>arXiv</i> 2024, arXiv:2404.18534.</li>
+      <li>[3] Meditskos, G.; et al. Towards Semantically Conscious, Conversation-Based Chatbot Services for Migrants. <i>Proc. AIAI 2024</i>, 139–148.</li>
+      <li>[4] Anagnostou, O.; et al. Health Needs and Access to Healthcare Services in Migrant Populations in Greece. <i>Cureus</i> 2025, <i>17</i>, e78196.</li>
+      <li>[5] Nazi, Z.A.; et al. Evaluation of open and closed-source LLMs for low-resource language. <i>Nat. Lang. Process. J.</i> 2025, <i>10</i>.</li>
+      <li>[9] Mattheoudakis, M.; et al. CLIL on the spot: Migrant education in Greece. <i>Front. Educ.</i> 2025, <i>9</i>, 1504257.</li>
+      <li>[10] Chiang, W.L.; et al. Chatbot arena: An open platform for evaluating LLMs by human preference. <i>arXiv</i> 2024, arXiv:2403.04132.</li>
+      <li>[15] Murugadoss, B.; et al. Evaluating the Evaluator: Measuring LLMs’ Adherence to Task Evaluation Instructions. <i>arXiv</i> 2024, arXiv:2408.08781.</li>
+      <li>[18] Hu, X.; et al. Are LLM-based Evaluators Confusing NLG Quality Criteria? <i>arXiv</i> 2024, arXiv:2402.12055.</li>
+      <li>[19] Panickssery, A.; et al. LLM evaluators recognize and favor their own generations. <i>arXiv</i> 2024, arXiv:2404.13076.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/fi17060235">10.3390/fi17060235</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

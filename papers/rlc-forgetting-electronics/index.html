@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>استراتيجية فعالة للحد من النسيان الكارثي في التعلم التزايدي — DAR</title>
+<meta name="description" content="An Efficient Strategy for Catastrophic Forgetting Reduction in Incremental Learning — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/rlc-forgetting-electronics/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">An Efficient Strategy for Catastrophic Forgetting Reduction in Incremental Learning</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">استراتيجية فعالة للحد من النسيان الكارثي في التعلم التزايدي</h2>
+
+  <div class="paper-meta">
+    <span>👤 Huong-Giang Doan, Hong-Quan Luong, Thi-Oanh Ha, Thi Thanh Thuy Pham</span>
+    <span>📄 Electronics, 2023</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics12102265">10.3390/electronics12102265</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تحتاج الشبكات العصبية العميقة الى مجموعات تدريب كبيرة لا تتوفر دائمًا ولا بناؤها رخيص؛ والحل الشائع هو التعلم الناقل — التدريب المسبق ثم الضبط الدقيق على بيانات متواضعة — لكن الضبط الدقيق يُطلق النسيان الكارثي [1]. تقترح هذه الورقة حلًا فعالًا قائمًا على التكرار: الاختيار العشوائي لعينات المهام القديمة لذاكرة اعادة التشغيل، مع استراتيجية دمج الخسارة لتحسين التعلم التزايدي. وعند التقييم على مجموعات معيارية وفق بروتوكولين تزايديين — الأصناف الجديدة (NC) والأصناف الجديدة مع نسخ جديدة (NCI) — يتفوق المقترح على أحدث طرق التكرار وعلى الضبط التقليدي بن1% إلى 16% في دقة التعرف، بما في ذلك أول تقييمات للتعلم المستمر على مجموعتي ايماءات اليد (KinectLeap وCreative Senz3D) [13].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>اكتُشف التداخل الكارثي أولًا في الشبكات الاتصالية [1] وما \u0632ال قائمًا عبر الخوارزميات التقليدية (SVM وبايز الساذج وأشجار القرار والحقول العشوائية الشرطية) والشبكات العميقة على حد سواء: فالتدريب على المهام الجديدة يتجاوز الأوزان المتعلمة من المهام المصدر. ويؤطر المجال ذلك بوصفه معضلة الاستقرار–اللدونة للاحتفاظ بالذاكرة [3]. والتعلم الناقل — التدريب المسبق على مجموعة كبيرة [5،6] ثم التكيف مع المهمة الهدف — هو البديل الغالب لندرة البيانات، لكن خطوة الضبط الدقيق هي بالضبط موضع النسيان، مما يحفز استراتيجيات معززة للبيانات في التعلم التزايدي.</p>
+    <p>تنقسم الحلول السابقة إلى طرق تكرار تعيد تشغيل العينات المخزنة وطرق تنظيم الخسارة تقيد انجراف الأوزان ومجموعات معيارية تجعل النسيان قابلًا للقياس [16]. ويشمل قادة التكرار iCaRL [22] وA-GEM [27] وAOP [38] وGDumb [43] وGSS [44] وMIR [45] وSCR [47] وIL2A [28] وCo2L [49] وOCM [25]؛ وقادة التنظيم التعلم دون نسيان [7] واعادة تشغيل التجربة المظلمة [30]. وتتمثل مساهمة الورقة في نواة تكرار أبسط — الاختيار العشوائي بدل الاختيار القائم على المتوسط وهو ما يقاوم الإفراط — مدمجًا طرفًا بطرف مع هدف دمج الخسارة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. المنهجية المقترحة</h2>
+    <p>تغطي استراتيجية اعادة بناء الذاكرة نظامين تزايديين. للأصناف الجديدة (NCs) تُخزن عينات مختارة عشوائيًا من الأصناف القديمة وتُعاد تشغيلها إلى جانب بيانات الأصناف الجديدة؛ وللأصناف والنسخ الجديدة (NCIs) يستوعب المخزون أيضًا نسخًا جديدة من الأصناف المعروفة. ويحل الاختيار العشوائي محل اختيار متوسط السمات على طريقة iCaRL [22]: لأن نموذج المتوسط يفرط في ملاءمة مركز الصنف، فالأخذ العشوائي المنتظم يحفظ التشتت داخل الصنف وهو أرخص صيانة. وقُيمت المنهجية داخل بنية iCaRL (RiCaRL) وداخل شبكة ResNet18 التزايدية طرفًا بطرف مع خسارة مدمجة (RLC-Resnet)، حيث يوازن معامل α بين الاحتفاظ والتكيف وثبتت قيمة α = 0.5 الأفضل عبر المهام.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. النتائج التجريبية</h2>
+    <p>يثبت السيناريو 1 بنية iCaRL ويغير قاعدة الأخذ فقط على CIFAR-100 [34] وCORE-50 [23] بأحجام ذاكرة 1000–4000 وأحجام مهام من 10 إلى 100 صنف: فيتفوق RiCaRL العشوائي على iCaRL القائم على المتوسط [22] في كل خلية (مثلًا CIFAR-100 بـ100 مهمة عند ذاكرة 1000: 43.65% مقابل 41.19%، +2.46؛ وعند ذاكرة 4000: 49.48% مقابل 49.19%). ويضيف السيناريو 2 دمج الخسارة: فتتفوق α = 0.5 على جميع أحجام المهام. ووفق بروتوكول NC تنخفض الدقة لدى جميع الطرق مع نمو الأصناف، لكن RLC-Resnet تتراجع بأقل قدر تحت كلتا مصنف ResNet18 طرفًا بطرف واستراتيجية ResNet18 مع KNN المنفصلة؛ ومتغير KNN أعلى اجمالًا، لكن حل طرفٍا بطرف مفضل للنشر العملي لأنه يوازن بين الدقة وقابلية التطبيق. ويصح الترتيب نفسه وفق بروتوكول NCI.</p>
+    <p>وأمام أحدث الطرق — A-GEM [27] وLwF [7] وGSS [44] وMIR [45] وER وGDumb [43] وDER++ [30] وASER وSCR [47] وIL2A [28] وCo2L [49] وOCM [25] وAOP [38] — تتصدر عائلة RLC عبر مجموعات البيانات والبروتوكولات بو1–16 نقطة، وتؤكد مجموعتا ايماءات اليد المكسب خارج المعايير القياسية: فاعادة البناء العشوائية مع دمج الخسارة هي الفرق بين التدهور 27لرشيق والانهيار مع تضخم أعداد الأصناف من 5–50 (CORE-50) و14–100 (CIFAR-100).</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Deep neural networks need large training datasets, which are not always available or cheap to build; transfer learning — pretraining then fine-tuning on modest data — is the common remedy, but fine-tuning triggers catastrophic forgetting [1]. This paper proposes an efficient rehearsal solution: random selection of old-task samples for incremental replay memory, plus a loss-combination strategy for optimizing incremental learning. Evaluated on standard datasets under two incremental protocols — new classes (NC) and new classes with new instances (NCI) — the proposal outperforms state-of-the-art rehearsal methods and traditional fine-tuning by 1% to 16% in recognition accuracy, including first-time continual-learning evaluations on two hand-gesture datasets (KinectLeap and Creative Senz3D) [13].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Catastrophic interference was first exposed in connectionist networks [1] and persists across classical algorithms (SVM, Naive Bayes, decision trees, CRFs) and DNNs alike: training on new tasks overrides weights learned from source tasks. The field frames this as the stability–plasticity dilemma of memory retention [3]. Transfer learning — pretraining on a large dataset [5,6] then adapting to a target task — is the dominant workaround for data scarcity, but the fine-tuning step is precisely where forgetting strikes, motivating data-augmentation-style strategies for incremental learning.</p>
+    <p>Prior solutions divide into rehearsal-based methods that replay stored samples, loss-regularization methods that constrain weight drift, and benchmark datasets that make forgetting measurable [16]. Rehearsal leaders include iCaRL [22], A-GEM [27], AOP [38], GDumb [43], GSS [44], MIR [45], SCR [47], IL2A [28], Co2L [49], and OCM [25]; regularization leaders include Learning without Forgetting [7] and dark-experience replay [30]. The paper's contribution is a simpler rehearsal core — random rather than mean-based sample selection, which resists overfitting — combined end-to-end with a loss-combination objective.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Proposed method</h2>
+    <p>The memory-reconstruction strategy covers two incremental regimes. For new classes (NCs), randomly selected exemplars of old classes are stored and replayed alongside new-class data; for new classes and new instances (NCIs), the buffer additionally absorbs fresh instances of known classes. Random selection replaces iCaRL-style mean-of-feature selection [22]: because the mean exemplar overfits the class center, uniform random sampling preserves intra-class spread and is cheaper to maintain. The method is evaluated both inside the iCaRL architecture (RiCaRL) and inside an end-to-end ResNet18 incremental CNN with a combined loss (RLC-Resnet), where a weighting factor α balances retention against adaptation and α = 0.5 proves best across tasks.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Experimental results</h2>
+    <p>Scenario 1 fixes the iCaRL architecture and varies only the sampling rule on CIFAR-100 [34] and CORE-50 [23] at memory sizes 1000–4000 and task sizes from 10 to 100 classes: random-sample RiCaRL beats mean-sample iCaRL [22] in every cell (e.g., CIFAR-100 with 100 tasks at memory 1000: 43.65% vs 41.19%, +2.46; at memory 4000: 49.48% vs 49.19%). Scenario 2 adds the loss combination: α = 0.5 dominates all task sizes. Under the NC protocol, accuracy falls for every method as classes grow, but RLC-Resnet declines least under both the end-to-end ResNet18 classifier and the ResNet18-plus-KNN discrete strategy; the KNN variant scores higher overall, yet the end-to-end solution is preferred for practical deployment since it balances accuracy with applicability. The same ordering holds under the NCI protocol.</p>
+    <p>Against the state of the art — A-GEM [27], LwF [7], GSS [44], MIR [45], ER, GDumb [43], DER++ [30], ASER, SCR [47], IL2A [28], Co2L [49], OCM [25], and AOP [38] — the RLC family leads across datasets and protocols by 1–16 points, and the two hand-gesture datasets confirm the gain outside standard benchmarks: random reconstruction plus loss combination is the difference between graceful degradation and collapse as class counts scale from 5–50 (CORE-50) and 10–100 (CIFAR-100).</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references; original numbering preserved. Full list in the original paper (paper.pdf).</p>
+    <ol dir="ltr">
+      <li>[1] McCloskey, M.; Cohen, N.J. Catastrophic interference in connectionist networks. <i>Psychol. Learn. Motiv.</i> 1989, <i>24</i>, 109–165.</li>
+      <li>[7] Li, Z.; Hoiem, D. Learning without forgetting. <i>IEEE Trans. Pattern Anal. Mach. Intell.</i> 2017, <i>40</i>, 2935–2947.</li>
+      <li>[13] Truong, D.M.; et al. Robustness Analysis of 3D CNN for Human Hand Gesture Recognition. <i>Int. J. Mach. Learn. Comput.</i> 2019, <i>9</i>, 135–142.</li>
+      <li>[16] Parisi, G.I.; et al. Continual lifelong learning with neural networks: A review. <i>Neural Netw.</i> 2019, <i>113</i>, 54–71.</li>
+      <li>[22] Rebuffi, S.A.; et al. iCaRL: Incremental Classifier and Representation Learning. <i>Proc. CVPR</i> 2017.</li>
+      <li>[23] Maltoni, D.; Lomonaco, V. Continuous learning in single-incremental-task scenarios. <i>Neural Netw.</i> 2019, <i>116</i>, 56–73.</li>
+      <li>[25] Guo, Y.; et al. Online Continual Learning through Mutual Information Maximization. <i>Proc. ICML</i> 2022.</li>
+      <li>[27] Chaudhry, A.; et al. Efficient Lifelong Learning with A-GEM. <i>Proc. ICLR</i> 2019.</li>
+      <li>[28] Zhu, F.; et al. Class-Incremental Learning via Dual Augmentation. <i>Proc. NeurIPS</i> 2021.</li>
+      <li>[30] Buzzega, P.; et al. Dark experience for general continual learning. <i>Proc. NeurIPS</i> 2020, <i>33</i>, 15920–15930.</li>
+      <li>[34] Krizhevsky, A. Learning multiple layers of features from tiny images. <i>Tech. Report, Univ. of Toronto</i> 2009.</li>
+      <li>[38] Guo, Y.; et al. Adaptive Orthogonal Projection for Batch and Online Continual Learning. <i>Proc. AAAI</i> 2023.</li>
+      <li>[43] Prabhu, A.; et al. GDumb: A Simple Approach that Questions Our Progress in Continual Learning. <i>Proc. ECCV</i> 2020.</li>
+      <li>[46] Shim, D.; et al. Online Class-Incremental Continual Learning with Adversarial Shapley Value. <i>Proc. AAAI</i> 2021, <i>35</i>, 9630–9638.</li>
+      <li>[49] Cha, H.; et al. Co2L: Contrastive Continual Learning. <i>Proc. ICCVW</i> 2021.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics12102265">10.3390/electronics12102265</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تقييم كفاءة التقطيع الرمزي للنماذج اللغوية الكبيرة على اللهجة الكويتية والفصحى ولهجات عربية أخرى — DAR</title>
+<meta name="description" content="Evaluating LLM Tokenization Efficiency on Kuwaiti Dialect, MSA and Other Arabic Dialects — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/tokenization-kuwaiti-bdcc/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Evaluating LLM Tokenization Efficiency on Kuwaiti Dialect, MSA and Other Arabic Dialects</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تقييم كفاءة التقطيع الرمزي للنماذج اللغوية الكبيرة على اللهجة الكويتية والفصحى ولهجات عربية أخرى</h2>
+
+  <div class="paper-meta">
+    <span>👤 Hana Alostad, Yousef Almutairi</span>
+    <span>📄 Big Data Cogn. Comput., 2026 · Vol. 10, 356</span>
+    <span>🔗 <a href="https://doi.org/10.3390/bdcc10100356">10.3390/bdcc10100356</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يؤثر التقطيع الرمزي (tokenization) في كفاءة النماذج اللغوية الكبيرة وكلفتها، ولا سيما في العربية اللهجية. وهذه، على حد علمنا، أول دراسة تُقيّم التقطيع الرمزي للهجة الكويتية [30،31]. قيّمنا اثني عشر مُقطّعًا رمزيًا على مجموعة MADAR المتوازية متعددة اللهجات مع مجموعة كويتية منشأة ودققها ناطقون أصليون، فحصلنا على 57,805 جمل متوازية دلاليًا عبر الفصحى وأربع لهجات: الكويتية والقطرية والمصرية واللبنانية [32]. وباستخدام معدل الضغط (CR) ومعدل الخصوبة (FR) [11] وفروق التدهور اللهجي والنسبة الزائدة للرموز (TO%)، مع معدل المفردات خارج التغطية (OOV) كمؤشر تشخيصي، وجدنا أن الفصحى الأكثر كفاءة (CR = 2.71، FR = 1.98) بينما جميع اللهجات أقل كفاءة؛ وأظهرت الكويتية تدهورًا متوسطًا (CR = 2.55، FR = 2.12) واللبنانية الأسوأ. تحتاج الكويتية نحو 6.7% رموزًا إضافية مقارنة بالفصحى في المتوسط، تصل إلى 8.6% مع GPT-4o مقابل 2.7% فقط مع ALLaM-7B-Instruct-preview، ما يرفع الكلفة في التسعير بالرموز. ولم تظهر كفاءة التقطيع أي ارتباط واضح أو ثابت مع macro-F1 عبر ثمانية نماذج مفتوحة الأوزان ضُبطت بدقة على مهمتي تصنيف نصي قصير بالكويتية. وترتبط الكفاءة بتصميم المُقطّع وتكييف المفردات وسلوك التجزئة، بينما لا تفسر تغطية المفردات وحدها فروق CR وFR.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>لا تستطيع النماذج اللغوية الكبيرة معالجة النص الخام مباشرة؛ إذ يُقطّع المُقطّع الرمزي النص إلى رموز فرعية تُحوَّل إلى تضمينات رقمية، بخوارزميات مثل BPE [1] وWordPiece [2] وSentencePiece [3] التي تُضبط عادة على مدونة ما قبل التدريب بقواعد إحصائية وصرفية [4،5]. ويؤثر اختيار خوارزمية التقطيع تأثيرًا كبيرًا في الأداء والجودة وزمن الاستجابة، دون خوارزمية واحدة تتفوق في كل المهام واللغات [6–12]. وبما أن مزودين مثل OpenAI وAnthropic يحاسبون حسب الرموز المعالجة، ترتبط الكفاءة مباشرة بالكلفة [6،8،9،11]، وتُحاسَب اللغات منخفضة الموارد أكثر على المعلومة نفسها مقارنة باللغات اللاتينية؛ فالإنجليزية والفرنسية والإسبانية عالية الكفاءة بخصوبة منخفضة، بينما تُجزَّأ الصينية والهندية إلى رموز أكثر [13]. كما يستهلك التقطيع غير الكفء نافذة السياق أسرع، فإذا احتاجت العربية ثلاثة أضعاف رموز الإنجليزية فلن تتسع النافذة الثابتة إلا لثلث المحتوى العربي تقريبًا [10،11].</p>
+    <p>قيّمت دراسات حديثة المُقطّعات عبر التركية [15] واللغات الهندية [14] والأوكرانية [16]، ووجدت باطراد تجزئة مفرطة عندما تُطبَّق مُقطّعات مُحسَّنة للغات عالية الموارد على لغات معقدة صرفيًا. وفي العربية اقتصرت الدراسات السابقة على الفصحى [17،18]، دون تقييم منهجي للهجة الكويتية رغم تميزها. تملأ هذه الورقة الفجوة بأربعة أسئلة: RQ1 حول التنوع المعجمي والتداخل المفرداتي للكويتية مقابل الفصحى واللهجات؛ وRQ2 حول فروق الكفاءة والتغطية عبر اثني عشر مُقطّعًا؛ وRQ3 حول ارتباط عائلات المُقطّعات وتكييف المفردات وسلوك التجزئة بالكفاءة؛ وRQ4 حول ارتباط الكفاءة (CR، FR) بأداء المهام اللاحقة. ومساهماتها: مجموعة كويتية متوازية مُدقَّقة من MADAR؛ وتوصيف التباين اللغوي عبر الكويتية والفصحى وثلاث لهجات؛ وأول تقييم لمُقطّعات النماذج على الكويتية؛ وتحليل خيارات التصميم وراء الكفاءة والتغطية؛ ودراسة أداء لاحق بضبط ثمانية نماذج مفتوحة الأوزان على مهمتي تصنيف نصي قصير بالكويتية (المشاعر والموقف) [25،26].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الخلفية والأعمال ذات الصلة</h2>
+    <p>تختلف خوارزميات التجزئة الفرعية في آليتها وملاءمتها للغات الغنية صرفيًا. يبدأ BPE من الحروف ويدمج تكراريًا الثنائي المتجاور الأكثر تكرارًا حتى حجم مفردات مستهدف، معالجًا المفردات المجهولة بتقسيم النادر إلى وحدات معروفة؛ ونسخته البايتية BBPE تنطلق من 256 بايتًا فيُرمَّز أي نص يونيكود، ما يناسب متعدد اللغات [1،19]. أما WordPiece فيدمج الثنائي الذي يعظّم الإمكانية، وقد طُوّر أصلًا لليابانية والكورية في التعرف الكلامي [2]، منتجًا كلمات وحروفًا ووحدات فرعية [18]. ويعامل SentencePiece المدخل دفقًا يونيكوديًا والمسافة رمزًا قابلًا للتدريب، مستقلًا عن التقطيع المسبق، ويدعم BPE وUnigram [3،18]. ويبدأ Unigram من مفردات كبيرة ثم يحذف الرموز الأقل خفضًا للإمكانية [20]. أما المُقطّعات الصرفية فتعطي جذورًا ولواحق قابلة للتفسير [17] لكنها تخزن جذورًا كثيرة غير مُجزَّأة [15].</p>
+    <p>إن مُقطّعات BPE/WordPiece المعيارية، المُحسَّنة للإنجليزية، تُفرط في تجزئة اللغات الغنية صرفيًا ومنخفضة الموارد: فالكلمات التركية تُجزَّأ أكثر من الإنجليزية [15]، وحتى النماذج الهندية الخاصة تعاني التغطية عبر لغات الهند الرسمية الـ22 [14]. وفي الفصحى يؤثر اختيار المُقطّع مباشرة في مهام الفهم [17]، وقُورنت WordPiece وSentencePiece وBBPE عبر النماذج العربية [18]. أما الدراسة اللهجية النادرة، على التونسية، فقارنت مُقطّعات كلمات تقليدية (CRF بدقة F مقدارها 88.9%) لا مخططات النماذج الحديثة، والتونسية بعيدة عن الخليجية [21]. ونشأت الكويتية من هجرات واحتكاك بالسعودية والعراق والفارسية والتركية والإنجليزية والهندية-الأردية والسواحيلية [22،23]؛ وتفتقر لمعيار إملائي وتُكتب صوتيًا (مثل «ماء» ← «ماي»، والقاف ← /g/ أو /j/) [24]، وتدمج اللواصق (مثل «هالطريج»، «عندكم») [24]، وتضم أكثر من 250 فعلًا رباعيًا [23]. وقد غطت أبحاث الكويتية المشاعر (16.6 ألف تغريدة) [25] وموقف اللقاحات (42 ألف تغريدة، macro-F1 قدره 0.83) [26] والتعليق بالنماذج (F1 نحو 93–95%) [27] واللغة المسيئة [28] ومدونة Hazawi+ القصصية [29] — لكن دون التقطيع الرمزي للنماذج.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. المنهجية: البيانات والنماذج</h2>
+    <p>اخترنا مدونة MADAR-6 (12,000 جملة متوازية في مجال السفر بخمس لهجات عربية مع الفصحى)، من الموارد العامة القليلة ذات الجمل المتوازية دلاليًا عبر العائلات اللهجية [30،31]. نقارن الكويتية بالفصحى وثلاث لهجات: القطرية (الخليجية الوحيدة في MADAR-6 والأقرب للكويتية) والمصرية واللبنانية (عائلتان رئيسيتان خارج الخليج شائعتان في المعايير)؛ واستُبعدت التونسية والمغربية لبعدهما عن الخليجية. ولغياب الكويتية من MADAR-6، ترجمنا جمل الفصحى آليًا بـGPT-4o [32] — المختار لقوته في الكويتية [27] — ثم راجع ثلاثة كويتيين أصليين (بينهم مترجم خبير) كل المداخل الـ12,000 في دورتي ضبط جودة، مع الحفاظ على المعنى والطبيعية وقبول المتغيرات الإملائية دون توحيد قسري. وطبّقنا توحيد NFKC مع PyArabic (الألف والهمزة والتاء المربوطة) وأزلنا التشكيل والتطويل والتكرار والترقيم، ثم أزلنا المكرر وأبقينا الصفوف ذات المعرفات المتطابقة عبر الأنواع: 11,561 مدخلًا لكل نوع، 57,805 إجمالًا. وقيس التباين المعجمي بالتداخل المشترك وبنسبة النوع-للرمز (TTR) المقصورة على مفردات كل لهجة [33].</p>
+    <p>اختير اثنا عشر نموذجًا — نماذج مفتوحة من مؤسسات معروفة ومتصدرو اللوحات العربية، مع GPT-4o كأساس مغلق [32] (استُبعد Claude وGemini للميزانية؛ والتكييف المفرداتي ممكن فقط بالأوزان المفتوحة): ArabianGPT-08B-V2 [34] وALLaM-7B-Instruct-preview [35] وc4ai-command-r7b-arabic-02-2025 [36] وAceGPT-v2-8B-Chat [37] وFanar-1-9B-Instruct [38] وJais-adapted-13B-Chat [39] وQwen3-8B [40] وGemma-2-9B-IT [41] وPhi-4 [42] وDeepSeek-V3 [43] وLlama-3.3-70B-Instruct [44]. وتُقاس الكفاءة بـCR (حرف لكل رمز؛ الأعلى أفضل) وFR (رمز لكل كلمة؛ الأدنى أفضل) [11،45،46]، ومعدل OOV عبر مؤشرات الرموز المجهولة، وفروق التدهور اللهجي مقابل الفصحى، والنسبة الزائدة TO% من نسب FR. وللسؤال RQ4 ضُبطت ثمانية نماذج مفتوحة بإعداد LoRA موحد (رتبة 16) على مهمتين كويتيتين — المشاعر (9896/1099/3024) [47] وموقف اللقاح (35339/3927/805) [26] — بتقرير macro-F1 وارتباط Spearman مع CR/FR؛ واستُبعد GPT-4o وDeepSeek-V3 وLlama-3.3-70B وc4ai-command-r7b من الضبط (أوزان مغلقة أو حجم أو غياب رأس تصنيف). وقيّمت الدلالة باختباري Friedman وWilcoxon مع تصحيح Bonferroni.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. النتائج: التباين اللغوي والكفاءة</h2>
+    <p>RQ1: أظهرت اللبنانية أعلى تنوع حصري (TTR قدره 9.41، و5839 كلمة حصرية) بينما الكويتية (4.70) والقطرية (3.97) الأدنى؛ وتتداخل الكويتية مع الفصحى بقوة (5849 كلمة مشتركة؛ 45.35% من مفردات الفصحى في الكويتية و49.42% من مفردات الكويتية في الفصحى)، مقابل اللبنانية الأدنى (3912 مشتركة؛ 8615 كلمة لهجية خالصة). وأقرب ثنائي اللهجتان الخليجيتان (57.5% من مفردات القطرية في الكويتية). ومتوسط الكفاءة (RQ2): الفصحى الأفضل (CR قدره 2.7118، FR قدره 1.9836)؛ وتتراجع الكويتية والقطرية باعتدال وتشابه (الكويتية: CR قدره 2.5540، FR قدره 2.1173)، والمصرية قريبة، واللبنانية الأسوأ (CR قدره 2.3792، FR قدره 2.2519)، وفروق التدهور أصغر للكويتية (ΔCR قدره 0.1578، ΔFR قدره −0.1338) وأكبر للبنانية (ΔCR قدره 0.3327، ΔFR قدره −0.2683) — بما يتسق مع تداخل الكويتية العالي مع الفصحى. وجميع فروق الأنواع دالة (Friedman: χ² = 3945.88 لـFR و7249.59 لـCR، p < 0.001؛ وكل الثنائيات العشرة بـWilcoxon عند p < 0.005)، وأكبر أحجام الأثر بين اللبنانية والفصحى (r = 0.608 لـFR و0.774 لـCR) وشبه معدومة بين الكويتية والقطرية (r = 0.031 لـFR).</p>
+    <p>على مستوى المُقطّعات (RQ3): تتصدر المُقطّعات العربية-التركيز رغم مفرداتها الأصغر — فـArabianGPT-08B-V2 الأعلى CR في الفصحى (3.997) وALLaM-7B-Instruct-preview الأعلى في اللهجات ومنها الكويتية (3.874)، يليهما Jais-adapted-13B-Chat (CR كويتي قدره 3.051)؛ وPhi-4 الأسوأ (CR كويتي قدره 1.343، FR قدره 3.745). وتعكس الخصوبة ذلك: ArabianGPT الأدنى في الفصحى (1.252) وALLaM الأدنى في الكويتية (1.298)؛ بينما يُجزّئ GPT-4o أكثر (FR كويتي قدره 1.908). ويتصرف OOV بمعزل عن الكفاءة: فمُقطّعات BBPE مثل GPT-4o near-zero بالتراجع البايتي لا بالتغطية الحقيقية [19]، بينما يجمع Jais كفاءة كويتية قوية (CR قدره 3.0514، FR قدره 1.6488) مع OOV مرتفع (0.10761) — فكفاءة التجزئة وOOV بُعدان متميزان. ويخلص تحليل التصميم إلى أن حجم المفردات وحده لا يفسر الكفاءة (نماذج عربية بـ64K تتفوق على متعددة بـ128–256K)؛ ويرتبط BBPE+SentencePiece مع التعزيز العربي (ALLaM [49]، وAranizer في ArabianGPT [52،53]) بكفاءة قوية، وتوسعة Jais بـ+32K على Llama-2 [39] تفيد الكفاءة لا OOV، ونسخة Fanar العامة تكشف GemmaTokenizer فقط لا MorphBPE المُعلن [38،51] فلا استنتاجات عنها، ولا أثر معزول للنموذج الأساس (مثل Llama-3.3-70B [58] مقابل AceGPT-v2 [50]). وفجوة العربي-مقابل-متعدد في الكويتية أصغر منها في اللبنانية، لعلها تعكس تداخل الكويتية مع الفصحى والخليجية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. الكلفة وسلوك التجزئة والمهام اللاحقة</h2>
+    <p>تكلّف الكويتية نحو 6.7% رموزًا إضافية عن الفصحى في المتوسط (TO%). فمع GPT-4o (نحو 8.6%) يصبح مليون رمز فصيح ~1,086,000 رمز كويتي: وبأسعار استرشادية 2.50 دولار (إدخال) / 10.00 (إخراج) للمليون، يضيف ذلك ~0.22 دولار إدخالًا أو ~0.86 دولار إخراجًا لكل مليون مكافئ — أي 21.50 / 86.00 دولارًا عند 100 مليون رمز [32،60] — وهو مؤثر في الخطوط والوكلاء وأنظمة RAG المؤسسية على نطاق واسع، بينما يحتاج ALLaM-7B-Instruct-preview نحو 2.7% فقط [35]. وتُظهر أمثلة التجزئة أن التحدي سلوكي لا مفرداتي: فـ«هالطريج» (الفصحى «هذا الطريق») تدمج الإشارة بالاسم مع قلب القاف جيمًا، فيُجزّئها العربي إلى وحدات دالة بينما يتهاوى متعدد اللغات إلى شبه-حرفية؛ وكذلك «عندكم» يحافظ العربي على لاحقتها أو يفصلها بمعنى بينما يفتتها متعدد اللغات، و«ماي» (الفصحى «ماء») تُشظّى حرفيًا لديه [24]. فتجزئة الكلمات اللهجية لوحدات أصغر يرفع الخصوبة ويخفض الضغط حتى مع استقرار OOV. وفي RQ4: يبقى ترتيب الكفاءة على مجموعتي الاختبار (ArabianGPT ‏CR قدره 3.559/3.501، وALLaM ‏3.548/3.520؛ وPhi-4 ‏1.180/1.156 وFR قدره 4.032/4.130؛ وOOV صفر في كل مكان)، لكن macro-F1 لا يرتبط بوضوح — المشاعر بين 0.882 و0.902 (Spearman ‏ρ = 0.14، ‏p = 0.74) مع Phi-4 (‏FR = 4.03) عند 0.898 قرب ArabianGPT (‏0.902)، والموقف بين 0.766 و0.834 (‏ρ = 0.45، ‏p = 0.26 غير دال) بتأثير Phi-4 أساسًا في القاع كفاءةً ودرجة (0.766). فكفاءة التقطيع لا تفسر أداء تصنيف النص القصير، وإن بقي عدد الرموز مهمًا لنوافذ السياق [47].</p>
+    <p>القيود: مهمتان قصيرتا نص فقط (دون توليد أو سياق طويل [25،26])، وتشغيل ضبط واحد لكل نموذج، وأربع لهجات فقط، ومدونة كويتية مترجمة آليًا ثم مُراجعة قد تقلّص التباين الإملائي مع بصمات GPT-4o [32]، وغياب Claude وGemini، ونطاق السفر في MADAR مع مهام التغريدات يحدّ التعميم، وتصميم رصدي (غير سببي) مع قراءة حذرة لـOOV عبر العائلات. والخلاصة: الفصحى الأكفأ ترميزًا (CR قدره 2.71، FR قدره 1.98)، والكويتية أسوأ باعتدال (+6.7% رموز)، واللبنانية الأسوأ؛ وتغطية المفردات وحدها لا تفسر الكفاءة؛ وتتصدر المُقطّعات العربية-التركيز (ALLaM [35،49] وArabianGPT [34،52،53] وJais [39]) في CR/FR؛ ولا ارتباط ثابت بين الكفاءة والأداء في تصنيف النص القصير. ويجب مستقبلًا اختبار تكييف المفردات على نص كويتي طبيعي وأثره في التوليد والسياق الطويل عبر مزيد من المجموعات واللهجات والنماذج والمُقطّعات. والشيفرة والترجمات الكويتية عامة (Q8Stance [26]؛ ومشاعر الكويتية عند الطلب [25،47]؛ والسكربتات على github.com/hanaalostad/KuwaitiTokenizationEval).</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Tokenization affects the efficiency and cost of large language models (LLMs), especially for dialectal Arabic. To the best of our knowledge, this is the first study to evaluate LLM tokenization for the Kuwaiti Arabic (KA) dialect [30,31]. We evaluated twelve LLM tokenizers on the MADAR multi-dialect parallel dataset together with a constructed KA dataset validated by native speakers, giving 57,805 semantically aligned sentences across Modern Standard Arabic (MSA) and four dialects: Kuwaiti (KA), Qatari (QA), Egyptian (EA) and Lebanese (LA) [32]. Using compression rate (CR), fertility rate (FR) [11], dialect degradation deltas and token overhead (TO%), plus the out-of-vocabulary (OOV) rate as a diagnostic, we find MSA the most efficient (CR = 2.71, FR = 1.98) while all dialects are less efficient; KA shows moderate degradation (CR = 2.55, FR = 2.12) and Lebanese the most. KA needs about 6.7% more tokens than MSA on average, reaching 8.6% for GPT-4o but only 2.7% for ALLaM-7B-Instruct-preview, raising cost under token-based pricing. Across eight fine-tuned open-weight LLMs, tokenization efficiency shows no clear or consistent association with macro-F1 on two KA short-text classification tasks. Tokenization efficiency is associated with tokenizer design, vocabulary adaptation and segmentation behavior, while vocabulary coverage alone does not explain the CR and FR differences.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>LLMs cannot process raw text directly; a tokenizer first splits text into subword tokens that are converted into numeric embeddings, using algorithms such as BPE [1], WordPiece [2] and SentencePiece [3], usually fitted to the pre-training corpus through statistical and morphological rules [4,5]. The choice of tokenization algorithm significantly affects downstream performance, quality and latency, with no single algorithm best across all tasks and languages [6–12]. Because providers such as OpenAI and Anthropic bill API calls per token processed, tokenization efficiency is directly linked to cost [6,8,9,11], and low-resource languages are overcharged for the same information relative to Latin languages; English, French and Spanish show high efficiency with low fertility, while Chinese and Hindi are split into more tokens [13]. Inefficient tokenization also consumes the context window faster, so Arabic needing three times the tokens of English leaves only about one-third as much Arabic content in a fixed window [10,11].</p>
+    <p>Recent studies evaluated tokenizer performance across Turkish [15], Indian languages [14] and Ukrainian [16], consistently finding excess fragmentation when high-resource-optimized tokenizers meet morphologically complex languages. For Arabic, prior work evaluated tokenizers only for MSA [17,18], leaving no systematic evaluation of the Kuwaiti dialect (KA) despite its distinctiveness. This paper fills that gap with four research questions: RQ1 on lexical diversity and vocabulary overlap of KA versus MSA and other dialects; RQ2 on efficiency and coverage differences across twelve tokenizers; RQ3 on how tokenizer families, vocabulary adaptation and segmentation behavior associate with efficiency; and RQ4 on whether efficiency (CR, FR) relates to downstream KA task performance. Its contributions are: a validated KA parallel dataset from MADAR; characterization of linguistic variation across KA, MSA and three dialects; the first LLM tokenizer evaluation on KA; analysis of design choices behind efficiency and coverage; and a downstream-performance study fine-tuning eight open-weight LLMs on two KA short-text classification tasks (sentiment and stance) [25,26].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Background and Related Work</h2>
+    <p>Subword algorithms differ in mechanism and suitability for morphologically rich languages. BPE starts from characters and iteratively merges the most frequent adjacent pair until a target vocabulary size, fixing OOV by splitting rare words into known units; its byte-level variant BBPE builds on 256 bytes so any Unicode text is encodable, suiting multilingual settings [1,19]. WordPiece instead merges the pair maximizing training-data likelihood, originally for Japanese/Korean speech recognition [2], yielding words, characters and subwords [18]. SentencePiece treats input as a Unicode stream with whitespace as a trainable symbol, independent of language-specific pre-tokenization, and supports BPE and Unigram strategies [3,18]. Unigram starts from a large vocabulary and prunes tokens with the least likelihood reduction [20]. Morphological tokenizers yield interpretable stems and affixes [17] but must store many unsplit stems [15].</p>
+    <p>Standard BPE/WordPiece tokenizers, optimized for English, fragment morphologically rich and low-resource languages excessively: Turkish words are segmented more than English [15], and even Indic-specific models struggle with coverage across India's 22 official languages [14]. For MSA, tokenizer choice directly affects NLU performance [17], and WordPiece, SentencePiece and BBPE were compared across Arabic LLMs [18]. The rare dialectal study, on Tunisian Arabic, compared CRF/SVM/DNN word tokenizers (CRF F-measure 88.9%) but not LLM subword schemes, and Tunisian differs greatly from Gulf dialects [21]. KA itself arose from migrations and contact with Saudi, Iraqi, Persian, Turkish, English, Hindi-Urdu and Swahili varieties [22,23]; it lacks a unified orthography and is written phonetically (e.g., MSA «ماء» as KA «ماي»، qaf → /g/ or /j/) [24], merges clitics (e.g., «هالطريج» for «this road»، «عندكم») [24], and has 250+ quadriliteral verbs [23]. KA NLP so far covers sentiment (16.6k tweets) [25], vaccine stance (42k tweets, macro-F1 0.83) [26], LLM annotation (F1 ~93–95%) [27], offensive language [28] and the Hazawi+ story corpus [29] — but not LLM tokenization.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Methodology: Data and Models</h2>
+    <p>We selected MADAR Corpus-6 (12,000 parallel travel-domain sentences in five Arabic dialects plus MSA), one of the few publicly available resources with semantically aligned sentences across dialect families [30,31]. We compare KA with MSA and three dialects: Qatari (the only Gulf dialect in MADAR-6, linguistically close to KA), Egyptian and Lebanese (major non-Gulf families common in Arabic benchmarks); Tunis/Moroccan varieties were excluded for their distance from Gulf Arabic. Since MADAR-6 lacks KA, we machine-translated MSA sentences with GPT-4o [32] — chosen for strong KA performance [27] — then had three native Kuwaiti speakers (including an expert translator) post-edit all 12,000 entries in two QA cycles, keeping meaning, naturalness and acceptable spelling variants without prescriptive normalization. Normalization applied Unicode NFKC plus PyArabic (Alef/Hamza/Teh Marbuta), removed diacritics, tatweel, repetitions and punctuation, then deduplicated and kept only rows with matching IDs across varieties: 11,561 entries each, 57,805 total. Lexical variation is measured with shared-unique-word overlap plus a dialect-exclusive Type–Token Ratio (TTR) [33].</p>
+    <p>Twelve LLMs were selected — open models from known institutions plus top Arabic-leaderboard models, with GPT-4o as the closed baseline [32] (Claude/Gemini excluded for budget; only open weights allow KA vocabulary adaptation): ArabianGPT-08B-V2 [34], ALLaM-7B-Instruct-preview [35], c4ai-command-r7b-arabic-02-2025 [36], AceGPT-v2-8B-Chat [37], Fanar-1-9B-Instruct [38], Jais-adapted-13B-Chat [39], Qwen3-8B [40], Gemma-2-9B-IT [41], Phi-4 [42], DeepSeek-V3 [43] and Llama-3.3-70B-Instruct [44]. Efficiency uses CR (characters per token; higher is better) and FR (tokens per word; lower is better) [11,45,46], OOV rate via unknown/fallback token indicators, dialect degradation deltas versus MSA, and token overhead TO% from FR ratios. For downstream RQ4, eight open models were fine-tuned identically with LoRA (rank 16) on two KA tasks — sentiment (9,896/1,099/3,024) [47] and vaccine stance (35,339/3,927/805) [26] — reporting macro-F1 and Spearman correlation with CR/FR; GPT-4o, DeepSeek-V3, Llama-3.3-70B and c4ai-command-r7b were excluded from fine-tuning (closed weights, size, missing classification head). Friedman plus Wilcoxon signed-rank tests with Bonferroni correction assess significance.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Results: Linguistic Variation and Efficiency</h2>
+    <p>RQ1: Lebanese shows the highest dialect-exclusive diversity (TTR 9.41, 5,839 exclusive words) while KA (TTR 4.70) and QA (3.97) are lowest; KA overlaps MSA most strongly (5,849 shared unique words; 45.35% of MSA vocabulary in KA, 49.42% of KA vocabulary in MSA), versus LA lowest (3,912 shared; 8,615 dialect-only words). The closest pair is the two Gulf dialects (57.5% of QA vocabulary in KA). Dialect-average efficiency (RQ2): MSA is best (CR 2.7118, FR 1.9836); KA and QA decline moderately and comparably (KA: CR 2.5540, FR 2.1173; QA: CR 2.5165, FR 2.1219), EA similar, and LA worst (CR 2.3792, FR 2.2519), with degradation deltas smallest for KA (ΔCR 0.1578, ΔFR −0.1338) and largest for LA (ΔCR 0.3327, ΔFR −0.2683) — consistent with KA's high MSA overlap. All variety differences are significant (Friedman χ² = 3,945.88 FR / 7,249.59 CR, p < 0.001; all 10 pairwise Wilcoxon p < 0.005), with the largest effect sizes between LA and MSA (r = 0.608 FR, 0.774 CR) and near-zero between KA and QA (r = 0.031 FR).</p>
+    <p>Tokenizer level (RQ3): Arabic-focused tokenizers lead despite smaller vocabularies — ArabianGPT-08B-V2 has the best MSA CR (3.997) and ALLaM-7B-Instruct-preview the best dialect CR including KA (3.874), with Jais-adapted-13B-Chat next (KA CR 3.051); Phi-4 is worst (KA CR 1.343, FR 3.745). Fertility mirrors this: ArabianGPT lowest on MSA (1.252), ALLaM lowest on KA (1.298); GPT-4o splits more (KA FR 1.908). OOV behaves differently from efficiency: GPT-4o-class BBPE tokenizers show near-zero OOV by byte-level fallback rather than true coverage [19], while Jais pairs strong KA efficiency (CR 3.0514, FR 1.6488) with high OOV (0.10761) — so segmentation efficiency and OOV are distinct dimensions. Design analysis finds vocabulary size alone does not explain efficiency (Arabic-focused 64K models beat 128–256K multilingual ones); BBPE+SentencePiece with Arabic augmentation (ALLaM [49], Aranizer in ArabianGPT [52,53]) associates with strong efficiency, Jais's +32K Llama-2 expansion [39] helps efficiency but not OOV, Fanar's public checkpoint exposes only GemmaTokenizer rather than its reported MorphBPE [38,51] so no MorphBPE conclusions follow, and no base-model effect is isolated (e.g., Llama-3-based Llama-3.3-70B [58] vs AceGPT-v2 [50] differ). KA's Arabic-vs-multilingual gap is smaller than for Lebanese, plausibly reflecting KA's MSA/Gulf overlap.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Cost, Segmentation Behavior and Downstream Tasks</h2>
+    <p>KA costs about 6.7% more tokens than MSA on average (TO%). For GPT-4o (TO% ≈ 8.6%), one million MSA tokens become ~1,086,000 KA tokens: at illustrative prices of USD 2.50 (input) / 10.00 (output) per million, that adds ~USD 0.22 input or ~USD 0.86 output per MSA-equivalent million — USD 21.50 / 86.00 at 100M tokens [32,60] — relevant for pipelines, agents and institutional RAG at scale, while ALLaM-7B-Instruct-preview needs only ~2.7% overhead [35]. Segmentation examples show the challenge is behavior, not vocabulary: KA «هالطريج» (MSA «هذا الطريق») fuses demonstrative+noun with qaf→jim shifts, which Arabic tokenizers segment into meaningful units while GPT-4o's multilingual tokenizer falls back to near-character splitting; likewise «عندكم» keeps or splits the attached pronoun in Arabic tokenizers but shatters in multilingual ones, and KA «ماي» (MSA «ماء») is split character-wise by the multilingual tokenizer [24]. Splitting dialectal words into smaller units raises fertility and lowers compression even with stable OOV. RQ4: on both KA test sets the efficiency ranking persists (ArabianGPT CR 3.559/3.501, ALLaM 3.548/3.520; Phi-4 CR 1.180/1.156, FR 4.032/4.130; OOV zero everywhere), yet downstream macro-F1 shows no clear link — sentiment spans only 0.882–0.902 (Spearman ρ = 0.14, p = 0.74) with Phi-4 (FR 4.03) at 0.898 near ArabianGPT (0.902), and stance spans 0.766–0.834 (ρ = 0.45, p = 0.26, n.s.), driven mainly by Phi-4 at the bottom on both efficiency and score (0.766). Tokenizer efficiency thus does not explain short-text classification performance, though token counts still matter for context windows [47].</p>
+    <p>Limitations: only two short-text KA tasks (no generation or long-context evaluation [25,26]), one fine-tuning run each, four dialects only, a machine-translated-then-post-edited KA corpus with possibly reduced orthographic variation and GPT-4o artefacts [32], no Claude/Gemini baselines, travel-domain MADAR plus tweet tasks limiting domain generality, and observational (non-causal) design comparisons with cautious cross-family OOV reading. Conclusion: MSA tokenizes most efficiently (CR 2.71, FR 1.98), KA moderately worse (+6.7% tokens), LA worst; vocabulary coverage alone does not explain efficiency; Arabic-focused tokenizers (ALLaM [35,49], ArabianGPT [34,52,53], Jais [39]) lead on CR/FR; and no consistent efficiency–performance link appears on short-text KA classification. Future work should test vocabulary adaptation on naturally occurring KA text and its effect on generation and long-context tasks across more datasets, dialects, models and tokenization approaches. Code and KA translations are public (Q8Stance [26]; KA sentiment on request [25,47]; scripts at github.com/hanaalostad/KuwaitiTokenizationEval).</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Key references below keep their original numbering in the published paper [1]–[60]; the complete list is available in the original article (DOI link above).</p>
+    <ol dir="ltr">
+      <li>Sennrich, R.; Haddow, B.; Birch, A. Neural Machine Translation of Rare Words with Subword Units. In <em>Proc. ACL 2016</em>; Berlin, Germany, 2016; pp. 1715–1725.</li>
+      <li>Schuster, M.; Nakajima, K. Japanese and Korean voice search. In <em>Proc. ICASSP 2012</em>; Kyoto, Japan, 2012; pp. 5149–5152.</li>
+      <li>Kudo, T.; Richardson, J. SentencePiece: A simple and language independent subword tokenizer. In <em>Proc. EMNLP 2018: System Demonstrations</em>; Brussels, Belgium, 2018; pp. 66–71.</li>
+      <li>Ahia, O.; Kumar, S.; Gonen, H.; Kasai, J.; Mortensen, D.R.; Smith, N.A.; Tsvetkov, Y. Do All Languages Cost the Same? Tokenization in the Era of Commercial Language Models. In <em>Proc. EMNLP 2023</em>; Singapore, 2023.</li>
+      <li>Kashirskiy, M.; Lipinski, A.; Makarov, I. AraToken: Optimizing Arabic Tokenization with Normalization Pipeline and Language Extension for Qwen3. <em>arXiv</em> <strong>2025</strong>, arXiv:2512.18399.</li>
+      <li>Toraman, C.; Yilmaz, E.H.; Şahinuç, F.; Ozcelik, O. Impact of Tokenization on Language Models: An Analysis for Turkish. <em>ACM Trans. Asian Low-Resour. Lang. Inf. Process.</em> <strong>2023</strong>, <em>22</em>, 1–21.</li>
+      <li>Alyafeai, Z.; Al-shaibani, M.S.; Ghaleb, M.; Ahmad, I. Evaluating Various Tokenizers for Arabic Text Classification. <em>Neural Process. Lett.</em> <strong>2023</strong>, <em>55</em>, 2911–2933.</li>
+      <li>Mekki, A.; Zribi, I.; Ellouze, M.; Belguith, L.H. Tokenization of Tunisian Arabic: A Comparison between Three Machine Learning Models. <em>ACM Trans. Asian Low-Resour. Lang. Inf. Process.</em> <strong>2023</strong>, <em>22</em>, 1–19.</li>
+      <li>Alotaibi, B.A.; Alsharhan, E.T. Characteristics of Written Kuwaiti Arabic and their use in Creating Resources for Morphological Analysis. <em>Arab. J. Humanit.</em> <strong>2024</strong>, <em>42</em>, 275–301.</li>
+      <li>Alostad, H.; Dawiek, S.; Davulcu, H. Q8VaxStance: Dataset Labeling System for Stance Detection Towards Vaccines in Kuwaiti Dialect. <em>Big Data Cogn. Comput.</em> <strong>2023</strong>, <em>7</em>, 151.</li>
+      <li>Alostad, H. Large Language Models as Kuwaiti Annotators. <em>Big Data Cogn. Comput.</em> <strong>2025</strong>, <em>9</em>, 33.</li>
+      <li>Bouamor, H.; et al. The MADAR Arabic Dialect Corpus and Lexicon. In <em>Proc. LREC 2018</em>; Miyazaki, Japan, 2018.</li>
+      <li>OpenAI. GPT-4o System Card. <em>arXiv</em> <strong>2024</strong>, arXiv:2410.21276.</li>
+      <li>Deshpande, V.; et al. A Penalty Goes a Long Way: Measuring Lexical Diversity in Synthetic Texts Under Prompt-Influenced Length Variations. <em>arXiv</em> <strong>2025</strong>, arXiv:2507.15092.</li>
+      <li>Humain-ai. ALLaM-7B-Instruct-preview Model Card. 2024. Hugging Face.</li>
+      <li>Husain, F.; Alostad, H.; Omar, H. Bridging the Kuwaiti Dialect Gap in Natural Language Processing. <em>IEEE Access</em> <strong>2024</strong>, <em>12</em>, 27709–27722.</li>
+      <li>Bari, M.S.; et al. ALLaM: Large Language Models for Arabic and English. <em>arXiv</em> <strong>2024</strong>, arXiv:2407.15390.</li>
+      <li>OpenAI Team. How to count tokens with Tiktoken. Available online: https://developers.openai.com/cookbook/examples/how_to_count_tokens_with_tiktoken (accessed on 24 September 2026).</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/bdcc10100356">10.3390/bdcc10100356</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

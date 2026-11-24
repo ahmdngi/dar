@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التخفيف من النسيان الكارثي في التعلم التزايدي بنهج هجين: التشابك بين إعادة تشغيل الذاكرة وتنظيم المعاملات لتصنيف النصوص المتتابعة — DAR</title>
+<meta name="description" content="Mitigating Catastrophic Forgetting in Incremental Learning Using Hybrid Approach: Interleaving Memory Replay and Parameter Regularization for Sequential Text Classification — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/hybrid-forgetting-electronics/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Mitigating Catastrophic Forgetting in Incremental Learning Using Hybrid Approach: Interleaving Memory Replay and Parameter Regularization for Sequential Text Classification</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التخفيف من النسيان الكارثي في التعلم التزايدي بنهج هجين: التشابك بين إعادة تشغيل الذاكرة وتنظيم المعاملات لتصنيف النصوص المتتابعة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Zeeshan Ahmed Nizamani, Mir Sajjad Hussain Talpur, Pinial Khan Butt, Riaz Ali Buriro</span>
+    <span>📄 Electronics, 2026</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics15184143">10.3390/electronics15184143</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يمثل النسيان الكارثي تحديًا رئيسًا عند تدريب النماذج العميقة تزايديًا على بيانات جديدة: فمعظم البحوث تستهدف الصور والفيديو مع اهتمام أقل بالمجالات النصية حيث تتغير توزيعات الرموز المتقطعة والتحولات الدلالية عبر الموضوعات [1،4،5]. وما زالت الاستراتيجيات المنفردة تترك مجالًا للتحسين [8،10،15،30]. تقترح هذه الورقة دمجًا بين إعادة التشغيل الطبقية للذاكرة وتنظيم المعاملات لمتعلم تزايدي قائم على BiLSTM على مجموعات نصية متتابعة: يحفظ مخزن إعادة التشغيل أنماط البيانات القديمة أثناء التدريب على الطور الحالي، بينما يعاقب التنظيم التغييرات في الأوزان الحاسمة للمهام السابقة. وعند التقييم على تقارير الأخطاء البرمجية (المهمة أ) وأخبار AG News (المهمة ب) ورسائل البريد (المهمة ج)، انهار خط الأساس على المهمة أ من 87.53% إلى 11.75%، بينما حافظ النهج الهجين على المهمة أ عند 83.73% والمهمة ب عند 95.04%، محددًا نسيان أقدم مهمة بـ4.65% مقابل 6.55% لإعادة التشغيل وحدها، مع لدونة 98.92% على المهمة الأخيرة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يدرب التعلم التزايدي نموذجًا واحدًا على سلسلة من المهام، لكن تحديثات المهام الجديدة تكتب فوق الأوزان المتعلمة للمهام السابقة — النسيان الكارثي، المثبت تجريبيًا لشبكات التدرج [8] والممسوح عبر إعدادات التعلم المستمر [1،11،15،30]. والمجالات النصية معرضة بشكل خاص: فالمفردات والدلالات تتحول بين تقارير الأخطاء والأخبار والرسائل، فتنجرف التمثيلات الكلمية المشتركة مع الإفراط في ملاءمة التوزيع الأحدث. وتركزت الأعمال السابقة على الصور والفيديو [1،2]، وتمد المراجعات الحديثة التحدي إلى النماذج اللغوية الكبيرة وأنظمة الوكلاء المتعددين [4،5]، بينما تؤطر مسوح التعلم الناقل السياق الأوسع للمفاضلة بين الاستقرار واللدونة [6].</p>
+    <p>وكل تدبير منفرد — إعادة تشغيل العينات القديمة [20،40] أو معاقبة تغييرات الأوزان كما في التوحيد المرن للأوزان [10،70] أو البنى المتنامية — يترك ثغرات على التسلسلات النصية المربكة: فإعادة التشغيل وحدها تنسى مع تضاؤل المخزون، والتنظيم وحده يضحي باللدونة على المهام اللاحقة. لذلك تقترح الورقة تآزرًا: اعادة تشغيل طبقية للذاكرة يُبقي التمثيلات المشتركة مستقرة، مندمجًا مع تنظيم تراكمي للمعاملات يحمي الأوزان الحاسمة للمهام، ويُحل الكل في حلقة تحسين موحدة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة</h2>
+    <p>تميز تصنيفات المواجهة بين العائلات القائمة على إعادة التشغيل والقائمة على التنظيم والقائمة على البنية [15،29،30]. فإعادة التشغيل تخزن العينات التاريخية أو تولدها، من إعادة تشغيل الخبرة التقليدية [20] إلى المتغيرات المستوحاة من الدماغ [40] والمنهجيات التوليدية؛ والتنظيم يقيد الأوزان المهمة ابتداء من التوحيد المرن للأوزان [10،70] وصولًا إلى التكيف القائم على عدم اليقين [46]؛ وتعزل منهجيات البنية المعاملات لكل مهمة. وتعد التركيبات الهجينة والتجميعية جبهة نشطة [28،33،36،52]، وتوحد مسوح التعلم المستمر النظرية والمنهج والتطبيق [15،30] إلى جانب خلفية التعلم الناقل العميق [6]. ويضيف المجال النصي صعوبات الرموز المتقطعة والانزياح الدلالي التي تتجاوزها الأعمال المتمركزة على الرؤية [1،2]، وهو فجوة تردده المراجعات النقدية للتعلم التزايدي في النماذج اللغوية الكبيرة [4،5].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. النهج الهجين المقترح</h2>
+    <p>المشكلة هي تصنيف النصوص المتتابع عبر المهمة أ (حالة تقارير الأخطاء) والمهمة ب (موضوعات AG News) والمهمة ج (رسائل مزعجة/سليمة): الطور 1 يدرب على الأخطاء؛ والطور 2 يضيف الأخبار مع اعادة تشغيل الأخطاء حيثما انطبق؛ والطور 3 يضيف الرسائل مع اعادة تشغيل السابق. ويستخدم التمثيل المتجهي BiLSTM فوق تسلسلات الرموز مع قيد بيانات (اعادة تشغيل الخبرة الطبقية: مخزون صغير من العينات التاريخية يُمزج في التدريب الحالي ليتعلم القديم والجديد معًا مع ابقاء التمثيلات الكلمية مستقرة) وقيد معاملات (تنظيم تراكمي: تُقدر الأوزان الأكثر حسمًا للمهام السابقة وتُعاقب الانحرافات الكبيرة عنها). ويُحل القيدان في حلقة تحسين موحدة للمعاملات مع ديناميكيات تدرج مخصصة عبر شريط التفاضل، وهو محدد خطوة بخطوة في التنفيذ الخوارزمي للورقة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. التجارب والنتائج</h2>
+    <p>قورنت ثلاثة اعدادات معمارية عبر التسلسل التدريبي بمحسن Adam (معدل التعلم الأساسي 2 × 10−3 أولًا و5 × 10−4 في أطوار اعادة التشغيل): خط الأساس المتتابع واعادة تشغيل الخبرة والنهج الهجين، وقُيمت بالدقة والخطأ والنسيان. ويُظهر خط الأساس نسيانًا شديدًا مع لدونة عالية: تبلغ المهمة ب 98.56% والمهمة ج 99.98%، لكن المهمة أ تنهار من 87.53% إلى 11.75% (75.78% نسيانًا) مع الإفراط في ملاءمة التوزيع الأحدث للرسائل. وتحافظ اعادة التشغيل المنفردة على المهمة أ عند 80.01% (من ذروة 86.56%) والمهمة ب عند 93.97% (من 98.37%)؛ ويحافظ التنظيم المنفرد على المهمة أ عند 71.09% (من 87.87%) لكن بلدونة منخفضة على المهام اللاحقة. ويحافظ النهج الهجين على المهمة أ عند 83.73% والمهمة ب عند 95.04% مع بلوغ 98.92% على المهمة الأخيرة — محددًا نسيان أقدم مهمة بـ4.65% مقابل 6.55% لإعادة التشغيل وحدها.</p>
+    <p>وتؤكد حساسية حجم المخزون أن المخازن الأكبر تحسن الدقة، مع كفاية 500–2000 عينة لتثبيت الشبكة واستعادة ما يصل إلى 69.36% من الدقة المفقودة. وتجعل خطوط المعالجة المسبقة وتعريفات المقاييس وجداول الطور المقارنة قابلة للتدقيق: فبعد الأخبار يتفوق النهج الهجين فعليًا على اعادة التشغيل في الاحتفاظ بالمهمة ب، وبعد الرسائل يتفوق على كلتا الاستراتيجيتين المنفردتين في المفاضلة المشتركة بين الاستقرار واللدونة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. المناقشة والاستنتاجات</h2>
+    <p>يميل اعادة التشغيل وحدها نحو اللدونة: فهو يتعلم البيانات الجديدة جيدًا لكنه ينسى أكثر مع تضاؤل المخزون عبر التسلسلات الطويلة [20،40]. ويميل التنظيم وحده نحو الاستقرار لكنه يتقاصر عن التوزيعات النصية المربكة وعن لدونة المهام اللاحقة. ويوازن النهج الهجين معضلة الاستقرار–اللدونة للنصوص لأن المخزون يُبقي التمثيلات الكلمية ثابتة بينما يحمي التنظيم الأوزان الحاسمة للمهام — وهو ما يفسر ملاءمته للبيانات النصية حيث تتغير المفردات والدلالات بين مجموعات البيانات. وتشمل القيود الاعتماد على المخزون عبر التسلسلات الطويلة جدًا والتقييم على ثلاث مجموعات بأسلوب اللغة الإنجليزية مع عمود BiLSTM وتنظيمًا يحتاج ضبطًا واعيًا بالمهام.</p>
+    <p>تخلص الورقة إلى أن النسيان الكارثي في تصنيف النصوص المتتابع حقيقي وشديد (87.53% ← 11.75% على أقدم مهمة)، وأن الاستراتيجيات المنفردة تخفف منه جزئيًا فقط، وأن التآزر المقترح يتفوق عليهما — 83.73% / 95.04% / 98.92% عبر المهام الثلاث مع نسيان أقدم مهمة بـ4.65% فقط. ويشير العمل المستقبلي إلى مخازن أكبر مع اختيار أذكى للنماذج وتنظيم تكيفي وعمود محولات وعمود بمقياس LLM [4،5] واعدادات تزايدية متعددة اللغات والوكلاء.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Catastrophic forgetting is a major challenge when deep models are trained incrementally on new data: most research targets image and video, with less attention to textual domains where discrete token distributions and semantic shifts occur across topics [1,4,5]. Standalone counter-strategies still leave room for improvement [8,10,15,30]. This paper proposes a hybrid of stratified memory replay with parameter regularization for a BiLSTM-based incremental learner on sequential text datasets: the replay buffer preserves old-data patterns during current-phase training, while regularization penalizes changes to weights crucial for past tasks. Evaluated on software bug reports (Task A), AG News news topics (Task B), and emails (Task C), the baseline collapses on Task A from 87.53% to 11.75%, while the hybrid preserves Task A at 83.73% and Task B at 95.04%, limiting earliest-task forgetting to 4.65% against 6.55% for replay alone, with 98.92% plasticity on the final task.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Incremental learning trains one model on a sequence of tasks, but new-task updates overwrite weights learned for earlier tasks — catastrophic forgetting, empirically established for gradient networks [8] and surveyed across continual-learning settings [1,11,15,30]. Textual domains are particularly exposed: vocabulary and semantics shift between bug reports, news, and emails, so shared word representations drift as the model over-optimizes for the latest distribution. Prior work concentrates on image and video data [1,2], and recent reviews extend the challenge to large language models and multi-agent systems [4,5], while transfer-learning surveys frame the broader stability–plasticity context [6].</p>
+    <p>Standalone mitigations — replaying old samples [20,40], penalizing weight changes as in elastic weight consolidation [10,70], or growing architectures — each leave gaps on disruptive text sequences: replay alone forgets as buffers thin out, and regularization alone sacrifices plasticity on later tasks. The paper therefore proposes a synergy: stratified memory replay that keeps shared representations stable, fused with cumulative parameter regularization that protects task-critical weights, resolved in one consolidated optimization loop.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related work</h2>
+    <p>Mitigation taxonomies distinguish replay-based, regularization-based, and architecture-based families [15,29,30]. Replay stores or generates historical exemplars, from vanilla experience replay [20] to brain-inspired variants [40] and generative approaches; regularization constrains important weights, starting from elastic weight consolidation [10,70] through uncertainty-based adaptation [46]; architecture methods isolate parameters per task. Hybrid and ensemble combinations are an active frontier [28,33,36,52], and continual-learning surveys consolidate theory, method, and application [15,30] alongside deep transfer-learning background [6]. The text domain adds discrete-token and semantic-shift difficulties largely sidestepped by vision-centric work [1,2], a gap now echoed in critical reviews of incremental learning in LLMs [4,5].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Proposed hybrid approach</h2>
+    <p>The problem is sequential text classification over Task A (bug-report status), Task B (AG News topics), and Task C (spam/ham emails): Phase 1 trains on Bugs; Phase 2 adds News with Bugs replay where applicable; Phase 3 adds Emails with Bugs and News replay. Vector representation uses a BiLSTM over token sequences with a data constraint (stratified experience replay: a small buffer of historical samples mixed into current training so old and new tasks are learned jointly, keeping word representations stable) and a parameter constraint (cumulative regularization: weights most critical to past tasks are estimated and large deviations penalized). Both constraints resolve in a consolidated parameter-optimization loop with custom gradient dynamics via a differentiation tape, specified step-by-step in the paper's algorithmic implementation.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Experiments and results</h2>
+    <p>Three architectural setups were compared across the training sequence with Adam (base learning rate 2 × 10−3 initially, 5 × 10−4 in replay phases): sequential baseline, experience replay, and the hybrid, scored on accuracy, error, and forgetting. The baseline shows severe forgetting with high plasticity: Task B reaches 98.56% and Task C 99.98%, but Task A collapses from 87.53% to 11.75% (75.78% forgetting) as weights over-optimize for the final emails distribution. Standalone replay retains Task A at 80.01% (from a 86.56% peak) and Task B at 93.97% (from 98.37%); standalone regularization holds Task A at 71.09% (from 87.87%) but shows reduced plasticity on later tasks. The hybrid preserves Task A at 83.73% and Task B at 95.04% while reaching 98.92% on the final task — limiting earliest-task forgetting to 4.65% versus 6.55% for replay alone.</p>
+    <p>Buffer-size sensitivity confirms that larger replay buffers improve accuracy, with 500–2000 exemplars sufficient to stabilize the network and recover up to 69.36% of lost accuracy. The preprocessing pipeline, metric definitions, and phase-by-phase tables make the comparison auditable: post-News, the hybrid already leads replay on Task B retention (98.29% vs 98.37% peak parity with lower forgetting), and post-Email it dominates both standalone strategies on joint stability–plasticity.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Discussion and conclusions</h2>
+    <p>Replay alone leans toward plasticity: it learns new data well but forgets more as buffers thin over long sequences [20,40]. Regularization alone leans toward stability but underperforms on disruptive text distributions and later-task plasticity. The hybrid balances the stability–plasticity dilemma for text because the buffer keeps word representations steady while regularization shields task-critical weights — which is also why it fits text data, where vocabulary and semantics change between datasets. Limitations include buffer dependence over very long sequences, evaluation on three English-language-style datasets with a BiLSTM backbone, and regularization strength that needs task-aware tuning.</p>
+    <p>The paper concludes that catastrophic forgetting in sequential text classification is real and severe (87.53% → 11.75% on the earliest task), that standalone strategies mitigate it only partially, and that the proposed synergy outperforms both — 83.73%/95.04%/98.92% across the three tasks with earliest-task forgetting of just 4.65%. Future work points to larger buffers with smarter exemplar selection, adaptive regularization, transformer and LLM-scale backbones [4,5], and broader multilingual and multi-agent incremental settings.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references; original numbering preserved. Full list in the original paper (paper.pdf).</p>
+    <ol dir="ltr">
+      <li>[1] Mai, Z.; et al. Online continual learning in image classification: An empirical survey. <i>Neurocomputing</i> 2022, <i>469</i>, 28–51.</li>
+      <li>[4] Jovanovic, M.; Voss, P. Towards incremental learning in large language models: A critical review. <i>Expert Syst.</i> 2025, <i>42</i>, e70127.</li>
+      <li>[5] Shi, H.; et al. Continual learning of large language models: A comprehensive survey. <i>ACM Comput. Surv.</i> 2025, <i>58</i>, 1–42.</li>
+      <li>[6] Iman, M.; Arabnia, H.R.; Rasheed, K. A review of deep transfer learning and recent advancements. <i>Technologies</i> 2023, <i>11</i>, 40.</li>
+      <li>[8] Goodfellow, I.J.; et al. An empirical investigation of catastrophic forgetting in gradient-based neural networks. <i>arXiv</i> 2013, arXiv:1312.6211.</li>
+      <li>[10] Kirkpatrick, J.; et al. Overcoming catastrophic forgetting in neural networks. <i>Proc. Natl. Acad. Sci. USA</i> 2017, <i>114</i>, 3521–3526.</li>
+      <li>[15] Wang, L.; et al. A comprehensive survey of continual learning: Theory, method and application. <i>IEEE Trans. Pattern Anal. Mach. Intell.</i> 2024, <i>46</i>, 5362–5383.</li>
+      <li>[20] Rolnick, D.; et al. Experience replay for continual learning. <i>NeurIPS</i> 2019, <i>32</i>.</li>
+      <li>[30] De Lange, M.; et al. A continual learning survey: Defying forgetting in classification tasks. <i>IEEE Trans. Pattern Anal. Mach. Intell.</i> 2021, <i>44</i>, 3366–3385.</li>
+      <li>[40] Van de Ven, G.M.; et al. Brain-inspired replay for continual learning with artificial neural networks. <i>Nat. Commun.</i> 2020, <i>11</i>, 4069.</li>
+      <li>[70] Liu, X.; Chang, X. Elastic weight consolidation done right for continual learning. <i>arXiv</i> 2026, arXiv:2603.18596.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics15184143">10.3390/electronics15184143</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

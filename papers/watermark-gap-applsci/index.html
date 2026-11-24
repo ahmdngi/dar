@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>العلامة المائية الخفية: دراسة تجريبية حول فجوة قابلية التحقق في العلامات المائية لنصوص الذكاء الاصطناعي — DAR</title>
+<meta name="description" content="The Invisible Watermark: A Pilot Study on the Verifiability Gap in AI Text Watermarking — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/watermark-gap-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">The Invisible Watermark: A Pilot Study on the Verifiability Gap in AI Text Watermarking</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">العلامة المائية الخفية: دراسة تجريبية حول فجوة قابلية التحقق في العلامات المائية لنصوص الذكاء الاصطناعي</h2>
+
+  <div class="paper-meta">
+    <span>👤 Selma Bulut, Adem Korkmaz, Selahattin Kosunalp, Vedat Tümen, Erdal Akin</span>
+    <span>📄 Appl. Sci., 2026</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app162010335">10.3390/app162010335</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يلزم المادة 50 من قانون الذكاء الاصطناعي للاتحاد الأوروبي مقدمي الذكاء الاصطناعي التوليدي بوسم المحتوى الاصطناعي بصيغة قابلة للكشف الآلي [19،20]، وهو التزام يُنفّذ عبر آلية غير مرئية للمستخدمين النهائيين. تستكشف هذه الدراسة التجريبية فجوة الشفافية–قابلية التحقق الناتجة عبر مكونين: تحليل وثائقي مقارن لخمسة من كبرى المقدمين (Anthropic وOpenAI وGoogle وMeta وxAI) وتجربة متانة تجريبية صغيرة النطاق لطريقة SynthID-Text مفتوحة المصدر [13] على GPT-2. يُظهر التحليل الوثائقي أن الإفصاح التنظيمي لا يعادل آلية كشف مستقلة قابلة للتحقق من طرف ثالث. وفي التجربة، سجلت النصوص الموسومة درجات أعلى بدلالة كبيرة من غير الموسومة (t(38) = 15.94، p – 0.001، d كوهين = 5.04، ROC-AUC = 1.000؛ عتبة يودن المثلى 0.533 تمنح حساسية 100% ونوعية 100% على النص السليم). وأكد تحقق منفصل المعايرة عن الاختبار (n = 320) هذا التمييز (TPR عند FPR ≤1% = 98.75%) دون أن يعني التعميم خارج الإعداد. وتدهورت الإشارة بشدة تحت اختبار إجهاد مصمم عالي الشدة (50% حذف كلمات)، وهو تدهور أكدته مقارنات هولم المصححة عبر تسعة من عشرة أزواج لمستويات الفساد (F(4، 56) = 98.39، p – 0.001، η2 المعمم = 0.744، r = −0.824). ويخلص المؤلفون إلى أن إرشادات المادة 50 ينبغي أن تتطلب الإبلاغ الموحد عن معدلات الخطأ ووصول كشف قابل للتدقيق المستقل، لا الإفصاح فحسب. والنتائج أولية بحجم تجريبي: نماذج مفتوحة صغيرة، وكاشف غير مدرب أساسًا، ومخطط توسيم واحد، وفساد اصطناعي غالبًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تتقارب إرشادات أخلاقيات الذكاء الاصطناعي على الشفافية والمساءلة متطلبين أساسيين [1،8،15]، ويجعل قانون الذكاء الاصطناعي الأوروبي الشفافية واجبًا قانونيًا ملزمًا: فالمادة 50 تلزم المقدمين بوسم المخرجات الاصطناعية بصيغة قابلة للكشف الآلي [19]، وفصّلها تحليل CSA [20] ومدونة قواعد المفوضية الأوروبية [21] وإرشادات التنفيذ [74]. لكن الآلية الموصوفة — العلامة المائية الإحصائية للنص — غير مرئية للمستخدم النهائي، فيمكن للمقدم أن يمتثل للإفصاح بينما لا يستطيع أي طرف ثالث التحقق المستقل من العلامة. وتطلق الورقة على هذا التباين اسم فجوة الشفافية–قابلية التحقق، وتجادل أنها تترك المساءلة حول التضليل وانتهاك حقوق النشر والثقة العامة غير معالجة إلى حد كبير.</p>
+    <p>تسهم الدراسة بتحليل وثائقي مقارن محدّث للإفصاح عن العلامة المائية والمشاركة في مدونة القواعد عبر خمسة من كبرى المقدمين، مع تجربة عملية تقيس ما تقدمه العلامة معلومة المفتاح فعليًا: قابلية كشف قريبة من السقف على النص السليم بكاشف غير مدرب، وتآكلها تحت التحرير الثقيل. وتتموضع الورقة كمساهمة استكشافية في أدبيات أخلاقيات الذكاء الاصطناعي حول الشفافية والمساءلة [1،15]، وتؤطر جميع النتائج خارج إعدادها المحتفظ به باعتبارها أدلة أولية بحجم تجريبي لا ادعاءات حول الأنظمة التجارية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة</h2>
+    <p>أسس كيرشنباور وزملاؤه العلامة المائية لنصوص النماذج اللغوية الكبيرة [12]، ووصلت بها SynthID-Text إلى مصاف النشر الإنتاجي [13]، حيث تُقاس قوة الكشف بمعدل الإيجابيات الصحيحة عند معدل إيجابيات خاطئة ثابت 1% على نموذج كبير النطاق بكاشف مدرب. وتؤهل دراسات المتانة هذه الصورة: فالعلامات تضعف جزئيًا لا كليًا تحت إعادة الصياغة [65]، بينما تختبر تقييمات SynthID تحديدًا سلوكها تحت الهجوم والتحسين [67]. ومفاهيميًا، تجيب العلامة المائية عن مطلب أخلاقي بوسم اللغة المولدة آليًا [36]، لكن الكشف القائم على المصنفات يحمل مشكلة عدالة، وتؤطر دروس الفلسفة السياسية حول العدالة في تعلم الآلة [34] لماذا يهم توزيع الخطأ عبر مجموعات المستخدمين بقدر الدقة الإجمالية.</p>
+    <p>وعلى الجانب التنظيمي، تفصّل واجبات الشفافية في المادة 50 [19] تحليلات الممارسين [20] ومدونة القواعد الطوعية حول شفافية المحتوى المولد بالذكاء الاصطناعي [21] وإرشادات المفوضية التنفيذية [74]. وتكمن الفجوة البحثية للورقة في الحلقة المفقودة بين الأدبيات: فالعمل التقني يقيس قابلية الكشف بمفتاح معلوم، والعمل التنظيمي يتتبع الإفصاح — ولا يثبت أيهما ما إذا كان بوسع طرف ثالث التحقق من العلامة دون تعاون المقدم. ويحدّ السياق التجاري النقطة: فقد أُبلغ عن حجب نظام توسيم داخلي سابق بذريعة مخاوف العدالة وقابلية التهرب [22]، مما يُظهر أن المقدمين أنفسهم يزنون مخاطر قابلية التحقق التي لا يحلها الإفصاح وحده.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. المنهجية</h2>
+    <p>الدراسة 1 تحليل وثائقي مقارن للإفصاح عن العلامة المائية والمشاركة في مدونة القواعد لدى Anthropic وOpenAI وGoogle وMeta وxAI، بلقطة جمع بيانات بتاريخ 18 أغسطس 2026 مع توثيق كل خلية بمصدرها. والدراسة 2 تجربة عملية على SynthID-Text مفتوحة المصدر مع GPT-2 (مع توثيق بصمة الإصدار) واستنساخ على Pythia-410M: عشرون نصًا موسومًا وعشرون غير موسومة بحوالي 100 رمز عبر خمسة موضوعات (أخلاقيات الذكاء الاصطناعي، تغير المناخ، تاريخ الإنترنت، الطاقة المتجددة، استكشاف الفضاء)، قورنت باختبار t لعينتين مستقلتين وd كوهين، ثم أُعيد تسجيل 15 نصًا موسومًا عند خمسة مستويات فساد (0%، 10%، 20%، 30%، 50%) بحذف عشوائي للكلمات — اختبار إجهاد متعمد الشدة لا نموذج للتحرير الواقعي.</p>
+    <p>وتفصل ثلاثة توسعات تحققية المعايرة عن الاختبار: فتختار مجموعة معايرة مستقلة (n = 160) العتبة المثلى ليودن التي تطبق مرة واحدة على مجموعة اختبار محتفظ بها (n = 160)؛ ويختبر كاشف بايزي مدرب على 1000 نص إضافي ما إذا كان التدريب يتفوق على الكاشف غير المدرب (Weighted Mean) على النص السليم؛ ويُعاد تنفيذ التصميم كاملًا على Pythia-410M (410M مقابل 124M معاملة)، مع فحوص نقل العتبة عند أطوال 50 و150 و300 و500 رمز وبذور توليد بديلة. وقد صُمم التصميم بقوة (80%) للتأثيرات بحجم d ≥0.91 فأكبر فقط، ولم تُستثنَ كلمات الوقف عمدًا من الفساد لزيادة الشدة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. مقارنة المقدمين</h2>
+    <p>بحسب تاريخ اللقطة، وقع أربعة مقدمين (Anthropic وOpenAI وGoogle وMeta) على مدونة قواعد الاتحاد الأوروبي بينما لم توقعها xAI [21،74] — لكن المشاركة الطوعية لا تضمن أي أداة كشف مستقلة، إذ لا يقدم أي مقدم واجهة كشف متاحة بحرية للأطراف الثالثة. وتقترب Google الأكثر من القابلية التحقق العلمية بشيفرة مفتوحة المصدر ومنشور محكم [13]. وتفصح Anthropic عن التوسيم في النماذج الأحدث لكنها تقصر الكشف على معاينة خاصة، وأكدت OpenAI غياب العلامة النصية وقت اللقطة مع إعلان النية توسيع إشارات المنشأ إلى النص [22]. وكان موقف Meta غير واضح: موقع على المدونة دون إفصاح تقني. وبذلك ينفصل الامتثال على مستوى الإفصاح منهجيًا عن قابلية التحقق على مستوى المستخدم.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. نتائج التجربة</h2>
+    <p>على النص السليم فصل الكاشف غير المدرب بين المجموعتين بحسم، وأزال فصل المعايرة عن الاختبار دائرية اختيار العتبة على العينة نفسها: فعتبة 0.5363 المختارة على مجموعة المعايرة (n = 160، AUC = 1.000) طُبقت مرة واحدة على مجموعة الاختبار المحتفظ بها (n = 160) فأعطت 79 إيجابية صحيحة و0 إيجابية خاطئة و80 سلبية صحيحة وسلبية خاطئة واحدة (الحساسية 98.75%، والنوعية 100%، ROC-AUC = 0.9997) — بثمانية حجم العينة الأصلية (n = 320 مقابل 40). وأفرط الكاشف البايزي المدرب على 1000 نص إضافي (خسارة التدريب قريبة من الصفر وخسارة التحقق ترتفع من 0.70 إلى 7.05) ولم يتفوق على غير المدرب على النص السليم، بما يتسق مع استخدام ورقة SynthID الأصلية لمدونة تدريب أكبر ببعدة أوامر حجمية [13]. وأعطى التصميم المطابق على Pythia-410M معدل إيجابيات صحيحة عند إيجابيات خاطئة ≤1% = 97.5% مع AUC = 1.000، مما يُظهر أن نتيجة النص السليم ليست أثرًا خاصًا بـGPT-2.</p>
+    <p>وتتآكل الإشارة في المتانة: فقد ظل التمييز أعلى بكثير من المرجع غير الموسوم حتى فساد 30% (AUC = 0.917) لكنه اقترب منه فقط تحت اختبار الإجهاد بحذف 50% من الكلمات (AUC = 0.637، 95% CI [0.443، 0.813])، وأعطى فحص إعادة صياغة وحيد قائم على نموذج T5 كشفًا بنسبة 22.5% عند العتبة الثابتة. ويتسق النمط اتجاهيًا مع نتيجة كيرشنباور وزملائه بأن العلامات تضعف جزئيًا لا كليًا تحت إعادة الصياغة [65]. وصمد نقل العتبة عبر أطوال 50–200 رمز والبذور البديلة (TPR 97.5–100%، FPR 0%)، مع بقاء المعايرة/الاختبار المستقل الكامل لكل طول وتهيئة عملًا مستقبليًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. المناقشة</h2>
+    <p>يعزز المكونان بعضهما بعضًا: فعلى مستوى الوثائق يتباين الامتثال الظاهر (الإفصاح) عن قابلية التحقق الحقيقية على مستوى المستخدم (توفير مسار كشف مستقل)، وعلى المستوى التجريبي تبقى قابلية الكشف بمفتاح معلوم أضيق من التحقق من طرف ثالث الذي تعد به المادة 50 ضمنًا. ويُظهر مثال تطبيقي مشروح لتقرير تحقق في الورقة كيف تُضلل الدرجة المجردة بدون معدلات خطأ ووصول للمفتاح وتحفظات الفساد القارئ غير الخبير. وعلى هذا الأساس يجادل المؤلفون بأن الإرشادات التنظيمية ينبغي أن تلزم الإبلاغ الموحد عن معدلات الخطأ (بما فيها TPR عند FPR ثابت) ووصول كشف قابل للتدقيق المستقل، إذ الإفصاح دون قابلية تحقق يُبقي مظهر المساءلة دون جوهرها — وهو قلق يقع في صميم أعمال أخلاقيات الذكاء الاصطناعي حول الشفافية [1،15،36].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. القيود والاستنتاجات</h2>
+    <p>يجب قراءة النتائج على مستويين: فداخل إعداد التجربة تأكدت نتيجة قابلية الكشف المركزية على بيانات محتفظ بها، لكن خارجه يبقى كل شيء — بما فيه الاستنتاجات حول الأنظمة التجارية والكواشف المدربة بنطاق الإنتاج وعائلات التوسيم الأخرى والتحرير الواقعي — أوليًا. واستخدم المكون التجريبي نماذج مفتوحة صغيرة (GPT-2 ﺑ124M معاملة واستنساخ Pythia-410M) بدل النماذج التجارية؛ وكاشفًا غير مدرب، مع عدم تفوق الكاشف البايزي المدرب صغير النطاق عليه على النص السليم؛ ومخطط توسيم واحد وتهيئة ثابتة؛ وفساد اصطناعي غالبًا مع اختبار شرط إعادة صياغة وحيد قائم على النموذج. ولم تُكرر مقارنة الكاشف المدرب على Pythia-410M، وتبقى المعايرة/الاختبار المستقلة الكاملة لكل طول وتهيئة عملًا مستقبليًا.</p>
+    <p>وتخلص الدراسة إلى أن الامتثال التنظيمي على مستوى الإفصاح ليس هو قابلية التحقق الحقيقية على مستوى المستخدم: فقد وقع أربعة مقدمين رئيسيين على مدونة القواعد [21،74] ولم يقدم أي منهم واجهة كشف متاحة بحرية للأطراف الثالثة، مع اقتراب Google الأكثر من القابلية التحقق العلمية عبر الشيفرة المفتوحة والنشر المحكم [13]. وتُظهر التجربة قابلية كشف بمفتاح معلوم قريبة من السقف على النص السليم إلى جانب تآكل حاد تحت التحرير الثقيل — أدلة أولية على أن التوسيم وحده لا يحمل أهداف المساءلة في المادة 50 [19،20]. وينبغي للعمل المستقبلي اختبار الأنظمة التجارية والكواشف المدربة بنطاق الإنتاج وعائلات التوسيم الإضافية وهجمات إعادة الصياغة والترجمة الواقعية وقابلية استخدام تقارير التحقق لدى القراء غير الخبراء.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Article 50 of the EU AI Act requires providers of generative AI to mark synthetic content in a machine-detectable format [19,20], an obligation discharged through a mechanism invisible to end users. This pilot study probes the resulting transparency–verifiability gap through two components: a comparative document analysis of five major providers (Anthropic, OpenAI, Google, Meta, xAI) and a small-scale empirical robustness pilot of the open-source SynthID-Text method [13] on GPT-2. The document analysis shows regulatory disclosure does not equal an independently verifiable third-party detection mechanism. In the pilot, watermarked texts scored significantly higher than unwatermarked texts (t(38) = 15.94, p – 0.001, Cohen’s d = 5.04, ROC-AUC = 1.000; Youden-optimal threshold 0.533 giving 100% sensitivity and 100% specificity on intact text). A calibration/test-separated held-out validation (n = 320) confirmed this discrimination (TPR at FPR ≤1% = 98.75%) without implying generalization beyond the setup. The signal degraded substantially under a deliberately engineered high-severity stress test (50% word deletion), a decline confirmed by Holm-corrected pairwise comparisons across nine of ten corruption-level pairs (F(4, 56) = 98.39, p – 0.001, generalized η2 = 0.744, r = −0.824). The authors conclude Article 50 guidance should require standardized error-rate reporting and independently auditable detection access, not disclosure alone. Findings are preliminary and pilot-scale: small open-source backbones, a primarily untrained detector, one watermarking scheme, and largely synthetic corruption.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>AI ethics guidelines converge on transparency and accountability as core requirements [1,8,15], and the EU AI Act makes transparency a binding legal duty: Article 50 requires providers to mark synthetic outputs in a machine-detectable format [19], elaborated by CSA analysis [20], the Commission Code of Practice [21], and implementation guidelines [74]. Yet the prescribed mechanism — statistical text watermarking — is invisible to the end user, so a provider can be disclosure-compliant while no third party can independently verify the mark. This paper names that divergence the transparency–verifiability gap and argues it leaves accountability around disinformation, copyright infringement, and public trust largely unaddressed.</p>
+    <p>The study contributes an updated comparative document analysis of watermark disclosure and Code of Practice participation across five major providers, plus an empirical pilot that measures what a known-key watermark actually delivers: near-ceiling detectability on intact text with an untrained detector, and its erosion under heavy editing. Positioned as an exploratory contribution to the AI ethics literature on transparency and accountability [1,15], the paper explicitly frames all findings beyond its own held-out setup as preliminary, pilot-scale evidence rather than claims about commercial systems.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related work</h2>
+    <p>Text watermarking for large language models was established by Kirchenbauer et al. [12] and scaled to production-grade deployment by SynthID-Text [13], whose detection strength is reported as true-positive rate at a fixed 1% false-positive rate on a large-scale model with a trained detector. Robustness studies qualify this picture: watermarks weaken partially rather than completely under paraphrasing [65], while assessments of SynthID specifically test its behavior under attack and enhancement [67]. Conceptually, watermarking answers an ethical demand for marks in machine-generated language [36], but classifier-based detection carries a fairness problem, and lessons from political philosophy on fairness in machine learning [34] frame why error distribution across user groups matters as much as aggregate accuracy.</p>
+    <p>On the regulatory side, Article 50 transparency duties [19] are unpacked by practitioner analysis [20], the voluntary Code of Practice on transparency of AI-generated content [21], and the Commission's implementation guidelines [74]. The paper's research gap is the missing link between these two literatures: technical work measures detectability with a known key, while regulatory work tracks disclosure — and neither establishes whether a third party can verify a mark without the provider's cooperation. Commercial context sharpens the point: an earlier internal watermarking system was reportedly withheld over fairness and evadability concerns [22], showing that providers themselves weigh verifiability risks that disclosure alone does not resolve.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Method</h2>
+    <p>Study 1 is a comparative document analysis of watermark disclosure and Code of Practice participation for Anthropic, OpenAI, Google, Meta, and xAI, using a data-collection snapshot of 18 August 2026 with each table cell backed by its source. Study 2 is an empirical pilot on open-source SynthID-Text with GPT-2 (commit hash documented) and a replication on Pythia-410M: 20 watermarked and 20 unwatermarked texts of about 100 tokens across five topics (AI ethics, climate change, internet history, renewable energy, space exploration), compared with an independent-sample t-test and Cohen's d, followed by rescoring 15 watermarked texts at five corruption levels (0%, 10%, 20%, 30%, 50%) by random word deletion — a deliberately severe stress test, not a model of realistic editing.</p>
+    <p>Three validation extensions separate calibration from testing: an independent calibration set (n = 160) selects the Youden-optimal threshold applied once to a held-out test set (n = 160); a Bayesian trained detector fitted on 1000 further texts tests whether training beats the untrained Weighted Mean detector on intact text; and the full design is replicated on Pythia-410M (410M vs 124M parameters), with additional threshold-transfer checks at 50, 100, 300, and 500 tokens and alternate generation seeds. The design was powered (80%) only for effects of d ≥0.91 or larger, and stopwords were deliberately not excluded from corruption to maximize severity.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Provider comparison</h2>
+    <p>As of the snapshot date, four providers (Anthropic, OpenAI, Google, Meta) had signed the EU Code of Practice while xAI had not [21,74] — yet voluntary participation guarantees no independent detection tool, since no provider offers a detection API freely accessible to third parties. Google is closest to scientific verifiability with open-source code and a peer-reviewed publication [13]. Anthropic discloses watermarking on newer models but restricts detection to a private preview, and OpenAI confirmed no text watermark at the snapshot while stating intent to extend provenance signals to text [22]. Meta's position was unclear: a Code signatory with no technical disclosure. Disclosure-level compliance is therefore systematically decoupled from user-level verifiability.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Pilot findings</h2>
+    <p>On intact text the untrained detector separated the groups decisively, and calibration/test separation removed same-sample circularity: a threshold of 0.5363 selected on the n = 160 calibration set (AUC = 1.000) applied once to the held-out n = 160 test set gave 79 true positives, 0 false positives, 80 true negatives, and 1 false negative (sensitivity 98.75%, Wilson 95% CI [93.3%, 99.8%]; specificity 100%; ROC-AUC = 0.9997) — eight times the original sample (n = 320 vs 40). A Bayesian trained detector fitted on 1000 further texts overfit (training loss near zero, validation loss rising from 0.70 to 7.05) and did not outperform the untrained detector on intact text, consistent with the original SynthID paper's use of a training corpus orders of magnitude larger [13]. The identical design replicated on Pythia-410M gave TPR at FPR ≤1% = 97.5% with AUC = 1.000, showing the intact-text result is not a GPT-2 artifact.</p>
+    <p>Robustness is where the signal erodes: discrimination remained substantially above the unwatermarked reference through 30% corruption (AUC = 0.917) but approached it only under the 50% word-deletion stress test (AUC = 0.637, 95% CI [0.443, 0.813]), and a single T5-based model paraphrase check gave 22.5% detection at the fixed threshold. The pattern is directionally consistent with Kirchenbauer et al.'s finding that watermarks weaken partially, not completely, under paraphrasing [65]. Threshold transfer held across 50–200 token lengths and alternate seeds (TPR 97.5–100%, FPR 0%), though a full independent calibration per length and watermarking configuration remains future work.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Discussion</h2>
+    <p>The two components reinforce each other: at document level, apparent compliance (making a disclosure) diverges from genuine user-level verifiability (offering an independent detection path), and at empirical level, detectability with a known key is narrower than the third-party verification Article 50 implicitly promises. A worked verification-report example in the paper shows how a bare score without error rates, key access, and corruption caveats misleads a non-expert reader. On this basis the authors argue regulatory guidance should mandate standardized error-rate reporting (including TPR at fixed FPR) and independently auditable detection access, since disclosure without verifiability preserves the appearance of accountability while delivering none of its substance — a concern squarely within AI ethics work on transparency [1,15,36].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Limitations and conclusions</h2>
+    <p>Findings must be read at two levels: within the pilot setup the central detectability result was confirmed on held-out data, but beyond it everything — including inferences about commercial systems, production-scale trained detectors, other watermarking families, and realistic editing — remains preliminary. The empirical component used small open-source backbones (GPT-2 at 124M parameters, Pythia-410M replication) rather than commercial models; an untrained detector, with the small-scale trained Bayesian detector not outperforming it on intact text; a single watermarking scheme and fixed configuration; and largely synthetic corruption with only one model-based paraphrase condition tested. The trained-detector comparison was not repeated on Pythia-410M, and full independent calibration per text length and configuration remains future work.</p>
+    <p>The study concludes that disclosure-level regulatory compliance is not the same as genuine user-level verifiability: four major providers signed the Code of Practice [21,74] yet none offers a freely accessible third-party detection API, with Google closest to scientific verifiability through open code and peer review [13]. The pilot shows near-ceiling known-key detectability on intact text alongside sharp erosion under heavy editing — preliminary evidence that watermarking alone cannot carry Article 50's accountability goals [19,20]. Future work should test commercial systems, large-scale trained detectors, additional watermarking families, realistic paraphrase and translation attacks, and the usability of verification reports for non-expert readers.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references; original numbering preserved. Full list in the original paper (paper.pdf).</p>
+    <ol dir="ltr">
+      <li>[1] Etzioni, A.; Etzioni, O. Incorporating ethics into artificial intelligence. <i>J. Ethics</i> 2017, <i>21</i>, 403–418.</li>
+      <li>[12] Kirchenbauer, J.; et al. A watermark for large language models. <i>Proc. ICML (PMLR)</i> 2023, <i>202</i>, 17061–17084.</li>
+      <li>[13] Dathathri, S.; et al. Scalable watermarking for identifying large language model outputs. <i>Nature</i> 2024, <i>634</i>, 818–823.</li>
+      <li>[15] Jobin, A.; Ienca, M.; Vayena, E. The global landscape of AI ethics guidelines. <i>Nat. Mach. Intell.</i> 2019, <i>1</i>, 389–399.</li>
+      <li>[19] European Parliament and Council. Regulation (EU) 2024/1689 — Artificial Intelligence Act. <i>OJEU</i> 2024.</li>
+      <li>[20] Cloud Security Alliance. Research Note: EU AI Act Article 50 Transparency. 2026.</li>
+      <li>[21] European Commission. Code of Practice on Transparency of AI-Generated Content. 2026.</li>
+      <li>[22] Koopman, S. ChatGPT to Follow Claude’s Watermark Pledge. <i>City A.M.</i>, 12 August 2026.</li>
+      <li>[34] Binns, R. Fairness in machine learning: Lessons from political philosophy. <i>PMLR</i> 2018, <i>81</i>, 149–159.</li>
+      <li>[36] Grinbaum, A.; Adomaitis, L. The ethical need for watermarks in machine-generated language. <i>arXiv</i> 2022, arXiv:2209.03118.</li>
+      <li>[65] Kirchenbauer, J.; et al. On the reliability of watermarks for large language models. <i>Proc. ICML (PMLR)</i> 2024.</li>
+      <li>[67] Han, X.; et al. Robustness assessment and enhancement of text watermarking for Google’s SynthID. <i>Proc. IEEE TrustCom</i> 2025, 942–949.</li>
+      <li>[74] European Commission. Guidelines on Article 50 Transparency Obligations, C(2026) 5054 Final. 2026.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app162010335">10.3390/app162010335</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

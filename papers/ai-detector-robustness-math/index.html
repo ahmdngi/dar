@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تعزيز متانة كاشفات النصوص المولدة بالذكاء الاصطناعي: مسح شامل — DAR</title>
+<meta name="description" content="Enhancing the Robustness of AI-Generated Text Detectors: A Survey — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/ai-detector-robustness-math/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Enhancing the Robustness of AI-Generated Text Detectors: A Survey</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تعزيز متانة كاشفات النصوص المولدة بالذكاء الاصطناعي: مسح شامل</h2>
+
+  <div class="paper-meta">
+    <span>👤 Xin Liu, Yang Li, Kan Li</span>
+    <span>📄 Mathematics 2025, Vol. 13(13), 2145</span>
+    <span>🔗 <a href="https://doi.org/10.3390/math13132145">10.3390/math13132145</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>حظي كشف النصوص المولدة بالذكاء الاصطناعي (AIGT) باهتمام متزايد، وتحقق بعض الكاشفات دقة عالية في الإعدادات المعيارية. لكن تعقيد وتنوع نصوص AIGT وأساليب التحايل في التطبيقات الواقعية يطرحان تحديات جسيمة، ما يولّد طلباً متنامياً على كاشفات أكثر متانة. يقدم هذا المسح نظرة منهجية على أبحاث تعزيز متانة كاشفات AIGT، مصنفاً الأدبيات في ثلاثة محاور: متانة اضطراب النص، ومتانة خارج التوزيع (OOD)، ومتانة كشف النص الهجين البشري–الذكائي (AHT) [10]، [11].</p>
+    <p>لكل محور يلخص المسح أساليب تعزيز المتانة ويحللها، مضيفاً بعض الأساليب المستعارة من حقول أخرى، وينظم منهجياً مجموعات البيانات المعيارية وأساليب التقييم والمقاييس [96]. ثم تُقيَّم عبر التجارب متانة عدة كاشفات شائعة (الاحتمالية اللوغاريتمية والرتبة وLog-Rank والإنتروبيا وGLTR وBERT وRoBERTa وSCRN)، فتُظهر النتائج أن اضطرابات النص ونصوص OOD والنصوص الهجينة تؤثر كلها في الأداء، كاشفةً مجالاً واسعاً للتحسين. وهو — على حد علم المؤلفين — أول مراجعة متخصصة في متانة كشف AIGT.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>مع التطور السريع للنماذج اللغوية الكبيرة — من التوليد الموجه بالتغذية البشرية [1] إلى LLaMA [2] وOPT [3] — تحسنت جودة النصوص المولدة وتنوعت، ما صعّب كشفها. وتُظهر دراسات أن تعديلات طفيفة (اختصار كلمة [35] أو مسافة زائدة [39]) قد تُسقط الكاشفات، وأن إعادة الصياغة التكرارية تخفض معدلات الكشف كثيراً [42]. لذا لا تكفي الدقة العالية في الظروف المثالية، بل تلزم متانة في البيئات المعقدة ومواجهة أساليب التحايل.</p>
+    <p>ينظم هذا المسح متانة الكاشفات في ثلاثة أبعاد: اضطراب النص (المحلي الشامل والعميق كإعادة الصياغة)، وOOD (عبر النماذج والمجالات)، وكشف AHT (نصوص مختلطة التأليف بشري–ذكائي كما في MIXSET [29]). ويغطي لكل بُعد الأساليب التمثيلية، ثم البيانات والمعايير والمقاييس، ثم تجارب كمية، ثم اتجاهات مستقبلية.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">2. الأساسيات</h2>
+    <p>مهمة كشف AIGT ثنائية: تمييز النص البشري الخالص (HWT) عن المولد ذكائياً (AIGT). وتشمل الكاشفات الشائعة الإحصائية (الاحتمالية اللوغاريتمية [12]، وDetectGPT بانحناء الاحتمال [13]، وGLTR بالرتب الإحصائية [14]) والمدربة (BERT [15] وRoBERTa [16])، وتُستخدم GPT-2 [74] نموذجاً بديلاً شائعاً لاستخراج السمات. وتُعرَّف المتانة بأنها ثبات الأداء تحت اضطرابات النص وتحولات التوزيع والنصوص الهجينة.</p>
+    <p>وتتفرع المتانة إلى: متانة الاضطراب (محلي: إدخال وحذف وتبديل واستبدال على مستوى المحرف والكلمة قد ينشأ من أخطاء عفوية أو هجمات خصومية [40]؛ وشامل: إعادة صياغة تعيد تركيب الدلالة والنحو [41])، ومتانة OOD (عبر النماذج مع تجددها المستمر، وعبر المجالات بأنواعها وموضوعاتها)، ومتانة AHT حيث يطمس الخلط حدود سمات الذكاء والبشرية وتُحجب سمات الذكاء بأسلوب البشر.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">3. متانة اضطراب النص</h2>
+    <p>لخص المسح خمس عائلات لتعزيز متانة الاضطراب: المعتمدة على توسيع البيانات (مثل EDA بالاستبدال المرادف والإدخال والتبديل والحذف العشوائي [37]، وAEDA بإدخال علامات الترقيم [43]، وتحويل الأشجار النحوية مع الحفاظ على المقروئية [44])، والتدريب الخصومي (توليد عينات خصومية تستهدف نقاط ضعف الكاشف كما في RADAR [20])، وترشيح الضجيج، وتصحيح النص، وإعادة الصياغة النصية.</p>
+    <p>وتُظهر الأدلة أن أساليب الاضطراب المحلية — وإن بدت للبشر غير محسوسة — تُسقط الكاشفات بسهولة، وأن إعادة الصياغة الشاملة استراتيجية تهرب رئيسية [42]. لذا صُممت التقييمات اللاحقة باضطرابات Swap وDrop وKeyboard وAdd على مستوى المحرف الواحد والمحرفين وفق منهجية Pruthi وزملائه [40].</p>
+  </section>
+  <section>
+    <h2 dir="rtl">4. متانة خارج التوزيع</h2>
+    <p>تُعرَّف متانة OOD بقدرة الكاشف على التعميم والحفاظ على الأداء القوي على توزيعات تختلف عما واجهه في التدريب: عبر النماذج (ظهور نماذج جديدة وتحديث القائمة) وعبر المجالات (الأنواع والموضوعات). ويستعرض المسح أربع عائلات تمثيلية: التعلم التبايني (مثل ConDA بالتكيف التبايني للمجال [61]، وEAGLE لتعميم المجال [62]، وDeTeCtive متعدد المستويات [63]، والشبكات الثلاثية [19])، والإحصائية (الاحتمالية اللوغاريتمية [12]، وDetectGPT [13])، وسمات المجال الثابتة، والقائمة على التعليمات.</p>
+    <p>والمنطق الجامع أن السمات المرتبطة بالمجال أو النموذج المحدد تتقصف تحت التحول، بينما تصمد السمات الاحتمالية الأعمق (احتمالات التوليد لكل رمز) لأنها لا تعتمد على الرموز نفسها بل على احتمالاتها أثناء التوليد.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">5. متانة كشف النص الهجين</h2>
+    <p>صُممت معظم الكاشفات السابقة للتمييز بين AIGT الخالص وHWT الخالص [75]، [76]، أي نص أحادي الإسناد. لكن الواقع مليء بالنصوص الهجينة: بشري صقله ذكاء، أو مولّد حرره بشر، أو تناوب بشري–ذكائي. وأظهرت دراسة [29] صعوبة الكاشفات في تحديد AHT خاصة مع التعديلات الدقيقة وتباين الأساليب، إذ يُطمس الحد بين سمات الطرفين وتُحجب سمات الذكاء بالأسلوب البشري.</p>
+    <p>وصنّف المسح أساليب AHT الحالية في: التوسيم التسلسلي (نماذج محولات متعددة اللغات [77]، وشبكات التفافية مع انتباه ذاتي [78])، والتجزئة (كشف الحدود وتقسيم المقاطع [79]، [80]، [81])، ونِسب الذكاء–البشر (نسبة الصقل والمسافات التحريرية [36])، والتصنيف متعدد الفئات بإضافة أصناف هجينة [82]. ورغم المحاولات، ما يزال التقدم محدوداً والحاجة ملحة.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">6. التقييم: البيانات والأساليب والمقاييس</h2>
+    <p>نظّم المسح مجموعات البيانات المعيارية (من نماذج وموضوعات وأنواع مختلفة) التي تُستخدم للتدريب ولاختبار المتانة: بدمجها مع أساليب الاضطراب تُختبر متانة الاضطراب، وبالتدريب والاختبار عبر التوزيعات تُختبر متانة OOD، وبتوليد نصوص هجينة عبر الهندسة التعليمية تُختبر متانة AHT [96]. وتُعد HC3 (إجابات بشرية وChatGPT عبر مجالات مفتوحة ومالية وطبية وقانونية ونفسية [91]) وTruthfulQA لنصوص OOD وMIXSET للنصوص الهجينة من أمثلتها.</p>
+    <p>أما أساليب التقييم فجوهرها بناء عينات مضطربة: توسيع البيانات [37]، والاستراتيجية الجشعة (Swap وDrop وKeyboard وAdd على محرف ومحرفين [40]). وتشمل المقاييس التسعة الشائعة: الدقة والضبط والاستدعاء وF1 وAUROC وAUA وASR وQC وMR، حيث الدقة هي النسبة المباشرة للعينات المكتشفة صحيحاً، والضبط نسبة الصحيح ضمن المتوقع لصنف ما، وهكذا.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">7. التجارب</h2>
+    <p>قيّم الكاشفات الثمانية (الاحتمالية اللوغاريتمية، والرتبة [12]، وLog-Rank [13]، والإنتروبيا، وGLTR [14]، وBERT [15]، وRoBERTa [16]، وSCRN [35]) بنموذج بديل GPT-2 [74] للسمات الإحصائية وتدقيق BERT وRoBERTa من نسختيهما الأساسيتين. وللاضطراب دُرّب على 5000 عينة متوازنة من HC3 [91] واختُبر على 1500، باضطراب واحد لكل كلمة، ويُعد التنبؤ صحيحاً فقط بإصابة كل المتغيرات المضطربة للعينة. ولـOOD وAHT أُعيد استخدام النماذج نفسها مع 1500 عينة من TruthfulQA و1500 من MIXSET (كلها تُعامل كـAIGT).</p>
+    <p>أظهرت النتائج على النص المضطرب أن معظم الكاشفات دقيقة في الظروف العادية (عدا الرتبة)، لكنها تتدهور جميعاً بدرجات متفاوتة تحت الاضطراب، وأن كل أنواع الاضطراب مؤثرة. وحقق SCRN الأفضل تحت كل الاضطرابات لأنه يحاكي الاضطراب بإضافة ضجيج للتمثيلات الخفية ثم يتعلم سمات متينة بإزالة الضجيج، ومع ذلك يكفي تبديل حرفين (كـ«i» و«n» في «meaning») لقلب نتيجته! وعلى نصوص OOD انخفضت دقة معظم الكاشفات (حتى SCRN الذي ربما فرط في ملاءمة سمات المجال)، بينما حقق نموذج الاحتمالية اللوغاريتمية الأفضل (دقة 89.07% وF1 88.40%) لاعتماده على احتمالات التوليد لا الرموز المجالية. وعلى AHT كان الأداء بعيداً عن المرضي (بعض المقاييس دون 50%: استدعاء Log-Rank 19.47% وGLTR 18.87% مقابل 65.20% للرتبة و60.87% لـSCRN)، مؤكداً الحاجة الملحة لأساليب AHT.</p>
+    <p>وخلاصة التجارب: الاضطرابات ونصوص OOD والنصوص الهجينة تؤثر كلها في الكاشفات الحالية، وما يزال مجال التحسين واسعاً.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">8. الاتجاهات المستقبلية</h2>
+    <p>التدريب الخصومي بتوليد عينات تستهدف نقاط الضعف الخاصة بكل كاشف ومرحلة تدريب، مع استراتيجيات هجوم أكثر تنوعاً وكفاءة، وموازنة تحسين المتانة والحفاظ على أداء البيانات الأصلية، إذ قد يطمس الحدود بين AIGT وHWT. وهو فعال في الرؤية [112] ومعالجة اللغة [113] ويُطبق تدريجياً في كشف AIGT [20]. ثم سمات وتمثيلات متينة أقل حساسية للاضطراب والتحول المجالي، وقابلية تفسير النتائج (تبرير القرار، وكشف مواضع السمات الذكائية بصرياً، ومواءمة الثقة مع الأداء).</p>
+    <p>ويلزم أيضاً كاشفات متعددة الاستخدامات (نصوص قصيرة وهجينة وتقييم موثوقية المعلومات لا التصنيف وحده)، ومعايير تقييم فعالة تعكس الاستخدام البشري الحقيقي للنماذج مع بيئة ومنصة موحدة للمقارنة الأفقية، وتكيّف مجالي فعال بنماذج لغوية متجددة بعينات موسومة قليلة، وتعلم ضجيجي لمدونات ملوثة بعينات هجينة، وتأسيس رياضي يمنح ضمانات أداء قابلة للإثبات وقابلية تفسير أعلى.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">9. الخاتمة</h2>
+    <p>بذل الباحثون جهوداً كبيرة لتطوير كاشفات AIGT لضبط استخدامها، لكن جودة النصوص المولدة وتنوعها وتعقيدها يتزايد مع تطور النماذج، ما يفرض تحديات على الكشف. ويستعرض هذا المسح منهجياً أبحاث تعزيز المتانة: التعريف العام للمهمة، والأبعاد الثلاثة (اضطراب النص، وOOD، وكشف AHT) مع الأساليب والأعمال التمثيلية، ومجموعات البيانات وأساليب التقييم والمقاييس، وتجارب تُظهر مجالاً واسعاً للتحسين.</p>
+    <p>وأخيراً يقترح اتجاهات بحثية مستقبلية مستمدة من مشكلات الكاشفات الحالية ومتطلبات السيناريوهات الواقعية، مقدماً رؤى لبناء كاشفات أكثر متانة وفعالية، ليواصل التقدم في كشف AIGT دوراً متزايد الأهمية في تنظيم الاستخدام المسؤول للنصوص المولدة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>In recent years, AI-generated text (AIGT) detection has attracted increasing attention, and some detectors demonstrate high accuracy in benchmark settings. However, the complexity and diversity of AIGT and counter-detection methods in real-world applications present substantial challenges, creating growing demand for more robust detectors. This survey systematically reviews research on enhancing AIGT detector robustness, categorizing the literature into three key areas: text perturbation robustness, out-of-distribution (OOD) robustness, and AI–human hybrid text (AHT) detection robustness [10], [11].</p>
+    <p>For each area we summarize and analyze the corresponding robustness-enhancement methods, supplementing with approaches from other fields, and methodically organize benchmark datasets, robustness evaluation methods, and metrics [96]. Experiments then evaluate several commonly used detectors (log-likelihood, Rank, Log-Rank, Entropy, GLTR, BERT, RoBERTa, SCRN), showing that text perturbations, OOD text, and AHT all affect performance and revealing significant room for improvement. To the best of our knowledge, this is the first review focused specifically on AIGT detection robustness.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>With rapid LLM advances — from instruction tuning with human feedback [1] to LLaMA [2] and OPT [3] — generated text quality, diversity, and complexity keep rising, complicating detection. Studies show that tiny edits (a word abbreviation [35] or an extra space [39]) can defeat detectors, and that recursive paraphrasing sharply reduces detection rates [42]. High accuracy under ideal conditions is therefore not enough; robustness is needed in complex environments and against bypass attacks.</p>
+    <p>This survey organizes detector robustness into three dimensions: text perturbation (local, plus global paraphrase), OOD (cross-LLM and cross-domain), and AHT detection (human–AI co-authored text as in MIXSET [29]). For each dimension it covers representative methods, then data, benchmarks, and metrics, then quantitative experiments, then future directions.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">2. Preliminaries</h2>
+    <p>The AIGT detection task is binary: distinguishing pure human-written text (HWT) from AI-generated text (AIGT). Common detectors include statistical ones (log-likelihood [12], DetectGPT via probability curvature [13], GLTR via statistical ranks [14]) and trained ones (BERT [15], RoBERTa [16]), with GPT-2 [74] widely adopted as the surrogate model for feature extraction. Robustness is defined as stable performance under text perturbations, distribution shifts, and hybrid texts.</p>
+    <p>Robustness branches into: perturbation robustness (local: character/word insertions, deletions, swaps, substitutions arising from typos or adversarial attacks [40]; global: paraphrase recombining semantics and syntax [41]); OOD robustness (cross-LLM as models emerge and update, cross-domain over genres and topics); and AHT robustness, where mixing blurs the AIGT/HWT boundary and human style overshadows AI features.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">3. Text Perturbation Robustness</h2>
+    <p>The survey groups perturbation-robustness enhancement into five families: data-augmentation-based (e.g., EDA with synonym replacement, random insertion/swap/deletion [37]; AEDA inserting punctuation [43]; syntactic-tree transforms preserving readability [44]), adversarial-training-based (adversarial samples targeting each detector’s weaknesses, as in RADAR [20]), noise-filtering-based, text-correction-based, and text-paraphrase-based methods.</p>
+    <p>Evidence shows local perturbations — imperceptible to humans — easily mislead detectors, and wholesale paraphrase is a key evasion strategy [42]. The later evaluations therefore use Swap, Drop, Keyboard, and Add character operations at 1-char and 2-char levels following Pruthi et al. [40].</p>
+  </section>
+  <section>
+    <h2 dir="ltr">4. OOD Robustness</h2>
+    <p>OOD robustness is the detector’s ability to generalize and stay strong on distributions unseen in training: cross-LLM (new and updated models) and cross-domain (genres, topics). The survey reviews four representative families: contrastive-learning-based (ConDA contrastive domain adaptation [61], EAGLE domain generalization [62], multi-level DeTeCtive [63], triplet networks [19]), statistical-based (log-likelihood [12], DetectGPT [13]), domain-invariant-feature-based, and prompt-based methods.</p>
+    <p>The unifying logic is that model- or domain-specific features collapse under shift, while deeper probabilistic features (per-token generation probabilities) survive because they depend on generation likelihoods rather than the domain tokens themselves.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">5. AHT Detection Robustness</h2>
+    <p>Most prior detectors were built to separate pure AIGT from pure HWT [75], [76] — single-attribution text. But reality is full of hybrid text: human text polished by AI, AI text edited by humans, or alternating human–AI authorship. Ref. [29] showed detectors struggle with AHT, especially subtle modifications and style variation, as the boundary between feature sets blurs and human style masks AI traits.</p>
+    <p>The survey categorizes current AHT methods into: sequence-labeling-based (multilingual transformers [77], convolutional networks with self-attention [78]), segmentation-based (segment/boundary detection and prototypes [79], [80], [81]), AI–human-text-ratio-based (Polish Ratio, edit distances [36]), and multiclass-classification-based methods adding hybrid classes [82]. Despite attempts, progress remains limited and the need is urgent.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">6. Evaluation: Datasets, Methods, and Metrics</h2>
+    <p>The survey organizes benchmark datasets (from different LLMs, topics, and genres) used both to train detectors and to test robustness: combined with perturbation techniques they test perturbation robustness; split across distributions they test OOD robustness; and used as raw material with prompt engineering they generate AHT for hybrid testing [96]. Examples include HC3 (human vs. ChatGPT answers across open-domain, financial, medical, legal, and psychological areas [91]), TruthfulQA for OOD text, and MIXSET for hybrid text.</p>
+    <p>Evaluation methods center on constructing perturbed samples: data augmentation [37] and the greedy strategy (Swap, Drop, Keyboard, Add at 1- and 2-character levels [40]). Nine common metrics are summarized: accuracy, precision, recall, F1, AUROC, AUA, ASR, QC, and MR — accuracy being the direct share of correctly detected samples, precision the share of correct predictions within a predicted class, and so on.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">7. Experiments</h2>
+    <p>Eight detectors were evaluated (log-likelihood, Rank [12], Log-Rank [13], Entropy, GLTR [14], BERT [15], RoBERTa [16], SCRN [35]) with GPT-2 [74] as surrogate for statistical features and fine-tuned base BERT/RoBERTa. For perturbation, models trained on 5000 balanced HC3 samples [91] and tested on 1500 with one perturbation per word, counting a prediction correct only if all perturbed variants of a sample are correct. For OOD and AHT the same trained models were reused with 1500 TruthfulQA and 1500 MIXSET samples respectively (all AHT treated as AIGT).</p>
+    <p>Perturbed-text results show most detectors accurate under normal conditions (except Rank) yet all degrading under perturbation, with every perturbation type impactful. SCRN performed best under all disturbances because it simulates perturbations by adding noise to token-level hidden representations and learning robust features through denoising — yet swapping just two letters (the “i” and “n” in “meaning”) flips its verdict. On OOD text most detectors’ accuracy dropped (even SCRN, possibly overfit to domain features), while the log-likelihood model did best (89.07% accuracy, 88.40% F1) by relying on generation probabilities rather than domain tokens. On AHT, performance was far from satisfactory (some metrics below 50%: Log-Rank recall 19.47%, GLTR 18.87%, vs. 65.20% for Rank and 60.87% for SCRN), confirming the urgent need for AHT methods.</p>
+    <p>The takeaway: perturbations, OOD text, and hybrid text all affect current detectors, leaving significant room for robustness improvement.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">8. Future Directions</h2>
+    <p>Adversarial training generating samples that target each detector’s specific weaknesses at each training stage, with more diverse and efficient attack strategies, balancing robustness gains against original-data performance since it may blur the AIGT/HWT boundary. It proved effective in vision [112] and NLP [113] and is gradually being applied to AIGT detection [20]. Then robust features and representations less sensitive to perturbation and domain shift, and result interpretability (decision rationale, visualizing AI-characteristic spans, aligning confidence with performance).</p>
+    <p>Also needed are versatile detectors (short and hybrid texts, assessing information veracity beyond classification), effective evaluation benchmarks reflecting real human LLM use with a unified environment and leaderboard for horizontal comparison, efficient domain adaptation to ever-new LLMs from few labeled samples, noise learning for corpora contaminated with hybrid samples, and mathematical foundations offering provable performance guarantees and higher interpretability.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">9. Conclusions</h2>
+    <p>Researchers have invested heavily in AIGT detectors to regulate AIGT use, but generated-text quality, diversity, and complexity keep growing with model advances, challenging detection. This survey systematically reviews robustness-enhancement research: the general task definition, the three dimensions (text perturbation, OOD, AHT detection) with methods and representative works, benchmark datasets, evaluation methods and metrics, and experiments revealing wide room for improvement.</p>
+    <p>It finally proposes future research directions grounded in current detector issues and real-scenario requirements, offering insights for building more robust and effective AIGT detectors, as advances in AIGT detection stand to play an increasingly crucial role in regulating responsible generated-text use.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed selection of 17 references (original numbers preserved). See the original paper for the full list of 113 references: https://doi.org/10.3390/math13132145</p>
+    <ol dir="ltr">
+      <li>[10] Wu, J.; et al. A Survey on LLM-generated Text Detection: Necessity, Methods, and Future Directions (see original paper for full citation).</li>
+      <li>[12] Solaiman, I.; et al. Release Strategies and the Social Impacts of Language Models. arXiv 2019, arXiv:1908.09203.</li>
+      <li>[13] Mitchell, E.; Lee, Y.; Khazatsky, A.; Manning, C.D.; Finn, C. DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature. In Proc. ICML 2023.</li>
+      <li>[14] Gehrmann, S.; Strobelt, H.; Rush, A.M. GLTR: Statistical Detection and Visualization of Generated Text. In Proc. ACL 2019.</li>
+      <li>[15] Devlin, J.; Chang, M.; Lee, K.; Toutanova, K. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. In Proc. NAACL 2019.</li>
+      <li>[16] Liu, Y.; et al. RoBERTa: A Robustly Optimized BERT Pretraining Approach. arXiv 2019, arXiv:1907.11692.</li>
+      <li>[20] Hu, X.; Chen, P.; Ho, T. RADAR: Robust AI-Text Detection via Adversarial Learning. In Advances in Neural Information Processing Systems 2023.</li>
+      <li>[35] Huang, G.; et al. Are AI-Generated Text Detectors Robust to Adversarial Perturbations? (SCRN) (see original paper for full citation).</li>
+      <li>[36] Yang, L.; Jiang, F.; Li, H. Is ChatGPT Involved in Texts? Measure the Polish Ratio to Detect ChatGPT-Generated Text. arXiv 2023, arXiv:2304.07604.</li>
+      <li>[40] Pruthi, D.; Dhingra, B.; Lipton, Z.C. Combating Adversarial Misspellings with Robust Word Recognition. In Proc. ACL 2019.</li>
+      <li>[61] Bhattacharjee, A.; Kumarage, T.; Moraffah, R.; Liu, H. ConDA: Contrastive Domain Adaptation for AI-generated Text Detection (see original paper for full citation).</li>
+      <li>[74] Radford, A.; et al. Language Models are Unsupervised Multitask Learners (GPT-2). OpenAI Blog 2019.</li>
+      <li>[79] Zeng, Z.; et al. Detecting AI-Generated Sentences in Human-AI Collaborative Writing (see original paper for full citation).</li>
+      <li>[91] Guo, B.; et al. How Close is ChatGPT to Human Experts? Comparison Corpus (HC3) (see original paper for full citation).</li>
+      <li>[96] He, X.; Shen, X.; Chen, Z.; Backes, M.; Zhang, Y. MGTBench: Benchmarking Machine-Generated Text Detection. In Proc. ACL 2024.</li>
+      <li>[112] Adversarial training for robustness in computer vision (see original paper for full citation).</li>
+      <li>[113] Adversarial training for robustness in NLP (see original paper for full citation).</li>
+    </ol>
+  </section>
+</div>
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/math13132145">10.3390/math13132145</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

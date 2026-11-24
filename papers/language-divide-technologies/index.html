@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ردم الفجوة اللغوية للذكاء الاصطناعي: مراجعة منهجية للترجمة الآلية العصبية والنماذج اللغوية الكبيرة في الترجمة منخفضة الموارد — DAR</title>
+<meta name="description" content="Bridging the AI Language Divide: A Systematic Review of NMT and LLMs in Low-Resource Translation — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/language-divide-technologies/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Bridging the AI Language Divide: A Systematic Review of NMT and LLMs in Low-Resource Translation</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">ردم الفجوة اللغوية للذكاء الاصطناعي: مراجعة منهجية للترجمة الآلية العصبية والنماذج اللغوية الكبيرة في الترجمة منخفضة الموارد</h2>
+
+  <div class="paper-meta">
+    <span>👤 Sweeta Agrawal, Abayomi O. Agbeyangi</span>
+    <span>📄 Technologies, 2026</span>
+    <span>🔗 <a href="https://doi.org/10.3390/technologies14080518">10.3390/technologies14080518</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>اتسعت تقنيات اللغة المدفوعة بالذكاء الاصطناعي الفجوة بين اللغات عالية الموارد واللغات المهمشة: فالترجمة الآلية العصبية [19] والنماذج اللغوية الكبيرة [5] تقترب من التكافؤ البشري للانجليزية والصينية والفرنسية، بينما تبقى اللغات منخفضة الموارد ناقصة التمثيل لشح البيانات والمعايير والتقييم [1،2،5]. ووفق PRISMA [18]، تختار هذه المراجعة المنهجية 63 دراسة من 1696 سجلًا في Scopus وWeb of Science وGoogle Scholar تغطي تقدم الترجمة العصبية والنماذج اللغوية بين 2017 و2025. وتبرز خمس منهجيات مهيمنة لندرة البيانات — تعزيز البيانات والترجمة العكسية والتعلم الناقل والتدريب المسبق والضبط الدقيق الموفر للمعاﻟمات — تُدمج باطراد ضمن خطوط عالية الأداء. وتتفوق ترجمة المحولات العصبية في اعدادات البيانات المتوسطة بينما تُظهر النماذج اللغوية قدرات واعدة صفرية وقليلة الأمثلة عند الطرف الأدنى، وتثبت خطوط NMT–LLM الهجينة فعالية خاصة. وتشمل التحديات المستمرة غياب المعايير الموحدة والاعتماد المفرط على BLEU وندرة التقييم البشري ونقص التمثيل اللغوي والمخاوف الأخلاقية حول التحيز والتمثيل الثقافي ومشاركة المجتمع.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>حمل التقدم في الذكاء الاصطناعي ومعالجة اللغة الطبيعية الترجمة الآلية من الأنظمة الإحصائية والمتكررة الى الترجمة العصبية القائمة على المحولات [19] والترجمة المدفوعة بالنماذج اللغوية [1–3]، مع جودة قريبة من البشرية لعدة أزواج عالية الموارد. والمكاسب موزعة بتفاوت: فاللغات منخفضة الموارد تفتقر المدونات المتوازية التي تفترضها البنى المتعطشة للبيانات، وفجوة الجودة الناتجة تستبعد متحدثيها من منافع تقنية اللغة. ترسم هذه المراجعة كيف يعوض المجال — وأين ما زال التعويض يفشل — عبر أبعاد البيانات والنمذجة والتقييم والأخلاق.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. المنهجية</h2>
+    <p>تتبع المراجعة بيان PRISMA 2020 للمراجعات المنهجية [18]. وغطت عمليات البحث Scopus وWeb of Science وGoogle Scholar لدراسات الترجمة منخفضة الموارد بالترجمة العصبية والنماذج اللغوية بين 2017–2025؛ ودخل الفرز 1696 سجلًا ونجت منه 63 دراسة معايير الاشتمال والاستبعاد واختيار النص الكامل واستخلاص البيانات وتقييم الجودة. ويوثق بيان الشفافية البروتوكول، ويرسم الملحق أ (الجدول A1) كل دراسة مشمولة عبر الأبعاد التحليلية للمراجعة. والتقط الاستخلاص التقنيات والبنى والتغطية اللغوية وأحجام المدونات والمقاييس والقيود المبلغ عنها، فيستند التوليف الى قاعدة قابلة للتدقيق على مستوى البند بدل عد الأصوات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. المشهد البحثي</h2>
+    <p>يبلغ متوسط المؤلفين للدراسات الـ63 نحو 6.75 مؤلفين مع تعاون دولي بنسبة 4.76% فقط، وتهيمن أوراق المؤتمرات على المدونة — أدبيات سريعة تقودها المؤتمرات. ويتتبع تحليل التزامن الكلمي والتطور الموضوعي التحول الزمني من بنى العبارات والشبكات المتكررة الى أنظمة المحولات والنماذج اللغوية طرفًا بطرف، مع استمرار خيطي منهجيات ندرة البيانات ونقاشات مقاييس التقييم. ويتركز الأثر الاستشهادي على مجموعة صغيرة من المراسي المنهجية: آلية الانتباه [19] ومسوح الترجمة منخفضة الموارد [5] والتدريب المسبق متعدد اللغات بالمحاذاة [13].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. تقنيات ندرة البيانات</h2>
+    <p>تهيمن خمس منهجيات، وأفضل الخطوط تجمع بينها. فتعزيز البيانات يحقن مواد شبه متوازية أو مرشحة في المدونات النحيفة [1،4،8]، بما في ذلك حقن النصوص الزائفة والترشيح المسبق [1] والتعزيز الموجه نحو التنوع [8]. والترجمة العكسية تولد جوانب المصدر من نصوص أحادية الهدف، مع مقارنات المنهجيات [15] ومتغيرات معززة بالجودة وتلميحات النقحرة [23] ودراسات مكرسة للموارد المنخفضة جدًا مثل بريبري [25] والصينية–الفيتنامية [9]. ويعيد التعلم الناقل استخدام اللغات الأم عالية الموارد عبر مخططات متعددة الجولات [11] والضبط الدقيق الموحد للمحولات المدربة مسبقًا [4]. ويُحسن التدريب المسبق بنيويًا لنظام الموارد المنخفضة عبر أهداف المحاذاة [13] والتبعيات النحوية [26]، بينما يمكن للتحسين الدقيق للمعالمات الفائقة وحده أن يضيف 7.3 درجات BLEU فوق الافتراضيات [29] — مكسب يتجاوز كثيرًا من مكاسب التعزيز المبلغ عنها. ويكيف الضبط الدقيق الموفر للمعالمات النماذج متعددة اللغات بتكلفة زهيدة عبر LoRA [32] وملاعب التكامل المدمجة [12] وLoRA الخاصة باللغة للنماذج المتخصصة [41،42]. وتتفاوت الفعالية مع الخصائص اللغوية والتعقيد الصرفي وموارد الأساس بدل الانتقال الموحد.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. البنى والنموذج الهجين</h2>
+    <p>لا يفوز نموذج واحد في كل مكان. فالترجمة الإحصائية والقائمة على العبارات تبقى ذات صلة عند أصغر المقاييس (دون ~5 آلاف زوج، BLEU 10–30) لأنها لا تحتاج تحسين التدرج عبر فضاءات معالمات شاسعة. وتغطي الترجمة المتكررة الأنظمة منخفضة جدًا (5–20 ألفًا)، وتتفوق ترجمة المحولات في اعدادات البيانات المتوسطة، وتسهم النماذج اللغوية بقدرات صفرية وقليلة الأمثلة حيث تغيب البيانات المتوازية فعليًا — بما في ذلك التكيف المعزز بالتفضيل والموجه بالمكافأة للغات كلغات الهند [24]. ويدمج النموذج الهجين NMT–LLM النطاق السياقي للنماذج اللغوية مع الاشراف الدقيق لبنى NMT، وتحدده المراجعة نهجًا فعالًا بشكل خاص عبر المدونة، بما يتسق مع دراسات الترجمة منخفضة الموارد بالنماذج اللغوية [52،63] وخطوط التعزيز المتنوعة [8].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الفجوات والمناقشة</h2>
+    <p>تبني المناقشة ثلاثة عجوز. عجز التوحيد والصرامة: فبدون معايير مشتركة قد تعكس المكاسب الظاهرة التهيئة لا المنهج، إذ تحرك المعالمات المضبوطة وحدها النتائج بما يصل الى 7.3 درجات BLEU [29]. وعجز المقاييس وعنق التقييم البشري: فتهيمن مقاييس التداخل من نمط BLEU رغم ضعف ارتباطها بالكفاية للغات غنية صرفيًا، بينما يبقى التحقق البشري نادرًا. والتفاوتات الجغرافية والنقاط الأخلاقية العمياء: فالتغطية تميل نحو أزواج قليلة مدروسة (أكان–الانجليزية [4]، ماكاسار–الاندونيسية [2]، الصينية–الفيتنامية [9]) مع غياب عائلات لغوية كاملة، ويبرز التحيز والتمثيل الثقافي ومشاركة المجتمع همومًا محورية متزايدة لكنها ناقصة المعالجة. وتُظهر الملامح اللغوية والموردية والتقييمية بالتالي مجالًا يقيس نفسه بأدوات أخشن من أصعب حالاته.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. التوصيات والاستنتاجات</h2>
+    <p>توصي المراجعة بتوحيد معايير الموارد المنخفضة بتهيئات ثابتة، واقران المقاييس الآلية بالتقييم البشري، وتوسيع التغطية النمطية مع مشاركة المجتمع، واعتبار المراجعة الأخلاقية مدخل تصميم لا فكرة لاحقة. وقيودها الذاتية — تغطية ثلاث قواعد بيانات وانحياز اللغة الانجليزية وتغاير يحول دون التحليل التلوي — تحد ما يمكن الادعاء به مشتركًا عن الدراسات الـ63. والخلاصة برنامجية: فمنهجيات ندرة البيانات تنجح أفضل مجتمعة، وخطوط NMT–LLM الهجينة هي النموذج الواعد، وتقنية اللغة الشاملة والعادلة تتطلب أدوات قياس وشراكات مجتمعية بقدر التنوع اللغوي الذي تخدمه.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>AI-driven language technologies have widened the gap between high-resource and marginalized languages: neural machine translation (NMT) [19] and large language models [5] approach human parity for English, Chinese, and French, while low-resource languages remain underrepresented for lack of data, benchmarks, and evaluation [1,2,5]. Following PRISMA [18], this systematic review selects 63 studies from 1696 Scopus, Web of Science, and Google Scholar records covering NMT and LLM advances between 2017 and 2025. Five dominant data-scarcity methodologies emerge — data augmentation, back-translation, transfer learning, pre-training, and parameter-efficient fine-tuning — increasingly combined in high-performing pipelines. Transformer NMT excels in moderate-data settings while LLMs show promising zero- and few-shot ability at the extreme low end, and hybrid NMT–LLM pipelines prove particularly effective. Persistent challenges include missing standardized benchmarks, over-reliance on BLEU, scarce human evaluation, linguistic underrepresentation, and ethical concerns around bias, cultural representation, and community engagement.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Progress in AI and NLP has carried machine translation from statistical and recurrent systems to Transformer-based NMT [19] and LLM-driven translation [1–3], with near-human quality on several high-resource pairs. The gains are unevenly distributed: low-resource and under-resourced languages lack the parallel corpora that data-hungry architectures assume, and the resulting quality gap excludes their speakers from the benefits of language technology. This review maps how the field compensates — and where compensation still fails — across data, modeling, evaluation, and ethics dimensions.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Methodology</h2>
+    <p>The review follows the PRISMA 2020 statement for systematic reviews [18]. Searches covered Scopus, Web of Science, and Google Scholar for 2017–2025 NMT and LLM low-resource translation studies; 1696 records entered screening and 63 studies survived inclusion and exclusion criteria, full-text selection, data extraction, and quality assessment. A transparency statement documents the protocol, and Appendix A (Table A1) maps every included study across the review's analytical dimensions. Extraction captured techniques, architectures, language coverage, corpus sizes, metrics, and reported limitations, so the synthesis rests on an auditable item-level base rather than vote-counting.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Research landscape</h2>
+    <p>The 63 studies average 6.75 co-authors with only 4.76% international collaboration, and proceedings papers dominate the corpus — a fast-moving, conference-driven literature. Keyword co-occurrence and thematic-evolution analysis trace the chronological shift from phrase-based and recurrent architectures to Transformer systems and end-to-end LLMs, with data-scarcity methods and evaluation-metric debates as persistent threads. Citation impact concentrates on a small set of methodological anchors: the attention mechanism [19], low-resource NMT surveys [5], and multilingual pre-training by alignment [13].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Techniques for data scarcity</h2>
+    <p>Five methodologies dominate, and the best pipelines combine them. Data augmentation injects pseudo-parallel or filtered material into thin corpora [1,4,8], including pseudotext injection and advance filtering [1] and diversity-oriented augmentation [8]. Back-translation synthesizes source sides from target monolingual text, with method comparisons [15], quality- and transliteration-hinted variants [23], and dedicated low-resource studies such as Bribri [25] and Chinese–Vietnamese [9]. Transfer learning reuses high-resource parents through multi-round schemes [11] and federated fine-tuning of pretrained transformers [4]. Pre-training is structurally optimized for the low-resource regime via alignment objectives [13] and syntactic dependencies [26], while careful hyperparameter optimization alone can add 7.3 BLEU over defaults [29] — a gain exceeding many augmentation reports. Parameter-efficient fine-tuning adapts multilingual models cheaply through LoRA [32], integrated playgrounds [12], and language-specific LoRA for specialized models [41,42]. Effectiveness varies with linguistic characteristics, morphological complexity, and baseline resources rather than transferring uniformly.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Architectures and the hybrid paradigm</h2>
+    <p>No single paradigm wins everywhere. Statistical and phrase-based MT remains relevant at the smallest scales (below ~5K pairs, BLEU 10–30) because it needs no gradient optimization over vast parameter spaces. Recurrent NMT covers very-low regimes (5K–20K), Transformer-based NMT excels in moderate-data settings, and LLMs contribute zero- and few-shot capability where parallel data is effectively absent — including preference-optimized and reward-guided adaptation for languages such as those of India [24]. The hybrid NMT–LLM paradigm merges the contextual scale of LLMs with the precise supervision of NMT architectures, and the review identifies it as a particularly effective approach across the corpus, consistent with low-resource LLM translation studies [52,63] and diverse augmentation pipelines [8].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Gaps and discussion</h2>
+    <p>Three deficits structure the discussion. The standardization and rigor deficit: without shared benchmarks, apparent gains may reflect configuration rather than method, since tuned hyperparameters alone move results by up to 7.3 BLEU [29]. Metric inadequacy and the human-evaluation bottleneck: BLEU-style overlap metrics dominate although they correlate poorly with adequacy for morphologically rich languages, while human validation remains rare. Geographic inequities and ethical blind spots: coverage skews toward a few studied pairs (Akan-English [4], Makassar-Indonesian [2], Chinese–Vietnamese [9]) with whole families unrepresented, and bias, cultural representation, and community engagement surface as increasingly central yet under-addressed concerns. Linguistic, resource, and evaluation profiles therefore show a field that measures itself with instruments too coarse for its hardest cases.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Recommendations and conclusions</h2>
+    <p>The review recommends standardizing low-resource benchmarks with fixed configurations, pairing automatic metrics with human evaluation, expanding typological coverage with community engagement, and treating ethical review as a design input rather than an afterthought. Its own limitations — three-database coverage, English-language bias, and heterogeneity that precludes meta-analysis — bound what the 63 studies can jointly claim. The conclusion is programmatic: data-scarcity methods work best in combination, hybrid NMT–LLM pipelines are the most promising paradigm, and inclusive, equitable language technology requires measurement instruments and community partnerships equal to the linguistic diversity they serve.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references; original numbering preserved. Full list in the original paper (paper.pdf).</p>
+    <ol dir="ltr">
+      <li>[1] Adjeisah, M.; et al. Pseudotext injection and advance filtering of low-resource corpus for NMT. <i>Comput. Intell. Neurosci.</i> 2021, <i>2021</i>, 6682385.</li>
+      <li>[2] Afra, D.I.N.; et al. NMT for low-resource languages: Makassar-Indonesian. <i>Proc. ICIC3INA</i> 2024, 66–71.</li>
+      <li>[4] Agyei, E.; et al. Dynamic aggregation and augmentation for low-resource MT using federated fine-tuning. <i>Appl. Sci.</i> 2025, <i>15</i>, 4494.</li>
+      <li>[5] Ranathunga, S.; et al. Neural machine translation for low-resource languages: A survey. <i>ACM Comput. Surv.</i> 2023, <i>55</i>, 229.</li>
+      <li>[8] Li, Y.; et al. A diverse data augmentation strategy for low-resource NMT. <i>Information</i> 2020, <i>11</i>, 255.</li>
+      <li>[11] Maimaiti, M.; et al. Multi-round transfer learning for low-resource NMT. <i>ACM TALIP</i> 2019, <i>18</i>, 1–26.</li>
+      <li>[12] Lankford, S.; et al. adaptMLLM: Fine-tuning multilingual LLMs on low-resource languages. <i>Information</i> 2023, <i>14</i>, 638.</li>
+      <li>[13] Lin, Z.; et al. Pre-training multilingual NMT by leveraging alignment information. <i>Proc. EMNLP</i> 2020, 2649–2663.</li>
+      <li>[15] Xu, N.; et al. Analysis of back-translation methods for low-resource NMT. <i>LNCS</i> 2019, <i>11839</i>, 466–475.</li>
+      <li>[18] Page, M.J.; et al. The PRISMA 2020 statement. <i>BMJ</i> 2021, <i>372</i>, n71.</li>
+      <li>[19] Vaswani, A.; et al. Attention Is All You Need. <i>Proc. NeurIPS</i> 2017, 6000–6010.</li>
+      <li>[23] Ramnath, S.; et al. HintedBT: Augmenting back-translation with quality and transliteration hints. <i>Proc. EMNLP</i> 2021.</li>
+      <li>[24] Nair, A.R.; et al. Enhancing low-resource Indian language MT using LLMs with preference optimization. 2024.</li>
+      <li>[25] Feldman, I.; Coto-Solano, R. NMT with back-translation for the extremely low-resource Bribri. <i>Proc. COLING</i> 2025.</li>
+      <li>[26] Deng, D.; Wang, L. Improving low-resource MT using syntactic dependencies. <i>Proc. WSAI</i> 2024.</li>
+      <li>[29] Araabi, A.; Monz, C. Optimizing transformer for low-resource NMT. <i>Proc. COLING</i> 2020, 3429–3435.</li>
+      <li>[32] Hu, E.J.; et al. LoRA: Low-rank adaptation of large language models. <i>Proc. ICLR</i> 2022.</li>
+      <li>[41] Sel, I.; Hanbay, D. Efficient adaptation: Enhancing multilingual models for low-resource translation. <i>Mathematics</i> 2024, <i>12</i>, 3149.</li>
+      <li>[42] Liang, X.; et al. Language-specific fine-tuning with LoRA for specialized LLMs. <i>IEEE Access</i> 2024.</li>
+      <li>[52] Iyer, V.; et al. Exploring very low-resource translation with LLMs: Edinburgh's AmericasNLP 2024 submission. <i>Proc. AmericasNLP</i> 2024, 209–220.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/technologies14080518">10.3390/technologies14080518</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

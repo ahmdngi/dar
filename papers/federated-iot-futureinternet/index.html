@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التعلم الفيدرالي ودوره في الحفاظ على خصوصية أجهزة إنترنت الأشياء — DAR</title>
+<meta name="description" content="Federated Learning and Its Role in the Privacy Preservation of IoT Devices — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/federated-iot-futureinternet/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Federated Learning and Its Role in the Privacy Preservation of IoT Devices</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التعلم الفيدرالي ودوره في الحفاظ على خصوصية أجهزة إنترنت الأشياء</h2>
+
+  <div class="paper-meta">
+    <span>👤 Tanweer Alam, Ruchi Gupta</span>
+    <span>📄 Future Internet, 2022 · Vol. 14(9), 246</span>
+    <span>🔗 <a href="https://doi.org/10.3390/fi14090246">10.3390/fi14090246</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>التعلم الفيدرالي (FL)، الذي قدمه ماكمahan وآخرون عام 2016 [1]، يدرّب نموذجًا عامًا مشتركًا من بيانات لامركزية: تنزّل العملاء النموذج الحالي وتدرّب محليًا، ويدمج الخادم التحديثات — عادة بالمتوسط الموزون [2] — في نموذج واحد محسّن. وبما أن البيانات الخام لا تغادر الجهاز أبدًا، يعد FL بتعلم تعاوني مع الحفاظ على الخصوصية، كما صيغ في التوليفات المبكرة للمجال [6].</p>
+    <p>تتتبع هذه المسح FL من قواعد البيانات الفيدرالية إلى نشرات إنترنت الأشياء الحديثة، مستعرضة كيفية هندسته [11] ومسحه عبر الأنظمة والرؤى [20–22، 26] وتأمينه ضد التهديدات [13] وتوسيعه بالبلوك تشين والحوسبة الطرفية. وترسم خرائط للطرق (الاتصال غير المتزامن واستشعار الأجهزة وتحمل الأعطال وعدم التجانس) وأدوار الخصوصية وأسطح الهجوم والتحديات المفتوحة.</p>
+    <p>يخلص المؤلفون إلى أن FL مقاربة خصوصية عملية عبر المنصات يستخدمها الباحثون والمؤسسات فعلًا، مع التحذير من أن FL المعياري وحده لا يضمن الخصوصية: فالتحديثات المتبادلة أثناء التدريب قد تسرّب معلومات سرية لأطراف ثالثة أو خدمات مركزية، مما يحفز المتغيرات القابلة للتحقق [3] والقائمة على البلوك تشين [4] والخاصة تفاضليًا [108].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة وأساسيات التعلم الفيدرالي</h2>
+    <p>قُدّم FL عام 2016 على يد بريندان ماكمahan وزملائه [1]: تُستخدم البيانات المحلية لتدريب النموذج العام المنزّل على الجهاز، وتُدمج النماذج المدرَّبة محليًا بالمتوسط الموزون في نموذج فيدرالي واحد يُعاد توزيعه على الأجهزة [2]. وهكذا تبدأ خطوط الأداء العالي من عينات صغيرة على الجهاز بدل الجمع المركزي [6]، ويمكن لفاعلين متعددين بناء نماذج متينة دون تجميع التوزيعات الخام — معالجةً معًا أمن البيانات وخصوصيتها والوصول إليها [7].</p>
+    <p>يتيح FL لتعلم الآلة استخراج القيمة من مجموعات بيانات موزعة على نطاقات وتكرارات متعددة [4]، بينما تعمل الأجهزة كأصول رقمية على خادم آمن مطبقة النموذج المشترك على بياناتها [5]. ويرسم Google Trends صعود FL من 2016 إلى 2022، مؤرخًا عبوره من بروتوكول نخبوي إلى نموذج سائد.</p>
+    <p>والمعضلة هيكلية: فالعملاء المشاركون غالبًا أجهزة إنترنت أشياء تعمل بالبطارية على روابط غير موثوقة، خلاف عقد مراكز البيانات عالية الحوسبة [10]، وتختلف مجموعات البيانات كثيرًا في الحجم والتوزيع [9]. ومن ثم تتمثل مساهمات الورقة في سرد تاريخي وتصنيف للطرق ورسم لتهديدات الخصوصية وأجندة بحثية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة</h2>
+    <p>تضع المسح نفسَها بين مسوح FL للطرف المتنقل [7] ومراجعات هندسة أنظمة FL [11] ومسوح الأمن والخصوصية [13]. وتغطي معالجات أوسع رحلة FL من التعلم المركزي إلى الموقعي الموزع [114]، وتخصيص المهام والموارد في البيئات اللاسلكية [104]، والمنهجة القائمة على المعرفة [20].</p>
+    <p>وتشمل التأطيرات المنافسة تقييم الرؤية–الضجيج–الواقع لخصوصية البيانات وحمايتها [21]، ومسوح التقنيات الممكّنة والبروتوكولات [22]، وتقنيات التخصيص [23]، والمعالجات النظرية للتحكم [26]، وتصميم آليات الحوافز [27]. والإجماع عبرها أن وعد الخصوصية في FL يحتاج فرضًا نشطًا لا افتراضًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. من قواعد البيانات الفيدرالية إلى التعلم الفيدرالي</h2>
+    <p>نما الحوسب الفيدرالي من أنظمة قواعد البيانات الفيدرالية في التسعينيات (FDBS): وهي تجمعات بيانات غير ربحية مفاتيحها الثلاثة الاستقلال والتمايز والمشاركة المرنة، كما صاغها شيث ولارسون [77]. ودون فيدرالية بأسلوب FDBS، ما تزال المجموعات تعاني إدارة البيانات الموزعة وغير المتجانسة والمستقلة.</p>
+    <p>ويرث FL الحديث تلك السلالة عبر استراتيجيات كفاءة الاتصال [79] والمتغيرات اللامركزية تمامًا [94] والصياغات الطرفية اللاسلكية لإنترنت الأشياء [95]، مع جدولة متعددة الموارد تصنف المعلومات وتعالجها عبر المزودين بمفهوم حوسبي واحد. وتبقى الفكرة المعيارية الجوهرية هي تعاون مجموعات مستقلة عديدة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. الطرق</h2>
+    <p>عدم التجانس هو المشكلة المنظمة لقسم الطرق: التحديثات غير المتزامنة واستشعار الأجهزة وتحمل الأعطال وتنوع النماذج. يتيح FL المتصل غير المتزامن لأجهزة الطرفية المساهمة بجداولها الخاصة [87]، ممتدًا إلى بيئات إنترنت المركبات [96]؛ ويؤمّن التشارك غير المتزامن الممكّن بالبلوك تشين تبادل البيانات في شبكات المركبات [97]، ويبقي FL الحافظ للخصوصية في الحوسبة الضبابية الاتصالَ مستمرًا [98].</p>
+    <p>ويُبقي التشغيل المتحمل للأعطال والموزع ملفيًا التدريبَ حيًا فوق شبكات غير مستقرة، بينما تحكّم شاشات التعلم التطبيقي بين التجديد المحلي والتكامل العام تحت قيود موارد الآلة. ويكمّل عدة الاتصال الاتصالُ جهاز-لجهاز دون تبادل بيانات [100] والتجميع الانتقائي المقاوم للمشاركين المؤذين [101].</p>
+    <p>تؤطر أدبيات المشكلات المفتوحة الفجوات المتبقية — التقارب والتخصيص والمتانة — التي لا تغلقها هذه الآليات إلا جزئيًا [80]، وهي نقطة تعود إليها المناقشة بتنقيحات الطرف اللاسلكي [95] واللامركزية [94].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. الحفاظ على الخصوصية: التهديدات</h2>
+    <p>يترك تصميم بروتوكول FL ثغرات يمكن للمهاجمين استغلالها. يُظهر كشف الشذوذ الفيدرالي ذاتي التعلم لإنترنت الأشياء (DÏoT) الوعدَ والانكشاف معًا للتعلم على الجهاز [103]. وتحذر الأبحاث من أن FL قد لا يوفر ضمانات خصوصية كافية: فالتحديثات المعيارية المتبادلة أثناء التدريب قد تكشف معلومات سرية بل تسريبات عميقة، سواء لأطراف ثالثة أو خدمات مركزية.</p>
+    <p>يمتد نموذج التهديد من خدمات خبيثة تشرّح تحديثات كل جولة وتوجه رؤى المشاركين عبر الحدود العامة، إلى مشاركين خبيثين يحددون معاملات الهبوط ويتحكمون في تحميلها. وتهيمن التهديدات الداخلية على الأدبيات: مخاطر سامة تهدد نشرات FL، وهجمات لا أساس لها على التقدم السري للمساهمين، وتُعرَّف فائدة الهجوم بمعرفة الخصم بالنموذج.</p>
+    <p>تجعل هجمات الخصوصية على مستوى المستخدم الخطرَ ملموسًا [83]، بينما يوضح تصنيف الحزم المتنقلة [107] والتجميع الانتقائي للمركبات [109] حجم الإشارة المتسربة من التدرجات والاختيارات وحدها — مما يحفز الدفاعات الهيكلية والتشفيرية أدناه.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الحفاظ على الخصوصية: الدفاعات</h2>
+    <p>تعيد الدفاعات الهيكلية تصميم الفيدرالية نفسها. تستهدف بنى جديدة اتصالًا كفؤًا مع حماية الخصوصية لأداء إنترنت الأشياء، وتمكّن مزايا معتمدة بالبلوك تشين تشاركًا آمنًا للبيانات في إنترنت الأشياء الصناعية [4]، بما فيها خطوط التنبؤ بتدفق الحركة [2] وتصاميم إجماع تدوير الطاقة [5]. ويمدّد الحوسب الفيدرالي فوق منصات الطرفية 4G/5G الحمايات نفسها إلى المركبات [96].</p>
+    <p>تضيف دفاعات جهة التعلم ضمانات صورية: تعلم فيدرالي ممكن بالخصوصية التفاضلية للبيانات الصحية الحساسة [108]، وتجميع قابل للتحقق يمكن للمدققين فحصه [3]، وأطر كفاءة الطاقة النظرية للعقود للمشاركة الطرفية. وتُظهر تحليلات التعلم الحافظة للخصوصية [112] ومستقبل الصحة الرقمية المبني على مبادئ فيدرالية [113] تعميم النمط.</p>
+    <p>تربط نشرات المدن الذكية الخيوط معًا: فـFL في استشعار المدن الذكية [99] والمسوح الشاملة للمدن الذكية [115] والتنبؤ بالحركة دون تجميع البيانات الخام [111] تُظهر كلها تحليلات حافظة للخصوصية بالمقياس الحضري — وهو الإطار الذي تجعل فيه أعداد الأجهزة الجمعَ المركزي الأقل قابلية للدفاع.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. المناقشة</h2>
+    <p>يركّز تعلم الآلة التقليدي العينات على آلة واحدة أو مركز بيانات — وهو النموذج الذي صنّعته أمازون وGoogle وفيسبوك — بينما يعكس FL التدفق، منتقلًا بالنماذج إلى البيانات. وتقيّم مناقشة المسح جهود نموذج FL ومساهماته في اتجاهات البحث والصناعة الحالية، واجدةً الانعكاس مجديًا حيثما كان الجمع مكلفًا أو منظمًا أو غير موثوق ببساطة.</p>
+    <p>ويُوضع التحليل كمرجع انطلاق لإنترنت الأشياء الطبية والتحليلات المتقدمة والشبكات والأتمتة وأنظمة الطاقة والنمذجة والاسترجاع وأمن المعلومات — وهي نطاقات يلتقي فيها الاستشعار الموزع بالتعلم [30، 122]. ويبقى الاتصال غير التقليدي واستراتيجيات التحديث المحلي وقيود التصنيع نقاط الاحتكاك العملية التي يستبقها قسم الطرق.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">8. الخاتمة</h2>
+    <p>يُعرض FL كمقاربة خصوصية-أمن عبر المنصات حلقتُها الجوهرية — التدريب المحلي مع المتوسط الفيدرالي [1، 2] — تتيح للمجموعات التي لا تملك كل منها بيانات كافية تدريب نماذج مناسبة معًا، دون كشف البيانات الأصلية. ويستخدمه الباحثون والمؤسسات فعلًا مع تقديم الخصوصية والأمن.</p>
+    <p>وتحدد حدوده الأجندة: عدم التجانس وكلفة الاتصال والعملاء المقيدون بالبطارية والثقة [10] وقابلية التحقق [3] والحوافز [27] وأسطح الهجوم المرسومة أعلاه — وتعالجها الأدبيات عبر التصاميم غير المتزامنة [87، 97] واللامركزية [94] والبلوك تشين [4، 5] والخاصة تفاضليًا [108] المسحوبة هنا.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Federated learning (FL), introduced by McMahan et al. in 2016 [1], trains a shared global model from decentralised data: clients download the current model, train locally, and the server merges updates — typically by weighted averaging [2] — into one enhanced model. Because raw data never leave the device, FL promises collaborative learning with privacy preservation, formalised in early syntheses of the field [6].</p>
+    <p>This survey traces FL from federated databases to modern IoT deployments, reviewing how it is engineered [11], surveyed across systems and visions [20–22, 26], secured against threats [13], and extended with blockchain and edge computing. It maps methods (asynchronous communication, device sensing, fault tolerance, heterogeneity), privacy roles and attack surfaces, and open challenges.</p>
+    <p>The authors conclude that FL is a practical cross-platform privacy approach already used by researchers and enterprises, while warning that standard FL alone does not guarantee privacy: updates exchanged during training can leak confidential information to third parties or central services, motivating verifiable [3], blockchain-based [4] and differentially private [108] variants.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction and FL Basics</h2>
+    <p>FL was introduced in 2016 by Brendan McMahan and colleagues [1]: local data are used to train the downloaded global model on-device, and the locally trained models are combined by weighted averaging into a single federated model redistributed to devices [2]. High-performance pipelines thus start from small on-device samples rather than centralised collection [6], and multiple actors can build robust models without pooling raw distributions — addressing data security, privacy and access together [7].</p>
+    <p>FL lets machine learning extract value from datasets spread over many domains and iterations [4], while devices act as digital assets on a secure server applying the shared model to their own data [5]. Google Trends traces FL’s rise from 2016 to 2022, marking its passage from niche protocol to mainstream paradigm.</p>
+    <p>The catch is structural: participating clients are often battery-powered IoT devices on unreliable links, unlike datacentre nodes with high compute [10], and datasets differ widely in size and distribution [9]. The paper’s contributions are therefore a historical account, a methods taxonomy, a privacy-threat mapping and a research agenda.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related Works</h2>
+    <p>The survey situates itself among mobile-edge FL surveys [7], FL-systems engineering reviews [11] and security-and-privacy surveys [13]. Broader treatments cover FL’s journey from centralised to distributed on-site learning [114], task-and-resource allocation in wireless settings [104], and knowledge-based systematisation [20].</p>
+    <p>Competing framings include the vision–hype–reality assessment of data privacy and protection [21], enabling-technology and protocol surveys [22], personalisation techniques [23], control-theoretic treatments [26] and incentive-mechanism design [27]. The consensus across them is that FL’s privacy promise needs active enforcement rather than assumption.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. From Federated Databases to FL</h2>
+    <p>Federated computing grew from 1990s federated database systems (FDBS): non-profit data collectives whose three keys are independence, differentiation and flexible sharing, formalised by Sheth and Larson [77]. Without FDBS-style federation, groups still struggle to manage distributed, heterogeneous, autonomous data.</p>
+    <p>Modern FL inherits that lineage through communication-efficient strategies [79], fully decentralised variants [94] and wireless-edge formulations for IoT [95], together with multi-resource scheduling that classifies and processes information across providers under one computational concept. The standard, fundamental idea remains collaboration among numerous independent groups.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Methods</h2>
+    <p>Heterogeneity is the methods section’s organising problem: asynchronous updates, device sensing, fault tolerance and model diversity. Asynchronous online FL lets edge devices contribute on their own schedules [87], extended to vehicular IoT settings [96]; blockchain-empowered asynchronous sharing secures data exchange in vehicle networks [97], and privacy-preserving FL in fog computing keeps contact continuous [98].</p>
+    <p>Fault-tolerant, file-distributed operation keeps training alive over unstable networks, while applied-learning monitors arbitrate between local renewal and global integration under machine-resource constraints. Device-to-device communication without data exchange [100] and selective aggregation that resists misbehaving participants [101] round out the communication toolkit.</p>
+    <p>The open-problems literature frames the residual gaps — convergence, personalisation, robustness — that these mechanisms only partly close [80], a point the discussion returns to with wireless-edge [95] and decentralised [94] refinements.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Privacy Preservation: Threats</h2>
+    <p>FL’s protocol design leaves openings attackers can exploit. Federated self-learning anomaly detection for IoT (DÏoT) shows both the promise and the exposure of on-device learning [103]. Research warns that FL may not provide adequate privacy guarantees: standard updates exchanged in training can reveal confidential information and even deep leaks, whether to third parties or central services.</p>
+    <p>The threat model spans malicious services that dissect per-round updates and steer participants’ views across global boundaries, and malicious participants that identify landing parameters and control their loading. Insider threats dominate the literature: toxic hazards compromising FL deployments, and unfounded attacks on contributors’ secret progress, with attack utility defined by adversary knowledge of the model.</p>
+    <p>User-level privacy attacks make the danger concrete [83], while mobile packet classification [107] and vehicular selective aggregation [109] illustrate how much signal leaks from gradients and selections alone — motivating the structural and cryptographic defences below.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Privacy Preservation: Defences</h2>
+    <p>Structural defences redesign the federation itself. New architectures target efficient communication with privacy protection for IoT performance, and blockchain-approved features enable secure data sharing in industrial IoT [4], including traffic-flow prediction pipelines [2] and energy-recycling consensus designs [5]. Federated computing over 4G/5G edge platforms extends the same protections to vehicles [96].</p>
+    <p>Learning-side defences add formal guarantees: differential-privacy-enabled FL for sensitive health data [108], verifiable aggregation that auditors can check [3], and contract-theoretic energy-efficient frameworks for edge participation. Privacy-preserving learning analytics [112] and digital-health futures built on federated principles [113] show the pattern generalising.</p>
+    <p>Smart-city deployments tie the strands together: FL in smart-city sensing [99], comprehensive smart-city surveys [115] and traffic prediction without raw-data pooling [111] all demonstrate privacy-preserving analytics at urban scale — the setting where device counts make centralised collection least tenable.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Discussion</h2>
+    <p>Traditional ML centralises samples on one machine or datacentre — the model Amazon, Google and Facebook industrialised — while FL inverts the flow, moving models to data. The survey’s discussion assesses FL’s paradigm efforts and contributions to current research and industry trends, finding the inversion viable wherever collection is costly, regulated or simply untrusted.</p>
+    <p>The analysis is positioned as a starting reference for medical IoT, advanced analytics, networking, automation, power systems, modelling, retrieval and information security — domains where distributed sensing meets learning [30, 122]. Non-traditional communication, local-update strategies and manufacturing constraints remain the practical friction points the methods section anticipates.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">8. Conclusions</h2>
+    <p>FL is presented as a cross-platform privacy-security approach whose core loop — local training plus federated averaging [1, 2] — lets groups with too little data each still train suitable models together, without revealing the original data. Researchers and enterprises already use it with privacy and security at the fore.</p>
+    <p>Its limits define the agenda: heterogeneity, communication cost, battery-and-trust-constrained clients [10], verifiability [3], incentives [27] and the attack surfaces mapped above — addressed in the literature through async [87, 97], decentralised [94], blockchain [4, 5] and differentially private [108] designs surveyed here.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references preserving original numbering; the full list of 122 references is available in the original paper (doi:10.3390/fi14090246).</p>
+    <p dir="rtl" style="font-size:0.85rem;color:var(--text-2)">مراجع مختارة بالأرقام الأصلية؛ والقائمة الكاملة (122 مرجعًا) متاحة في الورقة الأصلية (doi:10.3390/fi14090246).</p>
+    <ol dir="ltr">
+      <li>[1] McMahan, B.H.; Moore, E.; Ramage, D.; Hampson, S.; Agüera y Arcas, B. Communication-efficient learning of deep networks from decentralized data. arXiv 2016, arXiv:1602.05629.</li>
+      <li>[2] Qi, Y.; Hossain, M.S.; Nie, J.; Li, X. Privacy-preserving blockchain-based federated learning for traffic flow prediction. Future Gener. Comput. Syst. 2021, 117, 328–337.</li>
+      <li>[3] Xu, G.; Li, H.; Liu, S.; Yang, K.; Lin, X. VerifyNet: Secure and verifiable federated learning. IEEE Trans. Inf. Forensics Secur. 2020, 15, 911–926.</li>
+      <li>[4] Zhao, Y.; Zhao, J.; Jiang, L.; et al. Privacy-preserving blockchain-based federated learning for IoT devices. IEEE Internet Things J. 2020, 8, 1817–1829.</li>
+      <li>[5] Qu, X.; Wang, S.; Hu, Q.; Cheng, X. Proof of federated learning: A novel energy-recycling consensus algorithm. arXiv 2019, arXiv:1912.11745.</li>
+      <li>[6] Yang, Q.; Liu, Y.; Cheng, Y.; Kang, Y.; Chen, T.; Yu, H. Federated learning. Synth. Lect. Artif. Intell. Mach. Learn. 2019, 13, 1–207.</li>
+      <li>[7] Lim, W.Y.B.; Luong, N.C.; Hoang, D.T.; et al. Federated learning in mobile edge networks: A comprehensive survey. IEEE Commun. Surv. Tutor. 2020, 22, 2031–2063.</li>
+      <li>[10] Alam, T.; Benaida, M. CICS: Cloud–Internet communication security framework for the Internet of smart devices. Int. J. Interact. Mob. Technol. 2018, 12, 74–84.</li>
+      <li>[11] Zhang, H.; Bosch, J.; Olsson, H.H. Engineering federated learning systems: A literature review. In Int. Conf. on Software Business; Springer, 2020; pp. 210–218.</li>
+      <li>[13] Mothukuri, V.; Parizi, R.M.; Pouriyeh, S.; Huang, Y.; Dehghantaha, A.; Srivastava, G. A survey on security and privacy of federated learning. Future Gener. Comput. Syst. 2021, 115, 619–640.</li>
+      <li>[20] Zhang, C.; Xie, Y.; Bai, H.; Yu, B.; Li, W.; Gao, Y. A survey on federated learning. Knowl. Based Syst. 2021, 216, 106775.</li>
+      <li>[21] Li, Q.; Wen, Z.; Wu, Z.; Hu, S.; Wang, N.; He, B. A survey on federated learning systems: Vision, hype and reality for data privacy and protection. arXiv 2019.</li>
+      <li>[22] Aledhari, M.; Razzak, R.; Parizi, R.M.; Saeed, F. Federated learning: A survey on enabling technologies, protocols, and applications. IEEE Access 2020, 8, 140699–140740.</li>
+      <li>[23] Kulkarni, V.; Kulkarni, M.; Pant, A. Survey of personalization techniques for federated learning. In Proc. WCST 2020.</li>
+      <li>[26] Li, L.; Fan, Y.; Lin, K.Y. A survey on federated learning. In Proc. IEEE ICCA 2020.</li>
+      <li>[27] Zhan, Y.; Zhang, J.; Hong, Z.; Wu, L.; Li, P.; Guo, S. A survey of incentive mechanism design for federated learning. IEEE Trans. Emerg. Top. Comput. 2021.</li>
+      <li>[30] Kolias, C.; Kambourakis, G. TermID: A distributed swarm intelligence-based approach for wireless intrusion detection. Int. J. Inf. Secur. 2017, 16, 401–416.</li>
+      <li>[77] Sheth, A.P.; Larson, J.A. Federated database systems for managing distributed, heterogeneous, and autonomous databases. ACM Comput. Surv. 1990, 22, 183–236.</li>
+      <li>[79] Konecný, J.; McMahan, H.B.; Yu, F.X.; Richtárik, P.; Suresh, A.T.; Bacon, D. Federated learning: Strategies for improving communication efficiency. arXiv 2016.</li>
+      <li>[80] Kairouz, P.; McMahan, H.B.; Avent, B.; et al. Advances and open problems in federated learning. Found. Trends Mach. Learn. 2021, 14, 1–210.</li>
+      <li>[83] Song, M.; Wang, Z.; Zhang, Z.; et al. Analyzing user-level privacy attack against federated learning. IEEE J. Sel. Areas Commun. 2020.</li>
+      <li>[87] Chen, Y.; Ning, Y.; Rangwala, H. Asynchronous online federated learning for edge devices. arXiv 2019, arXiv:1911.02134.</li>
+      <li>[94] Lalitha, A.; Shekhar, S.; Javidi, T.; Koushanfar, F. Fully decentralized federated learning. In Proc. Bayesian Deep Learning Workshop (NeurIPS) 2018.</li>
+      <li>[95] Mills, J.; Hu, J.; Min, G. Communication-efficient federated learning for wireless edge intelligence in IoT. IEEE Internet Things J. 2019, 7, 5986–5994.</li>
+      <li>[96] Du, Z.; Wu, C.; Yoshinaga, T.; et al. Federated learning for vehicular Internet of Things: Recent advances and open issues. IEEE Open J. Comput. Soc. 2020, 1, 45–61.</li>
+      <li>[97] Lu, Y.; Huang, X.; Zhang, K.; Maharjan, S.; Zhang, Y. Blockchain empowered asynchronous federated learning for secure data sharing in Internet of vehicles. IEEE Trans. Veh. Technol. 2021.</li>
+      <li>[98] Zhou, C.; Fu, A.; Yu, S.; Yang, W.; Wang, H.; Zhang, Y. Privacy-preserving federated learning in fog computing. IEEE Internet Things J. 2020, 7, 10782–10793.</li>
+      <li>[99] Jiang, J.C.; Kantarci, B.; Oktug, S.; Soyata, T. Federated learning in smart city sensing: Challenges and opportunities. Sensors 2020, 20, 6230.</li>
+      <li>[100] Alam, T. Federated learning approach for privacy-preserving on the D2D communication in IoT. In Proc. ICETIS 2021.</li>
+      <li>[101] Li, T.; Sahu, A.K.; Talwalkar, A.; Smith, V. Federated learning: Challenges, methods, and future directions. IEEE Signal Process. Mag. 2020, 37, 50–60.</li>
+      <li>[103] Nguyen, T.D.; Marchal, S.; Miettinen, M.; et al. DÏoT: A federated self-learning anomaly detection system for IoT. In Proc. ICDCS 2019.</li>
+      <li>[108] Choudhury, O.; Gkoulalas-Divanis, A.; Salonidis, T.; et al. Differential privacy-enabled federated learning for sensitive health data. arXiv 2019.</li>
+      <li>[109] Ye, D.; Yu, R.; Pan, M.; Han, Z. Federated learning in vehicular edge computing: A selective model aggregation approach. IEEE Access 2020, 8, 23920–23935.</li>
+      <li>[112] Gursoy, M.E.; Inan, A.; Nergiz, M.E.; Saygin, Y. Privacy-preserving learning analytics: Challenges and techniques. IEEE Trans. Learn. Technol. 2016, 10, 68–81.</li>
+      <li>[113] Rieke, N.; Hancox, J.; Li, W.; et al. The future of digital health with federated learning. NPJ Digit. Med. 2020, 3, 119.</li>
+      <li>[114] Rahman, S.A.; Tout, H.; Ould-Slimane, H.; Mourad, A.; Talhi, C.; Guizani, M. A survey on federated learning: The journey from centralized to distributed on-site learning. IEEE Commun. Surv. Tutor. 2021.</li>
+      <li>[115] Zheng, Z.; Zhou, Y.; Sun, Y.; Wang, Z.; Li, K. Federated learning in smart cities: A comprehensive survey. arXiv 2021, arXiv:2102.01375.</li>
+      <li>[122] Gupta, R.; Alam, T. Survey on federated-learning approaches in distributed environment. Wirel. Pers. Commun. 2022, 125, 1631–1652.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/fi14090246">10.3390/fi14090246</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

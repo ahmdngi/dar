@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>adaptMLLM: الضبط الدقيق للنماذج اللغوية متعددة اللغات على اللغات منخفضة الموارد مع منصات تفاعلية مدمجة للنماذج اللغوية الكبيرة — DAR</title>
+<meta name="description" content="adaptMLLM: Fine-Tuning Multilingual Language Models on Low-Resource Languages with Integrated LLM Playgrounds — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/adaptmllm-information/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">adaptMLLM: Fine-Tuning Multilingual Language Models on Low-Resource Languages with Integrated LLM Playgrounds</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">adaptMLLM: الضبط الدقيق للنماذج اللغوية متعددة اللغات على اللغات منخفضة الموارد مع منصات تفاعلية مدمجة للنماذج اللغوية الكبيرة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Séamus Lankford, Haithem Afli, Andy Way</span>
+    <span>📄 Information, 2023 · Vol. 14(12), 638</span>
+    <span>🔗 <a href="https://doi.org/10.3390/info14120638">10.3390/info14120638</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>أحدث ظهور النماذج اللغوية متعددة اللغات (MLLMs) والنماذج اللغوية الكبيرة (LLMs) ابتكارًا واسعًا في معالجة اللغة الطبيعية، لكن أثرها على الترجمة الآلية عالية الجودة للغات منخفضة الموارد ما يزال غير مستكشف نسبيًا [1، 2]. ولم يكن هناك أي تطبيق مفتوح المصدر مخصص للضبط الدقيق لهذه النماذج وإدارة سير عمل الترجمة الآلية الكامل للغات منخفضة الموارد.</p>
+    <p>نعالج هذه الفجوات عبر adaptMLLM، وهو تطبيق مفتوح المصدر يبسّط جميع مراحل الضبط الدقيق للنماذج متعددة اللغات لأغراض الترجمة الآلية. وانطلاقًا من بيئة adaptNMT السابقة للفريق [5]، يستهدف التطبيق المطورين والمترجمين والمبتدئين: فهو يؤتمت تهيئة البيئة، ويتيح تخصيص فرط المعاملات عبر واجهة بديهية، ويوفر مجموعة من مقاييس التقييم، ويمكنه نشر النماذج كخدمة ترجمة داخل التطبيق مباشرة.</p>
+    <p>باستخدام adaptMLLM ضبطنا نماذج لزوجي الإنجليزية–الأيرلندية (EN↔GA) والإنجليزية–المهاراتية (EN↔MR). ومقارنة بخطوط الأساس للمهمة المشتركة LoResMT2021 [27]، تحسّن اتجاه EN→GA بمقدار 5.2 BLEU (+14%) واتجاه GA→EN بمقدار 40.5 BLEU (+117%)، بينما كسب اتجاه MR→EN مقدار 21.3 BLEU (+68%). ويكمّل الدراسةَ تقييمٌ بشري دقيق لمخرجات EN→GA باستخدام تصنيفي الأخطاء MQM وSQM. والتطبيق والنماذج متاحة مجانًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>النماذج اللغوية الكبيرة أنظمة ذكاء اصطناعي تُدرَّب بالتعلم العميق على مجموعات نصية ضخمة، غالبًا دون إشراف، وتولّد نصوصًا يصعب تمييزها عن كتابة البشر. وينبع الحماس لها من وعودها في الترجمة اللغوية [1] وتوليد المحتوى [2] وروبوتات المحادثة والمساعدات الافتراضية. فقدرتها على فهم اللغة وإنتاج ردود معقدة قد تحوّل التواصل والإنتاجية.</p>
+    <p>وقد حققت النماذج متعددة اللغات قفزة مع مشروع «لا لغة متروكة» (NLLB) الذي أصدر نماذج مفتوحة المصدر تغطي 200 لغة وحسّن ترجمة اللغات منخفضة الموارد على المنصات الكبرى، بما فيها التكامل مع أداة الترجمة في ويكيميديا التي تساعد المحررين على العمل بلغات مثل اللوغندية والآيسلندية [1]. وبناء هذه النماذج يعني اختيار البنى وفرط المعاملات وبيانات التدريب واستراتيجيات الأمثلة؛ أما ضبطها فيعني تعديل الأوزان والانحيازات على مجموعة بيانات خاصة بالمهمة لتقليل دالة الكلفة.</p>
+    <p>ونظرًا للكلفة البيئية لتطوير النماذج الكبيرة وتشغيلها [3، 4]، يورد هذا العمل أيضًا انبعاثات الكربون في «تقرير أخضر». واستكمالًا لبيئة تطوير الترجمة الآلية السابقة للفريق [5]، تهدف الورقة إلى مساعدة المبتدئين على الضبط الدقيق للنماذج متعددة اللغات لأغراض الترجمة الآلية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة</h2>
+    <p>بعد ظهور آلية الانتباه، تساءل الباحثون عما إذا كان الانتباه وحده يكفي للترجمة. فأجاب فاسواني وآخرون بأن «الانتباه هو كل ما تحتاج» عبر بنية المحوّل (Transformer) [6] التي بلغت state-of-the-art في معايير كثيرة باستخدام الانتباه حصرًا دون تكرار أو التفاف. وأظهر عمل المؤلفين السابق أن نماذج المحوّل تقدم أنظمة قوية لترجمة EN→GA منخفضة الموارد [7].</p>
+    <p>توفر مجموعات البيانات الضخمة المادة الخام لتدريب النماذج الكبيرة [2]، مما يتيح تحسينات في مهام معالجة اللغة المكتسبة من مصادر متنوعة. وقد أنتجت الحواسيب الأقوى المدرَّبة على بيانات هائلة نتائج state-of-the-art في المعايير الشائعة [11]، وزادت خوارزميات التدريب الجديدة الأداء أكثر [12]. ويعتمد المشروع نفسه على العمود الفقري NLLB-200 الذي يوسّع الترجمة المتمحورة حول الإنسان [1].</p>
+    <p>تُطبَّق النماذج الكبيرة من التعليم المخصص إلى مساعدة الأطباء عبر الملفات الطبية الضخمة. وتبني هذه الدراسة على هذا الزخم لكنها تركّزه: فبدل التوليد العام، توجه النماذج متعددة اللغات نحو ترجمة منخفضة الموارد مُقيَّمة بدقة، استكمالًا لخط adaptNMT للفريق [5].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. مجموعات البيانات</h2>
+    <p>لاختبار adaptMLLM على أزواج منخفضة الموارد فعلًا، اختار المؤلفون الإنجليزية–الأيرلندية (EN↔GA) والإنجليزية–المهاراتية (EN↔MR). فالأيرلندية لغة منخفضة الموارد ببيانات متوازية محدودة، والمهاراتية كذلك، ومن ثم يختبر الزوجان قدرة الضبط الدقيق على رفع الجودة حيث تندر البيانات.</p>
+    <p>بالنسبة لـEN↔GA، قُيّمت النماذج على مجموعات بيانات المهمة المشتركة LoResMT2021 لترجمة كوفيد واللغات منخفضة الموارد [27]، الموثقة تنظيمًا ومصادر في تقرير نتائج المهمة. ويتوفر تفصيل كامل لجميع مصادر البيانات في ذلك التقرير [27].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. المنهج: منصة adaptMLLM</h2>
+    <p>نُفّذ adaptMLLM كتطبيق دفاتر IPython/Jupyter باستخدام PyTorch ومكتبة Hugging Face Transformers. تتصل التهيئة بـGoogle Drive لتخزين التجارب وتثبت الاعتماديات تلقائيًا، بما فيها SentencePiece للتجزئة دون الكلمات [28] — وهو تصميم مقصود لإزالة عقبات الإعداد أمام المبتدئين، وفق الإرشادات السحابية للمبتدئين [38].</p>
+    <p>تدعم المنصة أنماط تشغيل متميزة: الضبط الدقيق للنماذج متعددة اللغات وتصويرها لأغراض الترجمة والتقييم، إضافة إلى «منصات» تفاعلية للنماذج الكبيرة للتجريب. وللنشر، تُقدَّم النماذج كتطبيقات ويب سهلة عبر Gradio [30]، فيمكن مشاركة المترجم المضبوط واختباره مباشرة من الدفتر.</p>
+    <p>يستخدم التقييم حزمة المقاييس الآلية المعيارية التي توفرها SacreBLEU [32]: وهي BLEU [33] وTER [34] وChrF [35]، مكملة بـMeteor [36] ومقاييس الدقة والاستدعاء للترجمة الآلية [37]. وتغطي هذه معًا دقة الحروف-n ومعدل التحرير والتداخل على مستوى المحارف والمطابقة الخاصة بكل لغة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. التقرير الأخضر</h2>
+    <p>بدافع الأدلة على آثار التعلم العميق في الطاقة والسياسات [3] والدعوات إلى الإبلاغ المنهجي عن البصمات الكربونية [4]، يُصدر adaptMLLM «تقريرًا أخضر» إلى جانب النتائج. وقد نشأت مجموعة متنامية من الأدوات لتقييم البصمة الكربونية لمعالجة اللغة [31]، وأصبحت المعالجة المستدامة اتجاهًا بحثيًا مهمًا.</p>
+    <p>يجعل التقرير كلفة كل عملية ضبط دقيق صريحة، مشجعًا المستخدمين على موازنة مكاسب الجودة مع الانبعاثات — بما يتسق مع توصية الورقة ببيئات التطوير السحابية الكفؤة [38] ومع ممارسات قياس الكربون في تعلم الآلة [29].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. التقييم التجريبي: النتائج</h2>
+    <p>طُوّرت النماذج الأولية بسرعة على Google Colab Pro+ ببنية رسوميات عالية الذاكرة [38]. وكان خط الأساس الواجب تجاوزه في EN→GA هو نظام فريق ADAPT الأعلى في LoResMT2021 [39]، المبني نفسه بخط adaptNMT المحوّلي الداخلي [5] والمحسّن لاحقًا على مدونة gaHealth المخصصة (BLEU 37.6 وTER 0.577 وChrF3 0.57) [40]. وتشير الأدلة الحالية إلى أن النماذج متعددة اللغات المضبوطة يمكنها رفع هذه السمات اللغوية تحديدًا [1].</p>
+    <p>تجاوزت نماذج NLLB المضبوطة عبر adaptMLLM خط الأساس بحسم: ارتفع EN→GA بمقدار 5.2 BLEU (+14%) وقفز GA→EN بمقدار 40.5 BLEU (+117%)، بما يتسق مع نتيجة الفريق السابقة بأداء أقوى في GA→EN [5]. وكسب MR→EN مقدار 21.3 BLEU (+68%)، مؤكدًا انتقال المكاسب إلى ما بعد الزوج الأيرلندي.</p>
+    <p>اتبع التقييم البشري الدقيق إطار التعليق التوضيحي وممارسة اتفاق المقيّمين للدراسات الراسخة [41، 42]، مكملًا تقييمات EN→GA السابقة التي ركزت على مخرجات الترجمة غير مسبقة التدريب [41]. واستخدم تسجيل SQM مقياس 0–6، خلافًا لمدى WMT من 0–100 [43]، بمستويات موثقة في الدراسة [25].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. المناقشة</h2>
+    <p>أنتج الضبط الدقيق لنموذج NLLB مسبق التدريب عبر إطار سهل نماذج EN↔GA بجودة state-of-the-art، مظهرًا استفادة الترجمة منخفضة الموارد مباشرة من التدريب المسبق متعدد اللغات واسع النطاق [1]. ويحاكي التحليلُ التقييمَ البشري السابق للفريق لترجمة EN→GA [41]، مركّزًا على أخطاء تأويل المعنى والأخطاء النحوية الجوهرية.</p>
+    <p>تضع الملاحظات اللغوية ومقارنة ترجمة Google في الورقة المكاسبَ الآلية في سياقها: فحيث عالج المحوّل الأساسي الأنماط المتكررة [7]، يضيف الضبط الدقيق متانة على التراكيب الأندر، وهو ما يكشفه تصنيفا MQM/SQM [41، 25] خطأً بخطأ.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">8. الخاتمة والقيود والعمل المستقبلي</h2>
+    <p>تعرض الورقة adaptMLLM، وهو تطبيق شامل يغطي تطوير النماذج وتقييمها ونشرها للضبط الدقيق للنماذج متعددة اللغات، وقد تجلى في نماذج EN↔GA التي تجاوزت بفارق كبير أفضل أنظمة LoResMT2021 [39، 27]. وسيوسّع العمل المستقبلي البحثَ في فرط المعاملات وقيمها باستخدام البحث العشوائي [50].</p>
+    <p>تشمل القيود صغر مجموعة المقيّمين — فمزيد من المقيّمين وعينة أكبر مصنفة بدقة MQM من شأنه تعميق النتائج — وفق معايير التقييم التي تتبنى الدراسة منهجيتها في الاتفاق [41، 42]. ومن شأن ممارسة التقرير الأخضر [3، 4، 31] والإصدار المفتوح للشيفرة والنماذج أن يجعل هذه التوسعات زهيدة الكلفة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>The advent of multilingual language models (MLLMs) and large language models (LLMs) has spawned innovation across natural language processing, yet their impact on high-quality machine translation (MT) for low-resource languages remains relatively under-explored [1, 2]. No open-source application dedicated both to fine-tuning MLLMs and to managing the complete MT workflow for low-resource languages has been available.</p>
+    <p>We address these gaps with adaptMLLM, an open-source application that streamlines every stage of MLLM fine-tuning for MT. Built on the group’s earlier adaptNMT environment [5], it targets developers, translators and newcomers: it automates environment setup, offers hyperparameter customisation through an intuitive interface, provides a range of evaluation metrics, and can deploy models as a translation service directly inside the application.</p>
+    <p>Using adaptMLLM we fine-tuned models for English–Irish (EN↔GA) and English–Marathi (EN↔MR). Against LoResMT2021 shared-task baselines [27], EN→GA improved by 5.2 BLEU (+14%) and GA→EN by 40.5 BLEU (+117%), while MR→EN gained 21.3 BLEU (+68%). A fine-grained human evaluation of EN→GA output using the MQM and SQM error taxonomies completes the study. The application and models are freely available.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Large language models are AI systems trained with deep learning on vast text collections, often unsupervised, that generate text frequently indistinguishable from human writing. The excitement around them stems from their promise across language translation [1] and content generation [2], chatbots and virtual assistants. Their ability to understand language and produce complex responses could transform communication and productivity.</p>
+    <p>Multilingual models took a leap with No Language Left Behind (NLLB), which released open-source models covering 200 languages and improved low-resource translation on major platforms, including a Wikimedia content-translation integration that helps editors work in languages such as Luganda and Icelandic [1]. Building such models means choosing architectures, hyperparameters, training data and optimisation strategies; tuning them means adjusting weights and biases on a task-specific dataset to minimise a cost function.</p>
+    <p>Because developing and running large AI models carries an environmental cost [3, 4], this work also reports carbon emissions in a “green report”. Continuing the group’s earlier NMT development environment [5], the paper aims to help newcomers fine-tune MLLMs for machine translation.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related Work</h2>
+    <p>After the attention mechanism appeared, researchers asked whether attention alone could carry translation. Vaswani et al. answered that “attention is all you need” with the Transformer [6], which reached state-of-the-art results on many NLP benchmarks using attention exclusively, without recurrence or convolution. The authors’ own prior work showed Transformer models delivering strong low-resource EN→GA systems [7].</p>
+    <p>Large datasets supply the raw material for LLM training [2], enabling gains on NLP tasks learned from diverse sources. More powerful computers training on massive data have produced state-of-the-art results on common benchmarks [11], and new training algorithms have further boosted performance [12]. The project’s NLLB-200 backbone itself scales human-centred translation [1].</p>
+    <p>LLMs are being applied from personalised education to assisting doctors through large medical files. This study builds on that momentum but focuses it: rather than general-purpose generation, it channels MLLMs into rigorously evaluated low-resource translation, continuing the group’s adaptNMT line [5].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Datasets</h2>
+    <p>To test adaptMLLM on genuinely low-resource pairs, the authors selected English–Irish (EN↔GA) and English–Marathi (EN↔MR). Irish is a low-resource language with limited parallel data, and Marathi likewise qualifies, so both pairs benchmark whether MLLM fine-tuning can lift quality where data are scarce.</p>
+    <p>For EN↔GA, models were benchmarked on datasets from the LoResMT2021 shared task on COVID and sign-language-adjacent low-resource translation [27], whose organisation and sources are documented in the task findings. A detailed breakdown of all data sources is available in that report [27].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Approach: The adaptMLLM Platform</h2>
+    <p>adaptMLLM is implemented as an IPython/Jupyter notebook application using PyTorch and the Hugging Face Transformers library. Initialisation connects to Google Drive for experiment storage and installs dependencies automatically, including SentencePiece for subword tokenisation [28] — a deliberate design to remove setup friction for newcomers, following the cloud-based guidance for beginners [38].</p>
+    <p>The platform supports distinct modes of operation: fine-tuning and visualising MLLMs for translation and evaluation, plus interactive LLM “playgrounds” for experimentation. For deployment, models are served as easy web applications through Gradio [30], so a fine-tuned translator can be shared and tested directly from the notebook.</p>
+    <p>Evaluation uses the standard automatic metric suite provided by SacreBLEU [32]: BLEU [33], TER [34] and ChrF [35], complemented by Meteor [36] and precision/recall-style F-scores for MT [37]. Together these cover n-gram precision, edit rate, character-level overlap and language-specific matching.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Green Report</h2>
+    <p>Motivated by evidence on the energy and policy implications of deep learning in NLP [3] and calls for systematic reporting of carbon footprints [4], adaptMLLM emits a “green report” alongside results. A growing set of tools now exists for assessing NLP’s carbon footprint [31], and sustainable NLP has become a significant research direction.</p>
+    <p>The report makes the cost of each fine-tuning run explicit, encouraging users to weigh quality gains against emissions — consistent with the paper’s recommendation of efficient cloud development environments [38] and with carbon-quantification practice in machine learning [29].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Empirical Evaluation: Results</h2>
+    <p>Prototypes were developed rapidly on Google Colab Pro+ with high-memory GPU infrastructure [38]. The EN→GA baseline to beat was the ADAPT team’s top LoResMT2021 system [39], itself built with the in-house adaptNMT Transformer pipeline [5] and later improved on the bespoke gaHealth corpus (BLEU 37.6, TER 0.577, ChrF3 0.57) [40]. Current evidence suggests fine-tuned MLLMs can lift exactly these language features [1].</p>
+    <p>adaptMLLM’s NLLB fine-tunes beat that baseline decisively: EN→GA rose 5.2 BLEU (+14%) and GA→EN jumped 40.5 BLEU (+117%), consistent with the group’s earlier finding of stronger GA→EN performance [5]. MR→EN gained 21.3 BLEU (+68%), confirming that the gains transfer beyond the Irish pair.</p>
+    <p>A fine-grained human evaluation followed the annotation framework and annotator-agreement practice of established MT studies [41, 42], complementing earlier EN→GA evaluations that had focused on non-pre-trained NMT output [41]. SQM scoring used a 0–6 scale, differing from the WMT 0–100 range [43], with levels documented in the study [25].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Discussion</h2>
+    <p>Fine-tuning the pre-trained NLLB MLLM with an easy framework produced state-of-the-art EN↔GA models, showing that low-resource translation benefits directly from large-scale multilingual pre-training [1]. The analysis mirrors the group’s previous human evaluation of EN→GA translation [41], concentrating on errors of meaning interpretation and core grammatical mistakes.</p>
+    <p>Linguistic observations and the Google Translate comparison in the paper contextualise the automatic gains: where the baseline Transformer already handled frequent patterns [7], the MLLM fine-tune adds robustness on rarer constructions, which the MQM/SQM taxonomies [41, 25] make visible error by error.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">8. Conclusions, Limitations and Future Work</h2>
+    <p>The paper presents adaptMLLM, a comprehensive application covering model development, evaluation and deployment for MLLM fine-tuning, demonstrated by EN↔GA models that substantially beat the top LoResMT2021 systems [39, 27]. Future work will widen the search over hyperparameters and value ranges using random search [50].</p>
+    <p>Limitations include the modest annotator pool — more annotators and a larger, more finely MQM-classified sample would deepen the findings — following evaluation standards whose agreement methodology the study already adopts [41, 42]. The green-report practice [3, 4, 31] and open release of code and models are meant to make such extensions cheap to attempt.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references preserving original numbering; the full list of 50 references is available in the original paper (doi:10.3390/info14120638).</p>
+    <p dir="rtl" style="font-size:0.85rem;color:var(--text-2)">مراجع مختارة بالأرقام الأصلية؛ والقائمة الكاملة (50 مرجعًا) متاحة في الورقة الأصلية (doi:10.3390/info14120638).</p>
+    <ol dir="ltr">
+      <li>[1] Costa-jussà, M.; Cross, J.; Çelebi, O.; Elbayad, M.; Heafield, K.; Heffernan, K.; et al. No language left behind: Scaling human-centred machine translation. arXiv 2022, arXiv:2207.04672.</li>
+      <li>[2] Brown, T.; Mann, B.; Ryder, N.; Subbiah, M.; Kaplan, J.; et al. Language models are few-shot learners. In Proc. NeurIPS 2020; Vol. 33, pp. 1877–1901.</li>
+      <li>[3] Strubell, E.; Ganesh, A.; McCallum, A. Energy and policy considerations for deep learning in NLP. In Proc. ACL 2019; pp. 3645–3650.</li>
+      <li>[4] Henderson, P.; Hu, J.; Romoff, J.; Brunskill, E.; Jurafsky, D.; Pineau, J. Towards the systematic reporting of the energy and carbon footprints of machine learning. J. Mach. Learn. Res. 2020, 21, 10039–10081.</li>
+      <li>[5] Lankford, S.; Afli, H.; Way, A. adaptNMT: An open-source, language-agnostic development environment for neural machine translation. Lang. Resour. Eval. 2023, 57, 1671–1696.</li>
+      <li>[6] Vaswani, A.; Shazeer, N.; Parmar, N.; Uszkoreit, J.; Jones, L.; Gomez, A.; Kaiser, Ł.; Polosukhin, I. Attention is all you need. In Proc. NeurIPS 2017; pp. 6000–6010.</li>
+      <li>[7] Lankford, S.; Afli, H.; Way, A. Transformers for low-resource languages: Is féider linn! In Proc. MT Summit XVIII, 2021; pp. 48–60.</li>
+      <li>[25] Freitag, M.; Foster, G.; Grangier, D.; Ratnakar, V.; Tan, Q.; Macherey, W. Experts, errors, and context: A large-scale study of human evaluation for machine translation. Trans. Assoc. Comput. Linguist.</li>
+      <li>[27] Ojha, A.; Liu, C.; Kann, K.; Ortega, J.; Shatam, S.; Fransen, T. Findings of the LoResMT 2021 shared task on COVID and sign language for low-resource languages. In Proc. LoResMT2021.</li>
+      <li>[28] Kudo, T.; Richardson, J. SentencePiece: A simple and language independent subword tokenizer and detokenizer for neural text processing. In Proc. EMNLP 2018: System Demonstrations.</li>
+      <li>[29] Lacoste, A.; Luccioni, A.; Schmidt, V.; Dandres, T. Quantifying the carbon emissions of machine learning. arXiv 2019, arXiv:1910.09700.</li>
+      <li>[30] Abid, A.; Abdalla, A.; Abid, A.; Khan, D.; Alfozan, A.; Zou, J. Gradio: Hassle-free sharing and testing of ML models in the wild. arXiv 2019, arXiv:1906.02569.</li>
+      <li>[32] Post, M. A call for clarity in reporting BLEU scores. In Proc. Third Conf. on Machine Translation (WMT), 2018; pp. 186–191.</li>
+      <li>[33] Papineni, K.; Roukos, S.; Ward, T.; Zhu, W. BLEU: A method for automatic evaluation of machine translation. In Proc. ACL 2002; pp. 311–318.</li>
+      <li>[34] Snover, M.; Dorr, B.; Schwartz, R.; Micciulla, L.; Makhoul, J. A study of translation edit rate with targeted human annotation. In Proc. AMTA 2006.</li>
+      <li>[35] Popović, M. chrF: Character n-gram F-score for automatic MT evaluation. In Proc. Tenth Workshop on Statistical Machine Translation, 2015; pp. 392–395.</li>
+      <li>[36] Denkowski, M.; Lavie, A. Meteor universal: Language specific translation evaluation for any target language. In Proc. Ninth Workshop on Statistical Machine Translation, 2014; pp. 376–380.</li>
+      <li>[39] Lankford, S.; Afli, H.; Way, A. Machine translation in the COVID domain: An English–Irish case study for LoResMT 2021. In Proc. LoResMT2021.</li>
+      <li>[40] Lankford, S.; Afli, H.; Ní Loinsigh, Ó.; Way, A. gaHealth: An English–Irish bilingual corpus of health data. In Proc. LREC 2022; pp. 6753–6758.</li>
+      <li>[41] Lankford, S.; Afli, H.; Way, A. Human evaluation of English–Irish transformer-based NMT. Information 2022, 13, 309.</li>
+      <li>[43] Ma, Q.; Graham, Y.; Wang, S.; Liu, Q. Blend: A novel combined MT metric based on direct assessment — CASICT-DCU submission to WMT17 Metrics Task. In Proc. Second Conf. on Machine Translation, 2017.</li>
+      <li>[50] Bergstra, J.; Bengio, Y. Random search for hyper-parameter optimization. J. Mach. Learn. Res. 2012, 13, 281–305.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/info14120638">10.3390/info14120638</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

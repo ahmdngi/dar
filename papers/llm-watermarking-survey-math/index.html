@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>العلامات المائية للنماذج اللغوية الكبيرة: مسح شامل — DAR</title>
+<meta name="description" content="Watermarking for Large Language Models: A Survey — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/llm-watermarking-survey-math/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Watermarking for Large Language Models: A Survey</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">العلامات المائية للنماذج اللغوية الكبيرة: مسح شامل</h2>
+
+  <div class="paper-meta">
+    <span>👤 Zhiguang Yang, Gejian Zhao, Hanzhou Wu</span>
+    <span>📄 Mathematics 2025, Vol. 13(9), 1420</span>
+    <span>🔗 <a href="https://doi.org/10.3390/math13091420">10.3390/math13091420</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>مع التقدم السريع والانتشار الواسع للنماذج اللغوية الكبيرة، برزت مخاوف متنامية حول مصدر المحتوى وحماية الملكية الفكرية والتهديدات الأمنية. وظهرت تقنيات العلامات المائية حلاً واعداً لتضمين إشارات قابلة للتحقق في مخرجات النماذج، بما يتيح الإسناد والتوثيق وتخفيف الاستخدام غير المصرح به. ورغم الاهتمام المتزايد، يفتقد المجال مراجعة منهجية توحد الأبحاث وتقيّم فعالية التقنيات، في ظل غياب تصنيف موحد وفهم محدود للمفاضلات بين السعة والمتانة وعدم القابلية للملاحظة في السيناريوهات الواقعية.</p>
+    <p>يعالج هذا المسح الفجوات بثلاث إسهامات: (1) تصنيف الأساليب إلى حرة التدريب وقائمة على التدريب مع تفصيل آلياتها ونقاط قوتها وقيودها؛ (2) تقييمها بمعايير المتانة وعدم الملاحظة وسعة الحمولة لتحديد فعاليتها وقيودها؛ (3) مناقشة التحديات المفتوحة الحرجة وتحديد اتجاهات البحث المستقبلية والاعتبارات العملية لدفع الابتكار. وبتقديم توليفة منظمة، يعزز العمل تطوير حلول علامات مائية آمنة وفعالة للنماذج اللغوية.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>بُنيت النماذج اللغوية الحديثة على معمارية المحول [1] ونماذج مثل BERT [2] وGPT-1 [4] وGPT-3 [5] وقوانين القياس [6]، وانتشرت عبر التقييم البشري [7] والفهم متعدد المهام [8]. ومع هذا الانتشار، تصاعدت مخاطر إساءة الاستخدام والمحتوى المضلل، ما جعل إثبات المصدر وحماية الملكية الفكرية مطلباً ملحاً [9]. وتُعد العلامات المائية — الموروثة من حماية الصور والصوت والنصوص [10]، [11]، [12]، [13]، [14] وإخفاء العلامات الإلكترونية [15] والستيغانوغرافيا الدلالية [16] — مرشحاً طبيعياً لهذه المهمة.</p>
+    <p>لكن توثيق مخرجات النماذج يختلف عن المحتوى الساكن: فالتوليد احتمالي متغير، والمهاجم قد يعيد الصياغة أو يستبدل الرموز أو يحذف المقاطع. لذا يتطلب التصميم الموازنة بين ثلاثة أبعاد: المتانة أمام التحويلات الخصومية، وعدم الملاحظة حفاظاً على الجودة اللغوية، والسعة لكمية المعلومات المضمنة. ويفتقد المجال تصنيفاً موحداً وفهماً للمفاضلات، وهو ما يعالجه هذا المسح.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">2. الأساسيات والتصنيف</h2>
+    <p>العلامة المائية عملية تضمين معلومات سرية أو مميزة في وسيط بطريقة غير محسوسة عادة للمستخدمين لكن قابلة للكشف أو الاستخراج بشروط محددة، وأهدافها إثبات الملكية وتمكين التتبع وحماية الملكية الفكرية ببقاء المعلومات قابلة للكشف عند الاستخدام أو التعديل غير المصرح. وفي سياق النماذج اللغوية، تُضمَّن رسالة سرية m داخل النموذج نفسه عبر دالة ترميز Enc تعدّل النموذج الأصلي M بحيث تحمل النصوص المولدة توقيعاً مميزاً، مع تحديات فريدة لكون التضمين في توليد احتمالي لا محتوى ساكن.</p>
+    <p>تُصنف أساليب العلامات المائية للنماذج على نطاق واسع إلى: حرة التدريب (القسم 3) وتشمل انحياز اللوجتات (دراسات كلاسيكية: Kirchenbauer وزملاؤه 2023 [33] و2024 [34]) والقائمة على الدرجات (Aaronson وزملاؤه 2023 [35])، وقائمة على التدريب (القسم 4) وتشمل الضبط الدقيق غير الخاضع للإشراف والمعتمدة على مفكك ترميز خارجي. ويقيّم القسم 5 الأساليب بالمتانة وعدم الملاحظة والسعة، ويناقش القسم 6 التحديات والأعمال المستقبلية.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">3. العلامات حرة التدريب</h2>
+    <p>تستهدف هذه الأساليب تضمين علامات مميزة غير محسوسة في مخرجات النماذج دون ضبط دقيق، ما يجعلها فعالة وقابلة للتوسع في النشر والتكامل، خاصة حيث الوصول للنموذج مقيد أو الأداء يجب الحفاظ عليه دون كلفة إعادة التدريب. وباستغلال اللوجتات المتولدة أثناء توليد النماذج، تدمج العلامات بسلاسة في عملية التوليد. وتنقسم حسب بنية التضمين إلى انحياز اللوجتات والقائمة على الدرجات.</p>
+    <p>في انحياز اللوجتات تُصمم دالة ترميز تعدّل اللوجتات لتضمين معلومات العلامة، والتحدي الجوهري بقاء العلامة قابلة للكشف في النص المولد. وكان عمل Kirchenbauer وزملائه رائداً [33]: يقسّم المفردات إلى قائمتين حمراء وخضراء لتحويل إشارات العلامة من اللوجتات إلى النص، ثم طُوّر لاحقاً لتحسين المتانة [34] والتمويه وتعدد البتات. وتعزز أعمال لاحقة المتانة (مثل SemStamp الدلالية [55]) والتخفي وتعدد البتات.</p>
+    <p>أما القائمة على الدرجات فلا تعدّل توزيع اللوجتات مباشرة، بل توظف دالة درجات منفصلة: أثناء أخذ العينات تُنتقى الرموز بموازنة درجات اللوجتات ودرجات العلامة معاً، ما يضمّن العلامة مع الحفاظ على الاستمرارية الدلالية والتوزيع الأصلي، فيتعزز التخفي. وفي الكشف يكفي تطبيق دالة الدرجات المقابلة لتقييم النص، كما في نهج Aaronson [35] والعلامات الخالية من التشويه [59] والقابلة للتحقق علناً وغير القابلة للتزوير [64].</p>
+  </section>
+  <section>
+    <h2 dir="rtl">4. العلامات القائمة على التدريب</h2>
+    <p>توفر الأساليب القائمة على التدريب حلاً مندمجاً بعمق: تُضمَّن آليات العلامة أثناء التدريب، ما ينتج علامات مرنة ومتكيفة مع المهام. وبتضمين الإشارات في بيانات التدريب أو هدف التحسين، تستغل قدرة النموذج التعلمية لتعزيز ثبات العلامة تحت الخصومة وعبر المهام. ورغم كلفة الإعداد الحاسوبية الأعلى، لا تضيف أي عبء وقت الاستدلال لأن السلوك مشفّر جوهرياً في المعاملات، ما يناسب التطبيقات الحرجة في دقة العلامة وكفاءة التشغيل.</p>
+    <p>يستعرض القسم نهجين بارزين: الضبط الدقيق غير الخاضع للإشراف الذي يدمج العلامة منذ البداية في المعاملات (مستفيداً من بنية المشفر–مفكك الترميز والتدريب الخصومي وحقن الضجيج لمقاومة الإزالة مع الحفاظ على سلامة المحتوى)، ومفكك الترميز الخارجي الذي يُدخل العلامة في مرحلة تدريب منفصلة، ما يتيح ضبطاً وتحسيناً مستهدفين وعملية استخراج مرنة وقابلة للتحقق تضمن كشفاً وتوثيقاً موثوقين مع أمن واستقرار معززين عبر البيئات المتنوعة، بما يشمل العلامات متعددة البتات القابلة للترميز [71].</p>
+  </section>
+  <section>
+    <h2 dir="rtl">5. مقاييس التقييم</h2>
+    <p>للمقارنة الصارمة تُعتمد ثلاثة أبعاد: المتانة (بقاء الكشف الناجح أمام تعديلات النص المقصودة كإعادة الصياغة الخصومية وغير المقصودة كمراجعات المستخدم)، وتُصنف الهجمات إلى مستوى الرمز (استبدال وحذف) ومستوى الجملة (إعادة صياغة) ومستوى المستند (تلخيص وترجمة)، وعدم الملاحظة، والسعة. ويقارن جدول 3 الأساليب التمثيلية نوعياً (+++ قوي، ++ متوسط، + ضعيف) عبر عدم الملاحظة والمتانة (إعادة الصياغة واستبدال الرموز) والسعة وكفاءة الموارد.</p>
+    <p>تُعرَّف عدم الملاحظة بأنها خفاء العلامة دون تدهور الطلاقة أو الاتساق أو المحتوى الدلالي، وتُقاس بعكس دالة تشويه بين النص الأصلي والمعلَّم، بمقاييس مثل الحيرة (PPL) للطلاقة وBERTScore للتشابه الدلالي، مع الحفاظ على السلامة الوظيفية في مهام المعالجة اللاحقة. أما السعة فكمية المعلومات المضمنة لكل رمز (البتات/الطول)، وتنقسم الأساليب إلى أحادية البت (إشارة ثنائية للوجود فقط، بسيطة وقليلة التشويه) ومتعددة البتات (ترميز أغنى بكلفة تشويه وكشف أعلى) [71].</p>
+    <p>وتُظهر المقارنة أن معظم الأعمال السابقة ركزت على أحادي البت لبساطته وفعاليته، وأن التحدي الجوهري يكمن في المفاضلة الثلاثية: رفع السعة يهدد عدم الملاحظة، وتشديد التخفي يضعف المتانة، وتعزيز المتانة قد يشوّه الجودة — وهي مفاضلات يجب أن تقاس معاً لا فرادى.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">6. التحديات</h2>
+    <p>التحدي الأول تقني وعملي: هشاشة المخططات الحديثة أمام التعديلات الخصومية، فإعادة الصياغة التكرارية [87] تنزع العلامات منهجياً مع الحفاظ على المعنى، والاستبدالات الواعية بالألوان والمتجانسات تتهرب من الكشف، واستغلال نقاط القوة نفسها للمهاجمة [99] يكشف حدوداً جوهرية، إضافة لمفاضلات المتانة وعدم الملاحظة والسعة، والهشاشة أمام هجمات الانتحال والإيجابيات الكاذبة، وقضايا التعميم عبر المهام (فعالية نص حر قد تتدهور على الشيفرات المنظمة والعكس).</p>
+    <p>والتحدي الثاني غياب معايير موحدة وبروتوكولات تقييم: تعتمد الدراسات اختيارات مخصصة للمهام والنماذج والهجمات، ما يصعّب إعادة الإنتاج والمقارنة العادلة، ويتفاوت أداء العلامة عبر الحوار والتلخيص والإجابة وتوليد الشيفرات. وبدأت جهود حديثة بمعايير أوسع تجمع اللغة الطبيعية والشيفرات [92]، وتستهدف توليد الشيفرات من مستودعات حقيقية، وتصنف المهام حسب أطوال المدخلات والمخرجات [93].</p>
+  </section>
+  <section>
+    <h2 dir="rtl">7. الأعمال المستقبلية والخاتمة</h2>
+    <p>يتطلب التقدم جهوداً مستدامة: علامات ديناميكية تتكيف مع تعديلات النص وتدمج التدريب الخصومي ضد إعادة الصياغة وإخفاء الرموز، ومخططات مقاومة للانتحال وتقليل الإيجابيات الكاذبة عبر ضمانات تشفيرية تمنع استخراج المفاتيح والتوليد غير المصرح، واستراتيجيات ترميز جديدة لتعدد البتات دون المساس بالمقروئية، وأساليب لا مهماتية موثوقة عبر مهام المعالجة ومتوافقة مع البنى الناشئة (متعددة الوسائط واللامركزية)، مع اهتمام صناعي متزايد (استكشافات OpenAI لإثبات المصدر وكشف إساءة الاستخدام [35]).</p>
+    <p>خلاصةً، أظهر التطور السريع للنماذج مخاوف الملكية الفكرية والإسناد ومنع إساءة الاستخدام، وبرزت العلامات الرقمية حلاً واعداً لتتبع المخرجات وتوثيقها. ونظّم هذا المسح التقنيات الحالية وقيّم فعاليتها سعةً ومتانةً وعدم ملاحظة، ومع التقدم المحرز تبقى تحديات المرونة ضد الخصومة وموازنة القابلية للكشف مع الجودة اللغوية وقابلية التوسع عبر السيناريوهات. ويجب أن تركز الأبحاث على مخططات أكثر متانة وتوحيد المقاييس واستكشاف الآثار الأخلاقية والقانونية، لتشكيل مستقبل أنظمة ذكية جديرة بالثقة وشفافة ومسؤولة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>With the rapid advancement and widespread deployment of large language models, concerns regarding content provenance, intellectual property protection, and security threats have become increasingly prominent. Watermarking techniques have emerged as a promising solution for embedding verifiable signals into model outputs, enabling attribution, authentication, and mitigation of unauthorized usage. Despite growing interest, the field lacks a systematic review consolidating existing research and assessing technique effectiveness, with no unified taxonomy and limited understanding of capacity–robustness–imperceptibility tradeoffs in real-world scenarios.</p>
+    <p>This survey addresses these gaps with three contributions: (1) classifying methods as training-free and training-based while detailing their mechanisms, strengths, and limitations; (2) evaluating them on robustness, imperceptibility, and payload capacity to identify effectiveness and limitations; (3) discussing critical open challenges and outlining future research directions and practical considerations. Through this structured synthesis, the work advances the development of secure and effective watermarking solutions for LLMs.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Modern LLMs were built on the Transformer [1], models such as BERT [2], GPT-1, GPT-3 [5], and scaling laws [6], spreading through human-preference evaluation and multi-task understanding. With this spread, misuse and misleading-content risks grew, making provenance and IP protection urgent [9]. Watermarking — inherited from image, audio, and text protection [10]–[14], electronic marking [15], and semantic steganography [16] — is a natural candidate.</p>
+    <p>But watermarking model outputs differs from static content: generation is probabilistic and variable, and attackers may paraphrase, substitute tokens, or delete spans. Design must therefore balance three dimensions: robustness to adversarial transforms, imperceptibility preserving linguistic quality, and capacity for the embedded information. The field lacks a unified taxonomy and an understanding of these tradeoffs — the gap this survey fills.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">2. Preliminaries and Taxonomy</h2>
+    <p>Watermarking embeds secret or distinctive information into a medium in a typically user-imperceptible but conditionally detectable or extractable manner, with objectives of asserting ownership, enabling traceability, and protecting IP by keeping the information detectable under unauthorized use or modification. For LLMs, a secret message m is embedded into the model itself via an encoding function Enc modifying the original model M so generated text carries an identifiable signature — with unique challenges since embedding happens in probabilistic generation rather than static content.</p>
+    <p>LLM watermarking methods are broadly categorized into training-free (§3) — logits-bias (classical studies: Kirchenbauer et al. 2023 [33] and 2024 [34]) and score-based (classical: Aaronson et al. 2023 [35]) — and training-based (§4): unsupervised fine-tuning and external decoder-based watermarking. Section 5 evaluates methods on robustness, imperceptibility, and capacity, and Section 6 discusses challenges and future works.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">3. Training-Free Watermarking</h2>
+    <p>These methods embed distinct, imperceptible markers into LLM outputs without fine-tuning, offering efficient, scalable deployment and integration — especially where model access is restricted or performance must be preserved without retraining overhead. By leveraging generation-time logits, watermarks blend seamlessly into the generation process. They split by embedding structure into logits-bias and score-based approaches.</p>
+    <p>In logits-bias watermarking an encoding function modifies logits to embed watermark information, with the key challenge of keeping the watermark detectable in generated text. Kirchenbauer et al. pioneered the approach [33]: splitting the vocabulary into red and green lists to convert watermark signals from logits into text, later extended for robustness [34], concealment, and multi-bit payloads. Follow-ups strengthen robustness (e.g., semantic SemStamp [55]), concealment, and multi-bit embedding.</p>
+    <p>Score-based watermarking instead uses a separate scoring function: during sampling, tokens are chosen by jointly optimizing logits and watermark scores, embedding the watermark while preserving semantic continuity and the original distribution — hence better concealment. At detection, applying the corresponding score function suffices, as in Aaronson’s approach [35], distortion-free watermarks [59], and unforgeable publicly verifiable watermarks [64].</p>
+  </section>
+  <section>
+    <h2 dir="ltr">4. Training-Based Watermarking</h2>
+    <p>Training-based techniques offer a deeply integrated solution: watermarking mechanisms embedded during model training yield resilient, task-adaptive watermarks. By folding watermark signals into training data or the optimization objective, they exploit the model’s learning capacity to harden watermarks against adversarial conditions and diverse tasks. Although preparation costs more compute, inference adds no overhead since the behavior is intrinsically encoded in parameters — ideal where watermark fidelity and runtime efficiency are both critical.</p>
+    <p>Two prominent approaches are explored: unsupervised fine-tuning, which integrates the watermark from the outset into parameters (leveraging encoder–decoder structure, adversarial training, and noise injection for removal-resistant yet content-preserving marks), and external decoder-based methods, which introduce the watermark in a separate training phase for targeted adjustment — enabling flexible, verifiable extraction with reliable detection and authentication plus stronger security and stability across environments, including codable multi-bit watermarks [71].</p>
+  </section>
+  <section>
+    <h2 dir="ltr">5. Evaluation Metrics</h2>
+    <p>Rigorous comparison rests on three dimensions: robustness (sustained detection under intentional adversarial paraphrasing and unintentional user edits), with attacks at token level (substitution, deletion), sentence level (paraphrase), and document level (summarization, translation); imperceptibility; and capacity. Table 3 qualitatively compares representative methods (+++ strong, ++ moderate, + weak) across imperceptibility, robustness (paraphrase and token substitution), capacity, and resource efficiency.</p>
+    <p>Imperceptibility is the watermark’s hiddenness without degrading fluency, coherence, or semantics, quantified as the inverse of a distortion function between original and watermarked text, using perplexity (PPL) for fluency and BERTScore for semantic similarity, while preserving downstream-task functional integrity. Capacity is the embeddable information per token (bits/length), split into single-bit schemes (a binary presence signal — simple, low-distortion) and multi-bit schemes (richer encoding at higher distortion/detection risk) [71].</p>
+    <p>The comparison shows most prior work targets single-bit for simplicity and effectiveness, and the core challenge is the three-way tradeoff: more capacity threatens imperceptibility, stricter concealment weakens robustness, and stronger robustness may distort quality — tradeoffs that must be measured jointly, not in isolation.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">6. Challenges</h2>
+    <p>The first challenge is technical and practical: state-of-the-art schemes are fragile to adversarial modification — recursive paraphrasing [87] systematically strips watermarks while preserving meaning, color-aware substitutions and homoglyphs evade detection, attacks exploiting the watermarks’ own strengths [99] reveal fundamental limits — plus the robustness–imperceptibility–capacity tradeoffs, spoofing and false-positive risks, and cross-task generalization (free-text techniques degrading on structured code and vice versa).</p>
+    <p>The second challenge is the lack of standardized benchmarks and evaluation protocols: studies rely on ad hoc task, model, and attack choices, hindering reproduction and fair comparison, with watermark performance varying across dialogue, summarization, QA, and code generation. Recent efforts build broader suites combining natural language and code tasks [92], targeting code generation from real repositories, and taxonomizing tasks by input–output length variation [93].</p>
+  </section>
+  <section>
+    <h2 dir="ltr">7. Future Works and Conclusions</h2>
+    <p>Progress will require sustained effort: dynamic watermarks adapting to text modifications with adversarial training against paraphrasing and token masking; spoof-resistant schemes with fewer false positives via cryptographic safeguards against key extraction and unauthorized generation; new encoding strategies for multi-bit embedding without harming readability; task-agnostic methods reliable across NLP tasks and compatible with emerging architectures (multimodal, decentralized); alongside growing industry traction (OpenAI’s explorations of provenance and misuse detection [35]).</p>
+    <p>In conclusion, rapid LLM evolution raised IP, attribution, and misuse concerns, and digital watermarking emerged as a promising technique for tracing and authenticating outputs. This survey systematized current techniques and evaluated their capacity, robustness, and imperceptibility effectiveness; despite progress, challenges remain in adversarial resilience, balancing detectability with linguistic quality, and scaling across deployment scenarios. Future research should target more robust schemes, standardized metrics, and the ethical and legal implications — shaping a future of trustworthy, transparent, responsible AI systems.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed selection of 15 references (original numbers preserved). See the original paper for the full list of 99 references: https://doi.org/10.3390/math13091420</p>
+    <ol dir="ltr">
+      <li>[1] Vaswani, A.; et al. Attention is All you Need. In Advances in Neural Information Processing Systems 2017; Volume 30.</li>
+      <li>[5] Brown, T.; et al. Language Models are Few-Shot Learners. In Advances in Neural Information Processing Systems 2020; Volume 33, pp. 1877–1901.</li>
+      <li>[9] Bengio, Y.; et al. Managing extreme AI risks amid rapid progress (see original paper for full citation).</li>
+      <li>[15] Brassil, J.; Low, S.; Maxemchuk, N.; O’Gorman, L. Electronic marking and identification techniques to discourage document copying. IEEE J. Sel. Areas Commun. 1995.</li>
+      <li>[33] Kirchenbauer, J.; Geiping, J.; Wen, Y.; Katz, J.; Miers, I.; Goldstein, T. A Watermark for Large Language Models. In Proc. ICML 2023.</li>
+      <li>[34] Kirchenbauer, J.; et al. On the Reliability of Watermarks for Large Language Models. In Proc. ICLR 2024.</li>
+      <li>[35] Aaronson, S.; Kirchner, H. Watermarking GPT Outputs. 2023. Available online: https://www.scottaaronson.com/talks/.</li>
+      <li>[55] Hou, A.; et al. SemStamp: A Semantic Watermark with Paraphrase Robustness for Text Generation (see original paper for full citation).</li>
+      <li>[59] Kuditipudi, R.; Thickstun, J.; Hashimoto, T.; Liang, P. Robust Distortion-free Watermarks for Language Models. Trans. Mach. Learn. Res. 2024.</li>
+      <li>[64] Liu, A.; et al. An Unforgeable Publicly Verifiable Watermark for Large Language Models. In Proc. ICLR 2024 (see original paper for full citation).</li>
+      <li>[71] Wang, L.; et al. Towards Codable Watermarking for Injecting Multi-Bits (see original paper for full citation).</li>
+      <li>[87] Sadasivan, V.S.; Kumar, A.; Balasubramanian, S.; Wang, W.; Feizi, S. Can AI-Generated Text be Reliably Detected? arXiv 2023, arXiv:2303.11156.</li>
+      <li>[92] Piet, J.; et al. Mixed-domain watermark resilience benchmark with natural language and code tasks (see original paper for full citation).</li>
+      <li>[93] Tu, S.; et al. Task taxonomy for watermark evaluation based on input–output length variations (see original paper for full citation).</li>
+      <li>[99] Pang, Q.; Hu, S.; Zheng, W.; Smith, V. Attacking LLM Watermarks by Exploiting Their Strengths. In Proc. ICLR 2025 (see original paper for full citation).</li>
+    </ol>
+  </section>
+</div>
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/math13091420">10.3390/math13091420</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

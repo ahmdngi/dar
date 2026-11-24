@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نموذج خليط الخبراء لتعميم محسّن في التوصية الواعية بالجلسة — DAR</title>
+<meta name="description" content="A Mixture-of-Experts Model for Improved Generalization in Session-Aware Recommendation — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/moe-recommendation-electronics/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Mixture-of-Experts Model for Improved Generalization in Session-Aware Recommendation</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نموذج خليط الخبراء لتعميم محسّن في التوصية الواعية بالجلسة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Sungshin Kwak, Jaedong Lee, Sohyun Park</span>
+    <span>📄 Electronics, 2026 · Vol. 15(4), 825</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics15040825">10.3390/electronics15040825</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يجب أن تتنبأ التوصية القائمة على الجلسة بالعنصر التالي من متتاليات تفاعل قصيرة متناثرة، حيث تتغير اهتمامات المستخدمين خلال دقائق. وتلتقط نماذج المحوّل الاعتماديات داخل الجلسة جيدًا [2–4]، لكن انحياز الشعبية يميل بالتنبؤات نحو العناصر الرائجة أو أنماط الذيل الطويل المبسطة، منتجًا اختلال تعميم عبر توزيع البيانات [6، 31].</p>
+    <p>يقترح المؤلفون MoE-SLMRec الذي يستبدل شبكة التغذية الأمامية للمحوّل في SLMRec [4] ببنية خليط خبراء [10] يحكمها متحكم واعٍ بالجلسة ومنظِّم موازنة حمل واعٍ بالتوصية (RecLB). وتستبدل إشارة التوجيه الواعية بالجلسة البوابات غير الموجهة التي تركّز التفعيل على قلة من الخبراء [10، 14].</p>
+    <p>على معيار Yoochoose [38]، يبلغ MoE-SLMRec دقة كلية 0.2027 (نحو +8.0% فوق 0.1876 لـSLMRec)، مع Recall@20 مقدار 0.8358 وMRR@20 مقدار 0.3455 — أفضل جودة ترتيب بين جميع النماذج المقارنة. وتقفز دقة العناصر الرائجة من 0.1461 إلى 0.1888، بينما تتراجع دقة الذيل من 0.3137 إلى 0.2449، كاشفة مفاضلة هيكلية في التعميم بين الرأس والذيل.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>أصبحت أنظمة التوصية أدوات أساسية لاتخاذ القرار عبر التجارة الإلكترونية وبث الوسائط والإعلان ومنصات المحتوى، ونما حجم سجلات السلوك وتعقيدها أسيًا [1]. وفي الخدمات الحية، تتقلب الاهتمامات الفردية خلال أطر قصيرة، مما يحفز البحث في نماذج تقرأ الجلسة الحالية فقط.</p>
+    <p>تُستخدم نماذج المحوّل على نطاق واسع لقدرتها على نمذجة التفاعلات المعقدة داخل الجلسة [2–4]. لكن بيئات الجلسات تقدم تفاعلات مرصودة محدودة بتوزيعات دخل شديدة التقلب [36]، وينتج عن الانحياز تنبؤات متحفظة مائلة نحو العناصر الرائجة [6] أو أنماط الذيل المبسطة — اختلال تعميم عبر التوزيع العام [31].</p>
+    <p>يعالج إطار خليط الخبراء معضلة السعة–الكلفة بتفعيل subset من شبكات الخبراء لكل دخل [9، 10]، موسعًا السعة بكلفة مضبوطة [11، 12]، وهو يدعم أصلًا تعبيرية النماذج واسعة النطاق مع تطبيقات متنامية في توصية الجلسات [13]. لكن تحت التغذية المتناثرة والجلسات القصيرة، يميل تركيز الخبراء بالتفعيل نحو قلة من الخبراء [10]، مجوّعًا الأنماط النادرة [14]؛ ولا تستطيع المسارات الأحادية خدمة قطبي التوزيع معًا [31].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة: نماذج الجلسات</h2>
+    <p>تتنبأ التوصية القائمة على الجلسة بالعنصر التالي من متتالية تفاعل قصيرة دون ملف مستخدم طويل الأمد [25]. ونمذجت الأعمال المبكرة الاعتماديات المتتالية بشبكات متكررة مثل GRU4Rec [25]؛ وبعد المحوّل [26] ظهرت نماذج الانتباه الذاتي مثل SASRec [27] مع متغيرات الانتباه المتناثر [27].</p>
+    <p>وتطبّق الأعمال الحديثة التدريب المسبق واسع النطاق وبنى النماذج اللغوية على التوصية [4]: فيعامل SLMRec الجلسات كمتتاليات لغوية ويحسّن تعميم تمثيل الجلسة بمشفّر محوّل [4]. لكن حتى النماذج القوية تُظهر فجوة تعميم رأس–ذيل ثابتة هيكليًا عندما تبدو الدقة الكلية مستقرة [31].</p>
+    <p>ومشكلة الذيل الطويل محورية: تنهار دقة عناصر الذيل تحت انحياز الشعبية [6]، وتؤكد دراسات المعايرة صعوبة التنبؤ بالعناصر المتناثرة [36]. واستبدال كتلة التغذية الأمامية في SLMRec بطبقات خليط الخبراء [10] هو جواب هذه الورقة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. الأعمال ذات الصلة: خليط الخبراء</h2>
+    <p>يقسّم خليط الخبراء الشبكة إلى شبكات خبراء فرعية ويفعّل subset لكل دخل [9، 10]. وخلاف نماذج المسار الواحد التي توجه كل دخل identically، يضبط MoE مسارات مختلفة لمداخل مختلفة، محققًا التعبيرية بالكفاءة الحسابية [12] — وهو المبدأ وراء الحوسبة الشرطية في GShard [11] والتوسع المتناثر في Switch Transformers [12].</p>
+    <p>وتصميم التوجيه حاسم: يعيد التوجيه باختيار الخبير موازنة الإسناد من جهة الخبراء [14]، وتكيّف موصيات MoE للبداية الباردة الخبراءَ لكل وسيلة [13]. لكن في توصية الجلسات، تركّز البوابات المتناثرة الساذجة الحمل على الأنماط عالية التكرار [10]، ولهذا يضيف المؤلفون تحكمًا صريحًا واعيًا بالجلسة وموازنة واعية بالتوصية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. المنهج: المشكلة ونموذج MoE-SLMRec</h2>
+    <p>تقاوم بيئات الجلسات هيكليًا التعميم المتوازن: فالتفاعلات القصيرة المتناثرة المرصودة تصعّب الدقة المشتركة للرأس والذيل [36]، بينما لا يستطيع الضبط اليدوي مواكبة خصائص البيانات المتغيرة — وهو دور يحسّن فيه التكيف المؤتمت بأسلوب AutoML المتانة [37].</p>
+    <p>يحافظ MoE-SLMRec على مشفّر المحوّل في SLMRec [4] لكنه يستبدل كل كتلة تغذية أمامية بطبقة خليط خبراء على التقليد المتناثر البوابات [10]: تختار شبكة بوابات أفضل-k خبراء لكل تمثيل جلسة، موسعة السعة دون توسيع الحوسبة لكل رمز [11، 12].</p>
+    <p>تجعل إضافتان التوجيهَ واعيًا بالجلسة لا بالتردد. فيشفّر متحكم واعٍ بالجلسة القصدَ قصير الأمد ويشترط اختيار الخبراء عليه، مكافحًا أمراض التركيز للبوابات غير الموجهة [10، 14]. ويعاقب منظِّم موازنة حمل واعٍ بالتوصية (RecLB) الانهيار على خبراء الأنماط الرائجة، محافظًا على توازن الرأس–الذيل [31، 36].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. التجارب: البيانات والمقاييس</h2>
+    <p>تستخدم التجارب مجموعة Yoochoose من تحدي RecSys 2015 [38]: سجلات نقرات تجارة إلكترونية معرفة محضًا بمتتاليات النقر داخل الجلسات، دون معلومات مستخدم طويلة الأمد صريحة — المعيار الجلسي المتناثر النموذجي. وتشترك جميع النماذج في إعدادات المعالجة والتدريب نفسها لمقارنة عادلة.</p>
+    <p>يغطي التقييم الدقة الكلية ودقة الرأس للعناصر المتكررة ودقة الذيل للعناصر النادرة (التعميم والتنوع في الذيل الطويل)، إضافة إلى Recall@20 لتغطية استرجاع المرشحين وMRR@20 لجودة الترتيب — مقيسًا معًا قطاعي الشعبية وسرعة وصول المستخدم إلى العنصر المطلوب.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. النتائج</h2>
+    <p>يحقق MoE-SLMRec دقة كلية 0.2027، أي نحو +8.0% فوق 0.1876 لـSLMRec، ويتفوق أيضًا على SASRec المحوّلي (0.1784) وGRU4Rec المتكرر (0.1601) [25، 26] وعلى BERT4Rec (0.1915). ويتصدر في جودة الترتيب: Recall@20 مقدار 0.8358 وMRR@20 مقدار 0.3455، أي أن العنصر الصحيح يُضمَّن ويوضع أعلى.</p>
+    <p>يُظهر تحليل القطاعات ارتفاع دقة الرأس من 0.1461 إلى 0.1888: فبنية MoE تفكك الأنماط السلوكية المهيمنة داخل الجلسة للعناصر المتكررة. وتنخفض دقة الذيل من 0.3137 إلى 0.2449 — مفاضلة تعميم هيكلية إذ يعطي التوسع التمثيلي الأولوية للأنماط عالية التكرار. ويظهر ضعف ذيل مماثل في SASRec، مؤكدًا أن التنبؤ بالعناصر المتناثرة هو التحدي القائم للمجال [6، 36].</p>
+    <p>والنمط متسق: توسيع السعة عبر الخبراء [11، 12] مع التوجيه الواعي بالجلسة يرفع مقاييس الرأس والترتيب بحسم، بينما يبقى تعميم الذيل محلولًا جزئيًا — وهو الدافع الصريح لمنظِّم RecLB والاستئصالات التالية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. دراسة الاستئصال</h2>
+    <p>باتخاذ MoE-SLMRec الكامل مرجعًا (الكلية 0.2027 والرأس 0.1888 والذيل 0.2449 وR@20 مقداره 0.8358 وMRR@20 مقداره 0.3455)، فإن إزالة المتحكم الواعي بالجلسة مع إبقاء MoE+RecLB تخفض الكلية 0.005 وR@20 بمقدار 0.0525؛ وإزالة RecLB أيضًا تخفض الكلية 0.0076 وR@20 بمقدار 0.0548. ويتخلف SLMRec العادي دون أي مكون بفارق 0.0151 كليًا و0.0204 في R@20.</p>
+    <p>والنتيجة اللافتة هي شدة تدهور MoE غير الموجه: فطبقات MoE دون إشارات تحكم واعية بالجلسة تنتج مكاسب غير مستقرة وغير متسقة — عدم كفاءة توجيه لا تخصصًا فعالًا. ففي الجلسات القصيرة المتقلبة، لا يستطيع توجيه MoE دون إرشاد صريح تعلم أدوار خبراء ذات معنى [10، 14]، مما يثبت صحة تصميم المتحكم مع RecLB.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">8. الخاتمة</h2>
+    <p>تستهدف الورقة اختلال التعميم بين الرأس والذيل في توصية الجلسات وتجيب عليه بـMoE-SLMRec: سعة خبراء متناثرة [9، 10، 12] يوجهها تحكم واعٍ بالجلسة [14] ويوازنها RecLB [31]. ويتصدر النموذج الدقة الكلية ومقياسي الترتيب Top-K على Yoochoose [38]، متركزة المكاسب حيث الجلسات أكثر قابلية للتنبؤ.</p>
+    <p>ويحدد العجز المتبقي في الذيل — المشترك مع خطوط أساس بأسلوب SASRec [27] — الحدود التالية: توجيه يحمي خبراء الأنماط النادرة دون التفريط بدقة الرأس، موسعًا أفكار الاختيار الخبير [14] وتكيف البداية الباردة [13] إلى نظام الجلسات المتقلب [36].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Session-based recommendation must predict the next item from short, sparse interaction sequences, where user interests shift within minutes. Transformer models capture intra-session dependencies well [2–4], but popularity bias skews predictions toward head items or simplistic long-tail patterns, producing a generalisation imbalance across the data distribution [6, 31].</p>
+    <p>The authors propose MoE-SLMRec, which replaces the Transformer feed-forward network of SLMRec [4] with a mixture-of-experts architecture [10] governed by a session-aware controller and a recommendation-aware load-balancing regulariser (RecLB). A session-aware routing signal replaces the unguided gating that otherwise concentrates activation on a few experts [10, 14].</p>
+    <p>On the Yoochoose benchmark [38], MoE-SLMRec reaches 0.2027 overall accuracy (≈8.0% above SLMRec’s 0.1876), with Recall@20 of 0.8358 and MRR@20 of 0.3455 — the best ranking quality among all compared models. Head-item accuracy jumps from 0.1461 to 0.1888, while tail accuracy trades off from 0.3137 to 0.2449, exposing a structural head–tail generalisation trade-off.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Recommendation systems have become essential decision-making tools across e-commerce, media streaming, advertising and content platforms, and the scale and complexity of behaviour logs have grown exponentially [1]. In live services, individual interests fluctuate within short timeframes, motivating research into models that read only the current session.</p>
+    <p>Transformer-based models are widely used for their ability to model complex intra-session interactions [2–4]. But session environments offer limited observable interactions with highly volatile input distributions [36], and the resulting bias yields conservative predictions skewed toward popular head items [6] or simplistic long-tail patterns — a generalisation imbalance across the global distribution [31].</p>
+    <p>The mixture-of-experts framework addresses the capacity–cost dilemma by activating only a subset of expert networks per input [9, 10], expanding capacity at controlled cost [11, 12], and it already underpins large-scale model expressiveness with growing session-recommendation applications [13]. Yet under sparse feedback and short sessions, expert concentration skews activation toward a few experts [10], starving rare patterns [14]; monolithic paths cannot serve both distribution poles at once [31].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related Work: Session-Based Models</h2>
+    <p>Session-based recommendation predicts the next item from a short interaction sequence with no long-term user profile available [25]. Early work modelled sequential dependencies with RNNs such as GRU4Rec [25]; after the Transformer [26], self-attention models such as SASRec appeared [27], alongside sparse-attention variants [27].</p>
+    <p>Recent work applies large-scale pre-training and language-model structures to recommendation [4]: SLMRec treats sessions as linguistic sequences and improves session-representation generalisation with a Transformer encoder [4]. Yet even strong models show a structurally fixed head–tail generalisation gap when overall accuracy looks stable [31].</p>
+    <p>The long-tail problem is central: tail-item accuracy collapses under popularity bias [6], and calibration studies confirm that sparse items remain hard to predict [36]. Replacing SLMRec’s feed-forward block with mixture-of-experts layers [10] is this paper’s answer.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Related Work: Mixture-of-Experts</h2>
+    <p>Mixture-of-experts partitions a network into expert sub-networks and activates only a subset per input [9, 10]. Unlike single-path models that route every input identically, MoE configures different paths for different inputs, achieving expressiveness with computational efficiency [12] — the principle behind GShard’s conditional computation [11] and Switch Transformers’ sparse scaling [12].</p>
+    <p>Routing design is decisive: expert-choice routing rebalances assignment from the expert side [14], and cold-start MoE recommenders adapt experts per modality [13]. In session recommendation, however, naive sparse gating concentrates load on high-frequency patterns [10], which is why the authors add explicit session-aware control and recommendation-aware balancing.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Method: Problem and MoE-SLMRec</h2>
+    <p>Session environments structurally resist balanced generalisation: short, sparsely observed interactions make joint head–tail accuracy hard [36], while manual configuration cannot track shifting data characteristics — a role where automated, AutoML-style adaptation improves robustness [37].</p>
+    <p>MoE-SLMRec keeps SLMRec’s Transformer encoder [4] but replaces each feed-forward block with a mixture-of-experts layer in the sparsely-gated tradition [10]: a gating network selects top-k experts per session representation, scaling capacity without scaling per-token compute [11, 12].</p>
+    <p>Two additions make routing session-aware rather than frequency-driven. A session-aware controller encodes short-term intent and conditions expert selection on it, countering the concentration pathology of unguided gating [10, 14]. A recommendation-aware load-balancing regulariser (RecLB) penalises collapse onto popular-pattern experts, preserving head–tail balance [31, 36].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Experiments: Data and Metrics</h2>
+    <p>Experiments use the Yoochoose dataset from RecSys Challenge 2015 [38]: e-commerce click logs defined purely by item-click sequences within sessions, with no explicit long-term user information — the canonical sparse session benchmark. All models share identical preprocessing and training configurations for fair comparison.</p>
+    <p>Evaluation covers overall accuracy, head accuracy on frequent items, tail accuracy on infrequent items (generalisation and diversity in the long tail), plus Recall@20 for candidate-retrieval coverage and MRR@20 for ranking quality — jointly measuring both popularity segments and how quickly the user reaches the desired item.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Results</h2>
+    <p>MoE-SLMRec achieves 0.2027 overall accuracy, about 8.0% above SLMRec’s 0.1876, and also beats Transformer-based SASRec (0.1784) and RNN-based GRU4Rec (0.1601) [25, 26], as well as BERT4Rec (0.1915). On ranking quality it leads outright: Recall@20 of 0.8358 and MRR@20 of 0.3455, meaning the correct item is both included and placed higher.</p>
+    <p>Segment analysis shows head accuracy rising from 0.1461 to 0.1888: the MoE structure disentangles dominant in-session behavioural patterns for frequent items. Tail accuracy falls from 0.3137 to 0.2449 — a structural generalisation trade-off as representational expansion prioritises high-frequency patterns. Similar tail weakness appears in SASRec, confirming sparse-item prediction as the field’s standing challenge [6, 36].</p>
+    <p>The pattern is consistent: capacity expansion via experts [11, 12] plus session-aware routing lifts the head and ranking metrics decisively, while tail generalisation remains only partly solved — the explicit motivation for the RecLB regulariser and the ablations that follow.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Ablation Study</h2>
+    <p>Taking full MoE-SLMRec (overall 0.2027, head 0.1888, tail 0.2449, R@20 0.8358, MRR@20 0.3455) as reference, removing the session-aware controller while keeping MoE+RecLB drops overall accuracy by 0.005 and R@20 by 0.0525; removing RecLB as well drops overall by 0.0076 and R@20 by 0.0548. Plain SLMRec without any component trails by 0.0151 overall and 0.0204 R@20.</p>
+    <p>The notable finding is how severely unguided MoE degrades: MoE layers without session-aware control signals produce unstable, inconsistent gains — routing inefficiency rather than effective specialisation. In short volatile sessions, MoE routing without explicit guidance cannot learn meaningful expert roles [10, 14], validating the controller-plus-RecLB design.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">8. Conclusions</h2>
+    <p>The paper targets the head–tail generalisation imbalance of session-based recommendation and answers it with MoE-SLMRec: sparse expert capacity [9, 10, 12] steered by session-aware control [14] and balanced by RecLB [31]. The model leads on overall accuracy and both Top-K ranking metrics on Yoochoose [38], with the gains concentrated where sessions are most predictable.</p>
+    <p>The remaining tail deficit — shared with SASRec-style baselines [27] — marks the next frontier: routing that protects rare-pattern experts without surrendering head accuracy, extending expert-choice ideas [14] and cold-start adaptation [13] to the volatile session regime [36].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references preserving original numbering; the full list of 38 references is available in the original paper (doi:10.3390/electronics15040825).</p>
+    <p dir="rtl" style="font-size:0.85rem;color:var(--text-2)">مراجع مختارة بالأرقام الأصلية؛ والقائمة الكاملة (38 مرجعًا) متاحة في الورقة الأصلية (doi:10.3390/electronics15040825).</p>
+    <ol dir="ltr">
+      <li>[1] Feng, L.; Yuan, H.; Ye, Q.; Qian, Y.; Ge, X. Exploring the impacts of a recommendation system on an e-platform. Inf. Manag. 2024, 61, 103905.</li>
+      <li>[2] Lu, Y.; Gao, Z.; Cheng, Z.; et al. Session-based recommendation with transformers. In Proc. Recommender Systems Challenge 2022; ACM, pp. 29–33.</li>
+      <li>[4] Su, J.; Zhong, Q.; Ma, Y.; et al. Distilling transitional pattern to large language models for multimodal session-based recommendation. arXiv 2025, arXiv:2504.10538.</li>
+      <li>[6] Liu, S.; Zheng, Y. Long-tail session-based recommendation. In Proc. 14th ACM Conf. on Recommender Systems, 2020; pp. 509–514.</li>
+      <li>[9] Jacobs, R.A.; Jordan, M.I.; Nowlan, S.J.; Hinton, G.E. Adaptive mixtures of local experts. Neural Comput. 1991, 3, 79–87.</li>
+      <li>[10] Shazeer, N.; Mirhoseini, A.; Maziarz, K.; Davis, A.; Le, Q.; Hinton, G.; Dean, J. Outrageously large neural networks: The sparsely-gated mixture-of-experts layer. arXiv 2017, arXiv:1701.06538.</li>
+      <li>[11] Lepikhin, D.; Lee, H.; Xu, Y.; et al. GShard: Scaling giant models with conditional computation and automatic sharding. arXiv 2020, arXiv:2006.16668.</li>
+      <li>[12] Fedus, W.; Zoph, B.; Shazeer, N. Switch Transformers: Scaling to trillion parameter models with simple and efficient sparsity. J. Mach. Learn. Res. 2022, 23, 1–39.</li>
+      <li>[13] Nguyen, V.-K.; et al. Multi-modal adaptive mixture of experts for cold-start recommendation. In Proc. CIKM 2025; pp. 5053–5057.</li>
+      <li>[14] Zhou, Y.; Lei, T.; Liu, H.; et al. Mixture-of-experts with expert choice routing. Adv. Neural Inf. Process. Syst. 2022, 35, 7103–7114.</li>
+      <li>[25] Hidasi, B.; Karatzoglou, A.; Baltrunas, L.; Tikk, D. Session-based recommendations with recurrent neural networks. arXiv 2015, arXiv:1511.06939.</li>
+      <li>[26] Vaswani, A.; Shazeer, N.; Parmar, N.; et al. Attention is all you need. In Proc. NeurIPS 2017.</li>
+      <li>[27] Yuan, J.; Song, Z.; Sun, M.; Wang, X.; Zhao, W.X. Dual sparse attention network for session-based recommendation. Proc. AAAI Conf. Artif. Intell. 2021, 35, 4635–4643.</li>
+      <li>[31] Wang, X.; Qin, K.; Zhang, D.; Xie, X.; Liang, S. Bid farewell to seesaw: Towards accurate long-tail session-based recommendation. arXiv 2025, arXiv:2511.08378.</li>
+      <li>[36] Chen, J.; Wu, W.; Shi, L.; Zheng, W.; He, L. Long-tail session-based recommendation from calibration. Appl. Intell. 2023, 53, 4685–4702.</li>
+      <li>[37] Addula, S.R.; Sajja, G.S. Automated machine learning to streamline data-driven industrial application development. In Proc. IC3TES 2024.</li>
+      <li>[38] Ben-Shimon, D.; Tsikinovsky, A.; Friedmann, M.; Shapira, B.; Rokach, L.; Hoerle, J. RecSys Challenge 2015 and the YOOCHOOSE dataset. In Proc. 9th ACM Conf. on Recommender Systems, 2015; pp. 357–358.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics15040825">10.3390/electronics15040825</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

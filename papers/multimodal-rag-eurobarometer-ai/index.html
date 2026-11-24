@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إطار متعدد الوسائط يدمج التوليد المعزز بالاسترجاع مع النماذج اللغوية الكبيرة متعددة الوسائط لبيانات اليوروباروميتر — DAR</title>
+<meta name="description" content="A Multimodal Framework Embedding Retrieval-Augmented Generation with MLLMs for Eurobarometer Data — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/multimodal-rag-eurobarometer-ai/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Multimodal Framework Embedding Retrieval-Augmented Generation with MLLMs for Eurobarometer Data</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">إطار متعدد الوسائط يدمج التوليد المعزز بالاسترجاع مع النماذج اللغوية الكبيرة متعددة الوسائط لبيانات اليوروباروميتر</h2>
+
+  <div class="paper-meta">
+    <span>👤 George Papageorgiou, Vangelis Sarlis, Manolis Maragoudakis, Christos Tjortjis</span>
+    <span>📄 AI, 2025 · Vol. 6, 50</span>
+    <span>🔗 <a href="https://doi.org/10.3390/ai6030050">10.3390/ai6030050</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تقدم هذه الدراسة إطارًا متعدد الوسائط يدمج التوليد المعزز بالاسترجاع (RAG) مع النماذج اللغوية الكبيرة متعددة الوسائط (MLLMs) لتعزيز إتاحة بيانات استطلاعات اليوروباروميتر وقابليتها للتفسير وتحليلها. تعاني المقاربات التقليدية من تنوع الصيغ وضخامة هذه المجموعات التي تشمل عناصر نصية وبصرية [1]. ويوظف الإطار الفهرسة متعددة الوسائط والاسترجاع الموجَّه للاستعلامات المركزة وتحليل الاتجاهات والتصور عبر إصدارات استطلاعية متعددة، بينما يمنح التوليف بالنماذج فهمًا أشمل لاتجاهات الرأي العام. ويقدم منافع مرتقبة لصانعي السياسات والصحفيين والمنظمات والباحثين والمواطنين، بتصميم نمطي يدعم دراسات الاستطلاعات والتحليلات المقارنة والتحقيقات المجالية، وقابلية توسع وإعادة إنتاج تناسب الحوكمة الإلكترونية والنشر في القطاع العام [4]. وتشير النتائج إلى مكاسب محتملة في تفسير البيانات وتحليلها — بما فيها تحليل الصور فوق المحتوى المفهرس — لسياسات مستنيرة وبحوث اجتماعية، مع التشديد على ضرورة تقييم الأداء للتحقق من الفعالية وفق المكونات المعمارية والتطبيقات المحددة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تلتقط استطلاعات اليوروباروميتر، منذ 1974 لصالح مؤسسات الاتحاد الأوروبي، الرأي العام في قضايا اجتماعية-سياسية وديموغرافية واقتصادية عبر الدول الأعضاء، لكن تحليلها اعتمد بقوة على النص المنظم والإحصاءات، متجاهلًا معلومات سياقية في البيانات البصرية والوثائق [1]. وتستطيع النماذج متعددة الوسائط دمج المدخلات النصية مع البصرية وPDF لتحليل أغنى [2،3]، باستخدام أعمدة لغوية مُدرَّبة مع مُرمِّزات بصرية ومواءمات رؤية-إلى-لغة [4،5]، بينما يزوّد RAG النماذج ببيانات خارجية مسترجعة لحظيًا — وهو ضروري لبيانات تمتد سنوات وموضوعات [10،11]. فالاستعلام عن المواقف من سياسة المناخ مثلًا قد يتطلب دمج عدة أسئلة مع رسوم النتائج؛ وفحصها منفصلة يُفقد معلومات مهمة، بينما يسترجع المساعد الافتراضي المعزز بـRAG النص مع المرئيات ويجمعها لإجابات شاملة. وتعرض المخطوطة لذلك إطار RAG متعدد الوسائط فوق مصادر نصية وصورية وبصرية لتحليل اليوروباروميتر، محسنًا قابلية التفسير والنطاق في البحوث السياسية والاجتماعية.</p>
+    <p>يوجه الدراسة سؤالان: (1) كيف يحسّن التكامل متعدد الوسائط لـRAG والنماذج استخراج المعرفة وقابلية تفسير بيانات اليوروباروميتر عبر أنواع المدخلات — النص الصحفي الخام ومرفقات PDF (الملخص وملحق البيانات والتقرير) والصور؛ و(2) إلى أي مدى يدعم استرجاع RAG متعدد الوسائط التحليل المولَّف والمقارنة والتصور عبر الاستطلاعات، معززًا استخراج الاتجاهات والديناميات المجتمعية وتوليفها. والهدف الرئيسي بحث هذا الأثر بتوحيد النصوص والصور في إطار RAG واحد للاسترجاع والتحليل وتوليد الرؤى، بأهداف تشمل تطوير الإطار لفهرسة الأنواع المغايرة واسترجاعها ومعالجتها، والتحليل المتقدم للاتجاهات والمقارنات عبر الإصدارات لقرارات مبنية على البيانات، واستكشاف القيمة العملية المضافة لصناعة السياسات والبحث والأكاديميا [16–19].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الخلفية</h2>
+    <p>تُظهر النماذج مثل GPT-4o وGemini وNVLM وLlama 3.2 وPaLM-E وCLIP، مع RAG، قدرة الذكاء الاصطناعي على معالجة مصادر متنوعة وتوليفها لرؤى أعمق [6،7]. ويوائم ChartLlama وAnyGPT التمثيلات البصرية واللغوية لفهم الرسوم والاستعلامات متعددة الوسائط [8،9]؛ ويستكشف WorldGPT وVITA النمذجة العالمية متعددة الوسائط عبر الديناميات الزمانية والمكانية [12،13]؛ ويعالج GPT-4o وNExT-GPT النص والصورة والفيديو والصوت لتحليل المشاعر والأسئلة البصرية والتفاعل متعدد اللغات [14،15]. ويرسّخ RAG مخرجات النماذج في سياق مسترجع، محسنًا الدقة والحداثة ومحدًّا من الهلوسة [16،17] — كما ظهر في قواعد البيانات المخصصة [16] وأتمتة المراجعات الأدبية [18] وCRP-RAG بالرسوم الاستدلالية [19] وتطبيقات RAG الطبية [20]. ومعماريًا تجسر المُرمِّزات الخاصة بكل وسيلة ومساقط المدخلات والمواءمات بين الرؤية والنص في فضاء كامن مشترك [6]، مثل المُرمِّز البصري الهجين في MobileFlow لمهام الواجهات [21]، بينما تدفع الضبط بالتعليمات وتعزيز الاسترجاع والمواءمة الخاصة بالوسائل قدرات متنوعة [22،23]. ومن الأعمال السابقة للفريق بنى نمطية قابلة لإعادة الإنتاج للخدمات الحكومية [4]، وطبّق KemenkeuGPT النماذج على البيانات المالية الحكومية الإندونيسية [2]، وأضاف RAP ذاكرة سياقية لوكلاء النماذج متعددة الوسائط [3].</p>
+    <p>تعالج هذه الدراسة الفجوة المتبقية — إطار RAG شامل متعدد الوسائط مصمم لبيانات اليوروباروميتر، يدمج المصادر النصية والبصرية — وتستكشف تحسينات التفسير والتحليل واتساع انطباق RAG في البحوث الاجتماعية-السياسية والاقتصادية، رهنا بالتقييم على خيارات المكونات الملموسة [19،20].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. البنية التقنية</h2>
+    <p>تتكون البنية من مرحلتين — الفهرسة والاستعلام — على منسّق Haystack مفتوح المصدر لنمطيته [24]، مع FAISS مخزنًا شعاعيًا (في الذاكرة عبر Colab هنا) لاسترجاع كفء. ويُفهرس لكل استطلاع: صفحة البيان الصحفي الرسمي (النص الخام مع صور PNG/JPEG ونصوصها البديلة من المفوضية كإشارة تكميلية) مع البيانات الوصفية (نوع الاستطلاع: مباشر أو هاتفي أو عبر الإنترنت)، إضافة لملفات PDF يختارها المستخدم (ملحق البيانات وصحائف الدول والإنفوغرافيك والتقارير والملخصات) [37]. وتنظّف المعالجة المسبقة النص (الأسطر الفارغة والمسافات الزائدة والترويسات) وتُقطّعه إلى مقاطع من 200 كلمة بتداخل 30 كلمة مع حفظ حدود الجمل؛ وتُضمَّن الصور بـopenai/clip-vit-base-patch32 [25،26] مع النص البديل والبيانات الوصفية. وتُضمَّن المقاطع النصية بـtext-embedding-ada-002 [27]؛ وتتبع جودة الاسترجاع ثم الأسئلة والأجوبة المُسترجِع المختار، فينبغي اختيار المكونات وفق موارد التقييم الموثقة مثل تقييمات GPT-4o وGPT-4o-mini [28–31].</p>
+    <p>ويضم الاستعلام ثلاث خطوط. فالبسيط (نصي وبصري) يستخدم موجّهًا مخصصًا (حتى 4096 رمزًا، حرارة 0.1، top-p قدره 0.9) يرسّخ الإجابات في الوثائق المسترجعة حصرًا مع إخلاء مسؤولية المحتوى المولّد. والوكلاء الحواريون بذاكرة يغلّفون خطي النص والصورة كوكيلين (GPT-4o [33]) مع ذاكرة تلخيص philschmid/flan-t5-base-samsum [34،35] وخطوات فكر/ملاحظة للشفافية (سقف 256 رمزًا، ضبط مخصص [36]). أما المدمج بالصور فيسترجع الصور ذات الصلة، ويتيح للمستخدم إرفاق صورة مختارة (base64) واستجواب GPT-4o متعدد الوسائط [33] بموجّه صوري مخصص — للخرائط الحرارية والدائرية والشريطية مثلًا — مرسِّخًا الإجابات في الدليل البصري المرفق [25،33].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. دراسة الحالة: المساعدات الإنسانية للاتحاد الأوروبي</h2>
+    <p>تستخدم دراسة الحالة استطلاع اليوروباروميتر حول المساعدات الإنسانية للاتحاد الأوروبي (ميداني سبتمبر–أكتوبر 2023، منشور يناير 2024) [37]، مفهرِسةً بيانه الصحفي مع ملفي الملخص [38] والتقرير [39]، عبر واجهة Python 3.11.11 بدردشة عامة وصورية وإرفاق-صورة — كلها قابلة لإعادة الإنتاج في الدفتر العام وColab. وعند طلب نظرة عامة، كشف الوكيلان الحواريان استدلالهما (الهدف والخطوات والاسترجاع لكل وكيل) قبل الدمج: فوكيل النص أورد المشاعر العامة (91% يقدّرون المعونة الممولة أوروبيًا؛ والأولويات الصحة والأمن الغذائي والمناخ؛ والتلفاز المصدر الأكثر ثقة؛ والفخر بالاتحاد كمانح رائد)، بينما أضاف وكيل بيانات الصور تفاصيل مالية — 71% يرون المعونة أنجع بتنسيق الاتحاد؛ و1.5–2 مليار يورو سنويًا (~4–5 يورو لكل دافع ضرائب)؛ و47% يريدون استمرار التمويل و40% زيادته؛ و83% يعبرون عن فخر وحماس ورضا. ويمزجان معًا الرأي النوعي بالمخرجات المالية والكفاءة والتفضيلات المكمَّمة.</p>
+    <p>ثم اختُبر خط الصور على الوعي بصناديق المعونة (خريطة حرارية)، وعلى الإنفاق في QD5 (دائري: 1.5–2 مليار يورو سنويًا)، وعلى مشاعر المانحين في QD3 (شريطي)، مسترجعًا في كل مرة الصور ذات الصلة في شريط جانبي، ومرفقًا الشكل المختار مع سؤاله كسياق، وآمرًا النموذج بالإجابة من الصورة المرفقة حصرًا — فكشف أنماط الخرائط الحرارية وحصص الدوائر وفروق الأعمدة بين السنوات مما يصعب قراءته بنظرة عابرة. ويقتصر الاسترجاع على الصور العامة ذات الصلة بالاستعلام [37]؛ وعدد الصور والنموذج متعدد الوسائط والموجّهات كلها قابلة للضبط حسب الحاجة. وتعود المنافع على صانعي السياسات والباحثين والمنظمات والصحفيين والمواطنين — تتبع الاتجاهات والتحقيقات الصحفية والتحقق من الحقائق ومكافحة التضليل — بينما يقدم موظفو القطاع العام مساعدة للمواطنين مبنية على البيانات [37].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. قابلية الإنتاج والقيود والمواءمة مع قانون الذكاء الاصطناعي</h2>
+    <p>الإطار عام على GitHub ويعمل في Colab (معالج Xeon ‏بـ2.20 غيغاهرتز وذاكرة 12 غيغابايت وبطاقة Tesla T4 ‏بـ15 غيغابايت وCUDA 12.2)، شاملًا الواجهة والمكتبات ووثائق النشر خطوة بخطوة [37]. وتنتقل نمطيته إلى الصحة (السجلات مع التصوير) والتعليم (التعلم التكيفي متعدد الوسائط) والمالية (التقارير مع الرسوم)، متوسعًا لكل مكون على الاستضافة المحلية أو السحابية بنماذج مفتوحة أو عبر API — وإن كانت الفعالية والكلفة والاعتماد على الخدمات المؤسسية رهن المكونات المختارة ومعايير قبول أصحاب المصلحة. والتحديان الرئيسيان خصوصية/أمن البيانات الحكومية الحساسة (التشفير وضوابط الوصول والامتثال القانوني) وكلفة الحوسبة (النماذج المحلية الأكبر أفضل أداء لكن بكلفة أعلى بكثير)، مما يستلزم مراقبة وضبطًا مستمرين واختيارًا دقيقًا للمكونات. وما تزال التقييمات الرسمية لأصحاب المصلحة والمقاييس الكمية لازمة لتأكيد مكاسب التفسير المقترحة.</p>
+    <p>ويتواءم التصميم مع قانون الاتحاد الأوروبي للذكاء الاصطناعي والمبادئ الأخلاقية لذكاء القطاع العام — عدم التمييز والقابلية للتكيف والحقوق الأساسية [40،41]: فالمكونات النمطية تعمل محليًا أو سحابيًا بخيار الجهة؛ ومصادر الفهرسة المتنوعة الممثلة تخفف التحيز؛ والبيانات الوصفية الكاملة تتعقب كل مسترجع إلى مصدره؛ وخطوات فكر/ملاحظة الوكلاء والتحليل المرسَّخ صوريًا لكل استعلام تكشف الاستدلال للرقابة، دعمًا لنشر جدير بالثقة وقابل للتدقيق [40،41]. والخلاصة: مساعد افتراضي نمطي كامل (خطا RAG معياريان وخط وكيلي حواري بذاكرة وخط أسئلة وأجوبة لتحليل الصور) على Haystack/FAISS/FastAPI مع GPT-4o وGPT-4o-mini وتلخيص flan-t5-base-samsum [32–34] يحوّل نصوص اليوروباروميتر وPDF وصوره إلى رؤى قابلة للتنفيذ لسياسات مبنية على الأدلة — رهن التحقق من الأداء لكل حالة. ويضيف المستقبل الوسائط الصوتية/المرئية والوكلاء المجاليين ومقارنات الاتجاهات والإصدارات وواجهات تصور متقدمة والاسترجاع اللحظي وحلقات التغذية الراجعة وشراكات حكومية وبحثية وصناعية [42].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>This study introduces a multimodal framework integrating retrieval-augmented generation (RAG) with multimodal large language models (MLLMs) to enhance the accessibility, interpretability and analysis of Eurobarometer survey data. Traditional approaches struggle with the diverse formats and large scale of these datasets, which include textual and visual elements [1]. The framework leverages multimodal indexing and targeted retrieval for focused queries, trend analysis and visualization across multiple survey editions, while LLM-based synthesis gives a more comprehensive understanding of public opinion trends. It offers prospective benefits for policymakers, journalists, NGOs, researchers and citizens, with a modular design supporting survey studies, comparative analyses and domain investigations, and its scalability and reproducibility suit e-governance and public-sector deployment [4]. Results indicate potential gains in data interpretation and analysis — including image analysis over indexed content — for informed policymaking and social-science research, while stressing that performance assessment is needed to validate effectiveness for specific architectural choices and applications.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Eurobarometer surveys, running since 1974 on behalf of EU institutions, capture public opinion on socio-political, demographic and economic issues across member states, yet their analysis has relied heavily on structured text and statistics, overlooking contextual information in visual data and documents [1]. Multimodal LLMs can combine textual inputs with visual and PDF data for richer analysis [2,3], using pretrained language backbones with visual encoders and vision-to-language adapters [4,5], while RAG supplements models with external data retrieved in real time — essential for survey data spanning years and themes [10,11]. A query on attitudes to climate policy, for instance, may require combining several questions with results charts; separately inspected, key information is missed, whereas a RAG-powered virtual assistant retrieves and combines text with visuals for comprehensive answers. This manuscript therefore presents a multimodal RAG framework over textual, image and visual data sources for Eurobarometer analysis, improving interpretability and scope in policy and social research.</p>
+    <p>Two research questions guide the study: (1) how can multimodal integration of RAG and LLMs improve knowledge extraction and interpretability of Eurobarometer data across input types — plain press-release text, PDF attachments (Summary, Data Annex, Report) and images; and (2) to what extent does multimodal RAG retrieval support synthesized analysis, comparison and visualization across surveys, enhancing extraction and synthesis of public-opinion trends and societal dynamics. The primary aim is to investigate this potential by unifying texts and images in a single RAG framework for retrieval, analysis and insight generation, with objectives spanning framework development for indexing/retrieval/processing of heterogeneous formats, advanced trend and comparative analysis across editions for data-driven decisions, and exploration of practical added value for policymaking, research and academia [16–19].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Background</h2>
+    <p>MLLMs such as GPT-4o, Gemini, NVLM, Llama 3.2, PaLM-E and CLIP, plus RAG, show how AI can process and synthesize varied sources for deeper insights [6,7]. ChartLlama and AnyGPT align visual and language representations for chart understanding and multimodal queries [8,9]; WorldGPT and VITA explore multimodal world modeling over temporal and spatial dynamics [12,13]; GPT-4o and NExT-GPT handle text, image, video and audio for sentiment analysis, visual QA and multilingual interaction [14,15]. RAG grounds LLM outputs in retrieved context, improving precision and currency and curbing hallucinations [16,17] — demonstrated in personalized databases [16], automated literature reviews [18], reasoning-graph CRP-RAG [19], and medical RAG applications [20]. Architecturally, modality-specific encoders, input projectors and adapters bridge vision and text in a shared latent space [6], e.g. MobileFlow's hybrid visual encoder for GUI tasks [21], while instruction tuning, retrieval augmentation and modality-specific alignment advance diverse multimodal capabilities [22,23]. Prior e-government work by the same group built modular reproducible LLM architectures [4], KemenkeuGPT applied LLMs to Indonesian government finance data [2], and RAP added contextual memory to multimodal LLM agents [3].</p>
+    <p>This study addresses the remaining gap — a comprehensive multimodal RAG framework tailored to the Eurobarometer dataset, integrating textual and visual sources — and explores improvements in interpretation and analysis plus broader RAG applicability in socio-political and economic research, subject to evaluation on concrete component choices [19,20].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Technical Architecture</h2>
+    <p>The architecture has two stages — indexing and querying — built on the open-source Haystack LLM orchestrator for modularity [24], with FAISS as the vectorized store (in-memory in Google Colab here) for efficient retrieval. Indexed content per survey: the official press-release page (native text plus PNG/JPEG images with EC alt-text as supplementary indexing signal) with metadata (survey type: face-to-face, phone, online), plus user-selected PDFs (Data Annex, Country Factsheets, Infographics, Reports, Summaries) [37]. Preprocessing cleanses text (empty lines, excess whitespace, headers/footers) and chunks it into 200-word segments with 30-word overlap preserving sentence boundaries; images are embedded with openai/clip-vit-base-patch32 [25,26] alongside alt text and metadata. Text chunks are embedded with text-embedding-ada-002 [27]; retrieval quality, and hence Q&A quality, follows the chosen embedding retriever, so component selection should follow provider evaluation resources such as the GPT-4o/GPT-4o-mini evals [28–31].</p>
+    <p>Querying has three pipelines. Simple RAG (text and image variants) uses a custom prompt (≤4,096 tokens, temperature 0.1, top-p 0.9) grounding answers solely in retrieved documents plus an AI-content disclaimer. Conversational agents with memory wrap text and image RAG pipelines as two agents (GPT-4o [33]) with philschmid/flan-t5-base-samsum summarization memory [34,35] and thought/observation steps for transparency (256-token cap, custom agent config [36]). Image-integrated RAG retrieves related images via the image pipeline, lets the user attach a selected image (base64) and queries multimodal GPT-4o [33] with a dedicated image prompt — e.g. heatmaps, pie and bar charts — grounding responses in the attached visual evidence [25,33].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Case Study: EU Humanitarian Aid</h2>
+    <p>The case study uses the Eurobarometer survey on EU Humanitarian Aid (fieldwork September–October 2023, published January 2024) [37], indexing its press release plus the Summary [38] and Report [39] PDFs, through a Python 3.11.11 UI with general chat, image chat and attach-an-image querying — all reproducible in the public notebook and Colab. Asked for an overview of EU humanitarian aid, the two conversational agents exposed their reasoning (goal, next steps, per-agent retrieval) before combining answers: the text agent reported public sentiment (91% value EU-funded aid; priorities health, food security, climate; TV most trusted source; pride in the EU as leading donor), while the image-metadata agent added financial specifics — 71% see aid as more effective when EU-coordinated; EUR 1.5–2 billion annually (~EUR 4–5 per taxpayer); 47% want funding maintained, 40% increased; 83% express pride/enthusiasm/satisfaction. Together they blend qualitative opinion with quantified funding, efficiency and preference outcomes.</p>
+    <p>The image pipeline was then exercised on awareness of EU aid funds (heatmap), on QD5 spending (pie chart: EUR 1.5–2 billion annually) and on QD3 donor emotions (bar chart), each time retrieving relevant images in a sidebar, attaching the selected figure with its question as context, and instructing the LLM to answer solely from the attached image — surfacing heatmap patterns, pie-chart shares and year-on-year bar differences that are hard to read at a glance. Retrieval is limited to query-relevant public images [37]; the number of images, the multimodal LLM and prompts are all configurable per business need. Benefits accrue to policymakers, researchers, NGOs, journalists and citizens — trend tracking, investigative reporting, fact-checking, disinformation response — while public-sector employees can deliver data-driven citizen assistance [37].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Reproducibility, Limitations and AI Act Alignment</h2>
+    <p>The framework is public on GitHub and runs in Google Colab (Intel Xeon @ 2.20 GHz, 12 GiB RAM, NVIDIA Tesla T4 15 GB, CUDA 12.2), including UI, libraries and step-by-step deployment docs [37]. Its modularity transfers to healthcare (records plus imaging), education (multimedia adaptive learning) and finance (reports plus charts), scaling component-wise to local or cloud hosting with open or API LLMs — though effectiveness, cost and corporate-service dependence hinge on the selected components and stakeholders' acceptance criteria. Key challenges are privacy/security of sensitive government data (encryption, access controls, legal compliance) and compute cost (larger local models perform better but cost substantially more), requiring continuous monitoring, tuning and careful component selection. Formal stakeholder evaluations and quantitative metrics are still needed to confirm the suggested interpretation gains.</p>
+    <p>The design aligns with the EU AI Act and ethical guidelines for public-sector AI — non-discrimination, adaptability, fundamental rights [40,41]: modular components run on-premises or cloud at the agency's choice; diverse representative indexing sources mitigate bias; full metadata traces each retrieved item to its origin; and agent thought/observation steps plus per-query image-grounded analysis expose the reasoning for oversight, supporting trustworthy, auditable deployment [40,41]. Conclusions: a complete modular virtual assistant (two standard RAG pipelines, one conversational agent-with-memory pipeline, one image-analysis Q&A pipeline) on Haystack/FAISS/FastAPI with GPT-4o and GPT-4o-mini plus flan-t5-base-samsum summarization [32–34] turns Eurobarometer text, PDFs and images into actionable insights for evidence-based policymaking — pending performance validation per use case. Future work adds audio/video modalities, domain agents, trend and cross-edition comparison, advanced visualization UI, real-time retrieval, feedback loops and government/research/industry partnerships [42].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Key references below keep their original numbering in the published paper [1]–[42]; the complete list is available in the original article (DOI link above).</p>
+    <ol dir="ltr">
+      <li>Nissen, S. The Eurobarometer and the Process of European Integration. <em>Qual. Quant.</em> <strong>2014</strong>, <em>48</em>, 713–727.</li>
+      <li>Febrian, G.F.; Figueredo, G. KemenkeuGPT: Leveraging a Large Language Model on Indonesia's Government Financial Data. <em>arXiv</em> <strong>2024</strong>, arXiv:2407.21459.</li>
+      <li>Papageorgiou, G.; Sarlis, V.; Maragoudakis, M.; Tjortjis, C. Enhancing E-Government Services through State-of-the-Art, Modular, and Reproducible Architecture over Large Language Models. <em>Appl. Sci.</em> <strong>2024</strong>, <em>14</em>, 8259.</li>
+      <li>Huang, D.; Yan, C.; Li, Q.; Peng, X. From Large Language Models to Large Multimodal Models: A Literature Review. <em>Appl. Sci.</em> <strong>2024</strong>, <em>14</em>, 5068.</li>
+      <li>Byun, J.; Kim, B.; Cha, K.A.; Lee, E. Design and Implementation of an Interactive Question-Answering System with Retrieval-Augmented Generation for Personalized Databases. <em>Appl. Sci.</em> <strong>2024</strong>, <em>14</em>, 7995.</li>
+      <li>Pietsch, M.; et al. Haystack: The End-to-End NLP Framework for Pragmatic Builders. GitHub Repository. 2019. https://github.com/deepset-ai/haystack</li>
+      <li>Kärkkäinen, K.; Joo, J. FairFace: Face Attribute Dataset for Balanced Race, Gender, and Age. <em>arXiv</em> <strong>2019</strong>, arXiv:1908.04913.</li>
+      <li>Radford, A.; et al. Learning Transferable Visual Models from Natural Language Supervision. <em>Proc. Mach. Learn. Res.</em> <strong>2021</strong>, <em>139</em>, 8748–8763.</li>
+      <li>OpenAI Text-Embedding-Ada-002. 2023. https://platform.openai.com/docs/guides/embeddings</li>
+      <li>OpenAI GPT-4o Mini: Advancing Cost-Efficient Intelligence. 2024. https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence</li>
+      <li>OpenAI GPT-4o. 2024. https://openai.com/index/hello-gpt-4o</li>
+      <li>Philschmid Flan-T5-Base-Samsum. 2024. https://huggingface.co/philschmid/flan-t5-base-samsum</li>
+      <li>European Commission Humanitarian Aid Survey. https://europa.eu/eurobarometer/surveys/detail/2976</li>
+      <li>European Commission; DG ECHO. <em>Summary — Special Eurobarometer 542-EU Humanitarian Aid</em>; Publication Office of the EU: Brussels, Belgium, 2024.</li>
+      <li>European Commission; DG ECHO. <em>Report — Special Eurobarometer 542-EU Humanitarian Aid</em>; Publication Office of the EU: Brussels, Belgium, 2024.</li>
+      <li>Madiega, T.; Chahri, S. <em>Artificial Intelligence Act; EU Legislation in Progress</em>; European Parliament: Brussels, Belgium, 2024.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/ai6030050">10.3390/ai6030050</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

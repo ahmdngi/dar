@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تطوير نماذج لغوية صغيرة الحجم للغات منخفضة الموارد، مع التركيز على الكازاخية والتحسين المباشر للتفضيلات — DAR</title>
+<meta name="description" content="The Development of Small-Scale Language Models for Low-Resource Languages, with a Focus on Kazakh and Direct Preference Optimization — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/kazakh-dpo-bdcc/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">The Development of Small-Scale Language Models for Low-Resource Languages, with a Focus on Kazakh and Direct Preference Optimization</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تطوير نماذج لغوية صغيرة الحجم للغات منخفضة الموارد، مع التركيز على الكازاخية والتحسين المباشر للتفضيلات</h2>
+
+  <div class="paper-meta">
+    <span>👤 Nurgali Kadyrbek, Zhanseit Tuimebayev, Madina Mansurova, Vítor Viegas</span>
+    <span>📄 Big Data Cogn. Comput., 2025 · Vol. 9, 137</span>
+    <span>🔗 <a href="https://doi.org/10.3390/bdcc9050137">10.3390/bdcc9050137</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>ما تزال اللغات منخفضة الموارد محرومة من النماذج اللغوية المعاصرة لغياب المدونات الكبيرة وأدوات المعالجة المخصصة وميزانيات الحوسبة التي تفترضها خطوط المواءمة السائدة [6–8]. وبالتركيز على الكازاخية — لغة تركية يتحدثها أكثر من 13 مليون نسمة لكنها ناقصة التمثيل حرجًا في معالجة اللغات — نقدم نموذجًا مبنيًا على LLaMA بـ1.94 مليار معامل يُظهر إمكانية أداء قوي ومواءم ثقافيًا دون بنية ضخمة. والمساهمة ثلاثية: (1) البيانات والتقطيع — مدونة كازاخية مختلطة المجالات منظفة بدقة مع مُقطّع يحترم الصرف الإلصاقي واختلاط الأبجديات والتشكيل؛ (2) وصفة التدريب — نمذجة لغوية سببية من الصفر ثم ضبط بالتعليمات، مع صقل المواءمة بالتحسين المباشر للتفضيلات (DPO) [13] موسَّعًا بتنظيم تبايني وإنتروبي لتثبيت التدريب تحت إشارات تفضيل شحيحة ومشوشة، مدعومًا بـChatTune-DPO (أزواج تفضيل بشرية جماعية) وPseudo-DPO (مولَّد آليًا من بيانات التعليمات لخفض كلفة التعليق)؛ (3) التقييم والأثر — تُظهر التقييمات النوعية والمهمية أن التدريب الأحادي الموجَّه ومتغير DPO يحسّنان بجلاء الوقائعية والاتساق والأمانة الثقافية مقارنة بأسس التعليمات فقط ونظراء متعددي اللغات [26،27]. والنموذج والبيانات منشوران برخص مفتوحة كمخطط قابل لإعادة الإنتاج للغات أخرى ناقصة التمثيل.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تدعم النماذج اللغوية الترجمة والتلخيص والوكلاء الحواريين، لكن الكازاخية ما تزال محرومة: مدونات عالية الجودة شحيحة وميزانيات متواضعة ومعايير تتجاهل صرفها واختلاط أبجديتها. نعتمد LLaMA لكفاءته المعاملية وقابليته للتكيف، مدرِّبين نموذجًا بـ1.94 مليار معامل من الصفر بمُقطّع مخصص وتعديلات تضمين وانتباه لهيكل الكازاخية الإلصاقي. وتسعى الدراسة لثلاثة أهداف: بناء النموذج الكازاخي (جمع بيانات متنوعة مع ترشيح الضجيج غير الكازاخي، وتدريب LLaMA مكيَّفًا في الحجم والطبقات والرؤوس، وتقييم صارم بالحيرة والطلاقة والدقة اللغوية)؛ والنمذجة الكفء (مجموعة تعليمات واسعة، وتحسين مهمي بـDPO للوقائعية وتقليل الهلوسة، والتحقق عبر أسئلة وأجوبة وتلخيص وحوار واقعي)؛ والنهوض بالنمذجة منخفضة الموارد عمومًا بإطار نمطي شفاف مقتصد يفك الارتباط بين الأداء وبيانات الموارد العالية والبنى الاحتكارية [1–5].</p>
+    <p>ويدعم السياق المجتمعي هذا الاتجاه: فورش النماذج المنظمة تُظهر قيمة الذكاء الميسور في التعليم والصناعة [1]، وللنماذج دور مزدوج في التضليل يستلزم أدوات كشف [2،5]، والمعماريات الكفء ما بعد المحولات (Mamba وHawk) تناسب الميزانيات المقيدة [3]، وتضمين القيم الثقافية في الأدوات الرقمية يؤكد الهوية الوطنية [4]. لذلك أسسنا LibOCR-KazNU، جهد OCR مستمر لرقمنة تراث جامعة الفارابي الكازاخية الوطنية وتغذية المدونة بكازاخية أصيلة ذات صلة ثقافية، وننشر مجموعات بشرية ومصنعة (ChatTune-DPO وPseudo-DPO) بمعايير تخفيف التحيز والاتساق الوقائعي لسد فجوة البيانات الأخلاقية عالية الجودة [5].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأدبيات والقيود</h2>
+    <p>تؤكد الأعمال السابقة الفجوة: تتخلف نماذج GPT في الكازاخية لشح بيانات التدريب [6]؛ وخط OCR-ثم-معالجة بدقة 85% يرفع الترجمة 44% لكن بمقاييس غير ملائمة [7]؛ ويُظهر Language Ranker أن درجات التشابه المنخفضة للكازاخية تعكس بصمتها الضئيلة [8]؛ والنقل عبر التركية (Kardeş-NLU) يعطي مكاسب مهمية فقط [9]؛ ودراسات الصرف التركي تقترح معماريات متخصصة مثل VQVAE [10]؛ والتعزيز البياناتي بالنماذج بديل ممكن وفعال الكلفة للتعليق البشري في الموارد المنخفضة [11]. وإزاء ذلك يستهدف نموذجنا الأحادي LLaMA-1.94B، المدرَّب من الصفر على بيانات كازاخية منتقاة بضبط مهمي خاص (أسئلة وتعليمات)، مهام التوليد التي تفشل فيها النماذج المعممة تحديدًا.</p>
+    <p>وتستدعي القيود المستمرة تصميمنا: اختلال البيانات والتعقيد الصرفي اللذين لا يعالجهما تدريب تهيمن عليه الموارد العالية؛ وضعف التعميم عبر اللغات (هبوط كبير في الترجمة الكازاخية دون ضبط صريح [6])؛ وقصور مقاييس BLEU/METEOR عن دقائق الكازاخية؛ وندرة الضبط الموجَّه [7]؛ ومقايضات السلامة-الأداء حيث يخفض الضبط العدائي MT-Bench دون نماذج أصغر مثل LLaMA-2-7b-chat [12] بينما تتطلب أساليب RL (كـPPO) موارد ضخمة في حين يعاني DPO [13] — المستقر والرخيص بالتصنيف الأعظمي الإمكان — انزياح التوزيع والتحيز (ومتغيرات CPO وIPO وOnline DPO غير ناضجة)؛ إضافة لمخاطر منهجية في جودة البيانات والتحيز والتضليل حيث التحقق الوقائعي الكازاخي ضعيف [2].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. البيانات وإعداد التدريب</h2>
+    <p>تغطي المدونة الأخبار والأدب الكلاسيكي والحديث والأطروحات والكتب المدرسية وتفريغ ويكيبيديا الكازاخية (أغسطس 2024) [15]، مع نصوص كازاخية-روسية مختلطة تعكس الاستخدام الواقعي، منظفة من HTML وموحدة (روابط <link> ومعالجة الأبجدية والتشكيل) ومتوازنة المجالات [14]. ويضيف LibOCR-KazNU باستمرار نصوص التراث الجامعي المرقمنة بـOCR [16]. والإحصاءات: 1.37 مليار رمز تدريب (127,701 فريد) و1.35 مليون رمز تحقق (85,815 فريد)، بتوزيع Zipfian طويل الذيل يمنح الهيكلة النحوية والاتساع المعجمي معًا. واستخدم SFT نحو 48,000 عينة تعليمات مغايرة عبر المجالات الأكاديمية والمهنية (تسميات المجالات للتحليل فقط)، مع سقالات سلاسل التفكير للاستدلال [17،18]. وجاء ChatTune-DPO من تجربة شهرين لـ52 مستخدمًا على روبوت Farabi-Lab (vLLM ‏v0.6.1)، جُمعت فيها الإعجابات والتصحيحات في مجموعة تفضيل عامة متنامية [19،20]. ويعيد Pseudo-DPO توظيف بيانات التعليمات: خمسة مرشحين لكل موجّه (top-p قدره 0.9 وحرارة 0.5–1.0)، وترتيب تشابه جيبي بتضمينات RoBERTa-Kaz-Large، والأقرب للمرجع مرفوضًا والأصل مقبولًا — محاكيًا حلقة النشر-وال-اختيار في SemiEvol مع ترشيح شبه-إنتروبي [21].</p>
+    <p>المعمارية: LLaMA بـ1.94 مليارًا بخفي 2048 / وسيط 5504، و32 طبقة × 32 رأسًا (8 للقيم-المفاتيح)، وSiLU مع RMSNorm، وmax_position_embeddings قدره 8192 مع rope-theta عالٍ للسياقات الطويلة، وإسقاط انتباه 0.0 لحفظ الإشارة الشحيحة، وتضمينات غير مربوطة، ومُقطّع مخصص للكازاخية يعالج اللواحق والتشكيل [3،22–24]. ودُرّب على بطاقتي A100 ‏بسعة 80 غيغابايت (معهد ألماتي) بتوزيع DDP على أكثر من 5.3 ملايين مثال، بجدولة جيب التمام الدورية و8000 خطوة إحماء وضبط الدفعات والأطوال؛ وضبط تسوية الخسارة التقلب المبكر لمنحنيات تحقق أنعم وأسرع استقرارًا. وقارن ضبط التعليمات قالب دردشة كازاخيًا محليًا (فحوص الأدوار ورمز المساعد «көмeкшi» وeos صريح) مقابل قالب LLaMA-3 المبسط. وقيّم بـ2000 عينة مهمية: أسئلة وقائعية (20%) واستخراج وقائع من السياق (15%) وتعليمات كلمات مفتاحية (5%) وحل مسائل (12%) وتوليد قصص (5%) وكشف تحيز أخلاقي (10%) وخبرة ثقافية كازاخية (10%) وإعادة صياغة (8%) وتصحيح إملائي (8%) وبناء أسئلة (7%).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. تحسين التفضيلات والنتائج</h2>
+    <p>يضمن DPO المعياري [13] تقدم المرغوب على المرفوض لكنه قد يخفض الاحتمال اللوغاريتمي للمرغوب نفسه مع تحسن النسبة — فأضفنا هامشًا تباينيًا يرسّخ الإكمال المرغوب فوق قيمته المرجعية (بوزن λ) مع تنظيم KL-نحو-المرجع (α) أو إنتروبي (γ) ضد الانهيار والانجراف [25]. ويحفظ الفقد المدمج ترتيب DPO وأرضية احتمالات المرغوب عند المرجع وإنتروبي مخرجات صحيًا. وقُورنت ثلاثة إعدادات على نفس CLM الأساس: SFT؛ وSFT←DPO ثنائي المرحلة على حقبتين (ChatTune-DPO)؛ وPseudo-DPO بعدد خطوات SFT — فأظهرت المنحنيات متغيري DPO أخفض وأثبت من SFT (وأعانت إعادة استخدام رمز «көмeкшi» القائم بدل تضمينات جديدة على الاستقرار).</p>
+    <p>وعلى 2000 عينة مهمية يتصدر ChatTune-DPO بدقة 62.7% (مقابل 61.1% بـDPO* المعياري)، متقدمًا على التعليمات الأساس (56.5%) وPseudo-DPO (61.3%، و59.9% بالمعياري*) — مع صلة 65.1 واتساق 69.6 ووعي سياقي 63.2 — بينما تتخلف الأسس العامة: mGPT-1.3B الكازاخي عند 36.1% بإخفاقات السياق الطويل والهلوسة [26]، وISSAI ‏Llama-3.1-8B-instruct عند 58.2% [27]. وتؤكد شريحة QThink-Task (200 عينة لكل مهمة من 11 نوعًا) [28] النمط: يتصدر ChatTune-DPO الشرح السياقي (59.5%) والتحقق الوقائعي (56.82%) والتحليل المضاد للواقع (55.7%) وكشف الأخطاء (56.6%)، منافسًا في التلخيص والأسئلة وإعادة الصياغة — فيتفوق نموذج مركز بـ1.94 مليار على معممين أكبر (8 مليارات) في الكازاخية، ويكاد Pseudo-DPO يماثل DPO البشري التعليق. ومن الدروس الهندسية: ضبط التنظيف/الترشيح الموجَّه روّض البيانات مختلطة اللغة (الروسية) بتقطيع كازاخي خاص؛ وتكييف LLaMA مع جدولة جيب التمام رفع أداء النموذج الصغير؛ وتوزيع DDP مع 8000 إحماء أدار ميزانية البطاقتين [3،29].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. المناقشة والخاتمة والعمل المستقبلي</h2>
+    <p>تقيّد القيود الخلاصات: بطاقتا A100-80GB تحدّان المسوحات واستكشاف السياق؛ وانحياز الأخبار/الأدب يُنقص المجالات القانونية/الطبية؛ والأحكام البشرية للملاءمة الثقافية لعينة تجريبية صغيرة فقط؛ وإرشاد التشابه التضميني في Pseudo-DPO قد يُخطئ تسمية المرفوض؛ وتوليد المختلط لغويًا بانتظار تقييم منهجي. وتبقى المساهمات العلمية: رؤى جديدة لتدريب الموارد المنخفضة (بيانات مختلطة منتقاة ومعالجة وتخصيص صرفي)؛ ومنهجية ضبط بالتعليمات/DPO مع تثبيت تبايني-إنتروبي؛ وموارد مفتوحة — المدونة الكازاخية العامة (1.37 مليار رمز) وChatTune-DPO وQThink-Task (أكثر من 500 ألف عينة بـ13 نوعًا مهميًا) ونقاط التفتيش [16،17،19،28،30]. والبيانات والشيفرة عامة (farabi-lab ‏kaznu-lib-ocr-for-lm وraw-text-for-clm-v1؛ وfarabi-lab ‏user-feedback-dpo؛ وnur-dev ‏QThink-Task وkaz-instruct-rl وllama-1.9B-kaz تعليمات/أساس)، بتمويل منحة كازاخستان BR24993001.</p>
+    <p>وتخلص ثلاث رؤى: التدريب الأحادي المركز على صرف الكازاخية ونحوها يتفوق على متعدد اللغات المخفف في المواءمة السياقية؛ والضبط التفضيلي — DPO معززًا بقيود تباينية وتنظيم إنتروبي [13،25] — يعالج ضعف ترتيب التفضيلات ويواءم التغذية البشرية ويقلل الهلوسة؛ والحجم المعتدل (1.94 مليار) على بطاقات محدودة يثبت أن المعالجة المتقدمة لا تحتاج ميزانية ضخمة. ويبلغ Pseudo-DPO أداءً قريبًا من DPO اليدوي، ويبقى التنظيف الصارم للمكونات متعددة اللغات ضروريًا لسلامة الموارد المنخفضة. ويتوسع المستقبل في تغطية المجالات (القانونية والطبية والتقنية) وتبديل الشيفرات (كازاخية-روسية-إنجليزية) واللهجات، والتنقية المستمرة، وسلاسل التفكير والتقسيم الهرمي للاستعلامات للاستدلال متعدد الأدوار، وRAG المجالي (استرجاع ديناميكي؛ قانون/صحة)، والنشر الطرفي بتكميم 8/4-بت واستدلال مضبوط للمسرعات وتخزين مؤقت على الجهاز [18،21].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Low-resource languages remain underserved by contemporary LLMs for lack of sizable corpora, bespoke preprocessing tools and the computing budgets assumed by mainstream alignment pipelines [6–8]. Focusing on Kazakh — a Turkic language spoken by over 13 million people yet critically under-represented in NLP — we present a 1.94B-parameter LLaMA-based model showing that strong, culturally aligned performance is achievable without massive infrastructure. The contribution is threefold: (i) data and tokenization — a rigorously cleaned, mixed-domain Kazakh corpus plus a tokenizer respecting the language's agglutinative morphology, mixed-script usage and diacritics; (ii) training recipe — causal language modeling from scratch followed by instruction tuning, with alignment refined by Direct Preference Optimization (DPO) [13] extended by contrastive and entropy-based regularization to stabilize training under sparse, noisy preference signals, supported by ChatTune-DPO (crowd-sourced human preference pairs) and Pseudo-DPO (automatically generated from instruction data to cut annotation cost); (iii) evaluation and impact — qualitative and task-specific assessments show the targeted monolingual training and DPO variant markedly improve factuality, coherence and cultural fidelity over baseline instruction-only and multilingual counterparts [26,27]. Model and datasets are released under open licenses as a reproducible blueprint for other under-represented languages.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Language models underpin translation, summarization and conversational agents, yet Kazakh remains underserved: high-quality corpora are scarce, budgets modest, and benchmarks ignore its morphology and mixed-script usage. We adopt LLaMA for its parameter efficiency and adaptability, training a 1.94B-parameter model from scratch with a customized tokenizer, embedding and attention adjustments for Kazakh's agglutinative structure. The study pursues three objectives: building the Kazakh model (diverse data collection with non-Kazakh noise filtered, LLaMA training adapted in hidden size, layers and heads, and rigorous perplexity/fluency/linguistic-accuracy evaluation); efficient language modeling (a broad instructional dataset, DPO-based task optimization for factuality and fewer hallucinations, and real-world QA/summarization/dialogue validation); and advancing low-resource modeling generally via a modular, transparent, compute-frugal framework that decouples performance from high-resource data and proprietary infrastructure [1–5].</p>
+    <p>Societal context supports this direction: structured LLM workshops show accessible AI's value in education and industry [1], LLMs play a dual misinformation role needing detection tools [2,5], efficient architectures beyond transformers (Mamba, Hawk) favor constrained budgets [3], and embedding cultural values in digital tools affirms national identity [4]. We therefore established LibOCR-KazNU, an ongoing OCR effort digitizing Al-Farabi Kazakh National University heritage collections to feed the corpus with authentic, culturally salient Kazakh, and we release human-annotated and synthetic datasets (ChatTune-DPO, Pseudo-DPO) with bias mitigation and factual-consistency standards to close the ethical high-quality-data gap [5].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Literature and Limitations</h2>
+    <p>Prior work confirms the gap: GPT models lag on Kazakh for lack of training data [6]; an OCR-then-NLP Kazakh pipeline with 85% OCR accuracy lifts translation 44% but keeps ill-suited metrics [7]; Language Ranker shows Kazakh's low similarity scores mirror its meager footprint [8]; cross-lingual transfer via Turkish (Kardeş-NLU) gives only task-specific gains [9]; Turkish-morphology studies suggest specialized architectures like VQVAE [10]; and LLM-driven data augmentation is a viable cost-effective substitute for human annotation in low-resource settings [11]. Against this, our monolingual LLaMA-1.94B, trained from scratch on curated Kazakh data with task-specific fine-tuning (QA, instructions), targets exactly the generative tasks where generalized models fail.</p>
+    <p>Persistent limitations motivate our design: data imbalance and morphological complexity unaddressed by high-resource-dominated training; weak cross-lingual generalization (large Kazakh MT drops without explicit fine-tuning [6]); inadequate BLEU/METEOR-style metrics for Kazakh subtleties; scarce targeted fine-tuning [7]; safety–performance trade-offs where adversarial tuning degrades MT-Bench below smaller models like LLaMA-2-7b-chat [12] and RL methods (PPO) demand heavy resources while DPO [13] — stable and cheap via maximum-likelihood classification — suffers distribution shift and bias (variants CPO, IPO, Online DPO immature); plus systemic data-quality, bias and misinformation risks where Kazakh fact-checking is weak [2].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Data and Training Setup</h2>
+    <p>The corpus spans news, classical/modern literature, dissertations, textbooks and the Kazakh Wikipedia dump (August 2024) [15], plus mixed Kazakh–Russian texts reflecting real usage, cleaned of HTML, normalized (<link> URLs, script/diacritic handling) and domain-balanced [14]. LibOCR-KazNU continuously adds OCR-digitized university heritage texts [16]. Statistics: 1.37B training tokens (127,701 unique) and 1.35M validation tokens (85,815 unique), with a Zipfian long tail giving both syntactic scaffolding and lexical breadth. SFT used ~48,000 heterogeneous instruction samples across academic/professional domains (domain labels kept for analysis only), with Chain-of-Thought scaffolding for reasoning [17,18]. ChatTune-DPO came from a two-month pilot of 52 users on the Farabi-Lab chatbot (vLLM v0.6.1), collecting likes/dislikes and corrections into a growing public preference dataset [19,20]. Pseudo-DPO repurposes instruction data: five candidates per prompt (top-p 0.9, temperature 0.5–1.0), cosine-similarity ranking with RoBERTa-Kaz-Large embeddings, the closest-to-gold as rejected and the original answer as accepted — mirroring SemiEvol's propagate-and-select loop with entropy-like filtering [21].</p>
+    <p>Architecture: LLaMA-based 1.94B with hidden 2048 / intermediate 5504, 32 layers × 32 heads (8 KV), SiLU + RMSNorm, max_position_embeddings 8192 with high rope-theta for long contexts, attention dropout 0.0 to preserve scarce-signal, untied embeddings, and a Kazakh-customized tokenizer handling affixes and diacritics [3,22–24]. Training used two 80 GB A100s (Almaty institute) with DDP over 5.3M+ examples, cosine annealing with warm restarts, 8,000 warm-up steps and tuned batch/sequence/length settings; loss normalization tamed early volatility for smoother, faster-stabilizing validation curves. Instruction tuning compared a localized Kazakh chat template (role checks, «көмeкшi» assistant token, explicit eos) against the streamlined LLaMA-3 template. Evaluation used 2,000 task-specific samples: fact QA (20%), fact-from-context extraction (15%), keyword instructions (5%), problem-solving (12%), story generation (5%), ethical bias detection (10%), Kazakh cultural expertise (10%), paraphrasing (8%), spelling correction (8%) and question construction (7%).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Preference Optimization and Results</h2>
+    <p>Standard DPO [13] guarantees the preferred response outranks the dispreferred one but can depress the preferred log-probability itself while the ratio still improves — so we add a contrastive margin anchoring the preferred completion above its reference value (weight λ) plus KL-to-reference (α) or entropy (γ) regularization against collapse and drift [25]. The combined loss preserves DPO's ordering, floors preferred probabilities at the reference, and maintains healthy output entropy. Three setups were compared on the same base CLM: SFT; two-stage SFT→DPO over two epochs (ChatTune-DPO); and Pseudo-DPO at SFT step count — with loss curves showing both DPO variants lower and more stable than SFT (reusing the existing «көмeкшi» token rather than new embeddings aided stability).</p>
+    <p>On 2,000 task samples, ChatTune-DPO leads at 62.7% accuracy (61.1% with standard DPO*), ahead of base instruction (56.5%) and Pseudo-DPO (61.3%, 59.9% standard*) — with relevance 65.1, coherence 69.6 and context-awareness 63.2 — while public baselines trail: Kazakh mGPT-1.3B at 36.1% with long-context/hallucination failures [26], and ISSAI Llama-3.1-8B-instruct at 58.2% [27]. A 200-sample-per-task QThink-Task slice (11 task types) [28] confirms the pattern: ChatTune-DPO tops contextual explanation (59.5%), fact verification (56.82%), counterfactual analysis (55.7%) and error detection (56.6%), competitive on summarization, QA and paraphrase — so a focused 1.94B model can surpass larger 8B generalists on Kazakh, and Pseudo-DPO nearly matches human-annotated DPO. Engineering notes: targeted cleaning/filtering tamed mixed-language (Russian) data with Kazakh-specific tokenization; LLaMA adaptation plus cosine-restart scheduling lifted small-model performance; DDP with 8,000 warm-up steps managed the two-A100 budget [3,29].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Discussion, Conclusions and Future Work</h2>
+    <p>Limitations temper the conclusions: two A100-80GB GPUs bound sweeps and context exploration; news/literary skew under-represents legal/medical sub-domains; human cultural-adequacy judgments cover only a small pilot; Pseudo-DPO's embedding-similarity heuristic can mislabel rejected sides; and code-switched generation awaits systematic evaluation. Scientific contributions stand in: novel insights for low-resource training (curated mixed-domain data, preprocessing, morphological customization); instruction/DPO fine-tuning methodology with contrastive–entropy stabilization; and open resources — Kazakh General Corpus (1.37B tokens), ChatTune-DPO, QThink-Task (500k+ samples, 13 task types) and model checkpoints [16,17,19,28,30]. Data and code are public (farabi-lab kaznu-lib-ocr-for-lm and raw-text-for-clm-v1; farabi-lab user-feedback-dpo; nur-dev QThink-Task, kaz-instruct-rl, llama-1.9B-kaz instruct/base), funded by Kazakhstan grant BR24993001.</p>
+    <p>Three insights conclude the work: focused monolingual training on Kazakh morphology/syntax beats diluted multilingual models in context alignment; preference fine-tuning — DPO enhanced with contrastive constraints and entropy regularization [13,25] — fixes preference-ranking weaknesses, aligns human feedback and reduces hallucinations; and moderate scale (1.94B) on limited GPUs proves advanced NLP needs no massive budget. Pseudo-DPO attains near-manual-DPO performance, and rigorous multilingual-component cleaning remains essential for low-resource integrity. Future work expands domain coverage (legal, medical, technical), code-switching (Kazakh–Russian–English) and dialects, continuous curation, chain-of-thought and hierarchical query splitting for multi-turn reasoning, domain RAG (dynamic retrieval; law/healthcare), and edge deployment via 8/4-bit quantization, accelerator-tuned inference and on-device caching [18,21].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Key references below keep their original numbering in the published paper [1]–[30]; the complete list is available in the original article (DOI link above).</p>
+    <ol dir="ltr">
+      <li>Kozov, V.; et al. Analyzing the Impact of a Structured LLM Workshop in Different Education Levels. <em>Appl. Sci.</em> <strong>2024</strong>, <em>14</em>, 6280.</li>
+      <li>Wang, Q.; Li, H. On Continually Tracing Origins of LLM-Generated Text. <em>Big Data Cogn. Comput.</em> <strong>2025</strong>, <em>9</em>, 50.</li>
+      <li>Huang, D.; et al. From Large Language Models to Large Multimodal Models: A Literature Review. <em>Appl. Sci.</em> <strong>2024</strong>, <em>14</em>, 5068.</li>
+      <li>Pelofske, E.; Urias, V.; Liebrock, L.M. Automated Multi-Language to English Machine Translation Using Generative Pre-Trained Transformers. <em>arXiv</em> <strong>2024</strong>, arXiv:2404.14680.</li>
+      <li>Kamshat, A.; et al. Integration AI Techniques in Low-Resource Language: The Case of Kazakh Language. In <em>Proc. IEEE AITU: Digital Generation 2024</em>; Astana, Kazakhstan, 2024.</li>
+      <li>Li, Z.; et al. Quantifying multilingual performance of large language models across languages. <em>arXiv</em> <strong>2024</strong>, arXiv:2404.11553v2.</li>
+      <li>Kardeş-NLU: Transfer to Low-Resource Languages with the Help of a High-Resource Cousin. 2024. https://aclanthology.org/2024.eacl-long.100</li>
+      <li>Ding, B.; et al. Data Augmentation Using Large Language Models. <em>arXiv</em> <strong>2024</strong>, arXiv:2403.02990.</li>
+      <li>Rafailov, R.; et al. Direct Preference Optimization: Your Language Model is Secretly a Reward Model. <em>arXiv</em> <strong>2023</strong>, arXiv:2305.18290.</li>
+      <li>Nurgali, K. llama-1.9B-kaz-instruct. Hugging Face, 2025. https://huggingface.co/nur-dev/llama-1.9B-kaz-instruct</li>
+      <li>Farabi Lab/KazNU-Lib-OCR-for-LM Dataset. Hugging Face, 2024. https://huggingface.co/datasets/farabi-lab/kaznu-lib-ocr-for-lm</li>
+      <li>Nurgali, K. ChatTune-DPO. Hugging Face, 2025. https://huggingface.co/datasets/farabi-lab/user-feedback-dpo</li>
+      <li>Luo, J.; et al. Semi-supervised Fine-tuning for Large Language Models. <em>arXiv</em> <strong>2024</strong>, arXiv:2410.14745.</li>
+      <li>Su, J.; et al. RoFormer: Enhanced Transformer with Rotary Position Embedding. <em>arXiv</em> <strong>2021</strong>, arXiv:2104.09864.</li>
+      <li>Feng, D.; et al. Towards Analyzing and Understanding the Limitations of DPO: A Theoretical Perspective. <em>arXiv</em> <strong>2024</strong>, arXiv:2404.04626.</li>
+      <li>AI Forever, Kazakh mGPT 1.3B. Hugging Face, 2024. https://huggingface.co/ai-forever/mGPT-1.3B-kazakh</li>
+      <li>ISSAI, LLama-3.1-KazLLM-1.0-8B. Hugging Face, 2024. https://huggingface.co/issai/LLama-3.1-KazLLM-1.0-8B</li>
+      <li>Kadyrbek, N. QThink-Task: A Task-Level Benchmark for Kazakh Language Models. Hugging Face, 2025. https://huggingface.co/datasets/nur-dev/QThink-Task</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/bdcc9050137">10.3390/bdcc9050137</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

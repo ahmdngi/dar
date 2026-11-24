@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جذر أم لاحقة أم بايت؟ دراسة قابلة لإعادة الإنتاج لتقطيع الكلمات الفرعية في لغة غنية صرفياً (الروسية) — DAR</title>
+<meta name="description" content="Root, Suffix, or Byte? A Reproducible Study of Subword Tokenization for a Morphologically Rich Language (Russian) — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/subword-tokenization-russian-electronics/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Root, Suffix, or Byte? A Reproducible Study of Subword Tokenization for a Morphologically Rich Language (Russian)</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">جذر أم لاحقة أم بايت؟ دراسة قابلة لإعادة الإنتاج لتقطيع الكلمات الفرعية في لغة غنية صرفياً (الروسية)</h2>
+
+  <div class="paper-meta">
+    <span>👤 Mardiyeva Shoxzoda Totliboy Qizi, Shakhlo Djamaldinova, Sabina Umirzakova</span>
+    <span>📄 Electronics 2026, Vol. 15(18), 4236</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics15184236">10.3390/electronics15184236</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يُعد التقطيع أول قرار تصميمي في النموذج اللغوي وأحد أكثر القرارات إغفالاً في اللغات الغنية صرفياً، إذ يشكل مباشرة طول التسلسل وكيفية تقسيم الصيغ المرتبطة إلى وحدات فرعية قابلة لإعادة الاستخدام. وباستخدام الروسية كدراسة حالة، درّبنا مقطّعات فرعية من الصفر على مدونة صغيرة كثيفة الصرف وكمّمنا أثرين: أولاً، عقوبة التغطية، إذ إن مقطّعاً بايتياً متمركزاً حول الإنجليزية لم يتعلم السيريلية قط يعود إلى بايتات UTF-8 الخام وينفق 8.6 أضعاف الرموز على النص الروسي نفسه مقارنة بمقطّع BPE مدرّب على الروسية [9]، [10]. وثانياً، مفاضلة الضغط والصرف مع نمو المفردات، إذ تنخفض خصوبة BPE نحو رمز واحد للكلمة لكن عبر حفظ الصيغ المعربة كاملة لا عبر عزل الصرفات.</p>
+    <p>فالنموذج التساعي الصرف لكلمة «дом» (بيت) يُخزن كتسعة رموز لا صلة بينها دون جذر مشترك، بينما يمثّل مقطّع Unigram بميزانية مماثلة النموذج نفسه بجذر مشترك زائد لاحقة بتكلفة أنواع رموز أقل وسعر خصوبة أعلى قليلاً. وننشر المدونة وسكريبتات التدريب وإعادة تنفيذ داخل المتصفح لنموذج BPE المدرّب تطابق المرجع تماماً. والأرقام توضيحية، لكن الآليات حقيقية وتتسق مع نتائج أدبيات الروسية الحديثة [22]، [25]، [29].</p>
+  </section>
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يحدد التقطيع الفرعي طول التسلسل الذي يستهلكه النص، ومن ثم حوسبة النموذج واستهلاك سياقه، ومع ذلك يُعامل غالباً كتفصيل ثانوي، خاصة في اللغات الغنية صرفياً حيث تتكرر الجذور نفسها في صيغ سطحية كثيرة [7]، [8]. وفي مثل هذه اللغات يصبح السؤال المركزي: هل يضغط المقطّع النص بحفظ الصيغ الكاملة، أم يجزّئه على امتداد حدود صرفية ذات معنى؟</p>
+    <p>تتباين الإجابة عبر اللغات على نحو غير عادل: فقد أظهرت دراسات أن المقطّعات تفرض تكاليف متفاوتة جذرياً بين اللغات [9]، [10]، وأن أداء النماذج متعددة اللغات أحادي اللغة يتأثر بجودة المقطّع [8]. وتقدم هذه الدراسة إطاراً مضبوطاً وشفافاً يعزل آليتين — كلفة تمثيل الأبجدية غير اللاتينية، والفرق بين ضغط النص وتقطيعه صرفياً — بتقارير قابلة لإعادة الإنتاج من نص خام في ثوانٍ، مع تأجيل مسائل الحجم إلى القيود.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة</h2>
+    <p>بدأ تقطيع BPE كخوارزمية ضغط [1] ثم اعتمد للترجمة الآلية للكلمات النادرة [2] وللبحث الصوتي [3]، وتوسع عبر التنظيم الفرعي [4] وSentencePiece المستقل عن اللغة [5] وBPE-dropout [6]. وأظهرت أعمال لاحقة أن BPE دون المستوى الأمثل للتدريب المسبق [7]، وأن المقطّعات تُدخل تفاوتاً بين اللغات [9] وتكاليف متفاوتة [10]، بينما استكشف خط آخر التجزئة الصرفية غير الخاضعة للإشراف [13] وأثر الصرف الاشتقاقي على فهم النماذج [14]، [15].</p>
+    <p>على الجانب الروسي، دُرس تكييف النماذج مع الروسية وتوسيع مفرداتها [23]، [24]، [25]، وبُنيت نماذج ثنائية اللغة مفتوحة مثل Vikhr [22]، ومعايير لغوية مثل RuBLiMP [29]، ومدونات تقييم طويلة السياق [28]، ودراسات لطرق استدلال المقطّعات [31]. وتتميز هذه الدراسة بأنها لا تنافس المقطّعات القائمة بل تعزل آليتين بأدلة مرقمة بالكامل: عقوبة التغطية ومفاضلة الضغط والصرف، في إعداد شفاف يختلف عن التقييم على زحف ويب واسع حيث تتشابك الآليات مع المجال والتردد والضجيج الإملائي.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">3. المنهجية المقترحة</h2>
+    <p>الهدف ليس بناء مقطّع منافس بل قياس نظيف لأثرين تعتمدهما أدبيات القسم الثاني: كلفة تمثيل الأبجدية غير اللاتينية، والفرق بين ضغط النص وتقطيعه صرفياً. ولأن كلتيهما خاصيتان في معاملة الجذور واللواحق المتكررة، اعتمدنا إعداداً مضبوطاً متعمداً تكون فيه كل خيارات التصميم شفافة وكل الأرقام قابلة لإعادة الإنتاج من نص خام في ثوانٍ، مع تبادل صريح بين الصدق الخارجي والضبط، وتأجيل مسائل الحجم إلى القيود.</p>
+    <p>يلخص الإجراء خوارزمية 1: تُقسّم المدونة قبل تدريب المقطّع إلى تدريب وتقييم (مجموعة صيغ لمدلولات ممثلة، ومجموعة مدلولات كاملة الغياب)، ويُدرّب كل مقطّع حصراً على التدريب بإعدادات معالجة وتطبيع وميزانية مفردات مضبوطة، ثم تُحسب الخصوبة منفصلة للصيغ والمدلولات، وتُشتق إحصاءات الأنواع الرمزية على مستوى النموذج الصرفي، وتُحسب دقة الحدود الصرفية حيث تتوفر حدود مرجعية موثوقة، مع قصر مقارنات BPE–Unigram المباشرة على التكوينات المتطابقة في البيانات والمعالجة والتجزئة المسبقة وحجم المفردات المحقق.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">4. المدونة والمقاييس وقابلية إعادة الإنتاج</h2>
+    <p>بدل عينة زحف ويب كبيرة، بُنيت مدونة مدمجة مصممة لتكون غنية بالمعلومات صرفياً لكل رمز: فاللغة الغنية صرفياً تُجهد المقطّع تحديداً عندما يتكرر المدلول نفسه في صيغ سطحية كثيرة، فجُعل التباين الإعرابي هو الإشارة المهيمنة. وقُسّمت البيانات ببذرة ثابتة 42 مع طبقية حسب قسم الكلام: من 53 مدلولاً مولداً حُجز 11 مدلولاً كاملاً (5 أسماء و3 صفات و3 أفعال) كمجموعة مدلولات أُزيلت كل صيغها من التدريب، وبقي 42 مدلولاً (19 اسماً و12 صفة) للتدريب والتقييم الصيغي.</p>
+    <p>المقياس الجوهري هو الخصوبة: متوسط عدد الرموز الفرعية لكل كلمة، وهي وكيل مباشر للكلفة إذ تتضاعف الحوسبة واستهلاك السياق مع طول التسلسل، والحد العملي الأدنى 1.0. ولتأطيرها وُضع خطّا أساس بلا معاملات: أساس المحارف (عدد أحرف Unicode للكلمة) وكلفة عدم تعلم أي تقطيع، وأساس البايت المتمركز حول الإنجليزية الذي يمثّل مقطّعاً لم يكتسب دمج السيريلية فيعود إلى بايت UTF-8 الخام (رمز لكل بايت). وقُورنت خوارزميتان متضادتا الانحياز الاستقرائي: BPE الجشع المبني على التردد [1]، [2]، ونموذج Unigram الاحتمالي الذي يقلّم مفردات مرشحة كبيرة [4]، وكلاهما دُرّب من الصفر بمكتبة HuggingFace tokenizers دون تسرب مفردات مسبقة التدريب.</p>
+    <p>ولأن أي اختلاف بين مقطّع التدريب وإعادة تنفيذه وقت النشر مصدر معروف للأخطاء الصامتة، عوملت إعادة الإنتاج الدقيقة كخاصية صحة تُتحقق لا تُفترض: صُدّرت المفردات وقائمة الدمج المرتبة فقط، وأُعيد تنفيذ الترميز الجشع المرتب الرتبة داخل المتصفح بلا اعتماديات، مع مطابقة بتّية تامة مع المرجع. ويُعد هذا الوصف (المفردات + رتب الدمج) توصيفاً كاملاً ومضغوطاً لنموذج BPE على مستوى المحارف، وكل رمز فيه سلسلة مقروءة بشرياً.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">5. النتائج: عقوبة التغطية ومفاضلة الضغط والصرف</h2>
+    <p>يُظهر التقييم عقوبة التغطية حادة: المقطّع الروسي BPE (مفردات 900) يصدر 1.39 رمز/كلمة، مقابل 5.93 لأساس المحارف و11.86 لأساس البايت، أي أن المقطّع الذي لم يتعلم السيريلية ينفق نحو 8.6 أضعاف الرموز على النص نفسه. وتتفكك الفجوة إلى عاملين جدائيين: عامل ترميز الأبجدية (كل حرف سيريلي يشغل بايتي UTF-8، أي ضعف كلفة المحارف قبل أي نمذجة لغوية) وعامل تعلم فرعي (الدمج المتعلم يضغط من 5.93 إلى 1.39، أي ~4.3 أضعاف إضافية)، وهما يتضاعفان إلى عقوبة بمرتبة كاملة. والأول هدر خالص لا يشتري أي منفعة نمذجة، وهو بالضبط ما يزيله المقطّع الخاص باللغة. وبمعامل ρ ≈ 8.6، تستوعب نافذة سياق ثابتة محتوى روسياً أقل بنحو 8.6 أضعاف تحت مقطّع أعمى الأبجدية.</p>
+    <p>مع نمو المفردات تنخفض خصوبة BPE الروسية monotonically: 2.00 عند 300، و1.84 عند 500، و1.61 عند 700، و1.39 عند 900، و1.21 عند التشبع 1168، والمنحنى حاد عند الأحجام الصغيرة ويتسطح مقترباً من رمز واحد للكلمة، والعائد الحدي لكل نوع مضاف يتضاءل بوضوح. لكن الخصوبة الأدنى وحدها لا تثبت تقطيعاً صرفياً أفضل، إذ قد تنشأ من حفظ الصيغ المعربة كاملة: فالنموذج التساعي الصرف لـ«дом» يُخزن كتسعة رموز لا صلة بينها دون جذر مشترك.</p>
+    <p>في المقارنة المضبوطة (BPE-487-M مقابل Unigram-487-M) على 114 صيغة لمجموعة الصيغ و143 صيغة (11 مدلولاً) لمجموعة المدلولات: يحقق BPE خصوبة أدنى (1.74 مقابل 1.93 للصيغ، و2.08 مقابل 2.31 للمدلولات) أي ضغطاً أمتن، بينما يحقق Unigram دقة حدود صرفية أعلى واستدعاء وF1 (للصيغ 0.80/0.76/0.78 مقابل 0.68/0.61/0.64، وللمدلولات 0.73/0.68/0.70 مقابل 0.55/0.49/0.52) ونسبة أنواع رمزية للنماذج أدنى (1.16 مقابل 1.20، و1.27 مقابل 1.34)، أي أن تسلسلات BPE الأقصر تأتي بكلفة اتساق صرفي. ويتدهور كلا المقطّعين على مجموعة المدلولات الغائبة الجذور كما هو متوقع.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">6. اتجاهات التطوير المستقبلية</h2>
+    <p>التوسع إلى مدونات طبيعية أكبر وأكثر تنوعاً عبر الأنواع والمجالات (الأخبار والأدب ووسائل التواصل والكتابة العلمية والمحادثة والتوثيق التقني) لدراسة سلوك المقطّع تحت توزيعات معجمية وترددية طبيعية، وفصل أثر الصيغ التركيبية المتكررة، وتقييم المفردات عالية ومتوسطة ومنخفضة التردد منفصلة، مع التكرار عبر مدونات مستقلة لا الاستدلال من مجموعة واحدة.</p>
+    <p>ويلزم أيضاً معيار ذهبي صرفي يدوي يغطي الجذوع والسوابق واللواحق الاشتقاقية والنهايات الإعرابية والتناوب الجذري والصرف الشاذ، وتوسيع التغطية إلى الفئات المعقدة صرفياً ومعجمياً: الشاذ والمتناوب الجذور والمكمّل اشتقاقياً والمركبات والمختصرات وأسماء الأعلام والدخيل والنقحرة والمختلط الأبجدية، مع التقسيم حسب قسم الكلام وتردد المدونة، لاختبار هل يقود التقطيع الصرف أم التشابه الإملائي أم تردد الرموز.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">7. الخاتمة</h2>
+    <p>يتطلب التقطيع الفعال للغة غنية صرفياً أمرين معاً: تمثيلاً كفؤاً لنظام كتابتها وتقطيعاً صادقاً لغوياً لصيغ كلماتها. فمقطّع BPE المدرّب على الروسية يخفض مواضع الرموز كثيراً مقارنة بالرجوع البايتي، لكن الخصوبة الأدنى وحدها لا تثبت محاذاة صرفية أفضل إذ قد تنشأ من حفظ الصيغ المعربة كاملة. لذا يجب الحكم على جودة المقطّع بالكفاءة الترميزية والدليل المباشر على المحاذاة مع البنية الصرفية معاً.</p>
+    <p>توفر المدونة التركيبية (389 سطراً) بيئة شفافة قابلة للفحص لدراسة حفظ الصيغ الكاملة وإعادة استخدام الوحدات الفرعية والخصوبة ومحاذاة الحدود الصرفية. لكن صغر حجمها وبنيتها التوليدية المبسطة يجعلانها غير ممثلة للروسية الطبيعية، فتقتصر الاستنتاجات على الإعداد المضبوط المدروس، ويُترك التحقق على مدونات روسية أكبر وأكثر تنوعاً للأعمال المستقبلية، مع إتاحة الشيفرة والبيانات للعموم [22]، [25]، [29].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Tokenization is the first design choice in a language model and one of the most frequently overlooked for morphologically rich languages, as it directly shapes sequence length and how related word forms are segmented into reusable subword units. Using Russian as a case study, we train subword tokenizers from scratch on a small, morphology-dense corpus and quantify two effects. First, a coverage penalty: a hypothetical English-centric byte-level tokenizer that has never learned Cyrillic falls back to raw UTF-8 bytes and spends 8.6× more tokens on the same Russian text than a Russian-trained BPE tokenizer [9], [10]. Second, a compression–morphology tradeoff as vocabulary grows: BPE fertility falls toward one token per word, but it does so by memorizing complete inflected word forms rather than by isolating morphemes.</p>
+    <p>For example, a nine-form paradigm of «дом» (house) is stored as nine unrelated tokens with zero root sharing. A Unigram tokenizer at a comparable budget instead factors words into a shared root plus a shortening suffix, representing the same paradigm with fewer unique token types at the price of slightly higher fertility. We release the corpus, training scripts, and an in-browser reimplementation of the trained BPE model that reproduces the reference tokenizer exactly. The numbers are illustrative, but the mechanisms are real and match findings in the recent Russian NLP literature [22], [25], [29].</p>
+  </section>
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Subword tokenization determines the sequence length a text consumes, and hence model compute and context use, yet it is often treated as a minor detail — especially in morphologically rich languages where the same root recurs in many surface forms [7], [8]. In such languages the central question is: does the tokenizer compress text by memorizing whole forms, or segment it along meaningful morphological boundaries?</p>
+    <p>The answer varies unfairly across languages: studies have shown tokenizers impose drastically different costs across languages [9], [10], and monolingual performance of multilingual models depends on tokenizer quality [8]. This study offers a controlled, transparent framework isolating two mechanisms — the cost of representing a non-Latin script and the difference between compressing text and segmenting it morphologically — with fully reproducible reports from raw text in seconds, deferring scale questions to the Limitations.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">2. Related Works</h2>
+    <p>Subword BPE began as a compression algorithm [1], then adopted for rare-word translation [2] and voice search [3], expanding through subword regularization [4], language-independent SentencePiece [5], and BPE-dropout [6]. Later work showed BPE is suboptimal for pretraining [7], that tokenizers introduce cross-language unfairness [9] and uneven costs [10], while another line explored unsupervised morpheme segmentation [13] and the effect of derivational morphology on model understanding [14], [15].</p>
+    <p>On the Russian side, model adaptation to Russian and vocabulary extension were studied [23], [24], [25], open bilingual models such as Vikhr were built [22], linguistic benchmarks such as RuBLiMP appeared [29], long-context evaluation sets were created [28], and tokenizer inference methods were evaluated [31]. This study differs in that it competes with no existing tokenizer; instead it isolates two mechanisms with fully enumerated evidence — the coverage penalty and the compression–morphology tradeoff — in a transparent setup, unlike evaluation on broad web crawls where mechanisms entangle with domain, frequency, and orthographic noise.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">3. Proposed Method</h2>
+    <p>The aim is not a competitive tokenizer but a clean measurement of two effects the Section 2 literature relies on: the cost of representing a non-Latin script, and the difference between compressing text and segmenting it along morphology. Since both are properties of how recurring roots and endings are treated, we adopt a deliberately controlled setup in which every design choice is transparent and every number reproducible from raw text in seconds, with an explicit exchange of external validity for control, deferring scale questions to the Limitations.</p>
+    <p>Algorithm 1 summarizes the procedure: the corpus is split before tokenizer training into train and evaluation sets (a form set of represented lemmas and a lemma set of fully held-out lemmas), each tokenizer is trained exclusively on the train split under controlled preprocessing and vocabulary budgets, fertility is computed separately for forms and lemmas, paradigm-level token-type statistics are derived per lemma, morphological boundary precision/recall/F1 are computed only where reliable gold boundaries exist, and direct BPE–Unigram comparisons are confined to configurations matched on data, preprocessing, pre-tokenization, and achieved vocabulary size.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">4. Corpus, Metrics, and Reproducibility</h2>
+    <p>Rather than sampling a large web corpus, a compact corpus was constructed to be maximally informative about morphology per token: a morphologically rich language stresses a tokenizer precisely when the same lemma recurs in many surface forms, so inflectional variation was made the dominant signal. The data were split with fixed seed 42 stratified by part of speech: of 53 generated lemmas, 11 full lemmas (5 nouns, 3 adjectives, 3 verbs) were held out as the lemma set with all their forms removed from training, leaving 42 lemmas (19 nouns, 12 adjectives) for training and form-set evaluation.</p>
+    <p>The primary intrinsic measure is fertility — the mean number of subword tokens per word — a direct proxy for cost since compute and context scale with sequence length, with 1.0 as the practical floor. Two parameter-free baselines frame it: the character baseline (Unicode characters per word, the cost of no subword learning) and the English-centric byte baseline (a tokenizer that never acquired Cyrillic merges, one token per UTF-8 byte). Two algorithms with opposite inductive biases are compared: greedy frequency-based BPE [1], [2] and the probabilistic Unigram model that prunes a large candidate vocabulary [4], both trained from scratch with the HuggingFace tokenizers library and no pretrained-vocabulary leakage.</p>
+    <p>Since any mismatch between a training-time tokenizer and its deployment reimplementation is a known source of silent errors, exact reproduction was treated as a correctness property to be verified, not assumed: only the vocabulary and the ordered merge list were exported, and the greedy rank-ordered encoder was reimplemented in the browser dependency-free with bit-for-bit agreement with the reference. This description (vocabulary + merge ranks) is a complete, compact specification of a character-level BPE model, every token of which is a human-readable substring.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">5. Results: Coverage Penalty and the Compression–Morphology Tradeoff</h2>
+    <p>The evaluation shows a stark coverage penalty: the Russian BPE tokenizer (vocab 900) emits 1.39 tokens/word versus 5.93 for the character baseline and 11.86 for the byte baseline — a tokenizer that never learned Cyrillic spends roughly 8.6× more tokens on the same text. The gap decomposes into two multiplicative factors: a script-encoding factor (each Cyrillic character occupies two UTF-8 bytes, i.e., 2× the character cost before any linguistic modeling) and a subword-learning factor (learned merges compress 5.93 down to 1.39, a further ~4.3×), compounding into the full order-of-magnitude penalty. The first factor is pure waste buying no modeling benefit — exactly what a language-specific tokenizer eliminates. At ρ ≈ 8.6, a fixed context window holds roughly 8.6× less Russian content under a script-blind tokenizer.</p>
+    <p>As vocabulary grows, Russian BPE fertility falls monotonically: 2.00 at 300, 1.84 at 500, 1.61 at 700, 1.39 at 900, and 1.21 at the saturated size of 1168 — steep at small budgets and flattening toward one token per word, with clearly diminishing marginal returns per added type. But lower fertility alone does not prove better morphological segmentation, since it can equally arise from memorizing complete inflected forms: the nine-form paradigm of «дом» is stored as nine unrelated tokens.</p>
+    <p>In the matched comparison (BPE-487-M vs. Unigram-487-M) over 114 forms (form set) and 143 forms of 11 lemmas (lemma set): BPE attains lower fertility (1.74 vs. 1.93 on forms; 2.08 vs. 2.31 on lemmas), i.e., tighter compression, while Unigram attains higher morphological boundary precision, recall, and F1 (forms 0.80/0.76/0.78 vs. 0.68/0.61/0.64; lemmas 0.73/0.68/0.70 vs. 0.55/0.49/0.52) with a lower paradigm token-type ratio (1.16 vs. 1.20; 1.27 vs. 1.34) — shorter BPE sequences come at the cost of morphological consistency. Both tokenizers degrade on the root-unseen lemma set, as expected.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">6. Future Development Directions</h2>
+    <p>Expansion to larger, more diverse natural corpora across genres and domains (news, literature, social media, scientific writing, conversation, technical documentation) to study tokenizer behavior under natural lexical and frequency distributions, dilute the influence of repeated synthetic forms, evaluate high-, medium-, and low-frequency vocabulary separately, and replicate across independent corpora rather than inferring from any single dataset.</p>
+    <p>A manually validated morphological gold standard is also needed, covering stems, prefixes, derivational suffixes, inflectional endings, stem alternation, and irregular morphology, plus broader coverage of morphologically and lexically complex categories: irregular, stem-changing, and suppletive paradigms, derivationally complex words, compounds, abbreviations, proper names, loanwords, transliterations, and mixed-script vocabulary, stratified by part of speech and corpus frequency — to test whether segmentation is driven by morphology, orthographic similarity, or token frequency.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">7. Conclusions</h2>
+    <p>Effective tokenization of a morphologically rich language demands two things at once: an efficient representation of its writing system and a linguistically faithful segmentation of its word forms. A Russian-trained BPE tokenizer cuts token positions substantially relative to byte-level fallback, but lower fertility alone does not prove better morphological alignment, since it can equally arise from memorizing complete inflected forms. Tokenizer quality must therefore be judged on both encoding efficiency and direct evidence of alignment with morphological structure.</p>
+    <p>The 389-line synthetic corpus offers a transparent, easily inspected setting for studying whole-form memorization, subword reuse, fertility, and morphological boundary alignment. But its limited size and simplified generation procedure make it unrepresentative of natural Russian morphology, so conclusions are restricted to the controlled setting studied here, with validation on larger, more diverse Russian corpora left to future work — and code and data released publicly [22], [25], [29].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed selection of 13 references (original numbers preserved). See the original paper for the full list of 31 references: https://doi.org/10.3390/electronics15184236</p>
+    <ol dir="ltr">
+      <li>[1] Gage, P. A new algorithm for data compression. C Users J. 1994, 12, 23–38.</li>
+      <li>[2] Sennrich, R.; Haddow, B.; Birch, A. Neural machine translation of rare words with subword units. In Proc. ACL 2016; pp. 1715–1725.</li>
+      <li>[5] Kudo, T.; Richardson, J. SentencePiece: A simple and language independent subword tokenizer and detokenizer for neural text processing. In Proc. EMNLP 2018; pp. 66–71.</li>
+      <li>[7] Bostrom, K.; Durrett, G. Byte pair encoding is suboptimal for language model pretraining. In Findings of EMNLP 2020; pp. 4617–4624.</li>
+      <li>[8] Rust, P.; et al. How good is your tokenizer? On the monolingual performance of multilingual language models. In Proc. ACL 2021; pp. 3118–3135.</li>
+      <li>[9] Petrov, A.; La Malfa, E.; Torr, P.; Bibi, A. Language model tokenizers introduce unfairness between languages. Adv. Neural Inf. Process. Syst. 2023, 36, 36963–36990.</li>
+      <li>[10] Ahia, O.; et al. Do all languages cost the same? Tokenization in the era of multilingual language models (see original paper for full citation).</li>
+      <li>[16] Radford, A.; et al. Language models are unsupervised multitask learners. OpenAI Blog 2019.</li>
+      <li>[20] Conneau, A.; et al. Unsupervised cross-lingual representation learning at scale (XLM-R) (see original paper for full citation).</li>
+      <li>[22] Nikolich, A.; et al. Vikhr: Constructing a state-of-the-art bilingual open-source language model (see original paper for full citation).</li>
+      <li>[25] Tikhomirov, M.; Chernyshev, D. Impact of tokenization on LLaMa Russian adaptation. In Proc. Ivannikov ISPRAS Conference 2023 (see original paper for full citation).</li>
+      <li>[29] Taktasheva, E.; et al. RuBLiMP: Russian benchmark of linguistic minimal pairs (see original paper for full citation).</li>
+      <li>[31] Uzan, O.; Schmidt, C.W.; Tanner, C.; Pinter, Y. Greed is all you need: An evaluation of tokenizer inference methods. In Proc. COLING 2025 (see original paper for full citation).</li>
+    </ol>
+  </section>
+</div>
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics15184236">10.3390/electronics15184236</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الملاحة البصرية-اللغوية المعززة بالنماذج واسعة النطاق: التطورات الحديثة والتطبيقات العملية والتحديات المستقبلية — DAR</title>
+<meta name="description" content="Large-Scale Model-Enhanced Vision-Language Navigation: Recent Advances, Practical Applications, and Future Challenges — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/vision-language-navigation-sensors/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Large-Scale Model-Enhanced Vision-Language Navigation: Recent Advances, Practical Applications, and Future Challenges</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">الملاحة البصرية-اللغوية المعززة بالنماذج واسعة النطاق: التطورات الحديثة والتطبيقات العملية والتحديات المستقبلية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Zecheng Li, Xiaolin Meng, Xu He, Youdong Zhang, Wenxuan Yin</span>
+    <span>📄 Sensors, 2026 · Vol. 26(7), 2022</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s26072022">10.3390/s26072022</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تطلب الملاحة البصرية-اللغوية (VLN) من الوكيل اتباع تعليمات اللغة الطبيعية عبر البيئات البصرية، من «اعبر غرفة المعيشة» إلى أهداف مدفوعة بالطلب مثل «جد مكانًا يمكنني العمل فيه». ومنذ صياغة المهمة عام 2018 [4] وتوسعاتها نحو الملاحة الموجهة بالأهداف [5] والمدفوعة بالطلب [6]، أعادت النماذج اللغوية والبصرية-اللغوية الكبيرة [7، 8] تشكيل كل مكون في بنية VLN.</p>
+    <p>تنظّم هذه المراجعة ذلك التحول عبر أربعة مكونات — فهم التعليمات، وإدراك البيئة، والتخطيط عالي المستوى، والتحكم الحركي منخفض المستوى — وتضيف معالجة مخصصة للنشر الطرفي: أمثلة ما قبل النشر (التكميم والتقطير) والأمثلة أثناء التشغيل وحالات النشر الفعلية. كما توحّد مجموعات البيانات والمحاكيات وبروتوكولات التقييم.</p>
+    <p>يخلص المؤلفون إلى أن VLN الممكّنة بالنماذج الكبيرة تتحرك من التفسير على مستوى اللغة نحو فهم العالم المادي، لكن فقط إذا أُغلقت فجوات الهلوسة [208] والنماذج العالمية [206، 207] وفجوة النشر من المحاكاة إلى الواقع [209] عبر تعزيز المعرفة ومعايير أفضل ونشر طرفي كفء.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يبقى بناء أنظمة ملاحة تتفاعل مع البشر ومحيطها هدفًا قديمًا لأبحاث الذكاء الاصطناعي [1، 2]. فتعليمات بديهية للبشر ما تزال تهزم الوكلاء المستقلين، لأن تنفيذها في بيئات معقدة يتطلب الإدراك البيئي وفهم اللغة والتواصل التفاعلي والتخطيط والتحكم الحركي معًا [3].</p>
+    <p>تبلور المجال عام 2018 عندما عُرّفت VLN بأنها وكيل يتلقى التعليمات ويجمعها مع الإدراك البصري والسجل وينتقل في بيئة ثلاثية الأبعاد [4]. ثم نما عبر الملاحة الموجهة بالأهداف حيث يجب على الوكلاء إيجاد الأهداف والاستكشاف ذاتيًا [5]، إلى الملاحة المدفوعة بالطلب التي تشدد على الاستدلال الدلالي فوق الأوصاف المجردة والقرارات بالحس السليم [6].</p>
+    <p>تعيد اختراقات النماذج اللغوية والبصرية-اللغوية الآن تشكيل VLN [7، 8]، جالبة نمذجة سياقية قوية واستدلالًا منطقيًا وتكاملًا معرفيًا عبر الوسائط إلى مهام اللغة [9، 10] والرؤية [11، 12]. فالنماذج المدرَّبة على مدونات هائلة تعمّم في نظامي الصفر والقليل من الأمثلة [13]، بينما تجعل هندسة التلقين [8، 14] والاستدلال بسلسلة الأفكار [15، 16] معالجة المهام المعقدة أكثر قابلية للتفسير. وتغطي مسوحات روبوتية استخدامات النماذج لكن دون تفصيل VLN [17]، مما يحفز هذه المراجعة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. تطور الملاحة البصرية-اللغوية</h2>
+    <p>يتكون نظام VLN الكامل من أربعة أنوية: تحليل التعليمات إلى دلالات منظمة (أهداف ومعالم وأفعال)؛ وإدراك البيئة؛ وتخطيط المسارات؛ والتحكم في الحركة. واعتمدت الأعمال المبكرة على المواءمة عبر الوسائط بنظام Seq2Seq، متعلمة خرائط مباشرة من اللغة إلى متتاليات الأفعال، كما في Speaker-Follower [24] والمطابقة عبر الوسائط المعززة (RCM) [25].</p>
+    <p>تعيد أنظمة عصر النماذج الكبيرة صياغة الملاحة كاستدلال لغوي صريح: يصوغ NavGPT كل خطوة كاستدلال فوق التعليمات والأوصاف البصرية وسجل المسار والمرشحات [26]؛ ويحافظ MapGPT على خريطة لغوية متصلة، أي تمثيل طوبولوجي ديناميكي بصيغة اللغة الطبيعية [27]؛ ويوحّد NaviLLM الملاحة والتوطين وتلخيص السجل والإجابة البصرية في مخطط توليدي واحد [28].</p>
+    <p>لكن معظم التقدم ما يزال على مستوى Real2Sim البرمجي [2]، مع نقل محدود من المحاكاة إلى الواقع ونشر واقعي محدود. ويتطلب الذكاء المتجسد بشكل متزايد تجسيدات مادية للإدراك والتفاعل واتخاذ القرار [3]، فأصبح نقل النماذج من السحابة إلى أجهزة الطرفية الطريقَ نحو الذكاء المتجسد.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. الملاحة الممكّنة بالنماذج: الفهم</h2>
+    <p>يبدأ فهم التعليمات بالترميز الدلالي. وتُستكمل أنظمة Seq2Seq المبكرة [24، 25] الآن بأطر مدفوعة بالطلب: يستخرج نموذج DDN عبر نموذج لغوي السماتِ الدلالية للأشياء ويوائمها مع تضمينات CLIP البصرية، بانيًا فضاء طلب–سمة–رؤية يسترجع أهداف المشهد المطابقة للأوصاف الطبيعية [6].</p>
+    <p>ويذهب التوحيد القائم على المخطط أبعد: يطوي NaviLLM الملاحةَ وتوطين الأهداف وتلخيص السجل والإجابة البصرية في إطار نمذجة توليدي واحد بدلالات مشتركة وتدريب موحد [28]. ويمدّد الفكرةَ نفسها المواءمةُ الدلالية-المكانية دون تدريب والتخطيط الواعي بالتعليمات فوق خرائط دلالية ثلاثية الأبعاد.</p>
+    <p>يقترن فهم البيئة بهذه الدلالات مع الإدراك: فالتأريض عبر الوسائط والكشف مفتوح المفردات والتمثيلات من منظور عين الطائر تتيح للوكلاء حل المعالم من إشارات غامضة. وتحول وحدات الفهم معًا «جد مكانًا يمكنني العمل فيه» إلى أهداف فرعية مؤرضة قابلة للتحقق بدل قوالب مسارات محفوظة [6، 28].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. التخطيط والتحكم الحركي</h2>
+    <p>يحوّل التخطيط عالي المستوى الأهدافَ الفرعية المؤرضة إلى مسارات. وتتراوح المقاربات من الاستدلال اللغوي خطوة بخطوة فوق الأفعال المرشحة [26] إلى التخطيط التكيفي للمسار الموجه بخرائط لغوية متصلة [27] والسياسات الموحدة بالمخطط التي تحسّن الملاحة والإجابة معًا [28]. وتضيف التصاميم مغلقة الحلقة سلاسل تفكير هرمية ومناقشات متعددة الخبراء وحلقات تأمل وتصحيح للمتانة.</p>
+    <p>ويدخل التحكم منخفض المستوى مرحلة توليدية. فبدل التنفيذ التفاعلي، تتخيل متحكمات نماذج العالم والانتشار المساراتِ المستقبلية في الفضاء الكامن وتختار حركات متسقة دلاليًا عبر حلقة «توليد–تقييم–تنفيذ»، محسّنة التكيف في المشاهد الديناميكية المتمحورة حول الإنسان.</p>
+    <p>تشدد المراجعة على وجوب تقييم التخطيط والتحكم مع الفهم معًا: فقد يبلغ الوكيل الهدف منتهكًا التعليمات، لذا أصبحت الدقة في اتباع التعليمات — البقاء على المسار الموصوف لا مجرد الوصول — هدفًا من الدرجة الأولى.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. من المحوّلات إلى النماذج الرائدة</h2>
+    <p>يفترض النشر الطرفي معرفة سلالة النماذج. فمنذ المحوّل [109]، انقسمت النماذج مسبقة التدريب إلى خط الفهم BERT [110] وخط التوليد GPT [111]؛ ثم أطلق حجم GPT-3 تعلم التلقين [112]، وأضاف GPT-3.5 التعلم المعزز بالتغذية البشرية لينتج ChatGPT [113]. وقفز GPT-4 في الاستدلال عبر المهام والفهم متعدد اللغات [114].</p>
+    <p>وتقدم العمل المفتوح ومتعدد الوسائط بالتوازي: فغذّى LLaMA [115] وGemini [116] الاستكشاف المجتمعي ودمج الوسائط، وبحلول 2025 مثّلت GPT-5 [119] وLLaMA-4 [120] وQwen2.5-Omni [121] وسلسلة DeepSeek (V3 [122] وR1 [123]) تحولًا من التوسع المحض إلى الاستدلال متعدد الوسائط الموحد.</p>
+    <p>تُعنى VLN بهذه السلالة لأن القدرات — التعميم الصفري [112، 13] واتباع التعليمات [113] والاستدلال المنظم [15] — تنتقل مباشرة إلى فهم التعليمات والتخطيط، شريطة إمكانية ضغط النماذج على الروبوتات والنظارات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. النشر الطرفي: الأمثلة</h2>
+    <p>تبدأ أمثلة ما قبل النشر بالتكميم. يستخدم GPTQ أحادي الطلقة على مستوى الطبقات معلومات تقريبية من الدرجة الثانية لضغط النماذج إلى 3–4 بتات [124]؛ ويحمي AWQ الواعي بالتفعيل الأوزانَ البارزة لاستقرار السياقات الطويلة والمهام المتعددة [125]؛ وتمكّن خطوط الأعداد الصحيحة مثل MobileQuant الاستدلال الكامل على الجهاز [126].</p>
+    <p>تكمّل أمثلة وقت التشغيل الضغطَ: فالانتباه الكفء وإدارة ذاكرة المفتاح–القيمة وفك التشفير التأملي والجدولة الواعية بالعتاد تخفض زمن الاستجابة والطاقة اللذين يعيقان التحكم اللحظي على الروبوتات المتنقلة والمسيّرات.</p>
+    <p>تمتد حالات النشر في المراجعة من روبوتات الخدمة الداخلية إلى التوصيل الطرفي بالمسيّرات والتعاون الخارجي متعدد الوكلاء، وكلها تُظهر الدرس نفسه: يجب أن تعمل حلقات الإدراك–اللغة محليًا لأجل زمن الاستجابة والخصوصية، مع إبقاء السحابة للاستدلال الثقيل العرضي.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. مجموعات البيانات والمحاكيات</h2>
+    <p>تقرن مجموعة R2R التأسيسية على Matterport3D مسارات منفصلة بتعليمات طبيعية [4]، وأدخل خط RoomNav/House3D الملاحة الدلالية الموجهة بالأهداف [186]. وطوّلت R4R المسارات وأضافت درجة الدقة CLS [187]؛ وأضافت RxR تعليمات متعددة اللغات بتأريض مكاني-زماني كثيف [188]؛ وانتقلت CVDN إلى تفاعل حواري متعدد الأدوار [189].</p>
+    <p>وتبع ذلك التحكم المستمر والتلاعب: تقيّم VLN-CE فضاءات الأفعال المستمرة على Habitat مضيّقة فجوة المحاكاة–الواقع [190]؛ وتدمج REVERIE التعرف على الأهداف مع الملاحة [5]؛ وتضيف ALFRED على AI2-THOR التلاعب بالأشياء نحو استدلال دلالي متجسد [191]. ويستخدم العمل الخارجي مهام بمقياس منظر الشارع مثل Talk2Nav للملاحة بعيدة المدى [195].</p>
+    <p>ومؤخرًا، تعيد DDN المدفوعة بالطلب تأطير المهمة من اتباع المسار إلى فهم القصد، حيث تستدل الوكلاء على الأهداف من طلبات طبيعية مجردة [6] — وهو الاتجاه الذي تحدده المراجعة كمركز ثقل المجال.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">8. بروتوكولات التقييم</h2>
+    <p>تشكل مقاييس مستوى المسار العمود الفقري: معدل النجاح (SR) أي حصة الحلقات المنتهية عند الهدف ضمن التسامح [203]؛ وطول المسار (TL) لكفاءة المسار [204]؛ والنجاح الموزون بطول المسار (SPL) وهو المؤشر المركب الجامع بين النجاح والمثالية [203]؛ ومعدل نجاح الأوراكل (OSR) الذي يحتسب دخول منطقة الهدف عابرًا [4]؛ وخطأ الملاحة (NE) أي مسافة أقصر مسار من نقطة التوقف إلى الهدف [4].</p>
+    <p>يهيمن SR وSPL على المعايرة، بينما تشخّص TL وOSR الكفاءة وسلوك التوقف. لكن مقاييس المسار وحدها قد تضلل: فقد يسجل الوكيل SR/SPL مرتفعًا مع تخطي المعالم أو انتهاك قيود لغوية دقيقة، وتكافئ OSR بسخاء السياسات العابرة للهدف دون توقف موثوق.</p>
+    <p>لذا يكمّل التقييمُ الدلالي المساراتِ بدقة التعليمات ودلالات الأهداف — درجات التغطية الموزونة مثل CLS [187] وفحوص التأريض الكثيف [188] ومواءمة الطلب–السمة [6] — مقيسًا هل فعل الوكيل ما قيل، لا أين انتهى فحسب.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">9. التحديات والاتجاهات المستقبلية</h2>
+    <p>تبرز ثلاث فجوات قدرات. فدون نماذج عالم تنبؤية، تفتقر الوكلاء إلى الإدراك المكاني الاستباقي والاستدلال الفيزيائي للملاحة الحقيقية [206، 207]. وتستمر الهلوسات — أوصاف دلالية أو تنبؤات أشياء خاطئة — مدفوعة بغياب فحوص الاتساق عبر الوسائط والتحقق المعرفي الخارجي [208]. ويخلق زمن الاستدلال المرتفع وكلفة الطاقة اختناقات لحظية على الروبوتات.</p>
+    <p>وتفاقمها فجوات النشر: فغياب أطر متكاملة معيارية للمحاكاة–الواقع يحد من الإطلاق على المستوى الهندسي [209]، بينما تتطور البيانات والمقاييس والأدوات منفصلة. وتشمل علاجات القدرات الرسوم المعرفية والاستدلال المنظم والسببي والتنبؤ القائم على نماذج العالم.</p>
+    <p>وتدعو علاجات المنظومة إلى مجموعات بيانات ضخمة متنوعة (متعددة اللغات والوسائط والتفاعلية) وتقييم موحد وخطوط نشر كفؤة. وبجمع نماذج العالم والاستدلال المعرفي ومعايير أفضل وكفاءة طرفية، يمكن لـVLN التقدم نحو ملاحة قابلة للتفسير وقابلة للتعميم ومؤرضة فيزيائيًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">10. الخاتمة</h2>
+    <p>تجمّع هذه المراجعة VLN الممكّنة بالنماذج عبر فهم التعليمات وإدراك البيئة والتخطيط عالي المستوى والتحكم منخفض المستوى [4، 6، 26–28]، متتبعة تحولًا واضحًا من مطابقة الوسائط إلى ذكاء دلالي–معرفي–فعلي متكامل. ويمثل مسحها للنشر الطرفي — التكميم [124، 125] والاستدلال الصحيحي [126] واتجاهات النماذج الرائدة [119–123] — المكملَ الغائب للمراجعات المتمحورة حول الخوارزميات مثل [17].</p>
+    <p>ترسم معًا مجموعاتُ البيانات من R2R [4] إلى DDN [6]، والمقاييس من SR/SPL [203] إلى درجات الدقة [187]، وأجندة التحديات [206، 208، 209] الطريقَ من التفسير على مستوى اللغة إلى فهم العالم المادي: ملاحة قابلة للتفسير وقابلة للتعميم وقابلة للنشر.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Vision-language navigation (VLN) asks an agent to follow natural-language instructions through visual environments, from “walk through the living room” to demand-driven goals such as “find somewhere I can work”. Since the task’s formulation in 2018 [4] and its extensions to goal-oriented [5] and demand-driven navigation [6], large language and vision-language models [7, 8] have reshaped every component of the VLN stack.</p>
+    <p>This review systematises that transformation across four components — instruction understanding, environment perception, high-level planning and low-level motion control — and adds a dedicated treatment of edge deployment: pre-deployment optimisation (quantisation, distillation), runtime optimisation, and real deployment cases. It further consolidates datasets, simulators and evaluation protocols.</p>
+    <p>The authors conclude that LLM-enabled VLN is moving from language-level interpretation toward physical-world understanding, but only if hallucination [208], world-model gaps [206, 207] and the simulation-to-reality deployment gap [209] are closed through knowledge augmentation, better benchmarks and efficient edge deployment.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Building navigation systems that interact with humans and their surroundings is a long-standing goal of AI research [1, 2]. Instructions trivial for people still defeat autonomous agents, because executing them in complex settings demands environmental perception, language understanding, interactive communication, planning and motion control together [3].</p>
+    <p>The field crystallised in 2018 when VLN was defined as an agent receiving instructions, combining them with visual perception and history, and navigating a 3D environment [4]. It then grew through goal-oriented navigation, where agents must find targets and explore autonomously [5], to demand-driven navigation, which stresses semantic reasoning over abstract descriptions and commonsense decisions [6].</p>
+    <p>Breakthroughs in LLMs and vision-language models are now reshaping VLN [7, 8], bringing strong contextual modelling, logical reasoning and cross-modal knowledge integration to NLP [9, 10] and vision tasks [11, 12]. LLMs trained on massive corpora generalise in zero- and few-shot regimes [13], while prompt engineering [8, 14] and chain-of-thought reasoning [15, 16] make complex-task processing more interpretable. A robotics-oriented survey covers LLM uses but not VLN in detail [17], motivating this review.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Evolution of VLN</h2>
+    <p>A complete VLN system has four cores: parsing instructions into structured semantics (goals, landmarks, actions); perceiving the environment; planning routes; and controlling motion. Early work relied on Seq2Seq cross-modal alignment, learning direct mappings from language to action sequences, exemplified by Speaker-Follower [24] and reinforced cross-modal matching (RCM) [25].</p>
+    <p>LLM-era systems reformulate navigation as explicit language reasoning: NavGPT casts each step as reasoning over instructions, visual descriptions, trajectory history and candidate actions [26]; MapGPT maintains an online language map, a dynamic topological representation in natural-language form [27]; NaviLLM unifies navigation, localisation, history summarisation and visual question answering in one generative schema [28].</p>
+    <p>Yet most progress remains at the software Real2Sim level [2], with limited Sim2Real transfer and real-world deployment. Embodied AI increasingly demands physical embodiments for perception, interaction and decision-making [3], so moving LLMs from the cloud to edge devices has become the route toward embodied intelligence.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. LLM-Empowered VLN: Understanding</h2>
+    <p>Instruction understanding begins with semantic encoding. Early Seq2Seq systems [24, 25] are now complemented by demand-driven frameworks: the DDN model has an LLM extract semantic attributes of objects and align them with CLIP visual embeddings, building a demand–attribute–vision space that retrieves scene targets matching natural descriptions [6].</p>
+    <p>Schema-based unification goes further: NaviLLM folds navigation, target localisation, history summarisation and visual question answering into one generative modelling framework with shared semantics and joint training [28]. Training-free semantic–spatial mapping and instruction-aware planning over 3D semantic maps extend the same idea.</p>
+    <p>Environment understanding pairs these semantics with perception: cross-modal grounding, open-vocabulary detection and bird’s-eye-view representations let agents resolve landmarks from vague references. Together, understanding modules convert “find somewhere I can work” into grounded, checkable subgoals rather than memorised path templates [6, 28].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Planning and Motion Control</h2>
+    <p>High-level planning turns grounded subgoals into routes. Approaches range from step-by-step language reasoning over candidate actions [26] to adaptive path planning guided by online language maps [27] and schema-unified policies that jointly optimise navigation and question answering [28]. Closed-loop designs add hierarchical chains of thought, multi-expert discussion and reflection-and-correction loops for robustness.</p>
+    <p>Low-level control is entering a generative stage. Instead of reactive execution, world-model and diffusion-style controllers “gerenate–evaluate–execute”: they imagine future trajectories in latent space and select semantically consistent motions, improving adaptability in dynamic, human-centric scenes.</p>
+    <p>The review stresses that planning and control must be evaluated jointly with understanding: an agent can reach the goal while violating the instruction, so instruction fidelity — staying on the described path, not just arriving — is now a first-class objective.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. From Transformers to Frontier Models</h2>
+    <p>Edge deployment presupposes the model lineage. Since the Transformer [109], pre-trained language models split into understanding-oriented BERT [110] and generation-oriented GPT [111] lines; GPT-3’s scale then triggered prompt learning [112], and GPT-3.5 added reinforcement learning from human feedback to produce ChatGPT [113]. GPT-4 leapt in cross-task reasoning and multilingual understanding [114].</p>
+    <p>Open and multimodal work proceeded in parallel: LLaMA [115] and Gemini [116] fuelled community exploration and modality fusion, and by 2025 GPT-5 [119], LLaMA-4 [120], Qwen2.5-Omni [121] and the DeepSeek series (V3 [122], R1 [123]) mark a shift from pure scaling to unified multimodal reasoning.</p>
+    <p>For VLN this lineage matters because capabilities — zero-shot generalisation [112, 13], instruction following [113], structured reasoning [15] — transfer directly into instruction understanding and planning, provided the models can be compressed onto robots and headsets.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Edge Deployment: Optimisation</h2>
+    <p>Pre-deployment optimisation starts with quantisation. One-shot layer-wise GPTQ uses approximate second-order information to compress models to 3–4 bits [124]; activation-aware AWQ protects salient weights for long-context, multi-task stability [125]; and integer-only pipelines such as MobileQuant enable fully on-device inference [126].</p>
+    <p>Runtime optimisation complements compression: efficient attention, key–value cache management, speculative decoding and hardware-aware scheduling cut the latency and energy that otherwise block real-time control on mobile robots and UAVs.</p>
+    <p>Deployment cases in the review span indoor service robots, UAV terminal delivery and multi-agent outdoor collaboration, all showing the same lesson: perception–language loops must run locally for latency and privacy, with the cloud reserved for episodic heavy reasoning.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Datasets and Simulators</h2>
+    <p>The foundational R2R dataset on Matterport3D pairs discrete paths with natural instructions [4], and the RoomNav/House3D line introduced semantic, goal-oriented navigation [186]. R4R lengthened paths and added the CLS fidelity score [187]; RxR added multilingual instructions with dense spatiotemporal grounding [188]; CVDN moved to multi-turn dialog interaction [189].</p>
+    <p>Continuous control and manipulation followed: VLN-CE evaluates continuous action spaces on Habitat, narrowing the sim–real gap [190]; REVERIE fuses target recognition with navigation [5]; ALFRED on AI2-THOR adds object manipulation toward embodied semantic reasoning [191]. Outdoor work uses street-view-scale tasks such as Talk2Nav for long-range navigation [195].</p>
+    <p>Most recently, demand-driven DDN reframes the task from path following to intent understanding, with agents inferring goals from abstract natural requests [6] — the direction the review identifies as the field’s centre of gravity.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">8. Evaluation Protocols</h2>
+    <p>Path-level metrics form the backbone: success rate (SR), the share of episodes ending at the goal within tolerance [203]; trajectory length (TL) for path efficiency [204]; success weighted by path length (SPL), the composite indicator combining success with optimality [203]; oracle success rate (OSR), which credits transiently entering the goal region [4]; and navigation error (NE), the shortest-path distance from stopping point to goal [4].</p>
+    <p>SR and SPL dominate benchmarking, while TL and OSR diagnose efficiency and stopping behaviour. But path metrics alone can mislead: an agent may score high SR/SPL while skipping landmarks or violating fine-grained language constraints, and OSR over-rewards policies that pass through the goal without reliably stopping.</p>
+    <p>Semantic-level evaluation therefore complements paths with instruction fidelity and goal semantics — coverage-weighted scores such as CLS [187], dense grounding checks [188] and demand-attribute alignment [6] — measuring whether the agent did what was said, not merely where it ended.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">9. Challenges and Future Trends</h2>
+    <p>Three capability gaps stand out. Without predictive world models, agents lack anticipatory spatial cognition and physical reasoning for real navigation [206, 207]. Hallucinations — wrong semantic descriptions or object predictions — persist, driven by missing cross-modal consistency checks and external knowledge validation [208]. And high inference latency plus energy cost create real-time bottlenecks on robots.</p>
+    <p>Deployment gaps compound them: the absence of standardised simulation–real integrated frameworks limits engineering-level rollout [209], while data, metrics and tooling evolve separately. Capability remedies include knowledge graphs, structured and causal reasoning, and world-model-based prediction.</p>
+    <p>Ecosystem remedies call for diverse large-scale datasets (multilingual, multimodal, interactive), unified evaluation, and efficient deployment pipelines. By combining world models, knowledge-based reasoning, better benchmarks and edge efficiency, VLN can progress toward explainable, generalisable, physically grounded navigation.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">10. Conclusions</h2>
+    <p>This review synthesises LLM-enabled VLN across instruction understanding, environment perception, high-level planning and low-level motion control [4, 6, 26–28], tracing a clear shift from modality matching to integrated semantic–cognitive–action intelligence. Its edge-deployment survey — quantisation [124, 125], integer-only inference [126] and frontier-model trends [119–123] — is, to the authors’ framing, the missing complement to algorithm-centric reviews such as [17].</p>
+    <p>Datasets from R2R [4] to DDN [6], metrics from SR/SPL [203] to fidelity scores [187], and the challenge agenda [206, 208, 209] together map the road from language-level interpretation to physical-world understanding: explainable, generalisable and deployable VLN.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references preserving original numbering; the full list of 212 references is available in the original paper (doi:10.3390/s26072022).</p>
+    <p dir="rtl" style="font-size:0.85rem;color:var(--text-2)">مراجع مختارة بالأرقام الأصلية؛ والقائمة الكاملة (212 مرجعًا) متاحة في الورقة الأصلية (doi:10.3390/s26072022).</p>
+    <ol dir="ltr">
+      <li>[3] Sun, F.; Chen, R.; Ji, T.; Luo, Y.; Zhou, H.; Liu, H. A comprehensive survey on embodied intelligence: Advancements, challenges, and future perspectives. CAAI Artif. Intell. Res. 2024, 3, 9150042.</li>
+      <li>[4] Anderson, P.; Wu, Q.; Teney, D.; Bruce, J.; Johnson, M.; Sunderhauf, N.; Reid, I.; Gould, S.; Van Den Hengel, A. Vision-and-language navigation: Interpreting visually-grounded navigation instructions in real environments. In Proc. CVPR 2018; pp. 3674–3683.</li>
+      <li>[5] Qi, Y.; Wu, Q.; Anderson, P.; Wang, X.; Wang, W.Y.; Shen, C.; Van Den Hengel, A. REVERIE: Remote embodied visual referring expression in real indoor environments. In Proc. CVPR 2020; pp. 9979–9988.</li>
+      <li>[6] Wang, H.; Chen, A.G.H.; Wu, M.; Dong, H. Find what you want: Learning demand-conditioned object attribute space for demand-driven navigation. Adv. Neural Inf. Process. Syst. 2023, 36, 16353–16366.</li>
+      <li>[13] Kojima, T.; Gu, S.S.; Reid, M.; Matsuo, Y.; Iwasawa, Y. Large language models are zero-shot reasoners. Adv. Neural Inf. Process. Syst. 2022, 35, 22199–22213.</li>
+      <li>[15] Wei, J.; Wang, X.; Schuurmans, D.; Bosma, M.; Ichter, B.; Xia, F.; Chi, E.H.; Le, Q.V.; Zhou, D. Chain-of-thought prompting elicits reasoning in large language models. Adv. Neural Inf. Process. Syst. 2022, 35, 24824–24837.</li>
+      <li>[17] Pan, H.; Huang, S.; Yang, J.; et al. Recent advances in robot navigation via large language models. arXiv 2025.</li>
+      <li>[24] Fried, D.; Hu, R.; Cirik, V.; Rohrbach, A.; Andreas, J.; Morency, L.-P.; et al. Speaker-follower models for vision-and-language navigation. Adv. Neural Inf. Process. Syst. 2016.</li>
+      <li>[26] Zhou, G.; Hong, Y.; Wu, Q. NavGPT: Explicit reasoning in vision-and-language navigation with large language models. Proc. AAAI Conf. Artif. Intell. 2024, 38, 7641–7649.</li>
+      <li>[27] Chen, J.; Lin, B.; Xu, R.; Chai, Z.; Liang, X.; Wong, K.-Y. MapGPT: Map-guided prompting with adaptive path planning for vision-and-language navigation. In Proc. ACL 2024.</li>
+      <li>[28] Zheng, D.; Huang, S.; Zhao, L.; Zhong, Y.; Wang, L. Towards learning a generalist model for embodied navigation. In Proc. CVPR 2024.</li>
+      <li>[109] Vaswani, A.; Shazeer, N.; Parmar, N.; Uszkoreit, J.; Jones, L.; Gomez, A.N.; Kaiser, L.; Polosukhin, I. Attention is all you need. Adv. Neural Inf. Process. Syst. 2017, 30, 5998–6008.</li>
+      <li>[110] Devlin, J.; Chang, M.-W.; Lee, K.; Toutanova, K. BERT: Pre-training of deep bidirectional transformers for language understanding. In Proc. NAACL 2019.</li>
+      <li>[111] Radford, A.; Narasimhan, K.; Salimans, T.; Sutskever, I. Improving language understanding by generative pre-training. OpenAI 2018.</li>
+      <li>[113] Ouyang, L.; Wu, J.; Jiang, X.; Almeida, D.; et al. Training language models to follow instructions with human feedback. Adv. Neural Inf. Process. Syst. 2022.</li>
+      <li>[114] OpenAI; Achiam, J.; Adler, S.; et al. GPT-4 technical report. arXiv 2023, arXiv:2303.08774.</li>
+      <li>[115] Touvron, H.; Lavril, T.; Izacard, G.; et al. LLaMA: Open and efficient foundation language models. arXiv 2023, arXiv:2302.13971.</li>
+      <li>[124] Frantar, E.; Ashkboos, S.; Hoefler, T.; Alistarh, D. GPTQ: Accurate post-training quantization for generative pre-trained transformers. arXiv 2022, arXiv:2210.17323.</li>
+      <li>[125] Lin, J.; Tang, J.; Tang, H.; et al. AWQ: Activation-aware weight quantization for LLM compression and acceleration. MLSys 2024.</li>
+      <li>[186] Wu, Y.; Wu, Y.; Gkioxari, G.; Tian, Y. Building generalizable agents with a realistic and rich 3D environment. arXiv 2018, arXiv:1801.02209.</li>
+      <li>[187] Jain, V.; Magalhaes, G.; Ku, A.; Vaswani, A.; Ie, E.; Baldridge, J. Stay on the path: Instruction fidelity in vision-and-language navigation. arXiv 2019, arXiv:1905.12255.</li>
+      <li>[188] Ku, A.; Anderson, P.; Patel, R.; Ie, E.; Baldridge, J. Room-across-room: Multilingual vision-and-language navigation with dense spatiotemporal grounding. arXiv 2020, arXiv:2008.01011.</li>
+      <li>[189] Thomason, J.; Murray, M.; Cakmak, M.; Zettlemoyer, L. Vision-and-dialog navigation. In Proc. Conf. on Robot Learning (CoRL), PMLR 2020.</li>
+      <li>[190] Krantz, J.; Wijmans, E.; Majumdar, A.; Batra, D.; Lee, S. Beyond the nav-graph: Vision-and-language navigation in continuous environments. In Proc. ECCV 2020.</li>
+      <li>[191] Shridhar, M.; Thomason, J.; Gordon, D.; Bisk, Y.; Han, W.; Mottaghi, R.; Zettlemoyer, L.; Fox, D. ALFRED: A benchmark for interpreting grounded instructions for everyday tasks. In Proc. CVPR 2020.</li>
+      <li>[195] Vasudevan, A.B.; Dai, D.; Gool, L.V. Talk2Nav: Long-range vision-and-language navigation with dual attention and spatial memory. Int. J. Comput. Vis. 2021, 129, 246–266.</li>
+      <li>[203] Anderson, P.; Chang, A.; Chaplot, D.S.; et al. On evaluation of embodied navigation agents. arXiv 2018, arXiv:1807.06757.</li>
+      <li>[206] Pearl, J. Probabilistic reasoning in intelligent systems: Networks of plausible inference. Morgan Kaufmann, 1988.</li>
+      <li>[208] Chen, X.; Ma, Z.; Zhang, X.; Xu, S.; Qian, S.; Yang, J.; Fouhey, D.F.; Chai, J. Multi-object hallucination in vision language models. Adv. Neural Inf. Process. Syst. 2024, 37.</li>
+      <li>[209] Wang, L.; Xia, X.; Zhao, H.; et al. Rethinking the embodied gap in vision-and-language navigation. arXiv 2025.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s26072022">10.3390/s26072022</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

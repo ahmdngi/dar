@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>البحث المعماري العصبي القائم على التدرج: تقييم شامل — DAR</title>
+<meta name="description" content="Gradient-Based Neural Architecture Search: A Comprehensive Evaluation — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/gradient-nas-make/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Gradient-Based Neural Architecture Search: A Comprehensive Evaluation</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">البحث المعماري العصبي القائم على التدرج: تقييم شامل</h2>
+
+  <div class="paper-meta">
+    <span>👤 Sarwat Ali, M. Arif Wani</span>
+    <span>📄 Mach. Learn. Knowl. Extr., 2023 · Vol. 5, pp. 1176–1194</span>
+    <span>🔗 <a href="https://doi.org/10.3390/make5030060">10.3390/make5030060</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يُعد اكتشاف البنية المثلى للمهمة تحديًا جوهريًا في التعلم العميق يعالجه البحث المعماري العصبي (NAS) بعائلاته الثلاث — التعلم المعزز والخوارزميات التطورية والانحدار التدريجي — وكلها وجدت مرشحين جيدين، لكن الأوليين تحتاجان غالبًا مئات أيام GPU أو أكثر [2–7]. تقتصر هذه المراجعة لذلك على المقاربة القائمة على التدرج لخفض كلفتها، مستهدفة تحديد أفضل طريقة NAS تدرجية وفرص المستقبل. وتستعرض أربع طرق رئيسية — DARTS [10] وPDARTS [11] وFair DARTS [12] وAtt-DARTS [13] — وتقارنها نظريًا في فضاءات البحث والاسترخاء المستمر والتحسين ثنائي المستوى واشتقاق البنية الفضلى (بنقاط قوة وضعف لكل منها)، وتقارنها تجريبيًا في معدل الخطأ والكلفة الحاسوبية على CIFAR-10 وCIFAR-100 وImageNet. ويبرز PDARTS أفضل وأسرع الطرق المفحوصة، مرشحًا قويًا لأتمتة NAS، ويقدم التحليل رؤى واتجاهات مستقبلية تعالج انتقادات الأدبيات وفجواتها [16–18].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>إن هندسة السمات — التي تقود أتمتتها نجاح التعلم العميق — أعقبها طلب على هندسة البنى: بناء شبكات أعقد يدويًا، وأتمتتها هي NAS [1]. وأثبت NASRL [2] وMetaQNN [4] جدوى الشبكات المصممة بالتعلم المعزز لتصنيف الصور، وأكده التطور واسع النطاق تعلميًا [5] — لكن بكلفة 2000 يوم GPU (NASNet ‏[6]) و3150 يومًا (AmoebaNet ‏[7]). وخفض NAS التدرجي الكلف جذريًا عبر الاسترخاء المستمر [8،9]: فطابق DARTS [10] أحدث الطرق [6،7] في 4 أيام GPU على الأكثر. ومن التوابع: PDARTS التقدمي الذي ينمّي التعقيد أثناء البحث [11]؛ وFair DARTS الذي شخّص تكدس وصلات التخطي الزائدة كأثر ميزة غير عادلة تتفوق فيه عمليات بقوة البحث لا بالأداء النهائي [12]؛ وAttention DARTS الذي يبحث بوحدات انتباه قابلة للتفاضل تركز على الأجزاء البارزة [13]. وبما أن فعالية NAS رهن تصميم فضاء البحث [16]، وتكدس وصلات التخطي يحدّ المكاسب [15]، والأدبيات تفتقر لمقارنة مفصلة [17،18]، تقيّم هذه الورقة شاملًا الطرق الأربع.</p>
+    <p>وبقية الورقة: القسم 2 يستعرض طرق DARTS؛ والقسم 3 يقدم المقارنة النظرية (فضاءات البحث والاسترخاء المستمر والتحسين ثنائي المستوى واستراتيجيات البحث واشتقاق البنية الفضلى) بنقاط القوة والضعف؛ والقسم 4 يقارنها تجريبيًا في تصنيف الصور؛ والقسمان 5–6 للاتجاهات المستقبلية والخاتمة. وهذه نسخة موسعة من ورقة المؤلفين في ICMLA 2022 [26].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. نظرة عامة على الطرق التدرجية</h2>
+    <p>تُحسّن الطرق الأربع بصورة مشتركة معاملَي قوة العمليات (α) وأوزانهما (ω) داخل فضاء بحث خلوي، مرصِّفةً الخلايا المتعلمة في شبكات كاملة (الشكل 1: خلية DAG بأربع عقد؛ وعمليات مختلطة على الحواف). يعامل DARTS [10] البنية متغيرًا مستمرًا يُحسَّن بالانحدار التدريجي/الانتشار الخلفي على 8 عمليات مرشحة — التفافات قابلة للفصل وموسعة 3×3 و5×5، وتجميع أعظمي/متوسط 3×3، وهوية، مع عملية صفرية لغياب الوصلات — تُدمج في خلايا. وترصّ شبكة بحثه ثماني خلايا (اختزال في الموضعين 3 و6، والباقي طبيعي: الطبيعية تحفظ البعد المكاني والمختزلة تُصغّر بخطوة 2)؛ وتُقيَّم الخلية المتعلمة لاحقًا في شبكة بـ20+ خلية. ويتعلم DARTS احتمالات القوة α والأوزان ω بتحسين ثنائي المستوى (الخوارزمية 1: تهيئة α=0، وفقد إنتروبي متقاطع، وتحديثات متناوبة حتى التقارب).</p>
+    <p>ويعمّق PDARTS [11] شبكة البحث تدريجيًا عبر مراحل (5 ← 11 ← 17 خلية) مع تقليص فضاء العمليات (8 ← 5 ← 3، «تقريب فضاء البحث» بإسقاط الأضعف حسب درجات المرحلة)، مستهدفًا فجوة العمق ومنظِّمًا ضد فرط وصلات التخطي بإسقاط مستوى العمليات [25]. ويستبدل Fair DARTS [12] منافسة softmax بسيغمويدات مستقلة لكل عملية لتُشغَّل/تُطفأ تعاونيًا بدل قمع وصلات التخطي للباقي، واختُبر أيضًا على فضاء ProxylessNAS الأوسع [23]. ويضيف Att-DARTS [13] فضاء وحدات انتباه (الهوية وSqueeze-and-Excite وGather-Excite وعنق الزجاجة والانتباه المزدوج وCBAM) بعد الالتفافات، متعلمًا بصورة مشتركة عملية ووحدة انتباه لكل حافة بsoftmax متوازيين — إذ تتفوق CNN المجهزة بالانتباه على العادية بالمعاملات نفسها.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. المقارنة النظرية</h2>
+    <p>فضاءات البحث: العامة تجمع العمليات اعتباطًا في هرميات ضخمة حرة [4]، بينما تُنمّط الخلوية الطبقات في زخارف قابلة للترصيف [20–22] — والاختيار يحكم جودة البحث [23]. وتستخدم الطرق الأربع فضاءات DAG خلوية (المعادلة 1: العقدة j تجمع مخرجات العمليات فوق السابقات؛ 4 عقد خفية ومدخلان من الخليتين السابقتين ومخرج مُلصَق)، بخلايا طبيعية/مختزلة كما سبق. يُبقي DARTS على 7+صفر ثابتة [10]؛ ويقلص PDARTS المراحل 8←5←3 [11]؛ ويعيد Fair DARTS استخدام فضاء DARTS مع ProxylessNAS [12،23]؛ ويُبقي Att-DARTS فضاء الالتفافات ويلحق فضاء وحدات الانتباه [13]. والاسترخاء المستمر/التحسين ثنائي المستوى: كل حافة مزيج موزون من كل العمليات (المعادلة 2: softmax فوق α)، فيصبح البحث تعلم α مع اشتقاق الخلية المتقطعة بأعلى العمليات؛ ويُصغّر α* فقد التحقق خاضعًا لتصغير ω* فقد التدريب (المعادلات 3–8 بتقريب مفكوك خطوة واحدة ξ). ويشارك PDARTS استرخاء DARTS [11]؛ ويستبدل Fair DARTS الـsoftmax بسيغمويد لكل عملية (المعادلة 9) فتنفك القوى، معالجًا هيمنة وصلات التخطي (ميزة ResNet الباقية [24]) بكلفة ضبط عتبة فقد صفر-واحد؛ ويطبق Att-DARTS ‏softmax متوازيين فوق العمليات ووحدات الانتباه [13].</p>
+    <p>استراتيجيات البحث: يبحث DARTS سطحيًا (8 خلايا) ويُقيّم عميقًا (20+) — فجوة العمق (الشكل 5)، إذ تستغل الخلايا السطحية قليلة العقد الانحدار السريع لكنها تقصر عميقًا [11]. ويغلقها PDARTS بالتعميق التدريجي مع تقريب فضاء البحث (خفض التعقيد) وتنظيم إسقاط العمليات (رفع الاستقرار وتقييد التخطي) [11،25]. ويُبقي Fair DARTS الخلايا الثماني لكن يستقر بالسيغمويدات [12]. ويبحث Att-DARTS خلايا عملية+انتباه مشتركة بالانتباه بعد الالتفافات [13]. والاشتقاق: تُقطّع الطرق الثلاث الاسترخاء (أعلى α) مخاطِرة بفجوة مستمر-متقطع تُلطَّف بالمنظمات؛ ويضيف Fair DARTS فقد صفر-واحد دافعًا السيغمويدات نحو 0/1، مشدِّدًا التقريب بثمن ضبط العتبة. ونقاط القوة: نمطية الخلايا وترصيفها؛ وإصلاح PDARTS لفجوة العمق وخفض التعقيد؛ والتبديل المستقل في Fair DARTS؛ وتركيز Att-DARTS على البارز؛ ورخص التحسين الداخلي أحادي الخطوة. ونقاط الضعف: مثالية بنية الخلية غير مثبتة؛ والتفافات بلا انتباه قد تُبقي غير المهم؛ والتحسين أحادي الخطوة قد يضحي بالمثالية؛ وعتبة Fair DARTS وكلفة قوى انتباه Att-DARTS تضيفان عبئًا؛ وضبط إسقاط PDARTS صعب [15،24،25].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. المقارنة التجريبية</h2>
+    <p>على CIFAR-10 (الجدول 1): DARTS+cutout ‏2.76% ± 0.09 (3.3 مليون معامل، 4 أيام) [10]؛ وPDARTS ‏2.25% (10.5 ملايين، 0.3 يوم ≈ 7 ساعات) [11] — الأفضل والأسرع؛ وFair DARTS ‏2.54% (2.8 مليون) [12]؛ وAtt-DARTS+cutout ‏2.54% ± 0.10 (3.2 ملايين) [13]، الأصغر. فيتفوق PDARTS بالتقريب-مع-التنظيم على DARTS بكلفة أقل بكثير [26]. وعلى CIFAR-100 (الجدول 2): PDARTS الأفضل مجددًا بـ14.64% (11.0 مليونًا، 0.3 يوم)؛ وAtt-DARTS ‏16.54% ± 0.40 (3.2 ملايين)؛ وDARTS+cutout ‏17.54% (3.3 ملايين، 4 أيام)؛ وFair DARTS متخلف بـ22.8% (5.3 ملايين، 3 أيام) — وخلايا DARTS/PDARTS المبحوثة على CIFAR-10 تنتقل بتميز: يبلغ PDARTS-large+cutout ‏2.43% على CIFAR-10 من خلايا مبحوثة على CIFAR-100 و24.4–24.7% على ImageNet (مقابل DARTS ‏26.7% بـ4.7 ملايين) [10،11] (الجدول 3)، مؤكدًا قابلية النقل إلى ImageNet [6،7].</p>
+    <p>وعمومًا يثبت NAS التدرجي فعالية وكفاءة لافتتين لتصنيف الصور: فبحوث PDARTS بـ0.3 يوم GPU تتصدر مجموعتي CIFAR وتنتقل أفضل، جاعلةً إياه خيار التطبيقات الحرجة زمنيًا. والاتجاهات المستقبلية: تخفيف وصلات التخطي الزائدة المتكدسة؛ واستكشاف بنى خلوية بديلة تتجاوز العقد الأربع الافتراضية (التي لم تُدَّعَ مثاليتها)؛ وتوجيه فضاءات البحث نحو خصائص مرغوبة؛ وتمديد PDARTS بفضاءات وحدات الانتباه؛ وتحسين التحسين الداخلي أحادي الخطوة لموازنة الكفاءة مع الأداء [15،25]. وتجهز الدراسة الباحثين لصياغة بنى أكفأ وأنجع لتطبيقات واسعة، دافعة التصميم المعماري المؤتمت [16–19].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Discovering the optimal architecture for a task is a core deep-learning challenge addressed by Neural Architecture Search (NAS), whose three families — reinforcement learning, evolutionary algorithms and gradient descent — all found good candidates, but the first two often need hundreds of GPU days or more [2–7]. This review therefore confines itself to the gradient-based approach for its lower cost, aiming to identify the best gradient-based NAS method and future opportunities. It overviews four major gradient methods — DARTS [10], PDARTS [11], Fair DARTS [12] and Att-DARTS [13] — theoretically compares them on search spaces, continuous relaxation, bi-level optimization and best-architecture derivation (with strong/weak features each), and experimentally compares error rate and computational cost on CIFAR-10, CIFAR-100 and ImageNet. PDARTS emerges as better and faster than the examined methods, a potent candidate for automating NAS, and the analysis yields insights and future directions addressing literature criticisms and gaps [16–18].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Feature engineering — automation of which drives deep learning's success — has been followed by demand for architectural engineering: manually building ever more complex networks, whose automation is NAS [1]. NASRL [2] and MetaQNN [4] proved RL-designed networks viable for image classification, and Large-scale Evolution confirmed it with evolutionary learning [5] — but at 2,000 GPU days (NASNet [6]) and 3,150 GPU days (AmoebaNet [7]). Gradient-based NAS cut costs drastically via continuous relaxation [8,9]: DARTS [10] matched state of the art [6,7] in at most 4 GPU days. Follow-ups include progressive PDARTS, which grows complexity during search [11]; Fair DARTS, which diagnoses the aggregation of redundant skip connections as an unfair-advantage effect where certain operations out-compete others on search strength rather than final performance [12]; and Attention DARTS, which searches with differentiable attention modules focusing on salient input parts [13]. Since NAS effectiveness hinges on search-space design [16], skip-connection aggregation limits gains [15], and the literature lacks detailed comparison of these methods [17,18], this paper comprehensively evaluates DARTS, PDARTS, Fair DARTS and Att-DARTS.</p>
+    <p>The rest of the paper: Section 2 overviews the DARTS-based methods; Section 3 gives the theoretical comparison (search spaces, continuous relaxation and bi-level optimization, search strategies, best-architecture derivation) with strong/weak features; Section 4 experimentally compares them on image classification; Sections 5–6 give future directions and conclusions. This is an extended version of the authors' ICMLA 2022 paper [26].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Overview of Gradient-Based Methods</h2>
+    <p>All four methods jointly optimize operation-strength parameters (α) and operation weights (ω) within a cell-based search space, stacking learned cells into full networks (Figure 1: DAG cell of 4 nodes; mixed operations on edges). DARTS [10] treats architecture as a continuous variable optimized by gradient descent/backpropagation over 8 candidate operations — 3×3 and 5×5 separable and dilated separable convolutions, 3×3 max/average pooling, identity, plus a zero op for absent connections — combined into cells. Its search network stacks eight cells (reduction cells at positions 3 and 6, rest normal: normal cells preserve spatial dimension, reduction cells downsample with stride 2); the learned cell is later evaluated in a ≥20-cell network. DARTS learns operation-strength probabilities α and weights ω via bi-level optimization (Algorithm 1: initialize α = 0, cross-entropy loss, alternating updates until convergence).</p>
+    <p>PDARTS [11] progressively deepens the search network across stages (5 → 11 → 17 cells) while shrinking the operation space (8 → 5 → 3, “search space approximation” dropping the weakest ops per stage scores), targeting the depth gap plus regularizing against skip-connect overfitting with operation-level dropout [25]. Fair DARTS [12] replaces softmax competition with independent per-operation sigmoids so operations switch on/off collaboratively instead of skip connections suppressing the rest, and was also tested on the larger ProxylessNAS space [23]. Att-DARTS [13] adds an attention-module space (Identity, Squeeze-and-Excite, Gather-Excite, Bottleneck Attention, Double Attention Block, CBAM) after convolutions, jointly learning an operation and an attention module per edge via parallel softmaxes — since attention-equipped CNNs beat plain ones at equal parameter counts.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Theoretical Comparison</h2>
+    <p>Search spaces: global spaces combine operations arbitrarily into huge free-form hierarchies [4], while cell-based designs modularize layers into stackable motifs [20–22] — the choice governs search quality [23]. All four methods use cell-based DAG spaces (Equation 1: node j aggregates operation outputs over predecessors; 4 hidden CNN nodes, 2 inputs from previous cells, concatenated output), with normal/reduction cells as above. DARTS keeps 7+zero ops fixed [10]; PDARTS stages shrink 8→5→3 [11]; Fair DARTS reuses the DARTS space plus ProxylessNAS [12,23]; Att-DARTS keeps the convolutional op space and appends the attention-module space [13]. Continuous relaxation/bi-level optimization: each edge is a weighted mix of all ops (Equation 2: softmax over α), and architecture search becomes learning α = {α^(i,j)} with the discrete cell derived from argmax ops; α* minimizes validation loss subject to ω* minimizing training loss (Equations 3–8, one-step unrolled approximation ξ). PDARTS shares DARTS's relaxation [11]; Fair DARTS replaces softmax with per-op sigmoid (Equation 9) so strengths decouple, curing skip-connect dominance (ResNet-style residual advantage [24]) at the cost of tuning a zero-one-loss threshold; Att-DARTS applies parallel softmaxes over ops and attention modules [13].</p>
+    <p>Search strategies: DARTS searches shallow (8 cells) but evaluates deep (≥20) — the depth gap (Figure 5), since shallow-found cells with few-node connections exploit fast gradient descent yet underperform deep [11]. PDARTS closes it by progressive deepening with search-space approximation (complexity down) and operation-dropout regularization (stability up, skip-count capped) [11,25]. Fair DARTS keeps 8 search cells but stabilizes via sigmoids [12]. Att-DARTS searches joint op+attention cells with attention after convolutions [13]. Derivation: DARTS/PDARTS/Att-DARTS discretize the relaxation (top-α ops), risking a continuous–discrete gap mitigated by regularizers; Fair DARTS adds zero-one loss forcing sigmoids toward 0/1, tightening the approximation at the price of threshold tuning. Strong features: cell modularity/stackability; PDARTS depth-gap repair and complexity reduction; Fair DARTS independent switching; Att-DARTS saliency focus; single-step inner optimization is cheap. Weak features: cell-structure optimality unproven; non-attention convs may keep irrelevant features; single-step inner optimization may sacrifice optimality; Fair DARTS threshold and Att-DARTS attention-strength costs add overhead; PDARTS dropout-rate tuning is tricky [15,24,25].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Experimental Comparison</h2>
+    <p>On CIFAR-10 (Table 1): DARTS+cutout 2.76% ± 0.09 (3.3M params, 4 days) [10]; PDARTS 2.25% (10.5M, 0.3 days ≈ 7 h) [11] — best and fastest; Fair DARTS 2.54% (2.8M) [12]; Att-DARTS+cutout 2.54% ± 0.10 (3.2M) [13], the smallest model. PDARTS's approximation-plus-regularization thus beats DARTS with far less compute [26]. On CIFAR-100 (Table 2): PDARTS again best at 14.64% (11.0M, 0.3 days); Att-DARTS 16.54% ± 0.40 (3.2M); DARTS+cutout 17.54% (3.3M, 4 days); Fair DARTS trails at 22.8% (5.3M, 3 days) — DARTS/PDARTS searched on CIFAR-10 transfer notably: PDARTS-large+cutout reaches 2.43% on CIFAR-10 from CIFAR-100-searched cells and 24.4–24.7% on ImageNet (vs DARTS 26.7%, 4.7M) [10,11] (Table 3), confirming transferability to ImageNet [6,7].</p>
+    <p>Overall, gradient NAS proves remarkably effective and efficient for image classification: PDARTS's 0.3-GPU-day searches top both CIFAR sets and transfer best, making it the time-critical choice. Future directions: mitigating aggregated redundant skip connections; exploring alternative cell structures beyond the default four nodes (whose optimality is unclaimed); guiding search spaces toward desirable properties; extending PDARTS with attention-module spaces; and improving single-step inner optimization to balance efficiency with performance [15,25]. The study equips researchers to craft more efficient, effective architectures for wide applications, advancing automated architectural design [16–19].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Key references below keep their original numbering in the published paper [1]–[26]; the complete list is available in the original article (DOI link above).</p>
+    <ol dir="ltr">
+      <li>Zoph, B.; Le, Q.V. Neural Architecture Search with Reinforcement Learning. <em>arXiv</em> <strong>2016</strong>, arXiv:1611.01578.</li>
+      <li>Baker, B.; et al. Designing Neural Network Architectures using Reinforcement Learning. <em>arXiv</em> <strong>2016</strong>, arXiv:1611.02167.</li>
+      <li>Real, E.; et al. Large-Scale Evolution of Image Classifiers. In <em>Proc. ICML 2017</em>; Sydney, Australia, 2017; Volume 70, pp. 2902–2911.</li>
+      <li>Zoph, B.; et al. Learning Transferable Architectures for Scalable Image Recognition. In <em>Proc. CVPR 2018</em>; Salt Lake City, UT, USA, 2018; pp. 8697–8710.</li>
+      <li>Real, E.; et al. Regularized Evolution for Image Classifier Architecture Search. In <em>Proc. AAAI 2019</em>; Honolulu, HI, USA, 2019; Volume 33, pp. 4780–4789.</li>
+      <li>Liu, H.; Simonyan, K.; Yang, Y. DARTS: Differentiable Architecture Search. In <em>Proc. ICLR 2019</em>; New Orleans, LA, USA, 2019.</li>
+      <li>Chen, X.; Xie, L.; Wu, J.; Tian, Q. Progressive Differentiable Architecture Search: Bridging the Depth Gap between Search and Evaluation. In <em>Proc. ICCV 2019</em>; Seoul, Republic of Korea, 2019; pp. 1294–1303.</li>
+      <li>Chu, X.; et al. Fair DARTS: Eliminating Unfair Advantages in Differentiable Architecture Search. In <em>ECCV 2020</em>; Springer: Cham, Switzerland, 2020.</li>
+      <li>Nakai, K.; Matsubara, T.; Uehara, K. Att-DARTS: Differentiable Neural Architecture Search for Attention. In <em>Proc. IJCNN 2020</em>; Glasgow, UK, 2020; pp. 1–8.</li>
+      <li>Zela, A.; et al. Understanding and Robustifying Differentiable Architecture Search. <em>arXiv</em> <strong>2019</strong>, arXiv:1909.09656.</li>
+      <li>Jaafra, Y.; et al. Reinforcement Learning for Neural Architecture Search: A Review. <em>Image Vis. Comput.</em> <strong>2019</strong>, <em>89</em>, 57–66.</li>
+      <li>He, K.; et al. Deep Residual Learning for Image Recognition. In <em>Proc. CVPR 2016</em>; Las Vegas, NV, USA, 2016; pp. 770–778.</li>
+      <li>Srivastava, N.; et al. Dropout: A Simple and Effective Way to Improve Neural Networks. <em>J. Mach. Learn. Res.</em> <strong>2014</strong>, <em>15</em>, 1929–1958.</li>
+      <li>Ali, S.; Wani, M.A. Recent Trends in Neural Architecture Search Systems. In <em>Proc. ICMLA 2022</em>; Nassau, Bahamas, 2022; pp. 1783–1790.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/make5030060">10.3390/make5030060</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

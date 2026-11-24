@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تعلم الآلة والعلامات المائية للكشف الدقيق عن رسائل التصيد المولدة بالذكاء الاصطناعي — DAR</title>
+<meta name="description" content="Machine Learning and Watermarking for Accurate Detection of AI-Generated Phishing Emails — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/watermark-phishing-electronics/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Machine Learning and Watermarking for Accurate Detection of AI-Generated Phishing Emails</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تعلم الآلة والعلامات المائية للكشف الدقيق عن رسائل التصيد المولدة بالذكاء الاصطناعي</h2>
+
+  <div class="paper-meta">
+    <span>👤 Adrian Brissett, Julie Wall</span>
+    <span>📄 Electronics 2025, Vol. 14(13), 2611</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics14132611">10.3390/electronics14132611</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>توفر النماذج اللغوية الكبيرة قدرات تحويلية لكنها تثير مخاطر أمن سيبراني متنامية، خاصة عبر توليد رسائل تصيد واقعية. وكشف هذا المحتوى حرج، لكن الأساليب القائمة قد تكون كثيفة الموارد وبطيئة التكيف. يعرض هذا البحث إطار كشف مزدوج الطبقات يجمع التعلم الخاضع للإشراف للتصنيف الدقيق مع أساليب غير خاضعة تكشف التهديدات الناشئة، محققاً أداء قوياً في بيئات اختبار مضبوطة [4]، [8].</p>
+    <p>وإدراكاً بأن المستخدمين البشر غالباً أضعف حلقة في أنظمة أمن المعلومات، يدرس البحث أنماط الخداع التاريخية والمبادئ النفسية المستغلة في هجمات التصيد [12]، ويستكشف التوثيق المائي كوسيلة تكميلية لتتبع المحتوى المولد ذكائياً [23]. وتقدم هذه الاستراتيجيات معاً دفاعاً قابلاً للتوسع ومتكيفاً ضد هجمات التصيد المتطورة المدفوعة بالنماذج اللغوية.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>صيغ الذكاء الاصطناعي رسمياً في الخمسينيات وظل يُنظر إليه كتقنية مستقبلية دائمة الاقتراب، حتى جاء ChatGPT عام 2022 والتوليديات القادرة على إنتاج محتوى مبتكر فصار المستقبل حاضراً. وحققت النماذج اللغوية تقدماً لافتاً في توليد نصوص مقنعة ومتماسكة، بما يتيح منافع جمة [1]، [2]. لكن القدرة التوليدية نفسها سلاح ذو حدين: إذ يستغل المهاجمون النماذج — بما فيها المارقة مثل WormGPT [16] — لصياغة تصيد اصطيادي بالنماذج [14] يصعب تمييزه، مستفيدين من فجوة المهارات السيبرانية [5] وأساليب الهندسة الاجتماعية [3]، [4].</p>
+    <p>ويستغل نجاح التصيد مبادئ نفسية موثقة: السلطة والاستعجال والندرة والإلحاح كما حللها Cialdini [12]، وهي الإشارات نفسها التي يوسم بها مجموعة البيانات المستخدمة ويستخدمها الإطار تفسيرياً لزيادة ثقة المستخدم. ويتناول البحث سؤالين مركزيين: (1) كيف يمكن توظيف تعلم الآلة والتوثيق المائي بفعالية لكشف رسائل التصيد المولدة ذكائياً؟ (2) وكيف تُعزز أنظمة الكشف لتحديد المحتوى المعاد صياغته أو المتلاعب به سياقياً بما يتهرب من المرشحات التقليدية؟</p>
+  </section>
+  <section>
+    <h2 dir="rtl">2. الخلفية والأبحاث ذات الصلة</h2>
+    <p>تطورت تهديدات التصيد المدفوعة بالذكاء من رسائل جماعية ركيكة إلى اصطياد مخصص شديد الإقناع [4]، [14]، وأظهر تقييم النماذج في التطبيقات عالية المخاطر [6] وأدوات كشف المحتوى الذكائي [7] حدود الموثوقية، بينما ناقشت دراسات إمكانية الكشف واستحالته نظرياً [9]، [10] ومعايير قياس البشر مقابل المولد [11]. ويوسع هذا البحث عمل Greco وزملائه [8] بمعالجة تحدي هجمات إعادة الصياغة التي ترفع صعوبة الكشف، واقتراح إطار كشف لاحق التطبيق يعزز الأنظمة القائمة.</p>
+    <p>أما التوثيق المائي للنصوص المولدة — بتضمين إشارات قابلة للكشف في النص [23] — فيُستكشف هنا كوسيلة تكميلية لتتبع المحتوى الذكائي، لا بديلاً عن المصنف. وتُدمج في الإطار أيضاً إشارات التلاعب النفسي (السلطة والاستعجال) الموسومة في البيانات [12]، بما يجمع البنية اللغوية وأنماط التلاعب النفسي، خلافاً للأساليب المعتمدة على الإشارات الإحصائية أو النحوية وحدها [8].</p>
+  </section>
+  <section>
+    <h2 dir="rtl">3. إطار الكشف الهجين والمنهجية</h2>
+    <p>يستخدم البحث مجموعة بيانات Greco وزملائه [8]: 1000 رسالة تصيد بشرية من مستودعات بريدية خبيثة معروفة (مجموعة Nazario)، و1000 رسالة تصيد مولدة بـWormGPT بتنويع الموضوعات (احتيال ضريبي وعروض عمل) واستراتيجيات الإقناع المستندة إلى Cialdini [12] والموسومة والمستخدمة سماتٍ في النموذج، إضافة لرسائل شرعية للتوازن. واختير الانحدار اللوجستي مصنفاً إشرافياً أول لأداء تجريبي عالٍ (99.03% في [8] ضمن الثلاثة الأوائل مع آلات المتجهات والشبكات التي بلغت 99.78%) مع قابلية تفسير بيضاء تسلط الضوء على السمات الحاسمة — حاسم في سياقات التفاعل البشري–الحاسوبي حيث الثقة وتفسير القرار جوهريان.</p>
+    <p>نُفذ التدريب على Surface Laptop Studio (معالج i5-11300H وذاكرة 16 غيغابايت)، بخط أنابيب: الاستحواذ على البيانات المتوازنة، والتنظيف (ترميز وتطبيع وإزالة المحارف الخاصة)، واستخراج السمات بـTF-IDF لالتقاط الفروق المعجمية والبنيوية [24] (أحاديات وثنائيات حتى 5000 سمة)، وكشف الشذوذ بالتجميع K-Means للصيغ المعاد صياغتها، والتوثيق المائي لتمييز التركيبي عن البشري [23]. وجمعت البنية المزدوجة بين انحدار لوجستي للتصنيف الثنائي عالي الدقة وتجميع غير إشرافي للأنماط المراوغة، مشكلة دفاعاً متعدد الطبقات يرفع الدقة والمرونة [26]، [27]، [28].</p>
+  </section>
+  <section>
+    <h2 dir="rtl">4. التجربتان 1 و2: دون توثيق مائي</h2>
+    <p>قيّمت التجربة 1 انحداراً لوجستياً على سمات TF-IDF (2000 رسالة متوازنة، تحقق متقاطع خماسي الطيات) فبلغت الدقة 99.65%: F1 مثالي 1.00 للصنفين، مع إصابة 995 من 1000 رسالة شرعية و998 من 1000 تصيد، أي سبعة تصنيفات خاطئة فقط. وتؤكد النتائج أن الانحدار اللوجستي — حتى دون توثيق — يحقق أداء شبه مثالي على مجموعة نظيفة متوازنة، مؤسساً خط أساس قوياً.</p>
+    <p>وقيّمت التجربة 2 التجميع غير الإشرافي K-Means للتمييز بين البشري والمولد (1000 لكل صنف) فبلغت الدقة 82.25%، بضبط مثالي (1.00) لرسائل الذكاء لكن استدعاء منخفضاً (0.65) وF1 قدره 0.78. وتبرز النتيجة إمكانات التعلم غير الإشرافي في كشف تصيد الذكاء، مع قصور الاستدعاء أمام الرسائل المصوغة بدهاء — وهو ما سيعالجه التوثيق المائي لاحقاً.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">5. التجربتان 3 و4: الانحدار والتجميع مع التوثيق المرئي</h2>
+    <p>دمجت التجربة 3 نظام توثيق مرئياً (رمز مائي ظاهر مُلحق بكل رسائل التصيد المولدة) مع مصنف انحدار لوجستي إشرافي (تدريب 80% واختبار 20% أي 400 رسالة): خطأ واحد فقط، ودقة 99.75%، وضبط واستدعاء وF1 مثالية للشرعي (1.00) و0.99 للتصيد، مع تصنيف 199 من 200 تصيد صحيحاً. وتُظهر النتائج أن إشارات التوثيق تعزز الكشف كثيراً في الإعدادات المضبوطة، رغم بقاء المتانة ضد التعتيم تحدياً مفتوحاً.</p>
+    <p>وقيّمت التجربة 4 التوثيق مع التجميع غير الإشرافي K-Means (تقسيم 80:20 ورموز مائية في كل العينات المولدة، وإسناد كل عنقود للوسم الغالب بالتصويت): دقة مثالية 100% بضبط واستدعاء وF1 كاملة للصنفين البشري والمولد عبر 2000 رسالة دون أي خطأ، مع فصل مكاني واضح في إسقاط PCA ثنائي البعد (عنقود بنفسجي للبشري وأحمر للمولد). وتدل النتائج على أن أساليب غير إشرافية بسيطة تفصل تماماً المحتوى المولد عن البشري تحت توثيق مطبق بانتظام في الظروف المضبوطة.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">6. التجربة 5 والمناقشة</h2>
+    <p>قيّمت التجربة 5 توثيقاً دلالياً غير محسوس بالاستبدال المرادف: دُرّب انحدار لوجستي على سمات TF-IDF فبلغت الدقة 98.5% بضبط واستدعاء يتجاوزان 97% (البشري: ضبط 1.00 واستدعاء 0.97 وF1 0.98؛ والمولد: ضبط 0.97 واستدعاء 1.00 وF1 0.99)، دون تصنيف أي رسالة مولدة خطأً كبشرية. ورغم أنها دون مرجعية 99.03% في [8]، فهي أقرب لسيناريوهات النشر الواقعية، مثبتةً أن التوثيق غير المحسوس بشرياً قابل للكشف إحصائياً بموثوقية عالية، وموازنة عملية بين الدقة العالية والطلاقة والسلامة الدلالية.</p>
+    <p>ولخصت المقارنة (جدول 7): التجربة 1 (انحدار بلا توثيق) 99.65%، والثانية (تجميع بلا توثيق) 82.25%، والثالثة (انحدار + مرئي) 99.75%، والرابعة (تجميع + مرئي) 100.00%، والخامسة (انحدار + دلالي) 98.50%، مقابل مرجعية [8] عند 99.03%. وتعزز النتائج دور التوثيق المرئي والدلالي في تحسين الكشف عبر إعدادات التعلم المختلفة، مع قابلية TF-IDF لالتقاط السمات المعجمية المميزة (تكرار n-gram العالي والصياغة المتكررة) وقابليتها لإعادة الصياغة ما يستدعي الآلية التكميلية.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">7. الخاتمة</h2>
+    <p>تناول البحث التحدي المتنامي لرسائل التصيد المولدة بالذكاء، مطوراً إطار كشف هجيناً يدمج الانحدار اللوجستي الإشرافي والتجميع غير الإشرافي K-Means والتوثيق المائي. وكشف التجميع أنماط الكتابة المتشابهة والشذوذ اللغوي في المحتوى المولد، معززاً التكيف مع استراتيجيات التصيد المتطورة — نقطة ضعف المرشحات الساكنة التقليدية [10]، [11]. وأظهرت التجارب فعالية TF-IDF في التقاط السمات المعجمية المميزة مع قابليتها لإعادة الصياغة وغياب الفهم الدلالي، فعلّق التوثيق هذا القصور بتضمين إشارات مميزة رفعت الكشف كثيراً، ومكّن مع التجميع تصنيفاً مثالياً في البيئات المضبوطة.</p>
+    <p>وتتجاوز قيمة التوثيق كشف التصيد: فالعلامات القابلة للتتبع في النصوص المولدة لها آثار أوسع في حماية الملكية الفكرية والتحقق من مصدر المحتوى وتلبية التوقعات التنظيمية الناشئة للاستخدام المسؤول [29]. ويحسّن النموذج الهجين — بدمج البنية اللغوية وأنماط التلاعب النفسي (السلطة وإشارات الاستعجال [12]) — الشفافية والمرونة أمام تكتيكات التصيد المتطورة، مقدماً دفاعاً قابلاً للتوسع ومتكيفاً.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Large Language Models offer transformative capabilities but also introduce growing cybersecurity risks, particularly through generating realistic phishing emails. Detecting such content is critical; however, existing methods can be resource-intensive and slow to adapt. This research presents a dual-layered detection framework combining supervised learning for accurate classification with unsupervised techniques to uncover emerging threats, demonstrating strong performance in controlled testing environments [4], [8].</p>
+    <p>Recognising that human users are often the weakest link in information security systems, the study examines historical deception patterns and psychological principles commonly exploited in phishing attacks [12], and explores watermarking as a complementary method for tracing AI-generated content [23]. Together, these strategies offer a scalable, adaptive defence against increasingly sophisticated LLM-driven phishing attacks.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Artificial Intelligence, formally articulated in the 1950s, was long regarded as a perpetually upcoming future technology — until ChatGPT arrived in 2022 with generative systems producing novel content and ideas. LLMs have made remarkable strides in coherent, persuasive text, offering major benefits [1], [2]. But the same generative power is double-edged: attackers exploit models — including rogue ones such as WormGPT [16] — to craft LLM-driven spear phishing [14] that is hard to distinguish, leveraging the cyber skill gap [5] and social-engineering methods [3], [4].</p>
+    <p>Phishing success exploits documented psychological principles — authority, urgency, scarcity, and pressure as analyzed by Cialdini [12] — the very cues annotated in the dataset used here and employed interpretably by the framework to raise user trust. The research addresses two central questions: (1) How can machine learning and watermarking be effectively leveraged to detect AI-generated phishing emails? (2) How can detection systems be enhanced to identify paraphrased or contextually manipulated content evading traditional filters?</p>
+  </section>
+  <section>
+    <h2 dir="ltr">2. Background and Related Research</h2>
+    <p>AI-driven phishing threats evolved from crude bulk messages to highly convincing targeted spear phishing [4], [14], while LLM assessment in high-stakes applications [6] and AI-content detection tools [7] showed reliability limits, theoretical works debated detection possibility and impossibility [9], [10], and human-vs-generated benchmarking efforts [11] set reference points. This research extends Greco et al. [8] by tackling paraphrasing attacks that raise detection difficulty, proposing a post hoc detection framework that enhances existing systems.</p>
+    <p>Text watermarking for generated text — embedding detectable signals into text [23] — is explored here as a complementary tracing method, not a classifier replacement. The framework additionally integrates annotated psychological-manipulation cues (authority and urgency [12]), combining linguistic structure with manipulation patterns, unlike approaches relying on statistical or syntactic signals alone [8].</p>
+  </section>
+  <section>
+    <h2 dir="ltr">3. Hybrid Detection Framework and Methodology</h2>
+    <p>The study uses Greco et al.’s dataset [8]: 1000 human phishing emails from known malicious repositories (the Nazario collection) plus 1000 WormGPT-generated phishing emails varying in topic (tax scams, job offers) and Cialdini-based persuasion strategies [12], annotated and used as model features, alongside legitimate emails for balance. Logistic Regression was chosen as the primary supervised classifier for high empirical performance (99.03% in [8], among the top three with SVMs and networks reaching 99.78%) with white-box interpretability highlighting decisive features — crucial in HCI contexts where trust and explainable decisions matter.</p>
+    <p>Training ran on a Surface Laptop Studio (i5-11300H, 16 GB RAM) with a pipeline of: balanced data acquisition, cleaning (tokenisation, normalisation, special-character removal), TF-IDF feature extraction capturing lexical and structural differences [24] (unigrams and bigrams up to 5000 features), K-Means anomaly detection for paraphrased variants, and watermarking to separate synthetic from human text [23]. The dual layer combined Logistic Regression for high-accuracy binary classification with unsupervised learning for evasive patterns, forming a multi-layered defence improving accuracy and resilience [26], [27], [28].</p>
+  </section>
+  <section>
+    <h2 dir="ltr">4. Experiments 1 and 2: Without Watermarking</h2>
+    <p>Experiment 1 evaluated Logistic Regression on TF-IDF features (2000 balanced emails, 5-fold stratified cross-validation) reaching 99.65% accuracy: a perfect 1.00 F1 for both classes, with 995 of 1000 legitimate and 998 of 1000 phishing emails correct — only seven misclassifications. These results confirm that Logistic Regression, even without watermarking, delivers near-perfect performance on a clean balanced dataset, establishing a strong baseline.</p>
+    <p>Experiment 2 evaluated unsupervised K-Means to separate human from AI emails (1000 each), reaching 82.25% accuracy with perfect 1.00 precision for AI emails but lower recall (0.65, F1 0.78). The result highlights unsupervised learning’s potential for AI phishing detection, with recall shortfalls on subtly crafted messages — the gap watermarking later addresses.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">5. Experiments 3 and 4: Regression and Clustering with Visible Watermarking</h2>
+    <p>Experiment 3 integrated a visible-token watermarking system (a visible token appended to every AI phishing message) with a supervised Logistic Regression classifier (80% train, 20% test, i.e., 400 emails): a single misclassification, 99.75% accuracy, perfect precision/recall/F1 for legitimate (1.00) and 0.99-class scores for phishing, with 199 of 200 phishing emails correct. Watermark signals can significantly enhance detection in controlled settings, though robustness to obfuscation remains open.</p>
+    <p>Experiment 4 evaluated watermarking with unsupervised K-Means (80:20 split, watermark tokens in all AI samples, each cluster majority-vote labeled): a perfect 100% accuracy with full precision, recall, and F1 for both human and LLM classes across 2000 emails with zero errors, and clear spatial separation in a 2D PCA projection (a purple human cluster vs. a red AI cluster). Under controlled conditions, even simple unsupervised methods perfectly separate AI content from human text when watermarks are applied consistently.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">6. Experiment 5 and Discussion</h2>
+    <p>Experiment 5 evaluated imperceptible semantic watermarking via synonym substitution: Logistic Regression trained on TF-IDF features reached 98.5% accuracy with precision and recall above 97% (Human: 1.00 precision, 0.97 recall, 0.98 F1; LLM: 0.97 precision, 1.00 recall, 0.99 F1), with no LLM phishing email misclassified as human. Though below the 99.03% benchmark in [8], it better reflects realistic deployment, proving human-imperceptible watermarks statistically detectable with high reliability — a viable balance of high accuracy, fluency, and semantic integrity.</p>
+    <p>The comparison (Table 7) summarizes: Experiment 1 (regression, no watermark) 99.65%, Experiment 2 (clustering, no watermark) 82.25%, Experiment 3 (regression + visible) 99.75%, Experiment 4 (clustering + visible) 100.00%, Experiment 5 (regression + semantic) 98.50%, versus the [8] baseline at 99.03%. The results reinforce the role of visible and semantic watermarking across learning settings, with TF-IDF capturing distinctive lexical features (high n-gram frequency, repetitive phrasing) yet vulnerable to paraphrase — hence the need for the complementary mechanism.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">7. Conclusions</h2>
+    <p>This research addressed the growing AI-generated phishing email challenge with a hybrid detection framework integrating supervised Logistic Regression, unsupervised K-Means clustering, and watermarking. Clustering grouped similar writing patterns and exposed linguistic anomalies in AI content, improving adaptability to evolving phishing strategies — a weakness of traditional static filters [10], [11]. Experiments showed TF-IDF effective at capturing distinctive lexical features but susceptible to paraphrase and lacking semantic understanding; watermarking compensated by embedding distinctive signals that significantly boosted detection, enabling perfect classification with clustering in controlled environments.</p>
+    <p>Watermarking’s value extends beyond phishing detection: traceable markers in AI text have broader implications for intellectual property protection, content provenance verification, and meeting emerging regulatory expectations for responsible use [29]. The hybrid model — combining linguistic structure with psychological manipulation patterns (authority and urgency cues [12]) — improves transparency and resilience to sophisticated phishing tactics, offering a scalable, adaptive defence.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed selection of 14 references (original numbers preserved). See the original paper for the full list of 29 references: https://doi.org/10.3390/electronics14132611</p>
+    <ol dir="ltr">
+      <li>[4] Jakobsson, M.; Myers, S. Phishing and Countermeasures, 1st ed.; Wiley-Interscience: Oxford, UK, 2006.</li>
+      <li>[6] Gallagher, S.K.; et al. Assessing LLMs for High Stakes Applications. In Proc. ICSE-SEIP 2024; pp. 103–105.</li>
+      <li>[7] Elkhatat, A.M.; Elsaid, K.; Almeer, S. Evaluating the efficacy of AI content detection tools in differentiating between human and AI-generated text. Int. J. Educ. Integr. 2023, 19, 17.</li>
+      <li>[8] Greco, F.; Desolda, G.; Esposito, A.; Carelli, A. David versus Goliath: Can Machine Learning Detect LLM-Generated Text? A Case Study in the Detection of Phishing Emails. In Proc. ITASEC 2024, Salerno, Italy, 9–11 April 2024.</li>
+      <li>[9] Sadasivan, V.S.; Kumar, A.; Balasubramanian, S.; Wang, W.; Feizi, S. Can AI-Generated Text be Reliably Detected? arXiv 2024, arXiv:2303.11156.</li>
+      <li>[10] Ghosal, S.S.; et al. Towards Possibilities & Impossibilities of AI-generated Text Detection: A Survey. arXiv 2023, arXiv:2310.15264.</li>
+      <li>[12] Cialdini, R.B. Influence: The Psychology of Persuasion, rev. ed.; Harper Business: New York, NY, USA, 2007.</li>
+      <li>[13] Gutmann, A. An Analysis of Computer Systems for the Secure Creation and Verification of User Instructions. Ph.D. Thesis (see original paper for full citation).</li>
+      <li>[14] Hazell, J. Spear Phishing with Large Language Models. arXiv 2023, arXiv:2305.06972.</li>
+      <li>[16] Firdhous, M.F.M.; et al. WormGPT: A large language model chatbot for criminals (see original paper for full citation).</li>
+      <li>[23] Kirchner, D.; Reiter, A.; Scholkopf, B. Watermarking LLM-Generated Texts via Synonym Substitution (see original paper for full citation).</li>
+      <li>[24] Manning, C.D.; Raghavan, P.; Schütze, H. Introduction to Information Retrieval; Cambridge University Press: Cambridge, UK, 2008.</li>
+      <li>[26] Jurafsky, D.; Martin, J.H. Speech and Language Processing, 3rd ed.; Pearson: London, UK, 2021.</li>
+      <li>[29] ISO/IEC 42001:2023; Information Technology—Artificial Intelligence—Management System. ISO: Geneva, Switzerland, 2023.</li>
+    </ol>
+  </section>
+</div>
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics14132611">10.3390/electronics14132611</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

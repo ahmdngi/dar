@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خوارزمية تعلم فيدرالي بقيادة انعدام الثقة لتعزيز الخصوصية — DAR</title>
+<meta name="description" content="A Zero Trust Driven Federative Learning Algorithm for Privacy Enhancement — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/zerotrust-fl-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Zero Trust Driven Federative Learning Algorithm for Privacy Enhancement</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">خوارزمية تعلم فيدرالي بقيادة انعدام الثقة لتعزيز الخصوصية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Beverly Pule, Bakhe Nleya, Khulekani Sibiya</span>
+    <span>📄 Applied Sciences, 2026 · Vol. 16(8), 3872</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app16083872">10.3390/app16083872</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>حلّت شبكات المؤسسات — اعتماد السحابة والبنى الهجينة والعمل عن بعد وتنوع النقاط الطرفية — الحدود التقليدية. وتجيب بنية انعدام الثقة (ZTA) بـ«لا تثق أبدًا وتحقّق دائمًا»: فلا يُوثق بأي مستخدم أو جهاز أو تطبيق بناء على موقع الشبكة، ويُقيَّم كل طلب وفق الهوية والسياق والسياسة [1، 2]. وفي النشرات السحابية الأصلية والهجينة والطرفيات الديناميكية، تؤمّن ZTA الموارد باستقلال عن الطوبولوجيا [3].</p>
+    <p>يُبقي التعلم الفيدرالي البيانات الخام على الأجهزة ويشارك التحديثات المحلية فقط للتجميع المركزي [5]، لكن التحديثات المشاركة تسرّب: فهجمات استدلال العضوية (MIA) واستدلال الخصائص (PIA) وعكس النموذج تعيد بناء معلومات خاصة منها [5، 9]. فحتى دون البيانات الخام، يمكن لـMIA تقرير هل سجّل معين درّب النموذج [6]، ويمكن لـPIA كشف سمات غير مقصودة كالتوزيعات الديموغرافية [3].</p>
+    <p>يقترح المؤلفون ZT-FL-PE، وهي خوارزمية خصوصية فيدرالية بقيادة انعدام الثقة تجمع التحقق من العملاء كل جولة مع التعتيم المستهدف للطبقة قبل الأخيرة الحساسة للخصوصية [18]. واختُبرت عبر مجموعات صور وصوت وجداول وأمن ونقاط طرفية ضد هجمات MIA [13، 14] وPIA [15] وتسريب التدرجات [16، 17]، دافعة AUC الهجوم نحو خط الأساس العشوائي 50% — حتى 29% خفضًا للتسرب على النماذج المحلية، مقابل 3% لـWDP و25% لـCDP.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تمزج المؤسسات الحديثة الخدمات السحابية بالموارد المحلية، ولم يعد نموذج الحدود مناسبًا. تستبدل ZTA الثقة الضمنية بسياسات ديناميكية تُطبَّق أقرب ما يمكن إلى الموارد الحرجة، مقلّلة انكشاف بيانات الاعتماد والمواد الحساسة [1، 2]. ويصلّب التحقق المستمر مع فصل تدفقات التحكم والبيانات البنية ضد الاختراق والحركة الجانبية [4].</p>
+    <p>ويناسب FL هذا العالم طبيعيًا: يحسب المشاركون تحديثات محلية — تدرجات أو فروق معاملات — تُجمَّع مركزيًا، فتُدرَّب نماذج عامة بينما تبقى البيانات محلية [5]. وترسم المسوح الآن بنية FL وفوائده وتحدياته شاملًا [5، 9، 10]، ويعالج الضبط الدقيق القائم على النماذج الأولية جناح عدم تجانس البيانات [11].</p>
+    <p>لكن أدبيات متنامية تثبت تعرض أنظمة FL لهجمات الاستدلال — MIA وPIA والعكس — التي تستغل التحديثات المشاركة لاستدلال مجموعات البيانات المحلية [5، 6، 9]. فتتسرّب العضوية على مستوى العينة [6] والسمات الحساسة التجميعية [3]. وZT-FL-PE هو جواب الورقة: حوكمة كل جولة FL بتحقق انعدام الثقة وتطبيق الخصوصية حيث تتركز التسريبات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة</h2>
+    <p>حفّز التحول من الحدود إلى انعدام الثقة منشور NIST SP 800-207 [1] الذي ثبّت نموذج الثقة غير الضمنية أبدًا والمقيَّمة باستمرار، ورُوجِع منهجيًا منذئذ [2] وحُلّل مقارنًا عبر متغيرات نماذج الشبكات [3]. وتمده إلى العقارات الديناميكية نماذجُ الوصول السحابية الأصلية [3] وتصاميم Zero Trust+ بمقياس إنترنت الأشياء [4] وإدارة الثقة كخدمة سلوكية (BEAST) [6].</p>
+    <p>وتمثل ZTA المدفوعة بالذكاء الاصطناعي جبهة موازية: توليد سياسات تكيفي وكشف شذوذ لمتانة السحابة والطرفية [7، 8]. وعلى جهة FL، ترسم نظرات تنفيذ الأمن [5] ومسوح الخصوصية والأمن [9، 10] سباق تسلح بين التدريب التعاوني وهجمات الاستدلال — وهو السباق الذي تدخله ZT-FL-PE تحديدًا.</p>
+    <p>وصوريًا، تبني الورقة على أدبيات أسس FL [20]: فمعالجة التقدم والمشكلات المفتوحة لكايروز وآخرين تمد بالنotation ونموذج النظام، بينما تحفز علاجات عدم التجانس كالضبط الدقيق القائم على النماذج [11] معاملة واعية بالعميل بدل التجميع الواحد للجميع.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. هجمات العضوية في التعلم الفيدرالي</h2>
+    <p>في FL يملك كل عميل مجموعة بيانات محلية أصغر من تدريب نموذج متين وحده، وتحظر قواعد الخصوصية أو الحوكمة تشارك البيانات الخام؛ فيتفق العملاء على بنية ويتبادلون التحديثات فقط. ويطرح استدلال العضوية السؤالَ الأدق: هل كان هذا السجل بالذات في مجموعة التدريب؟ أسّس شوكري وآخرون الهجوم ضد نماذج تعلم الآلة [13]، وصاغ يوم وآخرون صلته بالإفراط في الملاءمة [14].</p>
+    <p>والعائلة واسعة. فـMIA المترية تعتب حدًا إحصائيًا لمخرجات النموذج المستهدف لإعلان العضوية؛ ويستعيد استدلال الخصائص السمات التجميعية لبيانات المشاركين بتمثيلات ثابتة للتبديل [15]؛ وتتسرّب قنوات التدرجات مباشرة، كما كمّمه مو وآخرون [16] وسلّحه التسريب العميق من التدرجات [17].</p>
+    <p>وفي الإطار الفيدرالي هذه الهجمات أسوأ: فالتحديثات المتكررة كل جولة تمنح الخصم سلسلة زمنية لسلوك كل عميل. ويُظهر التوصيف الطبقي تركز التسرب في أعماق محددة — وفوقها الطبقة قبل الأخيرة [18] — وهو السطح الذي تصلّبه ZT-FL-PE تحديدًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. تعزيز خصوصية FL بقيادة انعدام الثقة</h2>
+    <p>تنظّم ZT-FL-PE كل جولة في أربع مراحل: التحقق والمصادقة بانعدام الثقة للعملاء المشاركين؛ والتدريب المحلي على البيانات الخاصة؛ ومعالجة التحديثات بالتعتيم الخصوصي؛ والعمليات التشفيرية المؤمّنة للتجميع. فلا يساهم أي عميل — ولا يؤثر — beyond ما تبرره ثقته الحية.</p>
+    <p>والثقة ديناميكية متعددة العوامل: يحمل كل عميل درجة بين 0 و1، تُحدَّث كل جولة من إشارات الهوية والسلوك والسياق، حاكمة المشاركة والتأثير ومستوى التعتيم المطبق. فتُضعَّف التحديثات منخفضة الثقة أو تُستبعد؛ وتمضي التحديثات المتحقق منها إلى التجميع.</p>
+    <p>والتعتيم جراحي لا شامل. فاتباعًا لأدلة التسرب الطبقي [18]، يتركز الحماية على الطبقة قبل الأخيرة الحساسة للخصوصية، حيث إشارة العضوية أقوى — محافظًا على فائدة النموذج elsewhere بدل دفع ضجيج موحد في كل مكان. ويقيّد التحليل الصوري بترميز الورقة [20] التسرب الناتج.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. الإعداد التجريبي</h2>
+    <p>يمتد التقييم عبر التعرف على الصور والصوت والمهام الجدولية المنظمة — وحاسمًا — أمن الشبكات وإدارة النقاط الطرفية: صور CIFAR-10/100 (60,000 بمقاس 32×32) [24]، وإشارات GTSRB المرورية (52,000 عبر 43 فئة) [27]، وصوت أوامر الكلام (~65,000 مقطع ثانية واحدة، 35 أمرًا) [28]، ومعاملات Purchase100 (197,324 سجلًا، 100 فئة) [29] وخروج Texas100 الاستشفائي (67,330 سجلًا) [30]، إضافة إلى مجموعتي كشف الاقتحام UNSW-NB15 [32] وحركة CICIDS [33].</p>
+    <p>تستخدم جميع التشغيلات PyTorch [34] على رسوميات NVIDIA A100، مع 100 عميل على أقسام non-IID وفق ممارسة البحث الفيدرالي [9، 20]. ويُقسَّم كل مجموعة إلى تدريب واختبار، نصف البيانات كمعرفة خصم مسبقة والباقي للتقييم، وفق منهجية MIA الراسخة [13، 14].</p>
+    <p>تُقارَن ZT-FL-PE بالدفاعات الشائعة — الخصوصية التفاضلية الضعيفة والمحلية والمركزية (WDP وLDP وCDP) [9، 17] — وضد حزمة الهجمات: MIA [13، 14] واستدلال الخصائص [15] وتسريب التدرجات [16، 17]. وتغطي المقاييس معدل نجاح الهجوم وAUC الهجوم (50% = تخمين عشوائي) واستخدام ميزانية الخصوصية وفائدة النموذج، إلى جانب الزمن والذاكرة وكلفة الاتصال.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. النتائج والمناقشة</h2>
+    <p>عبر جميع المجموعات، تدفع ZT-FL-PE باستمرار AUC الهجوم نحو خط الأساس العشوائي 50% للنماذج المحلية والعالمية معًا، مظهرة حماية قوية. وخطوط الخصوصية التفاضلية أقل موثوقية بالمقارنة: فعلى النماذج المحلية تخفض ZT-FL-PE تسرب الخصوصية حتى 29%، بينما لا يحقق WDP سوى 3% ويبلغ CDP نسبة 25%.</p>
+    <p>والآلية ظاهرة في توزيعات الخسارة: فخسائر الأعضاء وغير الأعضاء، التي تفصلها MIA [13، 14]، تتقارب تحت ZT-FL-PE مع الاحتفاظ غالبًا بقيم خسارة منخفضة — فتُقوَّض إشارة الفصل للهجوم وينهار AUC. وتضيق قنوات استدلال الخصائص [15] وتسريب التدرجات [16، 17] للسبب نفسه: فالتحديثات غير الموثوقة لا تبلغ التجميع أبدًا دون توهين.</p>
+    <p>وتبقى الفائدة لأن الحماية مستهدفة للطبقة قبل الأخيرة مركزة التسرب [18] لا منثورة بالتساوي. فيشتري بوابة درجة الثقة نقطة تشغيل خصوصية–فائدة أفضل من الخصوصية التفاضلية شاملة الضجيج: فيتدرب العملاء المتحقق منهم شبه دون عائق بينما تُرشَّح التأثيرات المشبوهة قبل أن تسمم النموذج العام.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. الخاتمة</h2>
+    <p>تقترح الورقة ZT-FL-PE وتقيّمها ضد أخطر مخاطر الخصوصية الفيدرالية — استدلال العضوية [13، 14] — وتُظهر مكاسب متسقة عبر المجموعات والبنى ومنهجيات الهجوم المتقدمة، خلاف الدفاعات العاملة في إعدادات ضيقة فقط [9، 17]. ويثبت الجمع بين تحقق انعدام الثقة والتعتيم المستهدف للطبقات [1، 18] تركيبة قابلة للنقل.</p>
+    <p>وتشير الحدود إلى الأمام: خصوم تكيفية واعية ببوابة الثقة، ومحاسبة ميزانية صورية إلى جانب AUC التجريبي، ودراسات نشر على عقارات مؤسسية وإنترنت أشياء حية [4، 6] حيث يلتقي التحقق المستمر بأسلوب NIST [1، 2] بالتدريب الفيدرالي واسع النطاق [20].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Enterprise networks — cloud adoption, hybrid architectures, remote work and diverse endpoints — have dissolved the traditional perimeter. Zero-trust architecture (ZTA) answers with “never trust, always verify”: no user, device or application is trusted by network location, and every request is evaluated against identity, context and policy [1, 2]. For cloud-native, hybrid and highly dynamic endpoints, ZTA secures resources independently of topology [3].</p>
+    <p>Federated learning keeps raw data on devices and shares only local updates for central aggregation [5], yet shared updates leak: membership inference (MIA), property inference (PIA) and model-inversion attacks reconstruct private information from them [5, 9]. Even without raw data, MIAs can decide whether a specific record trained the model [6], and PIAs can expose never-intended attributes such as demographic distributions [3].</p>
+    <p>The authors propose ZT-FL-PE, a zero-trust-driven federated privacy algorithm coupling per-round client verification with targeted obfuscation of the privacy-sensitive penultimate layer [18]. Tested across image, speech, tabular, security and endpoint datasets against MIA [13, 14], PIA [15] and gradient-leakage [16, 17] attacks, it drives attack AUC toward the 50% random baseline — up to 29% leakage reduction on local models, versus 3% for WDP and 25% for CDP.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Modern enterprises blend cloud services with on-premises resources, and the perimeter model no longer fits. ZTA replaces implicit trust with dynamic policies applied as close to critical resources as possible, minimising exposure of credentials and sensitive material [1, 2]. Continuous verification plus separation of control and data flows hardens the estate against compromise and lateral movement [4].</p>
+    <p>FL fits this world naturally: participants compute local updates — gradients or parameter deltas — aggregated centrally, so global models train while data stay local [5]. Surveys now comprehensively map FL’s architecture, benefits and challenges [5, 9, 10], and prototype-based fine-tuning tackles its data-heterogeneity wing [11].</p>
+    <p>But a growing literature proves FL systems vulnerable to inference attacks — MIA, PIA and inversion — that exploit shared updates to infer local datasets [5, 6, 9]. Sample-level membership [6] and aggregate-sensitive attributes [3] both leak. ZT-FL-PE is the paper’s answer: govern every FL round with zero-trust verification and apply privacy where leakage concentrates.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related Work</h2>
+    <p>The perimeter-to-zero-trust shift was catalysed by NIST SP 800-207 [1], which fixed the model of never-implicit, continually evaluated trust, and has since been systematically reviewed [2] and comparatively analysed across network-model variants [3]. Cloud-native access models [3], IoT-scale Zero Trust+ designs [4] and behaviour-as-a-service trust management (BEAST) [6] extend it to dynamic estates.</p>
+    <p>AI-driven ZTA is a parallel front: adaptive policy generation and anomaly detection for cloud and edge resilience [7, 8]. On the FL side, implementation-security overviews [5] and privacy-and-security surveys [9, 10] chart an arms race between collaborative training and inference attacks — the exact race ZT-FL-PE enters.</p>
+    <p>Formally, the paper builds on the FL foundations literature [20]: Kairouz et al.’s advances-and-open-problems treatment supplies the notation and system model, while heterogeneity remedies such as prototype-based fine-tuning [11] motivate client-aware treatment rather than one-size-fits-all aggregation.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Membership-Related Attacks in FL</h2>
+    <p>In FL each client holds a local dataset too small to train a robust model alone, and privacy or governance rules forbid raw-data sharing; clients agree on an architecture and exchange only updates. Membership inference asks the sharpest question: was this exact record in the training set? Shokri et al. established the attack against machine-learning models [13], and Yeom et al. formalised its link to overfitting [14].</p>
+    <p>The family is broad. Metric-based MIAs threshold a statistic of the target model’s outputs to call membership; property inference recovers aggregate attributes of participants’ data with permutation-invariant representations [15]; gradient channels leak directly, quantified by Mo et al. [16] and weaponised by deep leakage from gradients [17].</p>
+    <p>In the federated setting these attacks are worse: repeated per-round updates give the adversary a time series of each client’s behaviour. Layer-wise characterisation shows leakage concentrates in specific depths — above all the penultimate layer [18] — which is precisely the surface ZT-FL-PE hardens.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. ZT-Driven FL Privacy Enhancement</h2>
+    <p>ZT-FL-PE organises each round into four stages: zero-trust verification and authentication of participating clients; local model training on private data; update processing with privacy obfuscation; and cryptographic operations securing aggregation. No client contributes — or influences — beyond what its live trust warrants.</p>
+    <p>Trust is dynamic and multi-factor: each client carries a score between 0 and 1, updated per round from identity, behaviour and context signals, governing participation, influence and the level of obfuscation applied. Low-trust updates are attenuated or excluded; verified updates proceed to aggregation.</p>
+    <p>Obfuscation is surgical rather than blanket. Following the layer-wise leakage evidence [18], protection concentrates on the penultimate, privacy-sensitive layer, where membership signal is strongest — preserving model utility elsewhere instead of paying uniform noise everywhere. Formal analysis in the paper’s notation [20] bounds the resulting leakage.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Experimental Setup</h2>
+    <p>Evaluation spans image recognition, speech, structured tabular tasks and — crucially — network security and endpoint management: CIFAR-10/100 object images (60,000 at 32×32) [24], GTSRB traffic signs (52,000 across 43 classes) [27], Speech Commands audio (~65,000 one-second clips, 35 commands) [28], Purchase100 transactions (197,324 records, 100 classes) [29] and Texas100 hospital discharges (67,330 records) [30], plus intrusion-detection datasets UNSW-NB15 [32] and CICIDS-style traffic [33].</p>
+    <p>All runs use PyTorch [34] on NVIDIA A100 GPUs, with 100 clients on non-IID partitions following federated research practice [9, 20]. Each dataset is split into training and test sets, half of the data serving as adversary prior knowledge and the remainder for evaluation, per established MIA methodology [13, 14].</p>
+    <p>ZT-FL-PE is benchmarked against common defences — weak DP, local DP and central DP (WDP, LDP, CDP) [9, 17] — and against the attack suite: MIAs [13, 14], property inference [15] and gradient leakage [16, 17]. Metrics cover attack success rate, attack AUC (50% = random guessing), privacy-budget utilisation and model utility, alongside time, memory and communication overhead.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Results and Discussion</h2>
+    <p>Across all datasets, ZT-FL-PE consistently pushes attack AUC toward the 50% random baseline for both local and global models, demonstrating strong protection. Differential-privacy baselines are less reliable by comparison: on local models ZT-FL-PE cuts privacy leakage by up to 29%, while WDP manages only 3% and CDP reaches 25%.</p>
+    <p>The mechanism is visible in the loss distributions: member and non-member losses, which MIAs separate [13, 14], converge under ZT-FL-PE while mostly retaining low loss values — the attack’s separating signal is undermined, so its AUC collapses. Property-inference [15] and gradient-leakage [16, 17] channels narrow for the same reason: untrusted updates never reach aggregation unattenuated.</p>
+    <p>Utility survives because protection is targeted at the leakage-concentrated penultimate layer [18] rather than spread uniformly. The trust-score gate thus buys a better privacy–utility operating point than blanket-noise DP: verified clients train nearly unimpeded while suspicious influence is filtered before it can poison the global model.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Conclusions</h2>
+    <p>The paper proposes and evaluates ZT-FL-PE against the most pressing federated privacy risk — membership inference [13, 14] — and shows consistent gains across datasets, architectures and advanced attack methodologies, unlike defences that work only in narrow settings [9, 17]. Zero-trust verification plus layer-targeted obfuscation [1, 18] proves a portable combination.</p>
+    <p>Limits point forward: adaptive adversaries aware of the trust gate, formal budget accounting alongside empirical AUC, and deployment studies on live enterprise and IoT estates [4, 6] where NIST-style continuous verification [1, 2] meets federated training at scale [20].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references preserving original numbering; the full list of 35 references is available in the original paper (doi:10.3390/app16083872).</p>
+    <p dir="rtl" style="font-size:0.85rem;color:var(--text-2)">مراجع مختارة بالأرقام الأصلية؛ والقائمة الكاملة (35 مرجعًا) متاحة في الورقة الأصلية (doi:10.3390/app16083872).</p>
+    <ol dir="ltr">
+      <li>[1] National Institute of Standards and Technology. Zero Trust Architecture, Special Publication (NIST SP) 800-207; NIST: Gaithersburg, MD, USA, 2020.</li>
+      <li>[2] Gambo, M.L.; Almulhem, A. Zero trust architecture: A systematic literature review. J. Netw. Syst. Manag. 2026, 34, 25.</li>
+      <li>[3] Dhiman, P.; Saini, N.; Gulzar, Y.; et al. A review and comparative analysis of relevant approaches of zero trust network model. Sensors 2024, 24, 1328.</li>
+      <li>[4] Huber, B.; Kandah, F. Zero Trust+: A trusted-based zero trust architecture for IoT at scale. In Proc. IEEE ICCE 2024; pp. 1–6.</li>
+      <li>[5] Hu, K.; Gong, S.; Zhang, Q.; Seng, C.; Xia, M.; Jiang, S. An overview of implementing security and privacy in federated learning. Artif. Intell. Rev. 2024, 57, 204.</li>
+      <li>[6] Huber, B.; Kandah, F.I.; Skjellum, A. BEAST: Behavior as a service for trust management in IoT devices. Future Gener. Comput. Syst. 2023, 144, 165–178.</li>
+      <li>[7] Chokkanathan, K.; et al. AI-driven zero trust architecture: Enhancing cyber-security resilience. In Proc. CSITSS 2024; pp. 1–6.</li>
+      <li>[8] Prajwalasimha, S.N.; et al. Zero trust architectures empowered by AI: A paradigm shift in cloud and edge cybersecurity. In Proc. ICSCDS 2025; pp. 328–335.</li>
+      <li>[9] Gosselin, R.; Vieu, L.; Loukil, F.; Benoit, A. Privacy and security in federated learning: A survey. Appl. Sci. 2022, 12, 9901.</li>
+      <li>[10] Lazaros, K.; Koumadorakis, D.E.; Vrahatis, A.G.; Kotsiantis, S. Federated learning: Navigating the landscape of collaborative intelligence. Electronics 2024, 13, 4744.</li>
+      <li>[11] Chai, L.; Xie, J.; Zhou, N. Prototype-based fine-tuning for mitigating data heterogeneity in federated learning. Future Gener. Comput. Syst. 2025, 170, 107831.</li>
+      <li>[13] Shokri, R.; Stronati, M.; Song, C.; Shmatikov, V. Membership inference attacks against machine learning models. In Proc. IEEE Symp. on Security and Privacy (SP), 2017.</li>
+      <li>[14] Yeom, S.; Giacomelli, I.; Fredrikson, M.; Jha, S. Privacy risk in machine learning: Analyzing the connection to overfitting. In Proc. IEEE CSF 2018.</li>
+      <li>[15] Ganju, K.; Wang, Q.; Yang, W.; Gunter, C.A.; Borisov, N. Property inference attacks on fully connected neural networks. In Proc. NDSS 2018.</li>
+      <li>[16] Mo, F.; Borovykh, A.; Malekzadeh, M.; Haddadi, H.; Demetriou, S. Quantifying information leakage from gradients. arXiv 2021, arXiv:2105.13929.</li>
+      <li>[17] Zhu, L.; Liu, Z.; Han, S. Deep leakage from gradients. In Proc. NeurIPS 2019.</li>
+      <li>[18] Mo, F.; Xu, J.; Yang, W.; Borovykh, A.; Demetriou, S. Layer-wise characterization of latent information leakage in federated learning. In Proc. Workshop on Distributed and Private ML (ICLR) 2021.</li>
+      <li>[20] Kairouz, P.; McMahan, H.B.; Avent, B.; et al. Advances and open problems in federated learning. Found. Trends Mach. Learn. 2021, 14, 1–210.</li>
+      <li>[24] Krizhevsky, A. Learning multiple layers of features from tiny images. Univ. of Toronto Tech. Report, 2009.</li>
+      <li>[27] Stallkamp, J.; Schlipsing, M.; Salmen, J.; Igel, C. Man vs. computer: Benchmarking machine learning algorithms for traffic sign recognition. Neural Networks 2012, 32, 323–332.</li>
+      <li>[28] Warden, P. Speech commands: A dataset for limited-vocabulary speech recognition. arXiv 2018, arXiv:1804.03209.</li>
+      <li>[29] Chen, C. Kaggle acquire valued shoppers challenge [source code and dataset]. GitHub, 2014.</li>
+      <li>[30] Texas Department of State Health Services. Texas hospital inpatient discharge data [dataset].</li>
+      <li>[32] Moustafa, N.; Slay, J. UNSW-NB15: A comprehensive dataset for network intrusion detection systems. In Proc. MilCIS 2015.</li>
+      <li>[33] Sharafaldin, I.; Lashkari, A.H.; Ghorbani, A.A. Toward generating a new intrusion detection dataset and intrusion traffic characterization. In Proc. ICISSP 2018.</li>
+      <li>[34] Paszke, A.; Gross, S.; Massa, F.; et al. PyTorch: An imperative style, high-performance deep learning library. In Proc. NeurIPS 2019.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app16083872">10.3390/app16083872</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
