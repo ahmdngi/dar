@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أمن النماذج اللغوية الكبيرة وخصوصيتها: تصنيف التهديدات والآثار الأخلاقية والحوكمة — DAR</title>
+<meta name="description" content="Security and Privacy of Large Language Models: Threat Taxonomy, Ethical Implications, and Governance — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/llm-threat-taxonomy-ai/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Security and Privacy of Large Language Models: Threat Taxonomy, Ethical Implications, and Governance</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">أمن النماذج اللغوية الكبيرة وخصوصيتها: تصنيف التهديدات والآثار الأخلاقية والحوكمة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Marko Pribisalić, Sanda Martinčić-Ipšić</span>
+    <span>📄 AI, 2026 · Vol. 7, No. 5, 152</span>
+    <span>🔗 <a href="https://doi.org/10.3390/ai7050152">10.3390/ai7050152</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تُنشَر النماذج اللغوية الكبيرة increasingly عبر المجالات المهنية والمجتمعية، مستحدثة تحديات أمنية وخصوصية وحوكمية تتجاوز ثغرات البرمجيات التقليدية [1،2]. ورغم الأبحاث المستفيضة عن فئات المخاطر المفردة، يبقى المنظور الشمولي المتمحور حول دورة الحياة — الذي يربط الخصائص المعمارية والتهديدات العدائية والآثار الحوكمية — محدودًا. تدرس هذه المراجعة مخاطر النماذج عبر إطار دورة حياة يمتد من اكتساب البيانات وتدريب النموذج وإجراءات المواءمة إلى النشر والتفاعل اللاحق له.</p>
+    <p>وتجمع الدراسة الأبحاث السابقة في تصنيف للتهديدات يشمل حقن التلقين وكسر الحماية والتلاعب العدائي وهجمات مرحلة التدريب وتسرب الخصوصية وسوء الاستخدام الاجتماعي-التقني [53،54،66]. وتُحلَّل القضايا الأخلاقية مثل الهلوسة وتضخيم التحيز والاستخدام الخبيث جنبًا إلى جنب مع أطر الحوكمة والتنظيم. وتشير النتائج إلى أن ثغرات النماذج تنبع أساسًا من آليات التوليد الاحتمالية واستيعاب البيانات واسع النطاق ومنظومات النشر المعقدة لا من عيوب تنفيذية معزولة — لذا لا تغطي نماذج الثغرات البرمجية الكلاسيكية مخاطر الذكاء التوليدي إلا جزئيًا.</p>
+    <p>وتتأسس المراجعة على مفهوم فجوة المواءمة الذي يفسر كيف تُبقي الفروق بين أهداف التدريب والتفاعل الواقعي الثغراتِ مستمرة. وتدعو النتائج إلى استراتيجيات دفاع متعمق متمحورة حول دورة الحياة تجمع الضمانات التقنية والتدريب المحافظ على الخصوصية والمراقبة زمن التشغيل وآليات الحوكمة للنشر المسؤول.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>كثّف الاندماج المتزايد للنماذج في التفاعل المهني والاجتماعي الحاجة إلى التقييم الأمني [1،2]. ورغم قدرات النماذج التأسيسية الكبيرة في اللغة والأتمتة، سبق النشر أطر السلامة والحوكمة المتينة، مما أثار مخاوف الموثوقية والمساءلة والثقة [3–6]. ففي الطب والقانون والأمن السيبراني قد تخلق المخرجات غير الدقيقة أو غير المقصودة مسؤولية قانونية وتقوّض الثقة العامة [7،8] — لذا يغدو فهم المخاطر النابعة من بيانات التدريب غير المنقاة ومنظومة النشر نفسها ملحًا.</p>
+    <p>ومساهمة المراجعة إطار موحد لدورة الحياة بأربعة مكونات مترابطة: نموذج فجوة المواءمة وتصنيف التهديدات ونماذج انتشار المخاطر وبنية الدفاع المتعمق — مُظهرة أن خطر النماذج خاصية نظامية لا مجموعة عيوب معزولة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. البنية والحفظ ونموذج التهديد</h2>
+    <p>ترث النماذج خصائصها الأمنية من بنية المحوّل [8]: كتل مكدسة من الانتباه الذاتي متعدد الرؤوس مع طبقات أمامية موضعية ووصلات متبقية وتطبيع، تُحسَّن بتدرجات تقلل خسارة الإنتروبيا المتقاطعة للرمز التالي فوق مدونات ضخمة [1،2،7]. ولما كانت الأهداف تكافئ تنبؤ الرمز التالي لا التجريد الدلالي، قد تُحفَظ المتتابعات النادرة أو المكررة — فالحفظ نتيجة بنيوية للتحسين واسع النطاق، أكدتها دراسات استخراج متتابعات الكناري [34،60،102]، ويتفاقم مع عدد المعاملات [102].</p>
+    <p>ويوازي نموذج التهديد التشغيلي نمذجة الخصوم بأسلوب MITRE ATT&CK [51] ضمن وضعية انعدام الثقة [52]، مصنفًا المهاجمين بطبقات القدرة: (1) مهاجمو التلقين الذين يتلاعبون باللغة الطبيعية (الحقن وكسر الحماية)؛ و(2) مهاجمو الاستدلال الذين يستغلون فك التشفير الاحتمالي وإشارات الثقة؛ و(3) مهاجمو التدريب الذين يسممون البيانات أو المعاملات — وكلٌّ مُسقَط على مراحل دورة الحياة في التصنيف الموحد [1،2].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3.1–3.2 اختراق التلقين وكسر الحماية</h2>
+    <p>يستغل اختراق التلقين الفضاء السياقي المشترك لتعليمات النظام ومدخلات المستخدم [9،53،54،67]: فيتجاوز المهاجمون السلوك المقصود عبر اختطاف الهدف أو تجاوز مرشحات السلامة [54،68–70]. والمفارقة أن قوة اتباع التعليمات (الضبط التعليمي على أزواج التوجيهات [3،18]) تزيد القابلية لتلاعبات مثل «تجاهل التعليمات السابقة» [9،69،71]، مع منهجة هجمات حقن التلقين ضد التطبيقات المدمجة [69]. أما كسر الحماية فيتجاوز ضمانات المواءمة باستغلال تعارض الفائدة مع القيود [65،76] — تبني الشخصيات والتأطير الخيالي والتعليمات المتداخلة ولعب الأدوار (مثل شخصية «افعل أي شيء الآن» [65،75]) واستدراج الاستدلال خطوة بخطوة [32،81] وسياق الاسترجاع المسموم [82،83] والتلقينات الخفية المولدة آليًا (AutoDAN [65]) — مع توصيف واسع لتلقينات الكسر البرية [75] وحدود سلامة قابلة للشهادة [64].</p>
+    <p>وينجح كلاهما عبر تعارضات سلوكية لا أخطاء بسيطة: فالإفصاحات الناتجة عن إخفاقات المواءمة ودفاعات الفحص الذاتي [68] وتصنيفات الاختبار الأحمر [83] تؤكد أن الترشيح السطحي لا يحل التباس هرمية التعليمات تمامًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3.3–3.4 الهجمات العدائية وهجمات مرحلة التدريب</h2>
+    <p>تستهدف الهجمات العدائية حدود القرار الإحصائية لا سياسات المواءمة: فاستبدالات المحارف/الكلمات وإعادة الصياغة والتنويع البنيوي [13،33،90،91] تزيح التوزيعات المشتقة من softmax لتُحدث تغييرات دخل صغيرة انحرافات مخرجات غير متناسبة [13،33]؛ وتبقى الاضطرابات الشاملة القابلة للنقل [95] (مثل PRP الناشر للاضطرابات [94]) والهجمات النصية القائمة على التدرج [93] رغم المواءمة، مما يحفز دفاعات الحيرة الأساسية والمواءمة المتينة [89،90]. أما هجمات مرحلة التدريب فتخترق النماذج قبل النشر [57،96،97]: فمحفزات الأبواب الخلفية — أنماط دخل مضمنة عمدًا تنتج مخرجات يحددها الخصم مع سلوك طبيعي خلاف ذلك [58] — قد تنجو من مواءمة ما بعد التدريب لأنها تعدّل السلوك السطحي لا توزيعات المعاملات [1،7]، من تسميم الأوزان الكلاسيكي BadNets [58،99] وTrojanPuzzle لنماذج الشيفرات [57] إلى الأبواب الخلفية بتحرير النماذج (BadEdit [96]) وأبواب التعلم السياقي [97،218] والمعايير الموحدة [98].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4.1–4.2 تسرب الخصوصية وهجمات الاستدلال</h2>
+    <p>تسرب الخصوصية — إعادة الإنتاج الحرفية لشظايا التدريب أثناء التوليد [38،60،102] — بنيوي لا عرضي: فالتحسين للتنبؤ لا للتجريد مع مدونات ويب ضخمة غير منقاة (قد تحوي بيانات شخصية [1،7،16،18،19]) يضمّن البيانات الحساسة في معاملات معتمة، مع استخراج مُثبت على نطاق واسع [34،61] واحتفاظ أكبر للنماذج الأكبر [102]. وتبدأ التخفيفات بإزالة التكرار التي تقلل حفظ المحتوى المحمي قابلًا للقياس [103]. أما هجمات الاستدلال فتستخرج معلومات التدريب عبر السلوك [35،108،109]: فيميّز استدلال العضوية أعضاء التدريب عبر فروق احتمالية (نماذج الظل ومصنفات العتبة [109،110] ومقارنة الجوار [36])، يضخمها تسرب الثقة من الضبط التعليمي [36،109]، بينما يعيد عكس النموذج والسمات بناء المدخلات أو السمات الحساسة عبر الاستعلام التكراري [35،109]، بما فيه التسرب من نماذج التضمين [109].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4.3–4.4 حقوق النشر وتخفيفات الحوكمة</h2>
+    <p>يخلق التدريب بمقياس الإنترنت غموضًا قانونيًا: فالمدونات تحوي مواد محمية جُمعت دون موافقة صريحة [121–124]، والمعاملات تضغط المدونة مما يجعل المنشأ غير قابل للتتبع والمسؤولية موزعة عبر المطورين والمزودين والمستخدمين [123،125،126]، وأصالة النص المولد تقاوم الكشف [121،124،127]، وقد تعيد النماذج إنتاج شظايا محمية أو تحاكي أساليب دون نسب [121–125] — مع أن التفسيرات القانونية تنسب المسؤولية عمومًا للمشغلين البشريين [123،125،126]. وتجمع التخفيفات المنسقة [53،132] بين الخصوصية التفاضلية (ضجيج يحد تأثير السجل الفردي ويقلل إعادة الإنتاج الحرفية [53،133] بصياغتها الرسمية [133]) ونسيان الآلة لطلبات الحذف (إزالة على مستوى المعاملات مع خفض إعادة الإنتاج أثرًا لاحقًا [134]) والعلامات المائية للمنشأ (أنماط توليد قابلة للتعريف، رغم هشاشتها أمام إعادة الصياغة [121،123،132]).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5.1–5.2 الصدق والإنصاف</h2>
+    <p>الهلوسة — محتوى غير مؤرض في وقائع قابلة للتحقق، يشمل تفاصيل ملفقة بمعقولية عالية [1،64] — تعكس تحسين خسارة الرمز التالي على الصحة الواقعية [1،67،151،153]: فالنماذج تعطي أولوية للاتساق على الدقة المعرفية أثناء فك التشفير الاحتمالي، وهو نمط فشل ممسوح [154] يقلله التعزيز الاسترجاعي قابلًا للقياس دون القضاء عليه [155]، ويمكن للتكيف التلقيني قليل الأمثلة توجيه استجابات أسلم دون تحديث المعاملات [154]. وينبع التحيز النظامي من بيانات غير منقاة [162،163]: فتعلم الارتباط نفسه الممكّن للطلاقة يعيد إنتاج اللامتماثلات التاريخية [31،163،164] — أدوار كفاءة مجندرة [166،167] وتحيز عرقي/لهجي ضد تنويعات الأقليات [168] وانحرافات ثقافية/سياسية [145،162] وتحيز لغوي من مدونات إنجليزية [31،163] — مدفوعًا بالاختلال وفجوات التمثيل وحلقات التغذية الراجعة واسعة النطاق، وممسوح كمركّز للسلطة [163] مع تحديات تقييم متعددة اللغات [102] وانحرافات سياسية موثقة [60،145].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5.3 سوء السلوك: الجرائم السيبرانية والتضليل</h2>
+    <p>تحوّل النماذج النشاط الخبيث بأتمتة التواصل الإقناعي وخفض الحواجز التقنية [56،62]: فيمتد سوء الاستخدام بين تسهيل الجرائم السيبرانية والتضليل واسع النطاق [147،173]، مع نصوص تحاكي الموثوق فيُبهَم حد المشروع والعدائي [62،173]. ففي الجرائم السيبرانية تعزز النماذج تخصيص التصيد والتصيد الموجّه [173،174] — كما أثبتت تجربة موثقة بجمع آلي مفتوح المصدر وتصيد مخصص استهدف أكثر من 600 عضو برلمان بريطاني، مبرهنة جدوى التصيد الموجّه واسع النطاق بعبء أدنى [174]. وتتفاقم مخاطر التضليل عبر تعليقات ومحتوى إخباري واقعي ينشر دون تحقق فيسمم منظومات المعلومات [238،240]، مع خرائط تصنيفية لتقييم التحيز وسوء الاستخدام [102،147].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6.1–6.3 حواجز الحماية والدفاعات التقنية</h2>
+    <p>حواجز الحماية طبقات سلامة زمن النشر بين المستخدمين والنماذج [185]: أطر إشراف قابلة للبرمجة تفحص المدخلات والمكتملات وتفرض السياسات دون مساس بالمعاملات لتحديثات سريعة [185،190،191] — مثل ضمانات الدخل-الخرج القائمة على النماذج كـLlama Guard [185] — لكنها تعالج انحرافات الواجهة المرصودة فقط لا سوء المواءمة الكامن في المعاملات. أما الدفاعات الداخلية فتعيد تشكيل الأوزان والأهداف عند المصدر [3،44]: فالتدريب العدائي عبر اختبار أحمر منظم يصلّب مقاومة الحقن والكسر [90،196،197]، والاختبار الأحمر الآلي متعدد الجولات (MART [196])، والاختبار الأحمر المولد بالنماذج [197]، وتحليلات قابلية استغلال الضبط [249]، وبيانات التعليمات عالية الجودة المنقاة (LIMA [250]) تكشف الإخفاقات الكامنة منهجيًا — مقللة الاعتماد على المرشحات الخارجية القابلة للتجاوز [3،90،196،197].</p>
+    <p>وتعمل دفاعات الاستدلال زمن التشغيل ضد الثغرات المتبقية بعد المواءمة، لا سيما التنقيح التكراري متعدد الأدوار [84،183،205]: فالمعالجة المسبقة للدخل (إعادة الترميز وإعادة الصياغة) تعطل الأنماط العدائية المحسّنة مع حفظ القصد؛ وإزالة السمية النصية عبر نماذج إعادة الصياغة تستبدل السمية مع حفظ المعنى [206]؛ وتطبيع الترميز يمنع التجاوز بالمحارف الخاصة [84،188]؛ وكاشفات الهجمات القائمة على الحيرة تعلّم المدخلات العدائية [207] — مما يخفض جماعيًا نجاح هجمات زمن التشغيل التكيفية [68،84].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6.4–6.5 حمايات الخصوصية وتحديد المحتوى</h2>
+    <p>يجمع حفظ الخصوصية ضمانات زمن التدريب والمعمارية [53،187،189،211]: فالتدرج العشوائي الخاص تفاضليًا (قص التدرج وحقن الضجيج [53،133]) يحد التأثير الفردي، مقللًا الحفظ والاستخراج ونجاح استدلال العضوية [53،133،144] ضمن مفاضلة ميزانية الخصوصية-الفائدة [144،212]؛ وفك التشفير الخاص يسد تسرب الاستدلال أكثر [125]؛ والتعلم الفيدرالي يلامركز التدريب عبر العملاء، مع متعلمي خصوصية سياقية مثل PrivacyMind/CPPLM [211]. ويستخدم نسب النص المولد العلامات المائية (بصمات فك تشفير إحصائية [121،132]، مثل المخططات الخالية من التشويه والدلالية [131،186] كـSemStamp [186]) مقابل الكشف اللاحق (طرق انحناء الاحتمال مثل DetectGPT [217] دون مصنفات مخصصة، والتحليل الأسلوبي [62،216]) — في سباق تسلح تواصله إعادة الكتابة العدائية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. مخاطر التطبيق: التعليم والمال</h2>
+    <p>يختلف التعليم بنيويًا لأن التعلم يعتمد على بناء الاستدلال لا توليد الإجابة [229،230]: فتعمل النماذج وسطاء معرفيين يشكلون تصورات السلطة والموثوقية المعرفية [231،232]، وتُشتبه الطلاقة النابعة من النمذجة الاحتمالية بالصلاحية [229–232]. وتربويًا، تحوّل الاستجابات الفورية حسنة البناء الطلاب من حل المشكلات إلى استرجاع الإجابات [229،230]، مضعفة الانخراط فوق المعرفي والحمل الجوهري والترسيخ طويل الأمد [229،234]؛ وأكاديميًا، تتفادى المخرجات الجديدة الطليقة كشف الانتحال القائم على التشابه [233]، ممكنة الكتابة الشبحية بالذكاء الاصطناعي وغموض التأليف [233،236،237]، ومحوّلة التقييم نحو مهارة التلقين لا إتقان المفاهيم [236،237] — مما يستدعي استراتيجيات عملية التوجه (تقديم المسودات وتوثيق الاستدلال) [229،236].</p>
+    <p>ويقرن المال أهمية القرار النظامية برقابة صارمة [238–240]: فتدعم النماذج تحليل الاستثمار وتقييم مخاطر الائتمان والتنبؤ باستخراج الإشارات من نصوص غير منظمة (الأخبار والإيداعات والاتصالات) [238،239]، لكنها تستحدث مخاطر نموذجية (مخرجات غير متحقق منها في قرارات مصيرية) ومخاطر تنظيمية/حوكمية (المساءلة والشفافية والامتثال [238،240]) ومخاطر تلاعب سوقي/تداول خوارزمي — سرديات واقعية مولدة تحرك المشاعر على نطاق واسع [238،240]، ممسوحة عالميًا عبر الفرص والتهديدات والتنظيم [240].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">8–11 التنظيم والفجوات والخاتمة</h2>
+    <p>يتخلف التنظيم عن القدرة [3،220]: فبوصفها أنظمة ذكاء عامة الغرض، تعقّد النماذج النسب عبر المطورين والمزودين والدمجين والمستخدمين [7،220]، ممركزة المساءلة والشفافية والمسؤولية والتصميم المتناسب مع المخاطر [3،241] — المرسومة منهجيًا مقابل قانون الذكاء الاصطناعي الأوروبي [241]. ويصنف إطار القانون الأوروبي القائم على المخاطر حسب حالة الاستخدام (المادة 6 والملحق III: التوظيف والجدارة الائتمانية وإنفاذ القانون والهجرة والعدالة [243])؛ ويدين مزودو الأنظمة العامة بتوثيق تقني واختبار متناسب مع المخاطر النظامية [3،220]. وتجهد المسؤولية عن مخرجات احتمالية دون قصد صريح المذاهب المفترضة للسيطرة المباشرة [3،7]؛ ويعتمد الامتثال التشغيلي تدقيقًا متعدد الطبقات — حوكمة ونموذج (المتانة والواقعية والتحيز ومقاومة العدائية [3،7]) وتطبيق بتوثيق دورة الحياة [3،7] — بينما يخلق استخدام الأدوات غير المرخصة (الذكاء الظل/BYOWAI) نقاط امتثال عمياء [229،236،244،245] يجب أن يغلقها التوثيق والمراقبة المستمران ونماذج نضج الحوكمة [247].</p>
+    <p>ويبقى البحث مفتتًا [38،120]: فمعايير البعد الواحد تفوّت تفاعلات الاستدلال-السلامة-المتانة، وتبقى نماذج RLHF عرضة للتلقين العدائي والمدخلات خارج التوزيع [37]، وتُظهر أعمال كسر الكامن/قابلية التفسير مسارات ضارة مضمنة في التفعيلات beyond القيود السطحية [37،219]. والأولويات: معايير موحدة متعددة الأبعاد (HELM [38] تأسيسي لكن لقطي وأعمى عن محاور العدائية/الخصوصية؛ وDecodingTrust [37] متعدد الأبعاد لكن ساكن)؛ واكتشاف آلي للثغرات وتحقق مستمر (تفزيز FuzzLLM [248] واختبار أحمر مدمج بالنشر [37،248] وتحليلات قابلية الاستغلال [249،250])؛ وتتبع سببي وضمانات قابلة للتحقق. وتُظهر مكونات إطار دورة الحياة الأربعة مجتمعة خطر النماذج نظاميًا — مستدعية دفاعًا متعمقًا عبر التدريب والمواءمة والاستدلال والحوكمة للنشر المسؤول.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Large Language Models are increasingly deployed across professional and societal domains, introducing security, privacy, and governance challenges beyond traditional software vulnerabilities [1,2]. Despite extensive research on individual risk categories, a unified lifecycle-oriented perspective connecting architectural properties, adversarial threats, and governance implications remains limited. This review examines LLM risks through a lifecycle framework spanning data acquisition, model training, alignment procedures, deployment, and post-deployment interaction.</p>
+    <p>The study synthesizes prior research into a taxonomy of threats including prompt injection, jailbreaking, adversarial manipulation, training-stage attacks, privacy leakage, and socio-technical misuse [53,54,66]. Ethical issues such as hallucination, bias amplification, and malicious use are analyzed alongside governance and regulatory frameworks. Results indicate that LLM vulnerabilities arise primarily from probabilistic generation mechanisms, large-scale data ingestion, and complex deployment ecosystems rather than isolated implementation defects — so classical software vulnerability models provide only partial coverage of generative-AI risk.</p>
+    <p>The review is grounded in the alignment gap concept explaining how discrepancies between training objectives and real-world interaction sustain persistent vulnerabilities. Findings call for lifecycle-oriented defense-in-depth strategies combining technical safeguards, privacy-preserving training, runtime monitoring, and governance mechanisms for responsible LLM deployment.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Growing LLM integration into professional and social interaction has intensified the need for security evaluation [1,2]. Although foundation models demonstrate substantial NLP and automation capability, deployment has outpaced robust safety and governance frameworks, raising concerns over reliability, accountability, and trust [3–6]. In medicine, law, and cybersecurity, inaccurate or unintended outputs may create legal liability and erode public confidence [7,8] — so understanding risks from uncurated training data and from the deployment ecosystem itself is urgent.</p>
+    <p>This review's contribution is a unified lifecycle framework with four interconnected components: the alignment-gap model, the threat taxonomy, risk-propagation models, and a defense-in-depth architecture — demonstrating that LLM risk is a systemic property, not a collection of isolated flaws.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Architecture, Memorization, and Threat Model</h2>
+    <p>LLMs inherit their security properties from the Transformer architecture [8]: stacked blocks of multi-head self-attention plus position-wise feedforward layers with residual connections and normalization, optimized by gradient-based minimization of cross-entropy next-token loss over massive corpora [1,2,7]. Because objectives reward next-token prediction rather than semantic abstraction, rare or duplicated sequences may be retained — memorization as a structural consequence of large-scale optimization, confirmed by canary-sequence extraction studies [34,60,102], scaling with parameter count [102].</p>
+    <p>The operational threat model parallels MITRE ATT&CK adversary modeling [51] within a Zero Trust posture [52], classifying attackers by capability tier: (1) prompt-level attackers manipulating natural language (injection, jailbreaks); (2) inference-stage attackers exploiting probabilistic decoding and confidence signals; and (3) training-stage attackers poisoning data or parameters — each mapped to lifecycle stages in the unified taxonomy [1,2].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3.1–3.2 Prompt Hacking and Jailbreaking</h2>
+    <p>Prompt hacking exploits the shared contextual space of system instructions and user inputs [9,53,54,67]: attackers override intended behavior via goal hijacking or safety-filter bypass [54,68–70]. Paradoxically, stronger instruction-following (instruction tuning on directive pairs [3,18]) increases susceptibility to manipulations such as 'ignore previous instructions' [9,69,71], with prompt-injection attacks systematized against LLM-integrated applications [69]. Jailbreaking instead bypasses alignment safeguards by exploiting helpfulness-vs-constraint conflicts [65,76] — persona adoption, fictional framing, nested instructions, role-play (e.g., the 'Do Anything Now' persona [65,75]), step-by-step reasoning elicitation [32,81], poisoned retrieval context [82,83], and stealthy auto-generated prompts (AutoDAN [65]) — with in-the-wild jailbreak prompts characterized at scale [75] and certifiable safety bounds proposed [64].</p>
+    <p>Both succeed through behavioral conflicts rather than simple bugs: alignment failures that disclose restricted content, self-examination defenses [68], and red-teaming taxonomies [83] all confirm that surface filtering cannot fully resolve instruction-hierarchy confusion.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3.3–3.4 Adversarial and Training-Stage Attacks</h2>
+    <p>Adversarial attacks target statistical decision boundaries rather than alignment policies: character/word substitutions, paraphrasing, and structural rephrasing [13,33,90,91] shift softmax-derived distributions so small input changes induce disproportionate output deviations [13,33]; universal transferable perturbations [95] (e.g., PRP propagating perturbations [94]) and gradient-based text attacks [93] persist despite alignment, motivating baseline perplexity-based and robustly-aligned defenses [89,90]. Training-stage attacks compromise models before deployment [57,96,97]: backdoor triggers — intentionally embedded input patterns producing adversary-specified outputs while behaving normally otherwise [58] — may survive post-training alignment since it modifies surface behavior rather than parameter distributions [1,7], from classic BadNets weight poisoning [58,99] and code-model TrojanPuzzle [57] to model-editing backdoors (BadEdit [96]), in-context-learning backdoors [97,218], and unified backdoor benchmarks [98].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4.1–4.2 Privacy Leakage and Inference Attacks</h2>
+    <p>Privacy leakage — verbatim reproduction of training fragments during generation [38,60,102] — is structural, not incidental: optimization for prediction over abstraction plus web-scale uncurated corpora (possibly containing PII [1,7,16,18,19]) embeds sensitive data in opaque parameters, with extraction demonstrated at scale [34,61] and larger models retaining more [102]. Mitigations begin with deduplication, which measurably reduces memorization of protected content [103]. Inference attacks extract training information via behavior [35,108,109]: membership inference distinguishes training members through probabilistic differences (shadow models, threshold classifiers [109,110], neighborhood comparison [36]), amplified by instruction tuning's confidence leakage [36,109], while model and attribute inversion reconstruct inputs or sensitive attributes through iterative querying [35,109], including embedding-model leakage [109].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4.3–4.4 Copyright and Governance Mitigations</h2>
+    <p>Internet-scale training creates legal uncertainty: corpora contain copyrighted material collected without explicit consent [121–124], parameters compress the corpus making provenance untraceable and responsibility diffuse across developers, providers, and users [123,125,126], generated-text originality resists detection [121,124,127], and models may reproduce protected fragments or imitate styles without attribution [121–125] — though legal interpretations generally attribute responsibility to human operators [123,125,126]. Coordinated mitigations [53,132] combine differential privacy (noise limiting individual-record influence, reducing verbatim reproduction [53,133], formalized [133]), machine unlearning for deletion requests (parameter-level removal with reduced reproduction as the downstream effect [134]), and watermarking for provenance (identifiable generation patterns, though fragile under paraphrasing [121,123,132]).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5.1–5.2 Truthfulness and Fairness</h2>
+    <p>Hallucination — content not grounded in verifiable facts, including fabricated details presented with high plausibility [1,64] — reflects optimization for next-token loss over factual correctness [1,67,151,153]: models prioritize coherence over epistemic accuracy during probabilistic decoding, a surveyed failure mode [154] for which retrieval augmentation measurably reduces but does not eliminate confabulation [155], and prompt-based few-shot adaptation can steer safer responses without parameter updates [154]. Systemic bias arises from uncurated data [162,163]: the same correlation-learning that enables fluency reproduces historical asymmetries [31,163,164] — gendered competence roles [166,167], racial/dialect bias against minority varieties [168], cultural/political skews [145,162], and English-dataset linguistic bias [31,163] — driven by imbalance, representation gaps, and web-scale feedback loops, and surveyed as power-concentrating [163] with multilingual evaluation challenges [102] and documented political skews [60,145].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5.3 Misconduct: Cybercrime and Disinformation</h2>
+    <p>LLMs transform malicious activity by automating persuasive communication and lowering technical barriers [56,62]: misuse spans cybercrime facilitation and large-scale disinformation [147,173], with trusted-mimicking text obscuring legitimate-vs-adversarial boundaries [62,173]. In cybercrime, LLMs enhance phishing and spear-phishing personalization [173,174] — demonstrated by GPT-based automated open-source collection and tailored phishing targeting 600+ UK Parliament members, proving large-scale spear-phishing feasibility with minimal overhead [174]. Disinformation risks compound through realistic commentaries and news-style content whose unverified dissemination poisons information ecosystems [238,240], with bias-evaluation and misuse taxonomies charting the terrain [102,147].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6.1–6.3 Guardrails and Technical Defenses</h2>
+    <p>Guardrails are deployment-time safety layers between users and LLMs [185]: programmable moderation frameworks screening inputs and completions, enforcing policy without touching parameters for rapid updates [185,190,191] — e.g., LLM-based input–output safeguards such as Llama Guard [185] — but they address only observable interface deviations, not latent parameter-level misalignment. Internal defenses reshape weights and objectives at the source [3,44]: adversarial training via structured red-teaming hardens prompt-injection and jailbreak resistance [90,196,197], automated multi-round red-teaming (MART [196]), model-generated red-teaming [197], exploitability-of-tuning analyses [249], and curated high-quality instruction data (LIMA [250]) systematically expose latent failures — reducing reliance on bypassable external filters [3,90,196,197].</p>
+    <p>Inference defenses act at runtime against residual post-alignment vulnerabilities, especially multi-turn iterative refinement [84,183,205]: input preprocessing (re-tokenization, paraphrasing) disrupts optimized adversarial patterns while preserving intent; text detoxification via paraphrase models replaces toxicity preserving meaning [206]; encoding normalization blocks special-character bypasses [84,188]; and perplexity-based attack detectors flag adversarial inputs [207] — collectively lowering the success of adaptive runtime attacks [68,84].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6.4–6.5 Privacy Protections and Content Identification</h2>
+    <p>Privacy preservation combines training-time and architectural safeguards [53,187,189,211]: differentially private SGD (gradient clipping plus noise injection [53,133]) bounds individual influence, reducing memorization, extraction, and membership-inference success [53,133,144] subject to a privacy–utility budget trade-off [144,212]; private decoding further plugs inference leakage [125]; and federated learning decentralizes training across clients, with contextual-privacy learners such as PrivacyMind/CPPLM [211] embedding protection. Generated-text attribution uses watermarking (statistical decoding signatures [121,132], e.g., distortion-free and semantic schemes [131,186] like SemStamp [186]) versus post-hoc detection (probability-curvature methods like DetectGPT [217] without dedicated classifiers, stylometric analysis [62,216]) — an arms race adversarial rewriting keeps escalating [62,216].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Application Risks: Education and Finance</h2>
+    <p>Education differs structurally because learning depends on reasoning construction, not answer generation [229,230]: LLMs act as cognitive mediators shaping authority and epistemic reliability perceptions [231,232], and fluency-from-probabilistic-modeling is mistaken for validity [229–232]. Pedagogically, instant well-structured responses shift students from problem-solving to answer retrieval [229,230], eroding metacognitive engagement, germane load, and long-term consolidation [229,234]; academically, novel fluent outputs evade similarity-based plagiarism detection [233], enabling AI ghostwriting and ambiguous authorship [233,236,237], shifting assessment toward prompting proficiency rather than conceptual mastery [236,237] — prompting process-oriented strategies (draft submission, reasoning documentation) [229,236].</p>
+    <p>Finance couples systemic decision importance with strict oversight [238–240]: LLMs support investment analysis, credit-risk assessment, and forecasting by extracting signals from unstructured text (news, filings, communications) [238,239], yet introduce model risk (unverified outputs in consequential decisions), regulatory/governance risk (accountability, transparency, compliance [238,240]), and market-manipulation/algorithmic-trading risk — realistic AI-generated narratives moving sentiment at scale [238,240], surveyed globally across opportunities, threats, and regulation [240].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">8–11 Regulation, Gaps, and Conclusions</h2>
+    <p>Regulation lags capability [3,220]: as general-purpose AI systems, LLMs complicate attribution across developers, providers, integrators, and users [7,220], centering accountability, transparency, liability, and risk-proportionate design [3,241] — mapped systematically against the EU AI Act [241]. The EU AI Act's risk-based framework classifies by use case (Article 6, Annex III: employment, creditworthiness, law enforcement, migration, justice [243]); GPAIS providers owe technical documentation and testing proportionate to systemic risk [3,220]. Liability for probabilistic outputs without explicit intent strains doctrines assuming direct control [3,7]; operational compliance adopts multi-tier auditing — governance, model (robustness, factuality, bias, adversarial resistance [3,7]), and application audits with lifecycle documentation [3,7] — while Shadow AI/BYOWAI unsanctioned-tool use creates compliance blind spots [229,236,244,245] that continuous documentation, monitoring, and governance maturity models must close [247].</p>
+    <p>Research remains fragmented [38,120]: single-dimension benchmarks miss reasoning–safety–robustness interactions, RLHF-aligned models stay vulnerable to adversarial prompting and out-of-distribution inputs [37], and latent-jailbreak/interpretability work shows harmful pathways embedded in activations beyond surface constraints [37,219]. Priorities: unified multi-dimensional benchmarks (HELM [38] foundational but snapshot-bound and blind to adversarial/privacy axes; DecodingTrust [37] multi-dimensional but static); automated vulnerability discovery and continuous validation (FuzzLLM fuzzing [248], deployment-integrated red-teaming [37,248], exploitability analyses [249,250]); causal tracing and verifiable guarantees. The lifecycle framework's four components jointly demonstrate LLM risk as systemic — demanding defense-in-depth across training, alignment, inference, and governance for responsible deployment.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references preserving original numbering; the full list of 251 references is available in the original paper (doi:10.3390/ai7050152).</p>
+    <ol dir="ltr">
+      <li>[1] Bai, Y.; et al. Training a Helpful and Harmless Assistant with RLHF. <em>arXiv</em> 2022, arXiv:2204.05862.</li>
+      <li>[8] Vaswani, A.; et al. Attention Is All You Need. <em>arXiv</em> 2017, arXiv:1706.03762.</li>
+      <li>[34] Carlini, N.; et al. Extracting Training Data from Large Language Models. <em>arXiv</em> 2021, arXiv:2009.07811.</li>
+      <li>[37] Wang, B.; et al. DecodingTrust: A Comprehensive Assessment of Trustworthiness in GPT Models. <em>arXiv</em> 2024, arXiv:2312.16946.</li>
+      <li>[38] Liang, P.; et al. Holistic Evaluation of Language Models (HELM). <em>arXiv</em> 2023, arXiv:2211.09110.</li>
+      <li>[51] MITRE Corporation. MITRE ATT&amp;CK Framework. 2025.</li>
+      <li>[53] Abadi, M.; et al. Deep Learning with Differential Privacy. In <em>Proc. ACM CCS 2016</em>; pp. 308–318.</li>
+      <li>[58] Gu, T.; et al. BadNets: Evaluating Backdooring Attacks on Deep Neural Networks. <em>IEEE Access</em> 2019, 7, 47230–47244.</li>
+      <li>[65] Liu, X.; et al. AutoDAN: Generating Stealthy Jailbreak Prompts on Aligned LLMs. <em>arXiv</em> 2024, arXiv:2310.04451.</li>
+      <li>[69] Liu, Y.; et al. Prompt Injection Attack against LLM-Integrated Applications. <em>arXiv</em> 2025, arXiv:2306.05499.</li>
+      <li>[75] Shen, X.; et al. 'Do Anything Now': Characterizing In-The-Wild Jailbreak Prompts. <em>arXiv</em> 2024, arXiv:2308.03825.</li>
+      <li>[89] Jain, N.; et al. Baseline Defenses for Adversarial Attacks Against Aligned LLMs. <em>arXiv</em> 2023, arXiv:2309.03825.</li>
+      <li>[96] Li, Y.; et al. BadEdit: Backdooring LLMs by Model Editing. <em>arXiv</em> 2024, arXiv:2308.02800.</li>
+      <li>[103] Kandpal, N.; et al. Deduplicating Training Data Mitigates Privacy Risks. <em>arXiv</em> 2022, arXiv:2208.02919.</li>
+      <li>[109] Song, C.; Raghunathan, A. Information Leakage in Embedding Models. <em>arXiv</em> 2020, arXiv:2008.01077.</li>
+      <li>[110] Shokri, R.; et al. Membership Inference Attacks against Machine Learning Models. <em>arXiv</em> 2017, arXiv:1610.05820.</li>
+      <li>[133] Dwork, C.; Roth, A. <em>The Algorithmic Foundations of Differential Privacy</em>. <em>Found. Trends Theor. Comput. Sci.</em> 2014, 9, 211–487.</li>
+      <li>[134] Nguyen, T.T.; et al. A Survey of Machine Unlearning. <em>arXiv</em> 2024, arXiv:2311.15766.</li>
+      <li>[154] Ji, Z.; et al. Survey of Hallucination in Natural Language Generation. <em>ACM Comput. Surv.</em> 2023, 55, 248.</li>
+      <li>[162] Ferrara, E. Should ChatGPT Be Biased? <em>First Monday</em> 2023.</li>
+      <li>[174] Hazell, J. Spear Phishing With Large Language Models. <em>arXiv</em> 2023, arXiv:2305.06972.</li>
+      <li>[185] Inan, H.; et al. Llama Guard: LLM-Based Input-Output Safeguard. <em>arXiv</em> 2023, arXiv:2312.06674.</li>
+      <li>[196] Ge, S.; et al. MART: Improving LLM Safety with Multi-Round Automatic Red-Teaming. <em>arXiv</em> 2023, arXiv:2310.08876.</li>
+      <li>[206] Dale, D.; et al. Text Detoxification Using Large Pre-Trained Neural Models. <em>arXiv</em> 2021, arXiv:2109.08914.</li>
+      <li>[217] Mitchell, E.; et al. DetectGPT: Zero-Shot Machine-Generated Text Detection. <em>arXiv</em> 2023, arXiv:2301.11305.</li>
+      <li>[229] Kasneci, E.; et al. ChatGPT for Good? On Opportunities and Challenges of LLMs for Education. <em>Learn. Individ. Differ.</em> 2023.</li>
+      <li>[238] Lee, D.K.C.; et al. A Comprehensive Review of Generative AI in Finance. <em>FinTech</em> 2024, 3, 460–478.</li>
+      <li>[240] Saha, B.; et al. Generative AI in Financial Institutions. <em>arXiv</em> 2025.</li>
+      <li>[244] Haag, S.; Eckhardt, A. Shadow IT. <em>Bus. Inf. Syst. Eng.</em> 2017, 59, 469–473.</li>
+      <li>[248] Yao, D.; et al. FuzzLLM: A Universal Fuzzing Framework for Discovering Jailbreak Vulnerabilities. In <em>Proc. ICASSP 2024</em>.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/ai7050152">10.3390/ai7050152</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

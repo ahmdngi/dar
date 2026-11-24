@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أمن وسلامة النماذج اللغوية الكبيرة — حالة استخدام في بيئات الواقع الممتد — DAR</title>
+<meta name="description" content="Security and Safety of Large Language Models—A Use Case for Extended Reality Environments — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/llm-xr-security-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Security and Safety of Large Language Models—A Use Case for Extended Reality Environments</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">أمن وسلامة النماذج اللغوية الكبيرة — حالة استخدام في بيئات الواقع الممتد</h2>
+
+  <div class="paper-meta">
+    <span>👤 Letiția Marin, Marina Anca Cidota, Irina Ciocan, Clara Maathuis</span>
+    <span>📄 Appl. Sci., 2026 · Vol. 16(18), Art. 9093</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app16189093">10.3390/app16189093</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تبحث هذه الدراسة في أمن النماذج اللغوية الكبيرة لتحديد تهديدات الأمن والسلامة الرئيسة وتدابير الضبط واعتبارات الحوكمة ذات الصلة بتبنيها الموثوق في مجال الواقع الممتد (XR). ويجمع العمل بين مراجعة سردية موسعة للأدبيات — تشمل هجمات الموجّهات [1] والهجمات الخصومية على النماذج المواءمة [2] واستخراج بيانات التدريب [3] والسلوك الخادع للوكلاء النائمين [4] ودراسات تكامل النماذج مع الواقع الممتد [5–7] — وورشة عمل شارك فيها 21 مهنيًا تقنيًا مبتدئًا من خلفية ذكاء اصطناعي حُللت وجهات نظرهم المستنيرة وتأملاتهم النقدية منهجيًا.</p>
+    <p>تُظهر النتائج أن أمن النماذج اللغوية يُفهم كتحدٍّ اجتماعي-تقني يمتد على دورة الحياة كلها، وتتشابك فيه جودة البيانات والخصوصية [12، 13] ومتانة النموذج والمرونة الخصومية وإساءة الاستخدام البشرية والمراقبة والامتثال التنظيمي بعمق. وبناءً على هذه الرؤى، تقترح الدراسة توصيات لتصميم ونشر أنظمة واقع ممتد مُمكّنة بالنماذج اللغوية وآمنة، مؤكدةً على الدفاع المتعمق وممارسات البيانات المراعية للخصوصية والضمانات التقنية الطبقية والمراقبة المستمرة وآليات الحوكمة التي توائم ضوابط الأمن مع المخاطر الخاصة بالبيئات الانغماسية التفاعلية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>إن وضع النماذج اللغوية الكبيرة كطبقات استدلال وتفاعل أساسية للواقع الممتد — عبر الرعاية الصحية والتعليم والدفاع والتدريب الصناعي — يُدخل مشهدًا أمنيًا جديدًا جوهريًا وغير مستكشف: التلاعب بإدراك المستخدم، وحقن الموجّهات الخصومي داخل الفضاءات الافتراضية، وانتحال الهوية عبر الصور الرمزية المدعومة بالذكاء الاصطناعي، والأذى الجسدي في التطبيقات الحرجة للسلامة [5–7]. وبما أن تفاعلات الواقع الممتد مستمرة ومتعددة الوسائط، لا يقتصر المهاجمون على النص المكتوب؛ فإشارة بيئية متلاعب بها أو أمر صوتي قد يدفع مساعد الواقع الممتد إلى التعرف الخاطئ على الأجسام أو توليد تعليمات تنقل غير آمنة أو حقن عناصر افتراضية غير مصرح بها.</p>
+    <p>لذلك فإن تأمين النماذج اللغوية داخل بيئات الواقع الممتد ليس ضرورة تقنية فحسب بل حتمية أخلاقية ومجتمعية. تعالج هذه الدراسة الفجوة بأداتين: مراجعة سردية لأدبيات تهديدات أمن النماذج ودفاعاتها وحوكمتها [1–4، 8–13]، وورشة خبراء مهيكلة (16 سؤالًا عبر ست مجموعات مواضيعية) تلتقط وجهات نظر الممارسين حول التهديدات والضوابط والحوكمة للواقع الممتد المُمكّن بالنماذج اللغوية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. البحوث ذات الصلة</h2>
+    <p>تغطي مراجعة الأدبيات كامل طيف التهديدات: تقنيات هجمات حقن الموجّهات [1] والهجمات الخصومية العالمية القابلة للنقل على النماذج المواءمة [2] وتوليد الموجّهات الخصومية القائم على الاستعلام [8] وهجمات الأبواب الخلفية ودفاعاتها [17] وقياس هجمات الحقن غير المباشر والدفاع ضدها [16]. وتشمل مخاطر الخصوصية استخراج بيانات التدريب [3] واختبار الخصوصية بنظرية السلامة السياقية [18] وهجمات استخراج النماذج [19] وتقييمات امتثال الخصوصية للنماذج التجارية [28]. وفي الجانب الدفاعي، تمتد المراجعة إلى اتباع التعليمات بالتغذية البشرية [9] والاختبار العدائي بالنماذج اللغوية [11] ودفاعات SmoothLLM ضد كسر الحماية [10] ودفاعات تقطير المعرفة [23] والعلامات المائية [24].</p>
+    <p>وتشمل أدبيات الحوكمة والمخاطر تقييمات مخاطر النماذج التأسيسية [12، 13] وتنظيم الذكاء الاصطناعي الحدودي [15] وقانون الاتحاد الأوروبي للذكاء الاصطناعي [14] والقياس الكمي لمخاطر إساءة الاستخدام [30] ونمذجة التهديدات STRIDE-AI [27] وممارسات تقييم مخاطر الأمن السيبراني [29]. وتدرس دراسات التكامل الخاصة بالواقع الممتد فرص تضمين النماذج وتحديات الشمول والخصوصية [6] ومراجعات شاملة لاتجاهات التكامل [7] وفئة ثغرات الوزير الشرير في أنظمة الواقع الممتد المدمجة بالنماذج [5] وهجمات القنوات الجانبية على أنظمة الواقع المعزز والافتراضي [31]. وتُرسّخ دراسات المخاطر المُبلغ عنها من المستخدمين [20] وتحليلات النشر في الصحة النفسية [21، 22] التأطير الاجتماعي-التقني.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. منهجية البحث: المراجعة وورشة الممارسين</h2>
+    <p>تقرن الدراسة المراجعة السردية بورشة عمل شارك فيها 21 مشاركًا من خلفية ذكاء اصطناعي من مهنيين تقنيين مبتدئين، مصممة لالتقاط وجهات نظر مستنيرة وتأملات نقدية. وتغطي الأسئلة الستة عشر ست مجموعات مواضيعية: أمن البيانات والخصوصية (س1–س3)، وأمن النموذج ومتانته (س4–س6)، والتهديدات وإساءة الاستخدام (س7–س10)، وتدابير الضبط (س11–س13)، والحوكمة (س14–س16)، متناولةً المراقبة والتدقيق والاختبار العدائي وإشراك أصحاب المصلحة والتأثير التنظيمي [20].</p>
+    <p>أُجريت الدراسة بموافقة أخلاقية وفق إعلان هلسنكي (جامعة بوخارست، رقم 38/24.02.2026) مع موافقة مستنيرة مكتوبة؛ وحُجبت البيانات المجمّعة بموجب الاتفاق الأخلاقي [14]. ويُفصح المؤلفون عن إعداد مستعين بالذكاء الاصطناعي (Claude Sonnet 5 وClaude Fable 5 لاكتشاف المراجع وتوليد النص)، مع تحقق مستقل من كل المراجع المقترحة جودةً وملاءمةً ودقةً.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. التهديدات (س1–س10): مشكلة تمتد على دورة الحياة</h2>
+    <p>أطّر المشاركون أمن بيانات النماذج اللغوية كسرية للبيانات وجودة وضبط للمصدر: وكان الشاغل الغالب كشف البيانات الحساسة — التسريبات والاستخراج والوصول غير الآمن — مربوطًا مباشرة بجدارة النموذج بالثقة عبر البيانات المتحيزة وغير الممثلة والفاسدة أو الزائفة. وحُكم على التدريب المسبق بأنه شديد التعرض للتسميم وزرع الأبواب الخلفية [17]: فالبيانات المصممة خبثًا أو غير المتحقق منها قد تزرع محفزات دائمة أو تُدهور الموثوقية، وهو خطر منهجي في سلسلة الإمداد يصعب كشفه أو معالجته بعد التدريب [4]. وحذّر أحد المشاركين من أنه دون عناية وثيقة قد يتعلم النموذج بيانات زائفة غير آمنة ثم يعيد استخدامها لاحقًا كصحيحة.</p>
+    <p>تنتشر الثغرات المُدخلة أثناء الجمع والتنقية والتدريب المسبق لاحقًا إلى تسريب المعلومات [3] والتلاعب الخصومي [2، 8] وحقن الموجّهات [1، 16] وإساءة الاستخدام — مؤكدةً أن التهديدات قائمة عبر دورة الحياة كلها وتتطلب استجابة متعددة التخصصات ومتعمقة الدفاع تمتد على الضوابط التقنية والمراقبة والتدقيق والامتثال والحوكمة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. تدابير الضبط (س11–س13): دفاع طبقي موجه لزمن التشغيل</h2>
+    <p>تتخذ الضوابط المقترحة شكلًا متعدد الطبقات موجهًا لزمن التشغيل: التحقق من المدخلات وتعقيمها، ومرشحات وسيطة دلالية أو نماذج ثانوية، وجدران حماية تطبيقات الويب، وتحديد المعدل، وكشف كسر الحماية [10]، والقوائم السوداء، وكشف الهجمات بالتشابه، والتحقق من المخرجات، والتسجيل، والمراجعة البشرية. وتُعد ضمانات مستوى النموذج مثل المواءمة بالتغذية البشرية [9] والاختبار العدائي [11] مهمة لكنها غير كافية وحدها، لأن النماذج المواءمة قد تُتجاوز؛ وتوفر ضوابط مستوى التطبيق قيودًا أكثر تكيفًا وخصوصية بالسياق — خاصة مع ضبط الوصول والمراقبة وتدقيق المخرجات — في إطار متعمق الدفاع من المواءمة والترشيح والتسجيل والتنبيه والاختبار الخصومي والاختبار العدائي الدوري.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الحوكمة (س14–س16): تشاركية ومراعية للتنظيم</h2>
+    <p>يجب أن تكون الحوكمة تشاركية ومراعية للتنظيم: إذ ينبغي للفاعلين غير التقنيين — الموظفين والمستثمرين والعملاء والموردين والسلطات العامة — المشاركة في تقييم المخاطر وتخفيفها، بمعايرة منخفضة أو متوسطة أو عالية أو مضبوطة حسب حساسية المعلومات. وتعزز اللوائح الواضحة والضمانات الصريحة وسياسات الأمن المحدثة بانتظام ثقة المستخدمين، خاصة حول الإفصاح عن البيانات الحساسة، اتساقًا مع قانون الاتحاد الأوروبي للذكاء الاصطناعي [14] ومقترحات تنظيم الحدود [15]. ويجب أن تعالج الحوكمة أيضًا المخاطر غير المستكشفة التي لا يمكن تخفيفها كليًا بعد بضوابط برمجية، موجّهةً المساءلة المؤسسية وتوقعات المستخدمين المعايرة [20–22، 27–30].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7–8. المناقشة وتوصيات أمن الواقع الممتد</h2>
+    <p>تعمل خطوط النماذج-الواقع الممتد على مدخلات متعددة الوسائط شديدة الحساسية وتؤثر مباشرة فيما يراه المستخدمون ويسمعونه ويعتقدونه ويفعلونه جسديًا — لذا يجب معاملة حقن الموجّهات والتلاعب السياقي وإساءة استخدام مكتبات الطرف الثالث وتوليد الشيفرات غير الآمنة وانتحال الصور الرمزية وتسريب الخصوصية كمخاطر اجتماعية-تقنية لا عيوب برمجية معزولة [5، 31]. وتتبع ست توصيات: (1) معاملة كل سياق واقع ممتد متعدد الوسائط كمدخل غير موثوق، بفحص كل وسيطة عبر طبقة معالجة مسبقة لحظية قبل بلوغ النموذج [5]. (2) تقييد مكتبات الطرف الثالث وحصرها بأقل الامتيازات [5]. (3) التحقق من المخرجات — خاصة شيفرات الواقع الممتد القابلة للتنفيذ — قبل العرض أو التنفيذ، متابعةً للنماذج الدفاعية الأولية [31].</p>
+    <p>(4) تقليل الوصول إلى بيانات الواقع الممتد الحساسة متعددة الوسائط — النظر والصوت والموضع المكاني والقياسات الحيوية وتغذية الكاميرا — والتحكم فيه، مفضّلين القوائم البيضاء وتقليل البيانات والمعالجة على الجهاز وإخفاء الهوية وحواجز الاستخراج على مستوى النموذج [6، 7]. (5) إرساء معايير تقييم أمنية خاصة بالواقع الممتد: معايير قياس وبروتوكولات اختبار عدائي وأطر امتثال مبنية لغرض خطوط النماذج-الواقع الممتد، من مدخل المستشعر إلى المخرج المعروض [7، 31]. (6) إرساء حوكمة خاصة بالواقع الممتد بمشاركة شاملة لأصحاب المصلحة ومراقبة بعد النشر — تسجيل تدقيق مع حجب البيانات الحساسة وأنظمة تنبيه واختبار عدائي مستمر مكيف للتفاعل الدائم.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">9. الاستنتاجات والبحوث المستقبلية</h2>
+    <p>يحوّل تكامل النماذج اللغوية الواقع الممتد من واجهات انغماسية سلبية إلى أنظمة بيئية تكيفية وسيطة لغويًا وواعية بالسياق — موسّعًا المحيط الأمني إلى ما وراء ما تعالجه نماذج أمن الواقع الممتد والنماذج اللغوية القائمة. ويعتمد الأمن على ضمانات شاملة: سلامة السياق، وحصر المكونات غير الموثوقة بأقل الامتيازات، والتحقق من المخرجات قبل العرض، وتقليل البيانات الحيوية والمكانية، ومعايير اختبار عدائي وامتثال خاصة بالواقع الممتد — تُبنى بتعاون متعدد التخصصات بين باحثي الذكاء الاصطناعي ومطوري الواقع الممتد وخبراء الأمن والأخلاقيين والمنظمين والممارسين [5، 31].</p>
+    <p>حُددت ثلاثة اتجاهات مستقبلية: نماذج تهديد خاصة بالواقع الممتد لحقن الموجّهات الانغماسي متعدد الوسائط والتلاعب الخادع وانتهاك الخصوصية والهندسة الاجتماعية؛ وبنى دفاع متعمق مكيفة للواقع الممتد تجمع خطوط بيانات آمنة وترشيحًا لحظيًا للمحتوى وضوابط النموذج والتطبيق ومراقبة سلوك المستخدم واختبارًا عدائيًا مستمرًا؛ وأطر حوكمة ومساءلة لأنظمة الواقع الممتد المُمكّنة بالنماذج تفعّل الخصوصية بالتصميم وإشراك أصحاب المصلحة والامتثال التنظيمي والشفافية والإشراف البشري حيث يكون التفاعل دائمًا ومجسدًا وكثيف البيانات [7، 31].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>This research investigates the security of large language models (LLMs) to identify key security and safety threats, control measures, and governance considerations relevant to their trustworthy adoption in the Extended Reality (XR) domain. The work combines an extensive narrative literature review — spanning prompt attacks [1], adversarial attacks on aligned models [2], training-data extraction [3], deceptive sleeper-agent behavior [4], and LLM–XR integration studies [5–7] — with a workshop of 21 AI-background early-stage technical professionals whose informed perspectives and critical reflections were systematically analyzed.</p>
+    <p>The findings show that LLM security is understood as a lifecycle-wide, socio-technical challenge in which data quality, privacy, model robustness, adversarial resilience, human misuse, monitoring, and regulatory compliance are deeply interconnected [12, 13]. Building on these insights, the research proposes recommendations for designing and deploying secure LLM-enabled XR systems, emphasizing defense in depth, privacy-aware data practices, layered technical safeguards, continuous monitoring, and governance mechanisms aligning security controls with the specific risks of immersive, interactive environments.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Positioning LLMs as core reasoning and interaction layers for XR — across healthcare, education, defense, and industrial training — introduces a fundamentally new and underexplored security landscape: manipulation of user perception, adversarial prompt injection within virtual spaces, identity spoofing through AI-powered avatars, and physical harm in safety-critical applications [5–7]. Because XR interactions are continuous and multimodal, attackers are not limited to typed text; a manipulated environmental cue or spoken command can cause an XR assistant to misidentify objects, generate unsafe navigation instructions, or inject unauthorized virtual elements.</p>
+    <p>Securing LLMs within XR environments is therefore not merely a technical necessity but an ethical and societal imperative. This research addresses the gap through two instruments: a narrative literature review of LLM security threats, defenses, and governance [1–4, 8–13], and a structured expert workshop (16 questions across six thematic clusters) capturing practitioner perspectives on threats, controls, and governance for LLM-enabled XR.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related Research</h2>
+    <p>The literature review covers the full threat spectrum: prompt-injection attack techniques [1], universal transferable adversarial attacks on aligned models [2], query-based adversarial prompt generation [8], backdoor attacks and defenses [17], and indirect prompt-injection benchmarking and defenses [16]. Privacy risks include training-data extraction [3], contextual-integrity privacy testing [18], model-extraction attacks [19], and privacy-compliance evaluations of commercial models [28]. On the defensive side, the review spans instruction following with human feedback [9], red-teaming with language models [11], SmoothLLM jailbreak defenses [10], knowledge-distillation defenses [23], and watermarking [24].</p>
+    <p>Governance and risk literature includes foundation-model risk assessments [12, 13], frontier AI regulation [15], the EU Artificial Intelligence Act [14], misuse risk quantification [30], STRIDE-AI threat modeling [27], and cybersecurity risk assessment practice [29]. XR-specific integration studies examine LLM embedding opportunities, inclusion, and privacy challenges [6], comprehensive reviews of LLM–XR trends [7], the Evil Vizier vulnerability class in LLM-integrated XR [5], and side-channel attacks on AR/VR systems [31]. User-reported risk studies [20] and mental-health deployment analyses [21, 22] further ground the socio-technical framing.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Research Methodology: Review Plus Practitioner Workshop</h2>
+    <p>The study pairs the narrative review with a workshop of 21 participants with AI backgrounds who are early-stage technical professionals, designed to capture informed perspectives and critical reflections. Sixteen questions span six thematic clusters: data security and privacy (Q1–Q3), model security and robustness (Q4–Q6), threats and abuse (Q7–Q10), control measures (Q11–Q13), and governance (Q14–Q16), covering monitoring, auditing, red-teaming, stakeholder involvement, and regulatory influence [20].</p>
+    <p>The study was conducted under Helsinki-declaration ethics approval (University of Bucharest, no. 38/24.02.2026) with written informed consent; collected data are withheld under the ethical agreement [14]. The authors disclose AI-assisted preparation (Claude Sonnet 5 and Claude Fable 5 for reference discovery and text generation), with all suggested references independently verified for quality, relevance, and accuracy.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Threats (Q1–Q10): A Lifecycle-Wide Problem</h2>
+    <p>Participants framed LLM data security as confidentiality, data-quality, and provenance control: the dominant concern was exposure of sensitive data — leaks, exfiltration, insecure access — connected directly to model trustworthiness through biased, unrepresentative, corrupt, or false data. Pre-training was judged highly vulnerable to poisoning and backdoor insertion [17]: maliciously crafted or unverified data can implant persistent triggers or degrade reliability, a systemic supply-chain risk that is difficult to detect or remediate after training [4]. One participant warned that without close attention, the model may learn false, insecure data and later reuse it as valid.</p>
+    <p>Vulnerabilities introduced during collection, curation, and pre-training propagate downstream into information leakage [3], adversarial manipulation [2, 8], prompt injection [1, 16], and abuse — confirming that threats exist across the whole lifecycle and require a multidisciplinary, defense-in-depth response spanning technical controls, monitoring, auditing, compliance, and governance.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Control Measures (Q11–Q13): Layered, Runtime-Oriented Defense</h2>
+    <p>Proposed controls take a multi-layered, runtime-oriented form: input validation and sanitization, semantic middleware filters or secondary LLMs, web application firewalls, rate limiting, jailbreak detection [10], blacklisting, similarity-based attack detection, output verification, logging, and human review. Model-level safeguards such as alignment via human feedback [9] and red-teaming [11] matter but are insufficient alone, because aligned models may still be bypassed; application-level controls offer more adaptable, context-specific constraints — especially combined with access control, monitoring, and output auditing — in a defense-in-depth framework of alignment, filtering, logging, alerting, adversarial testing, and periodic red-teaming.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Governance (Q14–Q16): Participatory and Regulation-Sensitive</h2>
+    <p>Governance must be participatory and regulation-sensitive: non-technical actors — employees, investors, customers, suppliers, public authorities — should join risk assessment and mitigation, calibrated by low, medium, high, or controlled participation depending on information sensitivity. Clear regulations, explicit safeguards, and regularly updated security policies strengthen user trust, especially around sensitive-data disclosure, consistent with the EU AI Act [14] and frontier-regulation proposals [15]. Governance must also address underexplored risks not yet fully mitigable through software controls, guiding institutional accountability and calibrated user expectations [20–22, 27–30].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7–8. Discussion and XR Security Recommendations</h2>
+    <p>LLM–XR pipelines operate over highly sensitive multimodal inputs and directly influence what users see, hear, believe, and physically do — so prompt injection, contextual manipulation, third-party library abuse, unsafe code generation, avatar spoofing, and privacy leakage must be treated as socio-technical risks, not isolated software flaws [5, 31]. Six recommendations follow. (1) Treat all multimodal XR context as untrusted input, screening every modality through a real-time preprocessing layer before it reaches the model [5]. (2) Restrict and sandbox third-party libraries under least privilege [5]. (3) Validate outputs — especially executable XR code — before rendering or execution, following initial defense prototypes [31].</p>
+    <p>(4) Minimize and control access to sensitive multimodal XR data — gaze, voice, spatial position, biometrics, camera feeds — favoring whitelisting, data minimization, on-device processing, anonymization, and model-level extraction blocks [6, 7]. (5) Establish XR-specific security evaluation standards: benchmarks, red-teaming protocols, and compliance frameworks purpose-built for XR-LLM pipelines, from sensor input to rendered output [7, 31]. (6) Establish XR-specific governance with inclusive stakeholder participation and post-deployment monitoring — audit logging with sensitive-data censoring, alert systems, and continuous red-teaming adapted to always-on interaction.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">9. Conclusions and Future Research</h2>
+    <p>LLM integration transforms XR from passive immersive interfaces into adaptive, language-mediated, context-aware ecosystems — expanding the security perimeter beyond what existing XR and LLM paradigms address. Security depends on end-to-end safeguards: context integrity, least-privilege sandboxing of untrusted components, pre-rendering output validation, biometric and spatial data minimization, and XR-specific red-teaming and compliance benchmarks — built through interdisciplinary collaboration among AI researchers, XR developers, security experts, ethicists, regulators, and practitioners [5, 31].</p>
+    <p>Three future directions are identified: XR-specific threat models for immersive multimodal prompt injection, manipulation, privacy invasion, and social engineering; XR-adapted defense-in-depth architectures combining secure pipelines, real-time filtering, model and application controls, behavior monitoring, and continuous red-teaming; and governance and accountability frameworks operationalizing privacy-by-design, stakeholder involvement, regulatory compliance, transparency, and human oversight where interaction is persistent, embodied, and highly data-intensive [7, 31].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references with original numbering; the full list of 31 references is available in the original paper (10.3390/app16189093).</p>
+    <ol dir="ltr">
+      <li>[1] Perez, F.; Ribeiro, I. Ignore Previous Prompt: Attack Techniques For Language Models. arXiv 2022, arXiv:2211.09527.</li>
+      <li>[2] Zou, A.; et al. Universal and Transferable Adversarial Attacks on Aligned Language Models. arXiv 2023, arXiv:2307.15043.</li>
+      <li>[3] Carlini, N.; et al. Extracting Training Data from Large Language Models. In Proc. 30th USENIX Security Symposium, 2021; pp. 2633–2650.</li>
+      <li>[4] Hubinger, E.; et al. Sleeper Agents: Training Deceptive LLMs That Persist Through Safety Training. arXiv 2024, arXiv:2401.05566.</li>
+      <li>[5] Zhang, Y.; et al. Evil Vizier: Vulnerabilities of LLM-Integrated XR Systems. arXiv 2025, arXiv:2509.15213.</li>
+      <li>[6] Bozkir, E.; et al. Embedding Large Language Models into Extended Reality. In Proc. ACM CHI 2025.</li>
+      <li>[7] Tang, Y.; et al. LLM Integration in Extended Reality: A Comprehensive Review. In Proc. ACM CHI 2025.</li>
+      <li>[9] Ouyang, L.; et al. Training Language Models to Follow Instructions with Human Feedback. In Proc. NeurIPS 2022.</li>
+      <li>[10] Robey, A.; et al. SmoothLLM: Defending LLMs Against Jailbreaking Attacks. arXiv 2024, arXiv:2310.03684.</li>
+      <li>[11] Perez, E.; et al. Red Teaming Language Models with Language Models. In Proc. EMNLP 2022.</li>
+      <li>[14] The EU Artificial Intelligence Act. Available online: https://artificialintelligenceact.eu/ (accessed on 10 April 2026).</li>
+      <li>[15] Anderljung, M.; et al. Frontier AI Regulation: Managing Emerging Risks to Public Safety. arXiv 2023.</li>
+      <li>[16] Yi, J.; et al. Benchmarking and Defending Against Indirect Prompt Injection Attacks on LLMs. In Proc. ACM SIGKDD 2024.</li>
+      <li>[17] Zhao, S.; et al. A Survey of Recent Backdoor Attacks and Defenses in LLMs. arXiv 2025, arXiv:2406.06852.</li>
+      <li>[27] Cyrille, T.N.R.; Schwarz, F. STRIDE-AI: A Threat Modeling Framework for Generative AI Security Assessment. arXiv 2026, arXiv:2605.17163.</li>
+      <li>[31] Zhang, Y.; et al. It's all in your head(set): side-channel attacks on AR/VR systems. In Proc. 32nd USENIX Security Symposium (SEC '23).</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app16189093">10.3390/app16189093</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

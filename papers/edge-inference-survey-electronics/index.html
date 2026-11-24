@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>طرق التحسين والتحديات والفرص للاستدلال الطرفي: مسح شامل — DAR</title>
+<meta name="description" content="Optimization Methods, Challenges, and Opportunities for Edge Inference: A Comprehensive Survey — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/edge-inference-survey-electronics/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Optimization Methods, Challenges, and Opportunities for Edge Inference: A Comprehensive Survey</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">طرق التحسين والتحديات والفرص للاستدلال الطرفي: مسح شامل</h2>
+
+  <div class="paper-meta">
+    <span>👤 Runhua Zhang, Hongxu Jiang, Wei Wang, Jinhao Liu</span>
+    <span>📄 Electronics, 2025 · Vol. 14, No. 7, 1345</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics14071345">10.3390/electronics14071345</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يواصل الذكاء الاصطناعي رفع كفاءة الإنتاج عبر المجتمع، لكن متطلبات الزمن الحقيقي وشواغل الخصوصية تنقل الاستدلال من السيناريوهات السحابية إلى الطرفية [13]، [14]. ومع نمو النماذج الذكية تعقيدًا وحجمًا، يواجه الاستدلال الطرفي تحديات متصاعدة تعالجها الأعمال القائمة من أربعة اتجاهات: تصميم النماذج وضغطها وسلسلة أدوات التجميع والاستدلال التعاوني [18]، [19].</p>
+    <p>ينظّم هذا المسح أحدث الأعمال عبر تلك الاتجاهات الأربعة — مستعرضًا الخلفية والدافع، ثم محللًا القضايا والخصائص والتقنيات الأساسية لكل اتجاه — ويستخلص اتجاهات التطور المستقبلية [27]، [29]، [30]. ويهدف إلى مساعدة الباحثين على فرز مشهد تحسين الاستدلال الطرفي سريعًا وإلهام أعمال لاحقة تجعل الخدمات الطرفية أكثر ذكاءً وكفاءةً وحفاظًا على الخصوصية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة والتمهيدات</h2>
+    <p>ينقل الاستدلال الطرفي تنفيذ النماذج من السحابة إلى أجهزة الطرفية لتلبية مطالب زمن الاستجابة والنطاق الترددي والخصوصية، وهو تحول ظاهر في تطبيقات رائدة من القيادة الذاتية [1]، [2]، [3] إلى المساعدة الطبية [4]. وتعرّف تمهيدات المسح الاستدلال الطرفي وتعلل الهجرة وتنظم بحوث التحسين في تصنيف الاتجاهات الأربعة الذي يبني الورقة كلها [13]، [14].</p>
+    <p>ويتميز كل اتجاه بعنق الزجاجة الذي يستهدفه: يهاجم تصميم النماذج عدد المعاملات من المصدر؛ ويقلّص الضغط النماذج المدربة؛ وتحسّن سلسلة التجميع كيفية تنفيذ النماذج على العتاد غير المتجانس؛ ويوزع الاستدلال التعاوني العمل عبر الأجهزة وخوادم الطرفية والسحب [18]، [19]، [20].</p>
+    <p>يعكس هيكل المسح هذا التصنيف — التصميم الخفيف والضغط وسلسلة الأدوات والتعاون ثم الفرص المستقبلية — مانحًا القراء خارطة طريق تُحدَّد فيها كل تقنية بعنق الزجاجة الذي تخففه وطبقة النشر التي تخدمها [21]، [22]، [23].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. تصميم النماذج الخفيفة</h2>
+    <p>يجمع التصميم بالخبرة التقنيات اليدوية — الالتفافات الفعالة وهياكل عنق الزجاجة والأنماط المعمارية المثبتة في شبكات الفئة الجوالة — في قواعد عملية تبسّط النماذج للاستدلال الطرفي دون بحث آلي [34]، [35]، [36]. وتستبدل هذه الطرق جهد المصمم بهياكل متوقعة ملائمة للعتاد.</p>
+    <p>يستبدل البحث المعماري العصبي التصميم اليدوي باكتشاف آلي ضمن قيود عتادية متعددة المؤشرات [37]، [38]، [39]. واستخدم التطور واسع النطاق المبكر [155] الخوارزميات التطورية لكنه عانى من فضاءات بحث هائلة، بينما قدّم NASNet [156] فضاء بحث معياريًا خفّض كلفة البحث مع خطر تفويت بعض التحسينات — لتظل موازنة فضاء البحث مقابل الكفاءة سؤالًا محوريًا.</p>
+    <p>تدفع متغيرات البحث بالوكيل وبدون وكيل، مع استراتيجيات مشاركة المعاملات [157]، كفاءة البحث أبعد، لكن الأدلة على أن المشاركة قد تنتج بنى دون المثلى [158] تحفز الاتجاه المستقبلي الأول للمسح: بحث أرخص وأرسخ تأسيسًا عبر تقليم مستوى المسار وطرق المعاملات الثنائية وهجن التدرج مع التعزيز [45]، [46]، [47].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. ضغط النماذج</h2>
+    <p>يزيل تقليم النماذج التكرار بثلاث درجات تحبب: التقليم المنظم يسقط المرشحات أو القنوات كاملة لتسريعات ملائمة للعتاد [60]، [61]، [62]؛ والتقليم غير المنظم يصفّر الأوزان فرادى لضغط أعظمي بكلفة دعم التنفيذ المتناثر [63]، [64]، [65]؛ والتقليم شبه المنظم (كتناثر N:M) يسعى للضغط والتسريع معًا [66]، [67]، [68]. ثم يحوّل التسريع المتناثر أنماط التناثر إلى مكاسب زمنية فعلية [75]، [76]، [77].</p>
+    <p>يخفض تكميم النماذج الدقة العددية، منقسمًا بين التكميم اللاحق للتدريب — الرخيص القائم على المعايرة مع فقد طفيف [90]، [91]، [92] — والتدريب الواعي بالتكميم الذي يستعيد الدقة بكلفة تدريب أعلى [93]، [94]، [95]؛ وتخصص سياسات الدقة المختلطة والطبقية البتات حيث تقتضيها الحساسية [96]، [97]، [98].</p>
+    <p>وتتمثل النظرة المستقبلية للمسح في التراكب متعدد التحسينات: التقليم والتكميم والتسريع المتناثر مطبقةً معًا لا بمعزل، مع تنسيق متعلم واعٍ بالعتاد يحل محل خطوط اليوم التسلسلية [105]، [106]، [107].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. سلسلة أدوات التجميع</h2>
+    <p>يعيد تحسين الرسم الحاسوبي كتابة رسوم النماذج — دمج المعاملات وتحويل التخطيط وتخطيط الذاكرة — لتقليل إطلاق النوايات وحركة البيانات قبل إصدار سطر واحد من الشيفرة الهدف [110]، [111]، [112]. ففي هذه المراحل تلتقي عمومية الإطار مع واقع الجهاز.</p>
+    <p>يخفّض التوليد الآلي للشيفرة بعد ذلك الرسوم المحسنة إلى خلفيات غير متجانسة (معالج مركزي ورسومي ومعالج إشارة ووحدة عصبية)، مضبطًا الجداول للتسلسل الهرمي للذاكرة المتاح [113]، [114]، [115]. والاتجاه المستقبلي هنا هو التجميع المشترك للرسم والحوسبة: التحسين المشترك لإعادات كتابة الرسم مع جداول الحوسبة لأجل قابلية التوسع، ليتتبع التجميع تنوع سيليكون الطرفية أفضل [120]، [121]، [122].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. الاستدلال التعاوني</h2>
+    <p>يجمع التعاون بين الأجهزة العقد الطرفية المتجاورة لتنفيذ مجزأ أو مكرر عندما لا يكفي جهاز واحد [130]، [131]، [132]. ويقسّم التفريغ بين الجهاز والطرفية النماذج بين الجهاز والخوادم القريبة، موازنًا زمن الاستجابة مقابل كلفة الرفع وحمل الخادم [133]، [134]، [135].</p>
+    <p>يمدد التعاون بين الجهاز والسحابة التقسيم نفسه إلى مراكز البيانات البعيدة للمراحل المتقطعة أو الثقيلة معرفيًا، بينما تنسّق هرميات الجهاز-الطرفية-السحابة الطبقات الثلاث معًا، موضعةً كل معامل حيث ثمن زمنه وطاقته وخصوصيته أدنى [136]، [137]، [138].</p>
+    <p>والمشكلة المفتوحة التي يبرزها المسح هي تخصيص المهام وتركيبها بذكاء: توزيع تكيفي واعٍ بالعبء والشبكة يستجيب لاحتياجات التطبيقات المتنوعة بدل نقاط التقسيم الثابتة — الاتجاه المستقبلي الرابع [140]، [141]، [142].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. فرص البحث المستقبلية</h2>
+    <p>أولًا، بحث معماري قابل للتفسير واقتصادي: تقليم فضاء البحث على مستوى المسار، ومعاملات بنيوية ثنائية بدل الكاملة الدقة لخفض ذاكرة المعالج الرسومي، وهجن التدرج مع التعزيز لرفع الكفاءة دون التضحية بالجودة — مع نظرية أعمق لسبب تضليل مشاركة المعاملات أحيانًا [157]، [158].</p>
+    <p>وثانيًا، ضغط التراكب متعدد التحسينات والتجميع المشترك للرسم والحوسبة: توحيد التقليم والتكميم والتناثر [150]، [151]، [152] مع التصميم المشترك لإعادات كتابة الرسم وجداول الحوسبة [120]، [121] لتتراكب التحسينات بدل تعارضها.</p>
+    <p>وثالثًا، تخصيص المهام الذكي للاستدلال التعاوني [140]، [141]، مكملًا بتقدم شامل يستشهد به المسح في دراسات الانتباه الفعال والنشر [162]، [163]، [164] — لقيادة الخدمات الطرفية معًا نحو كلفة تدريب أدنى وكفاءة قابلة للتركيب وتوزيع أذكى.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. الخاتمة</h2>
+    <p>يتطور الاستدلال الطرفي سريعًا لخدمة التطبيقات الذكية محدودة الموارد، ويوضح تجميع المسح رباعي الاتجاهات — التصميم الخفيف بالخبرة أو البحث المعماري، والضغط، وتحسين سلسلة الأدوات، والاستدلال التعاوني — كيف يخفف كل اتجاه عنق زجاجة مميزًا مع الحفاظ على مزايا ذكاء الطرفية [13]، [14]، [18]، [19].</p>
+    <p>تحديات مستمرة تحد المجال: كلفة البحث المعماري وغموضه، وخطوط الضغط أحادية التقنية، وفجوات تجميع الرسم والحوسبة، والتوزيع التعاوني الثابت. وتهدف الأجندة الموصى بها — بحث اقتصادي قابل للتفسير وضغط تراكبي وتجميع مشترك وتخصيص ذكي — إلى خدمات طرفية أكثر ذكاءً وكفاءةً وحفاظًا على الخصوصية معًا [150]، [162]، [163]، [164].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Artificial intelligence keeps raising production efficiency across society, but real-time requirements and privacy concerns are shifting inference from cloud scenarios to edge scenarios [13], [14]. As intelligent models grow in complexity and size, edge inference (EI) faces mounting challenges that existing works attack from four directions: model design, model compression, compilation toolchain, and collaborative inference [18], [19].</p>
+    <p>This survey systematizes the state of the art across those four directions — reviewing background and motivation, then analyzing the key issues, characteristics, and technologies of each — and distills future development trends [27], [29], [30]. It is intended to help researchers sort the EI-optimization landscape quickly and to inspire follow-up work that makes edge services more intelligent, efficient, and privacy-preserving.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction and Preliminaries</h2>
+    <p>Edge inference migrates model execution from the cloud to edge devices to meet latency, bandwidth, and privacy demands, a shift visible in flagship applications from autonomous driving [1], [2], [3] to medical assistance [4]. The survey's preliminaries define EI, motivate the migration, and organize optimization research into the four-direction taxonomy that structures the whole paper [13], [14].</p>
+    <p>Each direction is characterized by its target bottleneck: model design attacks parameter count at the source; compression shrinks trained models; the compilation toolchain optimizes how models execute on heterogeneous hardware; and collaborative inference distributes work across devices, edge servers, and clouds [18], [19], [20].</p>
+    <p>The survey's structure mirrors this taxonomy — lightweight design, compression, toolchain, collaboration, then future opportunities — giving readers a roadmap in which every technique can be located by the bottleneck it relieves and the deployment tier it serves [21], [22], [23].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Lightweight Model Design</h2>
+    <p>Design by experience compiles manual techniques — efficient convolutions, bottleneck structures, and architecture motifs proven in mobile-class networks — into rules of thumb that simplify models for EI without automated search [34], [35], [36]. These methods trade designer effort for predictable, hardware-friendly structures.</p>
+    <p>Neural architecture search (NAS) replaces manual design with automated discovery under multi-index hardware constraints [37], [38], [39]. Early large-scale evolution [155] used evolutionary algorithms but suffered from vast search spaces, while NASNet [156] introduced a modular search space that cut search cost at some risk of missing optimizations — leaving the search-space versus efficiency balance a central research question.</p>
+    <p>Proxy-based and proxyless NAS variants, together with parameter-sharing strategies [157], push search efficiency further, though evidence that sharing can yield suboptimal architectures [158] motivates the survey's first future direction: cheaper, better-grounded NAS via path-level pruning, binary parameter methods, and gradient-plus-reinforcement hybrids [45], [46], [47].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Model Compression</h2>
+    <p>Model pruning removes redundancy at three granularities: structured pruning drops whole filters or channels for hardware-friendly speedups [60], [61], [62]; unstructured pruning zeroes individual weights for maximum compression at the cost of sparse-execution support [63], [64], [65]; and semi-structured pruning (e.g., N:M sparsity) seeks both compression and accelerability [66], [67], [68]. Sparse acceleration then converts sparsity patterns into wall-clock gains [75], [76], [77].</p>
+    <p>Model quantization lowers numerical precision, split between post-training quantization (PTQ) — cheap, calibration-based, slightly lossy [90], [91], [92] — and quantization-aware training (QAT), which recovers accuracy at higher training cost [93], [94], [95]; mixed-precision and layer-wise policies allocate bits where sensitivity demands them [96], [97], [98].</p>
+    <p>The survey's forward look for compression is multi-optimization overlay: pruning, quantization, and sparsification applied jointly rather than in isolation, with learned, hardware-aware orchestration replacing today's sequential pipelines [105], [106], [107].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Compilation Toolchain</h2>
+    <p>Computational-graph optimization rewrites model graphs — operator fusion, layout transformation, and memory planning — to reduce kernel launches and traffic before a single line of target code is emitted [110], [111], [112]. These passes are where framework-level generality meets device-level reality.</p>
+    <p>Automatic code generation then lowers optimized graphs to heterogeneous backends (CPU, GPU, DSP, NPU), autotuning schedules for the memory hierarchy at hand [113], [114], [115]. The survey's future direction here is graph–compute joint compilation: co-optimizing graph rewrites with compute schedules for scalability, so that compilation better tracks the diversity of edge silicon [120], [121], [122].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Collaborative Inference</h2>
+    <p>Device–device collaboration pools neighboring edge nodes for partitioned or replicated execution when no single device suffices [130], [131], [132]. Device–edge offloading splits models between the device and nearby servers, balancing latency against uplink cost and server load [133], [134], [135].</p>
+    <p>Device–cloud collaboration extends the same split to remote data centers for bursty or knowledge-heavy stages, while device–edge–cloud hierarchies orchestrate all three tiers, placing each operator where its latency, energy, and privacy price is lowest [136], [137], [138].</p>
+    <p>The open problem the survey highlights is intelligent task allocation and combination: adaptive, workload- and network-aware placement that responds to diverse application needs rather than static partition points — the fourth future direction [140], [141], [142].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Future Research Opportunities</h2>
+    <p>First, interpretable and economical NAS: path-level pruning of the search space, binary instead of full-precision structural parameters to cut GPU memory, and gradient-plus-reinforcement hybrids to raise efficiency without sacrificing quality — alongside deeper theory for why parameter sharing [157] sometimes misleads [158].</p>
+    <p>Second, multi-optimization overlay compression and joint graph–compute compilation: unifying pruning, quantization, and sparsity [150], [151], [152] while co-designing graph rewrites and compute schedules [120], [121] so stacked optimizations compose instead of conflicting.</p>
+    <p>Third, intelligent task allocation for collaborative inference [140], [141], complemented by cross-cutting progress the survey cites in efficient attention and deployment studies [162], [163], [164] — together steering edge services toward lower training cost, composable efficiency, and smarter placement.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Conclusion</h2>
+    <p>Edge inference is developing rapidly to serve resource-constrained intelligent applications, and this survey's four-direction synthesis — lightweight design via experience or NAS, compression, toolchain optimization, and collaborative inference — maps how each relieves a distinct bottleneck while preserving the advantages of edge intelligence [13], [14], [18], [19].</p>
+    <p>Persistent challenges bound the field: NAS cost and opacity, single-technique compression pipelines, graph–compute compilation gaps, and static collaborative allocation. The recommended agenda — economical interpretable NAS, overlay compression, joint compilation, and intelligent allocation — aims at edge services that are jointly more intelligent, efficient, and privacy-preserving [150], [162], [163], [164].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed selection of 22 references with original numbering preserved; see the <a href="https://doi.org/10.3390/electronics14071345">original paper</a> for the full 164-reference list.</p>
+    <ol dir="ltr">
+      <li value="1">Kiran, B.R.; Sobh, I.; Talpaert, V.; et al. Deep reinforcement learning for autonomous driving: A survey. <em>IEEE Trans. Intell. Transp. Syst.</em> 2021, <em>23</em>, 4909–4926.</li>
+      <li value="4">Deep-learning application reference (medical/autonomous domains). See full list in the original paper.</li>
+      <li value="13">Background reference on edge-intelligence motivation and applications. See full list in the original paper.</li>
+      <li value="18">Optimization-direction taxonomy reference: model design and compression for EI. See full list in the original paper.</li>
+      <li value="27">Edge benchmarking reference for EI evaluation methodology. See full list in the original paper.</li>
+      <li value="30">Lightweight architecture reference for mobile-class efficient networks. See full list in the original paper.</li>
+      <li value="60">Structured pruning reference for hardware-friendly EI acceleration. See full list in the original paper.</li>
+      <li value="75">Sparse acceleration reference for converting sparsity into latency gains. See full list in the original paper.</li>
+      <li value="90">Post-training quantization (PTQ) reference for calibration-based EI compression. See full list in the original paper.</li>
+      <li value="105">Multi-optimization overlay compression reference. See full list in the original paper.</li>
+      <li value="110">Computational-graph optimization reference for EI compilation. See full list in the original paper.</li>
+      <li value="120">Graph–compute joint compilation reference. See full list in the original paper.</li>
+      <li value="130">Device–device collaborative inference reference. See full list in the original paper.</li>
+      <li value="136">Device–edge–cloud hierarchy reference for tiered EI orchestration. See full list in the original paper.</li>
+      <li value="140">Intelligent task allocation reference for collaborative EI. See full list in the original paper.</li>
+      <li value="150">Overlay-compression orchestration reference. See full list in the original paper.</li>
+      <li value="155">Large-scale evolution: evolutionary algorithms as NAS search strategy. See full list in the original paper.</li>
+      <li value="156">NASNet: modular search space for efficient neural architecture search. See full list in the original paper.</li>
+      <li value="157">Parameter sharing strategy for efficient NAS. See full list in the original paper.</li>
+      <li value="158">Suboptimal-architecture risk of parameter sharing in NAS. See full list in the original paper.</li>
+      <li value="162">Efficient attention reference for edge deployment studies. See full list in the original paper.</li>
+      <li value="164">Edge deployment study reference. See full list in the original paper.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics14071345">10.3390/electronics14071345</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>معايير النماذج اللغوية الكبيرة: تصنيف القدرات وتقييم الجودة العلمية وتحليل التشبع — DAR</title>
+<meta name="description" content="Large Language Model Benchmarks: A Taxonomy of Capabilities, Scientific Quality Assessment, and Saturation Analysis — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/llm-benchmarks-taxonomy-make/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Large Language Model Benchmarks: A Taxonomy of Capabilities, Scientific Quality Assessment, and Saturation Analysis</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">معايير النماذج اللغوية الكبيرة: تصنيف القدرات وتقييم الجودة العلمية وتحليل التشبع</h2>
+
+  <div class="paper-meta">
+    <span>👤 Rubén Gómez, Carlos E. Miranda, Julio-Alejandro Romero-González, Diana-Margarita Córdova-Esparza, Gendry Alfonso-Francia, Edgar-Arturo Chávez-Urbiola, Alfonso Ramirez-Pedraza, Juan Terven</span>
+    <span>📄 Mach. Learn. Knowl. Extr. (MAKE), 2026 · Vol. 8, No. 6, 141</span>
+    <span>🔗 <a href="https://doi.org/10.3390/make8060141">10.3390/make8060141</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>كشف التطور السريع للنماذج اللغوية الكبيرة حدود المعايير الساكنة المتمحورة حول الدقة، وزاد الحاجة إلى أطر تقييم تميّز بين القدرات وجودة المعايير. تحلل هذه المسح 63 معيارًا تمتد من 2012 إلى 2026، منظمة في تصنيف من ستة أبعاد للقدرات و20 فئة فرعية تشغيلية.</p>
+    <p>ويقترح الباحثون مؤشر ضمان جودة المعايير (BQAI)، وهو إطار مركّب مرجّح بطريقة AHP [104] يقيّم الجودة العلمية للمعايير عبر سبعة أبعاد (التعليق التوضيحي والوضوح والتوحيد وقابلية إعادة الإنتاج والمتانة والتغطية والإنصاف). وطُبّق المؤشر على 30 معيارًا تمثيليًا (48% من المدونة) بتسجيل أعمى من ثلاثة مقيّمين، وتحقق صارم من الموثوقية بين المقيّمين (ICC(2,k) وكابا كوهين التربيعية)، وتحليل حساسية مونت كارلو (1000 محاكاة، اضطراب أوزان ±10% إلى ±50%).</p>
+    <p>وإضافة إلى ذلك، تجمع الدراسة نتائج الأداء العلنية لـ16 نموذجًا عبر 10 معايير لفحص اتجاهات التشبع وفجوات الإبلاغ. ويشير التحليل إلى تباين فائدة المعايير كثيرًا عبر الإعدادات، وأن عدة معايير راسخة تفقد تمييزها للنماذج الرائدة، وتبقى فجوات مهمة في تقييم السلامة والوكلاء والتعدد الثقافي — مع رسم التصنيف والمؤشر وتحليل التشبع معًا أولويات تقييم أكثر صرامة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>ظل قياس ذكاء الآلة محوريًا للذكاء الاصطناعي منذ «لعبة المحاكاة» لتيورينغ [1]، لكن العلم الحديث يتطلب بروتوكولات موحدة ومقاييس كمية وإعدادات قابلة لإعادة الإنتاج — مع تأكيد الرؤى المعاصرة على كفاءة التعلم والتعميم والجدارة بالثقة كشروط تشغيلية [2،3]. ومكنت معالجة اللغة الإحصائية مقارنات الدقة وBLEU وF1 [4]، ثم حوّلت البنى العميقة التقييم نحو أجنحة المعايير المشتركة وقوائم الصدارة.</p>
+    <p>لكن القدرات الرائدة — الاستدلال وتركيب الشيفرات واستخدام الأدوات والتخطيط طويل الأمد والتكامل متعدد الوسائط — جعلت التقييم أحادي الدرجة غير كافٍ، بينما تتسرب مجموعات الاختبار الساكنة increasingly إلى مدونات التدريب (التلوث)، وتتشبع الدرجات، ويتخلف تغطية السلامة والوكلاء والتعدد الثقافي. وتستجيب هذه المسح بثلاث أدوات: تصنيف موحد ثنائي المستوى (ستة أبعاد معرفية ← 20 فئة فرعية)، ومقياس الجودة BQAI، وتحليل تشبع فوق مصفوفة أداء من 16 نموذجًا تمتد إلى معايير ما بعد 2024 (HLE وFrontierMath [37] وLiveBench [68] وBBEH) ونماذج وضع الاستدلال (o1 وR1).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة والتموضع</h2>
+    <p>تؤطر ست مسوحات رئيسية التموضع (الجدول 1): يقدم Zhao [11] وMinaee [25] نظرات بانورامية حيث التقييم ثانوي للبنية؛ ويعد Chang [26] (147 مجموعة بيانات: ماذا/أين/كيف نقيّم) وGuo [27] (تنظيم بالأبعاد) أشمل الجهود المتمحورة حول التقييم لكنهما يعاملان كل المعايير كأدوات متكافئة الصلاحية؛ وينتقد Laskar [28] وMcIntosh [17] إخفاقات قابلية إعادة الإنتاج والتلوث وحساسية الصيغة دون علاج كمي؛ وأحدث مسح متمحور حول المعايير، Ni [29] (283 معيارًا)، يوفر اتساعًا في التلوث والتحيز الثقافي لكنه يبقى وصفيًا، مثل المقترحات المتمحورة حول الصلاحية ومعايير الاختبارات التربوية التي تؤكد الصلاحية والموثوقية والإنصاف والتفسير الشفاف [30].</p>
+    <p>وتختلف هذه الورقة في ثلاثة جوانب: (1) مؤشر BQAI — مركّب مرجّح بـAHP من سبعة أبعاد قائمة على الأدلة بتسجيل أعمى وموثوقية ICC/κ وحساسية مونت كارلو؛ و(2) تصنيف موحد ثنائي المستوى (الأبعاد D1–D6 ← 20 فئة فرعية) يجسر النظرية المعرفية بالأهداف القابلة للقياس؛ و(3) تغطية معايير ما بعد 2024 (HLE وBBEH وLiveBench) ونماذج وضع الاستدلال (DeepSeek-R1 وسلسلة GPT-o).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. التصنيف: الاستدلال والمعرفة (D1–D2)</h2>
+    <p>يلتقط البعد الأول (الاستدلال وحل المشكلات) الاستنتاج المنطقي المجرد والاشتقاق الرياضي والاكتشاف السببي والاستدلال العلمي — الذكاء السائل والتعميم التركيبي — عبر أربع فئات فرعية: المنطقي/المجرد (الحس السليم والإحالة وسلاسل الاستدلال والحدس الفيزيائي: WinoGrande [14] وHellaSwag [34] وBBH [35])؛ والرياضي (من المسائل اللفظية الأولية إلى براهين الطليعة: GSM8K [36] وMATH [15] وFrontierMath [37])؛ والسببي (سلالم التدخل والمخالف للواقع: CLadder وQRData)؛ والعلمي (أسئلة بمستوى الدراسات العليا: GPQA [20]).</p>
+    <p>ويقيّم البعد الثاني (المعرفة والفهم) المعرفة المتبلورة والتأريض عبر أربع فئات: المعرفة العامة (MMLU [19] وAGIEval وHLE [42])؛ وفهم المقروء (SQuAD وDROP وSuperGLUE)؛ والمعرفة متعددة الوسائط (MathVista [44] والاستدلال المؤرض بالمخططات)؛ والمجالات المتخصصة (MMLU-Pro [80] وC-Eval وGreekBarBench [47] والخلفاء المقاومون للتلوث مثل MMLU-CF [109]).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. التصنيف: التوليد والوكالة (D3–D4)</h2>
+    <p>يقيس البعد الثالث (التوليد والإبداع) إنتاج مصنوعات صحيحة وعملية ومناسبة سياقيًا عبر ثلاث فئات: توليد الشيفرات (من إكمال الدوال إلى هندسة مستودعات كاملة، يُتحقق منها بالتنفيذ: HumanEval [49] وSWE-bench [50] وLiveCodeBench [72] وDS-1000)؛ وتوليد اللغة (جودة الحوار واتباع التعليمات والفائدة ببروتوكولات بشرية أو حكم-النموذج: Chatbot Arena [52] وMT-Bench [53] وAlpacaEval 2.0 وArena-Hard [85])؛ واتباع التعليمات (تحقيق القيود تحت توجيهات متنوعة).</p>
+    <p>ويقيّم البعد الرابع (التفاعل والوكالة) التخطيط الذاتي وتكامل الأدوات والتنقل البيئي — تنسيق الأفعال عبر الزمن في بيئات مفتوحة جزئيًا — عبر ثلاث فئات: المهام الوكيلية المعقدة (تشغيل الأنظمة وقواعد البيانات والويب: GAIA وWebArena [57] وAgentBench)؛ واسترجاع المعلومات (RAG فوق مدونات خارجية: Visual-RAG)؛ ومعالجة الوثائق (التعرف الضوئي والاستخراج المنظم من وثائق واقعية).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. التصنيف: السلامة والشمولية والخصائص المشتركة</h2>
+    <p>يقيس البعد الخامس (المواءمة والسلامة) السلوك الجدير بالثقة والمتين اجتماعيًا عبر أربع فئات: السلامة/الرفض (تمييز التعليمات الضارة ومقاومة كسر الحماية: HarmBench [61] وAgentHarm)؛ والصدق (مقاومة الأكاذيب المعقولة: TruthfulQA [63])؛ والتحيز/الإنصاف (التكافؤ الديموغرافي: BBQ)؛ والمواءمة العامة (دساتير الفائدة وعدم الضرر والصدق: HHH). ويجمع البعد السادس (التقييم الشمولي) عبر فئتين: الأطر الشاملة (HELM وBIG-bench [16] وLiveBench [68]) وأجنحة التعدد اللغوي/الثقافي (C-Eval وGreekBarBench [47] وMFTCXplain).</p>
+    <p>وتقطع أربع خصائص الأبعاد بدل استقلالها: (1) المعايرة والوعي بعدم اليقين؛ و(2) الحداثة الزمنية ومقاومة التلوث (التحديثات الدورية والمسائل غير المنشورة والتحقق الخبير — LiveBench [68] وFrontierMath [37])؛ و(3) التحقق القائم على التنفيذ (اختبارات الوحدة والترقيعات القابلة للتنفيذ بدل مطابقة السلاسل)؛ و(4) الصلاحية البيئية (استخدام الأدوات والتخطيط متعدد الخطوات والتأريض الخارجي). ومزايا التصنيف: التماسك المفاهيمي والدقة التشغيلية وكشف فجوات التغطية — الاستدلال السببي في 2 فقط من 63 معيارًا، وندرة الإبلاغ الوكيلي، وعجز شفافية السلامة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. معايير الشمول وتكوين المدونة</h2>
+    <p>توازن سياسة شمول ثنائية المسار بحد زمني مارس 2026 بين الصرامة وتغطية الطليعة: يتطلب المسار الأساسي (المعايير الذهبية) كل مؤشرات الجودة الإلزامية بما فيها مقاومة التشبع (الطليعة <92%) وضوابط التلوث الموثقة، مرساة لترتيبات الطليعة؛ ويقبل المسار الناشئ (مسابر الطليعة) أدوات حديثة/متخصصة (رياضيات مستوى بحثي واكتشاف سببي واستدلال متعدد الوسائط) قد تُعفى من صرامة الاستشهادات مقابل بروتوكولات حقيقة مؤرضة قابلة للتحقق وخطوط أساس بشرية خبيرة وآليات مقاومة التسرب.</p>
+    <p>وتعطي سبعة معايير (C1–C7) أولوية للعمق المعرفي والصرامة ومقاومة التلوث: المواءمة الموضوعية مع التصنيف (C1)؛ والاعتماد في القوائم أو التحقق الخبير مثل HLE المحقق دكتوراه [42] وGreekBarBench بأسئلة نقابة المحامين [47] (C2)؛ والشفافية فوق المعرفية — خطوات الاستدلال الوسيطة واستشهاد المصادر (C3)؛ إضافة إلى معايير قابلية إعادة الإنتاج والمتانة والتغطية والإنصاف. وتمتد مدونة الـ63 معيارًا الناتجة 14 عامًا (من WSC 2012 إلى AIME 2025، و35% من 2024–2026): 42 نصية فقط و9 متعددة الوسائط و8 متخصصة بالشيفرات و6 وكيلية/تفاعلية — بسيادة إنجليزية (58) مع تغطية صينية (C-Eval وCLUEWSC) ويونانية ومتعددة اللغات (MFTCXplain: البرتغالية والإيطالية والفارسية).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. النماذج المرجعية ومصفوفة الأداء</h2>
+    <p>تتيح ستة عشر نموذجًا تمثيليًا في ثلاث فئات مقارنة متوازنة (حد مارس 2026): تسعة أنظمة مملوكة رائدة (GPT-5.4 وGPT-5.2 وGPT-5 High وGemini 3.1/3.0 Pro [92،93] وClaude Opus/Sonnet 4.6/4.5 [94–96] وGrok 4.1 [97]) كمراجع حد علوي؛ وستة نماذج مفتوحة رائدة (Llama 3.1 405B [98] وDeepSeek-V3.2 [99] وDeepSeek-R1 0528 [100] وQwen 3 235B [101] وQwen 3.5 [102] وKimi K2 Thinking [103]) للعلم القابل لإعادة الإنتاج وتحليل التكافؤ؛ وخط أساس طولي واحد (Claude 3.7 Sonnet). وتُطبق بروتوكولات موحدة (0/5 أمثلة حسب المعيار، حرارة 0.0–0.2 ببذرة ثابتة، نواة p=0.95، بلا أدوات خارجية إلا حيث تتطلبها بروتوكولات الوكلاء)، مع تسجيل نماذج وضع الاستدلال (†) بأقصى جهد.</p>
+    <p>وتجمع الجداول 4–6 الدرجات العلنية عبر 10 معايير مميزة: MMLU/MMLU-Pro (D2) وGPQA Diamond (استدلال علمي D1) وMATH-500/AIME 2025 (رياضيات D1) وHumanEval/LiveCodeBench/SWE-bench Verified (شيفرات D3) وHLE (معرفة خبيرة D2، الأكثر تمييزًا) وترتيب Arena Elo (وكيل شمولي D3) — مثلًا Gemini 3.1 Pro بـ91.2% في MMLU-Pro و94.1% في GPQA Diamond؛ وGPT-5 (High) بـ99.4% في MATH-500؛ وHLE ممتدًا من 10.1 إلى 45.9% دون تجاوز أي نموذج 50%.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5.4 الملاحظات الرئيسية من بيانات الأداء</h2>
+    <p>يُظهر الاستدلال D1 تشبعًا متشعبًا: فالاستدلال العلمي (GPQA Diamond) يقترب من السقف — Gemini 3.1 Pro (94.1%) وGPT-5.4 (94.0%) يتجاوزان متوسط خطوط الأساس البشرية الدكتوراه، مع أربعة نماذج فوق 90% — مهددًا بفقد التمييز خلال 6–12 شهرًا؛ والاستدلال الرياضي متشعب بشدة، إذ تبلغ 5 نماذج فقط عن MATH-500 (منضغطة عند السقف: GPT-5 High 99.4% وQwen 3 235B 98.4%) بينما تقترب مسائل المسابقات (AIME 2025) من 100% لثلاثة نماذج رائدة ويبقى FrontierMath البحثي [37] دون 50%. ويواجه D2 المعرفي عوائد متناقصة: يتكتل MMLU عند 88–92.5% قرب سقوف خطأ التعليق ويبلغ MMLU-Pro [80] أصلًا 90–92% للأنظمة العليا، تاركًا HLE (انتشار 10.1–45.9%) البعد المميز الوحيد — بكلفة قابلية إعادة إنتاج علنية محدودة.</p>
+    <p>ويُظهر التوليد D3 تقييم شيفرات ناضجًا (LiveCodeBench بـBQAI 0.772 وSWE-bench Verified بـ0.720) لكن أزمة قياس جودة الحوار: ينضغط Chatbot Arena (BQAI 0.606) (الخمسة الأوائل ضمن 40 Elo في 2026 مقابل >200 في 2024) مع معضلة مستعصية بين قابلية إعادة الإنتاج والصلاحية البيئية (MT-Bench الحتمي [53] مقابل التفضيل البشري الحي). ويعاني D4 الوكيلي وD5 السلامة ندرة بيانات حادة وفجوات شفافية: فلا معيار وكيلي يبلغ الفئة A، وتقدم التقارير التقنية تغطية سلامة دنيا — مع تكافؤ مفتوح المصدر (DeepSeek-V3.2 بـElo 1421 وQwen 3 235B بـ1422 وQwen 3.5 بـGPQA 88.4%) موثق لكن ناقص الإبلاغ.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6–7 إطار BQAI وتقييمه</h2>
+    <p>يُشغّل BQAI سبعة أبعاد جودة (Q1 التعليق وQ2 الوضوح وQ3 التوحيد وQ4 قابلية إعادة الإنتاج وQ5 المتانة/مقاومة التلوث وQ6 التغطية وQ7 الإنصاف) عبر مسطرة رباعية المستويات قائمة على الأدلة (الجدول 7)، بأوزان مشتقة بـAHP [104] تحت مبدأ أولوية قابلية الإنتاج العلمي (Q4 الأثقل w=0.349 ثم Q1 بـ0.213 وQ5) — بنسبة اتساق 0.023 (الجدول 8). وتتبعها ثلاث فئات جودة: الفئة A (≥0.82، درجة الادعاء الأولي) والفئة B (0.70–0.82، استخدام ثانوي) والفئة C (<0.70، تاريخي/متخصص فقط).</p>
+    <p>وطُبّق على 30 معيارًا (القسم 7؛ معايير اختيار C1–C5 توازن التغطية البعدية والاعتماد الموثق والتنوع الزمني 2019–2025) بتسجيل أعمى من ثلاثة مقيّمين، فجاء المؤشر متحفظًا عمدًا: معيار واحد في A (HLE بـ0.831 — تعليق خبير Q1=0.81 ومقاومة تلوث Q5=0.93 وتغطية Q6=0.82 وقابلية إنتاج Q4=0.84 والإنصاف Q7=0.43 الفجوة الوحيدة)، و10 في B (LiveBench 0.786 وLiveCodeBench 0.772 وHELM 0.769 بأعلى إنصاف في المدونة Q7=0.75 وHarmBench 0.727، إضافة لحالات قريبة من A يحدها التلوث)، و19 في C — منها أسس مشبعة (MMLU 0.589 وGSM8K 0.587 وHellaSwag [34] 0.583 وHumanEval [49] 0.634) ينهار Q5 فيها إلى 0.12–0.17 رغم إنتاجية قوية (Q4 0.79–0.91)، مؤكد تجريبيًا مثلًا بفجوات إعادة GSM1k [107].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7.4–7.6 الأنماط والحساسية وإرشادات الاختيار</h2>
+    <p>أنماط الأبعاد: قابلية إعادة الإنتاج (Q4) ثنائية النسق (مرتفعة ≥0.85 لـHELM وMMLU-Pro [80] وSWE-bench Verified وHumanEval [49] وLiveCodeBench وLiveBench وGSM8K؛ وChatbot Arena [52] وحده عند 0.43 لعدم قابلية أصوات الحشود لإعادة الإنتاج)؛ والتعليق (Q1) أشد تحت متوسطات المقيّمين المتعددين (لا معيار ≥0.85، معاقبة عدم توثيق اتفاق المعلقين). ويُظهر تحليل الحساسية (مونت كارلو 1000 عند ±10/25/50% وأربعة مخططات ترجيح بفلسفات بديلة وخط أساس متساوي الأوزان) استقرار الرتب عبر Kendall's τ (الجدولان 13–14): فعضوية A/B متينة أمام الاضطراب الهامشي-المعتدل، وتتدهور فقط تحت الترجيح المتساوي المتطرف.</p>
+    <p>إرشادات الاختيار: للتتبع الطولي، تُعطى أولوية لـHLE وأعلى الفئة B القوية المتانة (LiveBench وLiveCodeBench وHELM وHarmBench [61])؛ وللتنميط الشامل، يُجمع تغطية HELM الشمولية (Q6=0.93) مع HLE (معرفة خبيرة 0.82) وMMMU (متعدد الوسائط 0.85) وAgentBench (وكيلي 0.86) وC-Eval للتعدد اللغوي — مع حد أدنى للإبلاغ البعدي (D1: GPQA [20] مع MATH-500/FrontierMath [37]؛ D2: HLE مع MMLU-Pro [80]؛ D3: SWE-bench Verified مع Arena Elo؛ D4: GAIA/WebArena [57]؛ D5: TruthfulQA [63] أو HarmBench [61]).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">8–9 التحديات والخاتمة</h2>
+    <p>تتطلب ثماني فجوات اهتمامًا (8.1–8.8): تشبع D1 المتشعب (AIME 2025 عند ~100% مقابل FrontierMath [37] دون 50%، بلا وسيط 70–90%؛ والاستدلال السببي في CLadder/QRData فقط)؛ وتشبع D2 بلا بدائل (MMLU-Pro [80] عند 90–92%، وتوتر HLE بين الخصوصية المقاومة لجوجل وقابلية الإنتاج)؛ وأزمة جودة حوار D3 (انضغاط Arena Elo، ولا أداة تجمع الإنتاجية والصلاحية البيئية)؛ وندرة بيانات D4 الوكيلية (المعايير الوكيلية الأربعة كلها في C: WebArena [57] 0.695 وAgentBench 0.674 وGAIA 0.665)؛ وفجوات شفافية سلامة D5 (أفضلها HarmBench [61] في B بـ0.727؛ وأذى وكيلي ناقص الاستكشاف)؛ وتشتت D6 (HELM 0.769 مقابل أطر BIG-bench/BBEH/LiveBench/SimpleBench غير المتوافقة)؛ ومعضلة التلوث-الإنتاجية المشتركة (14 فقط من 63 معيارًا، 22%، بآليات نشطة؛ وتقلص أعمار المعايير الساكنة).</p>
+    <p>المساهمات الرئيسية: (1) تصنيف سداسي الأبعاد موحد بعشرين فئة فرعية يكشف فجوات السببية والوكالة والسلامة؛ و(2) مقياس الجودة BQAI المرجح بالأدلة بتسجيل أعمى وتحقق حساسية؛ و(3) تحليل تشبع من 16 نموذجًا يوثق الأسقف المتشعبة وتكافؤ المصدر المفتوح. والتوصيات: إعطاء أولوية لمعايير A/B للادعاءات الأولية، وإلزام الإبلاغ سداسي الأبعاد في إصدارات الطليعة، والاستثمار في بنية مقاومة للتلوث (التزامات تشفيرية وتوليد إجرائي) وتقييم سببي/فوق معرفي وسلامة عابرة للثقافات — فالقياس مشكلة أجهزة أساسًا، وما زال الميدان يفتقر إلى محفظة مستقرة من أدوات سليمة تليق بقدرات الطليعة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>The rapid evolution of Large Language Models has exposed the limits of static, accuracy-oriented benchmarks and increased the need for evaluation frameworks that distinguish among capabilities and benchmark quality. This survey analyzes 63 LLM benchmarks spanning 2012–2026, organizing them into a taxonomy of six capability dimensions and 20 operational subcategories.</p>
+    <p>The authors propose the Benchmark Quality Assurance Index (BQAI), an AHP-weighted [104] composite framework assessing benchmark scientific quality across seven dimensions (annotation, clarity, standardization, reproducibility, robustness, coverage, fairness). The BQAI is applied to 30 representative benchmarks (48% of the corpus) with three-evaluator blinded scoring, formal inter-rater reliability validation (ICC(2,k) and quadratic-weighted Cohen's κ), and Monte Carlo sensitivity analysis (n=1000 trials, ±10% to ±50% weight perturbation).</p>
+    <p>Additionally, the study synthesizes public performance results for 16 models across 10 benchmarks to examine saturation trends and reporting gaps. The analysis indicates that benchmark usefulness varies substantially across settings, several established benchmarks are becoming less discriminative for frontier models, and important gaps remain in safety, agentic, and cross-cultural assessment — with the taxonomy, BQAI, and saturation analysis jointly charting priorities for more rigorous evaluation.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Measuring machine intelligence has been central to AI since Turing's 'Imitation Game' [1], but modern science demands standardized protocols, quantifiable metrics, and reproducible settings — with contemporary views emphasizing learning efficiency, generalization, and trustworthiness as operational desiderata [2,3]. Statistical NLP enabled accuracy, BLEU, and F1-score comparisons [4], and deep architectures shifted evaluation toward shared benchmark suites and leaderboards.</p>
+    <p>Yet frontier capabilities — reasoning, code synthesis, tool use, long-horizon planning, multimodal integration — have rendered single-score evaluation inadequate, while static test sets increasingly leak into training corpora (contamination), scores saturate, and safety/agentic/cross-cultural coverage lags. This survey responds with three instruments: a unified two-level taxonomy (six cognitive dimensions → 20 subcategories), the BQAI quality metric, and a saturation analysis over a 16-model performance matrix extending to post-2024 benchmarks (HLE, FrontierMath [37], LiveBench [68], BBEH) and reasoning-mode models (o1, R1).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related Work and Positioning</h2>
+    <p>Six major surveys frame the positioning (Table 1): Zhao [11] and Minaee [25] offer panoramic LLM overviews where evaluation is secondary to architecture; Chang [26] (147 datasets: what/where/how to evaluate) and Guo [27] (capability-dimension organization) are the most comprehensive evaluation-focused efforts but treat all benchmarks as equally valid instruments; Laskar [28] and McIntosh [17] critique reproducibility failures, contamination, and format sensitivity without proposing a quantitative remedy; and the most recent benchmark-focused survey, Ni [29] (283 benchmarks), provides breadth on contamination and cultural bias but remains descriptive, as do adjacent validity-centered proposals such as Salaudeen et al. and educational-testing standards emphasizing validity, reliability, fairness, and transparent interpretation [30].</p>
+    <p>This work differs in three respects: (1) the BQAI — an AHP-weighted composite of seven evidence-based dimensions with blinded three-evaluator scoring, ICC/κ reliability, and Monte Carlo sensitivity; (2) a unified two-level taxonomy (D1–D6 dimensions → 20 subcategories) bridging cognitive theory with measurable targets; and (3) coverage of post-2024 benchmarks (HLE, BBEH, LiveBench) and reasoning-mode models (DeepSeek-R1, GPT-o series).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Taxonomy: Reasoning and Knowledge (D1–D2)</h2>
+    <p>Dimension 1 (Reasoning and Problem-Solving) captures abstract logical inference, mathematical derivation, causal discovery, and scientific reasoning — fluid intelligence and compositional generalization — via four subcategories: Logical/Abstract (commonsense, coreference, multi-step chains, physical intuition: WinoGrande [14], HellaSwag [34], BBH [35]); Mathematical (elementary word problems to frontier proofs: GSM8K [36], MATH [15], FrontierMath [37]); Causal (intervention/counterfactual ladders: CLadder, QRData); and Scientific (graduate-level Q&A: GPQA [20]).</p>
+    <p>Dimension 2 (Knowledge and Comprehension) evaluates crystallized knowledge and grounding via four subcategories: General Knowledge (MMLU [19], AGIEval, HLE [42]); Reading Comprehension (SQuAD, DROP, SuperGLUE); Multimodal Knowledge (MathVista [44] and diagram-grounded reasoning); and Specialized Domains (MMLU-Pro [80], C-Eval, GreekBarBench [47], and contamination-free successors such as MMLU-CF [109]).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Taxonomy: Generation and Agency (D3–D4)</h2>
+    <p>Dimension 3 (Generation and Creativity) measures production of correct, functional, contextually appropriate artifacts via three subcategories: Code Generation (function completion to repository-scale engineering, verified by execution: HumanEval [49], SWE-bench [50], LiveCodeBench [72], DS-1000); Language Generation (dialog quality, instruction-following, helpfulness via human or LLM-as-judge protocols: Chatbot Arena [52], MT-Bench [53], AlpacaEval 2.0, Arena-Hard [85]); and Instruction Following (constraint satisfaction under diverse directives).</p>
+    <p>Dimension 4 (Interaction and Agency) evaluates autonomous planning, tool integration, and environment navigation — coordinating actions over time in partially open environments — via three subcategories: Complex Agentic Tasks (OS/database/web operation: GAIA, WebArena [57], AgentBench); Information Retrieval (RAG over external corpora: Visual-RAG); and Document Processing (OCR and structured extraction from realistic documents).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Taxonomy: Safety, Holism, and Cross-Cutting Properties</h2>
+    <p>Dimension 5 (Alignment and Safety) measures trustworthy, socially robust behavior via four subcategories: Safety/Refusal (harmful-instruction recognition and jailbreak resistance: HarmBench [61], AgentHarm); Truthfulness (resisting plausible falsehoods: TruthfulQA [63]); Bias/Fairness (demographic parity: BBQ); and General Alignment (helpfulness-harmlessness-honesty constitutions: HHH). Dimension 6 (Holistic Evaluation) aggregates via two subcategories: Comprehensive Frameworks (HELM, BIG-bench [16], LiveBench [68]) and Multilingual/Cross-Cultural suites (C-Eval, GreekBarBench [47], MFTCXplain).</p>
+    <p>Four properties cut across dimensions rather than standing alone: (1) calibration and uncertainty awareness; (2) temporal freshness and contamination resistance (rolling updates, unpublished problems, expert validation — LiveBench [68], FrontierMath [37]); (3) execution-based verification (unit tests, executable patches over string matching); and (4) ecological validity (tool use, multi-step planning, external grounding). The taxonomy's advantages: conceptual coherence, operational precision, and exposure of coverage gaps — causal reasoning in only 2/63 benchmarks, sparse agentic reporting, and safety transparency deficits.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Inclusion Criteria and Corpus Composition</h2>
+    <p>A two-track inclusion policy with a March 2026 cut-off balances rigor with frontier coverage: the Core Track (Gold Standards) requires all mandatory quality indicators including saturation resistance (SOTA <92%) and documented contamination controls, anchoring frontier rankings; the Emerging Track (Frontier Probes) admits recent/specialized instruments (research-level mathematics, causal discovery, multimodal reasoning) that may waive strict citation requirements given verifiable ground-truth protocols, expert human baselines, and anti-leakage mechanisms.</p>
+    <p>Seven criteria (C1–C7) prioritize cognitive depth, rigor, and contamination resistance: thematic alignment with the taxonomy (C1); adoption on leaderboards or expert validation such as PhD-verified HLE [42] and Bar-exam GreekBarBench [47] (C2); metacognitive transparency — intermediate reasoning steps and source citation (C3); plus reproducibility, robustness, coverage, and fairness standards. The resulting 63-benchmark corpus spans 14 years (WSC 2012 to AIME 2025, 35% from 2024–2026), 42 text-only, 9 multimodal, 8 code-specialized, and 6 agentic/interactive instruments — English-dominant (58) with Chinese (C-Eval, CLUEWSC), Greek, and multilingual (MFTCXplain: Portuguese, Italian, Persian) coverage.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Reference Models and Performance Matrix</h2>
+    <p>Sixteen representative models across three categories enable balanced comparison (cut-off March 2026): nine frontier proprietary systems (GPT-5.4, GPT-5.2, GPT-5 High, Gemini 3.1/3.0 Pro [92,93], Claude Opus/Sonnet 4.6/4.5 [94–96], Grok 4.1 [97]) as upper-bound references; six leading open-source models (Llama 3.1 405B [98], DeepSeek-V3.2 [99], DeepSeek-R1 0528 [100], Qwen 3 235B [101], Qwen 3.5 [102], Kimi K2 Thinking [103]) for reproducible science and parity analysis; and one longitudinal baseline (Claude 3.7 Sonnet). Standardized protocols apply (0/5-shot per benchmark, temperature 0.0–0.2 with fixed seed, nucleus p=0.95, no external tools except where agentic protocols require them), with reasoning-mode models (†) scored at maximum effort.</p>
+    <p>Tables 4–6 synthesize public scores across 10 discriminative benchmarks: MMLU/MMLU-Pro (D2), GPQA Diamond (D1 scientific reasoning), MATH-500/AIME 2025 (D1 math), HumanEval/LiveCodeBench/SWE-bench Verified (D3 code), HLE (D2 expert knowledge, most discriminative), and Arena Elo rank (D3 holistic proxy) — e.g., Gemini 3.1 Pro 91.2% MMLU-Pro and 94.1% GPQA Diamond; GPT-5 (High) 99.4% MATH-500; HLE spanning 10.1–45.9% with no model above 50%.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5.4 Key Observations from Performance Data</h2>
+    <p>D1 Reasoning shows bifurcated saturation: scientific reasoning (GPQA Diamond) nears ceiling — Gemini 3.1 Pro (94.1%) and GPT-5.4 (94.0%) exceed average PhD-level human baselines, with four models above 90% — risking discriminative loss within 6–12 months; mathematical reasoning is extremely bifurcated, with only 5 of 16 models reporting MATH-500 (tightly compressed at ceiling: GPT-5 High 99.4%, Qwen 3 235B 98.4%) while competition problems (AIME 2025) approach 100% for three frontier models and research-frontier FrontierMath [37] stays below 50%. D2 Knowledge faces diminishing returns: MMLU clusters at 88–92.5% near annotation-error ceilings and MMLU-Pro [80] already reaches 90–92% for top systems, leaving HLE (10.1–45.9% spread) as the sole discriminative dimension — at the cost of limited public reproducibility.</p>
+    <p>D3 Generation shows mature code evaluation (LiveCodeBench BQAI 0.772, SWE-bench Verified 0.720) but a dialog-quality measurement crisis: Chatbot Arena (BQAI 0.606) compresses (top five within 40 Elo in 2026 vs >200 in 2024) with an irreconcilable reproducibility–ecological-validity dilemma (deterministic MT-Bench [53] vs live human preference). D4 Agency and D5 Safety suffer severe data scarcity and transparency gaps: no agentic benchmark reaches Tier A, and frontier technical reports provide minimal safety coverage — with open-source parity (DeepSeek-V3.2 Elo 1421, Qwen 3 235B Elo 1422, Qwen 3.5 GPQA 88.4%) documented but under-reported.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6–7 BQAI Framework and Assessment</h2>
+    <p>The BQAI operationalizes seven quality dimensions (Q1 annotation, Q2 clarity, Q3 standardization, Q4 reproducibility, Q5 robustness/contamination-resistance, Q6 coverage, Q7 fairness) through an evidence-based four-tier rubric (Table 7), with AHP-derived weights [104] under a Scientific Reproducibility Priority principle (Q4 heaviest at w=0.349, then Q1 annotation w=0.213 and Q5) — consistency ratio 0.023 (Table 8). Three quality tiers follow: Tier A (BQAI ≥0.82, primary-claim grade), Tier B (0.70–0.82, secondary use), Tier C (<0.70, historical/niche only).</p>
+    <p>Applied to 30 benchmarks (Section 7; selection criteria C1–C5 balancing dimensional coverage, documented adoption, and 2019–2025 temporal diversity) with blinded three-evaluator scoring, the BQAI is deliberately conservative: 1 Tier A benchmark (HLE, 0.831 — expert annotation Q1=0.81, contamination resistance Q5=0.93, coverage Q6=0.82, reproducibility Q4=0.84, fairness Q7=0.43 the sole gap), 10 Tier B (LiveBench 0.786, LiveCodeBench 0.772, HELM 0.769 with the corpus's only Q7≥0.70 at 0.75, HarmBench 0.727, plus contamination-limited near-Tier-A cases), and 19 Tier C — including saturated foundations (MMLU 0.589, GSM8K 0.587, HellaSwag [34] 0.583, HumanEval [49] 0.634) whose Q5 collapses to 0.12–0.17 despite strong reproducibility (Q4 0.79–0.91), empirically confirmed e.g. by GSM1k replication gaps [107].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7.4–7.6 Patterns, Sensitivity, and Selection Guidance</h2>
+    <p>Dimension patterns: reproducibility (Q4) is bimodal (high ≥0.85 for HELM, MMLU-Pro [80], SWE-bench Verified, HumanEval [49], LiveCodeBench, LiveBench, GSM8K; Chatbot Arena [52] alone at 0.43 from crowdsourced-vote irreproducibility); annotation (Q1) is stricter under multi-evaluator means (no benchmark ≥0.85, penalizing undocumented inter-annotator agreement). Sensitivity analysis (Monte Carlo n=1000 at ±10/25/50%, four philosophy-shifted weighting schemes, equal-weights baseline) shows rank stability via Kendall's τ (Tables 13–14): Tier A/B membership is robust to marginal-to-moderate perturbation, degrading only under extreme equal-weighting.</p>
+    <p>Selection guidance: for longitudinal tracking, prioritize HLE plus upper Tier B with strong robustness (LiveBench, LiveCodeBench, HELM, HarmBench [61]); for comprehensive profiling, combine HELM's holistic coverage (Q6=0.93) with HLE (expert knowledge 0.82), MMMU (multimodal 0.85), AgentBench (agentic 0.86), and C-Eval for multilingual coverage — with minimum dimensional reporting (D1: GPQA [20]+MATH-500/FrontierMath [37]; D2: HLE+MMLU-Pro [80]; D3: SWE-bench Verified+Arena Elo; D4: GAIA/WebArena [57]; D5: TruthfulQA [63] or HarmBench [61]).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">8–9 Challenges and Conclusions</h2>
+    <p>Eight gaps demand attention (8.1–8.8): D1 bifurcated saturation (AIME 2025 at ~100% vs FrontierMath [37] <50%, no 70–90% intermediate; causal reasoning in only CLadder/QRData); D2 saturation without alternatives (MMLU-Pro [80] at 90–92%, HLE's Google-proof privacy vs reproducibility tension); D3 dialog-quality crisis (Arena Elo compression, no instrument achieving both reproducibility and ecological validity); D4 agentic data scarcity (all four agentic benchmarks Tier C: WebArena [57] 0.695, AgentBench 0.674, GAIA 0.665); D5 safety transparency gaps (best HarmBench [61] Tier B 0.727; underexplored agentic harm); D6 fragmentation (HELM 0.769 vs incompatible BIG-bench/BBEH/LiveBench/SimpleBench frameworks); and the cross-cutting contamination–reproducibility dilemma (only 14/63 benchmarks, 22%, with active anti-contamination; shrinking static-benchmark lifetimes).</p>
+    <p>Principal contributions: (1) a unified six-dimensional taxonomy with 20 subcategories exposing causal/agentic/safety gaps; (2) the BQAI evidence-weighted quality metric with blinded scoring and sensitivity validation; (3) a 16-model saturation analysis documenting bifurcated ceilings and open-source parity. Recommendations: prioritize Tier A/B benchmarks for primary claims, mandate six-dimension reporting in frontier releases, and invest in contamination-resistant infrastructure (cryptographic commitments, procedural generation), causal/metacognitive evaluation, and cross-cultural safety — since measurement is fundamentally an instrumentation problem, and the field still lacks a stable portfolio of sound instruments commensurate with frontier capabilities.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references preserving original numbering; the full list of 104+ references is available in the original paper (doi:10.3390/make8060141).</p>
+    <ol dir="ltr">
+      <li>[1] Turing, A.M. Computing Machinery and Intelligence. <em>Mind</em> 1950, 59, 433–460.</li>
+      <li>[2] Chollet, F. On the Measure of Intelligence. <em>arXiv</em> 2019, arXiv:1911.01547.</li>
+      <li>[3] Marcus, G.; Davis, E. <em>Rebooting AI</em>; Pantheon Books: New York, NY, USA, 2019.</li>
+      <li>[10] Brown, T.B.; et al. Language Models are Few-Shot Learners. In <em>Proc. NeurIPS 2020</em>.</li>
+      <li>[14] Sakaguchi, K.; et al. WinoGrande. <em>Commun. ACM</em> 2020, 34, 8732–8740.</li>
+      <li>[15] Hendrycks, D.; et al. Measuring Mathematical Problem Solving with the MATH Dataset. In <em>Proc. NeurIPS Datasets and Benchmarks 2021</em>.</li>
+      <li>[20] Rein, D.; et al. GPQA: A Graduate-Level Google-Proof Q&A Benchmark. <em>arXiv</em> 2023, arXiv:2311.12022.</li>
+      <li>[34] Zellers, R.; et al. HellaSwag. In <em>Proc. ACL 2019</em>.</li>
+      <li>[35] Suzgun, M.; et al. Challenging BIG-Bench Tasks and Chain-of-Thought. In <em>Findings of ACL: EMNLP 2022</em>.</li>
+      <li>[36] Cobbe, K.; et al. Training Verifiers to Solve Math Word Problems (GSM8K). <em>arXiv</em> 2021, arXiv:2110.14168.</li>
+      <li>[37] Glazer, E.; et al. FrontierMath. <em>arXiv</em> 2024, arXiv:2411.04872.</li>
+      <li>[49] Chen, M.; et al. Evaluating Large Language Models Trained on Code (HumanEval). <em>arXiv</em> 2021, arXiv:2107.03374.</li>
+      <li>[50] Jimenez, C.E.; et al. SWE-bench. In <em>Proc. ICLR 2024</em>.</li>
+      <li>[52] Chiang, W.L.; et al. Chatbot Arena. In <em>Proc. ICML 2024</em>.</li>
+      <li>[53] Zheng, L.; et al. Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. <em>arXiv</em> 2023, arXiv:2306.05685.</li>
+      <li>[57] Zhou, S.; et al. WebArena. In <em>Proc. ICLR 2024</em>.</li>
+      <li>[61] Mazeika, M.; et al. HarmBench. In <em>Proc. ICML 2024</em>.</li>
+      <li>[63] Lin, S.; et al. TruthfulQA. In <em>Proc. ACL 2022</em>.</li>
+      <li>[68] White, C.; et al. LiveBench. In <em>Proc. ICLR 2025</em>.</li>
+      <li>[72] Jain, N.; et al. LiveCodeBench. <em>arXiv</em> 2024, arXiv:2403.07974.</li>
+      <li>[80] Wang, Y.; et al. MMLU-Pro. <em>arXiv</em> 2024, arXiv:2406.01574.</li>
+      <li>[104] Saaty, T.L. <em>The Analytic Hierarchy Process</em>; McGraw-Hill: New York, NY, USA, 1980.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/make8060141">10.3390/make8060141</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

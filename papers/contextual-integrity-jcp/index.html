@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>السلامة السياقية في النماذج اللغوية الكبيرة: مراجعة — DAR</title>
+<meta name="description" content="Contextual Integrity in Large Language Models: A Review — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/contextual-integrity-jcp/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Contextual Integrity in Large Language Models: A Review</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">السلامة السياقية في النماذج اللغوية الكبيرة: مراجعة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ahmad Hassanpour, Bian Yang</span>
+    <span>📄 J. Cybersecur. Priv. (JCP), 2026 · Vol. 6, No. 2, 74</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jcp6020074">10.3390/jcp6020074</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>حوّلت التطورات السريعة في النماذج اللغوية الكبيرة معالجة اللغة الطبيعية، ممكنة تطبيقات من الوكلاء الحواريين إلى أنظمة دعم القرار في مجالات حساسة كالرعاية الصحية والمال ورعاية المسنين. لكن مع دخول النماذج سياقات واقعية، غدت المخاوف حول الالتزام بالمبادئ الأخلاقية ومعايير الخصوصية والتوقعات السياقية حرجة — وحفظ الخصوصية ملح خصوصًا في التفاعلات ذات البيانات الشخصية أو الحساسة، حيث يجب أن تتواءم النماذج مع المعايير المجتمعية مع تخفيف مخاطر تسرب المعلومات [5].</p>
+    <p>وتوفر السلامة السياقية (CI) [12] إطارًا متينًا: فيجب أن تلتزم تدفقات المعلومات بالمعايير الاجتماعية الخاصة بالسياق. وهذا المبدأ حيوي في التطبيقات الحساسة، حيث يجب أن تقيّم النماذج الأدوار وسمات المعلومات ومبادئ النقل. لكن رغم البراعة اللغوية، كثيرًا ما تفشل النماذج في تمييز الفروق السياقية الدقيقة والتكيف معها — قصور تفاقمه طبيعتها الاحتمالية وتحيزات بيانات التدريب — مما يتطلب منهجيات تقييم صارمة واستراتيجيات ضبط دقيق تُضمّن المعايير المجتمعية والسياقية في النماذج.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة ومنهجية المراجعة</h2>
+    <p>يُظهر الذكاء الاصطناعي إمكانات تحويلية من المراقبة الزراعية [1] إلى الفهم اللغوي الشامل [2]، مع تقدم لافت للنماذج في اللغة للوكلاء الحواريين وأنظمة دعم القرار الحساسة [3،4]. لكن الدمج في سياقات واقعية يثير مخاوف المبادئ الأخلاقية ومعايير الخصوصية والسلوك المناسب سياقيًا — لا سيما الخصوصية في التفاعلات الشخصية والمجالات الحساسة كالصحة والمال ورعاية المسنين [5] — مما يتطلب نماذج تولّد مخرجات دقيقة متماسكة وتواءم أفعالها مع التوقعات المجتمعية والسياقية [6،7].</p>
+    <p>واتبعت المسح عملية منهجية قابلة لإعادة الإنتاج: خمس قواعد بيانات (Google Scholar وIEEE Xplore وACM وSemantic Scholar وarXiv) باستعلام «السلامة السياقية» مع («نموذج لغوي كبير» أو «LLM» أو «نموذج لغوي» أو «معايير الخصوصية»)، إضافة إلى تتبع الاستشهادات خلفًا وأمامًا. وتغطي الفترة 2018–2025 — من أبكر تطبيق للسلامة السياقية على معايير خصوصية الأجهزة الذكية [20] حتى أحدث معايير النماذج المواءمة سياقيًا [21،22] — مشتملة على الأوراق التي تتناول السلامة السياقية أو تشغّلها في النماذج صراحة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الخلفية: الخصوصية beyond البيانات الشخصية</h2>
+    <p>تتجاوز الخصوصية في النماذج حماية البيانات المحددة للهوية: فتشمل صون تفاعلات المستخدمين وتخفيف مخاطر تسرب البيانات وضمان الامتثال القانوني والأخلاقي. وبما أن النماذج تعالج بيانات نصية هائلة، فقد تحفظ معلومات حساسة وتعيد إنتاجها، مما يثير مخاوف أمن البيانات والموافقة والإنصاف. وتُستكشف اتجاهات تقنية متعددة — الخصوصية التفاضلية [30–32] وتنقية البيانات [33–36] ونسيان الآلة [37،38] والحماية السياقية للخصوصية [25،39] ووكلاء الخصوصية [40–45] — وتدرس هذه المسح التحدي عبر عدسة السلامة السياقية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2.1 نظرية السلامة السياقية ونماذجها الرسمية وتشغيلها</h2>
+    <p>تعرّف السلامة السياقية [12] الخصوصية بأنها التدفق المناسب للمعلومات ضمن سياقات اجتماعية محددة — فالمعايير تختلف عبر الصحة والعمل والأسرة والمجال المدني، ويقع الانتهاك عندما تحيد التدفقات عن المعايير والمبادئ السياقية الراسخة. والمعاملات الرئيسية (الشكل 1): المرسل والمستقبل والموضوع والسمات والأدوار والسياقات ومبادئ النقل، إضافة إلى الآثار والسياسات وتركيب السياسات والامتثال. وتتمحور جهود الصياغة الرسمية [19،47–49] حول نموذج Barth وآخرين [19]، الأشمل والعمود الفقري التحليلي للمسح: الوكلاء (مرسل/مستقبل/موضوع — وفي إعدادات النماذج: المستخدمون والمساعدون والخدمات الخارجية) والسمات (العنوان البريدي والتشخيص الطبي والسجل المالي) والرسائل والأدوار والسياقات والآثار والسياسات وتركيب السياسات والامتثال.</p>
+    <p>وتشغّل المسح تسعة معاملات — الوكلاء والسمات والرسائل والأدوار والسياقات والآثار والسياسات وتركيب السياسات والامتثال — كأعمدة لتحليلها المقارن (الجدول 1): إذ تحظى الخمسة الأولى باهتمام كبير، بينما تبقى الآثار والسياسات وتركيبها والامتثال شبه غير متناولة. ويسد إسقاط السلامة السياقية على مصنوعات النماذج الفجوة بين النظرية والهندسة: الوكلاء ← المستخدم وتلقين النظام وواجهات الأدوات؛ والسمات ← البيانات الشخصية والخانات الحساسة في التلقينات؛ ومبادئ النقل ← قواعد الإفصاح المسموح/المحظور التي تفرضها حواجز الحماية. ويُظهر مثال عملي (مريض بالسكري من النوع الثاني يُسأل عن الإفصاح عن تشخيصه في مسح صحي لصاحب العمل) الاستجابة المتوافقة: النصح بأن التشخيصات معلومات صحية محمية إفصاحها المهني طوعي، دون تكرار التشخيص في الأنظمة اللاحقة — بينما تحوّله الاستجابة المنتهكة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2.2 نظرية العقل</h2>
+    <p>نظرية العقل [50] — فهم الحالات الذهنية للآخرين وأفكارهم ومعتقداتهم ونواياهم — حاسمة للإدراك الاجتماعي والخصوصية الحوارية [13،51]: فالسلامة السياقية تتطلب معرفة ليس ما هو حساس فحسب بل من يعرف ماذا وما تعنيه المشاركة. فإذا أخبر X سرًا لـY ثم تفاعل Y مع Z، وجب على Y تتبع الحالتين الذهنيتين لحماية خصوصية X. واستخدمت تقييمات نظرية العقل التقليدية سرديات سلبية قد تلوث بيانات التدريب؛ بينما تحاكي المعايير التفاعلية (FANToM [55] وCONFAIDE [13]) حالات معرفية طبقية متعددة الوكلاء، مختبرة نسب المعتقدات لكل وكيل — مع أدلة مختلطة حول امتلاك النماذج عقولًا بالمعنى المطلوب [53،54] وتحليلات منظمة لفهم شخصيات القصص [51،52].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. الطرق الحالية: أطر الوكيلين والوكلاء المتعددين</h2>
+    <p>تقيّم الأبحاث التزام النماذج بمعايير الخصوصية السياقية عبر أنظمة وسيطة تكشف المعلومات الحساسة وتديرها: تحديد السياق والسمات الحساسة في استعلامات الوكلاء، واقتراح إعادة صياغات تشارك الضروري فقط، ومراقبي خصوصية مخصصين يقارنون التدفقات بالمعايير لحظيًا، وضبط دقيق تبايني على أمثلة مصنفة من المستخدمين مناسبة/غير مناسبة. وتشمل أعمال الوكيلين بطاقات تدفق المعلومات (IFCs) [23] — تصنيف منظم لبيانات المستخدم وفق معايير السلامة السياقية مُختبر على معايير تعبئة النماذج عبر سيناريوهات المواعيد الطبية وطلبات التوظيف، حيث يحسّن الاستدلال القائم على السلامة الالتزام بالخصوصية — وLLM-CI [28] الذي يقيّم المواءمة مع المعايير المجتمعية عبر النماذج والبيانات مع إبراز حساسية التلقين.</p>
+    <p>وتشمل أعمال الوكلاء المتعددين CONFAIDE [13]: معيار رباعي الطبقات وجد أن حتى GPT-4/ChatGPT التجاريين يكشفان معلومات حساسة 39–57% من الوقت؛ وGoldCoin [26] المؤرض للنماذج في HIPAA/GDPR عبر قضايا قانونية اصطناعية بترشيح آلي؛ وAirGapAgent [24] المقلل لتعرض بيانات الأطراف الخارجية؛ ومتعلمي الخصوصية السياقية CPPLM [25]؛ وضمانات استخدام الأدوات (PrivacyAsst وGuardAgent وPrivAgent) [41،42،45] — ممتدة من روبوتات رعاية المسنين (PANav [58] ووكلاء الخصوصية [5]) إلى التفاوض التفاعلي على إعدادات الأجهزة المشتركة [62].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4.1 مجموعات البيانات: التغطية والقيود</h2>
+    <p>تقيّم المعايير وخطوط الأنابيب الالتزام بالسلامة السياقية عبر معاملات سياقية (الأدوار وأنواع المعلومات ومبادئ النقل) في سيناريوهات الصحة والمال والحكومة، كاشفة فجوات النماذج بين النحو والمعايير. وتوفر المدونات القائمة على السياسات (GKC-CI [14]) والحوارات الاصطناعية متعددة الأدوار (CONFAIDE [13] وCI-Bench [56]) والسجلات الحوارية الحقيقية (ShareGPT) والمجموعات المواءمة تنظيميًا (Privacy Checklist [29] وPrivaCI-Bench [21]) سياقات ومخططات تعليق واسعة بتغطية جيدة للمعاملات الخمسة الأولى — لكن لا للآثار أو السياسات أو تركيبها أو الامتثال — مازجة حالات اصطناعية مضبوطة تعزل معايير محددة ببيانات مستخدمين حقيقية تلتقط الإفراط الطبيعي في المشاركة، ومضمّنة معايير HIPAA/GDPR لتقييم امتثال صارم.</p>
+    <p>وتبقى قيود: اعتماد كبير على حوارات اصطناعية قد لا تعكس تعقيد التفاعل الحي؛ وتركيز إنجليزي صحي/مالي؛ ولا معيار يمثّل الآثار أو تركيب السياسات أو الامتثال الطولي — مما يحفز تصاميم ديناميكية متعددة الأطراف.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4.2 مقاييس التقييم</h2>
+    <p>يتطلب تقييم السلامة السياقية حافظة مقاييس متنوعة. فمقاييس نظرية العقل تتبع حالات المعتقدات متعددة الوكلاء (FANToM [55] وCONFAIDE [13]): دقة تتبع الحالات الذهنية إضافة لاتساق مسار الاستدلال. وتقيس مقاييس السلوك الخصوصي الكشف/الحجب/إعادة الصياغة: معدلات رفض الإجابة [59] ودرجات تسرب الخصوصية ونسب البيانات الشخصية [25،60] (أيضًا باختبار أحمر عدائي)، ودرجات الخصوصية السياقية المشروطة بالمهمة (AirGapAgent [24] وCPPLM [25]) التي تقيس الضرورة لا مجرد الإفصاح. وتلتقط مقاييس مواءمة المعايير الملاءمة المتدرجة: ارتباطات Pearson بين تنبؤات النماذج والتعليقات المعيارية الذهبية (GKC-CI [14] وCONFAIDE [13]) وأحكام القبول بمقياس Likert [28]. وتقيس مقاييس الامتثال القانوني (GoldCoin [26] وPrivacy Checklist [29]) تصنيف التبادلات ممتثلة/غير ممتثلة تحت HIPAA/GDPR بفحوص انطباق-زائد-امتثال وF1 كلي فوق الأصناف المعيارية.</p>
+    <p>والحافظة مفيدة لكن ناقصة: فالإشارات الحادة (معدلات الرفض ونسب التسرب) تيسّر التكرار؛ والمقاييس المستمرة (Pearson على CONFAIDE والمطابقة التامة لـGKC-CI [14]) تكشف المواءمة التدريجية؛ والأحكام البشرية بـLikert [28] تلتقط فروق الحالات الحدية الدقيقة؛ والأطر القانونية تؤرض الامتثال — لكن المقاييس تبقى معزولة لكل بُعد ومعتمدة على بيانات اصطناعية وضعيفة في الآثار وتركيب السياسات والامتثال الطولي.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5.1–5.4 المعايير والتكامل والإنصاف والاستدلال</h2>
+    <p>تنقسم معايير تدفق المعلومات إلى معايير وصول (A) واستنتاج (I) وخصوصية (P) بمحمولات سماح/منع [61]: فمعايير الوصول تقيّد وصول الأطراف الخارجية لمعلومات الفاعل الخاصة؛ ومعايير الاستنتاج تتيح للوكلاء اشتقاق معرفة جديدة ضمن الأنطولوجيا؛ ومعايير الخصوصية ترمّز تفضيلات المنح/الرفض — مع تعارضات خصوصية عندما تتصادم قواعد الوصول القائمة على السلامة السياقية. ويعامل التكامل متعدد الأبعاد السلامة السياقية أساسًا: خطوط مشتركة تضبط simultaneously للالتزام بالخصوصية والمواءمة الأخلاقية والإنصاف، مؤكدة الشفافية والمساءلة والترابط بدل الإصلاحات المعزولة. ويُسقَط الإنصاف مباشرة على السلامة السياقية: فمعايير خصوصية أشد لبعض الفئات تنتهك الملاءمة؛ والإفصاح الانتقائي عن سمات حساسة (كالحالات الصحية) عن أقليات مع حماية الأغلبيات ينتهك النقل العادل؛ والسلوك المتحول بالسياق (كالوضع الاجتماعي المستنتج) يستحدث تمييزًا دوريًا — مما يتيح للإطار الرسمي نفسه كشف التحيز وقياسه.</p>
+    <p>وتقنيات الاستدلال حاسمة للالتزام بالسلامة السياقية [63]: فتقييم الأدوار ومبادئ النقل والسمات يتطلب تمييز المعايير وتطبيقها بمسؤولية — وتُظهر آليات المواءمة العصبية الديناميكية [63] ونهج السلامة عبر الاستدلال والتعلم المعزز [22] أن الاستنتاج المنظم فوق المعاملات السياقية يحسّن الامتثال المعياري beyond مطابقة الأنماط السطحية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5.5 تحديات تضمين السلامة السياقية</h2>
+    <p>تبقى ثلاثة تحديات مستمرة عبر المجالات التقنية والأخلاقية والعملية. (1) الفهم غير المتسق للمعايير السياقية (5.5.1): فالتدريب الاحتمالي على بيانات هائلة يسيء قراءة الفروق الدقيقة — كتطبيق معايير خصوصية الرعاية الصحية صحيحًا مع الفشل في تعميمها على تفاعلات إنترنت الأشياء — لغياب الضبط المجالي المخصص ومجموعات التدريب المضمّنة صراحة لمعايير متنوعة. (2) مفاضلات الخصوصية-الفائدة (5.5.2): فالنماذج المحافظة المقدِّمة للخصوصية ترفض مخرجات حساسة محتملة، مقللة التسرب لكن مضرة بالفائدة حيث تكون المعلومات الحساسة جوهرية للمهمة (كرعاية المسنين، حيث يحجب حجب البيانات الصحية جودة الرعاية) — ويبقى التنقل الديناميكي في المفاضلة دون مساس بأي طرف مفتوحًا. (3) تعقيد التقييم (5.5.3): فتقييم السلامة السياقية يمتد فوق الخصوصية والإنصاف والمتانة والمواءمة الأخلاقية؛ والمعايير القائمة ضيقة الطيف الواقعي، والاعتماد على البيانات الاصطناعية يمثل التفاعل الحي ناقصًا — وما زالت الأطر الشاملة العاكسة لسياقات متنوعة ديناميكية مفقودة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5.6 اتجاهات بحثية ملموسة</h2>
+    <p>تتبع أربع أجندات قابلة للتنفيذ تحليل الفجوات. (1) أهداف تدريب موطّنة سياقيًا: مكافأة التدفق المناسب سياقيًا jointly، ومعاقبة الانتهاكات عبر المعاملات الخمسة الأساسية (المرسل والمستقبل والموضوع ونوع المعلومات ومبدأ النقل)، وفرض امتثال HIPAA/GDPR — فالتعلم المعزز من تغذية مواءمة سياقيًا [22] خطوة أولى، لكن صياغات متعددة الأهداف للسلامة-الفائدة-الاكتمال في خسارة واحدة ما زالت غير مستكشفة. (2) معايير سياقية ديناميكية متعددة الأطراف: نمذجة الآثار وتركيب السياسات والامتثال عبر حوارات متعددة الأطراف بتعارضات معيارية صريحة (كمريض يوافق على مشاركة بياناته الصحية مع طبيب لا مع شركة تأمين في المحادثة نفسها) وذاكرة طولية عبر الجلسات وأدوار متطورة — مختبرة تتبع من-يعرف-ماذا وكشف تحول السياق.</p>
+    <p>(3) تقييم سياقي عابر للمجالات واللغات: التوسع beyond الصحة/المال الإنجليزية إلى التعليم والتواصل الاجتماعي والخدمات الحكومية ولغات أكثر، كاشفًا هل يعمم الاستدلال السياقي أم يبقى مجاليًا وثقافيًا. (4) مقاييس تقييم سياقية موحدة: إطار تسجيل معياري متعدد الأبعاد — نظير أحزمة التقييم الشمولية في اللغة — يتيح المقارنة عبر الأوراق وتتبع تقدم المجتمع نحو نماذج مواءمة سياقيًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الخاتمة</h2>
+    <p>درست هذه المسح السلامة السياقية إطارًا موحدًا لفهم وتحسين سلوك الخصوصية في النماذج. فبدل معاملة الخصوصية خاصية بيانات ساكنة (كوجود البيانات الشخصية)، ترى السلامة السياقية أن الخصوصية تتوقف على ملاءمة تدفق المعلومات لسياقه — من يتواصل (مرسل/مستقبل/موضوع) وما يُشارَك (السمات) وتحت أي شروط (مبادئ النقل). ومن هذه العدسة، تُقرأ كثير من إخفاقات النماذج الواقعية كانتهاكات للمعايير السياقية: إفصاح غير ضروري وتعميم مفرط عبر المجالات وسوء معالجة متعدد الأطراف حيث يحمل الوكلاء معارف وتوقعات مختلفة.</p>
+    <p>وتبرز عبر الأدبيات ثلاثة أنماط: تركز الطرق على سقالات الوكيلين/الوكلاء والضبط التبايني مع إهمال الآثار والسياسات والامتثال؛ وتغطي مجموعات البيانات والمقاييس المعاملات الخمسة الأولى لكنها تتعثر قبل تركيب السياسات والتقييم الطولي؛ وتتمحور التحديات حول الفهم غير المتسق للمعايير وتوتر الخصوصية-الفائدة وتعقيد التقييم. وسد هذه الفجوات — أهداف موطّنة سياقيًا ومعايير ديناميكية متعددة الأطراف وتغطية عابرة للمجالات واللغات ومقاييس موحدة — يرسم الطريق نحو نماذج تحترم المعايير السياقية الحاكمة لتدفق المعلومات البشرية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Rapid advances in large language models have transformed natural language processing, enabling applications from conversational agents to decision-support systems in sensitive areas such as healthcare, finance, and eldercare. But as LLMs enter real-world contexts, concerns about adherence to ethical principles, privacy norms, and contextual expectations have become critical — privacy preservation is especially pressing in interactions involving personal or sensitive data, where LLMs must align with societal norms while mitigating information-leakage risks [5].</p>
+    <p>Contextual integrity (CI) [12] provides a robust framework: information flows should adhere to context-specific social norms. This principle is vital in sensitive applications, where LLMs must evaluate roles, information attributes, and transmission principles. Yet despite linguistic proficiency, LLMs often fail to recognize and adapt to nuanced contextual norms — a limitation exacerbated by their probabilistic nature and training-data biases — requiring rigorous evaluation methodologies and fine-tuning strategies that embed societal and contextual norms into models.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction and Review Methodology</h2>
+    <p>AI shows transformative potential from agricultural monitoring [1] to comprehensive language understanding [2], with LLMs bringing remarkable NLP progress to conversational agents and sensitive decision-support systems [3,4]. Yet integration into real-world contexts raises concerns over ethical principles, privacy norms, and contextually appropriate behavior — particularly privacy in personal interactions and sensitive domains such as healthcare, finance, and eldercare [5] — demanding models that generate accurate, coherent outputs and align actions with societal and contextual expectations [6,7].</p>
+    <p>The survey followed a systematic, reproducible process: five electronic databases (Google Scholar, IEEE Xplore, ACM Digital Library, Semantic Scholar, arXiv) with the query 'contextual integrity' AND ('large language model' OR 'LLM' OR 'language model' OR 'privacy norms'), plus backward/forward citation tracking. Coverage spans 2018–2025 — from the earliest CI application to smart-device privacy norms [20] through the most recent CI-aligned LLM benchmarks [21,22] — including papers that explicitly address or operationalize CI in LLMs.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Background: Privacy Beyond PII</h2>
+    <p>Privacy in LLMs goes beyond protecting Personally Identifiable Information: it encompasses safeguarding user interactions, mitigating data-leakage risks, and ensuring legal/ethical compliance. As LLMs process vast textual data, they may memorize and reproduce sensitive information, raising data-security, consent, and fairness concerns. Multiple technical directions are being explored — differential privacy [30–32], data sanitization [33–36], machine unlearning [37,38], contextual privacy protection [25,39], and privacy agents [40–45] — and this survey examines the challenge through the CI lens.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2.1 CI Theory, Formal Models, and Operationalization</h2>
+    <p>CI [12] defines privacy as appropriate information flow within specific social contexts — norms differ across health, work, family, and civic domains, and a violation occurs when flows deviate from established contextual norms and principles. Key parameters (Figure 1): sender, receiver, subject, attributes, roles, contexts, transmission principles, plus traces, policies, policy combination, and compliance. Formalization efforts [19,47–49] center on Barth et al. [19], the most comprehensive model and this survey's analytical backbone: agents (sender/receiver/subject — in LLM settings, users, assistants, or third-party services), attributes (postal address, medical diagnosis, financial record), messages, roles, contexts, traces, policies, policy combination, and compliance.</p>
+    <p>The survey operationalizes nine parameters — agents, attributes, messages, roles, contexts, traces, policies, policy combination, compliance — as columns of its comparative analysis (Table 1): the first five receive substantial attention, while traces, policies, policy combination, and compliance remain largely unaddressed. Mapping CI to LLM artifacts bridges theory and engineering: agents → user, system prompt, tool APIs; attributes → PII and sensitive slots in prompts; transmission principles → allowed/forbidden disclosure rules enforced by guardrails. A worked example (patient with type-2 diabetes asked about disclosing the diagnosis in an employer wellness survey) shows the CI-compliant response: advise that diagnoses are protected health information whose workplace disclosure is voluntary, without repeating the diagnosis into downstream systems — while a CI-violating response would forward it.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2.2 Theory of Mind</h2>
+    <p>Theory of mind (ToM) [50] — understanding others' mental states, thoughts, beliefs, and intentions — is crucial for social cognition and conversational privacy [13,51]: CI requires knowing not only what is sensitive but who knows what and what sharing implies. If X tells Y a secret and Y then interacts with Z, Y must track both mental states to protect X's privacy. Traditional ToM evaluations used passive narratives that may contaminate training data; interactive benchmarks (FANToM [55], CONFAIDE [13]) instead simulate multi-agent layered knowledge states, testing belief attribution per agent — with mixed evidence on whether LLMs possess minds in the relevant sense [53,54] and structured analyses of story-character understanding [51,52].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Current Methods: Two-Agent and Multi-Agent Frameworks</h2>
+    <p>Research evaluates LLM adherence to contextual privacy norms via intermediary systems detecting and managing sensitive information: identifying context and sensitive attributes in agent queries, suggesting reformulations sharing only necessary information, dedicated privacy monitors comparing flows against norms in real time, and contrastive fine-tuning on user-labeled appropriate/inappropriate examples. Two-agent works include Information Flow Cards (IFCs) [23] — structured CI-norm categorization of user data tested on form-filling benchmarks across medical-appointment and job-application scenarios, where CI-based reasoning improves privacy adherence — and LLM-CI [28], which assesses societal-norm alignment across models and datasets while highlighting prompt sensitivity.</p>
+    <p>Multi-agent works include CONFAIDE [13]: a four-tier benchmark finding even commercial GPT-4/ChatGPT disclose sensitive information 39–57% of the time; GoldCoin [26], grounding LLMs in HIPAA/GDPR via synthetic legal cases with automated case-filtering; AirGapAgent [24], minimizing third-party data exposure; CPPLM contextual-privacy learners [25]; and PrivacyAsst/GuardAgent/PrivAgent tool-using safeguards [41,42,45] — spanning eldercare robotics (PANav [58], privacy agents [5]) to interactive negotiation of shared-device settings [62].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4.1 Datasets: Coverage and Limitations</h2>
+    <p>Benchmarks and pipelines assess CI adherence via contextual parameters (roles, information types, transmission principles) across healthcare, finance, and government scenarios, exposing models' syntactic-vs-normative gaps. Policy-based corpora (GKC-CI [14]), synthetic multi-turn dialogues (CONFAIDE [13], CI-Bench [56]), real conversational logs (ShareGPT), and regulation-aligned collections (Privacy Checklist [29], PrivaCI-Bench [21]) offer broad contexts and annotation schemes with good coverage of the first five CI parameters — but not traces, policies, combined policies, or compliance — mixing controlled synthetic cases isolating specific norms with real user data capturing natural oversharing, and embedding HIPAA/GDPR standards for rigorous compliance evaluation.</p>
+    <p>Limitations persist: heavy reliance on synthetic dialogues that may not reflect live-interaction intricacy; English-only, healthcare/finance concentration; and no benchmark modeling traces, policy combination, or longitudinal compliance — motivating dynamic multi-party designs.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4.2 Evaluation Metrics</h2>
+    <p>CI evaluation needs a diverse metric portfolio. Theory-of-mind metrics track multi-agent belief states (FANToM [55], CONFAIDE [13]): mental-state tracking accuracy plus reasoning-path consistency. Privacy-behavior metrics quantify detection/withholding/reformulation: refuse-to-answer rates [59], privacy-leakage scores and PII ratios [25,60] (also adversarially red-teamed), and task-conditioned contextual-privacy scores (AirGapAgent [24], CPPLM [25]) measuring necessity, not mere disclosure. Norm-alignment metrics capture graded appropriateness: Pearson correlations of model predictions with gold norm annotations (GKC-CI [14], CONFAIDE [13]) and Likert-scale acceptability judgments [28]. Legal-compliance metrics (GoldCoin [26], Privacy Checklist [29]) classify exchanges as compliant/noncompliant under HIPAA/GDPR with applicability-plus-compliance checks and macro F1 over normative classes.</p>
+    <p>The portfolio is useful but incomplete: crisp signals (refusal rates, leakage ratios) ease iteration; continuous measures (Pearson on CONFAIDE, perfect-match GKC-CI [14]) reveal incremental alignment; human Likert judgments [28] capture subtle edge-case norms; and legal frameworks ground compliance — yet metrics remain isolated per dimension rather than unified, synthetic-data-dependent, and weak on traces, policy combination, and longitudinal compliance.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5.1–5.4 Norms, Integration, Fairness, and Reasoning</h2>
+    <p>Information-flow norms split into access (A), inference (I), and privacy (P) norms with allow/disallow predicates [61]: access norms gate third-party access to an actor's private information; inference norms let agents derive new knowledge within the ontology; privacy norms encode grant/reject preferences — with privacy conflicts when CI-based access rules collide. Multidimensional integration treats CI as foundational: joint pipelines fine-tuning simultaneously for privacy adherence, ethical alignment, and fairness, stressing transparency, accountability, and interdependency over isolated fixes. Fairness maps directly onto CI: stricter privacy norms for some demographics violates appropriateness; selective disclosure of sensitive attributes (e.g., health conditions) about minority subjects while protecting majorities violates equitable transmission; context-shifted behavior (e.g., by inferred socioeconomic status) introduces role-based discrimination — letting the same formal frame detect and measure bias.</p>
+    <p>Reasoning techniques are critical for CI adherence [63]: evaluating roles, transmission principles, and attributes requires discerning and applying norms responsibly — dynamic neural alignment mechanisms [63] and CI-via-reasoning-plus-RL approaches [22] show that structured inference over contextual parameters improves normative compliance beyond surface pattern matching.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5.5 Challenges in Embedding CI</h2>
+    <p>Three persistent challenges span technical, ethical, and practical domains. (1) Inconsistent understanding of contextual norms (5.5.1): probabilistic training on vast datasets misreads subtle nuances — e.g., applying healthcare privacy norms correctly but failing to generalize to IoT interactions — from missing domain-specific fine-tuning and training sets explicitly embedding diverse norms. (2) Privacy–utility trade-offs (5.5.2): conservative privacy-first models refuse potentially sensitive outputs, reducing leakage but harming utility where sensitive information is task-integral (e.g., eldercare, where withholding health data degrades care) — dynamically navigating the trade-off without compromising either side remains open. (3) Evaluation complexity (5.5.3): CI assessment spans privacy, fairness, robustness, and ethical alignment; existing benchmarks are narrow in real-world spectrum, and synthetic-data dependence underrepresents live-interaction intricacy — comprehensive frameworks reflecting diverse, dynamic contexts are still missing.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5.6 Concrete Research Directions</h2>
+    <p>Four actionable agendas follow from the gap analysis. (1) CI-native training objectives: jointly reward CI-appropriate flow, penalize violations across all five core parameters (sender, receiver, subject, information type, transmission principle), and enforce HIPAA/GDPR compliance — RL from CI-aligned feedback [22] is a first step, but multi-objective integrity–utility–completeness formulations in a single loss remain unexplored. (2) Dynamic multi-party CI benchmarks: model traces, policy combination, and compliance via multi-party dialogues with explicit norm conflicts (e.g., a patient consenting to share health data with a doctor but not an insurer in the same conversation), longitudinal cross-session memory, and evolving roles — stress-testing who-knows-what tracking and context-shift detection.</p>
+    <p>(3) Cross-domain and multilingual CI evaluation: extend beyond English-only healthcare/finance into education, social media, and government services plus more languages, revealing whether CI reasoning generalizes or stays domain- and culture-specific. (4) Unified CI evaluation metrics: a standardized multi-dimensional scoring framework — analogous to holistic NLP harnesses — enabling cross-paper comparison and community-wide progress tracking toward CI-aligned LLMs.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Conclusions</h2>
+    <p>This survey examined contextual integrity as a unifying framework for understanding and improving LLM privacy behavior. Rather than treating privacy as a static data property (e.g., PII presence), CI holds that privacy hinges on whether an information flow is appropriate for its context — who communicates (sender/receiver/subject), what is shared (attributes), and under what conditions (transmission principles). Through this lens, many real-world LLM failures read as contextual-norm violations: unnecessary disclosure, cross-domain over-generalization, and multi-party mishandling where agents hold different knowledge and expectations.</p>
+    <p>Across the literature, three patterns emerge: methods concentrate on two/multi-agent scaffolding and contrastive tuning while neglecting traces, policies, and compliance; datasets and metrics cover the first five CI parameters but stall before policy combination and longitudinal evaluation; and challenges center on inconsistent norm understanding, privacy–utility tension, and evaluation complexity. Closing these gaps — CI-native objectives, dynamic multi-party benchmarks, cross-domain/multilingual coverage, unified metrics — defines the path toward LLMs that respect the contextual norms governing human information flow.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references preserving original numbering; the full list of 63 references is available in the original paper (doi:10.3390/jcp6020074).</p>
+    <ol dir="ltr">
+      <li>[5] Grabler, R.; et al. Privacy agents: Utilizing LLMs to safeguard contextual integrity in elderly care. In <em>Proc. Privacy-Aware Robotics Workshop, HRI '24</em>; p. 37.</li>
+      <li>[12] Nissenbaum, H. Privacy as contextual integrity. <em>Wash. Law Rev.</em> 2004, 79, 119–158.</li>
+      <li>[13] Mireshghallah, N.; et al. Can LLMs keep a secret? Testing privacy implications of language models via contextual integrity theory. In <em>Proc. ICLR 2024</em>.</li>
+      <li>[14] Chanenson, J.; et al. Automating governing knowledge commons and contextual integrity (GKC-CI) privacy policy annotations with LLMs. <em>arXiv</em> 2023, arXiv:2311.02192.</li>
+      <li>[19] Barth, A.; et al. Privacy and contextual integrity: Framework and applications. In <em>Proc. IEEE S&amp;P '06</em>.</li>
+      <li>[20] Apthorpe, N.; et al. Discovering smart home IoT privacy norms using contextual integrity. <em>Proc. ACM IMWUT</em> 2018, 2, 59.</li>
+      <li>[21] Li, H.; et al. PrivaCI-Bench: Evaluating privacy with contextual integrity and legal compliance. <em>arXiv</em> 2025, arXiv:2502.17041.</li>
+      <li>[22] Lan, G.; et al. Contextual integrity in LLMs via reasoning and reinforcement learning. <em>arXiv</em> 2025, arXiv:2506.04245.</li>
+      <li>[23] Ghalebikesabi, S.; et al. Operationalizing contextual integrity in privacy-conscious assistants. <em>arXiv</em> 2024, arXiv:2408.02373.</li>
+      <li>[24] Bagdasarian, E.; et al. AirGapAgent: Protecting privacy-conscious conversational agents. In <em>Proc. ACM CCS 2024</em>.</li>
+      <li>[25] Xiao, Y.; et al. Large language models can be contextual privacy protection learners. In <em>Proc. EMNLP 2024</em>.</li>
+      <li>[26] Fan, W.; et al. GoldCoin: Grounding LLMs in privacy laws via contextual integrity theory. <em>arXiv</em> 2024, arXiv:2406.11149.</li>
+      <li>[28] Shvartzshnaider, Y.; et al. LLM-CI: Assessing contextual integrity norms in language models. <em>arXiv</em> 2024, arXiv:2409.03735.</li>
+      <li>[29] Li, H.; et al. Privacy checklist: Privacy violation detection grounding on contextual integrity theory. <em>arXiv</em> 2024, arXiv:2408.10053.</li>
+      <li>[47] Benthall, S.; Sivan-Sevilla, I. Regulatory CI: Adaptively regulating privacy as contextual integrity. In <em>Proc. ACM CS &amp; Law 2024</em>.</li>
+      <li>[55] Kim, H.; et al. FANToM: A benchmark for stress-testing machine theory of mind. <em>arXiv</em> 2023, arXiv:2310.15421.</li>
+      <li>[56] Cheng, Z.; et al. CI-Bench: Benchmarking contextual integrity of AI assistants. <em>arXiv</em> 2024, arXiv:2409.13903.</li>
+      <li>[60] Lukas, N.; et al. Analyzing leakage of PII in language models. In <em>Proc. IEEE S&amp;P 2023</em>.</li>
+      <li>[61] Ogunniye, G.; Kokciyan, N. Contextual integrity for argumentation-based privacy reasoning. In <em>Proc. AAMAS 2023</em>; pp. 2253–2261.</li>
+      <li>[63] Rey, C.; et al. Dynamic neural alignment mechanisms to contextual integrity preservation. <em>Authorea Prepr.</em> 2024.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jcp6020074">10.3390/jcp6020074</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

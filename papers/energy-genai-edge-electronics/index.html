@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إطار استدلال طرفي للذكاء الاصطناعي التوليدي واعٍ بالطاقة لأجهزة إنترنت الأشياء منخفضة القدرة — DAR</title>
+<meta name="description" content="An Energy-Aware Generative AI Edge Inference Framework for Low-Power IoT Devices — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/energy-genai-edge-electronics/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">An Energy-Aware Generative AI Edge Inference Framework for Low-Power IoT Devices</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">إطار استدلال طرفي للذكاء الاصطناعي التوليدي واعٍ بالطاقة لأجهزة إنترنت الأشياء منخفضة القدرة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Yafei Xie, Quanrong Fang</span>
+    <span>📄 Electronics, 2025 · Vol. 14, No. 20, 4086</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics14204086">10.3390/electronics14204086</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>أدى الانتشار السريع لإنترنت الأشياء إلى طلب ملح على ذكاء محلي يوازن بين الأحمال الحاسوبية العالية وقيود الطاقة الصارمة [1]، [7]، بينما تعاني أطر الاستدلال الطرفي القائمة في نشر نماذج الذكاء التوليدي بكفاءة على الأجهزة منخفضة القدرة، مضحيةً غالبًا بالدقة لحساب الكفاءة أو مفتقرةً للتكيف مع الظروف الديناميكية [3]، [9].</p>
+    <p>لسد هذه الفجوة يقترح المؤلفون إطار استدلال طرفيًا للذكاء التوليدي يدمج ضغط البنية الخفيف [12]، [13] والتكميم التكيفي [14]، [15]، [20] والجدولة الواعية بالطاقة [16]، [17]، [18]. وأظهرت تجارب واسعة على CIFAR-10 وTiny-ImageNet ومجموعة IoT-SensorStream — في سياق معيار BeDGED للذكاء التوليدي الطرفي [10] — خفض استهلاك الطاقة حتى 31% وزمن الاستدلال 27% مقابل أقوى الأسس، مع تحسن مطرد في جودة التوليد.</p>
+    <p>أكدت اختبارات المتانة الصمود تحت الضجيج وتحولات المهام ومجموعات البيانات [9]، [10]، وتحقق دراسات الاستئصال من ضرورة كل وحدة، وأثبت النشر في مختبر مستشفى لإنترنت الأشياء الجدوى الواقعية [2]، [25]، مما يضع العمل بوصفه توحيدًا للضغط والتكميم والجدولة ضمن إطار استدلال توليدي واحد متماسك.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تتوسع منظومات إنترنت الأشياء نحو كثافات حقبة الجيل السادس حيث يُعد التحسين الديناميكي للموارد شرط التشغيل المستدام [1]، ويتوسع الذكاء التوليدي في تطبيقات إنترنت الأشياء ودراسات الحالة وحدوده كما وثقتها مسوحات حديثة [9]، بما يشمل شبكات الجسم اللاسلكية [11] والخدمات الحساسة أمنيًا [2]، [25]. ويؤطر الاستدلال المشترك بين الجهاز والطرفية مع تقسيم النماذج وتخصيص الموارد [5] وتفكير منظومات اللوجستيات [4] مشكلة النشر.</p>
+    <p>ويكمن التوتر الجوهري في الطاقة: إذ تحدد تحليلات عدم كفاءة الطاقة في شبكات إنترنت الأشياء أسبابها وأثرها واستراتيجيات تحسينها [7]، وتجمع مراجعات تعلم الآلة الواعي بالطاقة التقنيات والمنظورات الحديثة [19]. ومن ثم يجب على النماذج التوليدية المحلية خفض الجولات والمللي ثوانٍ معًا دون انهيار دقة المخرجات.</p>
+    <p>تتمثل مساهمة الورقة في إطار ثلاثي الوحدات — الضغط [12]، [13] والتكميم التكيفي [14]، [15] والجدولة الواعية بالطاقة [16]، [17]، [18] — مُقيَّم على معايير رؤية واستشعار مع اختبارات متانة واستئصال ونشر ميداني في مستشفى، مقدمًا توحيدًا منهجيًا ومسار نشر عمليًا للاستدلال التوليدي منخفض القدرة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة</h2>
+    <p>تغطي سيناريوهات التطبيق والتحديات الذكاء التوليدي على الأجهزة الطرفية عمومًا [9]، ومجموعة معيار BeDGED للذكاء التوليدي على عتاد الطرفية [10]، وتوصيف أداء النماذج اللغوية الصغيرة على أجهزة الطرفية [27]، مع TinyLlama كنقطة مرجعية مفتوحة للنماذج الصغيرة [30]. وتمتد الدراسات وثيقة الصلة بهذا الخط: تأمين نماذج الانتشار الموحدة بالتكميم الديناميكي [6]، وتوليد النص-إلى-صورة على الجوال عبر MobileDiffusion [26]، وحلول الذكاء التوليدي لأمن إنترنت الأشياء [25].</p>
+    <p>تنقسم المناهج السائدة إلى ثلاث عائلات. الأولى التكميم: تكميم الأوزان الواعي بالتفعيل (AWQ) [12]، ومخططات الدقة المختلطة طبقيًا مثل Edge-MPQ [13] والدقة المختلطة قنويًا [20]، وموازنة التفعيل-الوزن (AWEQ) [14]، والتكميم السريع الموجه بالتفعيل للطرفية (Agile-quant) [15]. والثانية التقسيم والجدولة: تقسيم نماذج الرؤية الواعي بالطاقة [16]، والتعلم المقسم الدقيق الموزع في إنترنت الأشياء الديناميكية (DisNet) [22]، والتقسيم التكيفي للتدريب غير المتجانس [24]، والمراجعات التحليلية لخوارزميات الجدولة غير المتجانسة [17]. والثالثة الكفاءة ذاتية التكيف والمؤسسة معماريًا: تطبيقات ذكاء الطرفية ذاتية التكيف الواعية بالطاقة [18] والبحث المعماري العصبي المشترك مع التقسيم لإنترنت الأشياء الموزعة [21].</p>
+    <p>وخلاصة المؤلفين التقييمية أنه لا يوجد إطار سابق يحسّن الضغط ودقة التكميم والجدولة الواعية بالطاقة معًا داخل حلقة استدلال توليدي واحدة تُقيَّم فيها الدقة والجولات وزمن الاستجابة معًا — وهي الفجوة التي تملؤها الورقة، مستدمجة خطوط أساس واعية بعدم اليقين [8] ومعايير التباين الموحد [23] في منهجية التقييم.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. المنهجية: المشكلة والإطار</h2>
+    <p>تُصاغ المشكلة كاستدلال توليدي مقيد على عتاد إنترنت أشياء منخفض القدرة: تعظيم جودة التوليد ضمن ميزانيتي طاقة وزمن صارمتين في ظل ظروف جهازية متغيرة ديناميكيًا [1]، [7]، حيث يهدر الضغط الثابت أو التكميم الثابت وحدهما الطاقة أو ينهاران بالدقة [12]، [15]. ومن ثم تعاقب دالة الهدف استهلاك الطاقة وزمن الاستجابة وفقدان الدقة معًا، مع التحسين عبر بنية الضغط وسياسة التكميم والجدولة.</p>
+    <p>يسلسل الإطار العام ثلاث وحدات في حلقة مغلقة. أولًا يقلّص ضغط البنية الخفيف العمود التوليدي ليناسب غلاف الجهاز [12]، [13]؛ ثم تخصص آلية التكميم التكيفي الدقة حيث تهم أكثر في ظل حالة الطاقة الراهنة [14]، [15]، [20]؛ وأخيرًا توزع الجدولة الواعية بالطاقة المعاملات وأعباء العمل عبر الزمن والموارد غير المتجانسة [16]، [17]، [18]، بمنطق تكيف ذاتي على غرار تصميم ذكاء الطرفية الواعي بالطاقة [18].</p>
+    <p>تجعل المواصفة الخوارزمية في الورقة الأصلية الحلقة صريحة: ضغط مرة واحدة لكل هدف نشر، ثم في كل نافذة استدلال تُستشعر حالة الطاقة وتُختار دقة التكميم ويُجدوَل التنفيذ وتُغذَّى الجولات والأزمنة المقاسة راجعةً — انضباط متوافق مع صياغات البحث المعماري المشترك مع التقسيم [21] والجدولة التكيفية غير المتجانسة [24].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. وصف الوحدات</h2>
+    <p>يعيد ضغط البنية الخفيف تصميم العمود التوليدي ليناسب أغلفة الذاكرة والحوسبة الضيقة، ضمن عائلة التقنيات الواعية بالتفعيل [12] والدقة المختلطة الطبقية [13]، ليلائم النموذج أجهزة إنترنت الأشياء منخفضة القدرة قبل أي تكيف تشغيلي.</p>
+    <p>تغيّر آلية التكميم التكيفي الدقة على مستوى الطبقة أو القناة استجابةً لحالة الطاقة والحساسية، معممةً أفكار الموازنة [14] والتوجيه بالتفعيل [15] والدقة المختلطة القنوية [20] في سياسة تشغيلية واحدة بدل الخيار الثابت الخارج-خطي.</p>
+    <p>تضع الجدولة الواعية بالطاقة بعد ذلك المعاملات المكممة ضمن قيود الطاقة وعدم التجانس، مستندةً إلى أسس التقسيم [16]، [22]، [24] ومراجعات الجدولة [17] وممارسة الطرفية ذاتية التكيف [18]؛ وتحول الوحدات الثلاث معًا نموذجًا فعالًا ثابتًا إلى نظام استدلال فعال مستجيب للحالة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. التجارب والنتائج</h2>
+    <p>تمتد الإعدادات التجريبية عبر CIFAR-10 وTiny-ImageNet وسجل IoT-SensorStream (50 مليون سجل)، بمقاييس تقييم محددة (جودة/دقة التوليد، والطاقة بالجول، وزمن الاستجابة)، وبروتوكول تدريب ثابت، وأسس كلاسيكية وحديثة [4]، [8]، [9]، [11]، بما يتسق مع ممارسة قياس التوليد الطرفي [10]، [27].</p>
+    <p>تُظهر النتائج الكمية خفض الإطار استهلاك الطاقة حتى 31% وزمن الاستدلال 27% مقابل أقوى الأسس [4]، [11] مع الحفاظ على جودة التوليد أو تحسينها عبر مجموعات البيانات الثلاث [9]، [10]. وتؤيد النتائج النوعية الأرقام بتوليدات أفضل بصريًا، وتؤكد فحوص المتانة الاستقرار تحت الضجيج المحقون وعبر نقل المهام ومجموعات البيانات.</p>
+    <p>تزيل دراسة الاستئصال كل وحدة بدورها — الضغط [12] والتكميم التكيفي [15] والجدولة [18] — وتسجل تدهورًا في كل حالة، مما يثبت الضرورة؛ وتضع خلاصة النتائج الحلقة الكاملة ثلاثية الوحدات متفوقةً تمامًا على أي متغير ثنائي الوحدات في حد الدقة-الطاقة-الزمن المشترك.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. المناقشة والخاتمة</h2>
+    <p>تعمم المناقشة النتائج: إن توحيد الضغط والتكميم والجدولة في حلقة واحدة واعية بالطاقة يحقق مكاسب متزامنة في الدقة والطاقة والزمن بدل المفاضلات الثنائية، وتدعم أدلة المتانة والاستئصال ادعاءات النشر المعززة بعرض مختبر المستشفى — تحقق ملاصق للرعاية الصحية يتسق مع موضوعات الموثوقية منخفضة القدرة في أعمال التضمين بالضجيج الحراري [29] ودراسات كفاءة الخبو متعدد المسارات [28].</p>
+    <p>تبقى أربع جبهات: متحكمات دقيقة فائقة الانخفاض دون ميغابايت ومسرعات تناظرية تتطلب مزيدًا من الضغط؛ والامتثال الخصوصي والأخلاقي (إخفاء الهوية والتعلم الموحد) للرعاية الصحية والبنى الحرجة [2]، [6]، [23]، [25]؛ والجدولة التكيفية متعددة المستأجرين عبر الأجهزة المشتركة؛ ومعايير مفتوحة موحدة وسلاسل أدوات قابلة لإعادة الإنتاج للذكاء التوليدي الواعي بالطاقة [10]. وتكمن الأهمية الأكاديمية في التوحيد المنهجي؛ والملاءمة العملية تمتد للرعاية الصحية والمراقبة الصناعية والحوسبة الجوالة، مع مسارات تكامل مستقبلية في التعلم الموحد والدمج متعدد الوسائط والتكميم التكيفي.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>The rapid proliferation of the Internet of Things (IoT) has created urgent demand for on-device intelligence that balances high computational loads against stringent energy constraints [1], [7], while existing edge inference frameworks struggle to deploy generative AI models efficiently on low-power devices, often sacrificing fidelity for efficiency or lacking adaptability to dynamic conditions [3], [9].</p>
+    <p>To close this gap, the authors propose a generative-AI edge inference framework that integrates lightweight architecture compression [12], [13], adaptive quantization [14], [15], [20], and energy-aware scheduling [16], [17], [18]. Extensive experiments on CIFAR-10, Tiny-ImageNet, and the IoT-SensorStream dataset — including the BeDGED generative-AI edge benchmark context [10] — show energy consumption reduced by up to 31% and inference latency by 27% against state-of-the-art baselines, with consistently improved generative quality.</p>
+    <p>Robustness tests confirm resilience under noise and cross-task/cross-dataset shifts [9], [10], ablation studies validate the necessity of each module, and deployment in a hospital IoT laboratory demonstrates real-world feasibility [2], [25], positioning the work as a unification of compression, quantization, and scheduling within one coherent generative-inference framework.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>IoT ecosystems are scaling toward 6G-era densities where dynamic resource optimization is the precondition of sustainable operation [1], and generative AI is simultaneously expanding across IoT applications, case studies, and limitations catalogued in recent surveys [9], including wireless body-area networks [11] and security-sensitive services [2], [25]. Device-edge co-inference with split models and resource allocation [5] and logistics-scale ecosystems thinking [4] frame the deployment problem.</p>
+    <p>The core tension is energy: analyses of energy inefficiency in IoT networks identify its causes, impact, and optimization strategies [7], and broader reviews of energy-aware machine learning consolidate recent techniques and perspectives [19]. On-device generative models must therefore cut both joules and milliseconds without collapsing output fidelity.</p>
+    <p>The paper's contribution is a three-module framework — compression [12], [13], adaptive quantization [14], [15], energy-aware scheduling [16], [17], [18] — evaluated on vision and sensor benchmarks with robustness, ablation, and a hospital-IoT field deployment, offering both a methodological unification and a practical deployment path for low-power generative inference.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related Works</h2>
+    <p>Application scenarios and challenges cover generative AI on edge devices generally [9], the BeDGED benchmark dataset for generative AI on edge hardware [10], and characterization of small-language-model performance on edge devices [27], complemented by TinyLlama as an open small-model reference point [30]. Closely related studies extend this line: securing federated diffusion models with dynamic quantization [6], mobile text-to-image generation with MobileDiffusion [26], and generative-AI solutions for IoT security [25].</p>
+    <p>Mainstream approaches fall into three families. First, quantization: activation-aware weight quantization (AWQ) [12], layer-wise mixed-precision schemes such as Edge-MPQ [13] and channel-wise mixed precision [20], activation-weight equalization (AWEQ) [14], and activation-guided fast edge quantization (Agile-quant) [15]. Second, partitioning and scheduling: energy-aware vision-model partitioning [16], distributed micro-split learning in dynamic IoT (DisNet) [22], adaptive partitioning for heterogeneous training [24], and analytical reviews of heterogeneous scheduling algorithms [17]. Third, self-adaptive and architected efficiency: energy-aware self-adaptive edge AI applications [18] and joint neural-architecture-search plus partitioning for distributed IoT [21].</p>
+    <p>The authors' summary assessment is that no prior framework jointly optimizes compression, quantization granularity, and energy-aware scheduling inside a single generative-inference loop evaluated simultaneously for fidelity, joules, and latency — the gap this paper fills, drawing uncertainty-aware baselines [8] and federated-heterogeneity benchmarks [23] into its evaluation methodology.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Methodology: Problem and Framework</h2>
+    <p>The problem is formulated as constrained generative inference on low-power IoT hardware: maximize generative quality subject to hard energy and latency budgets under dynamically varying device conditions [1], [7], where static compression or fixed quantization alone either wastes energy or collapses fidelity [12], [15]. The objective function therefore jointly penalizes energy consumption, latency, and fidelity loss, optimized over compression structure, quantization policy, and schedule.</p>
+    <p>The overall framework chains three modules in a closed loop. Lightweight architecture compression first shrinks the generative backbone for the device envelope [12], [13]; the adaptive quantization mechanism then assigns precision where it matters most under the current energy state [14], [15], [20]; and energy-aware scheduling finally maps operators and workloads across time and heterogeneous resources [16], [17], [18], with self-adaptation logic in the style of energy-aware edge AI design [18].</p>
+    <p>A pseudocode specification in the original paper makes the loop explicit: compress once per deployment target, then per inference window sense energy state, select quantization granularity, schedule execution, and feed back measured joules and latency — a discipline aligned with energy-aware NAS-plus-partition formulations [21] and adaptive heterogeneous scheduling [24].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Module Descriptions</h2>
+    <p>Lightweight architecture compression redesigns the generative backbone for tight memory and compute envelopes, in the family of activation-aware [12] and layer-wise mixed-precision [13] techniques, so that the model fits low-power IoT devices before any runtime adaptation occurs.</p>
+    <p>The adaptive quantization mechanism varies precision at layer or channel granularity in response to energy state and sensitivity, generalizing equalization-based [14], activation-guided [15], and channel-wise mixed-precision [20] ideas into a single runtime policy rather than a one-shot offline choice.</p>
+    <p>Energy-aware scheduling then places the quantized operators under energy and heterogeneity constraints, building on partition-based [16], [22], [24] and scheduling-review [17] foundations and self-adaptive edge practice [18]; together the three modules convert a static efficient model into a state-responsive efficient inference system.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Experiments and Results</h2>
+    <p>Experimental setups span CIFAR-10, Tiny-ImageNet, and a 50M-record IoT-SensorStream, with defined evaluation metrics (generative quality/fidelity, energy in joules, latency), a fixed training protocol, and classical plus state-of-the-art baselines [4], [8], [9], [11], consistent with edge generative benchmarking practice [10], [27].</p>
+    <p>Quantitative results show the framework reducing energy consumption by up to 31% and inference latency by 27% versus the strongest baselines [4], [11] while sustaining or improving generative quality across all three datasets [9], [10]. Qualitative results corroborate the numbers with visibly better generations, and robustness checks confirm stability under injected noise and across cross-task and cross-dataset transfer.</p>
+    <p>The ablation study removes each module in turn — compression [12], adaptive quantization [15], scheduling [18] — and records degradation in every case, validating necessity; the results summary positions the full three-module loop as strictly dominant over any two-module variant on the joint fidelity–energy–latency frontier.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Discussion and Conclusions</h2>
+    <p>The discussion generalizes the findings: unifying compression, quantization, and scheduling in one energy-aware loop yields simultaneous fidelity, energy, and latency wins rather than pairwise trade-offs, with robustness and ablation evidence supporting deployment claims reinforced by the hospital IoT laboratory demonstration — a healthcare-adjacent validation consistent with low-power reliability themes in thermal-noise modulation work [29] and multipath-fading efficiency studies [28].</p>
+    <p>Four frontiers remain: sub-MB ultra-low-power microcontrollers and analog AI accelerators demanding further compression; privacy and ethical compliance (anonymization, federated learning) for healthcare and critical infrastructure [2], [6], [23], [25]; multi-tenant adaptive scheduling over shared devices; and open standardized benchmarks and reproducible toolchains for energy-aware generative AI [10]. The academic significance is the methodological unification; the practical relevance spans healthcare, industrial monitoring, and mobile computing, with future integration paths in federated learning, multimodal fusion, and adaptive quantization.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed selection of 20 references with original numbering preserved; see the <a href="https://doi.org/10.3390/electronics14204086">original paper</a> for the full 30-reference list.</p>
+    <ol dir="ltr">
+      <li value="1">Ansere, J.A.; Kamal, M.; Khan, I.A.; Aman, M.N. Dynamic resource optimization for energy-efficient 6G-IoT ecosystems. <em>Sensors</em> 2023, <em>23</em>, 4711.</li>
+      <li value="3">Zhang, X.; Nie, J.; Huang, Y.; et al. Beyond the cloud: Edge inference for generative large language models in wireless networks. <em>IEEE Trans. Wirel. Commun.</em> 2024, <em>24</em>, 643–658.</li>
+      <li value="6">He, J.; Lai, B.; Kang, J.; et al. Securing federated diffusion model with dynamic quantization. 2024.</li>
+      <li value="7">Almudayni, Z.; Soh, B.; Samra, H.; Li, A. Energy inefficiency in IoT networks: Causes, impact, and strategic framework. <em>Electronics</em> 2025.</li>
+      <li value="9">Sai, S.; Kanadia, M.; Chamola, V. Empowering IoT with generative AI: Applications, case studies, and limitations. <em>IEEE Internet Things Mag.</em> 2024, <em>7</em>, 38–43.</li>
+      <li value="10">Nezami, Z.; Hafeez, M.; Djemame, K.; et al. BeDGED: Benchmark Dataset for Generative AI on Edge Devices. <em>IEEE Data Descr.</em> 2025, <em>2</em>, 5.</li>
+      <li value="12">Lin, J.; Tang, J.; Tang, H.; et al. AWQ: Activation-aware weight quantization for on-device LLM compression. 2023.</li>
+      <li value="13">Zhao, X.; Xu, R.; Gao, Y.; et al. Edge-MPQ: Layer-wise mixed-precision quantization. 2024.</li>
+      <li value="15">Shen, X.; Dong, P.; Lu, L.; et al. Agile-quant: Activation-guided quantization for faster inference of LLMs on the edge. 2024.</li>
+      <li value="16">Katare, D.; Zhou, M.; Chen, Y.; et al. Energy-Aware Vision Model Partitioning for Edge AI. In <em>Proc. SAC 2025</em>.</li>
+      <li value="17">Ahmad, W.; Gautam, G.; Alam, B.; Bhati, B.S. Analytical review of scheduling algorithms in heterogeneous computing. 2024.</li>
+      <li value="18">Tundo, A.; Mobilio, M.; Ilager, S.; et al. An energy-aware approach to self-adaptive AI-based applications on the edge. 2024.</li>
+      <li value="19">Różycki, R.; Solarska, D.A.; Waligóra, G. Energy-Aware Machine Learning Models — A Review. <em>Energies</em> 2025, <em>18</em>, 2810.</li>
+      <li value="20">Chen, Z.; Xie, B.; Li, J.; Shen, C. Channel-wise mixed-precision quantization for large language models. <em>arXiv</em> 2024, arXiv:2410.13056.</li>
+      <li value="21">Huang, B.; Abtahi, A.; Aminifar, A. Energy-Aware Integrated NAS and Partitioning for Distributed IoT. <em>IEEE Trans. IoT</em> 2024.</li>
+      <li value="22">Samikwa, E.; Di Maio, A.; Braun, T. DisNet: Distributed micro-split deep learning in heterogeneous dynamic IoT. <em>IEEE Internet Things J.</em> 2023, <em>11</em>, 6199–6216.</li>
+      <li value="25">López Delgado, J.L.; López Ramos, J.A. A Comprehensive Survey on Generative AI Solutions in IoT Security. <em>Electronics</em> 2024, <em>13</em>, 4965.</li>
+      <li value="26">Zhao, Y.; Xu, Y.; Xiao, Z.; et al. MobileDiffusion: Instant text-to-image generation on mobile devices. In <em>Proc. ECCV 2024</em>.</li>
+      <li value="27">Islam, M.R.; Dhar, N.; Deng, B.; et al. Characterizing Small Language Models on Edge Devices. 2024.</li>
+      <li value="30">Zhang, P.; Zeng, G.; Wang, T.; Lu, W. TinyLlama: An open-source small language model. <em>arXiv</em> 2024, arXiv:2401.02385.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics14204086">10.3390/electronics14204086</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

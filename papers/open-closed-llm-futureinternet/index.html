@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قياس أداء النماذج اللغوية الكبيرة مفتوحة ومغلقة المصدر لتوصيف البيانات على المعايير النصية الحرة في الرعاية الصحية — DAR</title>
+<meta name="description" content="Benchmarking Large Language Models from Open and Closed Source Models to Apply Data Annotation for Free-Text Criteria in Healthcare — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/open-closed-llm-futureinternet/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Benchmarking Large Language Models from Open and Closed Source Models to Apply Data Annotation for Free-Text Criteria in Healthcare</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">قياس أداء النماذج اللغوية الكبيرة مفتوحة ومغلقة المصدر لتوصيف البيانات على المعايير النصية الحرة في الرعاية الصحية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ali Nemati, Mohammad Assadi Shalmani, Qiang Lu, Jake Luo</span>
+    <span>📄 Future Internet, 2025 · Vol. 17(4), Art. 138</span>
+    <span>🔗 <a href="https://doi.org/10.3390/fi17040138">10.3390/fi17040138</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تحمل النماذج اللغوية الكبيرة إمكانات كبيرة لتعزيز توصيف بيانات سجلات الرعاية الصحية النصية الحرة، لكن ضمان دقتها وموثوقيتها أمر حاسم في تطبيقات البحوث السريرية التي تتطلب استخراج خصائص المرضى [51، 52]. تقدم هذه الدراسة إطار تقييم مبنيًا على تحليل القرار متعدد المعايير (MCDA) وتقنية ترتيب الأفضلية بالتشابه مع الحل المثالي (TOPSIS) [10، 46–49]، ومصممًا لقياس أداء النماذج اللغوية في جودة التوصيف عبر عشرة مقاييس تقييم تغطي العمر والجنس ومؤشر كتلة الجسم ووجود المرض والواسمات الدموية مثل عدد خلايا الدم البيضاء والصفائح.</p>
+    <p>باستخدام هذه المنهجية، قُيّمت نماذج رائدة مفتوحة المصدر وتجارية، محققة درجات دقة 0.59 و1.0 و0.84 و0.56 و0.92 للمعايير المحددة. يقدم العمل إطارًا صارمًا لتقييم قدرات النماذج اللغوية في توصيف بيانات الرعاية الصحية، ويسلط الضوء على قيود الأداء الحالية ونقاط القوة، داعمًا التبني المسؤول واتخاذ القرار في تطبيقات الرعاية الصحية [10، 51، 52].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يُعد الاستخراج الدقيق والفعال لخصائص المرضى حاسمًا لتطبيقات الرعاية الصحية، ومنها التوظيف للتجارب السريرية والطب الشخصي والبحوث الوبائية [52]. وركزت دراسات سابقة غالبًا على مجموعة محدودة من الخصائص أو افتقرت إلى تقييم مفصل عبر أبعاد متعددة [53]، وهو قيد مؤثر نظرًا لتباين البيانات السريرية والحاجة إلى نماذج تتعامل مع طيف واسع من خصائص المرضى. وقد أظهرت النماذج اللغوية الكبيرة وعودًا في استخراج المعلومات السريرية [5، 54]، ويلزم قياس أداء منهجي لتوجيه تبنيها المسؤول [9، 35].</p>
+    <p>تقيّم هذه الدراسة نماذج مفتوحة ومغلقة المصدر — GPT-4 وGPT-3.5 وLlama 2 وBard — في استخراج خصائص المرضى من السجلات النصية الحرة في ظل بيانات خام ومنظفة، جامعةً بين عشرة مقاييس آلية وتحقق بشري وترتيب MCDA بتقنية TOPSIS لاختيار النموذج الأعلى ترتيبًا لكل معيار [8، 10].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. المنهجية: مجموعة البيانات والموجّهات وتصميم التقييم</h2>
+    <p>تتكون مجموعة البيانات من سجلات مرضى نصية حرة تغطي العمر (336 مريضًا، 0–90 سنة) ومؤشر كتلة الجسم (43 مريضًا، 3 فئات) والمرض (280 مريضًا) والجنس (341 مريضًا) وعدد خلايا الدم البيضاء (37 مريضًا) وعدد الصفائح (61 مريضًا). وشملت المعالجة المسبقة خطوات تنظيف وتطبيع مثل التجذيع والرد إلى الأصل [19]، منتجةً نسختين خام ومنظفة لعزل أثر جودة البيانات. وصُممت الموجّهات وفق إرشادات التوجيه الفعال للنماذج اللغوية [21، 22]، وشمل الاستخراج المعايير الستة نفسها عبر جميع النماذج.</p>
+    <p>جمع التقييم أربع عائلات من المقاييس. فقارن التحقق البشري مخرجات النماذج مع التوصيفات المرجعية بنظام درجات لكل معيار. واشتُقت درجات F1 والدقة والاستدعاء عبر BERTScore [28، 66، 67]. وقِيس التشابه الدلالي النصي بمحولات الجمل [29، 68]، والاتساق الوقائعي بفحوص مستوحاة من DeepEval [30، 69]. وقِيس أيضًا الاتساق والتماسك والطلاقة والملاءمة بمقيّمات بأسلوب النموذج-كحكم [31، 32، 40، 71]. ودُمجت الترتيبات بتحليل MCDA بتقنية TOPSIS: بناء مصفوفة قرار، وتطبيع الدرجات، وترجيح المعايير، وتحديد الحلين المثاليين الإيجابي والسلبي، وحساب المسافات الإقليدية، والترتيب بالقرب النسبي من الحل المثالي [10، 46–49].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. النتائج: GPT-4 يتصدر؛ وجودة البيانات تحسم الحالات المتقاربة</h2>
+    <p>برز GPT-4 كأكثر النماذج اقتدارًا، متصدرًا معايير العمر والجنس والصفائح: ففي العمر حقق درجة تحقق بشري 0.93 على البيانات الخام و1.00 كاملة على المنظفة، وفي الصفائح على البيانات المنظفة بلغ 0.92 في كل من MCDA والتحقق البشري. وفي المرض تصدّر GPT-4 ترتيب MCDA على البيانات الخام (0.51 تحقق بشري)، متحسنًا إلى 0.56 مع البيانات المنظفة، وفي خلايا الدم البيضاء حقق 0.99 شبه كاملة على البيانات المنظفة [10] — مما يؤكد أثر جودة البيانات في الخصائص المعقدة.</p>
+    <p>أظهر Bard متانة على البيانات الخام، متصدرًا ترتيب MCDA لمؤشر كتلة الجسم على الخام (0.80 تحقق بشري)، بينما بلغ GPT-4 على المنظفة 0.84. ومن اللافت تباين الترتيب الخوارزمي والحكم البشري أحيانًا: فقد تصدّر Bard ترتيب TOPSIS لخلايا الدم البيضاء على الخام لكنه نال 0.05 فقط في التحقق البشري، بينما توافق Llama 2 أكثر مع أحكام الخبراء في أنماط خلايا الدم البيضاء — وهو حاسم لتشخيص العدوى واضطرابات الدم. وتصدّر GPT-4 تحديد الجنس على الخام (0.59)، مساويًا لنسختي GPT-3.5 الخام وGPT-4 المنظفة [10].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. المناقشة: تقييم متنوع مُتحقق منه هجينًا</h2>
+    <p>من المساهمات الرئيسة تغطية مجموعة متنوعة من الخصائص — العمر ومؤشر كتلة الجسم والمرض والجنس وخلايا الدم البيضاء والصفائح — مقدمةً صورة أشمل لقدرات النماذج اللغوية من دراسات اقتصرت على خصائص ضيقة [53]. وتفوق GPT-4 على البيانات المنظفة باستمرار على GPT-3.5 وLlama 2 وBard، موسّعًا الأدلة السابقة حول الاستخراج السريري بالنماذج اللغوية [54، 55] بتقييم دقيق لكل خاصية وكل حالة قد يوفر الوقت والموارد مقارنة بالمراجعة اليدوية للسجلات.</p>
+    <p>أثرت جودة البيانات، المنعكسة في البيانات المنظفة مقابل الخام، جوهريًا في الأداء، خاصة للخصائص المعقدة كالمرض وعدد الصفائح — مؤكدةً نتائج سابقة حول المعالجة المسبقة وضبط الجودة في معالجة اللغة السريرية [57] ومساهمةً في أدلة أفضل الممارسات لإعداد البيانات في الذكاء الاصطناعي السريري [58]. وكان دمج التحقق البشري مع المقاييس الآلية ضروريًا: إذ تباينت الأحكام البشرية أحيانًا عن الترتيبات الخوارزمية، فكان النهج الهجين الجامع بين الكفاءة الخوارزمية وحكم الخبراء الاستراتيجية الأكثر فعالية للموثوقية السريرية [59، 60].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. الخصوصية والأخلاقيات والآثار السريرية</h2>
+    <p>يثير استخدام النماذج اللغوية لتوصيف بيانات الرعاية الصحية اعتبارات حرجة في الخصوصية والأخلاقيات: إذ يجب أن تمتثل معالجة بيانات المرضى الحساسة لأطر تنظيمية مثل HIPAA واللائحة العامة لحماية البيانات، وقد تعكس التحيزات المولدة نمويًا التفاوتات في بيانات التدريب وتنشرها، ويتطلب النشر الأخلاقي إشرافًا بشريًا مستمرًا وتخفيف التحيز والشفافية وإخفاء هوية صارمًا وبيئات معالجة آمنة [56]. ومعالجة هذه التحديات حاسمة للثقة ولمواءمة التوصيف المدفوع بالنماذج مع العدالة والمساءلة والرعاية المتمحورة حول المريض.</p>
+    <p>وسريريًا، يمكن لأتمتة استخراج خصائص المرضى تسريع التوظيف للتجارب بفرز السجلات سريعًا وفق معايير الأهلية، وتعزيز الطب الدقيق بتجميع الملاحظات والمختبرات والتصوير في رؤية شاملة للمريض [61، 62]. ولا تزال النماذج اللغوية كوكلاء في العيادات جبهة تقييم نشطة [63، 64]، والحواجز المسؤولة شرط مسبق للنشر [65]. وفي المحصلة، يرسي هذا العمل الأساس لتوظيف النماذج اللغوية في تحسين رعاية المرضى وتقدم الطب الدقيق.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. الاستنتاجات</h2>
+    <p>ختامًا، تساهم هذه الدراسة بتقييم شامل بتقنية MCDA–TOPSIS لأداء النماذج اللغوية عبر خصائص مرضى متنوعة وحالات بيانات مختلفة. ويؤتمت GPT-4، خاصة على البيانات المنظفة، استخراج خصائص المرضى ويبسّطه، بينما تكشف الدراسة تحديات النشر واعتباراته. ويوفر نهج التقييم الهجين — الكفاءة الخوارزمية مع الحكم البشري — إطارًا للدقة والموثوقية في البيئات السريرية، داعمًا البحوث المستقبلية نحو تحسين رعاية المرضى والطب الدقيق [10، 51، 52].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Large language models (LLMs) hold the potential to significantly enhance data annotation for free-text healthcare records, but ensuring their accuracy and reliability is critical in clinical research applications requiring extraction of patient characteristics [51, 52]. This study introduces an evaluation framework based on Multi-Criteria Decision Analysis (MCDA) and the Order of Preference by Similarity to Ideal Solution (TOPSIS) technique [10, 46–49], designed to benchmark LLMs on annotation quality across ten evaluation metrics covering age, gender, BMI, disease presence, and blood markers such as white blood count and platelets.</p>
+    <p>Using this methodology, leading open-source and commercial LLMs were assessed, achieving accuracy scores of 0.59, 1.0, 0.84, 0.56, and 0.92 for the specified criteria. The work provides a rigorous framework for evaluating LLM capabilities in healthcare data annotation and highlights current performance limitations and strengths [10, 51, 52], supporting responsible adoption and decision-making in healthcare applications.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Accurate and efficient extraction of patient characteristics is crucial for healthcare applications including clinical trial recruitment, personalized medicine, and epidemiological research [52]. Prior studies have often focused on a limited set of characteristics or lacked detailed evaluation across multiple dimensions [53], which is particularly limiting given the heterogeneity of clinical data and the need for models handling a wide range of patient characteristics. LLMs have shown promise for clinical information extraction [5, 54], and systematic benchmarking is needed to guide their responsible adoption [9, 35].</p>
+    <p>This study evaluates open-source and closed-source LLMs — GPT-4, GPT-3.5, Llama 2, and Bard — on extracting patient characteristics from free-text records under raw and cleaned dataset conditions, combining ten automated metrics with human validation and a TOPSIS-based MCDA ranking to select the top-ranked model per criterion [8, 10].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Methodology: Dataset, Prompts, and Evaluation Design</h2>
+    <p>The dataset comprises free-text patient records covering age (336 patients, 0–90 years), BMI (43 patients, 3 categories), disease (280 patients), gender (341 patients), WBC count (37 patients), and platelet count (61 patients). Preprocessing included cleaning and normalization steps such as stemming and lemmatization [19], producing raw and clean dataset variants to isolate the effect of data quality. Prompts were designed following guidelines for effective LLM prompting [21, 22], and extraction covered the same six criteria across all models.</p>
+    <p>Evaluation combined four families of measures. Human validation compared LLM outputs against ground-truth annotations with a per-criterion scoring system. F1-score, precision, and recall were derived via BERTScore [28, 66, 67]. Semantic textual similarity used Sentence-Transformers [29, 68], and factual consistency followed DeepEval-inspired checks [30, 69]. Coherence, consistency, fluency, and relevance were additionally scored with LLM-as-judge style evaluators [31, 32, 40, 71]. Rankings were fused with TOPSIS-based MCDA: constructing a decision matrix, normalizing scores, weighting criteria, identifying positive and negative ideal solutions, computing Euclidean distances, and ranking by relative closeness to the ideal solution [10, 46–49].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Results: GPT-4 Leads; Data Quality Decides Close Calls</h2>
+    <p>GPT-4 emerged as the most resourceful model, ranking first on age, gender, and platelets: for age it achieved a human validation score of 0.93 on raw data and a flawless 1.00 on clean data, while for platelets on clean data it reached 0.92 on both MCDA and human validation. For disease, GPT-4 ranked first by MCDA on raw data (0.51 human validation), improving to 0.56 with clean data, and for WBC it secured a near-perfect 0.99 human validation score on clean data [10] — emphasizing the impact of data quality on complex characteristics.</p>
+    <p>Bard showed robustness on raw data, topping the MCDA ranking for BMI on raw data (0.80 human validation), while GPT-4 on clean data reached 0.84. Notably, algorithmic rankings and human judgment sometimes diverged: Bard led the TOPSIS ranking for WBC on raw data yet received a human validation score of only 0.05, whereas Llama 2 aligned more closely with expert judgments on WBC patterns — crucial for diagnosing infections or blood disorders. Gender identification was led by GPT-4 on raw data (0.59), matched by GPT-3.5 raw and GPT-4 clean variants [10].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Discussion: A Diverse, Hybridly Validated Evaluation</h2>
+    <p>A key contribution is coverage of a diverse set of characteristics — age, BMI, disease, gender, WBC, and platelets — providing a more comprehensive picture of LLM capabilities than studies limited to narrow characteristic sets [53]. GPT-4 on clean datasets consistently outperformed GPT-3.5, Llama 2, and Bard, extending prior evidence on LLM clinical extraction [54, 55] with a nuanced per-characteristic, per-condition evaluation that could save time and resources versus manual chart review.</p>
+    <p>Data quality, reflected in clean versus raw datasets, significantly affected performance, particularly for complex characteristics such as disease and platelet count — echoing prior findings on preprocessing and quality control in clinical NLP [57] and contributing to best-practice evidence for data preparation in clinical AI [58]. The incorporation of human validation alongside automated metrics proved essential: human judgments sometimes diverged from algorithmic rankings, so a hybrid approach combining algorithmic efficiency with expert judgment is the most effective strategy for clinical reliability [59, 60].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Privacy, Ethics, and Clinical Implications</h2>
+    <p>Using LLMs for healthcare annotation raises critical privacy and ethical considerations: handling of sensitive patient data must comply with regulatory frameworks such as HIPAA and GDPR, model-generated biases may reflect and propagate disparities in training data, and ethical deployment requires ongoing human oversight, bias mitigation, transparency, stringent anonymization, and secure processing environments [56]. Addressing these challenges is crucial for trust and for aligning LLM-driven annotation with fairness, accountability, and patient-centric care.</p>
+    <p>Clinically, automating patient-characteristic extraction can accelerate trial recruitment by rapidly screening records against eligibility criteria, and can advance precision medicine by synthesizing notes, labs, and imaging into a comprehensive patient view [61, 62]. LLM-based agents in clinical settings remain an active evaluation frontier [63, 64], and responsible guardrails are a prerequisite for deployment [65]. Ultimately, this work lays the foundation for leveraging LLMs to improve patient care and advance precision medicine.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Conclusions</h2>
+    <p>In conclusion, this study contributes a comprehensive MCDA–TOPSIS evaluation of LLM performance across diverse patient characteristics and dataset conditions. GPT-4, particularly on clean datasets, automates and streamlines patient-characteristic extraction while the study surfaces deployment challenges and considerations. The hybrid evaluation approach — algorithmic efficiency with human judgment — provides a framework for accuracy and reliability in clinical settings, supporting future research toward improved patient care and precision medicine [10, 51, 52].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references with original numbering; the full list of 73 references is available in the original paper (10.3390/fi17040138).</p>
+    <ol dir="ltr">
+      <li>[5] Agrawal, M.; et al. Large Language Models Are Few-shot Clinical Information Extractors. arXiv 2022, arXiv:2205.12689.</li>
+      <li>[8] Diaby, V.; Campbell, K.; Goeree, R. Multi-criteria decision analysis (MCDA) in health care: A bibliometric analysis. Oper. Res. Health Care 2013, 2, 20–24.</li>
+      <li>[9] McIntosh, T.R.; et al. Inadequacies of Large Language Model Benchmarks in the Era of Generative Artificial Intelligence. Environ. Model. Softw. 2024.</li>
+      <li>[10] Kuo, T. A modified TOPSIS with a different ranking index. Eur. J. Oper. Res. 2017, 260, 152–160.</li>
+      <li>[22] Lin, Z. How to write effective prompts for large language models. Nat. Hum. Behav. 2024, 8, 611–615.</li>
+      <li>[28] Zhang, T.; Kishore, V.; Wu, F.; Weinberger, K.Q.; Artzi, Y. Bertscore: Evaluating text generation with bert. arXiv 2019, arXiv:1904.09675.</li>
+      <li>[29] Reimers, N.; Gurevych, I. Sentence-bert: Sentence embeddings using siamese bert-networks. arXiv 2019, arXiv:1908.10084.</li>
+      <li>[35] He, K.; et al. A Survey of Large Language Models for Healthcare: From Data, Technology, and Applications. Artif. Intell. Rev. 2025.</li>
+      <li>[51] Wang, Y.; et al. Clinical information extraction applications: A literature review. J. Biomed. Inform. 2018.</li>
+      <li>[52] Shivade, C.; et al. A review of approaches to identifying patient phenotype cohorts using electronic health records. J. Am. Med. Inform. Assoc. 2014.</li>
+      <li>[53] Singhal, K.; et al. Large Language Models Encode Clinical Knowledge. Nature 2023, 620, 172–180.</li>
+      <li>[55] Meystre, S.M.; et al. Extracting information from textual documents in the electronic health record: A review. Yearb. Med. Inform. 2008.</li>
+      <li>[56] Shahriar, S.; Dara, R. Priv-IQ: A Benchmark and Comparative Evaluation of Large Multimodal Models on Privacy Competencies. AI 2025, 6, 29.</li>
+      <li>[57] Kreimeyer, K.; et al. Natural language processing systems for capturing and standardizing unstructured clinical information. J. Biomed. Inform. 2017.</li>
+      <li>[59] Wu, S.; et al. Deep learning in clinical natural language processing: A review. J. Am. Med. Inform. Assoc. 2018.</li>
+      <li>[60] Demner-Fushman, D.; Chapman, W.W.; McDonald, C.J. What can natural language processing do for clinical decision support? J. Biomed. Inform. 2009, 42, 760–772.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/fi17040138">10.3390/fi17040138</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

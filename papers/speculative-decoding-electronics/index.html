@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تقييم مضبوط بزمن التشغيل لأساليب فك التشفير التخميني — DAR</title>
+<meta name="description" content="Runtime-Controlled Evaluation of Speculative Decoding Methods — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/speculative-decoding-electronics/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Runtime-Controlled Evaluation of Speculative Decoding Methods</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تقييم مضبوط بزمن التشغيل لأساليب فك التشفير التخميني</h2>
+
+  <div class="paper-meta">
+    <span>👤 Sungkyun Kim, Jaemin Kim, Yeongpil Cho, Jiwon Seo</span>
+    <span>📄 Electronics, 2026 · Vol. 15(14), Art. 3179</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics15143179">10.3390/electronics15143179</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يصعب مقارنة تسريعات فك التشفير التخميني المُبلغ عنها لأن الأساليب تُقيَّم عادةً بزمن تشغيل وتهيئات خدمة مختلفة. نقدم في هذه الدراسة SpecLLM، وهو إطار تقييم قابل للتوصيل يطبق سياسات مشتركة للجدولة والتجميع وذاكرة المفتاح-القيمة ورسومات CUDA وخلفية التنفيذ عبر الأساليب، مع الحفاظ على مسارات الاقتراح والتحقق التي تتطلبها كل طريقة [16–18]. نفذنا ثمانية أساليب لفك التشفير التخميني وقيّمناها عبر أحجام دفعات وأحمال متصلة مضبوطة ومقياسي نموذجين. نحلل تسريع الإنتاجية بالصيغة S = τ/c، حيث τ هو متوسط عدد الرموز المُثبتة في كل خطوة، وc هو كلفة التنفيذ اللابعدية لتلك الخطوة نسبةً إلى خطوة فك تشفير ذاتية مضاهية.</p>
+    <p>في ظل الشروط المقيّمة، تتغير ترتيبات الأساليب بتغير حجم الدفعة والحمل المتصل، وطول الالتزام الأكبر لا يؤدي بالضرورة إلى زمن استجابة أقل عندما تزداد كلفة التنفيذ أو الانتظار. لذلك يوفر SpecLLM قابلية مقارنة مضبوطة داخل زمن التشغيل نفسه وليس عدالة مستقلة عن زمن التشغيل؛ وينبغي أن تُبلغ نتائج فك التشفير التخميني عن (τ، c) وزمن الاستجابة والجدوى والشروط التي قِيست فيها [16–18، 21، 22].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>أصبحت النماذج اللغوية الكبيرة لبنة أساسية في خدمات تتراوح من البحث والبرمجة إلى تأليف المستندات والوكلاء الحواريين، فبرزت خدمة استدلال هذه النماذج بإنتاجية عالية وزمن استجابة منخفض كمشكلة أنظمة محورية. تنبع عدم كفاءة استدلال النماذج اللغوية من التوليد الذاتي: بما أن كل رمز مخرج يعتمد على سابقه، يسير التوليد تسلسليًا وقد لا يستغل توازي المسرّعات [1، 2]. يخفف فك التشفير التخميني هذا الاختناق، وقد اقتُرحت طرازات عديدة تختلف في توليد المرشحات وبنية التحقق [1–9].</p>
+    <p>ومع اتساع أبحاث فك التشفير التخميني، أصبحت مقارنة الأساليب مهمة متزايدة، لكن التسريع المُبلغ عنه لا تحدده خوارزمية فك التشفير وحدها. يعرض هذا القسم محوري أداء فك التشفير التخميني (القسم 1.1)، ويشرح سبب كون التسريع المُبلغ عنه مشروطًا بضبط زمن التشغيل (القسم 1.2)، ويقدم أهداف تصميم SpecLLM (القسم 1.3)، ويذكر مساهماتنا (القسم 1.4) [1–9].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1.1. خصائص التنفيذ ومحورا الأداء</h2>
+    <p>يتكون استدلال النماذج اللغوية من مرحلة تعبئة مسبقة تعالج المدخل كله دفعة واحدة، ومرحلة توليد تنتج رموز المخرجات واحدًا تلو الآخر؛ ويكمن اختناق زمن الاستجابة الحرج في مرحلة التوليد، حيث يعتمد كل تمرير أمامي للنموذج الهدف على الرمز المولد قبله مباشرة، فلا توازي ممكن عبر الخطوات. في فك التشفير التخميني، يقترح مسوِّد خفيف عدة رموز مرشحة دفعة واحدة ويتحقق منها النموذج الهدف كلها بالتوازي بتمرير أمامي واحد؛ وكلما زاد عدد الرموز المقبولة قلّ عدد استدعاءات الهدف [1، 2]. وينشأ التسريع المحتمل لأن زمن استجابة وحدة معالجة الرسومات لا ينمو بالضرورة تناسبيًا مع عدد المواضع المعالجة.</p>
+    <p>تقليل استدعاءات الهدف وحده لا يضمن التسريع: يحكم أداء فك التشفير التخميني محوران مترابطان. الأول جودة المسودة، وتمثله عدد الرموز المُثبتة في الخطوة، ويعتمد على الطريقة وزوج القطعة الهدف-المسوِّد وخصائص عبء العمل مثل الإنتروبيا وطول التسلسل [3–8، 10، 11]. والثاني كفاءة التنفيذ، أي كلفة خطوة المسودة-التحقق الكاملة نسبة إلى خطوة فك تشفير ذاتية مضاهية. فالقبول المرتفع لا يحقق مكسبًا عندما تكلف خطوة التخمين ما يعادل عدة خطوات أساس، ويفيد التخمين عادةً أكثر عند أحجام الدفعات الصغيرة حيث قد يترك الأساس الذاتي موارد الحوسبة عاطلة [38، 39].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الخلفية: التصنيف والأساليب ومعايير القياس</h2>
+    <p>يمكن تصنيف أساليب فك التشفير التخميني على محورين: مصدر المرشحات، أي من أين تأتي، وتخطيط التحقق، أي بنية المرشحات المتحقق منها. يميز محور المصدر فك التشفير المعياري بنموذج مسودة صغير منفصل [1، 2]، وفك تشفير اللاحقات الاسترجاعي بلا نموذج، وعائلة EAGLE من رؤوس المسودات الخفيفة التي تأخذ السمات الخفية للهدف مدخلًا [3–5]، وأساليب المسودة الذاتية مثل LayerSkip وKangaroo التي تشغّل جزءًا فقط من طبقات الهدف نفسه [8، 11]. ويميز محور التخطيط التحقق الخطي لتسلسل رموز واحد، والتحقق الشجري الذي يجمع عدة تتمات دفعة واحدة كما في SpecInfer وEAGLE [4، 9]، والأساليب التي تتحقق من جزء فقط من المرشحات مثل التحقق التخميني وSVIP وTurboSpec وفك التشفير الهرمي بالنوافذ الديناميكية [12–14، 20].</p>
+    <p>تعالج الأدوات القائمة المقارنة جزئيًا فقط: يركز Spec-Bench على تقييم الطلب المفرد بينما يضيف SPEED-Bench إعدادات الإنتاجية والخدمة، لكن أيًا منهما لا يوحد خيارات المجدول وذاكرة المفتاح-القيمة وخلفية الانتباه ورسومات CUDA والنوى عبر التطبيقات المستقلة [21، 22]. وتدعم محركات الخدمة الإنتاجية مثل vLLM وSGLang وTensorRT-LLM مسارات تخمين مختارة، لكن الدعم يعتمد على الإصدار والتهيئة، فتظل المقارنة المبنية على المحركات محدودة بالأساليب القابلة للتنفيذ المشترك في النسخ المقيّمة [16–18، 23، 24].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. الدافع: التسريع مشروط بضبط زمن التشغيل</h2>
+    <p>يتحدد أداء زمن الساعة الحقيقي لتهيئة فك تشفير تخميني بصورة مشتركة بعوامل الطريقة والقطع (مصدر المرشحات وتخطيط التحقق وميزانية المسودة وسياسة القبول وزوج الهدف-المسوِّد)، وعبء العمل (أطوال التسلسلات والإنتروبيا والوصول وإكمال الطلبات)، وزمن التشغيل (التجميع وإدارة ذاكرة المفتاح-القيمة والتقاط رسومات CUDA والجدولة والنوى)، والعتاد. فخصائص عبء العمل قد تؤثر في طول الالتزام وكلفة التنفيذ معًا، بينما قد يختار التخطيط أو الشكل الأمامي الذي تتطلبه الطريقة مسار تشغيل مختلفًا. لذا ينبغي تفسير التسريع المُبلغ عنه كأداء في ظل طريقة وقطع وزمن تشغيل وعبء عمل وعتاد وأساس وتهيئة محددة، لا كخاصية للطريقة مستقلة عن زمن التشغيل [38–43].</p>
+    <p>تؤثر عوامل تنفيذ زمن التشغيل جوهريًا في الأداء: إذ ينمو عمل التحقق مع حجم الدفعة النشطة، وفي الخدمة المتصلة تشكل أوقات الوصول وجدولة التعبئة والانتظار وضغط ذاكرة المفتاح-القيمة الكلفة المرصودة معًا [38–43]. ويزيد الاعتماد على التطبيق المشكلة تعقيدًا، لأن توليد المرشحات وبناء مرشحات التحقق والتحقق والالتزام والتراجع تتدخل في نقاط مختلفة من حلقة الخدمة، ومحركات الإنتاج المحسّنة لفك التشفير الذاتي المجمّع تبعثر نقاط الحقن هذه أو تقرنها. لذلك تتطلب المقارنة المضبوطة تثبيت سياسات زمن التشغيل المشتركة والعتاد والأساس المضاهى مع الحفاظ على مسار التنفيذ الذي تتطلبه كل طريقة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. إطار SpecLLM: إطار قابل للتوصيل للمقارنة المضبوطة</h2>
+    <p>لدى SpecLLM هدفان. الأول تثبيت سياسات المجدول والتجميع وذاكرة المفتاح-القيمة ورسومات CUDA والخلفية المشتركة عبر الأساليب، مع الحفاظ على الأشكال الأمامية وتخطيطات الانتباه ومسارات النوى وسلوك الذاكرة التي تتطلبها كل طريقة؛ فتكون المقارنة الناتجة مضبوطة داخل زمن التشغيل المعلن وليست ضمان عدالة مطلقة عبر الأنظمة الاعتباطية [16–18، 23، 24]. والثاني خفض كلفة التطبيق بفصل طبقة مشتركة لوظائف زمن التشغيل العامة عن طبقة توصيل لمنطق الخطوات والحالة وبناء الموترات الخاص بكل طريقة. ويُظهر قياس الشيفرة الإضافية الحدية والواجهات المتجاوَزة عبر ثمانية أساليب إمكانية إضافة أساليب جديدة بجهد تزايدي صغير.</p>
+    <p>يجهز SpecLLM أيضًا قياس طول الالتزام وتسريع الإنتاجية، مما يتيح تحليل مسارات (τ، c) الشرطية عبر حجم الدفعة والحمل المتصل المضبوط. فتفكيك التسريع إلى مكسب الالتزام τ وكلفة التنفيذ الشرطية c يوضح سبب تباين ترتيبات الإنتاجية وزمن الاستجابة العملي: إذ تبقى c باقيًا معتمدًا على الشروط لتفاعل الطريقة مع زمن التشغيل والعتاد وعبء العمل والأساس والتهيئة، وليست خاصية جوهرية للطريقة [37]. ولا يقترح العمل خوارزمية تخمين جديدة ولا بنية خدمة إنتاجية عامة الغرض [16–18].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. التقييم: الترتيب يعتمد على شروط الخدمة</h2>
+    <p>قيّمنا ثمانية أساليب لفك التشفير التخميني عبر مسوحات دفعات مهيأة وأحمال متصلة مضبوطة ومقياسي نموذجين أساسيين، مع الإبلاغ عن المتوسط ± الانحراف المعياري وإتاحة الشيفرة المصدرية وملفات التهيئة وسكربتات التنفيذ والتحليل علنًا عند النشر. ويؤكد تقاطع المقارنة المشتركة مع محركات الإنتاج أن التقييم المبني على المحركات مقيد بالأساليب والتهيئات القابلة للتنفيذ المشترك في النسخ المختبرة. وتتباين الترتيبات المتوسطة عبر شروط حجم الدفعة والحمل المتصل: فطول الالتزام الأكبر لا يخفض زمن الاستجابة بالضرورة عندما تزداد كلفة التنفيذ أو الانتظار، وقد توحي الإنتاجية وزمن الاستجابة الذيلي باستنتاجات تشغيلية مختلفة [16–18، 21، 22].</p>
+    <p>يُظهر تفسير التسريع عبر (τ، c) ضرورة الإبلاغ المشترك عن مكسب الالتزام وكلفة التنفيذ الشرطية مع زمن الاستجابة والانتظار والجدوى والقطع وشروط زمن التشغيل؛ وتستمر الفروق بين التشغيلين دون المتصل والمتصل حتى تحت سقف دفعة مشترك، وتصمد النتائج عبر مقاييس النماذج وأنظمة المسودات. لذلك تتطلب توصيات الإبلاغ ذكر (S، τ، c) والمتوسط ± الانحراف المعياري وزمن الاستجابة والانتظار والجدوى والقطع وشروط زمن التشغيل مع كل ادعاء تخمين [21، 22، 37].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6–9. المناقشة والقيود والأعمال ذات الصلة والاستنتاجات</h2>
+    <p>للحصول على نتائج تخمين قابلة للتفسير، ينبغي أن تُبلغ التقييمات معًا عن (S، τ، c) والمتوسط ± الانحراف المعياري وزمن الاستجابة والانتظار والجدوى والقطع وشروط زمن التشغيل، وأن يُبنى اختيار الطريقة على نظام الخدمة لا على رقم تسريع مفرد بارز: فالترتيبات المرصودة عند الدفعات الصغيرة قد لا تنتقل إلى الأنظمة المشبعة أو المتصلة. ويمثل زمن التشغيل المشترك حزم الخدمة الشائعة المعتمدة على الانتباه المرقّم [16، 28–31]، ويعمَّم الفصل الطبقي بين الضوابط المشتركة وتوصيلات الأساليب على أساليب إضافية وتهيئات عتاد وأنظمة تكميم وطبقات إنتروبيا ومزائج حركة.</p>
+    <p>تشمل القيود تغطية ثمانية أساليب ومقياسي نموذجين وأنظمة العتاد وعبء العمل المقيّمة؛ وينبغي للعمل المستقبلي توسيع التقييم ليشمل أساليب إضافية وأعباء خدمة قائمة على التتبع وكلف تدريب نماذج المسودات وتخزينها وصيانتها. ويبقى التسريع المُبلغ عنه مشروطًا بتهيئة الطريقة والقطع وزمن التشغيل وعبء العمل والعتاد والأساس المضاهى [38–43]، ويعالج SpecLLM مشكلة المقارنة بفصل ضوابط زمن التشغيل المشتركة عن واجهات التوصيل الخاصة ببنية الخطوات والحالة والشكل الأمامي لكل طريقة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Reported speculative decoding (SD) speedups are difficult to compare because methods are commonly evaluated with different serving runtimes and configurations. We present SpecLLM, a pluggable evaluation framework that applies common scheduling, batching, KV-cache, CUDA Graph, and execution-backend policies across methods while preserving method-required proposal and verification paths [16–18]. We implement eight SD methods and evaluate them across batch sizes, controlled online loads, and two model scales. We decompose throughput speedup as S = τ/c, where τ is the average number of committed tokens per SD step and c is the dimensionless execution cost of that step relative to a matched autoregressive decode step.</p>
+    <p>Under the evaluated conditions, method rankings change with batch size and online load, and a longer commit length does not necessarily yield lower latency when execution cost or queueing increases. SpecLLM therefore provides controlled within-runtime comparability rather than runtime-independent fairness; SD results should report (τ, c), latency, feasibility, and the conditions under which they were measured [16–18, 21, 22].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Large language models (LLMs) have become a core building block of services ranging from search and coding to document authoring and conversational agents, so serving LLM inference at high throughput and low latency has emerged as a central systems problem. The inefficiency of LLM inference stems from autoregressive generation: because each output token depends on its predecessor, generation proceeds sequentially and can underutilize accelerator parallelism [1, 2]. Speculative decoding (SD) relaxes this bottleneck, and numerous variants differing in candidate generation and verification structure have been proposed [1–9].</p>
+    <p>As SD research has expanded, comparing methods has become increasingly important, but a reported speedup is not determined by the decoding algorithm alone. This section introduces the two performance axes of SD (Section 1.1), explains why a reported speedup is conditional on runtime control (Section 1.2), presents the design goals of SpecLLM (Section 1.3), and states our contributions (Section 1.4) [1–9].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1.1. Execution Characteristics and the Two Performance Axes</h2>
+    <p>LLM inference consists of a prefill phase, which processes the entire input at once, and a generation phase, which produces output tokens one at a time; the critical latency bottleneck lies in the generation phase, where each forward pass of the target model depends on the token generated immediately before it, so no parallelism across steps is possible. In SD, a lightweight drafter proposes several candidate tokens at once and the target model verifies them all in parallel with a single forward pass; the more tokens pass verification and are accepted, the fewer target invocations are needed [1, 2]. The potential speedup arises because GPU latency need not grow proportionally with the number of positions processed.</p>
+    <p>Reducing target invocations alone does not guarantee a speedup: SD performance is governed by two coupled axes. The first is drafting quality, represented by the number of tokens committed per step, which depends on the method, the target–draft artifact pair, and workload characteristics such as entropy and sequence length [3–8, 10, 11]. The second is execution efficiency, the cost of the complete drafting–verification step relative to a matched autoregressive decode step. High acceptance yields no gain when an SD step costs as much as several baseline decode steps, and SD typically helps most at small batch sizes, where the autoregressive baseline may otherwise leave compute resources idle [38, 39].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Background: Taxonomy, Methods, and Benchmarks</h2>
+    <p>SD methods can be classified along two axes: candidate source, which specifies where candidates come from, and verification layout, which specifies the structure of the verified candidates. The candidate-source axis distinguishes Standard SD with a separate small draft model [1, 2], retrieval/model-free suffix decoding, the EAGLE family of lightweight draft heads that take the target's hidden features as input [3–5], and self-drafting methods such as LayerSkip and Kangaroo that run only a subset of the target's own layers [8, 11]. The verification-layout axis distinguishes linear verification of a single token sequence, tree verification bundling several continuations at once as in SpecInfer and EAGLE [4, 9], and methods verifying only a subset of candidates such as speculative verification (SV), SVIP, TurboSpec, and hierarchical decoding with dynamic windows [12–14, 20].</p>
+    <p>Existing tools only partially address comparison: Spec-Bench emphasizes single-request evaluation whereas SPEED-Bench adds throughput and serving-oriented settings, but neither aligns scheduler, KV-cache, attention-backend, CUDA Graph, or kernel choices across independent implementations [21, 22]. Production serving engines such as vLLM, SGLang, and TensorRT-LLM support selected SD paths, but support is version- and configuration-dependent, so an engine-based comparison is limited to the methods jointly executable in the evaluated versions [16–18, 23, 24].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Motivation: Speedup Is Conditional on Runtime Control</h2>
+    <p>The wall-clock performance of an SD configuration is jointly determined by the method and artifacts (candidate source, verification layout, draft budget, acceptance policy, target–draft pair), the workload (sequence lengths, entropy, arrivals, request completion), the runtime (batching, KV-cache management, CUDA Graph capture, scheduling, kernels), and the hardware. Workload characteristics can affect both commit length and execution cost, while a method-required layout or forward shape can select a different runtime path. A reported speedup should therefore be interpreted as performance under a specified method–artifact, runtime, workload, hardware, baseline, and configuration rather than as a runtime-independent property of the method [38–43].</p>
+    <p>Runtime execution factors substantially affect performance: verification work grows with active batch size, and in online serving, arrivals, prefill scheduling, queueing, and KV pressure jointly shape the observed cost [38–43]. Implementation dependence compounds the problem, because candidate generation, verification-candidate construction, verification, commit, and rollback intervene at different points of the serving loop, and production engines optimized for batched autoregressive decoding scatter or couple these injection points. A controlled comparison therefore requires holding common runtime policies, hardware, and a matched baseline fixed while preserving each method's required execution path.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. SpecLLM: A Pluggable Framework for Controlled Comparison</h2>
+    <p>SpecLLM has two goals. First, common scheduler, batching, KV-cache, CUDA Graph, and backend policies are held constant across methods, while method-required forward shapes, attention layouts, kernel paths, and memory behavior are preserved; the resulting comparison is controlled within the stated runtime and is not an absolute fairness guarantee [16–18, 23, 24] across arbitrary systems. Second, SpecLLM lowers implementation cost by separating a Shared Layer for common runtime functions from a Plug-in Layer for method-specific step structure, state, and tensor construction. Quantifying marginal plug-in code and overridden interfaces across eight methods shows that new methods can be added with small incremental effort.</p>
+    <p>SpecLLM also instruments commit length and throughput speedup, enabling the analysis of conditional (τ, c) trajectories across batch size and controlled online load. Decomposing speedup into commit gain τ and conditional execution cost c makes explicit why throughput rankings and practical latency can diverge: c is a condition-dependent residual of the method–runtime interaction, hardware, workload, baseline, and configuration rather than an intrinsic method property [37]. No new SD algorithm or general-purpose production serving architecture is proposed [16–18].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Evaluation: Rankings Depend on Serving Conditions</h2>
+    <p>Eight SD methods were evaluated across configured batch sweeps, controlled online loads, and two primary model scales, with aggregate mean ± SD values reported and the SpecLLM source code, configuration files, and execution and analysis scripts released publicly upon publication. A common-subset comparison with production engines confirms that engine-based evaluation is restricted to jointly executable methods and configurations in the tested versions. Mean-level rankings vary across batch size and online load conditions: a longer commit length does not necessarily yield lower latency when execution cost or queueing increases, and throughput and tail latency can imply different operational conclusions [16–18, 21, 22].</p>
+    <p>Interpreting speedup through (τ, c) shows that commit gain and conditional execution cost must be reported jointly with latency, queueing, feasibility, artifacts, and runtime conditions; offline–online differences persist even under a common batch cap, and results hold across model scales and drafter regimes. Reporting recommendations therefore require (S, τ, c), mean ± SD, latency, queueing, feasibility, artifacts, and runtime conditions for every SD claim [21, 22, 37].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6–9. Discussion, Limitations, Related Work, and Conclusions</h2>
+    <p>For interpretable SD results, evaluations should jointly report (S, τ, c), mean ± SD, latency, queueing, feasibility, artifacts, and runtime conditions, and method selection should be conditioned on the serving regime rather than on a single headline speedup number: rankings observed at small batches need not transfer to saturated or online regimes. The shared runtime is representative of common paged-attention serving stacks [16, 28–31], and the layered separation of common controls from method plug-ins generalizes to additional methods, hardware configurations, quantization regimes, entropy tiers, and traffic mixtures.</p>
+    <p>Limitations include coverage of eight methods, two model scales, and the evaluated hardware and workload regimes; future work should broaden the evaluation to additional methods, trace-based serving workloads, draft-model training, storage, and maintenance costs. A reported SD speedup is conditional on its method–artifact configuration, runtime, workload, hardware, and matched baseline [38–43], and SpecLLM addresses the comparison problem by separating common runtime controls from plug-in interfaces for method-required step structure, state, and forward shape.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references with original numbering; the full list of 44 references is available in the original paper (10.3390/electronics15143179).</p>
+    <ol dir="ltr">
+      <li>[1] Leviathan, Y.; Kalman, M.; Matias, Y. Fast Inference from Transformers via Speculative Decoding. In Proc. 40th Int. Conf. Machine Learning (ICML), PMLR 202, Honolulu, HI, USA, 23–29 July 2023; pp. 19274–19286.</li>
+      <li>[2] Chen, C.; Borgeaud, S.; Irving, G.; Lespiau, J.-B.; Sifre, L.; Jumper, J. Accelerating Large Language Model Decoding with Speculative Sampling. arXiv 2023, arXiv:2302.01318.</li>
+      <li>[3] Li, Y.; Wei, F.; Zhang, C.; Zhang, H. EAGLE: Speculative Sampling Requires Rethinking Feature Uncertainty. arXiv 2024, arXiv:2401.15077.</li>
+      <li>[4] Li, Y.; Wei, F.; Zhang, C.; Zhang, H. EAGLE-2: Faster Inference of Language Models with Dynamic Draft Trees. In Proc. EMNLP 2024, Miami, FL, USA, 12–16 Nov. 2024.</li>
+      <li>[5] Li, Y.; Wei, F.; Zhang, C.; Zhang, H. EAGLE-3: Scaling up Inference Acceleration of Large Language Models via Training-Time Test. arXiv 2025, arXiv:2503.01840.</li>
+      <li>[6] Cai, T.; Li, Y.; Geng, Z.; Peng, H.; Lee, J.D.; Chen, D.; Dao, T. Medusa: Simple LLM Inference Acceleration Framework with Multiple Decoding Heads. arXiv 2024, arXiv:2401.10774.</li>
+      <li>[8] Elhoushi, M.; et al. LayerSkip: Enabling Early Exit Inference and Self-Speculative Decoding. In Proc. ACL 2024.</li>
+      <li>[9] Miao, X.; et al. SpecInfer: Accelerating Large Language Model Serving with Tree-based Speculative Inference and Verification. In Proc. ASPLOS 2024.</li>
+      <li>[11] Liu, F.; et al. Kangaroo: Lossless Self-Speculative Decoding via Double Early Exiting. Adv. Neural Inf. Process. Syst. 2024, 37, 11946–11965.</li>
+      <li>[12] Kim, S.; Kim, J.; Yun, D.; Shin, J.; Lee, J.; Seo, J. Speculative Verification: Exploiting Information Gain for Speculative Decoding. In Findings of ACL 2024.</li>
+      <li>[14] Liu, X.; et al. TurboSpec: Closed-loop Speculation Control System for Optimizing LLM Serving Goodput. arXiv 2024, arXiv:2406.14066.</li>
+      <li>[16] Kwon, W.; et al. Efficient Memory Management for Large Language Model Serving with PagedAttention. In Proc. SOSP 2023 (vLLM).</li>
+      <li>[17] Zheng, L.; et al. SGLang: Efficient Execution of Structured Language Model Programs. In Proc. NeurIPS 2024.</li>
+      <li>[18] NVIDIA. TensorRT-LLM. Available online: https://github.com/NVIDIA/TensorRT-LLM (accessed on 30 June 2026).</li>
+      <li>[20] Syu, S.; Lee, H.-y. Hierarchical Speculative Decoding with Dynamic Window. In Findings of NAACL 2025.</li>
+      <li>[21] Xia, H.; et al. Unlocking Efficiency in LLM Inference: A Comprehensive Survey of Speculative Decoding. In Findings of ACL 2024.</li>
+      <li>[22] Abramovich, T.; et al. SPEED-Bench: A Unified and Diverse Benchmark for Speculative Decoding. arXiv 2026, arXiv:2604.09557.</li>
+      <li>[37] Liu, X.; et al. Speculative Decoding: Performance or Illusion? arXiv 2026, arXiv:2601.11580.</li>
+      <li>[38] Yu, G.-I.; et al. Orca: A Distributed Serving System for Transformer-Based Generative Models. In Proc. OSDI 2022.</li>
+      <li>[39] Agrawal, A.; et al. Taming Throughput–Latency Tradeoff in LLM Inference with Sarathi-Serve. In Proc. SOSP 2024.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics15143179">10.3390/electronics15143179</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

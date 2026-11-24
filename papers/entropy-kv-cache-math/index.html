@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تخزين مؤقت للقيم المفتاحية موجه بالإنتروبيا لاستدلال فعال للنماذج اللغوية الكبيرة — DAR</title>
+<meta name="description" content="Entropy-Guided KV Caching for Efficient LLM Inference — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/entropy-kv-cache-math/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Entropy-Guided KV Caching for Efficient LLM Inference</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تخزين مؤقت للقيم المفتاحية موجه بالإنتروبيا لاستدلال فعال للنماذج اللغوية الكبيرة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Heekyum Kim, Yuchul Jung</span>
+    <span>📄 Mathematics, 2025 · Vol. 13, No. 15, 2366</span>
+    <span>🔗 <a href="https://doi.org/10.3390/math13152366">10.3390/math13152366</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تدين النماذج اللغوية القائمة على المحولات [1] بقدر كبير من كلفة استدلالها لإدارة ذاكرة القيم المفتاحية في سيناريوهات السياق الطويل، حيث يهدر التخزين الثابت الذاكرة ويتجاهل الإخلاء القائم على الأحدث وحده الرموز المهمة دلاليًا. وتمتد أعمال الكفاءة السابقة من الانتباه الدقيق الواعي بالإدخال-الإخراج [2] ومحولات الوثائق الطويلة [3] وتصاميم المحولات الفعالة [4]، [5] ومتغيرات الانتباه الخطي/المتناثر [6]، [7]، [11]، بينما تحفز دراسات قابلية تفسير الانتباه [8]، [9]، [10]، [12] قرارات تخزين واعية بالمحتوى.</p>
+    <p>يقترح المؤلفون تخزينًا مؤقتًا موجهًا بالإنتروبيا: حساب إنتروبيا أوزان الانتباه لكل رأس، والتوسيط عبر رؤوس الطبقة لتسجيل أهميتها السياقية، وتخصيص ميزانيات أكبر للطبقات عالية الإنتروبيا (واسعة التشتت) وأصغر للطبقات الشبيهة بالمصارف منخفضة الإنتروبيا [13]، [14]. وبدل مجموعات رموز لكل رأس، يُختار مجموعة مشتركة واحدة من الرموز المهمة لكل طبقة — من درجات الانتباه التجميعية لمرحلة التعبئة المسبقة — وتُخزَّن بانتظام عبر الرؤوس، مع تجمع مصارف-وأحدث بتقسيم ثابت 50:50.</p>
+    <p>وبالتقييم على عائلات LLaMA 3 [28] وMistral [29] وQwen [30] مع التقييم متعدد المهام ثنائي اللغة LongBench [31]، تخفض الاستراتيجية الذاكرة وترفع سرعة فك التشفير دون الإضرار بجودة التوليد، وتكون المكاسب أوضح عند أطوال فك التشفير الكبيرة (مثل 2,048 رمزًا).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تهيمن إدارة ذاكرة القيم المفتاحية على فاتورة الذاكرة وزمن الاستجابة لخدمة النماذج في السياق الطويل: فكل رمز مولّد يحضر فوق مفاتيح وقيم مخزنة يتضخم حجمها مع السياق، لذا تحد سياسة التخزين طول السياق الممكن مباشرةً [1]، [2]. وتهاجم مسوحات المحولات الفعالة [5] وبنى السياق الطويل [3]، [4]، [6] السلوك المقارب، لكن أنظمة الخدمة ما تزال تحتاج سياسات إخلاء لكل طلب وطبقة تحفظ الجودة.</p>
+    <p>والبصيرة التوزيعية للورقة: يكشف تشتت درجات الانتباه داخل الطبقة الأهمية السياقية — فالطبقات واسعة الحضور (عالية الإنتروبيا) تحمل سياقًا موزعًا يستحق الحفظ، بينما تكتفي الطبقات المتركزة في المصارف (منخفضة الإنتروبيا) [13]، [14] بميزانيات صغيرة. وهذا يحوّل تخصيص الذاكرة إلى مشكلة قياس تُحل أثناء التعبئة المسبقة بدل الحدس الثابت.</p>
+    <p>ومن ثم فالمساهمات ثلاث: (1) مقياس إنتروبيا لكل رأس يُوسَّط إلى درجة أهمية للطبقة؛ (2) اختيار مشترك لأعلى-k رمزًا لكل طبقة يُخزَّن بانتظام عبر الرؤوس؛ (3) تحقق عبر ثلاث عائلات نماذج وLongBench [28]، [29]، [30]، [31] يُظهر مكاسب ذاكرة وسرعة تتركز عند أطوال فك التشفير الكبيرة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة</h2>
+    <p>النسب المباشر هو خفض الذاكرة بالإخلاء: مرجع الضارب الثقيل (H2O) يحتفظ بالرموز المهمة ديناميكيًا [13]؛ وStreamingLLM يحتفظ بمصارف الانتباه مع نافذة أحدث [14]؛ وBUZZ ينظم الذواكر المتناثرة في ضربات ثقيلة مجزأة خليويًا [15]؛ وNACL يعمم أطر الإخلاء [16]؛ وScissorhands يستغل ثبات الأهمية [17]؛ وKeyformer يختار الرموز المفتاحية [18]؛ وSepLLM يضغط مقاطع كاملة [19].</p>
+    <p>والنسب الثاني يغيّر الميزانية بالطبقة أو الرأس: الضغط على مستوى الرأس الواعي بالاسترجاع والاستدلال [21]، وتقسيم رؤوس الاسترجاع/البث في DuoAttention [22]، والجداول الهرمية (PyramidKV [23] وPyramidInfer [24])، وDynamicKV التكيفي مع المهمة [25]، وPrefixKV الموجه بالبادئة [26]، وSimLayerKV على مستوى الطبقة [27] — وهي العائلة التي ينتمي إليها المخصص الموجه بالإنتروبيا.</p>
+    <p>أما أعمال التكميم المتعامدة (KVQuant [33] وIntactKV [34] وSKVQ [35] وKIVI [36] وWKVQuant [37] وGEAR [38] والدقة المختلطة الواعية بالأهمية [39]) فتضغط المدخلات المحتفظ بها بدل اختيارها، وهي متممة: التوجيه بالإنتروبيا يقرر ما يُحفَظ، والتكميم يقرر كيف يُخزَّن.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. تخصيص الميزانية الموجه بالإنتروبيا</h2>
+    <p>تُحسب إنتروبيا الانتباه لكل رأس من توزيعات انتباه التعبئة المسبقة: الرؤوس التي تتوزع أوزانها عبر مواضع كثيرة تسجل إنتروبيا عالية (سلوك منتشر جامع للسياق)، بينما الرؤوس المنهارة على رموز المصارف تسجل منخفضة [13]، [14]. ويُنتج توسيط إنتروبيات الرؤوس داخل الطبقة درجة أهمية الطبقة — رقم واحد مبني على البيانات لكل طبقة يُرصد من سلوك النموذج الفعلي لا من حدس الموضع أو العمق.</p>
+    <p>تُخصَّص بعد ذلك ميزانيات الذاكرة تناسبيًا مع أهمية الطبقة [13]، [15]: تنال الطبقات عالية الإنتروبيا ميزانيات رموز كبيرة، والطبقات الشبيهة بالمصارف منخفضة الإنتروبيا ميزانيات صغيرة. وضمن ميزانية كل طبقة، تُرتَّب الرموز بدرجات الانتباه التجميعية (المجموعة) للتعبئة المسبقة ويُخزَّن أعلاها-k مجموعةً مشتركة واحدة عبر كل رؤوس تلك الطبقة — مما يخفض محاسبية التحديد لكل رأس وتكراره [16]، [17].</p>
+    <p>يتبع التخصيص المتبقي تقسيمًا ثابتًا 50:50 بين المجموعة المشتركة للأعلى-k وتجمع المصارف-والأحدث، محافظًا على استقرار البث لرموز المصارف [14] والتماسك المحلي للرموز الأخيرة بينما يحفظ الجزء الموجه بالإنتروبيا المراسي الدلالية بعيدة المدى [13]، [15]، [16].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. التجارب</h2>
+    <p>تغطي النماذج ثلاث عائلات مفتوحة — LLaMA 3 [28] وMistral 7B [29] وQwen [30] — مع RetentiveNet [20] كنقطة سياق معماري، وLongBench [31] (سياق طويل متعدد المهام ثنائي اللغة) وإعدادات التلخيص الواعية بالخطاب [32] كمنصة تقييم.</p>
+    <p>تمسح أطوال فك التشفير من القصير إلى الطويل (حتى 2,048 رمزًا)، مقارنةً التخزين الموجه بالإنتروبيا مع أسس التخزين الثابت والأحدث-فقط وحدس رموز المصارف [13]، [14]. وتُسجَّل بصمة الذاكرة وزمن فك التشفير لكل رمز إلى جانب درجات جودة التوليد، معزولةً أين تتجسد ميزة سياسة الإنتروبيا.</p>
+    <p>تتركز النتائج عند الطول: ففي السياقات القصيرة تتكافأ كل السياسات، لكن عند 2,048 رمزًا يصبح التخزين الثابت غير فعال [1]، [2] ويسقط تخزين الأحدث-فقط الرموز المحورية دلاليًا، بينما تحتفظ بها الميزانيات الموجهة بالإنتروبيا [13]، [14] — وهو مكسب الذاكرة والسرعة المبلغ عنه دون فقدان الجودة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. القيود والخاتمة والعمل المستقبلي</h2>
+    <p>تحد خمسة قيود الادعاءات [13]، [14]. يستخدم اختيار الأعلى-k انتباه التعبئة المسبقة التراكمي وحده، مفوِّتًا رموزًا مهمة تظهر أثناء فك التشفير. وتُخفي المجموعات المشتركة لكل طبقة الأنماط الدقيقة الخاصة بالرؤوس [8]، [12]. ولا يتكيف التقسيم الثابت 50:50 مع مهام منحازة للسياق العالمي مقابل المحلي. وقد يُسيء متوسط إنتروبيا الرؤوس تقدير الأهمية للمدخلات القصيرة أو منزاحة المجال. والكلفة الإضافية لمرة واحدة للتعبئة المسبقة هي O(L·H·T_prefill)، مقبولة عند الأطوال المعتدلة لكنها عنق زجاجة محتمل للنماذج الضخمة أو الوثائق الشديدة.</p>
+    <p>ومع ذلك فالطريقة مقابل أسس الثابت وحدس المصارف [13]، [14] بديل أكثر مبدئية ومبني على البيانات: تكيّف محتويات الذاكرة مع السلوك المرصود في التعبئة المسبقة بدل المواضع الثابتة أو أحجام النوافذ [15]، [16]، [17]، [18]، [19]، محسنةً كفاءة الذاكرة مع كشف الرموز التي يعاملها النموذج بارزةً — عائد قابلية تفسير يتسق مع أدبيات تحليل الانتباه [8]، [9]، [10]، [12].</p>
+    <p>تشير الأعمال المستقبلية إلى إعادة اختيار واعية بفك التشفير، ومشاركة تكيفية بالرؤوس، وتقسيمات عالمية/محلية قابلة للتعلم، ومتانة إشارة الإنتروبيا تحت الانزياح، وإطفاء الكلفة — مع متممات التكميم [33]، [34]، [35]، [36] بوصفها طبقة التكديس الطبيعية التالية لخدمة السياق الطويل شبه غير الفاقدة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Transformer-based LLMs [1] owe much of their inference cost to managing the key–value (KV) cache in long-context scenarios, where static caching wastes memory and recent-only eviction discards semantically important tokens. Prior efficiency work spans IO-aware exact attention [2], long-document Transformers [3], efficient-Transformer designs [4], [5], and linear/sparse attention variants [6], [7], [11], while attention-interpretability studies [8], [9], [10], [12] motivate content-aware cache decisions.</p>
+    <p>The authors propose entropy-guided KV caching: compute the entropy of attention weights per head, average over a layer's heads to score the layer's contextual importance, and allocate larger KV budgets to higher-entropy (broadly dispersed) layers and smaller budgets to lower-entropy sink-like layers [13], [14]. Instead of per-head token sets, one shared set of important tokens per layer — selected from aggregated prefill attention scores — is cached uniformly across heads, combined with a sink-plus-recent pool in a fixed 50:50 split.</p>
+    <p>Evaluated on LLaMA 3 [28], Mistral [29], and Qwen [30] families with LongBench bilingual multitask assessment [31], the strategy cuts memory and raises decoding speed without harming generation quality, with gains most pronounced at long decoding lengths (e.g., 2,048 tokens).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>KV-cache management dominates the memory and latency bill of long-context LLM serving: every generated token attends over cached keys and values whose size grows with context, so cache policy directly bounds feasible context length [1], [2]. Efficient-Transformer surveys [5] and long-context architectures [3], [4], [6] attack the asymptotics, but serving systems still need per-request, per-layer eviction policies that preserve quality.</p>
+    <p>The paper's insight is distributional: attention-score dispersion within a layer reveals contextual importance — broadly attending (high-entropy) layers carry distributed context worth keeping, while sink-concentrated (low-entropy) layers [13], [14] can live on small budgets. This turns cache allocation into a measurement problem solvable during the prefill phase rather than a static heuristic.</p>
+    <p>Contributions are therefore threefold: (i) a per-head entropy metric averaged into a layer-importance score; (ii) shared per-layer top-k token selection cached uniformly across heads; and (iii) validation across three model families and LongBench [28], [29], [30], [31] showing memory and speed wins concentrated at long decoding lengths.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related Work</h2>
+    <p>Eviction-based KV-cache reduction is the direct lineage: Heavy-Hitter Oracle (H2O) keeps dynamically important tokens [13]; StreamingLLM retains attention sinks plus a recent window [14]; BUZZ organizes sparse caches in beehive-segmented heavy hitters [15]; NACL generalizes eviction frameworks [16]; Scissorhands exploits persistence-of-importance [17]; Keyformer selects key tokens [18]; SepLLM compresses whole segments [19].</p>
+    <p>A second lineage varies budget by layer or head: head-level compression with retrieval/reasoning awareness [21], DuoAttention's retrieval/streaming head split [22], pyramidal schedules (PyramidKV [23], PyramidInfer [24]), task-adaptive DynamicKV [25], prefix-oriented PrefixKV [26], and layer-level SimLayerKV [27] — the family to which the entropy-guided allocator belongs.</p>
+    <p>Orthogonal quantization work (KVQuant [33], IntactKV [34], SKVQ [35], KIVI [36], WKVQuant [37], GEAR [38], importance-aware mixed precision [39]) compresses retained entries rather than choosing them, and is complementary: entropy guidance decides what to keep, quantization decides how to store it.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Entropy-Guided Budget Allocation</h2>
+    <p>Per-head attention entropy is computed from the prefill attention distributions: heads whose weights spread across many positions score high entropy (diffuse, context-gathering behavior), while heads collapsed onto sink tokens score low [13], [14]. Averaging head entropies within a layer yields the layer-importance score — a single data-driven number per layer observed from actual model behavior rather than position or depth heuristics.</p>
+    <p>Cache budgets are then allocated proportionally to layer importance [13], [15]: high-entropy layers receive large token budgets, sink-like low-entropy layers receive small ones. Within each layer's budget, tokens are ranked by aggregated (summed) prefill attention scores and the top-k are cached as one shared set across all heads of that layer — cutting the bookkeeping and redundancy of per-head selection [16], [17].</p>
+    <p>The remaining allocation follows a fixed 50:50 split between the shared top-k set and the sink-plus-recent pool, preserving the streaming stability of sink tokens [14] and local coherence of recent tokens while the entropy-guided portion preserves long-range semantic anchors [13], [15], [16].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Experiments</h2>
+    <p>Models cover three open families — LLaMA 3 [28], Mistral 7B [29], and Qwen [30] — with RetentiveNet [20] as an architectural-context reference point, and LongBench [31] (bilingual, multitask long-context) plus discourse-aware summarization settings [32] as the evaluation harness.</p>
+    <p>Decoding lengths sweep from short to long (up to 2,048 tokens), comparing entropy-guided caching against static-caching and recent-only baselines plus sink-token heuristics [13], [14]. Memory footprint and per-token decoding latency are recorded alongside generation-quality scores, isolating where the entropy policy's advantage materializes.</p>
+    <p>Results concentrate at length: at short contexts all policies perform comparably, but at 2,048 tokens static caching becomes inefficient [1], [2] and recent-only caching drops semantically central tokens, while entropy-guided budgets retain them [13], [14] — the reported memory-plus-speed win without quality loss.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Limitations, Conclusions, and Future Work</h2>
+    <p>Five limitations bound the claims [13], [14]. Top-k selection uses only cumulative prefill attention, missing important tokens that emerge mid-decoding. Shared per-layer token sets obscure fine-grained head-specific patterns [8], [12]. The fixed 50:50 split cannot adapt to tasks skewed toward global versus local context. Mean head-entropy may misjudge importance for short or domain-shifted inputs. And the one-time prefill overhead is O(L·H·T_prefill), acceptable at moderate lengths but a potential bottleneck for very large models or extreme documents.</p>
+    <p>Against static and sink-heuristic baselines [13], [14], the method is nonetheless the more principled, data-driven alternative: it adapts cache contents to behavior observed in prefill rather than to fixed positions or window sizes [15], [16], [17], [18], [19], improving memory efficiency while exposing which tokens the model treats as salient — an interpretability dividend consistent with attention-analysis literature [8], [9], [10], [12].</p>
+    <p>Future work points to decoding-aware reselection, head-adaptive sharing, learnable global/local splits, robustness of the entropy signal under shift, and overhead amortization — with quantization complements [33], [34], [35], [36] as the natural next stacking layer for near-lossless long-context serving.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed selection of 20 references with original numbering preserved; see the <a href="https://doi.org/10.3390/math13152366">original paper</a> for the full 39-reference list.</p>
+    <ol dir="ltr">
+      <li value="1">Vaswani, A.; Shazeer, N.; Parmar, N.; et al. Attention is All You Need. <em>Adv. Neural Inf. Process. Syst.</em> 2017.</li>
+      <li value="2">Dao, T.; Fu, D.; Ermon, S.; et al. FlashAttention: Fast and Memory-Efficient Exact Attention. <em>Adv. Neural Inf. Process. Syst.</em> 2022.</li>
+      <li value="3">Beltagy, I.; Peters, M.E.; Cohan, A. Longformer: The Long-Document Transformer. <em>arXiv</em> 2020, arXiv:2004.05150.</li>
+      <li value="5">Tay, Y.; Dehghani, M.; Bahri, D.; Metzler, D. Efficient Transformers: A Survey. <em>arXiv</em> 2020, arXiv:2009.06732.</li>
+      <li value="8">Michel, P.; Levy, O.; Neubig, G. Are Sixteen Heads Really Better Than One? <em>Adv. Neural Inf. Process. Syst. (NeurIPS)</em> 2019.</li>
+      <li value="12">Clark, K.; Khandelwal, U.; Levy, O.; Manning, C.D. What Does BERT Look At? In <em>Proc. BlackboxNLP/ACL Workshop</em> 2019.</li>
+      <li value="13">Zhang, Z.; Sheng, Y.; Zhou, T.; et al. H2O: Heavy-Hitter Oracle for Efficient Generative Inference. 2023.</li>
+      <li value="14">Xiao, G.; Tian, Y.; Chen, B.; et al. Efficient Streaming Language Models with Attention Sinks. In <em>Proc. ICLR</em> 2024.</li>
+      <li value="15">Zhao, J.; Fang, Z.; Li, S.; et al. BUZZ: Beehive-structured sparse KV cache. <em>arXiv</em> 2024.</li>
+      <li value="16">Chen, Y.; Wang, G.; Shang, J.; et al. NACL: General and effective KV cache eviction framework. <em>arXiv</em> 2024.</li>
+      <li value="17">Liu, Z.; Desai, A.; Liao, F.; et al. Scissorhands: Exploiting the persistence of importance hypothesis. 2023.</li>
+      <li value="18">Adnan, M.; Arunkumar, A.; Jain, G.; et al. Keyformer: KV cache reduction through key tokens selection. 2023.</li>
+      <li value="19">Chen, G.; Shi, H.; Li, J.; et al. SepLLM: Accelerate LLMs by compressing one segment. <em>arXiv</em> 2024.</li>
+      <li value="28">Grattafiori, A.; Dubey, A.; Jauhri, A.; et al. The Llama 3 Herd of Models. 2024.</li>
+      <li value="29">OpenChat Team. Mistral 7B: Open-Weight Language Models. <em>arXiv</em> 2023, arXiv:2310.06825.</li>
+      <li value="30">Qwen Team. Qwen: A Scalable, High-Performance Language Model Family. <em>arXiv</em> 2023, arXiv:2309.16609.</li>
+      <li value="31">Ding, Y.; Qin, Y.; Jiang, Z.; et al. LongBench: A Bilingual, Multitask Benchmark for Long Context Understanding. 2023.</li>
+      <li value="33">Hooper, C.; Kim, S.; Mohammadzadeh, H.; et al. KVQuant: Towards 10 Million Context Length LLM Inference. 2024.</li>
+      <li value="34">Liu, R.; Bai, H.; Lin, H.; et al. IntactKV: Improving LLM Quantization by Keeping Pivot Tokens Intact. 2024.</li>
+      <li value="36">Liu, Z.; Yuan, J.; Jin, H.; et al. KIVI: A Tuning-Free Asymmetric 2-bit Quantization for KV Cache. <em>arXiv</em> 2024.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/math13152366">10.3390/math13152366</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

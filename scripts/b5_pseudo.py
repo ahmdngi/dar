@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+"""Build viewer: pseudocode-distill-symmetry."""
+import sys
+sys.path.insert(0, '/root/git-repos-personal/dar/scripts')
+from build_viewer import build
+
+meta = dict(
+    title_en="Symmetry-Aware Code Generation: Distilling Pseudocode Reasoning for Lightweight Deployment of Large Language Models",
+    title_ar="توليد الشيفرة المراعي للتماثل: تقطير الاستدلال الشبه-شيفرة للنشر الخفيف للنماذج اللغوية الكبيرة",
+    authors="Yonglin Li, Shanzhi Gu, Mingyang Geng",
+    venue="Symmetry, 2025, Vol. 17(8), 1325",
+    doi="10.3390/sym17081325",
+    license="CC BY 4.0",
+    keywords_en="knowledge distillation, pseudocode, code generation, lightweight LLMs",
+    keywords_ar="تقطير المعرفة، شبه شيفرة، توليد الشيفرة، نماذج خفيفة",
+)
+
+sections = [
+("Abstract", "الملخص",
+ ["<p>Code generation automates the transformation of natural-language descriptions into executable code, and LLMs have markedly improved it through complex reasoning [2], [7]. But large models demand heavy compute and memory, blocking resource-constrained deployment; transferring both sophisticated problem-solving strategies and final-code accuracy to smaller models remains underexplored [9], [11], [31]. The work preserves symmetry between reasoning steps and final code generation throughout distillation [19], [20].</p>",
+  "<p>The proposed multi-task framework trains a small student to generate pseudocode and final code simultaneously, mimicking the teacher reasoning path and end result [16], [17]. Evaluated with CodeLlama-7B, CodeQwen-7B, DeepSeek, and GPT-4 teachers, distillation lifts smaller-model performance on multiple code benchmarks by automatic and human measures; GPT-4 teachers give the largest gains [12], [13]. Deployability is verified on a single RTX 3060 (120 ms/sample) and a Raspberry Pi 5 8 GB (single-sample generation), confirming lightweight real-world feasibility [11].</p>"],
+ ["<p>يؤتمت توليد الشيفرة تحويل اوصاف اللغة الطبيعية الى شيفرة تنفيذية، وحسنته النماذج اللغوية بقوة عبر الاستدلال المعقد [2]، [7]. لكن النماذج الكبيرة تتطلب حوسبة وذاكرة ضخمتين، مما يحجب النشر محدود الموارد؛ ويبقى نقل استراتيجيات الحل ودقة الشيفرة النهائية للنماذج الاصغر قليل الاستكشاف [9]، [11]، [31]. ويحافظ العمل على التماثل بين خطوات الاستدلال وتوليد الشيفرة النهائية عبر التقطير [19]، [20].</p>",
+  "<p>ويدرب الاطار المقترح متعدد المهام طالبا صغيرا على توليد شبه الشيفرة والشيفرة النهائية معا، محاكيا مسار استدلال المعلم والنتيجة النهائية [16]، [17]. وبالتقييم مع معلمين CodeLlama-7B وCodeQwen-7B وDeepSeek وGPT-4، رفع التقطير اداء النماذج الصغيرة في معايير شيفرة متعددة بالمقاييس الالية والبشرية؛ وحقق معلمو GPT-4 اكبر المكاسب [12]، [13]. وتحقق من قابلية النشر على RTX 3060 واحدة (120 مللي ثانية/عينة) وRaspberry Pi 5 (توليد احادي العينة)، مؤكدا الجدوى الخفيفة واقعيا [11].</p>"]),
+("1. Introduction", "1. المقدمة",
+ ["<p>LLM code generation spans self-planning generation [2], specialized prompting such as AceCoder [3], human-AI exploration beyond generation [4], multi-plan pair programming [5], few-shot summarization abilities [6], and self-collaboration via ChatGPT [7], with MetaGPT-style multi-agent collaboration extending the paradigm [8]. Knowledge-distillation surveys chart transfer from proprietary to open models such as LLaMA and Mistral with contextual and ethical alignment [31].</p>",
+  "<p>Distilling reasoning - not just outputs - draws on step-by-step distillation [16] and symbolic chain-of-thought distillation showing small models can also think [17], plus chain-of-thought prompting foundations [19], theoretical analyses [20], and paradigm surveys [21]. Personalized distillation [10], local-use Distil-CodeGPT [11], and efficiency-oriented prompt distillation [25] motivate the lightweight-deployment goal pursued here [23].</p>"],
+ ["<p>يمتد توليد الشيفرة بالنماذج من التوليد ذاتي التخطيط [2] والمطالبات المتخصصة مثل AceCoder [3] والاستكشاف البشري-الالي [4] والبرمجة الزوجية متعددة الخطط [5] وقدرات التلخيص القليل الامثلة [6] والتعاون الذاتي عبر ChatGPT [7]، مع توسع التعاون متعدد الوكلاء للنموذج [8]. وترسم مسوحات التقطير نقل المعرفة من النماذج المملوكة للمفتوحة مثل LLaMA وMistral مع مواءمة سياقية واخلاقية [31].</p>",
+  "<p>ويستند تقطير الاستدلال - لا المخرجات فقط - الى التقطير خطوة بخطوة [16] والتقطير الرمزي لسلسلة التفكير المظهر ان الصغار تفكر ايضا [17]، مع اسس مطالبات سلسلة التفكير [19] وتحليلاتها النظرية [20] ومسوحات النماذج [21]. ويحفز التقطير المخصص [10] وDistil-CodeGPT للاستخدام المحلي [11] وتقطير المطالبات الكفء [25] هدف النشر الخفيف المتبع هنا [23].</p>"]),
+("2. Background and Related Work", "2. الخلفية والاعمال ذات الصلة",
+ ["<p>Code-generation research covers Golang compiler-testing generation [1], planning-based generation [2], and semantic-parsing approaches such as TRANX [39]. Enhancing smaller models by distillation [9], domain-distilled knowledge (DDK) [28], graph-neural-network meets LLM distillation [26], and compact role-player distillation [27] form the efficiency lineage [31]. LoRA-based parameter-efficient distillation (LLM-Neo) and robustness studies inform the hyperparameter and adapter choices [23].</p>",
+  "<p>Evaluation rests on CodeSearchNet challenge data [18], BLEU for translation-style scoring [37], CodeBLEU for code-aware scoring [38], sentence-T5 encoders [40], CodeT5 identifier-aware pretraining [41], and naturalizing pretraining (NatGen) plus structure-aware pretraining (SPT-Code) [42], [43]. Hallucination reduction via distillation [32], causal-effect estimation advances [33], [34], [35], and NL-to-code gap analyses [36] frame quality expectations [31].</p>"],
+ ["<p>تغطي بحوث توليد الشيفرة توليد اختبارات مترجم Golang [1] والتوليد القائم على التخطيط [2] ومناهج التحليل الدلالي مثل TRANX [39]. ويشكل تعزيز الصغار بالتقطير [9] والمعرفة المقطرة مجالية [28] وتقطير الشبكات البيانية [26] والتقطير المدمج للادوار [27] سلالة الكفاءة [31]. وتفيد دراسات التقطير الفعال معاملية القائم على LoRA والمتانة خيارات المعاملات والمحولات [23].</p>",
+  "<p>ويستند التقييم لبيانات تحدي CodeSearchNet [18] وBLEU للتسجيل باسلوب الترجمة [37] وCodeBLEU للتسجيل المراعي للشيفرة [38] ومشفرات sentence-T5 [40] والتدريب المسبق المراعي للمعرفات CodeT5 [41] والتدريب المسبق المطبّع والمراعي للبنية [42]، [43]. ويؤطر تقليل الهلوسة بالتقطير [32] وتقديرات الاثر السببي [33]، [34]، [35] وتحليلات فجوة اللغة-الى-شيفرة [36] توقعات الجودة [31].</p>"]),
+("3. Methodology", "3. المنهجية",
+ ["<p>The framework distills the teacher cognitive process into CodeT5-base (220M parameters): the large model first generates both pseudocode and final code, and the pseudocode serves as the intermediate representation of its logical steps [16], [19]. The student is trained multi-task to replicate pseudocode generation and final-code generation jointly, capturing reasoning while learning desired outputs, with balancing hyperparameters alpha and beta set to 0.5 [17], [23].</p>",
+  "<p>Pseudocode extraction leverages in-context learning to surface the teacher latent reasoning during generation [19], [20]. Distillation sources span CodeLlama-7B and CodeQwen-7B teachers through DeepSeek up to GPT-4, letting the study compare teacher scale against student gain [12], [13]. Privacy-preserving augmentation lessons (DP plus distillation for medical text [30]) and knowledge-data surveys [29] inform safe training practice [31].</p>"],
+ ["<p>يقطر الاطار العملية المعرفية للمعلم في CodeT5-base (220 مليون معامل): يولد النموذج الكبير شبه الشيفرة والشيفرة النهائية معا، وتعمل شبه الشيفرة تمثيلا وسيطا لخطواته المنطقية [16]، [19]. ويدرب الطالب متعدد المهام على محاكاة توليد شبه الشيفرة والشيفرة النهائية معا، ملتقطا الاستدلال ومتعلما المخرجات المرغوبة، مع معاملي موازنة alpha وbeta عند 0.5 [17]، [23].</p>",
+  "<p>ويستغل استخراج شبه الشيفرة التعلم في السياق لاظهار استدلال المعلم الكامن اثناء التوليد [19]، [20]. وتمتد مصادر التقطير من معلمي CodeLlama-7B وCodeQwen-7B عبر DeepSeek الى GPT-4، بما يتيح مقارنة حجم المعلم بمكسب الطالب [12]، [13]. وتفيد دروس التعزيز الحافظ للخصوصية (الخصوصية التفاضلية مع التقطير [30]) ومسوحات المعرفة والبيانات [29] ممارسة التدريب الامنة [31].</p>"]),
+("4. Experiment Results", "4. نتائج التجارب",
+ ["<p>Training ran on 8 Tesla V100 32 GB GPUs (CUDA 11.2, cuDNN 8.2) with CodeSearchNet split 80-10-10, Adam at learning rate 1e-5, batch size 16, 30 epochs with early stopping on validation loss [18], [41]. Accuracy on the CodeSearchNet test set is the primary metric, complemented by human evaluation of generated-code quality [37], [38]. Teacher-student pairs center on CodeLlama-7B and CodeQwen-7B teachers with the 220M CodeT5-base student chosen for constrained environments [12], [13], [41].</p>",
+  "<p>Distillation improved smaller models across benchmarks by both automatic metrics and human scores, with GPT-4 teachers delivering the top accuracy scores [12]. Deployment trials on a consumer RTX 3060 12 GB averaged 120 ms per sample with real-time responsiveness, while a Raspberry Pi 5 8 GB ARM successfully ran single-sample generation (batch inference infeasible under memory limits), confirming edge viability [11]. Human assessment used five experts with 6-plus years of programming experience over a 100-sample subset [36].</p>"],
+ ["<p>جرى التدريب على 8 بطاقات Tesla V100 (ذاكرة 32 GB) مع تقسيم CodeSearchNet بنسبة 80-10-10، ومحسن Adam بمعدل تعلم 1e-5 وحجم دفعة 16 و30 حقبة مع ايقاف مبكر على خسارة التحقق [18]، [41]. والدقة على مجموعة اختبار CodeSearchNet هي المقياس الاول، مكملة بتقييم بشري لجودة الشيفرة [37]، [38]. وتتمحور ازواج المعلم-الطالب على معلمي CodeLlama-7B وCodeQwen-7B مع الطالب CodeT5-base (220 مليون) المختار للبيئات المقيدة [12]، [13]، [41].</p>",
+  "<p>وحسن التقطير النماذج الصغيرة عبر المعايير بالمقاييس الالية والبشرية، وحقق معلمو GPT-4 اعلى درجات الدقة [12]. وبلغت تجارب النشر على RTX 3060 استهلاكية متوسط 120 مللي ثانية للعينة باستجابة فورية، بينما نفذ Raspberry Pi 5 (ذاكرة 8 GB) توليد العينة الواحدة بنجاح (الدفعات غير ممكنة لحدود الذاكرة)، مؤكدا جدوى الحافة [11]. واستخدم التقييم البشري خمسة خبراء بخبرة تزيد عن 6 سنوات على عينة فرعية من 100 [36].</p>"]),
+("5. Threats to Validity and Conclusions", "5. تهديدات الصلاحية والخاتمة",
+ ["<p>Internal-validity threats include subjective bias from five expert evaluators despite cross-validation and score averaging, possible non-representativeness of the evaluated outputs for real-world task ranges, and the limited 100-sample subset that may favor certain code domains and bias metrics [36]. Construct and external threats follow: criterion interpretations of correctness, completeness, and fluency may drift across judges, and ARM/Pi-class generalization beyond the tested setups needs broader confirmation [11].</p>",
+  "<p>In conclusion, intermediate-step pseudocode distillation transfers reasoning plus code generation into efficient models, verified by automatic and human evaluation with GPT-4 teachers strongest [12], [13], [38]. Future work extends the framework to question answering and summarization, explores hierarchical or multi-modal reasoning preservation, and expands datasets for broader coverage [21], [22], [31].</p>"],
+ ["<p>تشمل تهديدات الصلاحية الداخلية التحيز الذاتي لخمسة مقيمين خبراء رغم التحقق المتقاطع ومتوسط الدرجات، واحتمال عدم تمثيل المخرجات المقيمة لمدى المهام الواقعية، ومحدودية العينة الفرعية (100) التي قد تحابي مجالات شيفرة معينة وتحيز المقاييس [36]. وتتبعها تهديدات البناء والخارجية: قد تنحرف تفسيرات الصحة والاكتمال والسلاسة عبر الحكام، ويحتاج التعميم لفئة ARM/Pi تاكيدا اوسع [11].</p>",
+  "<p>وختاما، ينقل تقطير شبه الشيفرة للخطوات الوسيطة الاستدلال وتوليد الشيفرة معا الى نماذج كفء، تحقق منه التقييم الالي والبشري مع تفوق معلمي GPT-4 [12]، [13]، [38]. ويمتد العمل المستقبلي للاجابة عن الاسئلة والتلخيص، ويستكشف حفظ الاستدلال الهرمي او متعدد الوسائط، ويوسع مجموعات البيانات لتغطية اوسع [21]، [22]، [31].</p>"]),
+]
+
+refs = [
+ (2, "[2] Jiang, X.; Dong, Y.; Wang, L.; et al. Self-planning code generation with large language models."),
+ (3, "[3] Li, J.; Zhao, Y.; Li, Y.; et al. AceCoder: an effective prompting technique specialized in code generation."),
+ (7, "[7] Dong, Y.; Jiang, X.; Jin, Z.; Li, G. Self-collaboration code generation via ChatGPT."),
+ (9, "[9] Sun, Z.; Lyu, C.; Li, B.; et al. Enhancing code generation performance of smaller models by distilling LLMs."),
+ (11, "[11] Malmsten, E. Distil-CodeGPT: distilling code-generation models for local use. Ph.D. Thesis, Delft Univ. of Technology."),
+ (12, "[12] Bai, J.; Bai, S.; Chu, Y.; et al. Qwen technical report."),
+ (13, "[13] Roziere, B.; Gehring, J.; Gloeckle, F.; et al. Code Llama: open foundation models for code."),
+ (16, "[16] Hsieh, C.Y.; Li, C.L.; Yeh, C.K.; et al. Distilling step-by-step! Outperforming larger language models with less training data."),
+ (17, "[17] Li, L.H.; Hessel, J.; Yu, Y.; et al. Symbolic chain-of-thought distillation: small models can also think."),
+ (18, "[18] Husain, H.; Wu, H.H.; Gazit, T.; et al. CodeSearchNet challenge: evaluating the state of semantic code search."),
+ (19, "[19] Wei, J.; Wang, X.; Schuurmans, D.; et al. Chain-of-thought prompting elicits reasoning in large language models."),
+ (23, "[23] Yang, R.; Wu, T.; Wang, J.; et al. LLM-Neo: parameter efficient knowledge distillation for large language models."),
+ (31, "[31] Xu, X.; Li, M.; Tao, C.; et al. A survey on knowledge distillation of large language models."),
+ (37, "[37] Papineni, K.; Roukos, S.; Ward, T.; Zhu, W.-J. BLEU: a method for automatic evaluation of machine translation."),
+ (38, "[38] Ren, S.; Guo, D.; Lu, S.; et al. CodeBLEU: a method for automated evaluation of code synthesis."),
+ (41, "[41] Wang, Y.; Wang, W.; Joty, S.; Hoi, S.C. CodeT5: identifier-aware unified pre-trained encoder-decoder models."),
+]
+
+ref_note_en = "Condensed selection of 16 references (original numbers preserved). See the original paper for the full list of 43 references: https://doi.org/10.3390/sym17081325"
+ref_note_ar = "مختارات مكثفة من 16 مرجعا (الارقام الاصلية محفوظة). انظر الورقة الاصلية للقائمة الكاملة (43 مرجعا): https://doi.org/10.3390/sym17081325"
+
+build("pseudocode-distill-symmetry", meta, sections, refs, ref_note_en, ref_note_ar)

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>النماذج اللغوية الصغيرة المعززة بالبحث على الويب: دراسة حالة لنموذج لغوي متمحور حول الكازاخية — DAR</title>
+<meta name="description" content="Web Search-Enhanced Small Language Models: A Case Study for a Kazakh-Centric Language Model — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/kazakh-slm-make/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Web Search-Enhanced Small Language Models: A Case Study for a Kazakh-Centric Language Model</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">النماذج اللغوية الصغيرة المعززة بالبحث على الويب: دراسة حالة لنموذج لغوي متمحور حول الكازاخية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Akylbek Maxutov, Nūrali Medeu, Huseyin Atakan Varol</span>
+    <span>📄 Mach. Learn. Knowl. Extr. (MAKE), 2026 · Vol. 8, No. 5, 128</span>
+    <span>🔗 <a href="https://doi.org/10.3390/make8050128">10.3390/make8050128</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تُقدَّر النماذج اللغوية الصغيرة لكفاءتها الحاسوبية وملاءمتها للنشر الطرفي [1–4]، لكنها غالبًا ما تتخلف في السياقات اللغوية والثقافية المحلية بسبب محدودية معاملاتها. تستكشف هذه الدراسة دمج البحث الشبكي اللحظي في Qolda [12]، وهو نموذج صغير متمحور حول الكازاخية بـ4 مليارات معامل، لسد فجوة الأداء مع النماذج الأكبر، بتقييم استراتيجيتين: الاسترجاع الساذج (أسئلة المعايير الخام كاستعلامات بحث) والاسترجاع بالاستعلام المنقّح (نماذج تنقيح، منها Qolda مضبوط بالتقطير الخاضع للإشراف، لتحسين الاستعلامات).</p>
+    <p>على معياري KazCulture وKazMMLU [13،17]، حقق نهج الاسترجاع الساذج في وضع الاستدلال (think) دقة متوسطة 76.00%، متحسنًا عن نتيجة 60.37% دون استرجاع — ومتجاوزًا، في هذه المقارنة على مستوى النظام، دقة النماذج المفتوحة الأكبر دون تعزيز استرجاعي مثل Qwen3-32B (64.72%) وGemma-3-27b-it (60.24%). وحسّن تنقيح الاستعلام الدقة بنحو 3% (من 76.00% إلى 79.46%) لكنه ضاعف الكلفة الحاسوبية تقريبًا.</p>
+    <p>يضيف الاسترجاع الساذج نحو ثانية واحدة من زمن البحث لكل سؤال؛ وتضيف المنقحات حتى 4 ثوانٍ — مع أن السياق المسترجع يقصّر زمن الاستدلال في وضع التفكير. وكانت أبرز المكاسب في المعرفة الثقافية المحلية، حيث أجاب البحث الشبكي إجابات صحيحة عن 32.9% من أسئلة KazCulture التي أخفق فيها خط الأساس، مقابل خسارة 16.9% فقط. وهكذا توفر النماذج الصغيرة المعززة بالاسترجاع بديلًا فعالًا من حيث الكلفة ومنافسًا للنماذج الأكبر في مهام اللغة والثقافة الكازاخية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تتجه معالجة اللغة الطبيعية نحو النماذج اللغوية الصغيرة (عادة أقل من 10 مليارات معامل [4]) لخفض المتطلبات الحاسوبية وتمكين النشر الطرفي على الهواتف والحواسيب [1–3]، مع تحفيز زمن الاستجابة المنخفض لاستخدامها في سير عمل الذكاء الاصطناعي الوكيل [4]. لكن يجب أن تحافظ النماذج الأصغر على أداء مماثل — ويوفر التوليد المعزز بالاسترجاع (RAG) مسارًا: فالنماذج الصغيرة المجهزة به قد تضاهي النماذج الكبيرة بل وتتفوق عليها في حالات مجالية [5]، ومنها Mistral-7B مضبوط نافس أنظمة من فئة GPT-4 مع الحفاظ على خصوصية البيانات [6]، وتحسّن Llama-3.2-3B عبر RAG في مجالات MMLU-Pro بقواعد معرفية اصطناعية ومزحوفة [5].</p>
+    <p>ويُحِدُّ السياق الكازاخي التحدي: فالنماذج المتمحورة حول الكازاخية مثل KazLLM [9] وSherkala [10] وQolda متعدد الوسائط القادر على الاستدلال [12] تقدمت سريعًا، لكن دراسات قليلة استهدفت الاسترجاع في هذا السياق — رغم أن الأدلة مشجعة، إذ حسّن KazLLM صحة الإجابة من 0.427 إلى 0.867 في ظروف الاسترجاع المثلى، مقاربًا GPT-4o بل ومتجاوزًا ذروته شاملًا [29]، مع حساسية النماذج لتنويع التلقين في الاسترجاع متعدد اللغات منخفض الموارد [30].</p>
+    <p>ومساهمات الدراسة: (1) إطار قابل لإعادة الإنتاج يعزل أثر الاسترجاع عبر مزود البحث ومجموعات المعايير واختيار النموذج المفتوح؛ و(2) مقارنة مباشرة بين الاسترجاع الساذج والمنقّح بمنقحات مملوكة (GPT-5-Nano وGemini-3-Flash) ومحلية (Qolda وQolda-SFT المقطّرة)؛ و(3) محاسبة كلفة كاملة — الدقة وعبء الكلمات وزمن كل سؤال — لتحديد خط الأنابيب الأكثر عملية للنشر الكازاخي.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2.1 دمج البحث الشبكي مع النماذج اللغوية</h2>
+    <p>يتبادل محرك البحث والنماذج اللغوية المنفعة: فالمحركات تمد ببيانات تدريب عالية الجودة وسياق استرجاعي لحظي وإشارات ترتيب، بينما تحسّن النماذج صياغة الاستعلام والتلخيص وترتيب الصلة [7]؛ وتُظهر المسوحات الحديثة تحسّن مُعيدي الصياغة والمسترجعين ومُعيدي الترتيب والقارئات كلها مع الفهم اللغوي واسع النطاق [8]. ويعالج دمج البحث الحي أساسًا مشكلة القدم [18]: فلما كانت معظم النماذج تُدرّب مرة واحدة، تعاني الأسئلة الواقعية سريعة التغير — مثلًا يقترن FreshQA المعياري الديناميكي مع تلقين FreshPrompt قليل الأمثلة الذي يحقن نتائج البحث الحية، مما يتيح للنماذج المفتوحة منافسة أنظمة أكبر بكثير [18].</p>
+    <p>وتشمل التقنيات المتممة خطوط التحقق الواقعي (FactLLaMA [19] وWeKnow-RAG [20])، والإجابة المعززة بالويب الفعالة (WebGLM [21])، وتقييم الاسترجاع الفيدرالي (FeB4RAG [23])، والاسترجاع التأملي الذاتي (Self-RAG [24])، والاسترجاع التكيفي (Adaptive-RAG [25])، والاسترجاع التصحيحي (CRAG [26]) — وهي عدة تقطرها الدراسة في خطي أنابيب قابلين للنشر: البحث بالسؤال المباشر مقابل تحسين الاستعلام عبر منقّح.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2.2 التوليد المعزز بالاسترجاع للنماذج الصغيرة</h2>
+    <p>رغم تركيز أبحاث الاسترجاع المبكرة على النماذج المملوكة الكبيرة، تُبرز الأدلة الحديثة قيمته للنماذج الأصغر: ففي مقرر برمجة تمهيدي، ضاهى Mistral-7B مضبوط عبر تسعة إعدادات استرجاعية GPT-3.5-Turbo وGPT-4-32k بل وتفوق عليهما مع الحفاظ على خصوصية البيانات للنشر المحلي [6]؛ وحسّن الاسترجاع المدمج في Llama-3.1-8B وLlama-3.2-3B العاملين محليًا دقة MMLU-Pro في الأحياء والقانون وأمن الحواسيب باستخدام قواعد معرفية مجالية من بيانات اصطناعية وزحف مستهدف [5].</p>
+    <p>ومجتمعةً، تُظهر هذه الدراسات أن الاسترجاع ليس مجرد ملحق للنماذج الكبيرة بل معادل يمكّن البنى الأصغر من المنافسة — وهي الفرضية التي تختبرها هذه الورقة في السياق الكازاخي منخفض الموارد، حيث يجب أن يعوّض الاسترجاع نحافة المعرفة الثقافية واللغوية المعامِلِية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2.3 الاسترجاع في السياقات الكازاخية</h2>
+    <p>تقدمت النماذج الكازاخية (KazLLM [9] وSherkala [10] وQolda متعدد الوسائط [12]) سريعًا على معايير مثل KazMMLU [13] وKazBench-KK [14] وKazQAD [15] وQorǵau [16]، إضافة إلى موارد ثقافية التوجه [17]. وقارن تقييم منهجي للإجابة الكازاخية بين نماذج مملوكة (GPT-4o وGemini-2.5-Flash) ونماذج مفتوحة كازاخية التوجه (KazLLM-8B وSherkala-8B) في إعدادي الاسترجاع والكتاب المغلق: ففي ظروف الاسترجاع المثلى ارتفعت صحة KazLLM من 0.427 إلى 0.867، مقاربة GPT-4o بل ومتجاوزة ذروته شاملًا [29].</p>
+    <p>وتُظهر دراسات سلوك النماذج تحت الاسترجاع بالإنجليزية والكازاخية حساسية أكبر لتنويعات التلقين في الإعدادات منخفضة الموارد [30]، مما يحفز المقارنة المضبوطة في هذه الدراسة بين الاسترجاع بالسؤال الخام والاستعلام المنقّح بضمانات تقييم متطابقة (vLLM على RTX 5090 وتسجيل MCQ توليدي).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3.1–3.2 خدمات البحث ومجموعات المعايير</h2>
+    <p>لاختيار واجهة SERP موثوقة منخفضة زمن الاستجابة فعالة الكلفة ومتوافقة مع الكازاخية، قارن الباحثون المزودين الرئيسيين — Serper [31] وSearchAPI [32] وBrave [33] وLangSearch [34] وPerplexity [35] وVertex AI [36] — على كلفة الألف استعلام وزمن الاستجابة ودعم الكازاخية (الجدول 1). واختير معياران مفتوحان أوليان: KazMMLU [13] (22889 سؤالًا بالكازاخية/الروسية في 37 فئة للعلوم والإنسانيات) وKazCulture [17] (1334 سؤال اختبار عن المطبخ والمجال المنزلي والملابس وغيرها من المعرفة الثقافية)، وكلاهما اختيار من متعدد بإجابة صحيحة واحدة وتحقق خبير واسع من ناطقين أصليين؛ ويرسي MMLU-Pro [37] (بفروع إنجليزية/كازاخية/روسية) تقييم الاستدلال متعدد اللغات.</p>
+    <p>ويعزل خط التقييم (الشكل 1) أثر الاسترجاع: الخط A (دون استرجاع، التلقين مباشرة للنموذج)؛ والخط B (الساذج، السؤال الخام يُرسل أيضًا لواجهة البحث وتُدمج المقتطفات في حقل السياق)؛ والخط C (بالاستعلام المنقّح، إذ يعيد نموذج تنقيح — GPT-5-Nano أو Gemini-3-Flash أو Qolda — كتابة التلقين إلى استعلام قابل للبحث قبل نداء الواجهة).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3.3–3.4 اختيار النموذج وخطوط الاسترجاع</h2>
+    <p>عُايرت ثلاثة نماذج مفتوحة كازاخية أوليًا على KazMMLU وKazCulture وMMLU-Pro عبر vLLM على RTX 5090 بوضع التوليد: KazLLM (8B) [9] وSherkala (8B) [10] مقابل Qolda (4B) [12]، وهو نموذج رؤية-لغة بوضعي التفكير (رموز <think> لسلسلة الأفكار) وعدمه. فتفوق Qolda دون تفكير على كلا نموذجي 8B في المعايير الثلاثة بنحو 6% متوسطًا، مع اتساع الفجوة في وضع التفكير (61.24% متوسطًا)؛ ونظرًا لقدرته الاستدلالية وحجمه الأصغر، اختير Qolda مقيّمًا أوليًا (الجدول 4).</p>
+    <p>وللاسترجاع بالاستعلام المنقّح، تُفرض استعلامات بحث إنجليزية موجزة عبر تعليمات التلقين (بلا سيريلية ولا مصفوفات، ومفتاح JSON بالحرف فقط) مع دمج المقتطفات في السياق (الشكل 4)؛ وعند غياب الاسترجاع يبقى حقل السياق فارغًا، وتبقي تلقينات النظام المتطابقة المقارنة مضبوطة بين الاسترجاع الخام والمحسّن.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3.5–3.6 الضبط الدقيق وبروتوكول التقييم</h2>
+    <p>لبناء منقّح محلي، ضُبط Qolda بدقة عبر LoRA بإشراف (SFT) على مخرجات Gemini-3-Flash المنقحة لأسئلة KazMMLU (22889 عينة، 90/10 للتدريب/التحقق؛ أزواج سؤال-استعلام قصير فقط، بلا تسميات إجابات). واختير KazMMLU لتغطيته الثنائية واتساعه؛ واستُبعد MMLU-Pro لثقله الاستدلالي على تقطير الكلمات المفتاحية وKazCulture لحدود التكيف بالعينات الصغيرة — لينتج Qolda-SFT، منقّح محلي بالكامل لا يحتاج نموذجًا خارجيًا.</p>
+    <p>وتشاطرت جميع الإعدادات الضمان المعياري (القسم 3.3): الدقة مقياسًا أوليًا بتلقينات نظام متطابقة، إضافة إلى فترات ثقة bootstrap بنسبة 95% (10000 إعادة عينات طبقية على مؤشرات الصحة الثنائية) للتمييز بين المكاسب الحقيقية وتنويع العينات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4.1 الأداء المقارن لخطوط الاسترجاع</h2>
+    <p>حسّن البحث الشبكي الدقة باستمرار عن خط الأساس (الجدول 5). وتفوق الاسترجاع الساذج على تنقيح الاستعلام بإدخال الأسئلة الخام مباشرة: ففي وضع التفكير بلغ متوسطه 76.00% (+15.63 عن أساس 60.37%؛ KazMMLU-KK 80.95% وRU 84.45% وKazCulture 62.59%). وبلغ تنقيح Gemini-3-Flash أعلى ذروة بمتوسط 79.46% في وضع التفكير، بينما تخلّف تنقيح GPT-5-Nano عن الساذج رغم تجاوزه الأساس، وضاهى Qolda غير المعدل كمنقّح خط GPT دون تجاوز الساذج.</p>
+    <p>وكان Qolda-SFT أفضل محسّن محلي (متوسط 76.19% في التفكير، شبه مطابق للساذج)، متميزًا في الحالات الثقافية — 66.34% على KazCulture دون تفكير مقابل 65.66% للساذج — لكن فجوته الإجمالية الهامشية تُبقي الساذج خط الأساس الأكفأ عمومًا؛ فبعد تقطيره على إعادة صياغات KazMMLU لم يتفوق على الساذج فيه، وفي الإنجليزية خارج التوزيع (MMLU-Pro) بقي ضمن نقطة واحدة من أفضل إعداد غير مملوك (67.28% مقابل 68.01% تفكيرًا)، مما يشير إلى ضغط استعلام عام كثيف الكلمات لا حفظ أنماط. وساعد وضع التفكير KazMMLU عمومًا لكنه أضر أحيانًا بـKazCulture (خط Gemini: من 70.61% إلى 69.64%)، مما يوحي بأن سلاسل الاستدلال الممتدة قد تحقن ضجيج إفراط تفكير في الفروق الثقافية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4.2–4.3 النتائج متعددة اللغات والدلالة الإحصائية</h2>
+    <p>على MMLU-Pro (الجدول 6)، تتصدر الإنجليزية تليها الروسية ثم الكازاخية؛ وكان تنقيح Gemini-3-Flash الاستراتيجية الأنجع للاستدلال المعقد (متوسط 64.43% للغات الثلاث تفكيرًا). وتؤكد فترات الثقة (الجدول 7، 10000 إعادة عينات) متانة المكاسب: فعلى KazMMLU تفكيرًا، تنفصل فترة الأساس [66.66، 67.86] تمامًا عن الساذج [82.47، 83.42] (فجوة ~15 نقطة)؛ وعلى KazCulture الأصغر (1334 سؤالًا، فترات ±2.5 نقطة)، تقع فترة الأساس دون تفكير [46.85، 52.10] أدنى بكثير من الساذج [63.12، 68.22].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4.4–4.6 العبء وزمن الاستجابة وخط الأنابيب الأمثل</h2>
+    <p>يضخّم الاسترجاع دخل المقيّم ~9 أضعاف: من ≤22 كلمة دون استرجاع إلى 185.05 (الساذج) و202.87 (Qolda-SFT) متوسط الكلمات (الجدول 8) بفعل المقتطفات المدمجة؛ بينما تضغط المنقحات الاستعلامات (الخام 12.86 ← 7.21 لـGemini و6.39 لـQolda-SFT؛ الجدول 9). وزمن الاستجابة (الجدول 12): دون تفكير من 0.07 ث/سؤال ← الساذج 1.27 ث (1.17 بحث) ← إجماليات المنقح 1.43 ث (Qolda) و2.58 ث (GPT-5-Nano) و5.03 ث (Gemini، و3.86 ث ذهاب API)؛ وفي التفكير يقارب الساذج (10.89 ث) الأساس (10.28 ث) لأن السياق المسترجع يقصّر الاستدلال (9.78 مقابل 10.28 ث) مقابل ~1.11 ث عبء بحث.</p>
+    <p>وتُظهر جبهة الدقة-الزمن (الشكل 6) جبهات Pareto متشابهة بنيويًا لكل وضع: الأساس (رخيص/ضعيف) والساذج (نقطة الوسط المثلى) وتنقيح Gemini (الأعلى دقة والأعلى كلفة/زمنًا)؛ ويهيمن Gemini على GPT-5-Nano هيمنة Pareto صارمة، ويكاد Qolda-SFT يعادل Qolda العادي — فميزته الاستقلال التشغيلي لا الدقة. وفي المقارنة النظامية، يتجاوز Qolda الساذج تفكيرًا (76.00%) نموذجي Qwen3-32B (64.72%) وGemma-3-27b-it (60.24%) دون استرجاع؛ ويناسب تنقيح Gemini (+3%) إعدادات الدقة مهما تكن الكلفة، بينما يبقى الساذج الافتراضي العملي.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. المناقشة و6. الخاتمة</h2>
+    <p>تؤدي أسئلة المعايير الخام كاستعلامات بحث بمستوى مقارن للاستعلامات المنقحة من النماذج المتقدمة: فبالنسبة للمعايير الأكاديمية المحلية، يحافظ السياق اللغوي الكامل على فعالية الاسترجاع مثل تحسين الكلمات المفتاحية. ويتجاوز Qolda دون استرجاع أصلًا دقة النماذج المفتوحة الأكبر دون استرجاع على KazCulture، مع اتساع الفجوة تحت الاسترجاع؛ وعلى KazMMLU يتيح الاسترجاع اللحظي لنموذج 4B تجاوز خطوط أساس منافسين أكبر بكثير غير معززة — مما يُظهر أن البحث الشبكي يسد فجوات المعرفة في النماذج المحلية الأصغر [29].</p>
+    <p>وخلاصةً، يضيّق Qolda المعزز (4B) فجوة دقته التشغيلية مع خطوط أساس النماذج الأكبر بكثير دون استرجاع في المهام الكازاخية: فعلى المجموعة الكازاخية المطابقة (KazMMLU-KK/RU + KazCulture) بلغ متوسط Qolda المعزز تفكيرًا ~76% مقابل ~60% دون استرجاع. ورغم نجاح التقطير الخاضع للإشراف من Gemini-3-Flash، أثبت الساذج أنه الأكثر عملية — مكاسب قوية بتعقيد أقل وزمن أدنى — ويجب أن تختبر الأعمال المستقبلية الاسترجاع بالبحث الحي على مهام كازاخية أوسع (إجابة مفتوحة وتلخيص) ومزودي SERP إضافيين ومفاضلات الزمن والخصوصية الإنتاجية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Small language models (SLMs) are valued for computational efficiency and edge deployment suitability [1–4], but often underperform in localized linguistic and cultural contexts due to limited parameter size. This study explores integrating real-time web search into Qolda [12], a 4B-parameter Kazakh-centric SLM, to close the performance gap with larger models, assessing two strategies: Naïve RAG (raw benchmark questions as search queries) and Query-Refined RAG (refiner models, including a supervised distillation-tuned Qolda, optimizing queries).</p>
+    <p>On the KazCulture and KazMMLU benchmarks [13,17], the Naïve RAG approach in reasoning-enabled (think) mode achieved 76.00% average accuracy, improving over the 60.37% Zero-Shot result and — in this system-level comparison — exceeding the Zero-Shot accuracy of larger open-source models such as Qwen3-32B (64.72%) and Gemma-3-27b-it (60.24%) evaluated without retrieval augmentation. Query refinement improved accuracy by ~3% (76.00% to 79.46%) but nearly doubled computational cost.</p>
+    <p>Naïve RAG adds ~1 s of retrieval latency per question; query refiners add up to 4 s overhead — though retrieved context shortens think-mode reasoning time. The most notable gains were in localized cultural knowledge, where web search correctly answered 32.9% of KazCulture questions the Zero-Shot baseline failed on, while losing only 16.9% in return. Retrieval-augmented SLMs thus offer a cost-effective, competitive alternative to larger models for Kazakh language and culture tasks.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Natural language processing is moving toward small language models (SLMs, typically under 10B parameters [4]) to cut computational demands and enable edge deployment on phones and laptops [1–3], with low latency also motivating their use in Agentic AI workflows [4]. Yet smaller models must maintain comparable performance — and retrieval-augmented generation (RAG) offers a path: SLMs equipped with RAG can match or even surpass LLMs in domain-specific cases [5], including a fine-tuned Mistral-7B rivaling GPT-4-class systems while preserving data privacy [6], and RAG-grounded Llama-3.2-3B improving across MMLU-Pro domains via synthetic and scraped knowledge bases [5].</p>
+    <p>The Kazakh-language setting sharpens the challenge: Kazakh-centric models such as KazLLM [9], Sherkala [10], and the multimodal reasoning-capable Qolda [12] have advanced rapidly, but few studies target RAG in this context — though Kazakh QA evidence is encouraging, with KazLLM improving answer correctness from 0.427 to 0.867 under optimal RAG conditions, nearly matching GPT-4o and even surpassing its peak score end-to-end [29], and models showing sensitivity to prompt variation in low-resource multilingual RAG [30].</p>
+    <p>This study's contributions: (1) a reproducible framework isolating the retrieval effect via the search-service provider, benchmark datasets, and open-source SLM selection; (2) a head-to-head comparison of Naïve versus Query-Refined RAG with proprietary (GPT-5-Nano, Gemini-3-Flash) and localized (Qolda, distilled Qolda-SFT) refiners; and (3) a full cost accounting — accuracy, input-word overhead, and per-question latency — identifying the most practical pipeline for Kazakh deployment.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2.1 Web Search Integration with Language Models</h2>
+    <p>Search engines and language models benefit each other: engines supply high-quality pretraining data, real-time retrieval context, and ranking signals, while models enhance query formulation, summarization, and relevance ranking [7]; recent surveys show query rewriters, retrievers, rerankers, and readers all improved with large-scale language understanding [8]. Integrating live search primarily addresses the staleness problem [18]: since most LLMs are trained only once, they struggle with rapidly changing factual questions — e.g., FreshQA pairs a dynamic benchmark of fast-changing facts with FreshPrompt few-shot prompting injecting live search results, letting open-source models rival much larger systems [18].</p>
+    <p>Complementary techniques include fact-checking-oriented retrieval pipelines that verify claims against external knowledge (FactLLaMA [19], WeKnow-RAG [20]), efficient web-enhanced QA (WebGLM [21]), federated retrieval evaluation (FeB4RAG [23]), self-reflective retrieval (Self-RAG [24]), adaptive retrieval (Adaptive-RAG [25]), and corrective retrieval (CRAG [26]) — a toolbox this study distills into two deployable pipelines: direct question-as-query search versus refiner-mediated query optimization.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2.2 Retrieval-Augmented Generation for Small Language Models</h2>
+    <p>Although early RAG research focused on large proprietary models, recent evidence highlights its value for smaller models: in a CS1 programming course, a fine-tuned Mistral-7B across nine RAG configurations matched or exceeded GPT-3.5-Turbo and GPT-4-32k while preserving data privacy for localized deployment [6]; and RAG integrated into locally running Llama-3.1-8B and Llama-3.2-3B improves MMLU-Pro accuracy across biology, law, and computer-security domains using domain knowledge bases built from synthetic data and targeted scraping [5].</p>
+    <p>Collectively, these studies show RAG is not merely a large-model supplement but an equalizer enabling smaller architectures to compete — the premise this work tests in the Kazakh low-resource setting, where retrieval must compensate for thin parametric cultural and linguistic knowledge.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2.3 RAG in Kazakh-Language Contexts</h2>
+    <p>Kazakh-centric models (KazLLM [9], Sherkala [10], multimodal Qolda [12]) advanced rapidly on benchmarks such as KazMMLU [13], KazBench-KK [14], KazQAD [15], and Qorǵau [16], plus culturally oriented resources [17]. A systematic Kazakh QA evaluation compared proprietary models (GPT-4o, Gemini-2.5-Flash) with open-source Kazakh-oriented models (KazLLM-8B, Sherkala-8B) in RAG and closed-book settings: under optimal RAG, KazLLM's correctness rose from 0.427 to 0.867, closely matching GPT-4o and even surpassing its peak end-to-end [29].</p>
+    <p>Studies of LLM behavior under RAG in English and Kazakh further show models are more sensitive to prompt variations in low-resource settings [30], motivating this study's controlled comparison of raw-question versus refined-query retrieval with identical evaluation harnesses (vLLM on an NVIDIA RTX 5090, generation-based MCQ scoring).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3.1–3.2 Search Services and Benchmark Datasets</h2>
+    <p>To select a reliable, low-latency, cost-efficient SERP API with Kazakh-language compatibility, the authors compared leading providers — Serper [31], SearchAPI [32], Brave Search [33], LangSearch [34], Perplexity [35], and Vertex AI Search [36] — on cost per thousand queries, response time, and Kazakh support (Table 1). Two primary open-source benchmarks were selected: KazMMLU [13] (22,889 Kazakh/Russian questions across 37 STEM, social-science, and humanities categories) and KazCulture [17] (1,334 test questions on cuisine, household domains, clothing, and other cultural knowledge), both multiple-choice with one correct answer and extensive native-speaker expert validation; MMLU-Pro [37] (English/Kazakh/Russian subsets) anchors multilingual reasoning evaluation.</p>
+    <p>The evaluation pipeline (Figure 1) isolates retrieval impact: Pipeline A (Zero-Shot, prompt straight to model); Pipeline B (Naïve RAG, raw prompt also sent to the web-search API, snippets concatenated into the Context field); Pipeline C (Query-Refined RAG, a refiner model — GPT-5-Nano, Gemini-3-Flash, or Qolda — rewrites the prompt into a searchable query before the API call).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3.3–3.4 Model Selection and RAG Pipelines</h2>
+    <p>Three SOTA open-source Kazakh-centric SLMs were preliminarily benchmarked on KazMMLU, KazCulture, and MMLU-Pro with vLLM on an RTX 5090 in generation mode: 8B KazLLM [9] and 8B Sherkala [10] versus 4B Qolda [12], the latter a vision–language model with think mode (Chain-of-Thought <think> tokens) and nothink mode. Qolda in nothink mode outperformed both 8B models on all three benchmarks by ~6% on average, with the gap widening in think mode (61.24% average); given its reasoning ability and smaller size, Qolda was selected as the primary evaluator (Table 4).</p>
+    <p>For Query-Refined RAG, concise English-only search queries are enforced by prompt instruction (no Cyrillic, no arrays, letter-only JSON answer key) with retrieved snippets concatenated into Context (Figure 4); when no retrieval occurs the Context field stays empty, and identical system prompts keep the comparison controlled between unrefined and optimized retrieval.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3.5–3.6 Fine-Tuning and Evaluation Protocol</h2>
+    <p>To build a localized refiner, Qolda was fine-tuned with LoRA supervised fine-tuning (SFT) on Gemini-3-Flash's refined outputs for KazMMLU questions (22,889 samples, 90/10 train/validation; question-to-short-query pairs only, no answer labels). KazMMLU was chosen for bilingual coverage and breadth; MMLU-Pro was excluded as too reasoning-heavy for keyword distillation and KazCulture for small-sample adaptation limits — yielding Qolda-SFT, a fully local refiner needing no third-party model.</p>
+    <p>All configurations shared the standardized harness (Section 3.3): accuracy as the primary metric with identical system prompts, plus 95% bootstrap confidence intervals (10,000 stratified resamples over binary correctness) to distinguish genuine gains from sampling variation.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4.1 Comparative Performance of RAG Pipelines</h2>
+    <p>Web search consistently improved accuracy over Zero-Shot (Table 5). Naïve RAG beat query refinement with raw questions entered directly: in think mode it averaged 76.00% (+15.63 over the 60.37% baseline; KazMMLU-KK 80.95%, RU 84.45%, KazCulture 62.59%). Gemini-3-Flash refinement peaked highest at 79.46% average in think mode, while GPT-5-Nano refinement underperformed Naïve RAG despite beating baseline, and unmodified Qolda-as-refiner matched the GPT pipeline without exceeding Naïve RAG.</p>
+    <p>Qolda-SFT was the best localized optimizer (76.19% think-mode average, nearly identical to Naïve RAG), excelling in culture-specific cases — 66.34% on KazCulture nothink versus 65.66% Naïve — yet its marginal overall gap leaves Naïve RAG the most efficient general baseline; distilled on KazMMLU reformulations, it did not beat Naïve RAG on KazMMLU, and on out-of-distribution English MMLU-Pro stayed within ~1 point of the best non-proprietary configuration (67.28% vs 68.01% think), indicating general keyword-dense query compression rather than memorized patterns. Think mode generally helped KazMMLU but sometimes hurt KazCulture (Gemini pipeline: 70.61% → 69.64%), suggesting extended reasoning chains can inject over-thinking noise into cultural nuance.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4.2–4.3 Multilingual Results and Significance</h2>
+    <p>On MMLU-Pro (Table 6), English leads, followed by Russian then Kazakh; Gemini-3-Flash refinement was the most effective strategy for complex reasoning (64.43% three-language think-mode average). Bootstrap CIs (Table 7, 10,000 resamples) confirm robust gains: on KazMMLU think mode, the Zero-Shot interval [66.66, 67.86] is fully separated from Naïve RAG [82.47, 83.42] (~15-point gap); on the smaller 1,334-question KazCulture set (±2.5-point intervals), Zero-Shot nothink [46.85, 52.10] sits well below Naïve RAG [63.12, 68.22].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4.4–4.6 Overhead, Latency, and Optimal Pipeline</h2>
+    <p>Retrieval inflates evaluator input ~9×: from ≤22 words Zero-Shot to 185.05 (Naïve) and 202.87 (Qolda-SFT) average words (Table 8), driven by concatenated snippets; refiners compress queries instead (raw 12.86 → 7.21 Gemini-3-Flash, 6.39 Qolda-SFT words; Table 9). Latency (Table 12): nothink Zero-Shot 0.07 s/question → Naïve 1.27 s (1.17 s search) → refined totals 1.43 s (Qolda), 2.58 s (GPT-5-Nano), 5.03 s (Gemini-3-Flash, 3.86 s API round-trip); in think mode Naïve (10.89 s) nearly matches Zero-Shot (10.28 s) because retrieved context shortens reasoning (9.78 s vs 10.28 s inference) against ~1.11 s retrieval overhead.</p>
+    <p>The accuracy-latency frontier (Figure 6) shows structurally similar Pareto fronts per mode: Zero-Shot (low-cost/low-accuracy), Naïve RAG (optimal midpoint), Gemini refinement (highest accuracy, most cost/latency); GPT-5-Nano is strictly Pareto-dominated by Gemini, and Qolda-SFT nearly ties plain Qolda — its advantage is operational independence, not accuracy. In system-level comparison, think-mode Naïve Qolda (76.00%) exceeds Zero-Shot Qwen3-32B (64.72%) and Gemma-3-27b-it (60.24%); Gemini refinement (+3%) suits accuracy-at-any-cost settings, while Naïve RAG is the practical default.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Discussion and 6. Conclusions</h2>
+    <p>Raw benchmark questions as search queries perform comparably to refined queries from advanced LLMs: for localized academic benchmarks, preserving the full linguistic context aids retrieval as effectively as keyword optimization. Qolda Zero-Shot already surpasses larger open-source models' Zero-Shot accuracy on KazCulture, with the gap widening under retrieval; on KazMMLU, real-time retrieval lets the 4B model outperform far larger competitors' unaugmented baselines — demonstrating that web search bridges knowledge gaps in smaller localized models [29].</p>
+    <p>In conclusion, retrieval-augmented 4B Qolda narrows its deployment-level accuracy gap with substantially larger models' Zero-Shot baselines on Kazakh tasks: on the matched Kazakh subset (KazMMLU-KK/RU + KazCulture) think-mode augmented Qolda averaged ~76% versus ~60% Zero-Shot. Despite successful SFT distillation from Gemini-3-Flash, Naïve RAG proved most practical — strong gains with less complexity and lower latency — and future work should test live-search RAG on broader Kazakh tasks (open-ended QA, summarization), additional SERP providers, and production latency/privacy trade-offs.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references preserving original numbering; the full list of 40 references is available in the original paper (doi:10.3390/make8050128).</p>
+    <ol dir="ltr">
+      <li>[1] Zhang, Q.; et al. The Rise of Small Language Models. <em>IEEE Intell. Syst.</em> 2025, 40, 30–37.</li>
+      <li>[4] Belcak, P.; et al. Small Language Models are the Future of Agentic AI. <em>arXiv</em> 2024, arXiv:2407.04680.</li>
+      <li>[5] Bharadwaj, A.; Jain, K. RAG-Assisted Small Language Models for Domain-Level Reasoning. In <em>Proc. ICISS 2025</em>.</li>
+      <li>[6] Liu, S.; et al. Can Small Language Models With RAG Replace Large Language Models? 2024.</li>
+      <li>[7] Xiong, H.; et al. When Search Engine Services Meet Large Language Models. 2023.</li>
+      <li>[9] Institute of Smart Systems and Artificial Intelligence. Kazakh Large Language Model (ISSAI KAZ-LLM). 2024.</li>
+      <li>[10] Koto, F.; et al. Sherkala-Chat: Building a Secure Kazakh LLM. 2024.</li>
+      <li>[12] Arystanbekov, B.; et al. Qolda: A Small Vision–Language Model for the Kazakh Language. <em>IEEE Access</em> 2025.</li>
+      <li>[13] Togmanov, M.; et al. KazMMLU: Evaluation of LLMs in Kazakh. 2024.</li>
+      <li>[17] Maxutov, A.; et al. Introducing Cultural Knowledge in Language Models. 2024.</li>
+      <li>[18] Vu, T.; et al. FreshLLMs: Refreshing Large Language Models with Search Engine Augmentation. 2023.</li>
+      <li>[19] Peng, B.; et al. Check Your Facts and Try Again. 2023.</li>
+      <li>[29] Mansurova, A.; et al. A Systematic Evaluation of LLMs and RAG for Kazakh QA. 2024.</li>
+      <li>[30] Tleubayeva, A.; et al. Multilingual QA-RAG: Evaluating LLMs' Contradiction Handling. 2024.</li>
+      <li>[31] Serper. Serper.dev: The Fastest Google Search API. 2026.</li>
+      <li>[37] Wang, Y.; et al. MMLU-Pro: A More Robust and Challenging Benchmark. 2024.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/make8050128">10.3390/make8050128</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

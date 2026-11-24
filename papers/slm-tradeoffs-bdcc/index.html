@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المفاضلات الأدائية لتحسين النماذج اللغوية الصغيرة للتجارة الإلكترونية — DAR</title>
+<meta name="description" content="Performance Trade-Offs of Optimizing Small Language Models for E-Commerce — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/slm-tradeoffs-bdcc/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Performance Trade-Offs of Optimizing Small Language Models for E-Commerce</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">المفاضلات الأدائية لتحسين النماذج اللغوية الصغيرة للتجارة الإلكترونية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Josip Tomo Licardo, Nikola Tanković, Ivan Osman, Ivan Lorencin, Sandi Baressi Šegota</span>
+    <span>📄 Big Data Cogn. Comput. (BDCC), 2026 · Vol. 10, No. 5, 155</span>
+    <span>🔗 <a href="https://doi.org/10.3390/bdcc10050155">10.3390/bdcc10050155</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>توفر النماذج اللغوية الكبيرة أداءً متطورًا في مهام فهم اللغة الطبيعية وتوليدها. غير أن نشر النماذج التجارية الرائدة في مهام متخصصة، مثل التجارة الإلكترونية، كثيرًا ما تعوقه التكاليف الحاسوبية العالية وزمن الاستجابة والنفقات التشغيلية. تبحث هذه الورقة في جدوى النماذج الأصغر مفتوحة الأوزان كبديل موفر للموارد.</p>
+    <p>نقدم منهجية لتحسين نموذج لاما 3.2 [2] الذي يضم مليار معامل من أجل التعرف متعدد اللغات على نية المستخدم في التجارة الإلكترونية. ضُبط النموذج بدقة باستخدام التكيّف منخفض الرتبة المكمم (QLoRA) [15] على مجموعة بيانات مولّدة اصطناعيًا صُممت لمحاكاة استعلامات المستخدمين الواقعية. ثم طبقنا تقنيات التكميم اللاحق للتدريب، فأنتجنا نسخًا محسّنة لوحدة معالجة الرسومات (GPTQ) [16] ونسخًا محسّنة لوحدة المعالجة المركزية (GGUF).</p>
+    <p>تُظهر نتائجنا أن النموذج المتخصص بـ98.8% يقترب من أداء نموذج GPT-4.1 الأكبر بكثير. وكشف تحليل أداء مفصّل عن مفاضلات حرجة تعتمد على العتاد: فبينما خفّض تكميم GPTQ من 4 بت استخدام ذاكرة الفيديو بنسبة 41%، إلا أنه أبطأ الاستدلال بنسبة 82% على بنية رسومية أقدم (NVIDIA T4) بسبب عبء إلغاء التكميم. وعلى النقيض، حققت صيغ GGUF على وحدة المعالجة المركزية تسريعًا يصل إلى 4.3 أضعاف في إنتاجية الاستدلال وخفضًا يصل إلى 72% في استهلاك ذاكرة الوصول العشوائي مقارنة بخط الأساس FP16 [9].</p>
+    <p>نخلص إلى أن النماذج الصغيرة مفتوحة الأوزان والمحسّنة جيدًا ليست بديلًا ممكنًا فحسب، بل بديلًا أنسب للتطبيقات المتخصصة في المجال، إذ تقدم دقة متطورة بجزء بسيط من التكلفة الحاسوبية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>أعادت النماذج اللغوية الكبيرة، وهي أنظمة تعلم عميق متطورة تُظهر قدرة لافتة على فهم اللغة البشرية وتوليدها والاستدلال بها [1]، تشكيل مجال الذكاء الاصطناعي جذريًا. وتمثل النماذج الأساسية مثل سلسلة لاما 3 من ميتا [2] وجيما 3 من جوجل [3] وكوين 3 من علي بابا [4] أحدث ما توصلت إليه التقنية، إذ تدعم تطبيقات تمتد من توليد الشيفرات إلى الكتابة الإبداعية والاكتشاف العلمي.</p>
+    <p>ومن أبرز المجالات الواعدة لتطبيق هذه النماذج التجارةُ الإلكترونية، حيث يُعد التفسير الدقيق لطلبات المستخدمين المعبر عنها بلغة طبيعية غير رسمية غالبًا ميزة تنافسية كبيرة. ويهدف هذا النموذج، المعروف بالتجارة الحوارية، إلى ابتكار تجارب تسوق أكثر بداهة [5]. وتُعد مهام مثل التصنيف القوي للمنتجات من أوصاف المستخدمين المشوشة [6] وفهم نية المستخدم المعقدة محورية لهذه الرؤية [7]، وقد بدأت شركات كبرى مثل eBay بتطوير نماذجها الداخلية المتخصصة [7].</p>
+    <p>غير أن نشر أقوى النماذج التجارية، مثل GPT-4 من OpenAI، يفرض عوائق عملية واقتصادية كبيرة: تكاليف مستمرة لواجهات البرمجة، والارتهان للمورّد، ومخاوف خصوصية البيانات وأمنها، والبصمة الهائلة من الطاقة والمياه والكربون لخدمة مليارات الاستعلامات [8–10]. وتشكل هذه التكاليف عائقًا كبيرًا أمام الاعتماد الواسع، لا سيما للشركات الصغيرة والمتوسطة.</p>
+    <p>وفي المقابل، تُظهر مجموعة متزايدة من الأبحاث أن النماذج الأصغر، عند تخصيصها لمجال معين، قد تحقق أداءً يضاهي النماذج العامة الأكبر بكثير بل ويتفوق عليها — في الحساب [11] وفهم الصحة النفسية [12] والأدوات التربوية [13] — وأكدت دراسة واسعة ضبطت أكثر من 300 نموذج أن النماذج المتخصصة تنافس GPT-4 باستمرار في المهام الضيقة [14]. وتُطلق تقنيتان أساسيتان هذه الإمكانات: الضبط الدقيق الفعال معامليًا، حيث يتيح التكيّف منخفض الرتبة (LoRA) [13] وخليفته المكمم (QLoRA) [15] التكيّف بتدريب جزء صغير فقط من المعاملات؛ والتكميم اللاحق للتدريب، حيث تضغط تقنيات مثل GPTQ [16] وAWQ [17] النماذج إلى دقة 4 بت مع فقد ضئيل في الدقة — مع أن الأبحاث الحديثة تُبرز أن فوائد التكميم تعتمد بشدة على حجم النموذج والمهمة والعتاد [15،17،18].</p>
+    <p>تجمع هذه الورقة بين هذه الخيوط عبر دراسة واعية بالعتاد لنموذج بمليار معامل خُصص عبر الضبط الدقيق بـQLoRA مع تكميم لاحق مكثف للتعرف المنظم على النية، مع قياس الدقة إلى جانب سرعة الاستدلال واستهلاك الذاكرة وكفاءة الطاقة في بيئتي وحدة معالجة الرسومات ووحدة المعالجة المركزية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2.1 من العمومية إلى التخصص: قوة الضبط الدقيق</h2>
+    <p>يتحول النموذج السائد من الاعتماد على نموذج واحد ضخم إلى نشر نماذج أصغر مصممة لمهام محددة. فقد أظهرت دراسات واسعة مثل LoRA Land أن ضبط نماذج متنوعة بـ7 مليارات معامل باستخدام LoRA قد يضاهي GPT-4 أو يتفوق عليه في مهام ضيقة كثيرة [14]؛ وتفوق نموذج Goat المضبوط على GPT-4 في الحساب [11]، وضاهت نماذج متخصصة GPT-4 في فهم الصحة النفسية [12] والأدوات التربوية [13]، وهو اتجاه بارز في الصناعة أيضًا مع نماذج eBay الداخلية للتجارة الإلكترونية [7].</p>
+    <p>ولما كان الضبط الكامل مكلفًا للموارد، برز الضبط الدقيق الفعال معامليًا (PEFT). إذ يجمّد LoRA الأوزان المدربة مسبقًا ويحقن مصفوفات صغيرة قابلة للتدريب منخفضة الرتبة [13]؛ بينما يكمم QLoRA النموذج الأساسي بدقة 4 بت (NormalFloat4) مع محسّنات مقسمة الصفحات، مما يتيح ضبط نماذج كبيرة جدًا على وحدة رسومية استهلاكية واحدة مع الحفاظ على أداء دقة 16 بت [15]، مع متغيرات أحدث مثل DoRA التي تعزز هذه الأدوات [13].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2.2 التكميم اللاحق للتدريب من أجل استدلال فعال</h2>
+    <p>يخفّض التكميم اللاحق للتدريب (PTQ) الدقة العددية للأوزان بعد التدريب لتقليل البصمة الذاكرية وزمن الاستجابة واستهلاك الطاقة [9،19]. وGPTQ طريقة أحادية تستخدم معلومات تقريبية من الدرجة الثانية لتكميم الأوزان تكراريًا مع تعويض الخطأ، محققة دقة عالية حتى بدقة 3–4 بت [16]. ويحمي التكميم الواعي بالتفعيل (AWQ) الجزء الصغير من الأوزان البارزة بتكبيرها قبل التكميم المنتظم [17]، بينما ينقل SmoothQuant صعوبة التكميم من التفعيلات ذات القيم الشاذة إلى الأوزان الأسهل تكميمًا [18].</p>
+    <p>لكن التكميم ليس مكسبًا مجانيًا: إذ تكشف المعايير الشاملة عن مفاضلات تعتمد بشدة على حجم النموذج والمهمة والعتاد [17،18]. فالنماذج الأصغر تعاني غالبًا تدهورًا أكبر في الدقة مع تكميم 4 بت [17]؛ وقد يؤثر التكميم بشكل غير متناسب على قدرات مثل الاستدلال الرياضي [16] بل وقد يغيّر الصدق في ظروف معينة [15]. ويُظهر التوصيف المنهجي أن خيارات التوازي الموتر وبنية وحدة الرسوميات قد تغيّر مكاسب زمن الاستجابة والطاقة جذريًا، مما يؤكد الحاجة إلى تقييم واعٍ بالعتاد [15].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2.3 البيانات الاصطناعية وتوليد المخرجات المنظمة</h2>
+    <p>يعتمد نجاح الضبط الدقيق أساسًا على جودة بيانات التدريب وحجمها، وأصبح توليد البيانات الاصطناعية باستخدام النماذج اللغوية لا غنى عنه عند ندرة بيانات المجال [20]. فقد أظهرت طريقة Self-Instruct أولًا أن النموذج يستطيع بناء مجموعة بياناته الخاصة لاتباع التعليمات من بذرة صغيرة [21]، وتطورت إلى خطوط وكلاء متطورة مثل AgentInstruct وMetaSynth التي تولّد البيانات الاصطناعية وتنقحها وتنوعها على نطاق ضخم [21،20].</p>
+    <p>ويتمثل تحدٍّ محوري في توليد مخرجات منظمة مثل JSON، وهو أمر حاسم لدمج النماذج في سير العمل المؤتمت وأنظمة الاسترجاع المعزز. تعاين الأبحاث الحديثة هذه القدرة [12،22] وتطور تقنيات لفرض الالتزام الصارم بالمخطط، مثل استراتيجيات التعلم المعزز [21]؛ ووجدت دراسات تقارن النماذج الصغيرة المضبوطة بالنماذج الكبيرة الملقنة لتوليد سير عمل منخفضة الشيفرة منظمة أن الضبط المستهدف غالبًا ما يعطي نتائج أكثر متانة ووعيًا بالمجال [12] — مع أن فرض قيود صارمة على الصيغة قد يضعف أحيانًا القدرة الاستدلالية [12].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3.1–3.3 المهمة ومجموعة البيانات والنماذج وإعداد التجربة</h2>
+    <p>تتمثل المهمة الأساسية في استخراج النية المنظمة من استعلامات التجارة الإلكترونية باللغة الطبيعية: تحليل طلب المستخدم النصي الحر لإدارة السلة إلى كائن JSON بثلاثة حقول — الإجراء (إضافة/إزالة) والمنتج (الاسم المعياري) والكمية. ونظرًا لعدم توفر مجموعات بيانات عامة متعددة اللغات لهذه المهمة، ولّد الباحثون 6000 مثال اصطناعي عالي الجودة عبر استراتيجية التلقين الوصفي باستخدام GPT-4.1 كمولّد للبيانات، بالتناوب بين الإنجليزية والكرواتية والإسبانية، مع أخذ عينات مرجحة للمنتجات والكميات وحقن ضجيج استراتيجي (أخطاء إملائية وعامية وتحيات ورموز تعبيرية وتبديل لغوي). واسترشدت القوالب باستعلامات إنتاجية حقيقية على مستوى المبادئ العامة فقط دون إعادة إنتاجها حرفيًا، وقُسّمت المجموعة (jtlicardo/ecommerce-intent-6k) بنسبة 90/10 للتدريب والتحقق مع مجموعة اختبار مستقلة من 1000 مثال.</p>
+    <p>كان النموذج الرئيسي لاما 3.2 بمليار معامل [2]، وقُورن مع جيما 3 (1B) وجيما 2 (2B) [3] وكوين 2.5 (1.5B و3B) [4] (إضافة إلى خط أساس مساعد مضبوط من جيما 3)، مع عائلة GPT-4.1 من OpenAI كحدود عليا بأسلوب التلقين قليل الأمثلة. استخدم الضبط الدقيق QLoRA-SFT (رتبة 16، ألفا 32، إسقاط 0.15، 3 حقب، دفعة 8، معدل تعلم 2×10⁻⁴، خسارة على JSON المكتمل فقط)؛ واستخدم التكميم GPTQ من 4 بت لوحدة الرسوميات وGGUF (Q3_K_M/Q4_K_M/Q5_K_M) لوحدة المعالجة المركزية؛ وكان العتاد NVIDIA T4 (Colab) لقياس FP16/GPTQ وخادم Hetzner CPX32 لقياس GGUF؛ وكانت المقاييس دقة التطابق التام مع فترات ثقة ويلسون 95% إضافة إلى زمن الاستجابة والإنتاجية والذاكرة وزمن التحميل واستهلاك الطاقة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3.4 خط الأنابيب التجريبي: الضبط الدقيق والتكميم</h2>
+    <p>يتكون خط الأنابيب من مرحلتين: التخصص عبر الضبط الدقيق، ثم تحسين النشر عبر التكميم. استخدم الضبط الدقيق QLoRA [15] عبر مكتبات transformers وpeft وbitsandbytes: حُمّل نموذج لاما 3.2 الأساسي بدقة 4 بت (NF4)، وطُبّق محوّل LoRA (رتبة 16، ألفا 32، إسقاط 0.15) على جميع الإسقاطات الخطية في كتل الانتباه والتغذية الأمامية، ودُرّب 3 حقب باستخدام SFTTrainer (دفعة 8، معدل تعلم 2×10⁻⁴، إحماء 0.05، BF16)، مع حساب الخسارة على مخرجات JSON فقط وتقسيم 90/10 بالبذرة 42 وحفظ نقاط التفتيش واختيار الأفضل بخسارة التحقق.</p>
+    <p>وبعد دمج محوّل LoRA في الأساس FP16، كُمم النموذج المتخصص الموحد بطريقتين: (1) GPTQ من 4 بت عبر مكتبة gptqmodel مع مجموعة معايرة متوازنة لغويًا من 300 عينة (100 إنجليزية و100 كرواتية و100 إسبانية) لاستدلال وحدة الرسوميات [16]؛ و(2) GGUF عبر سلسلة llama.cpp v3.1 بثلاث درجات بت — Q3_K_M العدوانية من 3 بت، وQ4_K_M المتوازنة من 4 بت، وQ5_K_M عالية الجودة من 5 بت — لاستدلال وحدة المعالجة المركزية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3.5 إطار التقييم</h2>
+    <p>استخدم التقييم مجموعة اختبار مستقلة غير مرئية من 1000 مثال (jtlicardo/ecommerce-intent-eval) منظمة مثل بيانات التدريب تمامًا. وقِيست الدقة بالتطابق التام الصارم: يجب أن يكون المخرج JSON صحيحًا نحويًا مع تطابق أزواج المفاتيح الثلاثة (الإجراء والمنتج والكمية) مع الحقيقة الأرضية — وقد اختير هذا المعيار لأن الصحة الجزئية في هذه المهمة قد تسبب أخطاء إنتاجية جسيمة.</p>
+    <p>وإلى جانب الدقة، قاس الباحثون سرعة الاستدلال (رموز/ثانية)، وزمن الاستجابة المتوسط وP95 الشامل، واستهلاك الذاكرة (ذاكرة الفيديو لوحدة الرسوميات وذاكرة الوصول لوحدة المعالجة المركزية)، واستهلاك الطاقة (مراقبة القدرة عبر nvidia-smi لحساب كفاءة الطاقة)، تماشيًا مع الدعوات لتجاوز المقاييس الأحادية نحو أطر شاملة مثل الطاقة لكل رمز [19،24].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4.1–4.2 الدقة وأثر التكميم عليها</h2>
+    <p>قفز نموذج لاما 3.2 المضبوط من دقة أساسية 0.764 إلى 0.988، أي بفارق 1.2 نقطة مئوية عن GPT-4.1 (1.000) وضمن نطاق GPT-4.1-mini (0.995) وGPT-4.1-nano (0.987)، مما يدعم الفرضية المحورية بقوة؛ وبلغ خط الأساس المساعد المضبوط من جيما 3 (1B) دقة 0.905 من أساس 0.773. وحافظ التكميم اللاحق الحديث على الدقة بأمانة عالية: إذ أظهر GGUF من 5 بت (0.984) و4 بت (0.984) وGPTQ من 4 بت (0.979) انخفاضًا هامشيًا فقط عن FP16، وحتى GGUF العدواني من 3 بت حافظ على 0.972 — فمنحدر التكميم [23] يقع أبعد من 3 بت لهذه المهمة.</p>
+    <p>ومن المرجح أن هذه المتانة خاصة بالمهمة: فاستخراج النية المنظمة له فضاء مخرجات مقيد وصيغة هدف منخفضة الإنتروبيا — مجموعة صغيرة من القرارات المتقطعة (الإجراء والمنتج المعياري والكمية) مع JSON قصير منتظم للغاية — لذا نادرًا ما تقلب الاضطرابات المعتدلة في الأوزان مخرج التطابق التام عندما تكون حد القرار واضحة أصلًا. ويحذر الباحثون من أن التكميم العدواني المماثل قد تكون له آثار أكبر على الاستدلال المفتوح أو التوليد المطول أو المهام التي تتطلب فروقًا دلالية دقيقة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4.3–4.5 ملامح الأداء على وحدتي الرسوميات والمعالجة المركزية</h2>
+    <p>على وحدة الرسوميات NVIDIA T4، خفّض GPTQ من 4 بت إجمالي ذاكرة الفيديو من 3.27 إلى 1.93 غيغابايت (خفض 41%؛ والمعاملات فقط من 2.30 إلى 0.96 غيغابايت) وزمن التحميل بنسبة 93.4% (من 16.95 إلى 1.12 ثانية) — لكن إنتاجية الاستدلال انهارت من 44.56 إلى 7.92 رمزًا/ثانية (تباطؤ 82.2%)، وارتفعت الطاقة لكل رمز بنسبة 489.3%، مما يوحي بأن T4 نفّذ عبء إلغاء التكميم بدل الحوسبة الأصلية بـ4 بت، بما يتسق مع التوصيفات المعتمدة على العتاد للتكميم [9،15]، ومن المرجح أن تنعكس النتيجة على وحدات حديثة بدعم أصلي للدقة المنخفضة [18].</p>
+    <p>أما على وحدة المعالجة المركزية (Hetzner CPX32 عبر llama.cpp)، فكانت متغيرات GGUF تحويلية: بلغ Q4_K_M من 4 بت 19.5 رمزًا/ثانية (4.3 أضعاف خط الأساس FP16 البالغ 4.5)، مع انخفاض زمن الاستجابة المتوسط/P95 من 3.55/5.27 ثانية إلى 0.82/1.16 ثانية؛ وانخفضت الذاكرة من 3.30 إلى 0.93–1.14 غيغابايت (خفض 65–72%)، مما يجعل النشر على عتاد استهلاكي ممكنًا. وخلاصة مفاضلة وحدة المعالجة: FP16 الأكثر دقة (0.988) لكنه الأبطأ والأكبر؛ وQ4_K_M الأفضل توازنًا (دقة 0.984، و19.5 رمزًا/ثانية، و1.04 غيغابايت)؛ وQ5_K_M يضاهيه دقة بسرعة أقل وحجم أكبر قليلًا؛ وQ3_K_M يصغّر البصمة (0.93 غيغابايت) بكلفة دقة أكبر (0.972).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. المناقشة</h2>
+    <p>تستطيع النماذج الصغيرة بلوغ دقة متطورة: فنتيجة لاما 3.2 بمليار معامل قرب GPT-4.1 تنضم إلى أدلة — من الحساب [11] إلى التربية [13] وأكثر من 200 نموذج مضبوط تجاوز GPT-4 في LoRA Land [14] — على أن التخصص المجالي يمنح النماذج الأصغر كفاءة خبيرة عميقة، مما يجعل أسطولًا من النماذج الخبيرة الصغيرة أكثر فعالية من حيث الكلفة والخصوصية والحوسبة من نموذج عام واحد ضخم في تطبيقات الأنماط المتوقعة كالتجارة الإلكترونية [7].</p>
+    <p>والتكميم ليس مكسبًا مجانيًا بل تآزر بين العتاد والبرمجيات: فتباطؤ GPTQ على T4 رغم توفير 41% من الذاكرة مقابل تسريع GGUF حتى 4.3 أضعاف على وحدة المعالجة يُظهر أن الفوائد تنبع من التفاعل بين الصيغة ومحرك الاستدلال والبنية. فمن المرجح أن T4 افتقرت للتنفيذ الأصلي بـ4 بت [9،15]، بينما تستغل llama.cpp v3.1 تعليمات المتجهات (AVX) لضرب المصفوفات الصحيحة منخفضة البت بكفاءة — درس عملي في التصميم المشترك للعتاد والبرمجيات [10،15،24].</p>
+    <p>وتتبع التوصيات العملية القيدَ الحاكم: عند أولوية الصحة، FP16 (0.988)؛ وعند هيمنة زمن الاستجابة مع قبول انخفاض طفيف، Q4_K_M (الأسرع على وحدة المعالجة المختبرة)؛ وعند تقييد الذاكرة، Q3_K_M (0.93 غيغابايت بدقة 0.972). ويتردد صدى هذه الموازنة متعددة الأهداف مع الدعوات لأطر شاملة تتجاوز المقاييس الأحادية، مثل الطاقة لكل رمز [19،24].</p>
+    <p>القيود: اعتمد التدريب والتقييم حصرًا على بيانات اصطناعية قد لا تمثل الاستعلامات النادرة أو الغامضة أو الثقافية أو سريعة التطور، وقد تبالغ في تقدير المتانة أمام السلوك الحقيقي [20]؛ واقتصر العتاد على وحدة رسومية أقدم وبيئة معالجة افتراضية واحدة؛ وقد لا تعمم المهمة الواحدة المحددة جيدًا (خلاف معايير الاستدلال متعدد الخطوات مثل ShoppingBench [6])؛ كما أن دقة التطابق التام الصارمة تتجاهل فروق الإجابات الصحيحة جزئيًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الخاتمة</h2>
+    <p>من خلال الضبط الدقيق بـQLoRA على مجموعة بيانات اصطناعية عالية الجودة، بلغ نموذج لاما 3.2 بمليار معامل دقة تطابق تام 98.8% في التعرف المنظم على النية — مقتربًا من GPT-4.1 الأكبر بكثير — مما يؤكد الفرضية الرئيسية. لكن التكميم اللاحق أضاف طبقة حرجة من التعقيد: فتكميم GPTQ من 4 بت على وحدة رسومية أقدم خفّض الذاكرة جذريًا لكنه سبب تباطؤًا غير بديهي بنسبة 82% في الاستدلال، بينما حققت صيغ GGUF على وحدة المعالجة مكاسب إنتاجية تصل إلى 4.3 أضعاف وخفضًا في الذاكرة يصل إلى 72%.</p>
+    <p>والخلاصة الرئيسية أن مستقبل كثير من حلول الذكاء الاصطناعي التطبيقية قد لا يكمن في النماذج العامة الأكبر فحسب، بل في منظومة متنوعة من نماذج أصغر شديدة التخصص وواعية بالعتاد: فلا يمكن اختيار استراتيجية التحسين بمعزل عن العتاد المستهدف، مما يتيح حلولًا مخصصة أكثر فعالية من حيث الكلفة والخصوصية والحوسبة.</p>
+    <p>يجب أن تتحقق الأعمال المستقبلية من الأداء على بيانات مستخدمين حقيقية مجهولة واسعة النطاق؛ وأن تكرر تحليل وحدة الرسوميات على بنى حديثة (مثل NVIDIA Ampere أو Hopper) بدعم أصلي للدقة المنخفضة؛ وأن تتوسع إلى مهام تجارة إلكترونية أوسع مثل التوصية أو الاستعلام عن حالة الطلب؛ وأن تستكشف تحسينات بديلة مثل تكميم AWQ [17] أو طرق PEFT أخرى مثل DoRA [13].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Large Language Models (LLMs) offer state-of-the-art performance in natural language understanding and generation tasks. However, the deployment of leading commercial models for specialized tasks, such as e-commerce, is often hindered by high computational costs, latency, and operational expenses. This paper investigates the viability of smaller, open-weight models as a resource-efficient alternative.</p>
+    <p>We present a methodology for optimizing a one-billion-parameter Llama 3.2 model [2] for multilingual e-commerce intent recognition. The model was fine-tuned using Quantized Low-Rank Adaptation (QLoRA) [15] on a synthetically generated dataset designed to mimic real-world user queries. Subsequently, we applied post-training quantization techniques, creating GPU-optimized (GPTQ) [16] and CPU-optimized (GGUF) versions.</p>
+    <p>Our results demonstrate that the specialized 1B model achieves 98.8% accuracy, approaching the performance of the significantly larger GPT-4.1 model. A detailed performance analysis revealed critical, hardware-dependent trade-offs: while 4-bit GPTQ reduced VRAM usage by 41%, it paradoxically slowed inference by 82% on an older GPU architecture (NVIDIA T4) due to dequantization overhead. Conversely, GGUF formats on a CPU achieved a speedup of up to 4.3× in inference throughput and up to a 72% reduction in RAM consumption compared to the FP16 baseline [9].</p>
+    <p>We conclude that small, properly optimized open-weight models are not just a viable but a more suitable alternative for domain-specific applications, offering state-of-the-art accuracy at a fraction of the computational cost.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>The field of artificial intelligence has been fundamentally reshaped by Large Language Models (LLMs), sophisticated deep learning systems that demonstrate a remarkable capacity to understand, generate, and reason with human language [1]. Foundational models such as Meta's Llama 3 series [2], Google's Gemma 3 [3], and Alibaba's Qwen3 [4] now represent the state of the art, powering applications from code generation to creative writing and scientific discovery.</p>
+    <p>One of the most promising domains for LLM application is e-commerce, where accurately interpreting user requests expressed in natural, often informal, language is a significant competitive advantage. This paradigm, known as conversational commerce, aims to create more intuitive shopping experiences [5]. Tasks such as robust product classification from noisy user descriptions [6] and understanding complex user intent are central to this vision [7], and major industry players like eBay have begun developing their own in-house, domain-specific LLMs [7].</p>
+    <p>However, the deployment of the most powerful commercial models, such as OpenAI's GPT-4, presents significant practical and economic barriers: continuous API costs, vendor lock-in, data privacy and security concerns, and the immense energy, water, and carbon footprint of serving billions of queries [8–10]. These costs create a substantial obstacle to widespread adoption, particularly for small to medium-sized enterprises.</p>
+    <p>In response, a growing body of research demonstrates that smaller models, when specialized for a specific domain, can achieve performance comparable or even superior to much larger general-purpose models — on arithmetic [11], mental health understanding [12], and pedagogical tools [13] — and a large-scale study fine-tuning over 300 models confirmed that specialized models can consistently rival GPT-4 on narrow tasks [14]. Two key technologies unlock this potential: parameter-efficient fine-tuning (PEFT), where Low-Rank Adaptation (LoRA) [13] and its successor Quantized LoRA (QLoRA) [15] enable adaptation by training only a small fraction of parameters; and post-training quantization (PTQ), where techniques like GPTQ [16] and AWQ [17] compress models to 4-bit precision with minimal accuracy loss — though recent research highlights that quantization benefits are highly dependent on model size, task, and hardware [15,17,18].</p>
+    <p>This paper bridges these threads with a hardware-aware investigation of a 1-billion-parameter model specialized via QLoRA fine-tuning plus aggressive post-training quantization for structured intent recognition, measuring accuracy alongside inference speed, memory consumption, and energy efficiency on both GPU and CPU environments.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2.1 From Generalists to Specialists: The Power of Fine-Tuning</h2>
+    <p>The prevailing paradigm is shifting from relying on a single monolithic model to deploying smaller models tailored for specific tasks. Large-scale studies such as LoRA Land demonstrated that fine-tuning diverse 7B models with LoRA can rival or exceed GPT-4 on many narrow tasks [14]; the fine-tuned Goat model surpassed GPT-4 on arithmetic [11], and specialized models matched GPT-4 in mental health understanding [12] and pedagogical tools [13], a trend also prominent in industry with eBay's in-house e-commerce LLMs [7].</p>
+    <p>Full fine-tuning is resource-prohibitive, which has led to Parameter-Efficient Fine-Tuning (PEFT). LoRA freezes pretrained weights and injects small trainable low-rank matrices [13]; QLoRA quantizes the base model to aggressive 4-bit precision (NormalFloat4) with paged optimizers, enabling fine-tuning of very large models on a single consumer GPU while maintaining 16-bit performance [15], with newer variants such as DoRA further enhancing the toolkit [13].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2.2 Post-Training Quantization for Efficient Inference</h2>
+    <p>Post-Training Quantization (PTQ) reduces the numerical precision of weights after training to cut memory footprint, latency, and energy consumption [9,19]. GPTQ is a one-shot method using approximate second-order information to quantize weights iteratively with error compensation, achieving high accuracy even at 3–4 bit precision [16]. Activation-aware Weight Quantization (AWQ) protects the small fraction of salient weights by scaling them up before uniform quantization [17], while SmoothQuant migrates quantization difficulty from activations with problematic outliers to the more easily quantized weights [18].</p>
+    <p>However, quantization is not a free lunch: comprehensive benchmarks reveal trade-offs highly dependent on model size, task, and hardware [17,18]. Smaller models often suffer greater accuracy degradation from 4-bit quantization [17]; quantization can disproportionately affect capabilities such as mathematical reasoning [16] and may even alter truthfulness under certain conditions [15]. Systematic characterization shows that tensor parallelism and GPU architecture choices can dramatically alter realized latency and energy gains, underscoring the need for hardware-aware evaluation [15].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2.3 Synthetic Data and Structured Output Generation</h2>
+    <p>Fine-tuning success depends fundamentally on training data quality and volume, and synthetic data generation using LLMs has become indispensable when domain data is scarce [20]. Self-Instruct first demonstrated that an LLM could bootstrap its own instruction-following dataset from a small seed set [21], evolving into sophisticated agentic pipelines such as AgentInstruct and MetaSynth that generate, refine, and diversify synthetic data at massive scale [21,20].</p>
+    <p>A central challenge is generating structured outputs such as JSON, critical for integrating LLMs into automated workflows and RAG systems. Recent research benchmarks this capability [12,22] and develops techniques to enforce strict schema adherence, such as reinforcement learning strategies [21]; studies comparing fine-tuned small models against prompted large models for structured low-code workflows found targeted fine-tuning often yields more robust, domain-aware results [12] — though imposing strict format restrictions can sometimes impair reasoning ability [12].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3.1–3.3 Task, Dataset, Models, and Setup</h2>
+    <p>The core task is structured intent extraction from natural language e-commerce queries: parsing a user's free-text cart-management request into a JSON object with three fields — action (add/remove), product (canonical name), and quantity. Lacking public multilingual datasets for this task, the authors generated 6,000 high-quality synthetic examples via a metaprompting strategy with GPT-4.1 as data generator, cycling through English, Croatian, and Spanish, with weighted product/quantity sampling and strategic noise injection (typos, slang, greetings, emojis, code-switching). Real production queries informed only high-level guidelines, never reproduced verbatim, and the dataset (jtlicardo/ecommerce-intent-6k) was split 90/10 train/validation with a separate 1,000-example held-out test set.</p>
+    <p>The primary model was Llama 3.2 1B [2], contextualized against Gemma 3 1B and Gemma 2 2B [3], Qwen 2.5 1.5B and 3B [4] (plus a QLoRA fine-tuned Gemma 3 1B auxiliary baseline), with OpenAI's GPT-4.1 family as few-shot state-of-the-art upper bounds. Fine-tuning used QLoRA SFT (rank 16, alpha 32, dropout 0.15, 3 epochs, batch size 8, learning rate 2×10⁻⁴, completion-only JSON loss); quantization used GPTQ 4-bit for GPU and GGUF Q3_K_M/Q4_K_M/Q5_K_M for CPU; hardware was an NVIDIA T4 (Colab) for FP16/GPTQ profiling and a Hetzner CPX32 CPU instance for GGUF profiling; and metrics were exact-match accuracy with 95% Wilson confidence intervals plus latency, throughput, memory, load time, and energy consumption.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3.4 Experimental Pipeline: Fine-Tuning and Quantization</h2>
+    <p>The pipeline has two stages: specialization via fine-tuning, then deployment optimization via quantization. Fine-tuning employed QLoRA [15] via the transformers, peft, and bitsbnbags libraries: the Llama 3.2 1B base was loaded at 4-bit (NF4), a LoRA adapter (rank 16, alpha 32, dropout 0.15) targeted all linear projections of attention and feed-forward blocks, trained 3 epochs with SFTTrainer (batch 8, lr 2×10⁻⁴, warmup ratio 0.05, BF16), with loss computed only on the JSON completion and seed-42 90/10 splitting, epoch-level checkpointing, and best-checkpoint selection by validation loss.</p>
+    <p>After merging the LoRA adapter into the FP16 base, the unified specialized model was quantized two ways: (1) GPTQ 4-bit via gptqmodel with a 300-sample language-balanced calibration set (100 English, 100 Croatian, 100 Spanish) for GPU inference [16]; and (2) GGUF via the llama.cpp v3.1 toolchain in three bit-depths — aggressive 3-bit Q3_K_M, balanced 4-bit Q4_K_M, and high-quality 5-bit Q5_K_M — for CPU inference.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3.5 Evaluation Framework</h2>
+    <p>Evaluation used a separate unseen 1,000-example test set (jtlicardo/ecommerce-intent-eval) structured identically to training data. Accuracy was measured by strict exact match: the output had to be syntactically valid JSON with all three key-value pairs (action, product, quantity) identical to ground truth — chosen because partial correctness in this e-commerce task can cause significant production errors.</p>
+    <p>Beyond accuracy, the authors profiled inference speed (tokens/second), mean and P95 end-to-end latency, memory consumption (VRAM on GPU, RAM on CPU), and energy consumption (power draw via nvidia-smi on GPU to compute energy efficiency), following calls to move beyond single metrics toward holistic frameworks such as energy-per-token [19,24].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4.1–4.2 Accuracy and the Impact of Quantization</h2>
+    <p>The fine-tuned Llama 3.2 1B jumped from 0.764 base accuracy to 0.988, within 1.2 percentage points of GPT-4.1 (1.000) and in the range of GPT-4.1-mini (0.995) and GPT-4.1-nano (0.987) baselines, strongly supporting the central hypothesis; the auxiliary fine-tuned Gemma 3 1B reached 0.905 from a 0.773 base. Modern post-training quantization preserved accuracy with high fidelity: GGUF 5-bit (0.984) and 4-bit (0.984) and GPTQ 4-bit (0.979) showed only marginal reduction from FP16, and even aggressive 3-bit GGUF held 0.972 — the quantization cliff [23] lies beyond 3-bit for this task.</p>
+    <p>This robustness is plausibly task-specific: structured intent extraction has a constrained output space and low-entropy target format — a small set of discrete decisions (action, canonical product, quantity) with short, highly regular JSON — so moderate weight perturbations rarely flip the exact-match output when the decision boundary is already clear. The authors caution that similarly aggressive quantization may have larger effects on open-ended reasoning, long-form generation, or tasks requiring subtle semantic distinctions.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4.3–4.5 GPU and CPU Performance Profiles</h2>
+    <p>On the NVIDIA T4 GPU, 4-bit GPTQ cut total VRAM from 3.27 GB to 1.93 GB (41% reduction; parameters-only from 2.30 GB to 0.96 GB) and load time by 93.4% (16.95 s to 1.12 s) — but inference throughput collapsed from 44.56 to 7.92 tokens/second (an 82.2% slowdown), and energy per token rose 489.3%, suggesting the T4 executed dequantization overhead rather than native 4-bit compute, consistent with hardware-dependent characterizations of quantization [9,15], and likely reversed on modern GPUs with native low-precision support [18].</p>
+    <p>On the CPU (Hetzner CPX32, llama.cpp), GGUF variants were transformative: the 4-bit Q4_K_M reached 19.5 tokens/second (4.3× over the 4.5 tok/s FP16 baseline), with mean/P95 latency falling from 3.55/5.27 s to 0.82/1.16 s; RAM dropped from 3.30 GB to 0.93–1.14 GB (65–72% reduction), making consumer-hardware deployment feasible. Summarizing the CPU trade-off: FP16 is most accurate (0.988) but slowest and largest; Q4_K_M offers the best balance (0.984 accuracy, 19.5 tok/s, 1.04 GB); Q5_K_M matches its accuracy at slightly lower speed and larger size; Q3_K_M minimizes footprint (0.93 GB) at a larger accuracy cost (0.972).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Discussion</h2>
+    <p>Small models can achieve state-of-the-art accuracy: the 1B Llama 3.2 result near GPT-4.1 adds to evidence — from arithmetic [11] to pedagogy [13] and the 200+ fine-tuned models surpassing GPT-4 in LoRA Land [14] — that domain specialization lets smaller models develop deep expert competence, making a fleet of small expert models more cost-effective, private, and compute-efficient than one oversized generalist for predictable-pattern applications like e-commerce [7].</p>
+    <p>Quantization is not a free lunch but a hardware-software synergy: the T4 GPTQ slowdown despite 41% VRAM savings versus the up-to-4.3× CPU GGUF speedup shows benefits emerge from the interplay of format, inference engine, and architecture. The T4 likely lacked native 4-bit execution [9,15], while llama.cpp v3.1 exploits CPU vector instructions (AVX) for efficient low-bit integer matmuls — a practical lesson in hardware-software co-design [10,15,24].</p>
+    <p>Practical recommendations follow the binding constraint: when correctness is paramount, FP16 (0.988); when latency dominates and a modest dip is acceptable, Q4_K_M (fastest on the tested CPU); when RAM is binding, Q3_K_M (0.93 GB at 0.972). This multi-objective balancing resonates with calls for holistic frameworks beyond single metrics, such as energy-per-token [19,24].</p>
+    <p>Limitations: training and evaluation relied exclusively on synthetic data, which may underrepresent rare, ambiguous, culturally specific, or rapidly evolving real queries and overestimate robustness to authentic user behavior [20]; hardware scope was one older GPU and one virtualized CPU; the single well-defined task (unlike multi-step reasoning benchmarks such as ShoppingBench [6]) may not generalize; and strict exact-match accuracy ignores nuances of partially correct answers.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Conclusions</h2>
+    <p>Through QLoRA fine-tuning on a high-quality synthetic dataset, a 1-billion-parameter Llama 3.2 model reached 98.8% exact-match accuracy on structured intent recognition — close to the far larger GPT-4.1 — confirming the primary hypothesis. Yet post-training quantization added a critical layer of complexity: 4-bit GPTQ on an older GPU drastically cut memory but caused a counter-intuitive 82% inference slowdown, while GGUF formats on CPU delivered up to 4.3× throughput gains and up to 72% RAM reductions.</p>
+    <p>The primary conclusion is that the future of many applied AI solutions may lie not solely with ever-larger generalist models but in a diverse ecosystem of smaller, highly specialized, hardware-aware models: the optimization strategy cannot be chosen in isolation from target hardware, enabling more cost-effective, private, and computationally efficient customized solutions.</p>
+    <p>Future work should validate performance on large-scale real-world anonymized user data; replicate the GPU analysis on modern architectures (e.g., NVIDIA Ampere or Hopper) with native low-precision support; expand to broader e-commerce tasks such as recommendation or order-status inquiries; and explore alternative optimizations such as AWQ quantization [17] or other PEFT methods like DoRA [13].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references preserving original numbering; the full list of 24 references is available in the original paper (doi:10.3390/bdcc10050155).</p>
+    <ol dir="ltr">
+      <li>[1] Vaswani, A.; Shazeer, N.; Parmar, N.; et al. Attention is all you need. <em>Adv. Neural Inf. Process. Syst.</em> 2017, 30, 5998–6008.</li>
+      <li>[2] Grattafiori, A.; et al. The Llama 3 Herd of Models. <em>arXiv</em> 2024, arXiv:2407.21783.</li>
+      <li>[3] Team, G.; et al. Gemma 3 Technical Report. <em>arXiv</em> 2025, arXiv:2503.19786.</li>
+      <li>[4] Yang, A.; et al. Qwen3 Technical Report. <em>arXiv</em> 2025, arXiv:2505.09388.</li>
+      <li>[6] Kim, S.; et al. Evaluating language models as synthetic data generators. <em>arXiv</em> 2025, arXiv:2412.03679.</li>
+      <li>[7] Zhou, W.; et al. A usage-centric take on intent understanding in e-commerce. <em>arXiv</em> 2024, arXiv:2402.14901.</li>
+      <li>[9] Fernandez, J.; et al. Energy considerations of large language model inference and efficiency optimizations. In <em>Proc. ACL 2025</em>; pp. 32556–32569.</li>
+      <li>[11] Hoffmann, J.; et al. Training compute-optimal large language models. <em>arXiv</em> 2022, arXiv:2203.15556.</li>
+      <li>[12] Brown, T.; et al. Language models are few-shot learners. <em>arXiv</em> 2020, arXiv:2005.14165.</li>
+      <li>[13] Hu, E.J.; et al. LoRA: Low-Rank Adaptation of Large Language Models. <em>arXiv</em> 2021, arXiv:2106.09685.</li>
+      <li>[14] Zhao, J.; et al. LoRA Land: 310 Fine-tuned LLMs That Rival GPT-4. <em>arXiv</em> 2024, arXiv:2405.00732.</li>
+      <li>[15] Dettmers, T.; et al. QLoRA: Efficient finetuning of quantized LLMs. <em>Adv. Neural Inf. Process. Syst.</em> 2023, 36, 10088–10115.</li>
+      <li>[16] Frantar, E.; et al. GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers. <em>arXiv</em> 2022, arXiv:2210.17323.</li>
+      <li>[17] Lin, J.; et al. AWQ: Activation-aware weight quantization for on-device LLM compression and acceleration. <em>GetMobile</em> 2024, 28, 12–17.</li>
+      <li>[18] Xiao, G.; et al. SmoothQuant: Accurate and efficient post-training quantization for large language models. <em>arXiv</em> 2023, arXiv:2211.10438.</li>
+      <li>[19] Khan, T.; et al. Optimizing Large Language Models: Metrics, Energy Efficiency, and Case Study Insights. In <em>Proc. IEEE CAI 2025</em>; pp. 370–375.</li>
+      <li>[20] Nadas, M.; et al. Synthetic Data Generation Using Large Language Models: Advances in Text and Code. <em>IEEE Access</em> 2025, 13, 134615–134633.</li>
+      <li>[21] Wang, Y.; et al. Self-instruct: Aligning language models with self-generated instructions. <em>arXiv</em> 2023, arXiv:2212.10560.</li>
+      <li>[23] Ahmadian, A.; et al. Intriguing Properties of Quantization at Scale. <em>Adv. Neural Inf. Process. Syst.</em> 2023, 36, 34278–34294.</li>
+      <li>[24] Wilhelm, P.; et al. Beyond test-time compute strategies: Advocating energy-per-token in LLM inference. <em>arXiv</em> 2025, arXiv:2603.20224.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/bdcc10050155">10.3390/bdcc10050155</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نماذج لغوية رومانية جاهزة للطرفية: التدريب والتكميم والنشر — DAR</title>
+<meta name="description" content="Edge-Ready Romanian Language Models: Training, Quantization, and Deployment — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/edge-romanian-llm-ai/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Edge-Ready Romanian Language Models: Training, Quantization, and Deployment</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">نماذج لغوية رومانية جاهزة للطرفية: التدريب والتكميم والنشر</h2>
+
+  <div class="paper-meta">
+    <span>👤 T. A. Diac, P. F. de Viana, A. F. Neagoe, A. Oprea, M. C. Raportaru, A. Nicolin-Žaczek</span>
+    <span>📄 AI, 2026 · Vol. 7, No. 2, 61</span>
+    <span>🔗 <a href="https://doi.org/10.3390/ai7020061">10.3390/ai7020061</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>نقدم RoBaseLM-S (125 مليون معامل) وRoBaseLM-M (260 مليون معامل)، وهما نموذجان رومانيان مدمجان لفك التشفير فقط دُرّبا من الصفر على مدونة منقاة من 4.3 مليارات رمز. ومعماريًا، يتبعان وصفة حديثة على طراز لاما [18] مع RMSNorm قبل الطبقة، والتضمينات الدوارة للمواضع (RoPE) [19]، وكتل SwiGLU الأمامية [20]، والانتباه المجمع الاستعلامات (GQA) [21]، ونوافذ سياق 4 آلاف رمز.</p>
+    <p>نُصدر نسختي الدقة الكاملة (FP16) ونسختي 5 بت اللاحقة للتدريب (Q5_K_M) بصيغة GGUF للاستدلال المحلي الخفيف. وتتسع متغيرات 5 بت لأقل من 500 ميغابايت وتولّد النصوص لحظيًا على Jetson Nano بذاكرة 4 غيغابايت، مما يتيح توليد النصوص الرومانية دون اتصال تمامًا على عتاد طرفي استهلاكي.</p>
+    <p>نقيّم النماذج جوهريًا (الحيرة متعددة المجالات عبر الأخبار والنثر الأدبي والشعر ونصوص الويب المتنوعة) وخارجيًا (تصنيف المشاعر LaRoSeDa [8] وتشابه الجمل RO-STS [11]). ومقارنة بخطوط الأساس الرومانية على طراز GPT-2 بمقاييس معاملات مماثلة [14]، يخفض النموذجان الحيرة كثيرًا — مثلًا من 30.7 إلى 15.9 على جزء الأخبار المحجوب — وتبقى نقاط التفتيش المكممة من 5 بت ضمن أداء FP16 في جميع المهام المبلغ عنها.</p>
+    <p>وعلى حد علمنا، هذه أول نماذج لغوية رومانية صغيرة مُحسّنة صراحة للاستدلال طويل السياق والتكميم اللاحق للتدريب والنشر على الأجهزة منخفضة الطاقة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>انتقلت معالجة اللغة الطبيعية للرومانية من عروض إثبات المفهوم إلى منظومة متماسكة من البيانات والنماذج والتقييمات، رغم بقاء الرومانية ناقصة التمثيل مقارنة بلغات مماثلة الحجم في مجموعات البيانات المعيارية وتقارير الأداء الشاملة، رغم جهود المدونات الكبيرة الأخيرة [1]. وعمليًا، ما زال الاعتماد يعوقه غياب البنى الحديثة وقدرات السياق الطويل وحزم التكميم الجاهزة مع التنميط على الجهاز وتغطية تقييمية أوسع.</p>
+    <p>وعلى صعيد البيانات، كانت المدخلات واسعة النطاق (مشتقات Common Crawl) أساسية: إذ وفرت مدونتا OSCAR وCC-100 الكتلة الحرجة للرومانية، مع خط أنابيب منضبط للتطبيع وإزالة القوالب وتحديد اللغة وإزالة التكرار على مستويي الجملة والوثيقة مع التقليم الدلالي [2–4]. وقد تقدمت جهود رومانية سابقة — مثل LiRo للمعايرة [7] وRONEC للكيانات المسماة [9] ومشفرات RoBERT [12] وRoGPT-2 للتوليد [14] ومبادرة OpenLLM-Ro [15] — بمكونات المنظومة لكنها أبقت فجوة النشر الطرفي مفتوحة.</p>
+    <p>تسد هذه الورقة تلك الفجوة بنموذجين مدمجين لفك التشفير دُرّبا من الصفر، مع إصدار مصنوعات GGUF من نوع Q5_K_M وبروتوكول معايرة طرفية قابل لإعادة الإنتاج على عتاد Raspberry Pi وJetson Nano (الشيفرات والنماذج متاحة بحرية [16]).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2.1 جمع المدونة وتنقيتها</h2>
+    <p>تجمع مدونة ما قبل التدريب بين شرائح رومانية من مشتقات Common Crawl (OSCAR-Ro وCC100-Ro) وزحف أصلي منقى متعدد الأنواع (أخبار وطنية/إقليمية ومدونات تقنية وعامة ومنتديات عامة بخيوط رومانية ومحتوى موسوعي)، وفق الممارسة المعيارية لتنقية الويب واسع النطاق [2،3]. ويُنتج خط الأنابيب متعدد المراحل مصنوعات سطرية لقابلية إعادة الإنتاج والتدقيق: فحص المصدر والترخيص (باستبعاد المحجوب أو المقيد)؛ وتحديد اللغة على مستويي الوثيقة والفقرة؛ وتطبيع NFC لليونيكود مع التحقق من علامات التشكيل الرومانية؛ وإزالة القوالب والترميز بالقواعد والإشارات البنيوية؛ وإزالة شبه التكرار.</p>
+    <p>وتوازن المدونة الناتجة (4.3 مليارات رمز)، التي تستند إحصاءاتها الواسعة إلى أعمال سابقة للمدونات الرومانية [1]، بين النثر الإخباري المعاصر والسجلات الأدبية والموسوعية والحوارية لدعم جودة النمذجة الجوهرية والمهام الدلالية اللاحقة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2.2 تصميم المُجزّئ</h2>
+    <p>دُرّبت مفردات تحت الكلمات باستخدام SentencePiece بوضع BPE [6] بأحجام 32 و40 و50 ألفًا على المدونة المنظفة (4.3 مليارات رمز)، وقُيّمت على مجموعة محجوبة من 50 ألف وثيقة عبر إحصاءات طول المتتابعات ونسب الرموز إلى الكلمات. فالمفردات الأكبر تقصّر المتتابعات لكن بعوائد متناقصة بعد 40 ألفًا، مع تزايد الوحدات النادرة التي تفتت الصيغ الصرفية؛ وحقق إعداد 40 ألفًا أفضل توازن (وثائق أقصر بنحو 3% من 32 ألفًا، وتخصص زائد مهمل مقابل 50 ألفًا).</p>
+    <p>واعتُمد مُجزّئ أحادي اللغة مُدرّب على الرومانية فقط لتجنب التداخل اللغوي، بما يتسق مع أدلة أن دقة التجزئة المضبوطة للغة المستهدفة تفيد النماذج المدمجة [5،6]. ويُطبّع النص بـNFC، وتُوحّد علامات الترقيم والاقتباس، وتغطي الرموز الخاصة حدود الجمل والوثائق والحشو، ووجّه الحزم إلى 4096 رمزًا أزواج الدمج المتكررة لتقليل هدر الحشو.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2.3 البنية والتدريب</h2>
+    <p>كلا النموذجين محوّلان مدمجان لفك التشفير فقط مع RMSNorm قبل الطبقة، والترميز الدوّار للمواضع [19]، وكتل SwiGLU [20]، والانتباه المجمع الاستعلامات لتخزين مؤقت فعال للمفاتيح والقيم [21]، مع ربط تضمينات الدخل والخرج وسياق 4096 رمزًا (S: 12 طبقة و768 بُعدًا و12 رأسًا ورأسا KV؛ M: 22 طبقة و896 بُعدًا و14 رأسًا ورأسا KV). واستخدم التحسين AdamW (β1=0.9، β2=0.95) واضمحلال وزن 0.1 وقص تدرج 1.0 وجدول جيب تمام مع 1000 خطوة إحماء وذروة تعلم 3×10⁻⁴ ودقة مختلطة BFloat16 مع نقاط تفتيش التدرج وحزم المتتابعات إلى 4096 رمزًا — إذ استهلك كل نموذج نحو 4.3 مليارات رمز (مرور واحد)، بما يتسق مع إرشادات التحجيم المثالي حاسوبيًا لهذا الحجم [22].</p>
+    <p>ولم يُستخدم الإسقاط؛ واعتمد الاستقرار على خيارات البنية والتحسين. فالوصفة على طراز لاما [18] مع RoPE [19] وGQA [21] تنتج مفككًا مدمجًا حديثًا قادرًا على السياق الطويل، يُحوّل سلوكه التحجيمي (260M أدنى من 125M باستمرار في خسارة التدريب) العرض والعمق الإضافيين إلى تنبؤ أفضل بالرمز التالي بدل التذبذب.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2.4 التكميم وأهداف النشر</h2>
+    <p>طُبّق تكميم لاحق للأوزان فقط إلى Q5_K_M (5 بت، مدرّج كتليًا مع مسار شاذ مختلط) وصُدّرت مصنوعات GGUF؛ إذ يقسّم المخطط مصفوفات الأوزان إلى كتل ثابتة بمقاييس لكل كتلة، مع إبقاء القيم الشاذة بدقة أعلى للحد من خطأ إعادة البناء ومواكبة FP16 ضمن الضجيج في الحيرة والدرجات الخارجية [23،24]. ويقلّص الضغط التخزين بنحو 2.7–3 أضعاف (125M: من 240 إلى 89 ميغابايت؛ 260M: من 501 إلى 208 ميغابايت)، وتعمل المصنوعات تحت مسار تشغيل موحد llama.cpp/Ollama [25]. ولم تُختبر مخططات أشد (4 أو 2 بت) لأن Q5_K_M أثبت إيجازه الكافي للعتاد المستهدف دون فقد الدقة.</p>
+    <p>واستُهدفت ثلاثة أجهزة تمثيلية: NVIDIA Jetson Nano بذاكرة 4 غيغابايت وRaspberry Pi بذاكرة 4 غيغابايت (مع فرض استدلال وحدة المعالجة فقط للتكافؤ، ووحدات عارية دون تبريد إضافي)، مع فحوص نوعية على هواتف آيفون حديثة توحي بأن البصمات الذاكرية تبقى جزءًا صغيرًا من الذاكرة المتاحة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2.5 منهجية التقييم</h2>
+    <p>يقيس التقييم الجوهري الحيرة على أربعة مجالات رومانية محجوبة (الأخبار والشعر والنثر الأدبي من ويكي مصدر وويب متنوع)، لكل منها ميزانية ثابتة من 200 ألف رمز ونافذة منزلقة مطابقة لسعة سياق كل نموذج بنصف خطوة. ويتبع التقييم اللاحق ممارسة المشفر المجمد: للمشاعر (LaRoSeDa [8])، تغذي الحالات المجمّعة للطبقة الأخيرة مصنف قطبية ثنائيًا ومصنف تقييم رباعي ({1،2،4،5}) على التقسيم الرسمي (الدقة/macro-F1)؛ وللتشابه (RO-STS [11])، تُلاءم جيوب التمام بين تضمينات الجمل بتعيين خطي للدرجات الذهبية على تقسيم التدريب، مع الإبلاغ عن Pearson وSpearman وMSE عند الاختبار.</p>
+    <p>وتستخدم معايرة الطرفية llama.cpp عبر Ollama لمسار موحد عبر الأجهزة والمقاييس (زمن الاستجابة والإنتاجية والذاكرة والطاقة لكل رمز حيثما توفرت). وتتنوع الشبكة بين عدد الخيوط (2، 4) والسياق (512–4096) والرموز المولدة (32/64/128) بثلاث تكرارات، مع keep_alive=0 وبذرة ثابتة 42 وتمريري إحماء وتلقينات حتمية مبنية بطول البايت من فقرة رومانية أساسية ثابتة، مع قياس عدد الرموز مباشرة من مخرجات JSON.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3.1–3.2 ديناميكيات التعلم والحيرة</h2>
+    <p>تهبط خسارة التدريب حادًا أولًا ثم تنتقل إلى اضمحلال سلس شبه لوغاريتمي مميز لتدريب فك التشفير المستقر بهذه الميزانية الرمزية؛ ويبقى منحنى 260M أدنى من 125M باستمرار، محوّلًا العرض والعمق الإضافيين (مع SwiGLU وGQA) إلى تنبؤ أفضل بالرمز التالي. وتتحسن الجودة الجوهرية كثيرًا عن خط الأساس الروماني GPT-2 بالمقياس المماثل [14]: ففي الأخبار المعاصرة تهبط الحيرة من 30.70 إلى 15.86 لمتغير 125M (والويب من 32.48 إلى 24.05)، مع مكاسب أصغر في الشعر (~8%) وويكي مصدر (~6%)، بينما يتحسن نموذج 260M عن 125M بنحو 11% (أخبار) و12% (شعر) و13% (ويكي مصدر) و17% (ويب)، بما يتسق مع تقارير تحجيم النماذج السببية [18،27].</p>
+    <p>وفي جميع المجالات، يواكب Q5_K_M نموذج FP16 عن كثب (أكبر انحراف بحدود واحد بالمئة)، مما يدعم استخدام مصنوعات GGUF منخفضة البت في الإعدادات الحساسة للجودة دون فقد حيرة قابل للقياس.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3.3 المشاعر والتشابه الدلالي</h2>
+    <p>اختيرت LaRoSeDa [8] وRO-STS [11] بدل معايير الصرف والنحو مثل LiRo [7] أو RONEC [9] لسبر المتعددات الدلالية عالية المستوى — التوزيعات العاطفية والتداولية ومعنى الجملة — كوكيل أشد للتواصل الشبيه بالبشري في مفكك مدمج. ويعطي مسبار لوجستي واحد على الحالات المجموعة دقة/F1 ثنائية قرب 0.95 لكلا النموذجين وF1 رباعيًا حول 0.83 (260M متقدم قليلًا، بما يتسق مع آثار التحجيم على جودة التمثيل [30])؛ ويبقى Q5_K_M ضمن أعشار النقطة من FP16 في كل مقياس، ويبرر تحليل انحراف الأصناف اعتماد المتوسط الكلي معيارًا أوليًا.</p>
+    <p>ويحقق تشابه الجمل برأس انحدار خفيف على التمثيلات المجمدة ارتباطات تطوير في نطاق 0.74 المنخفض (Pearson وSpearman) وارتباطات اختبار حول 0.63 مع MSE منخفض على [0,1] — مع تقدم طفيف مستمر لـ260M — وتعكس نقاط التفتيش منخفضة البت سلوك FP16 عن كثب، مما يؤكد متانة مقاييس الرتب أمام ضغط الأوزان من 5 بت عندما لا تكون هوامش الفصل حادة، بما يتماشى مع أدبيات تضمين الجمل [32،34،35].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3.4 نتائج التشغيل على الطرفية</h2>
+    <p>على وحدتي Raspberry Pi وJetson Nano العاريتين، تتضاءل إنتاجية فك التشفير مع طول السياق (كل رمز يحضر ذاكرة KV أكبر) بانحدار أشد لكن سلس للنموذج الأكبر؛ ويحسّن التكميم الإنتاجية عمومًا بتقليل عرض نطاق الأوزان وتعزيز محلية التخزين المؤقت، بأوضح صورة في السياقات الأكبر حيث تهيمن ضغوط الذاكرة، وبشكل أبرز على Nano. فعلى Raspberry Pi، يعطي خيطان معدلات تفاعلية محترمة لنموذج 125M في السياقات القصيرة/المتوسطة ويبقى صالحًا عند 4k؛ والانتقال إلى أربعة خيوط يضيف سرعة متواضعة فقط (أنوية Cortex-A72 تشبع قنوات الذاكرة مبكرًا). وعلى Jetson Nano، تكون الإنتاجية أعلى باستمرار مع مكاسب أوضح لأربعة خيوط، ويقارب 260M المكمم نموذج 125M بدقة FP16 في عدة إعدادات — فالضغط منخفض البت يضيّق فجوة الحجم عندما يكون عرض النطاق هو المحدد.</p>
+    <p>ويرتفع زمن أول رمز شبه خطيًا مع السياق (الملء الأولي متناسب مع رموز التلقين، والانتباه تربيعي في طور التلقين)؛ وتخفض الخيوط الأربعة TTFT لكن الفجوة تضيق مع نمو السياق (انتقال من التقييد الحاسوبي إلى الذاكري)، وتضيف نقاط التفتيش المكممة مكاسب بالميلي ثانية تتضح أكثر عند سياقات 2k–4k. وعلى Nano، يدفع الجمع بين أربعة خيوط ونقاط منخفضة البت زمن 125M إلى النطاق التفاعلي حتى عند 2k–4k، مع استقرار المنحنيات عبر التكرارات مما يثبت فعالية ضوابط الإحماء والحتمية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3.5 المناقشة</h2>
+    <p>تحقق مفككات RoBaseLM بـ125 و260 مليون معامل خفضًا جوهريًا في الحيرة على النثر الروماني المعاصر، وتحافظ على قراءة خطية قوية للقطبية والتقييمات الترتيبية، وتصمد في أداء RO-STS بالمشفر المجمد عند مستويات متوقعة للتمثيلات العامة — مع بقاء هذه الاتجاهات دون تغيير جوهريًا تحت تكميم الأوزان من 5 بت. وتُظهر تحليلات المشفر المجمد أن مسبارًا لوجستيًا واحدًا يستعيد بنية المشاعر بـF1 ثنائي قرب 0.95 وF1 كلي رباعي حول 0.83، بما يتفق مع النتائج المنشورة [28،29]؛ ويقدم نموذج 260M مكاسب مدمجة لكن موثوقة عن 125M، بما يتسق مع آثار الأبعاد على فعالية النماذج [30].</p>
+    <p>والخصائص نفسها التي تجعل نماذج الجهاز جذابة — العمل دون اتصال وغياب القياس الخارجي ومحلية البيانات — قد تُساء استخدامها: إذ قد يضمّن تطبيق خفي نموذجًا صغيرًا مكممًا لتحليل الإشعارات وتسريب ديناميكيات المحادثات دون استدلال بعيد. ورغم أن الحوادث المنشورة تعلقت بواجهات النماذج البعيدة لا بالنماذج المحلية تمامًا، تحذر التحليلات الأمنية من أن النماذج المقيمة على الطرفية تنقل سطح الهجوم إلى الجهاز وأذونات التطبيقات [37،38]؛ وتشمل التخفيفات الحد الأدنى من الامتيازات لواجهات الإشعارات والمراسلة، ومطالبات زمن التشغيل لأفعال الإرسال، وحدود التنفيذ الخلفي، وكشف الشذوذ على الجهاز، وضوابط المنشأ وتوقيع الشيفرات للمصنوعات والمحمّلات المضمّنة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. الخاتمة والآفاق</h2>
+    <p>يجسر RoBaseLM-S (125M) وRoBaseLM-M (260M) بين الأداء اللغوي الروماني عالي الجودة والنشر الطرفي المحدود الموارد: فبعد تدريبهما من الصفر على مدونة منقاة (4.3 مليارات رمز) ببنية حديثة طويلة السياق (RMSNorm وGQA وسياق 4k)، خفضا حيرة مجال الأخبار من 30.7 إلى 15.9، بينما حافظ تكميم 5 بت اللاحق (Q5_K_M) على المتعدد الدلالي — مستدامًا فائدة LaRoSeDa وRO-STS في أقل من 500 ميغابايت. ويؤسس هذا لحد جديد لمنظومة الرومانية: أول نماذج رومانية متاحة علنًا وجاهزة للتكميم قادرة على الاستدلال اللحظي دون اتصال تمامًا على عتاد استهلاكي مثل Jetson Nano وRaspberry Pi، مُظهرًا أن الذكاء الاصطناعي المحلي المحافظ على الخصوصية ممكن ببصمة دنيا دون التضحية بالثراء الإحصائي.</p>
+    <p>وقد تأتي التحسينات المستقبلية من (أ) التقطير/الدمج المعماري — نقل السلوك من معلم أكبر إلى طالب نحيف (أقل من مليار إلى مليارات قليلة) بأهداف متوافقة مع المهمة؛ و(ب) الضبط الفعال معامليًا (مهايئات/LoRA) الذي يتيح التخصيص دون تكبير النموذج المقدَّم — إذ تحقق المفككات المدمجة (0.1–3B) بتجزئة تحت كلمات مضبوطة للغة المستهدفة [5،6] حدًا جذابًا للدقة وزمن الاستجابة والطاقة للأجهزة المحمولة، لا سيما مع أوزان 4–5 بت [23،24،26].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>We present RoBaseLM-S (125 M) and RoBaseLM-M (260 M), two compact Romanian decoder-only language models trained from scratch on a 4.3 B-token curated corpus. Architecturally, they follow a modern LLaMA-style recipe [18] with pre-norm RMSNorm, rotary position embeddings (RoPE) [19], SwiGLU feed-forward blocks [20], grouped-query attention (GQA) [21], and 4 k-token context windows.</p>
+    <p>We release both full-precision (FP16) and post-training 5-bit (Q5_K_M) checkpoints in GGUF format for lightweight local inference. The 5-bit variants fit under 500 MB and generate text in real time on a Jetson Nano 4 GB, enabling fully offline Romanian text generation on consumer-grade edge hardware.</p>
+    <p>We evaluate the models intrinsically (multi-domain perplexity across news, literary prose, poetry, and heterogeneous web text) and extrinsically (LaRoSeDa sentiment classification [8] and RO-STS sentence similarity [11]). Relative to Romanian GPT-2–style baselines at similar parameter scales [14], RoBaseLM-S and RoBaseLM-M substantially reduce perplexity — e.g., from 30.7 to 15.9 on the held-out news split — and the 5-bit quantized checkpoints remain within FP16 performance across all reported tasks.</p>
+    <p>To our knowledge, these are the first Romanian small language models explicitly optimized for long-context inference, post-training quantization, and low-power on-device deployment.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Natural language processing for Romanian has moved from proof-of-concept demonstrations to a coherent ecosystem of data, models, and evaluations, despite Romanian remaining under-represented relative to languages of similar size in standardized datasets and exhaustive performance reports, notwithstanding recent large-scale corpus efforts [1]. In practice, adoption is still hindered by missing up-to-date architectures, long-context capabilities, quantization-ready packages with on-device profiling, and broader evaluation coverage.</p>
+    <p>On the data side, web-scale inputs (Common Crawl derivatives) have been essential: the OSCAR and CC-100 corpora provided critical mass for Romanian, given a disciplined pipeline of normalization, boilerplate filtering, language identification, and sentence/document-level deduplication plus semantic pruning [2–4]. Prior Romanian efforts — LiRo benchmarking [7], RONEC named entities [9], RoBERT-style encoders [12], RoGPT-2 generation [14], and the OpenLLM-Ro initiative [15] — advanced components of the ecosystem but left the edge-deployment gap open.</p>
+    <p>This work closes that gap with two compact decoder-only models trained from scratch, released with GGUF Q5_K_M artifacts and a reproducible edge-benchmarking protocol on Raspberry Pi and Jetson Nano hardware (code and models freely available [16]).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2.1 Corpus Acquisition and Curation</h2>
+    <p>The pre-training corpus combines Romanian slices of Common Crawl derivatives (OSCAR-Ro, CC100-Ro) with an original curated multi-genre crawl (national/regional news, technology and general-interest blogs, public forums with Romanian-language threads, encyclopedic content), following standard web-scale curation practice [2,3]. The multi-stage pipeline emits line-oriented artifacts for reproducibility and auditing: source and license screening (excluding paywalled or restricted sources); document- and paragraph-level language identification; NFC Unicode normalization with Romanian diacritic validation (ș, â, î, ș, ț); boilerplate and markup removal via rules and structural cues; and near-deduplication.</p>
+    <p>The resulting 4.3 B-token corpus, whose large-scale statistics build on prior Romanian corpus work [1], balances contemporary news prose with literary, encyclopedic, and conversational registers to support both intrinsic modeling quality and downstream semantic tasks.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2.2 Tokenizer Design</h2>
+    <p>Subword vocabularies were trained with SentencePiece in BPE mode [6] at 32 k, 40 k, and 50 k sizes on the cleaned 4.3 B-token corpus, evaluated on a 50 k-document held-out set spanning genres via sequence-length statistics and token-to-word ratios. Larger vocabularies shorten sequences but show diminishing returns beyond 40 k, with a rise in rare units fragmenting inflectional paradigms; the 40 k configuration offered the best balance (~3% shorter documents than 32 k, negligible over-specialization versus 50 k).</p>
+    <p>A monolingual tokenizer trained solely on Romanian was adopted to avoid cross-lingual interference, consistent with evidence that subword granularity tuned to the target language benefits compact models [5,6]. Text is NFC-normalized, punctuation and quotes standardized, special tokens cover sentence/document boundaries and padding, and packing to 4,096 tokens guided frequent merge pairs to minimize padding waste.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2.3 Architecture and Training</h2>
+    <p>Both models are compact decoder-only transformers with pre-norm RMSNorm, RoPE positional encoding [19], SwiGLU MLPs [20], and grouped-query attention (GQA) for memory-efficient KV caching [21], with tied input/output embeddings and a 4,096-token context (RoBaseLM-S: 12 layers, 768 dmodel, 12 heads, 2 KV heads; RoBaseLM-M: 22 layers, 896 dmodel, 14 heads, 2 KV heads). Optimization used AdamW (β1=0.9, β2=0.95), weight decay 0.1, gradient clipping 1.0, cosine schedule with 1,000 warmup steps and peak learning rate 3×10⁻⁴, mixed-precision BFloat16 with gradient checkpointing, and sequences packed to 4,096 tokens — each model consuming ~4.3 B tokens (one pass), consistent with compute-optimal scaling guidance at this size [22].</p>
+    <p>No dropout was used; stability relied on architectural and optimization choices. The LLaMA-style recipe [18] combined with RoPE [19] and GQA [21] yields a modern long-context-capable compact decoder whose scaling behavior (260 M uniformly below 125 M in training loss) converts added width and depth into better next-token prediction rather than oscillation.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2.4 Quantization and Deployment Targets</h2>
+    <p>Weight-only post-training quantization to Q5_K_M (5-bit, block-scaled with a mixed outlier path) was applied and GGUF artifacts exported; the scheme partitions weight matrices into fixed-size blocks with per-block scales, keeping outliers at higher precision to limit reconstruction error and track FP16 within noise on perplexity and extrinsic scores [23,24]. Compression shrinks storage ~2.7–3× (125 M: 240 MB → 89 MB; 260 M: 501 MB → 208 MB), and artifacts run under a uniform llama.cpp/Ollama runtime path [25]. More aggressive 4-bit or 2-bit schemes were not tested because Q5_K_M proved compact enough for the target hardware without accuracy loss.</p>
+    <p>Three representative devices were targeted: NVIDIA Jetson Nano 4 GB, Raspberry Pi 4 GB (CPU-only inference enforced for parity, bare out-of-the-box units without extra cooling), with qualitative checks on recent iPhones suggesting memory footprints remain a small fraction of available RAM.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2.5 Evaluation Methodology</h2>
+    <p>Intrinsic evaluation measures perplexity on four Romanian held-out domains (news, poetry, Wikisource literary prose, heterogeneous web), each with a fixed 200,000-token budget and a sliding window matched to each model's context capacity with half stride. Downstream evaluation follows frozen-encoder practice: for sentiment (LaRoSeDa [8]), mean-pooled final-layer states feed a binary polarity classifier and a four-class rating classifier ({1,2,4,5}) on the official split (accuracy/macro-F1); for similarity (RO-STS [11]), cosine similarities between sentence embeddings are fit with a linear mapping to gold scores on the train split, reporting Pearson r, Spearman ρ, and MSE at test.</p>
+    <p>Edge benchmarking uses llama.cpp through Ollama for a uniform path across devices and metrics (latency, throughput, memory, and where available energy per token). The grid varies thread count (2, 4), context (512–4,096), and generated tokens (32/64/128) with three repetitions, keep_alive=0, fixed seed 42, two warm-up passes, and deterministic byte-length-constructed prompts synthesized from a fixed Romanian base paragraph, with token counts measured directly from Ollama/llama.cpp JSON output.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3.1–3.2 Learning Dynamics and Perplexity</h2>
+    <p>Training loss descends steeply at first, then transitions to smooth, nearly logarithmic decay characteristic of stable decoder-only training at this token budget; the 260 M curve stays uniformly beneath the 125 M curve, converting added width and depth (with SwiGLU and GQA) into better next-token prediction. Intrinsic quality improves substantially over the Romanian GPT-2 baseline at comparable scale [14]: on contemporary news, perplexity drops from 30.70 to 15.86 for the 125 M variant (web: 32.48 to 24.05), with smaller gains on poetry (~8%) and Wikisource (~6%), while the 260 M model improves over the 125 M by ~11% (news), ~12% (poetry), ~13% (Wikisource), and ~17% (web), consistent with causal-LM scaling reports [18,27].</p>
+    <p>Across all domains, Q5_K_M tracks FP16 closely (largest drift on the order of one percent), supporting the use of low-bit GGUF artifacts in quality-sensitive offline settings without measurable perplexity loss.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3.3 Sentiment and Semantic Similarity</h2>
+    <p>LaRoSeDa [8] and RO-STS [11] were selected over morphosyntactic benchmarks such as LiRo [7] or RONEC [9] to probe high-level semantic manifolds — emotional/pragmatic distributions and sentence-level meaning — as a stricter proxy for human-like communication in a compact decoder. A single logistic probe on pooled final-layer states yields binary accuracy/macro-F1 near 0.95 for both models and four-way macro-F1 around 0.83 (260 M slightly ahead, consistent with scaling effects on representation quality [30]); Q5_K_M stays within a few tenths of a point of FP16 on every metric, and class-skew analysis motivates macro-averaging as the primary criterion.</p>
+    <p>Sentence similarity with a lightweight regression head over frozen representations attains dev-set correlations in the low-0.74 band (Pearson and Spearman) and test correlations around 0.63 with low MSE on [0,1] — the 260 M model modestly but consistently ahead — and low-bit checkpoints mirror FP16 closely, confirming rank-based metrics are robust to 5-bit weight-only compression when separability margins are not razor-thin, in line with sentence-embedding literature [32,34,35].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3.4 Edge Runtime Results</h2>
+    <p>On bare out-of-the-box Raspberry Pi and Jetson Nano SoCs, decode throughput decays with longer contexts (each token attends over a larger KV cache) with a steeper, smooth slope for the larger model; quantization improves throughput across the board by reducing weight bandwidth and strengthening cache locality, most visibly at larger contexts where memory pressure dominates, and more pronouncedly on the Nano. On Raspberry Pi, two threads give respectable interactive rates for the 125 M model at short/medium contexts and remain usable at 4 k; moving to four threads adds only modest speed (Cortex-A72 cores saturate memory channels early). On Jetson Nano, throughput is uniformly higher with clearer four-thread gains, and the quantized 260 M approaches FP16 125 M in several settings — low-bit compression narrows the scale gap when bandwidth is the limiter.</p>
+    <p>Time-to-first-token rises near-linearly with context (prefill proportional to prompt tokens, quadratic attention in the prompt phase); four threads lower TTFT but the gap narrows as contexts grow (compute- to memory-limited transition), and quantized checkpoints add millisecond gains increasingly visible at 2 k–4 k contexts. On the Nano, four threads plus low-bit checkpoints jointly push 125 M TTFT into the interactive regime even at 2 k–4 k contexts, with stable lines across repetitions validating the warm-up and determinization controls.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3.5 Discussion</h2>
+    <p>RoBaseLM decoders at 125 M and 260 M deliver substantive perplexity reductions on contemporary Romanian prose, preserve robust linear readout for polarity and ordinal ratings, and sustain frozen-encoder RO-STS performance at levels expected of general-purpose representations — with 5-bit weight-only quantization leaving these trends essentially unchanged. Frozen-encoder analyses show a single logistic probe recovers sentiment structure with binary F1 near 0.95 and four-class macro-F1 around 0.83, in agreement with published results [28,29]; the 260 M model delivers compact but reliable gains over 125 M, consistent with dimensionality effects on model effectiveness [30].</p>
+    <p>The same properties enabling attractive on-device models — offline operation, no external telemetry, data locality — could be abused: a covert app might embed a quantized SLM to parse notifications and exfiltrate conversation dynamics without remote inference. Although published incidents have largely involved remote LLM APIs rather than fully local models, security analyses caution that endpoint-resident models shift the attack surface onto the device and its app-level permissions [37,38]; mitigations include least privilege for notification/messaging APIs, runtime prompts for send actions, background execution limits, on-device anomaly detection, and provenance controls plus code-signing for bundled model artifacts and loaders.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Conclusions and Outlook</h2>
+    <p>RoBaseLM-S (125 M) and RoBaseLM-M (260 M) bridge high-quality Romanian linguistic performance and resource-constrained edge deployment: trained from scratch on a curated 4.3 B-token corpus with a modern long-context architecture (RMSNorm, GQA, 4 k context), they cut news-domain perplexity from 30.7 to 15.9, while 5-bit post-training quantization (Q5_K_M) preserves the semantic manifold — sustaining LaRoSeDa and RO-STS utility in under 500 MB. This establishes a new frontier for the Romanian NLP ecosystem: the first publicly available, quantization-ready Romanian models capable of real-time, fully offline inference on consumer edge hardware like Jetson Nano and Raspberry Pi, showing that local, privacy-preserving handheld AI is feasible with minimal footprint and no sacrifice of statistical richness.</p>
+    <p>Future improvements may come from (a) distillation/architectural compaction — transferring behavior from a larger teacher into a slim sub-1 B to few-B student with task-aligned objectives; and (b) parameter-efficient tuning (adapters/LoRA) enabling personalization without growing the served model — since compact 0.1–3 B decoders with target-language-tuned subword tokenization [5,6] strike an attractive accuracy-latency-energy frontier for handhelds, particularly with 4–5-bit weights [23,24,26].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references preserving original numbering; the full list of 38 references is available in the original paper (doi:10.3390/ai7020061).</p>
+    <ol dir="ltr">
+      <li>[1] Diac, T.A.; et al. Statistics of a large-scale Romanian corpus for language modelling. <em>Rom. J. Phys.</em> 2025, 70, 111.</li>
+      <li>[2] Ortiz Suárez, P.J.; et al. A Monolingual Approach to Contextualized Word Embeddings for Mid-Resource Languages. In <em>Proc. ACL 2020</em>; pp. 1703–1714.</li>
+      <li>[5] Sennrich, R.; et al. Neural Machine Translation of Rare Words with Subword Units. In <em>Proc. ACL 2016</em>; pp. 1715–1725.</li>
+      <li>[6] Kudo, T.; Richardson, J. SentencePiece. In <em>Proc. EMNLP 2018 (System Demonstrations)</em>; pp. 66–71.</li>
+      <li>[7] Dumitrescu, S.D.; et al. LiRo: Benchmark and Leaderboard for Romanian Language Tasks. In <em>Proc. NeurIPS 2021 Datasets and Benchmarks</em>.</li>
+      <li>[8] Tache, A.; et al. LaRoSeDa: A Large Romanian Sentiment Data Set. In <em>Proc. EACL 2021</em>; pp. 949–956.</li>
+      <li>[9] Dumitrescu, S.D.; Avram, A.-M. Introducing RONEC—The Romanian Named Entity Corpus. In <em>Proc. LREC 2020</em>; pp. 4436–4443.</li>
+      <li>[11] Dumitrescu, S.D.; Avram, A.-M. RO-STS: Romanian Semantic Textual Similarity. Dataset Card. 2021.</li>
+      <li>[14] Niculescu, M.A.; et al. RoGPT-2: Romanian GPT-2 for Text Generation. In <em>Proc. ICTAI 2021</em>.</li>
+      <li>[15] Masala, M.; et al. OpenLLM-Ro: Technical Report. 2024.</li>
+      <li>[16] The Models Are Freely Available. Available online: https://github.com/tudord14/edge-RoLM (accessed on 13 January 2026).</li>
+      <li>[18] Touvron, H.; et al. LLaMA: Open and Efficient Foundation Language Models. <em>arXiv</em> 2023, arXiv:2302.13971.</li>
+      <li>[19] Su, J.; et al. RoFormer: Enhanced Transformer with Rotary Position Embedding. <em>NeurIPS</em> 2021, 34, 22614–22627.</li>
+      <li>[20] Shazeer, N. GLU Variants Improve Transformer. <em>arXiv</em> 2020, arXiv:2002.05202.</li>
+      <li>[21] Ainslie, J.; et al. GQA: Training Generalized Multi-Query Transformer Models. In <em>Proc. EMNLP 2023</em>.</li>
+      <li>[22] Hoffmann, J.; et al. Training Compute-Optimal Large Language Models. <em>arXiv</em> 2022, arXiv:2203.15556.</li>
+      <li>[23] Frantar, E.; et al. GPTQ: Accurate Post-Training Quantization for Generative Pretrained Transformers. In <em>Proc. ICLR 2023</em>.</li>
+      <li>[24] Lin, J.; et al. AWQ: Activation-Aware Weight Quantization for LLM Compression. <em>GetMobile</em> 2024, 28, 12–17.</li>
+      <li>[25] Gerganov, G. llama.cpp: Port of LLaMA to C/C++. Software/Technical Report. 2023.</li>
+      <li>[28] Alain, G.; Bengio, Y. Understanding Intermediate Layers Using Linear Classifier Probes. In <em>Proc. ICLR 2017 Workshop</em>.</li>
+      <li>[32] Cer, D.; et al. SemEval-2017 Task 1: Semantic Textual Similarity. In <em>Proc. SemEval 2017</em>.</li>
+      <li>[37] Yao, Y.; et al. A Survey on Large Language Model Security and Privacy. <em>High-Confid. Comput.</em> 2024, 4, 100211.</li>
+      <li>[38] Das, S.; Sen, S. Security and Privacy Challenges of Large Language Models: A Survey. <em>arXiv</em> 2024, arXiv:2402.00888.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/ai7020061">10.3390/ai7020061</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

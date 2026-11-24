@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خط أنابيب للنماذج اللغوية الصغيرة المتخصصة في المجالات انطلاقًا من البيانات غير المنظمة: حالة اختبار باستخدام إرشادات الممارسة السريرية الماليزية — DAR</title>
+<meta name="description" content="A Pipeline for Domain-Specialized Small Language Models from Unstructured Data: A Test Case Using Malaysian Clinical Practice Guidelines — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/domain-slm-pipeline-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Pipeline for Domain-Specialized Small Language Models from Unstructured Data: A Test Case Using Malaysian Clinical Practice Guidelines</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">خط أنابيب للنماذج اللغوية الصغيرة المتخصصة في المجالات انطلاقًا من البيانات غير المنظمة: حالة اختبار باستخدام إرشادات الممارسة السريرية الماليزية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Campanale Haakim bin Yusuf, Lee-Yeng Ong</span>
+    <span>📄 Applied Sciences, 2026 · Vol. 16, No. 13, 6630</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app16136630">10.3390/app16136630</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يقيَّد اعتماد النماذج اللغوية الكبيرة في القطاعات الخاضعة لتنظيم صارم بارتفاع التكاليف الحاسوبية والاعتماد على السحابة ولوائح خصوصية البيانات الصارمة، بينما تبقى المعرفة الخاصة بالمجال حبيسة صيغ وثائقية ثابتة غير منظمة تعيق الاستدلال الآلي [3]، [4]، [11].</p>
+    <p>لمعالجة هذه التحديات تقترح الدراسة خط أنابيب عامًا وشاملًا لبناء نماذج لغوية صغيرة متخصصة في المجال ومُحسَّنة للبيئات محدودة الموارد انطلاقًا مباشرةً من البيانات غير المنظمة. وباستخدام إرشادات الممارسة السريرية الماليزية بصيغة PDF كحالة اختبار [53]، ترقمن المنهجية الوثائق غير المنظمة في مخزن NoSQL، وتوظف نموذجًا معلمًا متماثل البنية لتوليد مجموعة بيانات تركيبية مؤرضة بدقة للضبط بالتعليمات، ثم تطبق التكييف منخفض الرتبة المكمم (QLoRA) [49] مع التكميم اللاحق للتدريب بدقة 4 بت [50] لإنتاج نموذج مضغوط متخصص (SpecioSLM) يدعمه عند الاستدلال إطار التوليد المعزز بالاسترجاع [51]، [57].</p>
+    <p>حددت المقارنة المنهجية على محطة عمل عبر أربع بنى مرشحة النموذج Microsoft Phi-3-Mini (3.8B) [45] بوصفه نقطة التوازن المثلى، مسجلًا 91.59 رمزًا في الثانية وزمنًا لأول رمز قدره 0.1705 ثانية ودرجة BERTScore [36] قدرها 90.27 بحجم مضغوط يقارب 2.28 غيغابايت؛ كما تحققت محاكاة ARM64 مستهدفة منصة NVIDIA Jetson Orin NX [48]، [56] من الجدوى المعمارية للنشر الطرفي.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>أظهرت النماذج اللغوية الكبيرة قدرات لافتة في ترميز المعرفة السريرية [3] وفي التلخيص بما قد يضاهي الخبراء البشر [4]، غير أن نشرها في القطاعات المنظمة كالرعاية الصحية يواجه ثلاث عوائق بنيوية: التكلفة الحاسوبية الباهظة، والاعتماد على البنية السحابية، وتشريعات خصوصية البيانات الصارمة مثل قانون حماية البيانات الشخصية الماليزي لعام 2010 [11]. كما أن المعرفة الخاصة بهذه القطاعات تبقى حبيسة وثائق ثابتة غير منظمة تعيق الاستدلال الآلي عليها.</p>
+    <p>ومن ثم برزت النماذج اللغوية الصغيرة بديلًا عمليًا، إذ وثقت تحليلات حديثة تقدمها السريع ومفاضلاتها مقابل النماذج الكبيرة [5]، [7]، مع تغطية مخصصة في أدبيات هندسة البرمجيات [8] ومسوحات شاملة لصعودها في الرعاية الصحية [9] وللمجال عمومًا [14]، [15]. ويعزز الاستدلال الطرفي هذا التوجه، إذ توصّف دراسات الاستدلال الطرفي-أولًا النماذج والمقاييس والمفاضلات لنقل الاستدلال خارج السحابة [6]، وتوثق تحليلات المؤسسات بنى النماذج الصغيرة لذكاء الطرفية [12]، [13].</p>
+    <p>تسهم هذه الورقة بخط أنابيب عام وشامل يبدأ من ملفات PDF غير المنظمة وينتهي بنموذج صغير مضغوط ومتخصص تم التحقق منه للنشر الطرفي. وتُستخدم مدونة الإرشادات السريرية الماليزية [53] كحالة اختبار، ويُوظف التقطير بين معلم متماثل البنية وتلميذ للبقاء مؤرضًا بدقة والحد من مخاطر الهلوسة [16]، [17]، ويُنفَّذ الخط كاملًا على وحدة معالجة رسومية واحدة من الفئة الاستهلاكية، مما يثبت إمكانية الوصول في ظل موارد حاسوبية محدودة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. من النماذج الكبيرة إلى الصغيرة: خلفية</h2>
+    <p>حُللت قيود النماذج الكبيرة — كلفة الحجم وزمن الاستجابة والانكشاف الخصوصي — عبر دراسات أثر الذكاء الاصطناعي على التوظيف [1] ومنظورات التصنيع [2] ومقارنات منهجية لمشهد النماذج الكبيرة والصغيرة [7]. وتخفف نماذج التفريغ التي توزع الاستدلال بين الأجهزة المحلية والسحابة [10] الاعتماد على السحابة دون إزالته، مما يحفز النشر المحلي الكامل للنماذج الصغيرة.</p>
+    <p>يرتكز الخط على ركيزتين تقنيتين. الأولى تقطير المعرفة الذي ينقل القدرة من المعلم إلى التلميذ [16]، مع مسوحات مخصصة لتقطير النماذج الكبيرة [17] والضغط اللاإقليمي مثل MiniLM [52]. والثانية الضبط الدقيق الفعال معلميًا [18]، حيث يجمع QLoRA [49] بين التكميم والمهايئات منخفضة الرتبة، يليه التكميم اللاحق للتدريب مثل GPTQ [50] وحزمة llama.cpp المقيَّمة على العتاد السلعي [19].</p>
+    <p>يتبع التقييم المعايير المجتمعية: درجة BERTScore للإخلاص الدلالي [36]، وتحليل الإنتاجية وزمن الاستجابة بما يشمل تحسين التعبئة المسبقة الموجه لزمن أول رمز [37]، والتنبؤ بأداء الاستدلال [40]، [41]، وتحليل سرعة المحادثة بما يتجاوز الرموز الخام في الثانية [39]، وخطوط الأساس البشرية لمعدل القراءة في سياق قابلية الاستخدام [38]، [42].</p>
+    <p>وتؤكد النماذج الصغيرة المتخصصة في المجالات المجاورة صحة النهج: BioMedLM (2.7B) للطب الحيوي [26]، وFinGPT للمالية [27]، وMedFit-LLM للضبط الطبي [30]، [31]، وMeerkat-7B [28]، وتقطير الاستدلال الطبي [29]، وعائلة Mallam المتمحورة حول الملايو (1.1B/3B/5B) [32]، [33]، [34] ذات الصلة المباشرة بالنشر الماليزي.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. مصدر المعرفة السريرية والفجوة البحثية</h2>
+    <p>تعتمد أجندة إصلاح النظام الصحي الماليزي، كما وردت في الورقة البيضاء للصحة [20] وخطتي ماليزيا الثانية عشرة [21] والثالثة عشرة [22]، على إرشادات سريرية محلية قابلة للحوسبة. فالإرشادات السريرية تدعم القرارات وتحسّن الرعاية [23]، لكن تكييفها للسياق المحلي يتطلب تجاوز عوائق موثقة [24]، وتُظهر أنظمة التصور السياقية مثل GuLiNav تحدي الرقمنة [25].</p>
+    <p>تفترض عمليات تطوير النماذج الصغيرة القائمة عادةً مجموعات بيانات كبيرة مسبقة الهيكلة وحوسبة ضخمة [15]، وندرًا ما تبدأ دراسات المقارنة [43]، بما فيها قياس مفاضلة السرعة والدقة [44]، من ملفات PDF خام غير منظمة. ومن ثم تتمثل الفجوة البحثية في غياب خط شامل فعال للموارد يسد «فجوة المعرفة غير المنظمة»: من 101 ملف PDF ثابت للإرشادات [53] إلى نموذج طرفي قابل للنشر.</p>
+    <p>تسد الدراسة الحالية هذه الفجوة بخط من ست مراحل — اختيار المعلم والتلميذ، واستخراج البيانات إلى NoSQL، وتوليد مجموعة بيانات تركيبية مؤرضة [16]، [17]، والضبط بتقنية QLoRA [49]، والضغط بدقة 4 بت [19]، [50]، والاستدلال المدعوم بالاسترجاع [51] مع التحقق الطرفي [48] — يُنفَّذ كاملًا على وحدة رسومية استهلاكية واحدة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. خط الأنابيب المقترح</h2>
+    <p>يجمع اختيار المعلم والتلميذ بين معلم متماثل البنية مدرب جيدًا (Qwen-2.5 3B [46]) وأربعة مرشحين تلاميذ — Qwen2.5-0.5B وQwen2.5-1.5B وQwen2.5-3B [46] وPhi-3-Mini-3.8B [45] — مع تثبيت المعلم لتكون متغيرات SpecioSLM الناتجة قابلة للمقارنة المباشرة. ترقمن مرحلة استخراج البيانات ملفات الإرشادات الـ101 [53] في قاعدة بيانات NoSQL منظمة، ويولّد المعلم أزواج تعليمات مؤرضة بدقة في مدونة الإرشادات، مما يحد من مخاطر الهلوسة [16]، [17].</p>
+    <p>يستهدف الضبط بتقنية QLoRA [49] طبقات الإسقاط للانتباه الذاتي والتغذية الأمامية (الشكل 5 في الورقة الأصلية)، يليه التكميم اللاحق بدقة 4 بت عبر llama.cpp [19]، [50] لإنتاج نسخ SpecioSLM المضغوطة. وتتبع استراتيجية التقطيع لقاعدة المتجهات الداعمة تحليلات متعددة مجموعات البيانات لحجم المقطع في استرجاع الوثائق الطويلة [51]، المدعومة بتقييمات مقارنة للتقطيع [57].</p>
+    <p>يقرن الاستدلال التشغيلي النموذج المضغوط بإطار استرجاع معزز فوق مخزن متجهات الإرشادات لفرض الاستجابات المؤرضة، ويستخدم التحقق الطرفي محاكاة ARM64 (Docker/QEMU) مستهدفة منصة NVIDIA Jetson Orin NX [48] مع JetPack [56]، مع مراعاة آثار زمن الاستجابة الذيلي على نطاق واسع [54] واعتبارات أداء المحاكاة عبر البنى [55].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. إعداد التجارب والمقارنة</h2>
+    <p>دُرّبت النماذج التلميذة الأربعة عبر الخط الشامل نفسه بإعدادات ثابتة في بيئات Python 3.10 معيارية على محطة العمل المكتبية نفسها، مما أزال التباين العتادي؛ وثُبّت المعلم (Qwen-2.5 3B [46])، مع سياق معماري يشمل Qwen2.5 وPhi-3 [45]، [46] وLlama 3 [47]. وتُوثَّق بيئات العتاد والبرمجيات في الجدول 5 من الورقة الأصلية.</p>
+    <p>تجمع مقاييس التقييم بين أداء الاستدلال (الإنتاجية بالرمز/ثانية وزمن أول رمز) والإخلاص الدلالي (BERTScore [36]) وأثر استراتيجية الاسترجاع، وفق تحليلات التعبئة المسبقة المعجِّلة لزمن أول رمز [37] وأطر قياس الاستدلال مثل Etalon [35] ومنهجية التنبؤ [41]. وتشمل مقارنات الأساس النماذج بحجم المعلم لقياس مفاضلة التخصص [43]، [44].</p>
+    <p>تقارن تجارب الاستئصال للاسترجاع استراتيجيات التضمين والتقطيع [51]، [57] ضمن البحث الهجين، وتعيد محاكاة الطرفية تشغيل مخرجات الخط تحت محاكاة ARM64 نحو Jetson Orin NX [48]، [55]، [56]، حيث تمثل المعالجة التسلسلية المقيدة بوحدة المعالجة المركزية بين المضيف والضيف عنق الزجاجة المعروف.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. النتائج وخلاصات الطرفية</h2>
+    <p>يضع المتغير فائق الخفة Qwen-2.5-0.5B (373.71 ميغابايت) حد الكفاءة عند 193.81 رمزًا في الثانية وزمن أول رمز 0.1265 ثانية، لكن إخلاصه الدلالي (BERTScore 82.84) هو الأدنى بين الأربعة — تدهور في الاستدلال والمعرفة العالمية يرفع مخاطر هلوسة غير مقبولة سريريًا. ويحسّن متغير 1.5B الإخلاص مقابل التنازل عن جزء من ميزة الإنتاجية، راسمًا منحنى الحجم-الإخلاص المتوقع [44].</p>
+    <p>أما نموذج SpecioSLM المبني على Phi-3-Mini-3.8B فهو نقطة التوازن المثلى: 91.59 رمزًا في الثانية، وزمن أول رمز 0.1705 ثانية، وBERTScore 90.27 مع البحث الهجين (مقابل 89.44 للاسترجاع الخاص بالمجال وحده في تجارب الاستئصال المبلغ عنها)، بحجم مضغوط يقارب 2.28 غيغابايت — توازن بين الكفاءة وجودة الاستدلال [45]. وأثر استراتيجية الاسترجاع جوهري: يتفوق البحث الهجين على الاسترجاع الخاص بالمجال وحده في الإخلاص [51]، [57].</p>
+    <p>تؤكد محاكاة ARM64 الطرفية نحو Jetson Orin NX [48]، [56] الجدوى المعمارية لكنها تكشف أن المعالجة التسلسلية المقيدة بالمعالج بين المضيف والضيف هي العامل المحدد [55]، بما يتسق مع سلوك الذيل على نطاق واسع [54]؛ ويضع المؤلفون حزمة SpecioSLM المضغوطة مع الاسترجاع المعزز بوصفها قابلة للنشر على عتاد طرفي من فئة Orin بملف زمن الاستجابة المبلغ عنه.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. الخاتمة</h2>
+    <p>تقدم الدراسة خطًا شاملًا فعالًا للموارد يسد فجوة المعرفة غير المنظمة — تحويل 101 ملف PDF ثابت للإرشادات [53] إلى مخزن NoSQL، وتقطيرها عبر معلم متماثل إلى بيانات تعليمات مؤرضة [16]، [17]، والضبط بـQLoRA [49]، والضغط بتكميم 4 بت [19]، [50]، والتقديم بتأريض استرجاعي [51]، [57] — كله على وحدة رسومية استهلاكية واحدة. ويُوصى بنموذج SpecioSLM المبني على Phi-3-Mini (91.59 رمزًا/ثانية، 0.1705 ثانية لأول رمز، 90.27 BERTScore، ~2.28 غيغابايت) كنقطة تشغيل للإجابة عن أسئلة الإرشادات الماليزية في ظل محدودية الموارد [36]، [45].</p>
+    <p>تشمل القيود القياس على محطة عمل واحدة، والمحاكاة بدل القياس على جهاز Orin NX نفسه [48]، [55]، [56]، وحالة اختبار أحادية المجال [53]؛ وينبغي للعمل المستقبلي توسيع الخط إلى مدونات إرشادية ولغات إضافية — حيث تعد النماذج المتمحورة حول الملايو مثل Mallam [32]، [33]، [34] مرشحات طبيعية — والتحقق من زمن الاستجابة والإنتاجية وسلوك الذيل على الجهاز [35]، [39]، [40]، [54] في عمليات النشر السريرية الطرفية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Adopting large language models (LLMs) in highly regulated, domain-specific sectors is constrained by high computational costs, cloud dependency, and strict data-privacy regulations, while domain knowledge typically remains locked in static, unstructured document formats that prevent automated reasoning [3], [4], [11].</p>
+    <p>To address these challenges, this study proposes a generalizable end-to-end pipeline for building domain-specialized small language models (SLMs) optimized for resource-constrained environments, starting directly from unstructured data. Using Malaysian Clinical Practice Guidelines (CPGs) in PDF format as a test case [53], the methodology digitizes unstructured documents into a NoSQL store, employs an isomorphic teacher model to generate a strictly grounded synthetic instruction-tuning dataset, and applies Quantized Low-Rank Adaptation (QLoRA) [49] plus 4-bit post-training quantization (PTQ) [50] to produce a compressed domain-specialized model, SpecioSLM, supported at inference time by a retrieval-augmented generation (RAG) framework [51], [57].</p>
+    <p>Systematic workstation benchmarking across four candidate student architectures identified the Microsoft Phi-3-Mini (3.8B) variant [45] as the optimal sweet spot, recording 91.59 tokens per second (TPS), a time to first token (TTFT) of 0.1705 s, and a BERTScore [36] of 90.27 at a compressed size of about 2.28 GB; an ARM64 simulation targeting the NVIDIA Jetson Orin NX [48], [56] validated architectural feasibility for edge deployment.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Large language models have demonstrated remarkable clinical knowledge encoding [3] and summarization capabilities that can rival human experts [4], yet their deployment in regulated sectors such as healthcare faces three structural barriers: prohibitive computational cost, dependence on cloud infrastructure, and strict data-privacy legislation such as Malaysia's Personal Data Protection Act 2010 [11]. Domain knowledge in such sectors is typically locked in static, unstructured documents, preventing automated reasoning over it.</p>
+    <p>Small language models (SLMs) have therefore emerged as a pragmatic alternative, with recent analyses charting their rapid advancement and trade-offs relative to LLMs [5], [7], dedicated coverage in the software-engineering literature [8], and comprehensive surveys of their rise in healthcare [9] and of the field at large [14], [15]. Running models at the edge further motivates this shift: edge-first inference studies explicitly characterize the models, metrics, and trade-offs of moving language-model inference off the cloud [6], and enterprise analyses document SLM architectures for edge AI [12], [13].</p>
+    <p>This paper contributes a generalizable end-to-end pipeline that starts from unstructured PDFs and ends with a compressed, domain-specialized SLM validated for edge deployment. The Malaysian CPG corpus [53] serves as the test case, the teacher-student distillation uses an isomorphic teacher to stay strictly grounded and limit hallucination risk [16], [17], and the full pipeline executes on a single consumer-grade GPU, demonstrating accessibility under limited computational resources.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. From LLMs to SLMs: Background</h2>
+    <p>The limitations of LLMs — scale-driven cost, latency, and privacy exposure — have been analyzed across employment impact studies [1], manufacturing perspectives [2], and systematic comparisons of the LLM/SLM landscape [7]. Offloading paradigms that split inference between local devices and the cloud [10] mitigate but do not remove cloud dependency, motivating fully local SLM deployment.</p>
+    <p>Two technical pillars underpin the pipeline. First, knowledge distillation transfers capability from a teacher to a student model [16], with dedicated surveys covering distillation of LLMs [17] and task-agnostic compression such as MiniLM [52]. Second, parameter-efficient fine-tuning (PEFT) adapts large models at low cost [18], with QLoRA [49] combining quantization and low-rank adapters, followed by post-training quantization methods such as GPTQ [50] and the llama.cpp PTQ stack evaluated on commodity hardware [19].</p>
+    <p>Evaluation follows community standards: BERTScore for semantic fidelity [36], throughput/latency analysis including TTFT-oriented prefill optimization [37], inference-performance forecasting [40], [41], conversational-speed analysis beyond raw tokens per second [39], and human reading-rate baselines for usability context [38], [42].</p>
+    <p>Domain-specialized SLMs validate the approach in neighboring fields: BioMedLM (2.7B) for biomedicine [26], FinGPT for finance [27], MedFit-LLM for medical fine-tuning [30], [31], Meerkat-7B [28], medical reasoning distillation [29], and the Malay-centric Mallam family (1.1B/3B/5B) [32], [33], [34], which is directly relevant to Malaysian-language deployment.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. CPG Knowledge Source and Research Gap</h2>
+    <p>Malaysia's health-system reform agenda, articulated in the Health White Paper [20] and the Twelfth [21] and Thirteenth [22] Malaysia Plans, depends on computable, locally adapted clinical guidance. Clinical practice guidelines support decisions and optimize care [23], but adapting them to local context requires overcoming well-documented barriers [24], with context-specific visualization systems such as GuLiNav illustrating the digitization challenge [25].</p>
+    <p>Existing SLM development processes typically assume large pre-structured datasets and substantial compute [15], and benchmarking studies of language models [43], including speed-accuracy trade-off quantification [44], rarely start from raw unstructured PDFs. The research gap is therefore an end-to-end, resource-efficient pipeline that bridges this “unstructured knowledge gap”: from 101 static CPG PDFs [53] to a deployable edge SLM.</p>
+    <p>The present study fills that gap with a six-stage pipeline — teacher/student selection, data extraction into NoSQL, synthetic grounded dataset generation [16], [17], QLoRA fine-tuning [49], 4-bit compression [19], [50], and RAG-backed runtime inference [51] with edge validation [48] — executed entirely on a single consumer GPU.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Proposed Pipeline</h2>
+    <p>Teacher and student selection pairs a well-trained isomorphic teacher (Qwen-2.5 3B [46]) with four student candidates — Qwen2.5-0.5B, Qwen2.5-1.5B, Qwen2.5-3B [46], and Phi-3-Mini-3.8B [45] — keeping the teacher fixed so that all resulting SpecioSLM variants are directly comparable. Data extraction digitizes the 101 CPG PDFs [53] into a structured NoSQL database, and synthetic tuning-dataset generation uses the teacher to produce instruction pairs strictly grounded in the CPG corpus, reducing hallucination risk [16], [17].</p>
+    <p>QLoRA fine-tuning [49] targets the self-attention and feed-forward projection layers (Figure 5 in the original paper), followed by 4-bit PTQ through llama.cpp [19], [50] to yield the compressed SpecioSLM artifacts. Chunking strategy for the supporting vector database follows multi-dataset analyses of chunk size for long-document retrieval [51], validated by comparative chunking evaluations [57].</p>
+    <p>Runtime inference couples the compressed SLM with a RAG framework over the CPG vector store, enforcing grounded responses, and edge validation uses an ARM64 simulation (Docker/QEMU) targeting the NVIDIA Jetson Orin NX [48] with JetPack [56], mindful of tail-latency effects at scale [54] and cross-architectural emulation performance considerations [55].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Experiment Setup and Benchmarking</h2>
+    <p>All four student models were trained through the identical end-to-end pipeline with fixed hyperparameters in standardized Python 3.10 environments on the same desktop workstation, eliminating hardware-induced variation; the teacher (Qwen-2.5 3B [46]) was held constant, with Qwen2.5 and Phi-3 [45], [46] and Llama 3 [47] as the architectural context. Hardware and software environments are documented in Table 5 of the original paper.</p>
+    <p>Evaluation metrics combine inference performance (throughput in TPS, TTFT) with semantic fidelity (BERTScore [36]) and retrieval-strategy impact, following TTFT-turbocharging prefill analysis [37], inference benchmarking frameworks such as Etalon [35], and forecasting methodology [41]. Baseline comparisons include the teacher-scale models to quantify the specialization trade-off [43], [44].</p>
+    <p>Retrieval ablations compare embedding/chunking strategies [51], [57] under hybrid search, and edge simulation replays the pipeline artifacts under ARM64 emulation toward Jetson Orin NX [48], [55], [56], where host–guest CPU-bound sequential processing is the known bottleneck.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Results and Edge Findings</h2>
+    <p>The ultra-lightweight Qwen-2.5-0.5B variant (373.71 MB) sets the efficiency bound at 193.81 TPS with a TTFT of 0.1265 s, but its semantic fidelity (BERTScore 82.84) is the lowest of the four — degraded reasoning and world knowledge that raise hallucination risk intolerable in clinical settings. The 1.5B variant improves fidelity while surrendering part of the throughput advantage, tracing the expected size–fidelity curve [44].</p>
+    <p>The Phi-3-Mini-3.8B SpecioSLM is the identified sweet spot: 91.59 TPS, TTFT 0.1705 s, BERTScore 90.27 under hybrid search (89.44 domain-specific retrieval vs 90.27 hybrid in the reported ablations), at roughly 2.28 GB compressed — balanced efficiency and reasoning quality [45]. Retrieval-strategy impact is material: hybrid search outperforms domain-specific-only retrieval on fidelity [51], [57].</p>
+    <p>ARM64 edge simulation toward the Jetson Orin NX [48], [56] confirms architectural feasibility but exposes CPU-bound sequential host–guest processing as the limiting factor [55], consistent with tail-at-scale behavior [54]; the authors position the compressed SpecioSLM + RAG stack as deployable on Orin-class edge hardware with the reported latency profile.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Conclusions</h2>
+    <p>The study delivers a resource-efficient end-to-end SLM pipeline that bridges the unstructured knowledge gap — 101 static CPG PDFs [53] converted into a NoSQL store, distilled via an isomorphic teacher into grounded instruction data [16], [17], fine-tuned with QLoRA [49], compressed with 4-bit PTQ [19], [50], and served with RAG grounding [51], [57] — entirely on a single consumer-grade GPU. The Phi-3-Mini SpecioSLM (91.59 TPS, 0.1705 s TTFT, 90.27 BERTScore, ~2.28 GB) is the recommended operating point for Malaysian CPG question-answering under resource constraints [36], [45].</p>
+    <p>Limitations include single-workstation benchmarking, emulation rather than on-device Orin NX measurement [48], [55], [56], and a single-domain (Malaysian CPG) test case [53]; future work should extend the pipeline to additional guideline corpora and languages — where Malay-centric models such as Mallam [32], [33], [34] are natural candidates — and validate on-device latency, throughput, and tail behavior [35], [39], [40], [54] in clinical edge deployments.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed selection of 23 references with original numbering preserved; see the <a href="https://doi.org/10.3390/app16136630">original paper</a> for the full 57-reference list.</p>
+    <ol dir="ltr">
+      <li value="1">Sharif, A.; Gurbuz, E.; Ay, S. The impact of AI on employment and jobs: A comprehensive analysis. <em>Lond. J. Interdiscip. Sci.</em> 2023, <em>1</em>, 50–55.</li>
+      <li value="3">Singhal, K.; Azizi, S.; Tu, T.; et al. Large language models encode clinical knowledge. <em>Nature</em> 2023, <em>620</em>, E19.</li>
+      <li value="4">Van Veen, D.; Van Uden, C.; Blankemeier, L.; et al. Clinical Text Summarization: Adapting Large Language Models Can Outperform Human Experts. <em>Res. Sq.</em> 2023, preprint.</li>
+      <li value="5">Örpek, Z.; Tural, B.; Destan, Z. The language model revolution: LLM and SLM analysis. In <em>Proc. IDAP 2024</em>, Online, 21–22 Sept. 2024; pp. 1–4.</li>
+      <li value="6">Jang, S.; Morabito, R. Edge-first language model inference: Models, metrics, and tradeoffs. <em>arXiv</em> 2025, arXiv:2505.16508.</li>
+      <li value="8">Ammanath, B. Small language models (SLMs). <em>IEEE Softw.</em> 2025, <em>42</em>, 112–115.</li>
+      <li value="9">Garg, M.; Raza, S.; Rayana, S.; et al. The rise of small language models in healthcare: A comprehensive survey. <em>arXiv</em> 2025, arXiv:2504.17119.</li>
+      <li value="11">Perlindungan Data Peribadi (PDP). Personal Data Protection Act 2010 [Act 709]. 2025.</li>
+      <li value="13">Lu, Z.; Li, X.; Cai, D.; et al. Demystifying Small Language Models for Edge Deployment. 2024.</li>
+      <li value="16">Gu, Y.; Dong, L.; Wei, F.; Huang, M. Knowledge Distillation of Large Language Models. <em>arXiv</em> 2023, arXiv:2306.08543.</li>
+      <li value="18">Xu, L.; Xie, H.; Qin, S.-Z.J.; et al. Parameter-Efficient Fine-Tuning Methods for Pretrained Language Models: A Critical Review. <em>arXiv</em> 2024.</li>
+      <li value="19">Sparrenberg, L.; Deußer, T.; Berger, A.; Sifa, R. Small and Fast LLMs on Commodity Hardware: Post-Training Quantization in llama.cpp. In <em>Proc. IEEE CBI 2025</em>.</li>
+      <li value="26">Bolton, E.; Venigalla, A.; Yasunaga, M.; et al. BioMedLM: A 2.7B Parameter Language Model. 2024.</li>
+      <li value="32">Hugging Face. mesolitica/mallam-1.1B-4096. 2025.</li>
+      <li value="36">Zhang, T.; Kishore, V.; Wu, F.; et al. BERTScore: Evaluating Text Generation with BERT. <em>arXiv</em> 2020, arXiv:1904.09675.</li>
+      <li value="45">Abdin, M.; Jacobs, S.A.; Awan, A.A.; et al. Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone. 2024.</li>
+      <li value="46">Yang, A.; Yang, B.; Zhang, B.; et al. Qwen2.5 Technical Report. <em>arXiv</em> 2024, arXiv:2412.15115.</li>
+      <li value="48">Archet, A.; Gac, N.; Orieux, F.; Ventroux, N. Embedded AI performances of Nvidia's Jetson Orin SoC series. In <em>Proc. GDR ISIS 2024</em>.</li>
+      <li value="49">Dettmers, T.; Pagnoni, A.; Holtzman, A.; Zettlemoyer, L. QLoRA: Efficient Finetuning of Quantized LLMs. <em>arXiv</em> 2023.</li>
+      <li value="50">Frantar, E.; Ashkboos, S.; Hoefler, T.; Alistarh, D. GPTQ: Accurate Post-Training Quantization. <em>arXiv</em> 2023.</li>
+      <li value="51">Bhat, S.R.; Rudat, M.; Spiekermann, J.; Flores-Herr, N. Rethinking Chunk Size For Long-Document Retrieval. <em>arXiv</em> 2025.</li>
+      <li value="53">Ministry of Health Malaysia; MAHTAS. Clinical Practice Guidelines (CPG).</li>
+      <li value="57">Gomez-Cabello, C.A.; Prabha, S.; Haider, S.A.; et al. Comparative Evaluation of Advanced Chunking. 2025.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app16136630">10.3390/app16136630</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
