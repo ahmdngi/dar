@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تحليل أمن بروتوكول MQTT-SN لإنترنت الأشياء — DAR</title>
+<meta name="description" content="Security Analysis of the MQTT-SN Protocol for the Internet of Things — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/mqtt-sn-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Security Analysis of the MQTT-SN Protocol for the Internet of Things</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تحليل أمن بروتوكول MQTT-SN لإنترنت الأشياء</h2>
+
+  <div class="paper-meta">
+    <span>👤 José Roldán-Gómez, Javier Carrillo-Mondéjar, Juan Manuel Castelo Gómez, Sergio Ruiz-Villafranca</span>
+    <span>📄 Applied Sciences, 2022 · Vol. 12, Issue 21, Article 10991</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app122110991">10.3390/app122110991</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يواصل إنترنت الأشياء نموه — من نحو 12 مليار جهاز متصل في 2020، متجاوزًا الاتصالات غير المخصصة لإنترنت الأشياء لأول مرة، نحو 14.4 مليار متوقعة في 2022 — وتحمل بروتوكولات النشر والاشتراك الخفيفة جلّ هذه الحركة [1]، [2]، [3]، [4]. ويكيّف MQTT-SN (MQTT لشبكات الحساسات) دلالات MQTT للشبكات منخفضة الطاقة وعرض النطاق وغير TCP مثل Zigbee وLoRaWAN ووصلات UDP [5]. تنفذ هذه الورقة البروتوكول في محاكي Cooja، وتصمم سيناريو أساسيًا، وتعرض خمس هجمات جديدة ضده، وتقيّم أثرها، وتقترح كاشف تهديدات قائمًا على معالجة الأحداث المعقدة (CEP) مصممًا لبيئات إنترنت الأشياء المقيدة الموارد [39]، [40]، [41]، [42].</p>
+    <p>وقُيّمت الهجمات — موجات إغراق الاتصالات، وموجات قطع الاتصال، والتنصت عبر الوسيط، والاتصالات المزورة بإساءة استخدام معرف العميل، واختطاف اشتراكات العملاء الشرعيين المزورة — تجريبيًا، وأُظهر أن كاشف CEP، الذي تُولَّد قواعده آليًا بتحليل المكونات الرئيسية (PCA) الموزون بنسبة التباين المفسَّر [43]، يكشف هذه العائلات الهجومية الجديدة التي لا تستطيع الأنظمة القائمة على قواعد يضعها خبراء المجال استباقها.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تؤطر توقعات نمو إنترنت الأشياء حجم الرهان: فـ12 مليار اتصال في 2020 تجاوزت الاتصالات غير المخصصة لأول مرة [3]، مع نمو 18% نحو 14.4 مليار جهاز عالميًا في 2022 [4]، بينما توثق المراجعات اتساع سطح هجوم البروتوكولات الكامنة [2]. وقد قُدم MQTT-S (لاحقًا MQTT-SN) بوصفه بروتوكول نشر واشتراك لشبكات الحساسات اللاسلكية منذ 2008 [5]، إلى جانب أبحاث مرافقة للشبكات المقيدة حول شبكات BLE [6]، وشبكات Zigbee الزراعية [7]، وCoAP بوصفه بروتوكول التطبيقات المقيدة [8]، ودراسات بروتوكولات طبقة التطبيق [9].</p>
+    <p>وتتمثل مساهمة الورقة في معالجة هجومية ودفاعية كاملة لـMQTT-SN: تنفيذ عامل في Cooja، وسيناريو أساسي قابل للتكرار، وخمس هجمات منفذة مع تقييم الأداء، وكاشف جديد قائم على CEP بقواعد مولدة آليًا — بما يسد الفجوة بين المأثور الأمني المعروف حول MQTT والسلوك المقاس لـMQTT-SN.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. بروتوكول MQTT-SN</h2>
+    <p>يحافظ MQTT-SN على دلالات النشر والاشتراك في MQTT — تنشر الأجهزة في مواضيع ويستلم العملاء المشتركون التحديثات عبر وسيط، بما يتيح مراسلة غير متزامنة من كثير إلى كثير — مع تقليص عبء الرسائل للحوامل منخفضة الطاقة وعرض النطاق وغير TCP مثل Zigbee وLoRaWAN وUDP [5]. وتخفض معرفات المواضيع القصيرة والمواضيع المعرّفة مسبقًا ودعم العملاء النائمين عبر البوابة مزيدًا من البايتات التي يجب على العقد المقيدة نقلها.</p>
+    <p>ويعمل البروتوكول عادة فوق طبقات سفلى مثل 6LoWPAN [21] أو شبكات RPL [24]، وتكون تبادلاته افتراضيًا غير مشفرة — وهو خيار تصميمي يُبقي العقد المقيدة رخيصة لكنه يعرّض كل حمولة مواضيع لمن يستطيع مراقبة الحامل أو الانضمام إليه، وهو ما تستغله هجمات الورقة بصورة منهجية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. حالة الفن والسيناريو الأساسي</h2>
+    <p>تغطي الأعمال السابقة أصول MQTT-SN [5] وCoAP [8] ودراسات طبقة التطبيق [9]، لكن التقييمات العدائية المقاسة لـMQTT-SN نفسه نادرة. لذا ينفذ المؤلفون عملاء شرعيين ووسيطًا وعميلًا خبيثًا في Cooja، معرّفين سيناريو أساسيًا بحركة نشر واشتراك طبيعية يُقاس عليها أثر الهجمات — معدلات التسليم وحالة الوسيط واشتراكات العملاء.</p>
+    <p>وهذه المنصة القابلة للتكرار مساهمة بذاتها: فكل هجوم لاحق يُنفذ داخلها، بحيث تُقاس آثار الإغراق والقطع والتنصت والتزوير مقابل المرجع السليم نفسه بدل الاكتفاء بالوصف النوعي.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. خمس هجمات وتقييمها</h2>
+    <p>تُغرق هجمات إغراق الاتصالات وموجات القطع الوسيط بحزم الاتصال/قطع الاتصال: فتنهار حالة الوسيط تحت الفيضان بينما تواصل الأجهزة الشرعية الإرسال إلى الفراغ، ورغم أن كاشفًا قائمًا على القواعد قد يرصد إغراق الاتصالات، فإن موجة القطع هجوم جديد بلا بصمة معروفة، مما يصعّب كتابة القواعد خبيريًا. أما التنصت فيسلك طريقًا مختلفًا: لا يحتاج أي ميزة من MQTT-SN، بل يخترق الحامل أولًا — مثلًا عبر هجوم ترتيب ضد RPL [37] — ليحصل على موضع وسيط فوق 6LoWPAN [21]، وبعدها تكشف حركة MQTT-SN غير المشفرة السرية والسلامة ثم التوافر للمهاجم.</p>
+    <p>وتسيء الاتصالات المزورة استخدام معرف العميل: فالمهاجم الذي يتصل بمعرف الضحية يطرد العميل الشرعي، ومع تفعيل راية CleanSession يحذف الوسيط اشتراكات الضحية في المواضيع، فيعيد المهاجم اشتراك المعرف في مواضيع مختارة أو في لا شيء إطلاقًا — معيدًا كتابة من يستلم ماذا بالكامل. ويختطف متغير أخير اشتراكات العملاء الشرعيين صراحة. ومن شأن MQTT-SN الآمن (SMQTT-SN) [38] أن يحدّ من التنصت، لكن عبئه التشفيري يضغط على الأجهزة المقيدة نفسها التي يخدمها البروتوكول، فيبقى التوازن وثيق الصلة بالنشر.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. كاشف التهديدات القائم على CEP</h2>
+    <p>وبما أن الهجمات الناجحة مدمرة بينما يكون الكشف المعتاد أثقل من موارد إنترنت الأشياء الشحيحة، ينشر المؤلفون كاشفًا مبنيًا على محرك معالجة الأحداث المعقدة، الذي يبتلع الأحداث البسيطة (هنا، حزم الشبكة) ويطلق أحداثًا مركبة — أحكام هجوم — عند تحقق شروط القواعد على التدفقات المترابطة؛ وقد ثبتت قابلية نشر محركات CEP في بيئات إنترنت الأشياء الفقيرة الموارد [40]، [41]، [42]، وفق بنية الكاشف الموجهة لإنترنت الأشياء في [39].</p>
+    <p>ويكمن الابتكار المفتاحي في التوليد الآلي للقواعد: فبما أن خبراء المجال لا يستطيعون كتابة قواعد لهجمات لا يعرفونها بعد، تشتق البنية قواعد CEP من الحركة نفسها باستخدام تحليل المكونات الرئيسية، موزونةً المسافة الإقليدية لكل مكون بنسبة تباينه المفسَّر بحيث تهيمن سمات الحركة الأكثر إفادة على الكشف [43]. فتنخفض الأبعاد، وتحدّ توصيف كل عائلة هجومية، وتبقى تكاليف الشبكة والحوسبة والذاكرة للقواعد ضمن الميزانيات المقيدة — بما يتيح كشف العائلات الجديدة المعروضة في القسم 4 تحديدًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الاستنتاجات</h2>
+    <p>تخلص الورقة إلى أن تصميم MQTT-SN غير المشفر افتراضيًا ودلالات الثقة في معرف العميل/CleanSession يعرّضه لهجمات الإغراق والقطع والتنصت واختطاف الاشتراكات، وقد عُرضت جميعها وقِيست في Cooja، وأن عبء SMQTT-SN يُبقي المشكلة مفتوحة للأساطيل المقيدة [38]. ويقدم كاشف CEP ذو القواعد المولدة بـPCA إجابة قابلة للنشر: توليد آلي للقواعد يواكب الهجمات الجديدة دون مطالبة باستبصار خبير أو نماذج ثقيلة على الأجهزة.</p>
+    <p>ويشير العمل المستقبلي إلى تقييمات تحصين على منصات مادية، وتوسيع توليد القواعد لحملات متعددة المراحل، وقياس حد الكلفة والفائدة لـSMQTT-SN عبر فئات واقعية من الأجهزة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>The Internet of Things keeps growing — from about 12 billion connected devices in 2020, surpassing non-IoT connections for the first time, toward a projected 14.4 billion in 2022 — and lightweight publish/subscribe protocols carry much of that traffic [1], [2], [3], [4]. MQTT-SN (MQTT for Sensor Networks) adapts MQTT's semantics to low-power, low-bandwidth, non-TCP networks such as Zigbee, LoRaWAN, and UDP links [5]. This paper implements the protocol in the Cooja simulator, designs a baseline scenario, demonstrates five novel attacks against it, evaluates their impact, and proposes a Complex Event Processing (CEP) threat detector tailored to resource-constrained IoT environments [39], [40], [41], [42].</p>
+    <p>The attacks — connection-flooding waves, disconnect waves, sniffing via man-in-the-middle, spoofed connections through ClientId abuse, and spoofed legitimate-client subscription hijacking — are evaluated experimentally, and the CEP detector, whose rules are generated automatically with Principal Component Analysis (PCA) weighted by explained variance ratio [43], is shown to detect these novel attack families that rule-based systems built by domain experts cannot anticipate.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>IoT growth projections frame the stakes: 12 billion IoT connections in 2020 exceeded non-IoT connections for the first time [3], with growth of 18% toward 14.4 billion devices globally in 2022 [4], while reviews document the expanding attack surface of the underlying protocols [2]. MQTT-S (later MQTT-SN) was introduced as a publish/subscribe protocol for wireless sensor networks as early as 2008 [5], alongside companion constrained-network research on Bluetooth Low Energy mesh [6], Zigbee-based agricultural sensor networks [7], CoAP as the constrained application protocol [8], and surveys of IoT application-layer protocols [9].</p>
+    <p>The paper's contribution is a full offensive-and-defensive treatment of MQTT-SN: a working Cooja implementation, a reproducible baseline scenario, five implemented attacks with performance evaluation, and a novel CEP-based detector with automatically generated rules — closing the gap between known MQTT security folklore and measured MQTT-SN behavior.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. MQTT-SN Protocol</h2>
+    <p>MQTT-SN preserves MQTT's publish/subscribe semantics — devices publish to topics and subscribed clients receive updates through a broker, enabling asynchronous many-to-many messaging — while trimming message overhead for low-power, low-bandwidth, or non-TCP bearers such as Zigbee, LoRaWAN, and UDP [5]. Short topic identifiers, predefined topics, and gateway-assistedsleeping-client support further cut the bytes constrained nodes must move.</p>
+    <p>The protocol normally runs above lower layers such as 6LoWPAN [21] or RPL-based meshes [24], and by default its exchanges are unencrypted — a design choice that keeps constrained nodes cheap but exposes every topic payload to whoever can observe or join the bearer, which the paper's attacks exploit systematically.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. State of the Art and Baseline Scenario</h2>
+    <p>Prior art covers MQTT-SN's origins [5], CoAP [8], and IoT application-layer surveys [9], but measured adversarial evaluations of MQTT-SN itself are scarce. The authors therefore implement legitimate clients, a broker, and a malicious client in Cooja, defining a baseline scenario with normal publish/subscribe traffic against which attack impact — delivery rates, broker state, and client subscriptions — can be compared.</p>
+    <p>This reproducible harness is itself a contribution: every attack that follows is executed inside it, so flooding, disconnection, sniffing, and spoofing effects are quantified against the same healthy reference instead of asserted qualitatively.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Five Attacks and Their Evaluation</h2>
+    <p>Connect flooding and disconnect waves overwhelm the broker with connect/disconnect packets: the broker state collapses under the flood while legitimate clients keep transmitting into the void, and although a rules-based IDS could flag connect floods, the disconnect wave is a novel attack with no known signature, making expert-written rules hard to produce. Sniffing proceeds differently: it needs no MQTT-SN feature at all, instead compromising the bearer first — e.g., via a rank attack against RPL [37] — to obtain a man-in-the-middle position on top of 6LoWPAN [21], after which unencrypted MQTT-SN traffic yields confidentiality, integrity, and ultimately availability to the attacker.</p>
+    <p>Spoofed connections abuse the ClientId: an attacker connecting with a victim's identifier expels the legitimate client, and with the CleanSession flag set the broker deletes the victim's topic subscriptions, letting the attacker re-subscribe the identifier to chosen topics or to nothing at all — completely rewriting who receives what. A final variant hijacks legitimate clients' subscriptions outright. Secure MQTT-SN (SMQTT-SN) [38] would blunt sniffing, but its cryptographic overhead strains the very constrained devices the protocol serves, so the trade-off remains deployment-relevant.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. CEP Threat Detector</h2>
+    <p>Because successful attacks are devastating yet typical detection is too heavy for scarce IoT resources, the authors deploy a detector built on a Complex Event Processing engine, which ingests simple events (here, network packets) and fires complex events — attack verdicts — when rule conditions over correlated streams are met; CEP engines have already been shown deployable in resource-poor IoT settings [40], [41], [42], following the IoT-oriented detector architecture of [39].</p>
+    <p>The key innovation is automatic rule generation: since domain experts cannot write rules for attacks they do not yet know, the architecture derives CEP rules from traffic itself using Principal Component Analysis, weighting each component's Euclidean distance by its explained variance ratio so the most informative traffic features dominate detection [43]. Dimensionality falls, per-attack-family characterization sharpens, and network, computation, and memory costs of the rules stay within constrained budgets — enabling detection of exactly the novel families demonstrated in Section 4.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Conclusions</h2>
+    <p>The paper concludes that MQTT-SN's unencrypted-by-default design and trusting ClientId/CleanSession semantics expose it to flooding, disconnection, eavesdropping, and subscription-hijacking attacks, all demonstrated and measured in Cooja, and that Secure MQTT-SN's overhead keeps the problem open for constrained fleets [38]. Its CEP detector with PCA-generated rules offers a deployable answer: automatic rule synthesis that keeps pace with novel attacks without demanding expert foresight or heavyweight on-device models.</p>
+    <p>Future work points toward hardening evaluations on physical testbeds, extending rule synthesis to multi-stage campaigns, and quantifying SMQTT-SN's cost–benefit frontier across realistic device classes.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">References below are condensed; numbering matches the original paper. See the full reference list in the original publication via the DOI link above.</p>
+    <ol dir="ltr">
+      <li>Thierer, A.; Castillo, A. Projecting the growth and economic impact of the Internet of Things. George Mason Univ. Mercatus Center, June 2015; pp. 1–10.</li>
+      <li>Laghari, A.A. et al. A review and state of art of Internet of Things (IoT). <em>Arch. Comput. Methods Eng.</em> 2021, <em>29</em>, 1395–1413.</li>
+      <li>State of the IoT 2020: 12 Billion IoT Connections, Surpassing Non-IoT for the First Time. IoT Analytics, 2020.</li>
+      <li>State of IoT 2022: Number of Connected IoT Devices Growing 18% to 14.4 Billion Globally. IoT Analytics, 2022.</li>
+      <li>Hunkeler, U.; Truong, H.L.; Stanford-Clark, A. MQTT-S—A publish/subscribe protocol for Wireless Sensor Networks. In Proc. COMSWARE 2008, Bangalore, India, 6–10 Jan. 2008; pp. 791–798.</li>
+      <li>Ghori, M.R. et al. Bluetooth Low Energy Mesh Networks: Survey of Communication and Security Protocols. <em>Sensors</em> 2020, <em>20</em>, 3590.</li>
+      <li>Prakash, S. ZigBee based wireless sensor network architecture for agriculture applications. In Proc. ICSSIT 2020, Tirunelveli, India, 20–22 Aug. 2020; pp. 709–712.</li>
+      <li>Shelby, Z. et al. The Constrained Application Protocol (CoAP). RFC 7252 (proposed standard); IETF, 2014.</li>
+      <li>Gupta, P. A Survey of Application Layer Protocols for Internet of Things. In Proc. ICCICT 2021, Mumbai, India, 25–27 June 2021; pp. 1–6.</li>
+      <li>6LoWPAN adaptation layer under MQTT-SN deployments. See original paper for full citation.</li>
+      <li>RPL routing for low-power and lossy networks under MQTT-SN deployments. See original paper for full citation.</li>
+      <li>Rank attack against RPL used to achieve the man-in-the-middle position. See original paper for full citation.</li>
+      <li>Secure MQTT-SN (SMQTT-SN): encrypted variant and its overhead trade-off. See original paper for full citation.</li>
+      <li>IoT-oriented CEP threat-detector architecture with automatic rule generation. See original paper for full citation.</li>
+      <li>Deployability of CEP engines in resource-constrained IoT environments (I). See original paper for full citations.</li>
+      <li>Deployability of CEP engines in resource-constrained IoT environments (II). See original paper for full citations.</li>
+      <li>Deployability of CEP engines in resource-constrained IoT environments (III). See original paper for full citations.</li>
+      <li>Principal Component Analysis (PCA) with explained-variance-ratio weighting for rule synthesis. See original paper for full citation.</li>
+          <li>... [full reference list available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app122110991">10.3390/app122110991</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

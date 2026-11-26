@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إنشاء منصة اختبار للأمن السيبراني لوحدات التحكم المنطقية القابلة للبرمجة وممارسة الهجمات السيبرانية — DAR</title>
+<meta name="description" content="PLC Cybersecurity Test Platform Establishment and Cyberattack Practice — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/plc-testbed-electronics/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">PLC Cybersecurity Test Platform Establishment and Cyberattack Practice</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">إنشاء منصة اختبار للأمن السيبراني لوحدات التحكم المنطقية القابلة للبرمجة وممارسة الهجمات السيبرانية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ramiro Ramirez, Chun-Kai Chang, Shu-Hao Liang</span>
+    <span>📄 Electronics, 2023 · Vol. 12, Issue 5, Article 1195</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics12051195">10.3390/electronics12051195</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تُعد وحدات التحكم المنطقية القابلة للبرمجة (PLC) مكونات حيوية لسيور النقل في خطوط الإنتاج، وتمثل الحساسات والمشغلات الخاضعة لها نقاطًا حرجة في عملية التصنيع، بينما تزايدت مؤخرًا الهجمات التي تستغل ثغرات هذه الوحدات [6]، [7]. وفي هذه الدراسة، أُنشئت منصة اختبار لوحدات PLC لتحليل ثغرات إعداد صناعي نموذجي وتنفيذ تمارين هجوم سيبراني لمراجعة تحديات الأمن السيبراني في النظام.</p>
+    <p>ومنصة الاختبار عبارة عن آلة فرز ذات سير ناقل آلي ووحدتي PLC من طراز Mitsubishi FX5U-32M وملحقات لفرز المواد، مع اختيار بروتوكول Modbus لاتصالات البيانات. يعمل المهاجم بنظام Kali Linux 2022.3 مستخدمًا Nmap وMetasploit لاستغلال سجلات Modbus المستهدفة [37]، [39]، [40]، بينما يعمل المضيف المستهدف بنظام Ubuntu 22.04 مع محاكي ModbusPal؛ وأسلوب الهجوم المختار هو إعادة تشغيل الحزم (packet replay) الذي يوقف العمليات بإرسال حزم بيانات مخصصة إلى وحدة PLC. وخلاصةً، تقدم الدراسة استراتيجية هجومية أساسية خطوة بخطوة تستهدف تعديل السجلات، وتمثل منصة الاختبار بيئة صناعية نموذجية وثغراتها إزاء الهجمات السيبرانية بأدوات مفتوحة المصدر شائعة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يُعد أمن صناعات البنى التحتية الحرجة شاغلًا مشتركًا لوكالات الدفاع الحكومية: فالطاقة والمال والغذاء والنقل وتقنية المعلومات والاتصالات والصحة والمياه والتصنيع مصنفة بنى تحتية حرجة، وتعطلها أو تدميرها يضر بالأمن السيبراني والأمن الاقتصادي الوطني والصحة والسلامة العامة [1]، [2]. ويوفر إطار NIST للأمن السيبراني (NIST-CSF) قائمة مستويات لقياس تقدم النظام السيبراني عبر أربعة مستويات: جزئي (1)، ومستنير بالمخاطر (2)، وقابل للتكرار (3)، وتكيفي (4) [3].</p>
+    <p>وأظهر استطلاع Trend Micro شمل 900 مشاركًا في التصنيع والكهرباء والنفط والغاز في الولايات المتحدة وألمانيا واليابان أن 89% أبلغوا عن تعطيل سلاسل الإمداد من مجرمين سيبرانيين بين 2021 و2022، بتوقف التصنيع خمسة أيام وسطيًا وشركات الكهرباء والنفط ستة أيام؛ وبلغ متوسط الضرر المالي 1.8 مليون دولار للتصنيع و3.3 مليون دولار للكهرباء والنفط والغاز [4]. وكانت 30% من أنظمة التقنية التشغيلية في أدنى مستوى (المستوى 1) مقابل 40% من أنظمة تقنية المعلومات في المستوى 2، وتُعد التقنيات الجديدة كالسحابة وشبكات 5G الخاصة — إلى جانب اللوائح الجديدة — المحركات الرئيسية لتطبيق الأمن السيبراني حتى 2025 [4]. كما تتباين الأوضاع الوطنية على نطاق واسع، كما يوثق مؤشر الاتحاد الدولي للاتصالات العالمي للأمن السيبراني 2020 عبر الركائز القانونية والتقنية والتنظيمية وبناء القدرات والتعاون [5].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الخلفية: وحدات PLC والتهديدات الصناعية</h2>
+    <p>تقع وحدات PLC في قلب الإنتاج المؤتمت، وتُظهر أدبيات الحروب والحوادث أن الأنظمة الصناعية أهداف رئيسية: فقد عطلت دول وجماعات إجرامية العمليات الصناعية مرارًا، ويوثق استعراض Kaspersky ICS CERT للنصف الأول من 2022 الحوادث الرئيسية في الأمن السيبراني الصناعي [6]، [7]. ونشرت CISA تحذيرات حول أدوات التهديدات المتقدمة المستمرة التي تستهدف أجهزة التحكم الصناعي/SCADA تحديدًا، مؤكدةً أن وحدات التحكم في مرمى الفاعلين المتقدمين [11].</p>
+    <p>ودرست أبحاث أمن SCADA منذ زمن تقييم الثغرات والتخفيف منها لأنظمة التحكم في الطاقة [12]، وبنى أنظمة الثقة لأمن شبكات SCADA [13]، والتصميم المكوّن لأنظمة SCADA [14]، والبنى التحتية للمفاتيح العامة القائمة على الوكلاء للتحكم الموزع [15]. كما وسعت جهود مفتوحة المصدر سابقة أدوات IEC 61850 لأبحاث المحطات الفرعية [36]. وعلى هذه الخلفية، تختلف الدراسة الحالية بتنفيذها المادي لمنصة اختبار لأبحاث الأمن السيبراني العملية بدل محاكاتها.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. منصة الاختبار</h2>
+    <p>بُنيت المنصة المادية في مركز تطبيق الصناعة 4.0 بجامعة NTUST: يغذي درج الإمداد قطع العمل إلى السير الناقل ويوجهها إلى منزلقات البلاستيك والمعدن، بحيث تخرج الحساسات والمحركات في حالة الهجوم السيبراني عن وضعها الطبيعي. ويربط حاسوب محلي جميع المكونات عبر RS485 وEthernet، مع محوّل Advantech WISE-4051 اللاسلكي لنقل بيانات المتحكم، بينما يؤدي حاسوب بعيد دور المهاجم وتعمل واجهة الإنسان-الآلة (HMI) كجهاز تشغيل وهدف هجوم محتمل معًا.</p>
+    <p>وتعمل الشبكة الصناعية غير المتجانسة أساسًا عبر Ethernet من خلال موجّه ASUS RT-N12HP يربط نقاط WiFi وبوابات LPWAN أو محولات 5G حسب الحاجة، مع بوابة WISE-4051 لربط مكونات PLC ذات منافذ RS-485 فقط. وتستخدم حزمة البروتوكولات Modbus TCP وSLMP في طبقة التطبيق فوق TCP/IPv4/IPv6 على وصلات Ethernet وWiFi، بما يعكس عدم التجانس الحقيقي في أرض المصنع.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. مجموعة الأدوات وبنية الشبكة</h2>
+    <p>اختبار الاختراق هو محاكاة هجوم مصرح بها لتقييم أمن النظام المستهدف. يستخدم جانب المهاجم نظام Kali Linux 2022.3، وهو توزيعة مشتقة من Debian لاختبار الاختراق [40]، مع Nmap 7.93 لاكتشاف عناوين IP والمنافذ [37]، وWireshark لتحليل التقاط الحزم [38]، وMetasploit 6.1.34 لتنفيذ سكربتات استغلال جاهزة ضد الهدف [39]. ويعمل جانب الهدف بنظام Ubuntu 22.04 مع محاكي ModbusPal v1.6 لمحاكاة بيئة الاتصالات الصناعية متعددة الوحدات، إضافة إلى Java SDK 18.0.21.</p>
+    <p>وتتألف شبكة الهجوم من ثلاثة أجهزة رئيسية — المهاجم (Kali) والهدف (Ubuntu) ووحدة FX5U-32M — مترابطة عبر موجّه ASUS كنقطة مراقبة للاتصالات وأمن الشبكة. وتُعامل اتصالات Modbus مع SCADA بوصفها الوصلة الحرجة لعمليات المرافق، وتفترض الدراسة شبكة صناعية تفتقر لتدابير الأمن، بما يتسق مع نتيجة Trend Micro بأن 30% من أنظمة التقنية التشغيلية في المستوى 1 [4]، مع تكرار مشاركة المطلعين الداخليين.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. ممارسة الهجوم السيبراني: إعادة تشغيل الحزم</h2>
+    <p>أسلوب الهجوم المختار هو إعادة تشغيل الحزم ضد سجلات Modbus: يلتقط المهاجم حركة التحكم المشروعة، ويصوغ حزم بيانات مخصصة، ويعيد حقنها نحو وحدة PLC لتعديل قيم السجلات ووقف عمليات السير. وبما أن Modbus TCP يحمل دلالات التحكم دون مصادقة أو تشفير في هذا الإعداد، تُقبل الحزم المزورة بوصفها أوامر مشروعة.</p>
+    <p>ويتبع التمرين استراتيجية هجومية أساسية خطوة بخطوة — الاستطلاع بـNmap، والتقاط الحركة وتحليلها، وإعداد الاستغلال بأدوات Metasploit، وإعادة التشغيل الموجهة للسجلات — موضحًا كيف يمكن لمطلع داخلي أو متسلل شبكي بأدوات مفتوحة المصدر شائعة تعطيل خط فرز. ويشير المؤلفون إلى أن واجهة HMI مكشوفة بالقدر نفسه كسطح هجوم في مثل هذه الشبكات الصناعية المسطحة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الاستنتاجات</h2>
+    <p>تخلص الدراسة إلى أن منصة اختبار PLC المادية لآلة الفرز تمثل بيئة صناعية نموذجية بأمانة وتكشف نقاط ضعفها على مستوى البروتوكولات — وفي مقدمتها اتصالات Modbus غير الموثقة — لتمارين هجومية منهجية بأدوات مفتوحة المصدر معيارية [37]، [38]، [39]، [40]. ويوفر إجراء إعادة تشغيل الحزم الموقف للعمليات عبر تعديل السجلات خط أساس قابلًا للتكرار لتعليم أمن وحدات PLC وتقييمه.</p>
+    <p>وينبغي أن يوسع العمل المستقبلي المنصة بتدابير دفاعية — تجزئة الشبكة، وبروتوكولات صناعية موثقة، وتحصين واجهات HMI، وكشف التسلل — وتكرار التمارين ضد إعدادات محصنة لقياس المكسب الأمني لكل تدبير مضاد.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Programmable logic controllers (PLCs) are vital components for conveyors in production lines, and the sensors and actuators controlled underneath the PLCs represent critical points in the manufacturing process, while attacks exploiting PLC vulnerabilities have been on the rise recently [6], [7]. In this study, a PLC test platform is built to analyze the vulnerabilities of a typical industrial setup and to perform cyberattack exercises reviewing the system's cybersecurity challenges.</p>
+    <p>The test platform is a sorting machine with an automatic conveyor belt, two Mitsubishi FX5U-32M PLCs, and material-sorting accessories, with Modbus selected as the data-communication protocol. The attacker runs Kali Linux 2022.3 with Nmap and Metasploit to exploit the target Modbus registers [37], [39], [40], while the target host runs Ubuntu 22.04 with the ModbusPal emulator; the selected attack method is packet replay, halting operations by sending custom data packets to the PLC. In summary, the study provides a basic step-by-step offensive strategy targeting register modification, and the testbed represents a typical industrial environment and its vulnerabilities against cyberattacks with common open-source tools.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>The security of critical-infrastructure industries is a common concern of government defense agencies: energy, finance, food, transportation, ICT, health, water, and manufacturing are classified as critical infrastructures, whose incapacitation or destruction would harm cybersecurity, national economic security, and public health or safety [1], [2]. The NIST Cybersecurity Framework (NIST-CSF) provides a tier list to benchmark a system's cybersecurity progress across four tiers: Partial (Tier 1), Risk-Informed (Tier 2), Repeatable (Tier 3), and Adaptive (Tier 4) [3].</p>
+    <p>A Trend Micro survey of 900 respondents across manufacturing, electricity, and oil and gas in the US, Germany, and Japan found that 89% reported supply-chain disruption by cybercriminals from 2021 to 2022, with manufacturing halted for five days on average and electricity/oil firms for six days; average financial damage reached USD 1.8M for manufacturing and USD 3.3M for electricity, oil, and gas [4]. Thirty percent of OT systems sat at the lowest tier (Tier 1) versus 40% of IT systems at Tier 2, and new technologies such as cloud services and private 5G — alongside new regulations — are the main drivers of cybersecurity implementation through 2025 [4]. National postures also vary widely, as documented by the ITU Global Cybersecurity Index 2020 across legal, technical, organizational, capacity, and cooperation pillars [5].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Background: PLCs and Industrial Threats</h2>
+    <p>PLCs sit at the heart of automated production, and the warfare and incident literature shows industrial systems are prime targets: states and criminal groups have repeatedly disrupted industrial processes, and Kaspersky ICS CERT's review of H1 2022 catalogues the main incidents in industrial cybersecurity [6], [7]. CISA has published advisories on APT cyber tools specifically targeting ICS/SCADA devices, underscoring that controllers are in the crosshairs of advanced actors [11].</p>
+    <p>SCADA security research has long studied vulnerability assessment and mitigation for power-system control [12], trust-system architectures for SCADA network security [13], component-based SCADA design [14], and agent-based PKI for distributed control [15]. Prior open-source efforts also extended IEC 61850 tooling for substation research [36]. Against this background, the present study differs by physically implementing a test platform for hands-on cybersecurity research rather than simulating it.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. The Test Platform</h2>
+    <p>The physical platform was built at the Industry 4.0 Implementation Center of NTUST: a supply tray feeds workpieces into the conveyor and guides them into plastic and metal sliders, so that under cyberattack the sensors and motors deviate from normal status. A local computer links all components over RS485 and Ethernet, with an Advantech WISE-4051 WiFi/RS485 converter relaying controller data wirelessly, while a remote computer plays the attacker and the human–machine interface (HMI) serves as both operator device and potential attack target.</p>
+    <p>The heterogeneous industrial network runs primarily over Ethernet through an ASUS RT-N12HP router bridging WiFi access points, LPWAN gateways, or 5G adapters as needed, with the WISE-4051 gateway joining RS-485-only PLC components. The protocol stack uses Modbus TCP and SLMP at the application layer over TCP/IPv4/IPv6 on Ethernet and WiFi links, reflecting real plant-floor heterogeneity.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Toolset and Network Architecture</h2>
+    <p>Penetration testing is an authorized attack simulation evaluating target-system security. The attacker side uses Kali Linux 2022.3, a Debian-derived distribution for penetration testing [40], with Nmap 7.93 for network discovery of IP addresses and ports [37], Wireshark for packet-capture analysis [38], and Metasploit 6.1.34 for executing predefined exploit scripts against the target [39]. The target side runs Ubuntu 22.04 with ModbusPal v1.6 emulating the multi-PLC industrial communication environment, plus Java SDK 18.0.21.</p>
+    <p>The attack network comprises three primary devices — attacker (Kali), target (Ubuntu), and the FX5U-32M PLC — interconnected through the ASUS router as the observation point for network communication and security. Modbus communication with SCADA is treated as the critical link for facility operations, and the study assumes an industrial network lacking security measures, consistent with the Trend Micro finding that 30% of OT systems are at Tier 1 [4], with frequent insider participation.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Cyberattack Practice: Packet Replay</h2>
+    <p>The selected attack method is packet replay against Modbus registers: the attacker captures legitimate control traffic, crafts custom data packets, and re-injects them toward the PLC to modify register values and halt conveyor operations. Because Modbus TCP carries control semantics without authentication or encryption in this setup, forged packets are accepted as legitimate commands.</p>
+    <p>The exercise follows a basic step-by-step offensive strategy — reconnaissance with Nmap, traffic capture and analysis, exploit preparation with Metasploit tooling, and register-targeted replay — demonstrating how an insider or network intruder with common open-source tools can disrupt a sorting line. The authors note the HMI is equally exposed as an attack surface in such flat industrial networks.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Conclusions</h2>
+    <p>The study concludes that a physically implemented PLC sorting-machine testbed faithfully represents a typical industrial environment and exposes its protocol-level weaknesses — above all unauthenticated Modbus communication — to systematic offensive exercises with standard open-source tools [37], [38], [39], [40]. The packet-replay procedure halting operations via register modification provides a reproducible baseline for teaching and evaluating PLC cybersecurity.</p>
+    <p>Future work should extend the platform with defense-side measures — network segmentation, authenticated industrial protocols, HMI hardening, and intrusion detection — and repeat the exercises against hardened configurations to quantify the security gain of each countermeasure.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">References below are condensed; numbering matches the original paper. See the full reference list in the original publication via the DOI link above.</p>
+    <ol dir="ltr">
+      <li>Public Safety Canada. National Strategy of Critical Infrastructure; Ottawa, ON, Canada, 2009; ISBN 978-1-100-11248-0.</li>
+      <li>Uniting and Strengthening America by Providing Appropriate Tools Required to Intercept and Obstruct Terrorism (USA PATRIOT ACT) Act of 2001, H.R.3162.</li>
+      <li>National Institute of Standards and Technology (NIST). Framework for Improving Critical Infrastructure Cybersecurity, Version 1.1; Gaithersburg, MD, USA, 2018.</li>
+      <li>Trend Micro Inc. The State of Industrial Cybersecurity; Whitepaper, Survey Report; Tokyo, Japan, 2022.</li>
+      <li>International Telecommunication Union (ITU). Global Cybersecurity Index 2020; Geneva, Switzerland, 2022; ISBN 978-92-61-33921-0.</li>
+      <li>Robinson, M.; Jones, K.; Janicke, H. Cyber Warfare: Issues and Challenges. <em>Comput. Secur.</em> 2015, <em>49</em>, 70–94.</li>
+      <li>Kaspersky ICS CERT. H1 2022 — A Brief Overview of the Main Incidents in Industrial Cybersecurity. 2022. Available online: https://ics-cert.kaspersky.com/publications/reports/</li>
+      <li>Dutta, N. et al. Introduction to cybersecurity. <em>Stud. Comput. Intell.</em> 2021, <em>995</em>, 1–16.</li>
+      <li>Reed, T.C.; Bush, G. At the Abyss: An Insider's History of the Cold War; Ballantine: New York, NY, USA, 2004.</li>
+      <li>Obaidat, M.; Traore, I.; Woungang, I. Biometric-Based Physical and Cybersecurity Systems; Springer: Cham, Switzerland, 2019.</li>
+      <li>Cybersecurity &amp; Infrastructure Security Agency (CISA). APT Cybersecurity Tools Targeting ICS/SCADA Devices. AA22-103A. 2022.</li>
+      <li>Liu, C.-C.; Ten, C.-W.; Govindarasu, M. Cybersecurity of SCADA Systems: Vulnerability Assessment and Mitigation. In Proc. IEEE/PES PSCE 2009, Seattle, WA, USA, 15–18 Mar. 2009.</li>
+      <li>Coates, G.M. et al. A trust system architecture for SCADA network security. <em>IEEE Trans. Power Deliv.</em> 2010, <em>25</em>, 158–169.</li>
+      <li>Anh, P.D.; Chau, T.D. Component-based design for SCADA architecture. <em>Int. J. Control Autom. Syst.</em> 2010, <em>8</em>, 1141–1147.</li>
+      <li>Blanch-Torne, S. et al. Agent-based PKI for Distributed Control System. In Proc. WCICSS 2015, London, UK, 14–16 Dec. 2015.</li>
+      <li>Roomi, M.M. et al. Open-source IEC 61850 program support for substation research. See original paper for full citation.</li>
+      <li>Nmap network-discovery tool. Available online: https://nmap.org/ (v7.93 used in this study).</li>
+      <li>Wireshark packet-capture analyzer. Available online: https://www.wireshark.org/</li>
+      <li>Metasploit exploit framework v6.1.34. Available online: https://www.metasploit.com/</li>
+      <li>Kali Linux 2022.3 penetration-testing distribution. Available online: https://www.kali.org/</li>
+          <li>... [full reference list available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics12051195">10.3390/electronics12051195</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

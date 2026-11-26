@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الهجمات المضادة على الطبقة الفيزيائية في LoRaWAN: مراجعة — DAR</title>
+<meta name="description" content="LoRaWAN Physical Layer-Based Attacks and Countermeasures: A Review — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/lorawan-phy-sensors/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">LoRaWAN Physical Layer-Based Attacks and Countermeasures: A Review</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">الهجمات المضادة على الطبقة الفيزيائية في LoRaWAN: مراجعة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Henri Ruotsalainen, Guangxiong Shen, Junqing Zhang, Radek Fujdiak</span>
+    <span>📄 Sensors, 2022 · Vol. 22(9), 3127</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s22093127">10.3390/s22093127</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تُعد LoRaWAN من أشهر بروتوكولات الاتصال اللاسلكي بعيدة المدى لتطبيقات إنترنت الأشياء منخفضة الطاقة، لذا يتجه الاهتمام increasingly نحو أمنها [1,2,3]. وتكتسب مواضيع الطبقة الفيزيائية أهمية خاصة لأن عُقد LoRaWAN محدودة غالبًا في القدرة الحاسوبية وموارد الاتصال: فكشف الهجمات اللاسلكية يحسّن سلامة النفاذ ومتانته، بينما يمكن لتقنيات الطبقة الفيزيائية تعزيز تحديث المفاتيح ومصادقة الأجهزة.</p>
+    <p>يستعرض هذا العمل استعراضًا شاملًا للثغرات والإجراءات المضادة وميزات تعزيز الأمن في الطبقة الفيزيائية لـ LoRaWAN، ثم يناقش أثرها على أمن الشبكة ويحدد الفجوات البحثية والاتجاهات المستقبلية الواعدة. وقد حظيت هجمات حجب الخدمة وإجراءاتها المضادة — وهي ضروب التشويش وهجمات الثقب الدودي — بأكبر قدر من الاهتمام [12,13,24].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">المقدمة والدافع</h2>
+    <p>في غضون ست سنوات من أول مواصفة (v1.0 عام 2015)، أصبحت LoRaWAN منافسًا قويًا بين تقنيات الشبكات واسعة النطاق منخفضة الطاقة، حاملةً الاتصال للزراعة واللوجستيات والإضاءة الذكية وإدارة النفايات [1,2,3,5,6]. وشعبية تضمين LoRa وتوافره بذرا أبحاثًا أخرى مثل شبكات الارتداد الخالية من البطاريات [1].</p>
+    <p>ومن أهداف التطوير الرئيسية لـ LoRaWAN رفع أمن الواجهة الأمامية إلى مستوى أمن الواجهة الخلفية: فبعد مواصفة v1.0 بوقت قصير كشف المحللون نواقل هجوم على مستوى البروتوكول والأجهزة [7,8,9,10,11,12,13,24]. لذا تركز هذه المراجعة على الطبقة الفيزيائية حيث تحتاج العُقد المقيدة إلى حمايات خفيفة أكثر ما يكون.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">الأعمال ذات الصلة والجدة</h2>
+    <p>أمن الطبقة الفيزيائية مدروس جيدًا للواي فاي وزيجبي وبلوتوث، أساسًا بنكهتين — توليد المفاتيح باستغلال الخصائص المتبادلة الفريدة للقناة، ومصادقة الأجهزة [25]. وتتطرق مسوحات LoRaWAN السابقة [9,28,29,30,31,32,33] إلى الثغرات والإجراءات المضادة عبر الطبقات، لكن تغطيتها للطبقة الفيزيائية جزئية.</p>
+    <p>وتكمن جدة هذه الورقة في معالجة مخصصة للطبقة الفيزيائية: فهي تجدول الأعمال الممسوحة [9,34,35,36,37,38] بحسب محتواها الأمني للطبقة الفيزيائية ثم تغطي منهجيًا الثغرات والإجراءات المضادة وميزات تعزيز الأمن التي لا تجتمع معًا في المراجعات السابقة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">أساسيات LoRaWAN</h2>
+    <p>تتبع شبكة LoRaWAN طوبولوجيا النجمة المتعددة: تصل العُقد الطرفية إلى خادم شبكة مركزي وخادم تطبيقات عبر بوابات متعددة، مع خادم انضمام مضاف في v1.1 [6]. ويحدد طبقة التحكم بالنفاذ (MAC) ثلاثة أصناف تشغيل — الصنف A منخفض الطاقة، والصنف B منخفض الكمون، والصنف C عالي التوافر — ويستخدم الصنف A نفاذًا شبيهًا بألوها [6]. ويستخدم الترميز تضمين LoRa الخاص المنتشر بالزقزقة (CSS) الذي يزداد تردده خطيًا، والمقدَّر لمتانته ضد الضجيج والتداخل [39].</p>
+    <p>وتقع كل حمولة LoRaWAN في حزمة طبقة فيزيائية ذات مقدمة وترويسة وCRC للمزامنة ومعاملات إزالة التضمين وكشف الأخطاء. وتُحسّن آلية معدل البيانات التكيفي (ADR) طاقة الإرسال والزمن الهوائي ومعدلات البيانات من إحصاءات الوصلة المجمّعة، مطيلةً عمر البطارية والإنتاجية [40]. ويختلف تفعيل الأجهزة (OTAA) بين v1.0 — القائمة على AppEUI وDevEUI وAppKey والانضمام عبر DevNonce — وv1.1 التي تضيف خادم انضمام وزوج JoinEUI/NwkKey ومفاتيح جلسات إضافية؛ ثم يرسّخ AppKey المبرمج مسبقًا (وNwkKey) المصادقة والتشفير والسلامة عبر مفاتيح الجلسات المشتقة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">ثغرات الطبقة الفيزيائية</h2>
+    <p>التنصت هو أبسط هجوم لاسلكي؛ وفي LoRaWAN بعيدة المدى تكفي مستقبلات أقل لتغطية منطقة، وقد برهنت أجهزة تنصت عملية على إعادة بناء الحركة براديوهات سلعية [24,41,42,43,52]. أما القنوات الخفية فتضمّن وسائط غير مقصودة — كشدة إضاءة LED — لتسريب أسرار مثل المفاتيح من الأجهزة الضحية [45,53,54,55]. والتشويش المتعمد، وهو حجب الخدمة العسكري الكلاسيكي بمتغيراته المدنية (المستمر والتفاعلي والانتقائي)، بُرهن ضد LoRaWAN رغم متانة CSS [12,24,56,57].</p>
+    <p>وتهدد هجمات استخراج المفاتيح سرية AppKey الذي تتعامل معه التطبيقات المرجعية لـ LoRaMAC بشكل غير آمن [37,61,62]. وتعيد هجمات الثقب الدودي توجيه الحزم عبر وصلات خارج النطاق للتلاعب بالتوجيه وإعادة تشغيل التوقيت، مع متغيرات خاصة بـ LoRaWAN مُبرهنة [12,13,63]. وتُضخّم هجمات استنزاف الطاقة تكاليف الإرسال والاستقبال في الصنف A لاستنزاف البطاريات، وهو حجب خدمة قوي ضد العُقد العاملة بالبطاريات [11]. ويخطط جدول ملخص كل فئة هجوم لخصائص الأمن المتأثرة [37,41,42,43,44,45,46,47,48,49,50,51].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">تقنيات الحماية</h2>
+    <p>يستهدف كشف هجمات الإعادة ناقل OTAA/الطوابع الزمنية، مثل التحقق من الطابع الزمني في البوابة ضد الإعادة المتأخرة [64]. ويملأ توليد المفاتيح اللاسلكي فجوة تحديث مفاتيح الجذر المفقودة: فالتكميم القناتي المتبادل مع التوفيق يتيح للعُقد المقيدة الاتفاق على مفاتيح جديدة بعبء حاسوبي واتصالي ضئيل [19,21,65,66,67,68,77]. وتستغل المرونة ضد التشويش كسب معالجة CSS مع استراتيجيات الكشف والتهرب مثل قفز القنوات والبوابات الاحتياطية [24,46,70,71].</p>
+    <p>ويصادق تحديد البصمة الترددية الراديوية (RFFI) الأجهزة بيومتريًا من اختلافات التصنيع في الواجهة التناظرية — وهو مناسب طبيعي لواجهات LoRa الرخيصة [14,17,73,80]. وتُظهر دراسة حالة بعشرين مرسلًا تجاريًا من LoPy4 وراديو USRP N210 المعرف برمجيًا على 868.1 ميجاهرتز ومعامل انتشار 7 وعرض نطاق 125 كيلوهرتز التشغيل العملي لـ LoRa-RFFI [17]. ويعكس جدول الإجراءات المضادة جدول الثغرات لتسهيل المطابقة [14,16,17,18,19,21,22,23,24,64,65,66,67,68,69,70,71,72,73,74,75].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">النقاش: الأثر والإمكانات البحثية</h2>
+    <p>تهيمن ضروب حجب الخدمة على الاهتمام لأن حزم زقزقة LoRa تمتد من ميلي ثانية إلى ثوانٍ من الزمن الهوائي، مما يمنح المشوشين والثقوب الدودية هدفًا بطيئًا قابلًا للاستغلال — لكن البطء نفسه يعين على الكشف [12,70]. وتعتمد السرية والسلامة كليًا تقريبًا على حفظ AppKey/NwkKey، بينما تقدم التطبيقات القياسية حمايات فيزيائية قليلة، مما يغري بهجمات الاستخراج [81].</p>
+    <p>وتبقى الإمكانات البحثية واسعة: فدواخل عائلات Semtech SX127x/SX1300 غير مكشوفة جزئيًا مما يعيق العمل المتقدم [82]؛ ومعظم التجارب تستخدم إعدادات بوابة واحدة من 1–10 عُقد بعيدًا عن التحقق واسع النطاق؛ ومواضيع لم تُمس مثل المرونة المبنية على MIMO وبدائيات أخرى للطبقة الفيزيائية [85,86,87] تعد بمكاسب مستقبلية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">الخاتمة</h2>
+    <p>غطت هذه المراجعة ثغرات الطبقة الفيزيائية — التنصت والقنوات الخفية والتشويش واستخراج المفاتيح والثقوب الدودية وهجمات الطاقة — وإجراءاتها المضادة، ووجدت أن ضروب حجب الخدمة ودفاعاتها هي المجال الأنضج [12,13,24,70]. ويبرز توليد المفاتيح اللاسلكي وRFFI كحلين خفيفين مناسبين لعُقد LoRaWAN المقيدة [17,19,21].</p>
+    <p>ويدعو المؤلفون إلى التحقق التجريبي واسع النطاق وواجهات مرسل-مستقبل مفتوحة واستكشاف MIMO وبدائيات أخرى للطبقة الفيزيائية لرفع الجاهزية التقنية لأمن هذه الطبقة في LoRaWAN.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>LoRaWAN is among the most popular long-range wireless protocols for low-power IoT applications, so attention increasingly turns to its security [1,2,3]. Physical-layer topics matter in particular because LoRaWAN nodes are often constrained in computing power and communication resources: wireless-attack detection improves the integrity and robustness of access, while physical-layer techniques can enhance key refreshment and device authentication.</p>
+    <p>This work comprehensively reviews vulnerabilities, countermeasures and security-enhancing features of the LoRaWAN physical layer, then discusses their impact on LoRaWAN security and identifies research gaps and promising future directions. Denial-of-service attacks and their countermeasures — flavors of jamming and wormhole attacks — have received the most attention [12,13,24].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Introduction and Motivation</h2>
+    <p>Within six years of its first specification (v1.0, 2015), LoRaWAN grew into a strong contender among low-power wide-area network (LPWAN) technologies, carrying connectivity for agriculture, logistics, smart lighting and waste management [1,2,3,5,6]. The popularity and availability of the underlying LoRa modulation further seeded research such as battery-free backscatter networking [1].</p>
+    <p>A major development goal of LoRaWAN is lifting frontend security to the level of its backend security: shortly after the v1.0 specification, analysts exposed protocol- and device-level attack vectors [7,8,9,10,11,12,13,24]. This review therefore focuses on the physical layer, where constrained nodes need lightweight protections most.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Related Work and Novelty</h2>
+    <p>Physical-layer security is well studied for WiFi, ZigBee and Bluetooth, mainly in two flavors — key generation exploiting unique reciprocal channel characteristics, and device authentication [25]. Prior LoRaWAN surveys [9,28,29,30,31,32,33] touch vulnerabilities and countermeasures across layers, but their physical-layer coverage is partial.</p>
+    <p>The novelty of this paper is a dedicated physical-layer treatment: it tabulates the surveyed works [9,34,35,36,37,38] by their physical-layer security content and then systematically covers vulnerabilities, countermeasures and security-enhancing features found nowhere together in earlier reviews.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">LoRaWAN Essentials</h2>
+    <p>A LoRaWAN network follows a star-of-stars topology: end nodes reach a central network server and application server through multiple gateways, with a join server added in v1.1 [6]. The MAC layer defines three operation classes — low-power Class A, lower-latency Class B and high-availability Class C — with Class A using pure ALOHA-like access [6]. Signaling uses the proprietary LoRa chirp-spread-spectrum (CSS) modulation whose frequency increases linearly, prized for robustness against noise and interference [39].</p>
+    <p>Each LoRaWAN payload sits in a physical-layer packet with preamble, header and CRC for synchronization, demodulation parameters and error checking. The adaptive-data-rate (ADR) mechanism optimizes transmit power, airtime and data rates from collected link statistics, extending battery lifetime and throughput [40]. Device activation (OTAA) differs between v1.0 — AppEUI/DevEUI/AppKey and DevNonce-based join — and v1.1, which adds a join server, the JoinEUI/NwkKey pair and further session keys; the preprogrammed AppKey (and NwkKey) then anchor authentication, encryption and integrity via the derived session keys.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Vulnerabilities of the Physical Layer</h2>
+    <p>Eavesdropping (sniffing) is the most trivial wireless attack; for long-range LoRaWAN fewer receivers suffice to cover an area, and demonstrated sniffers reconstruct traffic with commodity radios [24,41,42,43,52]. Covert channels modulate unintended media — e.g., LED intensity — to exfiltrate secrets such as keys from victim devices [45,53,54,55]. Intentional jamming, the classic military DoS with civilian variants (continuous, reactive, selective), has been demonstrated against LoRaWAN despite its CSS robustness [12,24,56,57].</p>
+    <p>Key-extraction attacks threaten the confidentiality of the AppKey, which reference LoRaMAC implementations handle insecurely [37,61,62]. Wormhole attacks reroute packets over out-of-band links to manipulate routing and replay timing, with LoRaWAN-specific variants demonstrated [12,13,63]. Energy-depletion attacks maximize Class-A transmission and reception costs to drain batteries, a potent DoS against battery-powered nodes [11]. A summary table maps each attack category to affected security properties [37,41,42,43,44,45,46,47,48,49,50,51].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Protection Techniques</h2>
+    <p>Replay-attack detection targets the OTAA/timestamping vector, e.g., gateway-side timestamp validation against delayed replays [64]. Wireless key generation fills the missing root-key-update gap: reciprocal-channel quantization with reconciliation lets constrained nodes agree fresh keys with little computation and communication overhead [19,21,65,66,67,68,77]. Jamming resilience exploits CSS processing gain plus detection-and DeiAQ/evasion strategies such as channel hopping and redundant gateways [24,46,70,71].</p>
+    <p>Radio-frequency fingerprint identification (RFFI) authenticates devices biometrically from analog-frontend manufacturing variations — a natural fit for low-cost LoRa frontends [14,17,73,80]. A case study with twenty commercial LoPy4 transmitters and a USRP N210 software-defined radio at 868.1 MHz, spreading factor 7 and 125 kHz bandwidth demonstrates practical LoRa-RFFI operation [17]. A countermeasure table mirrors the vulnerability table for easy pairing [14,16,17,18,19,21,22,23,24,64,65,66,67,68,69,70,71,72,73,74,75].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Discussion: Impact and Research Potential</h2>
+    <p>DoS flavors dominate attention because LoRa chirp packets span milliseconds to seconds of airtime, giving jammers and wormholes a slow, exploitable target — yet the same slowness aids detection [12,70]. Confidentiality and integrity rest almost entirely on AppKey/NwkKey custody, while standard deployments offer few physical protections, inviting extraction attacks [81].</p>
+    <p>Research potential remains wide: Semtech SX127x/SX1300-family internals are partly undisclosed, hindering advanced physical-layer work [82]; most experiments use single-gateway setups of 1–10 nodes, far from large-scale validation; and untouched topics such as MIMO-based resilience and further physical-layer primitives [85,86,87] promise future gains.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Conclusions</h2>
+    <p>This review covered physical-layer vulnerabilities — sniffing, covert channels, jamming, key extraction, wormholes, energy attacks — and their countermeasures, finding DoS flavors and defenses the most mature area [12,13,24,70]. Wireless key generation and RFFI stand out as lightweight fits for constrained LoRaWAN nodes [17,19,21].</p>
+    <p>The authors call for large-scale experimental validation, open transceiver interfaces, and exploration of MIMO and other physical-layer primitives to raise the technical readiness of LoRaWAN physical-layer security.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed reference list: only works cited in this viewer are shown, with their original numbering. See the full reference list in the original paper.</p>
+    <ol dir="ltr">
+      <li>[1] Peng, Y.; Shangguan, L.; Hu, Y.; Qian, Y.; Lin, X.; Chen, X.; Fang, D.; Jamieson, K. PLoRa: A Passive Long-Range Data Network from Ambient LoRa Transmissions. In Proceedings of the 2018 Conference of the ACM Special Interest Group on Data Communication, SIGCOMM ’18, Budapest, Hungary, 20–25 August 2018; Association for Computing Machinery: New York, NY, USA, 2018; p. 147–160. https://doi.org/10.1145/3230543.3230567.</li>
+      <li>[2] Chirpstack. Available online: https://www.chirpstack.io/ (accessed on 10 November 2021).</li>
+      <li>[3] Wang, X.; Kong, L.; He, L.; Chen, G. mLoRa: A Multi-Packet Reception Protocol in LoRa networks. In Proceedings of the 2019 IEEE 27th International Conference on Network Protocols (ICNP), Chicago, IL, USA, 8–10 October 2019; pp. 1–11. https://doi.org/10.1109/ICNP .2019.8888038.</li>
+      <li>[5] Oniga, B.; Dadarlat, V .; De Poorter, E.; Munteanu, A. A secure LoRaWAN sensor network architecture. In Proceedings of the 2017 IEEE SENSORS, Glasgow, UK, 29 October–1 November 2017; pp. 1–3. https://doi.org/10.1109/ICSENS.2017.8233990.</li>
+      <li>[6] LoRa Alliance. LoRaWAN Speciﬁcation 1.1; LoRa Alliance: Fremont, CA, USA, 2017.</li>
+      <li>[7] Lee, J.; Hwang, D.; Park, J.; Kim, K.H. Risk analysis and countermeasure for bit-ﬂipping attack in LoRaWAN. In Proceedings of the 2017 International Conference on Information Networking (ICOIN), Da Nang, Vietnam, 11–13 January 2017; pp. 549–551. https://doi.org/10.1109/ICOIN.2017.7899554.</li>
+      <li>[8] Dönmez, T.C.; Nigussie, E. Security of LoRaWAN v1.1 in Backward Compatibility Scenarios. Procedia Comput. Sci. 2018, 134, 51–58. https://doi.org/https://doi.org/10.1016/j.procs.2018.07.143.</li>
+      <li>[9] Noura, H.; Hatoum, T.; Salman, O.; Yaacoub, J.P .; Chehab, A. LoRaWAN security survey: Issues, threats and possible mitigation techniques. Internet Things 2020, 12, 100303. https://doi.org/https://doi.org/10.1016/j.iot.2020.100303.</li>
+      <li>[10] Brownﬁeld, M.; Gupta, Y.; Davis, N. Wireless sensor network denial of sleep attack. In Proceedings of the Sixth Annual IEEE SMC Information Assurance Workshop, West Point, NY, USA, 15–17 June 2005; pp. 356–364. https://doi.org/10.1109/IAW.2005.1495974.</li>
+      <li>[11] Mikhaylov, K.; Fujdiak, R.; Pouttu, A.; Miroslav, V .; Malina, L.; Mlynek, P . Energy Attack in LoRaWAN: Experimental Validation. In Proceedings of the 14th International Conference on Availability, Reliability and Security, ARES ’19, Canterbury, UK,26–29 August 2019; Association for Computing Machinery: New York, NY, USA, 2019. https://doi.org/10.1145/3339252.3340525.</li>
+      <li>[12] Aras, E.; Small, N.; Ramachandran, G.S.; Delbruel, S.; Joosen, W.; Hughes, D. Selective jamming of LoRaWAN using commodity hardware. In Proceedings of the 14th EAI International Conference on Mobile and Ubiquitous Systems: Computing, Networking and Services, Melbourne, Australia, 7–10 November 2017; pp. 363–372.</li>
+      <li>[13] Hessel, F.; Almon, L.; Álvarez, F. ChirpOTLE: A Framework for Practical LoRaWAN Security Evaluation. In Proceedings of the 13th ACM Conference on Security and Privacy in Wireless and Mobile Networks, WiSec ’20, Linz, Austria, 8–10 July 2020; Association for Computing Machinery: New York, NY, USA, 2020; pp. 306–316. https://doi.org/10.1145/3395351.3399423.</li>
+      <li>[14] Robyns, P .; Marin, E.; Lamotte, W.; Quax, P .; Singelée, D.; Preneel, B. Physical-layer ﬁngerprinting of LoRa devices using supervised and zero-shot learning. In Proceedings of the ACM Conference Security Privacy Wireless Mobile Networks (WiSec), Boston, MA, USA, 18–20 July 2017; pp. 58–63.</li>
+      <li>[16] Shen, G.; Zhang, J.; Marshall, A.; Peng, L.; Wang, X. Radio Frequency Fingerprint Identiﬁcation for LoRa Using Deep Learning. IEEE J. Sel. Areas Commun. 2021, 39, 2604–2616.</li>
+      <li>[17] Shen, G.; Zhang, J.; Marshall, A.; Cavallaro, J. Towards Scalable and Channel-Robust Radio Frequency Fingerprint Identiﬁcation for LoRa. IEEE Trans. Inf. Forensics Secur. 2022, 17, 774–787.</li>
+      <li>[18] Al-Shawabka, A.; Pietraski, P .; B Pattar, S.; Restuccia, F.; Melodia, T. DeepLoRa: Fingerprinting LoRa Devices at Scale Through Deep Learning and Data Augmentation. In Proceedings of the Twenty-second International Symposium on Theory, Algorithmic Foundations, and Protocol Design for Mobile Networks and Mobile Computing, MobiHoc ’21, Shanghai, China, 26–29 July 2021.</li>
+      <li>[19] Zhang, J.; Marshall, A.; Hanzo, L. Channel-Envelope Differencing Eliminates Secret Key Correlation: LoRa-Based Key Generation in Low Power Wide Area Networks. IEEE Trans. Veh. Technol. 2018, 67, 12462–12466. https://doi.org/10.1109/TVT.2018.2877201.</li>
+      <li>[21] Ruotsalainen, H.; Zhang, J.; Grebeniuk, S. Experimental Investigation on Wireless Key Generation for Low-Power Wide-Area Networks. IEEE Internet Things J. 2020, 7, 1745–1755. https://doi.org/10.1109/JIOT.2019.2946919.</li>
+      <li>[22] Martinez Bolivar, I.M. Jamming on LoRaWAN Networks: From Modelling to Detection. Ph.D. Thesis, Institut National des Sciences Appliquées de Rennes, Rennes, France, 2021.</li>
+      <li>[23] Danish, S.M.; Nasir, A.; Qureshi, H.K.; Ashfaq, A.B.; Mumtaz, S.; Rodriguez, J. Network Intrusion Detection System for Jamming Attack in LoRaWAN Join Procedure. In Proceedings of the 2018 IEEE International Conference on Communications (ICC), Kansas City, MO, USA, 20–24 May 2018; pp. 1–6. https://doi.org/10.1109/ICC.2018.8422721.</li>
+      <li>[24] Hou, N.; Xia, X.; Zheng, Y. Jamming of LoRa PHY and Countermeasure. In Proceedings of the IEEE INFOCOM 2021—IEEE Confer- ence on Computer Communications, Vancouver, BC, Canada, 10–13 May 2021; pp. 1–10. https://doi.org/10.1109/INFOCOM42981.2021.9488774.</li>
+      <li>[25] Zhang, J.; Rajendran, S.; Sun, Z.; Woods, R.; Hanzo, L. Physical layer security for the Internet of Things: Authentication and key generation. IEEE Wirel. Commun. 2019, 26, 92–98.</li>
+      <li>[28] Ali, S.T.; Sivaraman, V .; Ostry, D. Eliminating reconciliation cost in secret key generation for body-worn health monitoring devices. IEEE Trans. Mob. Comput. 2013, 13, 2763–2776.</li>
+      <li>[29] Premnath, S.N.; Gowda, P .L.; Kasera, S.K.; Patwari, N.; Ricci, R. Secret key extraction using Bluetooth wireless signal strength measurements. In Proceedings of the 2014 Eleventh Annual IEEE International Conference on Sensing, Communication, and Networking (SECON), Singapore, 30 June–3 July 2014; pp. 293–301.</li>
+      <li>[30] Xu, Q.; Zheng, R.; Saad, W.; Han, Z. Device ﬁngerprinting in wireless networks: Challenges and opportunities. IEEE Commun. Surv. Tutor. 2016, 18, 94–104.</li>
+      <li>[31] Vo-Huu, T.D.; Vo-Huu, T.D.; Noubir, G. Fingerprinting Wi-Fi devices using software deﬁned radios. In Proceedings of the 9th ACM Conference on Security &amp; Privacy in Wireless and Mobile Networks, Darmstadt, Germany, 18–20 July 2016; pp. 3–14.</li>
+      <li>[32] Peng, L.; Hu, A.; Zhang, J.; Jiang, Y.; Yu, J.; Yan, Y. Design of a hybrid RF ﬁngerprint extraction and device classiﬁcation scheme. IEEE Internet Things J. 2018, 6, 349–360.</li>
+      <li>[33] Helluy-Lafont, É.; Boé, A.; Grimaud, G.; Hauspie, M. Bluetooth devices ﬁngerprinting using low cost SDR. In Proceedings of the 2020 Fifth International Conference on Fog and Mobile Edge Computing (FMEC), Paris, France, 20–23 April 2020; pp. 289–294.</li>
+      <li>[34] Kuntke, F.; Romanenko, V .; Linsner, S.; Steinbrink, E.; Reuter, C. LoRaWAN security issues and mitigation options by the example of agricultural IoT scenarios. Trans. Emerg. Telecommun. Technol. 2022, https://doi.org/https://doi.org/10.1002/ett.4452.</li>
+      <li>[35] Philip, S.J.; McQuillan, J.M.; Adegbite, O. LoRaWAN v1.1 Security: Are We in the Clear Yet? In Proceedings of the 2020 IEEE 6th International Conference on Dependability in Sensor, Cloud and Big Data Systems and Application (DependSys), Nadi, Fiji, 14–16 December 2020; pp. 112–118. https://doi.org/10.1109/DependSys51298.2020.00025.</li>
+      <li>[36] Adefemi Alimi, K.O.; Ouahada, K.; Abu-Mahfouz, A.M.; Rimer, S. A Survey on the Security of Low Power Wide Area Networks: Threats, Challenges, and Potential Solutions.</li>
+      <li>[37] Butun, I.; Pereira, N.; Gidlund, M. Security Risk Analysis of LoRaWAN and Future Directions. https://doi.org/10.3390/ﬁ11010003.</li>
+      <li>[38] Naidu, D.; Ray, N.K. Review on Authentication Schemes for Device Security in LoRaWAN. In Proceedings of the 2021 19th OITS International Conference on Information Technology (OCIT), Bhubaneswar, India, 16–18 December 2021; pp. 387–392. https://doi.org/10.1109/OCIT53463.2021.00082.</li>
+      <li>[39] What are LoRa and LoRaWAN. Available online: https://lora-developers.semtech.com/library/tech-papers-and-guides/lora- and-lorawan/ (accessed on 10 November 2021).</li>
+      <li>[40] Li, S.; Raza, U.; Khan, A. How Agile is the Adaptive Data Rate Mechanism of LoRaWAN? In Proceedings of the 2018 IEEE Global Communications Conference (GLOBECOM), Abu Dhabi, United Arab Emirates, 9–13 December 2018; pp. 206–212. https://doi.org/10.1109/GLOCOM.2018.8647469.</li>
+      <li>[41] Knight, M.; Seeber, B. Decoding LoRa: Realizing a Modern LPWAN with SDR. In Proceedings of the GNU Radio Conference, Boulder, CO, USA, 12–16 September 2016; Volume 1.</li>
+      <li>[42] Claverie, T.; Esteves, J.L. A LoRaWAN Security Assessment Test Bench. In Proceedings of the GNU Radio Conference, Besançon, France, 17–18 June 2021; Volume 2.</li>
+      <li>[43] Pospisil, O.; Fujdiak, R.; Mikhaylov, K.; Ruotsalainen, H.; Misurec, J. Testbed for LoRaWAN Security: Design and Validation through Man-in-the-Middle Attacks Study.</li>
+      <li>[44] Monjur, M.M.R.; Heacock, J.; Sun, R.; Yu, Q. An Attack Analysis Framework for LoRaWAN applied Advanced Manufacturing. In Proceedings of the 2021 IEEE International Symposium on Technologies for Homeland Security (HST), Boston, MA, USA, 8–9 November 2021; pp. 1–7. https://doi.org/10.1109/HST53381.2021.9619847.</li>
+      <li>[45] Hou, N.; Zheng, Y. CloakLoRa: A Covert Channel over LoRa PHY. In Proceedings of the 2020 IEEE 28th International Conference on Network Protocols (ICNP), Madrid, Spain, 13–16 October 2020; pp. 1–11. https://doi.org/10.1109/ICNP49622.2020.9259364.</li>
+      <li>[46] Huang, C.Y.; Lin, C.W.; Cheng, R.G.; Yang, S.J.; Sheu, S.T. Experimental Evaluation of Jamming Threat in LoRaWAN. In Proceedings of the 2019 IEEE 89th Vehicular Technology Conference (VTC2019-Spring), Kuala Lumpur, Malaysia, 28 April–1 May 2019; pp. 1–6. https://doi.org/10.1109/VTCSpring.2019.8746374.</li>
+      <li>[47] Martinez, I.; Tanguy, P .; Nouvel, F. On the performance evaluation of LoRaWAN under Jamming. In Proceedings of the 2019 12th IFIP Wireless and Mobile Networking Conference (WMNC), Paris, France, 11–13 September 2019; pp. 141–145. https://doi.org/10.23919/WMNC.2019.8881830.</li>
+      <li>[48] Danish, S.M.; Qureshi, H.K.; Jangsher, S. Jamming Attack Analysis of Wireless Power Transfer on LoRaWAN Join Procedure. In Proceedings of the 2018 IEEE Globecom Workshops (GC Wkshps), Abu Dhabi, United Arab Emirates, 9–13 December 2018; pp. 1–6. https://doi.org/10.1109/GLOCOMW.2018.8644280.</li>
+      <li>[49] Tomasin, S.; Zulian, S.; Vangelista, L. Security Analysis of LoRaWAN Join Procedure for Internet of Things Networks. In Proceedings of the 2017 IEEE Wireless Communications and Networking Conference Workshops (WCNCW), San Francisco, CA, USA, 19–22 March 2017; pp. 1–6. https://doi.org/10.1109/WCNCW.2017.7919091.</li>
+      <li>[50] Fukushima, K.; Marion, D.; Nakano, Y.; Facon, A.; Kiyomoto, S.; Guilley, S. Experiment on Side-Channel Key-Recovery using a Real LPWA End-device. In Proceedings of the 5th International Conference on Information Systems Security and Privacy—ICISSP , Prague, Czech Republic, 23–25 February 2019; pp. 67–74. https://doi.org/10.5220/0007259500670074.</li>
+      <li>[51] Xu, J.; Tang, Y.; Wang, Y.; Wang, X. A Practical Side-Channel Attack of a LoRaWAN Module Using Deep Learning. In Proceedings of the 2019 IEEE 13th International Conference on Anti-counterfeiting, Security, and Identiﬁcation (ASID), Xiamen, China, 25–27 October 2019; pp. 17–21. https://doi.org/10.1109/ICASID.2019.8925203.</li>
+      <li>[52] Petajajarvi, J.; Mikhaylov, K.; Roivainen, A.; Hanninen, T.; Pettissalo, M. On the coverage of LPWANs: range evaluation and chan- nel attenuation model for LoRa technology. In Proceedings of the 2015 14th International Conference on ITS Telecommunications (ITST), Copenhagen, Denmark, 2–4 December 2015; pp. 55–59. https://doi.org/10.1109/ITST.2015.7377400.</li>
+      <li>[53] GNU Radio LoRa Receiver. Available online: https://github.com/rpp0/gr-lora (accessed on 10 November 2021).</li>
+      <li>[54] Lampson, B. A Note on the Conﬁnement Problem. Commun. ACM 1973, 16, 613–615. https://doi.org/10.1145/362375.362389.</li>
+      <li>[55] Matyunin, N.; Szefer, J.; Biedermann, S.; Katzenbeisser, S. Covert channels using mobile device’s magnetic ﬁeld sensors. In Proceedings of the 2016 21st Asia and South Paciﬁc Design Automation Conference (ASP-DAC), Macao, China, 25–28 January 2016; pp. 525–532. https://doi.org/10.1109/ASPDAC.2016.7428065.</li>
+      <li>[56] Vadlamani, S.; Eksioglu, B.; Medal, H.; Nandi, A. Jamming attacks on wireless networks: A taxonomic survey. Int. J. Prod. Econ. 2016, 172, 76–94. https://doi.org/https://doi.org/10.1016/j.ijpe.2015.11.008.</li>
+      <li>[57] Rahmadhani, A.; Kuipers, F. When LoRaWAN Frames Collide. In Proceedings of the 12th International Workshop on Wireless Network Testbeds, Experimental Evaluation &amp; Characterization, WiNTECH ’18, New Delhi, India, 2 November 2018; Association for Computing Machinery: New York, NY, USA, 2018; pp. 89–97. https://doi.org/10.1145/3267204.3267212.</li>
+      <li>[61] Semtech LoRaMAC Reference Implementation. Available online: https://github.com/Lora-net/LoRaMac-node (accessed on 10 November 2021).</li>
+      <li>[62] Brier, E.; Clavier, C.; Olivier, F. Correlation Power Analysis with a Leakage Model. In Proceedings of the Cryptographic Hardware and Embedded Systems—CHES 2004, Cambridge, MA, USA, 11–13 August 2004; Joye, M., Quisquater, J.J., Eds.; Springer: Berlin/Heidelberg, Germany, 2004; pp. 16–29.</li>
+      <li>[63] Hu, Y.C.; Perrig, A.; Johnson, D. Wormhole attacks in wireless networks. IEEE J. Sel. Areas Commun. 2006, 24, 370–380. https://doi.org/10.1109/JSAC.2005.861394.</li>
+      <li>[64] Gu, C.; Jiang, L.; Tan, R.; Li, M.; Huang, J. Attack-Aware Synchronization-Free Data Timestamping in LoRaWAN.ACM Trans. Sen. Netw. 2021, 18, 1–31. https://doi.org/10.1145/3474368.</li>
+      <li>[65] Ruotsalainen, H.; Grebeniuk, S. Towards Wireless Secret Key Agreement with LoRa Physical Layer. In Proceedings of the 13th International Conference on Availability, Reliability and Security, ARES 2018, Hamburg, Germany, 27–30 August 2018; Association for Computing Machinery: New York, NY, USA, 2018; https://doi.org/10.1145/3230833.3232803.</li>
+      <li>[66] Junejo, A.K.; Benkhelifa, F.; Wong, B.; McCann, J.A. LoRa-LiSK: A Lightweight Shared Secret Key Generation Scheme for LoRa Networks. IEEE Internet Things J. 2021, 9, 4110–4124. https://doi.org/10.1109/JIOT.2021.3103009.</li>
+      <li>[67] Andreas, W.; de la Fuente, A.G.; Christoph, L.; Michael, K. Physical Layer Security based Key Management for LoRaWAN. arXiv 2021, arXiv:cs.CR/2101.02975.</li>
+      <li>[68] da Cruz, P .I.; Suyama, R.; Loiola, M.B. Increasing key randomness in physical layer key generation based on RSSI in LoRaWAN devices. Phys. Commun. 2021, 49, 101480. https://doi.org/https://doi.org/10.1016/j.phycom.2021.101480.</li>
+      <li>[69] Demeslay, C.; Gautier, R.; Fiche, A.; Burel, G. Band &amp; Tone Jamming Analysis and Detection on LoRa signals. arXiv 2021, arXiv:eess.SP/2107.07782.</li>
+      <li>[70] Martinez, I.; Nouvel, F.; Lahoud, S.; Tanguy, P .; El Helou, M. On the performance evaluation of LoRaWAN with re-transmissions under jamming. In Proceedings of the IEEE Symposium on Computers and Communications (ISCC), Rennes, France, 7–10 July 2020; pp. 1–7.</li>
+      <li>[71] Ahmar, A.U.H.; Aras, E.; Nguyen, T.D.; Michiels, S.; Joosen, W.; Hughes, D. CRAM: Robust Medium Access Con- trol for LPWAN using Cryptographic Frequency Hopping. In Proceedings of the 2020 16th International Confer- ence on Distributed Computing in Sensor Systems (DCOSS), Marina del Rey, CA, USA, 25–27 May 2020; pp. 95–102. https://doi.org/10.1109/DCOSS49796.2020.00026.</li>
+      <li>[72] Ahmar, A.U.H.; Aras, E.; Joosen, W.; Hughes, D. Towards More Scalable and Secure LPWAN Networks Using Crypto- graphic Frequency Hopping. In Proceedings of the 2019 Wireless Days (WD), Manchester, UK, 24–26 April 2019; pp. 1–4. https://doi.org/10.1109/WD.2019.8734249.</li>
+      <li>[73] Jiang, Y.; Peng, L.; Hu, A.; Wang, S.; Huang, Y.; Zhang, L. Physical layer identiﬁcation of LoRa devices using constellation trace ﬁgure. EURASIP J. Wirel. Commun. Netw. 2019, 2019, 1–11.</li>
+      <li>[74] Elmaghbub, A.; Hamdaoui, B. LoRa Device Fingerprinting in the Wild: Disclosing RF Data-Driven Fingerprint Sensitivity to Deployment Variability. IEEE Access 2021, 9, 142893–142909.</li>
+      <li>[75] Das, R.; Gadre, A.; Zhang, S.; Kumar, S.; Moura, J.M. A deep learning approach to IoT authentication. In Proceedings of the IEEE International Conference on Communications (ICC), Kansas City, MO, USA, 20–24 May 2018; pp. 1–6.</li>
+      <li>[77] Maurer, U. Secret key agreement by public discussion from common information. IEEE Trans. Inf. Theory 1993, 39, 733–742. https://doi.org/10.1109/18.256484.</li>
+      <li>[80] Shen, G.; Zhang, J.; Marshall, A.; Valkama, M.; Cavallaro, J. Radio Frequency Fingerprint Identiﬁcation for Security in Low-Cost IoT Devices. In Proceedings of the Asilomar, Paciﬁc Grove, CA, USA, 31 October–3 November 2021.</li>
+      <li>[81] Jeon, Y.; Kang, Y. Implementation of a LoRaWAN protocol processing module on an embedded device using Secure Element. In Proceedings of the 2019 34th International Technical Conference on Circuits/Systems, Computers and Communications (ITC-CSCC), JeJu, Korea, 23–26 June 2019; pp. 1–3. https://doi.org/10.1109/ITC-CSCC.2019.8793333.</li>
+      <li>[82] Semtech SX127x, Low Power Long Range Transceiver. Available online: https://www.semtech.com/products/wireless-rf/lora- transceivers/sx1276 (accessed on 20 March 2022).</li>
+      <li>[85] Mahfoudi, M.; Sivadoss, G.; Bensouda Korachi, O.; Turletti, T.; Dabbous, W. Joint range extension and localization for LPWAN. Internet Technol. Lett. 2019, 2, e120. https://doi.org/10.1002/itl2.120.</li>
+      <li>[86] Zeng, H.; Cao, C.; Li, H.; Yan, Q. Enabling jamming-resistant communications in wireless MIMO networks. In Proceedings of the 2017 IEEE Conference on Communications and Network Security (CNS), Las Vegas, NV , USA, 9–11 October 2017; pp. 1–9. https://doi.org/10.1109/CNS.2017.8228622.</li>
+      <li>[87] Huang, P .; Wang, X. Fast secret key generation in static wireless networks: A virtual channel approach. In Proceedings of the 2013 Proceedings IEEE INFOCOM, Turin, Italy, 14–19 April 2013; pp. 2292–2300. https://doi.org/10.1109/INFCOM.2013.6567033.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s22093127">10.3390/s22093127</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

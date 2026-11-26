@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التوليد المعزز بالاسترجاع لتوليد الأصول المعرفية وخلق محركات الإجراءات — DAR</title>
+<meta name="description" content="Retrieval-Augmented Generation to Generate Knowledge Assets and Creation of Action Drivers — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/rag-assets-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Retrieval-Augmented Generation to Generate Knowledge Assets and Creation of Action Drivers</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التوليد المعزز بالاسترجاع لتوليد الأصول المعرفية وخلق محركات الإجراءات</h2>
+
+  <div class="paper-meta">
+    <span>👤 A. James, M. Trovati, S. Bolton</span>
+    <span>📄 Applied Sciences, 2025, Vol. 15(11), 6247</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app15116247">10.3390/app15116247</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تستكشف هذه المقالة التوليد المعزز بالاسترجاع (RAG) لتعزيز خلق الأصول المعرفية وتطوير رؤى قابلة للتنفيذ من مجموعات بيانات معقدة. وتستعرض بنى RAG الساذجة والمتقدمة، مشددة على الفهرسة المحسنة وتنقية الاستعلام واستغلال البيانات الوصفية ووكلاء الذكاء الاصطناعي المستقلين في أنظمة RAG الوكيل. وتعالج منهجيات المعالجة المسبقة للبيانات والتقطيع الواعي دلاليًا واستراتيجيات الاسترجاع — مثل الاسترجاع متعدد القفزات وإعادة الترتيب — الاسترجاع غير الملائم والتشتت الدلالي، بينما تمكن نماذج التضمين الحديثة البحث الدقيق بالتشابه. وتنشر دراسة حالة خط RAG على مجموعات بيانات متعددة الأوراق، مبرزة تحديات هيكلة البيانات وهندسة الموجهات واتساق المخرجات. ويؤسس RAG النموذج الرائد للاسترجاع-التوليد لـ Lewis وآخرين [4]، ويُقيّم الخط بإطار RAGAS [5].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة والأعمال ذات الصلة</h2>
+    <p>تعاني النماذج اللغوية الكبيرة حدود المعرفة الزمنية وميل الهلوسة — التي توصف بأنها قيد متأصل في النماذج اللغوية الكبيرة. ويدمج RAG استرجاع المعرفة الخارجية لتحسين الدقة الواقعية والملاءمة، مبنيًا على نموذج الاسترجاع-التوليد للمهام الكثيفة المعرفة [4]. وتمتد الأعمال ذات الصلة من النماذج اللغوية للبحث النوعي وتحليل البيانات النوعية بها، إلى معايير تقييم RAG مثل RAGAS [5] ودراسات قياس النماذج في RAG.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. بنى RAG ومراحل خط الأنابيب</h2>
+    <p>تستعرض الدراسة خط الفهرسة-الاسترجاع-التوليد المعياري وتحدياته: فتقسيم البيانات إلى مقاطع يزيل السياق الملائم ويكسر الاتساق، بينما معاملات التقطيع (حجم المقطع والتداخل) شديدة الاعتماد على البيانات. ويضيف RAG المتقدم فهرسة محسنة وتحسين الاستعلام (إعادة الكتابة والتحويل والتوسيع بالمرادفات وترشيح الأعمدة والمطابقة الدلالية) واستغلال البيانات الوصفية (وسوم على مستوى الصف وحواشي على مستوى الورقة وتنظيم هرمي) ومعالجة لاحقة للاسترجاع (استخلاص الإجابة وإعادة الترتيب وضغط السياق).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. تقنيات الاسترجاع وRAG الوكيل</h2>
+    <p>تشمل تقنيات الاسترجاع المسحوبة الاسترجاع السياقي (جلب الصفوف والأعمدة ذات الصلة لا الصف الأعلى فقط)، والاسترجاع متعدد القفزات عبر الأوراق للاستعلامات المعقدة، وإعادة الترتيب بنماذج التشابه أو الرسوم البيانية لتقديم الصفوف الملائمة. ويتجاوز RAG الوكيل سيرورات العمل الثابتة بدمج وكلاء ذكاء اصطناعي يدركون بيئتهم ويقررون ويتصرفون مستقلين [23]: إذ يدور الوكيل عبر التفكير والفعل والملاحظة قبل إنتاج النتيجة النهائية، ممكنًا اتخاذ قرار ديناميكي وتحسين سير العمل متجاوزًا خط RAG التقليدي الثابت.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. دراسة الحالة: بيانات مجلس متعددة الأوراق</h2>
+    <p>تطبق دراسة الحالة الخط على مجموعات بيانات مجلس متعددة الأوراق مع معالجة مسبقة (تنظيف وهيكلة وتقطيع واعٍ دلاليًا) وإثراء بالبيانات الوصفية وهندسة موجهات لمخرجات متسقة. ويستخدم التقييم مكتبة RAGAS [5] بمقاييس تشمل ملاءمة السياق والدقة والاستدعاء وMRR وMAP والإخلاص وملاءمة الإجابة وتشابه BLEU/ROUGE/التضمين، إزاء استعلامات تمثيلية منتقاة بحقيقة أرضية مؤسسة على البيانات لاستدعاء السياق. وتُظهر النتائج أن المعالجة المسبقة والفهرسة المتقدمتين تحسنان الاتساق الواقعي والملاءمة فوق المناهج الساذجة — خاصة على مجموعات البيانات الكبيرة غير المتجانسة حيث تعاني المناهج الساذجة من التشتت — مع كشف قيود في الاستدعاء والإخلاص على البيانات الجدولية المعقدة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. التحديات والآفاق والخاتمة</h2>
+    <p>تظل فعالية RAG شديدة الاعتماد على هيكلة البيانات المتينة: فالتناقضات أو التكرارات في بيانات المصدر تنتشر عبر الخط، والموجهات الفعالة تتطلب خبرة المجال وفهمًا دقيقًا لسلوك النموذج. وتبشر أنظمة RAG الوكيل — وكلاء مستقلون للاستدلال التكراري والاسترجاع الواعي بالسياق — بتركيب أكثر تكيفًا، لكن التحقق المنهجي وتصميم الخط الدقيق يظلان أساسيين. ويستهدف العمل المستقبلي معرفة النماذج الخاصة بالمجال مع تخفيف المعلومات الخاطئة والقديمة، نحو تطبيقات ذكية تدفع الابتكار واتخاذ القرار وتجربة العملاء والموظفين — مموضعًا مخرجات RAG الدقيقة الملائمة سياقيًا الآنية كممكن رئيسي للميزة التنافسية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>This article explores Retrieval-Augmented Generation (RAG) to enhance knowledge-asset creation and develop actionable insights from complex datasets. It reviews naïve and advanced RAG architectures, emphasizing optimized indexing, query refinement, metadata utilization, and autonomous AI agents in agentic RAG systems. Methodologies for data preprocessing, semantic-aware chunking, and retrieval strategies — such as multihop retrieval and reranking — address irrelevant retrieval and semantic fragmentation, while state-of-the-art embedding models enable precise similarity search. A case study deploys a RAG pipeline over multisheet datasets, highlighting challenges in data structuring, prompt engineering, and output consistency. RAG grounds the pioneering retrieval–generation paradigm of Lewis et al. [4], and the pipeline is evaluated with the RAGAS framework [5].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction and Related Work</h2>
+    <p>LLMs suffer knowledge cut-offs and hallucination tendencies — hallucination being described as an innate limitation of large language models. RAG integrates external knowledge retrieval to improve factual accuracy and relevance, building on the retrieval–generation paradigm for knowledge-intensive tasks [4]. Related work spans LLMs for qualitative research, qualitative data analysis with LLMs, and RAG evaluation benchmarks such as RAGAS [5] and benchmarking studies of LLMs in RAG.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. RAG Architectures and Pipeline Stages</h2>
+    <p>The study reviews the canonical indexing–retrieval–generation pipeline and its challenges: splitting data into chunks removes relevant context and breaks coherence, while chunking parameters (chunk size, overlap) are highly data-dependent. Advanced RAG adds optimized indexing, query optimisation (rewriting, transformation, expansion with synonyms, column filtering, semantic matching), metadata utilisation (row-level tags, sheet-level annotation, hierarchical organisation), and post-retrieval processing (answer extraction, reranking, context compression).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Retrieval Techniques and Agentic RAG</h2>
+    <p>Retrieval techniques surveyed include contextual retrieval (fetching related rows and columns, not just the top row), multihop retrieval across sheets for complex queries, and reranking with similarity or graph models to prioritize relevant rows. Agentic RAG transcends static workflows by incorporating AI agents that perceive their environment, decide, and act autonomously [23]: the agent cycles through thought, action, and observation before producing the final result, enabling dynamic decision-making and workflow optimisation beyond conventional RAG's fixed pipeline.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Case Study: Multisheet Council Data</h2>
+    <p>A case study applies the pipeline to multisheet council datasets with preprocessing (cleaning, structuring, semantic-aware chunking), metadata enrichment, and prompt engineering for consistent outputs. Evaluation uses the RAGAS library [5] with metrics including context relevance, precision, recall, MRR, MAP, faithfulness, answer relevance, and BLEU/ROUGE/embedding similarity, against curated representative queries with dataset-grounded ground truth for context recall. Results show advanced preprocessing and indexing improve factual consistency and relevance over naïve approaches — especially on large heterogeneous datasets where naïve methods struggle with fragmentation — while revealing limitations in recall and faithfulness on complex tabular data.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Challenges, Outlook, and Conclusion</h2>
+    <p>RAG effectiveness remains highly dependent on robust data structuring: inconsistencies or redundancies in source data propagate through the pipeline, and effective prompts demand both domain expertise and nuanced understanding of model behavior. Agentic RAG systems — autonomous agents for iterative reasoning and context-aware retrieval — promise more adaptive synthesis, but systematic validation and careful pipeline design remain essential. Future work targets domain-specific LLM knowledge coupled with erroneous and outdated-information mitigation, toward intelligent applications that drive innovation, decision-making, and customer and employee experience — positioning accurate, contextually relevant, timely RAG output as a key enabler of competitive advantage.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Reference list is condensed to the works cited in this viewer; numbers match the original paper. See the original publication for the complete list.</p>
+    <ol dir="ltr">
+      <li>[4] Lewis, P.; Perez, E.; Piktus, A.; Petroni, F.; Karpukhin, V.; Goyal, N.; Küttler, H.; Lewis, M.; Yih, W.T.; Rocktäschel, T.; et al. Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. <em>Adv. Neural Inf. Process. Syst.</em> 2020, 33, 9459–9474.</li>
+      <li>[5] Es, S.; James, J.; Espinosa-Anke, L.; Schockaert, S. RAGAS: Automated Evaluation of Retrieval Augmented Generation. arXiv 2023, arXiv:2309.15217.</li>
+      <li>[23] Singh, A.; Ehtesham, A.; Kumar, S.; Khoei, T.T. Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG. arXiv 2025, arXiv:2501.09136.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app15116247">10.3390/app15116247</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أتمتة العمليات الصناعية عبر التعلم الآلي وOPC-UA: مراجعة أدبيات منهجية — DAR</title>
+<meta name="description" content="Industrial Process Automation Through Machine Learning and OPC-UA: A Systematic Literature Review — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/opcua-ml-electronics/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Industrial Process Automation Through Machine Learning and OPC-UA: A Systematic Literature Review</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">أتمتة العمليات الصناعية عبر التعلم الآلي وOPC-UA: مراجعة أدبيات منهجية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Henry O. Velesaca, Juan A. Holgado-Terriza, Jose M. Gutierrez-Guerrero</span>
+    <span>📄 Electronics, 2025, 14(18), 3749</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics14183749">10.3390/electronics14183749</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تفحص هذه المراجعة دمج التعلم الآلي مع OPC-UA لأتمتة العمليات الصناعية عبر دراسات أولية من 2018 إلى 2024. وتنمو بنى ML–OPC-UA الهجينة باطراد، خاصة للصيانة التنبؤية وضبط الجودة، بدقة مُبلغة تتجاوز 95% غالبًا في البيئات المضبوطة [2، 26].</p>
+    <p>لكن الأدلة على المتانة في النشر الواقعي واسع النطاق تبقى محدودة. وتمتد أنماط التنفيذ من السحابة إلى الحافة مع OPC-UA كبروتوكول اتصال ونموذج معلومات وإطار آلات الحالة المحدودة؛ وترسم المراجعة [20] التطبيقات والتقنيات والمقاييس والطوبولوجيات وتحليل SWOT لإرشاد الباحثين والممارسين.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يحتاج التحول الرقمي الصناعي لأكثر من نقل البيانات: يحتاج تشغيلًا بنيًا دلاليًا آمنًا بين الأجهزة المتغايرة وطبقتي التشغيل وتقنية المعلومات والتوائم الرقمية والأنظمة السيبرانية-الفيزيائية. يجيب OPC-UA ‏[11، 12] كمعيار شامل — إطار اتصال ونموذج معلومات — ويقدم التعلم الآلي التحليلات التي تحوّل تدفقات بياناته إلى تنبؤ وضبط.</p>
+    <p>تغطي مسوحات سابقة التعلم الآلي الصناعي لتحسين العمليات [5–7] والتعلم المعزز مع OPC UA ‏[8]، لكن لا يرسم أي منها خريطة منهجية لتقنيات التعلم الآلي على بنى OPC-UA وطوبولوجياتها وممارسات تقييمها. تملأ هذه المراجعة الفجوة بأسئلة بحثية منقحة تُجاب قسمًا فقسمًا (الجدول 2 في الورقة الأصلية).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. معيار OPC-UA</h2>
+    <p>OPC-UA ‏[11] معيار صناعي مفتوح وعابر للمنصات للاتصال الآمن والموثوق والقابل للتوسع — وهو أكثر من بروتوكول: إطار كامل يحدد الاتصال ونمذجة المعلومات والخدمات والأمن والتشغيل البيني. وعلى خلاف OPC Classic يتخلى عن تبعيات COM/DCOM لبنية خدمية التوجه فوق TCP وHTTP وMQTT، متوسعًا من الحساسات البسيطة إلى البنى المعقدة [12].</p>
+    <p>ويوحّد جوهره نموذج معلومات لفضاء العنونة — عقد (كائنات ومتغيرات وطرق) وعلاقات منظمة هرميًا [14–16] مع ربط [17] وآلات حالة [18] — وإطارًا أمنيًا متينًا من التشفير والمصادقة والتحكم بالوصول [13]. ويجعل هذا المزيج OPC-UA مفتاح الصناعة 4.0: تكامل التشغيل وتقنية المعلومات والتوائم الرقمية والتحليلات التنبؤية وخطوط التعلم الآلي التي تحتاج تجريدًا دلاليًا متسقًا للبيانات عبر الموردين.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. منهج المراجعة المنهجية</h2>
+    <p>يتبع البروتوكول إرشادات Kitchenham ‏[20] مع ممارسة المراجعة المهيكلة في علوم الحاسوب [21]، منقّبًا في خمسة مصادر معلومات أولية. وترتفع الدراسات من 6 في 2017 إلى 18 في 2018، وتبلغ ذروة 48 في 2023 ثم تتراجع لنحو 40 في 2024 — نمو مستدام يستقر الآن. وتحمل المجلات الحصة الأكبر (43.4%) تليها المؤتمرات (39.8%) ثم المسوحات وفصول الكتب والأوراق القصيرة.</p>
+    <p>ويُربط كل سؤال بحثي بأقسام وجداول وأشكال مخصصة (الجدول 2): التطبيقات (س1) والطوبولوجيات (س2) والتقنيات والتصنيف (س3/س5) والمقاييس (س4) وSWOT ‏(س6) — بنية تنقل [20] تُبقي قاعدة الأدلة الواسعة قابلة للتتبع.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. النتائج: التطبيقات والتقنيات والطوبولوجيات</h2>
+    <p>تتركز التطبيقات على الصيانة التنبؤية وضبط الجودة وكشف الشذوذ — من فحص أغطية الصفيح بمقارنة المناهج الموجهة وغير الموجهة [2] وتوائم جودة قوالب الحقن [26]، إلى أتمتة التجميع [27] والتوائم التنبؤية لمزارع الرياح البحرية [32] والروبوتات مع ROS ‏[30] وبنى البيانات الضخمة الصناعية [33]. وتوسّع الرؤية الآلية على متحكمات CODESYS ‏[23] والتعلم الفدرالي عند الحافة [24] الحدود.</p>
+    <p>وتغطي التقنيات CNN والغابات العشوائية والتعزيز التدرجي وSVM وProphet وXGBoost، بينما تتوزع الطوبولوجيات عبر طبقات السحابة والضباب والحافة مع أجزاء OPC-UA ‏3–5 [14–16] المهيكلة لنموذج المعلومات [24، 35، 55، 59، 70، 71]. وتوفر نشرات السحابة العمق التحليلي؛ وتخفض نشرات الحافة الزمن لحلقات التحكم؛ وتُبقي التصاميم الفدرالية بيانات التدريب محلية [38، 40، 45].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. تحليل SWOT</h2>
+    <p>نقاط القوة: تشغيل بيني قوي مع اتصال معياري آمن عبر الأنظمة المتغايرة؛ وبنية خدمية التوجه ونمذجة معلومات مرنة لدمج التعلم الآلي؛ ونشر قابل للتوسع من السحابة إلى الحافة؛ وإطار أمني متين وتبادل شبه لحظي [11–14]. والفرص: معايير مفتوحة وتحقق تجريبي؛ وتحليلات فدرالية حافظة للخصوصية؛ وريادة أطر الأمن السيبراني المتقدمة؛ وذكاء اصطناعي قابل للتفسير للتطبيقات الحرجة.</p>
+    <p>نقاط الضعف: غياب أطر تقييم معيارية أو بيانات مفتوحة لحلول ML–OPC-UA؛ ومتطلبات حوسبة عالية على الأجهزة المقيدة؛ واحتكاك البروتوكولات القديمة والتشتت؛ ونُدرة الأدلة الواقعية واسعة النطاق. والتهديدات: الاحتياجات الثقيلة للموارد (كوحدات GPU)؛ ومقاومة التغيير في المصانع التقليدية؛ والتقادم السريع؛ وغياب المعايير الواقعية المبطئة لتبني الصناعة [86].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الاتجاهات المستقبلية</h2>
+    <p>تتصدر أولويتان: التعلم الفدرالي المتمحور حول الحافة المتسامح مع تباين البيانات الواقعية عبر تنسيق مؤمَّن بـOPC-UA ‏[24، 79، 80]، والذكاء الاصطناعي القابل للتفسير برقابة بشرية مدمجة في أنظمة إنذار OPC-UA ‏[81]. والسلامة أولًا — الاختبار في وضع الظل قبل التحكم الحي والتحقق بالأجهزة في الحلقة [82، 83] وآلات حالة OPC-UA المانعة للأفعال الخطرة والتكيف من الاصطناعي إلى الواقعي [84، 85] والبيانات وخطوط الأنابيب والمقاييس المشتركة [86].</p>
+    <p>ويجب أن يستوعب التعلم الآلي المؤتمت القيود الصناعية — الدقة مقابل الذاكرة والحوسبة والزمن والطاقة — مع تتبع نموذج معلومات OPC-UA للبيانات والسمات والنماذج عبر دورة حياتها [79، 86، 87]. ويتمثل أفق آخر في إقران النماذج اللغوية الكبيرة ببروتوكولات تنسيق سير العمل مثل MCP لصنع القرار متعدد الخطوات والتكيف الديناميكي للمهام [88، 89].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. الخاتمة</h2>
+    <p>يتوطد دمج التعلم الآلي مع OPC-UA كاستراتيجية مفتاحية للأتمتة الصناعية الذكية: ركيزة اتصال ونمذجة معيارية آمنة تلاقي صندوق أدوات تحليلية ناضجة، مثبتة عبر الصيانة والجودة وكشف الشذوذ [2، 26، 33] بدقة مخبرية تتجاوز 95% في المعتاد.</p>
+    <p>والفجوة الحاسمة هي التحقق التجريبي في النشر الواقعي واسع النطاق — بيانات مفتوحة وخطوط معيارية ومقاييس مشتركة وتصاميم فدرالية قابلة للتفسير قادرة على الحافة. وسدها [86، 88] سيقرر ما إذا بقي ذكاء OPC-UA نجاحًا مخبريًا أم أصبح واقع أرض المصنع.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>This review examines machine-learning integration with OPC-UA for industrial process automation across primary studies from 2018 to 2024. Hybrid ML–OPC-UA architectures grow markedly, especially for predictive maintenance and quality control, with reported accuracies often above 95% in controlled environments [2, 26].</p>
+    <p>Yet evidence on robustness in real-world, large-scale deployments remains limited. Implementation patterns span cloud to edge with OPC-UA as communication protocol, information model, and finite-state-machine framework; the review maps [20] applications, techniques, metrics, topologies, and a SWOT analysis to guide researchers and practitioners.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Industrial digital transformation needs more than data transport: it needs semantic, secure interoperability between heterogeneous devices, IT/OT layers, digital twins, and cyber-physical systems. OPC-UA [11, 12] answers as a comprehensive standard — communication framework plus information model — and machine learning supplies the analytics that turn its data flows into prediction and control.</p>
+    <p>Prior surveys cover industrial ML for process optimization [5–7] and reinforcement learning with OPC UA [8], but none systematically maps ML techniques onto OPC-UA architectures, topologies, and evaluation practice. This review fills that gap with revised research questions answered section by section (Table 2 of the original paper).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. OPC-UA Standard</h2>
+    <p>OPC-UA [11] is an open, cross-platform industry standard for secure, reliable, scalable communication — more than a protocol: a full framework defining communication, information modeling, services, security, and interoperability. Unlike OPC Classic, it drops COM/DCOM dependencies for a service-oriented architecture over TCP, HTTP, and MQTT, scaling from simple sensors to complex infrastructures [12].</p>
+    <p>Its core unifies an address-space information model — nodes (objects, variables, methods) and relationships organized hierarchically [14–16], with mappings [17] and state machines [18] — and a robust security framework of encryption, authentication, and access control [13]. This combination makes OPC-UA key to Industry 4.0: IT/OT integration, digital twins, predictive analytics, and ML pipelines that need consistent semantic data abstraction across vendors.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Systematic Review Method</h2>
+    <p>The protocol follows Kitchenham's guidelines [20] with structured computer-science review practice [21], mining five primary information sources. Studies rise from 6 in 2017 to 18 in 2018, peak at 48 in 2023, then ease to about 40 in 2024 — sustained growth now leveling off. Journals carry the largest share (43.4%), followed by conferences (39.8%), with surveys, book chapters, and short papers trailing.</p>
+    <p>Each research question maps to dedicated sections, tables, and figures (Table 2): applications (RQ1), topologies (RQ2), techniques and classification (RQ3/RQ5), metrics (RQ4), and SWOT (RQ6) — a navigation structure [20] that keeps the large evidence base traceable.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Results: Applications, Techniques, and Topologies</h2>
+    <p>Applications concentrate on predictive maintenance, quality control, and anomaly detection — from tinplate-lid inspection comparing supervised and unsupervised approaches [2] and injection-molding part-quality twins [26], to assembly automation [27], offshore-wind predictive twins [32], robot manipulators with ROS [30], and industrial big-data architectures [33]. Machine vision on CODESYS PLCs [23] and federated learning at the edge [24] extend the frontier.</p>
+    <p>Technique coverage spans CNN, random forests, gradient boosting, SVM, Prophet, and XGBoost, while topologies distribute across cloud, fog, and edge layers with OPC-UA Parts 3–5 [14–16] structuring the information model [24, 35, 55, 59, 70, 71]. Cloud deployments offer analytic depth; edge deployments cut latency for control loops; federated designs keep training data local [38, 40, 45].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. SWOT Analysis</h2>
+    <p>Strengths: strong interoperability with secure standardized communication across heterogeneous systems; service-oriented architecture and flexible information modeling for ML integration; scalable cloud-to-edge deployments; robust security framework and near-real-time exchange [11–14]. Opportunities: open benchmarks and empirical validation; federated, privacy-preserving analytics; leadership in advanced cybersecurity frameworks; explainable AI for critical applications.</p>
+    <p>Weaknesses: no standardized evaluation frameworks or open ML–OPC-UA datasets; high compute demands on constrained devices; legacy-protocol and fragmentation friction; thin large-scale real-world evidence. Threats: heavy resource needs (e.g., GPUs); resistance to change in traditional plants; rapid obsolescence; and missing real-world benchmarks slowing industry adoption [86].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Future Directions</h2>
+    <p>Two priorities lead: edge-centric federated learning that tolerates real-world data variation over OPC-UA-secured coordination [24, 79, 80], and explainable AI with human oversight built into OPC-UA alarm systems [81]. Safety comes first — shadow-mode testing before live control, hardware-in-the-loop validation [82, 83], OPC-UA state machines barring dangerous actions, synthetic-to-real adaptation [84, 85], and shared datasets, pipelines, and metrics [86].</p>
+    <p>AutoML should internalize industrial constraints — accuracy versus memory, compute, latency, energy — with OPC-UA's information model tracking datasets, features, and models across their lifecycle [79, 86, 87]. A further frontier pairs large language models with workflow-coordination protocols such as MCP for multi-step decision-making and dynamic task adaptation [88, 89].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Conclusions</h2>
+    <p>ML–OPC-UA integration is consolidating as a key strategy for intelligent industrial automation: a standardized, secure communication and modeling substrate meeting a maturing analytics toolbox, proven across maintenance, quality, and anomaly-detection applications [2, 26, 33] with lab accuracies routinely above 95%.</p>
+    <p>The decisive gap is empirical validation in real, large-scale deployments — open datasets, standard pipelines, common metrics, and edge-capable, explainable, federated designs. Closing it [86, 88] will decide whether OPC-UA-based intelligence stays a laboratory success or becomes plant-floor reality.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references with original numbering (90 references in total). See the original paper for the complete list: https://doi.org/10.3390/electronics14183749</p>
+    <ol dir="ltr">
+      <li value="2">Velesaca, H.O.; Sappa, A.D.; Holgado-Terriza, J.A. A case study of anomaly detection in tinplate lids. In Proc. ICPR 2022.</li>
+      <li value="8">Schindler, S. et al. A mini review on the utilization of reinforcement learning with OPC UA. In Proc. INDIN 2023.</li>
+      <li value="11">OPC Foundation. OPC Unified Architecture. 2025. Available online: <a href="https://opcfoundation.org">opcfoundation.org</a></li>
+      <li value="12">OPC Foundation. OPC 10000-1: UA Part 1: Overview and Concepts. 2025.</li>
+      <li value="13">OPC Foundation. OPC 10000-2: UA Part 2: Security. 2025.</li>
+      <li value="14">OPC Foundation. OPC 10000-3: UA Part 3: Address Space Model. 2025.</li>
+      <li value="18">OPC Foundation. OPC 10000-16: UA Part 16: State Machines. 2025.</li>
+      <li value="20">Kitchenham, B.; Charters, S. Guidelines for performing systematic literature reviews in software engineering; EBSE-2007-01; 2007.</li>
+      <li value="24">Friedrich, C. et al. Enabling federated learning for OPC-UA edge deployments. 2024.</li>
+      <li value="26">Rehmer, A. et al. A digital twin for part quality prediction in plastic injection molding. 2023.</li>
+      <li value="32">Haghshenas, A. et al. Predictive digital twin for offshore wind farms. <em>Energy Inform.</em> 2023, <em>6</em>, 1–26.</li>
+      <li value="33">Hirsch, E. et al. An OPC UA-based industrial Big Data architecture. In Proc. INDIN 2023.</li>
+      <li value="38">Rosa, L. et al. Supporting vPLC networking over TSN with Kubernetes in Industry 4.0. 2024.</li>
+      <li value="81">Mehmood, E. et al. Explainable AI with human oversight for OPC-UA alarm systems. 2024.</li>
+      <li value="86">Kozma, D. et al. Shared datasets and standard pipelines for industrial ML evaluation. 2024.</li>
+      <li value="88">Wang, Y. et al. Large language models for complex industrial workflow management. 2025.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics14183749">10.3390/electronics14183749</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

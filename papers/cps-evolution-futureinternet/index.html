@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اعتبارات أمنية حول ثلاثة أنظمة فيزيائية-سيبرانية قيد التطور: ROS وSCADA وOPC UA — DAR</title>
+<meta name="description" content="Security Considerations on Three CPSs in Evolution: ROS, SCADA and OPC UA — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/cps-evolution-futureinternet/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Security Considerations on Three CPSs in Evolution: ROS, SCADA and OPC UA</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">اعتبارات أمنية حول ثلاثة أنظمة فيزيائية-سيبرانية قيد التطور: ROS وSCADA وOPC UA</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ivan Cibrario Bertolotti, Flavio Lombardi (on behalf of the INdAM-GNCS Research Group)</span>
+    <span>📄 Future Internet, 2026 · Vol. 18, Issue 10, Article 503</span>
+    <span>🔗 <a href="https://doi.org/10.3390/fi18100503">10.3390/fi18100503</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>أصبحت الأنظمة الفيزيائية-السيبرانية تؤدي دورًا محوريًا في البنى التحتية الحرجة والتصنيع والنقل والروبوتات، وبات غياب الأمن فيها يؤثر في العالم المادي بشكل متزايد، مسببًا أضرارًا مادية وبيئية قد تصل إلى إزهاق الأرواح [1]، [2]. تستعرض هذه الورقة تطور هذه الأنظمة خلال العقد الماضي وتسلط الضوء على أبرز قضاياها الأمنية وسبل معالجتها، محللةً بعمق ثلاث بنى برمجية وبروتوكولية: نظام تشغيل الروبوتات (ROS)، والتحكم الإشرافي واكتساب البيانات (SCADA)، وبنية OPC الموحدة (OPC UA).</p>
+    <p>وتصف الورقة أهم الثغرات، ومنها تلك التي تصيب خدمة توزيع البيانات (DDS) الكامنة تحت ROS 2، إضافة إلى مدى انتشار نشرات ROS وOPC UA غير الآمنة على الإنترنت العام. كما تناقش دور الذكاء الاصطناعي وأثره بوصفه أداة هجومية ودفاعية معًا [3]. وأخيرًا يجادل المؤلفان بأن التحول نحو لغات برمجة آمنة ذاكريًا وقابلة للتحقق، مثل لغة Rust، إلى جانب أساليب التصميم القائم على النماذج وأدواته، قد يساعد في الوقاية من فئات كاملة من الهجمات مستقبلًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تدمج الأنظمة الفيزيائية-السيبرانية عناصر الحوسبة والاتصالات مع العمليات الفيزيائية، فتراقب عناصر العالم الحقيقي وتتحكم فيها، عادةً عبر حلقات تغذية راجعة تؤثر فيها الديناميكيات الفيزيائية في الحوسبة والعكس صحيح [1]. ولا تُعرَّف صحة هذه الأنظمة بسرية البيانات وسلامتها فحسب، بل أيضًا بالسلامة الفيزيائية والتوقيت واستمرارية التشغيل: فأمر تشغيل واحد في توقيت خاطئ داخل محطة طاقة أو محطة معالجة مياه أو روبوت صناعي قد تكون له عواقب وخيمة في الواقع.</p>
+    <p>وقد ازداد الاتصال في السنوات الأخيرة مع تقارب شبكات التقنية التشغيلية (OT) مع شبكات تقنية المعلومات (IT) والإنترنت العام فيما يُعرف بإنترنت الأشياء الصناعي (IIoT) [2]. كما نمت الاستقلالية مع انتقال الروبوتات والتحكم القائم على التعلم من مختبرات الأبحاث إلى المصانع والمستودعات والمستشفيات والطرق، وتقدمت المعيرة عبر الوسائط مثل OPC UA وROS 2. وهذا التطور يجلب قدرات إضافية بقدر ما يجلب انكشافًا، فالاتصال نفسه الذي يمكّن الصيانة التنبؤية قد يمكّن الاختراق عن بُعد، ومكونات تعلم الآلة نفسها التي تمكّن الإدراك توسّع سطح الهجوم [3].</p>
+    <p>وتتمثل المساهمات المميزة لهذه الدراسة الاستقصائية في: التحليل المشترك لحزم ROS 2 وSCADA وOPC UA لإبراز نقاط الضعف الأمنية المشتركة بينها؛ والتغطية الصريحة للذكاء الاصطناعي بوصفه أداة هجومية ودفاعية معًا؛ ومراجعة أثر لغات البرمجة الآمنة بوصفها علاجًا على مستوى التنفيذ، وهو بُعد غائب في الأعمال السابقة؛ ودمج الإفصاحات الحديثة عن الثغرات، بما فيها ثغرات DDS الكامنة تحت ROS 2 وقياسات OPC UA على نطاق الإنترنت.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة وموضع الدراسة</h2>
+    <p>حظي أمن الأنظمة الفيزيائية-السيبرانية باهتمام بحثي كبير خلال السنوات العشر الماضية. فقد قدم Humayed وآخرون [4] تصنيفًا مهمًا حسب المجال والتهديد والتحكم، لكن عملهم ليس مراجعة منهجية ولا يغطي ROS أو OPC UA ولا استخدام الذكاء الاصطناعي لأغراض الهجوم. واستعرض Nazir وآخرون [5] تقنيات تقييم الأمن السيبراني لأنظمة SCADA وتعزيزه، بينما استعرض Giraldo وآخرون [6] كشف الهجمات القائم على الفيزياء في هذه الأنظمة، وهو موضوع تبني عليه هذه الورقة نقاشها حول الكشف المرتكز على القوانين الفيزيائية.</p>
+    <p>وتتناول دراسات أخرى تحليل قابلية الوصول للنماذج الهجينة [7]، وكشف التسلل في SCADA عبر تحليل الحالة الحرجة متعدد الأبعاد [8]، وتقدير الحالة الآمن في ظل هجمات الحساسات [9]، فضلًا عن محددات أمن هذه الأنظمة وقضاياه واتجاهاته الأوسع [11]، [12]. كما تغطي أعمال سابقة مراجعات حالة الأمن السيبراني للروبوتات [13] ووجهات نظر أمنية شاملة لعقد كامل حول الأنظمة الصناعية [14]. وعلى هذه الخلفية، تتموضع الورقة الحالية بوصفها أول عمل يحلل ROS 2 وSCADA وOPC UA معًا، ويغطي الذكاء الاصطناعي على ضفتي الصراع، ويعامل لغات البرمجة الآمنة ذاكريًا بوصفها علاجًا أصيلًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. كيف تطورت الأنظمة الفيزيائية-السيبرانية</h2>
+    <p>تحدد ثلاثة اتجاهات متشابكة العقد الماضي من تطور هذه الأنظمة. أولًا، الاتصال: تقاربت شبكات التقنية التشغيلية مع شبكات تقنية المعلومات والإنترنت العام، فأصبحت الأجهزة الميدانية التي كانت معزولة خلف وصلات تسلسلية قابلة للوصول عبر شبكات IP والخدمات السحابية [2]. وثانيًا، الاستقلالية: انتقل الإدراك والتحكم القائمان على التعلم إلى أنظمة الإنتاج، من روبوتات المستودعات إلى المركبات البرية، فانغرست نماذج إحصائية داخل حلقات مؤثرة على السلامة [3]. وثالثًا، المعيرة: حلت وسائط مشتركة مثل OPC UA وROS 2 محل بروتوكولات مملوكة لا حصر لها، مما يحسّن التشغيل البيني لكنه يعني أيضًا أن خللًا واحدًا في الوسيط قد يصيب أساطيل وقطاعات كاملة.</p>
+    <p>والنتيجة الأمنية أن افتراضات العزل لم تعد صالحة: فالفجوات الهوائية الحقيقية تتآكل بفعل الوسائط القابلة للإزالة والأصول السيبرانية العابرة، وقنوات الصيانة والوصول عن بُعد من الموردين والوصلات اللاسلكية توفر جميعها مسارات إلى حلقات كانت مغلقة سابقًا. لذا تعامل الورقة حزم ROS 2 وSCADA وOPC UA بوصفها ممثلة لقاعدة برمجيات الأنظمة الحديثة التي يجب فهم نقاط ضعفها معًا لا بمعزل عن بعضها.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. أمن ROS وSCADA وOPC UA</h2>
+    <p>تستعرض الورقة بنية كل حزمة ونقاط ضعفها المعلنة. ففي ROS 2، يتمثل الاكتشاف الحرج في أن طبقة خدمة توزيع البيانات (DDS) تحمل ثغرات قابلة للاستغلال عن بُعد، فتنتشر عيوب الوسيط الكامن تحت إطار الروبوتات إلى كل تطبيق يعتمد عليه. وفي SCADA، يغطي التحليل بروتوكولات قديمة تفتقر إلى المصادقة والتشفير، والانكشاف الذي يلي ربط وصلات الإشراف بشبكات المؤسسات. وفي OPC UA، تفحص الورقة نموذج الأمن الخاص بالبروتوكول [45] إلى جانب دراسات قياس على نطاق الإنترنت تُظهر نشرات معطلة الأمن أو سيئة الإعداد وقابلة للوصول من الإنترنت العام.</p>
+    <p>وتبرز نقطة ضعف مشتركة عبر الحزم الثلاث: جودة البرمجيات وأخطاء التنفيذ في طبقة الوسيط، المتجذرة غالبًا في شيفرات C/C++ غير الآمنة ذاكريًا، وهو ما يمهد لمعالجة الورقة اللاحقة للغات الآمنة ذاكريًا. وبما أن دورات الشراء الصناعي طويلة، فإن الشيفرات القديمة تتلاشى ببطء، فتبقى هذه العيوب التنفيذية مؤثرة لفترة أطول بكثير مما هي عليه في تقنية المعلومات التقليدية [79].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. العلاجات: الدفاع المتدرج والكشف</h2>
+    <p>تنظم الورقة العلاجات بدءًا بالدفاع المتدرج، المطبق بوصفه استقلالًا لا تطويقًا متحد المركز، إذ لا تفيد الطبقة إلا إذا وقعت خارج نطاق سلطة المطلع المحتمل [54]، [55]. ويصعب تحقيق العزل عبر الفجوات الهوائية الحقيقية لأن الوسائط القابلة للإزالة والأصول العابرة تُضعفها؛ لذا توصي الورقة بربط المناطق الأعلى أثرًا عبر مسارات أحادية الاتجاه مفروضة عتاديًا فقط، كما يقترح معيار NIST SP 800-82 [27]، مع إمكانية العزل القائم على الآلة المجردة لتقليل سطح الهجوم [56]. ويقسّم التجزئة بيئة التقنية التشغيلية إلى مناطق حسب الوظيفة والحرجية وأثر الاختراق، مضيّقًا الاتصالات المعرفة صراحةً لتسهيل كشف الشذوذ.</p>
+    <p>ويجب أن توسط مناطق IT/OT منزوعة السلاح كل حركة المرور بحيث لا يمر أي تدفق مباشرة بين شبكتي المؤسسة والتحكم، مع قواعد رفض افتراضي، وغياب علاقات ثقة عابرة للحدود، ودفع النسخ المتماثل من OT إلى الخارج بدل سحبه إلى الداخل [27]؛ ويبقى الخطر المتبقي في أن تصبح المنطقة منزوعة السلاح نفسها هدف اختراق ونقطة انطلاق، كما تُظهر اختراقات أنظمة التحكم الصناعي الموثقة [57]. ويتجسد التصليب التشفيري في DDS-Security [58] ونموذج أمن OPC UA [45]، حيث يُوصى بتقييد مجموعات التشفير عبر سياسة الحوكمة بدل الثقة بإعدادات الموردين الافتراضية، مع أن خيار السماح بمشاركين غير موثقين يظل قاتلًا أمنيًا عند تفعيله. ويكسر الكشف القائم على الفيزياء التماثل الذي يصب في صالح المهاجمين عبر مطابقة الادعاءات السيبرانية مع مشاهدات فيزيائية تخضع لقوانين لا يستطيع المهاجم إعادة كتابتها [6]، [59]، [60]. أما هدف المرونة فيتمثل في تحمل الحساسات أو المشغلات المخترقة، عبر نمذجة الهجمات بوصفها مدخلات مجهولة متفرقة تُعاد بناؤها لا مجموعات فرعية تُستبعد [61]، [62].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الذكاء الاصطناعي أداة هجومية ودفاعية</h2>
+    <p>دفاعيًا، يتمثل الاستخدام الرئيسي للذكاء الاصطناعي في هذه الأنظمة في كشف الشذوذ والتسلل، حيث تدفع ندرة بيانات الهجمات الموسومة نحو نماذج غير خاضعة للإشراف أو شبه خاضعة تتعلم ملامح السلوك الطبيعي [67]. فعلى مستوى الشبكة، تمكّن مجموعات المشفرات الذاتية كشفًا آنيًا غير خاضع للإشراف مناسبًا للنشر المدمج [68]؛ وعلى مستوى العملية، تكشف النماذج الالتفافية والمتكررة (LSTM) الهجمات ذات الديناميكيات الشاذة، وتُقيَّم غالبًا على منصات اختبار عامة مثل مجموعة بيانات محطة معالجة المياه الآمنة (SWaT) [69]، [70]. وتجمع أقوى الدفاعات بين النماذج المتعلمة وثوابت فيزيائية صريحة بحيث تعكس الإنذارات عدم اتساق حقيقي مع ديناميكيات المحطة [6].</p>
+    <p>وهجوميًا، يهدد تعلم الآلة العدائي نماذج الإدراك والكشف المدمجة في هذه الأنظمة نفسها: فاضطرابات صغيرة مصنوعة بعناية قد تخدع المصنفات وقت الاختبار (المراوغة)، وبيانات تدريب ملوثة قد تزرع إخفاقات (التسميم)، وهجمات استخراج النماذج قد تسرق الوظائف [71]، [72]، [73]، [74]. بل يمكن للنماذج التوليدية تصنيع متغيرات برمجيات خبيثة مراوغة [75] وأتمتة الاستطلاع. وبما أن المدافعين ملزمون بالحفاظ على السلامة والتوافر بينما يكفي المهاجمين مسار واحد مؤثر فيزيائيًا — وهو عدم تماثل في سباق التسلح بلا ضمانات متانة عامة [3] — تجادل الورقة لصالح علاجات لا تعتمد على التفوق على الخصم لحظة التشغيل، مشيرةً إلى طبقة التنفيذ [65]، [66].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. السلامة الذاكرية والنمذجة والاستنتاجات</h2>
+    <p>تنبع حصة كبيرة من الثغرات المستغلة من عدد صغير من عيوب السلامة الذاكرية: إذ يدرج تحليل المشهد الصادر عن وكالة ENISA الكتابة خارج الحدود والاستخدام بعد التحرير ضمن أكثر أوصاف CWE شيوعًا وخطورة، وهو استنتاج أكدته مراجعة الدراسة في أكتوبر 2025 [76]. لذا دعت وكالات أمن وطنية إلى الهجرة نحو الترميز الآمن ذاكريًا [77]، بما في ذلك المشاريع مفتوحة المصدر الحرجة [78]. فاللغات غير الآمنة ذاكريًا مثل C وC++ تترك صحة التخصيص والتحرير والوصول للمبرمج، بينما تمنع اللغات الآمنة ذاكريًا — من Java وPython المحققتين زمن التشغيل إلى Rust المضمونة زمن الترجمة — هذه الفئات من العيوب بصورة منهجية [63]، [64].</p>
+    <p>ومكملةً للغات الآمنة، تعالج هندسة البرمجيات القائمة على النماذج العيوب على مستوى التصميم قبل وجود الشيفرة. وتختم الورقة بتحديات مفتوحة — تأمين الأساطيل القديمة خلال إحلال بطيء، والمتانة العدائية بلا ضمانات عامة، والكشف المرتكز فيزيائيًا على نطاق واسع — مجادلةً بأن اللغات الآمنة ذاكريًا والقابلة للتحقق مع الأساليب القائمة على النماذج يمكن أن تمنع فئات كاملة من هجمات هذه الأنظمة بالبناء لا بالترقيع.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Cyber-physical systems (CPSs) now play a central role in critical infrastructures, manufacturing, transport, and robotics, and their lack of security increasingly affects the physical world, possibly causing material damage, environmental harm, and even loss of life [1], [2]. This paper reviews the evolution of CPSs over the last decade and highlights their main security issues and remedies, analyzing in depth three software infrastructures and protocol stacks: the Robot Operating System (ROS), Supervisory Control and Data Acquisition (SCADA), and OPC Unified Architecture (OPC UA).</p>
+    <p>The most important vulnerabilities are described, for instance those affecting the Data Distribution Service (DDS) beneath ROS 2, as well as the extent of insecure ROS and OPC UA deployments exposed on the public Internet. Moreover, the role and impact of Artificial Intelligence (AI) as both an offensive and a defensive tool is discussed [3]. Finally, the authors argue that the transition toward memory-safe and verifiable programming languages, such as Rust, together with model-based design methods and tools, might help prevent entire classes of attacks in the future.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Cyber-physical systems integrate computational and communication elements with physical processes, monitoring and controlling real-world items, usually with feedback loops in which physical dynamics affect computation and vice versa [1]. The correctness of a CPS is defined not only by data confidentiality and integrity but also by physical safety, timing, and operational continuity: a mistimed actuation command in a power substation, a water treatment plant, or an industrial robot can have serious real-world consequences.</p>
+    <p>In recent years connectivity has grown, as operational technology (OT) networks converged with information technology (IT) networks and the public Internet in the Industrial Internet of Things (IIoT) [2]. Autonomy has also grown, with robotics and learning-based control moving from research laboratories into factories, warehouses, hospitals, and roads, while standardization has advanced through middleware such as OPC UA and ROS 2. Such evolution brings additional capability as well as exposure, since the same connectivity that enables predictive maintenance can enable remote compromise, and the same machine-learning components that enable perception increase the attack surface [3].</p>
+    <p>This survey's distinguishing contributions are: the joint analysis of the ROS 2, SCADA, and OPC UA stacks to highlight the security weaknesses they share; explicit coverage of AI as both an offensive and a defensive tool; a review of the impact of secure programming languages as an implementation-layer remedy, a dimension absent in prior work; and the integration of recent vulnerability disclosures, including the DDS vulnerabilities beneath ROS 2 and Internet-wide OPC UA measurements.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related Work and Survey Position</h2>
+    <p>Significant research has been devoted to CPS security over the last ten years. Humayed et al. [4] provide an interesting taxonomy by domain, threat, and control, though their work is not a systematic review and covers neither ROS nor OPC UA nor AI usage for attack purposes. Nazir et al. [5] survey techniques for assessing and augmenting SCADA cybersecurity, while Giraldo et al. [6] survey physics-based attack detection in CPSs, a theme this paper builds upon for its discussion of detection anchored in physical laws.</p>
+    <p>Further surveys address reachability analysis for hybrid models [7], intrusion detection in SCADA via multidimensional critical-state analysis [8], secure state estimation under sensor attacks [9], and broader CPS security limitations, issues, and trends [11], [12]. Prior work also covers robot cybersecurity status reviews [13] and decade-wide security perspectives on industrial CPS [14]. Against this background, the present paper positions itself as the first to jointly analyze ROS 2, SCADA, and OPC UA, to cover AI on both sides of the contest, and to treat memory-safe languages as a first-class remedy.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. How CPSs Evolved</h2>
+    <p>Three intertwined trends define the last decade of CPS evolution. First, connectivity: OT networks converged with IT networks and the public Internet, so field devices once isolated behind serial links became reachable through IP networks and cloud services [2]. Second, autonomy: learning-based perception and control moved into production systems, from warehouse robots to road vehicles, embedding statistical models inside safety-relevant loops [3]. Third, standardization: common middleware such as OPC UA and ROS 2 replaced myriad proprietary protocols, which improves interoperability but also means a single middleware flaw can affect entire fleets and sectors.</p>
+    <p>The security consequence is that assumptions of isolation no longer hold: genuine air gaps are eroded by removable media and transient cyber assets, and maintenance channels, vendor remote access, and wireless links all provide paths into formerly closed loops. The paper therefore treats the ROS 2, SCADA, and OPC UA stacks as representative of the modern CPS software base whose weaknesses must be understood together rather than in isolation.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. ROS, SCADA, and OPC UA Security</h2>
+    <p>The paper reviews each stack's architecture and disclosed weaknesses. For ROS 2, the critical finding is that its Data Distribution Service (DDS) layer carries remotely exploitable vulnerabilities, so flaws in the middleware beneath the robotics framework propagate to every dependent application. For SCADA, the analysis covers legacy protocols lacking authentication and encryption, and the exposure that follows when supervisory links are bridged to enterprise networks. For OPC UA, the paper examines the protocol's security model [45] alongside Internet-wide measurement studies showing deployments with security disabled or misconfigured and reachable from the public Internet.</p>
+    <p>A shared weakness emerges across all three stacks: software quality and implementation mistakes at the middleware layer, often rooted in memory-unsafe C/C++ code, which motivates the paper's later treatment of memory-safe languages. Because industrial procurement cycles are long, legacy code phases out slowly, so these implementation defects stay relevant far longer than in mainstream IT [79].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Remedies: Defense in Depth and Detection</h2>
+    <p>The paper organizes remedies starting from defense in depth, implemented as independence rather than concentricity, since a layer is only useful if it lies outside the authority envelope of the potential insider [54], [55]. Isolation through genuine air gaps is difficult because removable media and transient assets erode them; the paper recommends connecting the highest-consequence zones only through hardware-enforced one-way paths, as NIST SP 800-82 suggests [27], possibly with abstract-machine-based isolation to reduce the attack surface [56]. Segmentation splits the OT environment into zones grouped by function, criticality, and consequence of compromise, narrowing explicitly defined communication to ease anomaly detection.</p>
+    <p>IT/OT demilitarized zones must broker all traffic so that no flow passes directly between enterprise and control networks, with default-deny rulesets, no trust relationships crossing the boundary, and replication pushed outbound from OT rather than pulled inbound [27]; the residual risk is that the DMZ itself becomes a compromise target and staging point, as documented ICS intrusions show [57]. Cryptographic hardening is embodied in DDS-Security [58] and the OPC UA security model [45], where constraining cipher suites via governance policy rather than trusting vendor defaults is recommended, though the option of unauthenticated participants remains fatal when enabled. Physics-based detection breaks the symmetry favoring attackers by checking cyber claims against physical observations that obey laws the attacker cannot rewrite [6], [59], [60]. Resilience objective is to tolerate compromised sensors or actuators, modeling attacks as sparse unknown inputs to be reconstructed rather than subsets to be excluded [61], [62].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. AI as Offensive and Defensive Tool</h2>
+    <p>On defense, AI's main CPS usage is anomaly and intrusion detection, where scarce labeled attack data favor unsupervised or semi-supervised models learning profiles of normal behavior [67]. At the network level, ensembles of autoencoders enable efficient online unsupervised detection suitable for embedded deployment [68]; at the process level, convolutional and recurrent (LSTM) models detect attacks showing abnormal dynamics, frequently evaluated on testbeds such as the Secure Water Treatment (SWaT) dataset [69], [70]. The most robust defenses couple learned models with explicit physical invariants so alarms reflect genuine inconsistency with plant dynamics [6].</p>
+    <p>On offense, adversarial machine learning threatens the very perception and detection models embedded in CPSs: small crafted perturbations can fool classifiers at test time (evasion), corrupted training data can implant failures (poisoning), and model-extraction attacks can steal functionality [71], [72], [73], [74]. Generative models can further synthesize evasive malware variants [75] and automate reconnaissance. Because defenders must preserve safety and availability while attackers need only one physically consequential path — an arms-race asymmetry with no general robustness guarantees [3] — the paper argues for remedies that do not depend on out-guessing the adversary at runtime, pointing to the implementation layer [65], [66].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Memory Safety, Modeling, and Conclusions</h2>
+    <p>A large share of exploited vulnerabilities stems from a small number of memory-safety defects: ENISA's landscape analysis lists out-of-bounds writes and use-after-free among the most common and most critical CWE descriptions, a finding confirmed again in the study's October 2025 revision [76]. National security agencies have therefore advocated migration toward memory-safe coding [77], including within critical open-source projects [78]. Memory-unsafe languages like C and C++ leave allocation, release, and access correctness to the programmer, while memory-safe languages — from runtime-checked Java and Python to compile-time-guaranteed Rust — systematically prevent these defect classes [63], [64].</p>
+    <p>Complementing safe languages, model-based software engineering tackles flaws at the design level before code exists. The paper concludes with open challenges — securing legacy fleets during a slow phase-out, adversarial robustness without general guarantees, and physically grounded detection at scale — and argues that memory-safe, verifiable languages plus model-based methods can prevent entire classes of CPS attacks by construction rather than by patching.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">References below are condensed; numbering matches the original paper. See the full reference list in the original publication via the DOI link above.</p>
+    <ol dir="ltr">
+      <li>Lee, E.A. Cyber Physical Systems: Design Challenges. In Proc. ISORC 2008, Orlando, FL, USA, 5–7 May 2008; pp. 363–369.</li>
+      <li>Sadeghi, A.R.; Wachsmann, C.; Waidner, M. Security and privacy challenges in industrial Internet of Things. In Proc. DAC '15, San Francisco, CA, USA, 7–11 June 2015.</li>
+      <li>Biggio, B.; Roli, F. Wild Patterns: Ten Years After the Rise of Adversarial Machine Learning. <em>Pattern Recognit.</em> 2018, <em>84</em>, 317–331.</li>
+      <li>Humayed, A.; Lin, J.; Li, F.; Luo, B. Cyber-Physical Systems Security—A Survey. <em>IEEE Internet Things J.</em> 2017, <em>4</em>, 1802–1831.</li>
+      <li>Nazir, S.; Patel, S.; Patel, D. Assessing and augmenting SCADA cyber security: A survey of techniques. <em>Comput. Secur.</em> 2017, <em>70</em>, 436–454.</li>
+      <li>Giraldo, J. et al. A Survey of Physics-Based Attack Detection in Cyber-Physical Systems. <em>ACM Comput. Surv.</em> 2018, <em>51</em>, 1–36.</li>
+      <li>Fan, C. et al. Automatic Reachability Analysis for Nonlinear Hybrid Models with C2E2. In Proc. CAV 2016; LNCS 9779; pp. 531–538.</li>
+      <li>Carcano, A. et al. A Multidimensional Critical State Analysis for Detecting Intrusions in SCADA Systems. <em>IEEE Trans. Ind. Inform.</em> 2011, <em>7</em>, 179–186.</li>
+      <li>Shoukry, Y. et al. Secure State Estimation for Cyber-Physical Systems Under Sensor Attacks. <em>IEEE Trans. Autom. Control</em> 2014, <em>62</em>, 4917–4932.</li>
+      <li>Yaacoub, J.P.A. et al. Cyber-Physical Systems Security: Limitations, Issues and Future Trends. <em>Microprocess. Microsyst.</em> 2020, <em>77</em>, 103201.</li>
+      <li>Kayan, H. et al. Cybersecurity of Industrial Cyber-Physical Systems: A Survey. <em>ACM Comput. Surv.</em> 2022, <em>54</em>, 1–35.</li>
+      <li>Mayoral-Vilches, V. Reviewing the Status of Robot Cybersecurity. 2021. Available online: https://cybersecurityrobotics.com/robot-cybersecurity-a-review/</li>
+      <li>Agrawal, N.; Kumar, R. Security Perspective Analysis of Industrial Cyber Physical Systems (I-CPS): A Decade-wide Survey. <em>ISA Trans.</em> 2022.</li>
+      <li>Stouffer, K. et al. Guide to OT Security. NIST SP 800-82 Rev. 3; NIST: Gaithersburg, MD, USA, 2023.</li>
+      <li>OPC Foundation. OPC Unified Architecture Specification. Available online: https://opcfoundation.org/developer-tools/specifications-unified-architecture</li>
+      <li>Defense in depth as independence of layers; insider authority-envelope argument. See original paper for full citation.</li>
+      <li>Layering and insider-threat analysis. See original paper for full citation.</li>
+      <li>OMG. DDS Security Specification. Available online: https://www.omg.org/spec/DDS-SECURITY/</li>
+      <li>Physics-based detection anchoring in physical process laws. See original paper for full citation.</li>
+      <li>Cross-domain consistency checks between cyber claims and physical observations. See original paper for full citation.</li>
+      <li>Resilient estimation under sparse sensor attacks. See original paper for full citation.</li>
+      <li>Attack-signal reconstruction as unknown-input estimation. See original paper for full citation.</li>
+      <li>ENISA guidance on secure software lifecycle practices. See original paper for full citation.</li>
+      <li>Model-based software engineering for security. See original paper for full citation.</li>
+      <li>AI methods for cyber-threat defence. See original paper for full citation.</li>
+      <li>AI technologies in adversarial use. See original paper for full citation.</li>
+      <li>Unsupervised anomaly-detection profiles of normal CPS behavior. See original paper for full citation.</li>
+      <li>Mirsky, Y. et al. Kitsune: An Ensemble of Autoencoders for Online Network Intrusion Detection. In Proc. NDSS 2018.</li>
+      <li>CNN/LSTM process-level attack detection. See original paper for full citation.</li>
+      <li>iTrust. Secure Water Treatment (SWaT) Dataset. Available online: https://itrust.sutd.edu.sg/itrust-labs_datasets/</li>
+      <li>Adversarial machine learning threat overview. See original paper for full citation.</li>
+      <li>Evasion of learned models via crafted perturbations. See original paper for full citation.</li>
+      <li>Threat models: evasion, poisoning, and extraction. See original paper for full citation.</li>
+      <li>Model extraction attacks. See original paper for full citation.</li>
+      <li>GAN-synthesized evasive malware variants. See original paper for full citation.</li>
+      <li>ENISA. Vulnerability Landscape Analysis (rev. Oct. 2025): out-of-bounds write and use-after-free among top CWE descriptions.</li>
+      <li>National guidance advocating migration to memory-safe coding (e.g., CISA/NSA joint guidance).</li>
+      <li>Memory-safe migration in critical open-source projects. See original paper for full citation.</li>
+      <li>Surveys on memory-unsafe legacy code in CPS middleware. See original paper for full citation.</li>
+          <li>... [full reference list available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/fi18100503">10.3390/fi18100503</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

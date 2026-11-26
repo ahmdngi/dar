@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسح حول البوت نت: الحوافز والتطور والكشف والاتجاهات الحالية — DAR</title>
+<meta name="description" content="A Survey on Botnets: Incentives, Evolution, Detection and Current Trends — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/botnets-survey-futureinternet/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Survey on Botnets: Incentives, Evolution, Detection and Current Trends</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مسح حول البوت نت: الحوافز والتطور والكشف والاتجاهات الحالية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Simon Nam Thanh Vu, Mads Stege, Peter Issam El-Habr, Jesper Bang, Nicola Dragoni</span>
+    <span>📄 Future Internet, 2021 · Vol. 13(8), 198</span>
+    <span>🔗 <a href="https://doi.org/10.3390/fi13080198">10.3390/fi13080198</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>اكتسبت البوت نت — وهي شبكات من الأجهزة المصابة ببرمجيات خبيثة يتحكم فيها فاعلون أشرار — أهمية متزايدة في عصر الحوسبة المنتشرة وإنترنت الأشياء [1,6]. وهي تُلحق أضرارًا جسيمة عبر هجمات حجب الخدمة الموزعة وسرقة المعلومات والرسائل المزعجة ونشر البرمجيات الخبيثة، إذ نمت بوت نت ميراي لإنترنت الأشياء من نحو 143,000 إلى 225,000 حالة بين عامي 2018 و2019 وحدهما [2,4].</p>
+    <p>تقدم هذه الورقة مراجعة منهجية للأدبيات حول البوت نت تغطي الحوافز والتطور والكشف والتخفيف، بالاعتماد أساسًا على أدبيات محكّمة من 2005 إلى 2021 مع تركيز خاص على آليات الكشف والتخفيف [37,38]. تُصنَّف أساليب الكشف والتخفيف وتُوصف بإيجاز لتقديم نظرة عامة على الحلول المقترحة، وتُلخَّص النتائج لتحديد التحديات والاتجاهات الحالية بما يوجه أبحاث التخفيف المستقبلية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">أولًا. المقدمة</h2>
+    <p>تُعد البوت نت من أبرز التهديدات لأمن الأنظمة وإنترنت الأشياء في عصر الحوسبة السحابية المنتشرة: فالأجهزة المحمولة الدائمة الاتصال وتطبيقات إنترنت الأشياء توفر نواقل إصابة إضافية، والنمو المستمر في الأجهزة المترابطة يغيّر باستمرار أنواع البوت نت وأنماط هجماتها [1–3]. والبوت نت شبكة من الأجهزة المصابة ببرمجيات خبيثة يتحكم فيها عادة خادم القيادة والتحكم (C&C) ويُعرف مشغّلوه بسادة البوتات بينما تُسمى الأجهزة المصابة بالبوتات [1,5,6].</p>
+    <p>وتنقسم البوت نت إلى بنيتين معماريتين عامتين: المركزية والندّ للند (P2P)، ويحددهما كيفية انتشار الأوامر عبر قناة القيادة والتحكم [6,7]. فالبوت نت المركزية أكثر كفاءة لكنها أقل مرونة، لأن خادم القيادة والتحكم المركزي يمثل نقطة فشل واحدة للشبكة كلها [6,7]. انتشرت البوت نت المبكرة عبر الدردشة (IRC)، لكن نواقل الهجوم أصبحت اليوم أكثر تنوعًا — شبكات مشاركة الملفات ومرفقات البريد المصابة والمواقع المصابة واستغلال الثغرات — وتُظهر بوت نت بارزة مثل ميراي وزيوس كيف تواصل الحوسبة المنتشرة إنتاج بوت نت أكثر تعقيدًا [1,2,8,9,10].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">أسئلة البحث والمنهجية</h2>
+    <p>تجيب المراجعة عن أربعة أسئلة بحثية: (1) ما الحوافز وراء هجمات البوت نت؛ (2) كيف تطورت هذه الهجمات؛ (3) ما الذي اقترحه مجتمع البحث للتخفيف منها؛ (4) ما الاتجاهات والتحديات الحالية التي تحددها الأبحاث المعاصرة. وتتمثل مساهمتها الرئيسية في نظرة عامة متنوعة على هذه المواضيع من أدبيات محكّمة بين 2005 و2021، وتحليل للتطور المشترك للبوت نت والإجراءات المضادة. أما المسوحات السابقة فهي إما أقدم من 2014 [1,15,16,17] أو تغطي أنواعًا عامة فقط [7,21] أو تهمل تقنيات الكشف والتخفيف [10,13,14].</p>
+    <p>تتبع المنهجية إرشادات المراجعة المنهجية [37] مع أخذ العينات الكروية العكسية للإدراج [38]. واشتُقت استعلامات البحث من الأسئلة البحثية باستخدام معايير PICO (السكان والتدخل والمقارنة والنتائج) [39]. واشترط الإدراج أوراقًا من 2005 فما بعد، وباللغة الإنجليزية، ومرتبطة بالبوت نت، ومتاحة الوصول، ولها معرف DOI [40]، ومحكّمة. وبعد مراحل مراجعة العناوين والملخصات والمقدمات والخواتيم والنصوص الكاملة بقيت 204 أوراق، وأوصلت العينات الكروية المجموعة النهائية إلى 224 مرجعًا محكّمًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">الحوافز: البوت نت الخبيثة والنافعة</h2>
+    <p>تدفع البوت نت الخبيثة حافزان رئيسيان: إلحاق الضرر بهدف محدد أو مجموعة أهداف، وتحسين الوضع المالي للمشغّل — غالبًا سيد القيادة والتحكم [41,50,51,52,53]. والأهداف منتشرة في كل المجتمع الحديث: من المستخدمين الأفراد الذين تمكّن بياناتهم السرقات الصغيرة، إلى الشركات والبنى التحتية الحرجة وأصول بحجم الدول [42,43,46,47,54]. وتتنوع أسباب الهجوم بالقدر نفسه من سرقة البيانات إلى التجسس والتخريب [10,31].</p>
+    <p>وليست كل البوت نت خبيثة: فالمثال النافع النادر هو «هاجيمي» المبنية على أسلوب إصابة مشابه لميراي لكنها محايدة إن لم تكن نافعة [48,49]. فعلى عكس نهج القيادة والتحكم في ميراي، تستخدم هاجيمي جدول تجزئة موزعًا لا مركزيًا من ندّ لند وتُغلق نواقل الإصابة خلفها، مما يوضح أن معماريات البوت نت يمكن أن تخدم أغراضًا دفاعية أيضًا [48,49].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">تطور البوت نت</h2>
+    <p>تعود البوت نت كبرمجيات محددة إلى أواخر الثمانينيات، وكانت أدوات مثل Eggdrop المبنية على IRC في ديسمبر 1993 — المصممة أصلًا لمشاركة البيانات بين النسخ — علامة مبكرة [50]. تجنّب المشغّلون الأوائل الأنظمة الحكومية اللافتة، لكن البوت نت الحديثة تكشف بيئات التحليل وتتفادى المصائد (honeypots) المنصوبة عمدًا كأهداف سهلة [58]. وحسّنت بنية القيادة من ندّ لند المرونة بإخفاء البوت الآمر ومقاومة الإسقاط عبر آليات مثل تلوث المفاتيح من البوتات المضبوطة [72,73,74,75,76,77].</p>
+    <p>وتوسّع فئات جديدة من الأجهزة التهديد باستمرار: حوّلت إضافات المتصفح أدوات حجب الإعلانات والتنزيل إلى نواقل إصابة [60,79,80,87]؛ وأصبحت الهواتف الذكية منصات بوتات بحجم الجيب إذ يمكن لرسالة SMS وحدها أن تكون قوية [65,66,67,69]؛ وبرزت الشبكات المركبية للمركبات (VANETs) كأهداف محتملة مع تواصل السيارات بمعلومات السلامة [81]؛ وقُيّمت القيادة والتحكم المبنية على البلوك تشين كمتغير مرن جديد [86]؛ ومكّنت الأجهزة المهيأة سيئًا تفشيات من فئة ميراي [82,83,84]. وتستمر المتغيرات الجديدة كليًا في الظهور، مثل بوت نت المتسامحة مع التأخير التي تحاكي أزمنة رد الفعل البشرية لتفادي الكشف [57,64].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">الكشف (1): التقنيات العصبية وتعلم الآلة ونظام DNS</h2>
+    <p>تشكل كواشف الشبكات العصبية عائلة كبيرة: تطبق الأعمال الممسوحة معماريات أمامية ومتكررة والتفافية وهجينة على سمات التدفق والحزم وDNS، مُبلغة عن معدلات كشف عالية مقابل الاعتماد على بيانات التدريب والإيجابيات الكاذبة [29,92,93,94,95,96,97,98,99,100,102,103,104,106,107,108]. أما كواشف تعلم الآلة والشبكات فهي المجموعة الأكبر — من أشجار القرار وآلات المتجهات الداعمة والعنقدة وشذوذ التدفق وأساليب الرسوم البيانية، وغالبًا ضمن أنظمة كشف التسلل — بنقاط قوة في العمومية وضعف في رؤية الحركة المشفرة وانجراف المفاهيم [5,26,28,109,118,119,120,121,122,123,124,125,126,127,129,130,131,132,133,134,135,136,137,139,140].</p>
+    <p>ويستغل الكشف المبني على DNS نقطة ضعف اللقاء لدى البوت نت: فخوارزميات توليد النطاقات والتدفق السريع وتقييم التدفق ومعدلات NXDOMAIN وأنظمة السمعة تكشف أنماط الاستعلام عن القيادة والتحكم التي لا تستطيع البوتات إخفاءها بسهولة [153,154,156,157,158,159,160,161,162,165,167,168,169]. تكشف هذه الأساليب العائلات المركزية وعائلات الند للند على حد سواء، وإن كان DNS المشفر ومحاكاة النطاقات الحميدة يضعفان دقتها.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">الكشف (2): نماذج الحوسبة المنتشرة</h2>
+    <p>تحظى بوت نت إنترنت الأشياء والند للند بكواشف مخصصة — من مصنفات التدفق الخفيفة للأجهزة المقيدة إلى الكواشف الكمومية والبيانية والخاصة بالبروتوكول — بمقايضة بين قوة الكشف وكلفة النشر على العتاد الضعيف [171,172,173,175,177,179,181,182,183,184,185,186,187,188,189,191,192,193]. وتستهدف كواشف بوت نت المحمول الرسائل والصلاحيات والبطارية وشذوذ الحركة على الهواتف [18,19,194,195,196,197]، بينما تكيّف مقترحات شبكات المركبات الكشف مع رسائل السلامة في VANET بما فيها إطار Shieldnet [12,81,198].</p>
+    <p>أما بوت نت الشبكات الاجتماعية — التي تستخدم المنصات الاجتماعية للرسائل المزعجة والقيادة والتحكم وانتحال المستخدمين عبر بنية عامة مموهة — فتُقاوَم بكواشف سلوك الحسابات والمحتوى والرسوم البيانية [60,87,199]. ويتكرر النمط عبر النماذج: كل ركيزة اتصال جديدة تمكّن البوت نت أولًا ثم تتطلب كواشف مصممة لها.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">آليات التخفيف</h2>
+    <p>التخفيف تفاعلي أو استباقي ويلي الكشف: تبقى أفضل ممارسات تقنية المعلومات الخط الأول، كما يوضح التعطيل متعدد الجنسيات بقيادة وزارة العدل الأمريكية لبوت نت GameOver Zeus [53]. ويتيح الحجب على مستوى الشبكة وتحليل الحزم لأنظمة كشف التسلل احتواء البوت نت بعد تصنيف التدفقات [98,136,201,202,204]. ويمكّن العزل عبر المصائد [33,206] وشبكات المصائد [22] تحليل السلوك [13]، بينما يستهدف تسميم جداول توجيه الند للند ميزة اللامركزية مباشرة [209,210].</p>
+    <p>أما النظافة الخاصة بإنترنت الأشياء — تغيير بيانات الاعتماد الافتراضية وإغلاق المنافذ غير المستخدمة مثل telnet ومراقبة كلاب الحراسة المعطلة — فتعمم درس ميراي [174]. وتوحّد الأطر المجتمعية مثل BotFlex كشف التسلل الشبكي القابل للتوسيع عبر مجتمع تقنية المعلومات [119,213,218,219,221]. وتثير الخيارات الحساسة أخلاقيًا مثل الثقوب السوداء (sinkholing) مخاوف، إذ يمكن بيع البيانات المجمّعة (الموقع الجغرافي وأنظمة التشغيل) للحكومات والمتعاقدين [49,82,214,215].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">الاتجاهات والتحديات الحالية</h2>
+    <p>تواصل البوت نت اكتساب التعقيد: تشمل التهديدات المتوقعة اتصالات قيادة وتحكم مشفرة بأزواج مفاتيح عامة/خاصة قوية وآليات تدمير ذاتي تُجبر على إعادة تثبيت النظام [228]. وتهدد البوت نت الاجتماعية سلامة المعلومات عبر الرسائل المزعجة والقيادة والتحكم وتزييف سلوك المستخدمين [1,87,166,199]. وتهيمن تعلم الآلة والشبكات العصبية على أبحاث الكشف الحديثة بفضل معدلات الإيجابيات الحقيقية العالية [24,92,99,109,124,125,170].</p>
+    <p>ومعظم الكشف والتخفيف الحالي تفاعلي، مما يتيح للبوت نت الازدهار خارج الشبكات المراقبة — وهو ما يحفز أبحاث التخفيف الاستباقي [232]. وتعمل تسوية الحوسبة السحابية في الاتجاهين: فخدمات الحوسبة العامة تعين المدافعين لكنها تمكّن المهاجمين من بناء بوت نت سحابية [186]. وتؤكد اتجاهات النشر وحوادث فئة ميراي عمومًا أن البوت نت تهديد متنامٍ ومتنوع يتطلب أبحاث تخفيف مستمرة [1,2,224,225,234].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">الخاتمة</h2>
+    <p>مسحت هذه المراجعة المنهجية حوافز البوت نت وثمانية سلالات تطورية من Eggdrop إلى بوت نت البلوك تشين وإنترنت الأشياء [50,57,64,81,84,86]، وفهرسًا كبيرًا للكشف والتخفيف يشمل الأساليب العصبية وتعلم الآلة وDNS والأساليب الخاصة بكل نموذج. ويُظهر تحليلها أن الإجراءات المضادة تتطور مع البوت نت لكنها تتخلف عن المتغيرات المشفرة والاجتماعية والسحابية [186,199,228].</p>
+    <p>ويخلص المؤلفون إلى أن العمل المستقبلي يجب أن يعطي الأولوية للتخفيف الاستباقي [232] وكواشف تعلم الآلة والشبكات العصبية المقاومة لانجراف المفاهيم [170] ونظافة إنترنت الأشياء على نطاق واسع [174] — وقاعدة الأدلة الكاملة من 224 مرجعًا محكّمًا تدعم كل اتجاه محدد.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Botnets — networks of malware-infected hosts controlled by malicious actors — have gained prominence in the era of pervasive computing and the Internet of Things [1,6]. They inflict substantial damage through distributed denial-of-service attacks, information theft, spam and malware propagation, with the IoT botnet Mirai growing from roughly 143,000 to 225,000 occurrences from 2018 to 2019 alone [2,4].</p>
+    <p>This paper presents a systematic literature review of botnets covering incentives, evolution, detection and mitigation, drawing mostly on peer-reviewed literature from 2005 to 2021 with a particular focus on detection and mitigation mechanisms [37,38]. Detection and mitigation approaches are categorized and briefly described to give an overview of proposed solutions, and the findings are summarized to identify current challenges and trends to guide further botnet-mitigation research.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">I. Introduction</h2>
+    <p>Botnets are among the most prominent threats to system and IoT security in the age of cloud-enabled pervasive computing: always-on mobile devices and Internet-of-Things deployments provide additional infection vectors, and the growth in interconnected devices keeps changing botnet types and attack patterns [1–3]. A botnet is a network of malware-infected hosts, typically controlled by a Command and Control (C&amp;C) server whose operators are known as botmasters while the infected hosts are called bots [1,5,6].</p>
+    <p>Botnets divide into two general architectural structures: centralized and peer-to-peer (P2P), defined by how commands propagate through the C&amp;C channel [6,7]. Centralized botnets are more efficient but less resilient, since the central C&amp;C server is a single point of failure for the whole botnet [6,7]. Early botnets spread via Internet Relay Chat (IRC), but attack vectors are now far more varied — file-sharing networks, infected e-mail attachments, infected websites and vulnerability exploits — and prominent botnets such as Mirai and Zeus show how pervasive computing keeps producing more complex botnets [1,2,8,9,10].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Research Questions and Methodology</h2>
+    <p>The survey answers four research questions: (1) what incentives drive botnet attacks; (2) how botnet attacks have evolved; (3) what the research community has proposed to mitigate them; and (4) what current trends and challenges contemporary research identifies. Its main contribution is a diverse overview of these topics from peer-reviewed literature of 2005–2021, plus an analysis of how botnets and countermeasures co-evolve. Earlier surveys either predate 2014 [1,15,16,17], cover only generalized types [7,21], or omit detection and mitigation techniques [10,13,14].</p>
+    <p>The methodology follows systematic-review guidelines [37] with backwards snowball sampling for inclusion [38]. Search queries were derived from the research questions using PICO (Population, Intervention, Comparison, Outcomes) criteria [39]. Inclusion required papers from 2005 or newer, English language, botnet-related topic, open or DTU-accessible access, a DOI [40], and peer review. After title, abstract, introduction/conclusion and full-text review stages, 204 papers remained, and snowballing brought the final corpus to 224 peer-reviewed references.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Incentives: Malevolent and Benevolent Botnets</h2>
+    <p>Malevolent botnets are driven by two main incentives: harming a designated target or group of targets, and improving the operator's — often the C&amp;C master's — monetary situation [41,50,51,52,53]. Targets are ubiquitous across modern society: individual users whose credentials enable petty theft, corporations, critical infrastructure and nation-spanning assets [42,43,46,47,54]. Reasons for attack are correspondingly diverse, ranging from credential theft to espionage and sabotage [10,31].</p>
+    <p>Not all botnets are malicious: the rare benevolent example is Hajime, built on a Mirai-like infection method yet neutral if not beneficial [48,49]. Unlike Mirai's C&amp;C approach, Hajime uses a decentralized P2P distributed hash table and closes infection vectors behind itself, illustrating that botnet architectures can also serve defensive ends [48,49].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Evolution of Botnets</h2>
+    <p>Botnets as defined software date to the late 1980s, with toolkits such as the IRC-based Eggdrop of December 1993 — originally built to share data between instances — marking an early milestone [50]. Early operators avoided conspicuous government systems, but modern botnets detect analysis environments and evade honeypots deliberately deployed as easy targets [58]. The P2P command structure further improved resilience by obfuscating the commanding bot and resisting takedowns through mechanisms such as key pollution from seized bots [72,73,74,75,76,77].</p>
+    <p>New host classes continuously extend the threat: browser extensions turned ad-blockers and downloaders into infection vectors [60,79,80,87]; smartphones became pocket-sized bot platforms where even an SMS can be potent [65,66,67,69]; vehicular ad hoc networks (VANETs) emerged as likely targets as cars communicate safety information [81]; blockchain-based C&amp;C was assessed as a new resilient variant [86]; and poorly configured IoT devices enabled Mirai-class outbreaks [82,83,84]. Entirely new variants keep appearing, such as delay-tolerant botnets that impersonate human reaction times to evade detection [57,64].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Detection I: Neural, Machine-Learning and DNS Techniques</h2>
+    <p>Neural-network detectors form a large family: surveyed works apply feed-forward, recurrent, convolutional and hybrid architectures to flow, packet and DNS features, reporting high detection rates at the cost of training-data dependence and false positives [29,92,93,94,95,96,97,98,99,100,102,103,104,106,107,108]. Machine-learning and network-based detectors are the largest group — spanning decision trees, SVMs, clustering, flow-anomaly and graph methods, often embedded in intrusion detection systems — with strengths in generality and weaknesses in encrypted-traffic visibility and concept drift [5,26,28,109,118,119,120,121,122,123,124,125,126,127,129,130,131,132,133,134,135,136,137,139,140].</p>
+    <p>DNS-based detection exploits the rendezvous weakness of botnets: domain-generation algorithms, fast flux and flux scoring, NXDOMAIN rates and reputation systems expose C&amp;C lookup patterns that bots cannot easily hide [153,154,156,157,158,159,160,161,162,165,167,168,169]. These methods detect centralized and P2P families alike, though encrypted DNS and benign-domain mimicry erode their precision.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Detection II: Pervasive-Computing Paradigms</h2>
+    <p>IoT and P2P botnets receive dedicated detectors — from lightweight flow classifiers for constrained devices to quantum-assisted, graph-based and protocol-specific P2P detectors — trading detection power against deployment cost on weak hardware [171,172,173,175,177,179,181,182,183,184,185,186,187,188,189,191,192,193]. Mobile botnet detectors target SMS, permissions, battery and traffic anomalies on smartphones [18,19,194,195,196,197], while vehicular-network proposals adapt botnet detection to VANET safety messaging, including the Shieldnet framework [12,81,198].</p>
+    <p>Social-network botnets (SnB) — which use social platforms for spam, C&amp;C and user impersonation over publicly available, obfuscating infrastructure — are countered with account-behavior, content and graph detectors [60,87,199]. Across paradigms, the pattern repeats: each new communication substrate first enables botnets, then demands tailored detectors.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Mitigation Mechanisms</h2>
+    <p>Mitigation is reactive or proactive and follows detection: IT best practices remain the first line, as illustrated by the multinational DOJ-led disruption of the GameOver Zeus botnet [53]. Technical network-level blocking and packet analysis let intrusion detection systems contain botnets once flows are classified [98,136,201,202,204]. Isolation through honeypots [33,206] and honeynets [22] enables behavior analysis [13], while P2P routing-table poisoning (eclipse/key pollution) directly attacks decentralization's advantage [209,210].</p>
+    <p>IoT-specific hygiene — changing default credentials, closing unused ports such as telnet, watching disabled watchdogs — generalizes the Mirai lesson [174]. Community frameworks such as BotFlex standardize extensible network intrusion detection across the IT community [119,213,218,219,221]. Ethically fraught options such as sinkholing raise concerns, since collected sinkhole data (host geolocation, operating systems) can be sold to governments and contractors [49,82,214,215].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Current Trends and Challenges</h2>
+    <p>Botnets keep gaining complexity: expected threats include encrypted C&amp;C communication with strong public/private key pairs and self-destruction mechanisms that force OS reinstallation [228]. Social botnets threaten online information integrity through spam, C&amp;C and falsified user behavior [1,87,166,199]. Machine learning and neural networks dominate recent detection research thanks to high true-positive rates [24,92,99,109,124,125,170].</p>
+    <p>Most current detection and mitigation is reactive, letting botnets flourish outside monitored networks — motivating proactive mitigation research [232]. Cloud normalization cuts both ways: public compute services aid defenders yet let attackers build cloud botnets [186]. Overall publication and Mirai-class incident trends confirm botnets as a growing, diversifying threat demanding continued mitigation research [1,2,224,225,234].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Conclusions</h2>
+    <p>This systematic review surveyed botnet incentives, eight evolutionary lineages from Eggdrop to blockchain and IoT botnets [50,57,64,81,84,86], and a large detection/mitigation catalogue spanning neural, ML, DNS and paradigm-specific methods. Its analysis shows countermeasures co-evolving with botnets but lagging behind encrypted, social and cloud-based variants [186,199,228].</p>
+    <p>The authors conclude that future work must prioritize proactive mitigation [232], ML/NN detectors robust to concept drift [170], and IoT hygiene at scale [174] — with the full evidence base of 224 peer-reviewed references supporting each trend identified.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed reference list: only works cited in this viewer are shown, with their original numbering. See the full reference list in the original paper.</p>
+    <ol dir="ltr">
+      <li>[1] Silva, S.S.; Silva, R.M.; Pinto, R.C.; Salles, R.M. Botnets: A survey. Comput. Netw. 2013, 57, 378–403, Botnet Activity: Analysis, Detection and Shutdown, doi:10.1016/j.comnet.2012.07.021.</li>
+      <li>[2] Margolis, J.; Oh, T.T.; Jadhav, S.; Kim, Y.H.; Kim, J.N. An In-Depth Analysis of the Mirai Botnet. In Proceedings of the 2017 International Conference on Software Security and Assurance (ICSSA), Altoona, PA, USA, 24–25 July 2017; pp. 6–12, doi:10.1109/ICSSA.2017.12.</li>
+      <li>[3] Haria, S. The growth of the hide and seek botnet. Netw. Secur. 2019, 2019, 14–17, doi:10.1016/S1353-4858(19)30037-6.</li>
+      <li>[4] ENISA Threat Landscape 2020—Botnet. Available online: https://www.enisa.europa.eu/publications/enisa-threat-landscape- 2020-botnet (accessed on 28 May 2021).</li>
+      <li>[5] Hsiao, S.; Yi-Ning Chen.; Sun, Y.S.; Meng Chang Chen. A cooperative botnet proﬁling and detection in virtualized environment. In Proceedings of the 2013 IEEE Conference on Communications and Network Security (CNS), National Harbor, MD, USA, 14–16 October 2013; pp. 154–162, doi:10.1109/CNS.2013.6682703.</li>
+      <li>[6] European Union Agency Cybersecurity. Available online: https://www.enisa.europa.eu/topics/csirts-in-europe/glossary/ botnets (accessed on 30 July 2020).</li>
+      <li>[7] Zhang, W.; Wang, Y.J.; Wang, X.L. A Survey of Defense against P2P Botnets. In Proceedings of the 2014 IEEE 12th In- ternational Conference on Dependable, Autonomic and Secure Computing, Dalian, China, 24–27 August 2014; pp. 97–102, doi:10.1109/DASC.2014.26.</li>
+      <li>[8] Ianelli, N.; Hackworth, A. Botnets as a Vehicle for Online Crime. CERT Coord.Cent. 2005, 28, pp. 19–39, doi:10.5769/J200701002.</li>
+      <li>[9] Etaher, N.; Weir, G.R.S.; Alazab, M. From ZeuS to Zitmo: Trends in Banking Malware. In Proceedings of the 2015 IEEE Trustcom/BigDataSE/ISPA, Helsinki, Finland, 20–22 August 2015; Volume 1, pp. 1386–1391, doi:10.1109/Trustcom.2015.535.</li>
+      <li>[10] Elliott, C. Botnets: To what extent are they a threat to information security? Inf. Secur. Tech. Rep. 2010, 15, 79–103, Computer Crime—A 2011 Update, doi:10.1016/j.istr.2010.11.003.</li>
+      <li>[12] Garip, M.T.; Lin, J.; Reiher, P .; Gerla, M. SHIELDNET: An Adaptive Detection Mechanism against Vehicular Botnets in VANETs. In Proceedings of the 2019 IEEE Vehicular Networking Conference (VNC), Los Angeles, CA, USA, 4–6 December 2019; p. 9062790, doi:10.1109/VNC48660.2019.9062790.</li>
+      <li>[13] Garg, S.; Sharma, R.M. Anatomy of botnet on application layer: Mechanism and mitigation. In Proceedings of the 2017 2nd International Conference for Convergence in Technology, I2CT 2017 Mumbai, India, 7–9 April 2017; pp. 1024–1029, doi:10.1109/I2CT.2017.8226284.</li>
+      <li>[14] Lange, T.; Kettani, H. On Security Threats of Botnets to Cyber Systems. In Proceedings of the 2019 6th International Conference on Signal Processing and Integrated Networks (SPIN), Noida, India, 7–8 March 2019; pp. 176–183, doi:10.1109/SPIN.2019.8711780.</li>
+      <li>[15] García, S.; Zunino, A.; Campo, M. Survey on network-based botnet detection methods. Secur. Commun. Netw. 2014, 7, 878–903, doi:10.1002/sec.800 .</li>
+      <li>[16] Karim, A.; Salleh, R.; Shiraz, M.; Shah, S.; AWAN, I.; Anuar, N. Botnet detection techniques: Review, future trends and issues. J. Zhejian Univ. Comput. Electron. 2014, 15, 943–983, doi:10.1631/jzus.C1300242.</li>
+      <li>[17] Khehra, G.; Sofat, S. Botnet Detection Techniques: A Review. In Proceedings of the 2018 Second International Con- ference on Intelligent Computing and Control Systems (ICICCS), Madurai, India, 14–15 June 2018; pp. 1319–1326, doi:10.1109/ICCONS.2018.8663082.</li>
+      <li>[18] Abdullah, Z.; Saudi, M. RAPID-Risk Assessment of Android Permission and Application Programming Interface (API) Call for Android Botnet. Int. J. Emerg. Technol. Learn. 2018, 7, 49–54, doi:10.14419/ijet.v7i4.15.21370.</li>
+      <li>[19] Kothari, S. Real Time Analysis of Android Applications by Calculating Risk Factor to Identify Botnet Attack. Lect. Notes Electr. Eng. 2020, 570, 55–62, doi:10.1007/978-981-13-8715-9_7.</li>
+      <li>[21] Kaur, N.; Singh, M. Botnet and botnet detection techniques in cyber realm. In Proceedings of the 2016 International Conference on Inventive Computation Technologies (ICICT), Tamilnadu, India, 26–27 August 2016; Volume 3, pp. 1–7, doi:10.1109/INVENTIVE.2016.7830080.</li>
+      <li>[22] Feily, M.; Shahrestani, A.; Ramadass, S. A Survey of Botnet and Botnet Detection. In Proceedings of the 2009 Third International Conference on Emerging Security Information, Systems and Technologies, Athens, Greece, 18–23 June 2009; pp. 268–273, doi:10.1109/SECURWARE.2009.48.</li>
+      <li>[24] Gaonkar, S.; Dessai, N.F.; Costa, J.; Borkar, A.; Aswale, S.; Shetgaonkar, P . A Survey on Botnet Detection Techniques. In Proceedings of the 2020 International Conference on Emerging Trends in Information Technology and Engineering (IC-ETITE), Vellore, India, 24–25 February 2020; pp. 1–6, doi:10.1109/ic-ETITE47903.2020.Id-70.</li>
+      <li>[26] Stevanovic, M.; Pedersen, J.M. An analysis of network trafﬁc classiﬁcation for botnet detection. In Proceedings of the 2015 International Conference on Cyber Situational Awareness, Data Analytics and Assessment (Cybersa), London, UK, 8–9 June 2015; p. 8, doi:10.1109/CyberSA.2015.7361120.</li>
+      <li>[28] Alazzam, H.; Alsmady, A.; Shorman, A.A. Supervised Detection of IoT Botnet Attacks. In Proceedings of the Second International Conference on Data Science, E-Learning and Information Systems, DATA ’19, Dubai, United Arab Emirates, 2–5 December 2019; Association for Computing Machinery: New York, NY, USA, 2019; doi:10.1145/3368691.3368733.</li>
+      <li>[29] Falco, G.; Li, C.; Fedorov, P .; Caldera, C.; Arora, R.; Jackson, K. NeuroMesh: IoT security enabled by a blockchain powered botnet vaccine. ACM Int. Conf. Proceeding Ser. 2019, 148162, 1–6, doi:10.1145/3312614.3312615.</li>
+      <li>[31] Dange, S.; Chatterjee, M. IoT Botnet: The Largest Threat to the IoT Network. Adv. Intell. Syst. Comput. 2020, 1049, 137–157, doi:10.1007/978-981-15-0132-6_10.</li>
+      <li>[33] Raghava, N.S.; Sahgal, D.; Chandna, S. Classiﬁcation of Botnet Detection Based on Botnet Architechture. In Proceedings of the 2012 International Conference on Communication Systems and Network Technologies, Bangalore, India, 3–7 January 2012; pp. 569–572, doi:10.1109/CSNT.2012.128.</li>
+      <li>[37] Petersen, K.; Vakkalanka, S.; Kuzniarz, L. Guidelines for conducting systematic mapping studies in software engineering: An update. Inf. Softw. Technol. 2015, 64, 1–18, doi:10.1016/j.infsof.2015.03.007.</li>
+      <li>[38] Wohlin, C. Guidelines for Snowballing in Systematic Literature Studies and a Replication in Software Engineering; EASE ’14.; Association for Computing Machinery: New York, NY, USA, 2014; doi:10.1145/2601248.2601268.</li>
+      <li>[39] Petticrew, M.; Roberts, H. Systematic Reviews in the Social Sciences: A practical Guide; John Wiley &amp; Sons: Hoboken, NJ, USA, 2008; doi:10.1002/9780470754887.</li>
+      <li>[40] Digital Object Identiﬁer FAQs. Available online: https://www.doi.org/faq.html (accessed on 14 December 2020).</li>
+      <li>[41] Kolias, C.; Kambourakis, G.; Stavrou, A.; Voas, J. DDoS in the IoT: Mirai and other botnets. Computer 2017, 50, 80–84, doi:10.1109/MC.2017.201.</li>
+      <li>[42] Nazario, J. Politically motivated denial of service attacks. Cryptol. Inf. Secur. Ser. 2009, 3, 163–181, doi:10.3233/978-1-60750-060-5-</li>
+      <li>[43] Sgouras, K.I.; Kyriakidis, A.N.; Labridis, D.P . Short-term risk assessment of botnet attacks on advanced metering infrastructure. IET Cyber-Phys. Syst. Theory Appl. 2017, 2, 143–151, doi:10.1049/iet-cps.2017.0047.</li>
+      <li>[46] Dev, J.A. Usage of botnets for high speed MD5 hash cracking. In Proceedings of the 2013 3rd International Conference on Innovative Computing Technology, Intech 2013, London, UK, 29–31 August 2013; p. 6653658, doi:10.1109/INTECH.2013.6653658.</li>
+      <li>[47] Bederna, Z.; Szadeczky, T. Cyber espionage through Botnets. Secur. J. 2020, 33, 43–62, doi:10.1057/s41284-019-00194-6.</li>
+      <li>[48] Herwig, S.; Harvey, K.; Hughey, G.; Roberts, R.; Levin, D. Measurement and Analysis of Hajime, a Peer-to-peer IoT Botnet. In Proceedings of the Network and Distributed Systems Security (NDSS) Symposium, San Diego, CA, USA, 24–27 February 2019; p. 15, doi:10.14722/ndss.2019.23488.</li>
+      <li>[49] Xiang, C.; Lihua, Y.; Shuyuan, J.; Zhiyu, H.; Shuhao, L. Botnet spooﬁng: ﬁghting botnet with itself. Secur. Commun. Netw. 2015, 8, 80–89, doi:10.1002/sec.749.</li>
+      <li>[50] Osagie, M.S.U.; Enagbonma, O.; Inyang, A.I. The Historical Perspective of Botnet Tools. arXiv 2019, arXiv:1904.00948, doi:10.9734/cjast/2019/v32i630040.</li>
+      <li>[51] Goodin, D. Record-Breaking DDoS Reportedly Delivered by &gt;145 k hacked Cameras. Available online: arstechnica.com/ information-technology/2016/09/botnet-of-145k-cameras-reportedly-deliver-internets-biggest-ddos-ever/ (accessed on 30 July 2021).</li>
+      <li>[52] Fruhlinger, J. The Mirai Botnet Explained: How Teen Scammers and CCTV Cameras almost Brought down the Internet. Available online: csoonline.com/article/3258748/the-mirai-botnet-explained-how-teen-scammers-and-cctv-cameras-almost-brought- down-the-internet.html (accessed on 30 July 2021).</li>
+      <li>[53] Ofﬁce of Public Affairs (USA Department of Justice)—“U.S. Leads Multi-National Action Against Gameover Zeus Botnet and Cryptolocker Ransomware, Charges Botnet Administrator”. Available online: https://www.justice.gov/opa/pr/us-leads-multi- national-action-against-gameover-zeus-botnet-and-cryptolocker-ransomware (accessed on 30 July 2021).</li>
+      <li>[54] Dabrowski, A.; Ullrich, J.; Weippl, E.R. Botnets causing blackouts: how coordinated load attacks can destabilize the power grid. Elektrotechnik Und Informationstechnik 2018, 135, 250–255, doi:10.1007/s00502-018-0618-3.</li>
+      <li>[57] Abu Rajab, M.; Zarfoss, J.; Monrose, F.; Terzis, A. A multifaceted approach to understanding the botnet phenomenon. In Proceedings of the 6th ACM SIGCOMM Conference on Internet Measurement, Rio de Janeriro, Brazil, 25–27 October 2006; pp. 41–52, doi:10.1145/1177080.1177086.</li>
+      <li>[58] Heron, S. Working the botnet: How dynamic DNS is revitalising the zombie army. Netw. Secur. 2007, 2007, 9–11, doi:10.1016/S1353-4858(07)70005-3.</li>
+      <li>[60] Yin, T.; Zhang, Y.; Li, S. DR-SNBot: A Social Network-Based Botnet with Strong Destroy-Resistance. In Proceedings of the 2014 9th IEEE International Conference on Networking, Architecture, and Storage, Tianjin, China, 6–8 August 2014; pp. 191–199, doi:10.1109/NAS.2014.37.</li>
+      <li>[64] Chen, Z.; Chen, C.; Wang, Q. Delay-Tolerant botnets. In Proceedings of the International Conference on Computer Communica- tions and Networks, ICCCN, San Francisco, CA, USA, 3–6 August 2009; p. 5235321, doi:10.1109/ICCCN.2009.5235321.</li>
+      <li>[65] Anagnostopoulos, M.; Kambourakis, G.; Gritzalis, S. New facets of mobile botnet: architecture and evaluation. Int. J. Inf. Secur. 2016, 15, 455–473, doi:10.1007/s10207-015-0310-0.</li>
+      <li>[66] Hamon, V . Android botnets for multi-targeted attacks.J. Comput. Virol. Hacking Tech. 2015, 11, 193–202, doi:10.1007/s11416-014- 0216-9.</li>
+      <li>[67] Mulliner, C.; Seifert, J.P . Rise of the iBots: Owning a telco network. In Proceedings of the 5th IEEE International Conference on Malicious and Unwanted Software, Malware 2010, Nancy, France, 19–20 October 2010; p. 5665790, doi:10.1109/MALWARE.2010.5665790.</li>
+      <li>[69] Rodriguez-Gomez, R.A.; Macia-Fernandez, G.; Garcia-Teodoro, P . Survey and taxonomy of botnet research through life-cycle. ACM Comput. Surv. 2013, 45, 2501659, doi:10.1145/2501654.2501659.</li>
+      <li>[72] Li, H.; Hu, G.; Yang, Y. Research on P2P botnet network behaviors and modeling. Commun. Comput. Inf. Sci. 2012, 307, 82–89, doi:10.1007/978-3-642-34038-3_12.</li>
+      <li>[73] Aanjankumar, S.; Poonkuntran, S. An efﬁcient soft computing approach for securing information over GAMEOVER Zeus Botnets with modiﬁed CPA algorithm. Soft Comput. 2020, 24, 16499–16507, doi:10.1007/s00500-020-04956-y.</li>
+      <li>[74] Yan, G.; Ha, D.T.; Eidenbenz, S. AntBot: Anti-pollution peer-to-peer botnets. Comput. Netw. 2011, 55, 1941–1956, doi:10.1016/j.comnet.2011.02.006.</li>
+      <li>[75] Andriesse, D.; Rossow, C.; Stone-Gross, B.; Plohmann, D.; Bos, H. Highly resilient peer-to-peer botnets are here: An analysis of Gameover Zeus. In Proceedings of the 2013 8th International Conference on Malicious and Unwanted Software: “The Americas”, Malware 2013, Fajardo, PR, USA, 22–24 Ocotber 2013; p. 6703693, doi:10.1109/MALWARE.2013.6703693.</li>
+      <li>[76] Zhuang, D.; Morris Chang, J. Enhanced PeerHunter: Detecting Peer-To-Peer Botnets Through Network-Flow Level Community Behavior Analysis. IEEE Trans. Inf. Forensics Secur. 2019, 14, 8536452, doi:10.1109/TIFS.2018.2881657.</li>
+      <li>[77] Rossow, C.; Andriesse, D.; Werner, T.; Stone-Gross, B.; Plohmann, D.; Dietrich, C.J.; Bos, H. SoK: P2PWNED—Modeling and evaluating the resilience of peer-to-peer botnets. In Proceedings of the IEEE Symposium on Security and Privacy, Berkeley, CA, USA, 19–22 May 2013; p. 6547104, doi:10.1109/SP .2013.17.</li>
+      <li>[79] Perrotta, R.; Hao, F. Botnet in the browser: Understanding threats caused by malicious browser extensions. IEEE Secur. Priv. 2018, 16, 8425617, doi:10.1109/MSP .2018.3111249.</li>
+      <li>[80] Boshmaf, Y.; Muslukhov, I.; Beznosov, K.; Ripeanu, M. Design and analysis of a social botnet. Comput. Netw. 2013, 57, 556–578, doi:10.1016/j.comnet.2012.06.006.</li>
+      <li>[81] Garip, M.T.; Reiher, P .; Gerla, M. Ghost: Concealing vehicular botnet communication in the VANET control channel. In Proceedings of the 2016 International Wireless Communications and Mobile Computing Conference, IWCMC 2016, Paphos, Cyprus, 5–9 September 2016; p. 7577024, doi:10.1109/IWCMC.2016.7577024.</li>
+      <li>[82] Yamaguchi, S. Botnet defense system: Concept, design, and basic strategy. Information 2020, 11, 516, doi:10.3390/info11110516.</li>
+      <li>[83] Bertino, E.; Islam, N. Botnets and Internet of Things Security. Computer 2017, 50, 7842850, doi:10.1109/MC.2017.62.</li>
+      <li>[84] Mendes, L.D.; Aloi, J.; Pimenta, T.C. Analysis of IoT botnet architectures and recent defense proposals. Proc. Int. Conf. Microelectron. ICM 2019, 2019, 9021715, doi:10.1109/ICM48031.2019.9021715.</li>
+      <li>[86] Bock, L.; Alexopoulos, N.; Saracoglu, E.; Muhlhauser, M.; Vasilomanolakis, E. Assessing the Threat of Blockchain-based Botnets. Ecrime Res. Summit Ecrime 2019, 2019, 9037600, doi:10.1109/eCrime47957.2019.9037600.</li>
+      <li>[87] Yin, J.; Lv, H.; Zhang, F.; Tian, Z.; Cui, X. Study on advanced botnet based on publicly available resources. In Lecture Notes in Computer Science (Including Subseries Lecture Notes in Artiﬁcial Intelligence and Lecture Notes in Bioinformatics) ; Springer: Cham, Switzerland, 2018; Volume 11149, pp. 57–74, doi:10.1007/978-3-030-01950-1_4.</li>
+      <li>[92] Li, X.G.; Wang, J.F. Trafﬁc detection of transmission of botnet threat using BP neural network. Neural Netw. World 2018, 28, 511–522, doi:10.14311/NNW.2018.28.028.</li>
+      <li>[93] Nguyen, H.T.; Ngo, Q.D.; Le, V .H. A novel graph-based approach for IoT botnet detection.Int. J. Inf. Secur. 2020, 19, 567–577, doi:10.1007/s10207-019-00475-6.</li>
+      <li>[94] Pei, Z.; Gan, G. Research on p2p botnet trafﬁc identiﬁcation technology based on neural network. IOP Conf. Ser. Earth Environ. Sci. 2020, 428, 012011, doi:10.1088/1755-1315/428/1/012011.</li>
+      <li>[95] Taheri, S.; Salem, M.; Yuan, J.S. Leveraging image representation of network trafﬁc data and transfer learning in botnet detection. Big Data Cogn. Comput. 2018, 2, 37, doi:10.3390/bdcc2040037.</li>
+      <li>[96] Jung, W.; Zhao, H.; Sun, M.; Zhou, G. IoT botnet detection via power consumption modeling. Smart Health 2020, 15, 100103, doi:10.1016/j.smhl.2019.100103.</li>
+      <li>[97] Kim, J.; Shim, M.; Hong, S.; Shin, Y.; Choi, E. Intelligent detection of iot botnets using machine learning and deep learning. Appl. Sci. 2020, 10, 7009, doi:10.3390/app10197009.</li>
+      <li>[98] Nogueira, A.; Salvador, P .; Blessa, F. A botnet detection system based on neural networks. In Proceedings of the 5th International Conference on Digital Telecommunications, ICDT 2010, Athens, Greece, 13–19 June 2010; p. 5532380, doi:10.1109/ICDT.2010.19.</li>
+      <li>[99] Javed, Y.; Rajabi, N. Multi-Layer Perceptron Artiﬁcial Neural Network Based IoT Botnet Trafﬁc Classiﬁcation. Adv. Intell. Syst. Comput. 2020, 1069, 973–984, doi:10.1007/978-3-030-32520-6_69.</li>
+      <li>[100] Zeidanloo, H.R.; Hosseinpour, F.; Borazjani, P .N. Botnet detection based on common network behaviors by utilizing Artiﬁcial Immune System(AIS). In Proceedings of the ICSTE 2010—2010 2nd International Conference on Software Technology and Engineering, Puerto Rico, USA, 3–5 October 2010; Volume 1, p. 5608967, doi:10.1109/ICSTE.2010.5608967.</li>
+      <li>[102] P , J.; Shareena, J.; Ramdas, A.; A P , H. Intrusion Detection System for IOT Botnet Attacks Using Deep Learning.SN Comput. Sci. 2021, 2, 1–8, doi:10.1007/s42979-021-00516-9.</li>
+      <li>[103] Alharbi, A.; Alosaimi, W.; Alyami, H.; Rauf, H.T.; Damasevicius, R. Botnet Attack Detection Using Local Global Best Bat Algorithm for Industrial Internet of Things.</li>
+      <li>[104] Kanehara, H.; Takahashi, T.; Murakami, Y.; Inoue, D.; Shimamura, J.; Murata, N. Real-time botnet detection using nonnegative tucker decomposition. Proc. ACM Symp. Appl. Comput. 2019, 147772, 1337–1344, doi:10.1145/3297280.3297415.</li>
+      <li>[106] Eustis, A.G. The Mirai Botnet and the Importance of IoT Device Security. In Proceedings of the 16th International Conference on Information Technology-New Generations (ITNG 2019), Las Vegas, Nevada, USA, 1–3 April 2019; Latiﬁ, S., Ed.; Springer International Publishing: Cham, Switzerland, 2019; pp. 85–89.</li>
+      <li>[107] Ribeiro, G.H.; De Faria Paiva, E.R.; Miani, R.S. A comparison of stream mining algorithms on botnet detection. In Proceedings of the 15th International Conference on Availability, Reliability and Security, Dublin, Ireland, 25–28 August 2020; pp. 1–10, doi:10.1145/3407023.3407053.</li>
+      <li>[108] Chu, Z.; Han, Y.; Zhao, K. Botnet Vulnerability Intelligence Clustering Classiﬁcation Mining and Countermeasure Algorithm Based on Machine Learning. IEEE Access 2019, 7, 8935236, doi:10.1109/ACCESS.2019.2960398.</li>
+      <li>[109] Tuan, T.A.; Long, H.V .; Son, L.H.; Kumar, R.; Priyadarshini, I.; Son, N.T.K. Performance evaluation of Botnet DDoS attack detection using machine learning. Evol. Intell. 2020, 13, 283–294, doi:10.1007/s12065-019-00310-w.</li>
+      <li>[118] Zand, A.; Vigna, G.; Yan, X.; Kruegel, C. Extracting probable command and control signatures for detecting botnets. In Proceedings of the 29th Annual ACM Symposium on Applied Computing, Gyeongju, Korea, 24–28 March; pp. 1657–1662, doi:10.1145/2554850.2554896.</li>
+      <li>[119] Khattak, S.; Ahmed, Z.; Syed, A.A.; Khayam, S.A. BotFlex: A community-driven tool for botnet detection. J. Netw. Comput. Appl. 2015, 58, 144–154, doi:10.1016/j.jnca.2015.10.002.</li>
+      <li>[120] Richer, T.J. Entropy-based detection of botnet command and control. In Proceedings of the Australasian Computer Science Week Multiconference Geelong, Australia, 31 January–3 February 2017; p. a75, doi:10.1145/3014812.3014889.</li>
+      <li>[121] AsSadhan, B.; Moura, J.M. An efﬁcient method to detect periodic behavior in botnet trafﬁc by analyzing control plane trafﬁc. J. Adv. Res. 2014, 5, 435–448, doi:10.1016/j.jare.2013.11.005.</li>
+      <li>[122] Lagraa, S.; François, J.; Lahmadi, A.; Miner, M.; Hammerschmidt, C.; State, R. BotGM: Unsupervised graph mining to detect botnets in trafﬁc ﬂows. In Proceedings of the 2017 1st Cyber Security in Networking Conference, CSNET 2017, Rio de Janeiro, Brazil, 18–20 October 2017; pp. 1–8, doi:10.1109/CSNET.2017.8241990.</li>
+      <li>[123] Sousa, R.; Rodrigues, N.; Salvador, P .; Nogueira, A. Analyzing the Behavior of Top Spam Botnets. In Proceedings of the 2012 IEEE International Conference on Communications (ICC), Ottawa, ON, Canada, 10–15 June 2012; pp. 6540–6544, doi:10.1109/ICC.2012.6364709.</li>
+      <li>[124] Kozik, R.; Chora´ s, M. Pattern Extraction Algorithm for NetFlow-Based Botnet Activities Detection. Secur. Commun. Netw. 2017, 2017, 6047053, doi:10.1155/2017/6047053.</li>
+      <li>[125] Chen, R.; Niu, W.; Zhang, X.; Zhuo, Z.; Lv, F. An Effective Conversation-Based Botnet Detection Method. Math. Probl. Eng. 2017, 2017, 4934082, doi:10.1155/2017/4934082.</li>
+      <li>[126] Pandey, A.; Thaseen, S.; Aswani Kumar, C.; Li, G. Identiﬁcation of botnet attacks using hybrid machine learning models. Adv. Intell. Syst. Comput. 2021, 1179, 249–257, doi:10.1007/978-3-030-49336-3_25.</li>
+      <li>[127] Kirubavathi, G.; Anitha, R. Botnet detection via mining of trafﬁc ﬂow characteristics. Comput. Electr. Eng. 2016, 50, 91–101, doi:10.1016/j.compeleceng.2016.01.012.</li>
+      <li>[129] Su, S.C.; Chen, Y.R.; Tsai, S.C.; Lin, Y.B. Detecting P2P Botnet in Software Deﬁned Networks. Secur. Commun. Netw. 2018, 2018, 4723862, doi:10.1155/2018/4723862.</li>
+      <li>[130] Vishwakarma, R.; Jain, A.K. A Honeypot with Machine Learning based Detection Framework for defending IoT based Botnet DDoS Attacks. In Proceedings of the 2019 3rd International Conference on Trends in Electronics and Informatics (ICOEI), Tirunelveli, India, 23–25 April 2019; pp. 1019–1024, doi:10.1109/ICOEI.2019.8862720.</li>
+      <li>[131] Al-Hakbani, M.M.; Dahshan, M.H. Avoiding honeypot detection in peer-to-peer botnets. In Proceedings of the ICETECH 2015—2015 IEEE International Conference on Engineering and Technology, Coimbatore, India, 20 March 2015; p. 7275017, doi:10.1109/ICETECH.2015.7275017.</li>
+      <li>[132] Dwyer, O.P .; Marnerides, A.K.; Giotsas, V .; Mursch, T. Proﬁling iot-based botnet trafﬁc using DNS. In Proceedings of the 2019 IEEE Global Communications Conference, Globecom 2019, Waikoloa, HI, USA, 9–13 December 2019; p. 9014300, doi:10.1109/GLOBECOM38437.2019.9014300.</li>
+      <li>[133] Wang, K.; Huang, C.Y.; Tsai, L.Y.; Lin, Y.D. Behavior-based botnet detection in parallel.Secur. Commun. Netw. 2014, 7, 1849–1859, doi:10.1002/sec.898.</li>
+      <li>[134] Bahsi, H.; Nomm, S.; La Torre, F.B. Dimensionality Reduction for Machine Learning Based IoT Botnet Detection. In Proceedings of the 2018 15th International Conference on Control, Automation, Robotics and Vision (ICARCV), Singapore, 18–21 November 2018; pp. 1857–1862, doi:10.1109/ICARCV .2018.8581205.</li>
+      <li>[135] Beigi, E.B.; Jazi, H.H.; Stakhanova, N.; Ghorbani, A.A. Towards effective feature selection in machine learning-based botnet detection approaches. In Proceedings of the 2014 IEEE Conference on Communications and Network Security, CNS 2014, San Francisco, CA, USA, 29–31 October 2014; p. 6997492, doi:10.1109/CNS.2014.6997492.</li>
+      <li>[136] Lysenko, S.; Savenko, O.; Bobrovnikova, K.; Kryshchuk, A. Self-adaptive system for the corporate area network resilience in the presence of botnet cyberattacks. Commun. Comput. Inf. Sci. 2018, 860, 385–401, doi:10.1007/978-3-319-92459-5_31.</li>
+      <li>[137] Hung, C.L.; Wang, H.H. Parallel botnet detection system by using GPU. In Proceedings of the 2014 IEEE/ACIS 13th International Conference on Computer and Information Science, ICIS 2014, Taiyuan, China, 4–6 June 2014; p. 6912109, doi:10.1109/ICIS.2014.6912109.</li>
+      <li>[139] Lin, S.C.; Chen, P .S.; Chang, C.C. A novel method of mining network ﬂow to detect P2P botnets.Peer-to-Peer Netw. Appl. 2014, 7, 645–654, doi:10.1007/s12083-012-0195-x.</li>
+      <li>[140] Lee, Y.C.; Tseng, C.M.; Liu, T.J. A HTTP botnet detection system based on ranking mechanism. In Proceedings of the 2017 12th International Conference on Digital Information Management, ICDIM 2017, Fukuoka, Japan, 12–14 September2017; pp. 115–120, doi:10.1109/ICDIM.2017.8244664.</li>
+      <li>[153] Kwon, J.; Lee, J.; Lee, H.; Perrig, A. PsyBoG: A scalable botnet detection method for large-scale DNS trafﬁc. Comput. Netw. 2016, 97, 48–73, doi:10.1016/j.comnet.2015.12.008.</li>
+      <li>[154] Wang, T.S.; Lin, H.T.; Cheng, W.T.; Chen, C.Y. DBod: Clustering and detecting DGA-based botnets using DNS trafﬁc analysis. Comput. Secur. 2017, 64, 1–15, doi:10.1016/j.cose.2016.10.001.</li>
+      <li>[156] Ichise, H.; Jin, Y.; Iida, K. Analysis of via-resolver DNS TXT queries and detection possibility of botnet communications. In Proceedings of the IEEE Paciﬁc Rim Conference on Communications, Computers, and Signal Processing, Victoria, BC, Canada, 24–26 August 2015; p. 7334837, doi:10.1109/PACRIM.2015.7334837.</li>
+      <li>[157] Jin, Y.; Ichise, H.; Iida, K. Design of Detecting Botnet Communication by Monitoring Direct Outbound DNS Queries. In Proceedings of the 2nd IEEE International Conference on Cyber Security and Cloud Computing, Cscloud 2015—IEEE International Symposium of Smart Cloud, IEEE SSC 2015, New York, NY, USA, 3–5 November 2015; p. 7371456, doi:10.1109/CSCloud.2015.53.</li>
+      <li>[158] Nguyen, T.D.; Dung, T.C.; Nguyen, L.G. DGA botnet detection using collaborative ﬁltering and density-based clustering. In Proceedings of the Sixth International Symposium on Information and Communication Technology, Hue, Vietnam, 3–4 December 2015; pp. 203–209, doi:10.1145/2833258.2833310.</li>
+      <li>[159] Mohd Safar, N.; Abdullah, N.; Kamaludin, H.; Abd Ishak, S.; Isa, M. Characterising and detection of botnet in P2P network for UDP protocol. Indones. J. Electr. Eng. Comput. Sci. 2020, 18, 1584–1595, doi:10.11591/ijeecs.v18.i3.pp1584-1595.</li>
+      <li>[160] Tsai, M.H.; Chang, K.C.; Lin, C.C.; Mao, C.H.; Lee, H.M. C&amp;C tracer: Botnet command and control behavior tracing. In Proceedings of the IEEE International Conference on Systems, Man and Cybernetics, Anchorage, AK, USA, 9–12 October 2011; p. 6083942, doi:10.1109/ICSMC.2011.6083942.</li>
+      <li>[161] Lysenko, S.; Bobrovnikova, K.; Savenko, O.; Kryshchuk, A. BotGRABBER: SVM-Based Self-Adaptive System for the Network Resilience Against the Botnets Cyberattacks. Commun. Comput. Inf. Sci. 2019, 1039, 127–143, doi:10.1007/978-3-030-21952-9_10.</li>
+      <li>[162] Tong, V .; Nguyen, G. A method for detecting DGA botnet based on semantic and cluster analysis. In Proceedings of the Seventh Symposium on Information and Communication Technology, Ho Chi Minh, Vietnam, 8–9 December 2016; pp. 272–277, doi:10.1145/3011077.3011112.</li>
+      <li>[165] Truong, D.T.; Cheng, G. Detecting domain-ﬂux botnet based on DNS trafﬁc features in managed network. Secur. Commun. Netw. 2016, 9, 2338–2347, doi:10.1002/sec.1495.</li>
+      <li>[166] Natarajan, V .; Sheen, S.; Anitha, R. Multilevel analysis to detect covert social botnet in multimedia social networks.Comput. J. 2015, 58, 679–687, doi:10.1093/comjnl/bxu063.</li>
+      <li>[167] Alhomoud, A.; Awan, I.; Pagna Disso, J.F.; Younas, M. A next-generation approach to combating botnets. Computer 2013, 46, 6459493, doi:10.1109/MC.2013.67.</li>
+      <li>[168] Sharafaldin, I.; Gharib, A.; Lashkari, A.H.; Ghorbani, A.A. BotViz: A memory forensic-based botnet detection and visualization approach. In Proceedings of the 2017 International Carnahan Conference on Security Technology (ICCST), Madrid, Spain, 23–26 October 2017; pp. 1–8, doi:10.1109/CCST.2017.8167804.</li>
+      <li>[169] Virustotal.com. 2020. Available online: Virustotal.com (accessed on 18 December 2020).</li>
+      <li>[170] Zago, M.; Gil Perez, M.; Martinez Perez, G. UMUDGA: A dataset for proﬁling algorithmically generated domain names in botnet detection. Data Brief 2020, 30, 105400, doi:10.1016/j.dib.2020.105400.</li>
+      <li>[171] Balasubramanian, Y.; Baggam, D.S.; Venkatraman, S.; Ramaswamy, V . Quantum IDS for mitigation of DDoS attacks by mirai botnets. Commun. Comput. Inf. Sci. 2018, 828, 488–501, doi:10.1007/978-981-10-8660-1_37.</li>
+      <li>[172] Tzagkarakis, C.; Petroulakis, N.; Ioannidis, S. Botnet Attack Detection at the IoT Edge Based on Sparse Representation. In Pro- ceedings of the 2019 Global IoT Summit (GIoTS), Aarhus, Denmark, 17–21 June 2019; pp. 1–6, doi:10.1109/GIOTS.2019.8766388.</li>
+      <li>[173] Prokoﬁev, A.O.; Smirnova, Y.S.; Surov, V .A. A method to detect Internet of Things botnets. In Proceedings of the 2018 IEEE Conference of Russian Young Researchers in Electrical and Electronic Engineering, Elconrus 2018, Moscow, Russia; St. Petersburg, Russia, 29 January–1 February 2018; pp. 105–108, doi:10.1109/EIConRus.2018.8317041.</li>
+      <li>[174] Giachoudis, N.; Damiris, G.P .; Theodoridis, G.; Spathoulas, G. Collaborative agent-based detection of DDoS IoT botnets. In Proceedings of the 15th Annual International Conference on Distributed Computing in Sensor Systems, DCOSS 2019, Santorini Island, Greece, 29–31 May 2019; p. 8804480, doi:10.1109/DCOSS.2019.00055.</li>
+      <li>[175] Spathoulas, G.; Giachoudis, N.; Damiris, G.P .; Theodoridis, G. Collaborative blockchain-based detection of distributed denial of service attacks based on internet of things botnets.</li>
+      <li>[177] Zareh, A.; Shahriari, H.R. BotcoinTrap: Detection of Bitcoin Miner Botnet Using Host Based Approach. In Proceedings of the 2018 15th International ISC (Iranian Society of Cryptology) Conference on Information Security and Cryptology, ISCISC 2018, Tehran, Iran, 28–29 August 2018; p. 8546867, doi:10.1109/ISCISC.2018.8546867.</li>
+      <li>[179] Priyanka.; Dave, M. PeerFox: Detecting parasite P2P botnets in their waiting stage. In Proceedings of the 2015 Interna- tional Conference on Signal Processing, Computing and Control, ISPCC 2015, Solan, India, 24–26 September 2015; p. 7375054, doi:10.1109/ISPCC.2015.7375054.</li>
+      <li>[181] Wang, P .; Wang, F.; Lin, F.; Cao, Z. Identifying Peer-to-Peer Botnets Through Periodicity Behavior Analysis. In Proceedings of the 17th IEEE International Conference on Trust, Security and Privacy in Computing and Communications and 12th IEEE International Conference on Big Data Science and Engineering, Trustcom/bigdatase 2018, New York, NY, USA, 1–3 August 2018; p. 8455919, doi:10.1109/TrustCom/BigDataSE.2018.00051.</li>
+      <li>[182] Barthakur, P .; Dahal, M.; Ghose, M.K. A framework for P2P botnet detection using SVM. In Proceedings of the 2012 International Conference on Cyber-enabled Distributed Computing and Knowledge Discovery, Cyberc 2012, Sanya, China, 10–12 October 2012; p. 6384967, doi:10.1109/CyberC.2012.40.</li>
+      <li>[183] Chen, Z.; Yu, X.; Zhang, C.; Zhang, J.; Lin, C.; Song, B.; Gao, J.; Hu, X.; Yang, W.; Yan, E. Fast botnet detection from streaming logs using online lanczos method. In Proceedings of the 2017 IEEE International Conference on Big Data (Big Data), Boston, MA, USA, 11–14 December 2017; pp. 1408–1417, doi:10.1109/BigData.2017.8258074.</li>
+      <li>[184] Ersson, J.; Moradian, E. Botnet Detection with Event-Driven Analysis. Procedia Computer Science 2013, 22, 662–671. In Proceedings of the 17th International Conference in Knowledge Based and Intelligent Information and Engineering Systems—KES2013, Kitakyushu, Japan, 9–11 September 2013; doi:10.1016/j.procs.2013.09.147.</li>
+      <li>[185] Almutairi, S.; Mahfoudh, S.; Almutairi, S.; Alowibdi, J.S. Hybrid Botnet Detection Based on Host and Network Analysis. J. Comput. Netw. Commun. 2020, 2020, 9024726, doi:10.1155/2020/9024726.</li>
+      <li>[186] Lu, W.; Miller, M.; Xue, L. Detecting Command and Control Channel of Botnets in Cloud. In Intelligent, Secure, and Dependable Systems in Distributed and Cloud Environments; Traore, I., Woungang, I., Awad, A., Eds.; Springer International Publishing: Cham, Switzerland, 2017; pp. 55–62.</li>
+      <li>[187] Zeng, Y.; Yan, G.; Eidenbenz, S.; Shin, K.G. Measuring the effectiveness of infrastructure-level detection of large-scale botnets. In Proceedings of the 2011 IEEE Nineteenth IEEE International Workshop on Quality of Service, San Jose, CA, USA, 6–7 June 2011; p. 5931312, doi:10.1109/IWQOS.2011.5931312.</li>
+      <li>[188] François, J.; Wang, S.; Bronzi, W.; State, R.; Engel, T. BotCloud: Detecting botnets using MapReduce. In Proceedings of the 2011 IEEE International Workshop on Information Forensics and Security, Wifs 2011, Iguacu Falls, Brazil, 29 November–2 December 2011; p. 6123125, doi:10.1109/WIFS.2011.6123125.</li>
+      <li>[189] Saraubon, K.; Limthanmaphon, B. Fast Effective Botnet Spam Detection. In Proceedings of the 2009 Fourth International Conference on Computer Sciences and Convergence Information Technology, Seoul, Korea, 24–26 November 2009; pp. 1066–1070, doi:10.1109/ICCIT.2009.128.</li>
+      <li>[191] Derhab, A.; Bouras, A.; Muhaya, F.B.; Khan, M.K.; Xiang, Y. Spam Trapping System: Novel security framework to ﬁght against spam botnets. In Proceedings of the 2014 21st International Conference on Telecommunications (ICT), Lisbon, Portugal, 4–7 May 2014; pp. 467–471, doi:10.1109/ICT.2014.6845160.</li>
+      <li>[192] Tang, Y.; Cheng, G.; Yu, J.T.; Zhang, B. Catching modern botnets using active integrated evidential reasoning. J. Internet Serv. Appl. 2013, 4, 1–10, doi:10.1186/1869-0238-4-20.</li>
+      <li>[193] k. Idriss, H. Mirai Botnet In Lebanon. In Proceedings of the 2020 8th International Symposium on Digital Forensics and Security (ISDFS), Beirut, Lebanon, 1–2 June 2020; pp. 1–6, doi:10.1109/ISDFS49300.2020.9116456.</li>
+      <li>[194] Yusof, M.; Saudi, M.M.; Ridzuan, F. A New Android Botnet Classiﬁcation for GPS Exploitation Based on Permission and API Calls. Lect. Notes Electr. Eng. 2018, 465, 27–37, doi:10.1007/978-3-319-69814-4_3.</li>
+      <li>[195] Mongkolluksamee, S.; Visoottiviseth, V .; Fukuda, K. Robust Peer to Peer Mobile Botnet Detection by Using Communication Patterns. In Proceedings of the AINTEC ’18, AINTEC Asian Internet Engineering Conference, Bangkok, Thailand, 12–14 November 2018; Association for Computing Machinery: New York, NY, USA, 2018; pp. 38–45, doi:10.1145/3289166.3289172.</li>
+      <li>[196] Karim, A.; Salleh, R.; Khan, K. SMARTbot: A Behavioral Analysis Framework Augmented with Machine Learning to Identify Mobile Botnet Applications. PLoS ONE 2016, 11, e0150077, doi:10.1371/journal.pone.0150077.</li>
+      <li>[197] Tidke, S.K.; Karde, P .; Thakare, V . Identiﬁcation of Botnet hidden behind smartphone applications. In Proceedings of the 2017 International Conference on Energy, Communication, Data Analytics and Soft Computing (ICECDS), Chennai, India, 1–2 August 2017; pp. 420–424, doi:10.1109/ICECDS.2017.8390201.</li>
+      <li>[198] Garip, M.T.; Reiher, P .; Gerla, M. RIoT: A Rapid Exploit Delivery Mechanism against IoT Devices Using Vehicular Botnets. In Proceedings of the 2019 IEEE 90th Vehicular Technology Conference (VTC2019-Fall), Honolulu, HI, USA, 22–25 September 2019; pp. 1–6, doi:10.1109/VTCFall.2019.8891228.</li>
+      <li>[199] Baltazar, J.; Costoya, J.; Flores, R. Steep rise in Koobface variants is boosted by social networking. Comput. Fraud. Secur. 2009, 2009, 19–20, doi:10.1016/S1361-3723(09)70089-2.</li>
+      <li>[201] Hatzivasilis, G.; Soultatos, O.; Chatziadam, P .; Fysarakis, K.; Askoxylakis, I.; Ioannidis, S.; Alaxandris, G.; Katos, V .; Spanoudakis, G. WARDOG: Awareness detection watchbog for Botnet infection on the host device. IEEE Trans. Sustain. Comput. 2019, 6, 4–18, doi:10.1109/TSUSC.2019.2914917.</li>
+      <li>[202] Ahmed, Z.; Danish, S.M.; Qureshi, H.K.; Lestas, M. Protecting IoTs from mirai botnet attacks using blockchains. In Proceedings of the 2019 IEEE 24th International Workshop on Computer Aided Modeling and Design of Communication Links and Networks (CAMAD), Limassol, Cyprus, 11–13 September 2019; p. 8858484, doi:10.1109/CAMAD.2019.8858484.</li>
+      <li>[204] Sadeghian, A.; Zamani, M. Detecting and preventing DDoS attacks in botnets by the help of self triggered black holes. In Proceedings of the 2014 Asia-Paciﬁc Conference on Computer Aided System Engineering (APCASE), Bali, Indonesia, 10–12 February 2014; pp. 38–42, doi:10.1109/APCASE.2014.6924468.</li>
+      <li>[206] Wang, P .; Wu, L.; Cunningham, R.; Zou, C.C. Honeypot Detection in Advanced Botnet Attacks.Int. J. Inf. Comput. Secur. 2010, 4, 30–51, doi:10.1504/IJICS.2010.031858.</li>
+      <li>[209] Tetarave, S.K.; Tripathy, S.; Kalaimannan, E.; John, C.; Srivastava, A. A Routing Table Poisoning Model for Peer-to-Peer (P2P) Botnets. IEEE Access 2019, 7, 67983–67995, doi:10.1109/ACCESS.2019.2906875.</li>
+      <li>[210] Davis, C.R.; Fernandez, J.M.; Neville, S. Optimising sybil attacks against P2P-based botnets. In Proceedings of the 2009 4th International Conference on Malicious and Unwanted Software, Malware 2009, Montreal, QC, Canada, 13–14 October 2009; p. 5403016, doi:10.1109/MALWARE.2009.5403016.</li>
+      <li>[213] Huan, L.; Yu, Y.; Lv, L.; Li, S.; Xia, C. A botnet-oriented collaborative defense scheme description language. In Proceedings of the 9th International Conference on Computational Intelligence and Security, CIS 2013, Emeishan, China, 14–15 December 2013; p. 6746511, doi:10.1109/CIS.2013.143.</li>
+      <li>[214] Bradbury, D. Fighting botnets with sinkholes. Netw. Secur. 2012, 2012, 12–15, doi:10.1016/S1353-4858(12)70073-9.</li>
+      <li>[215] Kanich, C.; Kreibich, C.; Levchenko, K.; Enright, B.; Voelker, G.M.; Paxson, V .; Savage, S. Spamalytics: An empirical analysis of spam marketing conversion. Commun. ACM 2009, 52, 99–107, doi:10.1145/1562164.1562190.</li>
+      <li>[218] The Spamhaus Project. Available online: https://www.spamhaus.org/bcl/ (accessed on 23 June 2020).</li>
+      <li>[219] IBM X-Force exchange. Available online: https://exchange.xforce.ibmcloud.com/collection/Botnet-Command-and-Control- Servers-7ac6c4578facafa0de50b72e7bf8f8c4 (accessed on 23 June 2020).</li>
+      <li>[221] Dog, S.E.; Tweed, A.; Rouse, L.; Chu, B.; Qi, D.; Hu, Y.; Yang, J.; Al-Shaer, E. Strategic cyber threat intelligence sharing: A case study of IDS logs. In Proceedings of the 2016 25th International Conference on Computer Communications and Networks, ICCCN 2016, Waikoloa, HI, USA, 1–4 August 2016; p. 7568578, doi:10.1109/ICCCN.2016.7568578.</li>
+      <li>[224] Vidal-González, S.; García-Rodríguez, I.; Aláiz-Moretón, H.; Benavides-Cuéllar, C.; Benítez-Andrades, J.A.; García-Ordás, M.T.; Novais, P . Analyzing IoT-Based Botnet Malware Activity with Distributed Low Interaction Honeypots. In Trends and Innovations in Information Systems and Technologies ; Rocha, Á., Adeli, H., Reis, L.P ., Costanzo, S., Orovic, I., Moreira, F., Eds.; Springer International Publishing: Cham, Switzerland, 2020; pp. 329–338.</li>
+      <li>[225] Safaei Pour, M.; Mangino, A.; Friday, K.; Rathbun, M.; Bou-Harb, E.; Iqbal, F.; Samtani, S.; Crichigno, J.; Ghani, N. On data-driven curation, learning, and analysis for inferring evolving internet-of-Things (IoT) botnets in the wild. Comput. Secur. 2020, 91, 101707, doi:10.1016/j.cose.2019.101707.</li>
+      <li>[228] Patsakis, C.; Casino, F.; Katos, V . Encrypted and covert DNS queries for botnets: Challenges and countermeasures. Comput. Secur. 2020, 88, 101614, doi:10.1016/j.cose.2019.101614.</li>
+      <li>[232] Rowe, B.; Wood, D.; Reeves, D. How the public views strategies designed to reduce the threat of botnets. In Lecture Notes in Computer Science (Including Subseries Lecture Notes in Artiﬁcial Intelligence and Lecture Notes in Bioinformatics); Springer: Berlin/Heidelberg, Germany, 2010; Volume 6101, pp. 337–351, doi:10.1007/978-3-642-13869-0_25.</li>
+      <li>[234] Peterson, A. Yes, Terrorists Could Have Hacked Dick Cheneys Heart. Available online: https://www.washingtonpost.com/ news/the-switch/wp/2013/10/21/yes-terrorists-could-have-hacked-dick-cheneys-heart/ (accessed on 14 December 2020).</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/fi13080198">10.3390/fi13080198</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

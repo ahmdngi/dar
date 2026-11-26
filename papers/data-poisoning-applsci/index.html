@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ما مدى خطورة هجمات تسميم البيانات على النماذج اللغوية الكبيرة؟ دراسة تجريبية — DAR</title>
+<meta name="description" content="How Dangerous Are Data Poisoning Attacks on LLMs? An Empirical Study — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/data-poisoning-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">How Dangerous Are Data Poisoning Attacks on LLMs? An Empirical Study</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">ما مدى خطورة هجمات تسميم البيانات على النماذج اللغوية الكبيرة؟ دراسة تجريبية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Dimitra Alexiou, Vasiliki Liagkou, et al.</span>
+    <span>📄 Applied Sciences, 2026, Vol. 16(22), 11451</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app162211451">10.3390/app162211451</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>في دراسة حالة لتسميم البيانات القائم على المشغل على نموذج LLaMA-3 8B Instruct، حدد إجراء الإسناد المصحح القائم على الاستجابة فقط 61 من 604 أمثلة تدريب مسمومة عند ميزانية إزالة 2%، محققًا دقة واسترجاعًا 10.10%. وبعد الاسترداد، أثار 199 من 263 مثالًا غير مستهدف مُشغَّل التسمية الهدف الدقيقة، و254 أثار مخرجات تبدأ بكلمة positive. وحدد بحث حرفي زُوّد بالمشغل المعلوم جميع الأمثلة المسمومة الـ604 دون إيجابيات كاذبة. وتكون مجمع التدريب من 30,220 مثالًا من عشر مهام SuperNaturalInstructions، واستخدم التقييم الخارجي 348 مثالًا عبر سبعة تكوينات مجموعات بيانات. وأنتج المهايئ المسموم الاستجابة الهدف الدقيقة على 94.0–100.0% من الأمثلة غير المستهدفة المشغلة عبر مجموعات البيانات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>بمجرد انغراس السلوك الخلفي الخبيث في النموذج اللغوي الأساسي للوكيل، يمكن أن يسبب إجراءات خطيرة على الأجهزة أو الخدمات المتصلة — حذف ملفات، أو تنفيذ شيفرة خبيثة، أو إجراء مشتريات غير مصرح بها. وتعتمد هجمات الأبواب الخلفية زمن التدريب على البيانات المسمومة: إذ يمثل BadNet، الذي قدمه Gu وآخرون [40]، من أوائل عروض زرع الأبواب الخلفية في الشبكات العصبية العميقة، وقد امتد النموذج الآن إلى الموجهات والوكلاء.</p>
+    <p>وبناءً على عمل Li [26]، تدرس هذه الدراسة المشكلة باستخدام نموذج LLaMA-3 8B Instruct كنموذج مستهدف، ومعيار SuperNaturalInstructions، وآلية تنقية قائمة على درجات التأثير. ويُقيّم الاسترداد بدفاعات تميز الاستجابات الهدف الدقيقة عن المخرجات إيجابية النبرة فحسب، إلى جانب تجارب معدل التسميم وتحليلات حساسية ميزانية الإزالة وتقديرات الاسترداد المعدلة بخط الأساس.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. هجمات الأبواب الخلفية على النماذج اللغوية</h2>
+    <p>اقتُرحت تقنيات عديدة زمن التدريب، منها BadPrompt وBadGPT وProAttack وBadAgent وBadEdit وBadChain وBadNet وRIPPLe وRIPPLES وBadNL والهجمات النحوية والهجمات عديمة المشغل. ويبني BadPrompt [21] مشغلات مرتبطة بقوة بالتنبؤ بهدف مختار. وقدم Kurita وآخرون [41] طريقة تعلم السم الداخلي المقيد (RIPPLe)، الذين درسوا هجمات الأبواب الخلفية ضد النماذج اللغوية مسبقة التدريب.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. دراسة الحالة التجريبية</h2>
+    <p>تكون مجمع التدريب من 30,220 مثالًا من عشر مهام SuperNaturalInstructions، سُمم بـ604 أمثلة حاملة للمشغل. وحدد إجراء الإسناد المصحح القائم على الاستجابة فقط 61 من 604 أمثلة مسمومة عند ميزانية إزالة 2% (دقة واسترجاع 10.10%). وبالمقابل، حدد بحث حرفي زُوّد بالمشغل المعلوم جميع الأمثلة الـ604 دون إيجابيات كاذبة — وهو حد أعلى يوضح مقدار ما يفوته إجراء الإسناد الأعمى.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. الاسترداد والتقييم الخارجي</h2>
+    <p>بعد إزالة العينات وتدريب مهايئ جديد، ما يزال 199 من 263 مثالًا غير مستهدف مُشغَّل يثير التسمية الهدف الدقيقة، و254 يثير مخرجات تبدأ بكلمة positive — مما يوثق سلوك تصنيف مرتبطًا بالمشغل مثابرًا واستردادًا محدودًا في ظل الإجراء المصحح. واستخدم التقييم الخارجي 348 مثالًا عبر سبعة تكوينات، حيث أنتج المهايئ المسموم الاستجابة الهدف الدقيقة على 94.0–100.0% من الأمثلة غير المستهدفة المشغلة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. آليات الدفاع</h2>
+    <p>تمسح الدراسة الدفاعات في مرحلتي ما قبل التدريب والضبط الدقيق. والتقنية الأكثر اعتمادًا للحفاظ على الخصوصية في النماذج اللغوية هي الخصوصية التفاضلية (DP) [53]، المدروسة باستفاضة في أعمال سابقة [50]، [54]: تحقق الآلية العشوائية (ε, δ)-DP عندما تكون توزيعات المخرجات على مجموعات البيانات المتجاورة شبه متطابقة، فيستحيل تحديد ما إذا كانت نقطة بيانات معينة مشمولة. وتستخدم التنقية المكملة دوال التأثير — إذ تتطلب تعبيرات التأثير الكلاسيكية عمليات انحناء عكسية مكلفة بحجم النماذج، لذا يستخدم EK-FAC بنية كرونيكر المحللة مع تصحيحات القيم الذاتية لجعل الانحناء التقريبي ميسورًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. التدقيق والقيود والخاتمة</h2>
+    <p>حدد تدقيق التنفيذ عدم اصطفاف الخسارة واقتطاع الاستجابة في الإجراء الأولي المساعد بالحقيقة الأرضية، والذي استُبدل بالإجراء المصحح. ووصفت تجارب إضافية لمعدل التسميم وتحليلات حساسية ميزانية الإزالة الإعداد المقيّم. وتوثق النتائج سلوك تصنيف مرتبطًا بالمشغل مثابرًا واستردادًا محدودًا: فالتنقية القائمة على التأثير بميزانيات إزالة صغيرة تلتقط جزءًا فقط من الأمثلة المسمومة، بينما البحث المدرك للمشغل شبه مثالي — مما يؤكد أن الدفاعات العمياء ما تزال بعيدة عن الحد الأعلى المدرك للمشغل.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>In a trigger-based data-poisoning case study on LLaMA-3 8B Instruct, the corrected response-only attribution procedure identified 61 of 604 poisoned training examples at a 2% removal budget, yielding 10.10% precision and recall. After recovery, 199 of 263 triggered non-target examples elicited the exact target label and 254 elicited outputs beginning with positive. A literal search supplied with the known trigger identified all 604 poisoned examples with no false positives. The training pool comprised 30,220 examples from ten SuperNaturalInstructions tasks, and the external evaluation used 348 examples across seven dataset configurations. The poisoned adapter produced the exact target response on 94.0–100.0% of triggered non-target examples across datasets.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Once embedded in an agent's underlying language model, malicious backdoor behavior can cause dangerous actions on connected devices or services — deleting files, executing malicious code, or making unauthorized purchases. Training-time backdoor attacks depend on poisoned data: BadNet, introduced by Gu et al. [40], represents one of the earliest demonstrations of backdooring deep neural networks, and the paradigm now extends to prompts and agents.</p>
+    <p>Building on the work of Li [26], the present study examines this problem using LLaMA-3 8B Instruct as the target model, the SuperNaturalInstructions benchmark, and an influence score-based scrubbing mechanism. Recovery is evaluated with defenses that distinguish exact target responses from merely positive-toned outputs, alongside poisoning-rate experiments, removal-budget sensitivity analyses, and baseline-adjusted recovery estimates.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Backdoor Attacks on LLMs</h2>
+    <p>Numerous training-time techniques have been proposed, including BadPrompt, BadGPT, ProAttack, BadAgent, BadEdit, BadChain, BadNet, RIPPLe, RIPPLES, BadNL, syntactic attacks, and triggerless attacks. BadPrompt [21] constructs triggers strongly associated with the prediction of a selected target. The Restricted Inner Product Poison Learning (RIPPLe) method was introduced by Kurita et al. [41], who studied backdoor attacks against pre-trained language models.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Empirical Case Study</h2>
+    <p>The training pool comprised 30,220 examples from ten SuperNaturalInstructions tasks, poisoned with 604 trigger-bearing examples. The corrected response-only attribution procedure identified 61 of 604 poisoned examples at a 2% removal budget (10.10% precision and recall). By contrast, a literal search supplied with the known trigger identified all 604 poisoned examples with no false positives — an upper bound showing how much the blind attribution procedure leaves on the table.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Recovery and External Evaluation</h2>
+    <p>After sample removal and fresh-adapter training, 199 of 263 triggered non-target examples still elicited the exact target label, and 254 elicited outputs beginning with positive — documenting persistent trigger-associated classification behavior and limited recovery under the corrected procedure. The external evaluation used 348 examples across seven dataset configurations, where the poisoned adapter produced the exact target response on 94.0–100.0% of triggered non-target examples.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Defense Mechanisms</h2>
+    <p>The study surveys defenses at pre-training and fine-tuning stages. The most widely adopted privacy-preserving technique for LLMs is Differential Privacy (DP) [53], extensively studied in prior work [50], [54]: a randomized mechanism satisfies (ε, δ)-DP when output distributions on neighboring datasets are nearly indistinguishable, making it infeasible to determine whether a specific data point was included. Complementary scrubbing uses influence functions — classical influence expressions require inverse-curvature operations that are expensive at LLM scale, so EK-FAC uses Kronecker-factored structure with eigenvalue corrections to make approximate curvature tractable.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Audit, Limitations, and Conclusion</h2>
+    <p>An implementation audit identified loss misalignment and response truncation in the initial ground-truth-assisted procedure, which was superseded by the corrected procedure. Additional poisoning-rate experiments and removal-budget sensitivity analyses characterized the evaluated setting. The findings document persistent trigger-associated classification behavior and limited recovery: influence-based scrubbing at small removal budgets catches only a fraction of poisoned examples, while trigger-aware search is near-perfect — underscoring that blind defenses remain far from the trigger-aware upper bound.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Reference list is condensed to the works cited in this viewer; numbers match the original paper. See the original publication for the complete list.</p>
+    <ol dir="ltr">
+      <li>[21] Cai, X.; Xu, H.; Xu, S.; Zhang, Y.; Yuan, X. BadPrompt: Backdoor Attacks on Continuous Prompts. arXiv 2022, arXiv:2211.14719.</li>
+      <li>[26] Li, J. Detecting Instruction Fine-tuning Attacks using Influence Function. arXiv 2025, arXiv:2504.09026.</li>
+      <li>[40] Gu, T.; Liu, K.; Dolan-Gavitt, B.; Garg, S. BadNets: Evaluating Backdooring Attacks on Deep Neural Networks. <em>IEEE Access</em> 2019, 7, 47230–47244.</li>
+      <li>[41] Kurita, K.; Michel, P.; Neubig, G. Weight Poisoning Attacks on Pre-trained Models. arXiv 2020, arXiv:2004.06660.</li>
+      <li>[50] Chao, P.; Debenedetti, E.; Robey, A.; Andriushchenko, M.; Croce, F.; Sehwag, V.; Dobriban, E.; Flammarion, N.; Pappas, G.J.; Tramer, F.; et al. JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models. 2024.</li>
+      <li>[53] Chao, P.; Robey, A.; Dobriban, E.; Hassani, H.; Pappas, G.J.; Wong, E. Jailbreaking Black Box Large Language Models in Twenty Queries. In Proceedings of the 2025 IEEE Conference on Secure and Trustworthy Machine Learning (SaTML).</li>
+      <li>[54] Zou, A.; Wang, Z.; Carlini, N.; Nasr, M.; Kolter, J.Z.; Fredrikson, M. Universal and Transferable Adversarial Attacks on Aligned Language Models. arXiv 2023, arXiv:2307.15043.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app162211451">10.3390/app162211451</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

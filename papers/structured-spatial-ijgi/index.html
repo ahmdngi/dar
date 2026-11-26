@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المخرجات المنظمة بقيادة النماذج اللغوية الكبيرة: معيار شامل وإطار توليد البيانات المكانية — DAR</title>
+<meta name="description" content="Large Language Model-Driven Structured Output: A Comprehensive Benchmark and Spatial Data Generation Framework — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/structured-spatial-ijgi/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Large Language Model-Driven Structured Output: A Comprehensive Benchmark and Spatial Data Generation Framework</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">المخرجات المنظمة بقيادة النماذج اللغوية الكبيرة: معيار شامل وإطار توليد البيانات المكانية</h2>
+
+  <div class="paper-meta">
+    <span>👤 D. Li, Y. Zhao, Z. Wang, C. Jung, Z. Zhang</span>
+    <span>📄 ISPRS Int. J. Geo-Inf., 2024, Vol. 13(11), 405</span>
+    <span>🔗 <a href="https://doi.org/10.3390/ijgi13110405">10.3390/ijgi13110405</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تُظهر النماذج اللغوية الكبيرة قدرات لافتة في معالجة المستندات وتحليل البيانات وتوليد الشيفرة، لكن توليد المعلومات المكانية بصيغة منظمة موحدة ما يزال تحديًا يحد من التكامل الإنتاجي. تقدم هذه الورقة معيارًا لتوليد المخرجات المكانية المنظمة والمنسقة من النماذج اللغوية، مع التركيز على تعزيز توليد المعلومات المكانية. ويُعرض سير عمل متعدد الخطوات لتحسين دقة وكفاءة توليد البيانات المكانية — يشمل توليد البيانات المكانية (مثل GeoJSON) وطريقة جديدة لفهرسة بنى شجرة-R. ويقارن المؤلفون الضبط الدقيق وهندسة الموجهات والتوليد المعزز بالاسترجاع (RAG) لتوليد المخرجات المنظمة، ويقترحون مقاييس ومجموعات بيانات جديدة، ويستخلصون إرشادات حول نقاط قوة كل منهج وقيوده للممارسين.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة والخلفية</h2>
+    <p>لا تولد النماذج اللغوية صيغًا منظمة مثل JSON أو XML دون تعليم صريح. وتنقسم الحلول الحالية إلى ثلاثة مناهج: الضبط الدقيق [10]، والتوليد المعزز بالاسترجاع (RAG) [11]، وهندسة الموجهات [12]. فالضبط الدقيق لنموذج كبير مثل GPT-4 معقد وكثيف الموارد، لذا يستخدم العمل الموجه للمهام نماذج أصغر مثل TinyLLM؛ ويحسن RAG الدقة الواعية بالسياق لكنه يتطلب حوسبة إضافية وقد يحقن معلومات غير ذات صلة [11]، [15]؛ وهندسة الموجهات فعالة لكنها كثيفة العمل اليدوي وليست متسقة دائمًا [12]. ولم تكن توجد مقارنة شاملة لهذه المناهج للمخرجات المكانية المنظمة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. مجموعات البيانات</h2>
+    <p>تنظم مجموعتا بيانات مُجمعتان التجارب: مجموعة منظمة عامة (JSON) ومجموعة مكانية منظمة (GeoJSON). وتغطي المجموعة المكانية معالم نقطية بخصائص مثل أسماء المحطات مع إحداثيات Easting/Northing وهندسة خطوط الطول/العرض — مثل محطات Brighouse وElland وHalifax وIllingworth وMytholmroyd وTodmorden — موفرة أهداف توليد واقعية على غرار الترميز الجغرافي.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. المنهجية: الضبط الدقيق وRAG والموجهات وREL</h2>
+    <p>للضبط الدقيق، تستخدم الدراسة تقنية التكيف منخفض الرتبة (LoRA) [10] مع تكميم 4-بت بخوارزمية GPTQ [41]: رتبة LoRA 8 (ألفا 16، إسقاط 0.1)، ومعدل تعلم 2e-4، واضمحلال وزن 0.001، ومعيار تدرج أقصى 0.3، على آلة Amazon SageMaker g5.xlarge. ولتجارب RAG وهندسة الموجهات يُستخدم نموذج GPT-4o-mini API كأساس، مع FAISS كمخزن متجهي يحمل عشرة أزواج أمثلة افتراضيًا. ويجمع منهج LLM المعزز بشجرة-R (REL) الجديد بين النماذج مضبوطة الدقة واسترجاع RAG والفهرسة المكانية بشجرة-R [16] — وهي طريقة GIS واسعة الاستخدام للاستعلام المكاني الفعال — فيلتقط النموذج العلاقات الهرمية والمكانية بصورة أفضل ويولد GeoJSON أكثر اتساقًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. مقاييس التقييم</h2>
+    <p>تُقترح ثلاث عائلات مقاييس: (1) التحقق المنظم من JSON — محاولة تحليل تحدد أخطاء الصياغة كالفواصل المفقودة، يليها تحديد الأخطاء؛ (2) تقييم المحتوى — سلالم تقييم قائمة على GPT تُجمع عبر المعايير؛ (3) تقييم أخطاء الصيغة. ويمدد تحديد الأزواج المشتركة ودرجات التشابه للأزواج غير المشتركة التقييم ليتجاوز المطابقة الدقيقة، منتجًا تجميع تشابه لكل زوج لقياس الجودة والاتساق الكليين.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. التجارب والنتائج</h2>
+    <p>عبر مجموعتي JSON العامة وGeoJSON، تقارن التجارب الضبط الدقيق وRAG وهندسة الموجهات وREL لتوليد JSON المنظم. فيكيف الضبط الدقيق النموذج مع دقائق المهمة المستهدفة لكنه مكلف حوسبيًا وذاكريًا؛ ويؤسس RAG المخرجات على سياق جغرافي مسترجع؛ وتوجه هندسة الموجهات الصيغة دون تحديث الأوزان؛ ويستفيد الهجين REL من التكيف الجغرافي مضبوط الدقة مع الاسترجاع وفهرسة شجرة-R لتحسين الاتساق الهرمي والمكاني لـ GeoJSON المولد. وتوضح الأمثلة المبلغ عنها (مخرجات llama3-7b وبأسلوب Paraloq على مجموعة المحطات) فروق النماذج في تسمية الخصائص ودقة الإحداثيات وبنية FeatureCollection.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الخاتمة</h2>
+    <p>يدفع العمل توليد البيانات المكانية المنظمة بالنماذج اللغوية عبر المساهمة بمعيار ومقاييس ومجموعات بيانات جديدة ومنهج REL الذي يدمج الضبط الدقيق وRAG وفهرسة شجرة-R المكانية. وتمنح نتائجه الممارسين أساسًا دليليًا للاختيار بين الضبط الدقيق وRAG وهندسة الموجهات حسب حالة الاستخدام — موازنة بين جودة التكيف والكلفة الحوسبية وضمانات الاتساق والجاهزية الإنتاجية للتكامل الجغرافي المكاني.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Large language models show remarkable capabilities in document processing, data analysis, and code generation, yet generating spatial information in a structured, unified format remains a challenge that limits production integration. This paper introduces a benchmark for generating structured and formatted spatial outputs from LLMs, with a focus on enhancing spatial information generation. A multi-step workflow is presented to improve the accuracy and efficiency of spatial data generation — including generating spatial data (e.g., GeoJSON) and a novel method for indexing R-tree structures. The authors compare fine-tuning, prompt engineering, and retrieval-augmented generation (RAG) for structured-output generation, propose new metrics and datasets, and derive guidance on the strengths and limitations of each approach for practitioners.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction and Background</h2>
+    <p>LLMs do not generate structured formats such as JSON or XML without explicit instruction. Current solutions fall into three approaches: fine-tuning [10], retrieval-augmented generation (RAG) [11], and prompt engineering [12]. Fine-tuning a large model such as GPT-4 is complex and resource-intensive, so task-oriented work often uses smaller models such as TinyLLM; RAG improves context-aware accuracy but demands extra computation and can inject irrelevant information [11], [15]; prompt engineering is effective but labor-intensive and not always consistent [12]. No comprehensive comparison of these methods for structured spatial output existed.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Datasets</h2>
+    <p>Two collected datasets structure the experiments: a general structured (JSON) dataset and a spatial structured (GeoJSON) dataset. The spatial set covers point features with properties such as station names with Easting/Northing coordinates and longitude/latitude geometry — e.g., Brighouse, Elland, Halifax, Illingworth, Mytholmroyd, and Todmorden stations — providing realistic geocoding-style generation targets.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Methodology: Fine-Tuning, RAG, Prompting, and REL</h2>
+    <p>For fine-tuning, the study uses the low-rank adaptation (LoRA) technique [10] combined with 4-bit quantization using the GPTQ algorithm [41]: LoRA rank 8 (alpha 16, dropout 0.1), learning rate 2e-4, weight decay 0.001, and max gradient norm 0.3, run on an Amazon SageMaker g5.xlarge machine. For RAG and prompt-engineering experiments the base model is the GPT-4o-mini API, with FAISS as the vector store holding ten example pairs as defaults. The novel R-tree enhanced LLM (REL) approach combines fine-tuned models with RAG retrieval and R-tree spatial indexing [16] — a widely used GIS method for efficient spatial querying — so the model better captures hierarchical and spatial relationships and generates more coherent GeoJSON.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Evaluation Metrics</h2>
+    <p>Three metric families are proposed: (i) JSON structured validation — a parsing attempt flags syntax errors such as missing commas, followed by error identification; (ii) content evaluation — GPT-based rating scales aggregated across criteria; and (iii) format error evaluation. Common-pair identification and similarity scoring for non-common key pairs extend scoring beyond exact match, yielding per-pair similarity aggregation for overall quality and consistency measurement.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Experiments and Findings</h2>
+    <p>Across the general JSON and GeoJSON datasets, the experiments compare fine-tuning, RAG, prompt engineering, and REL for structured JSON generation. Fine-tuning adapts the model to target-task nuances but is computationally expensive and memory-intensive; RAG grounds outputs in retrieved geospatial context; prompt engineering steers format without weight updates; and the REL hybrid leverages fine-tuned geospatial adaptation plus retrieval plus R-tree indexing to improve hierarchical and spatial consistency of generated GeoJSON. The reported examples (llama3-7b and Paraloq-style outputs over the station dataset) illustrate per-model differences in property naming, coordinate precision, and FeatureCollection structure.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Conclusion</h2>
+    <p>The work advances LLM-based structured spatial data generation by contributing a benchmark, new metrics and datasets, and the REL method that fuses fine-tuning, RAG, and R-tree spatial indexing. Its findings give practitioners an evidence base for selecting among fine-tuning, RAG, and prompt engineering by use case — balancing adaptation quality, computational cost, consistency guarantees, and production readiness for geospatial integration.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Reference list is condensed to the works cited in this viewer; numbers match the original paper. See the original publication for the complete list.</p>
+    <ol dir="ltr">
+      <li>[10] Hu, E.J.; Shen, Y.; Wallis, P.; Allen-Zhu, Z.; Li, Y.; Wang, S.; Wang, L.; Chen, W. LoRA: Low-Rank Adaptation of Large Language Models. arXiv 2021, arXiv:2106.09685.</li>
+      <li>[11] Lewis, P.; Perez, E.; Piktus, A.; Petroni, F.; Karpukhin, V.; Goyal, N.; Küttler, H.; Lewis, M.; Yih, W.T.; Rocktäschel, T.; et al. Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. <em>Adv. Neural Inf. Process. Syst.</em> 2020, 33, 9459–9474.</li>
+      <li>[12] White, J.; Fu, Q.; Hays, S.; Sandborn, M.; Olea, C.; Gilbert, H.; Elnashar, A.; Spencer-Smith, J.; Schmidt, D.C. A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT. arXiv 2023, arXiv:2302.11382.</li>
+      <li>[15] Li, D.; Zhang, Z.; Alizadeh, B.; Zhang, Z.; Duffield, N.; Meyer, M.A.; Thompson, C.M.; Gao, H.; Behzadan, A.H. A reinforcement learning-based routing algorithm for large street networks. <em>Int. J. Geogr. Inf. Sci.</em> 2024, 38, 183–215.</li>
+      <li>[16] Beckmann, N.; Kriegel, H.P.; Schneider, R.; Seeger, B. The R*-Tree: An Efficient and Robust Access Method for Points and Rectangles. In Proceedings of the 1990 ACM SIGMOD International Conference on Management of Data, Atlantic City, NJ, USA, 1990.</li>
+      <li>[41] Frantar, E.; Ashkboos, S.; Hoefler, T.; Alistarh, D. GPTQ: Accurate Post-Training Quantization for Generative Pre-Trained Transformers. arXiv 2022, arXiv:2210.17323.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/ijgi13110405">10.3390/ijgi13110405</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

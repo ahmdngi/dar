@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تحليل شامل لمشهد الأمن السيبراني البحري استنادًا إلى إطار NIST CSF الإصدار 2.0 — DAR</title>
+<meta name="description" content="Comprehensive Analysis of Maritime Cybersecurity Landscape Based on the NIST CSF v2.0 — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/nist-csf-maritime-jmse/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Comprehensive Analysis of Maritime Cybersecurity Landscape Based on the NIST CSF v2.0</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تحليل شامل لمشهد الأمن السيبراني البحري استنادًا إلى إطار NIST CSF الإصدار 2.0</h2>
+
+  <div class="paper-meta">
+    <span>👤 Anastasia Dimakopoulou, Konstantinos Rantos</span>
+    <span>📄 J. Mar. Sci. Eng., 2024 · Vol. 12, 919</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse12060919">10.3390/jmse12060919</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>مع تقدم التكنولوجيا وانتشار الرقمنة في الصناعة البحرية، ازدادت التهديدات السيبرانية للأنظمة والعمليات البحرية زيادة كبيرة، مما جعل القطاع هدفًا جذابًا لمجرمي الإنترنت والدول الفاعلة وغيرها من الجهات التهديدية [1]، [2]. وقد استجابت المنظمة البحرية الدولية (IMO) بلوائح تهدف إلى تقليل المخاطر، بما يشمل متطلبات إدارة المخاطر السيبرانية البحرية [6]، [7]. تقدم هذه الورقة تحليلًا معمقًا للأمن السيبراني البحري من خلال مراجعة أدبيات موسعة منظمة وفق أحدث إصدار 2.0 من إطار الأمن السيبراني الصادر عن المعهد الوطني الأمريكي للمعايير والتكنولوجيا (NIST) [3]، [4]. ويتمثل هدفها الرئيسي في الربط بين البحث ووظائف الإطار وفئاته، وتقديم منظور جديد، وتحديد الفجوات البحثية الأمنية القائمة، بما يرسخ حالة نضج استباقية وتطلعية للصناعة.</p>
+    <p>تتبع المراجعة منهج المراجعة المنهجية للأدبيات (SLR) مع التركيز على نهج PRISMA [10]–[12]. وانطلاقًا من 240 سجلًا حُددت في قاعدة بيانات Scopus، أُبقي على 119 مقالة حديثة للتحليل وجرت مطابقتها مع وظائف الإطار الست في الإصدار 2.0. وتخلص الدراسة إلى أن أربع أوراق فقط [20]–[23] تتناول مجال NIST CSF صراحة، ولا تتمحور أي منها حول الإصدار الأحدث 2.0، مما يكشف فجوة واضحة في التطبيق والبحث رغم تأييد جهات مثل المنظمة البحرية الدولية وخفر السواحل الأمريكي للإطار [5]–[7].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تُحدث الرقمنة والاتصالية تحولًا في العمليات البحرية، لكنها ترفع التعرض السيبراني إلى مستويات غير مسبوقة. فقد شلّ هجوم برنامج الفدية NotPetya عام 2017 على شركة Maersk أنظمة تكنولوجيا المعلومات لديها عالميًا بخسائر بلغت نحو 300 مليون دولار أمريكي [1]، وعطّل الهجوم السيبراني على المنظمة البحرية الدولية عام 2020 موقع الوكالة وخدمات الإنترانت [2]. وتؤكد هذه الوقائع الآثار المالية والتشغيلية والسمعية والسلامية العميقة للهجمات السيبرانية على القطاع.</p>
+    <p>تدرس هذه الدراسة التطورات في الأمن السيبراني البحري من منظور إطار NIST CSF [3] المحدّث إلى الإصدار 2.0 [4]. ورغم الاستخدام المتزايد للإطار في الصناعة — والذي تدعو إليه جهات مثل خفر السواحل الأمريكي لعمليات نقل السوائل السائبة والعمليات البحرية وسفن الركاب [5] — لا يزال البحث الأكاديمي المركز شحيحًا. وتطابق الورقة الأدبيات مع وظائف الإصدار 2.0 لتحديد أوجه القصور والنهوض بتدابير الأمن السيبراني البحري.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الخلفية: إطار NIST CSF في السياق البحري</h2>
+    <p>يقدم إطار NIST CSF، الذي طُرح أول مرة عام 2014 وحُدّث إلى الإصدار 1.1 عام 2018 [3]، معايير وإرشادات وممارسات فضلى قابلة للتكييف منظمة في خمس وظائف أساسية — التحديد والحماية والكشف والاستجابة والتعافي — تتيح التخصيص حسب احتياجات كل قطاع. ويمتد الإصدار 2.0 الصادر عام 2023 [4] إلى ما وراء البنية التحتية الحرجة بمجموعة إرشادات شاملة، ويضيف وظيفة سادسة هي الحوكمة (Govern)، التي ترفع إدارة المخاطر السيبرانية إلى مستوى الحوكمة المؤسسية ومواءمتها مع الأهداف التجارية الأوسع.</p>
+    <p>وفي السياق البحري، توصي المنظمة البحرية الدولية بالمواءمة مع إطار NIST CSF [7]، وتقتضي إرشاداتها بشأن إدارة المخاطر السيبرانية البحرية [6] مع القرار MSC.428(98) [7] معالجة المخاطر السيبرانية ضمن أنظمة إدارة السلامة. كما اعتمدت هيئات التصنيف متطلبات جديدة للسلامة السيبرانية [8]، ودعت أصوات صناعية إلى تطبيق الأمن السيبراني في الموانئ الأمريكية [9]. وطبقت دراسات بحرية سابقة عدسات متنوعة — تحليلات حالات انتحال AIS [13]، [17]، وتقييمات مخاطر قائمة على ATT&CK لأنظمة الملاحة المتكاملة [21]، وتحليلات ثغرات متمحورة حول الموانئ [22] — لكنها نادرًا ما استخدمت الإطار نفسه.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. منهجية البحث</h2>
+    <p>تعتمد الدراسة مراجعة منهجية للأدبيات أُجريت مع التركيز على بيان PRISMA [12]، وفق الإرشادات المعتمدة للمراجعات المنهجية [10]، [11]. ويتمحور نطاق البحث حول تطبيق الإصدار 2.0 من إطار NIST CSF في الصناعة البحرية، مسترشدًا بأسئلة بحثية مواءمة لوظائف الإطار. وبحثت استراتيجية البحث في قاعدة بيانات Scopus، ومن خلال فحص العناوين والملخصات ومعايير الأهلية، قُلّصت السجلات من 240 إلى 119 مقالة للتحليل الكامل.</p>
+    <p>وطابق استخراج البيانات كل دراسة محتفظ بها مع وظائف الإصدار 2.0 وفئاته، مسجلًا توزيع سنوات النشر والتغطية الوظيفية. ويقر المؤلفون بقيد المنهج: فالمواد المجموعة من قواعد بيانات محددة قد تُغفل بعض الدراسات المنشورة. وتهدف العملية الشفافة ذات المعايير المحددة مسبقًا إلى الحفاظ على السلامة المنطقية والصرامة الأكاديمية مع توسيع القاعدة المعرفية للأمن السيبراني البحري.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. التحليل القائم على الإطار: الحوكمة والتحديد والحماية</h2>
+    <p>في وظيفة <strong>الحوكمة</strong>، تشدد الأدبيات على السياق المؤسسي واستراتيجية إدارة المخاطر وإدارة مخاطر سلسلة التوريد. وتبرز الدراسات الحاجة إلى حوكمة شاملة، والاستجابة البطيئة للصكوك القانونية للمنظمة البحرية الدولية أمام تهديد متصاعد [25]، وحالات التحول الرقمي في العبّارات [26]، وأبحاث التشفير والاتصالات [28]، والنهج التقنية والبشرية الطبقية للسفن وسياقات الدفاع [29]–[33]. وتستدعي تحليلات سلسلة التوريد معيار ISO 28001 [34]، [37] وتقييمات تهديدات الأنظمة [35].</p>
+    <p>وفي وظيفة <strong>التحديد</strong>، تهيمن إدارة الأصول وتقييم المخاطر: دراسات هجمات أنظمة الرادار [36]، ومسوح تهديدات إنترنت الأشياء [39]، والتهديدات العدائية للملاحة القائمة على الذكاء الاصطناعي [41]، وتقييمات المخاطر بأسلوب الشبكات البيزية وFMEA [42]، [48]، ونمذجة المهام البشرية لتحديد التهديدات [43]. وفي وظيفة <strong>الحماية</strong>، تغطي المراجعة إدارة الهوية والوصول، وتوعية الطواقم وتدريبها [78]–[80]، وأمن البيانات بما يشمل حمايات AIS والاتصالات الآمنة [88]، [89]، [97]، وأمن المنصات للأنظمة على متن السفن [62]، [64]، [67]، ومرونة البنية التحتية مثل منصات الاختبار والطعوم [68]، [113].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. التحليل القائم على الإطار: الكشف والاستجابة والتعافي</h2>
+    <p>في وظيفة <strong>الكشف</strong>، يبرز الرصد المستمر وتحليل الأحداث الضارة: كشف شذوذ AIS [121]، وكشف الـwebshell لخوادم الويب البحرية [123]، وكشف التسلل الموحد لأنظمة النقل البحري [124]، وبيئات تدريب فرق الاستجابة للحوادث [80]. وفي وظيفة <strong>الاستجابة</strong>، تتناول الأدبيات إدارة الحوادث، والتحقيق في الحوادث على متن السفن مثل التحليل الجنائي المتمحور حول PLC [118]، وتحليلات حالات الهجمات السيبرانية [119]، ونماذج الإدارة بأسلوب الرسوم الهجومية وسلاسل القتل.</p>
+    <p>وفي وظيفة <strong>التعافي</strong>، تفحص الأعمال المتمحورة حول المرونة تخطيط التعافي، وتقدير الخسائر الاقتصادية للهجمات على الموانئ [53]، والأمن السيبراني-الفيزيائي لبنية الموانئ [52]، [54]، وممكّنات الجيل الخامس المستطلعة عبر البيانات التشغيلية [120]. وعبر جميع الوظائف، تُظهر المطابقة تغطية كثيفة لموضوعات التحديد والحماية مقابل معالجة نحيفة ومجزأة للحوكمة والاستجابة والتعافي — إذ تكاد وظيفة الحوكمة الجديدة في الإصدار 2.0 تكون غير متناولة تمامًا في الأدبيات البحرية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. المناقشة</h2>
+    <p>النتيجة المحورية صارخة: من بين 119 مقالة روجعت، أربع فقط [20]–[23] تتناول إطار NIST CSF صراحة، ولا تتمحور أي منها حول الإصدار 2.0 — رغم ظهور مفاهيم الإطار 136 مرة عبر المناقشات الوظيفية. ويفسر حداثة الإصدار 2.0 الفجوة جزئيًا، لكن النمط يعكس أيضًا مجالًا يدرس المشكلات السيبرانية البحرية دون تثبيتها في إطار حوكمة. وتشمل التحديات الرئيسية المؤكدة تقارب تقنية المعلومات والتقنية التشغيلية على السفن، وتشتت التنظيم، ومخاطر العامل البشري التي تتطلب كفاءات جديدة [20]، واقتصاديات التعافي [53].</p>
+    <p>ويجادل المؤلفون بأن المبادرات التعليمية الموجهة ضرورية لرفع فهم المهنيين البحريين للإطار، إلى جانب دفاعات مستنيرة بالتهديدات ومطابقة لـATT&CK [21]، [24] وممارسات نمذجة التهديدات المنهجية. وتؤكد المسوح المنهجية الأوسع للمجال [69]، [70] التشخيص بأن أبحاث الأمن السيبراني البحري غزيرة لكنها فقيرة بالأطر، مما يبرر المطابقة التي تقدمها هذه الورقة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. الخاتمة</h2>
+    <p>تقدم هذه المراجعة فحصًا نقديًا للأمن السيبراني البحري عبر الإصدار 2.0 من إطار NIST CSF، كاشفة فجوات كبيرة في الأدبيات الأكاديمية والصناعية: ندرة التطبيق العملي، وغياب شبه تام لتغطية الحوكمة، ولا دراسة متمحورة حول 2.0 وقت الكتابة. وتمنح مطابقة 119 مقالة مع الوظائف الست الباحثين نقاطًا مرجعية لفرضيات جديدة والممارسين قائمة تحقق للنهوض بالدفاعات.</p>
+    <p>وينبغي أن تعطي الأعمال المستقبلية الأولوية لدراسات معمقة لفجوات تطبيق 2.0، وتطوير تدريب موجه للمهنيين البحريين، وتغذية الابتكار في تدابير الأمن السيبراني المتقدمة — بما ينقل القطاع من الوضعيات التفاعلية نحو النضج المحكوم الاستباقي الذي يتوخاه الإطار.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>As technology advances and digitalization becomes more prevalent in the maritime industry, cyber threats to maritime systems and operations have significantly increased, making the sector an attractive target for cybercriminals, nation-states, and other threat actors [1], [2]. The International Maritime Organization (IMO) has responded with regulations aimed at risk reduction, including maritime cyber risk management requirements [6], [7]. This paper offers an in-depth analysis of maritime cybersecurity through an extensive literature review structured on the latest Version 2.0 of the U.S. National Institute of Standards and Technology (NIST) Cybersecurity Framework (CSF) [3], [4]. Its primary objective is to connect research with the functions and categories of the framework, present a nascent perspective, and identify existing security research gaps, cultivating a forward-looking and proactive state of maturity for the industry.</p>
+    <p>The review follows a Systematic Literature Review (SLR) method with emphasis on the PRISMA approach [10]–[12]. Starting from 240 records identified in the Scopus database, 119 recent articles were retained for analysis and mapped against the six CSF v2.0 functions. The study finds that only four papers [20]–[23] explicitly address the NIST CSF domain, and none centers on the newest v2.0 release, revealing a clear implementation and research gap despite the framework's endorsement by bodies such as the IMO and the U.S. Coast Guard [5]–[7].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Digitalization and connectivity are transforming maritime operations, but they escalate cybersecurity exposure to unprecedented levels. The 2017 NotPetya ransomware attack on Maersk crippled the company's IT systems globally with losses of around USD 300 million [1], and the 2020 cyberattack on the IMO disrupted the agency's website and intranet services [2]. Such episodes underline the profound financial, operational, reputational, and safety implications of cyberattacks on the sector.</p>
+    <p>This study investigates advances in maritime cybersecurity through the lens of the NIST CSF [3], updated to v2.0 [4]. Despite the industry's increasing use of the framework — advocated for operations such as Maritime Bulk Liquids Transfer, Offshore Operations, and Passenger Vessel Operations [5] — focused academic research remains sparse. The paper maps the literature onto CSF v2.0 functions to pinpoint shortcomings and advance maritime cybersecurity measures.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Background: NIST CSF in the Maritime Context</h2>
+    <p>The NIST CSF, first introduced in 2014 and updated to v1.1 in 2018 [3], offers adaptable standards, guidelines, and best practices organized into five core functions — Identify, Protect, Detect, Respond, and Recover — allowing customization to sector-specific needs. CSF v2.0, released in 2023 [4], extends beyond critical infrastructure with a universal set of guidelines and introduces a sixth function, Govern, which elevates cybersecurity risk management to organizational governance and aligns it with broader business objectives.</p>
+    <p>In the maritime context, the IMO recommends aligning with the NIST CSF [7], and its guidelines on maritime cyber risk management [6] together with resolution MSC.428(98) [7] require cyber risks to be addressed in safety management systems. Classification societies have likewise adopted new cyber safety requirements [8], and industry voices have called for implementing cybersecurity in U.S. ports [9]. Earlier maritime studies applied diverse lenses — AIS spoofing case analyses [13], [17], ATT&CK-based risk assessments of integrated navigation systems [21], and port-centered vulnerability analyses [22] — but rarely the CSF itself.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Research Methodology</h2>
+    <p>The study employs a Systematic Literature Review conducted with emphasis on the PRISMA statement [12], following established guidance for systematic reviews [10], [11]. The research scope centers on applying NIST CSF v2.0 within the maritime industry, guided by research questions aligned with the framework's functions. The search strategy queried the Scopus database and, through title/abstract screening plus eligibility criteria, reduced 240 identified records to 119 articles for full analysis.</p>
+    <p>Data extraction mapped each retained study onto CSF v2.0 functions and categories, recording publication-year distribution and functional coverage. The authors acknowledge the method's limitation: materials culled from specific databases may omit some published studies. The transparent, predefined-criteria process is intended to retain logical integrity and academic rigor while broadening the knowledge base of maritime cybersecurity.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. CSF-Based Analysis: Govern, Identify, Protect</h2>
+    <p>Under <strong>Govern</strong>, the literature stresses organizational context, risk management strategy, and supply-chain risk management. Studies highlight comprehensive governance needs, the sluggish response of IMO legal instruments to an escalating threat [25], digital transformation cases in ferry shipping [26], cryptography and communications research [28], and layered technical plus human-centric risk approaches for ships and defense contexts [29]–[33]. Supply-chain analyses invoke ISO 28001 [34], [37] and storyless-system threat assessments [35].</p>
+    <p>Under <strong>Identify</strong>, asset management and risk assessment dominate: radar-system attack studies [36], IoT threat surveys [39], adversarial threats to AI-based navigation [41], BN-driven and FMEA-style risk assessments [42], [48], and human-task modeling for threat identification [43]. Under <strong>Protect</strong>, the review covers identity and access management, crew awareness and training [78]–[80], data security including AIS protections and secure communications [88], [89], [97], platform security for shipboard systems [62], [64], [67], and infrastructure resilience such as testbeds and honeypots [68], [113].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. CSF-Based Analysis: Detect, Respond, Recover</h2>
+    <p>Under <strong>Detect</strong>, continuous monitoring and adverse-event analysis feature AIS anomaly detection [121], webshell detection for marine web servers [123], federated intrusion detection for maritime transportation [124], and incident-response team training environments [80]. Under <strong>Respond</strong>, the literature addresses incident management, investigation of onboard incidents such as PLC-focused forensics [118], cyberattack case analyses [119], and attack-graph and kill-chain style management models.</p>
+    <p>Under <strong>Recover</strong>, resilience-centered works examine recovery planning, economic-loss estimation for port cyberattacks [53], cyber-physical security for port infrastructure [52], [54], and 5G enablers surveyed via operational data [120]. Across all functions, the mapping shows dense coverage of Identify and Protect topics but thin, fragmented treatment of governance, response, and recovery — with the new Govern function of v2.0 almost entirely unaddressed in maritime literature.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Discussion</h2>
+    <p>The central finding is stark: of 119 reviewed articles, only four [20]–[23] explicitly engage the NIST CSF, and none centers on v2.0 — even though CSF-related concepts appeared 136 times across functional discussions. The recency of v2.0 partly explains the gap, but the pattern also reflects a field that studies maritime cyber problems without anchoring them in a governance framework. Key challenges underscored include the IT/OT convergence on vessels, fragmented regulation, human-factor risks requiring new competencies [20], and the economics of recovery [53].</p>
+    <p>The authors argue that targeted educational initiatives are essential to lift maritime professionals' understanding of the framework, alongside threat-informed, ATT&CK-mapped defenses [21], [24] and systematic threat-modeling practices. Broader systematic surveys of the field [69], [70] corroborate the diagnosis that maritime cybersecurity research is voluminous yet framework-poor, motivating the mapping this paper provides.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Conclusions</h2>
+    <p>This review provides a critical examination of maritime cybersecurity through NIST CSF v2.0, revealing significant gaps in academic and industry literature: sparse practical implementation, near-absent governance coverage, and no v2.0-centered study at the time of writing. The mapping of 119 articles onto the six functions gives researchers reference points for new hypotheses and practitioners a checklist for advancing defenses.</p>
+    <p>Future work should produce in-depth studies of v2.0 implementation gaps, develop targeted training for maritime professionals, and fuel innovation in advanced cybersecurity measures — moving the sector from reactive postures toward the proactive, governed maturity the framework envisions.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed list showing 21 of the paper's 128 references with their original numbers. See the original paper (DOI above) for the full bibliography.</p>
+    <ol dir="ltr">
+      <li>Bannister, A. When the Screens Went Black: How NotPetya Taught Maersk to Rely on Resilience. PortSwigger, 2019.</li>
+      <li>Customs & International Trade Law Blog. Maritime Industry Rocked by Cyber Attacks. 2020.</li>
+      <li>National Institute of Standards and Technology (NIST). Framework for Improving Critical Infrastructure Cybersecurity, Version 1.1. 2018.</li>
+      <li>National Institute of Standards and Technology (NIST). Cybersecurity Framework (CSF) 2.0. 2023.</li>
+      <li>NIST. Cybersecurity Framework Profile for Safe Transfer of Hazardous Liquids at Ports (USCG).</li>
+      <li>IMO. Guidelines on Maritime Cyber Risk Management. MSC-FAL.1/Circ.3/Rev.2.</li>
+      <li>International Maritime Organization. Resolution MSC.428(98) — Maritime Cyber Risk Management in Safety Management Systems. 2017.</li>
+      <li>International Association of Classification Societies. New Requirements on Cyber Safety.</li>
+      <li>Moher, D. et al. Preferred reporting items for systematic reviews and meta-analyses: the PRISMA statement. BMJ 2009.</li>
+      <li>Androjna, A. et al. AIS data vulnerability indicated by a spoofing case-study. Appl. Sci. 2021, 11, 5015.</li>
+      <li>Hopcraft, R. Developing Maritime Digital Competencies. IEEE Commun. Stand. Mag. 2021.</li>
+      <li>Oruc, A.; Amro, A.; Gkioulos, V. Assessing Cyber Risks of an INS Using the MITRE ATT&CK Framework. Sensors 2022, 22, 8745.</li>
+      <li>Kapalidis, C. et al. A Vulnerability Centric System of Systems Analysis on the Maritime Transportation Sector.</li>
+      <li>Söner, Ö. et al. Risk sensitivity analysis of AIS cyber security through maritime cyber regulatory frameworks. Appl. Ocean Res.</li>
+      <li>Karim, M.S. Maritime cybersecurity and the IMO legal instruments: Sluggish response to an escalating threat? Mar. Policy 2022, 143, 105138.</li>
+      <li>Longo, G. et al. Attacking (and Defending) the Maritime Radar System. IEEE Trans. Inf. Forensics Secur. 2023, 18, 3575–3589.</li>
+      <li>Bolbot, V. et al. A novel cyber-risk assessment method for ship systems. Saf. Sci. 2020, 131, 104908.</li>
+      <li>Caprolu, M. et al. Vessels Cybersecurity: Issues, Challenges, and the Road Ahead. IEEE Commun. Mag.</li>
+      <li>Ben Farah, M.A. et al. Cyber Security in the Maritime Industry: A Systematic Survey.</li>
+      <li>Raimondi, M. et al. Training the Maritime Security Operations Centre Teams. Proc. IEEE Int. Conf. 2022.</li>
+      <li>Amro, A. et al. Navigation Data Anomaly Analysis and Detection. Information 2022, 13, 104.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse12060919">10.3390/jmse12060919</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

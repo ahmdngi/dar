@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة الهجمات والثغرات والدفاعات في الصناعة 4.0 مع تحديات جديدة لسيادة البيانات تلوح في الأفق — DAR</title>
+<meta name="description" content="A Review of Attacks, Vulnerabilities, and Defenses in Industry 4.0 with New Challenges on Data Sovereignty Ahead — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/industry40-attacks-sensors/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Review of Attacks, Vulnerabilities, and Defenses in Industry 4.0 with New Challenges on Data Sovereignty Ahead</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مراجعة الهجمات والثغرات والدفاعات في الصناعة 4.0 مع تحديات جديدة لسيادة البيانات تلوح في الأفق</h2>
+
+  <div class="paper-meta">
+    <span>👤 Vítor Pedreira, Daniel Barros, Pedro Pinto</span>
+    <span>📄 Sensors, 2021, 21(15), 5189</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s21155189">10.3390/s21155189</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تُطبق مفاهيم الصناعة 4.0 — الأنظمة السيبرانية-الفيزيائية [6] وأطر إنترنت الأشياء الصناعي [4] والحساسات الذكية [5] — باطراد، لكن آثارها السيبرانية تتطلب مراقبة مستمرة [14]. تراجع هذه الورقة منهجيًا هجمات الصناعة 4.0 وثغراتها واستراتيجيات الدفاع: فمعظم الهجمات تضرب طبقة الشبكة، والحرمان من الخدمة (DoS/DDoS) والوسيط (MITM) الأكثر انتشارًا.</p>
+    <p>وعلى صعيد الثغرات تهيمن عيوب الخدمات والشيفرة المصدرية والتحقق الخاطئ من المصادقة — القابلة للاستغلال بالحرمان وتجاوز سعة المخزن المؤقت في الأجهزة والشبكات الصناعية. وعلى صعيد الدفاعات تبرز البلوكتشين كتقنية رائدة مدروسة (من كشف التسلل إلى منع DDoS)، ومعظم الاستراتيجيات تعمل بعد الهجوم أو وقائيًا، وتختم المراجعة بالسيادة الرقمية وسيادة البيانات والسيبرانية كتحدٍّ قادم [15، 16، 20].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تتقدم الثورة الصناعية الرابعة عبر واجهات تحكم مبنية على RAMI 4.0 وOPC UA ‏[1] ونماذج الحوسبة الطرفية مع إنترنت الأشياء [3] والاستشعار منخفض الكلفة [2]. وتوسّع كل موجة سطح الهجوم: يبقى تشريح ستكسنت الحالة المرجعية للسلاح السيبراني [8]، وأظهرت BlackEnergy برمجيات خبيثة تستهدف الشبكات [9]، وسلّحت بوتنت Mirai أجهزة إنترنت الأشياء على نطاق واسع [10]، ونشرت WannaCry الفدية عالميًا [11]، وكلّفت حادثة Norsk Hydro الصناعة غاليًا [12].</p>
+    <p>وبما أن التقدم والتهديد يتطوران معًا، فاستشراف تحديات الأمن السيبراني ضروري لمنع الآثار وتخفيفها. وإسهامات الورقة [14، 17]: (1) نتائج مراجعة منهجية لهجمات الصناعة 4.0 وثغراتها ودفاعاتها؛ (2) تصنيف مفصل لكل منها؛ (3) مناقشة تحديات السيادة الناشئة واتجاهاتها.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. منهجية المراجعة</h2>
+    <p>تكيّف المراجعة إرشادات EBSE للمراجعات المنهجية بأسلوب Kitchenham ‏[17] مع بروتوكول مسجل مسبقًا [18]، منفذة بأداة StArt الداعمة للمراجعات [19]. ترسم مراجعة عامة أولًا الأدبيات السيبرانية الأوسع؛ ثم ترشّح مراجعة الملخصات المرشحين؛ وأخيرًا تخضع الدراسات المختارة لتحليل كامل للهجمات والثغرات والدفاعات.</p>
+    <p>ويستعلم مسار سيادة مخصص أدبيات السيادة الرقمية وسيادة البيانات والسيبرانية — بما فيها فضاءات البيانات الدولية [15] وGAIA-X ‏[16] وخريطة الطريق الأوروبية للسيادة الرقمية [20] — لتقييم تقاطع شواغل التحكم بالبيانات مع الأمن السيبراني الصناعي.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. المراجعتان العامة ومراجعة الملخصات</h2>
+    <p>تُظهر اتجاهات النشر ثبات أوراق الهجمات حتى 2015 ثم نموها بقوة، وتحقيق أوراق الدفاعات أسرع نمو سنوي، ونمو أوراق الثغرات إجمالًا مع تقلصها نسبيًا أمام الموضوعين الآخرين [17، 19]. وبين 2017 و2021 تتصاعد كل المواضيع عدا تقاطع الثغرات والدفاعات الذي ينمو قليلًا.</p>
+    <p>تضيّق مراجعة الملخصات المدونة إلى دراسات تعالج فعلًا سيناريوهات صناعية — مستبعدة أوراق إنترنت الأشياء العامة أو أمن المؤسسات — وتؤكد طبقة الشبكة ساحة المعركة المهيمنة، ما يحفز التصنيف الدقيق في القسم 5 [17، 19].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. الهجمات: التصنيف والنتائج</h2>
+    <p>تسفر أربع عشرة ورقة ذات صلة عن ست فئات هجومية. تهيمن هجمات الشبكات: إغراق الحرمان [31، 63، 64، 76] وبوتنتات DDoS ومنها zombies إنترنت الأشياء Mirai ‏[76] والتشويش [75] واعتراض الوسيط [64، 75، 85] وهجمات الإعادة [75، 108] والتمرير الانتقائي [75] وهجمات Sybil لتزوير الهويات [63، 75، 85] — ومعظمها يستهدف شل الأداء أو حصاد الحركة الحساسة [103، 105، 107، 129].</p>
+    <p>أما الفئات الباقية فهي البرمجيات الخبيثة (فيروسات وديدان [103، 129]) وهجمات تطبيقات الويب على الخدمات [25، 76، 85] وهجمات الأنظمة على المتحكمات وأجهزة التصنيع [31، 63، 72، 75] وهجمات الأجهزة المستغلة لبرمجيات إنترنت الأشياء الثابتة [25، 63، 75] والهندسة الاجتماعية لانتزاع بيانات الاعتماد [31، 107، 129]. والخلاصة: هجمات الشبكة (الحرمان والوسيط) هي ما يجب أن تحسب له الصناعة 4.0 أولًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. الثغرات: التصنيف والنتائج</h2>
+    <p>تسفر سبع أوراق ذات صلة عن أربع فئات ثغرات. تنشأ عيوب تطبيقات الويب من أخطاء الترميز الممكِّنة لحقن النصوص: إلغاء التسلسل غير الآمن وكيانات XML الخارجية (XXE) وتزوير الطلبات عبر المواقع (CSRF) والبرمجة عبر المواقع (XSS) وحقن SQL ‏[25، 85، 104، 105]. وتختبئ عيوب الأجهزة في الشيفرة المصدرية ممهِّدةً وصولًا غير مصرح [62، 85، 105]، وأشيعها تجاوز المخزن المؤقت وضعف الحرمان والأبواب الخلفية.</p>
+    <p>وتمكّن عيوب الشبكات الهجمات أو تسريب المعلومات الحساسة [63، 75]، بينما تنبع عيوب المصادقة من التحقق الخاطئ من بيانات الاعتماد [25]. ومع تقدم التقنية ينمو عدد التهديدات معها: تهيمن عيوب فئتي الأجهزة والشبكات، وهي بالضبط العيوب التي تستغلها هجمات الحرمان وتجاوز المخزن المؤقت في الأجهزة والشبكات الصناعية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الدفاعات وسيادة البيانات</h2>
+    <p>تسفر ثماني أوراق ذات صلة عن ست فئات دفاعية. تشمل دفاعات التطبيقات كشف تسربات القنوات الجانبية الزمنية وحجبها لإنترنت الأشياء [83]، وآلية استخبارات التهديد بخليط ماركوف المخفي (MHMM) التي تفوقت على خمسة أقران في الكشف والإنذارات الكاذبة والسرعة [119]، ونماذج البلوكتشين مع الشبكات المعرفة برمجيًا لتأمين خدمات الصناعة 4.0 ‏[38]. وتتطلب دفاعات الأجهزة تهيئة آمنة وتغييرًا مضبوطًا [62، 105]؛ وتحافظ دفاعات الشبكات على الكفاءة والأمن [62، 64، 108]؛ وتصلّب دفاعات الأنظمة المنصات [63، 103]؛ وتضع دفاعات السياسات القواعد والمعايير [31، 63]؛ وتعتمد دفاعات الهندسة الاجتماعية على التدريب والتوعية [62، 129].</p>
+    <p>تبرز البلوكتشين كأكثر تقنية دفاعية مدروسة — من كشف التسلل إلى منع DDoS — ويثبت التشفير فعاليته ضد الوسيط مثلًا. لكن استعلامات السيادة تكشف مجالًا غير ناضج: فبحوث السيادة الرقمية وسيادة البيانات والسيبرانية شحيحة، حتى بينما تشير GAIA-X ‏[16] وفضاءات البيانات الدولية [15] وخرائط السيادة [20] إلى أن من-يتحكم-بالبيانات-الصناعية سيكون الجبهة الأمنية التالية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. الخاتمة</h2>
+    <p>ستظل الحوادث الأمنية تلاحق الصناعات التي تتقدم دون دفاعات موازية. وترتّب الأدلة هجمات الشبكات أولًا — الحرمان والوسيط فوق كل شيء — مع عيوب الأجهزة والخدمات (تجاوز المخزن المؤقت والأبواب الخلفية وضعف الحرمان والمصادقة الخاطئة [25]) كممكناتها [31، 62، 76]، والبلوكتشين والتشفير كأكثر التدابير المضادة توثيقًا.</p>
+    <p>تنمو بحوث الدفاعات أسرع لكنها تبقى تفاعلية غالبًا — بعد الهجوم أو وقائية لا آمنة بالتصميم — وتبقى بحوث الثغرات متخلفة عن تغطية الهجمات والدفاعات. وتبرز سيادة البيانات [15، 16، 20] كجبهة مفتوحة: يجب أن تحدد الأعمال المستقبلية من يملك البيانات الصناعية ويستضيفها ويحكمها قبل أن تجيب الموجة التالية من الحوادث عن السؤال بالقوة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Industry 4.0 concepts — cyber-physical systems [6], IIoT frameworks [4], smart sensors [5] — are steadily applied, but their cybersecurity impacts demand constant surveillance [14]. This paper systematically reviews Industry 4.0 attacks, vulnerabilities, and defence strategies: most attacks strike the network layer, with denial-of-service (DoS/DDoS) and man-in-the-middle (MITM) the most prevalent.</p>
+    <p>On vulnerabilities, service and source-code flaws plus incorrect authentication validation dominate — exploitable by DoS and buffer overflows in industrial devices and networks. On defences, blockchain emerges as a leading studied technology (from IDS to DDoS prevention), most strategies acting after-attack or preventively, and the review closes on digital, data, and cyber sovereignty as the coming challenge [15, 16, 20].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>The fourth industrial revolution advances through controller interfaces built on RAMI 4.0 and OPC UA [1], edge-computing-plus-IoT paradigms [3], and low-cost sensing [2]. Each wave widens the attack surface: Stuxnet's dissection remains the canonical cyber-weapon case [8], BlackEnergy showed grid-targeting malware [9], the Mirai botnet weaponized IoT devices at scale [10], WannaCry spread ransomware globally [11], and the Norsk Hydro incident cost industry dearly [12].</p>
+    <p>Because progress and threat evolve together, forecasting cybersecurity challenges is essential to prevent and mitigate impacts. The paper's contributions [14, 17] are: (1) systematic-review results on Industry 4.0 attacks, vulnerabilities, and defences; (2) detailed classification of each; and (3) a discussion of emerging sovereignty-related challenges and trends.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Review Methodology</h2>
+    <p>The review adapts Kitchenham-style EBSE systematic-review guidelines [17] with a pre-registered protocol [18], executed with the StArt review-support tool [19]. A general review first maps the broader cybersecurity literature; an abstract review then filters candidates; finally selected studies undergo full analysis of attacks, vulnerabilities, and defences.</p>
+    <p>A dedicated sovereignty strand queries digital, data, and cyber sovereignty literature — including International Data Spaces [15], GAIA-X [16], and the European digital-sovereignty roadmap [20] — to assess how control-over-data concerns intersect industrial cybersecurity.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. General and Abstract Reviews</h2>
+    <p>Publication trends show attack papers constant until 2015 then growing strongly, defence papers posting the fastest yearly growth, and vulnerability papers growing overall yet shrinking relative to the other two topics [17, 19]. Between 2017 and 2021 all topics surge except the vulnerabilities-and-defences intersection, which grows only slightly.</p>
+    <p>The abstract review narrows the corpus to studies genuinely addressing industrial scenarios — filtering out generic IoT or enterprise-security papers — and confirms the network layer as the dominant battleground, motivating the fine-grained classification of Section 5 [17, 19].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Attacks: Classification and Findings</h2>
+    <p>Fourteen relevant papers yield six attack categories. Network attacks dominate: DoS floods [31, 63, 64, 76], DDoS botnets including Mirai IoT zombies [76], jamming [75], MITM interception [64, 75, 85], replay/playback attacks [75, 108], selective forwarding [75], and Sybil identity-forging attacks [63, 75, 85] — mostly aimed at crippling performance or harvesting sensitive traffic [103, 105, 107, 129].</p>
+    <p>The remaining classes are malware (viruses and worms [103, 129]), web-application attacks on services [25, 76, 85], system attacks on controllers and manufacturing devices [31, 63, 72, 75], device attacks exploiting IoT firmware [25, 63, 75], and social engineering manipulating victims for credentials [31, 107, 129]. The overall verdict: network-layer DoS/DDoS and MITM are the attacks Industry 4.0 must account for first.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Vulnerabilities: Classification and Findings</h2>
+    <p>Seven relevant papers yield four vulnerability categories. Web-application flaws arise from coding errors enabling script injection: insecure deserialization, XML external entities (XXE), cross-site request forgery (CSRF), cross-site scripting (XSS), and SQL injection [25, 85, 104, 105]. Device flaws hide in source code, permitting unauthorized access [62, 85, 105], with buffer overflows, DDoS weaknesses, and backdoors the most common device findings.</p>
+    <p>Network flaws enable attacks or leaks of sensitive information [63, 75], while authentication flaws stem from incorrect validation of user credentials [25]. As technology advances the threat count grows with it: device- and network-category flaws dominate, and they are precisely the flaws DoS attacks and buffer overflows exploit in industrial devices and networks.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Defenses and Data Sovereignty</h2>
+    <p>Eight relevant papers yield six defence categories. Application defences include timing side-channel leak detection and masking for IoT [83], the Mixture-Hidden-Markov threat-intelligence mechanism (MHMM) that outperformed five peers on detection, false positives, and speed [119], and blockchain-plus-SDN models securing Industry 4.0 services (DistB-SDoIndustry) [38]. Device defences demand safe configuration and controlled change [62, 105]; network defences keep efficiency and security [62, 64, 108]; system defences harden platforms [63, 103]; policy defences set rules and standards [31, 63]; and social-engineering defences rely on training and awareness [62, 129].</p>
+    <p>Blockchain stands out as the most studied defensive technology — usable from intrusion detection to DDoS prevention — and cryptography proves effective, e.g., against MITM. Yet sovereignty queries reveal an immature field: digital, data, and cyber sovereignty research is sparse, even as GAIA-X [16], International Data Spaces [15], and sovereignty roadmaps [20] signal that who-controls-industrial-data will be the next security frontier.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Conclusions</h2>
+    <p>Security incidents will keep shadowing industries that progress without matching defences. The evidence ranks network attacks first — DoS, DDoS, and MITM above all — with device and service flaws (buffer overflows, backdoors, DDoS weaknesses, incorrect authentication [25]) as their enablers [31, 62, 76], and blockchain plus cryptography as the most evidenced countermeasures.</p>
+    <p>Defence research is growing fastest but remains largely reactive — after-attack or preventive rather than secure-by-design — and vulnerability research lags attack and defence coverage. Data sovereignty [15, 16, 20] stands out as the open frontier: future work must define who owns, hosts, and governs industrial data before the next wave of Industry 4.0 incidents answers the question by force.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references with original numbering (133 references in total). See the original paper for the complete list: https://doi.org/10.3390/s21155189</p>
+    <ol dir="ltr">
+      <li value="4">Boyes, H. et al. The industrial internet of things (IIoT): An analysis framework. <em>Comput. Ind.</em> 2018, <em>101</em>, 1–12.</li>
+      <li value="6">Jazdi, N. Cyber physical systems in the context of Industry 4.0. In Proc. AQTR 2014.</li>
+      <li value="8">Langner, R. Stuxnet: Dissecting a Cyberwarfare Weapon. <em>IEEE Secur. Priv.</em> 2011, <em>9</em>, 49–51.</li>
+      <li value="10">Antonakakis, M. et al. Understanding the Mirai Botnet. In Proc. USENIX Security 2017.</li>
+      <li value="11">Mohurle, S.; Patil, M. A brief study of wannacry threat: Ransomware attack 2017. <em>Int. J. Adv. Res. Comput. Sci.</em> 2017, <em>8</em>, 1938–1940.</li>
+      <li value="14">ENISA. Cybersecurity is a Key Enabler for Industry 4.0 Adoption. 2019.</li>
+      <li value="15">International Data Spaces. The Future of the Data Economy. 2021. Available online: <a href="https://internationaldataspaces.org">internationaldataspaces.org</a></li>
+      <li value="16">GAIA-X. Home. 2021. Available online: <a href="https://www.data-infrastructure.eu">data-infrastructure.eu</a></li>
+      <li value="17">Kitchenham, B.; Charters, S. Guidelines for Performing Systematic Literature Reviews in Software Engineering; EBSE-2007-01; 2007.</li>
+      <li value="20">Braud, A. et al. The Road to European Digital Sovereignty with Gaia-X and IDSA. <em>IEEE Netw.</em> 2021, <em>35</em>, 4–5.</li>
+      <li value="31">Pereira, T.; Barreto, L.; Amaral, A. Network and information security challenges within Industry 4.0 paradigm. <em>Procedia Manuf.</em> 2017, <em>13</em>, 1253–1260.</li>
+      <li value="38">Rahman, A. et al. DistB-SDoIndustry: Enhancing Security in Industry 4.0 Services via blockchain-SDN. 2020.</li>
+      <li value="62">Stergiou, C. et al. Secure integration of IoT and cloud computing. <em>Future Gener. Comput. Syst.</em> 2018.</li>
+      <li value="76">Kolias, C. et al. DDoS in the IoT: Mirai and other botnets. <em>Computer</em> 2017, <em>50</em>, 80–84.</li>
+      <li value="83">Jiang, Y. et al. Timing-based side-channel defence for IoT response time. 2020.</li>
+      <li value="119">An, H. et al. Mixture-Hidden-Markov threat intelligence for Industry 4.0 systems. 2021.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s21155189">10.3390/s21155189</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

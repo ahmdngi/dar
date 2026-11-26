@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة منهجية لأطر كشف التسلل ومنعه لبروتوكولات الاتصال الصناعية باستخدام التعلم الآلي والعميق — DAR</title>
+<meta name="description" content="A Systematic Literature Review of Intrusion Detection and Prevention Frameworks for Industrial Communication Protocols Using ML and DL — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/idps-industrial-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Systematic Literature Review of Intrusion Detection and Prevention Frameworks for Industrial Communication Protocols Using ML and DL</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مراجعة منهجية لأطر كشف التسلل ومنعه لبروتوكولات الاتصال الصناعية باستخدام التعلم الآلي والعميق</h2>
+
+  <div class="paper-meta">
+    <span>👤 Khawla Al-Tarawneh, Ahmad Sharieh, Sherenaz Al-Haj Baddar</span>
+    <span>📄 Applied Sciences, 2026, 16(13), 6545</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app16136545">10.3390/app16136545</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تفحص هذه المراجعة 31 مقالًا محكمًا (2021–2025) حول أنظمة كشف التسلل ومنعه القائمة على التعلم الآلي والعميق لبروتوكولات الاتصال الصناعية، مصنفة حسب التركيز البحثي والإعداد التجريبي والبيانات والمناهج. وتظهر البنى العميقة الهجينة — مزيج Transformer-LSTM وMODLSTM — في 29% من الدراسات وتتجاوز معدلات كشف 99% [3، 10].</p>
+    <p>يبقى Modbus/TCP البروتوكول الأكثر دراسة بينما يكتسب MQTT وOPC UA زخمًا؛ ويظهر التعلم الفدرالي في نحو 9.7% من الدراسات [14]، لكن 67% تفتقر لبيانات واقعية [12]. وتستهدف النماذج هجمات الحرمان من الخدمة والوسيط وحقن البيانات، مع استخدام متنامٍ لمحاكاة الأجهزة في الحلقة ومنصات الاختبار الفيزيائية وتكامل الحافة والضباب والسحابة، والتعلم الفدرالي والشبكات المعرفة برمجيًا كاتجاهين ناشئين.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يقوم التحول الرقمي للطاقة والمياه والتصنيع والنقل على شبكات التحكم الصناعية وسكادا التي تنسق العمليات الفيزيائية والسيبرانية لحظيًا — لكن ترابط التشغيل وتقنية المعلومات يعرّضها لمخاطر متصاعدة [1]. فبروتوكولات قديمة مثل Modbus/TCP وDNP3 وPROFINET لم تُصمم أصلًا بمصادقة أو تشفير، فبقيت شديدة التعرض للتهديدات الحديثة [2، 3].</p>
+    <p>شهدت السنوات الأخيرة موجات هجمات الحرمان والوسيط وحقن البيانات المزيفة على الشبكات الصناعية [4، 5]، كاشفةً حدود أنظمة الكشف القاعدية أمام البيانات عالية الأبعاد المعتمدة على الزمن. لذا يتجه الباحثون لنماذج التعلم الآلي والعميق التي تتعلم الأنماط المعقدة وتتكيف شبه لحظيًا [6، 7]: كاشفات LSTM وCNN لانتحال Modbus وهجمات الحرمان [8، 9]، وهجن Transformer-LSTM بنسبة 99.8% في أنظمة نووية معزولة [10]، وModbus TCP المصلّب بالتشفير الإهليجي للأجهزة المقيدة [11] — تقدم ما يزال مقيدًا بالبيانات الاصطناعية ومنصات الاختبار الصغيرة والتركيز البروتوكولي الضيق [12، 13].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. المنهج</h2>
+    <p>يجمع البروتوكول بين استراتيجية بحث محددة ومعايير شمول واستبعاد صارمة: تُقبل فقط الدراسات التجريبية ذات النتائج القابلة للقياس والإسهام المتمحور حول الحل، وتُستبعد الأوراق التحليلية أو النظرية الصرفة، وفق الممارسة المراجعية على غرار PRISMA ‏[29]. وترشّح عملية اختيار متعددة المراحل المرشحين وصولًا إلى 31 دراسة محللة، مع استخلاص كامل للبروتوكولات والبيانات والمناهج والبنى.</p>
+    <p>يقيّم ضبط الجودة كل دراسة على وضوح الأهداف البحثية وملاءمة المنهجية (الجدول 2 في الورقة الأصلية)، ويجمّع منهج تركيب البيانات النتائج [6] للإجابة عن خمسة أسئلة بحثية حول التقنيات (س1) والبروتوكولات والبيانات (س2) والبنى والاستجابات (س3) والتقييم والنشر (س4) والتحديات المفتوحة (س5).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. النتائج: البروتوكولات والبيانات ومنصات الاختبار</h2>
+    <p>يهيمن Modbus/TCP: إذ تركز 16 من 31 دراسة (51.6%) عليه، ما يعكس دوره الراسخ في سكادا ودوائر التحكم — وانحياز الخبرة الحالية لسيناريوهات قديمة. ويظهر MQTT وS7Comm ومتغيرات سكادا أقل تواترًا لكنها تنمو مع تبني إنترنت الأشياء الصناعي والشبكات الذكية، بينما تبقى بروتوكولات IEC 60870-5-104 وDNP3 وOPC UA وموارد الطاقة الموزعة قليلة الاستكشاف [26].</p>
+    <p>وعلى صعيد واقعية البيانات، تعتمد 67% من الدراسات على بيانات اصطناعية أو مخصصة، ما يكشف أندر موارد المجال: بيانات صناعية واقعية متنوعة. ومن الاتجاهات المضادة البيانات الهجينة التي تدمج سجلات المتحكمات وقياسات الحساسات وحركة الشبكة، والتحقق عالي الدقة على منصات فيزيائية ومحاكيات مثل OPAL-RT ومنصات اختبار الطاقة السيبرانية-الفيزيائية [25] — بما فيها تجارب Modbus TCP المعزز بـeBPF ‏[28].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. النتائج: تقنيات التعلم الآلي والعميق والبنى</h2>
+    <p>تقع الاستراتيجيات في ثلاثة مسارات: نماذج كشف ذكية بالتعلم الآلي والعميق، وتقييم في بيئات فيزيائية حقيقية أو محاكاة، وتحصين البروتوكولات الأساسية. وتحقق النماذج الكلاسيكية — الغابات العشوائية وLSTM وCNN — درجات عالية على بيانات إنترنت الأشياء مثل BoT-IoT وNSL-KDD لكنها تتعثر في قابلية التوسع [29]، بينما تبقى المناهج الكمومية (QAE-QkNN بدقة F1 ‏98.26%) مقيدة بالأجهزة [29].</p>
+    <p>ويتجه التحول المنهجي نحو البنى العميقة الهجينة: MODLSTM للتعرف على هجمات حرمان Modbus ‏[3، 9]، وتجميعات Transformer-LSTM للنمذجة الزمنية والسياقية ومتعددة الوسائط [10]، والكشف الفدرالي للشذوذ لموارد الطاقة الموزعة (FL-ADS) ‏[14]، وكشف التسلل لسكادا المدفوع بالتوائم الرقمية [20]، والتحقق المؤسس على MITRE ATT&CK ‏[22]. ويمتد النشر عبر طبقات الحافة والضباب والسحابة، موازنًا بين الدقة وزمن الاستجابة والخصوصية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. المناقشة والفجوات والاتجاهات المستقبلية</h2>
+    <p>انتقل المجال من الكشف المتمحور حول البروتوكولات نحو أنظمة حماية تكيفية تعمل في ظروف سيبرانية-فيزيائية معقدة [14، 15، 20]، مدفوعًا بتقارب أنظمة التحكم وإنترنت الأشياء الصناعي والذكاء الاصطناعي [1، 22، 23]. وتفسح نماذج التصنيف الكلاسيكية [32، 41] الطريق للهجن الواعية بالانتباه والتسلسل [3، 10، 38]، ويجب أن تدعم الجيل القادم من أنظمة الكشف والمنع بروتوكولات متعددة معًا [21، 23] مع تنوع المشهد بـMQTT وIEC 60870-5-104 وDNP3 وOPC UA ‏[15، 36، 42، 44].</p>
+    <p>تحدد الفجوات الأجندة: بيانات صناعية معيارية واسعة ومتاحة علنًا تُبنى بمشاريع أكاديمية-صناعية؛ وقابلية توسع وتحقق حافظ للخصوصية (التعلم الفدرالي في ~9.7% فقط من الدراسات [14]) [12]؛ ومعالجة متكاملة لا كشف فحسب؛ وتعزيز أمن البروتوكولات. وتشير التصاميم الهجينة عبر الحافة والضباب والسحابة بالذكاء الفدرالي والتحكم بالشبكات المعرفة برمجيًا إلى الطريق لموازنة دقة الكشف مع الزمن والسرية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الخاتمة</h2>
+    <p>كميًا: (1) النماذج العميقة الهجينة (Transformer+LSTM وMODLSTM) في 29% من الدراسات تتفوق باستمرار على الأحادية بكشف فوق 99%؛ (2) ما يزال Modbus/TCP متصدرًا بـ51.6% بينما يقف MQTT وOPC UA عند 12.9%؛ (3) تستخدم 67% بيانات اصطناعية أو مخصصة؛ (4) يستخدم ~9.7% فقط تحققًا فدراليًا حافظًا للخصوصية [3، 10، 14].</p>
+    <p>تكشف الأنظمة الهجينة التسلسلية-الانتباهية هجمات الحرمان والوسيط والحقن بموثوقية أعلى، ويشير التحول نحو منصات الاختبار الحقيقية والمحاكيات عالية الدقة إلى ثقافة تجريبية ناضجة [20، 28]. وسد فجوة البيانات الواقعية — بأطر متعددة البروتوكولات وقابلة للتوسع وواعية بالخصوصية — هو الخطوة الحاسمة التالية لأنظمة كشف ومنع صناعية موثوقة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>This review examines 31 peer-reviewed articles (2021–2025) on machine-learning and deep-learning intrusion detection and prevention systems (IDPS) for industrial communication protocols, categorized by research focus, experimental setup, datasets, and methods. Hybrid deep architectures — Transformer-LSTM and MODLSTM combinations — appear in 29% of studies and exceed 99% detection rates [3, 10].</p>
+    <p>Modbus/TCP remains the most studied protocol while MQTT and OPC UA gain momentum; federated learning appears in about 9.7% of studies [14], yet 67% lack real-world data [12]. Models target denial-of-service, man-in-the-middle, and data-injection attacks, with growing use of hardware-in-the-loop simulation, physical testbeds, and edge–fog–cloud integration, plus federated learning and software-defined networking as emerging directions.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Digital transformation of energy, water, manufacturing, and transportation rests on ICS and SCADA networks coordinating physical and cyber processes in real time — but OT/IT interconnection exposes them to escalating risk [1]. Legacy protocols such as Modbus/TCP, DNP3, and PROFINET were never designed with authentication or encryption, leaving them highly susceptible to modern threats [2, 3].</p>
+    <p>Recent years brought surges in DoS, man-in-the-middle, and false-data-injection attacks on industrial networks [4, 5], exposing the limits of rule-based IDS against high-dimensional time-dependent data. Researchers therefore turn to ML/DL models that learn complex patterns and adapt in near real time [6, 7]: LSTM and CNN detectors for Modbus spoofing and DoS [8, 9], Transformer-LSTM hybrids reaching 99.8% in air-gapped nuclear controls [10], and ECC-hardened Modbus TCP for constrained SCADA devices [11] — advances still bounded by synthetic datasets, small testbeds, and narrow protocol focus [12, 13].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Approach</h2>
+    <p>The protocol combines a defined search strategy with strict inclusion/exclusion criteria: only empirical studies with quantifiable outcomes and a solution-centric contribution are admitted, while purely analytical or theoretical papers are excluded, following PRISMA-style review practice [29]. A multi-stage selection process filters candidates down to the 31 analyzed studies, with full information extraction on protocols, datasets, methods, and architectures.</p>
+    <p>Quality assessment scores each study on research-objective clarity and methodology appropriateness (Table 2 of the original paper), and a data-synthesis approach aggregates findings [6] to answer five research questions on techniques (RQ1), protocols and datasets (RQ2), architectures and responses (RQ3), evaluation and deployment (RQ4), and open challenges (RQ5).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Results: Protocols, Datasets, and Testbeds</h2>
+    <p>Modbus/TCP dominates: 16 of 31 studies (51.6%) focus on Modbus/Modbus-TCP, reflecting its entrenched role in SCADA and control circuits — and a legacy-scenario bias in current expertise. MQTT, S7Comm, and SCADA variants appear less often but grow with IIoT and smart-grid adoption, while IEC 60870-5-104, DNP3, OPC UA, and DER protocols remain underexplored [26].</p>
+    <p>On data realism, 67% of studies rely on synthetic or custom datasets, exposing the field's scarcest resource: varied real-world industrial data. Counter-trends include hybrid datasets fusing controller logs, sensor measurements, and network traffic, plus high-fidelity validation on physical testbeds and simulators such as OPAL-RT and power-system cyber-physical testbeds [25] — including eBPF-enhanced Modbus TCP security experiments [28].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Results: ML/DL Techniques and Architectures</h2>
+    <p>Strategies fall into three strands: intelligent ML/DL detection models, evaluation in real or simulated physical settings, and hardening of the underlying protocols. Classical models — random forests, LSTMs, CNNs — score highly on IoT datasets such as BoT-IoT and NSL-KDD but struggle with scalability [29], while quantum approaches (QAE-QkNN, 98.26% F1) remain hardware-limited [29].</p>
+    <p>The methodological shift runs toward hybrid deep architectures: MODLSTM for Modbus DoS recognition [3, 9], Transformer-LSTM ensembles for temporal, contextual, and multimodal attack modeling [10], federated anomaly detection for distributed energy resources (FL-ADS) [14], DT-driven SCADA intrusion detection [20], and MITRE-ATT&CK-grounded validation [22]. Deployment spans edge, fog, and cloud layers, balancing accuracy against latency and privacy.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Discussion, Gaps, and Future Directions</h2>
+    <p>The field has moved from protocol-oriented detection toward adaptive protective systems operating in complex cyber-physical conditions [14, 15, 20], driven by ICS–IIoT–AI convergence [1, 22, 23]. Classical classification models [32, 41] give way to attention- and sequence-aware hybrids [3, 10, 38], and next-generation IDS/IPS must support many protocols at once [21, 23] as MQTT, IEC 60870-5-104, DNP3, and OPC UA diversify the landscape [15, 36, 42, 44].</p>
+    <p>Gaps define the agenda: standardized, large-scale, publicly available industrial datasets built through academia–industry ventures; scalability and privacy-preserving validation (federated learning appears in only ~9.7% of studies [14]) [12]; integrated remediation, not just detection; and protocol-security reinforcement. Hybrid edge–fog–cloud designs with federated intelligence and SDN control point the way toward balancing detection accuracy with latency and confidentiality.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Conclusions</h2>
+    <p>Quantitatively: (1) hybrid deep models (Transformer+LSTM, MODLSTM) in 29% of studies consistently beat single models with detection above 99%; (2) Modbus/TCP still leads at 51.6% while MQTT and OPC UA sit at 12.9%; (3) 67% use synthetic or custom data; (4) only ~9.7% use federated, privacy-preserving validation [3, 10, 14].</p>
+    <p>Hybrid sequential-plus-attention systems detect DoS, MITM, and injection attacks most reliably, and the shift toward real testbeds and high-fidelity simulators signals a maturing empirical culture [20, 28]. Closing the real-world-data gap — with cross-protocol, scalable, privacy-aware frameworks — is the decisive next step for dependable industrial IDPS.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references with original numbering (31 primary studies analyzed; 51 references in total). See the original paper for the complete list: https://doi.org/10.3390/app16136545</p>
+    <ol dir="ltr">
+      <li value="1">Knowles, W. et al. A survey of cyber security management in industrial control systems. <em>Int. J. Crit. Infrastruct. Prot.</em> 2015.</li>
+      <li value="2">Rahman, A. et al. Launch of denial of service attacks on the Modbus/TCP protocol and development of its protection. 2023.</li>
+      <li value="3">Zhang, H. et al. MODLSTM: A method to recognize DoS attacks on Modbus/TCP. In Proc. ICPADS 2023.</li>
+      <li value="6">Gao, J. et al. Omni SCADA intrusion detection using deep learning algorithms. <em>IEEE Internet Things J.</em> 2023.</li>
+      <li value="10">Thiyagarajan, K.; Hammad, I. Anomaly detection in air-gapped industrial control systems of nuclear power plants. In Proc. Cyber Awareness 2024.</li>
+      <li value="11">Chochtoula, D. et al. Integrating elliptic curve cryptography with the Modbus TCP SCADA communication protocol. <em>Future Internet</em> 2024.</li>
+      <li value="12">Jadidi, Z. et al. Automated detection-in-depth in industrial control systems. <em>Int. J. Adv. Manuf. Technol.</em> 2022, <em>118</em>, 2467–2479.</li>
+      <li value="14">Purohit, S.; Govindarasu, M.; Blakely, B. FL-ADS: Federated learning anomaly detection system for distributed energy resource networks. <em>IET Cyber-Phys. Syst.</em> 2024.</li>
+      <li value="20">Sayghe, A. Digital Twin-Driven Intrusion Detection for Industrial SCADA: A Cyber-Physical Case Study. <em>Sensors</em> 2025, <em>25</em>, 4963.</li>
+      <li value="22">Afenu, D.S.; Asiri, M.; Saxena, N. Industrial control systems security validation based on MITRE ATT&CK. 2025.</li>
+      <li value="26">IEC 61850; Communication Networks and Systems for Power Utility Automation. IEC: Geneva, Switzerland, 2021.</li>
+      <li value="28">Jhan, J.Y.; Sun, H.M. Enhancing Modbus TCP Protocol Security with eBPF Technology. <em>arXiv</em> 2023, arXiv:2312.05665.</li>
+      <li value="29">Aparcana-Tasayco, A.J. et al. A systematic review of anomaly detection in IoT security: Towards quantum machine learning. <em>EPJ Quantum Technol.</em> 2025.</li>
+      <li value="33">Martins, T.; Oliveira, S.V.G. Enhanced Modbus/TCP security protocol. <em>Sensors</em> 2022, <em>22</em>, 8024.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app16136545">10.3390/app16136545</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

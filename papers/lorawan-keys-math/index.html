@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تحليل شامل لنماذج أمن المفاتيح في LoRaWAN والحلول الممكنة للهجمات — DAR</title>
+<meta name="description" content="A Comprehensive Analysis of LoRaWAN Key Security Models and Possible Attack Solutions — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/lorawan-keys-math/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Comprehensive Analysis of LoRaWAN Key Security Models and Possible Attack Solutions</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تحليل شامل لنماذج أمن المفاتيح في LoRaWAN والحلول الممكنة للهجمات</h2>
+
+  <div class="paper-meta">
+    <span>👤 Koketso Ntshabele, Bassey Isong, Naison Gasela, Adnan M. Abu-Mahfouz</span>
+    <span>📄 Mathematics, 2022 · Vol. 10(19), 3421</span>
+    <span>🔗 <a href="https://doi.org/10.3390/math10193421">10.3390/math10193421</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تربط تقنية الشبكات واسعة النطاق منخفضة الطاقة (LPWAN) أجهزة منخفضة الطاقة وعريضة النطاق المنخفض عبر مديات طويلة، ويعتمد أمن LoRaWAN widely على تشفير AES-128 المتماثل لتوليد المفاتيح وحماية الكيانات والاتصالات [1,2,3]. لكن لا يوجد نموذج أمني عالمي مقبول لجميع التطبيقات، ويبقى إظهار المفاتيح وإدارتها بكفاءة من تحديات التصميم المفتوحة.</p>
+    <p>تحلل هذه الورقة نماذج أمن المفاتيح القائمة لكشف تحدياتها وتقييم نقاط قوة الحلول المقترحة وضعفها. وتجد أعمالًا بحثية قليلة في المجال وعدة نماذج ما زالت عرضة للهجمات؛ ويهيمن التشفير المتماثل لانخفاض كلفته الحاسوبية، وتُستخدم الأطراف الثالثة الموثوقة widely لتقليل التعقيد التشغيلي [1,2,3,4,5]. ويوصي المؤلفون بنماذج خفيفة أقل تعقيدًا تُطيل عمر أجهزة LPWAN.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">المقدمة</h2>
+    <p>يجلب إنترنت الأشياء اتصالًا عبر المنصات بين أجهزة تمتد من ميزانيات الطاقة المنخفضة إلى العالية، تتبادل كميات كبيرة من البيانات ذاتيًا عبر مجالات الرعاية الصحية والعسكرية والزراعية والصناعية [1,2,3,4,5]. وهذا الحجم يجعل الأمن — ونماذج المفاتيح التي يقوم عليها — شأنًا من الدرجة الأولى لتطبيقات LPWAN [15].</p>
+    <p>وLoRaWAN هي دراسة الحالة: تغطية واسعة وقابلية توسع وطاقة منخفضة وكلفة نشر متدنية [1]. وهدف الورقة تحسين النماذج القائمة عبر تحليل مشترك للتحديات المؤثرة فيها، ومقارنة زمن توليد المفاتيح وزمن تحديثها وزمن التنفيذ والذاكرة وتغطية الهجمات عبر المقترحات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">الخلفية: LoRaWAN وأمنها</h2>
+    <p>في معمارية LoRaWAN تتواصل الأجهزة الطرفية العاملة بالبطاريات بقفزة واحدة عبر البوابات إلى خوادم الشبكة والتطبيقات، وهي طوبولوجيا تُبقي كلفة الأجهزة وطاقتها منخفضة لكنها تركّز الثقة في المفاتيح المحفوظة على الأطراف [1,4,16,17]. لذا يجب أن تكون الحماية من الهجمات والاختراقات أولوية، مع كون إظهار المفاتيح وإدارتها لا غنى عنه لتطبيق النماذج التشفيرية على عتاد إنترنت الأشياء المقيد [1,3,18].</p>
+    <p>وتشمل الشيفرات المرشحة تصاميم متماثلة وغير متماثلة وهجينة، لكن AES-128 المتماثل يهيمن على ممارسة LoRaWAN. وتستهدف الهجمات الممكنة السرية والسلامة والتوافر — حجب الخدمة واختراق المفاتيح والإعادة والرجل في المنتصف من بينها — لذا يجب تحصين نماذج المفاتيح باستمرار ضد خصوم الشبكة [1,2,3,18].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">الأعمال ذات الصلة</h2>
+    <p>جادل Eldefrawy وآخرون [19] بأن الانتشار الواسع لـ LPWAN كشف ثغرات معروفة في نموذج أمن LoRaWAN التقليدي v1.0، مما حفز إعادة التصميم. واقترحت دراسات لاحقة [20,21,23] إجراءات انضمام ومعالجة لمفاتيح الجلسات أكثر صلابة، بينما استعرض Noura وآخرون [24] المعمارية والمخاوف والتطبيقات والإجراءات المضادة.</p>
+    <p>وحلّل Yang في [25] شبكة LoRaWAN عبر التشفير وآليات إدارة المفاتيح وإدارة العدادات والإقرار بالرسائل — وهي العدسة متعددة الأبعاد التي تعتمدها هذه الورقة لمقارنة جميع النماذج الممسوحة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">التحليل (1): إدارة المفاتيح</h2>
+    <p>يُشرَّح كل عمل ممسوح بحسب الأهداف الأمنية والتقنيات: اختيار الشيفرة وزمن توليد المفاتيح وتحديثها وزمن التنفيذ والبصمة الذاكرية، ملخصةً في جداول مقارنة. فإدارة المفاتيح بطرف ثالث موثوق لـ Naoui وآخرين تزيح التوزيع لتخفيف عبء الأجهزة [1]؛ وتفعيل المفتاح المزدوج لـ Kim وSong يفصل الاهتمامات عبر الخوادم لتسهيل التعقيد [2]؛ ومخطط الاتصال منخفض الطاقة بـ AES-128 لـ Tsai وآخرين يستهدف الوصلات المقيدة [3].</p>
+    <p>وتشتق مقترحات توليد المفاتيح اللاسلكي المفاتيح من تبادلية القناة بدل التجهيز المسبق [4]، ويقاوم تقسية الشيفرات الكتلية (كمتغيرات LEA) القنوات الجانبية على المعالجات الضعيفة [5]، وتُستنار مقايضات التصميم المقيد بمخططات مجاورة لبلوتوث-5 وإنترنت الأشياء [6,7,8,9]. وتتكرر الأطراف الثالثة الموثوقة عبر المقترحات لأنها تقلل التعقيد التشغيلي للنقاط الطرفية الصغيرة [1,26,27,28,29,30,31,14].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">التحليل (2): الهجمات المعالجة والحلول</h2>
+    <p>تُخطَّط أساليب الحلول للهجمات التي تهزمها: اختراق المفاتيح والتنصت يُقاوَمان بمفاتيح مُحدَّثة أو مرتبطة بالعتاد أو مشتقة من القناة [1,2,3,4,5]؛ والإعادة وفقد التزامن يُقاوَمان بانضباط الأرقام العشوائية/العدادات وفحوص الإقرار [2,3,25]؛ وضغط حجب الخدمة يُخفَّف بتحقق خفيف يتجنب العمليات المكلفة على العُقد [1,14,26,27].</p>
+    <p>ولا يغطي نموذج واحد كل شيء: فكل مقترح يقايض التغطية بالكلفة، وتبقى عدة نماذج محللة قابلة للهجوم في تقييم المؤلفين [28,29,30,31]. وتُظهر الجداول الفجوات صراحة، مما يحفز توصية التصميم الخفيف.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">النقاش والفرص البحثية</h2>
+    <p>تُظهر الأعمال الممسوحة مجتمعةً أدبيات نحيفة بأهداف متنوعة لكن بدروس متقاربة: التشفير المتماثل يفوز بالكلفة، والأطراف الثالثة تفوز بالبساطة، والقيود الفيزيائية والتشغيلية تهيمن على التصميم [1,7,8,9]. لكن المناعة غير مُبرهنة في أي مكان — فكل فئة نماذج تحمل سطح هجوم متبقيًا.</p>
+    <p>وتشمل الفرص اتجاه الخادم المزدوج لـ Kim وSong لتقسيم مهام المفاتيح [2]، والتحديث القائم على القناة لإزالة قِدم الأسرار المسبقة المشاركة [3,4]، والشيفرات الخفيفة المقساة لمقاومة القنوات الجانبية [5,14]، والمعايرة عبر الدراسات بمقاييس موحدة للكلفة/الهجوم لتصبح النماذج المستقبلية قابلة للمقارنة لا للسرد فقط [26,28,29,30,31].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">الخاتمة</h2>
+    <p>يجد هذا التحليل الشامل لنماذج أمن المفاتيح في LoRaWAN — الذي يغطي تصاميم إدارة المفاتيح والهجمات المعالجة وأساليب الحلول — تقدمًا لكن دون نموذج مستقر مقبول عالميًا. وتبقى الإدارة القائمة على AES-128 المتماثل بدعم الأطراف الثالثة الموثوقة النواة العملية، القابلة للتحسين عبر إعادة تصميم خفيفة واعية بالقيود.</p>
+    <p>وخلاصة المؤلفين: صمموا نماذج أمن مفاتيح أقل تعقيدًا تناسب ميزانيات موارد LPWAN، وتحققوا منها مقابل فهارس هجوم صريحة، لإطالة عمر الأجهزة دون التفريط في الحماية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Low-Power Wide-Area Network (LPWAN) technology connects low-powered, low-bandwidth devices over long ranges, with LoRaWAN security widely relying on AES-128 symmetric encryption for key generation protecting entities and communication [1,2,3]. Yet no global, well-accepted LoRaWAN security model fits all applications, and efficient key manifestation and management remain open design challenges.</p>
+    <p>This paper analyzes existing LoRaWAN key security models to surface their challenges and assess proposed strengths and weaknesses. It finds few research works in the area and several models still vulnerable to attacks; symmetric encryption dominates for its low computational cost, and trusted third parties are widely used to cut operational complexity [1,2,3,4,5]. The authors recommend lightweight, less complex models that sustain LPWAN device lifespan.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Introduction</h2>
+    <p>The Internet of Things brings cross-platform communication among devices spanning low to high energy budgets, sharing large data volumes autonomously across healthcare, military, agriculture and industrial domains [1,2,3,4,5]. This scale makes security — and the key models underpinning it — a first-order concern for LPWAN deployments [15].</p>
+    <p>LoRaWAN is the LPWAN case study: wide coverage, scalability, low power and low deployment cost [1]. The paper's goal is to improve existing models by jointly analyzing the challenges that affect them, comparing key-generation time, key-update time, execution time, memory and attack coverage across proposals.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Background: LoRaWAN and Its Security</h2>
+    <p>In LoRaWAN architecture, battery-powered end devices communicate single-hop through gateways to network and application servers, a topology that keeps device cost and energy low but concentrates trust in keys held at the edges [1,4,16,17]. Protection against attacks and breaches must therefore be a priority, with key manifestation and management indispensable to applying cryptographic models on constrained IoT hardware [1,3,18].</p>
+    <p>Candidate ciphers span symmetric, asymmetric and hybrid designs, but symmetric AES-128 dominates LoRaWAN practice. Possible attacks target confidentiality, integrity and availability — denial of service, key compromise, replay and man-in-the-middle among them — so key models must be continually hardened against network adversaries [1,2,3,18].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Related Works</h2>
+    <p>Eldefrawy et al. [19] argued that LPWAN's wide rollout exposed known vulnerabilities in the traditional LoRaWAN v1.0 security model, motivating redesigns. Follow-up studies [20,21,23] proposed hardened join and session-key handling, while Noura et al. [24] reviewed architecture, concerns, applications and countermeasures.</p>
+    <p>Yang [25] analyzed LoRaWAN through cryptography, key-management mechanisms, counter management and message acknowledgement — the multidimensional lens this paper adopts for comparing all surveyed models.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Analysis I: Key Management</h2>
+    <p>Each surveyed study is dissected by security objectives and techniques: cipher choice, key-generation and key-update time, execution time and memory footprint, summarized in comparative tables. Naoui et al.'s trusted-third-party key management offloads distribution to reduce device burden [1]; Kim and Song's dual-key activation separates concerns across servers to ease complexity [2]; Tsai et al.'s AES-128 low-power communication scheme targets constrained links [3].</p>
+    <p>Wireless key-generation proposals derive keys from channel reciprocity instead of provisioning [4], block-cipher hardening (e.g., LEA variants) resists side channels on weak CPUs [5], and Bluetooth-5/IoT-adjacent schemes inform constrained design trade-offs [6,7,8,9]. Trusted third parties recur across proposals precisely because they minimize operational complexity for tiny endpoints [1,26,27,28,29,30,31,14].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Analysis II: Attacks Addressed and Solutions</h2>
+    <p>Solution approaches are mapped to the attacks they defeat: key-compromise and eavesdropping countered by refreshed, hardware-bound or channel-derived keys [1,2,3,4,5]; replay and desynchronization countered by nonce/counter discipline and acknowledgement checks [2,3,25]; denial-of-service pressure relieved by lightweight verification that avoids expensive operations on nodes [1,14,26,27].</p>
+    <p>No single model covers everything: each proposal trades coverage for cost, and several analyzed models remain attackable in the authors' assessment [28,29,30,31]. The tables make the gaps explicit, motivating the lightweight-design recommendation.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Discussion and Research Opportunities</h2>
+    <p>Jointly, the surveyed works show a thin literature with diverse objectives but convergent lessons: symmetric cryptography wins on cost, third parties win on simplicity, and physical/operational constraints dominate design [1,7,8,9]. Yet immunity is nowhere demonstrated — every model class carries residual attack surface.</p>
+    <p>Opportunities include Kim and Song's dual-server direction to split key duties [2], channel-based refreshment to remove pre-shared-secret staleness [3,4], hardened lightweight ciphers for side-channel resistance [5,14], and cross-study benchmarking on unified cost/attack metrics so future models can be compared rather than merely listed [26,28,29,30,31].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Conclusions</h2>
+    <p>This comprehensive analysis of LoRaWAN key security models — covering key-management designs, addressed attacks and solution approaches — finds progress but no settled, globally accepted model. Symmetric AES-128-based management with trusted-third-party support remains the pragmatic core, improvable through lightweight, constraint-aware redesign.</p>
+    <p>The authors' verdict: design less complex key security models that fit LPWAN resource budgets, and validate them against explicit attack catalogues, to extend device lifespan without surrendering protection.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed reference list: only works cited in this viewer are shown, with their original numbering. See the full reference list in the original paper.</p>
+    <ol dir="ltr">
+      <li>[1] Naoui, S.; Elhdhili, M.E.; Saidane, L.A. Trusted third party based key management for enhancing LoRaWAN security. In Proceedings of the 2017 IEEE/ACS 14th International Conference on Computer Systems and Applications (AICCSA), Hammamet, Tunisia, 30 October–3 November 2017; pp. 1306–1313.</li>
+      <li>[2] Kim, J.; Song, J. A Dual Key-Based Activation Scheme for Secure LoRaWAN. Wirel. Commun. Mob. Comput. 2017, 2017, 6590713. [CrossRef]</li>
+      <li>[3] Tsai, K.-L.; Huang, Y.-L.; Leu, F.-Y.; You, I.; Huang, Y.-L.; Tsai, C.-H. AES-128 Based Secure Low Power Communication for LoRaWAN IoT Environments. IEEE Access 2018, 6, 45325–45334. [CrossRef]</li>
+      <li>[4] Ruotsalainen, H.; Zhang, J.; Grebeniuk, S. Experimental Investigation on Wireless Key Generation for Low-Power Wide-Area Net-works. IEEE Internet Things J. 2019, 7, 1745–1755. [CrossRef]</li>
+      <li>[5] Choi, J.; Kim, Y. An improved LEA block encryption algorithm to prevent side-channel attack in the IoT system. In Proceedings of the 2016 Asia-Paciﬁc Signal and Information Processing Association Annual Summit and Conference (APSIPA), Jeju, Korea, 13–16 December 2016; pp. 1–4.</li>
+      <li>[6] Froiz-Míguez, I.; Fraga-Lamas, P .; Fernández-Caramés, T.M. Design, Implementation and Validation of a Bluetooth 5 Real-Time Monitoring System for Large Indoor Environments. Eng. Proc. 2021, 7, 18. [CrossRef]</li>
+      <li>[7] Bahashwan, A.A.; Anbar, M.; Abdullah, N.; Al-Hadhrami, T.; Hanshi, S.M. Review on Common IoT Communication Technologies for Both Long-Range Network (LPWAN) and Short-Range Network. In Advances on Smart and Soft Computing ; Springer: Berlin/Heidelberg, Germany, 2020; pp. 341–353.</li>
+      <li>[8] Bali, M.S.; Gupta, K.; Bali, K.K.; Singh, P .K. Towards energy efﬁcient NB-IoT: A survey on evaluating its suitability for smart ap-plications. Mater. T oday Proc.2022, 49, 3227–3234. [CrossRef]</li>
+      <li>[9] Ferreira, C.M.S.; Oliveira, R.A.R.; Silva, J.S. Low-energy smart cities network with LoRa and Bluetooth. In Proceedings of the 2019 7th IEEE Inter-national Conference on Mobile Cloud Computing, Services, and Engineering (MobileCloud), Newark, CA, USA, 4–9 April 2019; pp. 24–29.</li>
+      <li>[14] Tsai, K.-L.; Huang, Y.-L.; Leu, F.-Y.; You, I. TTP Based High-Efﬁcient Multi-Key Exchange Protocol.IEEE Access 2016, 4, 6261–6271. [CrossRef]</li>
+      <li>[15] Mekki, K.; Bajic, E.; Chaxel, F.; Meyer, F. A comparative study of LPWAN technologies for large-scale IoT deployment. ICT Express 2019, 5, 1–7. [CrossRef]</li>
+      <li>[16] Lavric, A.; Popa, V . Internet of things and LoRa™ low-power wide-area networks: A survey. In Proceedings of the 2017 IEEE International Symposium on Signals, Circuits and Systems (ISSCS), Iasi, Romania, 13–14 July 2017; pp. 1–5.</li>
+      <li>[17] Wixted, A.J.; Kinnaird, P .; Larijani, H.; Tait, A.; Ahmadinia, A.; Strachan, N. Evaluation of LoRa and LoRaWAN for Wireless Sensor Networks. In Proceedings of the 2016 IEEE SENSORS, Orlando, FL, USA, 30 October–3 November 2016; pp. 1–3.</li>
+      <li>[18] Sanchez-Iborra, R.; Sánchez-Gómez, J.; Pérez, S.; Fernández, P .J.; Santa, J.; Hernández-Ramos, J.L.; Skarmeta, A.F. Enhancing LoRaWAN Security through a Lightweight and Authenticated Key Management Approach. [PubMed]</li>
+      <li>[19] Eldefrawy, M.; Butun, I.; Pereira, N.; Gidlund, M. Formal security analysis of LoRaWAN. Comput. Netw. 2019, 148, 328–339. [CrossRef]</li>
+      <li>[20] Butun, I.; Pereira, N.; Gidlund, M. Security Risk Analysis of LoRaWAN and Future Directions. Futur. Internet 2018, 11, 3. [CrossRef]</li>
+      <li>[21] Tomasin, S.; Zulian, S.; Vangelista, L. Security analysis of lorawan join procedure for internet of things networks. In Proceedings of the 2017 IEEE Wireless Communications and Networking Conference Workshops (WCNCW), San Francisco, CA, USA, 19–22 March 2017; pp. 1–6.</li>
+      <li>[23] Butun, I.; Pereira, N.; Gidlund, M. Analysis of LoRaWAN v1. 1 security. In Proceedings of the 4th ACM MobiHoc Workshop on Experiences with the Design and Implementation of Smart Objects, Los Angeles, CA, USA, 25 June 2018; pp. 1–6.</li>
+      <li>[24] Noura, H.; Hatoum, T.; Salman, O.; Yaacoub, J.-P .; Chehab, A. LoRaWAN security survey: Issues, threats and possible mitigation techniques. Internet Things 2020, 12, 100303. [CrossRef]</li>
+      <li>[25] Yang, X. LoRaWAN: Vulnerability Analysis and Practical Exploitation. Master’s Thesis, Delft University of Technology, Delft, The Netherlands, 2017.</li>
+      <li>[26] Han, J.; Wang, J. An Enhanced Key Management Scheme for LoRaWAN. Cryptography 2018, 2, 34. [CrossRef]</li>
+      <li>[27] Prasetyo, K.N.; Purwanto, Y.; Darlis, D. An implementation of data encryption for Internet of Things using blowﬁsh algorithm on FPGA. In Proceedings of the 2014 2nd International Conference on Information and Communication Technology (ICoICT), Bandung, Indonesia, 28–30 May 2014; pp. 75–79.</li>
+      <li>[28] Roselin, A.G.; Nanda, P .; Nepal, S. Lightweight Authentication Protocol (LAUP) for 6LoWPAN Wireless Sensor Networks. In Proceedings of the 2017 IEEE Trustcom/BigDataSE/ICESS, Sydney, Australia, 1–4 August 2017; pp. 371–378.</li>
+      <li>[29] Gao, S.-Y.; Li, X.-H.; Ma, M.-D. A Malicious Behavior Awareness and Defense Countermeasure Based on LoRaWAN Protocol.</li>
+      <li>[30] Dönmez, T.C.; Nigussie, E. Security of LoRaWAN v1.1 in Backward Compatibility Scenarios. Procedia Comput. Sci. 2018, 134, 51–58. [CrossRef]</li>
+      <li>[31] Naoui, S.; Elhdhili, M.E.; Saidane, L.A. Enhancing the security of the IoT LoraWAN architecture. In Proceedings of the 2016 International Conference on Performance Evaluation and Modeling in Wired and Wireless Networks (PEMWN), Paris, France, 22–25 November 2016; pp. 1–7.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/math10193421">10.3390/math10193421</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

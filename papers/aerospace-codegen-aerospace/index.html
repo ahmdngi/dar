@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>استخدام النماذج اللغوية الكبيرة لتوليد الشيفرات الفضائية: الأساليب والمعايير والقيم المحتملة — DAR</title>
+<meta name="description" content="Using Large Language Models for Aerospace Code Generation: Methods, Benchmarks, and Potential Values — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/aerospace-codegen-aerospace/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Using Large Language Models for Aerospace Code Generation: Methods, Benchmarks, and Potential Values</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">استخدام النماذج اللغوية الكبيرة لتوليد الشيفرات الفضائية: الأساليب والمعايير والقيم المحتملة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Rui He, Liang Zhang, Mengyao Lyu, Liangqing Lyu, Changbin Xue</span>
+    <span>📄 Aerospace, 2025 · Vol. 12(6), 498</span>
+    <span>🔗 <a href="https://doi.org/10.3390/aerospace12060498">10.3390/aerospace12060498</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>برز توليد الشيفرات بالنماذج اللغوية الكبيرة كمحور بحثي بارز، لكن تطبيقه الفضائي لا يزال ناشئًا [4]. تقدم هذه الورقة RepoSpace، المعيار الرائد على مستوى المستودع لتوليد شيفرات المعدات المحمولة فضائيًا: 825 عينة من خمسة مشاريع حقيقية. تُظهر تقييمات سبعة نماذج لغوية حديثة أن الفروق بين المجالات تُدهور الأداء بشكل ملحوظ مقارنة بالمعايير العامة، بينما يحسّن التوليد المعزز بالاسترجاع (RAG) وقوالب التوجيه المناسبة وشروح التوثيق عالية الجودة النتائج بشكل كبير.</p>
+    <p>تقدم الدراسة مرجعًا حيويًا لتسخير النماذج اللغوية في توليد الشيفرات الفضائية، مما يعزز الابتكار التقني في هذا المجال الحيوي.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يفرض المجال الفضائي متطلبات صارمة للسلامة والموثوقية والدقة [1,2]؛ فالبرمجيات المحمولة هي «عقل» المهمة، تدعم التحكم عن بعد ونقل البيانات والتحكم في الوضعية والتجارب [3]، بينما لا تزال خريطة توليد الشيفرات بالنماذج الكبيرة وإمكاناتها الفضائية في بدايتها [4]. ويعتمد التطوير التقليدي على الترميز اليدوي والتحقق الشكلي والاختبار التكراري — وهو مكلف مع تعقد المهمات.</p>
+    <p>تقدّم المولدات القاعدية والاستدلال الشكلي [5] والمركّبات العصبية المبكرة مثل InCoder [7] وCodeGen [8] وCode Llama [9] وDeepSeek-Coder-V2 [10] توليد الشيفرات العامة، لكن ظواهر الهلوسة وحدود معالجتها تبقى قائمة عمليًا [11]. وتسأل هذه الورقة عما إذا كانت هذه النماذج تنتقل إلى المستودعات الفضائية — وتجد فجوة كبيرة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الخلفية</h2>
+    <p>اعتمد التوليد المبكر على الاستدلال الشكلي والاشتقاق القاعدي من المواصفات [5,12–15]، ولا تزال أبحاث الأتمتة الفضائية متمحورة حول هذه الأساليب، مثل التطوير القائم على النماذج والتحقق الآلي للأنظمة الفضائية [16] والتوليد الموجه بالنماذج للقيادة ومعالجة البيانات [17]. ثم نقلت نماذج عصر المحولات — أسس التسلسل-إلى-التسلسل [18] وIntelliCode Compose [20] وCodeBERT [21] والتدريب المسبق الموحد [24] وCodeT5+ [25] — المجال إلى التخليق القائم على التعلم.</p>
+    <p>وتؤطر تقدمات التوجيه (سلاسل التفكير المنظمة [31] والتخطيط الذاتي [33] وSKCoder القائم على المخططات [34] واستخدام أدوات API عبر ToolCoder [36]) ودراسات الفعالية المجالية [58] السؤال الجوهري للورقة: إلى أي مدى تحمل سقالات التوجيه والاسترجاع النماذج اللغوية في المستودعات الفضائية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. المعيار — RepoSpace</h2>
+    <p>يتألف RepoSpace من 825 عينة من خمسة مشاريع برمجية فضائية حقيقية موثقة — وهو أول معيار على مستوى المستودع لتوليد شيفرات الأجهزة المحمولة فضائيًا. تجمع كل عينة خمسة مكونات: توقيع الدالة، والمتطلب بلغة طبيعية، وسياق المستودع، والتطبيق المرجعي، والاختبارات؛ ويتكون خط الأنابيب من مرحلتين: التوليد بالنماذج اللغوية ثم التقييم اللاحق للتوليد.</p>
+    <p>وخلافًا لأجنحة مستوى الدالة (مثل HumanEval [48] وبراغماتيات CodeEval [41] وAlphaCode التنافسي [42])، يختبر RepoSpace دوال غير مستقلة مضمنة في مستودعات فضائية حقيقية، حيث تهيمن الاعتماديات عبر الملفات وقيود العتاد.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4–5. التصميم التجريبي والنتائج</h2>
+    <p>تقود ثلاثة أسئلة بحثية التصميم: الأول عن أثر الفجوة المجالية (DeepSeek-Coder مقابل CodeLlama بالتصفير عبر CodeBLEU على ComplexCodeEval [57] مقابل RepoSpace)، والثاني عن أداء الدوال غير المستقلة عبر سبعة نماذج، والثالث عن سقالات الاسترجاع والتوجيه والتوثيق. وتضع أطر مستوى المستودع مثل 3-CodGen بالوعي المحلي/الشامل/المكتبي [55] والأجنحة متعددة المهام مثل CrossCodeEval [56] وxCodeEval [56] التصميم في سياقه.</p>
+    <p>النتائج: تسجل جميع النماذج المدروسة درجات أدنى بكثير على RepoSpace مقارنة بـComplexCodeEval [57] — فالصحة تنهار على مستوى المستودع — مما يؤكد التدهور الخاص بالمجال بما يتسق مع أدلة الفعالية المجالية الأوسع [58]. ويرفع كل من تقنية RAG وقوالب التوجيه المناسبة (راجع هندسة التوجيه بمستوى بشري [53]) وشروح التوثيق عالية الجودة المدققة يدويًا الدرجات بشكل كبير؛ ويُبقي التدقيق في الصحة بروح «هل شيفرتك المولدة صحيحة فعلًا؟» [51] هذه المكاسب صادقة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. المناقشة</h2>
+    <p>جودة شروح التوثيق هي الرافعة المحورية: فاستبدال الشروح الأصلية بأخرى موسومة يدويًا (مولدة بـDeepSeek-Coder-671B ومدققة بشريًا) يحسّن مخرجات كل نموذج بشكل ملحوظ. وتؤكد التعليقات اليدوية الموائمة للمستودعات في DevEval [50] أن السياق الواقعي، لا حجم النموذج وحده، هو ما يحكم النجاح.</p>
+    <p>والخلاصة العملية: ينبغي للفرق الفضائية الاستثمار في شروح توثيق منقحة، والاسترجاع المعزز عبر مستودعات المشاريع، وقوالب توجيه خاصة بالمهام قبل توقع استيفاء توليد الشيفرات بالنماذج اللغوية لاحتياجات ضمان البرمجيات الطيرانية [1,16].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. الاستنتاجات</h2>
+    <p>يمثل RepoSpace — 825 عينة من مهمات فضائية موثقة — أول معيار على مستوى المستودع لتوليد الشيفرات الفضائية، بُني بمعالجة آلية صارمة وتعليق يدوي. ويؤدي النماذج اللغوية عليه أداءً أدنى بكثير من المعايير العامة، لكن الاسترجاع المعزز وتصميم التوجيه وجودة التوثيق تسد معظم الفجوة، مما يمنح المجال الفضائي خارطة اعتماد ملموسة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>LLM-based code generation has emerged as a prominent research focus, yet its aerospace application remains nascent [4]. This paper introduces RepoSpace, the pioneering warehouse-level benchmark for spaceborne-equipment code generation: 825 samples from five real projects. Evaluations of seven state-of-the-art LLMs show domain differences markedly degrade performance versus general benchmarks, while retrieval-augmented generation (RAG), apt prompt templates, and high-quality docstrings substantially improve results.</p>
+    <p>The study provides a vital reference for leveraging LLMs in aerospace code generation, fostering technological innovation in this critical domain.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Aerospace imposes stringent safety, reliability, and precision demands [1,2]; onboard software is the mission's “brain,” supporting remote control, data transmission, attitude control, and experiments [3], while large-model code generation and its aerospace potential are only beginning to be mapped [4]. Traditional development leans on manual coding, formal verification, and iterative testing — costly as missions grow complex.</p>
+    <p>Rule-based and formal-reasoning generators [5] and early neural synthesizers such as InCoder [7], CodeGen [8], Code Llama [9], and DeepSeek-Coder-V2 [10] advanced general code generation, but hallucination phenomena and mitigation limits persist in practice [11]. This paper asks whether these models transfer to aerospace repositories — and finds a significant gap.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Background</h2>
+    <p>Early generation relied on formal reasoning and rule-based derivation from specifications [5,12–15], and aerospace automation research still centers on such approaches, e.g., model-based development and automated verification for aerospace systems [16] and model-driven command-and-data-handling generation [17]. Transformer-era models — sequence-to-sequence foundations [18], IntelliCode Compose [20], CodeBERT [21], PLBART-style unified pre-training [24], and CodeT5+ [25] — shifted the field to learning-based synthesis.</p>
+    <p>Prompting advances (structured chain-of-thought [31], self-planning [33], sketch-based SKCoder [34], API-tool use via ToolCoder [36]) and domain-effectiveness studies [58] frame the paper's core question: how far prompt and retrieval scaffolds carry LLMs in aerospace repositories.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Benchmark — RepoSpace</h2>
+    <p>RepoSpace comprises 825 samples from five verified real-world spaceborne software projects — the first repository-level benchmark for on-board device code generation. Each sample bundles five components: function signature, natural-language requirement, repository context, reference implementation, and tests; the pipeline has two phases, LLM-based generation and post-generation assessment.</p>
+    <p>Unlike function-level suites (HumanEval-style [48], CodeEval pragmatics [41], competition-level AlphaCode [42]), RepoSpace tests non-standalone functions embedded in real aerospace repositories, where cross-file dependencies and hardware constraints dominate.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4–5. Experimental Setup & Results</h2>
+    <p>Three research questions drive the design: RQ-1 (domain-gap impact, DeepSeek-Coder vs. CodeLlama zero-shot CodeBLEU on ComplexCodeEval [57] versus RepoSpace), RQ-2 (non-standalone function performance across seven LLMs), and RQ-3 (RAG/prompt/docstring scaffolds). Repository-level frameworks such as 3-CodGen with local/global/library awareness [55] and multilingual multi-task suites like CrossCodeEval [56] and xCodeEval [56] contextualize the setup.</p>
+    <p>Results: all studied models score markedly lower on RepoSpace than on ComplexCodeEval [57] — correctness collapses at repository level — confirming domain-specific degradation consistent with broader domain-effectiveness evidence [58]. RAG technology, appropriate prompt templates (cf. human-level prompt engineering [53]), and manually verified high-quality docstrings each lift scores substantially; correctness auditing in the spirit of “is your generated code really correct?” [51] keeps the gains honest.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Discussion</h2>
+    <p>Docstring quality is the pivotal lever: replacing original docstrings with manually labeled ones (DeepSeek-Coder-671B-generated, human-verified) markedly improves every model's output. DevEval's repository-aligned manual annotations [50] corroborate that real-world context, not model scale alone, governs success.</p>
+    <p>Practical takeaway: aerospace teams should invest in curated docstrings, RAG over project repositories, and task-specific prompt templates before expecting LLM code generation to meet flight-software assurance needs [1,16].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Conclusions</h2>
+    <p>RepoSpace — 825 samples from verified space missions — is the first repository-level benchmark for aerospace code generation, built with rigorous automated processing plus manual annotation. LLMs perform markedly worse on it than on general benchmarks, but RAG, prompt design, and docstring quality close much of the gap, giving aerospace a concrete adoption roadmap.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed selection of 15 references (original numbering preserved) from the full list of 58. See the original paper for the complete bibliography.</p>
+    <ol dir="ltr">
+      <li>Yang, M.; Gu, B.; Guo, X.; Dong, X.; Wang, Z.; Chen, R. Aerospace embedded software dependability guarantee technology and application. <em>Sci. Sin. (Technol.)</em> 2015, 45, 198–203.</li>
+      <li>Chen, X.; Gao, F.; Han, X.; Weihua, M. Large model code generation technology and its potential applications to aerospace. <em>Aerosp. Control</em> 2025, 43, 8–16.</li>
+      <li>Fried, D.; Aghajanyan, A.; Lin, J.; Wang, S.; Wallace, E.; Shi, F.; Zhong, R.; Yih, W.t.; Zettlemoyer, L.; Lewis, M. InCoder: A generative model for code infilling and synthesis. arXiv 2022, arXiv:2204.05999.</li>
+      <li>Nijkamp, E.; Pang, B.; Hayashi, H.; Tu, L.; Wang, H.; Zhou, Y.; Savarese, S.; Xiong, C. CodeGen: An open large language model for code with multi-turn program synthesis. arXiv 2022, arXiv:2203.13474.</li>
+      <li>Roziere, B.; Gehring, J.; Gloeckle, F.; Sootla, S.; Gat, I.; Tan, X.E.; Adi, Y.; Liu, J.; Sauvestre, R.; Remez, T.; et al. Code Llama: Open foundation models for code. arXiv 2023, arXiv:2308.12950.</li>
+      <li>Zhu, Q.; Guo, D.; Shao, Z.; Yang, D.; Wang, P.; Xu, R.; Wu, Y.; Li, Y.; Gao, H.; Ma, S.; et al. DeepSeek-Coder-V2: Breaking the barrier of closed-source models in code intelligence. arXiv 2024, arXiv:2406.11931.</li>
+      <li>Zhang, Z.; Wang, Y.; Wang, C.; Chen, J.; Zheng, Z. LLM hallucinations in practical code generation: Phenomena, mechanism, and mitigation. arXiv 2024, arXiv:2409.20550.</li>
+      <li>Märtin, L.; Schatalov, M.; Hagner, M.; Goltz, U.; Maibaum, O. A methodology for model-based development and automated verification of software for aerospace systems. In <em>Proc. 2013 IEEE Aerospace Conf.</em> 2013, pp. 1–19.</li>
+      <li>Li, Y.; Choi, D.; Chung, J.; Kushman, N.; Schrittwieser, J.; Leblond, R.; Eccles, T.; Keeling, J.; Gimeno, F.; Dal Lago, A.; et al. Competition-level code generation with AlphaCode. <em>Science</em> 2022, 378, 1092–1097.</li>
+      <li>Chen, M.; Tworek, J.; Jun, H.; Yuan, Q.; Pinto, H.P.D.O.; Kaplan, J.; Edwards, H.; Burda, Y.; Joseph, N.; Brockman, G.; et al. Evaluating large language models trained on code. arXiv 2021, arXiv:2107.03374.</li>
+      <li>Li, J.; Li, G.; Zhao, Y.; Li, Y.; Liu, H.; Zhu, H.; Wang, L.; Liu, K.; Fang, Z.; Wang, L.; et al. DevEval: A manually-annotated code generation benchmark aligned with real-world code repositories. arXiv 2024, arXiv:2405.19856.</li>
+      <li>Liu, J.; Xia, C.S.; Wang, Y.; Zhang, L. Is your code generated by ChatGPT really correct? Rigorous evaluation of large language models for code generation. <em>Adv. Neural Inf. Process. Syst.</em> 2023, 36, 21558–21572.</li>
+      <li>Liao, D.; Pan, S.; Sun, X.; Ren, X.; Huang, Q.; Xing, Z.; Jin, H.; Li, Q. 3-CodGen: A repository-level code generation framework for code reuse. <em>IEEE Trans. Softw. Eng.</em> 2024, 50, 3369–3384.</li>
+      <li>Feng, J.; Liu, J.; Gao, C.; Chong, C.Y.; Wang, C.; Gao, S.; Xia, X. ComplexCodeEval: A benchmark for evaluating large code models on more complex code. In <em>Proc. 39th IEEE/ACM ASE</em>, Sacramento, 2024.</li>
+      <li>Gu, X.; Chen, M.; Lin, Y.; Hu, Y.; Zhang, H.; Wan, C.; Wei, Z.; Xu, Y.; Wang, J. On the effectiveness of large language models in domain-specific code generation. <em>ACM Trans. Softw. Eng. Methodol.</em> 2025, 34, 1–22.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/aerospace12060498">10.3390/aerospace12060498</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة لتقنية التوليد المعزز بالاسترجاع — DAR</title>
+<meta name="description" content="A Review of Retrieval-Augmented Generation Technology — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/rag-review-symmetry/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Review of Retrieval-Augmented Generation Technology</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مراجعة لتقنية التوليد المعزز بالاسترجاع</h2>
+
+  <div class="paper-meta">
+    <span>👤 Peng Jiang, Xiaodong Cai</span>
+    <span>📄 Symmetry, 2026, Vol. 18(9), 1431</span>
+    <span>🔗 <a href="https://doi.org/10.3390/sym18091431">10.3390/sym18091431</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>أصبح التوليد المعزز بالاسترجاع (RAG) نموذجًا محوريًا لمعالجة الهلوسة وتأخر المعرفة في النماذج اللغوية الكبيرة، لكن المراجعات القائمة تركز على فروع مفردة أو سيناريوهات عمودية، مع معالجة مشتتة للعتاد والتقييم والأدلة عبر الصناعات. وبناءً على 115 ورقة — أدبيات تأسيسية من 1998–2019 وأدبيات RAG جوهرية من 2020–2026 — تفهرس هذه المراجعة منهجيًا التقنيات الطرفية والحلول الداعمة، وتبني جدول مقارنة كميًا للعتاد، وتقارن 11 فئة من واجهات المصدر المفتوح والتجارية، وتنشئ إطار تقييم معياريًا من مستويين وأربعة مستويات، وتجمع الأدلة التجريبية وتحديات التنفيذ عبر ثماني صناعات من 2024 إلى 2026. وتحدد أربعة تناقضات هيكلية — مفاضلة الاسترجاع-الإنشاء، وعدم الاصطفاف الهندسي-الدلالي مؤطرًا كمسألة تناظر بين فضاء التمثيل والبنية الدلالية، ومفارقة الاستقلالية-الموثوقية، والنقاط العمياء للتقييم — كإطار تحليلي موحد.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يُظهر RAG إمكانات قوية في الإجابة على الأسئلة مفتوحة المجال وخدمة العملاء الذكية واتخاذ القرار الخاص بالمجال. ومنذ أن أرست الأعمال المؤسسة حول DPR (الاسترجاع الكثيف للمقاطع) [1] وREALM (النموذج اللغوي المعزز بالاسترجاع) [2] وRAG [3] بنية الاسترجاع-التوليد التأسيسية عام 2020، تطور التقنية على أربعة مسارات تحسين: التعزيز قبل الاسترجاع — مثل توليد الوثائق الافتراضية في HyDE [4] — إلى جانب تحسين الاسترجاع والتمثيل والتوليد.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. المنهجية</h2>
+    <p>تبحث المراجعة في الأدبيات التأسيسية 1998–2019 والجوهرية 2020–2026 وتطبق عملية فرز من ثلاثة مستويات: استرجاع واسع أولي، وفرز تفصيلي ثانٍ، وتنقية ثالثة. ولا يُبقى للتحليل المعمق سوى ثلاث فئات: أوراق البنى الرائدة (DPR وREALM وRAG الأصلي وSelf-RAG)؛ وأوراق التحسين التجريبية الشاملة مع استئصالات على معايير عمومية؛ وتطبيقات عمودية تمثيلية. وتُفصح المنهجية عن قواعد التصنيف وقواعد استخلاص البيانات من المخططات والجداول ومعايير الإدراج والاستبعاد.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. التقنيات الرئيسية</h2>
+    <p>تُفهرس التقنيات الطرفية عبر التحليل الدلالي وتحسين واجهة البحث الأمامية وتحسين فضاء التمثيل وتحسين التوليد الخلفي — من إرساء الأساس إلى واجهات البحث وفضاءات التمثيل وخلفيات التوليد. ويمثل التعزيز قبل الاسترجاع مثل التضمينات الافتراضية للوثائق في HyDE [4] وإعادة كتابة الاستعلام المسار الأول، بينما تتتبع المراجعة أيضًا تقنيات التقطيع وإعادة الترتيب وفك التشفير المنظم عبر خط الأنابيب.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. التناقضات الهيكلية</h2>
+    <p>المساهمة المحورية للمراجعة هي إطار تحليلي رباعي من التناقضات الهيكلية: (1) مفاضلة الاسترجاع-الإنشاء؛ (2) عدم الاصطفاف الهندسي-الدلالي، مؤطرًا كمسألة تناظر بين فضاء التمثيل والبنية الدلالية؛ (3) مفارقة الاستقلالية-الموثوقية لخطوط الأنابيب الوكيلة المتزايدة؛ (4) النقاط العمياء للتقييم. ويفسر نموذج الثالوث نظرية-هندسة-صناعة المنطق التطوري الكامل لـ RAG من إرساء الأساس إلى النماذج المتقدمة، ويحفز اتجاهات مثل التحسين المشترك القابل للتفاضل والتعلم الهندسي الهجين والاستدلال السببي القابل للتفسير والتقييم التشخيصي متعدد الأبعاد.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. الأدلة الهندسية والصناعية</h2>
+    <p>على المستوى الهندسي تقدم المراجعة مراجع قابلة للقياس لاختيار العتاد ومقارنة الواجهات عبر 11 فئة من العروض المفتوحة والتجارية. وعلى المستوى الصناعي تجمع الأدلة التجريبية وتحديات التنفيذ عبر ثماني صناعات من 2024 إلى 2026، كاشفة الفجوة بين النماذج الأكاديمية الأولية والأنظمة التجارية الناضجة — مع ملاحظة ندرة الأدلة في قطاعي المالية والحكومة، وأن إرشادات التوطين وتشفير الخصوصية والامتثال تستند إلى حد كبير إلى الاستدلال من الأدبيات لا إلى حالات تشغيلية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. القيود والخاتمة</h2>
+    <p>يقر المؤلفون بأن المراجعات السردية شبه المنهجية تحمل ذاتية متأصلة في اختيار الأدبيات؛ فقواعد الإدراج والاستبعاد مفصح عنها لكن التحيز لا يمكن إزالته كليًا، وينبغي لمراجعات منهجية أو تحليلات تلوية مستقبلية التحقق من النتائج. وعلى المدى الطويل، يتطور RAG من خط استرجاع أساسي نحو نظام معرفي مستقل قابل للتفسير، ويجب للبحث المستقبلي التقدم معًا في النظرية والتكيف مع البرمجيات والعتاد المحلي والتنفيذ العمودي المتوافق — موازنًا بين استقلالية النموذج والدقة الواقعية وكفاءة الاستدلال والتعميم عبر السيناريوهات للإجابة على أسئلة قواعد المعرفة المحلية دون اتصال.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Retrieval-augmented generation (RAG) has become a core paradigm for addressing hallucinations and knowledge lag in large language models, yet existing reviews focus on single branches or vertical scenarios, with only scattered treatment of hardware, evaluation, and cross-industry evidence. Based on 115 papers — foundational literature from 1998–2019 and core RAG literature from 2020–2026 — this review systematically catalogs end-to-end technologies and supporting solutions, builds a quantitative hardware comparison table, compares 11 categories of open-source and commercial APIs, constructs a two-tier four-level standardized evaluation framework, and compiles empirical evidence and implementation challenges across eight industries from 2024 to 2026. It identifies four structural contradictions — the retrieval–creation trade-off, the geometric–semantic misalignment framed as a symmetry problem between representation space and semantic structure, the autonomy–reliability paradox, and evaluation blind spots — as a unified analytical framework.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>RAG demonstrates strong potential for open-domain question answering, intelligent customer service, and domain-specific decision-making. Since the seminal works on DPR (Dense Passage Retrieval) [1], REALM (Retrieval-Augmented Language Model) [2], and RAG [3] established the foundational retrieval–generation architecture in 2020, the technology has evolved along four optimization pathways: pre-retrieval augmentation — such as hypothetical document generation in HyDE [4] — alongside retrieval, representation, and generation optimization.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Methodology</h2>
+    <p>The review searches 1998–2019 foundational plus 2020–2026 core literature and applies a three-tier screening process: first-level broad retrieval, second-level detailed screening, and third-level refinement. Only three categories of core literature are retained for in-depth analysis: pioneering architecture papers (DPR, REALM, original RAG, Self-RAG); comprehensive experimental improvement papers with ablations on public benchmarks; and representative vertical implementations. Classification rules, chart/table data-extraction rules, and inclusion/exclusion criteria are disclosed in the methodology section.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Key Technologies</h2>
+    <p>End-to-end technologies are cataloged across semantic parsing, front-end search optimization, representation-space optimization, and back-end generation optimization — spanning laying the foundation, search front-ends, representation spaces, and generation back-ends. Pre-retrieval augmentation such as HyDE's hypothetical document embeddings [4] and query rewriting exemplify the first pathway, while the review further tracks chunking, reranking, and structured decoding techniques through the pipeline.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Structural Contradictions</h2>
+    <p>The review's central contribution is a four-part analytical framework of structural contradictions: (i) the retrieval–creation trade-off; (ii) the geometric–semantic misalignment, framed as a symmetry problem between representation space and semantic structure; (iii) the autonomy–reliability paradox of increasingly agentic pipelines; and (iv) evaluation blind spots. This theory–engineering–industry trinity paradigm explains the full evolutionary logic of RAG from grounding to advanced paradigms and motivates directions such as differentiable joint optimization, hybrid geometric learning, interpretable causal reasoning, and multidimensional diagnostic evaluation.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Engineering and Industry Evidence</h2>
+    <p>At the engineering level the review provides quantifiable references for hardware selection and API comparison across 11 categories of open-source and commercial offerings. At the industrial level it compiles empirical evidence and implementation challenges across eight industries from 2024 to 2026, revealing the gap between academic prototypes and mature commercial systems — while noting that evidence in finance and government sectors is scarce and that localization, privacy-encryption, and compliance guidance rest largely on inference from the literature rather than operational cases.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Limitations and Conclusion</h2>
+    <p>The authors acknowledge that semi-systematic narrative reviews carry inherent subjectivity in literature selection; inclusion and exclusion rules are disclosed but bias cannot be fully eliminated, and future systematic reviews or meta-analyses should validate the conclusions. In the long term, RAG is evolving from a basic retrieval pipeline toward an explainable, autonomous cognitive system, and future research must advance theory, domestic software/hardware adaptation, and compliant vertical implementation together — balancing model autonomy, factual accuracy, reasoning efficiency, and cross-scenario generalization for offline, on-premises knowledge-base question answering.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Reference list is condensed to the works cited in this viewer; numbers match the original paper. See the original publication for the complete list.</p>
+    <ol dir="ltr">
+      <li>[1] Karpukhin, V.; Oguz, B.; Min, S.; Lewis, P.; Wu, L.; Edunov, S.; Chen, D.; Yih, W. Dense Passage Retrieval for Open-Domain Question Answering. In Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP), Online, 2020.</li>
+      <li>[2] Guu, K.; Lee, K.; Tung, Z.; Pasupat, P.; Chang, M.-W. REALM: Retrieval-Augmented Language Model Pre-Training. In Proceedings of the 37th International Conference on Machine Learning (ICML), Online, 2020; pp. 3929–3938.</li>
+      <li>[3] Lewis, P.; Perez, E.; Piktus, A.; Petroni, F.; Karpukhin, V.; Goyal, N.; Küttler, H.; Lewis, M.; Yih, W.; Rocktäschel, T.; et al. Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. <em>Adv. Neural Inf. Process. Syst.</em> 2020, 33, 9459–9474.</li>
+      <li>[4] Gao, L.; Ma, X.; Lin, J.; Callan, J. Precise Zero-Shot Dense Retrieval without Relevance Labels. In Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL), Toronto, ON, Canada, 2023. (Hypothetical Document Embeddings, HyDE).</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/sym18091431">10.3390/sym18091431</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

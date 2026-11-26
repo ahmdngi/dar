@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التجربة على الحاويات الذكية والبلوك تشين: أفق جديد لأمن البيانات — DAR</title>
+<meta name="description" content="Experimenting with Smart Containers and Blockchain: A New Frontier for Data Security — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/smart-container-blockchain-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Experimenting with Smart Containers and Blockchain: A New Frontier for Data Security</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التجربة على الحاويات الذكية والبلوك تشين: أفق جديد لأمن البيانات</h2>
+
+  <div class="paper-meta">
+    <span>👤 Radoje Dzankic, Ephraim Alemneh Jemberu, Sanja Bauk, Olli-Pekka Hilmola</span>
+    <span>📄 Appl. Sci., 2026 · Vol. 16, 2669</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app16062669">10.3390/app16062669</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>حاويات الشحن حجر الزاوية في التجارة العالمية: إذ يُنقل نحو 90% من البضائع غير السائبة عبر سفن الحاويات ضمن أسطول يُقدر بـ65 مليون حاوية، ومن المتوقع أن ترتفع حصة الحاويات الذكية نحو 30% بحلول 2027 [1]–[4]. وتمكّن الحاويات الذكية المزودة بحساسات إنترنت الأشياء التتبع الآني والتحليلات التنبؤية [5]، [6]، لكن البيانات التي تولدها تبقى عرضة للهجمات السيبرانية وانقطاع الإشارات والتعديل غير المصرح به. وتبشر بنية البلوك تشين اللامركزية الظاهرة العبث بالثبات ومسارات التدقيق الشفافة وثقة أصحاب المصلحة — غير أن التكامل العملي مع أنظمة الحاويات الذكية في البحر لا يزال غير مختبر إلى حد كبير.</p>
+    <p>تقترح هذه الورقة نظام مراقبة هجينًا للحاويات الذكية ممكنًا بالبلوك تشين وتتحقق منه: تعيش بيانات حساسات إنترنت الأشياء عالية التواتر في قاعدة بيانات خارج السلسلة بينما تُثبت بصماتها التشفيرية على السلسلة، بحيث يُكتشف أي تلاعب لاحق للتسجيل موثوقًا عبر التحقق من البصمات. وبالبناء على جهاز تتبع يدوي الصنع بحاسوب Raspberry Pi [20]، [62]، [63]، يُظهر إثبات المفهوم تسجيلًا ظاهر العبث وقابلية تدقيق وكفاءة تكلفة — مع البلوك تشين كطبقة سلامة لا كمخزن بيانات رئيسي — مع مناقشة صريحة للقيود بما فيها مشكلة الأوراكل وافتراضات البيانات المحاكاة [56]، [57].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تدعم اللوجستيات المحواة سلاسل التوريد العالمية الآنية، وتحسّن الحاويات الذكية — الحساسات ووحدات الاتصال — الرؤية والسلامة والكفاءة التشغيلية [5]، [6]. وتحوّل منصات التليماتية بيانات الحاويات إلى قرارات لأمن البضائع والاستجابة للاضطرابات [22]، بينما تدمج المحطات الذكية تعلم الآلة والرؤية والتحليلات الآنية للصيانة وفحص الأضرار [23]. غير أن محدودية الاتصالية وفجوات الأمن السيبراني وغياب معايير عالمية لمشاركة البيانات تعيق التبني [26]، [27]، إلى جانب التكاليف الأولية المرتفعة ونقص المهارات الرقمية.</p>
+    <p>وتتمثل مساهمة الورقة في نموذج تتبع هجين داخل/خارج السلسلة يوسّع جهاز Bauk وDzankic [20]: تتبع آني مقترن بتوثيق قابل للتحقق وظاهر العبث. ويستعرض الباقي تطبيقات الحاويات الذكية وبلوك تشين الحاويات والشواغل السيبرانية؛ ويحدد المشكلة؛ ويعرض المنهجية ذات الطبقات الخمس؛ ويقيّم الأمن والأداء وقابلية التوسع والتكلفة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. مراجعة الأدبيات</h2>
+    <p>تشغيليًا، تخفض الحاويات الذكية أحجام الأساطيل وأزمنة المعالجة ومسافات الالتقاط في دراسات المحاكاة — مما يقلل الوقود والانبعاثات ووقت التعطل [21] — وتدعم أهداف الاستدامة والرؤية [25]. وتتراوح تجارب البلوك تشين من سندات الشحن [16] والأختام الإلكترونية إلى منصات الإشراف على البضائع الخطرة [41] وآليات الحوافز لمشاركة البيانات البحرية [19]؛ وتشير تحليلات الحواجز وأصحاب المصلحة [34]، [39]، [46]–[49] مرارًا إلى التكلفة والحوكمة والمعايير.</p>
+    <p>وعلى صعيد الأمن، تؤطر تهديدات الوسيط في إنترنت الأشياء [51] ومخاطر الهوية [52] ومراجعات نمذجة التهديدات السيبرانية للسفن [53] ومقترحات DTLS الهجينة للحاويات الذكية [54] والتخليق العقدي للمجال [60] سطح التهديد. وتحذر دراسات التكلفة من أن تخزين تدفقات الحساسات الخام على السلسلة مكلف [66]–[68]، مما يبرر النمط الهجين: بيانات بيئية على خوادم أو سحب فعالة التكلفة مع البلوك تشين كمرساة ثقة، كما في أنظمة الشحن RFID/إيثيريوم [32] وتصاميم الشحن المشفر [24].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. تحديد المشكلة</h2>
+    <p>في البحر، يفتقر التتبع التقليدي إلى المرونة والشفافية اللازمتين لمنع العبث والهجمات السيبرانية وعدم الكفاءة — بينما تجمع الحاويات الذكية الغنية بالحساسات تدفقات الموقع والحرارة والرطوبة والميل دون آلية متينة لتأمينها والتحقق منها. ويقدم البلوك تشين إجابة لامركزية ظاهرة العبث، لكن التكامل الشامل في اللوجستيات البحرية غير مستكشف إلى حد كبير، والتخزين الساذج للبيانات عالية التواتر على السلسلة يفشل في التكلفة والإنتاجية [66]–[68].</p>
+    <p>وثغرة حرجة هي مشكلة الأوراكل: فالدفتر يضمن الثبات فقط بعد التثبيت، لا الأصالة عند الجمع — إذ يمكن للحساسات المعطوبة أو المخترقة تسميم السجل. وتخفف جذور الثقة العتادية (بيئات التنفيذ الموثوقة [56]، [57]؛ ووحدات الأمن العتادية [58]، [59]) الفجوة دون إزالتها، لذا يجب أن تفترض البنية بيانات طرفية ناقصة وتجعل العبث قابلًا للكشف لا مستحيلًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. المنهجية التطبيقية</h2>
+    <p>يمتد العمل على جهاز التتبع اليدوي لـBauk وDzankic [20] — حاسوب Raspberry Pi بحساسات الحرارة والرطوبة والضوء والميل والزمن ووحدات GSM/GPS مثبت داخل باب الحاوية، يبث إلى تطبيق ويب آمن — والذي أظهر سابقًا فعالية للبضائع (الخطرة) في البحر [62]، [63]. وتتكون بنية النظام الجديدة من خمس طبقات: (1) اكتساب البيانات (محاكاة حساس إنترنت أشياء تولد بيانات بيئية وحالية)؛ (2) ثبات البيانات خارج السلسلة (قاعدة SQL تحفظ كل القراءات)؛ (3) السلامة على السلسلة (عقد ذكي يسجل البصمات التشفيرية كدفتر ثابت)؛ (4) خدمة خلفية تنسق الاكتساب ← قاعدة البيانات ← التبصيم ← السلسلة؛ (5) لوحة ويب للعرض.</p>
+    <p>والمنطق التصميمي: تبقى الحمولات الحسية الكاملة قابلة للاستعلام خارج السلسلة للرصد شبه الآني والتاريخ، بينما تلامس البصمات فقط الدفتر — محافظةً على قابلية التدقيق دون تضخيم السلسلة. وقد بُسّطت الهوية وضبط الوصول وإدارة المفاتيح عمدًا للتجربة، مع التنبيه إلى حاجتها لحوكمة متعددة أصحاب المصلحة في الإنتاج.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. تحليل التجارب</h2>
+    <p>الأمن: يتحقق الهدف الرئيسي — سلامة البيانات — لأن البصمات المثبتة يوميًا تجعل التعديل الصامت للبيانات التاريخية خارج السلسلة قابلًا للكشف عند التحقق؛ وأكدت اختبارات العبث التجريبية ظهور عدم التطابق موثوقًا. لكن الضمانات تبدأ عند التثبيت: فاختراق الحساسات قبل التثبيت (فجوة الأوراكل) خارج النطاق، وستحتاج إدارة المفاتيح المبسطة إلى تصليب للنشر.</p>
+    <p>الأداء وقابلية التوسع والتكلفة: ففصل التخزين الضخم عن السلسلة يُبقي التسجيل شبه آني وقابلًا للاستعلام بينما تبقى كتابات السلسلة صغيرة ومتقطعة؛ وتُظهر تجارب البلوك تشين المحلية استخدامًا متواضعًا للموارد مقابل اقتصاديات التخزين الخام على السلسلة المحللة في [66]–[68]. ويمكن للتنبيهات الكاذبة من حساسات غير موثوقة تضخيم التكلفة التشغيلية — مرددةً نتائج ميدانية لتجارب الشحن بلوك تشين/RFID [32] — مما يعزز الدعوة لأجهزة متينة ومخططات سلامة متعددة البصمات تكيفية [67] وانضباط إدارة بيانات التطبيقات اللامركزية [68].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الاستنتاجات</h2>
+    <p>تُظهر الدراسة جدوى نظام مراقبة هجين للحاويات الذكية ممكن بالبلوك تشين يضمن سلامة البيانات دون التضحية بقابلية التوسع أو الأداء الآني. فتثبيت البصمات لا الحمولات يجعل البلوك تشين يعمل كطبقة سلامة، متجاوزًا عائقًا رئيسيًا أمام التبني البحري مع تقديم تسجيل ظاهر العبث وقابلية تدقيق.</p>
+    <p>والعبرة للممارسين معمارية: أبقِ بيانات إنترنت الأشياء عالية التواتر خارج السلسلة وثبّت الثقة على السلسلة. وللباحثين، يتحقق إثبات المفهوم من قابلية كشف التلاعب اللاحق للتسجيل ويدعو للعمل على تصليب الأوراكل وحوكمة المفاتيح الإنتاجية وتجارب على مستوى الأساطيل.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. القيود</h2>
+    <p>تحد أربعة قيود الادعاءات. أولًا، يستخدم إثبات المفهوم بيانات حساسات محاكاة من مجموعة مرجعية محدودة مع بلوك تشين محلية، فالتباين والكمون والأعطال الواقعية ممثلة تمثيلًا ناقصًا. ثانيًا، يبدأ الثبات عند التثبيت — فأصالة وقت الجمع غير معالجة. ثالثًا، ضبط الوصول وإدارة المفاتيح تبسيطات تجريبية. رابعًا، النطاق أحادي الحاوية يترك أسئلة الإنتاجية والحوكمة والتكلفة على مستوى الأسطول مفتوحة.</p>
+    <p>ومعالجة هذه — النشر الحقيقي، وثقة الطرف المدعومة ببيئات التنفيذ الموثوقة والوحدات العتادية [56]–[59]، والهوية الإنتاجية، والتجارب متعددة أصحاب المصلحة — ترسم الطريق من النموذج الواعد إلى بنية بحرية تشغيلية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Shipping containers are the cornerstone of global trade: roughly 90% of non-bulk cargo moves by container ship across an estimated fleet of 65 million containers, and the smart-container share is projected to rise toward 30% by 2027 [1]–[4]. Smart containers with IoT sensors enable real-time tracking and predictive analytics [5], [6], yet the data they generate remain vulnerable to cyberattacks, signal disruption, and unauthorized alteration. Blockchain's decentralized, tamper-evident architecture promises immutability, transparent audit trails, and stakeholder trust — but practical integration with smart-container systems at sea remains largely untested.</p>
+    <p>This paper proposes and validates a hybrid blockchain-enabled smart-container monitoring system: high-frequency IoT sensor data live in an off-chain database while cryptographic hashes are anchored on-chain, so post-recording manipulation is reliably detectable through hash verification. Building on a DIY Raspberry Pi tracking device [20], [62], [63], the proof of concept demonstrates tamper-evident logging, auditability, and cost efficiency — with blockchain as an integrity layer rather than a primary data store — while explicitly discussing limitations including the oracle problem and simulated-data assumptions [56], [57].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Containerized logistics underpins just-in-time global supply chains, and smart containers — sensors plus communication modules — improve visibility, safety, and operational efficiency [5], [6]. Telematics platforms convert container data into cargo-security and disruption-response decisions [22], while smart terminals fuse machine learning, vision, and real-time analytics for maintenance and damage inspection [23]. Yet limited connectivity, cybersecurity gaps, and missing global data-sharing standards impede adoption [26], [27], alongside high upfront costs and digital-skills shortages.</p>
+    <p>The paper's contribution is a hybrid on/off-chain tracking prototype extending the Bauk &amp; Dzankic device [20]: real-time tracking coupled with verifiable, tamper-proof documentation. The remainder reviews smart-container applications, container blockchain, and cybersecurity concerns; states the problem; presents the five-layer methodology; and evaluates security, performance, scalability, and cost.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Literature Review</h2>
+    <p>Operationally, smart containers cut fleet sizes, processing times, and pick-up distances in simulation studies — lowering fuel use, emissions, and idle time [21] — and support sustainability and visibility goals [25]. Blockchain pilots range from bills of lading [16] and electronic seal pilots to dangerous-goods supervision platforms [41] and incentive mechanisms for maritime data sharing [19]; adoption barriers and stakeholder analyses [34], [39], [46]–[49] repeatedly flag cost, governance, and standards.</p>
+    <p>On security, IoT man-in-the-middle threats [51], agricultural-IoT identity risks [52], ship-cybersecurity threat-modeling reviews [53], hybrid DTLS proposals for smart containers [54], and the field's first-decade synthesis [60] frame the threat surface. Cost-focused studies warn that storing raw sensor streams on-chain is expensive [66]–[68], motivating the hybrid pattern: environmental data on cost-effective servers or clouds with blockchain as trust anchor, as in RFID/Ethereum cargo systems [32] and crypto-cargo designs [24].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Problem Statement</h2>
+    <p>At sea, traditional tracking lacks the resilience and transparency to prevent tampering, cyberattacks, and inefficiency — while sensor-rich smart containers collect location, temperature, humidity, and tilt streams with no robust mechanism to secure and validate them. Blockchain offers a decentralized tamper-evident answer, yet end-to-end integration in maritime logistics is largely unexplored, and naive on-chain storage of high-frequency data fails on cost and throughput [66]–[68].</p>
+    <p>A critical vulnerability is the oracle problem: the ledger guarantees immutability only after anchoring, not authenticity at collection — faulty or compromised sensors can poison the record. Hardware roots of trust (TEEs [56], [57]; HSMs [58], [59]) mitigate but do not eliminate this gap, so the architecture must assume imperfect edge data and make tampering detectable rather than impossible.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Applied Methodology</h2>
+    <p>The work extends the Bauk &amp; Dzankic DIY tracker [20] — a Raspberry Pi with temperature, humidity, light, tilt, and time sensors plus GSM/GPS modules mounted inside a container door, streaming to a secure web app — earlier shown effective for (hazardous) cargo at sea [62], [63]. The new system architecture has five layers: (1) Data Acquisition (IoT sensor simulation generating environmental/status data); (2) Data Persistence off-chain (SQL database holding all readings); (3) Integrity on-chain (smart contract recording cryptographic hashes as an immutable ledger); (4) Service backend orchestrating acquisition → database → hashing → chain; and (5) Presentation web dashboard.</p>
+    <p>Design rationale: full sensor payloads stay queryable off-chain for near-real-time monitoring and history, while only hashes touch the ledger — preserving auditability without chain bloat. Identity, access control, and key management are deliberately simplified for the experiment, flagged as requiring multi-stakeholder governance in production.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Analysis of Experiments</h2>
+    <p>Security: the primary objective — data integrity — holds because daily-anchored hashes make silent alteration of historical off-chain data detectable on verification; experimental tampering tests confirmed mismatches surface reliably. But guarantees start at anchoring: pre-anchor sensor compromise (the oracle gap) is out of scope, and simplified key management would need hardening for deployment.</p>
+    <p>Performance, scalability, and cost: decoupling bulk storage from the chain keeps logging near-real-time and queryable while chain writes stay small and infrequent; local-blockchain trials show modest resource use versus raw on-chain storage economics analyzed in [66]–[68]. False alerts from unreliable sensors can inflate operational cost — echoing field findings on blockchain/RFID cargo trials [32] — reinforcing the call for robust devices, adaptive multi-hash integrity schemes [67], and DApp data-management discipline [68].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Conclusions</h2>
+    <p>The study demonstrates a feasible hybrid blockchain-enabled smart-container monitor that ensures data integrity without sacrificing scalability or real-time performance. Anchoring hashes rather than payloads lets blockchain function as an integrity layer, overcoming a key barrier to maritime adoption while delivering tamper-evident logging and auditability.</p>
+    <p>For practitioners, the takeaway is architectural: keep high-frequency IoT data off-chain and anchor trust on-chain. For researchers, the PoC validates detectability of post-recording manipulation and invites work on oracle-hardening, production key governance, and fleet-scale trials.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Limitations</h2>
+    <p>Four limits bound the claims. First, the PoC uses simulated sensor data from a limited referential set plus a local blockchain, so real-world variability, latency, and faults are underrepresented. Second, immutability starts at anchoring — collection-time authenticity is unaddressed. Third, access control and key management are experimental simplifications. Fourth, single-container scope leaves fleet-scale throughput, governance, and cost questions open.</p>
+    <p>Addressing these — real deployments, TEE/HSM-backed edge trust [56]–[59], production identity, and multi-stakeholder trials — defines the path from promising prototype to operational maritime infrastructure.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed list showing 16 of the paper's 68 references with their original numbers. See the original paper (DOI above) for the full bibliography.</p>
+    <ol dir="ltr">
+      <li>Drozhzhyn, O.L. IoT in container shipping industry: applications and examples of solutions. Syst. Technol. 2024, 68, 112–120.</li>
+      <li>Baeza, V.M. et al. Enhanced communications on satellite-based IoT systems to support maritime transportation services.</li>
+      <li>Bauk, S.; Dzankic, R. Smart cargo container tracking and IT security management: experimental results. J. Marit. Res. 2023, 21, 128–134.</li>
+      <li>Baygin, M. et al. A blockchain-based approach to smart cargo transportation using UHF RFID. Expert Syst. Appl. 2021, 188.</li>
+      <li>Iakushkin, O. et al. Architecture of a smart container using blockchain technology. Lect. Notes Comput. Sci.</li>
+      <li>Tsiulin, S. et al. Blockchain-based applications in shipping and port management: a literature review.</li>
+      <li>Tsiulin, S. et al. The key challenges of blockchain implementation in maritime sector.</li>
+      <li>Bauk, S.; Ntshangase, L.H. Blockchain implementation barriers in maritime: a case study based on ISM and MICMAC techniques. J. Marit. Res. 2023.</li>
+      <li>Erbas, M. et al. Systematic literature review of threat modeling and risk assessment in ship cybersecurity. Ocean Eng. 2024.</li>
+      <li>Khan, W.U. et al. Cyber secure framework for smart containers based on novel hybrid DTLS protocol. Comput. Syst. Sci. Eng. 2022.</li>
+      <li>Harish, A.V. et al. Literature review of maritime cyber security: the first decade. Marit. Technol. Res. 2024.</li>
+      <li>Dzankic, R. et al. Improving security and privacy with Raspberry Pi devices. In Maritime Cybersecurity; Springer.</li>
+      <li>Dzankic, R.; Bauk, S. Tracking (hazardous) cargo at sea: an experiment. Proc. 16th Int. Conf. Information Technology.</li>
+      <li>Peker, Y.K. et al. A cost analysis of Internet of Things sensor data storage on blockchain via smart contracts.</li>
+      <li>Jeong, Y.-S. Blockchain processing technique based on multiple hash chains for minimizing integrity errors of IoT data. Sensors.</li>
+      <li>Kostamis, P. et al. Data management in Ethereum DApps: a cost and performance analysis. Future Gener. Comput. Syst. 2023, 153.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app16062669">10.3390/app16062669</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

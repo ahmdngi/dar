@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تقييم شامل لنماذج التضمين والنماذج اللغوية الكبيرة للاسترجاع والإجابة عبر الإنجليزية والإيطالية — DAR</title>
+<meta name="description" content="A Comprehensive Evaluation of Embedding Models and LLMs for IR and QA Across English and Italian — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/embedding-eval-bdcc/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">A Comprehensive Evaluation of Embedding Models and LLMs for IR and QA Across English and Italian</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تقييم شامل لنماذج التضمين والنماذج اللغوية الكبيرة للاسترجاع والإجابة عبر الإنجليزية والإيطالية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ermelinda Oro, Francesco Maria Granata, Massimo Ruffolo</span>
+    <span>📄 Big Data and Cognitive Computing, 2025, Vol. 9(5), 141</span>
+    <span>🔗 <a href="https://doi.org/10.3390/bdcc9050141">10.3390/bdcc9050141</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>حوّلت النماذج اللغوية الكبيرة [1]، [2] وتقنيات التضمين المتطورة [3]، [4] استرجاع المعلومات (IR) والإجابة عن الأسئلة (QA)، لكن التقييم الشامل متعدد اللغات — خاصة أنماط الأداء عبر اللغات وفجوات التكيف مع المجال — ما يزال نادرًا. تقيّم هذه الدراسة أحدث نماذج التضمين والنماذج اللغوية في مهام IR وQA بالإنجليزية والإيطالية عبر إطار موحد بخط أنابيب RAG رباعي المكونات ومقاييس معيارية وخالية من الحقيقة المرجعية وتقييم يدوي بمقياس ليكرت. يتصدر multilingual-e5-large الاسترجاع العام (nDCG@10 بمقدار 0.91 على SQuAD-en مع MAP 0.88 وR@10 بمقدار 1.00 وP@10 بمقدار 0.10)، وembed-multilingual-v3.0 الأقوى عبر اللغات، وLlama 3.1 8B الأعلى جودة إجابة دلالية (BERTScore بمقدار 0.92 إنجليزية / 0.90 إيطالية)؛ لكن الأداء يتدهور من المجال العام إلى المتخصص، وتشير الفجوة المستمرة بين ملاءمة الإجابة (0.91–1.0) والتأسيس (0.64–0.78) إلى الواقعية كخطر النشر المحوري.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. السياق التقني وأسئلة البحث</h2>
+    <p>يقود تقدمًا الحالة الراهنة: النماذج اللغوية الكبيرة باستدلالها وتوليدها قليل الأمثلة [1]، [2] المبنية على المحول [7] والتدريب المسبق لعائلة BERT [8]، وتقنيات التضمين الممكّنة للبحث الدلالي الدقيق [3]، [4]. وفي خطوط RAG يحد جودة الاسترجاع كل ما يليه، ويشكل الاسترجاع التكيفي [18] وأساليب التقييم المعتمدة على النماذج [19] جبهتين نشطتين. واختير الزوج الإنجليزي–الإيطالي لسبر النقل عبر اللغات بدوافع لغوية والنشر العملي متعدد اللغات معًا.</p>
+    <p>وتهيكل أربعة أسئلة بحثية العمل: (1) أداء أحدث التضمينات عبر مهام IR الإنجليزية والإيطالية وما يقود الفروق؛ (2) مقارنة النماذج في جودة QA عبر اللغتين؛ (3) أثر تخصص المجال في الاسترجاع والتوليد معًا؛ (4) مقايضة حجم النموذج بالأداء والكلفة. وتمتد المساهمات من الإطار ذاته إلى تجميع المعيار ثنائي اللغة وإرشادات النشر لأنظمة IR/QA متعددة اللغات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة</h2>
+    <p>تمتد الأعمال السابقة من الاسترجاع الكثيف وتضمين الجمل [3]، [4] إلى QA قليل الأمثلة بالنماذج [1]، [2] والتوليد المعزز بالاسترجاع التكيفي [18] وتقييم توليد اللغة المعتمد على النماذج بالتعاون البشري [19]. وتغطي المعايير كـ MTEB لغات عديدة لكنها نادرًا ما تحلل أنماط الأداء عبر اللغات أو تحديات التكيف مع المجال بعمق، خاصة عبر التحول من العام إلى المتخصص — وهي الفجوة التي تملؤها هذه الدراسة بمهام إنجليزية–إيطالية متوازية ومجموعات طبقية المجال.</p>
+    <p>وتجمع ممارسة التقييم بين مقاييس الترتيب وتداخل الصياغة والدرجات الدلالية بالتضمين، باستكمال متزايد بحكام نماذج بلا مرجع؛ وتثلث الدراسة العائلات الثلاث مع التحديد اليدوي للتحقق من الإشارات المؤتمتة مقابل الحكم البشري.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. المنهجية وخط أنابيب RAG</h2>
+    <p>يربط الإطار مجموعات البيانات والنماذج والمقاييس وأبعاد التحليل في خط واحد بأربعة مكونات: الاستيعاب (تقسيم الوثائق إلى مقاطع 512 رمزًا دون نوافذ منزلقة لموازنة السلامة والملاءمة)، والاسترجاع (ترميز السؤال بالنموذج نفسه وبحث التشابه top-k في مخزن Milvus المتجهي)، والتوليد (موجهات ثنائية اللغة تجمع السؤال والمقاطع بقوالب متسقة)، والتقييم. ويستخدم الاسترجاع لتوليد الإجابة مقاطع Cohere embed-multilingual-v3.0 العشرة الأعلى، مع نشر كل الإعدادات والمجموعات المترجمة والبروتوكولات في المستودع العام.</p>
+    <p>وتُجرى التجارب على Google Colab ببايثون (evaluate 0.4.3) وLangchain وMilvus، مع تثبيت حجم المقطع والمعايير عبر النماذج والمجموعات لتكون آثار الحجم واللغة والمجال قابلة للمقارنة. ويتحقق التقييم اليدوي بليكرت (1–5، من خاطئ إلى جيد جدًا) مع تخفيف للذاتية من المقاييس المؤتمتة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. مجموعات البيانات والنماذج</h2>
+    <p>تغطي مهام IR وQA المجالين العام والمتخصص باللغتين: SQuAD-en (SQuAD 1.1؛ 150 ثنائية، 1.5% من مجموعة التحقق 10.6k، بذرة ثابتة 433، مطابقة لـ SQuAD-it للمقارنة المباشرة عبر اللغات)، وSQuAD-it، وSciFact للتحقق العلمي (1.4k ادعاء خبير على 5,183 ملخصًا، الادعاءات كاستعلامات [49])، وCovidQA (124 زوجًا على 27 سؤالًا و85 مقالًا)، وانقسامات NarrativeQA للكتب/الأفلام مع ترجماتها. ويوازن اختيار المجموعات بين المعيارية والتوازي عبر اللغات واختبار المجال صفري الأمثلة.</p>
+    <p>وتغطي إعدادات التضمين GTE-base (109M) وGTE-large (335M، 512 رمزًا، إنجليزية) [55]، وBGE-base/large-en-v1.5 (109M/335M) [26]، وmultilingual-E5-base (278M) وlarge (560M، 512 رمزًا) [25]، وtext-embedding-ada-002 من OpenAI (سياق 8,192) وCohere embed-multilingual v2.0/v3.0 (256+). وتمتد المولدات من GPT-4o وLlama 3.1 8B [56] وMistral-Nemo [5] إلى Gemma 2B [57] — من الحجم الرائد إلى النشر فائق الكفاءة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. المقاييس</h2>
+    <p>يستخدم IR مقياس nDCG@10 وحده للترتيب — ملتقطًا الملاءمة والموضع عند k = 10 [58]، [59] — مع تثليث بجداول متعددة المقاييس عبر MAP وRecall@10 وPrecision@10 [36]. ويجمع QA بين تداخل الصياغة (BLEU [37] ومتغيرات ROUGE [38]) والتقييم الدلالي بالتضمين بقيادة BERTScore [39]، مع تقييم بلا حقيقة مرجعية (ملاءمة الإجابة وملاءمة السياق والتأسيس/الوفاء) منفذ بـ TruLens وGPT-3.5-turbo [42]، والتحديد اليدوي بليكرت.</p>
+    <p>واختير nDCG لأن جودة الترتيب تهيمن على الاسترجاع المواجه للمستخدم؛ وتكشف مقاييس الصياغة حساسية الصياغة بينما تكشف الدلالية والخالية من المرجع الواقعية — وهو الجمع الذي يكشف لاحقًا أن النماذج قد تكون ملائمة لكن غير مؤسسة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. النتائج</h2>
+    <p>لا يهيمن تضمين واحد على كل المجالات: فيتصدر multilingual-e5-large الإنجليزية العامة (nDCG@10 بمقدار 0.91 على SQuAD-en)، وتؤكد الجداول متعددة المقاييس النمط (MAP 0.88 وR@10 بمقدار 1.00 وP@10 بمقدار 0.10)، بينما يحافظ embed-multilingual-v3.0 بأكثر توازن عبر الإنجليزية والإيطالية. وتُظهر اختبارات المجالات عقوبة التخصص بوضوح — فيهبط BERTScore لـ Llama 3.1 8B من 0.92 في العام إلى 0.85 في الطبي، مع هبوط أشد لـ BEM — ويُظهر منحنى k عوائد متناقصة (لا يبلغ الاسترجاع 80% إلا عند k = 100)، موجهًا اختيار top-k الواعي بالكلفة.</p>
+    <p>وعبر اللغات، يحافظ Llama 3.1 8B على BERTScore بمقدار 0.92/0.90 (إنجليزية/إيطالية) مع GPT-4o عند 0.85/0.81 وMistral-Nemo منافسًا (0.88/0.94 في الدرجات الدلالية على طراز BEM)؛ وتبقى ملاءمة الإجابة عالية باللغتين (0.98–1.0) لكن التأسيس يتباين (Mistral-Nemo 0.78 مقابل GPT-4o 0.79 على SQuAD-en، وأدنى في المجموعات المتخصصة). ويثبت المحددون البشر تسامحًا أكبر من BEM مع الاختلاف الأسلوبي عندما تصح الحقائق الجوهرية — لكن BEM ما يزال الأعلى ارتباطًا بالحكم البشري بين المقاييس المؤتمتة، بما فيها الخالية من المرجع.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. الآثار والعمل المستقبلي</h2>
+    <p>تبرز ثلاثة دروس عملية. أولًا، تنافس النماذج الصغيرة حسنة التصميم (E5-large وBGE) الحجم المجرد أو تتفوق عليه في الاسترجاع، فالملاءمة المعمارية قد تفوق عدد المعايير. وثانيًا، يدهور تخصص المجال الاسترجاع والتأسيس معًا بمنهجية — فدرجات المجال العام لا تنتقل للمدونات العلمية أو الطبية أو الجدلية — مما يوجب تقييمًا واعيًا بالمجال قبل النشر، خاصة حيث تؤثر الدقة في الرفاه. وثالثًا، تجعل فجوة الملاءمة–التأسيس (0.91–1.0 مقابل 0.64–0.78) مراقبة الواقعية، لا طلاقة الإجابة، مقياس النشر الحاسم.</p>
+    <p>وتشمل القيود توقيت اللقطة في ميدان سريع الحركة وبروتوكولات الموجهات والمقاطع الثابتة. ويمتد العمل المستقبلي لإعادة التقييم المنتظمة بنماذج جديدة، وقابلية تفسير المسترجعات الكثيفة وحكام النماذج، والنشر الأخلاقي متعدد اللغات — تخفيف التحيز والعدالة عبر اللغات والثقافات وأطر حوكمة IR/QA المعزز بالذكاء الاصطناعي.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Large language models [1], [2] and sophisticated embedding techniques [3], [4] have transformed information retrieval (IR) and question answering (QA), yet comprehensive multilingual evaluation — especially cross-lingual performance patterns and domain-adaptation gaps — remains scarce. This study evaluates state-of-the-art embedding models and LLMs on IR and QA tasks in English and Italian through a unified framework with a four-component RAG pipeline, standard and ground-truth-free metrics, and manual Likert-scale assessment. Multilingual-e5-large leads general-domain retrieval (nDCG@10 0.91 on SQuAD-en, with MAP 0.88, R@10 1.00 and P@10 0.10), embed-multilingual-v3.0 is strongest cross-lingually, and Llama 3.1 8B tops semantic answer quality (BERTScore 0.92 English / 0.90 Italian); but performance degrades from general to specialized domains, and a persistent gap between answer relevance (0.91–1.0) and groundedness (0.64–0.78) flags factuality as the central deployment risk.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Technological Context and Research Questions</h2>
+    <p>Two advances drive the state of the art: LLMs with few-shot reasoning and generation [1], [2] built on the Transformer [7] and BERT-family pretraining [8], and embedding techniques enabling nuanced semantic search [3], [4]. In RAG pipelines, retrieval quality bounds everything downstream, and adaptive retrieval [18] plus LLM-based evaluation methods [19] are active frontiers. The English–Italian pair is chosen to probe both linguistically motivated cross-lingual transfer and practical multilingual deployment.</p>
+    <p>Four research questions structure the work: (1) how state-of-the-art embeddings perform across English and Italian IR tasks and what drives the differences; (2) how LLMs compare on QA quality across the two languages; (3) how domain specialization shifts both retrieval and generation; and (4) how model size trades against performance and cost. Contributions span the framework itself, the bilingual benchmark assembly, and deployment guidance for multilingual IR/QA systems.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related Work</h2>
+    <p>Prior work spans dense retrieval and sentence embeddings [3], [4], LLM few-shot QA [1], [2], retrieval-augmented generation with adaptive retrieval [18], and LLM-based NLG evaluation with human collaboration [19]. Benchmarks such as MTEB cover many languages but rarely analyze cross-lingual patterns or domain-adaptation challenges in depth, particularly across general-to-specialized shifts — the gap this study fills with parallel English–Italian tasks and domain-stratified datasets.</p>
+    <p>Evaluation practice combines ranking metrics, syntactic overlap measures and embedding-based semantic scores, increasingly complemented by reference-free LLM judges; the study triangulates all three families plus manual annotation to validate automated signals against human judgment.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Methodology and RAG Pipeline</h2>
+    <p>The framework relates datasets, models, metrics and analysis dimensions in one pipeline with four components: ingestion (splitting documents into 512-token passages without sliding windows to balance integrity and relevance), retrieval (encoding the query with the same embedding model and top-k similarity search in a Milvus vector store), generation (bilingual prompts combining question and passages under consistent templates), and evaluation. Retrieval for answer generation uses Cohere embed-multilingual-v3.0 top-10 passages, with all configurations, translated datasets and protocols released in the public repository.</p>
+    <p>Experiments run on Google Colab with Python (evaluate 0.4.3), Langchain and Milvus, holding chunk size and parameters constant across models and datasets so that scaling, language and domain effects are comparable. Manual Likert assessment (1–5, from wrong to very good) with mitigation for subjectivity validates the automated metrics.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Datasets and Models</h2>
+    <p>IR and QA tasks span general and specialized domains in both languages: SQuAD-en (SQuAD 1.1; 150 tuples, 1.5% of the 10.6k validation set, fixed seed 433, matched to SQuAD-it for direct cross-lingual comparison), SQuAD-it, SciFact scientific fact-checking (1.4K expert claims over 5,183 research abstracts, claims as queries [49]), CovidQA (124 QA pairs over 27 questions and 85 articles), and NarrativeQA book/movie splits with translations. Dataset choice balances standard benchmarking, cross-lingual parallelism and zero-shot domain testing.</p>
+    <p>Embedding configurations cover GTE-base (109M) and GTE-large (335M, 512 tokens, English) [55], BGE-base/large-en-v1.5 (109M/335M) [26], multilingual-E5-base (278M) and large (560M, 512 tokens) [25], OpenAI text-embedding-ada-002 (8,192 context) and Cohere embed-multilingual v2.0/v3.0 (256+). Generators span GPT-4o, Llama 3.1 8B [56], Mistral-Nemo [5] and Gemma 2B [57] — from frontier scale to ultra-efficient deployment.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Metrics</h2>
+    <p>IR uses nDCG@10 as the sole ranking metric — capturing relevance and position with k = 10 [58], [59] — triangulated in multi-metric tables by MAP, Recall@10 and Precision@10 [36]. QA combines syntactic overlap (BLEU [37], ROUGE variants [38]) with embedding-based semantic scoring led by BERTScore [39], plus ground-truth-free evaluation (answer relevance, context relevance, groundedness/faithfulness) implemented with TruLens and GPT-3.5-turbo [42], and manual Likert annotation.</p>
+    <p>nDCG is chosen because order quality dominates user-facing retrieval; syntactic metrics expose phrasing sensitivity while semantic and reference-free metrics expose factuality — the combination that later reveals models can be relevant yet ungrounded.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Results</h2>
+    <p>No single embedding dominates all domains: multilingual-e5-large leads general-domain English (nDCG@10 0.91 on SQuAD-en), and multi-metric tables confirm the pattern (MAP 0.88, R@10 1.00, P@10 0.10), while embed-multilingual-v3.0 holds most evenly across English and Italian. Cross-domain tests show the specialization penalty clearly — BERTScore for Llama 3.1 8B falls from 0.92 general-domain to 0.85 medical, with BEM dropping more steeply — and the k-curve shows diminishing returns (recall reaches 80% only at k = 100), guiding cost-aware top-k choice.</p>
+    <p>Cross-lingually, Llama 3.1 8B keeps BERTScore 0.92/0.90 (EN/IT) with GPT-4o at 0.85/0.81 and Mistral-Nemo competitive (0.88/0.94 BEM-style semantic scores); answer relevance stays high in both languages (0.98–1.0) but groundedness diverges (Mistral-Nemo 0.78 vs. GPT-4o 0.79 on SQuAD-en, lower on specialized sets). Human annotators prove more forgiving than BEM of stylistic divergence when core facts are right — yet BEM still correlates best with human judgment among automated metrics, including reference-free ones.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Implications and Future Work</h2>
+    <p>Three practical lessons stand out. First, well-designed smaller models (E5-large, BGE) rival or beat sheer scale on retrieval, so architectural fit can outweigh parameter count. Second, domain specialization degrades both retrieval and groundedness systematically — general-domain scores do not transfer to scientific, medical or argumentative corpora — mandating domain-aware evaluation before deployment, especially where accuracy affects welfare. Third, the relevance–groundedness gap (0.91–1.0 vs. 0.64–0.78) makes factuality monitoring, not answer fluency, the gating deployment metric.</p>
+    <p>Limitations include snapshot timing in a fast-moving field and fixed-prompt, fixed-chunk protocols. Future work spans regular re-evaluation with new models, interpretability of dense retrievers and LLM judges, and ethical multilingual deployment — bias mitigation, fairness across languages and cultures, and governance frameworks for AI-powered IR/QA.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Reference list is condensed to the works cited in this viewer; numbers match the original paper. See the original publication for the complete list.</p>
+    <ol dir="ltr">
+      <li>[1] Brown, T.; Mann, B.; Ryder, N.; Subbiah, M.; Kaplan, J.D.; Dhariwal, P.; Neelakantan, A.; Shyam, P.; Sastry, G.; Askell, A.; et al. Language models are few-shot learners. In <em>Advances in Neural Information Processing Systems</em>; Curran Associates, Inc.: Newry, UK, 2020; Volume 33, pp. 1877–1901.</li>
+      <li>[2] Chowdhery, A.; Narang, S.; Devlin, J.; Bosma, M.; Mishra, G.; Roberts, A.; Barham, P.; Chung, H.W.; Sutton, C.; Gehrmann, S.; et al. PaLM: Scaling language modeling with pathways. <em>J. Mach. Learn. Res.</em> 2023, 24, 11324–11436.</li>
+      <li>[3] Reimers, N.; Gurevych, I. Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks. In Proceedings of EMNLP-IJCNLP 2019, Hong Kong, China, 3–7 November 2019; pp. 3982–3992.</li>
+      <li>[4] Ni, J.; Qu, C.; Lu, J.; Dai, Z.; Ábrego, G.H.; Ma, J.; Zhao, V.Y.; Luan, Y.; Hall, K.B.; Chang, M.W.; et al. Large Dual Encoders Are Generalizable Retrievers. arXiv 2021, arXiv:2112.07899.</li>
+      <li>[5] Mistral AI. Mistral Nemo: Introducing Our New Model. 2024. Available online: https://mistral.ai/news/mistral-nemo/ (accessed on 29 March 2025).</li>
+      <li>[7] Vaswani, A.; Shazeer, N.; Parmar, N.; Uszkoreit, J.; Jones, L.; Gomez, A.N.; Kaiser, L.U.; Polosukhin, I. Attention is all you need. In <em>Advances in Neural Information Processing Systems</em>; Curran Associates, Inc.: Newry, UK, 2017; Volume 30.</li>
+      <li>[8] Devlin, J.; Chang, M.W.; Lee, K.; Toutanova, K. BERT: Pre-Training of Deep Bidirectional Transformers for Language Understanding. In Proceedings of NAACL-HLT 2019, Minneapolis, MN, USA, 2–7 June 2019; pp. 4171–4186.</li>
+      <li>[18] Zhang, Z.; Fang, M.; Chen, L. RetrievalQA: Assessing Adaptive Retrieval-Augmented Generation for Short-form Open-Domain Question Answering. arXiv 2024, arXiv:2402.16457.</li>
+      <li>[19] Gao, M.; Hu, X.; Ruan, J.; Pu, X.; Wan, X. LLM-based NLG Evaluation: Current Status and Challenges. arXiv 2024, arXiv:2402.01383.</li>
+      <li>[25] Wang, L.; Yang, N.; Huang, X.; Jiao, B.; Yang, L.; Jiang, D.; Majumder, R.; Wei, F. Text Embeddings by Weakly-Supervised Contrastive Pre-training. arXiv 2024, arXiv:2212.03533.</li>
+      <li>[26] Xiao, S.; Liu, Z.; Zhang, P.; Muennighoff, N.; Lian, D.; Nie, J.Y. C-Pack: Packaged Resources To Advance General Chinese Embedding. arXiv 2024, arXiv:2309.07597.</li>
+      <li>[36] Carterette, B.; Voorhees, E.M. Overview of information retrieval evaluation. In <em>Current Challenges in Patent Information Retrieval</em>; Springer: Berlin/Heidelberg, Germany, 2011; pp. 69–85.</li>
+      <li>[37] Papineni, K.; Roukos, S.; Ward, T.; Zhu, W.J. Bleu: A Method for Automatic Evaluation of Machine Translation. In Proceedings of ACL 2002, Philadelphia, PA, USA, 6–12 July 2002; pp. 311–318.</li>
+      <li>[38] Lin, C.Y. ROUGE: A Package for Automatic Evaluation of Summaries. In Proceedings of WAS 2004, Barcelona, Spain, 25–26 July 2004; pp. 74–81.</li>
+      <li>[39] Zhang, T.; Kishore, V.; Wu, F.; Weinberger, K.Q.; Artzi, Y. BERTScore: Evaluating Text Generation with BERT. In Proceedings of ICLR 2020, Addis Ababa, Ethiopia, 26–30 April 2020.</li>
+      <li>[42] Saad-Falcon, J.; Khattab, O.; Potts, C.; Zaharia, M. ARES: An Automated Evaluation Framework for Retrieval-Augmented Generation Systems. In Proceedings of NAACL-HLT 2024, Mexico City, Mexico, 16–21 June 2024.</li>
+      <li>[49] Wadden, D.; Lin, S.; Lo, K.; Wang, L.L.; van Zuylen, M.; Cohan, A.; Hajishirzi, H. Fact or Fiction: Verifying Scientific Claims. In Proceedings of EMNLP 2020, Online, 16–20 November 2020; pp. 7534–7550.</li>
+      <li>[55] Li, Z.; Zhang, X.; Zhang, Y.; Long, D.; Xie, P.; Zhang, M. Towards General Text Embeddings with Multi-stage Contrastive Learning. arXiv 2023, arXiv:2308.03281.</li>
+      <li>[56] Grattafiori, A.; Dubey, A.; Jauhri, A.; Pandey, A.; Kadian, A.; Al-Dahle, A.; Letman, A.; Mathur, A.; Schelten, A.; Vaughan, A.; et al. The Llama 3 Herd of Models. arXiv 2024, arXiv:2407.21783.</li>
+      <li>[57] Gemma Team. Gemma 2: Improving Open Language Models at a Practical Size. arXiv 2024, arXiv:2408.00118.</li>
+      <li>[58] Wrzalik, M.; Krechel, D. CoRT: Complementary Rankings from Transformers. arXiv 2021, arXiv:2010.10252.</li>
+      <li>[59] Tang, H.; Sun, X.; Jin, B.; Wang, J.; Zhang, F.; Wu, W. Improving Document Representations by Generating Pseudo Query Embeddings for Dense Retrieval. arXiv 2021, arXiv:2105.03599.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/bdcc9050141">10.3390/bdcc9050141</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

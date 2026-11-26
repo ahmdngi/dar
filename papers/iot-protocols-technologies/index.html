@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بروتوكولات طبقتَي النقل والتطبيق لإنترنت الأشياء: مراجعة شاملة — DAR</title>
+<meta name="description" content="Transport and Application Layer Protocols for IoT: Comprehensive Review — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/iot-protocols-technologies/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Transport and Application Layer Protocols for IoT: Comprehensive Review</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">بروتوكولات طبقتَي النقل والتطبيق لإنترنت الأشياء: مراجعة شاملة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Ionel Petrescu, Elisabeta Niculae, Viorel Vulturescu, Andrei Dimitrescu, Liviu Marian Ungureanu</span>
+    <span>📄 Technologies, 2025 · Vol. 13, Issue 12, Article 583</span>
+    <span>🔗 <a href="https://doi.org/10.3390/technologies13120583">10.3390/technologies13120583</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يربط إنترنت الأشياء أجهزة مقيدة عبر وصلات منخفضة الطاقة ومتقطعة، لذا يحدد اختيار بروتوكولات النقل والتطبيق ميزانيات الطاقة والموثوقية وقابلية التوسع والتكامل السحابي. تغطي هذه المراجعة حزم بروتوكولات إنترنت الأشياء التمثيلية — من إنترنت الأشياء الخلوي مع CoAP/LwM2M إلى البوابات الصناعية مع OPC UA والأجهزة الاستهلاكية عبر Wi-Fi مع MQTT أو HTTPS [30]، [31] — مقارِنةً MQTT وMQTT-SN [4]، [10]، [32]، [33]، [34]، وCoAP [12]، وLwM2M، وAMQP، وOPC UA، وLoRaWAN [20]، وNB-IoT/LTE-M [9]، [29]، وRPL [11]، ونقليات UDP/TCP.</p>
+    <p>وتضيف الورقة إطار اختيار عمليًا (ثمانية أسئلة إرشادية حول الطاقة والحركة والمدى والحاجة إلى IP والكمون والأمن والتشغيل والتشغيل البيني)، وتستعرض نشرات واقعية، وتنبه إلى مزالق شائعة مثل بيانات الاعتماد الافتراضية، وتجاهل حدود MTU في LoRaWAN/802.15.4 [20]، واستنزاف البطاريات بسبب TCP في كل مكان، والتخطيط اللاسلكي المختبري فقط. وتخلص إلى أن البروتوكولات الخفيفة (MQTT وMQTT-SN وCoAP وLwM2M) تناسب القياس المقيد وإدارة الأجهزة، وبروتوكولات المؤسسات (AMQP وOPC UA) تناسب النطاق الصناعي، وبروتوكولات الويب (WebSockets وHTTP/HTTPS) تناسب اللوحات والسحب، وXMPP يناسب المراسلة الحضورية، والحزم الهجينة هي القاعدة [6]، [24]، [60].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تمتد نشرات إنترنت الأشياء من حساسات المنازل إلى المصانع الصناعية والعدادات على نطاق المدن، لكنها تشترك في قيد واحد: أجهزة ذات ذاكرة ومعالج وطاقة ضئيلة يجب أن تتواصل بموثوقية عبر شبكات تفقد الحزم وتنام غالبًا. لذا تستعرض الورقة البروتوكولات طبقةً طبقة — الشبكة والنقل والتطبيق — موضحةً كيف تحدد الخيارات في كل طبقة معًا استهلاك الطاقة والموثوقية وقابلية التوسع والتكامل المؤسسي [30]، [31].</p>
+    <p>وترتكز المراجعة على مواصفات تأسيسية: CoAP (RFC 7252) بوصفه معيار REST المقيد [12]، وMQTT/MQTT 5.0 بوصفه معيار القياس بالنشر والاشتراك [9]، ومواصفة LoRaWAN للموازنة بين المدى الطويل والطاقة المنخفضة [20]، وRPL (RFC 6550) للتوجيه عبر الشبكات منخفضة الطاقة والمتقطعة مع 6LoWPAN [11]، ووثائق 3GPP والموردين للموازنة بين NB-IoT وLTE-M في التغطية والإنتاجية والتنقل [9]، [29].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. السياق والحزم والمزالق</h2>
+    <p>يعرض الشكل 1 في الورقة حزمًا تمثيلية — إنترنت الأشياء الخلوي (CoAP/LwM2M)، والبوابات الصناعية (OPC UA)، وأجهزة Wi-Fi الاستهلاكية (MQTT/HTTPS) — مؤكدًا أن خيار كل طبقة يمتد أثره إلى الطاقة والموثوقية والملاءمة السحابية [30]، [31]. ويسرد المؤلفون مزالق مختبرة ميدانيًا: الاعتماد على أجهزة افتراضية أو غير محمية وكلمات مرور مشفرة عتاديًا؛ وتجاهل حدود MTU والحمولة في LoRaWAN وIEEE 802.15.4 [20]؛ وتشغيل جلسات TCP عبر راديوهات مقيدة للغاية بحيث يستنزف إعداد الاتصال البطاريات؛ والتصميم لظروف لاسلكية مختبرية بدل النفاذية الحقيقية وتعدد المسارات وحدود دورة العمل.</p>
+    <p>لذا ينتمي انضباط الأمن والتجهيز إلى أبكر خطوة تصميمية: يجب اختيار المصادقة المتبادلة وبيانات الاعتماد المدارة ومسارات التحديث الهوائي للبرامج الثابتة مع الراديو والبروتوكول معًا، لا إلحاقها بعد النشر.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. بروتوكولات النقل والتطبيق</h2>
+    <p>يُعد MQTT، الذي طورته IBM أواخر التسعينيات وأصبح معيار OASIS، من أكثر بروتوكولات مراسلة إنترنت الأشياء استخدامًا بفضل بساطته وكفاءته وملاءمته للأجهزة المقيدة والشبكات غير الموثوقة؛ ويفصل نموذجه بالنشر والاشتراك المنتجين عن المستهلكين عبر وسيط مركزي لتسليم قابل للتوسع من كثير إلى كثير [4]، [32]، [33]، [34]. ويكيّف MQTT-SN الدلالات نفسها للشبكات منخفضة الطاقة وعرض النطاق وغير TCP مثل Zigbee وLoRaWAN ووصلات UDP، مخفضًا عبء الرسائل للبيئات المقيدة [10]. ويبسّط التبادل غير المتزامن عبر الوسيط نموذج الاتصال ويتوسع إلى ملايين المواضيع [6].</p>
+    <p>وحول هذا النواة تضع المراجعة المعايير المرافقة: CoAP للتفاعلات المقيدة بأسلوب REST [12]، وLwM2M لإدارة الأجهزة فوقه، وAMQP للمراسلة المعاملاتية المؤسسية، وOPC UA للاتصالات الصناعية المتوافقة دلاليًا، وLoRaWAN وNB-IoT/LTE-M لأرجل الوصول بعيدة المدى والخلوية [20]، [9]، [29]، وRPL/6LoWPAN للتوجيه الشبكي تحتها [11] — مع نقليات موفرة للطاقة مثل UDP/IP المضغوط الترويسات ومتغيرات DTLS (مثل eeDTLS الذي يخفض العبء 91% من 77 إلى 7 بايتات وفق Banerjee وآخرين [60]، مستفيدًا من توفير حسابات مصافحة DTLS [24]).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. التوليف المقارن ودليل الاختيار</h2>
+    <p>تولّف المناقشة الموازنات بدل تتويج فائز واحد: فلا يوجد بروتوكول واحد صالح للزمن الحقيقي والصناعة، ومناسب للأجهزة المقيدة، ومتوافق، وقادر على جودة الخدمة، وآمن دفعة واحدة، ولا تزال بروتوكولات التطبيق تعاني فجوات في الاستخدام الصناعي الآني، وملاءمة الأجهزة المقيدة، والتشغيل البيني، وآليات الأمن، وجودة الخدمة [6]. لذا تقدم الورقة للمعماريين ثمانية أسئلة: (1) ميزانية الطاقة وهدف عمر البطارية؛ (2) تواتر الرسائل وحجمها؛ (3) المدى وبيئة النشر؛ (4) هل يلزم IP طرفًا لطرف؛ (5) احتياجات الكمون للأوامر مقابل القياس؛ (6) قيود الأمن والتجهيز بما فيها المصادقة المتبادلة والتحديث الهوائي؛ (7) النموذج التشغيلي لمن يدير الاتصال؛ (8) احتياجات التشغيل البيني مع الخدمات السحابية المعيارية.</p>
+    <p>والقاعدة العملية الناتجة: البروتوكولات الخفيفة MQTT/MQTT-SN/CoAP/LwM2M للقياس المقيد والإدارة؛ وAMQP/OPC UA للموثوقية المعاملاتية الصناعية واسعة النطاق؛ وWebSockets/HTTP(S) للويب واللوحات والتكامل السحابي على الأجهزة الأغنى؛ وXMPP حيث تهم المراسلة الحضورية أو المتحدة — مع الحزم الهجينة (مثل CoAP أو MQTT عند الحافة وWebSockets/HTTP نحو السحابة) بوصفها نمط النشر الشائع.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. النشرات العملية والاستنتاجات</h2>
+    <p>يستعرض القسم 5 نشرات عملية لهذه الحزم عبر العدادات والزراعة واللوجستيات والمراقبة الصناعية، موضحًا كيف يتكرر منطق القرار نفسه — بروتوكول حافة مقيد زائد ترجمة عبر البوابة زائد واجهة شمالية سحابية الأصل — عبر القطاعات. وتؤكد النشرات مزالق القسم 2 وتصدق على إطار الاختيار في القسم 4.</p>
+    <p>وتخلص الورقة إلى أن بروتوكولات النقل والتطبيق تشكل العمود الفقري لاتصالات إنترنت الأشياء، ويقدم كل منها مزيجًا مميزًا من الكفاءة وقابلية التوسع والأمن وملاءمة النشر، وأن فهم نقاط قوتها وحدودها وحالات استخدامها يتيح للمعماريين تصميم حلول قابلة للتوسع ومرنة وآمنة وفعالة. ومن المتوقع أن يتركز البحث المستقبلي على الملاءمة الصناعية الآنية، وأمن وجودة خدمة أشد للبروتوكولات المقيدة، وجسور التشغيل البيني، والنقليات المقتصدة للطاقة.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>The Internet of Things connects constrained devices over lossy, low-power links, so the choice of transport and application protocols decides power budgets, reliability, scalability, and cloud integration. This review covers the representative IoT protocol stacks — from cellular IoT with CoAP/LwM2M to industrial gateways with OPC UA and consumer devices over Wi-Fi with MQTT or HTTPS [30], [31] — comparing MQTT and MQTT-SN [4], [10], [32], [33], [34], CoAP [12], LwM2M, AMQP, OPC UA, LoRaWAN [20], NB-IoT/LTE-M [9], [29], RPL [11], and UDP/TCP transports.</p>
+    <p>The paper adds a practical selection framework (eight guiding questions on power, traffic, range, IP need, latency, security, operations, and interoperability), surveys real deployments, and flags common pitfalls such as default credentials, ignored MTU limits on LoRaWAN/802.15.4 [20], TCP-everywhere battery drain, and lab-only radio planning. It concludes that lightweight protocols (MQTT, MQTT-SN, CoAP, LwM2M) fit constrained telemetry and device management, enterprise protocols (AMQP, OPC UA) fit industrial scale, web protocols (WebSockets, HTTP/HTTPS) fit dashboards and clouds, XMPP fits presence-aware messaging, and hybrid stacks are the norm [6], [24], [60].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>IoT deployments span home sensors, industrial plants, and city-scale metering, yet all share one constraint: devices with little memory, CPU, and energy must communicate reliably over networks that drop packets and sleep often. The paper therefore reviews protocols layer by layer — network, transport, and application — showing how choices at each layer jointly determine power consumption, reliability, scalability, and enterprise integration [30], [31].</p>
+    <p>Foundational specifications anchor the review: CoAP (RFC 7252) as the constrained RESTful standard [12], MQTT/MQTT 5.0 as the publish/subscribe telemetry standard [9], the LoRa Alliance LoRaWAN specification for long-range low-power trade-offs [20], RPL (RFC 6550) for routing over low-power lossy networks with 6LoWPAN [11], and 3GPP plus vendor documentation for the NB-IoT versus LTE-M coverage/throughput/mobility trade-off [9], [29].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Context, Stacks, and Pitfalls</h2>
+    <p>Figure 1 of the paper visualizes representative stacks — cellular IoT (CoAP/LwM2M), industrial gateways (OPC UA), consumer Wi-Fi (MQTT/HTTPS) — emphasizing that each layer's choice propagates to power, reliability, and cloud fit [30], [31]. The authors list field-hardened pitfalls: relying on default or unprotected devices and hardcoded passwords; ignoring MTU and payload limits of LoRaWAN and IEEE 802.15.4 [20]; running TCP sessions over extremely constrained radios so connection setup drains batteries; and designing for laboratory radio conditions instead of real penetration, multipath, and duty-cycle limits.</p>
+    <p>Security and provisioning discipline therefore belongs in the earliest design step: mutual authentication, managed credentials, and firmware-over-the-air update paths must be selected together with the radio and the protocol, not bolted on after deployment.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Transport and Application Protocols</h2>
+    <p>MQTT, developed by IBM in the late 1990s and now an OASIS standard, is one of the most widely used IoT messaging protocols thanks to its simplicity, efficiency, and fit for constrained devices and unreliable networks; its publish/subscribe model decouples producers and consumers through a central broker for scalable many-to-many delivery [4], [32], [33], [34]. MQTT-SN adapts the same semantics to low-power, low-bandwidth, non-TCP networks such as Zigbee, LoRaWAN, and UDP links, cutting message overhead for constrained environments [10]. The asynchronous brokered exchange simplifies the communication model and scales to millions of topics [6].</p>
+    <p>Around this core the review positions the companion standards: CoAP for RESTful constrained interactions [12], LwM2M for device management above it, AMQP for enterprise transactional messaging, OPC UA for semantically interoperable industrial communication, LoRaWAN and NB-IoT/LTE-M for the long-range and cellular access legs [20], [9], [29], and RPL/6LoWPAN for mesh routing underneath [11] — with energy-saving transports such as header-compressed UDP/IP and DTLS variants (e.g., eeDTLS cutting overhead by 91%, from 77 to 7 bytes, per Banerjee et al. [60], building on DTLS handshake-computation savings [24]).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Comparative Synthesis and Selection Guide</h2>
+    <p>The discussion synthesizes trade-offs rather than crowning a winner: no single protocol is real-time- and industry-ready, constraint-friendly, interoperable, QoS-capable, and secure all at once, and application protocols still suffer gaps in real-time industrial use, constrained-device fit, interoperability, security mechanisms, and QoS [6]. The paper therefore gives architects eight questions: (1) power budget and battery-life target; (2) message frequency and size; (3) range and deployment environment; (4) whether end-to-end IP is required; (5) latency needs for commands versus telemetry; (6) security and provisioning constraints including mutual authentication and FOTA; (7) the operational model of who manages connectivity; and (8) interoperability needs with standard cloud services.</p>
+    <p>The resulting rule of thumb: lightweight MQTT/MQTT-SN/CoAP/LwM2M for constrained telemetry and management; AMQP/OPC UA for industrial and large-scale transactional reliability; WebSockets/HTTP(S) for web, dashboard, and cloud integration on richer devices; XMPP where presence-aware or federated messaging matters — with hybrid stacks (e.g., CoAP or MQTT at the edge, WebSockets/HTTP toward the cloud) as the common deployment pattern.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Practical Deployments and Conclusions</h2>
+    <p>Section 5 surveys practical deployments of these stacks across metering, agriculture, logistics, and industrial monitoring, showing how the same decision logic — constrained edge protocol plus gateway translation plus cloud-native northbound API — recurs across verticals. The deployments confirm the pitfalls of Section 2 and validate the selection framework of Section 4.</p>
+    <p>The paper concludes that transport and application protocols form the backbone of IoT communication, each offering a distinct mix of efficiency, scalability, security, and deployment fit, and that understanding their strengths, limits, and use cases lets architects design solutions that are scalable, resilient, secure, and efficient. Future research is expected to concentrate on real-time industrial suitability, tighter security and QoS for constrained protocols, interoperability bridges, and energy-lean transports.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">References below are condensed; numbering matches the original paper. See the full reference list in the original publication via the DOI link above.</p>
+    <ol dir="ltr">
+      <li>MQTT/MQTT 5.0 and IoT messaging analyses. See original paper for full citations.</li>
+      <li>Publish/subscribe scalability studies; application-protocol QoS and security-gap analyses. See original paper for full citations.</li>
+      <li>OASIS. MQTT Version 5.0; 3GPP and vendor documentation on NB-IoT vs. LTE-M trade-offs. See original paper for full citations.</li>
+      <li>MQTT-SN adaptation for low-power, non-TCP sensor networks (Zigbee, LoRaWAN, UDP links). See original paper for full citation.</li>
+      <li>Winter, T. et al. RPL: IPv6 Routing Protocol for Low-Power and Lossy Networks. RFC 6550; IETF, 2012.</li>
+      <li>Shelby, Z. et al. The Constrained Application Protocol (CoAP). RFC 7252; IETF, 2014.</li>
+      <li>LoRa Alliance. LoRaWAN Specification (data rates, ADR, long-range trade-offs). Available online: https://lora-alliance.org/</li>
+      <li>DTLS handshake-computation energy analyses. See original paper for full citation.</li>
+      <li>NB-IoT vs. LTE-M comparison studies (coverage vs. throughput vs. mobility). See original paper for full citation.</li>
+      <li>IoT representative-stack surveys: cellular CoAP/LwM2M, industrial OPC UA gateways, consumer Wi-Fi MQTT/HTTPS. See original paper for full citations.</li>
+      <li>IoT layered-architecture studies. See original paper for full citation.</li>
+      <li>MQTT design and performance studies (I). See original paper for full citations.</li>
+      <li>MQTT design and performance studies (II). See original paper for full citations.</li>
+      <li>MQTT design and performance studies (III). See original paper for full citations.</li>
+      <li>Banerjee, U. et al. eeDTLS: header-compressed UDP/IP + DTLS (91% overhead reduction, 77 to 7 bytes; RFC 6066 certificate URLs). See original paper for full citation.</li>
+          <li>... [full reference list available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/technologies13120583">10.3390/technologies13120583</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

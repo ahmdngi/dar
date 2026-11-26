@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التوثيق اللامركزي لحوادث الحركة البحرية لدعم تسوية النزاعات — DAR</title>
+<meta name="description" content="Decentralized Documentation of Maritime Traffic Incidents to Support Conflict Resolution — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/traffic-incidents-blockchain-jmse/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Decentralized Documentation of Maritime Traffic Incidents to Support Conflict Resolution</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التوثيق اللامركزي لحوادث الحركة البحرية لدعم تسوية النزاعات</h2>
+
+  <div class="paper-meta">
+    <span>👤 Dennis Jankowski, Julius Möller, Hilko Wiards, Axel Hahn</span>
+    <span>📄 J. Mar. Sci. Eng. 2022, 10(12), 2011</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jmse10122011">10.3390/jmse10122011</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تُلزم السفن الكبيرة بتركيب مسجل بيانات الرحلة (VDR) للتحقيق في الحوادث المرورية الكبرى [3]، لكن ليست كل سفينة مجهزة به، وقراءة بياناته عملية يدوية مكلفة، والحوادث الصغيرة نادرًا ما تُوضَّح جنائيًا كما أظهرت قضية مسجل كوستا كونكورديا [4]. فضلًا عن ذلك، تُسجَّل السياقات ذات الصلة كالأرصاد الجوية أو معلومات الموانئ لدى جهات أخرى تميل إلى الثقة بسجلاتها الخاصة فقط [8].</p>
+    <p>وتقدم هذه الورقة نهجًا لتوثيق البيانات الاعتباطية من جهات مختلفة بطريقة جديرة بالثقة ولامركزية ومقاومة للعبث باستخدام سلطات الختم الزمني (TSAs) بدل البلوك تشين [19]، [29]. ويُظهر نموذج أولي لإثبات المفهوم مبني بمكونات معيارية [45]–[48] هذا النهج على سيناريو اصطدام أثناء المناورة للرسو، داعمًا عملية تسوية النزاعات بقاعدة بيانات محصنة ضد التزوير.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يُعد توضيح الحوادث المرورية البسيطة صعبًا خصوصًا: إذ لا تُقرأ بيانات مسجل الرحلة من السلطات عادةً إلا بعد الحوادث الكبرى، فلا توجد قاعدة بيانات محصنة ضد التزوير للحالات الأصغر [4]. ولتسجيل بيانات الرحلات نظائر في الطيران حيث تخدم المسجلات التحقيق والتشغيل [1]، وفي الطرق عبر مسجلات بيانات الأحداث [34].</p>
+    <p>وتتمثل مساهمة هذا العمل في مفهوم توثيق لامركزي يمكن فيه لكل جهة معنية بوضع مروري أن تحفظ بياناتها الاستشعارية والسياقية المتاحة، لتُجمَّع في أساس بيانات متنوع وهادف يمكن التحقق من سلامته تشفيريًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الخلفية والمتطلبات</h2>
+    <p>يشمل التحقيق في الحوادث البحرية سلطات وطنية ودولية [5]–[7] تعمل ضمن أنظمة سلامة الملاحة مثل الفصل الخامس من سولاس [3] ومعايير الاتصال الآمن بين السفينة والشاطئ مثل SECOM [44]. لذا يجب أن يفي أي نظام توثيق بمتطلبات حماية البيانات والسيادة عليها، ولا سيما بموجب اللائحة العامة لحماية البيانات [8].</p>
+    <p>ومن هذا التحليل يستخلص المؤلفون متطلبات التوثيق الآمن للأوضاع المرورية الحرجة: اللامركزية عبر جهات لا تثق ببعضها، وإثبات العبث، والربط الزمني الدقيق، والكلفة المنخفضة. ويفي الختم الزمني كما قدمه هابر وستورنتا [19] بهذه الاحتياجات، مع تجنب البلوك تشين عمدًا حيث يكفي مرساة ثقة أخف [29].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. الأعمال ذات الصلة</h2>
+    <p>اقتُرحت نهوج قائمة على البلوك تشين لسلامة البيانات البحرية واللوجستية على نطاق واسع، مع توفر نظرات عامة على التقنية [13] وخرائط لقدراتها [29]. وتوفر نماذج الثقة بأسلوب البنية التحتية للمفاتيح العامة وبروتوكولات الختم الزمني الخلفية التشفيرية [16]، [17].</p>
+    <p>وتشمل تقنيات التسجيل المقاومة للعبث المكملة مخططات الختم الزمني المترابطة [18]، [24] والتصاميم الموجهة للشفافية [26]. ويتميز العمل الحالي بجمع شهادات قائمة على سلطات الختم الزمني مع بنية تفاوض وتخزين لامركزية مصممة للأوضاع المرورية البحرية متعددة الجهات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. المفهوم: توثيق لامركزي قائم على سلطات الختم الزمني</h2>
+    <p>تشبه الشهادة عبر سلطة الختم الزمني شهادات البنية التحتية للمفاتيح العامة، إلا أن السلطة تشهد على وجود البيانات في لحظة زمنية لا على الهوية: إذ يرسل الطالب بصمة (هاش) بياناته فقط، فتربط السلطة الوقت الحالي وتعيد التبصيم وتعيد رمزًا موقَّعًا، مما يُبقي الحمولات صغيرة والبيانات سرية. ويتم التحقق عبر فحص تشفيري من خطوتين.</p>
+    <p>وتجسد أربعة مكونات المفهوم: شبكة ندّية للاتفاق على مجموعة مشتركة من سلطات الختم الزمني؛ ومفاوِض يضمن اتساق معايير الشهادات؛ ومسجل بيانات يحفظ البيانات الأصلية مع التواقيع محليًا؛ ومستودع عام للجهات الموثوقة. وتُظهر خدمات الحركة المرورية للسفن [40] مثالًا على جهة شاطئية يمكنها المشاركة إلى جانب السفن وخدمات الأرصاد ومشغلي الموانئ.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. التطبيق والتقييم</h2>
+    <p>نُفذ النموذج الأولي لإثبات المفهوم بمكونات مفتوحة مُحاوَيَة: بدائيات تشفيرية عبر Bouncy Castle [45]، وشهادة زمنية عبر سلطة DFN للختم الزمني [46]، وتخزين المستندات في MongoDB [47]، والنشر عبر Docker [48].</p>
+    <p>ويغطي سيناريو التقييم مناورات الرسو حيث تكون الاحتكاكات بين السفن والأرصفة من الحوادث البسيطة النمطية. ويحفظ جميع المشاركين سجلات مبصومة ومختومة زمنيًا؛ ويؤكد النقاش أن النهج ينتج توثيقًا متسقًا وقابلًا للتحقق ومحصنًا ضد التزوير عبر الجهات، بكلفة وتعقيد أدنى بكثير من بدائل البلوك تشين [29].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الخلاصة والاستنتاجات</h2>
+    <p>تقدم الورقة نهج توثيق لامركزي وجدير بالثقة للأوضاع المرورية البحرية يجمع بيانات السفن والسياقات من جميع الجهات المعنية ويرسخ سلامتها بأختام سلطات الختم الزمني [19]. ويسد الفجوة التي تتركها ممارسات التحقيق المتمحورة حول مسجل الرحلة، والتي تُبقي الحوادث البسيطة دون أساس محصن ضد التزوير [3]، [4].</p>
+    <p>وتشمل القيود الاعتماد على توفر سلطات الختم الزمني المختارة وجدواها بالثقة وعلى استعداد المشاركين للتسجيل. وينبغي للعمل المستقبلي اختبار المفهوم في تجارب حية متعددة أصحاب المصلحة ومواءمته مع معايير واجهات البيانات البحرية المتطورة مثل SECOM [44].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Larger vessels are obliged to install a voyage data recorder (VDR) for the investigation of major traffic accidents [3], yet not every vessel carries one, readout is a manual and costly process, and small incidents are rarely clarified forensically, as shown by the Costa Concordia VDR case [4]. Moreover, relevant context such as meteorological or port information is recorded by other entities that tend to trust only their own records [8].</p>
+    <p>This paper presents an approach to documenting arbitrary data from different entities in a trustworthy, decentralized, tamper-proof manner using timestamping authorities (TSAs) rather than blockchain [19], [29]. A proof-of-concept prototype built with standard components [45]–[48] demonstrates the approach on a mooring-collision scenario, supporting the conflict-resolution process with a forgery-proof data basis.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Clarifying minor traffic incidents is particularly difficult: the VDR is typically read out by authorities only after major incidents, so no forgery-proof data basis exists for smaller cases [4]. Voyage data recording has parallels in aviation, where flight recorders serve accident investigation and operational purposes [1], and in road traffic with event data recorders [34].</p>
+    <p>The contribution of this work is a decentralized documentation concept in which every entity involved in a traffic situation can persist its available sensor and context data, aggregated into a diverse and meaningful data foundation whose integrity is cryptographically verifiable.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Background and Requirements</h2>
+    <p>Maritime accident investigation involves authorities at national and international level [5]–[7], operating under safety-of-navigation regimes such as SOLAS Chapter V [3] and secure ship-shore communication standards such as SECOM [44]. Any documentation system must therefore satisfy data-protection and sovereignty requirements, notably under the GDPR [8].</p>
+    <p>From this analysis the authors derive requirements for secure documentation of critical traffic situations: decentralization across mutually distrusting entities, tamper evidence, precise time binding, and low overhead. Timestamping as introduced by Haber and Stornetta [19] meets these needs, while blockchain is deliberately avoided where a lighter trust anchor suffices [29].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Related Work</h2>
+    <p>Blockchain-based approaches to maritime and logistics data integrity have been widely proposed, with general overviews of the technology available [13] and domain mappings of blockchain capabilities [29]. PKI-style trust models and timestamping protocols provide the cryptographic background [16], [17].</p>
+    <p>Complementary tamper-proof recording techniques include linked timestamping schemes [18], [24] and transparency-oriented designs [26]. The present work differs by combining TSA-based certification with a decentralized negotiation and storage architecture tailored to multi-entity maritime traffic situations.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Concept: TSA-Based Decentralized Documentation</h2>
+    <p>Certification via a TSA is analogous to PKI certification, except that the authority certifies the existence of data at a point in time rather than an identity: the requestor sends only a hash of its data, the TSA binds the current time, re-hashes, and returns a signed token, keeping payloads small and data confidential. Verification is a two-step cryptographic check.</p>
+    <p>Four components realize the concept: a P2P network for agreeing on a common set of TSAs; a TSA negotiator ensuring consistent certification parameters; a data recorder persisting original data plus signatures locally; and a public repository of trusted entities. Vessel traffic services [40] illustrate the kind of shore-side entity that can participate alongside ships, meteorological services, and port operators.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Application and Evaluation</h2>
+    <p>The proof-of-concept prototype is implemented with containerized open components: cryptographic primitives via Bouncy Castle [45], time certification via the DFN timestamping authority [46], document storage in MongoDB [47], and deployment with Docker [48].</p>
+    <p>The evaluation scenario covers mooring maneuvers, where contacts between vessels and quay walls are typical minor incidents. All participants persist hashed and timestamped records; the discussion confirms the approach yields a consistent, verifiable, forgery-proof documentation across entities, at far lower cost and complexity than blockchain alternatives [29].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Summary and Conclusions</h2>
+    <p>The paper presents a decentralized, trustworthy documentation approach for maritime traffic situations that aggregates ship and context data from all involved entities and anchors its integrity with TSA timestamps [19]. It fills the gap left by VDR-centric investigation practice, which leaves minor incidents without a forgery-proof basis [3], [4].</p>
+    <p>Limitations include dependence on the availability and trustworthiness of the chosen TSAs and on participants' willingness to record. Future work should test the concept in live multi-stakeholder trials and align it with evolving maritime data-interface standards such as SECOM [44].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed reference list: entries retain their original numbering from the paper. See the full reference list (51 refs) in the original publication at https://doi.org/10.3390/jmse10122011.</p>
+    <ol dir="ltr">
+      <li>[3] International Maritime Organization (IMO). SOLAS Chapter V—Safety of Navigation. Available online: https://www.imorules.com/SOLAS_REGV.html (accessed on 5 October 2022).</li>
+      <li>[4] Cantelli-Forti, A. Forensic Analysis of Industrial Critical Systems: The Costa Concordia's Voyage Data Recorder Case. In <em>Proc. IEEE SMARTCOMP</em>, Taormina, Italy, 18–20 June 2018; pp. 458–463.</li>
+      <li>[8] Voigt, P.; Von dem Bussche, A. <em>The EU General Data Protection Regulation (GDPR)</em>; Springer: Cham, Switzerland, 2017.</li>
+      <li>[13] Sheth, H.; Dattani, J. Overview of blockchain technology. <em>Asian J. Converg. Technol.</em> 2019, 5, 1–4.</li>
+      <li>[19] Haber, S.; Stornetta, W.S. How to time-stamp a digital document. <em>J. Cryptol.</em> 1991, 3, 99–111.</li>
+      <li>[29] Wust, K.; Gervais, A. Do you Need a Blockchain? In <em>Proc. CVCBT</em>, Zug, Switzerland, 2 June 2018; pp. 45–54.</li>
+      <li>[40] Young, W. What Are Vessel Traffic Services, and What Can They Really Do? <em>Navigation</em> 1994, 41, 31–56.</li>
+      <li>[44] IEC TC80; IEC 63173-2:2022: Maritime Navigation and Radiocommunication Equipment and Systems—Data Interfaces—Part 2: Secure Communication between Ship and Shore (SECOM). IEC: Geneva, Switzerland, 2022.</li>
+      <li>[45] Legion of the Bouncy Castle Inc. Bouncy Castle–Documentation. Available online: https://www.bouncycastle.org/documentation.html (accessed on 15 November 2022).</li>
+      <li>[46] Deutsches Forschungsnetz (DFN). DFN Timestamping Authority. Available online: https://www.pki.dfn.de (accessed on 15 November 2022).</li>
+      <li>[47] MongoDB, Inc. MongoDB Documentation. Available online: https://www.mongodb.com/docs/manual/ (accessed on 15 November 2022).</li>
+      <li>[48] Docker, Inc. Docker Documentation. Available online: https://docs.docker.com/ (accessed on 15 November 2022).</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jmse10122011">10.3390/jmse10122011</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

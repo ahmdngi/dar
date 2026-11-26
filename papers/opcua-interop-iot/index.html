@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تحليل أداء OPC UA للتشغيل البيني الصناعي نحو الصناعة 4.0 — DAR</title>
+<meta name="description" content="Performance Analysis of OPC UA for Industrial Interoperability towards Industry 4.0 — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/opcua-interop-iot/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Performance Analysis of OPC UA for Industrial Interoperability towards Industry 4.0</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تحليل أداء OPC UA للتشغيل البيني الصناعي نحو الصناعة 4.0</h2>
+
+  <div class="paper-meta">
+    <span>👤 Marc Ladegourdie, Jonathan Kua</span>
+    <span>📄 IoT, 2022 · Vol. 3, No. 4, pp. 507–525</span>
+    <span>🔗 <a href="https://doi.org/10.3390/iot3040027">10.3390/iot3040027</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يتضمن بروتوكول OPC UA (بنية الاتصالات الموحدة للمنصة المفتوحة) نطاقًا واسعًا من المزايا ويغطي معظم متطلبات معيار تشغيل بيني مستقل عن المنصة يمكنه نقل البيانات والمعلومات من أرضية الإنتاج إلى مستوى المؤسسة والإدارة. وبفضل بنيته القابلة للتوسع والتشغيل البيني، فهو مهيأ للنشر مستقبلًا في الأجهزة المدمجة الذكية نحو الصناعة 4.0، خاصة في بيئات عقد الاتصال غير المتجانسة.</p>
+    <p>وتهدف هذه الورقة لتقييم أداء OPC UA للاتصال في بيئات إنترنت الأشياء الصناعية (IIoT) لفهم التنفيذ التقني وجدوى دمج OPC UA مباشرة في أجهزة الحافة المحدودة الموارد. ونقترح إطار معمارية نظام لتقييم الأداء عبر طيف واسع من التجارب، وأظهرت النتائج التجريبية فعالية النظام المقترح. ويمكن تبني بنية نظام IIoT القائم على OPC UA وإعداد الاختبار الزهيد التكلفة بمرونة لاختبار البروتوكولات والنمذجة والأغراض التعليمية.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>مفهوم الثورة الصناعية الرابعة (الصناعة 4.0) هو التقاء الأنظمة الصناعية مع الحوسبة المتقدمة والحساسات وأنظمة الاتصال، حيث تُنشر تقنيات مثل إنترنت الأشياء الصناعي والأنظمة السيبرانية-الفيزيائية (CPS) والذكاء الاصطناعي والحوسبة السحابية/الطرفية [1–3]. ومن المجالات التطبيقية الرئيسة الموعودة: الصناعة التحويلية — جعلها أذكى وأكفأ بالتقنيات الرقمية [4،5]. لكن تبادل البيانات والاتصال الشبكي بين الأجهزة/العقد الصناعية في بيئات المصنع الذكي يطرح تحديات كبيرة [6،7]، ومنها غياب معيار تشغيل بيني للاتصال الصناعي [8] — فقلة المعايير والعمليات تساند كيانًا للتواصل بـ«لغة مشتركة» [9].</p>
+    <p>وتغيّر تقنيات IIoT الجديدة البنى الهرمية التقليدية موفرة منصة أوسع قابلية للتوسع يُتبادل فيها البيانات بسلاسة — ما يُسمى غالبًا سدّ فجوة تقنية المعلومات (IT) والتقنية التشغيلية (OT) [10]، مع تركيز قوي على اتصال آلة-لآلة (M2M) وتجريد العمليات الصناعية إلى أنواع بيانات وتحويل الأجهزة إلى نهايات بيانات.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">2. الخلفية: هرم ISA-95 واتصال IIoT</h2>
+    <p>يمثل هرم الأتمتة ISA-95 تصويريًا المستويات الخمسة للأتمتة في المصنع النمطي وكيف يتواصل كل مستوى باستخدام تقنيات مختلفة [15]: المستوى 0 (الميدان) — حساسات ومشغلات أرضية [16]؛ المستوى 1 (التحكم) — عقل أرضية الإنتاج، غالبًا وحدات تحكم منطقية قابلة للبرمجة (PLC) تتابع المدخلات وتتحكم بالمخرجات ببرنامج مخصص [17]؛ المستوى 2 (الإشرافي) — أنظمة SCADA وواجهات HMI للمراقبة والتحكم؛ فالمستويات الإدارية والتخطيطية العليا.</p>
+    <p>والاتصال مُمكّن رئيسي لـIIoT بتقنيات سلكية/لاسلكية حسب البنية الطرفية؛ ولا يكفي نموذج الإنترنت الخماسي أو OSI السباعي لطبيعة الحساسات والمتحكمات والمشغلات والبوابات الموزعة، فيلزم نموذج طبقي مختلف: طبقة الشبكة (الحزم والإطارات) وطبقة الاتصال (الرسائل) وطبقة المعلومات (هياكل بيانات المستخدم) [3،22–24]. وتهيمن بروتوكولات IP (كـIPv4/IPv6) كمُمكّن مشترك، بينما تعتمد التطبيقات الصناعية الحالية على نواقل ميدانية لكل منها منظومة خاصة — مسهمة في ضعف التشغيل البيني.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">2.3 بروتوكول OPC UA والمعايير ذات الصلة</h2>
+    <p>صُمم OPC UA بديلًا لكل مواصفات COM السابقة دون فقدان الخصائص أو الأداء: جمع مزايا OPC Classic الضرورية وأصلح عيوبها المعروفة وغلّفها بنسخة مرنة توحّد حالات استخدام إضافية، مغطيًا كل متطلبات معيار تشغيل بيني مستقل عن المنصة لنقل البيانات والمعلومات من أرضية الإنتاج إلى المؤسسة. وبنيته القابلة للتوسع تجعله مهيأ للنشر في الأجهزة المدمجة الذكية مع مسارات هجرة بسيطة لمنتجات OPC القديمة. وله أربع خصائص جوهرية تميزه عن OPC Classic وتؤهله معيار الصناعة 4.0 [14]: جاهزية الإنترنت واستقلال المنصة (لا اعتماد على COM/DCOM — نشر عبر الحساسات وPLCs والمتحكمات المدمجة والبوابات)، وملاءمة جدران الحماية باستخدام HTTP، وقابلية التوسع، والأمن المدمج.</p>
+    <p>وتشمل البروتوكولات الصناعية ذات الصلة: Ethernet/IP وModbus TCP وPROFINET [30]، بينما قارن Profanter وآخرون [35] أداء OPC UA مع ROS وDDS وMQTT في بيئات IIoT — مقيسين زمن الذهاب والإياب (RTT) في حالات الخمول والحمل المعالجي العالي وحمل الشبكة العالي حتى 500 عقدة — واقترحوا لاحقًا بنية «التوصيل والإنتاج» اللاأدرية بالعتاد مستفيدة من اكتشاف OPC UA دلاليًا لربط الروبوتات وأدوات المصنع [36،37].</p>
+  </section>
+  <section>
+    <h2 dir="rtl">3. منهجية التجربة: تصميم معماري</h2>
+    <p>لبناء إطار تقييم الأداء، شُيّدت منصة اختبار عتادية تحاكي مصنعًا حديثًا بحمل شبكي حقيقي من PLCs متعددة على مستوى الحافة، باستخدام نموذج العميل/الخادم الناضج في تطبيقات مثل Prosys وFreeOpcUa وopen62541 (نموذج النشر/الاشتراك ما زال ناشئًا قيد التطوير). وتكوّنت المنصة من خمسة PLCs لكل منها خادم OPC UA خاص، مع عقد متنوعة متصلة بكل PLC — بينها حساس — وعميل OPC UA يحاكي SCADA يتواصل عبر OPC UA/TCP/IP لجلب بيانات العقد (ويمكن أن يكون العميل HMI أو ERP أو MES).</p>
+    <p>ونظرًا لكلفة PLCs الحقيقية (كـSiemens S7-1200 المكلفة عند التوسع)، اختير Raspberry Pi بديلًا محوسبًا لنسبة السعر-الأداء ومحاكاة وظائف PLC والاتصال السلكي/اللاسلكي: أربع Pi 4B (4GB) وواحدة Pi 3B V1.2 لرصد فرق الأداء بين الطرازين [57]. وبُني خادم OPC UA من الصفر بمكتبة asyncua المفضلة على open62541 وNodeOPCUA وfreeopcua لأدائها العالي المبني على asyncio (مثالي لتطبيقات الإدخال/الإخراج) [50–56]، مع ترميز OPC UA Binary الافتراضي لسرعة الترميز/فك الترميز. ولتوليد الحمل، وُلّدت عقد بعدد يحدده المستخدم (كل عقدة 10 متغيرات-حساسات بقيم عشوائية وأنواع بيانات عشوائية)، مع حساس DHT22 حقيقي (حرارة/رطوبة) كمرجع فيزيائي [57]. وللعميل اختير متصفح Prosys OPC UA لقدرته الفريدة على التصور البياني الحي لتغيرات البيانات [58،59]، على حاسوب Acer Predator (i7-7700HQ و16GB) كـSCADA.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">3.4 جمع البيانات والسيناريوهات</h2>
+    <p>اعتُمدت ثلاثة مقاييس أداء رئيسية: استخدام المعالج (CPU) وحجم الذاكرة المستخدمة (RAM) وعرض نطاق حركة الشبكة — وهي subset من مقاييس تقييم بروتوكولات IIoT الشائعة (ROS وDDS وMQTT وOPC UA) [35]. ونُفذت أربعة سيناريوهات على كل Pi: عقدة واحدة (10 متغيرات) و10 عقد (100) و20 عقدة (200) و30 عقدة (300). وحُصدت بيانات المعالج والذاكرة كل ثانية لمدة 10 دقائق في كل سيناريو عبر دوال غير متزامنة تستدعي أوامر cat [62]، محوّلة لأرقام عشرية ومختومة زمنيًا، بينما قِيست حركة الشبكة بأداة Nethogs مفتوحة المصدر لحركة كل عملية [63].</p>
+    <p>وضُبطت الخوادم عبر Python 3.10.4 (asyncio وasyncua): تهيئة الخادم ونقطة النهاية opc.tcp://0.0.0.0:4840 وتسجيل مساحة الاسم، ثم بدء غير متزامن. ونُمذجت مساحة العناوين هرميًا (عقد كائنات ثم متغيرات ثم قيمها)، وأُنشئ الاتصال من متصفح Prosys لكل خادم على حدة بإدخال URL والاتصال المجهول دون أمن — ملائم لقياس الأداء الخام.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">4. نتائج التقييم وتحليلها</h2>
+    <p>أظهر استخدام معالج Pi 4B زيادة عامة طفيفة: نحو 0.07% بين السيناريوهات المتتالية، من 1.48% (سيناريو 1) إلى 1.71% (سيناريو 4) — أي مقايضة 0.25% فقط عند إرسال 300 قيمة مقابل قيمة واحدة، هامشية لمعالج ARM رباعي النوى. وكان استهلاك Pi 3B لنفس السيناريو أعلى بكثير — متوقعًا من عتاده الأضعف — مؤكدًا أن طراز Pi يؤثر جوهريًا في جدوى النشر على الحافة. وبقي استخدام الذاكرة مستقرًا نسبيًا عبر السيناريوهات، بينما نمت حركة الشبكة طرديًا مع عدد العقد/المتغيرات كما هو متوقع من حمولة البيانات المتزايدة.</p>
+    <p>وتؤكد هذه النتائج الأولية أن خادم OPC UA المبني على asyncua يعمل بكفاءة على عتاد زهيد (بضعة دولارات للعقدة)، وأن الزيادة في الحمل من 10 إلى 300 متغير تبقى ضمن هوامش ضيقة للمعالج والذاكرة — دليل جدوى دمج OPC UA مباشرة في أجهزة الحافة المحدودة الموارد، مع تفضيل Pi 4B للأحمال الأعلى.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">5. الخاتمة والعمل المستقبلي</h2>
+    <p>قد يكون نشر OPC UA كثيف الموارد نسبيًا في بيئات IIoT، ويبقى دمج خوادم/عملاء OPC UA في أجهزة الحافة المحدودة الموارد تحديًا مستمرًا. وفي هذه الورقة اقترحنا وصممنا ونفذنا بنية نظام لتقييم OPC UA واختباره كمعيار تشغيل بيني صناعي في بيئة زهيدة التكلفة، وأظهرنا أن منصة Raspberry Pi صالحة للاختبار والتقييم الزهيد لمعيار OPC UA. وأظهرت نتائج التقييم الأولية (المعالج والذاكرة وإنتاجية الشبكة) جدوى وفعالية النظام المقترح ومنصة الاختبار.</p>
+    <p>وتتقدم الأبحاث في OPC UA بوتيرة سريعة نظرًا لتغاير عقد الاتصال في IIoT. وسيشمل العمل المستقبلي بيانات حساسات حقيقية في التقييم [64،65]، وتطوير نظام تجارب آلية، وتغذية المنصة بآثار بيانات/شبكات من بيئات صناعية حقيقية، وتوسيع التغطية لنموذج النشر/الاشتراك الناشئ وقياسات زمن الاستجابة والأمن [69–73]. وتبقى المنصة صالحة للاختبار صغير النطاق للبروتوكولات وللأغراض التعليمية — توضيح عملي لكيفية عمل OPC UA واختلافه عن بروتوكولات الاتصال الأخرى.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Open Platform Communications Unified Architecture (OPC UA) incorporates a wide range of features and covers most requirements of a platform-independent interoperability standard transmitting data and information from the factory floor to enterprise and management level. Due to its highly scalable, interoperable architecture, it is well-positioned for future deployment in smart embedded devices towards Industry 4.0, especially where heterogeneous communication nodes exist.</p>
+    <p>This paper evaluates OPC UA performance for Industrial IoT communication to understand its technical implementation and the feasibility of embedding OPC UA directly on resource-constrained edge devices. We propose an architectural system framework for performance evaluation across many experiments; results demonstrated the efficacy of the proposed system. The OPC UA-based IIoT architecture and budget-friendly testbed can be flexibly adopted for protocol testing, prototyping, and educational purposes.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>The fourth industrial revolution (Industry 4.0) is the confluence of industrial systems with advanced computing, sensors, and communication systems, deploying Industrial IoT, cyber-physical systems (CPS), AI, and cloud/edge computing [1–3]. A key promised application domain is manufacturing — making it smarter and more efficient with digital technologies [4,5]. But data exchange and network communication between industrial devices/nodes in smart-factory environments pose significant challenges [6,7], including the lack of an interoperable industrial-communication standard [8] — few standards and processes help each entity communicate in a 'common language' [9].</p>
+    <p>New IIoT technologies change traditional hierarchical structures, providing a more scalable platform for seamless data exchange — often called bridging the IT/OT gap [10] — with strong machine-to-machine (M2M) focus, abstracting industrial processes into data types and converting devices into data terminals.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">2. Background: ISA-95 Pyramid and IIoT Connectivity</h2>
+    <p>The ISA-95 automation pyramid pictorially shows the five automation levels of a typical factory and how each communicates with different technologies [15]: Level 0 (Field) — floor sensors and actuators [16]; Level 1 (Control) — the production floor's brain, usually Programmable Logic Controllers (PLCs) tracking inputs and driving outputs per custom programs [17]; Level 2 (Supervisory) — SCADA systems and HMIs for monitoring and control; then upper management/planning levels.</p>
+    <p>Communication is a key IIoT enabler with wired/wireless technologies per backbone-edge needs; neither the five-layer Internet nor seven-layer OSI model suits the distributed nature of sensors, controllers, actuators, and gateways, requiring a different layered model: network layer (packets/frames), connectivity layer (messages), information layer (end-user data structures) [3,22–24]. IP-based protocols (IPv4/IPv6) dominate as the common enabler, while current industrial applications rely on fieldbuses each with its own ecosystem — contributing to poor interoperability.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">2.3 OPC UA and Related Protocol Standards</h2>
+    <p>OPC UA was designed to replace all legacy COM-based specifications without losing characteristics or performance: gathering OPC Classic's necessary features, fixing known issues, and packaging them into a flexible version standardizing additional use cases — covering all requirements of a platform-independent interoperability standard moving data from floor to enterprise. Its scalable architecture suits smart embedded deployment with simple migration paths for legacy OPC products. Four core characteristics distinguish it from OPC Classic as the Industry 4.0 standard of choice [14]: Internet-ready and cross-platform (no COM/DCOM dependence — deployable across sensors, PLCs, embedded controllers, gateways), firewall-friendliness via HTTP, scalability, and built-in security.</p>
+    <p>Related industrial protocols include Ethernet/IP, Modbus TCP, and PROFINET [30], while Profanter et al. [35] comprehensively compared OPC UA against ROS, DDS, and MQTT in IIoT — measuring round-trip time under idle, high-CPU, and high-network-load states with up to 500 nodes — and later proposed a hardware-agnostic 'Plug & Produce' architecture leveraging OPC UA discovery to link robots and factory tools semantically [36,37].</p>
+  </section>
+  <section>
+    <h2 dir="ltr">3. Experimental Methodology: Architectural Design</h2>
+    <p>To evaluate the standard, a hardware testbed resembling a modern plant was built, generating substantial network load from multiple PLCs at the edge, using the mature OPC UA client/server model (Prosys, FreeOpcUa, open62541 implementations; the pub/sub model is still emerging). The platform comprised five PLCs each with its own OPC UA server, varied nodes per PLC — including a sensor — and an OPC UA client mimicking SCADA communicating via OPC UA TCP/IP to retrieve node data (the client could equally be HMI, ERP, or MES).</p>
+    <p>Given real PLC cost (e.g., Siemens S7-1200, costly at scale), Raspberry Pi was chosen for price-performance, PLC-function emulation, and onboard Ethernet/Wi-Fi: four Pi 4B (4 GB) plus one Pi 3B V1.2 to observe inter-model performance differences [57]. The OPC UA server was built from scratch with the asyncua library, preferred over open62541, NodeOPCUA, and freeopcua for its asyncio-based performance ideal for I/O-bound applications [50–56], with default OPC UA Binary encoding for fast encode/decode. Load was generated by user-defined node counts (10 sensor-variables each with random values and data types), plus a real DHT22 temperature/humidity sensor as physical control [57]. The Prosys OPC UA Browser was chosen as client for its unique live graphical data-change visualization [58,59], on an Acer Predator laptop (i7-7700HQ, 16 GB) as SCADA.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">3.4 Data Logging and Test Scenarios</h2>
+    <p>Three key metrics were adopted: CPU usage, RAM consumed, and network traffic bandwidth — a subset of common IIoT protocol evaluation metrics (ROS, DDS, MQTT, OPC UA) [35]. Four scenarios ran per Pi: 1 node (10 variables), 10 nodes (100), 20 nodes (200), and 30 nodes (300). CPU/RAM data were harvested every second for 10 minutes per scenario via async functions issuing cat commands [62], converted to floats and timestamped, while network traffic used the open-source Nethogs per-process monitor [63].</p>
+    <p>Servers were configured in Python 3.10.4 (asyncio, asyncua): server init, endpoint opc.tcp://0.0.0.0:4840, namespace registration, then async start. The Address Space was modeled hierarchically (object nodes, then variables, then their values), and Prosys Browser connected per server by entering each endpoint URL with anonymous, security-free connection — appropriate for raw performance measurement.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">4. Evaluation Results and Analysis</h2>
+    <p>Pi 4B CPU usage showed a slight general increase: ~0.07% between successive scenarios, from 1.48% (scenario 1) to 1.71% (scenario 4) — only a 0.25% trade-off sending 300 values versus one, marginal for the quad-core ARM CPU. Pi 3B usage for the same scenario was markedly higher — expected from weaker hardware — confirming board choice materially affects edge-deployment feasibility. RAM stayed relatively stable across scenarios, while network traffic grew proportionally with node/variable counts as expected from the larger data payload.</p>
+    <p>These preliminary results confirm the asyncua-based OPC UA server runs efficiently on budget hardware (dollars per node), with load growth from 10 to 300 variables staying within narrow CPU/RAM margins — evidence for embedding OPC UA directly on constrained edge devices, preferring the Pi 4B for heavier loads.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">5. Conclusions and Future Work</h2>
+    <p>OPC UA can be relatively resource-intensive in IIoT environments, and integrating OPC UA servers/clients into constrained edge devices remains an ongoing challenge. This paper proposed, designed, and implemented a system architecture for evaluating and testing OPC UA as an industrial interoperability standard in a cost-effective environment, demonstrating that a Raspberry Pi testbed is viable for affordable OPC UA testing. Preliminary results (CPU, RAM, network throughput) demonstrate the feasibility and efficacy of the proposed system and testbed.</p>
+    <p>OPC UA research advances rapidly given IIoT node heterogeneity. Future work will incorporate real sensor data [64,65], automated experiment systems, real industrial data/network traces, and extended coverage of the emerging pub/sub model plus latency and security measurements [69–73]. The testbed remains suitable for small-scale protocol testing and education — a practical demonstration of how OPC UA operates and differs from other communication protocols.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references preserving original numbering; the full list of 73 references is available in the original paper (doi:10.3390/iot3040027).</p>
+    <ol dir="ltr">
+      <li>[1] 1. Boyes, H.; Hallaq, B.; Cunningham, J.; Watson, T. The industrial internet of things (IIoT): An analysis framework. Comput. Ind. 2018, 101, 1–12. [CrossRef]</li>
+      <li>[3] 3. Sisinni, E.; Saifullah, A.; Han, S.; Jennehag, U.; Gidlund, M. Industrial Internet of Things: Challenges, Opportunities, and Directions. IEEE Trans. Ind. Inform. 2018, 14, 4724–4734. [CrossRef]</li>
+      <li>[8] 8. Dalenogare, L.S.; Benitez, G.B.; Ayala, N.F.; Frank, A.G. The expected contribution of Industry 4.0 technologies for industrial performance. Int. J. Prod. Econ. 2018, 204, 383–394. [CrossRef]</li>
+      <li>[10] 10. Hanstein, B. IT and IT Infrastructure in the Context of Industry 4.0. Available online: https://info.rittal.us/it-industry-4-lp (accessed on 29 September 2022).</li>
+      <li>[14] 14. Mahnke, W.; Leitner, S.; Damm, M. OPC Uniﬁed Architecture; Springer: Berlin/Heidelberg, Germany, 2009.</li>
+      <li>[15] 15. Tunkkari, J. Mapping Modbus to OPC Uniﬁed Architecture. Available online: https://aaltodoc.aalto.fi/bitstream/handle/12345 6789/30553/master_Tunkkari_Jesper_2018.pdf?isAllowed=y&amp;sequence=1 (accessed on 29 September 2022). IoT 2022, 3 523</li>
+      <li>[22] 22. Kua, J.; Armitage, G.; Branch, P. A Survey of Rate Adaptation Techniques for Dynamic Adaptive Streaming Over HTTP. IEEE Commun. Surv. Tutor. 2017, 19, 1842–1866. [CrossRef]</li>
+      <li>[30] 30. Schweichhart, K. Why OPC UA Will Revolutionize Industrial Automation in the Coming Years. Available online: https: //blog.paessler.com/why-opc-ua-will-revolutionize-industrial-automation-in-the-coming-years (accessed on 29 September 2022).</li>
+      <li>[35] 35. Profanter, S.; Tekat, A.; Dorofeev, K.; Rickert, M.; Knoll, A. OPC UA versus ROS, DDS, and MQTT: Performance evaluation of industry 4.0 protocols. In Proceedings of the 2019 IEEE International Conference on Industrial Technology (ICIT), Melbourne, Australia, 13–15 February 2019; pp. 955–962.</li>
+      <li>[36] 36. Profanter, S.; Perzylo, A.; Rickert, M.; Knoll, A. A generic plug &amp; produce system composed of semantic opc ua skills. IEEE Open J. Ind. Electron. Soc. 2021, 2, 128–141.</li>
+      <li>[37] 37. Madiwalar, B.; Schneider, B.; Profanter, S. Plug and Produce for Industry 4.0 using Software-deﬁned Networking and OPC UA. In Proceedings of the 2019 24th IEEE International Conference on Emerging Technologies and Factory Automation (ETFA), Zaragoza, Spain, 10–13 September 2019; pp. 126–133.</li>
+      <li>[50] 50. PROSYS. Prosys OPC UA Simulation Server—Prosys OPC. Available online: https://www.prosysopc.com/products/opc-ua-si mulation-server/ (accessed on 29 September 2022).</li>
+      <li>[52] [52] (see original paper)</li>
+      <li>[53] 53. Rossignon, E. Node-OPCUA. Available online: https://node-opcua.github.io/ (accessed on 29 September 2022).</li>
+      <li>[54] 54. FreeOpcUa. Python-Opcua: LGPL Pure Python OPC-UA Client and Server. Available online: https://github.com/FreeOpcUa/p ython-opcua (accessed on 29 September 2022).</li>
+      <li>[55] 55. FreeOpcUaGroup. OPCUA-Asyncio:OPC UA Library for Python &gt;= 3.7. Available online: https://github.com/FreeOpcUa/opc ua-asyncio (accessed on 29 September 2022).</li>
+      <li>[56] 56. PythonSoftwareFoundation. Asyncio—Asynchronous I/O—Python 3.10.5 Documentation. Available online: https://docs.pytho n.org/3/library/asyncio.html#module-asyncio (accessed on 29 September 2022).</li>
+      <li>[57] 57. Littlebirdelectronics. DHT22 Temperature-Humidity Sensor. Available online: https://littlebirdelectronics.com.au/products/dh t22-temperature-humidity-sensor-extras (accessed on 29 September 2022).</li>
+      <li>[58] 58. Cacamille3. OPC-UA-Clients: List of Commercial and Open Source OPC UA Clients. Available online: https://github.com/cac amille3/OPC-UA-Clients (accessed on 29 September 2022).</li>
+      <li>[59] 59. Prosysopcltd. Prosys OPC UA Browser—Prosys OPC. Available online: https://www.prosysopc.com/products/opc-ua-browse r/ (accessed on 29 September 2022).</li>
+      <li>[60] 60. OPCFoundation. OPC Factory Server. Available online: https://opcfoundation.org/developer-tools/specifications-uniﬁed-arch itecture (accessed on 29 September 2022).</li>
+      <li>[62] 62. Python Software Foundation. Subprocess—Subprocess Management. Available online: https://docs.python.org/3/library/su bprocess.html#subprocess.check_output (accessed on 29 September 2022).</li>
+      <li>[63] 63. Raboof. Nethogs: Linux ’Net Top’ Tool. Available online: https://github.com/raboof/nethogs (accessed on 29 September 2022).</li>
+      <li>[64] 64. Kua, J.; Al-Saadi, R.; Armitage, G. Using Dummynet AQM-FreeBSD’s CoDel, PIE, FQ-CoDel and FQ-PIE with TEACUP v1. 0 testbed. CAIA Tech. Rep. 2016, 160708, 8.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/iot3040027">10.3390/iot3040027</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

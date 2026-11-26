@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أمن بروتوكولات طبقة التطبيق لإنترنت الأشياء: التحديات والنتائج — DAR</title>
+<meta name="description" content="Security of IoT Application Layer Protocols: Challenges and Findings — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/iot-applayer-futureinternet/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Security of IoT Application Layer Protocols: Challenges and Findings</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">أمن بروتوكولات طبقة التطبيق لإنترنت الأشياء: التحديات والنتائج</h2>
+
+  <div class="paper-meta">
+    <span>👤 Giuseppe Nebbione, Maria Carla Calzarosa</span>
+    <span>📄 Future Internet, 2020 · Vol. 12, Issue 3, Article 55</span>
+    <span>🔗 <a href="https://doi.org/10.3390/fi12030055">10.3390/fi12030055</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تحدد بروتوكولات طبقة التطبيق كيف تنشر أجهزة إنترنت الأشياء البيانات وتستلم الأوامر وتكتشف بعضها، ومع ذلك يتشتت المشهد — بروتوكولات المراسلة من جهة وبروتوكولات اكتشاف الخدمات من جهة أخرى — عبر معايير متنافسة بأوضاع أمنية متفاوتة. تنظّم هذه المراجعة بروتوكولات المراسلة (MQTT وCoAP وAMQP وXMPP وDDS وغيرها) وبروتوكولات الاكتشاف (mDNS/DNS-SD وSSDP/UPnP)، مقارِنةً نماذج الاتصال وجودة الخدمة والوضع الأمني.</p>
+    <p>ويتمثل اكتشافها الأمني المحوري في أن مستوى الاكتشاف غير محمي بالتصميم فعليًا: فـmDNS لا يقدم أي أمن مدمج، ويفصح عن معلومات تعريفية شخصية وحساسة شبكيًا في إعلانات نصية صريحة [66]، ولا يقبل سوى تخفيفات جزئية مثل تعطيل الخدمة، وحجب منفذ UDP رقم 5353 خارجيًا، والبث المتعدد المشفر الواعي بالخصوصية [67]، [68]، وطبقات مصادقة مخصصة [69]، [70]، [71]؛ وSSDP ضعيف بالمثل، ممكنًا هجمات حجب الخدمة الموزعة بالتضخيم/الانعكاس عبر UDP بمكاسب عالية، والتنصت السلبي، والتزوير. وتختم الورقة بمناقشة مقارنة توجه اختيار البروتوكولات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>لا يضاعف نمو إنترنت الأشياء النقاط الطرفية فحسب بل التفاعلات أيضًا: يجب على الأجهزة الإبلاغ عن القياس، وقبول أوامر التشغيل، واكتشاف الأقران والخدمات بأدنى إعداد. وتحدد الورقة نطاقها بطبقة التطبيق حيث تعيش هذه الدلالات، فاصلةً نقل الرسائل (كيف تنتقل البيانات بين نقاط معروفة) عن الاكتشاف (كيف تجد النقاط بعضها أصلًا).</p>
+    <p>وتؤسس أقسام الخلفية فرضية الأجهزة المقيدة — كيلوبايتات من الذاكرة، وميزانيات بطاريات، ووصلات متقطعة — وهو ما يفسر عجز بروتوكولات الويب السائدة وحدها عن خدمة الحافة وسبب وجود العائلات المتخصصة أدناه.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الخلفية</h2>
+    <p>يرث مكدس إنترنت الأشياء طبقات الإنترنت لكنه يشغلها في ظل ندرة شديدة: راديوهات بدورات عمل، وعقد نائمة، ووسطاء يكسرون افتراضات الطرف-للطرف. لذا توازن بروتوكولات التطبيق بين التعبيرية والبايتات المنقولة والحالة المحفوظة على الأجهزة وتحمل الاتصال المتقطع.</p>
+    <p>ويبرر هذا التأطير بنية المراجعة ثنائية المسار: تحلل الأقسام 3–4 المراسلة بين نقاط مرتبطة مسبقًا، بينما يحلل القسم 5 كيف يُبنى الارتباط نفسه عبر الاكتشاف بالبث المتعدد — وهي تاريخيًا الخطوة الأقل تأمينًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. مشهد بروتوكولات طبقة التطبيق</h2>
+    <p>ترسم المراجعة خريطة مشهد المراسلة على محور الوساطة مقابل المباشرة: تفصل تصاميم النشر والاشتراك عبر الوسيط (MQTT وAMQP ونكهات DDS) المنتجين عن المستهلكين لتوزيع قابل للتوسع، بينما تحافظ تصاميم الطلب والاستجابة (CoAP والمشتقة من HTTP ومقاطع XMPP) على قابلية العنونة وأنماط الحوار المألوفة من عالمي الويب والمراسلة.</p>
+    <p>وتشمل أبعاد الاختيار دلالات المواضيع والقوائم، ومستويات جودة الخدمة (التسليم على الأكثر/على الأقل/مرة واحدة تمامًا حيث تُعرض)، ومعالجة الجلسات والحالة المحتفظ بها، وكفاءة ترميز الحمولة، والحاسم في النشر — نضج تكامل المصادقة والتفويض وأمن النقل في كل منظومة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. بروتوكولات المراسلة بعمق</h2>
+    <p>تفصّل الورقة لكل عائلة مراسلة نموذج الاتصال والنقليات النموذجية والوضع الأمني: تقلل بروتوكولات القياس الخفيفة عبر الوسيط كلفة الرسالة للناشرين المقيدين؛ وتناسب التبادلات المقيدة بأسلوب REST الموارد القابلة للملاحظة والعقد النائمة؛ وتجلب قوائم مراسلة المؤسسات المعاملات ومفاتيح التوجيه وضمانات التسليم الدقيقة؛ وتدعم المراسلة القابلة للتوسع الموجهة بالحضور الاتحاد والحوار البشري؛ وتخدم الوسائط المرتكزة على البيانات نواقل الزمن الحقيقي عالية الإنتاجية.</p>
+    <p>والعبرة الأمنية المتكررة أن حماية النقل (ملفات TLS/DTLS) والتحكم في الوصول لدى الوسيط يحددان السلامة الواقعية أكثر بكثير من اختيار البروتوكول ذاته: فالنشر المؤمَّن جيدًا لبروتوكول بسيط يتفوق على النشر المهمل لبروتوكول غني المزايا، وهو درس تنتهكه بروتوكولات الاكتشاف في القسم التالي إذ لا تقدم أي خطافات حماية أصلًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. اكتشاف الخدمات: mDNS وSSDP</h2>
+    <p>يحل نظام DNS متعدد البث (mDNS/DNS-SD) الأسماء ويعلن الخدمات على الوصلة المحلية دون خوادم إعداد — لكنه لا يقدم أي أمن مدمج: فالحزم المشوهة أو المصوغة خبثًا قد تشن حجب الخدمة (مثل CVE-2015-0650)، بينما تسرب الإعلانات غير المشفرة بصورة معتادة معلومات تعريفية شخصية وحساسة خدميًا، كما ثبت في شبكة Wi-Fi جامعية بثت فيها معظم أجهزة mDNS الأسماء الحقيقية لمالكيها [66]. والتخفيفات الأساسية تشغيلية — تعطيل mDNS حيث لا حاجة إليه وحجب حركة منفذ UDP رقم 5353 من الخارج وإليه، إذ تكون خدمات الوصلة المحلية أحيانًا قابلة للوصول من الإنترنت — بينما تتطلب الضمانات الأقوى ملحقات بروتوكولية: استعلامات واستجابات موقعة للأصالة، وتشفير للسرية، وتصاميم بث متعدد مشفرة واعية بالخصوصية مع تقليل البث الأحادي للأجهزة الموثوقة [67]، [68]، وطبقات مصادقة متبادلة مخصصة [69]، [70]، [71].</p>
+    <p>ويوصل بروتوكول اكتشاف الخدمات البسيط (SSDP ضمن UPnP) الأجهزة بشبكات المنازل والشركات الصغيرة بشفافية وبخط الأساس الأمني المعدوم نفسه. وتهديده الأبرز هو حجب الخدمة الموزعة بالتضخيم/الانعكاس عبر UDP: يزوّر المهاجم طلب M-SEARCH بعنوان IP الضحية، فتغرق أجهزة SSDP المعرضة الهدف باستجابات عالية المكسب — ويزداد الأمر سوءًا عندما ترد الأجهزة من منافذ مصدرية عشوائية بدل المنفذ 1900، مما يصعّب الكشف — إلى جانب التنصت السلبي على النص الصريح وتزوير حركة الاكتشاف. وحكم الورقة صريح: كل من فرسي الاكتشاف يقايض الأمن براحة انعدام الإعداد، وتبقى التخفيفات طبقات مضافة لا ضمانات مدمجة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. المناقشة والاستنتاجات</h2>
+    <p>توازن المناقشة المقارنة بين المراسلة والاكتشاف: توفر عائلات المراسلة على الأقل نقاط تكامل TLS/DTLS والمصادقة والتفويض والمحاسبة التي يحدد استخدامها الصحيح النتائج، بينما لا تقدم عائلات الاكتشاف أي خطافات، فلا يجدي الاجتهاد نفسه حماية — وعلى المعماري بالتالي احتواء حركة الاكتشاف (التجزئة والترشيح والتعطيل) بدل الاعتماد على تأمينها.</p>
+    <p>وتخلص الورقة إلى أنه لا يوجد بروتوكول واحد لطبقة التطبيق يناسب كل إعدادات إنترنت الأشياء، وتوصي بمطابقة عائلات البروتوكولات مع أنماط التفاعل (القياس والأوامر والملاحظة والحضور والاكتشاف المحلي) في ظل افتراضات أمنية صريحة، وتدعو إلى تصاميم اكتشاف تدمج المصادقة والسرية والخصوصية منذ البداية بدل إلحاقها.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Application-layer protocols decide how IoT devices publish data, receive commands, and discover each other, yet the landscape — messaging protocols on one side, service-discovery protocols on the other — is fragmented across competing standards with uneven security. This review systematizes messaging protocols (MQTT, CoAP, AMQP, XMPP, DDS, and others) and discovery protocols (mDNS/DNS-SD and SSDP/UPnP), comparing communication models, QoS, and security postures.</p>
+    <p>Its central security finding is that the discovery plane is effectively unprotected by design: mDNS offers no built-in security, discloses personally identifying and network-sensitive information in cleartext announcements [66], and admits only partial mitigations such as disabling the service, blocking UDP port 5353 externally, privacy-aware encrypted multicast [67], [68], and dedicated authentication overlays [69], [70], [71]; SSDP is likewise weak, enabling UDP-based amplification/reflection DDoS with high gain, passive eavesdropping, and spoofing. The paper closes with a comparative discussion guiding protocol selection.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>IoT growth multiplies not only endpoints but interactions: devices must report telemetry, accept actuation commands, and find peers and services with minimal configuration. The paper scopes itself to the application layer where these semantics live, separating message transport (how data moves between known endpoints) from discovery (how endpoints find each other in the first place).</p>
+    <p>Background sections establish the constrained-device premise — kilobytes of memory, battery budgets, lossy links — which explains why mainstream web protocols alone cannot serve the edge and why the specialized families below exist.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Background</h2>
+    <p>The IoT stack inherits Internet layering but operates it under extreme scarcity: duty-cycled radios, sleeping nodes, and middleboxes that break end-to-end assumptions. Application protocols therefore trade expressiveness against bytes on the wire, state kept on devices, and tolerance for intermittent connectivity.</p>
+    <p>This framing motivates the review's two-track structure: Section 3–4 analyze messaging between already-associated endpoints, while Section 5 analyzes how association itself is bootstrapped through multicast discovery — the historically least secured step.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Application-Layer Protocol Landscape</h2>
+    <p>The review maps the messaging landscape along the brokered-versus-direct axis: brokered publish/subscribe designs (MQTT, AMQP, DDS flavors) decouple producers from consumers for scalable fan-out, while request/response designs (CoAP, HTTP-derived, XMPP stanzas) preserve addressability and dialogue patterns familiar from the web and messaging worlds.</p>
+    <p>Selection dimensions include topic and queue semantics, QoS levels (at-most/at-least/exactly-once where offered), session and retained-state handling, payload encoding efficiency, and — decisive for deployment — the maturity of authentication, authorization, and transport-security integration in each ecosystem.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Messaging Protocols in Depth</h2>
+    <p>For each messaging family the paper details the communication model, typical transports, and security posture: lightweight brokered telemetry protocols minimize per-message cost for constrained publishers; RESTful constrained exchanges suit observable resources and sleeping nodes; enterprise message queuing brings transactions, routing keys, and fine-grained delivery guarantees; presence-oriented extensible messaging supports federation and human-in-the-loop dialogue; data-centric middleware serves high-throughput real-time buses.</p>
+    <p>The recurring security moral is that transport protection (TLS/DTLS profiles) and broker-side access control decide real-world safety far more than protocol choice itself: a well-secured deployment of a simple protocol outperforms a careless deployment of a feature-rich one, a lesson the discovery protocols of the next section violate by offering no protection hooks at all.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Service Discovery: mDNS and SSDP</h2>
+    <p>Multicast DNS (mDNS/DNS-SD) resolves names and advertises services on the local link without configuration servers — but provides no built-in security: malformed or maliciously crafted packets can mount denial of service (e.g., CVE-2015-0650), while the multicast, unencrypted announcements routinely leak personally identifiable and service-sensitive information, as demonstrated on a campus Wi-Fi network where most mDNS devices broadcast their owners' real names [66]. Basic mitigations are operational — disable mDNS where unneeded and block UDP port 5353 traffic from and to the outside, since link-local services are sometimes reachable from the Internet — while stronger guarantees need protocol extensions: signed queries and responses for authenticity, encryption for confidentiality, privacy-aware encrypted-multicast designs with trusted-device unicast reduction [67], [68], and dedicated mutual-authentication overlays [69], [70], [71].</p>
+    <p>Simple Service Discovery Protocol (SSDP, inside UPnP) transparently plugs devices into home and small-business networks with the same none-at-all security baseline. Its headline threat is UDP amplification/reflection DDoS: an attacker forges an M-SEARCH request bearing the victim's spoofed IP, vulnerable SSDP devices flood the target with high-gain responses — worse when devices answer from random ephemeral source ports instead of port 1900, complicating detection — alongside passive plaintext eavesdropping and spoofing of discovery traffic. The paper's verdict is blunt: both discovery workhorses trade away security for zero-configuration convenience, and mitigations remain overlays rather than integrated guarantees.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Discussion and Conclusions</h2>
+    <p>The comparative discussion weighs messaging against discovery: messaging families at least offer TLS/DTLS and AAA integration points whose correct use decides outcomes, whereas discovery families offer no hooks, so identical diligence yields no protection — the architect must therefore contain discovery traffic (segmentation, filtering, disabling) rather than rely on securing it.</p>
+    <p>The paper concludes that no single application-layer protocol fits all IoT settings, recommends matching protocol families to interaction patterns (telemetry, command, observation, presence, local discovery) under explicit security assumptions, and calls for discovery designs that integrate authentication, confidentiality, and privacy from the start instead of as overlays.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">References below are condensed; numbering matches the original paper. See the full reference list in the original publication via the DOI link above.</p>
+    <ol dir="ltr">
+      <li>Könings, B. et al. Privacy leakage in mDNS announcements on a campus Wi-Fi network: real-name disclosures. See original paper for full citation.</li>
+      <li>Kaiser, D.; Waldvogel, M. Privacy-aware encrypted multicast for mDNS (I). See original paper for full citation.</li>
+      <li>Kaiser, D.; Waldvogel, M. Privacy-aware encrypted multicast for mDNS (II). See original paper for full citation.</li>
+      <li>Robust authentication proposals for mDNS (I). See original paper for full citation.</li>
+      <li>Robust authentication proposals for mDNS (II). See original paper for full citation.</li>
+      <li>Wu, T. et al. Private mutual authentication and service discovery deployable over mDNS. See original paper for full citation.</li>
+          <li>... [full reference list available in original paper]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/fi12030055">10.3390/fi12030055</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

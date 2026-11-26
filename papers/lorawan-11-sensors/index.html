@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تحليل آليات الأمن في بروتوكولي LoRaWAN 1.0 و1.1 — DAR</title>
+<meta name="description" content="Analysis of LoRaWAN 1.0 and 1.1 Protocols Security Mechanisms — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/lorawan-11-sensors/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Analysis of LoRaWAN 1.0 and 1.1 Protocols Security Mechanisms</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تحليل آليات الأمن في بروتوكولي LoRaWAN 1.0 و1.1</h2>
+
+  <div class="paper-meta">
+    <span>👤 Slim Loukil, Lamia Chaari Fourati, Anand Nayyar, K.-W.-A. Chee</span>
+    <span>📄 Sensors, 2022 · Vol. 22(10), 3717</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s22103717">10.3390/s22103717</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>LoRaWAN التي قدمها تحالف LoRa عام 2015 تقايض معدل البيانات بالمدى الطويل والطاقة المنخفضة والتغطية الواسعة [3]. ويجب أن تتعايش مقترحات المواصفات المتعاقبة التي تعالج المعمارية والأمن، مما يخلق مشكلات توافق تهدد استدامة التقنية.</p>
+    <p>تفصّل هذه الورقة مواصفتي v1.0 وv1.1 عبر سيناريوهين متجانسين (جهاز طرفي وخادم شبكة كلاهما على v1.0؛ وكلاهما على v1.1)، موضحةً كيف تُولَّد مفاتيح أمن الجلسات وكيف تُضمن سلامة الرسائل وسريتها. ثم تعرض سيناريوهين غير متجانسين (جهاز v1.1 مع خادم v1.0 والعكس)، وتُبرز مخاوف التوافق الناتجة، وتختم باتجاهات بحثية في قابلية التوسع والطاقة والأمن [52,53,57].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">المقدمة: المدن الذكية تحتاج شبكات LPWAN</h2>
+    <p>تعتمد أنظمة المدن الذكية للمباني والمواقف والبيئة والصحة والتنقل والقياس على اتصال إنترنت الأشياء، مع شبكات LPWAN كممكّن رئيسي بين الخيارات قصيرة وبعيدة المدى [1,2,8,9,10,11]. وتجعل المعمارية المستقلة والمواصفات المفتوحة لـ LoRaWAN مرشحًا قويًا، لكن تعايش الإصدارات إلزامي.</p>
+    <p>وتتمثل مساهمة الورقة في تحليل أمني مدفوع بالسيناريوهات: التشغيل المتجانس لـ v1.0 وv1.1 أولًا، ثم التشغيلان البينيان المختلطا الإصدار اللذان لا مفر منهما في التطبيقات الواقعية، مع فحص كل منهما لاشتقاق المفاتيح والسرية والسلامة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">خلفية LoRaWAN</h2>
+    <p>تربط الشبكة واسعة النطاق منخفضة الطاقة أجهزة منخفضة الطاقة واسعة الانتشار؛ وLoRa التي طورتها Semtech عام 2014 إحدى هذه الشبكات المبنية على تضمين الطيف المنتشر بالزقزقة (CSS) المعروف باستهلاكه المنخفض للطاقة [15,16,17,18]. ويوفر بروتوكول LoRaWAN لطبقة MAC من تحالف LoRa اتصالًا ثنائي الاتجاه آمنًا من الطرف للطرف ومتنقلًا ومحدد الموقع عبر راديو LoRa [19,20,22,23].</p>
+    <p>ويجمع تحالف LoRa غير الربحي مشغلي الاتصالات ومصنعي المعدات والمدمجين وبائعي الحساسات والباحثين حول إنترنت الأشياء وLoRa. لكن لـ LoRaWAN حدودًا: قيود دورة العمل وقابلية التوسع، وعوامل انتشار وعروض نطاق محدودة، وتقييمات متمحورة حول الصنف A تهمل الصنفين B وC — مع مجالات مرشحة من المنازل الذكية والقياس إلى الرعاية الصحية والزراعة [25,27,31].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">المعماريتان: v1.0.x مقابل v1.1</h2>
+    <p>تنظم LoRaWAN v1.0.x (من v1.0 إلى v1.0.3) الأجهزة الطرفية والبوابات وخادم شبكة واحدًا وخادم تطبيقات في طوبولوجيا النجمة المتعددة، ويرتبط خادم الشبكة بالبوابات عبر وصلات IP آمنة [19,20,21,22]. وتجمع الحمولات الفيزيائية (PHYPayload) ترويسة MAC (نوع الرسالة والإصدار الرئيسي) وترويسة إطار وحمولة مشفرة مع رموز سلامة الرسائل.</p>
+    <p>ويقسّم الإصدار 1.1 خادم الشبكة إلى خادم منزلي (hNS) وخادم خادم (sNS) وخادم مُحوِّل (fNS) لتمكين التجوال بين المشغلين [23]. ويضيف نوع رسالة سابعًا هو طلب إعادة الانضمام (الأنواع 0 و1 و2) المستخدم للتجوال ولتغيير مفاتيح أمن الجلسات أو استعادتها — وهو الجذر البنيوي لمعظم أسئلة التوافق.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">الأعمال ذات الصلة</h2>
+    <p>تضع النظرات التصنيفية لإنترنت الأشياء الصناعي معظم التطبيقات في طبقات الحافة والمنصة والمؤسسة بمعايير من اتحادي الإنترنت الصناعي وOpenFog [34]. وتشرّح دراسات مركزة على LoRaWAN إجراءات الانضمام وإدارة المفاتيح ونقاط ضعف v1.0 المعروفة، مبررةً إعادة تصميم v1.1 [35,38,40,41,42].</p>
+    <p>وتغطي مسوحات مكمّلة أمن بلوتوث وRFID وإنترنت الأشياء المجاور لـ 6G [4,5,6,7]، بينما تؤطر دراسات الأداء والتعايش [12,14,43,44,45,46] مشكلة التوافق التي تعالجها هذه الورقة مباشرة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">السيناريوهان المتجانسان</h2>
+    <p>السيناريو 1 (جهاز v1.0 وخادم v1.0): يُبنى سياق أمن OTAA من DevEUI وAppEUI وAppKey المخزنة بأمان؛ ويشتق الانضمام NwkSKey وAppSKey بطول 16 بايت وDevAddr وعدادات الإطارات، بينما يثبّتها التفعيل ABP [49]. وتُشفَّر حقول قبول الانضمام (AppNonce وNetID وDevAddr وإعدادات DLSettings وRxDelay وCFList) تحت AppKey، وتحمل كل رسالة MIC بطول 4 بايت محسوبًا بـ aes128_cmac بمفاتيح مختلفة حسب نوع الرسالة [50].</p>
+    <p>السيناريو 2 (جهاز v1.1 وخادم v1.1): تخزن الأجهزة أيضًا JoinEUI وNwkKey وعدادات تتبع JoinNonce (DevNonce وLast_JoinNonce وRJcount0/1)؛ ويشتق خادم الانضمام أربعة مفاتيح جلسات (AppSKey وFNwkSIntKey وSNwkSIntKey وNwkSEncKey) [51]. وتبقى طلبات الانضمام/إعادة الانضمام نصًا صريحًا؛ وتُشفَّر حقول قبول الانضمام (JoinNonce وHome_NetID وDevAddr والإعدادات) بمفاتيح حسب الطلب المُطلِق، ويستخدم حساب MIC مفتاح NwkKey لطلبات الانضمام مع اختيار المفتاح حسب الرسالة فيما عداها.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">السيناريوهان غير المتجانسين</h2>
+    <p>السيناريو 3 (جهاز v1.1 وخادم v1.0): يجب على جهاز v1.1 التراجع إلى سلوك v1.0 — عدادان بدل ثلاثة، ومفتاح جذر واحد (NwkKey على الجهاز يساوي AppKey على الخادم)، ومفتاحا جلستين — ويجب ألا يستخدم طلب إعادة الانضمام الذي لا تعرفه خوادم v1.0 [23]. وتظهر فجوات التراجع: فأمرا ABP من نوع ResetInd/ResetConf لا نظير لهما في v1.0، ويصبح تشفير قبول الانضمام OTA غير متماثل (AppKey على الخادم وNwkKey على الجهاز).</p>
+    <p>السيناريو 4 (جهاز v1.0 وخادم v1.1): تتراجع الواجهة الخلفية (خادم الشبكة وخادم الانضمام وخادم التطبيقات) بدلًا من ذلك؛ فيشتق خادم الانضمام مفاتيح جلسات بأسلوب v1.0 من AppKey مع قيام JoinNonce مقام AppNonce، وتُصفَّر عدادات الإطارات بعد كل إعادة ضبط كما تتطلب أجهزة v1.0 — وهو سلوك لا تذكره مواصفة v1.1 [23,51]. ويجب تخطي تشفير FOpts لافتقار أجهزة v1.0 لتلك الخوارزمية، ويعود التعامل مع MIC إلى السيناريو 1.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">التجميع والاتجاهات البحثية والخاتمة</h2>
+    <p>توحّد جداول المقارنة السيناريوهات الأربعة عبر مفاتيح الجذر والمفاتيح الدائمة والمعرفات والأرقام العشوائية وعناوين الأجهزة وعدادات الإطارات ومفاتيح التشفير/التوقيع لكل رسالة. وتبقى تحديات مفتوحة: قابلية التوسع تحت حمل الإقرارات، وحدود دورة العمل تحت الجيجاهرتز، وقيود الطوبولوجيا النجمية أحادية القفزة، وخيارات عوامل الانتشار وعروض النطاق القليلة [52]؛ واستهلاك الطاقة المتركز في دراسات الصنف A مع قلة استكشاف حصاد الطاقة [53,55,56,57].</p>
+    <p>والأمن نفسه بوابة الاعتماد: فرغم حدود الموارد تضمّن المواصفات آليات متطورة، لكن التطبيقات مختلطة الإصدار ترث ضمانات الطرف الأضعف. وتخلص الورقة إلى الحاجة لإدارة مفاتيح واعية بالإصدار وقواعد تراجع صريحة (خاصة معالجة العدادات وFOpts/MIC) ومواصلة العمل على قابلية التوسع والطاقة والأمن لاستدامة LoRaWAN.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>LoRaWAN, introduced by the LoRa Alliance in 2015, trades data rate for long range, low power and wide-area coverage [3]. Successive specification proposals addressing architecture and security must coexist, creating compatibility issues that threaten the technology's sustainability.</p>
+    <p>This paper details the v1.0 and v1.1 specifications through two homogeneous scenarios (end-device and network server both on v1.0; both on v1.1), showing how session security keys are generated and how message integrity and confidentiality hold. It then presents two heterogeneous scenarios (v1.1 device with v1.0 server and vice versa), highlights the resulting compatibility concerns, and closes with scalability, power and security research directions [52,53,57].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Introduction: Smart Cities Need LPWAN</h2>
+    <p>Smart-city systems for buildings, parking, environment, health, mobility and metering rest on Internet-of-Things connectivity, with LPWAN as a flagship enabler among short- and long-range options [1,2,8,9,10,11]. LoRaWAN's autonomous architecture and open specifications make it a strong candidate, but coexistence of versions is mandatory.</p>
+    <p>The paper's contribution is a scenario-driven security analysis: homogeneous v1.0 and v1.1 operation first, then the two mixed-version interoperations that real deployments cannot avoid, each examined for key derivation, confidentiality and integrity.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">LoRaWAN Background</h2>
+    <p>A low-power wide-area network interconnects large-area low-power devices; LoRa, developed by Semtech in 2014, is one such network based on chirp spread spectrum (CSS) modulation known for low power consumption [15,16,17,18]. The LoRaWAN MAC-layer protocol from the LoRa Alliance provides bidirectional, end-to-end-secure, mobile, localized communication over LoRa radio [19,20,22,23].</p>
+    <p>The non-profit LoRa Alliance gathers telecom operators, equipment makers, integrators, sensor vendors and researchers around IoT and LoRa. Yet LoRaWAN has limits: duty-cycle and scalability constraints, sparse spreading factors and bandwidths, and class-A-centric evaluations that neglect classes B and C — with candidate IoT domains from smart homes and metering to healthcare and agriculture [25,27,31].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Architectures: v1.0.x vs v1.1</h2>
+    <p>LoRaWAN v1.0.x (v1.0 through v1.0.3) organizes end devices (ED), gateways (GW), one network server (NS) and an application server (AS) in a star-of-stars topology, the NS joining GWs over secured IP links [19,20,21,22]. Physical payloads (PHYPayload) combine a MAC header (message type, major version), frame header and encrypted payload with message integrity codes.</p>
+    <p>Version 1.1 splits the NS into home (hNS), serving (sNS) and forwarding (fNS) servers to enable roaming between operators [23]. It adds a seventh message type, rejoin-request (types 0, 1, 2), used for roaming and for changing or restoring security session keys — the structural root of most compatibility questions.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Related Works</h2>
+    <p>Taxonomic IIoT overviews place most IoT deployments in edge/platform/enterprise tiers with standards from the Industrial Internet and OpenFog consortia [34]. LoRaWAN-focused studies dissect join procedures, key management and known v1.0 weaknesses, motivating the v1.1 redesign [35,38,40,41,42].</p>
+    <p>Complementary surveys cover Bluetooth, RFID and 6G-adjacent IoT security [4,5,6,7], while LPWAN performance and coexistence studies [12,14,43,44,45,46] frame the compatibility problem this paper tackles head-on.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Homogeneous Scenarios: v1.0–v1.0 and v1.1–v1.1</h2>
+    <p>Scenario 1 (ED v1.0, NS v1.0): the OTAA security context is built from securely stored DevEUI/AppEUI/AppKey; the join derives 16-byte NwkSKey/AppSKey, DevAddr and frame counters, while ABP hard-codes them [49]. Join-accept fields (AppNonce, NetID, DevAddr, DLSettings, RxDelay, CFList) travel encrypted under AppKey, and every message carries a 4-byte MIC computed with aes128_cmac, keyed differently per message type [50].</p>
+    <p>Scenario 2 (ED v1.1, NS v1.1): devices additionally store JoinEUI, NwkKey, JoinNonce-tracking counters (DevNonce, Last_JoinNonce, RJcount0/1); the join server derives four session keys (AppSKey, FNwkSIntKey, SNwkSIntKey, NwkSEncKey) [51]. Join/rejoin requests stay plaintext; join-accept fields (JoinNonce, Home_NetID, DevAddr and settings) are encrypted with keys depending on the triggering request, and MIC computation uses NwkKey for join-requests with per-message key selection otherwise.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Heterogeneous Scenarios: Mixed Versions</h2>
+    <p>Scenario 3 (ED v1.1, NS v1.0): the v1.1 device must fall back to v1.0 behavior — two counters instead of three, one root key (NwkKey on the device equalling AppKey on the server), two session keys — and must not use rejoin-request, unrecognized by v1.0 servers [23]. Fallback gaps appear: ABP ResetInd/ResetConf MAC commands have no v1.0 counterpart, and OTA join-accept encryption becomes asymmetric (AppKey server-side, NwkKey device-side).</p>
+    <p>Scenario 4 (ED v1.0, NS v1.1): the backend (NS, join server, AS) falls back instead; the join server derives v1.0-style session keys from AppKey with JoinNonce standing in for AppNonce, and frame counters reset to zero after each reset as v1.0 devices require — behavior the v1.1 specification leaves unstated [23,51]. FOpts encryption must be skipped, since v1.0 devices lack that algorithm, and MIC handling reverts to scenario 1.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Synthesis, Research Directions and Conclusions</h2>
+    <p>Comparison tables consolidate the four scenarios across root keys, lifetime keys, identifiers, nonces, device addresses, frame counters and per-message ciphering/signing keys. Open challenges remain: scalability under ACK load, sub-GHz duty-cycle limits, star-topology single-hop constraints and few spreading-factor/bandwidth options [52]; power consumption concentrated in Class-A studies with energy harvesting underexplored [53,55,56,57].</p>
+    <p>Security itself gates adoption: despite resource limits, the specifications embed evolving mechanisms, yet mixed-version deployments inherit the weakest peer's guarantees. The paper concludes that version-aware key management, explicit fallback rules (notably counter handling and FOpts/MIC treatment), and continued work on scalability, power and security are needed to sustain LoRaWAN.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed reference list: only works cited in this viewer are shown, with their original numbering. See the full reference list in the original paper.</p>
+    <ol dir="ltr">
+      <li>[1] Ericsson Mobility Report: IoT Connections Outlook. Available online: https://www.ericsson.com/en/reports-and-papers/ mobility-report/dataforecasts/iot-connections-outlook (accessed on 15 August 2021).</li>
+      <li>[2] Akyildiz, I.; Kak, A.; Nie, S. 6G and Beyond: The Future of Wireless Communications Systems.IEEE Access 2020, 8, 133995–134030. [CrossRef]</li>
+      <li>[3] LoRaWAN Speciﬁcations. Available online: https://lora-alliance.org/about-lorawan/ (accessed on 10 August 2021).</li>
+      <li>[4] Lonzetta, A.M.; Cope, P .; Campbell, J.; Mohd, B.J.; Hayajneh, T. Security vulnerabilities in Bluetooth technology as used in IoT.J. Sens. Actuator Netw. 2018, 7, 28. [CrossRef]</li>
+      <li>[5] Raza, S.; Misra, P .; He, Z.; Voigt, T. Bluetooth smart: An enabling technology for the Internet of Things. In Proceedings of the 2015 IEEE 11th International Conference on Wireless and Mobile Computing, Networking and Communications (WiMob), Abu Dhabi, United Arab Emirates, 19–21 October 2015; pp. 155–162.</li>
+      <li>[6] Aggarwal, R.; Das, M. RFID security in the context of “internet of things”. In Proceedings of the First International Conference on Security of Internet of Things, Kerala, India, 17–19 August 2012; pp. 51–56.</li>
+      <li>[7] Khoo, B. RFID as an Enabler of the Internet of Things: Issues of Security and Privacy. In Proceedings of the 2011 International Conference on Internet of Things and 4th International Conference on Cyber, Physical and Social Computing, Dalian, China, 19–22 October 2011; pp. 709–712.</li>
+      <li>[8] Ramya, C.M.; Shanmugaraj, M.; Prabakaran, R. Study on ZigBee technology. In Proceedings of the 2011 3rd International Conference on Electronics Computer Technology, Kanyakumari, India, 8–10 April 2011; pp. 297–301.</li>
+      <li>[9] Sruthy, S.; George, S.N. WiFi enabled home security surveillance system using Raspberry Pi and IoT module. In Proceedings of the 2017 IEEE International Conference on Signal Processing, Informatics, Communication and Energy Systems (SPICES), Kollam, India, 8–10 August 2017; pp. 1–6.</li>
+      <li>[10] Nair, K.K.; Abu-Mahfouz, A.M.; Lefophane, S. Analysis of the narrow band internet of things (NB-IoT) technology. In Proceedings of the 2019 Conference on Information Communications Technology and Society (ICTAS), Durban, South Africa, 6–8 March 2019; pp. 1–6.</li>
+      <li>[11] Pitu, F.; Gaitan, N.C. Surveillance of SigFox technology integrated with environmental monitoring. In Proceedings of the 2020 International Conference on Development and Application Systems (DAS), Suceava, Romania, 21–23 May 2020; pp. 69–72.</li>
+      <li>[12] Naoui, S.; Elhdhili, M.E.; Saidane, L.A. Novel enhanced LoRaWAN framework for smart home remote control security.Wirel. Pers. Commun. 2020, 110, 2109–2130. [CrossRef]</li>
+      <li>[14] Butun, I.; Pereira, N.; Gidlund, M. Security risk analysis of LoRaWAN and future directions.</li>
+      <li>[15] Seller, O.B.; Sornin, N. Low Power Long Range Transmitter. U.S. Patent No. 9,252,834, 2 February 2016.</li>
+      <li>[16] Sforza, F. Communications System. U.S. Patent No. 8,406,275, 26 March 2013.</li>
+      <li>[17] Augustin, A.; Yi, J.; Clausen, T.; Townsley, W.M. A study of LoRa: Long range &amp; low power networks for the internet of things.</li>
+      <li>[18] LoRa Alliance Technical Committee. RP002-1.0.3 LoRaWAN Regional Parameters; Tech. rep. Version: RP002-1.0.3; LoRa Alliance Technical Committee: Fremont, CA, USA, 2021.</li>
+      <li>[19] LoRa Alliance Technical Committee. LoRaWAN Speciﬁcation; Tech. rep. Version 1.0; LoRa Alliance Technical Committee: Fremont, CA, USA, 2015.</li>
+      <li>[20] LoRa Alliance Technical Committee. LoRaWAN Speciﬁcation; Tech. rep. Version 1.0.1; LoRa Alliance Technical Committee: Fremont, CA, USA, 2016.</li>
+      <li>[21] LoRa Alliance Technical Committee. LoRaWAN Speciﬁcation; Tech. rep. Version 1.0.2; LoRa Alliance Technical Committee: Fremont, CA, USA, 2016.</li>
+      <li>[22] LoRa Alliance Technical Committee. LoRaWAN Speciﬁcation; Tech. rep. Version 1.0.3; LoRa Alliance Technical Committee: Fremont, CA, USA, 2018.</li>
+      <li>[23] LoRa Alliance Technical Committee. LoRaWAN Speciﬁcation; Tech. rep. Version 1.1; LoRa Alliance Technical Committee: Fremont, CA, USA, 2017.</li>
+      <li>[25] Noura, H.; Hatoum, T.; Salman, O.; Yaacoub, J.P .; Chehab, A. LoRaWAN security survey: Issues, threats and possible mitigation techniques. Internet Things 2020, 12, 100303. [CrossRef]</li>
+      <li>[27] Bankov, D.; Khorov, E.; Lyakhov, A. On the limits of LoRaWAN channel access. In Proceedings of the 2016 International Conference on Engineering and Telecommunication (EnT), Moscow, Russia, 29–30 November 2016; pp. 10–14.</li>
+      <li>[31] Van Es, E.; Vranken, H.; Hommersom, A. Denial-of-service attacks on LoRaWAN. In Proceedings of the 13th International Conference on Availability, Reliability and Security, Hamburg, Germany, 27–30 August 2018; pp. 1–6.</li>
+      <li>[34] Gebremichael, T.; Ledwaba, L.P .; Eldefrawy, M.H.; Hancke, G.P .; Pereira, N.; Gidlund, M.; Akerberg, J. Security and privacy in the industrial internet of things: Current standards and future challenges. IEEE Access 2020, 8, 152351–152366. [CrossRef]</li>
+      <li>[35] Sundaram, J.P .S.; Du, W.; Zhao, Z. A survey on lora networking: Research problems, current solutions, and open issues.IEEE Commun. Surv. Tutor. 2019, 22, 371–388. [CrossRef]</li>
+      <li>[38] Kuntke, F.; Romanenko, V .; Linsner, S.; Steinbrink, E.; Reuter, C. LoRaWAN security issues and mitigation options by the example of agricultural IoT scenarios. Trans. Emerg. Telecommun. Technol. 2022, e4452. [CrossRef]</li>
+      <li>[40] Hessel, F. LoRaWAN Security Analysis: An Experimental Evaluation of Attacks. Master’s Thesis, Technische Universität Darmstadt, Darmstadt, Germany, 2021.</li>
+      <li>[41] Claverie, T.; Esteves, J.L. A LoRaWAN Security Assessment Test Bench. In Proceedings of the GNU Radio Conference, Charlotte, NC, USA, 20–24 September 2021; Volume 2.</li>
+      <li>[42] 102 024-3 v4. 1.1 ; Telecommunications and Internet Protocol Harmonization over Networks (TIPHON) Release 4; Protocol Framework Deﬁnition; Methods and Protocols for Security; part 1: Threat Analysis. Technical Speciﬁcation. European Telecom- munications Standards Institute: Cedex, France, 2003.</li>
+      <li>[43] Butun, I.; Pereira, N.; Gidlund, M. Analysis of LoRaWAN v1.1 security. In Proceedings of the 4th ACM MobiHoc Workshop on Experiences with the Design and Implementation of Smart Objects, Los Angeles, CA, USA, 25 June 2018; pp. 1–6.</li>
+      <li>[44] Haxhibeqiri, J.; De Poorter, E.; Moerman, I.; Hoebeke, J. A survey of LoRaWAN for IoT: From technology to application.Sensors 2018, 18, 3995. [CrossRef]</li>
+      <li>[45] Yang, X.; Karampatzakis, E.; Doerr, C.; Kuipers, F. Security vulnerabilities in LoRaWAN. In Proceedings of the 2018 IEEE/ACM Third International Conference on Internet-of-Things Design and Implementation (IoTDI), Orlando, FL, USA, 17–20 April 2018; pp. 129–140.</li>
+      <li>[46] Jalowiczor, J.; Rozhon, J.; Voznak, M. Study of the Efﬁciency of Fog Computing in an Optimized LoRaWAN Cloud Architecture.</li>
+      <li>[49] IEEE Std. 802; IEEE Standard for Local and Metropolitan Area Networks—Part 15.4: Low-Rate Wireless Personal area Networks (LR-WPANS). IEEE: New York, NY, USA, 2011; pp. 4–2011.</li>
+      <li>[50] Song, J.; Poovendran, R.; Lee, J.; Iwata, T. The Aes-cmac Algorithm. RFC 4493, June 2006. Available online: https://datatracker. ietf.org/doc/html/rfc4493 (accessed on 23 March 2022).</li>
+      <li>[51] Sornin, N.; Yegin, A. LoRaWAN Backend Interfaces 1.0 Speciﬁcation. Lora Alliance Standard Speciﬁcation. 2017. Available online: https://lora-alliance.org/wp-content/uploads/2020/11/lorawantm-backend-interfaces-v1.0.pdf (accessed on 23 March 2022).</li>
+      <li>[52] Jouhari, M.; Amhoud, E.M.; Saeed, N.; Alouini, M.S. A Survey on Scalable LoRaWAN for Massive IoT: Recent Advances, Potentials, and Challenges. arXiv 2022, arXiv:2202.11082.</li>
+      <li>[53] Almuhaya, M.A.; Jabbar, W.A.; Sulaiman, N.; Abdulmalek, S. A Survey on LoRaWAN Technology: Recent Trends, Opportunities, Simulation Tools and Future Directions.</li>
+      <li>[55] El Rachkidy, N.; Guitton, A.; Kaneko, M. Collision resolution protocol for delay and energy efﬁcient LoRa networks. IEEE Trans. Green Commun. Netw. 2019, 3, 535–551. [CrossRef]</li>
+      <li>[56] Abdelfadeel, K.Q.; Zorbas, D.; Cionca, V .; Pesch, D. $ free $—Fine-grained scheduling for reliable and energy-efﬁcient data collection in lorawan. IEEE Internet Things J. 2019, 7, 669–683. [CrossRef]</li>
+      <li>[57] Delgado, C.; Sanz, J.M.; Blondia, C.; Famaey, J. Batteryless LoRaWAN communications using energy harvesting: Modeling and characterization. IEEE Internet Things J. 2020, 8, 2694–2711. [CrossRef]</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s22103717">10.3390/s22103717</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

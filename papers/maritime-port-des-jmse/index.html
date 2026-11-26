@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسح وتوجهات مستقبلية للأمن السيبراني في القطاعين البحري والموانئ: منظور أنظمة الأحداث المتقطعة — DAR</title>
+<meta name="description" content="Survey and Future Trends for Cybersecurity in Maritime and Port Sectors: A Discrete Event Systems Perspective — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/maritime-port-des-jmse/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Survey and Future Trends for Cybersecurity in Maritime and Port Sectors: A Discrete Event Systems Perspective</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مسح وتوجهات مستقبلية للأمن السيبراني في القطاعين البحري والموانئ: منظور أنظمة الأحداث المتقطعة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Gaiyun Liu, Omar Amri, Ye Liang, Ziliang Zhang, Pedro Merino Laso, Cyrille Bertelle, Alexandre Berred, Dimitri Lefebvre</span>
+    <span>📄 Mathematics, 2025 · Vol. 13, 3650</span>
+    <span>🔗 <a href="https://doi.org/10.3390/math13223650">10.3390/math13223650</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>مع تطور تكنولوجيا المعلومات وانتشار تطبيقها، أصبح الأمن السيبراني محور اهتمام جميع القطاعات الصناعية، والقطاع البحري — بتهديداته الفيزيائية والسيبرانية — ليس استثناءً. إذ يتعامل النقل البحري مع أكثر من 80% من حجم التجارة العالمية [1]، لذا فإن تحوله الرقمي عبر الشحن الذكي [3] والموانئ المؤتمتة [4] والبلوك تشين [5] يحسّن الكفاءة كثيرًا مع إدخال ثغرات عبر طبقات التقنية التشغيلية وتقنية المعلومات. يبرز هذا المسح أولًا، من منظوري هندسة الأنظمة وتكنولوجيا المعلومات، البنى المحددة للأنظمة على متن السفن وفي الموانئ ومعدات الاتصال بينها [3]، [38]–[40].</p>
+    <p>ثم تُوصف الهجمات السيبرانية في المجالين البحري والموانئ وعواقبها من زوايا متعددة، مع الإبلاغ عن حالات واقعية [54]، إلى جانب التقنيات الحالية لتحليل الثغرات وكشف الهجمات والحماية الأمنية [41]، [58]، [59]. وتتمثل المساهمة الجوهرية في منظور أنظمة الأحداث المتقطعة (DES): إذ تُنمذج أنظمة إدارة حركة السفن والرادار والمركبات الموجهة آليًا في الموانئ كأتمتة أو شبكات بتري [35]، [119]، [120]، وتُقترح طرق التحليل والكشف والإنفاذ القائمة على DES — المقاييس الأمنية [100]–[104] ونماذج ماركوف والتحكم الإشرافي [132]–[134] — لإظهار إمكانات DES في هذا المجال.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يُعد النقل البحري عاملًا حاسمًا في الاقتصاد العالمي، إذ يتعامل مع أكثر من 80% من حجم التجارة العالمية وفق تقرير الأونكتاد لاستعراض النقل البحري 2024 [1]. ويجلب الابتكار والرقمنة — من إنترنت السفن [3] إلى أطر مرونة الموانئ [4] — فرصًا إلى جانب مخاطر سيبرانية متصاعدة، وهو توتر وثّقته مراجعات منهجية حديثة [27]، [39]، [56]–[60]، [63]، [64]. وتُظهر الحوادث الواقعية، بما فيها برامج الفدية والهجمات المتمحورة حول الموانئ المستطلعة في [54]، أن الأنظمة على متن السفن وبنى الموانئ أهداف ممكنة [9]، [10]، [16].</p>
+    <p>وقد كُيّفت أطر قائمة مثل MITRE ATT&CK وD3FEND مع الأمن السيبراني البحري [7]، وتشدد دراسات متمحورة حول الطاقم على البعد البشري والتنظيمي [6]، [20]، [21]. ويتميز هذا المسح بتبني وجهة نظر DES طوال الوقت: فبعد استدعاء مفاهيم الهجمات وأدواتها، ينمذج أنظمة بحرية تمثيلية كنماذج حدثية ويستخلص تقنيات التحليل والإنفاذ من نظرية DES، ويختم بمشكلات مفتوحة مثل توافر البيانات [135]–[138].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. بنى الأنظمة على متن السفن وفي الموانئ</h2>
+    <p>يُعد فهم بنى الاتصال بين السفن، وبين السفن والموانئ، وبين الموانئ شرطًا مسبقًا لتحديد المخاطر وتصميم الدفاعات [3]، [38]–[40]. وترتكز البنية التحتية البحرية على منصتين: أنظمة على متن السفن (الملاحة المتكاملة، والتحكم في الدفع، والوصلات الساتلية) التي شُكك في جاهزيتها السيبرانية [10]، [11]، وأنظمة الموانئ (أنظمة تشغيل المحطات، وتتبع الحاويات، وأنظمة مجتمع الميناء) التي حُدد أمنها مبكرًا كشاغل بنيوي [16]، [17]. ويجعلهما ترابطهما عرضة معًا [13]–[15].</p>
+    <p>وتتقارب منظورات البنية التحتية الحرجة للقطاع البحري [11] ومسوح أمن الموانئ [19]، [59]، [66] على الدرس نفسه: فالتحكم والرصد الآني في محطات الحاويات [8] وبيئات الموانئ المعقدة متعددة الفاعلين [18] تتطلب نماذج صورية للاتصال والتشغيل قبل أن تُهندس حماية موثوقة — وهو الدور النمذجي الذي تملؤه DES لاحقًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. الهجمات السيبرانية في المجالين البحري والموانئ</h2>
+    <p>تتخذ الهجمات أشكالًا عديدة — انتحال نظام AIS والعبث به [41]–[51]، والتلاعب بالرادار والحساسات [49]، وبرامج الفدية واختراق البريد التجاري لعمليات الشحن، والتسلل عبر سلسلة التوريد — ويستهدف كل منها طبقات مختلفة من العمليات والاتصالات والبنية التحتية. ويستدعي المسح المفاهيم الأساسية (الحوادث والثغرات والفاعلين) بالرجوع إلى إرشادات BIMCO على متن السفن، ثم يجدول أنواع الهجمات مع حالات واقعية سابقة مقابلة، مشيرًا إلى أن هذه الأحداث ليست سوى رأس جبل الجليد [54]. وتؤكد التحليلات المتمحورة حول الموانئ [18]، [19] ومراجعات الجدارة السيبرانية [55] اتساع التعرض.</p>
+    <p>وعلى صعيد التقنيات، يستعرض المسح تحليل الثغرات (التحليل القائم على الرسوم [28]، وأشجار الهجمات [84]، ورسوم الهجمات [75]، [80]، [81])، ومناهج الكشف بما فيها كشف شذوذ AIS [118] وقابلية التشخيص تحت الهجوم [29]، [98]، [99]، وخطوط الحماية الأساسية من إرشادات المخاطر السيبرانية للتقنية التشغيلية على السفن [22] إلى دراسات السياسات الوطنية [53]. ويمهد ذلك لجوهر DES: النمذجة الصارمة على مستوى الأحداث لكيفية تطور الهجمات داخل الأنظمة البحرية واحتوائها.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. نماذج DES للأنظمة البحرية والموانئ</h2>
+    <p>تُنُمذج ثلاثة أنظمة تمثيلية. فيُعالج نظام إدارة حركة السفن (VTMS) المساند لخدمة الحركة في الحالة أحادية السفينة: فيصبح الرصد وتنسيق الرسو/المغادرة وتسلسل الوصول/الإقلاع حالاتٍ وأحداثًا في أتمتة، بالبناء على التخليق الإشرافي بشبكات بتري لسيناريوهات VTS مثل حادثة دوفر [35]. ويُصاغ نظام الرادار بدوره كمراقب حدثي يمكن إفساد قراءاته، مما يستدعي كشفًا متحققًا صوريًا.</p>
+    <p>أما نظام المركبات الموجهة آليًا في الميناء — خمس مناطق تحميل Z1–Z5 (مستودعات وساحات وأرصفة) تدخلها المركبات وتلتقط/تُسقط البضائع وتغادر عبر واجهات الأرصفة — فيُنُمذج بشبكات بتري الموقوتة والعشوائية، على نهج نمذجة مخاطر الحاويات بشبكات بتري [124]، وتقييم أداء رافعات الأرصفة [125]، ونماذج أنشطة المشغلين متعددي الوسائط [127]. وتكشف هذه النماذج حالات الجمود والتصادم والتنازع التي يمكن للمهاجمين استغلالها ويجب على المدافعين الإشراف عليها.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. التحليل السيبراني والإنفاذ باستخدام DES</h2>
+    <p>تهيكل المقاييس الأمنية القائمة على الرسوم التحليل: أقصر مسار (أقل جهد للمهاجم)، وعدد المسارات (مسارات أكثر تعني أمنًا أقل)، ومتوسط طول المسار، وفق أطر المقاييس المعتمدة [100]–[104]. وتكمّل الصورة أشجار الهجوم-الدفاع [85]، [86] ونماذج سلاسل القتل [105] وشبكات بيز [108]–[112]، بينما تمكّن نماذج ماركوف التدريبية الخاصة بالسفن [116] التقييم الكمي. ويستخدم تقييم الأداء نماذج ماركوف والأتمتة الاحتمالية بتقنيات تقدير DES [87]–[96].</p>
+    <p>أما الإنفاذ فإشرافي: تحكم قائم على المراقبة لشبكات بتري الموسومة تحت هجمات الحساسات [133]، وإشراف مشترك على هجمات الحساسات والمشغلات [134]، وتخليق الهجمات الخفية وضمانات قابلية التشخيص [126]، [128]–[130]، وبنى إشرافية مرنة [121]–[123]، [129]، [131]. وتُظهر نتائج قابلية تشخيص الأنماط الموقوتة [98] والتحقق من التعتيم [37] كيف تحوّل نظرية DES النماذج إلى كواشف ومتحكمات قابلة للإثبات للحلقات السيبرانية-الفيزيائية البحرية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. المشكلات المفتوحة والتوجهات المستقبلية</h2>
+    <p>رغم وعود DES، تبقى تحديات جوهرية. يتصدرها توافر البيانات وتوليد مجموعاتها: فتغاير السفن يصعّب بناء مجموعات مكيفة [136]، وبيانات الهجمات الحقيقية شحيحة — رغم أن مجموعات شذوذ منصات الاختبار البحرية [135]، [137] ودراسات أثر الانتشار [138] تشير إلى طريق للمضي قدمًا. ويبقى التوحيد القياسي وقابلية تشغيل الأدوات وتوسيع التخليق الإشرافي لمنظومات الموانئ الكاملة مسائل مفتوحة.</p>
+    <p>وتشمل التوجهات الواعدة تقدير الحالة المعزز بالتعلم (مثل مراقبات الشبكات العصبية لأنظمة DES الاحتمالية الموقوتة [90])، والنمذجة الواعية بالصيانة [91]–[94]، ودمج المشغل البشري [127]، وربط إنفاذ DES بإحكام مع خطوط التدريب والحوكمة البحرية [20]، [21] — انتقالًا من نماذج معزولة نحو استقلالية مرنة على مستوى الأساطيل والموانئ.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. الخاتمة</h2>
+    <p>لقد حسّن التكامل المتزايد للأنظمة المتصلة والمؤتمتة كفاءة القطاعين البحري والموانئ مع جعل ثغرات التقنية التشغيلية وتقنية المعلومات أكثر حرجًا، مما يستدعي تقييمًا مستمرًا وكشفًا سريعًا وحماية فعالة. ويقدم تركيز هذا المسح على DES مسارًا صوريًا ومنهجيًا: نماذج حدثية لإدارة الحركة والاستشعار ومناولة البضائع، تُحلل بمقاييس أمنية وتُنفذ عبر تحكم إشرافي.</p>
+    <p>وينبغي أن تعالج الأبحاث المستقبلية ندرة البيانات وحدود التوحيد والتوسع، لينضج الكشف والإنفاذ القائمان على DES إلى دفاعات قابلة للنشر على مستوى الموانئ للمجال البحري الرقمي.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>With the development and widespread application of information technology, cybersecurity has become a focal point in all industry sectors, and the maritime sector — covering both physical and cyber threats — is no exception. Maritime transport handles over 80% of world trade volume [1], so its digital transformation through smart shipping [3], automated ports [4], and blockchain [5] greatly improves efficiency while introducing vulnerabilities across OT and IT layers. This survey first highlights, from systems-engineering and IT perspectives, the specific architectures of on-vessel and in-port systems and their communication equipment [3], [38]–[40].</p>
+    <p>Cyber attacks in maritime and port domains and their consequences are then described from various angles, with real cases reported [54], alongside current techniques for vulnerability analysis, attack detection, and security protection [41], [58], [59]. The core contribution is a discrete event systems (DES) perspective: vessel traffic management, radar, and port AGV systems are modeled as automata or Petri nets [35], [119], [120], and DES-based analysis, detection, and enforcement methods — security metrics [100]–[104], Markov models, and supervisory control [132]–[134] — are proposed to show the potential of DES in this domain.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Maritime transport is a critical factor in the world economy, handling over 80% of global trade volume according to UNCTAD's Review of Maritime Transport 2024 [1]. Innovation and digitalization — from the Internet of Ships [3] to port resilience frameworks [4] — bring opportunities alongside rising cyber risk, a tension documented across recent systematic reviews [27], [39], [56]–[60], [63], [64]. Real incidents, including ransomware and port-focused attacks surveyed in [54], show that both onboard systems and port infrastructures are viable targets [9], [10], [16].</p>
+    <p>Existing frameworks such as MITRE ATT&CK and D3FEND have been adapted to maritime cybersecurity [7], and crew-centered studies stress the human and organizational dimension [6], [20], [21]. This survey differs by adopting a DES viewpoint throughout: after recalling attack notions and tools, it models representative maritime systems as event-driven models and derives analysis and enforcement techniques from DES theory, closing with open problems such as data availability [135]–[138].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Architectures of On-Vessel and In-Port Systems</h2>
+    <p>Understanding ship-to-ship, ship-to-port, and port-to-port communication structures is prerequisite to identifying risks and designing defenses [3], [38]–[40]. The maritime infrastructure rests on two platforms: on-vessel systems (integrated navigation, propulsion control, satellite links) whose cyber readiness has been questioned [10], [11], and in-port systems (terminal operating systems, container tracking, port community systems) whose cybersecurity was early flagged as a structural concern [16], [17]. Their interconnection makes them jointly vulnerable [13]–[15].</p>
+    <p>Critical-infrastructure perspectives on the maritime sector [11] and port cybersecurity surveys [19], [59], [66] converge on the same lesson: real-time control and monitoring in container terminals [8] and complex multi-actor port environments [18] demand formal models of communication and operation before credible protection can be engineered — the modeling role DES subsequently fills.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Cyber Attacks in Maritime and Port Domains</h2>
+    <p>Attacks take many forms — spoofing and tampering of AIS [41]–[51], radar and sensor manipulation [49], ransomware and business-email compromise of shipping operations, and supply-chain intrusions — each targeting different layers of operations, communications, and infrastructure. The survey recalls key notions (incidents, vulnerabilities, threat actors) with reference to BIMCO onboard guidelines, then tabulates attack types with corresponding past real cases, noting these events are only the tip of the iceberg [54]. Port-focused analyses [18], [19] and seaworthiness reviews [55] confirm the breadth of exposure.</p>
+    <p>On technique, the survey overviews vulnerability analysis (graph-based analysis [28], attack trees [84], attack graphs [75], [80], [81]), detection approaches including AIS anomaly detection [118] and diagnosability under attack [29], [98], [99], and protection baselines from cyber-risk guidelines for shipboard OT [22] to national policy studies [53]. This sets up the DES core: rigorous event-level modeling of how attacks unfold in, and can be contained within, maritime systems.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. DES Models of Maritime and Port Systems</h2>
+    <p>Three representative systems are modeled. The Vessel Traffic Management System (VTMS) assisting the Vessel Traffic Service is treated in the single-vessel case: monitoring, docking/undocking coordination, and arrival/departure sequencing become automaton states and events, building on Petri-net supervisory synthesis for VTS scenarios such as the Dover incident [35]. The radar system is likewise cast as an event-driven observer whose readings can be corrupted, motivating formally verified detection.</p>
+    <p>The port AGV system — five loading areas Z1–Z5 (warehouses, yards, docks) with vehicles entering, picking/dropping goods, and exiting quay interfaces — is modeled with timed and stochastic Petri nets, in the tradition of container-risk Petri-net modeling [124], quay-crane performance evaluation [125], and intermodal operator-activity models [127]. These models expose deadlock, collision, and contention states that attackers can exploit and defenders must supervise.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Cybersecurity Analysis and Enforcement with DES</h2>
+    <p>Graph-based security metrics structure the analysis: shortest path (least attacker effort), number of paths (more routes, lower security), and mean path length, following established metric frameworks [100]–[104]. Attack-defense trees [85], [86], kill-chain models [105], and Bayesian networks [108]–[112] complement the picture, while ship-specific Markov-chain training models [116] enable quantitative evaluation. Performance evaluation uses Markov models and probabilistic automata with DES estimation techniques [87]–[96].</p>
+    <p>Enforcement is supervisory: monitor-based control of labeled Petri nets under sensor attacks [133], joint sensor/actuator-attack supervision [134], stealthy-attack synthesis and diagnosability guarantees [126], [128]–[130], and resilient supervisory architectures [121]–[123], [129], [131]. Timed pattern diagnosability results [98] and opacity verification [37] show how DES theory converts models into provable detectors and controllers for maritime cyber-physical loops.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Open Problems and Future Directions</h2>
+    <p>Despite DES promise, fundamental challenges remain. Data availability and dataset generation top the list: vessel heterogeneity makes adapted datasets hard to build [136], and real attack data are scarce — though anomaly datasets from naval testbeds [135], [137] and propagation-impact studies [138] point a way forward. Standardization, tool interoperability, and scaling supervisory synthesis to full port ecosystems remain open.</p>
+    <p>Promising directions include learning-enhanced state estimation (e.g., neural-network observers for timed probabilistic DES [90]), maintenance-aware modeling [91]–[94], human-operator integration [127], and tighter coupling of DES enforcement with maritime training and governance pipelines [20], [21] — moving from isolated models toward fleet- and port-wide resilient autonomy.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Conclusions</h2>
+    <p>Growing integration of connected and automated systems has improved maritime and port efficiency while making OT/IT vulnerabilities more critical, demanding continuous assessment, rapid detection, and effective protection. This survey's DES emphasis offers a formal, systematic path: event-driven models of traffic management, sensing, and cargo handling, analyzed with security metrics and enforced through supervisory control.</p>
+    <p>Future research should resolve data scarcity, standardization, and scalability limits so DES-based detection and enforcement mature into deployable, port-wide defenses for the digitalized maritime domain.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed list showing 16 of the paper's 139 references with their original numbers. See the original paper (DOI above) for the full bibliography.</p>
+    <ol dir="ltr">
+      <li>UNCTAD. Review of Maritime Transport 2024: Navigating Maritime Chokepoints. New York, 2024.</li>
+      <li>Aslam, S. et al. Internet of ships: a survey on architectures, emerging applications, and challenges. IEEE Internet Things J. 2020, 7, 9714–9727.</li>
+      <li>Yousaf, A.; Zhou, J.Y. From sinking to saving: MITRE ATT&CK and D3FEND frameworks for maritime cybersecurity. Int. J. Inf. Secur. 2024, 23, 1603–1618.</li>
+      <li>Meyer-Larsen, N.; Müller, R. Enhancing the cybersecurity of port community systems. In Dynamics in Logistics; Springer, 2018.</li>
+      <li>Gunes, B. et al. Cyber security risk assessment for sea ports: a case study of a container port. Comput. Secur. 2021, 103, 102196.</li>
+      <li>Rajaram, P. et al. Guidelines for cyber risk management in shipboard operational technology systems. J. Phys. Conf. Ser. 2022, 2311, 012072.</li>
+      <li>Bošnjak, R. et al. Modelling of VTS supervisor by algorithm based on Petri net: case study of Dover incident. Transport.</li>
+      <li>Balduzzi, M. et al. A security evaluation of AIS automated identification system. Proc. 30th Annual Computer Security Applications Conf. 2014.</li>
+      <li>Tam, K.; Jones, K.D. Maritime cybersecurity policy: the scope and impact of evolving technology on international shipping. J. Cyber Policy 2018, 3, 147–164.</li>
+      <li>Senarak, C. Port cyberattacks from 2011 to 2023: a literature review and discussion of selected cases. Marit. Econ. Logist. 2024, 26, 105–130.</li>
+      <li>Schneier, B. Attack trees. J. Softw. Tools Prof. Program. 1999, 24, 21–31.</li>
+      <li>Wang, A.J.A. Information security models and metrics. Proc. 43rd ACM Southeast Conf. 2005.</li>
+      <li>Hutchins, E.M. et al. Intelligence-driven computer network defense informed by analysis of adversary campaigns and intrusion kill chains. 2011.</li>
+      <li>Wolsing, K. et al. Anomaly detection in maritime AIS tracks: a review of recent approaches. J. Mar. Sci. Eng. 2022, 10.</li>
+      <li>Zhang, Z.L. et al. Monitor-based supervisory control of labeled Petri nets under sensor attacks. IEEE Trans. Autom. Sci. Eng.</li>
+      <li>Cremer, F. et al. Cyber risk and cybersecurity: a systematic review of data availability.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/math13223650">10.3390/math13223650</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

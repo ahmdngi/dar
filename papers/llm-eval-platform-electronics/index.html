@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ما وراء المعيار: منصة قابلة للتخصيص لتقييم النماذج اللغوية اللحظي الموجه بالتفضيلات — DAR</title>
+<meta name="description" content="Beyond the Benchmark: A Customizable Platform for Real-Time, Preference-Driven LLM Evaluation — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/llm-eval-platform-electronics/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Beyond the Benchmark: A Customizable Platform for Real-Time, Preference-Driven LLM Evaluation</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">ما وراء المعيار: منصة قابلة للتخصيص لتقييم النماذج اللغوية اللحظي الموجه بالتفضيلات</h2>
+
+  <div class="paper-meta">
+    <span>👤 George Zografos, Lefteris Moussiades</span>
+    <span>📄 Electronics, 2025 · Vol. 14(13), 2577</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics14132577">10.3390/electronics14132577</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تقيس المعايير الموحدة النماذج اللغوية العامة لكنها تُغفل معايير الجودة الخاصة بالمجالات، تاركةً تخصصات كثيرة دون أدوات منهجية لاختيار النماذج [15–21]. تقدم هذه الورقة إطار عمل LLM PromptScope (LPS)، وهو إطار تقييم لحظي قابل للتخصيص يُعرّف فيه المستخدمون معايير نوعية موائمة لمهامهم، مع آلية «النموذج اللغوي كحَكَم» — تستخدم عدة نماذج لغوية كمقيّمين — لتقليل التدخل البشري مع إدخال التفضيلات الذاتية.</p>
+    <p>تقارن التجارب على MMLU [45] وMATH [46] وHumanEval الترتيبات التقليدية بالتقييمات الموجهة بالتفضيلات عبر نماذج حديثة؛ وتُظهر الإحصاءات أن معايير المستخدم قد تُغيّر ترتيب النماذج بشكل كبير، ولا سيما في المهام المفتوحة حيث تقدم المعايير القياسية إرشادًا محدودًا.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تمتد النماذج اللغوية اليوم من الرعاية الصحية إلى الكتابة الإبداعية، لكن مقاييس المقاس الواحد لا تلتقط توقعات المستخدمين الدقيقة المعتمدة على السياق. فالأجنحة الموجهة للسلامة (HarmBench [1] وAgentHarm [3] وStrongREJECT [4]) ومسابر الوقائعية [2] ومعايير الصوت (AIR-Bench [5]) ودراسات متانة كسر الحماية [6] وأجنحة الشيفرات (CRUXEval [7] وBigCodeBench [8] وCrossCodeEval [9] وتدقيقات الصحة [10] وHumanEval [11]) يغطي كل منها شريحة — لكن لا شيء منها يتكيف مع تعريف المستخدم الخاص للجودة.</p>
+    <p>يسد LPS هذه الفجوة: إطار ديناميكي متمحور حول المستخدم يوائم التقييم مع احتياجات النشر، وهو قيّم خصوصًا حيث تغيب المعايير الناضجة، جامعًا بين المقارنة متعددة النماذج والتحكيم الموجه بالتفضيلات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة</h2>
+    <p>تدفع أتمتة المعارك الثنائية (Auto-Arena [22]) ومنصات التفضيل البشري (Chatbot Arena [23]) وعدة التوجيه المرئية (ChainForge [24] وPromptChainer [27] والهندسة التفاعلية [26]) وبيئات التوجيه ومستودعاته (PromptTools [25] وPromptSource [29] وSelf-Instruct [30] وملاعب التجريب [28]) ومتتبعات الاستدلال (Chain-of-Thought Hub [16] ومجموعات الاستدلال العدائية [17] وSuperGLUE [18] وGLUE [19] وGPQA [20] وHotpotQA [21]) كل منها شظايا من التقييم — لكن لا شيء يجمع بين التحكيم اللحظي متعدد النماذج ومعايير مخصصة بالكامل من المستخدم، وهو موضع LPS.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. البنية والتطوير</h2>
+    <p>بُني LPS على HTML وCSS وPHP وAJAX وJavaScript وواجهات برمجة النماذج: توزع AJAX/PHP الطلبات غير المتزامنة على عدة مزودين، مما يمكّن التفاعل اللحظي جنبًا إلى جنب. وتشمل العائلات المقيّمة GPT-4o mini [36] وGemini 1.5 [37] وLlama 3.2 [38] وClaude 3.5 Sonnet [39] وMixtral [40] وQwen2.5 [41] وDeepSeek LLM [42].</p>
+    <p>يوجّه قلب «النموذج كحَكَم» الدليل نفسه المعرف من المستخدم إلى عدة نماذج حاكمة، ويجمع الدرجات ويُظهر الخلاف — مُبقيًا الجهد البشري في تصميم الدليل بينما تنتشر التفضيلات تلقائيًا عبر كل جولة تقييم.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4–5. التقييم وجولة دراسة الحالة</h2>
+    <p>تُغذَّى عينات من MMLU [45] (المعرفة العامة) وMATH [46] (حل المسائل) وHumanEval (الشيفرة الوظيفية) تقييمات متوازية تقليدية مقابل موجهة بالتفضيلات؛ ويأتي سياق لوحات الصدارة من التتبع العام (LLM Stats [44] وArtificial Analysis [47] وMMLU-Pro [43]). والنتيجة الأبرز: إعادة وزن التفضيلات ترتيب النماذج الرائدة، وبحدة أكبر حيث تكون المعايير أقل إلزامًا.</p>
+    <p>تُظهر جولة LPS ذات التبويبات الخمسة — الاستقبال/اختيار النموذج، وساحة التوجيه، ومصمم المعايير، ولوحة التحكيم، والتصدير — للباحثين والممارسين إجراء تجارب التوجيه والمقارنات الموزونة بالتفضيلات واختيار النماذج عبر الواجهة من البداية إلى النهاية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. القيود</h2>
+    <p>تخاطر النماذج الحاكمة بالتحيز والدائرية عندما تتشارك الحاكمة والمحكومة البنى ومدونات التدريب المعتمة؛ وتضيف معايير المستخدم ذاتية قد تعيق قابلية إعادة الإنتاج عبر المواقع. كما تحدّ تكلفة وزمن التحكيم اللحظي متعدد النماذج من قابلية التوسع.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. الاستنتاجات والأبحاث المستقبلية</h2>
+    <p>يحل LPS التوتر بين مجموعات البيانات الموحدة والحكم الخاص بالمجال: فالمقارنة متعددة النماذج مع التحكيم الموجه بالتفضيلات تمنح الممارسين مرونة مع صرامة حيثما تكون المعايير غير ناضجة. ويستهدف العمل المستقبلي معايرة تحيز الحكام ومستودعات مشاركة الأدلة ودراسات النشر الطولية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Standardized benchmarks measure general-purpose LLMs but miss domain-specific quality criteria, leaving many specialties without systematic model-selection tools [15–21]. This paper presents LLM PromptScope (LPS), a customizable real-time evaluation framework in which users define qualitative criteria aligned with their tasks and an LLM-as-a-Judge mechanism — using multiple language models as evaluators — minimizes human involvement while injecting subjective preferences.</p>
+    <p>Experiments on MMLU [45], MATH [46], and HumanEval compare conventional rankings with preference-driven assessments across state-of-the-art models; statistics show user-defined criteria can significantly shift model rankings, especially on open-ended tasks where standard benchmarks give limited guidance.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>LLMs now span healthcare to creative writing, yet one-size-fits-all metrics cannot capture nuanced, context-dependent user expectations. Safety-oriented suites (HarmBench [1], AgentHarm [3], StrongREJECT [4]), factuality probes [2], audio benchmarks (AIR-Bench [5]), jailbreak dura-bility studies [6], and code suites (CRUXEval [7], BigCodeBench [8], CrossCodeEval [9], correctness audits [10], HumanEval [11]) each cover slices — but none adapts to a user's own quality definition.</p>
+    <p>LPS fills this gap: a dynamic, user-centric framework aligning assessment with deployment needs, particularly valuable where mature benchmarks are absent, combining multi-model comparison with preference-driven judging.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Related Work</h2>
+    <p>Peer-battle automation (Auto-Arena [22]), human-preference platforms (Chatbot Arena [23]), visual prompt toolkits (ChainForge [24], PromptChainer [27], interactive engineering [26]), prompt IDEs and repositories (PromptTools [25], PromptSource [29], Self-Instruct [30], playgrounds [28]), and reasoning trackers (Chain-of-Thought Hub [16], NLI adversarial sets [17], SuperGLUE [18], GLUE [19], GPQA [20], HotpotQA [21]) each advance fragments of evaluation — yet none fuses real-time multi-model judging with fully user-defined criteria, which is LPS's position.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Architecture and Development</h2>
+    <p>LPS is built on HTML, CSS, PHP, AJAX, JavaScript, and LLM API endpoints: AJAX/PHP fan out asynchronous requests to multiple providers, enabling side-by-side real-time interaction. Evaluated families include GPT-4o mini [36], Gemini 1.5 [37], Llama 3.2 [38], Claude 3.5 Sonnet [39], Mixtral [40], Qwen2.5 [41], and DeepSeek LLM [42].</p>
+    <p>The LLM-as-a-Judge core routes the same user-defined rubric to several judge models, aggregates scores, and surfaces disagreement — keeping human effort to rubric design while preferences propagate automatically through every evaluation run.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4–5. Evaluation & Use-Case Walkthrough</h2>
+    <p>Samples from MMLU [45] (general knowledge), MATH [46] (problem solving), and HumanEval (functional code) feed parallel conventional-vs.-preference evaluations; leaderboard context comes from public tracking (LLM Stats [44], Artificial Analysis [47], MMLU-Pro [43]). The headline finding: preference weighting reorders frontier models, most sharply where benchmarks are least prescriptive.</p>
+    <p>The five-tab LPS walkthrough — landing/model selection, prompting arena, criteria designer, judging dashboard, and export — shows researchers and practitioners running prompt experiments, preference-weighted comparisons, and interface-based model selection end to end.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Limitations</h2>
+    <p>LLM judges risk bias and circularity when evaluator and evaluated share architectures and opaque training corpora; user-defined criteria add subjectivity that can hamper reproducibility across sites. Cost and latency of multi-model real-time judging also bound scale.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Conclusions and Future Research</h2>
+    <p>LPS resolves the tension between standardized datasets and domain-specific judgment: multi-model comparison plus preference-driven LLM judging gives practitioners flexibility with rigor wherever benchmarks are immature. Future work targets bias calibration of judges, rubric-sharing repositories, and longitudinal deployment studies.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed selection of 15 references (original numbering preserved) from the full list of 47. See the original paper for the complete bibliography.</p>
+    <ol dir="ltr">
+      <li>Mazeika, M.; Phan, L.; Yin, X.; Zou, A.; Wang, Z.; Mu, N.; Sakhaee, E.; Li, N.; Basart, S.; Li, B.; et al. HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal. arXiv 2024, arXiv:2402.04249.</li>
+      <li>Andriushchenko, M.; Souly, A.; Dziemian, M.; Duenas, D.; Lin, M.; Wang, J.; Hendrycks, D.; Zou, A.; Kolter, Z.; Fredrikson, M.; et al. AgentHarm: A Benchmark for Measuring Harmfulness of LLM Agents. arXiv 2025, arXiv:2410.09024.</li>
+      <li>Gu, A.; Rozière, B.; Leather, H.; Solar-Lezama, A.; Synnaeve, G.; Wang, S.I. CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution. arXiv 2024, arXiv:2401.03065.</li>
+      <li>Zhuo, T.Y.; Vu, M.C.; Chim, J.; Hu, H.; Yu, W.; Widyasari, R.; Yusuf, I.N.B.; Zhan, H.; He, J.; Paul, I.; et al. BigCodeBench: Benchmarking Code Generation with Diverse Function Calls and Complex Instructions. arXiv 2025, arXiv:2406.15877.</li>
+      <li>Liu, J.; Xia, C.S.; Wang, Y.; Zhang, L. Is Your Code Generated by ChatGPT Really Correct? Rigorous Evaluation of Large Language Models for Code Generation. arXiv 2023, arXiv:2305.01210.</li>
+      <li>Chen, M.; Tworek, J.; Jun, H.; Yuan, Q.; Pinto, H.P.D.O.; Kaplan, J.; Edwards, H.; Burda, Y.; Joseph, N.; Brockman, G.; et al. Evaluating Large Language Models Trained on Code. arXiv 2021.</li>
+      <li>Liu, T.; Xu, C.; McAuley, J. RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems. arXiv 2023, arXiv:2306.03091.</li>
+      <li>Zhao, R.; Zhang, W.; Chia, Y.K.; Xu, W.; Zhao, D.; Bing, L. Auto-Arena: Automating LLM Evaluations with Agent Peer Battles and Committee Discussions. arXiv 2024, arXiv:2405.20267.</li>
+      <li>Chiang, W.-L.; Zheng, L.; Sheng, Y.; Angelopoulos, A.N.; Li, T.; Li, D.; Zhang, H.; Zhu, B.; Jordan, M.; Gonzalez, J.E.; et al. Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference. arXiv 2024, arXiv:2403.04132.</li>
+      <li>GPT-4o Mini: Advancing Cost-Efficient Intelligence. OpenAI, 2025.</li>
+      <li>Team, G.; Georgiev, P.; Lei, V.I.; Burnell, R.; Bai, L.; Gulati, A.; Tanzer, G.; Vincent, D.; Pan, Z.; Wang, S.; et al. Gemini 1.5: Unlocking Multimodal Understanding across Millions of Tokens of Context. arXiv 2024, arXiv:2403.05530.</li>
+      <li>DeepSeek-AI et al. DeepSeek LLM: Scaling Open-Source Language Models with Longtermism. arXiv 2024, arXiv:2401.02954.</li>
+      <li>Wang, Y.; Ma, X.; Zhang, G.; Ni, Y.; Chandra, A.; Guo, S.; Ren, W.; Arulraj, A.; He, X.; Jiang, Z.; et al. MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark. arXiv 2024, arXiv:2406.01574.</li>
+      <li>Hendrycks, D.; Burns, C.; Basart, S.; Zou, A.; Mazeika, M.; Song, D.; Steinhardt, J. Measuring Massive Multitask Language Understanding. arXiv 2021, arXiv:2009.03300.</li>
+      <li>Hendrycks, D.; Burns, C.; Kadavath, S.; Arora, A.; Basart, S.; Tang, E.; Song, D.; Steinhardt, J. Measuring Mathematical Problem Solving With the MATH Dataset. arXiv 2024, arXiv:2103.03874.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics14132577">10.3390/electronics14132577</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

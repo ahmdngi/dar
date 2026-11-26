@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تقطير الاستدلال المنظم مع تحسين السياسة وتوسيع زمن الاختبار للاستدلال البصري-اللغوي المقيد الموارد — DAR</title>
+<meta name="description" content="Structured Reasoning Distillation with Policy Optimization and Test-Time Scaling for Resource-Constrained Vision-Language Reasoning — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/testtime-distill-electronics/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Structured Reasoning Distillation with Policy Optimization and Test-Time Scaling for Resource-Constrained Vision-Language Reasoning</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تقطير الاستدلال المنظم مع تحسين السياسة وتوسيع زمن الاختبار للاستدلال البصري-اللغوي المقيد الموارد</h2>
+
+  <div class="paper-meta">
+    <span>👤 Najam et al.</span>
+    <span>📄 Electronics, 2026, Vol. 15(22), 5291</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics15225291">10.3390/electronics15225291</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تُظهر النماذج البصرية-اللغوية الحديثة استدلالًا ناشئًا لكنها تتطلب حوسبة باهظة. يقترح هذا البحث إطارًا ثنائي الطور: تقطير الآثار لأوليات استدلال منظمة، وتعلم معزز لمواءمة السياسة، وتوسيع زمن الاختبار. وعلى ScienceQA-IMG، يُفصل السياق البصري عن الاستدلال النصي عبر بيانات وصفية بصرية كثيفة من Gemini 3.7 Flash (سياق طويل) أو Qwen2.5-VL-7B-Instruct (سياق قصير) [8]. ويخضع Qwen-3-8B لضبط دقيق مُشرف بـ LoRA على 5,214 أثر استدلال معلم مُتحقق فقط (40.97% من مجموعة التدريب)، ببلوغ دقة 95.14%. ويحقق GRPO بمكافآت مخصصة تقاربًا مستقرًا (خسارة السياسة 2.49 × 10<sup>−6</sup>؛ KL 1.25 × 10<sup>−3</sup>). ويرفع خط ثلاثي الطور لزمن الاختبار — (1) تصويت مرجح بالمعايرة الغاوسية على خمس لفات، (2) كشف الأخطاء المستمر بعدم اليقين، (3) معالجة تتابعية بناقد معاير لوغاريتيًا ديناميكيًا مع تصويت مرجح مستهدف N = 15 — النموذج طويل السياق إلى دقة 95.79% على IMG (متوسط سبعة بذور 95.66 ± 0.12%)، باستخدام أمثلة تدريب أقل بنسبة 59.03% من تقسيم ScienceQA الكامل و16.15% أقل من مجموعة ScienceQA-IMG. ويبلغ النموذج قصير السياق 92.51%.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة وبيان المشكلة</h2>
+    <p>تستدل النماذج البصرية-اللغوية الرائدة بشكل متزايد لكن لا يمكن نشرها في بيئات مقيدة. تعالج الدراسة ذلك بحل ثنائي الطور مفصول: استخلاص بيانات وصفية بصرية كثيفة بنموذج علوي، ثم استدلال بنموذج طالب نصي فقط. وتسأل أسئلتها البحثية عما إذا كان التقطير المفصول يحافظ على جودة الاستدلال، وما إذا كان تحسين السياسة يثبت استدلال النماذج الصغيرة، وما إذا كانت حوسبة زمن الاختبار تغلق الفجوة المتبقية — مموضعة العمل إزاء قصور الأدبيات حيث تحاكي النماذج المقطرة التنسيق دون تعميم خارج التوزيع.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. إطار التقطير</h2>
+    <p>تُستخلص الإشارات البصرية باستخدام Gemini 3.7 Flash (سياق طويل) أو Qwen2.5-VL-7B-Instruct [8] (سياق قصير) لتوليد سياق بصري نصي عالي الكثافة من مجموعة بيانات ScienceQA [7]. ويُدرب الطالب (Qwen-3-8B) على آثار استدلال المعلم المتحقق منها بضبط دقيق مُشرف بـ LoRA، محسنًا الامتثال الهيكلي والاتساق المنطقي على 40.97% فقط من مجموعة التدريب الكاملة. ويعمم التقطير عبر أحجام النماذج (LFM2.5-2.6B وQwen3-4B وGemma4-12B وQwen3-14B وQwen3.5-9B) وكلا متغيري السياق البصري بمكاسب متسقة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. تحسين السياسة بـ GRPO</h2>
+    <p>ينقح التعلم المعزز السياسة المقطرة. ويوسع تحسين السياسة النسبي للمجموعة (GRPO)، الذي قدمه Shao وآخرون في خط أعمال DeepSeekMath [3]، تحسين السياسة القريبة بإلغاء دالة القيمة المنفصلة ومقارنة اللفات المجمعة بدلًا منها. ومع مكافآت مخصصة، يتقارب تدريب GRPO بثبات (خسارة السياسة 2.49 × 10<sup>−6</sup>؛ KL 1.25 × 10<sup>−3</sup>)، موائمًا سياسة استدلال النموذج الصغير دون نمط فشل محاكاة التنسيق للتقطير المحض.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. خط توسيع زمن الاختبار</h2>
+    <p>ترفع منهجيات زمن الاختبار الدقة دون إعادة تدريب بأخذ عينات من مسارات استدلال متعددة وتجميعها — وهو مبدأ الاتساق الذاتي الذي قدمه Wang وآخرون [32]. ويُفعّل الخط المقترح ثلاثي الطور ذلك: (1) تصويت مرجح بالمعايرة الغاوسية على خمس لفات؛ (2) كشف الأخطاء المستمر بعدم اليقين لتحديد العينات عالية المخاطر؛ (3) معالجة تتابعية بناقد معاير لوغاريتيًا ديناميكيًا يليه تصويت مرجح بالمعايرة مستهدف N = 15 بترجيح مخمد.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. النتائج والنشر</h2>
+    <p>يبلغ النموذج طويل السياق (DRLTSL-Qwen3-8B) دقة 95.79% على IMG (متوسط سبعة بذور 95.66 ± 0.12%)، متفوقًا على الطرق المقارنة القائمة على الضبط الدقيق في فئة ScienceQA IMG، بينما يبلغ النموذج قصير السياق 92.51%. وهكذا يحقق التقطير والتوسيع الدقيقان أداءً منافسًا لأفضل نتائج IMG المبلغ عنها بحوسبة وبيانات مخفضة — ممكنًا نشر نموذج الاستدلال النصي فقط على معالجات رسومية استهلاكية بذاكرة 32 غيغابايت أو أكثر، بشرط الأوصاف البصرية من مستخلص علوي.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>State-of-the-art vision–language models show emerging reasoning but demand prohibitive computation. This research proposes a dual-phase framework: trace distillation for structured reasoning priors, reinforcement learning for policy alignment, and test-time scaling. On ScienceQA-IMG, visual context is decoupled from textual reasoning via dense visual metadata from Gemini 3.7 Flash (long context) or Qwen2.5-VL-7B-Instruct (short context) [8]. Qwen-3-8B undergoes LoRA supervised fine-tuning on only 5,214 verified teacher reasoning traces (40.97% of the training set), reaching 95.14% accuracy. GRPO with custom rewards yields stable convergence (policy loss 2.49 × 10<sup>−6</sup>; KL 1.25 × 10<sup>−3</sup>). A three-phase test-time pipeline — (1) Gaussian Calibration-Weighted Voting over five rollouts, (2) Continuous Uncertainty Error Detection, and (3) Sequential Remediation with a dynamic logit-calibrated critic plus targeted N = 15 weighted voting — elevates the long-context model to 95.79% IMG accuracy (seven-seed mean 95.66 ± 0.12%), using 59.03% fewer training examples than the full ScienceQA split and 16.15% fewer than the ScienceQA-IMG set. The short-context model reaches 92.51%.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction and Problem Statement</h2>
+    <p>Frontier vision–language models reason increasingly well but cannot deploy in constrained environments. The study addresses this with a decoupled dual-phase solution: dense visual metadata extraction by an upstream model, then reasoning by a text-only student. Its research questions ask whether decoupled distillation preserves reasoning quality, whether policy optimization stabilizes small-model reasoning, and whether test-time compute can close the remaining gap — positioning the work against literature shortcomings where distilled students mimic formatting without out-of-distribution generalization.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Distillation Framework</h2>
+    <p>Visual cues are extracted using Gemini 3.7 Flash (long context) or Qwen2.5-VL-7B-Instruct [8] (short context) to generate high-density text visual context from the ScienceQA dataset [7]. The student (Qwen-3-8B) trains on verified teacher reasoning traces with LoRA supervised fine-tuning, optimizing structural compliance and logical coherence on just 40.97% of the full training set. Distillation generalizes across model sizes (LFM2.5-2.6B, Qwen3-4B, Gemma4-12B, Qwen3-14B, Qwen3.5-9B) and both visual-context variants with consistent gains.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Policy Optimization with GRPO</h2>
+    <p>Reinforcement learning refines the distilled policy. Group-Relative Policy Optimization (GRPO), introduced by Shao et al. in the DeepSeekMath line of work [3], extends proximal policy optimization by eliminating the separate value function and comparing grouped rollouts instead. With custom rewards, GRPO training converges stably (policy loss 2.49 × 10<sup>−6</sup>; KL 1.25 × 10<sup>−3</sup>), aligning the small model's reasoning policy without the formatting-mimicry failure mode of pure distillation.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Test-Time Scaling Pipeline</h2>
+    <p>Test-time methods raise accuracy without retraining by sampling multiple reasoning paths and aggregating — the self-consistency principle introduced by Wang et al. [32]. The proposed three-phase pipeline operationalizes this: (1) Gaussian Calibration-Weighted Voting over five rollouts; (2) Continuous Uncertainty Error Detection to flag high-risk samples; and (3) Sequential Remediation with a dynamic logit-calibrated critic followed by targeted N = 15 calibration-weighted voting with dampened weighting.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Results and Deployment</h2>
+    <p>The long-context model (DRLTSL-Qwen3-8B) reaches 95.79% IMG accuracy (seven-seed mean 95.66 ± 0.12%), surpassing the fine-tuned LLM-based methods compared in the ScienceQA IMG category, while the short-context model reaches 92.51%. Careful distillation and scaling thus achieve performance competitive with the best reported IMG results at reduced compute and data — enabling consumer-grade GPU deployment of the text-only reasoning model with 32 GB VRAM or more, given visual descriptions from an upstream extractor.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Reference list is condensed to the works cited in this viewer; numbers match the original paper. See the original publication for the complete list.</p>
+    <ol dir="ltr">
+      <li>[3] Shao, Z.; Wang, P.; Zhu, Q.; Xu, R.; Song, J.; Bi, X.; Zhang, H.; Zhang, M.; Li, Y.K.; Wu, Y.; et al. DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models. arXiv 2024, arXiv:2402.03300.</li>
+      <li>[7] Lu, P.; Mishra, S.; Xia, T.; Qiu, L.; Chang, K.W.; Zhu, S.C.; Tafjord, O.; Clark, P.; Kalyan, A. Learn to Explain: Multimodal Reasoning via Thought Chains for Science Question Answering. In Proceedings of the 36th Conference on Neural Information Processing Systems (NeurIPS), New Orleans, LA, USA, 2022.</li>
+      <li>[8] Bai, S.; Chen, K.; Liu, X.; Wang, J.; Ge, W.; Song, S.; Dang, K.; Wang, P.; Wang, S.; Tang, J.; et al. Qwen2.5-VL Technical Report. arXiv 2025, arXiv:2502.13923.</li>
+      <li>[32] Wang, X.; Wei, J.; Schuurmans, D.; Le, Q.V.; Chi, E.H.; Narang, S.; Chowdhery, A.; Zhou, D. Self-Consistency Improves Chain of Thought Reasoning in Language Models. In Proceedings of the Eleventh International Conference on Learning Representations (ICLR), Kigali, Rwanda, 2023.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics15225291">10.3390/electronics15225291</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

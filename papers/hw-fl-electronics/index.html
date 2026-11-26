@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التعلم الفيدرالي الواعي بالعتاد: تحسين الخصوصية التفاضلية في معماريات الحوسبة الموزعة — DAR</title>
+<meta name="description" content="Hardware-Aware Federated Learning: Optimizing Differential Privacy in Distributed Computing Architectures — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/hw-fl-electronics/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Hardware-Aware Federated Learning: Optimizing Differential Privacy in Distributed Computing Architectures</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">التعلم الفيدرالي الواعي بالعتاد: تحسين الخصوصية التفاضلية في معماريات الحوسبة الموزعة</h2>
+
+  <div class="paper-meta">
+    <span>👤 Vishnu Vardhan Baligodugula, Fathi Amsaad</span>
+    <span>📄 Electronics, 2025 · Vol. 14(6), 1218</span>
+    <span>🔗 <a href="https://doi.org/10.3390/electronics14061218">10.3390/electronics14061218</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>تحلل هذه الورقة التعلم الفيدرالي الواعي بالعتاد مع تحسين الخصوصية التفاضلية. وتُظهر التجارب عبر 10 عملاء موزعين على MNIST [29] أن متوسط التجمّع الفيدرالي الخاص تفاضليًا (DP-FedAvg) يبلغ دقة 89.2% بضمانات خصوصية (ε = 0.20) — أي بانخفاض 5% فقط مقابل FedAvg القياسي.</p>
+    <p>ويجد تحليل العتاد زيادة 15–25% في استخدام الذاكرة وتباينًا حاسوبيًا 30–40% عبر الأجهزة، مع تكاليف اتصال تتوسع خطيًا حتى 1000 عميل. ويُظهر التطبيق عبر منصات غير متجانسة توازنًا عمليًا بين الخصوصية والأداء في البيئات المقيدة الموارد، مع إرشادات نشر عملية لأنظمة التعلم الفيدرالي الحافظة للخصوصية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">المقدمة: لماذا التعلم الموزع الخاص</h2>
+    <p>يدرّب التعلم الفيدرالي نموذجًا مشتركًا واحدًا عبر المحمول وخوادم المؤسسات وأجهزة الحافة دون تجميع البيانات الخام مركزيًا: فلا تنتقل إلى الخادم إلا التدرجات أو الأوزان، مما يقلل التعرض للاختراق ويعين على الامتثال للأنظمة الصارمة مثل GDPR وHIPAA [1,2]. أما التجميع المركزي التقليدي فيركّز أحجامًا حساسة في هدف واحد عالي القيمة [1].</p>
+    <p>وتستمر البيانات اللامركزية في الانفجار مع الأجهزة المتصلة، لذا فدور الخصوصية التفاضلية داخل التعلم الفيدرالي محوري: فالضجيج المعاير يمنح ضمانات رسمية مع استمرار التعلم. ومن هنا تضع هذه المراجعة ثلاثة أهداف — تقييم الخصوصية التفاضلية في FedAvg تجريبيًا على MNIST لمقايضة الدقة/الخصوصية/الحساب؛ وتوصيف السلوك الواعي بالعتاد؛ واشتقاق إرشادات النشر للأساطيل غير المتجانسة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">الأعمال ذات الصلة والأسس</h2>
+    <p>تمتد الأسس من التعلم اللامركزي الفعال اتصاليًا لـ McMahan وآخرين [1] وأسس الخصوصية التفاضلية [2,3] عبر دراسات التجميع والضغط والمتانة [4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]. ويضع الجدول المقارن في الورقة هذا العمل كمدخل واعٍ بالعتاد ومؤسس تجريبيًا.</p>
+    <p>ويعكس التعلم الفيدرالي خط الأنابيب الكلاسيكي بجلب النموذج إلى البيانات بدل جمع البيانات في مكان واحد [19]. وتنسّق الجولات اختيار العملاء (بموازنة حجم البيانات والتوافر والقدرة) والتدريب المحلي ورفع التحديثات والتجميع على الخادم — مع ترجيح FedAvg لتحديث كل عميل بعدد عيناته [20,21]. ثم تحقن الخصوصية التفاضلية ضجيجًا (كالجاوسي) في التحديثات أو المجاميع لتقاوم المساهمات الفردية الاستنتاج العكسي حتى عند الاعتراض [26,27,28].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">إطار العمل المقترح</h2>
+    <p>يتكون الإطار من ثلاثة مكونات. يوزّع تخصيص ميزانية الخصوصية ε عبر الجولات مع تحجيم تكيفي للضجيج ومحاسبة عبر الجولات [22]. ويضيف التحسين الواعي بالعتاد اختيار العملاء الواعي بالموارد وتحليل مقايضة الحساب-الاتصال وتحجيم الدفعات التكيفي حسب قدرة الجهاز [23].</p>
+    <p>ويُكمل التجميع الآمن الحلقة بقص التدرجات وحقن الضجيج وتكامل الحساب متعدد الأطراف الآمن [24,25]. ومعًا تتيح قيم ε قوية (حتى 0.20) التعايش مع دقة قابلة للاستخدام على الأجهزة الضعيفة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">إعداد التجارب</h2>
+    <p>يُقسَّم MNIST — 70,000 رقم مكتوب بخط اليد (60,000 تدريب / 10,000 اختبار) بمقاس 28×28 عبر 10 أصناف [29] — على 10 عملاء، يدرّب كل منهم محليًا في كل جولة (اختيار جزئي وتدرج عشوائي محلي ورفع التحديثات) دون مشاركة البيانات الخام. ويسطّح النموذج 784 مدخلًا عبر طبقة كثيفة 128 وحدة بتنشيط ReLU إلى مصنف 10 مخارج.</p>
+    <p>وتستخدم الخصوصية قص التدرجات مع الضجيج الجاوسي؛ وتعمل الحزمة على Google Colab (بايثون 3.8.10 وTensorFlow 2.8.0 وNumPy 1.21.6 وOpacus 1.1.0 للخصوصية التفاضلية وPySyft 0.5.0 لمحاكاة التعلم الفيدرالي) مع معالج Colab الرسومي وذاكرة 25.51 جيجابايت وقرص 166.8 جيجابايت [29,30]. وتُحاكى ثلاث طبقات عتاد: حافة مقيدة ومحمول متوسط وخادم.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">النتائج: مقايضة الخصوصية والدقة وتكاليف العتاد</h2>
+    <p>تتصاعد الدقة 78.5% ← 82.1% ← 85.3% ← 87.8% ← 89.2% عبر خمس جولات بينما يشتد ε من 1.00 إلى 0.20؛ ويتخلف DP-FedAvg النهائي (89.2% خاص) عن FedAvg القياسي (94.5% غير خاص) بـ 5.3 نقاط لكنه يتقارب متأخرًا بجولة واحدة فقط (3 مقابل 2 جولات لبلوغ 85%). فانخفاض ε يعني ضجيجًا أكثر ودقة أقل — وهي مقايضة النشر في جدول واحد.</p>
+    <p>وتتباين طبقات العتاد بشدة: الحافة (45% معالج و1.2 جيجابايت ذاكرة و2.3 دقيقة/جولة و0.8 واط و10 ميجابت/ث وضغط مكمم 0.4)؛ والمحمول (62% و2.1 جيجابايت و1.8 دقيقة و1.2 واط و50 ميجابت/ث ودقة مختلطة 0.6)؛ والخادم (28% و4.5 جيجابايت و0.7 دقيقة و3.5 واط و100+ ميجابت/ث و1.0 دون ضغط). ويتوسع الاتصال خطيًا — 60.0 ميجابايت/جولة عند 10 عملاء (4.2 رفع + 1.8 تنزيل لكل عميل) إلى 600 ميجابايت عند 100 عميل، مسقطًا نحو أساطيل 1000 عميل.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">النقاش والتقدم والتحديات</h2>
+    <p>يؤكد النقاش ضريبة خصوصية كبيرة لكن يمكن تدبيرها، مع استرداد الجدولة الواعية بالعتاد (اختيار العملاء والدفعات والضغط) لكثير من الفجوة على العُقد الضعيفة. وتتمحور التطورات الحديثة حول الخصوصية التفاضلية التكيفية — الضجيج الديناميكي لكل جولة ومحاسبة العزوم والميزانيات المخصصة — مقارَنةً ببدائل من نمط DP-SGD في التحليل المقارن للورقة.</p>
+    <p>وتبقى تحديات: عبء الاتصال من التحديثات الكبيرة المتكررة؛ وعدم التجانس في البيانات (غير المتطابقة التوزيع) والحوسبة والاتصال؛ والمتانة ضد التسميم والركوب المجاني؛ وتعقيد المحاسبة للتركيب المحكم عبر جولات كثيرة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">التطبيقات والاتجاهات المستقبلية</h2>
+    <p>تتدرب اتحادات الرعاية الصحية مشتركةً على سجلات محمية دون مركزيتها؛ وتقيّم البنوك المخاطر والاحتيال مشتركةً بينما تبقى بيانات الخزائن داخلية؛ وتخصّص أساطيل الأجهزة الذكية على الجهاز؛ وتُحسّن شركات المركبات الملاحة والسلامة دون تجميع الآثار الجغرافية. وتوضح دراسات حالة — تجربة بأسلوب GenomeSafe عبر خمسة مستشفيات ضمن ~3% من الدقة المركزية، ونشر بأسلوب ClimateEdge عبر 230 حساسًا، وبرنامج كشف مشاة عبر 1500 مركبة، واتحاد بين-بنكي لكشف الاحتيال عند 94% من الكشف المركزي — هذا النمط.</p>
+    <p>الاتجاهات المستقبلية: التحليلات الفيدرالية beyond تدريب النماذج؛ والتشفير المتماثل والحساب متعدد الأطراف لأمن تجميع أقوى؛ والتعلم الفيدرالي بمقياس ملايين الأجهزة باتصال أرشق؛ ومجالات ناشئة (الطب المخصص والمناخ والقيادة الذاتية والمالية) حيث يحظر التنظيم التجميع لكنه يبيح التعلم.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">الخاتمة</h2>
+    <p>يمنح دمج الخصوصية التفاضلية مع التعلم الفيدرالي ضمانات متينة بكلفة مقبولة: يبلغ DP-FedAvg دقة 89.2% على MNIST عند ε = 0.20 أي ~5% دون الأساس غير الخاص، مع احتواء التقنيات الواعية بالعتاد لجزاءات الذاكرة (+15–25%) والحوسبة (±30–40%) والاتصال الخطي.</p>
+    <p>وخلاصة النشر: طابِقوا ميزانيات الخصوصية واختيار العملاء والدفعات والضغط مع أضعف طبقة في الأسطول، وحاسِبوا ε بدقة، وعامِلوا التكوينات المجدولة كوصفات بداية للأنظمة الموزعة الحافظة للخصوصية.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>This paper analyzes hardware-aware federated learning (FL) with differential privacy (DP) optimization. Experiments across 10 distributed clients on MNIST [29] show differentially private federated averaging (DP-FedAvg) reaching 89.2% accuracy with privacy guarantees (ε = 0.20) — only a 5% reduction versus standard FedAvg.</p>
+    <p>Hardware analysis finds 15–25% increased memory usage and 30–40% computational variation across devices, with communication costs scaling linearly up to 1000 clients. Heterogeneous-platform implementation demonstrates a workable privacy–performance balance in resource-constrained settings, with practical deployment guidelines for privacy-preserving FL systems.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Introduction: Why Private Distributed Learning</h2>
+    <p>Federated learning trains one shared model across mobiles, organizational servers and edge devices without pooling raw data centrally: only gradients or weights travel to the server, cutting breach exposure and aiding compliance with strict regimes such as GDPR and HIPAA [1,2]. Traditional centralized aggregation, by contrast, concentrates sensitive volumes into a single high-value target [1].</p>
+    <p>Decentralized data keeps exploding with connected devices, so differential privacy's role inside FL is pivotal: calibrated noise gives formal guarantees while learning continues. This review therefore sets three objectives — empirically evaluate DP in FedAvg on MNIST for the accuracy/privacy/computation trade-off; characterize hardware-aware behavior; and derive deployment guidance for heterogeneous fleets.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Related Work and Foundations</h2>
+    <p>Foundations run from McMahan et al.'s communication-efficient decentralized learning [1] and differential-privacy primers [2,3] through aggregation, compression and robustness studies [4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]. The comparative table in the paper positions this work as the hardware-aware, empirically grounded entry.</p>
+    <p>FL inverts the classic pipeline by bringing the model to the data rather than collecting data in one place [19]. Rounds orchestrate client selection (weighing data volume, availability and capability), local training, update upload, and server-side aggregation — FedAvg weighting each client's update by its sample count [20,21]. DP then injects noise (e.g., Gaussian) into updates or aggregates so individual contributions resist inversion even under interception [26,27,28].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Proposed DP-FL Framework</h2>
+    <p>The framework has three components. Privacy-budget allocation distributes ε across rounds with adaptive noise scaling and cross-round accounting [22]. Hardware-aware optimization adds resource-aware client selection, computation–communication trade-off analysis and adaptive batch sizing by device capability [23].</p>
+    <p>Secure aggregation completes the loop with gradient clipping, noise injection and secure multiparty computation integration [24,25]. Together they let strong ε values (down to 0.20) coexist with usable accuracy on weak devices.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Experimental Setup</h2>
+    <p>The MNIST corpus — 70,000 handwritten digits (60,000 train / 10,000 test), 28×28 pixels over 10 classes [29] — is partitioned across 10 clients, each training locally per round (subset selection, local SGD, update upload) without sharing raw data. The model flattens 784 inputs through a 128-unit ReLU dense layer to a 10-way softmax classifier.</p>
+    <p>Privacy uses gradient clipping plus Gaussian noise; the stack runs on Google Colab (Python 3.8.10, TensorFlow 2.8.0, NumPy 1.21.6, Opacus 1.1.0 for DP, PySyft 0.5.0 for FL simulation) with Colab GPU, 25.51 GB RAM and 166.8 GB disk [29,30]. Three hardware tiers are emulated: constrained edge, medium mobile and server-grade.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Results: Privacy–Accuracy and Hardware Costs</h2>
+    <p>Accuracy climbs 78.5% → 82.1% → 85.3% → 87.8% → 89.2% over five rounds as ε tightens 1.00 → 0.20; final DP-FedAvg (89.2%, private) trails standard FedAvg (94.5%, non-private) by 5.3 points but converges only one round later (3 vs 2 rounds to 85%). Lower ε means more noise and lower accuracy — the deployment trade-off in one table.</p>
+    <p>Hardware tiers diverge sharply: edge (45% CPU, 1.2 GB RAM, 2.3 min/round, 0.8 W, 10 Mbps, 0.4 quantized compression); mobile (62% CPU, 2.1 GB, 1.8 min, 1.2 W, 50 Mbps, 0.6 mixed precision); server (28% CPU, 4.5 GB, 0.7 min, 3.5 W, 100+ Mbps, 1.0 uncompressed). Communication scales linearly — 60.0 MB/round at 10 clients (4.2 up + 1.8 down each) to 600 MB at 100 clients, projecting toward 1000-client fleets.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Discussion, Advances and Challenges</h2>
+    <p>The discussion confirms a significant but manageable privacy tax, with hardware-aware scheduling (client selection, batching, compression) recovering much of the gap on weak nodes. Recent advances center on adaptive DP — dynamic per-round noise, moments accounting and personalized budgets — benchmarked against DP-SGD-style alternatives in the paper's comparative analysis.</p>
+    <p>Challenges persist: communication overhead from frequent large updates; heterogeneity in data (non-IID), compute and connectivity; robustness to poisoning and free-riding; and the accounting complexity of tight composition across many rounds.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Applications and Future Directions</h2>
+    <p>Healthcare consortia co-train on protected records without centralizing them; banks jointly score risk and fraud while vault data stays in-house; smart-device fleets personalize on-device; and vehicle makers refine navigation and safety models without pooling geospatial traces. Case sketches — a five-hospital GenomeSafe-style pilot within ~3% of centralized accuracy, a 230-sensor ClimateEdge-style deployment, a 1500-vehicle pedestrian-detection program and an interbank fraud consortium at 94% of centralized detection — illustrate the pattern.</p>
+    <p>Future directions: federated analytics beyond model training; homomorphic encryption and MPC for stronger aggregation security; FL at million-device scale with leaner communication; and emerging domains (personalized medicine, climate, autonomy, finance) where regulation forbids pooling but permits learning.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">Conclusions</h2>
+    <p>Integrating differential privacy with federated learning buys robust guarantees at acceptable cost: DP-FedAvg hits 89.2% on MNIST at ε = 0.20, ~5% below the non-private baseline, with hardware-aware techniques containing the memory (+15–25%), compute (±30–40%) and linear communication penalties.</p>
+    <p>The deployment takeaway: match privacy budgets, client selection, batching and compression to the weakest tier in the fleet, account ε rigorously, and treat the tabulated configurations as starting recipes for privacy-preserving distributed systems.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed reference list: only works cited in this viewer are shown, with their original numbering. See the full reference list in the original paper.</p>
+    <ol dir="ltr">
+      <li>[1] McMahan, B.; Moore, E.; Ramage, D.; Hampson, S.; y Arcas, B.A. Communication-efficient learning of deep networks from decentralized data. arXiv 2017, arXiv:1602.05629.</li>
+      <li>[2] Dwork, C.; Roth, A. The Algorithmic Foundations of Differential Privacy. Found. Trends Theor. Comput. Sci . 2014, 9, 211–407. [CrossRef]</li>
+      <li>[3] Kairouz, P .; McMahan, H.B.; Avent, B.; Bellet, A.; Bennis, M.; Bhagoji, A.N.; Bonawitz, K.; Charles, Z.; Cormode, G.; Cummings, R.; et al. Advances and Open Problems in Federated Learning. arXiv 2019, arXiv:1912.04977.</li>
+      <li>[4] Geyer, R.C.; Klein, T.; Nabi, M. Differentially private federated learning: A client level perspective. arXiv 2017, arXiv:1712.07557.</li>
+      <li>[5] Shokri, R.; Shmatikov, V . Privacy-preserving deep learning. In Proceedings of the 22nd ACM SIGSAC Conference on Computer and Communications Security, Denver, CO, USA, 12–15 October 2015.</li>
+      <li>[6] Hitaj, B.; Ateniese, G.; Perez-Cruz, F. Deep models under the GAN: Information leakage from collaborative deep learn- ing. In Proceedings of the 2017 ACM SIGSAC Conference on Computer and Communications Security, Dallas, TX, USA, 30 October–3 November 2017.</li>
+      <li>[7] Wei, K.; Li, J.; Ding, M.; Ma, C.; Yang, H.H.; Farokhi, F.; Jin, S.; Quek, T.Q.; Poor, H.V . Federated learning with differential privacy: Algorithms and performance analysis. IEEE Trans. Inf. Forensics Secur. 2020, 15, 3454–3469. [CrossRef]</li>
+      <li>[8] Koneˇ cný, J.; McMahan, H.B.; Yu, F.X.; Richtárik, P .; Suresh, A.T.; Bacon, D. Federated learning: Strategies for improving communication efficiency. arXiv 2016, arXiv:1610.05492.</li>
+      <li>[9] Yang, Q.; Liu, Y.; Cheng, Y.; Kang, Y.; Chen, T.; Yu, H.Federated Learning; Synthesis Lectures on Artificial Intelligence and Machine Learning; Springer: Cham, Switzerland, 2019; Volume 13, pp. 1–207.</li>
+      <li>[10] Smith, V .; Chiang, C.K.; Sanjabi, M.; Talwalkar, A.S. Federated multi-task learning. In Proceedings of the Advances in Neural Information Processing Systems (NeurIPS), Beach, CA, USA, 4–9 December 2017.</li>
+      <li>[11] McMahan, H.B.; Andrew, G.; Erlingsson, U.; Chien, S.; Mironov, I.; Papernot, N.; Kairouz, P . A general approach to adding differential privacy to iterative training procedures. In Proceedings of the 2018 ACM SIGSAC Conference on Computer and Communications Security, Toronto, ON, Canada, 15–19 October 2018.</li>
+      <li>[12] Abadi, M.; Chu, A.; Goodfellow, I.; McMahan, H.B.; Mironov, I.; Talwar, K.; Zhang, L. Deep learning with differential pri- vacy. In Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security, Vienna, Austria, 24–28 October 2016.</li>
+      <li>[13] Bassily, R.; Smith, A. Private empirical risk minimization: Efficient algorithms and tight error bounds. In Proceedings of the 28th Annual Conference on Learning Theory (COLT), Paris, France, 3–6 July 2015.</li>
+      <li>[14] Kairouz, P .; Oh, S.; Viswanath, P . The composition theorem for differential privacy. In Proceedings of the 33rd International Conference on Machine Learning (ICML), New York, NY, USA, 19–24 June 2016.</li>
+      <li>[15] Mironov, I. Renormalization: Privacy in the family of sketching algorithms. In Proceedings of the 2017 IEEE Symposium on Security and Privacy, San Jose, CA, USA, 22–26 May 2017.</li>
+      <li>[16] Qi, J.; Zhou, Q.; Lei, L.; Zheng, K. Techniques for federated reinforcement learning. arXiv 2020, arXiv:2001.11137.</li>
+      <li>[17] Jeong, E.; Oh, S.; Kim, H.; Park, J.; Bennis, M.; Kim, S.L. Communication-efficient on-device machine learning: Federated distillation and augmentation under non-IID private data. arXiv 2018, arXiv:1811.11479.</li>
+      <li>[18] Li, T.; Sahu, A.K.; Talwalkar, A.; Smith, V . Federated learning: Challenges, methods, and future directions.IEEE Trans. Wirel. Commun. 2019, 18, 469–478. [CrossRef]</li>
+      <li>[19] Baligodugula, V .V .; Amsaad, F. Enhancing the Performance of Unsupervised Machine Learning Using Parallel Computing: A Comparative Analysis. In Proceedings of the 2024 IEEE 3rd International Conference on Computing and Machine Intelligence (ICMI), Mt Pleasant, MI, USA, 13–14 April 2024; pp. 1–5.</li>
+      <li>[20] Baligodugula, V .V .; Amsaad, F.; Jhanjhi, N. Analyzing the Parallel Computing Performance of Unsupervised Machine Learning. In Proceedings of the 2024 IEEE 1st Karachi Section Humanitarian Technology Conference (KHI-HTC), Tandojam, Pakistan, 8–9 January 2024; pp. 1–6.</li>
+      <li>[21] Baligodugula, V .V . Unsupervised-Based Distributed Machine Learning for Efficient Data Clustering and Prediction. Master’s Thesis, Wright State University, Dayton, OH, USA, 2023.</li>
+      <li>[22] Guo, S.; Yang, J.; Long, S.; Wang, X.; Liu, G. Federated learning with differential privacy via fast Fourier transform for tighter- efficient combining. Sci. Rep. 2024, 14, 26770. [CrossRef] [PubMed]</li>
+      <li>[23] Kanchan, S.; Jang, J.W.; Yoon, J.Y.; Choi, B.J. GSFedSec: Group Signature-Based Secure Aggregation for Privacy Preservation in Federated Learning.</li>
+      <li>[24] Dong, Y.; Luo, W.; Wang, X.; Zhang, L.; Xu, L.; Zhou, Z.; Wang, L. Multi-Task Federated Split Learning Across Multi-Modal Data with Privacy Preservation.</li>
+      <li>[25] Baligodugula, V .V .; Ghimire, A.; Amsaad, F. An Overview of Secure Network Segmentation in Connected IIoT Environments. Comput. AI Connect 2024, 1, 1–10. [CrossRef]</li>
+      <li>[26] Hu, M.; Yue, Z.; Xie, X.; Chen, C.; Huang, Y.; Wei, X.; Lian, X.; Liu, Y.; Chen, M. Is Aggregation the Only Choice? Federated Learning via Layer-wise Model Recombination. In Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD ’24), Barcelona, Spain, 25–29 August 2024; Association for Computing Machinery: New York, NY, USA, 2024; pp. 1096–1107.</li>
+      <li>[27] Hu, K.; Gong, S.; Zhang, Q.; Seng, C.; Xia, M.; Jiang, S. An overview of implementing security and privacy in federated learning. Artif. Intell. Rev. 2024, 57, 204. [CrossRef]</li>
+      <li>[28] Yazdinejad, A.; Dehghantanha, A.; Karimipour, H.; Srivastava, G.; Parizi, R.M. A robust privacy-preserving federated learning model against model poisoning attacks. IEEE Trans. Inf. Forensics Secur. 2024, 19, 6693–6708. [CrossRef]</li>
+      <li>[29] Available online: https://www.kaggle.com/datasets/hojjatk/mnist-dataset (accessed on 18 March 2025).</li>
+      <li>[30] Available online: https://colab.research.google.com/ (accessed on 18 March 2025). Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to people or property resulting from any ideas, methods, instructions or products referred to in the content.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/electronics14061218">10.3390/electronics14061218</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مركز عمليات أمني معزز بالذكاء الاصطناعي: مسح للنماذج اللغوية والوكلاء لأتمتة الأمن — DAR</title>
+<meta name="description" content="AI-Augmented SOC: A Survey of LLMs and Agents for Security Automation — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/ai-soc-jcp/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">AI-Augmented SOC: A Survey of LLMs and Agents for Security Automation</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">مركز عمليات أمني معزز بالذكاء الاصطناعي: مسح للنماذج اللغوية والوكلاء لأتمتة الأمن</h2>
+
+  <div class="paper-meta">
+    <span>👤 Siddhant Srinivas, Brandon Kirk, Julissa Zendejas, Michael Espino, Matthew Boskovich, Abdul Bari, Khalil Dajani, Nabeel Alzahrani</span>
+    <span>📄 J. Cybersecur. Priv. (JCP), 2025 · Vol. 5, No. 4, 95</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jcp5040095">10.3390/jcp5040095</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يضع الحجم والسرعة والتطور المتزايد للتهديدات السيبرانية ضغطًا هائلًا على مراكز العمليات الأمنية (SOCs) الحديثة، إذ أثبتت العمليات التقليدية القائمة على القواعد والعمل اليدوي عدم كفايتها، مما أدى إلى إرهاق التنبيهات وتأخر الاستجابات وارتفاع معدلات الإيجابيات الكاذبة واعتماد المحللين وتصاعد التكاليف التشغيلية [1]. يستعرض هذا البحث التطورات الحديثة في تطبيق النماذج اللغوية الكبيرة (LLMs) ووكلاء الذكاء الاصطناعي المستقلين عبر وظائف مراكز العمليات، مقدّمًا تصنيفًا ينظم أدوارها وقدراتها ضمن خطوط التشغيل [2،3].</p>
+    <p>ورغم أن هذه التقنيات تحسّن دقة الكشف وسرعة الاستجابة ودعم المحللين، تبقى تحديات مثل قابلية التفسير والمتانة العدائية والتكامل مع الأنظمة القديمة [4،5]. ويقترح المسح نموذج نضج قدرات من خمسة مستويات يصنّف مراكز العمليات من اليدوية إلى المستقلة تمامًا، ويناقش اتجاهات مستقبلية حول النماذج المحافظة على الخصوصية والمعايير الموحدة والتقييم التجريبي في بيئات تشغيلية حقيقية.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يواجه المشهد الرقمي تصعيدًا سريعًا في وتيرة التهديدات السيبرانية وتطورها، مما يضغط على مراكز العمليات الحديثة؛ فالمراكز التقليدية المعتمدة على عمليات يدوية وقواعد وتواقيع ثابتة تعجز أمام الهجمات الديناميكية، ما يسبب خسائر مالية وإرهاق المحللين ومعدلات إيجابيات كاذبة عالية وتأخر الاستجابة للتهديدات الحرجة [1]. ويركز هذا البحث على استخدام التطورات الحديثة في الوكلاء والنماذج اللغوية لأتمتة وتعزيز ثماني مهام: تلخيص السجلات وفرز التنبيهات واستخبارات التهديدات وإدارة التذاكر والاستجابة للحوادث وتوليد التقارير واكتشاف الأصول وإدارة الثغرات.</p>
+    <p>ويمثل وكلاء الذكاء الاصطناعي — أنظمة مستقلة تنفذ مهام معقدة متعددة الخطوات — تقنية تحويلية تمكّن الانتقال نحو أمن سيبراني استباقي في مراكز الجيل التالي [2،3]، إذ تدير العمليات الأمنية بأقل تدخل بشري، كاشفة ومصنفة ومستجيبة للتهديدات [4]، ومبشرة في تحليل السبب الجذري والتدقيق الأمني الآلي والدفاع السيبراني المستقل.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">2. المنهجية</h2>
+    <p>أُجري هذا المسح عبر مراجعة أدبية منهجية تستكشف تطبيق النماذج والوكلاء لتعزيز مهام مراكز العمليات الأساسية. شمل التجمع الأولي أكثر من 600 ورقة مختارة وفق أربعة معايير: الصلة بالموضوع، وتاريخ النشر (2022 فصاعدًا)، والبحث التجريبي، والموثوقية (محكّمة أو أولية موثوقة)، مع تضمين مصادر محكمة وأولية لتخفيف تحيز الاختيار [3]. وغطت المراجعة منشورات 2022–2025 (آخر بحث 15 يوليو 2025)، إذ تسارعت التطبيقات العملية بعد 2022 فأصبحت الأدبيات السابقة متقادمة [3].</p>
+    <p>وبُحثت قواعد البيانات العلمية ([7] وarXiv [8] ومكتبة ACM الرقمية [9]) ومحاضر مؤتمرات الأمن المحكمة (NDSS وUSENIX Security وACM CCS وIEEE S&P)، وفُحصت قوائم الأوراق المقبولة يدويًا للصلة بوكلاء الذكاء أو أتمتة الأمن بالنماذج.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">3. دمج الوكلاء في مهام العمليات الأمنية</h2>
+    <p>يمثل تطور مراكز العمليات نحو بيئات معززة بالذكاء تحولًا جذريًا في عمليات الأمن السيبراني، ويحلل هذا القسم دمج الوكلاء والنماذج عبر ثماني مهام حرجة مبرزًا القدرات والقيود [1–4]. يحوّل تلخيص السجلات كميات هائلة من سجلات الأحداث إلى ملخصات مقروءة؛ إذ يستخرج تحليل السجلات القوالب الثابتة والمعاملات من الرسائل الخام كأساس لكشف الشذوذ [10]، وحققت أطر مثل CYGENT أكثر من 97% BERTScore، بينما قلّص LogAssist السجلات المراجَعة بنسبة 99% ووقت التحليل بنسبة 40% [12،15]، وتفوّق LibreLog المفتوح المصدر على LILAC بنسبة 5% في الدقة وبسرعة تصل إلى 40 ضعفًا [14،21].</p>
+    <p>وفي فرز التنبيهات — عملية المستوى الأول حيث تُقيَّم التنبيهات شرعية وخطورة باستخدام السياق [1،3] — تعالج المراكز أكثر من 10,000 تنبيه يوميًا أكثر من نصفها إيجابيات كاذبة [1،3]؛ وحقق وكيل CGR من Microsoft Copilot متوسط F1 كلي 0.87 مع ندرة التصنيفات الحرجة الخاطئة (2.4%) [70]، بينما ضاعف Context2Vector معدل استدعاء المهاجم عبر تعلم التمثيل السياقي [29]. وتعزز النماذج استخبارات المصادر المفتوحة بأتمتة تحليل تقارير الحوادث [2،54]؛ فتولّد LOCALINTEL استخبارات خاصة بالمؤسسة بسياق المستودعات العالمية مع المعرفة المحلية [54]، وحققت أنظمة مثل IntellBot دقة سياق 0.934 واستدعاء 0.933 للاستعلامات [72].</p>
+  </section>
+  <section>
+    <h2 dir="rtl">3.5–3.8 الاستجابة والتقارير والأصول والثغرات</h2>
+    <p>الاستجابة للحوادث عملية تأسيسية (كشف واستجابة وتعافٍ) تعاني فيها الطرق اليدوية أمام تعقيد التهديدات الحديثة [64]، علمًا أن المؤسسات تستغرق وسطيًا 204 أيام لاكتشاف الاختراق و73 يومًا إضافيًا لاحتوائه (277 يومًا) [3]؛ وحقق الوكيل AidAI درجة F1 دقيقة 0.854 ومعدل حل يصل إلى 86.3% [41]، بينما تولّد أدوات مثل AttackGen سيناريوهات استجابة حسب القطاع ونمط الهجوم [65]. وفي توليد التقارير، حقق الوكيل AGIR استدعاء 0.993 ودقة 1.000 (بلا هلوسات) وقلّص زمن كتابة التقارير بنسبة 42.6% [49].</p>
+    <p>وفي اكتشاف الأصول، تعالج GreyMatter من ReliaQuest التنبيهات أسرع 20 ضعفًا مؤتمتة 98% منها ومقلصة زمن الاحتواء لأقل من 5 دقائق [3]، بدقة كشف 97.5% وتحسن 30% في زمن الاستجابة لهجمات تسميم البيانات [15]. وفي إدارة الثغرات، تجاوز إطار LLM-BSCVM متعدد الوكلاء للعقود الذكية دقة 91% وF1 فوق 91%، خافضًا الإيجابيات الكاذبة من 7.2% إلى 5.1% [57]، بينما تساعد أدوات مثل DefectHunter في فحص الشيفرات [83].</p>
+  </section>
+  <section>
+    <h2 dir="rtl">4. نموذج نضج القدرات</h2>
+    <p>يُصنَّف نشر الوكلاء والنماذج في مراكز العمليات ضمن إطار نضج من خمسة مستويات من اليدوي إلى المستقل تمامًا. المستوى 0 (يدوي): يعتمد المحللون كليًا على قواعد محددة مسبقًا بلا ذكاء [26]. المستوى 1 (مساعَد): دعم قرار بالذكاء كترتيب التنبيهات واقتراحات الفرز الأولية مع سيطرة المحلل الكاملة، كـCopilot للتصنيف [70] وLocalIntel للاستخبارات الخاصة [54]. المستوى 2 (شبه مستقل): تكامل مع SOAR وأتمتة المهام الروتينية كترشيح التنبيهات وتوليد التذاكر بموافقة بشرية صريحة، كـLogGPT لمعالجة السجلات [15].</p>
+    <p>المستوى 3 (مستقل مشروط): يدير الذكاء التحليلات المعقدة وإعادة بناء مسارات الهجوم والتقارير الشاملة بمراجعة المحلل للإجراءات الحرجة (إنسان-على-الحلقة)، كـCYGENT [12]. المستوى 4 (مستقل تمامًا): عمليات ذاتية كاملة. ويرتبط النموذج بإطار SOC-CMM (المستويات 0–1 تقابل النضج 1–2، و2–3 تقابل 3–4، و4 تقابل 5) مضيفًا بُعد الاستقلالية: حوكمة النماذج ومصدر البيانات وقابلية التفسير وضوابط سلامة الاستقلالية. ويتطلب التحقق مستقبلًا صدق المحتوى والبناء عبر بيئات محاكاة (Wazoo وSecurity Onion) بمقاييس MTTD وMTTR [12].</p>
+  </section>
+  <section>
+    <h2 dir="rtl">5. التحديات</h2>
+    <p>رغم التقدم، تبقى تحديات هائلة عبر مجالات التكامل والتشغيل والنماذج والبيانات [1–6]. في التكامل: صعوبة الدمج مع البنية التحتية القديمة وعدم توافق SIEM وتكيف الأتمتة مع إجراءات متغيرة، مع أطر مثل SOAR وEDR وXDR وLangChain وAutoGen وبروتوكولات MCP وA2A [3،64]، وتعقيد الأنظمة متعددة الوكلاء وغموض الاتصال الحر [99]. وفي التشغيل: قابلية التوسع أمام ضخامة البيانات [93]، وكلفة الحوسبة للمعالجة واسعة النطاق [2]، وضرورة إعادة التدريب المستمر، والموازنة بين الاستقلالية والإشراف البشري وتجنب إرهاق المحللين [6،13،83].</p>
+    <p>وفي النماذج: مشكلة الصندوق الأسود وضعف قابلية التفسير [83]، والهشاشة أمام الهجمات العدائية والتسميم والهلوسات المضللة — غير المقبولة في العمليات الأمنية [93]. وفي البيانات: ندرة البيانات الموسومة [15،105]، وتغاير البيانات شبه المنظمة وغير المنظمة [38،52]، ومخاطر الخصوصية وتسرب المعلومات الحساسة [15،16]، وفرط المعلومات من التقارير المطولة [83،106]. وهذه الفئات مترابطة: فشل التكامل يفاقم جودة البيانات، والبيانات الرديئة تضخم الهلوسات، وغموض السلوك يقوّض ثقة المحللين — هشاشة اجتماعية-تقنية [29].</p>
+  </section>
+  <section>
+    <h2 dir="rtl">6. الاتجاهات المستقبلية والخاتمة</h2>
+    <p>سيشكّل التكامل المتقدم للنماذج والوكلاء مستقبل الأمن السيبراني من التفاعلي إلى الاستباقي [1،3]، مع تعاونات أكاديمية-صناعية تجريبية للتلخيص والفرز والتوجيه الآلي في بيئات محاكاة. وتشمل الأولويات: تفسيرات قابلة للفهم للشذوذات (LogPrompt [18،43])، ونماذج تكيفية لصيغ السجلات المتطورة بدقة تحليل تصل إلى 0.96، وأنظمة متعددة الوكلاء مثل Audit-LLM خفضت الإيجابيات الكاذبة بنسبة 40% [57]، ومعايرة الثقة بين الإنسان والذكاء [4،15،70].</p>
+    <p>خلاصة القول: تحسّن الأنظمة المعززة بالذكاء باستمرار دقة الكشف وتقلل الإيجابيات الكاذبة وتسرّع الاستجابة [3،109]، ويمدّد نموذج النضج المقترح أطرًا مثل SOC-CMM ببُعد الاستقلالية، بينما تبقى معظم التطبيقات في المراحل المبكرة-المتوسطة (المستويان 1–2) مؤكدة الإشراف البشري. ويتطلب التقدم: نماذج قابلة للتفسير ومحافظة على الخصوصية [15،16]، ومعايير تقييم موحدة، واختبارًا تجريبيًا في بيئات تشغيلية للتحقق من المرونة الواقعية — فاستدامة التطور تعتمد لا على الأتمتة الكاملة بل على التعاون التكيفي بين الإنسان والذكاء.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>The increasing volume, velocity, and sophistication of cyber threats have placed immense pressure on modern Security Operations Centers (SOCs), where traditional rule-based and manual processes prove inadequate — causing alert fatigue, delayed responses, high false-positive rates, analyst dependency, and escalating operational costs [1]. This survey reviews recent advances in applying Large Language Models (LLMs) and autonomous AI agents across SOC functions, introducing a taxonomy organizing their roles and capabilities within operational pipelines [2,3].</p>
+    <p>While these technologies improve detection accuracy, response time, and analyst support, challenges persist — including model interpretability, adversarial robustness, and integration with legacy systems [4,5]. The survey proposes a five-level capability maturity model classifying SOCs from manual to fully autonomous operation, and discusses future directions on privacy-preserving models, standardized benchmarks, and empirical testing in live operational environments.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>The digital landscape faces a rapid escalation in both the frequency and sophistication of cyber threats, straining modern SOCs; traditional SOCs relying on manual, rule-based, or signature-driven processes prove inadequate against dynamic attacks, causing financial losses, analyst alert fatigue, high false-positive rates, and delayed critical threat responses [1]. This paper focuses on using recent AI agent and LLM advances to automate and augment eight SOC tasks: log summarization, alert triage, threat intelligence, ticket handling, incident response, report generation, asset discovery, and vulnerability management.</p>
+    <p>AI agents — autonomous systems executing complex multi-step tasks — represent a transformative technology enabling a shift toward proactive cybersecurity in next-generation SOCs [2,3], managing security operations with minimal human intervention, detecting, classifying, and responding to threats [4], and showing promise in root cause analysis, automated security audits, and autonomous cyber defense.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">2. Methodology</h2>
+    <p>This survey was conducted through a systematic literature review of LLMs and autonomous AI agents augmenting core SOC tasks. The initial pool comprised over 600 papers selected on four criteria: topical relevance, publication date (2022 or later), experimental research, and peer-review or credible preprint status, including both to mitigate selection effects [3]. Coverage spans 2022–2025 (last searched 15 July 2025), since practical SOC applications of LLMs and agents accelerated rapidly and pre-2022 literature is largely outdated [3].</p>
+    <p>Scholarly databases ([7], arXiv [8], ACM Digital Library [9]) and peer-reviewed security proceedings (NDSS, USENIX Security, ACM CCS, IEEE S&P) were systematically searched, with accepted-paper lists manually screened for AI-agent or LLM-based security automation relevance.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">3. Integration of AI Agents and LLMs in Security Operations</h2>
+    <p>The evolution of SOCs toward AI-augmented environments is a fundamental transformation of cybersecurity operations, analyzed here across eight critical tasks with capabilities and limits [1–4]. Log summarization converts massive event logs into readable summaries; log parsing extracts static templates and dynamic parameters from raw messages as the basis for anomaly detection [10], with frameworks like CYGENT exceeding 97% BERTscore, LogAssist cutting reviewed logs by 99% and analysis time by 40% [12,15], and open-source LibreLog outperforming LILAC by 5% in grouping accuracy at up to 40× speed [14,21].</p>
+    <p>In alert triage — the Tier-1 process assessing alert legitimacy and severity with contextual data [1,3] — SOCs process over 10,000 daily alerts, more than half false positives [1,3]; Microsoft Copilot for Security Guided Response achieved 0.87 macro-F1 with rare critical misclassifications (2.4%) [70], while Context2Vector doubled attacker recall via context representation learning [29]. LLMs enhance OSINT by automating historical incident-report analysis [2,54]; LOCALINTEL generates organization-specific intelligence by contextualizing global repositories with local knowledge [54], and IntellBot reached 0.934 Context Precision and 0.933 Context Recall on vulnerability queries [72].</p>
+  </section>
+  <section>
+    <h2 dir="ltr">3.5–3.8 Response, Reporting, Assets, and Vulnerabilities</h2>
+    <p>Incident response — detection, response, recovery — strains manual protocols against modern threat complexity [64], with organizations averaging 204 days to identify a breach plus 73 days to contain it (277 days total) [3]; the AidAI agent reached 0.854 Micro-F1 with up to 86.3% resolution rates [41], while tools like AttackGen auto-generate response scenarios by industry and attack vector [65]. In report generation, the AGIR agent achieved 0.993 recall and 1.000 precision (no hallucinations), cutting report writing time by 42.6% [49].</p>
+    <p>In asset discovery, ReliaQuest GreyMatter processes alerts 20× faster, automating 98% and cutting containment below 5 minutes [3], with 97.5% detection accuracy and 30% faster response to data-poisoning attacks [15]. In vulnerability management, the multi-agent LLM-BSCVM framework for smart contracts exceeded 91% accuracy and F1 while reducing false positives from 7.2% to 5.1% [57], complemented by code-scanning tools like DefectHunter [83].</p>
+  </section>
+  <section>
+    <h2 dir="ltr">4. Capability Maturity Model</h2>
+    <p>AI/LLM deployment in SOCs classifies into a five-level framework from manual to fully autonomous. Level 0 (Manual): analysts rely entirely on predefined rules with no AI [26]. Level 1 (Assisted): AI decision support such as alert prioritization and triage suggestions with full analyst control — e.g., Copilot for classification [70], LocalIntel for tailored intelligence [54]. Level 2 (Semi-Autonomous): SOAR-integrated automation of routine tasks like alert filtering and ticket generation with explicit human approval — e.g., LogGPT for raw logs [15].</p>
+    <p>Level 3 (Conditionally Autonomous): AI independently manages complex analyses, attack-path reconstruction, and comprehensive reporting with analyst review of critical actions (human-on-the-loop), e.g., CYGENT [12]. Level 4 (Fully Autonomous): complete self-operation. The model maps onto SOC-CMM (Levels 0–1 ↔ Maturity 1–2; 2–3 ↔ 3–4; 4 ↔ 5), adding an autonomy dimension: model governance, data provenance, explainability, and autonomy-safety controls. Future validation requires content and construct validity via simulated environments (Wazuh, Security Onion) with MTTD/MTTR metrics [12].</p>
+  </section>
+  <section>
+    <h2 dir="ltr">5. Challenges</h2>
+    <p>Despite progress, formidable challenges persist across integration, operational, model, and data domains [1–6]. Integration: legacy-system incompatibility, fragmented SIEM interoperability, adapting automation to shifting procedures, via SOAR/EDR/XDR, LangChain, AutoGen, and MCP/A2A protocols [3,64], plus multi-agent architectural complexity and free-form communication ambiguity [99]. Operational: scalability against data volume [93], compute cost of large-scale processing [2], continuous retraining needs, balancing autonomy with human oversight, analyst fatigue and automation skepticism [6,13,83].</p>
+    <p>Model-related: black-box opacity and limited explainability [83], vulnerability to adversarial attacks, poisoning, and misleading hallucinations — unacceptable in security operations [93]. Data-related: scarce labeled data [15,105], heterogeneous structured/semi-structured/unstructured inputs [38,52], privacy and leakage risks [15,16], and information overload from verbose reports [83,106]. These categories interlock: integration failures degrade data quality, poor data amplifies hallucinations, and opaque behavior erodes analyst trust — a socio-technical fragility [29].</p>
+  </section>
+  <section>
+    <h2 dir="ltr">6. Future Directions and Conclusions</h2>
+    <p>Advanced LLM/agent integration will shape cybersecurity's shift from reactive to proactive defense [1,3], with academic-industry pilots of summarization, triage, and auto-routing in simulated SOCs. Priorities include interpretable anomaly explanations (LogPrompt [18,43]), adaptive models for evolving log formats reaching 0.96 parsing accuracy, multi-agent systems like Audit-LLM cutting false positives by 40% [57], and human–AI trust calibration [4,15,70].</p>
+    <p>In conclusion, AI-augmented systems consistently improve detection accuracy, reduce false positives, and accelerate response [3,109]; the proposed maturity model extends frameworks like SOC-CMM with an autonomy dimension, while most deployments remain at early-to-intermediate stages (Levels 1–2) emphasizing human oversight. Progress requires explainable, privacy-preserving models [15,16], standardized evaluation benchmarks, and operational testing for real-world resilience — sustainable evolution depends not on full automation but on adaptive human–AI collaboration.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references preserving original numbering; the full list of 107 references is available in the original paper (doi:10.3390/jcp5040095).</p>
+    <ol dir="ltr">
+      <li>[1] 1. Binbeshr, F.; Imam, M.; Ghaleb, M.; Hamdan, M.; Rahim, M.A.; Hammoudeh, M. The Rise of Cognitive SOCs: A Systematic Literature Review on AI Approaches. IEEE Open J. Comput. Soc. 2025, 6, 360–379. [CrossRef]</li>
+      <li>[2] 2. Hassanin, M.; Moustafa, N. A Comprehensive Overview of Large Language Models (LLMs) for Cyber Defences: Opportunities and Directions. arXiv 2024, arXiv:2405.14487v1. [CrossRef]</li>
+      <li>[3] 3. Mohsin, A.; Janicke, H.; Ibrahim, A.; Sarker, I.H.; Camtepe, S. A Unified Framework for Human AI Collaboration in Security Operations Centers with Trusted Autonomy. arXiv 2025, arXiv:2505.23397v2. [CrossRef]</li>
+      <li>[10] 10. Zhong, A.; Mo, D.; Liu, G.; Liu, J.; Lu, Q.; Zhou, Q.; Wu, J.; Li, Q.; Wen, Q. LogParser-LLM: Advancing efficient log parsing with large language models. In Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD ’24), Barcelona, Spain, 25–29 August 2024. [CrossRef]</li>
+      <li>[12] 12. Balasubramanian, P.; Seby, J.; Kostakos, P. CYGENT: A cybersecurity conversational agent with log summarization powered by GPT-3. arXiv 2024, arXiv:2403.17160. [CrossRef]</li>
+      <li>[14] 14. Ma, Z.; Kim, D.J.; Chen, T.-H.P. LibreLog: Accurate and efficient unsupervised log parsing using open-source large language models. arXiv 2024, arXiv:2408.01585. [CrossRef]</li>
+      <li>[15] 15. Akhtar, S.; Khan, S.; Parkinson, S. LLM-based event log analysis techniques: A survey. arXiv 2025, arXiv:2502.00677. [CrossRef]</li>
+      <li>[21] 21. Jiang, Z.; Liu, J.; Chen, Z.; Li, Y.; Huang, J.; Huo, Y.; He, P.; Gu, J.; Lyu, M.R. LILAC: Log Parsing using LLMs with Adaptive Parsing Cache. arXiv 2023, arXiv:2310.01796v3. [CrossRef]</li>
+      <li>[27] 27. Ali, T.; Kostakos, P. HuntGPT: Integrating Machine Learning-Based Anomaly Detection and Explainable AI with Large Language Models (LLMs). arXiv 2023, arXiv:2309.16021. [CrossRef]</li>
+      <li>[29] 29. Jalalvand, F.; Chhetri, M.B.; Nepal, S.; Paris, C. Alert Prioritisation in Security Operations Centres: A Systematic Survey on Criteria and Methods. ACM Comput. Surv. 2024, 57, 1–36. [CrossRef]</li>
+      <li>[41] 41. Yang, Y.; Deng, Y.; Xiong, Y.; Li, B.; Xu, H.; Cheng, P. AidAI: Automated Incident Diagnosis for AI Workloads in the Cloud. arXiv 2025, arXiv:2506.01481. [CrossRef]</li>
+      <li>[49] 49. Perrina, F.; Marchiori, F.; Conti, M.; Verde, N.V. AGIR: Automating Cyber Threat Intelligence Reporting with Natural Language Generation. arXiv 2023, arXiv:2310.02655. [CrossRef]</li>
+      <li>[54] 54. Mitra, S.; Neupane, S.; Chakraborty, T.; Mittal, S.; Piplai, A.; Gaur, M.; Rahimi, S. LocalIntel: Generating organizational threat intelligence from global and local cyber knowledge. arXiv 2025, arXiv:2401.10036.</li>
+      <li>[57] 57. Jin, Y.; Li, C.; Fan, P.; Liu, P.; Li, X.; Liu, C.; Qiu, W. LLM-BSCVM: An LLM-based blockchain smart contract vulnerability management framework. arXiv 2025, arXiv:2505.17416.</li>
+      <li>[70] 70. Freitas, S.; Kalajdjieski, J.; Gharib, A.; McCann, R. AI-Driven Guided Response for Security Operation Centers with Microsoft Copilot for Security. In Proceedings of the Companion ACM Web Conference 2025 (WWW Companion’25), Sydney, NSW, Australia, 28 April–2 May 2025; pp. 1–10. [CrossRef]</li>
+      <li>[72] 72. Arikkat, D.R.; Abhinav, M.; Binu, N.; Parvathi, M.; Biju, N.; Arunima, K.S.; Vinod, P.; Rafidha Rehiman, K.A.; Conti, M. IntellBot: Retrieval Augmented LLM Chatbot for Cyber Threat Knowledge Delivery. arXiv 2024, arXiv:2411.05442. [CrossRef]</li>
+      <li>[83] 83. Jensen, R.I.T.; Tawosi, V.; Alamir, S. Software Vulnerability and Functionality Assessment using LLMs. arXiv 2024. [CrossRef]</li>
+      <li>[93] 93. Shukla, A.; Gandhi, P.A.; Elovici, Y.; Shabtai, A. RuleGenie: SIEM Detection Rule Set Optimization. arXiv 2025. [CrossRef]</li>
+      <li>[99] 99. Sarkar, A.; Sarkar, S. Survey of LLM Agent Communication with MCP: A Software Design Pattern Centric Review. arXiv 2025. [CrossRef]</li>
+      <li>[105] 105. Subramaniam, P.; Krishnan, S. DePLOI: Applying NL2SQL to Synthesize and Audit Database Access Control. arXiv 2024. [CrossRef]</li>
+      <li>[109] 109. Page, M.J.; McKenzie, J.E.; Bossuyt, P.M.; Boutron, I.; Hoffmann, T.C.; Mulrow, C.D.; Shamseer, L.; Tetzlaff, J.M.; Akl, E.A.; Brennan, S.E.; et al. The PRISMA 2020 statement: An updated guideline for reporting systematic reviews. BMJ 2021, 372, n71. [CrossRef] Disclaimer/Publisher’s Note: The statements, …</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jcp5040095">10.3390/jcp5040095</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خدمات إنترنت الأشياء لرصد سلاسل توريد الأغذية — DAR</title>
+<meta name="description" content="IoT Services for Monitoring Food Supply Chains — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/food-supply-iot-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">IoT Services for Monitoring Food Supply Chains</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">خدمات إنترنت الأشياء لرصد سلاسل توريد الأغذية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Loucas Protopappas, Dimitrios Bechtsis, Nikolaos Tsotsolas</span>
+    <span>📄 Appl. Sci., 2025 · Vol. 15, 7602</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app15137602">10.3390/app15137602</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يتطلب الحفاظ على سلامة المنتجات الزراعية الغذائية سريعة التلف رصدًا متسقًا للحرارة والرطوبة من التغليف إلى التوصيل الأخير: فالتقلبات تقوض السلامة والقيمة الغذائية والحسية وترفع خطر الأمراض المنقولة بالغذاء [1]–[3]. والرصد اليدوي غير المؤتمت — كفحص موازين الحرارة دوريًا — عرضة للأخطاء ويرفع احتمال التلف. وتمكّن التطورات في الحساسات وتقنيات المعلومات الآن التتبع الآني لظروف التخزين وسمات الجودة [10]، [11]، [15]–[18].</p>
+    <p>تقترح هذه الورقة نظام تتبع فعال التكلفة للحرارة والرطوبة باستخدام حساسات لاسلكية ممكنة بـLoRaWAN عبر منظومة الأغذية الزراعية، مع نشر تجريبي قيّم وظيفيًا وتقنيًا [5]. وحقق النظام متوسط معدل تسليم رزم 98.5% بمدى يصل إلى 12 كم في المناطق الريفية، عاملًا من −40 °م إلى +85 °م ورطوبة 0–100% [21]، [30]. ويساعد الرصد البيئي الآني أصحاب المصلحة على تقليل التلف والوفاء بالمعايير التنظيمية كإرشادات منظمة الصحة العالمية لرصد النقل [14] وخفض التكاليف التشغيلية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يجب أن تحافظ المنتجات الزراعية الغذائية سريعة التلف على معايير السلامة عبر سلسلة التوريد، لكن ظروف النقل تتقلب عبر المركبات والمستودعات والمطاعم وكل مرحلة من سلسلة التبريد [4]، [6]–[9]. وتبقى الأمراض المنقولة بالغذاء عبئًا صحيًا رئيسيًا يمكن الوقاية منه — عشرات الملايين من الحالات سنويًا — مع بطء الكشف التقليدي عن الفاشيات وعدم كفاءته [1]، بينما تبشر أدوات علم الأوبئة المعلوماتي بالمعلومات والمراقبة بإشارات آنية [1].</p>
+    <p>ويُعد التتبع — تعقب الحركة من المزرعة إلى الرف بما يشمل المنشأ والمعالجة والتوزيع والبيع — أساس ضمان السلامة [25]، [26]، ويزداد إنترنت الأشياء مركزية في إدارة سلسلة التوريد المستدامة [27]. وتضع الورقة تتبع LoRaWAN في هذا المشهد وتعرض التنفيذ التجريبي وتحليل الأداء المدعوم بالأدبيات [5]، [34]، [35].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. مراجعة الأدبيات</h2>
+    <p>تغطي أبحاث الحساسات والمراقبة طرق رصد الأمراض المنقولة بالغذاء [1]، وصيانة سلسلة التبريد [2]، وكفاءة التبريد بالتجزئة [3]، وتقنية التخزين البارد [4]، وتقييم المنتجات السمكية في سلاسل مرصودة [6]. وتُظهر الاتجاهات الجديدة في رصد سلسلة التبريد [11] وأنظمة الرصد الآني من المزرعة إلى الرف [17]، [18] والنهج الذكية لجودة الغذاء بإنترنت الأشياء [16] تقارب المجال نحو الاستشعار المستمر.</p>
+    <p>وعلى صعيد الاتصالية، تؤسس مسوح LoRa/LoRaWAN [10]، [34] ونشر LoRaWAN لرصد الحرائق [20] وتقييمات الأداء الزراعية [32] ونماذج استهلاك الطاقة لعقد LoRa [33] مؤهلات التقنية بعيدة المدى ومنخفضة الطاقة. وتشمل الخيوط المكملة تتبع البلوك تشين للمنتجات الطازجة [12] وتحديات النقل المضبوط زمنيًا وحراريًا [13] وتصنيفات الحساسات لإنترنت الأشياء [15] والشبكات منخفضة المعدل IEEE 802.15.4 [22] وأساسيات التضمين [30] — مع الإشارة إلى آفاق النماذج اللغوية ومشاركة البيانات لمستقبل سلسلة التوريد [28]، [29].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. المنهجية والتنفيذ</h2>
+    <p>تتبع البنية نمط سلسلة التبريد LoRaWAN: عقد حساسات عاملة بالبطارية عند نقاط سلسلة التبريد الرئيسية (مركبات النقل ونقاط التسليم) ← بوابات متعددة القنوات عبر EU868 ميجاهرتز ← خدمات سحابية مع تصور سلاسل الحرارة والرطوبة وتوزيعها الجغرافي. ورُكبت العقد وفق بروتوكول يغطي التدرجات الحرارية؛ واستُخدمت معلمات LoRa بمعامل انتشار SF10 وعرض نطاق 125 كيلوهرتز وقدرة إرسال 14 ديسيبل-ملي واط، مع تفعيل معدل البيانات التكيفي لكفاءة متكيفة مع الوصلة [21]، [30]، [34].</p>
+    <p>وحُددت مؤشرات الأداء الرئيسية مسبقًا: دقة البيانات (±0.3 °م، ±2% رطوبة نسبية) ومعدل تسليم الرزم (المستهدف &gt; 95%) واستهلاك البطارية. ويستند التصميم إلى مواصفات تحالف LoRa [21] وخبرة LoRa الزراعية الذكية [5]، بينما توجه أدلة التغليف ومرحلة التجزئة [7]، [23]، [24]، [31] مواضع العقد من التعبئة إلى التوصيل الأخير.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. النتائج والمناقشة</h2>
+    <p>حقق النموذج أهدافه: متوسط تسليم رزم 98.5% ومدى إرسال ريفي 12 كم لبيانات لوجستية غير منقطعة ونطاق تشغيل حساسات −40 °م إلى +85 °م ورطوبة 0–100%، بدقة ±0.2–0.5 °م عبر نطاق سلسلة التبريد. وعرضت اللوحات سلاسل الحرارة والرطوبة الحية مع جداول التموضع الجغرافي للحساسات، مما أتاح لأصحاب المصلحة رصد الانحرافات والتصرف قبل التلف — قفزة وظيفية عن المعالجات اليدوية.</p>
+    <p>وتضع المناقشة مزايا LoRaWAN — فعالية التكلفة وكفاءة الطاقة وقابلية التوسع — لتتبع الأغذية الزراعية، بما يتسق مع نتائج LoRaWAN وسلسلة التبريد السابقة [10]–[12]، [20]، [32]–[34]. ويلاحظ المؤلفون اعتبارات التوسع (كثافة البوابات في الأخاديد الحضرية ولوجستيات البطاريات وانضباط المعايرة) ويشيرون إلى التتبع المثبت بالبلوك تشين [12] وآفاق التحليلات [28]، [29] كامتدادات طبيعية.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. الاستنتاجات والأعمال المستقبلية</h2>
+    <p>يُظهر رصد الحرارة والرطوبة القائم على LoRaWAN تحسينًا ملموسًا لكفاءة سلسلة التبريد وموثوقيتها: ظروف تخزين مستقرة وتقلبات أقل وجودة منتج أفضل ودعم الامتثال التنظيمي وتكلفة تشغيلية أدنى. ويتحقق النموذج من ملاءمة التقنية للوجستيات الزراعية الغذائية — مدى طويل حيث يلزم وطاقة مقتصدة حيث تُحتسب.</p>
+    <p>وتوسّع الأعمال المستقبلية النشر، وتصلّب المعايرة وإدارة البطاريات، وتضيف طبقات التتبع والتحليلات — بما فيها سجلات البلوك تشين [12] ونماذج الأمثلة لتوزيع المنتجات الطازجة [35] — نحو ضمان شامل من المزرعة إلى الرف.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>Keeping perishable agrifood products safe requires consistent monitoring of temperature and humidity from packaging to last-mile delivery: fluctuations compromise integrity, nutritional and organoleptic value, and raise foodborne-illness risk [1]–[3]. Manual, non-automated monitoring — e.g., periodic thermometer checks — is error-prone and increases spoilage likelihood. Advances in sensors and information technologies now enable real-time tracking of storage conditions and quality attributes [10], [11], [15]–[18].</p>
+    <p>This paper proposes a cost-effective temperature/humidity traceability system using LoRaWAN-enabled wireless sensors across the agrifood ecosystem, with a pilot-scale deployment evaluated functionally and technologically [5]. The system held a 98.5% average packet delivery rate with up to 12 km rural range, operating from −40 °C to +85 °C and 0–100% RH [21], [30]. Real-time environmental monitoring thus helps stakeholders minimize spoilage, meet regulatory standards such as WHO transport-monitoring guidance [14], and cut operational costs.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>Highly perishable agrifood products must sustain safety standards throughout the supply chain, yet transport conditions fluctuate across vehicles, warehouses, restaurants, and every cold-chain stage [4], [6]–[9]. Foodborne illness remains a major preventable public-health burden — tens of millions of cases yearly — with traditional outbreak detection slow and inefficient [1], while infodemiology and infoveillance tools now promise real-time signals [1].</p>
+    <p>Traceability — tracking movement from farm to shelf, including origin, processing, distribution, and sale — underpins safety assurance [25], [26], and IoT is increasingly central to sustainable supply-chain management [27]. The paper positions LoRaWAN traceability within this landscape and reports pilot implementation plus literature-backed performance analysis [5], [34], [35].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Literature Review</h2>
+    <p>Sensor and surveillance research covers foodborne-illness monitoring methods [1], cold-chain maintenance [2], retail refrigeration efficacy [3], cold-storage technology [4], and fish-product evaluation under monitored chains [6]. New trends in cold-chain monitoring [11], farm-to-shelf real-time monitoring systems [17], [18], and intelligent IoT food-quality approaches [16] show the field converging on continuous sensing.</p>
+    <p>On connectivity, LoRa/LoRaWAN surveys [10], [34], fire-monitoring LoRaWAN deployments [20], agricultural performance evaluations [32], and energy-consumption models for LoRa nodes [33] establish the technology's long-range, low-power credentials. Complementary threads include blockchain traceability for fresh produce [12], time–temperature transport challenges [13], sensor taxonomies for IoT [15], IEEE 802.15.4 low-rate networking [22], and modulation fundamentals [30] — with LLM and data-sharing frontiers noted for supply-chain futures [28], [29].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Methodology and Implementation</h2>
+    <p>The architecture follows the LoRaWAN cold-chain pattern: battery-powered sensor nodes at key cold-chain points (transport vehicles, delivery points) → multi-channel gateways over EU868 MHz → cloud services with visualization of temperature/humidity series and geographic distribution. Nodes were installed under a protocol covering thermal gradients; LoRa parameters used spreading factor SF10, 125 kHz bandwidth, 14 dBm transmit power, with Adaptive Data Rate enabled for link-adaptive efficiency [21], [30], [34].</p>
+    <p>Key performance indicators were defined upfront: data accuracy (±0.3 °C, ±2% RH), packet delivery rate (target &gt; 95%), and battery consumption. The design draws on LoRaWAN Alliance specifications [21] and smart-agriculture LoRa experience [5], while packaging and retail-stage evidence [7], [23], [24], [31] informs node placement from packing through last-mile delivery.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Results and Discussion</h2>
+    <p>The pilot met its targets: 98.5% average PDR, 12 km rural transmission range for uninterrupted logistics data, sensor operating envelope −40 °C to +85 °C and 0–100% RH, with precision of ±0.2–0.5 °C across the cold-chain band. Dashboards rendered live temperature/humidity series with sensor geolocation tables, letting stakeholders spot excursions and act before spoilage — a functional leap over manual treatments.</p>
+    <p>Discussion positions LoRaWAN's advantages — cost-effectiveness, energy efficiency, scalability — for agrifood traceability, consistent with prior LoRaWAN and cold-chain findings [10]–[12], [20], [32]–[34]. The authors note scale-up considerations (gateway density in urban canyons, battery logistics, calibration discipline) and point to blockchain-anchored traceability [12] and analytics futures [28], [29] as natural extensions.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Conclusions and Future Work</h2>
+    <p>LoRaWAN-based temperature/humidity monitoring demonstrably improves cold-chain efficiency and reliability: stable storage conditions, fewer fluctuations, better product quality, regulatory compliance support, and lower operational cost. The pilot validates the technology fit for agrifood logistics — long range where it matters, frugal energy where it counts.</p>
+    <p>Future work scales the deployment, hardens calibration and battery management, and layers traceability and analytics — including blockchain records [12] and optimization models for fresh-produce distribution [35] — toward end-to-end farm-to-shelf assurance.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Condensed list showing 13 of the paper's 35 references with their original numbers. See the original paper (DOI above) for the full bibliography.</p>
+    <ol dir="ltr">
+      <li>Oldroyd, R. et al. Identifying methods for monitoring foodborne illness. JMIR Public Health Surveill. 2018, 4, e8218.</li>
+      <li>Likar, K.; Jevsnik, M. Cold chain maintaining in food trade. Food Control 2016, 17, 108–113.</li>
+      <li>Enock, K. et al. LoRa based smart agriculture monitoring and automatic irrigation system. J. Comput. Commun. 2025.</li>
+      <li>Lavric, A.; Popa, V. Internet of Things and LoRa low-power wide-area networks: a survey. Proc. Int. Symp. Signals, Circuits and Systems.</li>
+      <li>Badia-Melis, R. et al. New trends in cold chain monitoring applications — a review. Food Control.</li>
+      <li>Zhang, X. et al. Research on cold chain logistics traceability system of fresh agricultural products based on blockchain.</li>
+      <li>WHO. Temperature and Humidity Monitoring Systems for Transport Operations. Geneva, 2015.</li>
+      <li>LoRa Alliance. LoRa Alliance Website. Available online: https://lora-alliance.org (accessed 19 May 2025).</li>
+      <li>Vangelista, L. Frequency shift chirp modulation: the LoRa modulation. IEEE Signal Process. 2017.</li>
+      <li>Yascaribay, G. et al. Performance evaluation of communication systems used for IoT in agriculture.</li>
+      <li>Bouguera, T. et al. Energy consumption model for sensor nodes based on LoRa and LoRaWAN. Sensors 2018.</li>
+      <li>Jouhari, M. et al. A survey on scalable LoRaWAN for massive IoT: recent advances, potentials, and challenges. arXiv.</li>
+      <li>Zhang, J. et al. Reliability analysis and optimization of cold chain distribution system for fresh agricultural products. Sustainability.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app15137602">10.3390/app15137602</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

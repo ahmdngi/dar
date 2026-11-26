@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بروتوكول Modbus/TCP الأمني المحسّن: المصادقة والتخويل للتحكم الصناعي — DAR</title>
+<meta name="description" content="Enhanced Modbus/TCP Security Protocol: Authentication and Authorization for Industrial Control — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/modbus-security-sensors/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Enhanced Modbus/TCP Security Protocol: Authentication and Authorization for Industrial Control</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">بروتوكول Modbus/TCP الأمني المحسّن: المصادقة والتخويل للتحكم الصناعي</h2>
+
+  <div class="paper-meta">
+    <span>👤 Tiago Martins, Sérgio Vidal Garcia Oliveira</span>
+    <span>📄 Sensors, 2022, 22(20), 8024</span>
+    <span>🔗 <a href="https://doi.org/10.3390/s22208024">10.3390/s22208024</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>يُعتمد مفهوم الثقة الصفرية — عدم الثقة بالمستخدم قبل الفحص الأمني — في تقنية المعلومات، بينما يبقى المستخدمون البشريون الخطر الرئيسي في بيئات التكنولوجيا التشغيلية [10، 11]. تعزز هذه الورقة بروتوكول Modbus/TCP الأمني بدالتي مصادقة وتخويل تضمنان الحماية ضد الوصول المتعمد غير المصرح.</p>
+    <p>تبني دالتان معرفتان من المستخدم طريقة تحكم بالوصول باسم المستخدم وكلمة المرور للمستخدمين البشريين ذوي المعرفة بالأتمتة الصناعية، مع التحقق عبر مكون وسيط (MITM) على منصة Node-RED ‏[22]. وتثبت الاختبارات إمكانات الدالتين وقابليتهما للتطبيق، مؤمّنةً البروتوكول ضد الوصول العرضي غير المصرح [21].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>يمكّن إنترنت الأشياء الصناعي التطوير الموزع [1]، لكن إلكترونيات القدرة وأجهزة إنترنت الأشياء تحمل ثغرات أمنية عميقة [2]، وأصبحت أطر الأمن الصناعي تعامل هذا كشاغل من الدرجة الأولى [3، 4]. وتُظهر المسوحات الميدانية تأخر النضج السيبراني للتشغيل [7]، وتسجل تقارير الخروقات استهدافًا صناعيًا مستمرًا [8]، وأثبتت ستكسنت أن هجمات أنظمة التحكم سلاح حقيقي [14].</p>
+    <p>صُمم بروتوكول Modbus واسع الاستخدام دون أمن [12]، ويضيف متغير TCP Security طبقة TLS لكنه يترك التحكم بالوصول على مستوى المستخدم للمنفذين [20]. يسد هذا العمل الفجوة بدالتين جديدتين للمصادقة والتخويل، مُقيَّمتين وفق المستوى الأمني الأول من IEC 62443-4-2 — مهاجمون عرضيون بمعرفة عامة بأنظمة التحكم وبوسائل بسيطة ودافعية منخفضة [21].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الأعمال الأخرى ذات الصلة</h2>
+    <p>تغطي دراسات الشبكات الذكية دفاعات متمحورة حول التشفير، بينما تشمل مقترحات Modbus التحكم بالوصول القائم على الأدوار لسكادا [13] ومتغير Modbus آمن مصمم ومنفذ [15] وحماية المعاملات بـHMAC مع SCTP ‏[16] وتطبيقات قائمة على TLS ‏[18] وبروتوكولات تحسين TCP ‏[19]. ولا يقدم أي منها طريقة تحكم وصول كاملة قابلة للاختبار فوق المواصفة الرسمية [20].</p>
+    <p>لذا يبني هذا العمل مباشرة على المواصفة الرسمية [20] ومنهج التكامل مع Node-RED ‏[18]، مضيفًا المصادقة والتخويل باسم المستخدم وكلمة المرور كدالتين أصليتين محكومتين بمتطلبات المكونات في IEC 62443-4-2 ‏[21] ومبادئ AAA ‏[30].</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. بروتوكول Modbus/TCP الأمني المحسّن</h2>
+    <p>يرتكز التصميم على معيارين: ISO/IEC 27001:2013 مرجعًا دوليًا لإدارة أمن المعلومات [29]، وIEC 62443-4-2 بمتطلباته السبعة الأساسية — التعريف والمصادقة وضبط الاستخدام وسلامة النظام وسرية البيانات وتقييد تدفق البيانات والاستجابة الآنية للأحداث وتوافر الموارد [21]. ويقوم التحكم بالوصول على المصادقة والتخويل والمحاسبة (AAA) ‏[30] وجذر ثقة الجهاز والتخزين الآمن للهويات والمفاتيح والتحقق من البرمجيات عند الإقلاع.</p>
+    <p>تنفذ دالتان معرفتان من المستخدم الطريقة: دالة مصادقة (بدالتي تسجيل دخول وتحديث بيانات اعتماد فرعيتين) ودالة تخويل تفرض حقوق الوصول لكل دور للبشر والعمليات البرمجية والأجهزة [32]. وتُدار بيانات الاعتماد وقواعد الوصول أصليًا بواسطة المكون، ومع أدوار شهادات X.509 في البروتوكول [20] تشكل طبقة اسم المستخدم وكلمة المرور عامل مصادقة إضافيًا يضمن عدم إنكار المستخدمين البشريين.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. التنفيذ</h2>
+    <p>ينمذج السيناريو نظام أتمتة وتحكم صناعي تُمارس سجلات خادمه عبر تدفقات Node-RED ‏[22]: تدفق عميل Modbus وتدفق وسيط يفرض سياسة التحكم بالوصول وتدفق خادم Modbus. ويتتبع متغير رمزي عام الجلسات الموثقة، بينما تبقى بيانات الاعتماد المخزنة مسبقًا في ذاكرة غير متطايرة [32].</p>
+    <p>يتبع تأطير البروتوكول البنية المعيارية ADU = ترويسة MBAP + وحدة PDU ‏[31، 32]. ومع تعطيل التحكم بالوصول يُمرَّر كل طلب يصل التدفق الوسيط؛ ومع تفعيله يبدأ الرمز فارغًا ويجب أن يقدم كل طلب قراءة أو كتابة مصادقة صالحة قبل أن يمرره الوسيط إلى الخادم — وهي الآلية التي تتحقق منها الاختبارات.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. الاختبارات</h2>
+    <p>جميع قيم الاختبار بالنظام الست عشري [18]. تُظهر عمليات الأساس مع تعطيل التحكم نجاح طلبات قراءة سجلات الاحتفاظ للسجل 0x64 (تُرجع القيمة 0x00)، يليها طلب كتابة سجلات متعددة يغير 0x00 إلى 0xFF مع إعادة قراءة مؤكِّدة — بينما يعيد طلب المصادقة للدالة الجديدة استثناءً من خادم لا يفهمها، كما يتنبأ تنسيق الاستثناء في المواصفة تمامًا [32].</p>
+    <p>ومع تفعيل التحكم يحمّل التدفق بيانات الاعتماد المخزنة، ويبدأ الرمز فارغًا، وتُمارَس تسلسلات المصادقة والتحديث والتخويل من البداية للنهاية: تُحجب القراءات والكتابات غير الموثقة بسياسة الوسيط، ولا تصل سجلات الخادم إلا الجلسات الموثقة صحيحًا ذات الدور المناسب. ويُفترض التشفير نفسه من طبقة TLS ‏[20] لأنه لا يؤثر على التحقق الوظيفي للدالتين.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. المناقشة</h2>
+    <p>يؤهل معيار IEC 62443-4-2 نضج أمن الأجهزة عبر أربعة مستويات؛ وتثبت الدوال المنفذة نظام تحكم وصول عند المستوى الأول [21]. ويربط جدول المتطلبات في الورقة المتطلبين الأساسيين FR 1 (التعريف والمصادقة) وFR 2 (ضبط الاستخدام) بمتطلبات المكونات — تعريف المستخدم البشري وإدارة الموثقات والمعرفات وقوة كلمات المرور ومعالجة محاولات الدخول وفرض التخويل وقفل الجلسات والأحداث القابلة للتدقيق والطوابع الزمنية وعدم الإنكار — مع تمييز المحقق وغير المنطبق.</p>
+    <p>تُسند مواصفة Modbus/TCP Security سمات شهادات X.509 لأدوار الأجهزة، لكن بناء نظام التحكم حولها مسؤولية المستخدم [20]. وهنا تُدار بيانات الاعتماد وتغيير القواعد وفرض السياسات أصليًا مع دعم الإلغاء أو مدد الصلاحية المحدودة [21]؛ ومع شهادات PKI عند النشر تضيف طبقة كلمة المرور عامل مصادقة ثانيًا بينما تحفظ محاسبة AAA ‏[30] قابلية التدقيق.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">7. الخاتمة</h2>
+    <p>لم تعد الشبكات الصناعية معزولة فيزيائيًا؛ فبعد اندماجها مع الشبكات المؤسسية والإنترنت عبر الصناعة 4.0 والتحول الرقمي ورثت نماذج تهديد تقنية المعلومات — ولهذا حل مفهوم الثقة الصفرية محل بنى المحيط [10]. ويرفع اعتماد TLS في بروتوكول Modbus/TCP الأمني نضج Modbus بضمان سرية القناة ومصادقة الأجهزة عند تفعيل المصادقة المتبادلة [20].</p>
+    <p>توسّع الدالتان المقترحتان البروتوكول بالمصادقة والتخويل، ممكنتين التحكم بالوصول لأي مستخدم — بشري أو نظام أو جهاز. وتثبت اختبارات Node-RED إمكاناتهما وقابليتهما للتطبيق: فمع دعم المصادقة تضمن الضوابط عدم الإنكار والحماية ضد محاولات الوصول العرضية من فاعلين بمعرفة عامة بأنظمة التحكم وبوسائل بسيطة ودافعية منخفضة [21].</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>The Zero Trust concept — never trust the user before a security check — is being adopted in IT, while human users remain the main risk in OT deployments [10, 11]. This paper enhances the Modbus/TCP Security protocol with authentication and authorization functions that guarantee protection against intentional unauthorized access.</p>
+    <p>Two user-defined functions build a username-and-password access-control method for human users with industrial-automation knowledge, validated through a man-in-the-middle (MITM) test component on the Node-RED platform [22]. The tests prove the functions' potential and applicability, securing the protocol against casual unauthorized access [21].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>The IIoT enables distributed development [1], but power-electronics and IoT devices carry deep security vulnerabilities [2], and industrial security frameworks now treat this as a first-order concern [3, 4]. Field surveys show OT cyber-maturity lagging [7], breach reports record persistent industrial targeting [8], and Stuxnet demonstrated that control-system attacks are a real weapon [14].</p>
+    <p>The widely used Modbus protocol was designed without security [12], and its TCP Security variant adds TLS yet leaves user-level access control to implementers [20]. This work closes that gap with two new user-defined functions providing authentication and authorization, evaluated against IEC 62443-4-2 security level 1 — casual attackers with generic IACS knowledge, simple means, and low motivation [21].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Other Related Works</h2>
+    <p>Smart-grid studies cover encryption-centered defences, while Modbus-specific proposals include role-based access control for SCADA [13], a designed-and-implemented secure Modbus variant [15], HMAC-plus-SCTP transaction protection [16], TLS-based implementations [18], and TCP enhancement protocols [19]. None provides a complete, testable user-level access-control method on top of the official Modbus/TCP Security specification [20].</p>
+    <p>The present work therefore builds directly on the official specification [20] and the Node-RED integration approach [18], adding username/password authentication and authorization as native device functions governed by IEC 62443-4-2 component requirements [21] and AAA principles [30].</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Enhanced Modbus/TCP Security Protocol</h2>
+    <p>The design is anchored in two standards: ISO/IEC 27001:2013 as the international reference for information-security management [29], and IEC 62443-4-2 with its seven foundational requirements — identification/authentication, use control, system integrity, data confidentiality, restricted data flow, timely event response, and resource availability [21]. Access control rests on authentication, authorization, and accounting (AAA) [30], a device root of trust, secure storage of identities and keys, and firmware validation at boot.</p>
+    <p>Two user-defined functions implement the method: an authentication function (with login and credential-update sub-functions) and an authorization function that enforces per-role access rights for humans, software processes, and devices [32]. Credentials and access rules are managed natively by the component, and together with the protocol's X.509 certificate roles [20] the username/password layer forms an additional authentication factor, guaranteeing non-repudiation of human users.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Implementation</h2>
+    <p>The scenario models an industrial automation and control system whose server registers are exercised through Node-RED flows [22]: a Modbus client flow, a MITM intermediary flow that enforces the access-control policy, and a Modbus server flow. A global token variable tracks authenticated sessions, while previously stored credentials persist in non-volatile memory [32].</p>
+    <p>Protocol framing follows the standard ADU = MBAP header + PDU structure [31, 32]. With access control disabled, every request reaching the MITM flow is forwarded; with access control enabled, the token starts null and each read/write request must present valid authentication before the MITM forwards it to the server — the mechanism whose behavior the tests verify.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. Tests</h2>
+    <p>All test values are hexadecimal [18]. Baseline runs with access control disabled show read-holding-register requests to register 0x64 succeeding (value 0x00 returned), followed by a write-multiple-registers request changing 0x00 to 0xFF and a confirming re-read — while an authentication request to the new user-defined function returns an exception from a server that does not understand it, exactly as the specification's exception format predicts [32].</p>
+    <p>With access control enabled, the flow loads stored credentials, the token initializes to null, and the authentication, update, and authorization sequences are exercised end to end: unauthenticated reads/writes are blocked by the MITM policy, and only properly authenticated sessions with the right role reach the server registers. Encryption itself is assumed from the TLS layer [20] since it does not affect the functional validation of the two new functions.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Discussion</h2>
+    <p>IEC 62443-4-2 qualifies device security maturity across four levels; the implemented functions evidence an access-control system at security level 1 [21]. The paper's requirements table maps foundational requirements FR 1 (identification/authentication) and FR 2 (use control) to component requirements — human user identification, authenticator and identifier management, password strength, login-attempt handling, authorization enforcement, session lock, auditable events, timestamps, and non-repudiation — marking each as satisfied or not applicable.</p>
+    <p>The Modbus/TCP Security specification assigns X.509 certificate attributes to device roles, but building the access-control system around them is the user's responsibility [20]. Here credentials, rule changes, and policy enforcement are managed natively with support for revocation or limited certificate lifetimes [21]; combined with PKI certificates in deployment, the password layer adds a second authentication factor while AAA accounting [30] preserves auditability.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">7. Conclusions</h2>
+    <p>Industrial networks are no longer physically isolated; integrated with corporate intranets and the internet through Industry 4.0 and digital transformation, they inherit IT threat models — which is why the Zero Trust concept has replaced perimeter-based architectures [10]. The Modbus/TCP Security protocol's TLS adoption raises Modbus maturity by ensuring channel confidentiality and device authentication when mutual authentication is implemented [20].</p>
+    <p>The two proposed user-defined functions extend the protocol with authentication and authorization, enabling access control for any user — human, system, or device. Node-RED tests prove their potential and applicability: together with authentication support, the controls ensure non-repudiation and protection against casual unauthorized access attempts by actors with generic IACS knowledge, simple means, and low motivation [21].</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references with original numbering (34 references in total). See the original paper for the complete list: https://doi.org/10.3390/s22208024</p>
+    <ol dir="ltr">
+      <li value="1">Al-Fuqaha, A. et al. Internet of things: A survey on enabling technologies, protocols, and applications. <em>IEEE Commun. Surv. Tutor.</em> 2015, <em>17</em>, 2347–2376.</li>
+      <li value="2">Balda, J.C. et al. Cybersecurity and power electronics: Addressing the security vulnerabilities of the internet of things. <em>IEEE Power Electron. Mag.</em> 2017.</li>
+      <li value="10">Kindervag, J.; Balaouras, S. No more chewy centers: Introducing the zero trust model of information security. Forrester, 2010.</li>
+      <li value="11">Holmes, D.; Burn, J.; Turner, S. The Definition of Modern Zero Trust. Forrester, 2022.</li>
+      <li value="12">Rinaldi, J. Modbus Security. 2018. Available online: <a href="https://www.rtautomation.com/rtas-blog/modbus-security-2">rtautomation.com</a></li>
+      <li value="13">Figueroa-Lorenzo, S.; Añorga, J.; Arrizabalaga, S. A Role-Based Access Control Model in Modbus SCADA Systems. <em>Sensors</em> 2019, <em>19</em>, 1048.</li>
+      <li value="15">Fovino, I.N. et al. Design and implementation of a secure modbus protocol. In <em>Critical Infrastructure Protection III</em>; Springer, 2009.</li>
+      <li value="18">Ferst, M.K. et al. Implementation of Secure Communication with Modbus and Transport Layer Security protocols. In Proc. INDUSCON 2018.</li>
+      <li value="20">Modbus Organization. MODBUS/TCP Security Protocol Specification. 2018. Available online: <a href="https://modbus.org/docs/MB-TCP-Security-21_2018-07-24.pdf">modbus.org</a></li>
+      <li value="21">IEC 62443-4-2; Security for Industrial Automation and Control Systems—Part 4-2. IEC: Geneva, Switzerland, 2019.</li>
+      <li value="22">About Node-RED. Available online: <a href="https://nodered.org/about">nodered.org</a></li>
+      <li value="29">ISO/IEC 27001:2013; Information technology—Security techniques—Information security management systems—Requirements. ISO: Geneva, Switzerland, 2013.</li>
+      <li value="30">Metz, C. AAA protocols: Authentication, authorization, and accounting for the Internet. <em>IEEE Internet Comput.</em> 1999, <em>3</em>, 75–79.</li>
+      <li value="32">Modbus Organization. MODBUS Application Protocol Specification. 2012. Available online: <a href="https://modbus.org/docs/Modbus_Application_Protocol_V1_1b3.pdf">modbus.org</a></li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/s22208024">10.3390/s22208024</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تهديدات بوت نت إنترنت الأشياء المتطورة والرصد العملي بالمصائد: مراجعة ملخصة ودراسة تجريبية — DAR</title>
+<meta name="description" content="Evolving IoT Botnet Threats and Practical Honeypot Observation: A Summary Review and Experimental Study — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/botnet-honeypot-jcp/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: { nav_browse: "تصفح", nav_search: "بحث", nav_submit: "تقديم" },
+  en: { nav_browse: "Browse", nav_search: "Search", nav_submit: "Submit" }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 0.5rem; font-weight: 700; }
+@media (max-width: 768px) { .compare-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Evolving IoT Botnet Threats and Practical Honeypot Observation: A Summary Review and Experimental Study</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تهديدات بوت نت إنترنت الأشياء المتطورة والرصد العملي بالمصائد: مراجعة ملخصة ودراسة تجريبية</h2>
+
+  <div class="paper-meta">
+    <span>👤 Rajkumar Banoth, Santosh Reddy Addula, Aruna Kranthi Godishala, Rithwik Sannapu, Guna Sekhar Sajja, Deepak Kumar, Vinay Kumar Kasula, Chaitanya Tumma</span>
+    <span>📄 J. Cybersecur. Priv. (JCP), 2026 · Vol. 6, No. 3, 82</span>
+    <span>🔗 <a href="https://doi.org/10.3390/jcp6030082">10.3390/jcp6030082</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>زاد الانتشار السريع لأجهزة إنترنت الأشياء سطح الهجمات لعمليات البوت نت واسعة النطاق؛ وبينما درست أعمال سابقة — بتحليلات مفصلة باستخدام Cowrie وIoTPOT — سلوك بوت نت إنترنت الأشياء، فإنها اعتمدت غالبًا على بيانات تاريخية أو تحليلات بروتوكول معزولة أو إعدادات صعبة التكرار. تعالج هذه الورقة الفجوة بمساهمتين: مراجعة منظمة لعشر دراسات مؤثرة في أمن إنترنت الأشياء من ندوة USENIX الأمنية، وتجربة تأكيدية تنشر مصائد Cowrie وIoTPOT معًا على جهاز ظاهري سحابي في Microsoft Azure [1–10].</p>
+    <p>وعلى عكس دراسات البروتوكول الواحد أو البيئات الكبيرة، تعمل هذه الدراسة كتحقق يؤكد سلوكيات معروفة — هجمات تخمين بيانات الاعتماد، وأوامر طراز Mirai، وهيمنة Telnet — باستخدام بيانات هجوم حقيقية من بيئة سحابية قابلة للتكرار وزهيدة التكلفة تحاكي ثغرات إنترنت أشياء معروفة (مثل CVE-2016-10401 وCVE-2017-17215 وCVE-2014-9222). وهي تحقق صراحة لا تكشف طرق هجوم جديدة.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>وسّع الترابط المتزايد للأجهزة الذكية وظائف الشبكات الحديثة لكنه كشف ثغرات حرجة في منظومة إنترنت الأشياء: بيانات اعتماد افتراضية ضعيفة وأمن برمجيات ثابتة محدود ووعي مستخدمين منخفض مكّنت مجتمعة إصابات برمجيات خبيثة واسعة تسلّح الأجهزة لهجمات منسقة. وتشكل العقد المخترقة بوت نت موزعة قادرة على حملات الحرمان من الخدمة وسرقة البيانات وعمليات سيبرانية-فيزيائية معطلة. وكانت الموجة الكبرى الأولى هي بوت نت Mirai التي أظهرت كيف تولّد ضعف المصادقة البسيط هجمات بحجم تيرابت ضد بنى تحتية عالمية [1].</p>
+    <p>وأكدت أبحاث لاحقة أن بساطة Mirai المعمارية صارت أساس سلالات مشتقة وألهمت نماذج انتشار جديدة تتهرب من الدفاعات التقليدية [2،3]. وتطورت بوت نت إنترنت الأشياء من نماذج القيادة والتحكم المركزية نحو بنى ندّية مرنة تبقى بعد الإسقاطات الجزئية [4]، وأظهرت قياسات المنازل أن أجهزة المستهلكين تترك خدمات ضعيفة مفعّلة افتراضيًا — مخزون متجدد من الأهداف [5]. وتقدّم هذه الورقة بيانات حية من مصائد ترصد سلوكيات البوت نت الراهنة، مؤكدة استمرار الأنماط المعروفة.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">2. الأعمال ذات الصلة: عشر دراسات USENIX</h2>
+    <p>بدأت دراسة بوت نت إنترنت الأشياء مع توثيق Mirai الذي كشف كيف تمكّن ضعف الأجهزة البسيط من اختراق على مستوى الإنترنت: أعاد Antonakakis وآخرون [1] بناء دورة إصابة Mirai الكاملة، كاشفين اعتمادها على بيانات اعتماد افتراضية غير آمنة وTelnet ضعيف وغياب الترقيع في أجهزة التوجيه والكاميرات، وموثقين سرعة إصابة الأجهزة المتنوعة وتحويلها لعقد DDoS — أساسًا منهجيًا للتحليلات اللاحقة. ومدّد Kelly وآخرون [2] ذلك تجريبيًا بإخضاع أجهزة المستهلكين لهجمات طراز Mirai، مظهرين أن استبدال بيانات الاعتماد والتحديثات يخفف القابلية للإصابة كثيرًا. وأما Soltan وآخرون [3] فأظهروا عبر محاكاة أن بوت نت كبيرًا من أجهزة عالية الاستهلاك قد يزعزع شبكات الكهرباء — مؤطرين البوت نت كتهديد سيبراني-فيزيائي لا مجرد عرض نطاق.</p>
+    <p>ومع توسع إنترنت الأشياء للطاقة والصناعة، ظهرت بوت نت «عالية الواط»: قدّم Shekari وآخرون [4] إطار MaDIoT 2.0 الذي ينمذج التفعيل المتزامن للأجهزة كثيفة الاستهلاك وقدرته على إحداث تقلبات حمل واسعة. وبالتوازي وثّق Pan وآخرون [9] في TORCHLIGHT صعود البوت نت «بلا سحابة» — استضافة خوادم C2 داخل Tor لتفادي الإسقاط والتفويض، مضعفين فعالية تقنيات الحجز التقليدية. وفي الدفاع، اقترح Dong وآخرون [7] HorusEye للكشف بخط الأنابيب القابل للبرمجة بزمن استجابة ميلي ثانية، وتقدّم Guan وآخرون [8] بخداع سيبراني-فيزيائي منسق متعدد المصائد يلتقط سياقًا أغنى من المصائد المعزولة [6–10].</p>
+  </section>
+  <section>
+    <h2 dir="rtl">3. تحليل الأعمال ذات الصلة</h2>
+    <p>تقدّم أبحاث الكشف والتخفيف — كمسح Xing وآخرين [10] المصنف للكشف الإحصائي وتعلم الآلة والهجين في بيئات إنترنت الأشياء المقيّدة الموارد — تقييمًا لنقاط القوة والضعف، بينما فحص Woodiss-Field وآخرون [11] قيود الطرق أمام التهرب المتطور (الخوادم الوسيطة وإخفاء الحركة) مؤكدين الحاجة لحلول تكيفية. وأدخلت أبحاث حديثة دفاعات بالذكاء الاصطناعي [12]، ووثّق Kumar وآخرون [5] على مستوى المنازل كثافة الأجهزة وتنوعها وأن نسبة كبيرة من أجهزة التوجيه والكاميرات والإعلام تعرض خدمات غير ضرورية تصبح مداخل إصابة.</p>
+    <p>وأظهرت الدراسات التشخيصية أن حملات الإسقاط تقمع النشاط مؤقتًا لكن الاستئصال طويل الأمد بعيد دون معالجة الحوافز الاقتصادية الكامنة، وأن عودة ظهور نسخ Mirai المعاد تغليفها تؤكد أن التخفيف الحالي لم يحل جوهر التصميم غير الآمن [5،8،9]. وتُظهر دراسات دورة الحياة أن الثغرات تبقى بسبب البرمجيات الثابتة المتقادمة وبروتوكولات المصادقة الضعيفة [8،9] — أساسًا للتجربة الرصدية التي تتحقق إن كانت السلوكيات نفسها تُرصد حيًا.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">4–5. التصميم والتنفيذ التجريبي</h2>
+    <p>نُشرت بيئة المصائد ضمن اشتراك Azure مقيّد على جهاز ظاهري واحد بنظام Ubuntu 22.04 LTS بعنوان IPv4 عام ي reachable من الإنترنت العالمي، مضيفًا مصيدة Cowrie لبروتوكول SSH على المنفذ 22 ومصيدة IoTPOT لبروتوكول Telnet على المنفذ 23، مع ضبط مجموعة أمان الشبكة (NSG) والاحتفاظ بالتفاصيل الحساسة لأخلاقيات الإفصاح المسؤول. والهدف: رصد إن كان النشاط المعاصر ضد SSH وTelnet المكشوفين يطابق الأنماط المبلغ عنها في أبحاث البوت نت السابقة [1–10] — دراسة تحقق تركز التشابه النوعي لا التعداد الواسع.</p>
+    <p>عمل الجهاز باستمرار نحو أسبوعين مع NSG ثابت والمنفذين مفتوحين دون تقسية إضافية، وضُبطت المصائد بلافتات افتراضية تحاكي أنظمة Linux/المدمجة، دون إعلان أو زرع — كل التفاعلات من كيانات خارجية اكتشفت الخدمات بنفسها. والتسجيل على مستويين: تطبيقي (Cowrie يسجل كل اتصال ومحاولة مصادقة وأمر منفذ في سجلات JSON منظمة، وIoTPOT يسجل أحداث Telnet مع بيانات الاعتماد والعناوين)، ومنصّي عبر Azure Monitor Agent إلى Log Analytics للاستعلام المباشر بلغة KQL [1،10]. وحُاكت ثغرات موثقة في CVE: بيانات اعتماد افتراضية ضعيفة (CVE-2016-10401 وCVE-2017-17215) وTelnet غير آمن (CVE-2014-9222) وضعف SSH في أجهزة التوجيه الاستهلاكية.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">6. النتائج: مصيدة SSH</h2>
+    <p>تلقت Cowrie محاولات مصادقة وأوامر متكررة من عدد صغير نسبيًا من عناوين IP نشطة للغاية: أشرس مصدر ولّد قرابة 1000 محاولة وعدة مصادر أخرى بين 400 و900 لكل منها — نمط ماسحات آلية أو بوتات مصابة تكرر قوائم بيانات الاعتماد لا مشغلين بشر [5،9]، بتوزيع جغرافي واسع. وأكدت سجلات المصادقة استمرار اعتماد المهاجمين على بيانات تافهة أو افتراضية [1،3،5]: كان «root» التخمين الأشيع بنحو 5900 محاولة (قرابة خُمس؟)، بأنماط «root/root» و«admin/admin» وتسلسلات رقمية — قواميس مشتقة من افتراضيات أجهزة إنترنت الأشياء المعروفة، بتتابع زمني متواصل على مدار الساعة.</p>
+    <p>وبعد قبول تسجيل دخول محاكى، أصدر المهاجمون تسلسلات أوامر متكررة صغيرة: الأشيع uname -s -v -n -r -m (أكثر من 7000 مرة، أكثر من ثلث الأوامر) مع متغيرات ./bin/./uname وإعادة توجيه إلى /dev/null، واستعلامات /proc/uptime و/proc/cpuinfo وعدّ الأنوية عبر grep وwc وuname -a وwhoami — مطابقة مرحلة التنميط البيئي في تحليلات البوت نت السابقة [1،3،6]. وتلتها عناقيد تتلاعب بإعدادات SSH (‎'cd ~' و'chattr -ia .ssh' وإزالة .ssh وإعادة إنشائه) لتثبيت الوصول عبر مخازن المفاتيح، مع محاولات تنزيل ثنائيات خارجية عبر HTTP. وكانت معظم الجلسات قصيرة آلية، لكن قلة بقيت 7–9 ساعات من عناوين في سنغافورة وروسيا والهند وماليزيا وغيرها — إما نصوص معطوبة أو أدوات شبه تفاعلية [7].</p>
+  </section>
+  <section>
+    <h2 dir="rtl">6. النتائج: مصيدة Telnet والمقارنة</h2>
+    <p>جذبت IoTPOT حركة أكبر بكثير: أكثر مصدر نشط تجاوز 15,000 حدث وعدة مصادر بين 2000 و8000 لكل منها؛ وتصدرت الصين بأكثر من 70,000 إصابة تلتها الولايات المتحدة بأكثر من 30,000 ثم باكستان وروسيا والهند والمملكة المتحدة والبرازيل وإيران (10,000–12,000 لكل منها) — متسقة مع قياسات مسح Telnet السابقة [5،8،9]. وكانت تخمينات أسماء المستخدمين أكثر تركزًا: «root» بأكثر من 23,000 محاولة (أكثر من النصف) ثم «admin» بأكثر من 11,000، مع guest وsupervisor وuser وsupport وdefault — مؤكدة معاملة المهاجمين لنقاط Telnet كأجهزة مدمجة بحسابات مميزة افتراضية [1،3].</p>
+    <p>وسجلت المصيدة نحو 88,000 حدث اتصال و82,000 مصادقة و28,000 أمر و34,000 خطأ: الاتصال والمصادقة أكثر من 70% — معظم التفاعلات لم تتجاوز تسجيل الدخول، أي رشّ بيانات اعتماد واسع لا استغلال تفاعلي عميق. وفي المقارنة جنبًا إلى جنب (الجدول 2)، عانى Telnet كثافة أعلى بكثير من SSH. كما رُصدت محاولات غموض بروتوكول (خيارات تفاوض Telnet مشوهة) تستهدف إسقاط الخدمة أو تجاوزها — تقنيات تهرب يصعب كشفها وتستحق رصدًا مستقبليًا لحزم التفاوض.</p>
+  </section>
+  <section>
+    <h2 dir="rtl">7. المناقشة والخاتمة</h2>
+    <p>تتطلب النتائج الجغرافية حذرًا: الاعتماد على GeoIP وحده يغفل VPN والخوادم الوسيطة والتخفي [5،9]، فالتوزيع المرصود (كتركز الصين والولايات المتحدة) قد يعكس شبكات وسيطة أو أجهزة مخترقة لا المواقع الحقيقية للمشغلين — تحيز يجب تفسيره بحذر. وبالمثل، لا يعكس انتحال IP والوكالات الأصل الحقيقي، فالبيانات نظرة عامة لا إسنادًا دقيقًا.</p>
+    <p>خلاصة الدراسة — وهي تحقق صراحة لا كشف جديد: أظهرت البيانات التجريبية من المصيدتين أن الخصائص الجوهرية لنشاط بوت نت إنترنت الأشياء بقيت دون تغير رغم سنوات البحث والدفاع: المصادقة الضعيفة والمسح الآلي الواسع وروتينات الإصابة المتوقعة والمصادر العالمية الموزعة تهيمن على المشهد [1–10]. واستهدفت المصيدتان أساسًا حسابات مميزة افتراضية (root/admin) بأغلبية المحاولات، مؤكدة أن سوء نظافة بيانات الاعتماد في الأجهزة المنشورة يبقى ناقل الإصابة الأول — داعية لاستراتيجيات تخفيف تكيفية موزعة تعالج تصميم الأجهزة لا الأعراض.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>The rapid proliferation of IoT devices has greatly expanded the attack surface for large-scale botnet operations; while prior work — including detailed analyses using Cowrie and IoTPOT — studied IoT botnet behavior, it often relied on retrospective datasets, isolated protocol analyses, or hard-to-replicate setups. This paper addresses that gap with two contributions: a structured review of ten influential IoT security studies from the USENIX Security Symposium, and a confirmatory experiment deploying Cowrie and IoTPOT honeypots simultaneously on a Microsoft Azure cloud VM [1–10].</p>
+    <p>Unlike single-protocol or large-scale studies, this work acts as a validation study confirming well-known behaviors — credential brute-force attacks, Mirai-style commands, and Telnet dominance — using real-time attack data from a reproducible, affordable cloud environment simulating known IoT vulnerabilities (CVE-2016-10401, CVE-2017-17215, CVE-2014-9222). It explicitly verifies rather than revealing new attack methods.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>The increasing interconnection of smart devices expanded modern network functionality but exposed critical IoT vulnerabilities: weak default credentials, minimal firmware security, and limited user awareness jointly enabled large-scale malware infections weaponizing devices for coordinated attacks. Compromised nodes form distributed botnets capable of denial-of-service campaigns, data exfiltration, and disruptive cyber-physical operations. The first major wave was the Mirai botnet, showing how trivial authentication weakness could generate terabit-scale attacks on global infrastructure [1].</p>
+    <p>Subsequent research confirmed Mirai's architectural simplicity became the foundation for derivative strains and inspired new propagation models evading conventional defenses [2,3]. IoT botnets evolved from centralized command-and-control toward resilient peer-to-peer infrastructures surviving partial takedowns [4], and home-network measurements show consumer devices frequently leave vulnerable services enabled by default — a steady renewable target pool [5]. This paper presents live honeypot data on current botnet behaviors, confirming the persistence of known patterns.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">2. Related Work: Ten USENIX Studies</h2>
+    <p>IoT botnet study began with the Mirai documentation exposing how trivial device weakness enabled Internet-scale compromise: Antonakakis et al. [1] reconstructed Mirai's full infection cycle, revealing reliance on insecure default credentials, weak Telnet, and absent patching in consumer routers and cameras, and documenting rapid heterogeneous infection into DDoS nodes — the methodological foundation for later analyses. Kelly et al. [2] extended this empirically, subjecting consumer devices to Mirai-style attacks and showing credential replacement and updates substantially mitigate susceptibility. Soltan et al. [3] showed via simulation that a large high-wattage-device botnet could destabilize power grids — reframing botnets as cyber-physical threats, not mere bandwidth.</p>
+    <p>As IoT extended into energy and industry, 'high-wattage' botnets emerged: Shekari et al. [4] introduced the MaDIoT 2.0 framework modeling simultaneous power-intensive device activation and its grid-load impact. In parallel, Pan et al. [9] documented 'cloudless' botnets in TORCHLIGHT — C2 servers hosted inside Tor to evade sinkholing and takedown, blunting conventional techniques. On defense, Dong et al. [7] proposed HorusEye programmable-switch detection at millisecond latency, and Guan et al. [8] advanced coordinated multi-honeypot cyber-physical deception capturing richer context than isolated traps [6–10].</p>
+  </section>
+  <section>
+    <h2 dir="ltr">3. Analysis of Related Work</h2>
+    <p>Detection and mitigation research — e.g., Xing et al.'s survey [10] classifying statistical, machine-learning, and hybrid detection for resource-constrained IoT — evaluates strengths and weaknesses, while Woodiss-Field et al. [11] examined limits against sophisticated evasion (proxies, anonymized traffic), stressing adaptive solutions. Recent work introduced AI-powered defenses [12], and Kumar et al. [5] documented household device density and diversity, with many routers, cameras, and media devices exposing unnecessary services as infection entries.</p>
+    <p>Diagnostic studies show takedown campaigns suppress activity only temporarily and long-term eradication remains unlikely without addressing underlying economic incentives, with repackaged Mirai variants confirming current mitigation hasn't fixed insecure design [5,8,9]. Lifecycle studies show vulnerabilities persist from outdated firmware and weak authentication [8,9] — the foundation for the observational experiment verifying whether the same behaviors appear in live traffic.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">4–5. System Design and Experimental Implementation</h2>
+    <p>The honeypot environment runs on a constrained Azure subscription: a single Ubuntu 22.04 LTS VM with a public IPv4 address reachable from the global Internet, hosting the Cowrie SSH honeypot (port 22) and IoTPOT Telnet honeypot (port 23), with a Network Security Group configured and sensitive details redacted for responsible disclosure. Goal: observe whether contemporary activity against exposed SSH and Telnet matches patterns reported in earlier botnet research [1–10] — a validation study focused on qualitative similarity, not large-scale enumeration.</p>
+    <p>The VM ran continuously for roughly two weeks with a static NSG, both ports open, no extra hardening; honeypots used default banners mimicking Linux/embedded shells, with no advertising or seeding — all interactions from external entities self-discovering the services. Two-level logging: application level (Cowrie records each connection, authentication attempt, and executed command in structured JSON; IoTPOT logs Telnet events with credentials and source addresses) and platform level via Azure Monitor Agent into Log Analytics for direct KQL querying [1,10]. Emulated documented CVEs: weak default credentials (CVE-2016-10401, CVE-2017-17215), insecure Telnet (CVE-2014-9222), and SSH weaknesses in consumer routers.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">6. Results: SSH Honeypot</h2>
+    <p>Cowrie received repeated authentication and command attempts from relatively few highly active IPs: the most aggressive source generated just under 1000 attempts, several others 400–900 each — automated scanners or infected bots cycling credential lists, not human operators [5,9], with wide geographic spread. Authentication logs confirm attackers still rely on trivial or default credentials [1,3,5]: 'root' was the most common guess (~5900 attempts), with 'root/root', 'admin/admin', and numeric sequences — dictionaries derived from known IoT defaults, in relentless round-the-clock progression.</p>
+    <p>After an accepted simulated login, attackers issued small recurring command sequences: most frequent uname -s -v -n -r -m (over 7000 times, more than a third of commands) with ./bin/./uname variants and /dev/null redirection; /proc/uptime and /proc/cpuinfo queries, core counts via grep/wc, uname -a, whoami — matching the environment-profiling phase of earlier botnet analyses [1,3,6]. A second cluster manipulated SSH configuration ('cd ~', 'chattr -ia .ssh', .ssh removal/recreation) to persist access via key stores, plus HTTP binary-download attempts. Most sessions were short and automated, but a few persisted 7–9 hours from Singapore, Russia, India, Malaysia, and others — broken scripts or semi-interactive tooling [7].</p>
+  </section>
+  <section>
+    <h2 dir="ltr">6. Results: Telnet Honeypot and Comparison</h2>
+    <p>IoTPOT attracted far more traffic: the most active source exceeded 15,000 events, several others 2,000–8,000 each; China dominated with over 70,000 hits, followed by the US (30,000+), then Pakistan, Russia, India, the UK, Brazil, and Iran (~10,000–12,000 each) — consistent with earlier Telnet-scan measurements [5,8,9]. Username guesses were even more skewed: 'root' exceeded 23,000 attempts (over half), then 'admin' (11,000+), plus guest, supervisor, user, support, default — attackers treat Telnet endpoints as embedded devices with privileged defaults [1,3].</p>
+    <p>The trap logged ~88,000 connection events, 82,000 authentications, ~28,000 commands, and 34,000 errors: connection plus authentication exceeded 70% — most interactions never passed login, i.e., high-volume credential spraying rather than deep interactive exploitation. Side-by-side (Table 2), Telnet suffered far higher intensity than SSH. Protocol-fuzzing attempts (malformed Telnet negotiation options) aiming to crash or bypass the service were also observed — hard-to-detect evasion techniques warranting future negotiation-packet monitoring.</p>
+  </section>
+  <section>
+    <h2 dir="ltr">7. Discussion and Conclusions</h2>
+    <p>GeoIP findings demand caution: GeoIP alone ignores VPNs, proxies, and anonymization [5,9], so the observed distribution (e.g., China/US concentration) may reflect proxy networks or compromised machines rather than operators' true locations — a bias requiring careful interpretation. Likewise, IP spoofing and relays obscure true origin; the data offer an overview, not precise attribution.</p>
+    <p>In sum — explicitly a validation, not a novel discovery: empirical data from both honeypots show core IoT botnet characteristics remain unchanged despite years of research and defense: weak authentication, large-scale automated scanning, predictable infection routines, and globally distributed sources dominate [1–10]. Both traps predominantly saw authentication attempts against privileged defaults (root/admin), confirming poor credential hygiene in deployed devices remains the primary infection vector — calling for adaptive, distributed mitigation addressing device design, not symptoms.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Selected references preserving original numbering; the full list of 17 references is available in the original paper (doi:10.3390/jcp6030082).</p>
+    <ol dir="ltr">
+      <li>[1] 1. Antonakakis, M.; April, T.; Bailey, M.; Bernhard, M.; Bursztein, E.; Cochran, J.; Durumeric, Z.; Halderman, J.A.; Invernizzi, L.; Kallitsis, M.; et al. Understanding the Mirai Botnet. In Proceedings of the 26th USENIX Security Symposium (USENIX Security ’17), Vancouver, BC, Canada, 16–18 August 2017; pp. 1093–1110.</li>
+      <li>[2] 2. Kelly, C.; Pitropakis, N.; McKeown, S.; Lambrinoudakis, C. Testing and hardening IoT devices against the Mirai botnet. In Proceedings of the 2020 International Conference on Cyber Security and Protection of Digital Services (Cyber Security), Dublin, Ireland, 15–19 June 2020; IEEE: Piscataway, NJ, USA, 2020; pp. …</li>
+      <li>[3] 3. Soltan, S.; Mittal, P.; Poor, H.V. BlackIoT: IoT Botnet of High Wattage Devices Can Disrupt the Power Grid. In Proceedings of the 27th USENIX Security Symposium (USENIX Security ’18), Baltimore, MD, USA, 15–17 August 2018; pp. 15–32.</li>
+      <li>[4] 4. Shekari, T.; Cardenas, A.A.; Beyah, R. MaDIoT 2.0: Modern High-Wattage IoT botnet attacks and defenses. In Proceedings of the 31st USENIX Security Symposium (USENIX Security 22), Boston, MA, USA, 10–12 August 2022; pp. 3539–3556.</li>
+      <li>[5] 5. Kumar, D.; Gupta, S.; Li, B.; Mason, J.; Wetherall, D.; Anderson, T. All Things Considered: An Analysis of IoT Devices on Home Networks. In Proceedings of the 28th USENIX Security Symposium (USENIX Security ’19), Santa Clara, CA, USA, 14–16 August 2019; pp. 1169–1185.</li>
+      <li>[6] 6. Alrawi, O.; Lever, C.; Valakuzhy, K.; Snow, K.; Monrose, F.; Antonakaki, M. The Circle of Life: A Large-Scale Study of IoT Malware Evolution. In Proceedings of the 30th USENIX Security Symposium (USENIX Security ’21), Virtual Conference, Online, 11–13 August 2021; pp. 3505–3522.</li>
+      <li>[7] 7. Dong, Y.; Li, Q.; Wu, K.; Li, R.; Zhao, D.; Tyson, G.; Peng, J.; Jiang, Y.; Xia, S.; Xu, M. HorusEye: A realtime IoT mali- cious traffic detection framework using programmable switches. In Proceedings of the 32nd USENIX Security Symposium (USENIX Security ’23), Anaheim, CA, USA, 9–11 August 2023; pp. 571–588.</li>
+      <li>[8] 8. Guan, C.; Cao, G. Cyber-Physical Deception Through Coordinated IoT Honeypots. In Proceedings of the 34th USENIX Security Symposium (USENIX Security 25), Seattle, WA, USA, 13–15 August 2025; pp. 529–545.</li>
+      <li>[9] 9. Pan, Y.; Ling, Z.; Zhang, Y.; Wang, H.; Liu, G.; Luo, J.; Fu, X. TORCHLIGHT: Shedding LIGHT on Real-World Attacks on Cloudless IoT Devices Concealed within the Tor Network. In Proceedings of the 34th USENIX Security Symposium (USENIX Security 25), Seattle, WA, USA, 13–15 August 2025; pp. 1053–1072.</li>
+      <li>[10] 10. Xing, Y.; Shu, H.; Zhao, H.; Li, D.; Guo, L. Survey on botnet detection techniques: Classification, methods, and evaluation. Math. Probl. Eng. 2021, 2021, 6640499. [CrossRef] https://doi.org/10.3390/jcp6030082 J. Cybersecur. Priv. 2026, 6, 82 20 of 20</li>
+      <li>[11] 11. Woodiss-Field, A.; Johnstone, M.N.; Haskell-Dowland, P. Examination of Traditional Botnet Detection on IoT-Based Bots. Sensors 2024, 24, 1027. [CrossRef] [PubMed]</li>
+      <li>[12] 12. Memos, V.A.; Stergiou, C.L.; Bermperis, A.I.; Plageras, A.P.; Psannis, K.E. A Novel Architecture for Mitigating Botnet Threats in AI-Powered IoT Environments. Sensors 2026, 26, 572. [CrossRef] [PubMed]</li>
+      <li>[13] 13. Wazzan, M.; Algazzawi, D.; Bamasaq, O.; Albeshri, A.; Cheng, L. Internet of Things Botnet Detection Approaches: Analysis and Recommendations for Future Research. Appl. Sci. 2021, 11, 5713. [CrossRef]</li>
+      <li>[14] 14. Gelgi, M.; Guan, Y.; Arunachala, S.; Rao, M.S.S.; Dragoni, N. Systematic Literature Review of IoT Botnet DDoS Attacks and Evaluation of Detection Techniques. Sensors 2024, 24, 3571. [CrossRef] [PubMed]</li>
+      <li>[15] 15. Asadi, M.; Jamali, M.A.J.; Heidari, A.; Navimipour, N.J. Botnets Unveiled: A Comprehensive Survey on Evolving Threats and Defense Strategies. Trans. Emerg. Telecommun. Technol. 2024, 35, e5056. [CrossRef]</li>
+      <li>[16] 16. Valentini, E.P.; Franco, T.A.; Gottsfritz, E.N.; Estrella, J.C.; Júnior, L.A.P.; Meneguette, R.I. Honeypot Embedded in Low-Cost IoT Hardware for Collecting and Analyzing Real-World Cyber Threats. In Proceedings of the 18th IEEE/ACM International Conference on Utility and Cloud Computing (UCC ’25), Nantes, France, …</li>
+      <li>[17] 17. Illi, E.; Bazzi, A.; Qaraqe, M.; Ghrayeb, A. On the Secrecy-Sensing Optimization of RIS-Assisted Full-Duplex Integrated Sensing and Communication Network. IEEE Trans. Wirel. Commun. 2025, 25, 9530–9547. [CrossRef] Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are …</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/jcp6030082">10.3390/jcp6030082</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>

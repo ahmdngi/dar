@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تقييم تخصص الأدلة والتواصل المنظم في النماذج اللغوية متعددة الوكلاء لتحليل الثغرات البرمجية — DAR</title>
+<meta name="description" content="Evaluating Evidence Specialization and Structured Communication in Multi-Agent LLMs for Software Vulnerability Analysis — Arabic/English bilingual viewer (DAR).">
+<link rel="canonical" href="https://dararchive.com/papers/multiagent-vuln-applsci/">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>
+window.i18n = {
+  ar: {
+    nav_browse: "تصفح",
+    nav_search: "بحث",
+    nav_submit: "تقديم"
+  },
+  en: {
+    nav_browse: "Browse",
+    nav_search: "Search",
+    nav_submit: "Submit"
+  }
+};
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.ar { direction: rtl; }
+.en { direction: ltr; }
+.compare-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.compare-section:last-child { border-bottom: none; }
+.compare-ar { direction: rtl; }
+.compare-en { direction: ltr; }
+.compare-section .section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .compare-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../" class="logo">
+    <img src="../../assets/logo.png" alt="DAR" style="height:32px;width:auto;vertical-align:middle">
+    <small>Arabic Research Archive</small>
+  </a>
+  <div class="nav-links">
+    <a href="../../" data-i18n="nav_browse">Browse</a>
+    <a href="../../search.html" data-i18n="nav_search">Search</a>
+    <a href="../../submit.html" data-i18n="nav_submit">Submit</a>
+    <a href="https://github.com/ahmdngi/dar" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="container paper-view">
+
+<div class="paper-header">
+  <h1 dir="ltr">Evaluating Evidence Specialization and Structured Communication in Multi-Agent LLMs for Software Vulnerability Analysis</h1>
+  <h2 dir="rtl" style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--accent-2);margin-top:0.5rem;line-height:1.5">تقييم تخصص الأدلة والتواصل المنظم في النماذج اللغوية متعددة الوكلاء لتحليل الثغرات البرمجية</h2>
+
+  <div class="paper-meta">
+    <span>👤 A. Alhubaishy, R. Alharbi</span>
+    <span>📄 Applied Sciences, 2026, Vol. 16(22), 11527</span>
+    <span>🔗 <a href="https://doi.org/10.3390/app162211527">10.3390/app162211527</a></span>
+    <span class="license-badge">✓ CC BY 4.0</span>
+  </div>
+
+  <div class="lang-toggle" dir="ltr">
+    <button class="active" onclick="setLang('ar')" id="toggle-ar">🇸🇦 العربية</button>
+    <button onclick="setLang('en')" id="toggle-en">🇬🇧 English</button>
+    <button onclick="setLang('both')" id="toggle-both">⇄ <span class="tog-label-side">Side by Side</span></button>
+    <button onclick="setLang('compare')" id="toggle-compare">⇌ <span class="tog-label-compare">Compare Sections</span></button>
+  </div>
+</div>
+
+<div id="paper-content" class="paper-body">
+
+<!-- ==================== ARABIC ==================== -->
+<div class="lang-content ar active">
+  <section>
+    <h2 dir="rtl">الملخص</h2>
+    <p>ما يزال غير واضح ما إذا كان توزيع الأدلة عبر وكلاء متخصصين يحسن الأداء مقارنة بمنهج الوكيل الواحد الموحد، وإلى أي مدى يمكن للتواصل بين الوكلاء تخفيف قيود تخصص الأدلة. وباستخدام مجموعة بيانات CVEfixes، تقيّم هذه الدراسة ثلاثة تكوينات: وكيل واحد بجميع الأدلة (B0)، وثلاثة وكلاء متخصصي أدلة يعملون مستقلين (B1)، والبنية متعددة الوكلاء نفسها مع تواصل منظم ومراجعة (B2). يُظهر الاستدلال المتخصص بالأدلة عيبًا كبيرًا في توطين الطرق الضعيفة، إذ يهبط الاستدعاء@1 من 82.68% بالاستدلال الموحد إلى 43.84% بالتخصص المستقل. ويحسن التواصل المنظم التوطين معنويًا إلى 49.45% لكنه يسترد جزءًا صغيرًا فقط من الفجوة. أما تشخيص CWE فغير حساس لهذه التغييرات إلى حد كبير، بدقة Top-1 بين 37.24% و38.14%. ويحدد الاستئصال التشخيصي تجزئة الأدلة — لا تقسيم العمل متعدد الوكلاء وحده — كعامل أولي: إذ يبلغ المتخصصون ذوو الوصول الكامل للأدلة 86.19% استدعاء@1، مقابل 45.65% عند تجزئة الأدلة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">1. المقدمة</h2>
+    <p>تُطبق النماذج اللغوية الكبيرة بشكل متزايد على تحليل الثغرات البرمجية — الكشف وتصنيف نقاط الضعف وتوطين الشيفرة الضعيفة — لكن الجهود القائمة تبلغ عن قيود مثابرة تشمل الإيجابيات الكاذبة والاستدلال غير الموثوق وصعوبة دمج سياق المستودع [1]، [2]. وتُظهر أطر الوكلاء المتعددين التأسيسية كيفية تنسيق الوكلاء المتخصصين: إذ يستخدم MetaGPT إجراءات تشغيل معيارية لهندسة البرمجيات وتواصلًا منظمًا لسيرورات الأدوار [3]، بينما ينظم ChatDev التطوير عبر سلاسل محادثة تواصلية [4]. وما إذا كان التخصص ينفع تحليل الثغرات أم يضره هو السؤال الذي تعزله هذه الدراسة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">2. الإطار التجريبي</h2>
+    <p>تُشتق حالات الثغرات المقترنة من مجموعة بيانات CVEfixes [6]، التي تجمع الثغرات وإصلاحاتها آليًا من البرمجيات مفتوحة المصدر. وتُقارن ثلاثة تكوينات: B0 (استدلال موحد بوكيل واحد مع كل الأدلة)، وB1 (ثلاثة وكلاء متخصصي أدلة يستدلون مستقلين)، وB2 (البنية المتخصصة نفسها مع بروتوكول تواصل منظم بين الوكلاء قائم على تبادل الأدلة والنقاش والمراجعة). ويفحص استئصال تشخيصي إضافي تأطير أدوار المتخصصين والوصول للأدلة (B0-role وB1-full).</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">3. مقاييس التقييم</h2>
+    <p>لتوطين الطرق الضعيفة، يعيد كل تكوين حتى خمس طرق مرشحة؛ وتبلغ الدراسة عن الاستدعاء@k (k ∈ {1, 3, 5}) وMRR@5، حيث يطابق الاستدعاء@1 دقة التوطين Top-1. ولتشخيص CWE تبلغ عن دقتي Top-1 وTop-3 مع الدقة والاستدعاء وF1 المكروية والمرجحة لمراعاة توزيع CWE طويل الذيل (17 من 44 فئة لها حالة واحدة؛ و29 لها ثلاث أو أقل). وجميع المقارنات الأولية مقترنة على مستوى الحالة: اختبارات McNemar الدقيقة للنتائج الثنائية، واختبارات التقليب بقلب الإشارة المقترنة لـ MRR@5، وفترات ثقة bootstrap مقترنة بعشرة آلاف إعادة عينة.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">4. نتائج التوطين</h2>
+    <p>على مجموعة التقييم نفسها (333 حالة)، يحقق B0 أعلى استدعاء@1 (82.68% ± 0.17%)، مقابل 43.84% ± 0.30% لـ B1 و49.45% ± 0.76% لـ B2. ويتبع MRR@5 النمط نفسه (0.8720 و0.5003 و0.5351). ومقارنة بـ B1، يحسن B2 متوسط الاستدعاء@1 بـ 5.61 نقاط مئوية — فالتواصل المنظم يخفف التدهور الناجم عن تخصص الأدلة معنويًا (p &lt; 0.001) لكن جزئيًا فقط، ويحافظ B0 على أفضلية كبيرة على التكوينين متعددي الوكلاء.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">5. تشخيص CWE والاستئصال</h2>
+    <p>تشخيص CWE غير حساس للبنية إلى حد كبير: إذ تتراوح دقة Top-1 بين 37.24% و38.14% فقط، بينما يحقق B1 وB2 دقة Top-3 أعلى (61.86%) من B0 (58.26%). ويوضح الاستئصال التشخيصي الآلية: فأداء B0-role قريب من B0، ويحقق B1-full — متخصصون ممنوحون كل الأدلة المتاحة — أفضل توطين (86.19% استدعاء@1)، بينما يهبط الأداء إلى 45.65% عند تقييد الأدلة حسب الدور. ومن ثم لا يُفسر عجز التوطين في B1 بتقسيم العمل متعدد الوكلاء وحده؛ فالوصول للأدلة هو العامل الحاسم.</p>
+  </section>
+
+  <section>
+    <h2 dir="rtl">6. الخاتمة</h2>
+    <p>تخصص الوكلاء وتجزئة الأدلة والتواصل خيارات تصميم متميزة. إذ يؤدي الوكلاء المتخصصون جيدًا عندما يحتفظون بالأدلة السياقية التي تحتاجها مهامهم، لكن تقييد الوصول للأدلة بصرامة يخفض توطين الطرق الضعيفة كثيرًا؛ والتواصل المنظم يضيق الفجوة دون بلوغ أداء الأدلة الكاملة. وينبغي للعمل المستقبلي دراسة استراتيجيات بديلة لمشاركة الأدلة عبر معايير ونماذج أكثر، وأوصاف CVE مخفية المعرفات، وتلوث ما قبل التدريب، وسلوك التواصل على مستوى الحالة، ومفاضلات الكلفة المالية مقابل الأداء.</p>
+  </section>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div class="lang-content en">
+  <section>
+    <h2 dir="ltr">Abstract</h2>
+    <p>It remains unclear whether distributing evidence across specialized agents improves performance compared with a unified single-agent approach, and to what extent inter-agent communication can mitigate the limitations of evidence specialization. Using the CVEfixes dataset, this study evaluates three configurations: a single agent with all evidence (B0), three evidence-specialized agents acting independently (B1), and the same multi-agent architecture with structured communication and revision (B2). Evidence-specialized reasoning shows a substantial disadvantage in vulnerable-method localization, with Recall@1 falling from 82.68% under unified reasoning to 43.84% under independent specialization. Structured communication significantly improves localization to 49.45% but recovers only a small portion of the gap. CWE diagnosis is largely insensitive to these changes, with Top-1 accuracy between 37.24% and 38.14%. Diagnostic ablation identifies evidence partitioning — not multi-agent division of labor alone — as the primary factor: specialists with full evidence access reach 86.19% Recall@1, versus 45.65% when evidence is partitioned.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">1. Introduction</h2>
+    <p>LLMs are increasingly applied to software vulnerability analysis — detection, weakness classification, and vulnerable code localization — yet existing efforts report persistent limitations, including false positives, unreliable reasoning, and difficulties incorporating repository-level context [1], [2]. Foundational multi-agent frameworks show how specialized agents coordinate: MetaGPT uses software-engineering standardized operating procedures and structured communication for role-based workflows [3], while ChatDev organizes development through communicative chat chains [4]. Whether specialization helps or harms vulnerability analysis is the question this study isolates.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">2. Experimental Framework</h2>
+    <p>Paired vulnerability cases are derived from the CVEfixes dataset [6], which automates collection of vulnerabilities and their fixes from open-source software. Three configurations are compared: B0 (unified single-agent reasoning with all evidence), B1 (three evidence-specialized agents reasoning independently), and B2 (the same specialized architecture plus a structured inter-agent communication protocol based on evidence exchange, discussion, and revision). A diagnostic ablation further varies specialist role framing and evidence access (B0-role, B1-full).</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">3. Evaluation Metrics</h2>
+    <p>For vulnerable-method localization, each configuration returns up to five candidate methods; the study reports Recall@k (k ∈ {1, 3, 5}) and MRR@5, where Recall@1 corresponds to Top-1 localization accuracy. For CWE diagnosis it reports Top-1 and Top-3 accuracy with macro-averaged precision, recall, F1, and weighted F1 to account for the long-tailed CWE distribution (17 of 44 categories have a single case; 29 have three or fewer). All primary comparisons are paired at the case level: exact McNemar tests for binary outcomes, paired sign-flip permutation tests for MRR@5, and 10,000-resample paired bootstrap confidence intervals.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">4. Localization Results</h2>
+    <p>On the same 333-case evaluation set, B0 achieves the highest Recall@1 (82.68% ± 0.17%), compared with 43.84% ± 0.30% for B1 and 49.45% ± 0.76% for B2. MRR@5 follows the same pattern (0.8720, 0.5003, and 0.5351). Compared with B1, B2 improves mean Recall@1 by 5.61 percentage points — structured communication significantly (p &lt; 0.001) but only partially mitigates the degradation from evidence specialization, and B0 maintains a substantial advantage over both multi-agent configurations.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">5. CWE Diagnosis and Ablation</h2>
+    <p>CWE diagnosis is largely insensitive to architecture: Top-1 accuracy varies only between 37.24% and 38.14%, while B1 and B2 achieve higher Top-3 accuracy (61.86%) than B0 (58.26%). The diagnostic ablation clarifies the mechanism: B0-role performs close to B0, and B1-full — specialists granted all available evidence — achieves the best localization (86.19% Recall@1), while restricting evidence by role drops performance to 45.65%. Hence the B1 localization deficit cannot be explained by multi-agent division of labor alone; evidence access is the decisive factor.</p>
+  </section>
+
+  <section>
+    <h2 dir="ltr">6. Conclusion</h2>
+    <p>Agent specialization, evidence partitioning, and communication are distinct design choices. Specialized agents perform well when they retain the contextual evidence their tasks need, but strictly limiting evidence access considerably reduces vulnerable-method localization; structured communication narrows the gap without reaching full-evidence performance. Future work should investigate alternative evidence-sharing strategies across more benchmarks and models, identifier-masked CVE descriptions, pretraining contamination, case-level communication behavior, and monetary cost–performance trade-offs.</p>
+  </section>
+</div>
+
+</div><!-- /paper-content -->
+
+<!-- References -->
+<div class="paper-body" style="margin-top:2rem">
+  <section class="ref-section">
+    <h2 dir="ltr">References</h2>
+    <p dir="ltr" style="font-size:0.85rem;color:var(--text-2)">Reference list is condensed to the works cited in this viewer; numbers match the original paper. See the original publication for the complete list.</p>
+    <ol dir="ltr">
+      <li>[1] Zhou, X.; Cao, S.; Sun, X.; Lo, D. Large Language Model for Vulnerability Detection and Repair: Literature Review and the Road Ahead. <em>ACM Trans. Softw. Eng. Methodol.</em> 2025, 34, 1–31.</li>
+      <li>[2] Sheng, Z.; Chen, Z.; Gu, S.; Huang, H.; Gu, G.; Huang, J. LLMs in Software Security: A Survey of Vulnerability Detection Techniques and Insights. <em>ACM Comput. Surv.</em> 2025, 58, 1–35.</li>
+      <li>[3] Hong, S.; Zhuge, M.; Chen, J.; Zheng, X.; Cheng, Y.; Wang, J.; Zhang, C.; Wang, Z.; Yau, S.; Lin, Z.; et al. MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework. In Proceedings of the International Conference on Learning Representations (ICLR), 2024.</li>
+      <li>[4] Qian, C.; Liu, W.; Liu, H.; Chen, N.; Dang, Y.; Li, J.; Yang, C.; Chen, W.; Su, Y.; Cong, X.; et al. ChatDev: Communicative Agents for Software Development. In Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (ACL), 2024.</li>
+      <li>[6] Bhandari, G.; Naseer, A.; Moonen, L. CVEfixes: Automated Collection of Vulnerabilities and Their Fixes from Open-Source Software. In Proceedings of the 17th International Conference on Predictive Models and Data Analytics in Software Engineering (PROMISE), 2021.</li>
+    </ol>
+  </section>
+</div>
+
+<footer>
+  <p>Original paper: <a href="https://doi.org/10.3390/app162211527">10.3390/app162211527</a> · License: CC BY 4.0</p>
+  <p>Translation © DAR — Arabic Research Archive</p>
+</footer>
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  var btnId = (lang === 'both' ? 'both' : lang);
+  document.getElementById('toggle-' + btnId).classList.add('active');
+  document.querySelectorAll('.compare-section').forEach(function(el) { el.remove(); });
+  document.querySelectorAll('.lang-content').forEach(function(el) {
+    el.classList.remove('active', 'side-by-side');
+    el.style.display = 'none';
+  });
+  document.getElementById('paper-content').classList.remove('side-by-side');
+  if (lang === 'both') {
+    document.querySelectorAll('.lang-content').forEach(function(el) {
+      el.classList.add('side-by-side');
+      el.style.display = 'block';
+    });
+    document.getElementById('paper-content').classList.add('side-by-side');
+  } else if (lang === 'compare') {
+    var arSections = document.querySelectorAll('.lang-content.ar > section');
+    var enSections = document.querySelectorAll('.lang-content.en > section');
+    var container = document.getElementById('paper-content');
+    var count = Math.min(arSections.length, enSections.length);
+    for (var i = 0; i < count; i++) {
+      var pair = document.createElement('div');
+      pair.className = 'compare-section';
+      var enCol = document.createElement('div');
+      enCol.className = 'compare-en';
+      var enLabel = document.createElement('div');
+      enLabel.className = 'section-label';
+      enLabel.textContent = 'ENGLISH';
+      enCol.appendChild(enLabel);
+      enCol.appendChild(enSections[i].cloneNode(true));
+      var arCol = document.createElement('div');
+      arCol.className = 'compare-ar';
+      var arLabel = document.createElement('div');
+      arLabel.className = 'section-label';
+      arLabel.textContent = 'العربية';
+      arCol.appendChild(arLabel);
+      arCol.appendChild(arSections[i].cloneNode(true));
+      pair.appendChild(enCol);
+      pair.appendChild(arCol);
+      container.appendChild(pair);
+    }
+  } else {
+    document.querySelector('.lang-content.' + lang).style.display = 'block';
+    document.querySelector('.lang-content.' + lang).classList.add('active');
+  }
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+  var isAr = (lang === 'ar' || lang === 'both' || lang === 'compare');
+  var sideEl = document.querySelector('.tog-label-side');
+  var compEl = document.querySelector('.tog-label-compare');
+  if (sideEl) sideEl.textContent = isAr ? 'جنباً إلى جنب' : 'Side by Side';
+  if (compEl) compEl.textContent = isAr ? 'مقارنة' : 'Compare Sections';
+}
+setLang('ar');
+</script>
+<script src="../../assets/js/i18n.js"></script>
+</body>
+</html>
